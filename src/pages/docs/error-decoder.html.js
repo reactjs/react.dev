@@ -16,6 +16,7 @@ import hex2rgba from 'hex2rgba';
 import MarkdownHeader from 'components/MarkdownHeader';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
+import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import {colors, sharedStyles} from 'theme';
 import {createLinkDocs} from 'utils/createLink';
 import findSectionForPath from 'utils/findSectionForPath';
@@ -46,6 +47,9 @@ const ErrorPage = ({data, location}) => (
           <MarkdownHeader
             path={data.markdownRemark.fields.path}
             title={data.markdownRemark.frontmatter.title}
+          />
+          <TitleAndMetaTags
+            title={`React - ${data.markdownRemark.frontmatter.title}`}
           />
 
           <div css={sharedStyles.articleLayout.content}>

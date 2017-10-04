@@ -12,7 +12,9 @@
 import Link from 'gatsby-link';
 import Container from 'components/Container';
 import Header from 'components/Header';
+import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import React from 'react';
+import {urlRoot} from 'site-constants';
 import {colors, media, sharedStyles} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import MetaTitle from 'templates/components/MetaTitle';
@@ -22,6 +24,10 @@ const AllBlogPosts = ({data}) => (
     <div css={sharedStyles.articleLayout.container}>
       <div css={sharedStyles.articleLayout.content}>
         <Header>All Posts</Header>
+        <TitleAndMetaTags
+          ogUrl={`${urlRoot}/blog/all.html`}
+          title="React - All Posts"
+        />
         <ul
           css={{
             display: 'flex',

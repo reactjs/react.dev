@@ -2,8 +2,6 @@
 id: accessibility
 title: Accessibility
 permalink: docs/accessibility.html
-redirect_from:
-  - "docs/index.html"
 ---
 
 ## Why Accessibility?

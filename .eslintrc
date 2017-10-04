@@ -1,0 +1,7 @@
+{
+  "plugins": [
+    "prettier",
+    "react"
+  ],
+  "parser": "babel-eslint",
+}

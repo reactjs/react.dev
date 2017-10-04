@@ -43,7 +43,7 @@ Joe McBride ([joemcbride](https://github.com/joemcbride)) has an up-and-running 
 Interact with this [visual tour of Relay's architecture](http://sgwilym.github.io/relay-visual-learners/) by Sam Gwilym ([sgwilym](https://github.com/sgwilym)).
 
 <a href="http://sgwilym.github.io/relay-visual-learners/">
-  <img src="../img/blog/relay-visual-architecture-tour.png" alt="Relay for visual learners" style="max-width:100%">
+  <img src="../images/blog/relay-visual-architecture-tour.png" alt="Relay for visual learners" style="max-width:100%">
 </a>
 
 Sam has already launched a product that leverages Relay's data-fetching, optimistic responses, pagination, and mutations &ndash; all atop a Ruby GraphQL server: [new.comique.co](http://new.comique.co/)
@@ -56,7 +56,7 @@ Michael Hart ([mhart](https://mhart)) built a [simple-relay-starter](https://git
 
 ## Routing around
 
-Jimmy Jia ([taion](https://github.com/taion)) and Gerald Monaco ([devknoll](https://github.com/devknoll)) have been helping lost URLs find their way to Relay apps through their work on [react-router-relay](https://github.com/relay-tools/react-router-relay). Check out Christoph Nakazawa's ([cpojer](https://github.com/cpojer)) [blog post](https://medium.com/@cpojer/relay-and-routing-36b5439bad9) on the topic. Jimmy completed the Relay TodoMVC example with routing, which you can check out at [taion/relay-todomvc](https://github.com/taion/relay-todomvc).
+Jimmy Jia ([taion](@taion)) and Gerald Monaco ([devknoll](@devknoll)) have been helping lost URLs find their way to Relay apps through their work on [react-router-relay](relay-tools/react-router-relay). Check out Christoph Nakazawa's ([cpojer](@cpojer)) [blog post](medium.com/@cpojer/relay-and-routing-36b5439bad9) on the topic. Jimmy completed the Relay TodoMVC example with routing, which you can check out at [taion/relay-todomvc](taion/relay-todomvc).
 
 Chen Hung-Tu ([transedward](https://github.com/transedward)) built a chat app atop the above mentioned router, with threaded conversations and pagination. Check it out at [transedward/relay-chat](https://github.com/transedward/relay-chat).
 

@@ -17,7 +17,7 @@ next: complementary-tools-zh-CN.html
 ### Thinking in react - tagtree.tv
 
 一个 [tagtree.tv](http://tagtree.tv/) 传达 [Thinking in React](/docs/thinking-in-react.html) 原则的视频  在构建一个简单app时。
-<figure><a href="http://tagtree.tv/thinking-in-react"><img src="../img/docs/thinking-in-react-tagtree.png"></a></figure>
+<figure><a href="http://tagtree.tv/thinking-in-react"><img src="../images/docs/thinking-in-react-tagtree.png"></a></figure>
 
 * * *
 
@@ -39,7 +39,7 @@ next: complementary-tools-zh-CN.html
 ### CodeWinds
 
 [Pete Hunt](http://www.petehunt.net/) 与 [Jeff Barczewski](http://jeff.barczewski.com/) 在 CodeWinds Episode 4 上关于 React 的谈话.
-<figure><a href="http://codewinds.com/4"><img src="../img/docs/codewinds-004.png"></a></figure>
+<figure><a href="http://codewinds.com/4"><img src="../images/docs/codewinds-004.png"></a></figure>
 
 <table width="100%"><tr><td>
 02:08 - 什么是React，为什么我们用它?<br />
@@ -72,7 +72,7 @@ next: complementary-tools-zh-CN.html
 ### JavaScript Jabber
 
 [Pete Hunt](http://www.petehunt.net/) 和 [Jordan Walke](https://github.com/jordwalke) 在 JavaScript Jabber 73 上关于React的谈话.
-<figure><a href="http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/#content"><img src="../img/docs/javascript-jabber.png"></a></figure>
+<figure><a href="http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/#content"><img src="../images/docs/javascript-jabber.png"></a></figure>
 
 <table width="100%"><tr><td>
 01:34 – Pete Hunt 介绍<br />

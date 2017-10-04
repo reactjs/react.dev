@@ -97,7 +97,7 @@ Perf.printInclusive(measurements)
 
 Prints the overall time taken. When no arguments are passed, `printInclusive` defaults to all the measurements from the last recording. This prints a nicely formatted table in the console, like so:
 
-![](../img/docs/perf-inclusive.png)
+![](../images/docs/perf-inclusive.png)
 
 * * *
 
@@ -109,7 +109,7 @@ Perf.printExclusive(measurements)
 
 "Exclusive" times don't include the times taken to mount the components: processing props, calling `componentWillMount` and `componentDidMount`, etc.
 
-![](../img/docs/perf-exclusive.png)
+![](../images/docs/perf-exclusive.png)
 
 * * *
 
@@ -123,7 +123,7 @@ Perf.printWasted(measurements)
 
 "Wasted" time is spent on components that didn't actually render anything, e.g. the render stayed the same, so the DOM wasn't touched.
 
-![](../img/docs/perf-wasted.png)
+![](../images/docs/perf-wasted.png)
 
 * * *
 
@@ -135,7 +135,7 @@ Perf.printOperations(measurements)
 
 Prints the underlying DOM manipulations, e.g. "set innerHTML" and "remove".
 
-![](../img/docs/perf-dom.png)
+![](../images/docs/perf-dom.png)
 
 * * *
 

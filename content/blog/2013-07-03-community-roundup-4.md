@@ -19,7 +19,7 @@ The best part is the demo of how React reconciliation process makes live editing
 
 > Our renderer, post-React, is on the left. A typical math editor's preview is on the right.
 
-[![](../img/blog/monkeys.gif)](http://bjk5.com/post/53742233351/getting-your-team-to-adopt-new-technology)
+[![](../images/blog/monkeys.gif)](http://bjk5.com/post/53742233351/getting-your-team-to-adopt-new-technology)
 
 ## React Snippets
 
@@ -55,4 +55,4 @@ Over the past several weeks, members of our team, [Pete Hunt](http://www.petehun
 [Tom Occhino](http://tomocchino.com/) implemented Snake in 150 lines with React.
 
 > [Check the source on GitHub](https://github.com/tomocchino/react-snake/blob/master/src/snake.js)
-> <figure><a href="https://tomocchino.github.io/react-snake/"><img src="../img/blog/snake.png"></a></figure>
+> <figure><a href="https://tomocchino.github.io/react-snake/"><img src="../images/blog/snake.png"></a></figure>

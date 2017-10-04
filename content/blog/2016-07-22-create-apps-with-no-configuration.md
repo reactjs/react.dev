@@ -27,22 +27,22 @@ create-react-app hello-world
 
 This will take a while as npm installs the transitive dependencies, but once it’s done, you will see a list of commands you can run in the created folder:
 
-![created folder](../img/blog/create-apps-with-no-configuration/created-folder.png)
+![created folder](../images/blog/create-apps-with-no-configuration/created-folder.png)
 
 ### Starting the Server
 
 Run `npm start` to launch the development server. The browser will open automatically with the created app’s URL.
 
-![compiled successfully](../img/blog/create-apps-with-no-configuration/compiled-successfully.png)
+![compiled successfully](../images/blog/create-apps-with-no-configuration/compiled-successfully.png)
 
 Create React App uses both webpack and Babel under the hood.
 The console output is tuned to be minimal to help you focus on the problems:
 
-![failed to compile](../img/blog/create-apps-with-no-configuration/failed-to-compile.png)
+![failed to compile](../images/blog/create-apps-with-no-configuration/failed-to-compile.png)
 
 ESLint is also integrated so lint warnings are displayed right in the console:
 
-![compiled with warnings](../img/blog/create-apps-with-no-configuration/compiled-with-warnings.png)
+![compiled with warnings](../images/blog/create-apps-with-no-configuration/compiled-with-warnings.png)
 
 We only picked a small subset of lint rules that often lead to bugs.
 
@@ -50,7 +50,7 @@ We only picked a small subset of lint rules that often lead to bugs.
 
 To build an optimized bundle, run `npm run build`:
 
-![npm run build](../img/blog/create-apps-with-no-configuration/npm-run-build.png)
+![npm run build](../images/blog/create-apps-with-no-configuration/npm-run-build.png)
 
 It is minified, correctly envified, and the assets include content hashes for caching.
 
@@ -139,7 +139,7 @@ Still, we knew it was frustrating to spend days setting up a project when all yo
 
 We found ourselves in an unusual dilemma.
 
-So far, [our strategy](/contributing/design-principles.html#dogfooding) has been to only release the code that we are using at Facebook. This helped us ensure that every project is battle-tested and has clearly defined scope and priorities.
+So far, [our strategy](/docs/design-principles.html#dogfooding) has been to only release the code that we are using at Facebook. This helped us ensure that every project is battle-tested and has clearly defined scope and priorities.
 
 However, tooling at Facebook is different than at many smaller companies. Linting, transpilation, and packaging are all handled by powerful remote development servers, and product engineers don’t need to configure them. While we wish we could give a dedicated server to every user of React, even Facebook cannot scale that well!
 

@@ -14,7 +14,7 @@ React got featured on the front-page of Hacker News thanks to the Om library. If
 > Wait, wait, wait. What does the performance of persistent data structures have to do with the future of JavaScript MVCs?
 >
 > A whole lot.
-> <figure><a href="https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/"><img src="../img/blog/om-backbone.png"></a></figure>
+> <figure><a href="https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/"><img src="../images/blog/om-backbone.png"></a></figure>
 >
 > [Read the full article...](https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/)
 
@@ -46,7 +46,7 @@ Managing the scroll position when new content is inserted is usually very tricky
 ## Lights Out
 
 React declarative approach is well suited to write games. [Cheng Lou](https://github.com/chenglou) wrote the famous Lights Out game in React. It's a good example of use of [TransitionGroup](/docs/animation.html) to implement animations.
-<figure><a href="https://chenglou.github.io/react-lights-out/"><img src="../img/blog/lights-out.png"></a></figure>
+<figure><a href="https://chenglou.github.io/react-lights-out/"><img src="../images/blog/lights-out.png"></a></figure>
 
 [Try it out!](https://chenglou.github.io/react-lights-out/)
 
@@ -54,7 +54,7 @@ React declarative approach is well suited to write games. [Cheng Lou](https://gi
 ## Reactive Table Bookmarklet
 
 [Stoyan Stefanov](http://www.phpied.com/) wrote a bookmarklet to process tables on the internet. It adds a little "pop" button that expands to a full-screen view with sorting, editing and export to csv and json.
-<figure><a href="http://www.phpied.com/reactivetable-bookmarklet/"><img src="../img/blog/reactive-bookmarklet.png"></a></figure>
+<figure><a href="http://www.phpied.com/reactivetable-bookmarklet/"><img src="../images/blog/reactive-bookmarklet.png"></a></figure>
 
 [Check out the blog post...](http://www.phpied.com/reactivetable-bookmarklet/)
 
@@ -91,7 +91,7 @@ hoodie new todomvc -t "hoodiehq/hoodie-react-todomvc"
 ## JSX Compiler
 
 Ever wanted to have a quick way to see what a JSX tag would be converted to? [Tim Yung](http://www.yungsters.com/) made a page for it.
-<figure><a href="/react/jsx-compiler.html"><img src="../img/blog/jsx-compiler.png"></a></figure>
+<figure><a href="/react/jsx-compiler.html"><img src="../images/blog/jsx-compiler.png"></a></figure>
 
 [Try it out!](/jsx-compiler.html)
 

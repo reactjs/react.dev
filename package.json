@@ -71,7 +71,7 @@
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
-    "prettier": "prettier --no-bracket-spacing --single-quote --jsx-bracket-same-line --trailing-comma all --print-width 80 --parser flow --write 'src/**/*.js'",
+    "prettier": "prettier --config .prettierrc --write '{flow-typed,plugins,src}/**/*.js'",
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {

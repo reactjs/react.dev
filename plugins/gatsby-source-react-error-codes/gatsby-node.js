@@ -1,9 +1,10 @@
 const request = require('request-promise');
 
-const errorCodesUrl = 'http://raw.githubusercontent.com/facebook/react/master/scripts/error-codes/codes.json';
+const errorCodesUrl =
+  'http://raw.githubusercontent.com/facebook/react/master/scripts/error-codes/codes.json';
 
-exports.sourceNodes = async ({ boundActionCreators }) => {
-  const { createNode } = boundActionCreators;
+exports.sourceNodes = async ({boundActionCreators}) => {
+  const {createNode} = boundActionCreators;
 
   const jsonString = await request(errorCodesUrl);
 

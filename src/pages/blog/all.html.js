@@ -5,7 +5,8 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
-*/
+ * @flow
+ */
 
 'use strict';
 
@@ -19,7 +20,13 @@ import {colors, media, sharedStyles} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import MetaTitle from 'templates/components/MetaTitle';
 
-const AllBlogPosts = ({data}) => (
+import type {allMarkdownRemarkData} from 'types';
+
+type Props = {
+  data: allMarkdownRemarkData,
+};
+
+const AllBlogPosts = ({data}: Props) => (
   <Container>
     <div css={sharedStyles.articleLayout.container}>
       <div css={sharedStyles.articleLayout.content}>

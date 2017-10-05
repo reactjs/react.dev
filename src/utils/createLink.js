@@ -109,7 +109,7 @@ const linkCss = {
   },
 };
 
-export default {
+export {
   createLinkBlog,
   createLinkCommunity,
   createLinkDocs,

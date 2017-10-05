@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -13,11 +14,13 @@ import React from 'react';
 
 import {media} from 'theme';
 
+import type {Node} from 'react';
+
 /**
  * This component wraps page content sections (eg header, footer, main).
  * It provides consistent margin and max width behavior.
  */
-const Container = ({children}) => (
+const Container = ({children}: {children: Node}) => (
   <div
     css={{
       paddingLeft: 20,

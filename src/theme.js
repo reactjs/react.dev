@@ -4,9 +4,9 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- * @emails react-core
+ * @providesModule theme
  * @flow
-*/
+ */
 
 'use strict';
 
@@ -399,9 +399,4 @@ const sharedStyles = {
   },
 };
 
-export default {
-  colors,
-  fonts,
-  media,
-  sharedStyles,
-};
+export {colors, fonts, media, sharedStyles};

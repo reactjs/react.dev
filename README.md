@@ -26,7 +26,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 
 ### Create a branch
 
-1. `git checkout master` from any folder in your local react repository
+1. `git checkout master` from any folder in your local `reactjs.org` repository
 1. `git pull origin master` to ensure you have the latest main code
 1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
 

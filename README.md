@@ -1,5 +1,7 @@
 # reactjs.org
 
+This repo contains the source code and documentation powering [reactjs.org](https://reactjs.org/).
+
 ## Getting started
 
 ### Prerequisites

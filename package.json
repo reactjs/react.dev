@@ -2,8 +2,9 @@
   "name": "react-website",
   "description": "React website",
   "version": "0.0.1",
+  "private": true,
   "bugs": {
-    "url": "https://github.com/facebook/react"
+    "url": "https://github.com/reactjs/reactjs.org"
   },
   "resolutions": {
     "gatsby/graphql": "0.10.5",
@@ -59,11 +60,11 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
+  "license": "CC",
   "main": "n/a",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/facebook/react.git"
+    "url": "git+https://github.com/reactjs/reactjs.org.git"
   },
   "scripts": {
     "build": "gatsby build",

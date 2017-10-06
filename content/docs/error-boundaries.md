@@ -51,7 +51,7 @@ The `componentDidCatch()` method works like a JavaScript `catch {}` block, but f
 
 Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how catch {} block works in JavaScript.
 
-#### componentDidCatch Parameters
+### componentDidCatch Parameters
 
 `error` is an error that has been thrown.
 
@@ -100,11 +100,11 @@ We also encourage you to use JS error reporting services (or build your own) so 
 
 React 16 prints all errors that occurred during rendering to the console in development, even if the application accidentally swallows them. In addition to the error message and the JavaScript stack, it also provides component stack traces. Now you can see where exactly in the component tree the failure has happened:
 
-<img src="../images/docs/error-boundaries-error-log.png" style="max-width:100%" alt="Error caught by Error Boundary component">
+<img src="../images/docs/error-boundaries-stack-trace.png" style="max-width:100%" alt="Error caught by Error Boundary component">
 
 You can also see the filenames and line numbers in the component stack trace. This works by default in [Create React App](https://github.com/facebookincubator/create-react-app) projects:
 
-<img src="../images/docs/error-boundaries-error-log-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
+<img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
 
 If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
 
@@ -114,17 +114,17 @@ If you don’t use Create React App, you can add [this plugin](https://www.npmjs
 `try` / `catch` is great but it only works for imperative code:
 
 ```js
-  try {
-    showButton();
-  } catch (error) {
-    // ...
-  }
+try {
+  showButton();
+} catch (error) {
+  // ...
+}
 ```
 
 However, React components are declarative and specify *what* should be rendered:
 
 ```js
-  <Button />
+<Button />
 ```
 
 Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` hook caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.

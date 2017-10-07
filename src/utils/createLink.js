@@ -18,12 +18,13 @@ import isItemActive from 'utils/isItemActive';
 import slugify from 'utils/slugify';
 import {colors, media} from 'theme';
 
-const createLinkBlog = ({item, location, section}) => {
-  const isActive = isItemActive(location, item);
+const createLinkBlog = ({item, location, section, isActive}) => {
+  const active =
+    typeof isActive === 'boolean' ? isActive : isItemActive(location, item);
 
   return (
-    <Link css={[linkCss, isActive && activeLinkCss]} to={item.id}>
-      {isActive && <span css={activeLinkBefore} />}
+    <Link css={[linkCss, active && activeLinkCss]} to={item.id}>
+      {active && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );
@@ -52,14 +53,15 @@ const createLinkCommunity = ({item, location, section}) => {
   });
 };
 
-const createLinkDocs = ({item, location, section}) => {
-  const isActive = isItemActive(location, item);
+const createLinkDocs = ({item, location, section, isActive}) => {
+  const active =
+    typeof isActive === 'boolean' ? isActive : isItemActive(location, item);
 
   return (
     <Link
-      css={[linkCss, isActive && activeLinkCss]}
+      css={[linkCss, active && activeLinkCss]}
       to={slugify(item.id, section.directory)}>
-      {isActive && <span css={activeLinkBefore} />}
+      {active && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );

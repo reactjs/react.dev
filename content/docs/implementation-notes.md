@@ -770,12 +770,12 @@ We collect DOM operations on children in a list so we can execute them in batch:
 
     // Finally, unmount any children that don't exist:
     for (var j = nextChildren.length; j < prevChildren.length; j++) {
-     var prevChild = prevRenderedChildren[j];
-     var node = prevChild.getHostNode();
-     prevChild.unmount();
+      var prevChild = prevRenderedChildren[j];
+      var node = prevChild.getHostNode();
+      prevChild.unmount();
 
-     // Record that we need to remove the node
-     operationQueue.push({type: 'REMOVE', node});
+      // Record that we need to remove the node
+      operationQueue.push({type: 'REMOVE', node});
     }
 
     // Point the list of rendered children to the updated version.

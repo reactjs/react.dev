@@ -88,6 +88,18 @@ function ComponentWithTransition() {
 
 Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
 
+When specifying a pixel value for your inline style prop, React automatically appends the string "px" for you after your number value, so this works:
+
+```js
+const divStyle = {
+  height: 10  // rendered as "height:10px"
+};
+
+function HelloWorldComponent() {
+  return <div style={divStyle}>Hello World!</div>;
+}
+```
+
 ### suppressContentEditableWarning
 
 Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.

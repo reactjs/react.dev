@@ -5,7 +5,7 @@
  * in the LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
-*/
+ */
 
 'use strict';
 

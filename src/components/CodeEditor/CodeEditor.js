@@ -134,7 +134,7 @@ class CodeEditor extends Component {
                   '& pre.prism-code[contenteditable]': {
                     maxHeight: '280px !important',
                     outline: 0,
-                    overflow : 'auto',
+                    overflow: 'auto',
                     marginRight: '0 !important',
                     marginBottom: '0 !important',
                   },

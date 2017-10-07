@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the CC-BY-4.0 license found
+ * in the LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
-*/
+ */
 
 'use strict';
 
@@ -87,7 +87,7 @@ const MarkdownPage = ({
                   <div css={{marginTop: 80}}>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/facebook/react/tree/master/docs/${markdownRemark
+                      href={`https://github.com/reactjs/reactjs.org/tree/master/content/${markdownRemark
                         .fields.path}`}>
                       Edit this page
                     </a>

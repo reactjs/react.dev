@@ -65,15 +65,22 @@ const createLinkDocs = ({item, location, section}) => {
   );
 };
 
-const createLinkTutorial = ({item, location, onLinkClick, section}) => {
-  const isActive = isItemActive(location, item);
+const createLinkTutorial = ({
+  item,
+  location,
+  onLinkClick,
+  section,
+  isActive,
+}) => {
+  const active =
+    typeof isActive === 'boolean' ? isActive : isItemActive(location, item);
 
   return (
     <Link
-      css={[linkCss, isActive && activeLinkCss]}
+      css={[linkCss, active && activeLinkCss]}
       onClick={onLinkClick}
       to={item.href}>
-      {isActive && <span css={activeLinkBefore} />}
+      {active && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );

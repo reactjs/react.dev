@@ -105,7 +105,7 @@ class CodeEditor extends Component {
                 overflow: 'hidden',
                 borderRadius: '10px 0 0 10px',
 
-                [media.lessThan('small')]: {
+                [media.lessThan('medium')]: {
                   borderRadius: '10px 10px 0 0',
                 },
               }}>

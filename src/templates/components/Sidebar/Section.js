@@ -9,17 +9,16 @@
 
 'use strict';
 
-import React from 'react';
 import {colors, media} from 'theme';
+import isItemActive from 'utils/isItemActive';
 import MetaTitle from '../MetaTitle';
 import ChevronSvg from '../ChevronSvg';
 
-// TODO Update isActive link as document scrolls past anchor tags
-// Maybe used 'hashchange' along with 'scroll' to set/update active links
-
 const Section = ({
+  activeItemId,
   createLink,
   isActive,
+  isScrollSync,
   location,
   onLinkClick,
   onSectionTitleClick,
@@ -67,6 +66,9 @@ const Section = ({
             marginTop: 5,
           }}>
           {createLink({
+            isActive: isScrollSync
+              ? activeItemId === item.id
+              : isItemActive(location, item),
             item,
             location,
             onLinkClick,
@@ -78,6 +80,9 @@ const Section = ({
               {item.subitems.map(subitem => (
                 <li key={subitem.id}>
                   {createLink({
+                    isActive: isScrollSync
+                      ? activeItemId === subitem.id
+                      : isItemActive(location, subitem),
                     item: subitem,
                     location,
                     onLinkClick,

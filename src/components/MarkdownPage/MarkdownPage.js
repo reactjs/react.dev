@@ -26,6 +26,7 @@ const MarkdownPage = ({
   authors,
   createLink,
   date,
+  enableScrollSync,
   ogDescription,
   location,
   markdownRemark,
@@ -98,6 +99,7 @@ const MarkdownPage = ({
 
             <div css={sharedStyles.articleLayout.sidebar}>
               <StickyResponsiveSidebar
+                enableScrollSync={enableScrollSync}
                 createLink={createLink}
                 defaultActiveSection={findSectionForPath(
                   location.pathname,
@@ -132,6 +134,7 @@ MarkdownPage.propTypes = {
   authors: PropTypes.array.isRequired,
   createLink: PropTypes.func.isRequired,
   date: PropTypes.string,
+  enableScrollSync: PropTypes.bool,
   location: PropTypes.object.isRequired,
   markdownRemark: PropTypes.object.isRequired,
   sectionList: PropTypes.array.isRequired,

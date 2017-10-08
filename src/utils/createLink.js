@@ -12,13 +12,10 @@
 import Link from 'gatsby-link';
 import React from 'react';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
-import isItemActive from 'utils/isItemActive';
 import slugify from 'utils/slugify';
 import {colors, media} from 'theme';
 
-const createLinkBlog = ({item, location, section}) => {
-  const isActive = isItemActive(location, item);
-
+const createLinkBlog = ({isActive, item, section}) => {
   return (
     <Link css={[linkCss, isActive && activeLinkCss]} to={item.id}>
       {isActive && <span css={activeLinkBefore} />}
@@ -27,7 +24,7 @@ const createLinkBlog = ({item, location, section}) => {
   );
 };
 
-const createLinkCommunity = ({item, location, section}) => {
+const createLinkCommunity = ({isActive, item, section}) => {
   if (item.href) {
     return (
       <a css={[linkCss]} href={item.href} target="_blank" rel="noopener">
@@ -44,15 +41,13 @@ const createLinkCommunity = ({item, location, section}) => {
     );
   }
   return createLinkDocs({
+    isActive,
     item,
-    location,
     section,
   });
 };
 
-const createLinkDocs = ({item, location, section}) => {
-  const isActive = isItemActive(location, item);
-
+const createLinkDocs = ({isActive, item, section}) => {
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
@@ -63,9 +58,7 @@ const createLinkDocs = ({item, location, section}) => {
   );
 };
 
-const createLinkTutorial = ({item, location, onLinkClick, section}) => {
-  const isActive = isItemActive(location, item);
-
+const createLinkTutorial = ({isActive, item, onLinkClick, section}) => {
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}

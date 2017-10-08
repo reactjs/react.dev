@@ -1,6 +1,6 @@
 - title: Tutorial
   items:
-    - id: tutorial
+    - id: before-we-start
       title: Before We Start
       href: /tutorial/tutorial.html#before-we-start
       forceInternal: true

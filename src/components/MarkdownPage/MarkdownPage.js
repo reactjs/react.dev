@@ -25,7 +25,8 @@ import createOgUrl from 'utils/createOgUrl';
 const MarkdownPage = ({
   authors,
   createLink,
-  date,
+	date,
+	enableScrollSync,
   ogDescription,
   location,
   markdownRemark,
@@ -98,6 +99,7 @@ const MarkdownPage = ({
 
             <div css={sharedStyles.articleLayout.sidebar}>
               <StickyResponsiveSidebar
+								enableScrollSync={enableScrollSync}
                 createLink={createLink}
                 defaultActiveSection={findSectionForPath(
                   location.pathname,
@@ -131,7 +133,8 @@ MarkdownPage.defaultProps = {
 MarkdownPage.propTypes = {
   authors: PropTypes.array.isRequired,
   createLink: PropTypes.func.isRequired,
-  date: PropTypes.string,
+	date: PropTypes.string,
+	enableScrollSync: PropTypes.bool,
   location: PropTypes.object.isRequired,
   markdownRemark: PropTypes.object.isRequired,
   sectionList: PropTypes.array.isRequired,

@@ -18,19 +18,16 @@ import isItemActive from 'utils/isItemActive';
 import slugify from 'utils/slugify';
 import {colors, media} from 'theme';
 
-const createLinkBlog = ({item, location, section, isActive}) => {
-  const active =
-    typeof isActive === 'boolean' ? isActive : isItemActive(location, item);
-
+const createLinkBlog = ({isActive, item, section}) => {
   return (
-    <Link css={[linkCss, active && activeLinkCss]} to={item.id}>
-      {active && <span css={activeLinkBefore} />}
+    <Link css={[linkCss, isActive && activeLinkCss]} to={item.id}>
+      {isActive && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );
 };
 
-const createLinkCommunity = ({item, location, section}) => {
+const createLinkCommunity = ({isActive, item, section}) => {
   if (item.href) {
     return (
       <a css={[linkCss]} href={item.href} target="_blank" rel="noopener">
@@ -47,42 +44,30 @@ const createLinkCommunity = ({item, location, section}) => {
     );
   }
   return createLinkDocs({
+		isActive,
     item,
-    location,
     section,
   });
 };
 
-const createLinkDocs = ({item, location, section, isActive}) => {
-  const active =
-    typeof isActive === 'boolean' ? isActive : isItemActive(location, item);
-
+const createLinkDocs = ({isActive, item, section}) => {
   return (
     <Link
-      css={[linkCss, active && activeLinkCss]}
+      css={[linkCss, isActive && activeLinkCss]}
       to={slugify(item.id, section.directory)}>
-      {active && <span css={activeLinkBefore} />}
+      {isActive && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );
 };
 
-const createLinkTutorial = ({
-  item,
-  location,
-  onLinkClick,
-  section,
-  isActive,
-}) => {
-  const active =
-    typeof isActive === 'boolean' ? isActive : isItemActive(location, item);
-
+const createLinkTutorial = ({isActive, item, onLinkClick, section}) => {
   return (
     <Link
-      css={[linkCss, active && activeLinkCss]}
+      css={[linkCss, isActive && activeLinkCss]}
       onClick={onLinkClick}
       to={item.href}>
-      {active && <span css={activeLinkBefore} />}
+      {isActive && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );

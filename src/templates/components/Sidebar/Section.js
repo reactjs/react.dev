@@ -9,161 +9,89 @@
 
 'use strict';
 
-import React, {Component} from 'react';
 import {colors, media} from 'theme';
+import isItemActive from 'utils/isItemActive';
 import MetaTitle from '../MetaTitle';
 import ChevronSvg from '../ChevronSvg';
 
-class Section extends Component {
-  constructor(props, context) {
-    super(props, context);
+const Section = ({
+	activeItemId,
+  createLink,
+	isActive,
+	isScrollSync,
+  location,
+  onLinkClick,
+  onSectionTitleClick,
+  section,
+}) => (
+  <div>
+    <MetaTitle
+      onClick={onSectionTitleClick}
+      cssProps={{
+        marginTop: 10,
 
-    this.state = {
-      activeItemId: null,
-      itemTopOffsets: [],
-    };
+        [media.greaterThan('small')]: {
+          color: isActive ? colors.text : colors.subtle,
 
-    this.handleScroll = this.handleScroll.bind(this);
-  }
+          ':hover': {
+            color: colors.text,
+          },
+        },
+      }}>
+      {section.title}
+      <ChevronSvg
+        cssProps={{
+          marginLeft: 7,
+          transform: isActive ? 'rotateX(180deg)' : 'rotateX(0deg)',
+          transition: 'transform 0.2s ease',
 
-  componentDidMount() {
-    const {section} = this.props;
+          [media.lessThan('small')]: {
+            display: 'none',
+          },
+        }}
+      />
+    </MetaTitle>
+    <ul
+      css={{
+        marginBottom: 10,
 
-    const itemIds = _getItemIds(section.items);
-    this.setState({
-      itemTopOffsets: _getElementTopOffsetsById(itemIds),
-    });
-
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll);
-  }
-
-  handleScroll() {
-    const {itemTopOffsets} = this.state;
-    const item = itemTopOffsets.find((itemTopOffset, i) => {
-      const nextItemTopOffset = itemTopOffsets[i + 1];
-      if (nextItemTopOffset) {
-        return (
-          window.scrollY >= itemTopOffset.offsetTop &&
-          window.scrollY < nextItemTopOffset.offsetTop
-        );
-      }
-      return window.scrollY >= itemTopOffset.offsetTop;
-    });
-    this.setState({
-      activeItemId: item ? item.id : null,
-    });
-  }
-
-  render() {
-    const {
-      createLink,
-      isActive,
-      location,
-      onLinkClick,
-      onSectionTitleClick,
-      section,
-    } = this.props;
-    const {activeItemId} = this.state;
-    return (
-      <div>
-        <MetaTitle
-          onClick={onSectionTitleClick}
-          cssProps={{
-            marginTop: 10,
-
-            [media.greaterThan('small')]: {
-              color: isActive ? colors.text : colors.subtle,
-
-              ':hover': {
-                color: colors.text,
-              },
-            },
-          }}>
-          {section.title}
-          <ChevronSvg
-            cssProps={{
-              marginLeft: 7,
-              transform: isActive ? 'rotateX(180deg)' : 'rotateX(0deg)',
-              transition: 'transform 0.2s ease',
-
-              [media.lessThan('small')]: {
-                display: 'none',
-              },
-            }}
-          />
-        </MetaTitle>
-        <ul
+        [media.greaterThan('small')]: {
+          display: isActive ? 'block' : 'none',
+        },
+      }}>
+      {section.items.map(item => (
+        <li
+          key={item.id}
           css={{
-            marginBottom: 10,
-
-            [media.greaterThan('small')]: {
-              display: isActive ? 'block' : 'none',
-            },
+            marginTop: 5,
           }}>
-          {section.items.map(item => (
-            <li
-              key={item.id}
-              css={{
-                marginTop: 5,
-              }}>
-              {createLink({
-                item,
-                location,
-                onLinkClick,
-                section,
-                isActive: activeItemId === item.id,
-              })}
+          {createLink({
+						isActive: isScrollSync ? activeItemId === item.id : isItemActive(location, item),
+            item,
+            location,
+            onLinkClick,
+            section,
+          })}
 
-              {item.subitems && (
-                <ul css={{marginLeft: 20}}>
-                  {item.subitems.map(subitem => (
-                    <li key={subitem.id}>
-                      {createLink({
-                        item: subitem,
-                        location,
-                        onLinkClick,
-                        section,
-                        isActive: activeItemId === subitem.id,
-                      })}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-}
-
-const _getItemIds = items =>
-  items
-    .map(item => {
-      let subItemIds = [];
-      if (item.subitems) {
-        subItemIds = item.subitems.map(subitem => subitem.id);
-      }
-      return [item.id, ...subItemIds];
-    })
-    .reduce((prev, current) => prev.concat(current));
-
-const _getElementTopOffsetsById = ids =>
-  ids
-    .map(id => {
-      const element = document.getElementById(id);
-      if (!element) {
-        return null;
-      }
-      return {
-        id,
-        offsetTop: element.offsetTop,
-      };
-    })
-    .filter(item => item);
+          {item.subitems && (
+            <ul css={{marginLeft: 20}}>
+              {item.subitems.map(subitem => (
+                <li key={subitem.id}>
+                  {createLink({
+										isActive: isScrollSync ? activeItemId === subitem.id : isItemActive(location, subitem),
+                    item: subitem,
+                    location,
+                    onLinkClick,
+                    section,
+                  })}
+                </li>
+              ))}
+            </ul>
+          )}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
 
 export default Section;

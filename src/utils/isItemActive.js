@@ -20,7 +20,7 @@ const toAnchor = (href = '') => {
 // This comment should not be true anymore since we're using 300 redirects
 
 const isItemActive = (location, item) => {
-  if (location.hash) {
+	if (location.hash) {
     if (item.href) {
       return location.hash === toAnchor(item.href);
     }

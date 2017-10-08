@@ -12,6 +12,7 @@
 import React, {Component} from 'react';
 import Flex from 'components/Flex';
 import Section from './Section';
+import ScrollSyncSection from './ScrollSyncSection';
 import {media} from 'theme';
 
 class Sidebar extends Component {
@@ -24,8 +25,10 @@ class Sidebar extends Component {
   }
 
   render() {
-    const {closeParentMenu, createLink, location, sectionList} = this.props;
-    const {activeSection} = this.state;
+    const {closeParentMenu, createLink, enableScrollSync, location, sectionList} = this.props;
+		const {activeSection} = this.state;
+
+		const SectionComponent = enableScrollSync ? ScrollSyncSection : Section;
 
     return (
       <Flex
@@ -46,7 +49,7 @@ class Sidebar extends Component {
           },
         }}>
         {sectionList.map((section, index) => (
-          <Section
+          <SectionComponent
             createLink={createLink}
             isActive={activeSection === section || sectionList.length === 1}
             key={index}

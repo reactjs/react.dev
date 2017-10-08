@@ -15,10 +15,10 @@ import MetaTitle from '../MetaTitle';
 import ChevronSvg from '../ChevronSvg';
 
 const Section = ({
-	activeItemId,
+  activeItemId,
   createLink,
-	isActive,
-	isScrollSync,
+  isActive,
+  isScrollSync,
   location,
   onLinkClick,
   onSectionTitleClick,
@@ -66,7 +66,9 @@ const Section = ({
             marginTop: 5,
           }}>
           {createLink({
-						isActive: isScrollSync ? activeItemId === item.id : isItemActive(location, item),
+            isActive: isScrollSync
+              ? activeItemId === item.id
+              : isItemActive(location, item),
             item,
             location,
             onLinkClick,
@@ -78,7 +80,9 @@ const Section = ({
               {item.subitems.map(subitem => (
                 <li key={subitem.id}>
                   {createLink({
-										isActive: isScrollSync ? activeItemId === subitem.id : isItemActive(location, subitem),
+                    isActive: isScrollSync
+                      ? activeItemId === subitem.id
+                      : isItemActive(location, subitem),
                     item: subitem,
                     location,
                     onLinkClick,

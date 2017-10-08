@@ -44,7 +44,7 @@ const createLinkCommunity = ({isActive, item, section}) => {
     );
   }
   return createLinkDocs({
-		isActive,
+    isActive,
     item,
     section,
   });

@@ -27,7 +27,7 @@ const Tutorial = ({data, location}) => {
 
   return (
     <MarkdownPage
-			enableScrollSync
+      enableScrollSync
       createLink={createLinkTutorial}
       location={location}
       markdownRemark={data.markdownRemark}

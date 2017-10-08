@@ -21,36 +21,36 @@ class ScrollSyncSection extends Component {
       itemTopOffsets: [],
     };
 
-		this.calculateItemTopOffsets = this.calculateItemTopOffsets.bind(this);
-		this.handleResize = this.handleResize.bind(this);
+    this.calculateItemTopOffsets = this.calculateItemTopOffsets.bind(this);
+    this.handleResize = this.handleResize.bind(this);
     this.handleScroll = this.handleScroll.bind(this);
   }
 
   componentDidMount() {
     this.calculateItemTopOffsets();
 
-		window.addEventListener('resize', this.handleResize);
-		window.addEventListener('scroll', this.handleScroll);
+    window.addEventListener('resize', this.handleResize);
+    window.addEventListener('scroll', this.handleScroll);
   }
 
   componentWillUnmount() {
-		window.removeEventListener('resize', this.handleResize);
-		window.removeEventListener('scroll', this.handleScroll);
-	}
+    window.removeEventListener('resize', this.handleResize);
+    window.removeEventListener('scroll', this.handleScroll);
+  }
 
-	calculateItemTopOffsets() {
-		const {section} = this.props;
+  calculateItemTopOffsets() {
+    const {section} = this.props;
 
-		const itemIds = _getItemIds(section.items);
-		this.setState({
-			itemTopOffsets: _getElementTopOffsetsById(itemIds),
-		});
-	}
+    const itemIds = _getItemIds(section.items);
+    this.setState({
+      itemTopOffsets: _getElementTopOffsetsById(itemIds),
+    });
+  }
 
-	handleResize() {
-		this.calculateItemTopOffsets();
-		this.handleScroll();
-	}
+  handleResize() {
+    this.calculateItemTopOffsets();
+    this.handleScroll();
+  }
 
   handleScroll() {
     const {itemTopOffsets} = this.state;
@@ -63,7 +63,7 @@ class ScrollSyncSection extends Component {
         );
       }
       return window.scrollY >= itemTopOffset.offsetTop;
-		});
+    });
     this.setState({
       activeItemId: item ? item.id : '',
     });
@@ -71,12 +71,7 @@ class ScrollSyncSection extends Component {
 
   render() {
     const {activeItemId} = this.state;
-    return (
-      <Section
-				isScrollSync
-				activeItemId={activeItemId} {...this.props}
-			/>
-    );
+    return <Section isScrollSync activeItemId={activeItemId} {...this.props} />;
   }
 }
 
@@ -103,6 +98,6 @@ const _getElementTopOffsetsById = ids =>
         offsetTop: element.offsetTop,
       };
     })
-		.filter(item => item);
+    .filter(item => item);
 
 export default ScrollSyncSection;

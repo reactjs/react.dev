@@ -25,10 +25,16 @@ class Sidebar extends Component {
   }
 
   render() {
-    const {closeParentMenu, createLink, enableScrollSync, location, sectionList} = this.props;
-		const {activeSection} = this.state;
+    const {
+      closeParentMenu,
+      createLink,
+      enableScrollSync,
+      location,
+      sectionList,
+    } = this.props;
+    const {activeSection} = this.state;
 
-		const SectionComponent = enableScrollSync ? ScrollSyncSection : Section;
+    const SectionComponent = enableScrollSync ? ScrollSyncSection : Section;
 
     return (
       <Flex

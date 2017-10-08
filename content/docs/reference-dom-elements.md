@@ -99,6 +99,36 @@ function HelloWorldComponent() {
   return <div style={divStyle}>Hello World!</div>;
 }
 ```
+Sometimes you _do_ want to keep the CSS properties unitless. Here's a list of properties that won't get the automatic "px" suffix:
+
+- `animationIterationCount`
+- `boxFlex`
+- `boxFlexGroup`
+- `boxOrdinalGroup`
+- `columnCount`
+- `fillOpacity`
+- `flex`
+- `flexGrow`
+- `flexPositive`
+- `flexShrink`
+- `flexNegative`
+- `flexOrder`
+- `fontWeight`
+- `lineClamp`
+- `lineHeight`
+- `opacity`
+- `order`
+- `orphans`
+- `stopOpacity`
+- `strokeDashoffset`
+- `strokeOpacity`
+- `strokeWidth`
+- `tabSize`
+- `widows`
+- `zIndex`
+- `zoom`
+
+See [unitless properties](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59) for more examples.
 
 ### suppressContentEditableWarning
 

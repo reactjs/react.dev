@@ -263,7 +263,6 @@
 
 .algolia-autocomplete .ds-dropdown-menu [class^="ds-dataset-"] {
   position: relative;
-  background: #fff;
   border-radius: 4px;
   overflow: auto;
   padding: 0;
@@ -336,6 +335,7 @@
 }
 
 .algolia-autocomplete .algolia-docsearch-suggestion--wrapper {
+  background-color: #fff;
   width: 100%;
   float: left;
   padding: 8px 0 0 0;
@@ -431,7 +431,8 @@
 
 
 .algolia-autocomplete .algolia-docsearch-footer {
-  width: 110px;
+  background-color: #fff;
+  width: 100%;
   height: 30px;
   z-index: 2000;
   float: right;
@@ -446,8 +447,9 @@
   background-size: 100%;
   overflow: hidden;
   text-indent: -9000px;
-  width: 100%;
+  width: 110px;
   height: 100%;
   display: block;
-  margin-left: -5px;
+  margin-left: auto;
+  margin-right: 5px;
 }

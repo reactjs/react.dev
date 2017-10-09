@@ -112,6 +112,10 @@ mockComponent(
 
 Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
 
+> Note:
+>
+> `mockComponent()` is a legacy method that is no longer needed. A similar method can be implemented directly.
+
 * * *
 
 ### `isElement()`

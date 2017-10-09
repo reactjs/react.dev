@@ -15,6 +15,6 @@
 const urlRoot = 'https://reactjs.org';
 const version = '16.0.0';
 const babelURL = '//unpkg.com/babel-standalone@6.26.0/babel.min.js';
-const docsearchURL = '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js';
+const algoliaURL = '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js';
 
-export {urlRoot, version, babelURL, docsearchURL};
+export {urlRoot, version, babelURL, algoliaURL};

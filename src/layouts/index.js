@@ -20,7 +20,7 @@ import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
 import loadScript from 'utils/loadScript';
-import {docsearchURL} from 'site-constants';
+import {algoliaURL} from 'site-constants';
 
 // Import global styles
 import '../prism-styles';
@@ -30,7 +30,7 @@ import 'css/algolia.css';
 
 class Template extends Component {
   componentDidMount() {
-    loadScript(docsearchURL).then(() => {
+    loadScript(algoliaURL).then(() => {
       // Initialize Algolia search.
       // TODO Is this expensive? Should it be deferred until a user is about to search?
       // eslint-disable-next-line no-undef

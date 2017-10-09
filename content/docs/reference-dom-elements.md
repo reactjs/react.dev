@@ -88,48 +88,21 @@ function ComponentWithTransition() {
 
 Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
 
-When specifying a pixel value for your inline style prop, React automatically appends the string "px" for you after your number value, so this works:
+React will automatically append a "px" suffix to certain inline style properties. For example:
 
 ```js
-const divStyle = {
-  height: 10  // rendered as "height:10px"
-};
+// This:
+<div style={{ height: 10 }}>
+  Hello World!
+</div>;
 
-function HelloWorldComponent() {
-  return <div style={divStyle}>Hello World!</div>;
-}
+// Becomes:
+<div style="height: 10px;">
+  Hello World!
+</div>
 ```
 
-Sometimes you _do_ want to keep the CSS properties unitless. Here's a list of properties that won't get the automatic "px" suffix:
-
-- `animationIterationCount`
-- `boxFlex`
-- `boxFlexGroup`
-- `boxOrdinalGroup`
-- `columnCount`
-- `fillOpacity`
-- `flex`
-- `flexGrow`
-- `flexPositive`
-- `flexShrink`
-- `flexNegative`
-- `flexOrder`
-- `fontWeight`
-- `lineClamp`
-- `lineHeight`
-- `opacity`
-- `order`
-- `orphans`
-- `stopOpacity`
-- `strokeDashoffset`
-- `strokeOpacity`
-- `strokeWidth`
-- `tabSize`
-- `widows`
-- `zIndex`
-- `zoom`
-
-See [unitless properties](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59) for more examples.
+Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
 
 ### suppressContentEditableWarning
 

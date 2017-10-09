@@ -30,7 +30,9 @@ const MetaTitle = ({
       textTransform: 'uppercase',
       letterSpacing: '0.08em',
       ...cssProps,
-    }}>
+    }}
+    role="link"
+    tabIndex="-1">
     {children}
   </div>
 );

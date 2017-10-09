@@ -9,6 +9,7 @@
 
 'use strict';
 
+import React from 'react';
 import {colors, media} from 'theme';
 import isItemActive from 'utils/isItemActive';
 import MetaTitle from '../MetaTitle';

@@ -26,10 +26,9 @@ const isItemActive = (location, item) => {
     }
   } else if (item.id.includes('html')) {
     return location.pathname.includes(item.id);
-  } else {
-    const slugId = location.pathname.split('/').slice(-1)[0];
-    return slugId === slugify(item.id);
   }
+  const slugId = location.pathname.split('/').slice(-1)[0];
+  return slugId === slugify(item.id);
 };
 
 export default isItemActive;

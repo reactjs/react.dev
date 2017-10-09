@@ -99,13 +99,73 @@ render() {
 You can use an arrow function to wrap around an event handler and pass parameters: 
 
 ```jsx
-class Foo extends Component {
-  handleClick (name) {
-    console.log('Clicked ' + name)
+<Element onClick={() => this.handleClick(id)} />
+```
+
+This is equivalent to calling `.bind`:
+
+```jsx
+<Element onClick={this.handleClick.bind(this, id)} />
+```
+
+#### Example: Passing params using arrow functions
+
+```jsx
+class Component extends React.Component {
+  state = {
+      justClicked: 0,
+      items: Array.from({length: 5}, (_, i) => i)
   }
-  render() {
-    const name = 'My Button'
-    return <button onClick={() => this.handleClick(name)}>Click Me</button> 
+  
+  handleClick = i => this.setState({ justClicked: i })
+  
+  render () {
+    return (
+      <div>
+        Just clicked: {this.state.justClicked}
+        <ul>
+          { this.state.items.map(i => 
+            <li onClick={() => this.handleClick(i)}>
+              Item: {i}
+            </li>
+          ) }
+        </ul>
+      </div>
+   )
+  }
+}
+```
+
+#### Example: Passing params using data-attributes
+
+Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
+
+```jsx
+class Component extends React.Component {
+  state = {
+      justClicked: 0,
+      items: Array.from({length: 5}, (_, i) => i)
+  }
+  
+  handleClick = event => {
+    this.setState({
+      justClicked: event.target.dataset.i
+    })
+  }
+  
+  render () {
+    return (
+      <div>
+        Just clicked: {this.state.justClicked}
+        <ul>
+          { this.state.items.map(i => 
+            <li data-i={i} onClick={this.handleClick}>
+              Item: {i}
+            </li>
+          ) }
+        </ul>
+      </div>
+   )
   }
 }
 ```

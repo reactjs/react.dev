@@ -41,7 +41,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-1. Run `yarn check-all` from the project root. (This will run Prettier, ESlint, and Flow.)
+1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
 
 ### Push it
 

@@ -25,6 +25,7 @@ import '../prism-styles';
 import 'glamor/reset';
 import 'css/reset.css';
 import 'css/algolia.css';
+import ErrorBoundary from '../components/ErrorBoundary';
 
 class Template extends Component {
   componentDidMount() {
@@ -82,4 +83,4 @@ class Template extends Component {
   }
 }
 
-export default Template;
+export default ErrorBoundary(Template);

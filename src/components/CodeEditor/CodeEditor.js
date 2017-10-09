@@ -17,6 +17,7 @@ import Remarkable from 'remarkable';
 import {LiveProvider, LiveEditor} from '@gaearon/react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
+import ErrorBoundary from '../ErrorBoundary';
 
 const compile = code =>
   Babel.transform(code, {presets: ['es2015', 'react']}).code; // eslint-disable-line no-undef
@@ -285,4 +286,4 @@ class CodeEditor extends Component {
   };
 }
 
-export default CodeEditor;
+export default ErrorBoundary(CodeEditor);

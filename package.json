@@ -68,11 +68,12 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "check-all": "yarn prettier && yarn lint && yarn flow",
+    "check-all": "yarn prettier -- --write && yarn lint && yarn flow",
+    "check-all:verbose": "yarn prettier -- --list-different && yarn lint && yarn flow",
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
-    "prettier": "prettier --config .prettierrc --write '{flow-typed,plugins,src}/**/*.js'",
+    "prettier": "prettier --config .prettierrc '{flow-typed,plugins,src}/**/*.js'",
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {

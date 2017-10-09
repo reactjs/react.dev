@@ -28,7 +28,7 @@ class Home extends Component {
       mountCodeExample('timerExample', TIMER_COMPONENT);
       mountCodeExample('todoExample', TODO_COMPONENT);
       mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
-    })
+    });
   }
 
   render() {

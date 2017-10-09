@@ -114,7 +114,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 
 > Note:
 >
-> `mockComponent()` is a legacy method that is no longer needed. A similar method can be implemented directly.
+> `mockComponent()` is a legacy method that is no longer needed. A similar pattern can be implemented directly.
 
 * * *
 

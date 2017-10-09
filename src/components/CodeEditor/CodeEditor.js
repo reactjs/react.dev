@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
-*/
+ */
 
 'use strict';
 
@@ -105,7 +105,7 @@ class CodeEditor extends Component {
                 overflow: 'hidden',
                 borderRadius: '10px 0 0 10px',
 
-                [media.lessThan('small')]: {
+                [media.lessThan('medium')]: {
                   borderRadius: '10px 10px 0 0',
                 },
               }}>
@@ -122,15 +122,24 @@ class CodeEditor extends Component {
                   height: '100%',
                   width: '100%',
                   borderRadius: '0',
+                  maxHeight: '340px !important',
                   marginTop: '0 !important',
                   marginLeft: '0 !important',
                   paddingLeft: '0 !important',
                   marginRight: '0 !important',
                   paddingRight: '0 !important',
+                  marginBottom: '0 !important',
+                  paddingBottom: '20px !important',
+                  [media.lessThan('medium')]: {
+                    marginBottom: '0 !important',
+                  },
+                  
 
                   '& pre.prism-code[contenteditable]': {
-                    maxHeight: '280px !important',
                     outline: 0,
+                    overflow: 'auto',
+                    marginRight: '0 !important',
+                    marginBottom: '0 !important',
                   },
                 }}
                 className="gatsby-highlight">
@@ -147,7 +156,7 @@ class CodeEditor extends Component {
                   fontSize: 12,
                   lineHeight: 1.5,
 
-                  [media.lessThan('small')]: {
+                  [media.lessThan('medium')]: {
                     borderRadius: '0 0 10px 10px',
                   },
                 }}>
@@ -183,7 +192,7 @@ class CodeEditor extends Component {
                   border: `1px solid ${colors.divider}`,
                   borderRadius: '0 10px 10px 0',
 
-                  [media.lessThan('small')]: {
+                  [media.lessThan('medium')]: {
                     borderRadius: '0 0 10px 10px',
                   },
                 }}>
@@ -197,6 +206,8 @@ class CodeEditor extends Component {
                 <div
                   css={{
                     padding: 10,
+                    maxHeight: '340px !important',
+                    overflow: 'auto',
 
                     '& input': {
                       width: '100%',

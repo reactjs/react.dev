@@ -48,6 +48,8 @@
       title: Context
     - id: portals
       title: Portals
+    - id: error-boundaries
+      title: Error Boundaries
     - id: web-components
       title: Web Components
     - id: higher-order-components

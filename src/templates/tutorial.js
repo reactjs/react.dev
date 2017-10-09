@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
-*/
+ */
 
 'use strict';
 
@@ -27,6 +27,7 @@ const Tutorial = ({data, location}) => {
 
   return (
     <MarkdownPage
+      enableScrollSync
       createLink={createLinkTutorial}
       location={location}
       markdownRemark={data.markdownRemark}

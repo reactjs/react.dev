@@ -5,7 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  *
  * @emails react-core
-*/
+ */
 
 'use strict';
 
@@ -26,6 +26,7 @@ const MarkdownPage = ({
   authors,
   createLink,
   date,
+  enableScrollSync,
   ogDescription,
   location,
   markdownRemark,
@@ -87,7 +88,7 @@ const MarkdownPage = ({
                   <div css={{marginTop: 80}}>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/facebook/react/tree/master/docs/${markdownRemark
+                      href={`https://github.com/reactjs/reactjs.org/tree/master/content/${markdownRemark
                         .fields.path}`}>
                       Edit this page
                     </a>
@@ -98,6 +99,7 @@ const MarkdownPage = ({
 
             <div css={sharedStyles.articleLayout.sidebar}>
               <StickyResponsiveSidebar
+                enableScrollSync={enableScrollSync}
                 createLink={createLink}
                 defaultActiveSection={findSectionForPath(
                   location.pathname,
@@ -132,6 +134,7 @@ MarkdownPage.propTypes = {
   authors: PropTypes.array.isRequired,
   createLink: PropTypes.func.isRequired,
   date: PropTypes.string,
+  enableScrollSync: PropTypes.bool,
   location: PropTypes.object.isRequired,
   markdownRemark: PropTypes.object.isRequired,
   sectionList: PropTypes.array.isRequired,

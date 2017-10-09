@@ -88,6 +88,22 @@ function ComponentWithTransition() {
 
 Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
 
+React will automatically append a "px" suffix to certain inline style properties. For example:
+
+```js
+// This:
+<div style={{ height: 10 }}>
+  Hello World!
+</div>;
+
+// Becomes:
+<div style="height: 10px;">
+  Hello World!
+</div>
+```
+
+Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
+
 ### suppressContentEditableWarning
 
 Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.

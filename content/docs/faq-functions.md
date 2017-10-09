@@ -89,7 +89,7 @@ Make sure you aren't _calling the function_ when you pass it to the component:
 
 ```jsx
 render() {
-  {*/ handleClick is called instead of passed as a reference! */}
+  {/* handleClick is called instead of passed as a reference! */}
   return <button onClick={this.handleClick()}>Click Me</button> 
 }
 ```

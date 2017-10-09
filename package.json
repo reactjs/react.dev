@@ -69,7 +69,7 @@
   "scripts": {
     "build": "gatsby build",
     "check-all": "yarn prettier && yarn lint && yarn flow",
-    "check-all:verbose": "yarn prettier:diff && yarn lint && yarn flow",
+    "ci-check": "yarn prettier:diff && yarn lint && yarn flow",
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",

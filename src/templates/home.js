@@ -18,13 +18,17 @@ import React, {Component} from 'react';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import {colors, media, sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
+import loadScript from 'utils/loadScript';
+import {babelURL} from 'site-constants';
 
 class Home extends Component {
   componentDidMount() {
-    mountCodeExample('helloExample', HELLO_COMPONENT);
-    mountCodeExample('timerExample', TIMER_COMPONENT);
-    mountCodeExample('todoExample', TODO_COMPONENT);
-    mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
+    loadScript(babelURL).then(() => {
+      mountCodeExample('helloExample', HELLO_COMPONENT);
+      mountCodeExample('timerExample', TIMER_COMPONENT);
+      mountCodeExample('todoExample', TODO_COMPONENT);
+      mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
+    })
   }
 
   render() {

@@ -19,6 +19,8 @@ import Flex from 'components/Flex';
 import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
+import loadScript from 'utils/loadScript';
+import {docsearchURL} from 'site-constants';
 
 // Import global styles
 import '../prism-styles';
@@ -28,13 +30,15 @@ import 'css/algolia.css';
 
 class Template extends Component {
   componentDidMount() {
-    // Initialize Algolia search.
-    // TODO Is this expensive? Should it be deferred until a user is about to search?
-    // eslint-disable-next-line no-undef
-    docsearch({
-      apiKey: '36221914cce388c46d0420343e0bb32e',
-      indexName: 'react',
-      inputSelector: '#algolia-doc-search',
+    loadScript(docsearchURL).then(() => {
+      // Initialize Algolia search.
+      // TODO Is this expensive? Should it be deferred until a user is about to search?
+      // eslint-disable-next-line no-undef
+      docsearch({
+        apiKey: '36221914cce388c46d0420343e0bb32e',
+        indexName: 'react',
+        inputSelector: '#algolia-doc-search',
+      });
     });
   }
 

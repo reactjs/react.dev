@@ -147,7 +147,9 @@ class StickyResponsiveSidebar extends Component {
             boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)',
             [media.lessThan('small')]: smallScreenBottomBarStyles,
           }}
-          onClick={this._openNavMenu}>
+          onClick={this._openNavMenu}
+          role="button"
+          tabIndex={0}>
           <Container>
             <div
               css={{

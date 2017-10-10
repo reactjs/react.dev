@@ -450,7 +450,7 @@ class Board extends React.Component {
 
 [View the current code.](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)
 
-We call `.slice()` to copy the `squares` array instead of mutating the existing array. Jump ahead a [section](/tutorial/tutorial.html#why-immutability-is-important) to learn why immutability is important.
+We call `.slice()` to copy the `squares` array instead of mutating the existing array. Jump ahead a [section](/content/tutorial/tutorial.md#why-immutability-is-important) to learn why immutability is important.
 
 Now you should be able to click in squares to fill them again, but the state is stored in the Board component instead of in each Square, which lets us continue building the game. Note how whenever Board's state changes, the Square components rerender automatically.
 

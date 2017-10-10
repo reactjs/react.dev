@@ -232,20 +232,40 @@ In general, we don't recommend using this because it can be confused with the [E
 
 ### Spread Attributes
 
-If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" operator to pass the whole props object. These two components are equivalent:
+Spread attributes can be useful when you are building generic containers. However, they can also make your code messy by making it easy to pass a lot of irrelevant props to components that don't care about them. We recommend that you use this syntax sparingly.
+
+An alternative to spreading all of your props is to specifically list out all the properties that you would like to consume, followed by `...other`.
 
 ```js{7}
-function App1() {
-  return <Greeting firstName="Ben" lastName="Hector" />;
-}
-
-function App2() {
-  const props = {firstName: 'Ben', lastName: 'Hector'};
-  return <Greeting {...props} />;
-}
+const { type, children, ...other } = props;
 ```
 
-Spread attributes can be useful when you are building generic containers. However, they can also make your code messy by making it easy to pass a lot of irrelevant props to components that don't care about them. We recommend that you use this syntax sparingly.
+This ensures that you pass down all the props *except* the ones you're consuming yourself.
+
+```js{7}
+const handleClick = () => console.log("handleClick");
+
+const PrimaryButton = props => {
+  const { type, children, ...other } = props;
+  return (
+    <button type={type} {...other}>
+      {children}
+    </button>
+  );
+};
+
+const App = () => {
+  return (
+    <div>
+      <PrimaryButton type="button" onClick={handleClick}>
+        Hello World!
+      </PrimaryButton>
+    </div>
+  );
+};
+```
+
+In the example above, the `...other` object contains `{ onClick: handleClick() }` but not the `type` or `children` props. This makes a component like the `PrimaryButton` more reusable and flexible because it can extract a set of unknown properties like `onClick` in the above example.
 
 ## Children in JSX
 

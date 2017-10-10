@@ -16,7 +16,7 @@ import slugify from './slugify';
  * This method specifically works with the nav_*.yml format.
  */
 const findSectionForPath = (pathname, sections) => {
-  let activeSection;
+  let activeSection = sections[0];
   const slugId = pathname.split('/').slice(-1)[0];
 
   sections.forEach(section => {

@@ -12,27 +12,17 @@
 import React from 'react';
 import {colors} from 'theme';
 
-const MetaTitle = ({
-  children,
-  title,
-  cssProps = {},
-  onClick,
-  onDark = false,
-}) => (
+const MetaTitle = ({children, title, cssProps = {}, onDark = false}) => (
   <div
-    onClick={onClick}
     css={{
       color: onDark ? colors.subtleOnDark : colors.subtle,
-      cursor: onClick ? 'pointer' : null,
       fontSize: 14,
       fontWeight: 700,
       lineHeight: 3,
       textTransform: 'uppercase',
       letterSpacing: '0.08em',
       ...cssProps,
-    }}
-    role="link"
-    tabIndex="-1">
+    }}>
     {children}
   </div>
 );

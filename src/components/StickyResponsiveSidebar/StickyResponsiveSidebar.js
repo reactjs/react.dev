@@ -149,7 +149,7 @@ class StickyResponsiveSidebar extends Component {
           }}
           onClick={this._openNavMenu}
           role="button"
-          tabIndex="-1">
+          tabIndex={0}>
           <Container>
             <div
               css={{

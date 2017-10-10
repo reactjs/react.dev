@@ -308,7 +308,7 @@ You can mix together different types of children, so you can use string literals
 </div>
 ```
 
-A React component can return multiple elements:
+A React component can also return an array of elements:
 
 ```js
 render() {

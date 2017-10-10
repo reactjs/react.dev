@@ -166,7 +166,7 @@ class TemperatureInput extends React.Component {
 
   render() {
     const temperature = this.state.temperature;
-  // ...  
+    // ...  
 ```
 
 However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.

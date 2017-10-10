@@ -158,7 +158,7 @@ Returns the root "test instance" object that is useful for making assertions abo
 testInstance.find(test)
 ```
 
-Find the only descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
+Find a single descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
 
 ### `testInstance.findByType()`
 
@@ -166,7 +166,7 @@ Find the only descendant test instance for which `test(testInstance)` returns `t
 testInstance.findByType(type)
 ```
 
-Find the only descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
+Find a single descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
 
 ### `testInstance.findByProps()`
 
@@ -174,7 +174,7 @@ Find the only descendant test instance with the provided `type`. If there is not
 testInstance.findByProps(props)
 ```
 
-Find the only descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
+Find a single descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
 
 ### `testInstance.findAll()`
 

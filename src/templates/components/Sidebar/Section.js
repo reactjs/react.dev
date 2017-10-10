@@ -9,6 +9,7 @@
 
 'use strict';
 
+import React from 'react';
 import {colors, media} from 'theme';
 import isItemActive from 'utils/isItemActive';
 import MetaTitle from '../MetaTitle';
@@ -25,32 +26,35 @@ const Section = ({
   section,
 }) => (
   <div>
-    <MetaTitle
-      onClick={onSectionTitleClick}
-      cssProps={{
-        marginTop: 10,
-
-        [media.greaterThan('small')]: {
-          color: isActive ? colors.text : colors.subtle,
-
-          ':hover': {
-            color: colors.text,
-          },
-        },
-      }}>
-      {section.title}
-      <ChevronSvg
+    <button
+      css={{cursor: 'pointer', backgroundColor: 'transparent', border: 0}}
+      onClick={onSectionTitleClick}>
+      <MetaTitle
         cssProps={{
-          marginLeft: 7,
-          transform: isActive ? 'rotateX(180deg)' : 'rotateX(0deg)',
-          transition: 'transform 0.2s ease',
+          marginTop: 10,
 
-          [media.lessThan('small')]: {
-            display: 'none',
+          [media.greaterThan('small')]: {
+            color: isActive ? colors.text : colors.subtle,
+
+            ':hover': {
+              color: colors.text,
+            },
           },
-        }}
-      />
-    </MetaTitle>
+        }}>
+        {section.title}
+        <ChevronSvg
+          cssProps={{
+            marginLeft: 7,
+            transform: isActive ? 'rotateX(180deg)' : 'rotateX(0deg)',
+            transition: 'transform 0.2s ease',
+
+            [media.lessThan('small')]: {
+              display: 'none',
+            },
+          }}
+        />
+      </MetaTitle>
+    </button>
     <ul
       css={{
         marginBottom: 10,

@@ -21,8 +21,13 @@ The add-ons below are in the development (unminified) version of React only:
 
 The add-ons below are considered legacy and their use is discouraged. They will keep working in observable future, but there is no further development.
 
-- [`PureRenderMixin`](pure-render-mixin.html). Use [`React.PureComponent`](/docs/react-api.html#react.purecomponent) instead.
-- [`shallowCompare`](shallow-compare.html), a helper function that performs a shallow comparison for props and state in a component to decide if a component should update. We recommend using [`React.PureComponent`](/docs/react-api.html#react.purecomponent) instead.
+<<<<<<< HEAD
+- [`PureRenderMixin`](pure-render-mixin.html). Use [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
+- [`shallowCompare`](shallow-compare.html), a helper function that performs a shallow comparison for props and state in a component to decide if a component should update. We recommend using [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
+=======
+- [`PureRenderMixin`](pure-render-mixin.html). Use [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
+- [`shallowCompare`](shallow-compare.html), a helper function that performs a shallow comparison for props and state in a component to decide if a component should update.
+>>>>>>> a66e63b57527a3310573f49064b13dc64d6a0849
 - [`update`](update.html). Use [`kolodny/immutability-helper`](https://github.com/kolodny/immutability-helper) instead.
 - [`ReactDOMFactories`](dom-factories.html), pre-configured DOM factories to make React easier to use without JSX.
 

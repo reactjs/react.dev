@@ -166,6 +166,7 @@ class TemperatureInput extends React.Component {
 
   render() {
     const temperature = this.state.temperature;
+    // ...  
 ```
 
 However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.
@@ -182,6 +183,7 @@ First, we will replace `this.state.temperature` with `this.props.temperature` in
   render() {
     // Before: const temperature = this.state.temperature;
     const temperature = this.props.temperature;
+    // ...
 ```
 
 We know that [props are read-only](/docs/components-and-props.html#props-are-read-only). When the `temperature` was in the local state, the `TemperatureInput` could just call `this.setState()` to change it. However, now that the `temperature` is coming from the parent as a prop, the `TemperatureInput` has no control over it.
@@ -194,6 +196,7 @@ Now, when the `TemperatureInput` wants to update its temperature, it calls `this
   handleChange(e) {
     // Before: this.setState({temperature: e.target.value});
     this.props.onTemperatureChange(e.target.value);
+    // ...
 ```
 
 >Note:

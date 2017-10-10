@@ -145,5 +145,6 @@ The problem with this syntax is that a different callback is created each time t
 Inside a loop it is common to want to pass a param to an event handler. For example if `i` is the row id:
 
 ```js
+<button onClick={() => this.deleteRow(i)}>Delete Row</button>
 <button onClick={this.deleteRow.bind(this, i)}>Delete Row</button>
 ```

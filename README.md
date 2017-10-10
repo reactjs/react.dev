@@ -15,7 +15,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ### Installation
 
 1. `cd reactjs.org` to go into the project root
-1. `yarn` to install the website's NPM dependencies
+1. `yarn` to install the website's npm dependencies
 
 ### Running locally
 

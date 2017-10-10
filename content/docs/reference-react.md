@@ -176,7 +176,11 @@ Returns the total number of components in `children`, equal to the number of tim
 React.Children.only(children)
 ```
 
-Returns the only child in `children`. Throws otherwise.
+Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws.
+
+> Note:
+>
+>`React.Children.only()` does not accept the return value of [`React.Children.map()`](#reactchildrenmap) because it is an array rather than a React element.
 
 #### `React.Children.toArray`
 

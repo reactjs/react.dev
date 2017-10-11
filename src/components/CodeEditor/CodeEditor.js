@@ -11,12 +11,19 @@ import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';
 // TODO: switch back to the upstream version of react-live
 // once https://github.com/FormidableLabs/react-live/issues/37 is fixed.
-import {LiveProvider, LiveEditor} from '@gaearon/react-live';
+import {LiveEditor, LiveProvider} from '@gaearon/react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
+import {highlight, languages} from 'prismjs/components/prism-core'
+import 'prismjs/components/prism-javascript'
 
 const compile = code =>
   Babel.transform(code, {presets: ['es2015', 'react']}).code; // eslint-disable-line no-undef
+
+const compileJsxToJS = code =>
+  Babel.transform(code, {presets: ['react']}).code; // eslint-disable-line no-undef
+
+const prism = code => highlight(code, languages.javascript);
 
 class CodeEditor extends Component {
   constructor(props, context) {
@@ -38,8 +45,8 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children, code} = this.props;
-    const {error} = this.state;
+    const {children} = this.props;
+    const {error, code, showCompiledJsx, compiledJsx} = this.state;
 
     return (
       <LiveProvider code={code} mountStylesheet={false}>
@@ -112,7 +119,17 @@ class CodeEditor extends Component {
                   background: colors.darker,
                   color: colors.white,
                 }}>
-                <MetaTitle onDark={true}>Live JSX Editor</MetaTitle>
+                <MetaTitle onDark={true}>Live JSX Editor
+                  {!showCompiledJsx && (
+                    <a css={{cursor: 'pointer'}} onClick={this._showCompiledJsxPreview.bind(this)}>
+                      View Compiled JSX</a>
+                  )}
+                  {showCompiledJsx && (
+                    <a css={{cursor: 'pointer'}} onClick={this._hideCompiledJsxPreview.bind(this)}>
+                      Back to JSX Editor
+                    </a>
+                  )}
+                </MetaTitle>
               </div>
               <div
                 css={{
@@ -139,7 +156,13 @@ class CodeEditor extends Component {
                   },
                 }}
                 className="gatsby-highlight">
-                <LiveEditor onChange={this._onChange} />
+                {!showCompiledJsx && (
+                  <LiveEditor onChange={this._onChange} />
+                )}
+                {showCompiledJsx && (
+                  <pre className="prism-code" spellCheck="false" dangerouslySetInnerHTML={{__html: prism(compiledJsx)}}>
+                  </pre>
+                )}
               </div>
             </div>
             {error && (
@@ -269,6 +292,8 @@ class CodeEditor extends Component {
     try {
       return {
         compiled: compile(code),
+        compiledJsx: compileJsxToJS(code),
+        code: code,
         error: null,
       };
     } catch (error) {
@@ -283,6 +308,20 @@ class CodeEditor extends Component {
 
   _onChange = code => {
     this.setState(this._updateState(code));
+  };
+
+  _showCompiledJsxPreview = () => {
+    this.setState({
+      ...this.state,
+      showCompiledJsx: true,
+    });
+  };
+
+  _hideCompiledJsxPreview = () => {
+    this.setState({
+      ...this.state,
+      showCompiledJsx: false,
+    });
   };
 }
 

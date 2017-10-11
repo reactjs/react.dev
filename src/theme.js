@@ -11,7 +11,7 @@
  * Theme contains variables shared by styles of multiple components.
  */
 
-import hex2rgba from 'hex2rgba';
+import hex2rgba from "hex2rgba";
 
 const colors = {
   lighter: '#373940', // light blue

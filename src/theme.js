@@ -11,6 +11,8 @@
  * Theme contains variables shared by styles of multiple components.
  */
 
+// Just a new comment
+
 import hex2rgba from 'hex2rgba';
 
 const colors = {

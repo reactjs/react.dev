@@ -58,7 +58,7 @@ If you plan to use React on the client to make the markup interactive, do not us
 ### `renderToNodeStream()`
 
 ```javascript
-ReactDOMNodeStream.renderToNodeStream(element)
+ReactDOMServer.renderToNodeStream(element)
 ```
 
 Render a React element to its initial HTML. Returns a [Readable stream](https://nodejs.org/api/stream.html#stream_readable_streams) that outputs an HTML string. The HTML output by this stream is exactly equal to what [`ReactDOMServer.renderToString`](#rendertostring) would return. You can use this method to generate HTML on the server and send the markup down on the initial request for faster page loads and to allow search engines to crawl your pages for SEO purposes.
@@ -76,7 +76,7 @@ If you call [`ReactDOM.hydrate()`](/docs/react-dom.html#hydrate) on a node that 
 ### `renderToStaticNodeStream()`
 
 ```javascript
-ReactDOMNodeStream.renderToStaticNodeStream(element)
+ReactDOMServer.renderToStaticNodeStream(element)
 ```
 
 Similar to [`renderToNodeStream`](#rendertonodestream), except this doesn't create extra DOM attributes that React uses internally, such as `data-reactroot`. This is useful if you want to use React as a simple static page generator, as stripping away the extra attributes can save some bytes.

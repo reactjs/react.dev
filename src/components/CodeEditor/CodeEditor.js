@@ -14,14 +14,13 @@ import Remarkable from 'remarkable';
 import {LiveEditor, LiveProvider} from '@gaearon/react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
-import {highlight, languages} from 'prismjs/components/prism-core'
-import 'prismjs/components/prism-javascript'
+import {highlight, languages} from 'prismjs/components/prism-core';
+import 'prismjs/components/prism-javascript';
 
 const compile = code =>
   Babel.transform(code, {presets: ['es2015', 'react']}).code; // eslint-disable-line no-undef
 
-const compileJsxToJS = code =>
-  Babel.transform(code, {presets: ['react']}).code; // eslint-disable-line no-undef
+const compileJsxToJS = code => Babel.transform(code, {presets: ['react']}).code; // eslint-disable-line no-undef
 
 const prism = code => highlight(code, languages.javascript);
 
@@ -119,13 +118,23 @@ class CodeEditor extends Component {
                   background: colors.darker,
                   color: colors.white,
                 }}>
-                <MetaTitle onDark={true}>Live JSX Editor
+                <MetaTitle onDark={true}>
+                  Live JSX Editor
                   {!showCompiledJsx && (
-                    <a css={{cursor: 'pointer'}} onClick={this._showCompiledJsxPreview.bind(this)}>
-                      View Compiled JSX</a>
+                    <a
+                      role="button"
+                      tabIndex="0"
+                      css={{cursor: 'pointer'}}
+                      onClick={this._showCompiledJsxPreview.bind(this)}>
+                      View Compiled JSX
+                    </a>
                   )}
                   {showCompiledJsx && (
-                    <a css={{cursor: 'pointer'}} onClick={this._hideCompiledJsxPreview.bind(this)}>
+                    <a
+                      css={{cursor: 'pointer'}}
+                      role="button"
+                      tabIndex="0"
+                      onClick={this._hideCompiledJsxPreview.bind(this)}>
                       Back to JSX Editor
                     </a>
                   )}
@@ -156,12 +165,13 @@ class CodeEditor extends Component {
                   },
                 }}
                 className="gatsby-highlight">
-                {!showCompiledJsx && (
-                  <LiveEditor onChange={this._onChange} />
-                )}
+                {!showCompiledJsx && <LiveEditor onChange={this._onChange} />}
                 {showCompiledJsx && (
-                  <pre className="prism-code" spellCheck="false" dangerouslySetInnerHTML={{__html: prism(compiledJsx)}}>
-                  </pre>
+                  <pre
+                    className="prism-code"
+                    spellCheck="false"
+                    dangerouslySetInnerHTML={{__html: prism(compiledJsx)}}
+                  />
                 )}
               </div>
             </div>

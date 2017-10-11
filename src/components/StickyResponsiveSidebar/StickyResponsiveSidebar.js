@@ -123,7 +123,7 @@ class StickyResponsiveSidebar extends Component {
               },
 
               [media.greaterThan('small')]: {
-                tranform: 'none !important',
+                transform: 'none !important',
               },
             }}>
             <Sidebar closeParentMenu={this._closeNavMenu} {...this.props} />

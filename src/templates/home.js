@@ -20,15 +20,40 @@ import {colors, media, sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
 import loadScript from 'utils/loadScript';
 import {babelURL} from 'site-constants';
+import ReactDOM from 'react-dom';
 
 class Home extends Component {
   componentDidMount() {
+    this.renderExamplePlaceholder('helloExample');
+    this.renderExamplePlaceholder('timerExample');
+    this.renderExamplePlaceholder('todoExample');
+    this.renderExamplePlaceholder('markdownExample');
+
     loadScript(babelURL).then(() => {
       mountCodeExample('helloExample', HELLO_COMPONENT);
       mountCodeExample('timerExample', TIMER_COMPONENT);
       mountCodeExample('todoExample', TODO_COMPONENT);
       mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
     });
+  }
+
+  renderExamplePlaceholder(containerId) {
+    ReactDOM.render(
+      <strong
+        css={{
+          transform: 'translate(65%, -5em)',
+          display: 'block',
+
+          [media.lessThan('xlarge')]: {
+            transform: 'none',
+            marginTop: 15,
+            textAlign: 'center',
+          },
+        }}>
+        Loading code example...
+      </strong>,
+      document.getElementById(containerId),
+    );
   }
 
   render() {

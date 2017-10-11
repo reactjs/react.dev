@@ -133,7 +133,6 @@ class CodeEditor extends Component {
                   [media.lessThan('medium')]: {
                     marginBottom: '0 !important',
                   },
-                  
 
                   '& pre.prism-code[contenteditable]': {
                     outline: 0,

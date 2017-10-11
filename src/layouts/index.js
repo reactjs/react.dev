@@ -19,8 +19,6 @@ import Flex from 'components/Flex';
 import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
-import loadScript from 'utils/loadScript';
-import {algoliaURL} from 'site-constants';
 
 // Import global styles
 import '../prism-styles';

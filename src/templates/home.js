@@ -21,10 +21,10 @@ import ReactDOM from 'react-dom';
 
 class Home extends Component {
   componentDidMount() {
-    this.renderExamplePlaceholder('helloExample');
-    this.renderExamplePlaceholder('timerExample');
-    this.renderExamplePlaceholder('todoExample');
-    this.renderExamplePlaceholder('markdownExample');
+    renderExamplePlaceholder('helloExample');
+    renderExamplePlaceholder('timerExample');
+    renderExamplePlaceholder('todoExample');
+    renderExamplePlaceholder('markdownExample');
 
     loadScript(babelURL).then(() => {
       mountCodeExample('helloExample', HELLO_COMPONENT);
@@ -32,25 +32,6 @@ class Home extends Component {
       mountCodeExample('todoExample', TODO_COMPONENT);
       mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
     });
-  }
-
-  renderExamplePlaceholder(containerId) {
-    ReactDOM.render(
-      <strong
-        css={{
-          transform: 'translate(65%, -5em)',
-          display: 'block',
-
-          [media.lessThan('xlarge')]: {
-            transform: 'none',
-            marginTop: 15,
-            textAlign: 'center',
-          },
-        }}>
-        Loading code example...
-      </strong>,
-      document.getElementById(containerId),
-    );
   }
 
   render() {
@@ -191,6 +172,16 @@ Home.propTypes = {
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
+
+// TODO Improve this temporarily placeholder as part of
+// converting the home page from markdown template to a Gatsby
+// page (see issue #2)
+function renderExamplePlaceholder(containerId) {
+  ReactDOM.render(
+    <h4>Loading code example...</h4>,
+    document.getElementById(containerId),
+  );
+}
 
 const CtaItem = ({children, primary = false}) => (
   <div

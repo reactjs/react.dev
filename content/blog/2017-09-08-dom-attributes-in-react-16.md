@@ -163,7 +163,7 @@ Below is a detailed list of them.
     ```
 
     React 15: Converts `NaN`s to strings and passes them through.  
-    React 16: Warns and ignores them.
+    React 16: Converts `NaN`s to strings and passes them through with a warning.
 
 While testing this release, we have also [created an automatically generated table](https://github.com/facebook/react/blob/master/fixtures/attribute-behavior/AttributeTableSnapshot.md) for all known attributes to track potential regressions.
 

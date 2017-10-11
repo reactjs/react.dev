@@ -16,10 +16,14 @@
     "array-from": "^2.1.1",
     "babel-eslint": "^8.0.1",
     "eslint": "^4.8.0",
+    "eslint-config-fbjs": "^2.0.0",
     "eslint-config-react": "^1.1.7",
-    "eslint-plugin-flowtype": "^2.37.0",
+    "eslint-plugin-babel": "^4.1.2",
+    "eslint-plugin-flowtype": "^2.39.1",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
     "eslint-plugin-prettier": "^2.3.1",
     "eslint-plugin-react": "^7.4.0",
+    "eslint-plugin-relay": "^0.0.19",
     "flow-bin": "^0.56.0",
     "gatsby": "^1.9.9",
     "gatsby-link": "^1.6.9",
@@ -69,10 +73,12 @@
   "scripts": {
     "build": "gatsby build",
     "check-all": "yarn prettier && yarn lint && yarn flow",
+    "ci-check": "yarn prettier:diff && yarn lint && yarn flow",
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
     "prettier": "prettier --config .prettierrc --write '{flow-typed,plugins,src}/**/*.js'",
+    "prettier:diff": "prettier --config .prettierrc --list-different '{flow-typed,plugins,src}/**/*.js'",
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {

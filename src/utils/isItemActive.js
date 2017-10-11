@@ -1,9 +1,6 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
  */
 
@@ -26,10 +23,9 @@ const isItemActive = (location, item) => {
     }
   } else if (item.id.includes('html')) {
     return location.pathname.includes(item.id);
-  } else {
-    const slugId = location.pathname.split('/').slice(-1)[0];
-    return slugId === slugify(item.id);
   }
+  const slugId = location.pathname.split('/').slice(-1)[0];
+  return slugId === slugify(item.id);
 };
 
 export default isItemActive;

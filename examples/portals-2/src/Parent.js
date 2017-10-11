@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Modal from './Modal';
+import Child from './Child';
 
 export default class Parent extends React.Component {
   constructor(props) {

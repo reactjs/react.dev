@@ -1,0 +1,13 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:latest
+    steps:
+      - checkout
+      - run:
+          name: Install
+          command: npm install
+      - run:
+          name: Check Prettier, ESLint, Flow
+          command: npm run ci-check

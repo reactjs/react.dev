@@ -14,21 +14,20 @@ import Remarkable from 'remarkable';
 import {LiveEditor, LiveProvider} from '@gaearon/react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
-import {highlight, languages} from 'prismjs/components/prism-core';
-import 'prismjs/components/prism-javascript';
 
-const compile = code =>
-  Babel.transform(code, {presets: ['es2015', 'react']}).code; // eslint-disable-line no-undef
+const compileES5 = (
+  code, // eslint-disable-next-line no-undef
+) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
 
-const compileJsxToJS = code => Babel.transform(code, {presets: ['react']}).code; // eslint-disable-line no-undef
-
-const prism = code => highlight(code, languages.javascript);
+// eslint-disable-next-line no-undef
+const compileES6 = code => Babel.transform(code, {presets: ['react']}).code;
 
 class CodeEditor extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = this._updateState(props.code);
+    this.state.showJSX = true;
   }
 
   componentDidMount() {
@@ -45,10 +44,10 @@ class CodeEditor extends Component {
 
   render() {
     const {children} = this.props;
-    const {error, code, showCompiledJsx, compiledJsx} = this.state;
+    const {compiledES6, code, error, showJSX} = this.state;
 
     return (
-      <LiveProvider code={code} mountStylesheet={false}>
+      <LiveProvider code={showJSX ? code : compiledES6} mountStylesheet={false}>
         <div
           css={{
             [media.greaterThan('xlarge')]: {
@@ -120,24 +119,20 @@ class CodeEditor extends Component {
                 }}>
                 <MetaTitle onDark={true}>
                   Live JSX Editor
-                  {!showCompiledJsx && (
-                    <a
-                      role="button"
-                      tabIndex="0"
-                      css={{cursor: 'pointer'}}
-                      onClick={this._showCompiledJsxPreview.bind(this)}>
-                      View Compiled JSX
-                    </a>
-                  )}
-                  {showCompiledJsx && (
-                    <a
-                      css={{cursor: 'pointer'}}
-                      role="button"
-                      tabIndex="0"
-                      onClick={this._hideCompiledJsxPreview.bind(this)}>
-                      Back to JSX Editor
-                    </a>
-                  )}
+                  <label
+                    css={{
+                      fontSize: 14,
+                      float: 'right',
+                      cursor: 'pointer',
+                    }}>
+                    <input
+                      checked={this.state.showJSX}
+                      onChange={event =>
+                        this.setState({showJSX: event.target.checked})}
+                      type="checkbox"
+                    />{' '}
+                    JSX?
+                  </label>
                 </MetaTitle>
               </div>
               <div
@@ -165,14 +160,7 @@ class CodeEditor extends Component {
                   },
                 }}
                 className="gatsby-highlight">
-                {!showCompiledJsx && <LiveEditor onChange={this._onChange} />}
-                {showCompiledJsx && (
-                  <pre
-                    className="prism-code"
-                    spellCheck="false"
-                    dangerouslySetInnerHTML={{__html: prism(compiledJsx)}}
-                  />
-                )}
+                <LiveEditor onChange={this._onChange} />
               </div>
             </div>
             {error && (
@@ -298,14 +286,21 @@ class CodeEditor extends Component {
     this._mountNode = ref;
   };
 
-  _updateState(code) {
+  _updateState(code, showJSX = true) {
     try {
-      return {
-        compiled: compile(code),
-        compiledJsx: compileJsxToJS(code),
-        code: code,
+      let newState = {
+        compiled: compileES5(code),
         error: null,
       };
+
+      if (showJSX) {
+        newState.code = code;
+        newState.compiledES6 = compileES6(code);
+      } else {
+        newState.compiledES6 = code;
+      }
+
+      return newState;
     } catch (error) {
       console.error(error);
 
@@ -317,21 +312,7 @@ class CodeEditor extends Component {
   }
 
   _onChange = code => {
-    this.setState(this._updateState(code));
-  };
-
-  _showCompiledJsxPreview = () => {
-    this.setState({
-      ...this.state,
-      showCompiledJsx: true,
-    });
-  };
-
-  _hideCompiledJsxPreview = () => {
-    this.setState({
-      ...this.state,
-      showCompiledJsx: false,
-    });
+    this.setState(this._updateState(code, this.state.showJSX));
   };
 }
 

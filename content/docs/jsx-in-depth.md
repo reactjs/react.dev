@@ -245,40 +245,31 @@ function App2() {
 }
 ```
 
-Spread attributes can be useful when you are building generic containers. However, they can also make your code messy by making it easy to pass a lot of irrelevant props to components that don't care about them. We recommend that you use this syntax sparingly.
+You can also pick specific props that your component will consume while passing all other props using the spread operator. 
+This ensures that the component consumes the `kind` prop only, and passes down all other props via `...other`.
 
-An alternative to spreading all of your props is to specifically list out all the properties that you would like to consume, followed by `...other`.
-
-```js
-const { children, ...other } = props;
-```
-
-This ensures that you pass down all the props *except* the ones you're consuming yourself.
-
-```js{6}
-const handleClick = () => console.log("handleClick");
-
-const PrimaryButton = props => {
-  const { children, ...other } = props;
-  return (
-    <button {...other}>
-      {children}
-    </button>
-  );
+```js{2}
+const Button = props => {
+  const { kind, ...other } = props;
+  const className = kind === "primary" ? "PrimaryButton" : "SecondaryButton";
+  return <button className={className} {...other} />;
 };
 
 const App = () => {
   return (
     <div>
-      <PrimaryButton type="button" onClick={handleClick}>
+      <Button kind="primary" onClick={() => console.log("clicked!")}>
         Hello World!
-      </PrimaryButton>
+      </Button>
     </div>
   );
 };
 ```
 
-In the example above, the `...other` object contains `{ onClick: handleClick(), type: "button" }` but *not* the `children` prop. This makes a component like the `PrimaryButton` more reusable and flexible because it can extract a set of unknown properties like `onClick` in the above example.
+In the example above, the `kind` prop is safely consumed and *is not* passed directly to the `<button>` element in the DOM.
+All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
+
+Spread attributes can be useful but not to pass invalid HTML attributes to the DOM. They can also make your code messy by making it easy to pass a lot of irrelevant props to components that don't care about them. We recommend using this syntax sparingly.  
 
 ## Children in JSX
 

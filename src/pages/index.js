@@ -6,7 +6,7 @@
 
 'use strict';
 
-import ButtonLink from './components/ButtonLink';
+import ButtonLink from '../templates/components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import mountCodeExample from 'utils/mountCodeExample';
@@ -41,14 +41,13 @@ class Home extends Component {
   }
 
   render() {
-    const {data} = this.props;
     const title = 'React - A JavaScript library for building user interfaces';
 
     return (
       <div css={{width: '100%'}}>
         <TitleAndMetaTags
           title={title}
-          ogUrl={createOgUrl(data.markdownRemark.fields.slug)}
+          ogUrl={createOgUrl('index.html')}
         />
         <header
           css={{
@@ -142,29 +141,29 @@ class Home extends Component {
 
         <Container>
           <div css={[sharedStyles.markdown, markdownStyles]}>
-            <section class="light home-section">
-              <div class="marketing-row">
-                <div class="marketing-col">
+            <section className="light home-section">
+              <div className="marketing-row">
+                <div className="marketing-col">
                   <h3>Declarative</h3>
                   <p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>
                   <p>Declarative views make your code more predictable and easier to debug.</p>
                 </div>
-                <div class="marketing-col">
+                <div className="marketing-col">
                   <h3>Component-Based</h3>
                   <p>Build encapsulated components that manage their own state, then compose them to make complex UIs.</p>
                   <p>Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.</p>
                 </div>
-                <div class="marketing-col">
+                <div className="marketing-col">
                   <h3>Learn Once, Write Anywhere</h3>
                   <p>We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.</p>
                   <p>React can also render on the server using Node and power mobile apps using <a href="https://facebook.github.io/react-native/">React Native</a>.</p>
                 </div>
               </div>
             </section>
-            <hr class="home-divider" />
-            <section class="home-section">
+            <hr className="home-divider" />
+            <section className="home-section">
               <div id="examples">
-                <div class="example">
+                <div className="example">
                   <h3>A Simple Component</h3>
                   <p>
                     React components implement a `render()` method that takes input data and
@@ -180,7 +179,7 @@ class Home extends Component {
                   </p>
                   <div id="helloExample"></div>
                 </div>
-                <div class="example">
+                <div className="example">
                   <h3>A Stateful Component</h3>
                   <p>
                     In addition to taking input data (accessed via `this.props`), a
@@ -190,7 +189,7 @@ class Home extends Component {
                   </p>
                   <div id="timerExample"></div>
                 </div>
-                <div class="example">
+                <div className="example">
                   <h3>An Application</h3>
                   <p>
                     Using `props` and `state`, we can put together a small Todo application.
@@ -201,7 +200,7 @@ class Home extends Component {
                   </p>
                   <div id="todoExample"></div>
                 </div>
-                <div class="example">
+                <div className="example">
                   <h3>A Component Using External Plugins</h3>
                   <p>
                     React is flexible and provides hooks that allow you to interface with
@@ -243,7 +242,6 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
 
@@ -284,21 +282,6 @@ const CtaItem = ({children, primary = false}) => (
     {children}
   </div>
 );
-
-// eslint-disable-next-line no-undef
-export const pageQuery = graphql`
-  query HomeMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
-      frontmatter {
-        title
-      }
-      fields {
-        slug
-      }
-    }
-  }
-`;
 
 export default Home;
 

@@ -60,15 +60,7 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   allMarkdown.data.allMarkdownRemark.edges.forEach(edge => {
     const slug = edge.node.fields.slug;
 
-    if (slug === '/index.html') {
-      createPage({
-        path: '/',
-        component: homeTemplate,
-        context: {
-          slug,
-        },
-      });
-    } else if (slug === 'docs/error-decoder.html') {
+    if (slug === 'docs/error-decoder.html') {
       // No-op so far as markdown templates go.
       // Error codes are managed by a page in src/pages
       // (which gets created by Gatsby during a separate phase).

@@ -146,36 +146,85 @@ class Home extends Component {
 
         <Container>
           <div css={[sharedStyles.markdown, markdownStyles]}>
-            <section className="home-section">
-              <div className="marketing-row">
-                <div className="marketing-col">
-                  <h3>Declarative</h3>
-                  <p>React makes it painless to create interactive UIs. Design simple views for each state in your application, and React will efficiently update and render just the right components when your data changes.</p>
-                  <p>Declarative views make your code more predictable and easier to debug.</p>
-                </div>
-                <div className="marketing-col">
-                  <h3>Component-Based</h3>
-                  <p>Build encapsulated components that manage their own state, then compose them to make complex UIs.</p>
-                  <p>Since component logic is written in JavaScript instead of templates, you can easily pass rich data through your app and keep state out of the DOM.</p>
-                </div>
-                <div className="marketing-col">
-                  <h3>Learn Once, Write Anywhere</h3>
-                  <p>We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.</p>
-                  <p>React can also render on the server using Node and power mobile apps using <a href="https://facebook.github.io/react-native/">React Native</a>.</p>
-                </div>
-              </div>
-            </section>
-            <section className="home-section">
-              <div className="marketing-row">
+            <section className="home-section" css={{
+              [media.lessThan('medium')]: {
+                marginTop: 0,
+                marginBottom: 0,
+                overflowX: 'auto',
+                paddingTop: 30,
+                WebkitOverflowScrolling: 'touch',
+                position: 'relative',
+                maskImage:
+                  'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
+              },
+            }}>
+              <div css={{
+                display: 'flex',
+                flexDirection: 'row',
+
+                [media.lessThan('medium')]: {
+                  display: 'block',
+                  whiteSpace: 'nowrap',
+                },
+              }}>
                 {marketingColumns.map((column, index) =>
-                  <div className="marketing-col" key={index}>
-                    <h3>{column.title}</h3>
+                  <div key={index} css={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: '0 1 33%',
+                    marginLeft: 40,
+
+                    '&:first-of-type': {
+                      marginLeft: 0,
+
+                      [media.lessThan('medium')]: {
+                        marginLeft: 10,
+                      },
+                    },
+
+                    [media.lessThan('medium')]: {
+                      display: 'inline-block',
+                      verticalAlign: 'top',
+                      marginLeft: 0,
+                      whiteSpace: 'normal',
+                      width: '75%',
+                      marginRight: 20,
+                      paddingBottom: 40,
+
+                      '&:first-of-type': {
+                        marginTop: 0,
+                      },
+                    },
+
+                    '& p': {
+                      lineHeight: 1.7,
+                    },
+                  }}>
+                    <h3 css={{
+                      '&&': { // Make specificity higher than the site-wide h3 styles.
+                        color: colors.subtle,
+                        marginBottom: 20,
+                        paddingTop: 0,
+                        fontWeight: 300,
+                        fontSize: 20,
+
+                        [media.greaterThan('xlarge')]: {
+                          fontSize: 24,
+                          fontWeight: 200,
+                        },
+                      },
+                    }}>{column.title}</h3>
                     <div dangerouslySetInnerHTML={{__html: column.content}} />
                   </div>
                 )}
               </div>
             </section>
-            <hr className="home-divider" />
+            <hr css={{
+              height: 1,
+              marginBottom: -1,
+              border: 'none',
+              borderBottom: `1 solid ${colors.divider}`,
+            }} />
             <section className="home-section">
               <div id="examples">
                 <div className="example">
@@ -330,85 +379,6 @@ const markdownStyles = {
     [media.greaterThan('medium')]: {
       marginTop: 60,
       marginBottom: 65,
-    },
-  },
-
-  '& .home-section:first-child': {
-    [media.lessThan('medium')]: {
-      marginTop: 0,
-      marginBottom: 0,
-      overflowX: 'auto',
-      paddingTop: 30,
-      WebkitOverflowScrolling: 'touch',
-      position: 'relative',
-      maskImage:
-        'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
-    },
-  },
-
-  '& .homeDivider': {
-    height: 1,
-    marginBottom: -1,
-    border: 'none',
-    borderBottom: `1 solid ${colors.divider}`,
-  },
-
-  '& .marketing-row': {
-    display: 'flex',
-    flexDirection: 'row',
-
-    [media.lessThan('medium')]: {
-      display: 'block',
-      whiteSpace: 'nowrap',
-    },
-  },
-
-  '& .marketing-col': {
-    display: 'flex',
-    flexDirection: 'column',
-    flex: '0 1 33%',
-    marginLeft: 40,
-
-    '&:first-of-type': {
-      marginLeft: 0,
-
-      [media.lessThan('medium')]: {
-        marginLeft: 10,
-      },
-    },
-
-    [media.lessThan('medium')]: {
-      display: 'inline-block',
-      verticalAlign: 'top',
-      marginLeft: 0,
-      whiteSpace: 'normal',
-      width: '75%',
-      marginRight: 20,
-      paddingBottom: 40,
-
-      '&:first-of-type': {
-        marginTop: 0,
-      },
-    },
-
-    '& h3': {
-      color: colors.subtle,
-      paddingTop: 0,
-      fontWeight: 300,
-      fontSize: 20,
-
-      [media.greaterThan('xlarge')]: {
-        fontSize: 24,
-        fontWeight: 200,
-      },
-    },
-
-    '& p': {
-      lineHeight: 1.7,
-    },
-
-    '& h3 + p': {
-      marginTop: 20,
     },
   },
 

@@ -11,7 +11,6 @@ redirect_from:
   - "docs/top-level-api-ja-JP.html"
   - "docs/top-level-api-ko-KR.html"
   - "docs/top-level-api-zh-CN.html"
-  - "docs/glossary.html"
 ---
 
 `React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.

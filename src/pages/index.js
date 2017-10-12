@@ -144,19 +144,21 @@ class Home extends Component {
         <Container>
           <div css={[sharedStyles.markdown, markdownStyles]}>
             <section
-              className="home-section"
-              css={{
-                [media.lessThan('medium')]: {
-                  marginTop: 0,
-                  marginBottom: 0,
-                  overflowX: 'auto',
-                  paddingTop: 30,
-                  WebkitOverflowScrolling: 'touch',
-                  position: 'relative',
-                  maskImage:
-                    'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
+              css={[
+                sectionStyles,
+                {
+                  [media.lessThan('medium')]: {
+                    marginTop: 0,
+                    marginBottom: 0,
+                    overflowX: 'auto',
+                    paddingTop: 30,
+                    WebkitOverflowScrolling: 'touch',
+                    position: 'relative',
+                    maskImage:
+                      'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
+                  },
                 },
-              }}>
+              ]}>
               <div
                 css={{
                   display: 'flex',
@@ -233,7 +235,7 @@ class Home extends Component {
                 borderBottom: `1 solid ${colors.divider}`,
               }}
             />
-            <section className="home-section">
+            <section css={sectionStyles}>
               <div id="examples">
                 <div className="example">
                   <h3>A Simple Component</h3>
@@ -385,18 +387,18 @@ export const pageQuery = graphql`
 
 export default Home;
 
+const sectionStyles = {
+  marginTop: 20,
+  marginBottom: 15,
+
+  [media.greaterThan('medium')]: {
+    marginTop: 60,
+    marginBottom: 65,
+  },
+};
+
 // TODO This nasty CSS is required because 'docs/index.md' defines hard-coded class names.
 const markdownStyles = {
-  '& .home-section': {
-    marginTop: 20,
-    marginBottom: 15,
-
-    [media.greaterThan('medium')]: {
-      marginTop: 60,
-      marginBottom: 65,
-    },
-  },
-
   '& .example': {
     marginTop: 40,
 

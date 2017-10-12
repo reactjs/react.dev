@@ -23,6 +23,7 @@ export type Node = {
     next?: string,
     prev?: string,
     title: string,
+    order?: number,
   },
   html: string,
   id: string,

@@ -41,7 +41,12 @@ class Home extends Component {
   }
 
   render() {
+    const {data} = this.props;
     const title = 'React - A JavaScript library for building user interfaces';
+    const marketingColumns = data.allMarkdownRemark.edges.map(edge => ({
+      title: edge.node.frontmatter.title,
+      content: edge.node.html,
+    }));
 
     return (
       <div css={{width: '100%'}}>
@@ -141,7 +146,7 @@ class Home extends Component {
 
         <Container>
           <div css={[sharedStyles.markdown, markdownStyles]}>
-            <section className="light home-section">
+            <section className="home-section">
               <div className="marketing-row">
                 <div className="marketing-col">
                   <h3>Declarative</h3>
@@ -158,6 +163,16 @@ class Home extends Component {
                   <p>We don't make assumptions about the rest of your technology stack, so you can develop new features in React without rewriting existing code.</p>
                   <p>React can also render on the server using Node and power mobile apps using <a href="https://facebook.github.io/react-native/">React Native</a>.</p>
                 </div>
+              </div>
+            </section>
+            <section className="home-section">
+              <div className="marketing-row">
+                {marketingColumns.map((column, index) =>
+                  <div className="marketing-col" key={index}>
+                    <h3>{column.title}</h3>
+                    <div dangerouslySetInnerHTML={{__html: column.content}} />
+                  </div>
+                )}
               </div>
             </section>
             <hr className="home-divider" />
@@ -242,6 +257,7 @@ class Home extends Component {
 }
 
 Home.propTypes = {
+  data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
 
@@ -282,6 +298,26 @@ const CtaItem = ({children, primary = false}) => (
     {children}
   </div>
 );
+
+// eslint-disable-next-line no-undef
+export const pageQuery = graphql`
+query MarketingMarkdown {
+  allMarkdownRemark(
+    filter: {id: {regex: "/marketing/"}},
+    sort: {fields: [frontmatter___order],
+    order: ASC}
+  ) {
+    edges {
+      node {
+        frontmatter {
+          title
+        }
+        html
+      }
+    }
+  }
+}
+`;
 
 export default Home;
 

@@ -32,7 +32,6 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const communityTemplate = resolve('./src/templates/community.js');
   const docsTemplate = resolve('./src/templates/docs.js');
   const tutorialTemplate = resolve('./src/templates/tutorial.js');
-  const homeTemplate = resolve('./src/templates/home.js');
 
   const allMarkdown = await graphql(
     `

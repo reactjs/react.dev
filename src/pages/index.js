@@ -50,10 +50,7 @@ class Home extends Component {
 
     return (
       <div css={{width: '100%'}}>
-        <TitleAndMetaTags
-          title={title}
-          ogUrl={createOgUrl('index.html')}
-        />
+        <TitleAndMetaTags title={title} ogUrl={createOgUrl('index.html')} />
         <header
           css={{
             backgroundColor: colors.dark,
@@ -146,132 +143,151 @@ class Home extends Component {
 
         <Container>
           <div css={[sharedStyles.markdown, markdownStyles]}>
-            <section className="home-section" css={{
-              [media.lessThan('medium')]: {
-                marginTop: 0,
-                marginBottom: 0,
-                overflowX: 'auto',
-                paddingTop: 30,
-                WebkitOverflowScrolling: 'touch',
-                position: 'relative',
-                maskImage:
-                  'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
-              },
-            }}>
-              <div css={{
-                display: 'flex',
-                flexDirection: 'row',
-
+            <section
+              className="home-section"
+              css={{
                 [media.lessThan('medium')]: {
-                  display: 'block',
-                  whiteSpace: 'nowrap',
+                  marginTop: 0,
+                  marginBottom: 0,
+                  overflowX: 'auto',
+                  paddingTop: 30,
+                  WebkitOverflowScrolling: 'touch',
+                  position: 'relative',
+                  maskImage:
+                    'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
                 },
               }}>
-                {marketingColumns.map((column, index) =>
-                  <div key={index} css={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    flex: '0 1 33%',
-                    marginLeft: 40,
+              <div
+                css={{
+                  display: 'flex',
+                  flexDirection: 'row',
 
-                    '&:first-of-type': {
-                      marginLeft: 0,
-
-                      [media.lessThan('medium')]: {
-                        marginLeft: 10,
-                      },
-                    },
-
-                    [media.lessThan('medium')]: {
-                      display: 'inline-block',
-                      verticalAlign: 'top',
-                      marginLeft: 0,
-                      whiteSpace: 'normal',
-                      width: '75%',
-                      marginRight: 20,
-                      paddingBottom: 40,
+                  [media.lessThan('medium')]: {
+                    display: 'block',
+                    whiteSpace: 'nowrap',
+                  },
+                }}>
+                {marketingColumns.map((column, index) => (
+                  <div
+                    key={index}
+                    css={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      flex: '0 1 33%',
+                      marginLeft: 40,
 
                       '&:first-of-type': {
-                        marginTop: 0,
-                      },
-                    },
+                        marginLeft: 0,
 
-                    '& p': {
-                      lineHeight: 1.7,
-                    },
-                  }}>
-                    <h3 css={{
-                      '&&': { // Make specificity higher than the site-wide h3 styles.
-                        color: colors.subtle,
-                        marginBottom: 20,
-                        paddingTop: 0,
-                        fontWeight: 300,
-                        fontSize: 20,
-
-                        [media.greaterThan('xlarge')]: {
-                          fontSize: 24,
-                          fontWeight: 200,
+                        [media.lessThan('medium')]: {
+                          marginLeft: 10,
                         },
                       },
-                    }}>{column.title}</h3>
+
+                      [media.lessThan('medium')]: {
+                        display: 'inline-block',
+                        verticalAlign: 'top',
+                        marginLeft: 0,
+                        whiteSpace: 'normal',
+                        width: '75%',
+                        marginRight: 20,
+                        paddingBottom: 40,
+
+                        '&:first-of-type': {
+                          marginTop: 0,
+                        },
+                      },
+
+                      '& p': {
+                        lineHeight: 1.7,
+                      },
+                    }}>
+                    <h3
+                      css={{
+                        '&&': {
+                          // Make specificity higher than the site-wide h3 styles.
+                          color: colors.subtle,
+                          marginBottom: 20,
+                          paddingTop: 0,
+                          fontWeight: 300,
+                          fontSize: 20,
+
+                          [media.greaterThan('xlarge')]: {
+                            fontSize: 24,
+                            fontWeight: 200,
+                          },
+                        },
+                      }}>
+                      {column.title}
+                    </h3>
                     <div dangerouslySetInnerHTML={{__html: column.content}} />
                   </div>
-                )}
+                ))}
               </div>
             </section>
-            <hr css={{
-              height: 1,
-              marginBottom: -1,
-              border: 'none',
-              borderBottom: `1 solid ${colors.divider}`,
-            }} />
+            <hr
+              css={{
+                height: 1,
+                marginBottom: -1,
+                border: 'none',
+                borderBottom: `1 solid ${colors.divider}`,
+              }}
+            />
             <section className="home-section">
               <div id="examples">
                 <div className="example">
                   <h3>A Simple Component</h3>
                   <p>
-                    React components implement a `render()` method that takes input data and
-                    returns what to display. This example uses an XML-like syntax called
-                    JSX. Input data that is passed into the component can be accessed by
-                    `render()` via `this.props`.
+                    React components implement a `render()` method that takes
+                    input data and returns what to display. This example uses an
+                    XML-like syntax called JSX. Input data that is passed into
+                    the component can be accessed by `render()` via
+                    `this.props`.
                   </p>
                   <p>
-                    <strong>JSX is optional and not required to use React.</strong>
-                    Try the
-                    <a href="http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&code_lz=MYGwhgzhAEASCmIQHsCy8pgOb2vAHgC7wB2AJjAErxjCEB0AwsgLYAOyJph0A3gFABIAE6ky8YQAoAlHyEj4hAK7CS0ADxkAlgDcAfAiTI-hABZaI9NsORtLJMC3gBfdQHpt-gNxDn_P_zUtIQAIgDyqPSi5BKS6oYo6Jg40A5OALwARCHwOlokmdBuegA00CzISiSEAHLI4tJeQA&debug=false&circleciRepo=&evaluate=false&lineWrap=false&presets=react&prettier=true&targets=&version=6.26.0">Babel REPL</a>
-                    to see the raw JavaScript code produced by the JSX compilation step.
+                    <strong>
+                      JSX is optional and not required to use React.
+                    </strong>{' '}
+                    Try the{' '}
+                    <a href="http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&code_lz=MYGwhgzhAEASCmIQHsCy8pgOb2vAHgC7wB2AJjAErxjCEB0AwsgLYAOyJph0A3gFABIAE6ky8YQAoAlHyEj4hAK7CS0ADxkAlgDcAfAiTI-hABZaI9NsORtLJMC3gBfdQHpt-gNxDn_P_zUtIQAIgDyqPSi5BKS6oYo6Jg40A5OALwARCHwOlokmdBuegA00CzISiSEAHLI4tJeQA&debug=false&circleciRepo=&evaluate=false&lineWrap=false&presets=react&prettier=true&targets=&version=6.26.0">
+                      Babel REPL
+                    </a>{' '}
+                    to see the raw JavaScript code produced by the JSX
+                    compilation step.
                   </p>
-                  <div id="helloExample"></div>
+                  <div id="helloExample" />
                 </div>
                 <div className="example">
                   <h3>A Stateful Component</h3>
                   <p>
-                    In addition to taking input data (accessed via `this.props`), a
-                    component can maintain internal state data (accessed via `this.state`).
-                    When a component's state data changes, the rendered markup will be
-                    updated by re-invoking `render()`.
+                    In addition to taking input data (accessed via
+                    `this.props`), a component can maintain internal state data
+                    (accessed via `this.state`). When a component's state data
+                    changes, the rendered markup will be updated by re-invoking
+                    `render()`.
                   </p>
-                  <div id="timerExample"></div>
+                  <div id="timerExample" />
                 </div>
                 <div className="example">
                   <h3>An Application</h3>
                   <p>
-                    Using `props` and `state`, we can put together a small Todo application.
-                    This example uses `state` to track the current list of items as well as
-                    the text that the user has entered. Although event handlers appear to be
-                    rendered inline, they will be collected and implemented using event
-                    delegation.
+                    Using `props` and `state`, we can put together a small Todo
+                    application. This example uses `state` to track the current
+                    list of items as well as the text that the user has entered.
+                    Although event handlers appear to be rendered inline, they
+                    will be collected and implemented using event delegation.
                   </p>
-                  <div id="todoExample"></div>
+                  <div id="todoExample" />
                 </div>
                 <div className="example">
                   <h3>A Component Using External Plugins</h3>
                   <p>
-                    React is flexible and provides hooks that allow you to interface with
-                    other libraries and frameworks. This example uses <strong>remarkable</strong>, an
-                    external Markdown library, to convert the textarea's value in real time.
+                    React is flexible and provides hooks that allow you to
+                    interface with other libraries and frameworks. This example
+                    uses <strong>remarkable</strong>, an external Markdown
+                    library, to convert the textarea's value in real time.
                   </p>
-                  <div id="markdownExample"></div>
+                  <div id="markdownExample" />
                 </div>
               </div>
             </section>
@@ -350,22 +366,21 @@ const CtaItem = ({children, primary = false}) => (
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-query MarketingMarkdown {
-  allMarkdownRemark(
-    filter: {id: {regex: "/marketing/"}},
-    sort: {fields: [frontmatter___order],
-    order: ASC}
-  ) {
-    edges {
-      node {
-        frontmatter {
-          title
+  query MarketingMarkdown {
+    allMarkdownRemark(
+      filter: {id: {regex: "/marketing/"}}
+      sort: {fields: [frontmatter___order], order: ASC}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+          }
+          html
         }
-        html
       }
     }
   }
-}
 `;
 
 export default Home;

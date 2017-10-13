@@ -2,13 +2,20 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
 
 import React from 'react';
 
-const ChevronSvg = ({size = 10, cssProps = {}}) => (
+const ChevronSvg = ({
+  size = 10,
+  cssProps = {},
+}: {
+  size: number,
+  cssProps: Object,
+}) => (
   <svg
     css={cssProps}
     viewBox="0 0 926.23699 573.74994"

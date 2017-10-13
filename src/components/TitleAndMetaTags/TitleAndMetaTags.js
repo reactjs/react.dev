@@ -11,7 +11,15 @@ import React from 'react';
 
 const defaultDescription = 'A JavaScript library for building user interfaces';
 
-const TitleAndMetaTags = ({title, ogDescription, ogUrl}) => {
+const TitleAndMetaTags = ({
+  title,
+  ogDescription,
+  ogUrl,
+}: {
+  title: string,
+  ogDescription: string,
+  ogUrl: string,
+}) => {
   return (
     <Helmet title={title}>
       <meta property="og:title" content={title} />

@@ -169,3 +169,34 @@ ReactDOM.render(
 ```
 
 The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+
+### Nested React Elements (e.g. children)
+
+If you want to validate nested elements, such as the children of your component, you may need to use a nested shape on `props` if your nested children are React elements:
+
+```javascript
+import PropTypes from 'prop-types';
+
+class MyComponent extends React.Component {
+  render() {
+    // This must be exactly one element or it will warn.
+    const children = this.props.children;
+    return (
+      <div>
+        {children}
+      </div>
+    );
+  }
+}
+
+MyComponent.propTypes = {
+  children: PropTypes.shape({
+    props: PropTypes.shape({
+      containerElement: PropTypes.element.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  })
+};
+```
+
+Note that you can use `PropTypes.shape()` as an element of `PropTypes.arrayOf()` also. e.g. `PropTypes.arrayOf(PropTypes.shape(...))`

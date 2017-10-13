@@ -54,6 +54,7 @@ module.exports = {
               maxWidth: 840,
             },
           },
+          'gatsby-remark-codesandbox',
           'gatsby-remark-autolink-headers',
           'gatsby-remark-use-jsx',
           {

@@ -10,33 +10,7 @@ To write an uncontrolled component, instead of writing an event handler for ever
 
 For example, this code accepts a single name in an uncontrolled component:
 
-```javascript{8,17}
-class NameForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.value);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" ref={(input) => this.input = input} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
-}
-```
-
-[Try it on CodeSandbox.](https://codesandbox.io/embed/github/CompuIves/reactjs.org/tree/codesandbox/examples/uncontrolled-components?codemirror=1)
+[Try it on CodeSandbox.](source:examples/uncontrolled-components/src/index.js{11,20})
 
 Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
 

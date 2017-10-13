@@ -1,4 +1,5 @@
 .cache
 .DS_STORE
+.idea
 node_modules
 public

@@ -62,6 +62,12 @@ This method is called when a component is being removed from the DOM:
 
 - [`componentWillUnmount()`](#componentwillunmount)
 
+#### Error Handling
+
+This method is called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+
+- [`componentDidCatch()`](#componentdidcatch)
+
 ### Other APIs
 
 Each component also provides some other APIs:
@@ -247,6 +253,24 @@ componentWillUnmount()
 ```
 
 `componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any DOM elements that were created in `componentDidMount`
+
+* * *
+
+### `componentDidCatch()`
+
+```javascript
+componentDidCatch(error, info)
+```
+
+Error boundaries are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
+
+A class component becomes an error boundary if it defines this lifecycle method.
+
+For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
+
+> Note
+> 
+> Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
 * * *
 

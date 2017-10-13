@@ -15,13 +15,23 @@ import React, {Component} from 'react';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import {colors, media, sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
+import loadScript from 'utils/loadScript';
+import {babelURL} from 'site-constants';
+import ReactDOM from 'react-dom';
 
 class Home extends Component {
   componentDidMount() {
-    mountCodeExample('helloExample', HELLO_COMPONENT);
-    mountCodeExample('timerExample', TIMER_COMPONENT);
-    mountCodeExample('todoExample', TODO_COMPONENT);
-    mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
+    renderExamplePlaceholder('helloExample');
+    renderExamplePlaceholder('timerExample');
+    renderExamplePlaceholder('todoExample');
+    renderExamplePlaceholder('markdownExample');
+
+    loadScript(babelURL).then(() => {
+      mountCodeExample('helloExample', HELLO_COMPONENT);
+      mountCodeExample('timerExample', TIMER_COMPONENT);
+      mountCodeExample('todoExample', TODO_COMPONENT);
+      mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
+    });
   }
 
   render() {
@@ -162,6 +172,16 @@ Home.propTypes = {
   data: PropTypes.object.isRequired,
   location: PropTypes.object.isRequired,
 };
+
+// TODO Improve this temporarily placeholder as part of
+// converting the home page from markdown template to a Gatsby
+// page (see issue #2)
+function renderExamplePlaceholder(containerId) {
+  ReactDOM.render(
+    <h4>Loading code example...</h4>,
+    document.getElementById(containerId),
+  );
+}
 
 const CtaItem = ({children, primary = false}) => (
   <div

@@ -177,7 +177,8 @@ class CodeEditor extends Component {
                     padding: 10,
                   }}>
                   {error.message}
-                  {!window.Babel && ' (try checking your ad blocker if you have one).'}
+                  {!window.Babel &&
+                    ' (try checking your ad blocker if you have one).'}
                 </pre>
               </div>
             )}

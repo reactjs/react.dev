@@ -40,9 +40,9 @@ cd my-app
 npm start
 ```
 
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. It uses build tools like Babel and webpack under the hood, but works with zero configuration.
+`Create React App` doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. It uses build tools like [Babel] (http://babeljs.io/) and [webpack] (http://babeljs.io/) under the hood, but works with zero configuration.
 
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
+When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about `Create React App` [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
 
 ## Adding React to an Existing Application
 
@@ -88,7 +88,7 @@ The [Babel setup instructions](https://babeljs.io/docs/setup/) explain how to co
 
 ### Hello World with ES6 and JSX
 
-We recommend using a bundler like [webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/) so you can write modular code and bundle it together into small packages to optimize load time.
+We recommend using a bundler like [webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/), so you can write modular code and bundle it together into small packages to optimize load time.
 
 The smallest React example looks like this:
 
@@ -102,7 +102,7 @@ ReactDOM.render(
 );
 ```
 
-This code renders into a DOM element with the id of `root` so you need `<div id="root"></div>` somewhere in your HTML file.
+This code renders into a DOM element with the id of `root`, so you need `<div id="root"></div>` somewhere in your HTML file.
 
 Similarly, you can render a React component inside a DOM element somewhere inside your existing app written with any other JavaScript UI library.
 

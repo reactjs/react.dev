@@ -38,7 +38,7 @@
     "gatsby-plugin-sharp": "^1.6.2",
     "gatsby-plugin-twitter": "^1.0.10",
     "gatsby-remark-autolink-headers": "^1.4.4",
-    "gatsby-remark-codesandbox": "^1.2.16",
+    "gatsby-remark-codesandbox": "^1.2.20",
     "gatsby-remark-copy-linked-files": "^1.5.2",
     "gatsby-remark-images": "^1.5.11",
     "gatsby-remark-prismjs": "^1.2.1",

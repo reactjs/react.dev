@@ -10,7 +10,7 @@ To write an uncontrolled component, instead of writing an event handler for ever
 
 For example, this code accepts a single name in an uncontrolled component:
 
-[Try it on CodeSandbox.](source:examples/uncontrolled-components/src/index.js{11,20})
+[Run the example.](source:examples/uncontrolled-components/src/index.js{11,20}?editorsize=70)
 
 Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
 

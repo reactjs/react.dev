@@ -8,6 +8,7 @@
 
 const {resolve} = require('path');
 const webpack = require('webpack');
+const fs = require('fs');
 
 exports.modifyWebpackConfig = ({config, stage}) => {
   // See https://github.com/FormidableLabs/react-live/issues/5
@@ -74,11 +75,11 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
       // (which gets created by Gatsby during a separate phase).
     } else if (
       slug.includes('blog/') ||
-      slug.includes('community/') ||
-      slug.includes('contributing/') ||
-      slug.includes('docs/') ||
-      slug.includes('tutorial/') ||
-      slug.includes('warnings/')
+            slug.includes('community/') ||
+            slug.includes('contributing/') ||
+            slug.includes('docs/') ||
+            slug.includes('tutorial/') ||
+            slug.includes('warnings/')
     ) {
       let template;
       if (slug.includes('blog/')) {
@@ -87,8 +88,8 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
         template = communityTemplate;
       } else if (
         slug.includes('contributing/') ||
-        slug.includes('docs/') ||
-        slug.includes('warnings/')
+                slug.includes('docs/') ||
+                slug.includes('warnings/')
       ) {
         template = docsTemplate;
       } else if (slug.includes('tutorial/')) {
@@ -117,8 +118,8 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
         redirect.forEach(fromPath => {
           if (redirectToSlugMap[fromPath] != null) {
             console.error(`Duplicate redirect detected from "${fromPath}" to:\n` +
-              `* ${redirectToSlugMap[fromPath]}\n` +
-              `* ${slug}\n`
+                            `* ${redirectToSlugMap[fromPath]}\n` +
+                            `* ${slug}\n`
             );
             process.exit(1);
           }
@@ -161,6 +162,29 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
     redirectInBrowser: true,
     toPath: newestBlogNode.fields.slug,
   });
+
+  // Create Codepen example pages
+  const htmlTemplate = fs.readFileSync('./examples/index.html', 'utf8');
+  fs.readdirSync('./examples').forEach(file => {
+    // Only create pages for the JS files
+    if (file.toLowerCase().split('.').pop() === 'js') {
+      const slug = file.substring(0, file.length - 3);
+      const jsTemplate = fs.readFileSync(`./examples/${file}`, 'utf8');
+
+      createPage({
+        path: `/examples/${slug}`,
+        component: resolve('./src/templates/codepen-example.js'),
+        context: {
+          slug,
+          payload: {
+            html: htmlTemplate,
+            js: jsTemplate,
+          },
+        },
+      });
+    }
+  });
+
 };
 
 // Parse date information out of blog post filename.

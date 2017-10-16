@@ -77,8 +77,8 @@
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
-    "prettier": "prettier --config .prettierrc --write '{flow-typed,plugins,src}/**/*.js'",
-    "prettier:diff": "prettier --config .prettierrc --list-different '{flow-typed,plugins,src}/**/*.js'",
+    "prettier": "prettier --config .prettierrc --write \"{flow-typed,plugins,src}/**/*.js\"",
+    "prettier:diff": "prettier --config .prettierrc --list-different \"{flow-typed,plugins,src}/**/*.js\"",
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {

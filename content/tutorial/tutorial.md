@@ -54,9 +54,33 @@ If you want to do it, here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
 2. Follow the [installation instructions](/docs/installation.html#creating-a-new-application) to create a new project.
-3. Delete all files inside the `src/` folder of the new project (don't delete the folder, just its contents (eg `rm -f src/*`)).
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+
+```bash
+npm install -g create-react-app
+create-react-app my-app
+```
+
+3. Delete all files in the `src/` folder of the new project (don't delete the folder, just its contents).
+
+```bash
+cd my-app
+rm -f src/*
+```
+
+4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100), or type in the following commands:
+
+```bash
+touch src/index.css
+curl -L https://codepen.io/gaearon/pen/oWWQNa.css > src/index.css
+```
+
+5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010), or type in the following commands:
+
+```bash
+touch src/index.js
+curl -L https://codepen.io/gaearon/pen/oWWQNa.js > src/index.js
+```
+
 6. Add these three lines to the top of `index.js` in the `src/` folder:
 
     ```js

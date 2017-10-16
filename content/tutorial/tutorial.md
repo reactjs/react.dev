@@ -67,19 +67,9 @@ cd my-app
 rm -f src/*
 ```
 
-4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100), or type in the following commands:
+4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 
-```bash
-touch src/index.css
-curl -L https://codepen.io/gaearon/pen/oWWQNa.css > src/index.css
-```
-
-5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010), or type in the following commands:
-
-```bash
-touch src/index.js
-curl -L https://codepen.io/gaearon/pen/oWWQNa.js > src/index.js
-```
+5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 
 6. Add these three lines to the top of `index.js` in the `src/` folder:
 

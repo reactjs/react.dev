@@ -24,12 +24,15 @@ const Section = ({
 }) => (
   <div>
     <button
-      css={{cursor: 'pointer', backgroundColor: 'transparent', border: 0}}
+      css={{
+        cursor: 'pointer',
+        backgroundColor: 'transparent',
+        border: 0,
+        marginTop: 10,
+      }}
       onClick={onSectionTitleClick}>
       <MetaTitle
         cssProps={{
-          marginTop: 10,
-
           [media.greaterThan('small')]: {
             color: isActive ? colors.text : colors.subtle,
 

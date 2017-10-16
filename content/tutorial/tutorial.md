@@ -54,7 +54,7 @@ If you want to do it, here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
 2. Follow the [installation instructions](/docs/installation.html#creating-a-new-application) to create a new project.
-3. Delete all files in the `src/` folder of the new project.
+3. Delete all files inside the `src/` folder of the new project (don't delete the folder, just its contents (eg `rm -f src/*`)).
 4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
 5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 6. Add these three lines to the top of `index.js` in the `src/` folder:

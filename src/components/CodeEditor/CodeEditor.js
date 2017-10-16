@@ -176,9 +176,16 @@ class CodeEditor extends Component {
                     color: colors.error,
                     padding: 10,
                   }}>
-                  {error.message}
-                  {!window.Babel &&
-                    ' (try checking your ad blocker if you have one).'}
+                  {this.state.didBabelLoad ? (
+                    error.message
+                  ) : (
+                    <span>
+                      Babel could not be loaded. This can be caused by ad
+                      blockers. If you're using an ad blocker, consider adding
+                      reactjs.org to the whitelist so the live code examples
+                      will work.
+                    </span>
+                  )}
                 </pre>
               </div>
             )}
@@ -277,6 +284,7 @@ class CodeEditor extends Component {
       console.error(error);
 
       return {
+        didBabelLoad: !!window.Babel,
         compiled: null,
         error,
       };

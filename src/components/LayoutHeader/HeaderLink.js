@@ -27,6 +27,12 @@ const style = {
   paddingRight: 15,
   fontWeight: 300,
 
+  ':focus': {
+    outline: 0,
+    backgroundColor: colors.lighter,
+    color: colors.white,
+  },
+
   [media.size('xsmall')]: {
     paddingLeft: 8,
     paddingRight: 8,
@@ -42,7 +48,7 @@ const style = {
     paddingRight: 20,
     fontSize: 18,
 
-    ':hover': {
+    ':hover:not(:focus)': {
       color: colors.brand,
     },
   },

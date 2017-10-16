@@ -170,12 +170,12 @@ const Header = ({location}) => (
               fontWeight: 300,
               fontFamily: 'inherit',
               position: 'relative',
-              paddingLeft: '24px',
+              padding: '5px 5px 5px 29px',
               backgroundImage: 'url(/search.svg)',
               backgroundSize: '16px 16px',
               backgroundRepeat: 'no-repeat',
               backgroundPositionY: 'center',
-              backgroundPositionX: 'left',
+              backgroundPositionX: '5px',
 
               ':focus': {
                 outline: 0,
@@ -195,7 +195,7 @@ const Header = ({location}) => (
                 paddingLeft: '16px',
 
                 ':focus': {
-                  paddingLeft: '24px',
+                  paddingLeft: '29px',
                   width: '8rem',
                   outline: 'none',
                 },

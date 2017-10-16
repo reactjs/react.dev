@@ -6,7 +6,7 @@
 
 'use strict';
 
-import ButtonLink from '../templates/components/ButtonLink';
+import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import mountCodeExample from 'utils/mountCodeExample';

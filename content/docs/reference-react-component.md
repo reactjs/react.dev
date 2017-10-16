@@ -136,18 +136,18 @@ render() {
 ### `constructor()`
 
 ```javascript
-constructor(props)
+constructor(props, context)
 ```
 
-The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
+The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs. Optionally, if you need access to context in your component, call `super(props, context)`.
 
 The constructor is the right place to initialize state. If you don't initialize state and you don't bind methods, you don't need to implement a constructor for your React component.
 
 It's okay to initialize state based on props. This effectively "forks" the props and sets the state with the initial props. Here's an example of a valid `React.Component` subclass constructor:
 
 ```js
-constructor(props) {
-  super(props);
+constructor(props, context) {
+  super(props, context);
   this.state = {
     color: props.initialColor
   };
@@ -269,7 +269,7 @@ A class component becomes an error boundary if it defines this lifecycle method.
 For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Note
-> 
+>
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
 * * *

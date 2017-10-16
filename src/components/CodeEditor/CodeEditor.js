@@ -312,7 +312,7 @@ class CodeEditor extends Component {
   }
 
   _onChange = code => {
-    this.setState(this._updateState(code, this.state.showJSX));
+    this.setState(state => this._updateState(code, state.showJSX));
   };
 }
 

@@ -50,7 +50,7 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### `React.Component`
 
-`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes).
+`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
 ```javascript
 class Greeting extends React.Component {
@@ -66,7 +66,7 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 ### `React.PureComponent`
 
-`React.PureComponent` is exactly like [`React.Component`](#reactcomponent) but implements [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) with a shallow prop and state comparison.
+`React.PureComponent` is exactly like [`React.Component`](#reactcomponent), but implements [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) with a shallow prop and state comparison.
 
 If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
 

@@ -524,7 +524,7 @@ While we're cleaning up the code, we also changed `onClick={() => props.onClick(
 
 An obvious defect in our game is that only X can play. Let's fix that.
 
-Let's default the first move to be by 'X'. Modify our starting state in our Board constructor.
+Let's default the first move to be by 'X'. Modify our starting state in our Board constructor:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -537,7 +537,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time we move we shall toggle `xIsNext` by flipping the boolean value and saving the state. Now update Board's `handleClick` function to flip the value of `xIsNext`.
+Each time we move we shall toggle `xIsNext` by flipping the boolean value and saving the state. Now update Board's `handleClick` function to flip the value of `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -550,7 +550,7 @@ Each time we move we shall toggle `xIsNext` by flipping the boolean value and sa
   }
 ```
 
-Now X and O take turns. Next, change the "status" text in Board's `render` so that it also displays who is next.
+Now X and O take turns. Next, change the "status" text in Board's `render` so that it also displays who is next:
 
 ```javascript{2}
   render() {

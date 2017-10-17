@@ -26,11 +26,17 @@ class Home extends Component {
     renderExamplePlaceholder('todoExample');
     renderExamplePlaceholder('markdownExample');
 
-    loadScript(babelURL).then(() => {
+    function mountCodeExamples() {
       mountCodeExample('helloExample', HELLO_COMPONENT);
       mountCodeExample('timerExample', TIMER_COMPONENT);
       mountCodeExample('todoExample', TODO_COMPONENT);
       mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
+    }
+
+    loadScript(babelURL).then(mountCodeExamples, error => {
+      console.error('Babel failed to load.');
+
+      mountCodeExamples();
     });
   }
 

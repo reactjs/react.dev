@@ -3934,9 +3934,9 @@ gatsby-remark-autolink-headers@^1.4.4:
     mdast-util-to-string "^1.0.2"
     unist-util-visit "^1.1.1"
 
-gatsby-remark-codesandbox@^1.2.20:
-  version "1.2.20"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-codesandbox/-/gatsby-remark-codesandbox-1.2.20.tgz#aad09fd6d5d97642a98a79461873fe6657b02096"
+gatsby-remark-codesandbox@^1.2.21:
+  version "1.2.21"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-codesandbox/-/gatsby-remark-codesandbox-1.2.21.tgz#2a14bc7c97d296a03f4e7bd16f7f46a00ee62ca4"
   dependencies:
     babel-runtime "^6.26.0"
     git-branch "^1.0.0"

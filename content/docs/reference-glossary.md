@@ -12,7 +12,7 @@ A single page application is an application that loads a single HTML page and al
 
 
 ## ES6/ES2015/ES7/ES2016/ES8/ES2017
- These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. It includes many additions to the previous versions such as: arrow functions, classes, template literals, `let` and `const` statements. ES8/ES2017 was finalized in June 2017 and includes async/await functionality. 
+ These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. It includes many additions to the previous versions such as: arrow functions, classes, template literals, `let` and `const` statements. ES8/ES2017 was finalized in June 2017 and includes async/await functionality. You can learn more about specific versions [here](https://en.wikipedia.org/wiki/ECMAScript#Versions). 
 
 ## Compilers
 A JavaScript compiler takes JavaScript code, transforms it and returns JavaScript code in a different format. The most common use case is to take ES2015/ES6 syntax and transform it into syntax that older browsers are capable of interpreting. Babel is the compiler used with React. 
@@ -88,7 +88,7 @@ An *uncontrolled component* works like form elements do outside of React. When a
  A "key" is a special string attribute you need to include when creating arrays of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside an array to give the elements a stable identity.
 
 ## [Refs](/docs/refs-and-the-dom.html)
-React supports a special attribute that you can attach to any component. The `ref` attribute can be a string or a callback function. When the `ref` attribute is a callback function, the function receives the underlying DOM element as its argument. This allows you to have direct access to the DOM element or component instance.
+React supports a special attribute that you can attach to any component. The `ref` attribute can be a string or a callback function. When the `ref` attribute is a callback function, the function receives the underlying DOM element as its argument. This allows you to have direct access to the DOM element or class instance (depending on the type of element) as its argument.
 
 ## [Events](/docs/handling-events.html) 
 Handling events with React elements has some syntactic differences:

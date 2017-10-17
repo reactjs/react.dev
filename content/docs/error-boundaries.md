@@ -13,6 +13,13 @@ A JavaScript error in a part of the UI shouldn’t break the whole app. To solve
 
 Error boundaries are React components that **catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI** instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
+> Note
+> 
+> Error boundaries do **NOT** work in the following scenarios:
+> * Event Handlers (See below ["How About Try / Catch"](#how-about-trycatch) for details about dealing with errors in event handlers)
+> * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
+> * Server Side Rendering
+
 A class component becomes an error boundary if it defines a new lifecycle method called `componentDidCatch(error, info)`:
 
 ```js{7-12,15-18}
@@ -109,7 +116,7 @@ You can also see the filenames and line numbers in the component stack trace. Th
 If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
 
 
-## Why Not Use try/catch?
+## How About try/catch?
 
 `try` / `catch` is great but it only works for imperative code:
 
@@ -128,6 +135,34 @@ However, React components are declarative and specify *what* should be rendered:
 ```
 
 Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` hook caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
+
+However, an event handler inside of a React component could leverage `try` / `catch` to deal with errors that occur during event handling.
+
+```js{8-12,16-19}
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { error: null }
+  }
+  
+  handleClick = () => {
+    try {
+      // event handling that could possibly produces an error
+    } catch(error) {
+      this.setState({ error })
+    }
+  }
+
+  render() {
+    if (this.state.error) {
+      // render a fallback UI
+      return <h1>The Click Handler Produces an Error</h1>
+    }
+    // ...
+    return <div onClick={this.handleClick}>Click Me</div>
+  }
+}
+```
 
 
 ## Naming Changes from React 15

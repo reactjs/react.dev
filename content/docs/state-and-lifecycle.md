@@ -13,13 +13,13 @@ So far we have only learned one way to update the UI.
 
 We call `ReactDOM.render()` to change the rendered output:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-1.js{11}?editorsize=70)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-1.js{11}?editorsize=70&forcerefresh=1)
 
 In this section, we will learn how to make the `Clock` component truly reusable and encapsulated. It will set up its own timer and update itself every second.
 
 We can start by encapsulating how the clock looks:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-2.js{6,7,8,9,14}?editorsize=70)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-2.js{6,7,8,9,14}?editorsize=70&forcerefresh=1)
 
 However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
 
@@ -52,7 +52,7 @@ You can convert a functional component like `Clock` to a class in five steps:
 
 5. Delete the remaining empty function declaration.
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-3.js?editorsize=70)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-3.js?editorsize=70&forcerefresh=1)
 
 `Clock` is now defined as a class rather than a function.
 

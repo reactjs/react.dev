@@ -27,12 +27,9 @@ class MarkdownPage extends React.Component {
 
     codeSandboxLinks.forEach(link => {
       link.onclick = e => {
-        const [codeBlock] = Array.prototype.filter.call(
-          link.parentNode.children,
-          node => node.className === 'gatsby-highlight',
-        );
+        const codeBlock = link.previousSibling;
 
-        if (codeBlock) {
+        if (codeBlock && codeBlock.className === 'gatsby-highlight') {
           const [child] = codeBlock.children;
           if (child && child.tagName !== 'IFRAME') {
             e.preventDefault();

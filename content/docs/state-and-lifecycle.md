@@ -13,13 +13,13 @@ So far we have only learned one way to update the UI.
 
 We call `ReactDOM.render()` to change the rendered output:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-1.js{11})
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-1.js{11}?editorsize=70)
 
 In this section, we will learn how to make the `Clock` component truly reusable and encapsulated. It will set up its own timer and update itself every second.
 
 We can start by encapsulating how the clock looks:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-2.js{6,7,8,9,14})
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-2.js{6,7,8,9,14}?editorsize=70)
 
 However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
 
@@ -52,7 +52,7 @@ You can convert a functional component like `Clock` to a class in five steps:
 
 5. Delete the remaining empty function declaration.
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-3.js)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-3.js?editorsize=70)
 
 `Clock` is now defined as a class rather than a function.
 
@@ -121,7 +121,7 @@ We will later add the timer code back to the component itself.
 
 The result looks like this:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-4.js{5,6,7,8,14,20})
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-4.js{5,6,7,8,14,20}?editorsize=70)
 
 Next, we'll make the `Clock` set up its own timer and update itself every second.
 
@@ -192,7 +192,7 @@ Finally, we will implement a method called `tick()` that the `Clock` component w
 
 It will use `this.setState()` to schedule updates to the component local state:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-5.js{18,19,20,21,22})
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-5.js{18,19,20,21,22}?editorsize=70)
 
 Now the clock ticks every second.
 
@@ -321,7 +321,7 @@ This also works for user-defined components:
 
 The `FormattedDate` component would receive the `date` in its props and wouldn't know whether it came from the `Clock`'s state, from the `Clock`'s props, or was typed by hand:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-6.js{4,5,6})
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-6.js{4,5,6}?editorsize=70)
 
 This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
 
@@ -329,7 +329,7 @@ If you imagine a component tree as a waterfall of props, each component's state 
 
 To show that all components are truly isolated, we can create an `App` component that renders three `<Clock>`s:
 
-[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-7/index.js{9,10,11})
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-7/index.js{9,10,11}?editorsize=70)
 
 Each `Clock` sets up its own timer and updates independently.
 

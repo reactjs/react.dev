@@ -158,14 +158,9 @@ Beware of this pattern, as state won't be up-to-date with any props update. Inst
 
 If you "fork" props by using them for state, you might also want to implement [`componentWillReceiveProps(nextProps)`](#componentwillreceiveprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone.
 
-Some libraries, such as React Router, may depend on [context](/docs/context.html) being available. If you implement a constructor and need context, make sure to call `super(props, context)`.
-
-```js
-constructor(props, context) {
-  super(props, context);
-  // other component initialization logic
-}
-```
+> Note
+>
+> Some libraries, such as React Router, may depend on [context](/docs/context.html) being available. If you implement a constructor and need context, make sure to call `super(props, context)` from the [constructor](/docs/context.html#referencing-context-in-lifecycle-methods).
 
 * * *
 

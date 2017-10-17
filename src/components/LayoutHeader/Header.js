@@ -47,6 +47,12 @@ const Header = ({location}) => (
             marginRight: 10,
             height: '100%',
             alignItems: 'center',
+            color: colors.brand,
+
+            ':focus': {
+              outline: 0,
+              color: colors.white,
+            },
 
             [media.greaterThan('small')]: {
               width: 'calc(100% / 6)',
@@ -59,7 +65,7 @@ const Header = ({location}) => (
           <img src={logoSvg} alt="" height="20" />
           <span
             css={{
-              color: colors.brand,
+              color: 'inherit',
               marginLeft: 10,
               fontWeight: 700,
               fontSize: 20,
@@ -94,6 +100,7 @@ const Header = ({location}) => (
             WebkitOverflowScrolling: 'touch',
             height: '100%',
             width: '60%',
+
             [media.size('xsmall')]: {
               flexGrow: '1',
               width: 'auto',
@@ -163,12 +170,18 @@ const Header = ({location}) => (
               fontWeight: 300,
               fontFamily: 'inherit',
               position: 'relative',
-              paddingLeft: '24px',
+              padding: '5px 5px 5px 29px',
               backgroundImage: 'url(/search.svg)',
               backgroundSize: '16px 16px',
               backgroundRepeat: 'no-repeat',
               backgroundPositionY: 'center',
-              backgroundPositionX: 'left',
+              backgroundPositionX: '5px',
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: '0.25rem',
+              },
 
               [media.lessThan('large')]: {
                 fontSize: 16,
@@ -182,7 +195,7 @@ const Header = ({location}) => (
                 paddingLeft: '16px',
 
                 ':focus': {
-                  paddingLeft: '24px',
+                  paddingLeft: '29px',
                   width: '8rem',
                   outline: 'none',
                 },
@@ -207,10 +220,18 @@ const Header = ({location}) => (
           <a
             css={{
               padding: '5px 10px',
-              backgroundColor: colors.lighter,
-              borderRadius: 15,
               whiteSpace: 'nowrap',
               ...fonts.small,
+
+              ':hover': {
+                color: colors.brand,
+              },
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: 15,
+              },
             }}
             href="https://github.com/facebook/react/releases"
             target="_blank"
@@ -223,8 +244,15 @@ const Header = ({location}) => (
               marginLeft: 10,
               whiteSpace: 'nowrap',
               ...fonts.small,
+
               ':hover': {
                 color: colors.brand,
+              },
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: 15,
               },
             }}
             href="https://github.com/facebook/react/"

@@ -11,18 +11,23 @@ import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';
 // TODO: switch back to the upstream version of react-live
 // once https://github.com/FormidableLabs/react-live/issues/37 is fixed.
-import {LiveProvider, LiveEditor} from '@gaearon/react-live';
+import {LiveEditor, LiveProvider} from '@gaearon/react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
 
-const compile = code =>
-  Babel.transform(code, {presets: ['es2015', 'react']}).code; // eslint-disable-line no-undef
+const compileES5 = (
+  code, // eslint-disable-next-line no-undef
+) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
+
+// eslint-disable-next-line no-undef
+const compileES6 = code => Babel.transform(code, {presets: ['react']}).code;
 
 class CodeEditor extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = this._updateState(props.code);
+    this.state.showJSX = true;
   }
 
   componentDidMount() {
@@ -38,11 +43,17 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children, code} = this.props;
-    const {error} = this.state;
+    const {children} = this.props;
+    const {
+      compiledES6,
+      code,
+      error,
+      showBabelErrorMessage,
+      showJSX,
+    } = this.state;
 
     let errorMessage;
-    if (this.state.showBabelErrorMessage) {
+    if (showBabelErrorMessage) {
       errorMessage = (
         <span>
           Babel could not be loaded.
@@ -58,7 +69,7 @@ class CodeEditor extends Component {
     }
 
     return (
-      <LiveProvider code={code} mountStylesheet={false}>
+      <LiveProvider code={showJSX ? code : compiledES6} mountStylesheet={false}>
         <div
           css={{
             [media.greaterThan('xlarge')]: {
@@ -128,7 +139,23 @@ class CodeEditor extends Component {
                   background: colors.darker,
                   color: colors.white,
                 }}>
-                <MetaTitle onDark={true}>Live JSX Editor</MetaTitle>
+                <MetaTitle onDark={true}>
+                  Live JSX Editor
+                  <label
+                    css={{
+                      fontSize: 14,
+                      float: 'right',
+                      cursor: 'pointer',
+                    }}>
+                    <input
+                      checked={this.state.showJSX}
+                      onChange={event =>
+                        this.setState({showJSX: event.target.checked})}
+                      type="checkbox"
+                    />{' '}
+                    JSX?
+                  </label>
+                </MetaTitle>
               </div>
               <div
                 css={{
@@ -281,12 +308,21 @@ class CodeEditor extends Component {
     this._mountNode = ref;
   };
 
-  _updateState(code) {
+  _updateState(code, showJSX = true) {
     try {
-      return {
-        compiled: compile(code),
+      let newState = {
+        compiled: compileES5(code),
         error: null,
       };
+
+      if (showJSX) {
+        newState.code = code;
+        newState.compiledES6 = compileES6(code);
+      } else {
+        newState.compiledES6 = code;
+      }
+
+      return newState;
     } catch (error) {
       console.error(error);
 
@@ -303,7 +339,7 @@ class CodeEditor extends Component {
   }
 
   _onChange = code => {
-    this.setState(this._updateState(code));
+    this.setState(state => this._updateState(code, state.showJSX));
   };
 }
 

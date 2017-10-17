@@ -9,13 +9,12 @@
 
 import React from 'react';
 
-const ChevronSvg = ({
-  size = 10,
-  cssProps = {},
-}: {
+type Props = {
   size: number,
   cssProps: Object,
-}) => (
+};
+
+const ChevronSvg = ({size = 10, cssProps = {}}: Props) => (
   <svg
     css={cssProps}
     viewBox="0 0 926.23699 573.74994"

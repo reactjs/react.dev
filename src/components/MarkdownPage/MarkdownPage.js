@@ -19,6 +19,18 @@ import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
 
+type Props = {
+  authors: Array<string>,
+  createLink: Function,
+  date?: string,
+  enableScrollSync?: boolean,
+  ogDescription: string,
+  location: Object,
+  markdownRemark: Object,
+  sectionList: Array<Object>,
+  titlePostfix: string,
+};
+
 const MarkdownPage = ({
   authors = [],
   createLink,
@@ -29,17 +41,7 @@ const MarkdownPage = ({
   markdownRemark,
   sectionList,
   titlePostfix = '',
-}: {
-  authors: Array<string>,
-  createLink: Function,
-  date: string,
-  enableScrollSync: boolean,
-  ogDescription: string,
-  location: Object,
-  markdownRemark: Object,
-  sectionList: Array<Object>,
-  titlePostfix: string,
-}) => {
+}: Props) => {
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 

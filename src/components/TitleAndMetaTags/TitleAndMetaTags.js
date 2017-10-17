@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -11,15 +12,13 @@ import React from 'react';
 
 const defaultDescription = 'A JavaScript library for building user interfaces';
 
-const TitleAndMetaTags = ({
-  title,
-  ogDescription,
-  ogUrl,
-}: {
+type Props = {
   title: string,
   ogDescription: string,
   ogUrl: string,
-}) => {
+};
+
+const TitleAndMetaTags = ({title, ogDescription, ogUrl}: Props) => {
   return (
     <Helmet title={title}>
       <meta property="og:title" content={title} />

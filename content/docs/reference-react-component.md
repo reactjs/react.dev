@@ -212,6 +212,8 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`componentWillUpd
 
 If you determine a specific component is slow after profiling, you may change it to inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) which implements `shouldComponentUpdate()` with a shallow prop and state comparison. If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped.
 
+We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+
 * * *
 
 ### `componentWillUpdate()`

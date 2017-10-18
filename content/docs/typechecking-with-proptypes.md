@@ -176,15 +176,22 @@ If you want to validate nested elements, such as the children of your component,
 
 ```javascript
 import PropTypes from 'prop-types';
+import SubComponent from './my-custom-components/SubComponent'
 
 class MyComponent extends React.Component {
   render() {
     // This must be exactly one element or it will warn.
-    const children = this.props.children;
+    const child = this.props.children;
     return (
+      // Condition 1
       <div>
-        {children}
+        {child}
       </div>
+      // Condition 2
+      <SubComponent 
+        containerElement={child.props.containerElement}
+        primaryText={child.props.label}
+      />
     );
   }
 }
@@ -198,5 +205,23 @@ MyComponent.propTypes = {
   })
 };
 ```
+This is useful for situations where you care about the shape of the children, such as remapping them to a new SubComponent, perhaps on a condition. Consider a responsive menu that takes elements of any type, but in the responsive small-size, remaps them to a specific, smaller SubComponent.
 
-Note that you can use `PropTypes.shape()` as an element of `PropTypes.arrayOf()` also. e.g. `PropTypes.arrayOf(PropTypes.shape(...))`
+Note that you can use `PropTypes.shape()` as an element of `PropTypes.arrayOf()` also: `PropTypes.arrayOf(PropTypes.shape(...))`
+
+That can be further nested into `PropTypes.oneOfType()` for handling the single case or the array case:
+```javascript
+const myChildShape = PropTypes.shape({
+  props: PropTypes.shape({
+    containerElement: PropTypes.element.isRequired,
+    label: PropTypes.string.isRequired,
+  })
+});
+
+MyComponent.propTypes = {
+  children: PropTypes.oneOfType([
+    myChildShape,
+    PropTypes.arrayOf(myChildShape);
+  ])
+};
+```

@@ -27,6 +27,8 @@ React also depends on `requestAnimationFrame` (even in test environments). A sim
 
 ```js
 global.requestAnimationFrame = function(callback) {
-  setTimeout(callback, 0);
+  setTimeout(function() {
+    callback(Date.now());
+  }, 0);
 };
 ```

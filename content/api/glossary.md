@@ -3,8 +3,9 @@ id: glossary
 title: Glossary of React Terms
 layout: docs
 category: Reference
-permalink: docs/glossary.html
-
+permalink: api/glossary.html
+redirect_from:
+  - "docs/glossary.html"
 ---
 
 ## Single-page Application

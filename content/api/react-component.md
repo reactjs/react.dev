@@ -3,8 +3,9 @@ id: react-component
 title: React.Component
 layout: docs
 category: Reference
-permalink: docs/react-component.html
+permalink: api/react-component.html
 redirect_from:
+  - "docs/react-component.html"
   - "docs/component-api.html"
   - "docs/component-specs.html"
   - "docs/component-specs-ko-KR.html"

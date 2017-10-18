@@ -1,9 +1,11 @@
 ---
 id: test-renderer
 title: Test Renderer
-permalink: docs/test-renderer.html
+permalink: api/test-renderer.html
 layout: docs
 category: Reference
+redirect_from:
+  - "docs/test-renderer.html"
 ---
 
 **Importing**

@@ -1,9 +1,11 @@
 ---
 id: test-utils
 title: Test Utilities
-permalink: docs/test-utils.html
+permalink: api/test-utils.html
 layout: docs
 category: Reference
+redirect_from:
+  - "docs/test-utils.html"
 ---
 
 **Importing**

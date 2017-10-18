@@ -1,9 +1,11 @@
 ---
 id: events
 title: SyntheticEvent
-permalink: docs/events.html
+permalink: api/events.html
 layout: docs
 category: Reference
+redirect_from:
+  - "docs/events.html"
 ---
 
 This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.

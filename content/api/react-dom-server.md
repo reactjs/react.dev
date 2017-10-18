@@ -3,7 +3,9 @@ id: react-dom-server
 title: ReactDOMServer
 layout: docs
 category: Reference
-permalink: docs/react-dom-server.html
+permalink: api/react-dom-server.html
+redirect_from:
+  - "docs/react-dom-server.html"
 ---
 
 The `ReactDOMServer` object enables you to render components to static markup. Typically, it's used on a Node server:

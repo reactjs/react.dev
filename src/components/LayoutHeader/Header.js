@@ -119,6 +119,11 @@ const Header = ({location}) => (
             to="/docs/hello-world.html"
           />
           <HeaderLink
+            isActive={location.pathname.includes('/api/')}
+            title="API"
+            to="/api/react-api.html"
+          />
+          <HeaderLink
             isActive={location.pathname.includes('/tutorial/')}
             title="Tutorial"
             to="/tutorial/tutorial.html"

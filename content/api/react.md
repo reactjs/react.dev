@@ -3,8 +3,9 @@ id: react-api
 title: React Top-Level API
 layout: docs
 category: Reference
-permalink: docs/react-api.html
+permalink: api/react-api.html
 redirect_from:
+  - "docs/react-api.html"
   - "docs/reference.html"
   - "docs/clone-with-props.html"
   - "docs/top-level-api.html"

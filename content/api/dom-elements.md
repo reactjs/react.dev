@@ -3,8 +3,9 @@ id: dom-elements
 title: DOM Elements
 layout: docs
 category: Reference
-permalink: docs/dom-elements.html
+permalink: api/dom-elements.html
 redirect_from:
+  - "docs/dom-elements.html"
   - "docs/tags-and-attributes.html"
   - "docs/dom-differences.html"
   - "docs/special-non-dom-attributes.html"

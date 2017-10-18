@@ -31,6 +31,7 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const blogTemplate = resolve('./src/templates/blog.js');
   const communityTemplate = resolve('./src/templates/community.js');
   const docsTemplate = resolve('./src/templates/docs.js');
+  const apiTemplate = resolve('./src/templates/api.js');
   const tutorialTemplate = resolve('./src/templates/tutorial.js');
   const homeTemplate = resolve('./src/templates/home.js');
 
@@ -77,6 +78,7 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
       slug.includes('community/') ||
       slug.includes('contributing/') ||
       slug.includes('docs/') ||
+      slug.includes('api/') ||
       slug.includes('tutorial/') ||
       slug.includes('warnings/')
     ) {
@@ -85,6 +87,8 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
         template = blogTemplate;
       } else if (slug.includes('community/')) {
         template = communityTemplate;
+      } else if (slug.includes('api/')) {
+        template = apiTemplate;
       } else if (
         slug.includes('contributing/') ||
         slug.includes('docs/') ||

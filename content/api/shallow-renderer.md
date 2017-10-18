@@ -1,9 +1,11 @@
 ---
 id: shallow-renderer
 title: Shallow Renderer
-permalink: docs/shallow-renderer.html
+permalink: api/shallow-renderer.html
 layout: docs
 category: Reference
+redirect_from:
+  - "docs/shallow-renderer.html"
 ---
 
 **Importing**

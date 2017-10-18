@@ -11,7 +11,7 @@ permalink: docs/glossary.html
 
 A single-page application is an application that loads a single HTML page and all the necessary assets (such as JavaScript and CSS) required for the application to run. Any interactions with the page or subsequent pages do not require a round trip to the server which means the page is not reloaded.
 
-Though you may build a single-page application in React, it is not a requirement. React can also be used for enhancing small parts of existing websites with additional interactivity. Code written in React can coexist peacefully with markup rendered on the server by something like PHP, or with other client-side libraries. In fact, it's exactly how React is being used at Facebook.
+Though you may build a single-page application in React, it is not a requirement. React can also be used for enhancing small parts of existing websites with additional interactivity. Code written in React can coexist peacefully with markup rendered on the server by something like PHP, or with other client-side libraries. In fact, this is exactly how React is being used at Facebook.
 
 ## ES6, ES2015, ES2016, etc
 
@@ -25,7 +25,7 @@ A JavaScript compiler takes JavaScript code, transforms it and returns JavaScrip
 
 Bundlers take JavaScript and CSS code written as separate modules (often hundreds of them), and combine them together into a few files better optimized for the browsers. Some bundlers commonly used in React applications include [Webpack](https://webpack.js.org/) and [Browserify](http://browserify.org/).
 
-## Package Manager 
+## Package Managers
 
 Package managers are tools that allow you to manage dependencies in your project. [npm](https://www.npmjs.com/) and [Yarn](http://yarnpkg.com/) are two package managers commonly used in React applications. Both of them are clients for the same npm package registry.
 
@@ -49,7 +49,7 @@ ReactDOM.render(
 
 ## [Elements](/docs/rendering-elements.html)
 
-React elements are the building blocks of React applications. One might confuse elements with a more widely known concept of "components". Elements are what components are "made of". An element describes what you want to see on the screen. React elements are immutable.
+React elements are the building blocks of React applications. One might confuse elements with a more widely known concept of "components". An element describes what you want to see on the screen. React elements are immutable.
 
 ```js
 const element = <h1>Hello, world</h1>;
@@ -136,7 +136,7 @@ React has two different approaches to dealing with form inputs.
 
 An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
 
-An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything, but you can't force the field to have a certain value.
+An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
 
 In most cases you should use controlled components.
 

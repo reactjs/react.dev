@@ -14,6 +14,7 @@ import Remarkable from 'remarkable';
 import {LiveEditor, LiveProvider} from '@gaearon/react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
+import ErrorBoundary from '../ErrorBoundary';
 
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
@@ -343,4 +344,4 @@ class CodeEditor extends Component {
   };
 }
 
-export default CodeEditor;
+export default ErrorBoundary(CodeEditor);

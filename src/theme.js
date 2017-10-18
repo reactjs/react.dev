@@ -324,10 +324,7 @@ const sharedStyles = {
       marginTop: 20,
       fontSize: 16,
       color: colors.text,
-
-      [media.lessThan('small')]: {
-        paddingLeft: 20,
-      },
+      paddingLeft: 20,
 
       '& p, & p:first-of-type': {
         fontSize: 16,

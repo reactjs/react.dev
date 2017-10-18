@@ -160,7 +160,7 @@ If you "fork" props by using them for state, you might also want to implement [`
 
 > Note
 >
-> Some libraries, such as React Router, may depend on [context](/docs/context.html) being available. If you implement a constructor and need context, make sure to call `super(props, context)` from the [constructor](/docs/context.html#referencing-context-in-lifecycle-methods).
+> Some libraries, such as React Router, might use [context](/docs/context.html) to facilitate communication between components. If you implement a [constructor](/docs/context.html#referencing-context-in-lifecycle-methods) and use one of these libraries, make sure to call `super(props, context)` from the constructor so that `context` is available on the component.
 
 * * *
 

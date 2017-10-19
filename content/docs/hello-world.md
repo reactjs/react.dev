@@ -5,6 +5,7 @@ permalink: docs/hello-world.html
 prev: installation.html
 next: introducing-jsx.html
 redirect_from:
+  - "docs/"
   - "docs/index.html"
   - "docs/getting-started.html"
   - "docs/getting-started-ko-KR.html"

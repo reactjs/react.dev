@@ -16,7 +16,7 @@ class DocSearch extends Component {
     // TODO Is this expensive? Should it be deferred until a user is about to search?
     // eslint-disable-next-line no-undef
     if (window.docsearch) {
-      docsearch({
+      window.docsearch({
         apiKey: '36221914cce388c46d0420343e0bb32e',
         indexName: 'react',
         inputSelector: '#algolia-doc-search',

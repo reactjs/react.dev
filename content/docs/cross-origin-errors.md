@@ -28,6 +28,14 @@ Also ensure the CDN responds with the `Access-Control-Allow-Origin: *` HTTP head
 
 ### Webpack
 
+#### Source maps
+
 Some JavaScript bundlers may wrap the application code with `eval` statements in development. (For example Webpack will do this if [`devtool`](https://webpack.js.org/configuration/devtool/) is set to any value containing the word "eval".) This may cause errors to be treated as cross-origin.
 
 If you use Webpack, we recommend using the `cheap-module-source-map` setting in development to avoid this problem.
+
+#### Code splitting
+
+If your application is split into multiple bundles, these bundles may be loaded using JSONP. This may cause errors thrown in the code of these bundles to be treated as cross-origin.
+
+To resolve this, use the [`crossOriginLoading`](https://webpack.js.org/configuration/output/#output-crossoriginloading) setting in development to add the `crossorigin` attribute to the `<script>` tags generated for the JSONP requests.

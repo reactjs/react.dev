@@ -9,7 +9,7 @@ import {colors, media} from 'theme';
 
 class DocSearch extends Component {
   state = {
-    disabled: false,
+    enabled: true,
   };
   componentDidMount() {
     // Initialize Algolia search.
@@ -22,14 +22,15 @@ class DocSearch extends Component {
         inputSelector: '#algolia-doc-search',
       });
     } else {
-      this.setState({disabled: true});
+      console.warn('Search has failed to load and now is being disabled');
+      this.setState({enabled: false});
     }
   }
 
   render() {
-    const {disabled} = this.state;
+    const {enabled} = this.state;
 
-    return (
+    return enabled ? (
       <form
         css={{
           display: 'flex',
@@ -56,7 +57,6 @@ class DocSearch extends Component {
           },
         }}>
         <input
-          disabled={disabled}
           css={{
             appearance: 'none',
             background: 'transparent',
@@ -103,7 +103,7 @@ class DocSearch extends Component {
           aria-label="Search docs"
         />
       </form>
-    );
+    ) : null;
   }
 }
 

@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -10,7 +11,6 @@ import Container from 'components/Container';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
-import PropTypes from 'prop-types';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
@@ -19,8 +19,22 @@ import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
 
+import type {Node} from 'types';
+
+type Props = {
+  authors: Array<string>,
+  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
+  date?: string,
+  enableScrollSync?: boolean,
+  ogDescription: string,
+  location: Location,
+  markdownRemark: Node,
+  sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
+  titlePostfix: string,
+};
+
 const MarkdownPage = ({
-  authors,
+  authors = [],
   createLink,
   date,
   enableScrollSync,
@@ -29,7 +43,7 @@ const MarkdownPage = ({
   markdownRemark,
   sectionList,
   titlePostfix = '',
-}) => {
+}: Props) => {
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
@@ -120,21 +134,6 @@ const MarkdownPage = ({
       )}
     </Flex>
   );
-};
-
-MarkdownPage.defaultProps = {
-  authors: [],
-};
-
-// TODO Better types
-MarkdownPage.propTypes = {
-  authors: PropTypes.array.isRequired,
-  createLink: PropTypes.func.isRequired,
-  date: PropTypes.string,
-  enableScrollSync: PropTypes.bool,
-  location: PropTypes.object.isRequired,
-  markdownRemark: PropTypes.object.isRequired,
-  sectionList: PropTypes.array.isRequired,
 };
 
 export default MarkdownPage;

@@ -9,21 +9,6 @@ redirect_from: "docs/conferences.html"
 
 ## Upcoming Conferences
 
-### ReactJS Day 2017
-October 6 in Verona, Italy
-
-[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
-
-### React Conf Brasil 2017
-October 7 in Sao Paulo, Brazil
-
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
-
-### State.js Conference 2017
-October 13 in Stockholm, Sweden
-
-[Website](https://statejs.com/)
-
 ### React Summit 2017
 October 21 in Lagos, Nigeria
 
@@ -182,3 +167,18 @@ September 23-24 in Boston, Massachusetts USA
 September 28-30 in Alicante, Spain
 
 [Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+
+### ReactJS Day 2017
+October 6 in Verona, Italy
+
+[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+
+### React Conf Brasil 2017
+October 7 in Sao Paulo, Brazil
+
+[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
+
+### State.js Conference 2017
+October 13 in Stockholm, Sweden
+
+[Website](https://statejs.com/)

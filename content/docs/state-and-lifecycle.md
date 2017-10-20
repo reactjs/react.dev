@@ -13,50 +13,13 @@ So far we have only learned one way to update the UI.
 
 We call `ReactDOM.render()` to change the rendered output:
 
-```js{8-11}
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
-}
-
-setInterval(tick, 1000);
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-1.js{11}?editorsize=70&forcerefresh=1)
 
 In this section, we will learn how to make the `Clock` component truly reusable and encapsulated. It will set up its own timer and update itself every second.
 
 We can start by encapsulating how the clock looks:
 
-```js{3-6,12}
-function Clock(props) {
-  return (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {props.date.toLocaleTimeString()}.</h2>
-    </div>
-  );
-}
-
-function tick() {
-  ReactDOM.render(
-    <Clock date={new Date()} />,
-    document.getElementById('root')
-  );
-}
-
-setInterval(tick, 1000);
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-2.js{6,7,8,9,14}?editorsize=70&forcerefresh=1)
 
 However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
 
@@ -89,20 +52,7 @@ You can convert a functional component like `Clock` to a class in five steps:
 
 5. Delete the remaining empty function declaration.
 
-```js
-class Clock extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
-}
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-3.js?editorsize=70&forcerefresh=1)
 
 `Clock` is now defined as a class rather than a function.
 
@@ -171,30 +121,7 @@ We will later add the timer code back to the component itself.
 
 The result looks like this:
 
-```js{2-5,11,18}
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-4.js{5,6,7,8,14,20}?editorsize=70)
 
 Next, we'll make the `Clock` set up its own timer and update itself every second.
 
@@ -265,47 +192,7 @@ Finally, we will implement a method called `tick()` that the `Clock` component w
 
 It will use `this.setState()` to schedule updates to the component local state:
 
-```js{18-22}
-class Clock extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
-
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
-
-  tick() {
-    this.setState({
-      date: new Date()
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(
-  <Clock />,
-  document.getElementById('root')
-);
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-5.js{18,19,20,21,22}?editorsize=70)
 
 Now the clock ticks every second.
 
@@ -434,13 +321,7 @@ This also works for user-defined components:
 
 The `FormattedDate` component would receive the `date` in its props and wouldn't know whether it came from the `Clock`'s state, from the `Clock`'s props, or was typed by hand:
 
-```js
-function FormattedDate(props) {
-  return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
-}
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/zKRqNB?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-6.js{4,5,6}?editorsize=70)
 
 This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
 
@@ -448,24 +329,7 @@ If you imagine a component tree as a waterfall of props, each component's state 
 
 To show that all components are truly isolated, we can create an `App` component that renders three `<Clock>`s:
 
-```js{4-6}
-function App() {
-  return (
-    <div>
-      <Clock />
-      <Clock />
-      <Clock />
-    </div>
-  );
-}
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
+[Run example.](source:examples/single-file-examples/src/state-and-lifecycle/state-and-lifecycle-7/index.js{9,10,11}?editorsize=70)
 
 Each `Clock` sets up its own timer and updates independently.
 

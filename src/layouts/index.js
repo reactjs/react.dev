@@ -24,17 +24,6 @@ import 'css/reset.css';
 import 'css/algolia.css';
 
 class Template extends Component {
-  componentDidMount() {
-    // Initialize Algolia search.
-    // TODO Is this expensive? Should it be deferred until a user is about to search?
-    // eslint-disable-next-line no-undef
-    docsearch({
-      apiKey: '36221914cce388c46d0420343e0bb32e',
-      indexName: 'react',
-      inputSelector: '#algolia-doc-search',
-    });
-  }
-
   render() {
     const {children, location} = this.props;
 

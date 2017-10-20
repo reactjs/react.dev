@@ -19,15 +19,17 @@ import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
 
+import type {Node} from 'types';
+
 type Props = {
   authors: Array<string>,
-  createLink: Function,
+  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
   date?: string,
   enableScrollSync?: boolean,
   ogDescription: string,
-  location: Object,
-  markdownRemark: Object,
-  sectionList: Array<Object>,
+  location: Location,
+  markdownRemark: Node,
+  sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
   titlePostfix: string,
 };
 

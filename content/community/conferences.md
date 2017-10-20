@@ -59,6 +59,11 @@ May 17-18 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
 
+### ReactJS Day 2018
+October 5 in Verona, Italy
+
+[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+
 ## Past Conferences
 
 ### React.js Conf 2015

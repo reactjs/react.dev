@@ -36,19 +36,19 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
 
   const allMarkdown = await graphql(
     `
-    {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            fields {
-              redirect
-              slug
+      {
+        allMarkdownRemark(limit: 1000) {
+          edges {
+            node {
+              fields {
+                redirect
+                slug
+              }
             }
           }
         }
       }
-    }
-  `,
+    `,
   );
 
   if (allMarkdown.errors) {
@@ -116,9 +116,10 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
 
         redirect.forEach(fromPath => {
           if (redirectToSlugMap[fromPath] != null) {
-            console.error(`Duplicate redirect detected from "${fromPath}" to:\n` +
-              `* ${redirectToSlugMap[fromPath]}\n` +
-              `* ${slug}\n`
+            console.error(
+              `Duplicate redirect detected from "${fromPath}" to:\n` +
+                `* ${redirectToSlugMap[fromPath]}\n` +
+                `* ${slug}\n`,
             );
             process.exit(1);
           }
@@ -136,22 +137,22 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
 
   const newestBlogEntry = await graphql(
     `
-    {
-      allMarkdownRemark(
-        limit: 1,
-        filter: { id: { regex: "/blog/" } }
-        sort: { fields: [fields___date], order: DESC }
-      ) {
-        edges {
-          node {
-            fields {
-              slug
+      {
+        allMarkdownRemark(
+          limit: 1
+          filter: {id: {regex: "/blog/"}}
+          sort: {fields: [fields___date], order: DESC}
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
             }
           }
         }
       }
-    }
-  `,
+    `,
   );
   const newestBlogNode = newestBlogEntry.data.allMarkdownRemark.edges[0].node;
 

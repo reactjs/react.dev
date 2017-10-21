@@ -65,10 +65,9 @@ The [fbjs repository](https://github.com/facebook/fbjs) exists because React sha
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
 
-* [`src`](https://github.com/facebook/react/tree/master/src) is the source code of React. **If your change is related to the code, `src` is where you'll spend most of your time.**
 * [`docs`](https://github.com/reactjs/reactjs.org/tree/master/content) is the React documentation website. When you change APIs, make sure to update the relevant Markdown files.
 * [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) contains a few small React test applications for contributors.
-* [`packages`](https://github.com/facebook/react/tree/master/packages) contains metadata (such as `package.json`) for all packages in the React repository. Nevertheless, their source code is still located inside [`src`](https://github.com/facebook/react/tree/master/src).
+* [`packages`](https://github.com/facebook/react/tree/master/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the subdirectory `src` of each package is where you'll spend most of your time.**.
 * `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
 
 There are a few other top-level folders but they are mostly used for the tooling and you likely won't ever encounter them when contributing.

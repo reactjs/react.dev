@@ -140,25 +140,6 @@ if (__DEV__) {
 }
 ```
 
-### JSDoc
-
-Some of the internal and public methods are annotated with [JSDoc annotations](http://usejsdoc.org/):
-
-```js
-/**
-  * Updates this component by updating the text content.
-  *
-  * @param {ReactText} nextText The next text content
-  * @param {ReactReconcileTransaction} transaction
-  * @internal
-  */
-receiveComponent: function(nextText, transaction) {
-  // ...
-},
-```
-
-We try to keep existing annotations up-to-date but we don't enforce them. We don't use JSDoc in the newly written code, and instead use Flow to document and enforce types.
-
 ### Flow
 
 We recently started introducing [Flow](https://flowtype.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.

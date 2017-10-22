@@ -143,7 +143,7 @@ const BasicExample = () => (
 
 By passing down some information from the `Router` component, each `Link` and `Route` can communicate back to the containing `Router`.
 
-Before you build components with an API similar to this, consider if there are cleaner alternatives. For example, you can pass entire React component as props if you'd like to.
+Before you build components with an API similar to this, consider if there are cleaner alternatives. For example, you can pass entire React components as props if you'd like to.
 
 ## Referencing Context in Lifecycle Methods
 

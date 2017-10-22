@@ -189,7 +189,7 @@ exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
           const day = match[3];
           const filename = match[4];
 
-          slug = `/blog/${year}/${month}/${day}/${filename}.html`;
+          slug = `blog/${year}/${month}/${day}/${filename}.html`;
 
           const date = new Date(year, month - 1, day);
 

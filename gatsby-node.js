@@ -124,11 +124,13 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
             process.exit(1);
           }
 
+          const toPath = slug.startsWith('/') ? slug : `/${slug}`
+
           redirectToSlugMap[fromPath] = slug;
           createRedirect({
             fromPath: `/${fromPath}`,
             redirectInBrowser: true,
-            toPath: `/${slug}`,
+            toPath,
           });
         });
       }
@@ -189,7 +191,7 @@ exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
           const day = match[3];
           const filename = match[4];
 
-          slug = `blog/${year}/${month}/${day}/${filename}.html`;
+          slug = `/blog/${year}/${month}/${day}/${filename}.html`;
 
           const date = new Date(year, month - 1, day);
 

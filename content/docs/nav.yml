@@ -60,6 +60,8 @@
       title: Integrating with Other Libraries
     - id: accessibility
       title: Accessibility
+    - id: publishing-a-component
+      title: Publishing a Component
 - title: Reference
   items:
     - id: react-api

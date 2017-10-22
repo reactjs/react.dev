@@ -127,7 +127,7 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
           // A leading "/" is required for redirects to work,
           // But multiple leading "/" will break redirects.
           // For more context see github.com/reactjs/reactjs.org/pull/194
-          const toPath = slug.startsWith('/') ? slug : `/${slug}`
+          const toPath = slug.startsWith('/') ? slug : `/${slug}`;
 
           redirectToSlugMap[fromPath] = slug;
           createRedirect({

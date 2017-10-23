@@ -1104,10 +1104,11 @@ Check out the final result here: [Final Result](https://codepen.io/gaearon/pen/g
 
 If you have extra time or want to practice your new skills, here are some ideas for improvements you could make, listed in order of increasing difficulty:
 
-1. Display the move locations in the format "(1, 3)" in the move list.
-2. Bold the currently selected item in the move list.
-3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
-4. Add a toggle button that lets you sort the moves in either ascending or descending order.
-5. When someone wins, highlight the three squares that caused the win.
+1. Update the status to tell the players if the game ends in a draw
+2. Display the move locations in the format "(1, 3)" in the move list.
+3. Bold the currently selected item in the move list.
+4. Rewrite Board to use two loops to make the squares instead of hardcoding them.
+5. Add a toggle button that lets you sort the moves in either ascending or descending order.
+6. When someone wins, highlight the three squares that caused the win.
 
 Throughout this tutorial, we have touched on a number of React concepts including elements, components, props, and state. For a more in-depth explanation for each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).

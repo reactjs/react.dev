@@ -367,7 +367,7 @@ class Timer extends React.Component {
   }
 
   tick() {
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       seconds: prevState.seconds + 1
     }));
   }
@@ -432,7 +432,7 @@ class TodoApp extends React.Component {
       text: this.state.text,
       id: Date.now()
     };
-    this.setState((prevState) => ({
+    this.setState(prevState => ({
       items: prevState.items.concat(newItem),
       text: ''
     }));

@@ -170,7 +170,7 @@ If you "fork" props by using them for state, you might also want to implement [`
 componentWillMount()
 ```
 
-`componentWillMount()` is invoked immediately before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra re-rendering. Generally, we recommend using the `constructor()` instead.
+`componentWillMount()` is invoked immediately before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead.
 
 Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
 
@@ -186,9 +186,9 @@ componentDidMount()
 
 `componentDidMount()` is invoked immediately after a component is mounted. Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
 
-Calling `setState()` in this method will trigger an extra re-rendering, but it is guaranteed to flush during the same tick. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
-
 This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
+
+Calling `setState()` in this method will trigger an extra rendering, but it is guaranteed to flush during the same tick. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
 
 * * *
 

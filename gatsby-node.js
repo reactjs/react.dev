@@ -33,6 +33,13 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const docsTemplate = resolve('./src/templates/docs.js');
   const tutorialTemplate = resolve('./src/templates/tutorial.js');
 
+  // Redirect /index.html to root.
+  createRedirect({
+    fromPath: '/index.html',
+    redirectInBrowser: true,
+    toPath: '/',
+  });
+
   const allMarkdown = await graphql(
     `
       {

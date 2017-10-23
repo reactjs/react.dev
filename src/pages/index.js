@@ -43,8 +43,13 @@ class Home extends Component {
   render() {
     const {data} = this.props;
     const title = 'React - A JavaScript library for building user interfaces';
-    const marketingColumns = data.allMarkdownRemark.edges.map(edge => ({
+    const marketingContent = data.marketing.edges.map(edge => ({
       title: edge.node.frontmatter.title,
+      content: edge.node.html,
+    }));
+    const examplesContent = data.examples.edges.map(edge => ({
+      title: edge.node.frontmatter.title,
+      name: edge.node.frontmatter.example_name,
       content: edge.node.html,
     }));
 
@@ -142,7 +147,7 @@ class Home extends Component {
         </header>
 
         <Container>
-          <div css={[sharedStyles.markdown, markdownStyles]}>
+          <div css={sharedStyles.markdown}>
             <section
               css={[
                 sectionStyles,
@@ -169,7 +174,7 @@ class Home extends Component {
                     whiteSpace: 'nowrap',
                   },
                 }}>
-                {marketingColumns.map((column, index) => (
+                {marketingContent.map((column, index) => (
                   <div
                     key={index}
                     css={{
@@ -199,27 +204,25 @@ class Home extends Component {
                           marginTop: 0,
                         },
                       },
-
-                      '& p': {
-                        lineHeight: 1.7,
-                      },
                     }}>
                     <h3
-                      css={{
-                        '&&': {
-                          // Make specificity higher than the site-wide h3 styles.
-                          color: colors.subtle,
-                          marginBottom: 20,
-                          paddingTop: 0,
-                          fontWeight: 300,
-                          fontSize: 20,
+                      css={[
+                        headingStyles,
+                        {
+                          '&&': {
+                            // Make specificity higher than the site-wide h3 styles.
+                            color: colors.subtle,
+                            paddingTop: 0,
+                            fontWeight: 300,
+                            fontSize: 20,
 
-                          [media.greaterThan('xlarge')]: {
-                            fontSize: 24,
-                            fontWeight: 200,
+                            [media.greaterThan('xlarge')]: {
+                              fontSize: 24,
+                              fontWeight: 200,
+                            },
                           },
                         },
-                      }}>
+                      ]}>
                       {column.title}
                     </h3>
                     <div dangerouslySetInnerHTML={{__html: column.content}} />
@@ -237,60 +240,25 @@ class Home extends Component {
             />
             <section css={sectionStyles}>
               <div id="examples">
-                <div className="example">
-                  <h3>A Simple Component</h3>
-                  <p>
-                    React components implement a `render()` method that takes
-                    input data and returns what to display. This example uses an
-                    XML-like syntax called JSX. Input data that is passed into
-                    the component can be accessed by `render()` via
-                    `this.props`.
-                  </p>
-                  <p>
-                    <strong>
-                      JSX is optional and not required to use React.
-                    </strong>{' '}
-                    Try the{' '}
-                    <a href="http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&code_lz=MYGwhgzhAEASCmIQHsCy8pgOb2vAHgC7wB2AJjAErxjCEB0AwsgLYAOyJph0A3gFABIAE6ky8YQAoAlHyEj4hAK7CS0ADxkAlgDcAfAiTI-hABZaI9NsORtLJMC3gBfdQHpt-gNxDn_P_zUtIQAIgDyqPSi5BKS6oYo6Jg40A5OALwARCHwOlokmdBuegA00CzISiSEAHLI4tJeQA&debug=false&circleciRepo=&evaluate=false&lineWrap=false&presets=react&prettier=true&targets=&version=6.26.0">
-                      Babel REPL
-                    </a>{' '}
-                    to see the raw JavaScript code produced by the JSX
-                    compilation step.
-                  </p>
-                  <div id="helloExample" />
-                </div>
-                <div className="example">
-                  <h3>A Stateful Component</h3>
-                  <p>
-                    In addition to taking input data (accessed via
-                    `this.props`), a component can maintain internal state data
-                    (accessed via `this.state`). When a component's state data
-                    changes, the rendered markup will be updated by re-invoking
-                    `render()`.
-                  </p>
-                  <div id="timerExample" />
-                </div>
-                <div className="example">
-                  <h3>An Application</h3>
-                  <p>
-                    Using `props` and `state`, we can put together a small Todo
-                    application. This example uses `state` to track the current
-                    list of items as well as the text that the user has entered.
-                    Although event handlers appear to be rendered inline, they
-                    will be collected and implemented using event delegation.
-                  </p>
-                  <div id="todoExample" />
-                </div>
-                <div className="example">
-                  <h3>A Component Using External Plugins</h3>
-                  <p>
-                    React is flexible and provides hooks that allow you to
-                    interface with other libraries and frameworks. This example
-                    uses <strong>remarkable</strong>, an external Markdown
-                    library, to convert the textarea's value in real time.
-                  </p>
-                  <div id="markdownExample" />
-                </div>
+                {examplesContent.map((example, index) => (
+                  <div
+                    key={index}
+                    css={{
+                      marginTop: 40,
+
+                      '&:first-child': {
+                        marginTop: 0,
+                      },
+
+                      [media.greaterThan('xlarge')]: {
+                        marginTop: 80,
+                      },
+                    }}>
+                    <h3 css={headingStyles}>{example.title}</h3>
+                    <div dangerouslySetInnerHTML={{__html: example.content}} />
+                    <div id={example.name} />
+                  </div>
+                ))}
               </div>
             </section>
           </div>
@@ -324,7 +292,10 @@ class Home extends Component {
 }
 
 Home.propTypes = {
-  data: PropTypes.object.isRequired,
+  data: PropTypes.shape({
+    marketing: PropTypes.object.isRequired,
+    examples: PropTypes.object.isRequired,
+  }).isRequired,
   location: PropTypes.object.isRequired,
 };
 
@@ -368,15 +339,29 @@ const CtaItem = ({children, primary = false}) => (
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query MarketingMarkdown {
-    allMarkdownRemark(
-      filter: {id: {regex: "/marketing/"}}
+  query IndexMarkdown {
+    marketing: allMarkdownRemark(
+      filter: {id: {regex: "//marketing//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
       edges {
         node {
           frontmatter {
             title
+          }
+          html
+        }
+      }
+    }
+    examples: allMarkdownRemark(
+      filter: {id: {regex: "//examples//"}}
+      sort: {fields: [frontmatter___order], order: ASC}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
+            example_name
           }
           html
         }
@@ -397,18 +382,9 @@ const sectionStyles = {
   },
 };
 
-// TODO This nasty CSS is required because 'docs/index.md' defines hard-coded class names.
-const markdownStyles = {
-  '& .example': {
-    marginTop: 40,
-
-    '&:first-child': {
-      marginTop: 0,
-    },
-
-    [media.greaterThan('xlarge')]: {
-      marginTop: 80,
-    },
+const headingStyles = {
+  '&&': {
+    marginBottom: 20,
   },
 };
 

@@ -70,7 +70,11 @@ ReactDOM.hydrate(
 )
 ```
 
-Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attach event listeners while preserving as much of the existing DOM as possible. For best results, you should try to render the same content on the server as on the client, with as few differences as possible.
+Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
+
+React expects that the rendered content is identical between the server and the client. It can patch up differences in text content (such as timestamps), but you should treat mismatches as bugs and fix them. React reports any mismatches as warnings during hydration in development. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
+
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a state variable like `this.state.isClient`, which you can set to `true` in `componentDidMount()`. This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously during mounting. Note that this approach will make your components slower because they have to render twice, so use it with caution.
 
 * * *
 

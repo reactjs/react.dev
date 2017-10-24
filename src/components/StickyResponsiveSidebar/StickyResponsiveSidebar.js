@@ -2,19 +2,32 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
 
 import Container from 'components/Container';
-import {Component, React} from 'react';
+import React, {Component} from 'react';
 import Sidebar from 'templates/components/Sidebar';
 import {colors, media} from 'theme';
 import ChevronSvg from 'templates/components/ChevronSvg';
 
-class StickyResponsiveSidebar extends Component {
-  constructor(props, context) {
-    super(props, context);
+type State = {
+  open: boolean,
+};
+
+type Props = {
+  enableScrollSync?: boolean,
+  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
+  defaultActiveSection: string,
+  location: Location,
+  sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
+};
+
+class StickyResponsiveSidebar extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
 
     this.state = {
       open: false,
@@ -22,6 +35,9 @@ class StickyResponsiveSidebar extends Component {
     this._openNavMenu = this._openNavMenu.bind(this);
     this._closeNavMenu = this._closeNavMenu.bind(this);
   }
+
+  _openNavMenu: Function;
+  _closeNavMenu: Function;
 
   _openNavMenu() {
     this.setState({open: !this.state.open});

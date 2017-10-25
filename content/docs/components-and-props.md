@@ -122,10 +122,6 @@ ReactDOM.render(
 
 Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
 
->**Caveat:**
->
->Components must return a single root element. This is why we added a `<div>` to contain all the `<Welcome />` elements.
-
 ## Extracting Components
 
 Don't be afraid to split components into smaller components.

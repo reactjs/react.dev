@@ -141,7 +141,7 @@ Error boundaries preserve the declarative nature of React, and behave as you wou
 
 Error boundaries **do not** catch errors inside event handlers.
 
-React can recover from errors in event handlers because, unlike the render method and lifecycle hooks, they don't happen during rendering. So if they throw, React still knows what to display on the screen.
+React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle hooks, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
 
 If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
 

@@ -20,6 +20,7 @@ Error boundaries are React components that **catch JavaScript errors anywhere in
 > * Event handlers ([learn more](#how-about-event-handlers))
 > * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
 > * Server side rendering
+> * Errors thrown in the error boundary itself (rather than its children)
 
 A class component becomes an error boundary if it defines a new lifecycle method called `componentDidCatch(error, info)`:
 

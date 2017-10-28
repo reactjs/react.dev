@@ -190,6 +190,61 @@ Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select
 ><select multiple={true} value={['B', 'C']}>
 >```
 
+## The file input Tag
+
+In HTML, a `<input type="file">` tag lets the user choose one or more files from their devices storage, allowing the app to handle them to accomplish it's goals.
+
+```html
+<input type="file">
+```
+
+In React a `<input type="file">` works similarly to a normal `<input/>` with some major differences. This input is read-only so programmatically setting the value is impossible.
+You can use the various File management API provided by Javascript to handle the files that are uploaded by the user.
+
+```javascript{5,12-18,31}
+class FileForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      file: ''
+    };
+
+    this.handleFileChange = this.handleFileChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleFileChange(e) {
+    e.preventDefault();
+
+    this.setState({
+      file: e.target.files[0]
+    });
+  }
+
+  handleSubmit(e) {
+    if (this.state.file.size/1024/1024 > 100) alert('The file is too large');
+    else alert('The ' + this.state.file.name + ' file is acceptable.');
+    e.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick a file (100MB max):
+          <input type="file" onChange={this.handleFileChange} />
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+```
+
+[Try it on CodePen.](https://codepen.io/el1flem/pen/qVBrRv?editors=0011)
+
+The `file input` accepts any props that the HTML accepts, such as `multiple` to provide support for multiple file selection and so on.
+
 ## Handling Multiple Inputs
 
 When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.

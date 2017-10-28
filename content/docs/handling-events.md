@@ -58,6 +58,10 @@ Here, `e` is a synthetic event. React defines these synthetic events according t
 
 When using React you should generally not need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
 
+> Note:
+>
+> For performance reasons, React events are not guaranteed to be installed on the element they are created on. This means that using `stopPropagation` from event handlers installed outside of React might not be able to stop React events from occurring and vice versa. 
+
 When you define a component using an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), a common pattern is for an event handler to be a method on the class. For example, this `Toggle` component renders a button that lets the user toggle between "ON" and "OFF" states:
 
 ```js{6,7,10-14,18}

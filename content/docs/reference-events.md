@@ -35,6 +35,10 @@ string type
 >
 > As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
 
+> Note:
+>
+> Do not try to stop the execution of React events from native event handlers using `e.stopPropagation()` or vice versa. React events are not necessarily installed on the DOM element they are created on.
+
 ### Event Pooling
 
 The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.

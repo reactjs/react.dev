@@ -117,6 +117,10 @@ You can also see the filenames and line numbers in the component stack trace. Th
 
 If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
 
+> Note
+> 
+> Component names displayed in the stack traces depend on the [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property. If you support older browsers and devices which may not yet provide this natively (e.g. IE 11), consider including a global polyfill in your bundled application, such as [core-js](https://github.com/zloirock/core-js) or [babel-polyfill](https://babeljs.io/docs/usage/polyfill/). Alternatively, you may explicitly set the [`displayName`](/docs/react-component.html#displayname) property on all your components.
+
 
 ## How About try/catch?
 

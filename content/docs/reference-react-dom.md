@@ -97,7 +97,7 @@ ReactDOM.findDOMNode(component)
 ```
 If this component has been mounted into the DOM, this returns the corresponding native browser DOM element. This method is useful for reading values out of the DOM, such as form field values and performing DOM measurements. **In most cases, you can attach a ref to the DOM node and avoid using `findDOMNode` at all.**
 
-When `render` returns `null` or `false`, `findDOMNode` returns `null`. When `render` returns a non-empty string value or an empty string value, `findDOMNode` will return the primitive string value or an empty text node, respectively. As of React 16, multiple fragments may be returned by `render`, in which case `findDOMNode` will return the first non-null element in the array.
+When `render` returns `null` or `false`, `findDOMNode` returns `null`. When `render` returns a string, `findDOMNode` returns a text node containing that value. As of React 16, multiple fragments may be returned by `render`, in which case `findDOMNode` will return the first non-null element in the array.
 
 > Note:
 >

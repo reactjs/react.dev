@@ -13,7 +13,7 @@
     "eslint-plugin-relay/graphql": "0.10.5"
   },
   "dependencies": {
-    "@gaearon/react-live": "1.7.1-with-safari-fix",
+    "react-live": "1.8.0-0",
     "array-from": "^2.1.1",
     "babel-eslint": "^8.0.1",
     "eslint": "^4.8.0",

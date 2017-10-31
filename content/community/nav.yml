@@ -4,6 +4,8 @@
       title: Support
     - id: conferences
       title: Conferences
+    - id: meetups
+      title: Meetups
     - id: videos
       title: Videos
     - id: examples

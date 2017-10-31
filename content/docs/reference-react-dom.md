@@ -33,11 +33,7 @@ React supports all popular browsers, including Internet Explorer 9 and above.
 ### `render()`
 
 ```javascript
-ReactDOM.render(
-  element,
-  container,
-  [callback]
-)
+ReactDOM.render(element, container[, callback])
 ```
 
 Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#functional-and-class-components)).
@@ -63,11 +59,7 @@ If the optional callback is provided, it will be executed after the component is
 ### `hydrate()`
 
 ```javascript
-ReactDOM.hydrate(
-  element,
-  container,
-  [callback]
-)
+ReactDOM.hydrate(element, container[, callback])
 ```
 
 Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.

@@ -50,6 +50,7 @@
     "glamor": "^2.20.40",
     "hex2rgba": "^0.0.1",
     "prettier": "^1.7.4",
+    "qs": "^6.5.1",
     "remarkable": "^1.7.1",
     "request-promise": "^4.2.2",
     "rimraf": "^2.6.1",

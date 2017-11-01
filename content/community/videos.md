@@ -7,80 +7,34 @@ permalink: community/videos.html
 redirect_from: "docs/videos.html"
 ---
 
-### Introduction to React
+**General and React Internals**
 
-[Tom Occhino](http://tomocchino.com/) and [Jordan Walke](https://github.com/jordwalke) introduce React at Facebook Seattle.
+- [Introduction to React](https://www.youtube.com/watch?v=XxVg_s8xAms&feature=youtu.be) (2013 - 1h20m) - Tom Occhino and Jordan Walke introduce React at Facebook Seattle.
 
-<iframe title="Tom Occhino and Jordan Walke introduce React at Facebook Seattle" width="650" height="366" src="https://www.youtube-nocookie.com/embed/XxVg_s8xAms" frameborder="0" allowfullscreen></iframe>
+- [Introducing React Native](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr) (2015 - 1h30m) - Tom Occhino reviews the past and present of React in 2015, and teases where it's going next.
 
-### Introducing React Native
+- [Secrets of the Virtual DOM](https://www.youtube.com/watch?v=h3KksH8gfcQ&feature=youtu.be) (2014 - 0h44m) - Pete Hunt at Mountain West JavaScript 2014 discusses why a virtual DOM was built for React, how it compares to other systems, and its relevance to the future of browser technologies.
 
-[Tom Occhino](https://twitter.com/tomocchino) reviews the past and present of React in 2015, and teases where it's going next.
+- [Rethinking Web App Development at Facebook](https://www.youtube.com/watch?v=nYkdrAPrdcw&feature=youtu.be) (2014 - 0h44m) - Facebook F8 2014 talk to learn how we abandoned the traditional MVC paradigm in favor of a more functional application architecture.
 
-<iframe title="React.js Conf 2015 Keynote - Introducing React Native" width="650" height="366" src="https://www.youtube-nocookie.com/embed/KVZ-P-ZI6W4?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
+- [Rethinking Best Practices](https://www.youtube.com/watch?v=x7cQ3mrcKaY&feature=youtu.be) (2013 - 0h30m) - Pete Hunt's talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events.
 
-### Rethinking Web App Development at Facebook
+- [High performance functional DOM programming](https://www.youtube.com/watch?v=qqVbr_LaCIo&feature=youtu.be) (2013 - 0h31m) - Tech Talk by Pete Hunt at Meteor DevShop 11.
 
-Delivering reliable, high-performance web experiences at Facebook's scale has required us to challenge some long-held assumptions about software development. Watch this Facebook F8 2014 talk to learn how we abandoned the traditional MVC paradigm in favor of a more functional application architecture.
+- [Developing User Interfaces With React](https://youtu.be/1OeXsL5mr4g) (2013 - 0h29m) - Steven Luscher at Super VanJS 2013.
 
-<iframe title="Hacker Way: Rethinking Web App Development at Facebook" width="650" height="366" src="https://www.youtube-nocookie.com/embed/nYkdrAPrdcw" frameborder="0" allowfullscreen></iframe>
+- [Introduction to React](https://www.youtube.com/watch?v=SMMRJif5QW0&feature=youtu.be) (2014 - 0h51m) - Stoyan Stefanov at LAWebSpeed meetup.
 
-### Secrets of the Virtual DOM
+- [Going big with React](https://skillsmatter.com/skillscasts/5429-going-big-with-react#video) (2014 - 0h31m) - Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale.
 
-[Pete Hunt](http://www.petehunt.net/) at Mountain West JavaScript 2014 discusses why a virtual DOM was built for React, how it compares to other systems, and its relevance to the future of browser technologies.
+ - [A Cartoon Intro to React Fiber](https://www.youtube.com/watch?v=ZCuYPiUIONs) (2017 - 0h30min) - Lin Clark provides an explanation of what React Fiber is and what it does at React Conf 2017.
 
-<iframe title="Mountain West JavaScript 2014 - Be Predictable, Not Correct. by Pete Hunt" width="650" height="366" src="https://www.youtube-nocookie.com/embed/h3KksH8gfcQ" frameborder="0" allowfullscreen></iframe>
+**Architecture**
+ - [Rethinking Web App Development at Facebook with Flux](http://youtu.be/nYkdrAPrdcw) (2014 - 0h44m) - How Facebook abandoned the traditional MVC paradigm in favor of a more functional application architecture.
 
-### Rethinking Best Practices
+ - [YUI Open Roundtable with Pete Hunt on React](https://www.youtube.com/watch?v=ZLfe0i2RDtY) (2014 - 0h55m) - Pete Hunt discusses flux and server-side rendering in React.
 
-[Pete Hunt](http://www.petehunt.net/)'s talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events.
-
-<iframe title="Pete Hunt: React: Rethinking Best Practices - JSConf EU 2013" width="650" height="366" src="https://www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe>
-
-
-### High performance functional DOM programming
-
-Tech Talk by [Pete Hunt](http://www.petehunt.net/) at Meteor DevShop 11.
-
-<iframe title="Pete Hunt: High performance functional programming with React and Meteor" width="650" height="366" src="https://www.youtube-nocookie.com/embed/qqVbr_LaCIo" frameborder="0" allowfullscreen></iframe>
-
-
-### Developing User Interfaces With React
-
-[Steven Luscher](https://github.com/steveluscher) at Super VanJS 2013.
-
-<iframe title="SuperVanJS 2013: Steven Luscher - Developing User Interfaces with Facebook's React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/1OeXsL5mr4g" frameborder="0" allowfullscreen></iframe>
-
-
-### Introduction to React
-
-[Stoyan Stefanov](http://www.phpied.com/) at LAWebSpeed meetup.
-
-<iframe title="Joe Dev on Tech - Stoyan Stefanov - Introduction to React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/SMMRJif5QW0" frameborder="0" allowfullscreen></iframe>
-
-### Going big with React
-
-Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale.
-
-[![going big with React](https://i.vimeocdn.com/video/481670116_650.jpg)](https://skillsmatter.com/skillscasts/5429-going-big-with-react#video)
-
-### Backbone + React + Middleman Screencast
-
-This screencast shows how to integrate Backbone with React using [Backbone-React-Component](https://github.com/magalhas/backbone-react-component).
-
-<iframe title="Backbone React Component with Middleman" width="650" height="488" src="https://www.youtube-nocookie.com/embed/iul1fWHVU6A" frameborder="0" allowfullscreen></iframe>
-
-### React, or how to make life simpler
-
-Tech talk by [Alexander Solovyov](http://solovyov.net/) at FrontEnd Dev Conf '14 (Russian).
-
-<iframe title="Tech talk by Alexander Solovyov at FrontEnd Dev Conf ‘14 (Russian)." width="650" height="366" src="https://www.youtube-nocookie.com/embed/YJNUK0EA_Jo" frameborder="0" allowfullscreen></iframe>
-
-
-### React and Flux: Building Applications with a Unidirectional Data Flow
-
-Facebook engineers [Bill Fisher](https://twitter.com/fisherwebdev) and [Jing Chen](https://twitter.com/jingc) talk about Flux and React at Forward JS 2014, and how using an application architecture with a unidirectional data flow cleans up a lot of their code.
-
-<iframe title="React and Flux: Building Applications with a Unidirectional Data Flow" width="650" height="366" src="https://www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
-
-> [Slides and sample code](https://github.com/zertosh/ssr-demo-kit)
+**Free Courses**
+  - [React Training's React Fundamentals](https://reacttraining.com/online/react-fundamentals)
+  - [LearnCode.academy's React JS Tutorial](https://www.youtube.com/watch?v=MhkGQAoc7bc)
+  - [Interactive React Screencasts on Scrimba](https://scrimba.com/topic-react)[Page not found]

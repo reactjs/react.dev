@@ -210,7 +210,7 @@ Its main goals are:
 * Ability to return multiple elements from `render()`.
 * Better support for error boundaries.
 
-You can read more about it in [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture). While it has shipped with React 16, the async features are not enabled by defaut yet.
+You can read more about it in [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture). While it has shipped with React 16, the async features are not enabled by default yet.
 
 Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 

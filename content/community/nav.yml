@@ -6,6 +6,10 @@
       title: Conferences
     - id: meetups
       title: Meetups
+    - id: articles
+      title: Articles
+    - id: podcasts
+      title: Podcasts
     - id: videos
       title: Videos
     - id: examples

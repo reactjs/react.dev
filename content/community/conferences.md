@@ -9,16 +9,6 @@ redirect_from: "docs/conferences.html"
 
 ## Upcoming Conferences
 
-### React Summit 2017
-October 21 in Lagos, Nigeria
-
-[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
-
-### ReactiveConf 2017
-October 25–27, Bratislava, Slovakia
-
-[Website](https://reactiveconf.com)
-
 ### React Seoul 2017
 November 4 in Seoul, South Korea
 
@@ -187,3 +177,13 @@ October 7 in Sao Paulo, Brazil
 October 13 in Stockholm, Sweden
 
 [Website](https://statejs.com/)
+
+### React Summit 2017
+October 21 in Lagos, Nigeria
+
+[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
+
+### ReactiveConf 2017
+October 25–27, Bratislava, Slovakia
+
+[Website](https://reactiveconf.com)

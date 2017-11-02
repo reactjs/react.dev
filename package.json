@@ -9,7 +9,8 @@
   "resolutions": {
     "gatsby/graphql": "0.10.5",
     "gatsby/react": "16.0.0",
-    "gatsby/react-dom": "16.0.0"
+    "gatsby/react-dom": "16.0.0",
+    "eslint-plugin-relay/graphql": "0.10.5"
   },
   "dependencies": {
     "@gaearon/react-live": "1.7.1-with-safari-fix",

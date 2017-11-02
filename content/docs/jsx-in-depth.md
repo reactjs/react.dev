@@ -31,6 +31,23 @@ React.createElement(
 )
 ```
 
+Here is an interactive version of the jsx snippet:
+~~~klipse-transpile-jsx
+&lt;MyButton color="blue" shadowSize={2}&gt;
+  Click Me
+&lt;/MyButton&gt;
+~~~
+
+Here is an interactive version of the jsx snippet:
+<pre>
+<code class="gatsby-code-klipse-transpile-jsx">
+&lt;MyButton color="blue" shadowSize={2}&gt;
+  Click Me
+&lt;/MyButton&gt;
+</code>
+</pre>
+
+
 You can also use the self-closing form of the tag if there are no children. So:
 
 ```js

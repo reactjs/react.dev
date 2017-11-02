@@ -76,6 +76,12 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-plugin-klipse',
+      options: {
+        classPrefix: 'gatsby-code-',
+      }
+    },
+    {
       resolve: 'gatsby-plugin-feed',
       options: {
         query: `

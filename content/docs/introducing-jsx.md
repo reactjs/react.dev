@@ -18,6 +18,15 @@ It is called JSX, and it is a syntax extension to JavaScript. We recommend using
 
 JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
 
+
+<pre class="hidden"><code class="gatsby-code-klipse-eval-js" data-external-libs="https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-with-addons.js, https://cdnjs.cloudflare.com/ajax/libs/react/15.4.1/react-dom.js">
+!!React
+</code></pre>
+
+<div>
+Hello World
+</div>
+
 ### Embedding Expressions in JSX
 
 You can embed any [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) in JSX by wrapping it in curly braces.
@@ -64,6 +73,29 @@ function getGreeting(user) {
   return <h1>Hello, Stranger.</h1>;
 }
 ```
+
+Hello
+~~~klipse-eval-js
+2+3
+~~~
+
+
+Simple
+
+~~~klipse-render-jsx
+&lt;p&gt;Hello World &lt;/p&gt;
+~~~
+
+Again:
+
+~~~klipse-jsx
+function getGreeting(user) {
+  if (user) {
+    return &lt;h1&gt;Hello, {formatName(user)}!&lt;/h1&gt;;
+  }
+  return &lt;h1&gt;Hello, Stranger.&lt;/h1&gt;;
+}
+~~~
 
 ### Specifying Attributes with JSX
 
@@ -160,3 +192,6 @@ We will explore rendering React elements to the DOM in the next section.
 >**Tip:**
 >
 >We recommend using the ["Babel" language definition](http://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted. This website uses the [Oceanic Next](https://labs.voronianski.com/oceanic-next-color-scheme/) color scheme which is compatible with it.
+
+
+

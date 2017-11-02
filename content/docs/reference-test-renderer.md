@@ -244,7 +244,7 @@ The children test instances of this test instance.
 
 You can pass `createNodeMock` function to `TestRenderer.create` as the option, which allows for custom mock refs.
 `createNodeMock` accepts the current element and should return a mock ref object.
-This is useful when you test a component rely on refs.
+This is useful when you test a component that relies on refs.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';

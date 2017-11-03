@@ -16,6 +16,26 @@
       title: Courses
     - id: examples
       title: Examples
-    - id: complementary-tools
-      title: Complementary Tools
-      href: https://github.com/facebook/react/wiki/Complementary-Tools
+    - id: tools
+- title: Tools
+  items:
+    - id: debugging-tools
+      title: Debugging
+    - id: component-workbenches
+      title: Component Workbenches
+    - id: jsx-integrations
+      title: JSX Integrations
+    - id: starter-kits
+      title: Starter Kits
+    - id: routing
+      title: Routing
+    - id: model-management
+      title: Model Management
+    - id: data-fetching
+      title: Data Fetching
+    - id: testing
+      title: Testing
+    - id: ui-components
+      title: UI Components
+    - id: misc
+      title: Miscellaneous

@@ -16,7 +16,8 @@
       title: Courses
     - id: examples
       title: Examples
-    - id: tools
+    - id: external-resources
+      title: External Resources
 - title: Tools
   items:
     - id: debugging-tools

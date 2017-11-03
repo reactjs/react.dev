@@ -147,7 +147,7 @@ MyComponent.propTypes = {
 
 You can define default values for your `props` by assigning to the special `defaultProps` property:
 
-```
+```javascript
 const defaultProps = {
   name: 'Stranger'
 };
@@ -172,7 +172,7 @@ ReactDOM.render(
 
 You can also put propTypes and defaultProps as static props inside React class.
 
-```
+```javascript
 class Greeting extends Component {
 
   static defaultProps = {

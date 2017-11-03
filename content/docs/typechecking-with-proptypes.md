@@ -147,7 +147,11 @@ MyComponent.propTypes = {
 
 You can define default values for your `props` by assigning to the special `defaultProps` property:
 
-```javascript
+```
+const defaultProps = {
+  name: 'Stranger'
+};
+
 class Greeting extends React.Component {
   render() {
     return (
@@ -157,9 +161,7 @@ class Greeting extends React.Component {
 }
 
 // Specifies the default values for props:
-Greeting.defaultProps = {
-  name: 'Stranger'
-};
+Greeting.defaultProps = defaultProps;
 
 // Renders "Hello, Stranger":
 ReactDOM.render(
@@ -167,5 +169,24 @@ ReactDOM.render(
   document.getElementById('example')
 );
 ```
+
+You can also put propTypes and defaultProps as static props inside React class.
+
+```
+class Greeting extends Component {
+
+  static defaultProps = {
+    name: 'stranger'
+  }
+
+  render() {
+    return (
+      <div>Hello, {this.props.name}</div>
+    )
+  }
+}
+```
+
+It is considerably more convenient. But non-functional properties are not currently supported for ES2015 classes, you should install extra plugin to support this syntax. If you want to only use strictly ES2015, the former syntax is the better choice.
 
 The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.

@@ -1,14 +1,12 @@
 ---
 id: meetups
-title: Meetups
+title: Meetups Around the World
 layout: community
 sectionid: community
 permalink: community/meetups.html
 ---
 
-## Meetups Around the World
-
-Do you have a local React.js meetup? Add it here! (keep the list alphabetical though)
+Do you have a local React.js meetup? Add it here! (Please keep the list alphabetical)
 
 ## Australia
 * [Melbourne](http://www.meetup.com/React-Melbourne/)

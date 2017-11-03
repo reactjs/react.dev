@@ -33,8 +33,3 @@ redirect_from: "docs/videos.html"
  - [Rethinking Web App Development at Facebook with Flux](http://youtu.be/nYkdrAPrdcw) (2014 - 0h44m) - How Facebook abandoned the traditional MVC paradigm in favor of a more functional application architecture.
 
  - [YUI Open Roundtable with Pete Hunt on React](https://www.youtube.com/watch?v=ZLfe0i2RDtY) (2014 - 0h55m) - Pete Hunt discusses flux and server-side rendering in React.
-
-**Free Courses**
-  - [React Training's React Fundamentals](https://reacttraining.com/online/react-fundamentals)
-  - [LearnCode.academy's React JS Tutorial](https://www.youtube.com/watch?v=MhkGQAoc7bc)
-  - [Interactive React Screencasts on Scrimba](https://scrimba.com/topic-react)[Page not found]

@@ -12,6 +12,8 @@
       title: Podcasts
     - id: videos
       title: Videos
+    - id: courses
+      title: Courses
     - id: examples
       title: Examples
       href: https://github.com/facebook/react/wiki/Examples

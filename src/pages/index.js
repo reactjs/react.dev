@@ -341,7 +341,7 @@ const CtaItem = ({children, primary = false}) => (
 export const pageQuery = graphql`
   query IndexMarkdown {
     marketing: allMarkdownRemark(
-      filter: {id: {regex: "//marketing//"}}
+      filter: {id: {regex: "//home/marketing//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
       edges {
@@ -354,7 +354,7 @@ export const pageQuery = graphql`
       }
     }
     examples: allMarkdownRemark(
-      filter: {id: {regex: "//examples//"}}
+      filter: {id: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
       edges {

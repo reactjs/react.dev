@@ -170,7 +170,7 @@ ReactDOM.render(
 );
 ```
 
-You can also put propTypes and defaultProps as static props inside React class.
+You can also put the defaultProps as static props inside React class.
 
 ```javascript
 class Greeting extends Component {

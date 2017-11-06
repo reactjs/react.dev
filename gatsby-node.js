@@ -168,25 +168,21 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   });
 
   // Create Codepen example pages
-  const htmlTemplate = fs.readFileSync('./examples/index.html', 'utf8');
   fs.readdirSync('./examples').forEach(file => {
-    // Only create pages for the JS files
-    if (file.endsWith('.js')) {
-      const slug = file.substring(0, file.length - 3);
-      const jsTemplate = fs.readFileSync(`./examples/${file}`, 'utf8');
+    const slug = file.substring(0, file.length - 3); // Trim extension
+    const jsTemplate = fs.readFileSync(`./examples/${file}`, 'utf8');
 
-      createPage({
-        path: `/examples/${slug}`,
-        component: resolve('./src/templates/codepen-example.js'),
-        context: {
-          slug,
-          payload: {
-            html: htmlTemplate,
-            js: jsTemplate,
-          },
+    createPage({
+      path: `/examples/${slug}`,
+      component: resolve('./src/templates/codepen-example.js'),
+      context: {
+        slug,
+        payload: {
+          html: '<div id="root"></div>',
+          js: jsTemplate,
         },
-      });
-    }
+      },
+    });
   });
 };
 

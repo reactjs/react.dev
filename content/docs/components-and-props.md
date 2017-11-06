@@ -76,7 +76,7 @@ ReactDOM.render(
 );
 ```
 
-<a href="/codepen/components-and-props/rendering-a-component" target="_blank">Try it on CodePen</a>.
+[](codepen:components-and-props/rendering-a-component).
 
 Let's recap what happens in this example:
 
@@ -118,7 +118,7 @@ ReactDOM.render(
 );
 ```
 
-<a href="/codepen/components-and-props/composing-components" target="_blank">Try it on CodePen</a>.
+[](codepen:components-and-props/composing-components).
 
 Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
 
@@ -152,7 +152,7 @@ function Comment(props) {
 }
 ```
 
-<a href="/codepen/components-and-props/extracting-components" target="_blank">Try it on CodePen</a>.
+[](codepen:components-and-props/extracting-components).
 
 It accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website.
 
@@ -231,7 +231,7 @@ function Comment(props) {
 }
 ```
 
-<a href="/codepen/components-and-props/extracting-components-continued" target="_blank">Try it on CodePen</a>.
+[](codepen:components-and-props/extracting-components-continued).
 
 Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be a reusable component.
 

@@ -6,6 +6,8 @@
 
 'use strict';
 
+const recursiveReaddir = require('recursive-readdir');
+const {readFileSync} = require('fs');
 const {resolve} = require('path');
 const webpack = require('webpack');
 
@@ -164,6 +166,24 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
     fromPath: '/blog/',
     redirectInBrowser: true,
     toPath: newestBlogNode.fields.slug,
+  });
+
+  // Create Codepen redirects.
+  // These use the Codepen prefill API to JIT-create Pens.
+  // https://blog.codepen.io/documentation/api/prefill/
+  const files = await recursiveReaddir('./codepen');
+  files.forEach(file => {
+    const slug = file.substring(0, file.length - 3); // Trim extension
+    const code = readFileSync(file, 'utf8');
+
+    createPage({
+      path: slug,
+      component: resolve('./src/templates/codepen-example.js'),
+      context: {
+        code,
+        slug,
+      },
+    });
   });
 };
 

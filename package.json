@@ -84,6 +84,7 @@
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^2.6.0"
+    "eslint-config-prettier": "^2.6.0",
+    "recursive-readdir": "^2.2.1"
   }
 }

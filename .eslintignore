@@ -5,3 +5,6 @@ content/*
 
 # Ignore built files
 public/*
+
+# Ignore examples
+codepen/*

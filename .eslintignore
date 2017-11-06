@@ -7,4 +7,4 @@ content/*
 public/*
 
 # Ignore examples
-examples/*
+codepen/*

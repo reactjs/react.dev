@@ -34,13 +34,16 @@ class CodepenExample extends Component {
   }
 
   render() {
-    // Codepen configuration
+    // Codepen configuration.
+    // https://blog.codepen.io/documentation/api/prefill/
     const payload = JSON.stringify({
-      editors: '0010', // Open JS editor by default
+      editors: '0010',
       html: '<div id="root"></div>',
       js: this.props.pathContext.code,
       js_external: EXTERNALS.join(';'),
       js_pre_processor: 'babel',
+      layout: 'left',
+      title: 'reactjs.org example',
     });
 
     return (
@@ -55,11 +58,17 @@ class CodepenExample extends Component {
           method="POST">
           <input type="hidden" name="data" value={payload} />
 
-          <input
-            style={primaryStyle}
-            type="submit"
-            value="Not automatically redirecting? Click here."
-          />
+          <p>
+            Not automatically redirecting?
+
+            <br/><br/>
+
+            <input
+              style={primaryStyle}
+              type="submit"
+              value="Click here"
+            />
+          </p>
         </form>
       </Container>
     );

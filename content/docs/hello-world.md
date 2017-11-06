@@ -12,7 +12,7 @@ redirect_from:
   - "docs/getting-started-zh-CN.html"
 ---
 
-The easiest way to get started with React is to use <a href="/examples/hello-world" target="_blank">this Hello World example code on CodePen</a>. You don't need to install anything; you can just open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/installation.html) page.
+The easiest way to get started with React is to use <a href="/codepen/hello-world" target="_blank">this Hello World example code on CodePen</a>. You don't need to install anything; you can just open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/installation.html) page.
 
 The smallest React example looks like this:
 

@@ -46,7 +46,7 @@ ReactDOM.render(
 );
 ```
 
-<a href="/examples/introducing-jsx" target="_blank">Try it on CodePen.</a>
+<a href="/codepen/introducing-jsx" target="_blank">Try it on CodePen.</a>
 
 We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](http://stackoverflow.com/q/2846283).
 

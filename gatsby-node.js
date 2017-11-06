@@ -170,12 +170,12 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   // Create Codepen redirects.
   // These use the Codepen prefill API to JIT-create Pens.
   // https://blog.codepen.io/documentation/api/prefill/
-  readdirSync('./examples').forEach(file => {
+  readdirSync('./codepen').forEach(file => {
     const slug = file.substring(0, file.length - 3); // Trim extension
-    const code = readFileSync(`./examples/${file}`, 'utf8');
+    const code = readFileSync(`./codepen/${file}`, 'utf8');
 
     createPage({
-      path: `/examples/${slug}`,
+      path: `/codepen/${slug}`,
       component: resolve('./src/templates/codepen-example.js'),
       context: {
         code,

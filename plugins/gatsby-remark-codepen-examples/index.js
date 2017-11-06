@@ -1,3 +1,5 @@
+const {existsSync} = require('fs');
+const {join} = require('path');
 const map = require('unist-util-map');
 
 const DEFAULT_LINK_TEXT = 'Try it on CodePen';
@@ -14,6 +16,15 @@ module.exports = ({markdownAST}) => {
       const href = node.url.replace('codepen:', '/codepen/');
       const text =
         node.children.length === 0 ? DEFAULT_LINK_TEXT : node.children[0].value;
+
+      // Verify that the specified example file exists.
+      const filePath = join(__dirname, `../../${href}.js`);
+      if (!existsSync(filePath)) {
+        console.log(
+          `Invalid Codepen link specified; no such file "${filePath}"`,
+        );
+        process.exit(1);
+      }
 
       const anchorOpenNode = {
         type: 'html',

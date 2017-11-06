@@ -8,7 +8,6 @@
 'use strict';
 
 import React from 'react';
-import qs from 'qs';
 
 import type {Node} from 'react';
 
@@ -44,14 +43,25 @@ function urlify(str: string): Node {
 function parseQueryString(
   search: string,
 ): ?{|code: string, args: Array<string>|} {
-  const qsResult = qs.parse(search, {ignoreQueryPrefix: true});
-  if (!qsResult.invariant) {
+  const rawQueryString = search.substring(1);
+  if (!rawQueryString) {
     return null;
   }
-  return {
-    code: qsResult.invariant,
-    args: qsResult.args || [],
-  };
+
+  let code = '';
+  let args = [];
+
+  const queries = rawQueryString.split('&');
+  for (let i = 0; i < queries.length; i++) {
+    const query = decodeURIComponent(queries[i]);
+    if (query.indexOf('invariant=') === 0) {
+      code = query.slice(10);
+    } else if (query.indexOf('args[') === 0) {
+      args.push(query.slice(query.indexOf(']=') + 2));
+    }
+  }
+
+  return {args, code};
 }
 
 function ErrorResult(props: {|code: ?string, msg: string|}) {

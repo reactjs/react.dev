@@ -6,9 +6,9 @@
 
 'use strict';
 
+const {readdirSync, readFileSync} = require('fs');
 const {resolve} = require('path');
 const webpack = require('webpack');
-const fs = require('fs');
 
 exports.modifyWebpackConfig = ({config, stage}) => {
   // See https://github.com/FormidableLabs/react-live/issues/5
@@ -167,10 +167,12 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
     toPath: newestBlogNode.fields.slug,
   });
 
-  // Create Codepen example pages.
-  fs.readdirSync('./examples').forEach(file => {
+  // Create Codepen redirects.
+  // These use the Codepen prefill API to JIT-create Pens.
+  // https://blog.codepen.io/documentation/api/prefill/
+  readdirSync('./examples').forEach(file => {
     const slug = file.substring(0, file.length - 3); // Trim extension
-    const code = fs.readFileSync(`./examples/${file}`, 'utf8');
+    const code = readFileSync(`./examples/${file}`, 'utf8');
 
     createPage({
       path: `/examples/${slug}`,

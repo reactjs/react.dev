@@ -60,14 +60,9 @@ class CodepenExample extends Component {
 
           <p>
             Not automatically redirecting?
-
-            <br/><br/>
-
-            <input
-              style={primaryStyle}
-              type="submit"
-              value="Click here"
-            />
+            <br />
+            <br />
+            <input style={primaryStyle} type="submit" value="Click here" />
           </p>
         </form>
       </Container>

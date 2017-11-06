@@ -54,9 +54,23 @@ If you want to do it, here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
 2. Follow the [installation instructions](/docs/installation.html#creating-a-new-application) to create a new project.
-3. Delete all files in the `src/` folder of the new project.
+
+```bash
+npm install -g create-react-app
+create-react-app my-app
+```
+
+3. Delete all files in the `src/` folder of the new project (don't delete the folder, just its contents).
+
+```bash
+cd my-app
+rm -f src/*
+```
+
 4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+
 5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+
 6. Add these three lines to the top of `index.js` in the `src/` folder:
 
     ```js
@@ -71,7 +85,7 @@ We recommend following [these instructions](http://babeljs.io/docs/editors) to c
 
 ### Help, I'm Stuck!
 
-If you get stuck, check out the [community support resources](https://reactjs.org/community/support.html). In particular, [Reactiflux chat](/community/support.html#reactiflux-chat) is a great way to get quick help. If you don't get a good answer anywhere, please file an issue, and we'll help you out.
+If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux chat](/community/support.html#reactiflux-chat) is a great way to get quick help. If you don't get a good answer anywhere, please file an issue, and we'll help you out.
 
 With this out of the way, let's get started!
 
@@ -524,7 +538,7 @@ While we're cleaning up the code, we also changed `onClick={() => props.onClick(
 
 An obvious defect in our game is that only X can play. Let's fix that.
 
-Let's default the first move to be by 'X'. Modify our starting state in our Board constructor.
+Let's default the first move to be by 'X'. Modify our starting state in our Board constructor:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -537,7 +551,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time we move we shall toggle `xIsNext` by flipping the boolean value and saving the state. Now update Board's `handleClick` function to flip the value of `xIsNext`.
+Each time we move we shall toggle `xIsNext` by flipping the boolean value and saving the state. Now update Board's `handleClick` function to flip the value of `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -550,7 +564,7 @@ Each time we move we shall toggle `xIsNext` by flipping the boolean value and sa
   }
 ```
 
-Now X and O take turns. Next, change the "status" text in Board's `render` so that it also displays who is next.
+Now X and O take turns. Next, change the "status" text in Board's `render` so that it also displays who is next:
 
 ```javascript{2}
   render() {

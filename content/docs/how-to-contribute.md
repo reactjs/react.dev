@@ -66,7 +66,7 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 **[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of **[beginner friendly issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Difficulty:+beginner")** that contain bugs which are fairly easy to fix. This is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
 
@@ -79,12 +79,12 @@ The core team is monitoring for pull requests. We will review your pull request 
 **Before submitting a pull request,** please make sure the following is done:
 
 1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
-2. If you've added code that should be tested, add tests!
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes (`npm test`).
-5. Format your code with [prettier](https://github.com/prettier/prettier) (`npm run prettier`).
-6. Make sure your code lints (`npm run lint`).
-7. Run the [Flow](https://flowtype.org/) typechecks (`npm run flow`).
+2. Run `yarn` in the repository root.
+3. If you've fixed a bug or added code that should be tested, add tests!
+4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
+5. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+6. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+7. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
 8. If you haven't already, complete the CLA.
 
 ### Contributor License Agreement (CLA)
@@ -95,58 +95,51 @@ In order to accept your pull request, we need you to submit a CLA. You only need
 
 ### Contribution Prerequisites
 
-* You have `node` installed at v6.0.0+ and `npm` at v3.0.0+.
-* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our `npm` dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
-* You are familiar with `npm` and know whether or not you need to use `sudo` when installing packages globally.
-* You are familiar with `git`.
+* You have [Node](https://nodejs.org) installed at v6.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
+* You are familiar with Git.
 
 ### Development Workflow
 
-After cloning React, run `npm install` to fetch its dependencies.
+After cloning React, run `yarn` to fetch its dependencies.
 Then, you can run several commands:
 
-* `npm run lint` checks the code style.
-* `npm test` runs the complete test suite.
-* `npm test -- --watch` runs an interactive test watcher.
-* `npm test <pattern>` runs tests with matching filenames.
-* `npm run flow` runs the [Flow](https://flowtype.org/) typechecks.
-* `npm run build` creates a `build` folder with all the packages.
+* `yarn lint` checks the code style.
+* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
+* `yarn test` runs the complete test suite.
+* `yarn test --watch` runs an interactive test watcher.
+* `yarn test <pattern>` runs tests with matching filenames.
+* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
+* `yarn build` creates a `build` folder with all the packages.
+* `yarn build core,dom --type=UMD` creates UMD builds of just React and ReactDOM.
 
-We recommend running `npm test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
 
-First, run `npm run build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
+First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
 
-The easiest way to try your changes is to run `npm run build` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.js` from the `build` folder so it will pick up your changes.
+The easiest way to try your changes is to run `yarn build core,dom --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
 
 If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `npm link` to point them to your local `build` folder:
 
 ```sh
 cd your_project
-npm link ~/path_to_your_react_clone/build/packages/react
-npm link ~/path_to_your_react_clone/build/packages/react-dom
+yarn link ~/path_to_your_react_clone/build/packages/react
+yarn link ~/path_to_your_react_clone/build/packages/react-dom
 ```
 
-Every time you run `npm run build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
+Every time you run `yarn build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
 
 We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
 
 ### Style Guide
 
-Our linter will catch most styling issues that may exist in your code.
-You can check the status of your code styling by simply running `npm run lint`.
+We use an automatic code formatter called [Prettier](https://prettier.io/).
+Run `yarn prettier` after making any changes to the code.
+
+Then, our linter will catch most issues that may exist in your code.
+You can check the status of your code styling by simply running `yarn linc`.
 
 However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb's Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
-
-### Code Conventions
-
-* Use semicolons `;`
-* Commas last `,`
-* 2 spaces for indentation (no tabs)
-* Prefer `'` over `"`
-* `'use strict';`
-* 120 character line length (**except documentation**)
-* Write "attractive" code
-* Do not use the optional parameters of `setTimeout` and `setInterval`
 
 ### Introductory Video
 

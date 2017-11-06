@@ -11,7 +11,6 @@ redirect_from:
   - "docs/top-level-api-ja-JP.html"
   - "docs/top-level-api-ko-KR.html"
   - "docs/top-level-api-zh-CN.html"
-  - "docs/glossary.html"
 ---
 
 `React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.
@@ -50,7 +49,7 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### `React.Component`
 
-`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes).
+`React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
 ```javascript
 class Greeting extends React.Component {
@@ -66,7 +65,7 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 ### `React.PureComponent`
 
-`React.PureComponent` is exactly like [`React.Component`](#reactcomponent) but implements [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) with a shallow prop and state comparison.
+`React.PureComponent` is exactly like [`React.Component`](#reactcomponent), but implements [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) with a shallow prop and state comparison.
 
 If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
 

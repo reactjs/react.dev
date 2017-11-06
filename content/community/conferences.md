@@ -9,31 +9,6 @@ redirect_from: "docs/conferences.html"
 
 ## Upcoming Conferences
 
-### ReactJS Day 2017
-October 6 in Verona, Italy
-
-[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
-
-### React Conf Brasil 2017
-October 7 in Sao Paulo, Brazil
-
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
-
-### State.js Conference 2017
-October 13 in Stockholm, Sweden
-
-[Website](https://statejs.com/)
-
-### React Summit 2017
-October 21 in Lagos, Nigeria
-
-[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
-
-### ReactiveConf 2017
-October 25–27, Bratislava, Slovakia
-
-[Website](https://reactiveconf.com)
-
 ### React Seoul 2017
 November 4 in Seoul, South Korea
 
@@ -58,6 +33,16 @@ April 13 in Amsterdam, The Netherlands
 May 17-18 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
+
+### ReactNext 2018
+September 6 in Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
+
+### ReactJS Day 2018
+October 5 in Verona, Italy
+
+[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
 ## Past Conferences
 
@@ -177,3 +162,28 @@ September 23-24 in Boston, Massachusetts USA
 September 28-30 in Alicante, Spain
 
 [Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+
+### ReactJS Day 2017
+October 6 in Verona, Italy
+
+[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+
+### React Conf Brasil 2017
+October 7 in Sao Paulo, Brazil
+
+[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf/)
+
+### State.js Conference 2017
+October 13 in Stockholm, Sweden
+
+[Website](https://statejs.com/)
+
+### React Summit 2017
+October 21 in Lagos, Nigeria
+
+[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
+
+### ReactiveConf 2017
+October 25–27, Bratislava, Slovakia
+
+[Website](https://reactiveconf.com)

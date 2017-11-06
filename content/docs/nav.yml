@@ -81,6 +81,8 @@
       title: Test Renderer
     - id: javascript-environment-requirements
       title: JS Environment Requirements
+    - id: glossary
+      title: Glossary
 - title: Contributing
   items:
   - id: how-to-contribute

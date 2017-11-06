@@ -33,23 +33,29 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const communityTemplate = resolve('./src/templates/community.js');
   const docsTemplate = resolve('./src/templates/docs.js');
   const tutorialTemplate = resolve('./src/templates/tutorial.js');
-  const homeTemplate = resolve('./src/templates/home.js');
+
+  // Redirect /index.html to root.
+  createRedirect({
+    fromPath: '/index.html',
+    redirectInBrowser: true,
+    toPath: '/',
+  });
 
   const allMarkdown = await graphql(
     `
-    {
-      allMarkdownRemark(limit: 1000) {
-        edges {
-          node {
-            fields {
-              redirect
-              slug
+      {
+        allMarkdownRemark(limit: 1000) {
+          edges {
+            node {
+              fields {
+                redirect
+                slug
+              }
             }
           }
         }
       }
-    }
-  `,
+    `,
   );
 
   if (allMarkdown.errors) {
@@ -61,25 +67,17 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   allMarkdown.data.allMarkdownRemark.edges.forEach(edge => {
     const slug = edge.node.fields.slug;
 
-    if (slug === '/index.html') {
-      createPage({
-        path: '/',
-        component: homeTemplate,
-        context: {
-          slug,
-        },
-      });
-    } else if (slug === 'docs/error-decoder.html') {
+    if (slug === 'docs/error-decoder.html') {
       // No-op so far as markdown templates go.
       // Error codes are managed by a page in src/pages
       // (which gets created by Gatsby during a separate phase).
     } else if (
       slug.includes('blog/') ||
-            slug.includes('community/') ||
-            slug.includes('contributing/') ||
-            slug.includes('docs/') ||
-            slug.includes('tutorial/') ||
-            slug.includes('warnings/')
+      slug.includes('community/') ||
+      slug.includes('contributing/') ||
+      slug.includes('docs/') ||
+      slug.includes('tutorial/') ||
+      slug.includes('warnings/')
     ) {
       let template;
       if (slug.includes('blog/')) {
@@ -88,8 +86,8 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
         template = communityTemplate;
       } else if (
         slug.includes('contributing/') ||
-                slug.includes('docs/') ||
-                slug.includes('warnings/')
+        slug.includes('docs/') ||
+        slug.includes('warnings/')
       ) {
         template = docsTemplate;
       } else if (slug.includes('tutorial/')) {
@@ -117,18 +115,24 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
 
         redirect.forEach(fromPath => {
           if (redirectToSlugMap[fromPath] != null) {
-            console.error(`Duplicate redirect detected from "${fromPath}" to:\n` +
-                            `* ${redirectToSlugMap[fromPath]}\n` +
-                            `* ${slug}\n`
+            console.error(
+              `Duplicate redirect detected from "${fromPath}" to:\n` +
+                `* ${redirectToSlugMap[fromPath]}\n` +
+                `* ${slug}\n`,
             );
             process.exit(1);
           }
+
+          // A leading "/" is required for redirects to work,
+          // But multiple leading "/" will break redirects.
+          // For more context see github.com/reactjs/reactjs.org/pull/194
+          const toPath = slug.startsWith('/') ? slug : `/${slug}`;
 
           redirectToSlugMap[fromPath] = slug;
           createRedirect({
             fromPath: `/${fromPath}`,
             redirectInBrowser: true,
-            toPath: `/${slug}`,
+            toPath,
           });
         });
       }
@@ -137,22 +141,22 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
 
   const newestBlogEntry = await graphql(
     `
-    {
-      allMarkdownRemark(
-        limit: 1,
-        filter: { id: { regex: "/blog/" } }
-        sort: { fields: [fields___date], order: DESC }
-      ) {
-        edges {
-          node {
-            fields {
-              slug
+      {
+        allMarkdownRemark(
+          limit: 1
+          filter: {id: {regex: "/blog/"}}
+          sort: {fields: [fields___date], order: DESC}
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
             }
           }
         }
       }
-    }
-  `,
+    `,
   );
   const newestBlogNode = newestBlogEntry.data.allMarkdownRemark.edges[0].node;
 
@@ -167,7 +171,12 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const htmlTemplate = fs.readFileSync('./examples/index.html', 'utf8');
   fs.readdirSync('./examples').forEach(file => {
     // Only create pages for the JS files
-    if (file.toLowerCase().split('.').pop() === 'js') {
+    if (
+      file
+        .toLowerCase()
+        .split('.')
+        .pop() === 'js'
+    ) {
       const slug = file.substring(0, file.length - 3);
       const jsTemplate = fs.readFileSync(`./examples/${file}`, 'utf8');
 
@@ -184,7 +193,6 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
       });
     }
   });
-
 };
 
 // Parse date information out of blog post filename.
@@ -228,7 +236,7 @@ exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
       if (!slug) {
         slug = `/${relativePath.replace('.md', '.html')}`;
 
-        // This should (probably) only happen for the index.md,
+        // This should only happen for the partials in /content/home,
         // But let's log it in case it happens for other files also.
         console.warn(
           `Warning: No slug found for "${relativePath}". Falling back to default "${slug}".`,

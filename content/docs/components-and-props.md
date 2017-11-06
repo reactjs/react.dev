@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" object argument with data and returns a React element. We call such components "functional" because they are literally JavaScript functions.
+This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "functional" because they are literally JavaScript functions.
 
 You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
 
@@ -121,10 +121,6 @@ ReactDOM.render(
 [Try it on CodePen.](http://codepen.io/gaearon/pen/KgQKPr?editors=0010)
 
 Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
-
->**Caveat:**
->
->Components must return a single root element. This is why we added a `<div>` to contain all the `<Welcome />` elements.
 
 ## Extracting Components
 

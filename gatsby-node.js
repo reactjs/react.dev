@@ -171,12 +171,7 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const htmlTemplate = fs.readFileSync('./examples/index.html', 'utf8');
   fs.readdirSync('./examples').forEach(file => {
     // Only create pages for the JS files
-    if (
-      file
-        .toLowerCase()
-        .split('.')
-        .pop() === 'js'
-    ) {
+    if (file.endsWith('.js')) {
       const slug = file.substring(0, file.length - 3);
       const jsTemplate = fs.readFileSync(`./examples/${file}`, 'utf8');
 

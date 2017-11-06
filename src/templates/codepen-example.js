@@ -3,7 +3,11 @@
 import React, {Component} from 'react';
 import Container from 'components/Container';
 import {colors} from 'theme';
-// import {version} from '../site-constants';
+
+const EXTERNALS = [
+  'https://unpkg.com/react/umd/react.development.js',
+  'https://unpkg.com/react-dom/umd/react-dom.development.js',
+];
 
 // Copied over styles from ButtonLink for the submit btn
 const primaryStyle = {
@@ -30,13 +34,14 @@ class CodepenExample extends Component {
   }
 
   render() {
-    const {payload} = this.props.pathContext;
-    // Set codepen options
-    payload.js_pre_processor = 'babel';
-    // Only have the JS editor open (default for all examples)
-    payload.editors = '0010';
-    // We can pass @version in the URL for version locking, if desired.
-    payload.js_external = `https://unpkg.com/react/umd/react.development.js;https://unpkg.com/react-dom/umd/react-dom.development.js`;
+    // Codepen configuration
+    const payload = JSON.stringify({
+      editors: '0010', // Open JS editor by default
+      html: '<div id="root"></div>',
+      js: this.props.pathContext.code,
+      js_external: EXTERNALS.join(';'),
+      js_pre_processor: 'babel',
+    });
 
     return (
       <Container>
@@ -48,7 +53,7 @@ class CodepenExample extends Component {
           }}
           action="https://codepen.io/pen/define"
           method="POST">
-          <input type="hidden" name="data" value={JSON.stringify(payload)} />
+          <input type="hidden" name="data" value={payload} />
 
           <input
             style={primaryStyle}

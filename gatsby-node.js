@@ -167,20 +167,17 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
     toPath: newestBlogNode.fields.slug,
   });
 
-  // Create Codepen example pages
+  // Create Codepen example pages.
   fs.readdirSync('./examples').forEach(file => {
     const slug = file.substring(0, file.length - 3); // Trim extension
-    const jsTemplate = fs.readFileSync(`./examples/${file}`, 'utf8');
+    const code = fs.readFileSync(`./examples/${file}`, 'utf8');
 
     createPage({
       path: `/examples/${slug}`,
       component: resolve('./src/templates/codepen-example.js'),
       context: {
+        code,
         slug,
-        payload: {
-          html: '<div id="root"></div>',
-          js: jsTemplate,
-        },
       },
     });
   });

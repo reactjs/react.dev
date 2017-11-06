@@ -20,17 +20,46 @@ import {babelURL} from 'site-constants';
 import ReactDOM from 'react-dom';
 
 class Home extends Component {
+  constructor(props, context) {
+    super(props, context);
+
+    const {data} = props;
+
+    const code = data.code.edges.reduce((map, {node}) => {
+      map[node.id] = JSON.parse(node.internal.contentDigest);
+
+      return map;
+    }, {});
+
+    const examples = data.examples.edges.map(({node}) => ({
+      content: node.html,
+      id: node.fields.slug.replace(/^.+\//, '').replace('.html', ''),
+      title: node.frontmatter.title,
+    }));
+
+    const marketing = data.marketing.edges.map(({node}) => ({
+      title: node.frontmatter.title,
+      content: node.html,
+    }));
+
+    this.state = {
+      code,
+      examples,
+      marketing,
+    };
+  }
+
   componentDidMount() {
-    renderExamplePlaceholder('helloExample');
-    renderExamplePlaceholder('timerExample');
-    renderExamplePlaceholder('todoExample');
-    renderExamplePlaceholder('markdownExample');
+    const {code, examples} = this.state;
+
+    examples.forEach(({id}) => {
+      renderExamplePlaceholder(id);
+    });
 
     function mountCodeExamples() {
-      mountCodeExample('helloExample', HELLO_COMPONENT);
-      mountCodeExample('timerExample', TIMER_COMPONENT);
-      mountCodeExample('todoExample', TODO_COMPONENT);
-      mountCodeExample('markdownExample', MARKDOWN_COMPONENT);
+      examples.forEach(({id}) => {
+        mountCodeExample(id, code[id]);
+      });
     }
 
     loadScript(babelURL).then(mountCodeExamples, error => {
@@ -41,21 +70,14 @@ class Home extends Component {
   }
 
   render() {
-    const {data} = this.props;
-    const title = 'React - A JavaScript library for building user interfaces';
-    const marketingContent = data.marketing.edges.map(edge => ({
-      title: edge.node.frontmatter.title,
-      content: edge.node.html,
-    }));
-    const examplesContent = data.examples.edges.map(edge => ({
-      title: edge.node.frontmatter.title,
-      name: edge.node.frontmatter.example_name,
-      content: edge.node.html,
-    }));
+    const {examples, marketing} = this.state;
 
     return (
       <div css={{width: '100%'}}>
-        <TitleAndMetaTags title={title} ogUrl={createOgUrl('index.html')} />
+        <TitleAndMetaTags
+          title="React - A JavaScript library for building user interfaces"
+          ogUrl={createOgUrl('index.html')}
+        />
         <header
           css={{
             backgroundColor: colors.dark,
@@ -174,7 +196,7 @@ class Home extends Component {
                     whiteSpace: 'nowrap',
                   },
                 }}>
-                {marketingContent.map((column, index) => (
+                {marketing.map((column, index) => (
                   <div
                     key={index}
                     css={{
@@ -240,7 +262,7 @@ class Home extends Component {
             />
             <section css={sectionStyles}>
               <div id="examples">
-                {examplesContent.map((example, index) => (
+                {examples.map((example, index) => (
                   <div
                     key={index}
                     css={{
@@ -256,7 +278,7 @@ class Home extends Component {
                     }}>
                     <h3 css={headingStyles}>{example.title}</h3>
                     <div dangerouslySetInnerHTML={{__html: example.content}} />
-                    <div id={example.name} />
+                    <div id={example.id} />
                   </div>
                 ))}
               </div>
@@ -293,15 +315,13 @@ class Home extends Component {
 
 Home.propTypes = {
   data: PropTypes.shape({
-    marketing: PropTypes.object.isRequired,
+    code: PropTypes.object.isRequired,
     examples: PropTypes.object.isRequired,
+    marketing: PropTypes.object.isRequired,
   }).isRequired,
   location: PropTypes.object.isRequired,
 };
 
-// TODO Improve this temporarily placeholder as part of
-// converting the home page from markdown template to a Gatsby
-// page (see issue #2)
 function renderExamplePlaceholder(containerId) {
   ReactDOM.render(
     <h4>Loading code example...</h4>,
@@ -340,16 +360,13 @@ const CtaItem = ({children, primary = false}) => (
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
   query IndexMarkdown {
-    marketing: allMarkdownRemark(
-      filter: {id: {regex: "//home/marketing//"}}
-      sort: {fields: [frontmatter___order], order: ASC}
-    ) {
+    code: allExampleCode {
       edges {
         node {
-          frontmatter {
-            title
+          id
+          internal {
+            contentDigest
           }
-          html
         }
       }
     }
@@ -359,9 +376,24 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          fields {
+            slug
+          }
           frontmatter {
             title
-            example_name
+          }
+          html
+        }
+      }
+    }
+    marketing: allMarkdownRemark(
+      filter: {id: {regex: "//home/marketing//"}}
+      sort: {fields: [frontmatter___order], order: ASC}
+    ) {
+      edges {
+        node {
+          frontmatter {
+            title
           }
           html
         }
@@ -387,157 +419,3 @@ const headingStyles = {
     marginBottom: 20,
   },
 };
-
-// TODO Move these hard-coded examples into example files and out of the template?
-// Alternately, move them into the markdown and transform them during build?
-// This could be done via a new Gatsby transform plug-in that auto-converts to runnable REPLs?
-const name = Math.random() > 0.5 ? 'John' : 'Jane';
-const HELLO_COMPONENT = `
-class HelloMessage extends React.Component {
-  render() {
-    return (
-      <div>
-        Hello {this.props.name}
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(
-  <HelloMessage name="${name}" />,
-  mountNode
-);
-`.trim();
-
-const TIMER_COMPONENT = `
-class Timer extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { seconds: 0 };
-  }
-
-  tick() {
-    this.setState(prevState => ({
-      seconds: prevState.seconds + 1
-    }));
-  }
-
-  componentDidMount() {
-    this.interval = setInterval(() => this.tick(), 1000);
-  }
-
-  componentWillUnmount() {
-    clearInterval(this.interval);
-  }
-
-  render() {
-    return (
-      <div>
-        Seconds: {this.state.seconds}
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<Timer />, mountNode);
-`.trim();
-
-var TODO_COMPONENT = `
-class TodoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { items: [], text: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  render() {
-    return (
-      <div>
-        <h3>TODO</h3>
-        <TodoList items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <input
-            onChange={this.handleChange}
-            value={this.state.text}
-          />
-          <button>
-            Add #{this.state.items.length + 1}
-          </button>
-        </form>
-      </div>
-    );
-  }
-
-  handleChange(e) {
-    this.setState({ text: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    if (!this.state.text.length) {
-      return;
-    }
-    const newItem = {
-      text: this.state.text,
-      id: Date.now()
-    };
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
-      text: ''
-    }));
-  }
-}
-
-class TodoList extends React.Component {
-  render() {
-    return (
-      <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>{item.text}</li>
-        ))}
-      </ul>
-    );
-  }
-}
-
-ReactDOM.render(<TodoApp />, mountNode);
-`.trim();
-
-var MARKDOWN_COMPONENT = `
-class MarkdownEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { value: 'Type some *markdown* here!' };
-  }
-
-  handleChange(e) {
-    this.setState({ value: e.target.value });
-  }
-
-  getRawMarkup() {
-    const md = new Remarkable();
-    return { __html: md.render(this.state.value) };
-  }
-
-  render() {
-    return (
-      <div className="MarkdownEditor">
-        <h3>Input</h3>
-        <textarea
-          onChange={this.handleChange}
-          defaultValue={this.state.value}
-        />
-        <h3>Output</h3>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={this.getRawMarkup()}
-        />
-      </div>
-    );
-  }
-}
-
-ReactDOM.render(<MarkdownEditor />, mountNode);
-`.trim();

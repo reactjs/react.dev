@@ -32,7 +32,13 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   const communityTemplate = resolve('./src/templates/community.js');
   const docsTemplate = resolve('./src/templates/docs.js');
   const tutorialTemplate = resolve('./src/templates/tutorial.js');
-  const homeTemplate = resolve('./src/templates/home.js');
+
+  // Redirect /index.html to root.
+  createRedirect({
+    fromPath: '/index.html',
+    redirectInBrowser: true,
+    toPath: '/',
+  });
 
   const allMarkdown = await graphql(
     `
@@ -60,15 +66,7 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
   allMarkdown.data.allMarkdownRemark.edges.forEach(edge => {
     const slug = edge.node.fields.slug;
 
-    if (slug === '/index.html') {
-      createPage({
-        path: '/',
-        component: homeTemplate,
-        context: {
-          slug,
-        },
-      });
-    } else if (slug === 'docs/error-decoder.html') {
+    if (slug === 'docs/error-decoder.html') {
       // No-op so far as markdown templates go.
       // Error codes are managed by a page in src/pages
       // (which gets created by Gatsby during a separate phase).
@@ -210,7 +208,7 @@ exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
       if (!slug) {
         slug = `/${relativePath.replace('.md', '.html')}`;
 
-        // This should (probably) only happen for the index.md,
+        // This should only happen for the partials in /content/home,
         // But let's log it in case it happens for other files also.
         console.warn(
           `Warning: No slug found for "${relativePath}". Falling back to default "${slug}".`,

@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
+    'gatsby-transformer-home-example-code',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
     'gatsby-plugin-react-next',

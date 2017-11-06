@@ -23,10 +23,9 @@ ReactDOM.render(
 );
 ```
 
-React also depends on `requestAnimationFrame` (even in test environments). A simple shim for testing environments would be:
+React also depends on `requestAnimationFrame` (even in test environments).  
+You can use the [raf](https://www.npmjs.com/package/raf) package to shim `requestAnimationFrame`:
 
 ```js
-global.requestAnimationFrame = function(callback) {
-  setTimeout(callback, 0);
-};
+import 'raf/polyfill';
 ```

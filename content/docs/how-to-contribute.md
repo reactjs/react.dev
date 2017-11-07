@@ -145,7 +145,7 @@ However, there are still some styles that the linter cannot pick up. If you are 
 
 You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
 
-#### Available topics in this video directly linked:
+#### Video highlights:
 - Building and testing React locally [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s)
 - Creating and sending pull requests [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s)
 - Organizing code [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s)

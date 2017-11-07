@@ -146,11 +146,11 @@ However, there are still some styles that the linter cannot pick up. If you are 
 You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
 
 #### Available topics in this video directly linked:
-- build and test React locally [>](https://youtu.be/wUpPsEcGsg8?t=4m12s)
-- how to create and send pull requests to the React repository and how those are handled on project maintainer side [>](https://youtu.be/wUpPsEcGsg8?t=6m7s)
-- structure and organiztion of code: src files, entry points and module system [>](https://youtu.be/wUpPsEcGsg8?t=8m25s)
-- inspection and explanation of build/dist code pushed to npm registry [>](https://youtu.be/wUpPsEcGsg8?t=14m43s)
-- what to consider when adding new React features [>](https://youtu.be/wUpPsEcGsg8?t=19m15s)
+- Building and testing React locally [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s)
+- Creating and sending pull requests [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s)
+- Organizing code [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s)
+- React npm registry [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s)
+- Adding new React features [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s)
 
 ### Meeting Notes
 

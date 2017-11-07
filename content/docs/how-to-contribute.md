@@ -145,6 +145,13 @@ However, there are still some styles that the linter cannot pick up. If you are 
 
 You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
 
+#### Video highlights:
+- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Building and testing React locally
+- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Creating and sending pull requests
+- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Organizing code
+- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
+- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
+
 ### Meeting Notes
 
 React team meets once a week to discuss the development of React, future plans, and priorities. You can find the meeting notes in a [dedicated repository](https://github.com/reactjs/core-notes/).

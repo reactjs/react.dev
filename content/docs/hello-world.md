@@ -12,9 +12,9 @@ redirect_from:
   - "docs/getting-started-zh-CN.html"
 ---
 
-The easiest way to get started with React is to use [this Hello World example code on CodePen](codepen://hello-world). You don't need to install anything; you can just open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/installation.html) page.
+Кратчайший путь начать пользоваться React - использовать [этот Hello World пример кода на CodePen](codepen://hello-world). Вам не нужно что-либо устанавливать; Вам просто нужно открыть этот пример в другой вкладке и по мере продвижения следите за примерами. Если Вы больше предпочитаете локальное  окружение, посетите страницу [Установка](/docs/installation.html).
 
-The smallest React example looks like this:
+Простейший пример на React выглядит примерно так:
 
 ```js
 ReactDOM.render(
@@ -23,12 +23,12 @@ ReactDOM.render(
 );
 ```
 
-It renders a header saying "Hello, world!" on the page.
+Он рендерит заголовок с надписью "Hello, world!".
 
-The next few sections will gradually introduce you to using React. We will examine the building blocks of React apps: elements and components. Once you master them, you can create complex apps from small reusable pieces.
+Следующие несколько разделов будут постепенно вводить Вас в процесс разработки на React. Мы будем изучать построение блоков-кирпичиков React-приложений: элементов и компонентов. Когда Вы этим овладеете, Вы сможете конструировать сложные приложения из маленьких переиспользуемых кусочков.
 
-## A Note on JavaScript
+## Замечание по JavaScript
 
-React is a JavaScript library, and so it assumes you have a basic understanding of the JavaScript language. If you don't feel very confident, we recommend [refreshing your JavaScript knowledge](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) so you can follow along more easily.
+React - это JavaScript библиотека, и это предполагает, что Вы имеете некоторые начальные знания по языку JavaScript. Если Вы чувствуете неуверенность, мы рекомендуем [освежить свои знания JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript), чтобы Вам было проще двигаться вперёд.
 
-We also use some of the ES6 syntax in the examples. We try to use it sparingly because it's still relatively new, but we encourage you to get familiar with [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [template literals](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel-repl://es5-syntax-example) to check what ES6 code compiles to.
+Мы также немного используем в примерах ES6 синтаксис. Мы стараемся использовать его пореже, ввиду его новизны, но рекомендуем Вам почаще прибегать к использованию [стрелочных функций](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [классов](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [обратных кавычек](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Template_literals), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), и [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const). Для проверки, во что компилируется код на ES6, можно использовать [Babel REPL](babel-repl://es5-syntax-example).

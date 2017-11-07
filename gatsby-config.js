@@ -62,6 +62,12 @@ module.exports = {
               directory: 'examples',
             },
           },
+          {
+            resolve: 'gatsby-remark-babel-repl-link',
+            options: {
+              directory: 'examples',
+            },
+          },
           'gatsby-remark-use-jsx',
           {
             resolve: 'gatsby-remark-prismjs',

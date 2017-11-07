@@ -5,7 +5,6 @@ const map = require('unist-util-map');
 const CODEPEN_PROTOCOL = 'codepen://';
 const DEFAULT_LINK_TEXT = 'Try it on CodePen';
 
-// TODO target="_blank"
 module.exports = ({markdownAST}, {directory}) => {
   map(markdownAST, (node, index, parent) => {
     if (!directory.startsWith('/')) {
@@ -22,7 +21,7 @@ module.exports = ({markdownAST}, {directory}) => {
     // from: [Try the Hello World example on CodePen](codepen:hello-world)
     // to: <a href="/<directory>/hello-world" target="_blank">Try the Hello World example on CodePen</a>
     if (node.type === 'link' && node.url.startsWith(CODEPEN_PROTOCOL)) {
-      const href = node.url.replace(CODEPEN_PROTOCOL, `${directory}`);
+      const href = node.url.replace(CODEPEN_PROTOCOL, directory);
       const text =
         node.children.length === 0 ? DEFAULT_LINK_TEXT : node.children[0].value;
 

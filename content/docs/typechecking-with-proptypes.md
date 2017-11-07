@@ -172,7 +172,6 @@ If you are using a Babel transform like [transform-class-properties](https://bab
 
 ```javascript
 class Greeting extends React.Component {
-
   static defaultProps = {
     name: 'stranger'
   }

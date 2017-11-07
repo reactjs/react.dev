@@ -6,7 +6,6 @@ prev: hello-world.html
 next: rendering-elements.html
 ---
 
-
 Consider this variable declaration:
 
 ```js

@@ -49,6 +49,7 @@
     "gatsby-transformer-remark": "^1.7.2",
     "gatsby-transformer-sharp": "^1.6.1",
     "glamor": "^2.20.40",
+    "graphql": "0.10.5",
     "hex2rgba": "^0.0.1",
     "prettier": "^1.7.4",
     "remarkable": "^1.7.1",

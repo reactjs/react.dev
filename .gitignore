@@ -3,3 +3,4 @@
 .idea
 node_modules
 public
+yarn-error.log

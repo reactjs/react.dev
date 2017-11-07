@@ -21,7 +21,7 @@ module.exports = ({markdownAST}) => {
       // Verify that the specified example file exists.
       const filePath = join(__dirname, `../../${href}.js`);
       if (!existsSync(filePath)) {
-        console.log(
+        console.error(
           `Invalid Codepen link specified; no such file "${filePath}"`,
         );
         process.exit(1);

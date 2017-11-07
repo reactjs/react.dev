@@ -143,6 +143,16 @@ Remember that you only need to do this for production builds. You shouldn't appl
 >If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
 >This section is only relevant if you configure webpack directly.
 
+>It may also be necessary to add aliases for the react and react-dom modules in your production build webpack configuration.
+```js
+resolve: {
+   alias: {
+     'react$': path.join(__dirname, 'node_modules', 'react','dist','react.min.js'),
+     'react-dom$': path.join(__dirname, 'node_modules', 'react-dom','dist','react-dom.min.js')
+   }
+}
+```
+
 For the most efficient webpack production build, make sure to include these plugins in your production configuration:
 
 ```js

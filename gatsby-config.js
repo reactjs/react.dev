@@ -56,7 +56,12 @@ module.exports = {
             },
           },
           'gatsby-remark-autolink-headers',
-          'gatsby-remark-codepen-examples',
+          {
+            resolve: 'gatsby-remark-codepen-examples',
+            options: {
+              directory: 'examples',
+            },
+          },
           'gatsby-remark-use-jsx',
           {
             resolve: 'gatsby-remark-prismjs',

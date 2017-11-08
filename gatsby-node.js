@@ -231,7 +231,9 @@ exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
         // This should only happen for the partials in /content/home,
         // But let's log it in case it happens for other files also.
         console.warn(
-          `Warning: No slug found for "${relativePath}". Falling back to default "${slug}".`,
+          `Warning: No slug found for "${
+            relativePath
+          }". Falling back to default "${slug}".`,
         );
       }
 

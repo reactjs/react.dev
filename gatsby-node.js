@@ -167,24 +167,6 @@ exports.createPages = async ({graphql, boundActionCreators}) => {
     redirectInBrowser: true,
     toPath: newestBlogNode.fields.slug,
   });
-
-  // Create Codepen redirects.
-  // These use the Codepen prefill API to JIT-create Pens.
-  // https://blog.codepen.io/documentation/api/prefill/
-  const files = await recursiveReaddir('./examples');
-  files.forEach(file => {
-    const slug = file.substring(0, file.length - 3); // Trim extension
-    const code = readFileSync(file, 'utf8');
-
-    createPage({
-      path: slug,
-      component: resolve('./src/templates/codepen-example.js'),
-      context: {
-        code,
-        slug,
-      },
-    });
-  });
 };
 
 // Parse date information out of blog post filename.

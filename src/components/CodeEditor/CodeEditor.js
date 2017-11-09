@@ -150,7 +150,8 @@ class CodeEditor extends Component {
                     <input
                       checked={this.state.showJSX}
                       onChange={event =>
-                        this.setState({showJSX: event.target.checked})}
+                        this.setState({showJSX: event.target.checked})
+                      }
                       type="checkbox"
                     />{' '}
                     JSX?

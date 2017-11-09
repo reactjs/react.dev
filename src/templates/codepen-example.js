@@ -34,7 +34,7 @@ class CodepenExample extends Component {
   }
 
   render() {
-    const { action, payload } = this.props.pathContext
+    const {action, payload} = this.props.pathContext;
 
     return (
       <Container>

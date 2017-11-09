@@ -4,11 +4,6 @@ import React, {Component} from 'react';
 import Container from 'components/Container';
 import {colors} from 'theme';
 
-const EXTERNALS = [
-  'https://unpkg.com/react/umd/react.development.js',
-  'https://unpkg.com/react-dom/umd/react-dom.development.js',
-];
-
 // Copied over styles from ButtonLink for the submit btn
 const primaryStyle = {
   backgroundColor: colors.brand,

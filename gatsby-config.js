@@ -6,8 +6,6 @@
 
 'use strict';
 
-const {join} = require('path');
-
 module.exports = {
   siteMetadata: {
     title: 'React: A JavaScript library for building user interfaces',

@@ -6,8 +6,6 @@
 
 'use strict';
 
-const recursiveReaddir = require('recursive-readdir');
-const {readFileSync} = require('fs');
 const {resolve} = require('path');
 const webpack = require('webpack');
 

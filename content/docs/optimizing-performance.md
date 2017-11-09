@@ -147,9 +147,7 @@ For the most efficient webpack production build, make sure to include these plug
 
 ```js
 new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: JSON.stringify('production')
-  }
+  'process.env.NODE_ENV': JSON.stringify('production')
 }),
 new webpack.optimize.UglifyJsPlugin()
 ```

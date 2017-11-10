@@ -2366,9 +2366,9 @@ cross-spawn@5.1.0, cross-spawn@^5.0.1, cross-spawn@^5.1.0:
     shebang-command "^1.2.0"
     which "^1.2.9"
 
-crowdin@^1.0.0:
+crowdin-node@^1.0.0:
   version "1.0.0"
-  resolved "https://registry.yarnpkg.com/crowdin/-/crowdin-1.0.0.tgz#7e6331c90cf65c460db1c38483edfef211a28015"
+  resolved "https://registry.yarnpkg.com/crowdin-node/-/crowdin-node-1.0.0.tgz#17c734026607e24e6eb26eee36df4d7527b4a21c"
   dependencies:
     bluebird "^2.9.21"
     graceful-fs "^3.0.6"

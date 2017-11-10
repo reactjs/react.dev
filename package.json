@@ -13,9 +13,9 @@
     "eslint-plugin-relay/graphql": "0.10.5"
   },
   "dependencies": {
-    "react-live": "1.8.0-0",
     "array-from": "^2.1.1",
     "babel-eslint": "^8.0.1",
+    "crowdin-node": "^1.0.0",
     "eslint": "^4.8.0",
     "eslint-config-fbjs": "^2.0.0",
     "eslint-config-react": "^1.1.7",
@@ -52,6 +52,7 @@
     "glamor": "^2.20.40",
     "hex2rgba": "^0.0.1",
     "prettier": "^1.7.4",
+    "react-live": "1.8.0-0",
     "remarkable": "^1.7.1",
     "request-promise": "^4.2.2",
     "rimraf": "^2.6.1",
@@ -85,7 +86,6 @@
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {
-    "crowdin": "^1.0.0",
     "eslint-config-prettier": "^2.6.0",
     "lz-string": "^1.4.4",
     "recursive-readdir": "^2.2.1",

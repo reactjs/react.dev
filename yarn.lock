@@ -2,17 +2,6 @@
 # yarn lockfile v1
 
 
-"@gaearon/react-live@1.7.1-with-safari-fix":
-  version "1.7.1-with-safari-fix"
-  resolved "https://registry.yarnpkg.com/@gaearon/react-live/-/react-live-1.7.1-with-safari-fix.tgz#fef25ce045749b24c79f6475562530726e507876"
-  dependencies:
-    buble "^0.15.2"
-    core-js "^2.4.1"
-    dom-iterator "^0.3.0"
-    prismjs "^1.6.0"
-    prop-types "^15.5.8"
-    unescape "^0.2.0"
-
 "@types/node@*":
   version "8.0.50"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.0.50.tgz#dc545448e128c88c4eec7cd64025fcc3b7604541"
@@ -2341,14 +2330,6 @@ create-hmac@^1.1.0, create-hmac@^1.1.2, create-hmac@^1.1.4:
     safe-buffer "^5.0.1"
     sha.js "^2.4.8"
 
-create-react-class@^15.6.0:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.2.tgz#cf1ed15f12aad7f14ef5f2dfe05e6c42f91ef02a"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.3.1"
-    object-assign "^4.1.1"
-
 cross-env@^3.1.1:
   version "3.2.4"
   resolved "https://registry.yarnpkg.com/cross-env/-/cross-env-3.2.4.tgz#9e0585f277864ed421ce756f81a980ff0d698aba"
@@ -3572,7 +3553,7 @@ fb-watchman@^2.0.0:
   dependencies:
     bser "^2.0.0"
 
-fbjs@^0.8.12, fbjs@^0.8.14, fbjs@^0.8.16, fbjs@^0.8.9:
+fbjs@^0.8.12, fbjs@^0.8.14, fbjs@^0.8.16:
   version "0.8.16"
   resolved "https://registry.yarnpkg.com/fbjs/-/fbjs-0.8.16.tgz#5e67432f550dc41b572bf55847b8aca64e5337db"
   dependencies:
@@ -4059,6 +4040,15 @@ gatsby-remark-autolink-headers@^1.4.4:
     github-slugger "^1.1.1"
     mdast-util-to-string "^1.0.2"
     unist-util-visit "^1.1.1"
+
+gatsby-remark-code-repls@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-code-repls/-/gatsby-remark-code-repls-1.0.2.tgz#2a6df584d4c60388aa4c1140d9693c40b3d8d561"
+  dependencies:
+    babel-runtime "^6.26.0"
+    lz-string "^1.4.4"
+    recursive-readdir-synchronous "^0.0.3"
+    unist-util-map "^1.0.3"
 
 gatsby-remark-copy-linked-files@^1.5.2:
   version "1.5.18"
@@ -4576,6 +4566,12 @@ graphql-skip-limit@^1.0.7:
   dependencies:
     babel-runtime "^6.26.0"
     graphql "^0.11.7"
+
+graphql@0.10.5:
+  version "0.10.5"
+  resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.10.5.tgz#c9be17ca2bdfdbd134077ffd9bbaa48b8becd298"
+  dependencies:
+    iterall "^1.1.0"
 
 graphql@^0.11.3, graphql@^0.11.7:
   version "0.11.7"
@@ -5533,7 +5529,7 @@ items@2.x.x:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/items/-/items-2.1.1.tgz#8bd16d9c83b19529de5aea321acaada78364a198"
 
-iterall@1.1.3:
+iterall@1.1.3, iterall@^1.1.0:
   version "1.1.3"
   resolved "https://registry.yarnpkg.com/iterall/-/iterall-1.1.3.tgz#1cbbff96204056dde6656e2ed2e2226d0e6d72c9"
 
@@ -6176,6 +6172,10 @@ lpad-align@^1.0.1:
     longest "^1.0.0"
     meow "^3.3.0"
 
+lru-cache@2:
+  version "2.7.3"
+  resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-2.7.3.tgz#6d4524e8b955f95d4f5b58851ce21dd72fb4e952"
+
 lru-cache@^4.0.1:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/lru-cache/-/lru-cache-4.1.1.tgz#622e32e82488b49279114a4f9ecf45e7cd6bba55"
@@ -6486,6 +6486,13 @@ minimalistic-assert@^1.0.0:
 minimalistic-crypto-utils@^1.0.0, minimalistic-crypto-utils@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/minimalistic-crypto-utils/-/minimalistic-crypto-utils-1.0.1.tgz#f6c00c1c0b082246e5c4d99dfb8c7c083b2b582a"
+
+minimatch@0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-0.3.0.tgz#275d8edaac4f1bb3326472089e7949c8394699dd"
+  dependencies:
+    lru-cache "2"
+    sigmund "~1.0.0"
 
 "minimatch@2 || 3", minimatch@^3.0.0, minimatch@^3.0.2, minimatch@^3.0.3, minimatch@^3.0.4:
   version "3.0.4"
@@ -8076,16 +8083,7 @@ react-dev-utils@^4.2.1:
     strip-ansi "3.0.1"
     text-table "0.2.0"
 
-react-dom@^15.6.0:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-15.6.2.tgz#41cfadf693b757faf2708443a1d1fd5a02bef730"
-  dependencies:
-    fbjs "^0.8.9"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
-    prop-types "^15.5.10"
-
-react-dom@^16.0.0:
+react-dom@16.0.0, react-dom@^15.6.0, react-dom@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.0.0.tgz#9cc3079c3dcd70d4c6e01b84aab2a7e34c303f58"
   dependencies:
@@ -8116,6 +8114,17 @@ react-hot-loader@^3.0.0-beta.6:
     react-proxy "^3.0.0-alpha.0"
     redbox-react "^1.3.6"
     source-map "^0.6.1"
+
+react-live@1.8.0-0:
+  version "1.8.0-0"
+  resolved "https://registry.yarnpkg.com/react-live/-/react-live-1.8.0-0.tgz#1f8e4c9da48324e5e7af747d57d606a55003d58c"
+  dependencies:
+    buble "^0.15.2"
+    core-js "^2.4.1"
+    dom-iterator "^0.3.0"
+    prismjs "^1.6.0"
+    prop-types "^15.5.8"
+    unescape "^0.2.0"
 
 react-proxy@^3.0.0-alpha.0:
   version "3.0.0-alpha.1"
@@ -8153,17 +8162,7 @@ react-side-effect@^1.1.0:
     exenv "^1.2.1"
     shallowequal "^1.0.1"
 
-react@^15.6.0:
-  version "15.6.2"
-  resolved "https://registry.yarnpkg.com/react/-/react-15.6.2.tgz#dba0434ab439cfe82f108f0f511663908179aa72"
-  dependencies:
-    create-react-class "^15.6.0"
-    fbjs "^0.8.9"
-    loose-envify "^1.1.0"
-    object-assign "^4.1.0"
-    prop-types "^15.5.10"
-
-react@^16.0.0:
+react@16.0.0, react@^15.6.0, react@^16.0.0:
   version "16.0.0"
   resolved "https://registry.yarnpkg.com/react/-/react-16.0.0.tgz#ce7df8f1941b036f02b2cca9dbd0cb1f0e855e2d"
   dependencies:
@@ -8277,6 +8276,12 @@ rechoir@^0.6.2:
   resolved "https://registry.yarnpkg.com/rechoir/-/rechoir-0.6.2.tgz#85204b54dba82d5742e28c96756ef43af50e3384"
   dependencies:
     resolve "^1.1.6"
+
+recursive-readdir-synchronous@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/recursive-readdir-synchronous/-/recursive-readdir-synchronous-0.0.3.tgz#d5e5a096ad56cf9666241c22a30b4f338bb7ed88"
+  dependencies:
+    minimatch "0.3.0"
 
 recursive-readdir@2.2.1, recursive-readdir@^2.2.1:
   version "2.2.1"
@@ -9116,6 +9121,10 @@ shortid@^2.2.6:
 sift@^3.2.6:
   version "3.3.12"
   resolved "https://registry.yarnpkg.com/sift/-/sift-3.3.12.tgz#4f5cdf16af3db32afa04ab25297b0e20ad98294a"
+
+sigmund@~1.0.0:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/sigmund/-/sigmund-1.0.1.tgz#3ff21f198cad2175f9f3b781853fd94d0d19b590"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"

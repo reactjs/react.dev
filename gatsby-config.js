@@ -33,15 +33,22 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/pages`,
         name: 'pages',
+        path: `${__dirname}/src/pages`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'packages',
+        name: 'english',
         path: `${__dirname}/content/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'translations',
+        path: `${__dirname}/crowdin/translations/docs/`,
       },
     },
     {
@@ -67,6 +74,14 @@ module.exports = {
               ],
               redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
               target: '_blank',
+            },
+          },
+          {
+            resolve: 'gatsby-plugin-crowdin',
+            options: {
+              defaultLanguageCode: 'en',
+              defaultSourceName: 'english',
+              translationsSourceName: 'translations',
             },
           },
           'gatsby-remark-use-jsx',

@@ -7,6 +7,8 @@ permalink: community/conferences.html
 redirect_from: "docs/conferences.html"
 ---
 
+Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
+
 ## Upcoming Conferences
 
 ### React Seoul 2017

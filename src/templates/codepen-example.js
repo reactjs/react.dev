@@ -4,11 +4,6 @@ import React, {Component} from 'react';
 import Container from 'components/Container';
 import {colors} from 'theme';
 
-const EXTERNALS = [
-  'https://unpkg.com/react/umd/react.development.js',
-  'https://unpkg.com/react-dom/umd/react-dom.development.js',
-];
-
 // Copied over styles from ButtonLink for the submit btn
 const primaryStyle = {
   backgroundColor: colors.brand,
@@ -34,17 +29,7 @@ class CodepenExample extends Component {
   }
 
   render() {
-    // Codepen configuration.
-    // https://blog.codepen.io/documentation/api/prefill/
-    const payload = JSON.stringify({
-      editors: '0010',
-      html: '<div id="root"></div>',
-      js: this.props.pathContext.code,
-      js_external: EXTERNALS.join(';'),
-      js_pre_processor: 'babel',
-      layout: 'left',
-      title: 'reactjs.org example',
-    });
+    const {action, payload} = this.props.pathContext;
 
     return (
       <Container>
@@ -54,7 +39,7 @@ class CodepenExample extends Component {
           ref={form => {
             this.codepenForm = form;
           }}
-          action="https://codepen.io/pen/define"
+          action={action}
           method="POST">
           <input type="hidden" name="data" value={payload} />
 

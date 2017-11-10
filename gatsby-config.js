@@ -57,15 +57,16 @@ module.exports = {
           },
           'gatsby-remark-autolink-headers',
           {
-            resolve: 'gatsby-remark-codepen-examples',
+            resolve: 'gatsby-remark-code-repls',
             options: {
-              directory: 'examples',
-            },
-          },
-          {
-            resolve: 'gatsby-remark-babel-repl-link',
-            options: {
-              directory: 'examples',
+              defaultText: 'Try it on CodePen',
+              directory: `${__dirname}/examples/`,
+              externals: [
+                `//unpkg.com/react/umd/react.development.js`,
+                `//unpkg.com/react-dom/umd/react-dom.development.js`,
+              ],
+              redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
+              target: '_blank',
             },
           },
           'gatsby-remark-use-jsx',

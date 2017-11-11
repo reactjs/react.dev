@@ -6,6 +6,8 @@
 
 'use strict';
 
+const {readdirSync} = require('fs');
+
 module.exports = {
   siteMetadata: {
     title: 'React: A JavaScript library for building user interfaces',
@@ -40,15 +42,8 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'english',
-        path: `${__dirname}/content/`,
-      },
-    },
-    {
-      resolve: 'gatsby-source-filesystem',
-      options: {
         name: 'translations',
-        path: `${__dirname}/crowdin/translations/docs/`,
+        path: `${__dirname}/crowdin/translations/`,
       },
     },
     {
@@ -80,8 +75,9 @@ module.exports = {
             resolve: 'gatsby-plugin-crowdin',
             options: {
               defaultLanguageCode: 'en',
-              defaultSourceName: 'english',
-              translationsSourceName: 'translations',
+              languageCodes: readdirSync(
+                `${__dirname}/crowdin/translations`,
+              ).filter(dir => !dir.startsWith('.')),
             },
           },
           'gatsby-remark-use-jsx',

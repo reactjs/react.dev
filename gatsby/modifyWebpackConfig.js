@@ -6,7 +6,7 @@
 
 'use strict';
 
-const {resolve} = require('path');
+const {join, resolve} = require('path');
 const webpack = require('webpack');
 
 module.exports = ({config, stage}) => {
@@ -17,6 +17,10 @@ module.exports = ({config, stage}) => {
     resolve: {
       root: resolve(__dirname, '../src'),
       extensions: ['', '.js', '.jsx', '.json'],
+      alias: {
+        // TODO Remove this alias (and the one below) after plug-in release.
+        'gatsby-plugin-crowdin': join(__dirname, '../plugins/gatsby-plugin-crowdin'),
+      },
     },
   });
   return config;

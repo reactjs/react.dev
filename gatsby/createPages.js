@@ -7,24 +7,18 @@
 'use strict';
 
 const {resolve} = require('path');
+const {getLanguageCodeFromPath} = require('../plugins/gatsby-plugin-crowdin/utils');
 
-const DEFAULT_LANGUAGE_CODE = 'en'
+// TODO Read these values from the gatbsy-config rather than duplicating them
+const DEFAULT_LANGUAGE_CODE = 'en';
 
-// TODO Copy this helper method into a shared util
-const getLanguageCodeFromPath = path => {
-  const match = path.match(/^([a-z]{2}|[a-z]{2}-[A-Z]+)\//);
+module.exports = async (params) => {
+  const {graphql, boundActionCreators} = params;
+  const {createRedirect} = boundActionCreators; // TODO?
 
-  return match ? match[1] : null;
-}
-
-// TODO Create Remark parser that adds language prefix to markdown links
-
-// TODO Decide how we handle Gatsby website links?
-// Maybe attach a language code field to GraphQL so we can pass it to templates,
-// So it can be evaluated dynamically at build time to generate links that are static at runtime?
-
-module.exports = async ({graphql, boundActionCreators}) => {
-  const {createPage, createRedirect} = boundActionCreators;
+  const pluginConfig = {defaultLanguageCode: DEFAULT_LANGUAGE_CODE};
+  const createPage = require('../plugins/gatsby-plugin-crowdin/createPage')(params, pluginConfig);
+  //const createRedirect = require('../plugins/gatsby-plugin-crowdin/createRedirect')(params, pluginConfig);
 
   // Used to detect and prevent duplicate redirects
   const redirectToSlugMap = {};
@@ -35,15 +29,14 @@ module.exports = async ({graphql, boundActionCreators}) => {
   const tutorialTemplate = resolve(__dirname, '../src/templates/tutorial.js');
 
   // Redirect /index.html to root.
-  // TODO Setup redirects for each language code too (eg '/zn-CH/index.html' => '/zn-CH/').
   createRedirect({
     fromPath: '/index.html',
     redirectInBrowser: true,
     toPath: '/',
   });
 
-  // TODO Maybe redirect naked root / to a page that checks browser language
-  // And auto-redirects to user's specific /<language>/index.html
+  // TODO Create localized pages/index for each language
+  // TODO Netlify language redirect for home page
 
   const allMarkdown = await graphql(
     `
@@ -105,32 +98,14 @@ module.exports = async ({graphql, boundActionCreators}) => {
       }
 
       const createArticlePage = path => {
-        path = path.replace(/^\//, '');
-
-        const localizedPath = `/${languageCode}/${path}`;
-
         createPage({
-          path: localizedPath,
+          path,
           component: template,
           context: {
             slug,
           },
         });
-
-        // TODO Create these redirects in a format that allows Netlify to insert language code.
-        // Daniel mentioned that should be possible in a comment on #82.
-        // We only need to create redirect once.
-
-        // Create redirect without locale if languageCode is default.
-        // This allows us to support backwards compatible links (pre-localization)
-        if (languageCode === DEFAULT_LANGUAGE_CODE) {
-          createRedirect({
-            fromPath: `/${path}`,
-            redirectInBrowser: true,
-            toPath: localizedPath,
-          });
-        }
-      }
+      };
 
       // Register primary URL.
       createArticlePage(slug);
@@ -142,29 +117,34 @@ module.exports = async ({graphql, boundActionCreators}) => {
           redirect = [redirect];
         }
 
+        if (redirectToSlugMap[languageCode] === undefined) {
+          redirectToSlugMap[languageCode] = {};
+        }
+
+        // Extract language code (eg "zn") from language & region code strings (eg "zn-CH").
+        // TODO Use helper function in gatsby-plugin-crowdin
+        const language = languageCode.indexOf('-')
+          ? languageCode.split('-')[0]
+          : languageCode;
+
         redirect.forEach(fromPath => {
-          fromPath = `${languageCode}/${fromPath}`;
-
-          // A leading "/" is required for redirects to work,
-          // But multiple leading "/" will break redirects.
-          // For more context see github.com/reactjs/reactjs.org/pull/194
-          const toPath = `/${languageCode}/${slug.replace(/^\//, '')}`;
-
-          if (redirectToSlugMap[fromPath] != null) {
+          if (redirectToSlugMap[languageCode][fromPath] != null) {
             console.error(
               `Duplicate redirect detected from "${fromPath}" to:\n` +
-                `* ${redirectToSlugMap[fromPath]}\n` +
+                `* ${redirectToSlugMap[languageCode][fromPath]}\n` +
                 `* ${slug}\n`,
             );
             process.exit(1);
           }
 
-          redirectToSlugMap[fromPath] = toPath;
+          redirectToSlugMap[languageCode][fromPath] = slug;
 
+          // Create language-aware redirect
           createRedirect({
             fromPath,
+            toPath: `/${languageCode}/${slug}`,
             redirectInBrowser: true,
-            toPath,
+            Language: language,
           });
         });
       }

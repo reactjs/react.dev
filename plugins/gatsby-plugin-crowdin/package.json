@@ -1,4 +1,8 @@
 {
   "name": "gatsby-plugin-crowdin",
-  "version": "0.0.1"
+  "version": "0.0.1",
+  "dependencies": {
+    "gatsby-link": "^1.6.9",
+    "prop-types": "^15.6.0"
+  }
 }

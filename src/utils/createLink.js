@@ -6,22 +6,25 @@
 
 'use strict';
 
-import Link from 'gatsby-link';
+import Link from 'gatsby-plugin-crowdin/Link';
 import React from 'react';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import slugify from 'utils/slugify';
 import {colors, media} from 'theme';
 
-const createLinkBlog = ({isActive, item, section}) => {
+const createLinkBlog = ({isActive, item, location, section}) => {
   return (
-    <Link css={[linkCss, isActive && activeLinkCss]} to={item.id}>
+    <Link
+      css={[linkCss, isActive && activeLinkCss]}
+      location={location}
+      to={item.id}>
       {isActive && <span css={activeLinkBefore} />}
       {item.title}
     </Link>
   );
 };
 
-const createLinkCommunity = ({isActive, item, section}) => {
+const createLinkCommunity = ({isActive, item, location, section}) => {
   if (item.href) {
     return (
       <a css={[linkCss]} href={item.href} target="_blank" rel="noopener">
@@ -40,14 +43,16 @@ const createLinkCommunity = ({isActive, item, section}) => {
   return createLinkDocs({
     isActive,
     item,
+    location,
     section,
   });
 };
 
-const createLinkDocs = ({isActive, item, section}) => {
+const createLinkDocs = ({isActive, item, location, section}) => {
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
+      location={location}
       to={slugify(item.id, section.directory)}>
       {isActive && <span css={activeLinkBefore} />}
       {item.title}
@@ -55,10 +60,17 @@ const createLinkDocs = ({isActive, item, section}) => {
   );
 };
 
-const createLinkTutorial = ({isActive, item, onLinkClick, section}) => {
+const createLinkTutorial = ({
+  isActive,
+  item,
+  location,
+  onLinkClick,
+  section,
+}) => {
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
+      location={location}
       onClick={onLinkClick}
       to={item.href}>
       {isActive && <span css={activeLinkBefore} />}

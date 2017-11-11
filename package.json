@@ -83,7 +83,7 @@
     "netlify": "yarn install && yarn build",
     "prettier": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "prettier:diff": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
-    "reset": "rimraf ./.cache"
+    "reset": "rimraf ./.cache && rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.6.0",

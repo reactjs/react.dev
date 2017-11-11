@@ -65,7 +65,7 @@ This includes event bubbling. An event fired from inside a portal will propagate
 
 A `Parent` component in `#app-root` would be able to catch an uncaught, bubbling event from the sibling node `#modal-root`.
 
-```js{20-23,34-41,45,53-55,62-63,66}
+```js{29-34,45-52,56,64-66,73-75,77}
 // These two containers are siblings in the DOM
 const appRoot = document.getElementById('app-root');
 const modalRoot = document.getElementById('modal-root');
@@ -74,10 +74,19 @@ class Modal extends React.Component {
   constructor(props) {
     super(props);
     this.el = document.createElement('div');
+    // We need to keep track of when the portal element
+    // is inserted in the DOM tree since we should only
+    // render the modal's children on a mounted element
+    this.state = {
+      mounted: false
+    };
   }
 
   componentDidMount() {
     modalRoot.appendChild(this.el);
+    this.setState({
+      mounted: true
+    });
   }
 
   componentWillUnmount() {
@@ -86,7 +95,9 @@ class Modal extends React.Component {
 
   render() {
     return ReactDOM.createPortal(
-      this.props.children,
+      // This will allow any children's 'componentDidMount()'
+      // to be called on a mounted node
+      this.state.mounted ? this.props.children : null,
       this.el,
     );
   }

@@ -16,7 +16,7 @@ const toSectionList = allMarkdownRemark => [
     title: 'Recent Posts',
     items: allMarkdownRemark.edges
       .map(({node}) => ({
-        id: node.fields.slug,
+        id: node.fields.id,
         title: node.frontmatter.title,
       }))
       .concat({
@@ -45,8 +45,8 @@ Blog.propTypes = {
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query TemplateBlogMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
+  query TemplateBlogMarkdown($id: String!) {
+    markdownRemark(fields: {id: {eq: $id}}) {
       html
       excerpt(pruneLength: 500)
       frontmatter {
@@ -63,7 +63,7 @@ export const pageQuery = graphql`
       fields {
         date(formatString: "MMMM DD, YYYY")
         path
-        slug
+        id
       }
     }
     allMarkdownRemark(
@@ -77,7 +77,7 @@ export const pageQuery = graphql`
             title
           }
           fields {
-            slug
+            id
           }
         }
       }

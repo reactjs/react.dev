@@ -28,8 +28,8 @@ Community.propTypes = {
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query TemplateCommunityMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
+  query TemplateCommunityMarkdown($id: String!) {
+    markdownRemark(fields: {id: {eq: $id}}) {
       html
       frontmatter {
         title
@@ -38,7 +38,7 @@ export const pageQuery = graphql`
       }
       fields {
         path
-        slug
+        id
       }
     }
   }

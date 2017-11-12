@@ -9,6 +9,8 @@
 // Parse date information out of blog post filename.
 const BLOG_POST_FILENAME_REGEX = /([0-9]+)\-([0-9]+)\-([0-9]+)\-(.+)\.md$/;
 
+let id = 0;
+
 // Add custom fields to MarkdownRemark nodes.
 module.exports = exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
   const {createNodeField} = boundActionCreators;
@@ -53,6 +55,19 @@ module.exports = exports.onCreateNode = ({node, boundActionCreators, getNode}) =
           `Warning: No slug found for "${relativePath}". Falling back to default "${slug}".`,
         );
       }
+
+      // Slugs are easier to process elsewhere if we ensure they always start with "/"
+      if (!slug.startsWith('/')) {
+        slug = `/${slug}`;
+      }
+
+      // Unique ID for template GraphQL queries;
+      // This avoids potential duplicate slugs between translated content.
+      createNodeField({
+        node,
+        name: 'id',
+        value: (++id).toString(),
+      });
 
       // Used to generate URL to view this content.
       createNodeField({

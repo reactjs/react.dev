@@ -40,8 +40,8 @@ Tutorial.propTypes = {
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query TemplateTutorialMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
+  query TemplateTutorialMarkdown($id: String!) {
+    markdownRemark(fields: {id: {eq: $id}}) {
       html
       frontmatter {
         title
@@ -50,7 +50,7 @@ export const pageQuery = graphql`
       }
       fields {
         path
-        slug
+        id
       }
     }
   }

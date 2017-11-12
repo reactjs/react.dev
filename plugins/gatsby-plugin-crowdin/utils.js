@@ -7,3 +7,10 @@ exports.getLanguageCodeFromPath = path => {
 
   return match ? match[1] : null;
 };
+
+// Parses a language (eg en, zn) from a langauge and region string (eg en-GB, zh-CH).
+// If the specified param doesn't contain a region (eg en) then it is returned as-is.
+exports.getLanguageFromLanguageAndRegion = languageAndRegion =>
+  languageAndRegion.indexOf('-')
+    ? languageAndRegion.split('-')[0]
+    : languageAndRegion;

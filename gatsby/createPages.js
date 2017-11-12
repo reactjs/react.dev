@@ -7,18 +7,10 @@
 'use strict';
 
 const {resolve} = require('path');
-const {getLanguageCodeFromPath} = require('../plugins/gatsby-plugin-crowdin/utils');
-
-// TODO Read these values from the gatbsy-config rather than duplicating them
-const DEFAULT_LANGUAGE_CODE = 'en';
 
 module.exports = async (params) => {
   const {graphql, boundActionCreators} = params;
-  const {createRedirect} = boundActionCreators; // TODO?
-
-  const pluginConfig = {defaultLanguageCode: DEFAULT_LANGUAGE_CODE};
-  const createPage = require('../plugins/gatsby-plugin-crowdin/createPage')(params, pluginConfig);
-  //const createRedirect = require('../plugins/gatsby-plugin-crowdin/createRedirect')(params, pluginConfig);
+  const {createPage, createRedirect} = boundActionCreators;
 
   // Used to detect and prevent duplicate redirects
   const redirectToSlugMap = {};
@@ -35,8 +27,7 @@ module.exports = async (params) => {
     toPath: '/',
   });
 
-  // TODO Create localized pages/index for each language
-  // TODO Netlify language redirect for home page
+  // TODO Create localized root redirects for each language
 
   const allMarkdown = await graphql(
     `
@@ -45,6 +36,9 @@ module.exports = async (params) => {
           edges {
             node {
               fields {
+                id
+                language
+                languageCode
                 path
                 redirect
                 slug
@@ -64,11 +58,7 @@ module.exports = async (params) => {
 
   allMarkdown.data.allMarkdownRemark.edges.forEach(edge => {
     const {fields} = edge.node;
-    const {path, slug} = fields;
-
-    // Parse language code from path for Crowdin content.
-    // Fall back to English as the default.
-    const languageCode = getLanguageCodeFromPath(path) || DEFAULT_LANGUAGE_CODE;
+    let {id, language, languageCode, slug} = fields;
 
     if (slug === 'docs/error-decoder.html') {
       // No-op so far as markdown templates go.
@@ -98,11 +88,17 @@ module.exports = async (params) => {
       }
 
       const createArticlePage = path => {
+        if (path.startsWith('/')) {
+          path = `/${languageCode}/${path.substr(1)}`;
+        }
+
         createPage({
           path,
           component: template,
           context: {
-            slug,
+            id,
+            language,
+            languageCode,
           },
         });
       };
@@ -117,32 +113,28 @@ module.exports = async (params) => {
           redirect = [redirect];
         }
 
-        if (redirectToSlugMap[languageCode] === undefined) {
-          redirectToSlugMap[languageCode] = {};
-        }
-
-        // Extract language code (eg "zn") from language & region code strings (eg "zn-CH").
-        // TODO Use helper function in gatsby-plugin-crowdin
-        const language = languageCode.indexOf('-')
-          ? languageCode.split('-')[0]
-          : languageCode;
-
         redirect.forEach(fromPath => {
-          if (redirectToSlugMap[languageCode][fromPath] != null) {
+          if (fromPath.startsWith('/')) {
+            fromPath = fromPath.substr(1);
+          }
+
+          const localizedFromPath = `/${languageCode}/${fromPath}`;
+
+          if (redirectToSlugMap[localizedFromPath] != null) {
             console.error(
               `Duplicate redirect detected from "${fromPath}" to:\n` +
-                `* ${redirectToSlugMap[languageCode][fromPath]}\n` +
+                `* ${redirectToSlugMap[localizedFromPath]}\n` +
                 `* ${slug}\n`,
             );
             process.exit(1);
           }
 
-          redirectToSlugMap[languageCode][fromPath] = slug;
+          redirectToSlugMap[localizedFromPath] = slug;
 
           // Create language-aware redirect
           createRedirect({
-            fromPath,
-            toPath: `/${languageCode}/${slug}`,
+            fromPath: localizedFromPath,
+            toPath: slug,
             redirectInBrowser: true,
             Language: language,
           });
@@ -173,7 +165,7 @@ module.exports = async (params) => {
   const newestBlogNode = newestBlogEntry.data.allMarkdownRemark.edges[0].node;
 
   // Blog landing page should always show the most recent blog entry.
-  // TODO Setup redirets for each language code too.
+  // Note that blog content is not localized.
   createRedirect({
     fromPath: '/blog/',
     redirectInBrowser: true,

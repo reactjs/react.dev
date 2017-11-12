@@ -2,6 +2,7 @@ node_modules/*
 
 # Ignore markdown files and examples
 content/*
+crowdin/translations/*
 
 # Ignore built files
 public/*

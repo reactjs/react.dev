@@ -175,7 +175,7 @@ Returns the total number of components in `children`, equal to the number of tim
 React.Children.only(children)
 ```
 
-Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws.
+Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws an error.
 
 > Note:
 >

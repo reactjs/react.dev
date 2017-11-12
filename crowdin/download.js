@@ -16,10 +16,9 @@ function main() {
   process.chdir(SYMLINKED_TRANSLATIONS_PATH);
 
   crowdin
-    .downloadToPath(DOWNLOADED_TRANSLATIONS_PATH)
-    .then(() => {
-      return crowdin.getTranslationStatus();
-    })
+    // .export() // Not sure if this should be called in the script since it could be very slow
+    .then(() => crowdin.downloadToPath(DOWNLOADED_TRANSLATIONS_PATH))
+    .then(() => crowdin.getTranslationStatus())
     .then(locales => {
       const usableLocales = locales
         .filter(

@@ -62,6 +62,8 @@ class Foo extends Component {
 }
 ```
 
+**Note**: Using an arrow function or binding in render creates a new function each time the component renders, which may have performance implications (see below).
+
 #### Arrow Function in Render
 
 ```jsx

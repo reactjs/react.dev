@@ -7,32 +7,46 @@ permalink: community/videos.html
 redirect_from: "docs/videos.html"
 ---
 
-- [React Conf 2017](https://www.youtube.com/playlist?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0) - A playlist of videos from React.js Conf 2017.
+Videos dedicated to the discussion of React and the React ecosystem.
 
-- [A Cartoon Intro to React Fiber](https://www.youtube.com/watch?v=ZCuYPiUIONs) (2017 - 0h30min) - Lin Clark provides an explanation of what React Fiber is and what it does at React Conf 2017.
+A playlist of videos from React.js Conf 2017.
+<iframe title="React.js Conf 2017" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0" frameborder="0" allowfullscreen></iframe>
 
- - [React Conf 2016](https://www.youtube.com/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY) - A playlist of videos from React.js Conf 2016.
+Lin Clark provides an explanation of what React Fiber is and what it does at React Conf 2017 - (2017 - 0h30min).
+<iframe title="A Cartoon Intro to React Fiber" width="650" height="366" src="https://www.youtube-nocookie.com/embed/ZCuYPiUIONs" frameborder="0" allowfullscreen></iframe>
 
- - [React Conf 2015](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr) - A playlist of videos from React.js Conf 2015.
+A playlist of videos from React.js Conf 2016.
+<iframe title="React.js Conf 2016" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS0M8Q95RIc2lOM6nc77q1IY" frameborder="0" allowfullscreen></iframe>
 
- - [Introducing React Native](https://www.youtube.com/watch?v=KVZ-P-ZI6W4&feature=youtu.be&list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr) (2015 - 1h30m) - Tom Occhino reviews the past and present of React in 2015, and teases where it's going next.
+A playlist of videos from React.js Conf 2015.
+<iframe title="React.js Conf 2015" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
 
-- [Secrets of the Virtual DOM](https://www.youtube.com/watch?v=h3KksH8gfcQ&feature=youtu.be) (2014 - 0h44m) - Pete Hunt at Mountain West JavaScript 2014 discusses why a virtual DOM was built for React, how it compares to other systems, and its relevance to the future of browser technologies.
+Pete Hunt at Mountain West JavaScript 2014 discusses why a virtual DOM was built for React, how it compares to other systems, and its relevance to the future of browser technologies - (2014 - 0h44m).
+<iframe title="Mountain West JavaScript 2014 - Be Predictable, Not Correct. by Pete Hunt" width="650" height="366" src="https://www.youtube-nocookie.com/embed/h3KksH8gfcQ" frameborder="0" allowfullscreen></iframe>
 
-- [Rethinking Web App Development at Facebook with Flux](http://youtu.be/nYkdrAPrdcw) (2014 - 0h44m) - How Facebook abandoned the traditional MVC paradigm in favor of a more functional application architecture.
+How Facebook abandoned the traditional MVC paradigm in favor of a more functional application architecture - (2014 - 0h44m).
+<iframe title="Hacker Way: Rethinking Web App Development at Facebook" width="650" height="366" src="https://www.youtube-nocookie.com/embed/nYkdrAPrdcw" frameborder="0" allowfullscreen></iframe>
 
-- [YUI Open Roundtable with Pete Hunt on React](https://www.youtube.com/watch?v=ZLfe0i2RDtY) (2014 - 0h55m) - Pete Hunt discusses flux and server-side rendering in React.
+Pete Hunt discusses flux and server-side rendering in React - (2014 - 0h55m).
+<iframe title="YUI Open Roundtable with Pete Hunt" width="650" height="366" src="https://www.youtube-nocookie.com/embed/ZLfe0i2RDtY" frameborder="0" allowfullscreen></iframe>
 
-- [Rethinking Web App Development at Facebook](https://www.youtube.com/watch?v=nYkdrAPrdcw&feature=youtu.be) (2014 - 0h44m) - Facebook F8 2014 talk to learn how we abandoned the traditional MVC paradigm in favor of a more functional application architecture.
+Facebook F8 2014 talk to learn how we abandoned the traditional MVC paradigm in favor of a more functional application architecture - (2014 - 0h44m).
+<iframe title="Hacker Way: Rethinking Web App Development at Facebook" width="650" height="366" src="https://www.youtube-nocookie.com/embed/nYkdrAPrdcw" frameborder="0" allowfullscreen></iframe>
 
-- [Introduction to React](https://www.youtube.com/watch?v=SMMRJif5QW0&feature=youtu.be) (2014 - 0h51m) - Stoyan Stefanov at LAWebSpeed meetup.
+Stoyan Stefanov gives an introduction to React at LAWebSpeed meetup - (2014 - 0h51m).
+<iframe title="Joe Dev on Tech - Stoyan Stefanov - Introduction to React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/SMMRJif5QW0" frameborder="0" allowfullscreen></iframe>
 
-- [Going big with React](https://skillsmatter.com/skillscasts/5429-going-big-with-react#video) (2014 - 0h31m) - Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale.
+Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale - (2014 - 0h31m).
+[![going big with React](https://i.vimeocdn.com/video/481670116_650.jpg)]
 
-- [Rethinking Best Practices](https://www.youtube.com/watch?v=x7cQ3mrcKaY&feature=youtu.be) (2013 - 0h30m) - Pete Hunt's talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events.
+Pete Hunt's talk at JSConf EU 2013 covers three topics: throwing out the notion of templates and building views with JavaScript, “re-rendering” your entire application when your data changes, and a lightweight implementation of the DOM and events - (2013 - 0h30m).
+<iframe title="Hacker Way: Rethinking Web App Development at Facebook" width="650" height="366" src="https://www.youtube-nocookie.com/embed/nYkdrAPrdcw" frameborder="0" allowfullscreen></iframe>
 
-- [High performance functional DOM programming](https://www.youtube.com/watch?v=qqVbr_LaCIo&feature=youtu.be) (2013 - 0h31m) - Tech Talk by Pete Hunt at Meteor DevShop 11.
+Pete Hunt discusses high performance functional programming with React at Meteor DevShop 11 - (2013 - 0h31m).
+<iframe title="Pete Hunt: High performance functional programming with React and Meteor" width="650" height="366" src="https://www.youtube-nocookie.com/embed/qqVbr_LaCIo" frameborder="0" allowfullscreen></iframe>
 
-- [Developing User Interfaces With React](https://youtu.be/1OeXsL5mr4g) (2013 - 0h29m) - Steven Luscher at Super VanJS 2013.
+Steven Luscher discusses developing user interfaces at Super VanJS 2013 - (2013 - 0h29m).
+<iframe title="SuperVanJS 2013: Steven Luscher - Developing User Interfaces with Facebook's React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/1OeXsL5mr4g" frameborder="0" allowfullscreen></iframe>
 
- - [Introduction to React](https://www.youtube.com/watch?v=XxVg_s8xAms&feature=youtu.be) (2013 - 1h20m) - Tom Occhino and Jordan Walke introduce React at Facebook Seattle.
+Tom Occhino and Jordan Walke introduce React at Facebook Seattle - (2013 - 1h20m).
+<iframe title="Tom Occhino and Jordan Walke introduce React at Facebook Seattle" width="650" height="366" src="https://www.youtube-nocookie.com/embed/XxVg_s8xAms" frameborder="0" allowfullscreen></iframe>

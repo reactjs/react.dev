@@ -18,7 +18,7 @@ render() {
 
 ### Can I use inline styles?
 
-Yes, see https://reactjs.org/docs/dom-elements.html#style
+Yes, see the docs on styling [here](/docs/dom-elements.html#style).
 
 ### Are inline styles bad?
 

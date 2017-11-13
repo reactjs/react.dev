@@ -50,7 +50,7 @@ handleSomething() {
 }
 ```
 
-https://reactjs.org/docs/react-component.html#setstate
+[Learn more about setState](/docs/react-component.html#setstate)
 
 ### Should I use a state management library like Redux or MobX?
 

@@ -17,7 +17,8 @@ function main() {
 
   crowdin
     // .export() // Not sure if this should be called in the script since it could be very slow
-    .then(() => crowdin.downloadToPath(DOWNLOADED_TRANSLATIONS_PATH))
+    // .then(() => crowdin.downloadToPath(DOWNLOADED_TRANSLATIONS_PATH))
+    .downloadToPath(DOWNLOADED_TRANSLATIONS_PATH)
     .then(() => crowdin.getTranslationStatus())
     .then(locales => {
       const usableLocales = locales

@@ -17,5 +17,8 @@ No! Check out https://reactjs.org/docs/react-without-es6.html
 ### How can I write comments in JSX?
 
 ```jsx
- {/* Comment goes here */}
+<div>
+  {/* Comment goes here */}
+  Hello, {name}!
+</div>
 ```

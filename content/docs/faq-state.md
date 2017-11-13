@@ -12,7 +12,9 @@ category: FAQ
 
 ### Why is `setState` is giving me the wrong value?
 
-Calls to `setState` are batched, so it is possible to "lose" an update if you call it with the partial object syntax:
+Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need compute values based on the current state (see below for details).
+
+Example of code that will not behave as expected:
 
 ```jsx
 incrementCount = () => {
@@ -28,7 +30,7 @@ handleSomething() {
 
 See below for how to fix this problem.
 
-### How do I do ordered state updates?
+### How do I update state with values that depend on the current state? 
 
 Pass a function instead of an object to setState to ensure the call always uses the most updated version of state (see below). 
 

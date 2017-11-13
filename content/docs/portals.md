@@ -65,7 +65,7 @@ This includes event bubbling. An event fired from inside a portal will propagate
 
 A `Parent` component in `#app-root` would be able to catch an uncaught, bubbling event from the sibling node `#modal-root`.
 
-```js{20-23,34-41,45,53-55,62-63,66}
+```js{28-31,42-49,53,61-63,70-71,74}
 // These two containers are siblings in the DOM
 const appRoot = document.getElementById('app-root');
 const modalRoot = document.getElementById('modal-root');
@@ -77,6 +77,14 @@ class Modal extends React.Component {
   }
 
   componentDidMount() {
+    // The portal element is inserted in the DOM tree after
+    // the Modal's children are mounted, meaning that children
+    // will be mounted on a detached DOM node. If a child
+    // component requires to be attached to the DOM tree
+    // immediately when mounted, for example to measure a
+    // DOM node, or uses 'autoFocus' in a descendant, add
+    // state to Modal and only render the children when Modal
+    // is inserted in the DOM tree.
     modalRoot.appendChild(this.el);
   }
 

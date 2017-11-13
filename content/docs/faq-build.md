@@ -8,11 +8,11 @@ category: FAQ
 
 ### Do I need to use JSX with React?
 
-No! Check out https://reactjs.org/docs/react-without-jsx.html
+No! Check out ["React Without JSX"](/docs/react-without-jsx.html) to learn more.
 
 ### Do I need to use ES6 (+) with React?
 
-No! Check out https://reactjs.org/docs/react-without-es6.html
+No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
 
 ### How can I write comments in JSX?
 

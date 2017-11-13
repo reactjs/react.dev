@@ -62,7 +62,9 @@ class Foo extends Component {
 }
 ```
 
-**Note**: Using an arrow function or binding in render creates a new function each time the component renders, which may have performance implications (see below).
+>**Note:**
+>
+>Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications; (see below).
 
 #### Arrow Function in Render
 
@@ -77,7 +79,9 @@ class Foo extends Component {
 }
 ```
 
-**Note**: Using an arrow function or binding in render creates a new function each time the component renders, which may have performance implications (see below).
+>**Note:**
+>
+>Using an arrow in render creates a new function each time the component renders, which may have performance implications; (see below).
 
 ### Is it OK to use arrow functions in render methods?
 
@@ -85,7 +89,7 @@ Generally speaking, yes, it is OK, and it is often the easiest way to pass param
 
 If you do have performance issues, by all means, optimize!
 
-### Why is my function being called every time the component re-renders?
+### Why is my function being called every time the component renders?
 
 Make sure you aren't _calling the function_ when you pass it to the component:
 

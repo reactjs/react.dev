@@ -163,7 +163,7 @@ function withSubscription(WrappedComponent, selectData) {
 }
 ```
 
-Note that an HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, an HOC *composes* the original component by *wrapping* it in a container component. An HOC is a pure function with zero side-effects.
+Note that a HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, a HOC *composes* the original component by *wrapping* it in a container component. A HOC is a pure function with zero side-effects.
 
 And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
 
@@ -173,7 +173,7 @@ Like components, the contract between `withSubscription` and the wrapped compone
 
 ## Don't Mutate the Original Component. Use Composition.
 
-Resist the temptation to modify a component's prototype (or otherwise mutate it) inside an HOC.
+Resist the temptation to modify a component's prototype (or otherwise mutate it) inside a HOC.
 
 ```js
 function logProps(InputComponent) {
@@ -217,7 +217,7 @@ You may have noticed similarities between HOCs and a pattern called **container 
 
 ## Convention: Pass Unrelated Props Through to the Wrapped Component
 
-HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from an HOC has a similar interface to the wrapped component.
+HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
 
 HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
 
@@ -269,7 +269,7 @@ const ConnectedComment = connect(commentSelector, commentActions)(CommentList);
 ```js
 // connect is a function that returns another function
 const enhance = connect(commentListSelector, commentListActions);
-// The returned function is an HOC, which returns a component that is connected
+// The returned function is a HOC, which returns a component that is connected
 // to the Redux store
 const ConnectedComment = enhance(CommentList);
 ```
@@ -297,7 +297,7 @@ The `compose` utility function is provided by many third-party libraries includi
 
 ## Convention: Wrap the Display Name for Easy Debugging
 
-The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of an HOC.
+The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
 
 The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named `withSubscription`, and the wrapped component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
 
@@ -322,7 +322,7 @@ Higher-order components come with a few caveats that aren't immediately obvious 
 
 React's diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
 
-Normally, you shouldn't need to think about this. But it matters for HOCs because it means you can't apply an HOC to a component within the render method of a component:
+Normally, you shouldn't need to think about this. But it matters for HOCs because it means you can't apply a HOC to a component within the render method of a component:
 
 ```js
 render() {
@@ -338,18 +338,18 @@ The problem here isn't just about performance — remounting a component causes 
 
 Instead, apply HOCs outside the component definition so that the resulting component is created only once. Then, its identity will be consistent across renders. This is usually what you want, anyway.
 
-In those rare cases where you need to apply an HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
+In those rare cases where you need to apply a HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
 
 ### Static Methods Must Be Copied Over
 
 Sometimes it's useful to define a static method on a React component. For example, Relay containers expose a static method `getFragment` to facilitate the composition of GraphQL fragments.
 
-When you apply an HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.
+When you apply a HOC to a component, though, the original component is wrapped with a container component. That means the new component does not have any of the static methods of the original component.
 
 ```js
 // Define a static method
 WrappedComponent.staticMethod = function() {/*...*/}
-// Now apply an HOC
+// Now apply a HOC
 const EnhancedComponent = enhance(WrappedComponent);
 
 // The enhanced component has no static method
@@ -394,7 +394,7 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 ### Refs Aren't Passed Through
 
-While the convention for higher-order components is to pass through all props to the wrapped component, it's not possible to pass through refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of an HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+While the convention for higher-order components is to pass through all props to the wrapped component, it's not possible to pass through refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
 
 If you find yourself facing this problem, the ideal solution is to figure out how to avoid using `ref` at all. Occasionally, users who are new to the React paradigm rely on refs in situations where a prop would work better.
 

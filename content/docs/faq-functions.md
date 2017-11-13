@@ -113,22 +113,23 @@ This is equivalent to calling `.bind`:
 #### Example: Passing params using arrow functions
 
 ```jsx
-class Component extends React.Component {
+const A = 65 // ASCII character code
+class Alphabet extends React.Component {
   state = {
-      justClicked: 0,
-      items: Array.from({length: 5}, (_, i) => i)
+      justClicked: null,
+      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
   }
   
-  handleClick = i => this.setState({ justClicked: i })
+  handleClick = letter => this.setState({ justClicked: letter })
   
   render () {
     return (
       <div>
         Just clicked: {this.state.justClicked}
         <ul>
-          { this.state.items.map(i => 
-            <li onClick={() => this.handleClick(i)}>
-              Item: {i}
+          { this.state.letters.map(letter => 
+            <li key={letter} onClick={() => this.handleClick(letter)}>
+              {letter}
             </li>
           ) }
         </ul>
@@ -143,15 +144,16 @@ class Component extends React.Component {
 Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
 
 ```jsx
-class Component extends React.Component {
+const A = 65 // ASCII character code
+class Alphabet extends React.Component {
   state = {
-      justClicked: 0,
-      items: Array.from({length: 5}, (_, i) => i)
+      justClicked: null,
+      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
   }
   
   handleClick = event => {
     this.setState({
-      justClicked: event.target.dataset.i
+      justClicked: event.target.dataset.letter
     })
   }
   
@@ -160,9 +162,9 @@ class Component extends React.Component {
       <div>
         Just clicked: {this.state.justClicked}
         <ul>
-          { this.state.items.map(i => 
-            <li data-i={i} onClick={this.handleClick}>
-              Item: {i}
+          { this.state.letters.map(letter => 
+            <li key={letter} data-letter={letter} onClick={this.handleClick}>
+              {letter}
             </li>
           ) }
         </ul>

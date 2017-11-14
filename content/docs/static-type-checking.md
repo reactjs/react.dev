@@ -24,10 +24,9 @@ yarn add --dev babel-preset-flow
 npm install --save-dev babel-preset-flow
 ```
 
-Then add `flow` to your Babel presets config.
+Then add `flow` to your Babel presets config (`.babelrc`).
 
 ```json
-// .babelrc
 {
   "presets": ["flow"]
 }

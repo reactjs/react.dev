@@ -142,7 +142,7 @@ As a last resort, you can pass item's index in the array as a key. This can work
 
 There can also be issues with the state of a component in a list if indexes are used as keys. The state of an item in a list (or any deep state inside of it) will stay attached to the original position of the item, even if the item has “moved” in the data source. This is particularly noticeable with inputs retaining their values in the original positions even when their parent components reorder or are prepended to.
 
-[Here](http://codepen.io/ajcumine/pen/KmVWmQ?editors=0010) is an example of the issues that can be caused by using indexes as keys on CodePen, and [here](https://codepen.io/ajcumine/pen/ZKQeJM?editors=0010) is a updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues.
+[Here](codepen://reconciliation/index-used-as-key) is an example of the issues that can be caused by using indexes as keys on CodePen, and [here](codepen://reconciliation/no-index-used-as-key) is a updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues.
 
 ## Tradeoffs
 

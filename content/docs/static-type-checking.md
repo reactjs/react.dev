@@ -61,4 +61,4 @@ You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScr
 
 ## Other Languages
 
-Note there are also other languages compiling to JS and compatible with React, like [ReasonML](https://reasonml.github.io/reason-react/) or [F#/Fable](http://fable.io/) with [elmish-react](https://fable-elmish.github.io/react/), which also offer static type checking among other features. Check their respective sites for more information.
+Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [ReasonML](reasonml.github.io/reason-react) or [F#/Fable](http://fable.io) with [elmish-react](fable-elmish.github.io/react. Check out their respective sites for more information.

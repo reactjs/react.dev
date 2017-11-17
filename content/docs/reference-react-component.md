@@ -162,6 +162,10 @@ Beware of this pattern, as state won't be up-to-date with any props update. Inst
 
 If you "fork" props by using them for state, you might also want to implement [`componentWillReceiveProps(nextProps)`](#componentwillreceiveprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone.
 
+> Note
+>
+> Some libraries, such as React Router, might use [context](/docs/context.html) to facilitate communication between components. If you implement a [constructor](/docs/context.html#referencing-context-in-lifecycle-methods) and use one of these libraries, make sure to call `super(props, context)` from the constructor so that `context` is available on the component.
+
 * * *
 
 ### `componentWillMount()`
@@ -283,7 +287,7 @@ A class component becomes an error boundary if it defines this lifecycle method.
 For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Note
-> 
+>
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
 * * *

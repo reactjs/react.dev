@@ -73,11 +73,11 @@ rm -f src/*
 
 6. Add these three lines to the top of `index.js` in the `src/` folder:
 
-    ```js
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import './index.css';
-    ```
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+```
 
 Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
 

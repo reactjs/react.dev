@@ -80,10 +80,11 @@
     "ci-check": "yarn prettier:diff && yarn lint && yarn flow",
     "dev": "gatsby develop -H 0.0.0.0",
     "lint": "eslint .",
-    "netlify": "yarn install && yarn build",
+    "netlify": "yarn install && yarn translations && yarn build",
     "prettier": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "prettier:diff": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
-    "reset": "rimraf ./.cache && rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete"
+    "reset": "rimraf ./.cache && rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete",
+    "translations": "node ./crowdin/download"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.6.0",

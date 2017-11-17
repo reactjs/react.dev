@@ -78,6 +78,7 @@
     "check-all": "npm-run-all prettier --parallel lint flow",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow",
     "dev": "gatsby develop -H 0.0.0.0",
+    "flow": "flow",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
     "prettier": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",

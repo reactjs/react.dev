@@ -40,13 +40,11 @@ npm install --save-dev flow-bin
 npm run flow init
 ```
 
-The first command installs the latest version of Flow into your project.
-
-The second command creates a Flow configuration file that you will need to commit.
+The first command installs the latest version of Flow into your project. The second command creates a Flow configuration file that you will need to commit.
 
 Finally, add `flow` to the `"scripts"` section of your `package.json`:
 
-```js{6}
+```js{4}
 {
   // ...
   "scripts": {
@@ -89,7 +87,7 @@ npm install --save-dev babel-preset-flow
 
 Then add `flow` to your [Babel configuration](http://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
 
-```json{3}
+```js{3}
 {
   "presets": [
     "flow",

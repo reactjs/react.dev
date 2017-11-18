@@ -83,7 +83,7 @@ If you use npm, run:
 npm install --save-dev babel-preset-flow
 ```
 
-Then add `flow` to your [Babel configuration](http://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
+Then add the `flow` preset to your [Babel configuration](http://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
 
 ```js{3}
 {

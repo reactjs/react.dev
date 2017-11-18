@@ -135,13 +135,14 @@ By default, Flow only checks the files that include this annotation:
 
 Typically it is placed at the top of a file. Try adding it to some files in your project and run `yarn flow` or `npm run flow` to see if Flow already found any issues.
 
-There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation.
+There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation. This can be too noisy for existing projects, but is reasonable for a new project if you want to fully type it with Flow.
 
 Now you're all set! We recommend to check out the following resources to learn more about Flow:
 
 * [Flow Documentation: Type Annotations](https://flow.org/en/docs/types/)
 * [Flow Documentation: Editors](https://flow.org/en/docs/editors/)
 * [Flow Documentation: React](https://flow.org/en/docs/react/)
+* [Linting in Flow](https://medium.com/flow-type/linting-in-flow-7709d7a7e969)
 
 ## TypeScript
 

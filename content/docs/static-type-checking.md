@@ -10,7 +10,9 @@ Static type checkers like [Flow](https://flowtype.org/) and [TypeScript](https:/
 
 ## Flow
 
-Flow is a static type checker for your JavaScript code. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early.
+[Flow](https://flow.org/) is a static type checker for your JavaScript code. Like React, it is developed at Facebook.
+
+Flow lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
 
 To use Flow, you need to:
 
@@ -18,9 +20,11 @@ To use Flow, you need to:
 * Ensure that Flow syntax is stripped from the compiled code.
 * Add type annotations and run Flow to check them.
 
+We will explain these steps below in detail.
+
 ### Adding Flow to a Project
 
-First, navigate to your project directory in the terminal.
+First, navigate to your project directory in the terminal. You will need to run two commands.
 
 If you use [Yarn](https://yarnpkg.com/), run:
 
@@ -42,13 +46,13 @@ The second command creates a Flow configuration file that you will need to commi
 
 Finally, add `flow` to the `"scripts"` section of your `package.json`:
 
-```diff
+```js{6}
 {
   // ...
   "scripts": {
+    "flow": "flow",
     // ...
-+   "flow": "flow"
-  }
+  },
   // ...
 }
 ```
@@ -138,6 +142,8 @@ Now you're all set! We recommend to check out the following resources to learn m
 
 ## TypeScript
 
+[TypeScript](https://www.typescriptlang.org/) is a programming language developed by Microsoft. It is a typed superset of JavaScript, and includes its own compiler.
+
 You can learn more about using TypeScript with React [here](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
 ### Using TypeScript with Create React App
@@ -152,6 +158,12 @@ Note that it is a **third party** project, and is not a part of Create React App
 
 You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
+## Reason
+
+[Reason](https://reasonml.github.io/) is not a new language; it's a new syntax and toolchain powered by the battle-tested language, [OCaml](http://ocaml.org/). Reason gives OCaml a familiar syntax geared toward JavaScript programmers, and caters to the existing NPM/Yarn workflow folks already know.
+
+Reason is developed at Facebook, and is used in some of its products like Messenger. It is still somewhat experimental but it has [dedicated React bindings](https://reasonml.github.io/reason-react/) maintained by Facebook and a [vibrant community](https://reasonml.github.io/community/).
+
 ## Other Languages
 
-Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [ReasonML](reasonml.github.io/reason-react) or [F#/Fable](http://fable.io) with [elmish-react](fable-elmish.github.io/react). Check out their respective sites for more information.
+Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [F#/Fable](http://fable.io) with [elmish-react](https://fable-elmish.github.io/react). Check out their respective sites for more information, and feel free to add more statically typed languages that work with React to this page!

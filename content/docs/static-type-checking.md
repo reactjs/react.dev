@@ -12,6 +12,19 @@ Static type checkers like [Flow](https://flowtype.org/) and [TypeScript](https:/
 
 Below are instructions to add Flow to your React application. (You can learn more about using Flow with React [here](https://flow.org/en/docs/react/).)
 
+### Using Flow with Create React App
+
+[Create React App](https://github.com/facebookincubator/create-react-app) supports Flow by default. Just [install Flow](https://flow.org/en/docs/install/) and create a `.flowconfig` file by running `flow init`.
+
+```bash
+create-react-app my-app
+cd my-app
+yarn add --dev flow-bin
+yarn run flow init
+```
+
+Flow will now be run as part of `create-react-app`'s scripts.
+
 ### Using Flow with Babel
 
 First install Babel. If you have not already done this, here is a [helpful setup guide](http://babeljs.io/docs/setup/).
@@ -31,19 +44,6 @@ Then add `flow` to your Babel presets config (`.babelrc`).
   "presets": ["flow"]
 }
 ```
-
-### Using Flow with Create React App
-
-[Create React App](https://github.com/facebookincubator/create-react-app) supports Flow by default. Just [install Flow](https://flow.org/en/docs/install/) and create a `.flowconfig` file by running `flow init`.
-
-```bash
-create-react-app my-app
-cd my-app
-yarn add --dev flow-bin
-yarn run flow init
-```
-
-Flow will now be run as part of `create-react-app`'s scripts.
 
 ## TypeScript
 

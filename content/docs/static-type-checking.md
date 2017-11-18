@@ -10,30 +10,76 @@ Static type checkers like [Flow](https://flowtype.org/) and [TypeScript](https:/
 
 ## Flow
 
-Below are instructions to add Flow to your React application. (You can learn more about using Flow with React [here](https://flow.org/en/docs/react/).)
+Flow is a static type checker for your JavaScript code. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early.
 
-### Using Flow with Create React App
+To use Flow, you need to:
 
-[Create React App](https://github.com/facebookincubator/create-react-app) supports Flow by default. Just [install Flow](https://flow.org/en/docs/install/) and create a `.flowconfig` file by running `flow init`.
+* Add Flow to your project as a dependency.
+* Ensure that Flow syntax is stripped from the compiled code.
+* Add type annotations and run Flow to check them.
+
+### Adding Flow to a Project
+
+First, navigate to your project directory in the terminal.
+
+If you use [Yarn](https://yarnpkg.com/), run:
 
 ```bash
-create-react-app my-app
-cd my-app
 yarn add --dev flow-bin
 yarn run flow init
 ```
 
-Flow will now be run as part of `create-react-app`'s scripts.
+If you use [npm](https://www.npmjs.com/), run:
 
-### Using Flow with Babel
+```bash
+npm install --save-dev flow-bin
+npm run flow init
+```
 
-First install Babel. If you have not already done this, here is a [helpful setup guide](http://babeljs.io/docs/setup/).
+The first command installs the latest version of Flow into your project.
 
-Next install `babel-preset-flow` with either [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/).
+The second command creates a Flow configuration file that you will need to commit.
+
+Finally, add `flow` to the `"scripts"` section of your `package.json`:
+
+```diff
+{
+  // ...
+  "scripts": {
+    // ...
++   "flow": "flow"
+  }
+  // ...
+}
+```
+
+### Stripping Flow Syntax from the Compiled Code
+
+Flow extends the JavaScript language with a special syntax for type annotations. However, browsers aren't aware of this syntax, so we need to make sure it doesn't end up in the compiled JavaScript bundle that is sent to the browser.
+
+The exact way to do this depends on the tools you use to compile JavaScript.
+
+#### Create React App
+
+If your project was set up using [Create React App](https://github.com/facebookincubator/create-react-app), congratulations! The Flow annotations are already being stripped by default so you don't need to do anything else in this step.
+
+#### Babel
+
+>Note:
+>
+>These instructions are *not* for Create React App users. Even though Create React App uses Babel under the hood, it is already configured to understand Flow. Only follow this step if you *don't* use Create React App.
+
+If you manually configured Babel for your project, you will need to install a special preset for Flow.
+
+If you use Yarn, run:
 
 ```bash
 yarn add --dev babel-preset-flow
-# or
+```
+
+If you use npm, run:
+
+```bash
 npm install --save-dev babel-preset-flow
 ```
 
@@ -44,6 +90,51 @@ Then add `flow` to your Babel presets config (`.babelrc`).
   "presets": ["flow"]
 }
 ```
+
+This will let you use the Flow syntax in your code. 
+
+#### Other Build Setups
+
+If you don't use either Create React App or Babel, you can use [flow-remove-types](https://github.com/flowtype/flow-remove-types) to strip the type annotations.
+
+### Running Flow
+
+If you followed the instructions above, you should be able to run Flow for the first time.
+
+```bash
+yarn flow
+```
+
+If you use npm, run:
+
+```bash
+npm run flow
+```
+
+You should see a message like:
+
+```
+No errors!
+✨  Done in 0.17s.
+```
+
+### Adding Flow Type Annotations
+
+By default, Flow only checks the files that include this annotation:
+
+```js
+// @flow
+```
+
+Typically it is placed at the top of a file. Try adding it to some files in your project and run `yarn flow` or `npm run flow` to see if Flow already found any issues.
+
+There is also [an option](https://flow.org/en/docs/config/options/#toc-all-boolean) to force Flow to check *all* files regardless of the annotation.
+
+Now you're all set! We recommend to check out the following resources to learn more about Flow:
+
+* [Flow Documentation: Type Annotations](https://flow.org/en/docs/types/)
+* [Flow Documentation: Editors](https://flow.org/en/docs/editors/)
+* [Flow Documentation: React](https://flow.org/en/docs/react/)
 
 ## TypeScript
 
@@ -56,6 +147,8 @@ You can learn more about using TypeScript with React [here](https://github.com/M
 ```bash
 create-react-app my-app --scripts-version=react-scripts-ts
 ```
+
+Note that it is a **third party** project, and is not a part of Create React App.
 
 You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 

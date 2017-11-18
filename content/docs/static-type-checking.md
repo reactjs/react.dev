@@ -87,15 +87,22 @@ If you use npm, run:
 npm install --save-dev babel-preset-flow
 ```
 
-Then add `flow` to your Babel presets config (`.babelrc`).
+Then add `flow` to your [Babel configuration](http://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
 
-```json
+```json{3}
 {
-  "presets": ["flow"]
+  "presets": [
+    "flow",
+    "react"
+  ]
 }
 ```
 
-This will let you use the Flow syntax in your code. 
+This will let you use the Flow syntax in your code.
+
+>Note:
+>
+>Flow does not require the `react` preset, but they are often used together. Flow itself understands JSX syntax out of the box.
 
 #### Other Build Setups
 

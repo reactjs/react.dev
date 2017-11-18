@@ -10,9 +10,7 @@ Static type checkers like [Flow](https://flowtype.org/) and [TypeScript](https:/
 
 ## Flow
 
-[Flow](https://flow.org/) is a static type checker for your JavaScript code. Like React, it is developed at Facebook.
-
-Flow lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
+[Flow](https://flow.org/) is a static type checker for your JavaScript code. It is developed at Facebook and is often used with React. It lets you annotate the variables, functions, and React components with a special type syntax, and catch mistakes early. You can read an [introduction to Flow](https://flow.org/en/docs/getting-started/) to learn its basics.
 
 To use Flow, you need to:
 

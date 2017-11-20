@@ -8,18 +8,18 @@ category: FAQ
 
 ### Is there a recommended way to structure React projects?
 
-One common way to structure projects is locate CSS, JSX, and tests together inside folders grouped by feature or route.
+One common way to structure projects is locate CSS, JS, and tests together inside folders grouped by feature or route.
 
 ```
 FeatureA
-  index.jsx
-  ComponentA.jsx
-  ComponentA.scss
+  index.js
+  ComponentA.js
+  ComponentA.css
   ComponentA.test.js
-  Helper.jsx
+  Helper.js
   Helper.test.js
 FeatureB
-  index.jsx
-  ComponentB.jsx
-  ComponentB.test.jsx
+  index.js
+  ComponentB.js
+  ComponentB.test.js
 ```

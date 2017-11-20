@@ -16,6 +16,20 @@ render() {
 }
 ```
 
+It is common for CSS classes to depend on the component props or state:
+
+```jsx
+render() {
+  let className = 'menu';
+  if (this.props.isActive) {
+    className += ' menu-active';
+  }
+  return <span className={className}>Menu</span>
+}
+```
+
+If you often find yourself writing code like this, [classnames](https://www.npmjs.com/package/classnames) package can simplify it.
+
 ### Can I use inline styles?
 
 Yes, see the docs on styling [here](/docs/dom-elements.html#style).
@@ -32,4 +46,4 @@ CSS-in-JS refers to a pattern where CSS is written with Javascript, then extract
 
 ### Can I do animations in React?
 
-React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/), for example.
+React can be used to power animations. See [React Transition Group](https://reactcommunity.org/react-transition-group/) and [React Motion](https://github.com/chenglou/react-motion), for example.

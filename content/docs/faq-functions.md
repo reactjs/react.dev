@@ -25,13 +25,13 @@ There are several ways to make sure functions have access to component attribute
 ```jsx
 class Foo extends Component {
   constructor () {
-    this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    console.log('Click happened')
+    console.log('Click happened');
   }
   render() {
-    return <button onClick={this.handleClick}>Click Me</button>
+    return <button onClick={this.handleClick}>Click Me</button>;
   }
 }
 ```
@@ -40,11 +40,12 @@ class Foo extends Component {
 
 ```jsx
 class Foo extends Component {
+  // Note: this syntax is experimental and not standardized yet.
   handleClick = () => {
-    console.log('Click happened')
+    console.log('Click happened');
   }
   render() {
-    return <button onClick={this.handleClick}>Click Me</button>
+    return <button onClick={this.handleClick}>Click Me</button>;
   }
 }
 ```
@@ -54,10 +55,10 @@ class Foo extends Component {
 ```jsx
 class Foo extends Component {
   handleClick () {
-    console.log('Click happened')
+    console.log('Click happened');
   }
   render() {
-    return <button onClick={this.handleClick.bind(this)}>Click Me</button>
+    return <button onClick={this.handleClick.bind(this)}>Click Me</button>;
   }
 }
 ```
@@ -71,10 +72,10 @@ class Foo extends Component {
 ```jsx
 class Foo extends Component {
   handleClick () {
-    console.log('Click happened')
+    console.log('Click happened');
   }
   render() {
-    return <button onClick={() => this.handleClick()}>Click Me</button>
+    return <button onClick={() => this.handleClick()}>Click Me</button>;
   }
 }
 ```
@@ -89,14 +90,42 @@ Generally speaking, yes, it is OK, and it is often the easiest way to pass param
 
 If you do have performance issues, by all means, optimize!
 
+### Why is binding necessary at all?
+
+In JavaScript, these two code snippets are **not** equivalent:
+
+```js
+obj.method();
+```
+
+```js
+var method = obj.method();
+method();
+```
+
+Binding methods helps ensure that the second snippet works the same way as the first one.
+
+With React, typically you only need to bind the methods you *pass* to other components. For example, `<button onClick={this.handleClick}>` passes `this.handleClick` so you want to bind it. However, it is unnecessary to bind the `render` method or the lifecycle methods: we don't pass them to other components.
+
+[This post by Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) explains what binding is, and how functions work in JavaScript, in detail.
+
 ### Why is my function being called every time the component renders?
 
 Make sure you aren't _calling the function_ when you pass it to the component:
 
 ```jsx
 render() {
-  {/* handleClick is called instead of passed as a reference! */}
+  // Wrong: handleClick is called instead of passed as a reference!
   return <button onClick={this.handleClick()}>Click Me</button> 
+}
+```
+
+Instead, *pass the function itself* (without parens):
+
+```jsx
+render() {
+  // Correct: handleClick is passed as a reference!
+  return <button onClick={this.handleClick}>Click Me</button> 
 }
 ```
 
@@ -105,37 +134,42 @@ render() {
 You can use an arrow function to wrap around an event handler and pass parameters: 
 
 ```jsx
-<Element onClick={() => this.handleClick(id)} />
+<button onClick={() => this.handleClick(id)} />
 ```
 
 This is equivalent to calling `.bind`:
 
 ```jsx
-<Element onClick={this.handleClick.bind(this, id)} />
+<button onClick={this.handleClick.bind(this, id)} />
 ```
 
 #### Example: Passing params using arrow functions
 
 ```jsx
 const A = 65 // ASCII character code
+
 class Alphabet extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
       justClicked: null,
-      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
+      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i)).
+    };
   }
-  
-  handleClick = letter => this.setState({ justClicked: letter })
-  
+  handleClick(letter) {
+    this.setState({ justClicked: letter });
+  }
   render () {
     return (
       <div>
         Just clicked: {this.state.justClicked}
         <ul>
-          { this.state.letters.map(letter => 
+          {this.state.letters.map(letter => 
             <li key={letter} onClick={() => this.handleClick(letter)}>
               {letter}
             </li>
-          ) }
+          )}
         </ul>
       </div>
    )
@@ -149,28 +183,33 @@ Alternately, you can use DOM APIs to store data needed for event handlers. Consi
 
 ```jsx
 const A = 65 // ASCII character code
+
 class Alphabet extends React.Component {
-  state = {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
       justClicked: null,
       letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
+    };
   }
-  
-  handleClick = event => {
+
+  handleClick(e) {
     this.setState({
-      justClicked: event.target.dataset.letter
-    })
+      justClicked: e.target.dataset.letter
+    });
   }
   
-  render () {
+  render() {
     return (
       <div>
         Just clicked: {this.state.justClicked}
         <ul>
-          { this.state.letters.map(letter => 
+          {this.state.letters.map(letter => 
             <li key={letter} data-letter={letter} onClick={this.handleClick}>
               {letter}
             </li>
-          ) }
+          )}
         </ul>
       </div>
    )
@@ -191,20 +230,26 @@ If you have an event handler such as `onClick` or `onScroll` and want to prevent
 Throttling prevents a function from being called more than once in a given window of time. The example below throttles a "click" handler to prevent calling it more than once per second.
 
 ```jsx
-import throttle from "lodash.throttle";
+import throttle from 'lodash.throttle';
 
 class LoadMoreButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleClickThrottled = throttle(this.handleClick, 1000);
+  }
+
   componentWillUnmount() {
-    this._handleClick.cancel();
+    this.handleClickThrottled.cancel();
   }
 
   render() {
-    return <button onClick={this._handleClick}>Load More</button>;
+    return <button onClick={this.handleClickThrottled}>Load More</button>;
   }
 
-  _handleClick = throttle(() => {
+  handleClick() {
     this.props.loadMore();
-  }, 1000);
+  }
 }
 ```
 
@@ -213,33 +258,39 @@ class LoadMoreButton extends React.Component {
 Debouncing ensures that a function will not be executed until after a certain amount of time has passed since it was last called. This can be useful when you have to perform some expensive calculation in response to an event that might dispatch rapidly (eg scroll or keyboard events). The example below debounces text input with a 250ms delay.
 
 ```jsx
-import debounce from "lodash.debounce";
+import debounce from 'lodash.debounce';
 
 class Searchbox extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+    this.emitChangeDebounced = debounce(this.emitChange, 250);
+  }
+
   componentWillUnmount() {
-    this._handleChangeDebounced.cancel();
+    this.emitChangeDebounced.cancel();
   }
 
   render() {
     return (
       <input
         type="text"
-        onChange={this._handleChange}
+        onChange={this.handleChange}
         placeholder="Search..."
         defaultValue={this.props.value}
       />
     );
   }
 
-  _handleChange = event => {
+  handleChange(e) {
     // React pools events, so we read the value before debounce.
     // Alternately we could call `event.persist()` and pass the entire event.
     // For more info see reactjs.org/docs/events.html#event-pooling
-    this._handleChangeDebounced(event.target.value);
-  };
+    this.emitChangeDebounced(e.target.value);
+  }
 
-  _handleChangeDebounced = debounce(value => {
+  emitChange(value) {
     this.props.onChange(value);
-  }, 250);
+  }
 }
 ```

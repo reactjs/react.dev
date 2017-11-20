@@ -99,7 +99,7 @@ obj.method();
 ```
 
 ```js
-var method = obj.method();
+var method = obj.method;
 method();
 ```
 
@@ -160,7 +160,7 @@ class Alphabet extends React.Component {
   handleClick(letter) {
     this.setState({ justClicked: letter });
   }
-  render () {
+  render() {
     return (
       <div>
         Just clicked: {this.state.justClicked}

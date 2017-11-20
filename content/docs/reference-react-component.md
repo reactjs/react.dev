@@ -347,7 +347,7 @@ Subsequent calls will override values from previous calls in the same cycle, so 
 
 ```js
 this.setState((prevState) => {
-  return {counter: prevState.quantity + 1};
+  return {quantity: prevState.quantity + 1};
 });
 ```
 

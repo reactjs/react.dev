@@ -182,8 +182,6 @@ class Alphabet extends React.Component {
 
 If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, you can wrap the handler with a utility such as [`_.debounce`](https://lodash.com/docs#debounce) or [`_.throttle`](https://lodash.com/docs#throttle). For a given `delay`, say `100ms`, debouncing calls the handler after activity stops for that amount of time; throttling prevents the handler from being called more than once per `delay`. See a visualization [here](http://demo.nimius.net/debounce_throttle/).
 
-Note: Call `event.persist()` when accessing events asynchronously to prevent the synthetic event from being recycled by [event pooling](/docs/events.html#event-pooling). See the debounce [example](#debounce) below.
-
 #### Throttle
 
 ```jsx
@@ -207,9 +205,11 @@ import debounce from 'lodash.debounce'
 
 class Searchbox extends React.Component {
   handleChange = event => {
-    event.persist() // https://reactjs.org/docs/events.html#event-pooling
-    this._handleChangeDebounced(event.target.value)
-  };
+    // React pools events, so we read the value before debounce.
+    // Alternately we could call `event.persist()`
+    // For more info see reactjs.org/docs/events.html#event-pooling
+    this._handleChangeDebounced(event.target.value);
+  }
 
   _handleChangeDebounced = debounce(value => {
     this.props.onChange(value)

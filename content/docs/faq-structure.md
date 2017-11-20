@@ -12,14 +12,14 @@ One common way to structure projects is locate CSS, JSX, and tests together insi
 
 ```
 FeatureA
-  index.jsx
-  ComponentA.jsx
-  ComponentA.scss
+  index.js
+  ComponentA.js
+  ComponentA.css
   ComponentA.test.js
-  Helper.jsx
+  Helper.js
   Helper.test.js
 FeatureB
-  index.jsx
-  ComponentB.jsx
-  ComponentB.test.jsx
+  index.js
+  ComponentB.js
+  ComponentB.test.js
 ```

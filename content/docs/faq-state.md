@@ -17,14 +17,15 @@ Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the
 Example of code that will not behave as expected:
 
 ```jsx
-incrementCount = () => {
-  this.setState({count: this.state.count + 1})
+incrementCount() {
+  // Note: this will *not* work as intended.
+  this.setState({count: this.state.count + 1});
 }
 
 handleSomething() {
   // this.state.count is 1, then we do this:
-  this.incrementCount()
-  this.incrementCount() // state wasn't updated yet, so this sets 2 not 3
+  this.incrementCount();
+  this.incrementCount(); // state wasn't updated yet, so this sets 2 not 3
 }
 ```
 
@@ -39,16 +40,16 @@ Pass a function instead of an object to setState to ensure the call always uses 
 Passing an update function allows you to access the current state value inside the updater. Since `setState` calls are batched, this lets you chain updates and ensure they build on top of each other instead of conflicting:
 
 ```jsx
-incrementCount = () => {
+incrementCount() {
   this.setState((prevState) => {
     return {count: prevState.count + 1}
-  })
+  });
 }
 
 handleSomething() {
   // this.state.count is 1, then we do this:
-  this.incrementCount()
-  this.incrementCount() // count is now 3
+  this.incrementCount();
+  this.incrementCount(); // count is now 3
 }
 ```
 

@@ -90,6 +90,25 @@ Generally speaking, yes, it is OK, and it is often the easiest way to pass param
 
 If you do have performance issues, by all means, optimize!
 
+### Why is binding necessary at all?
+
+In JavaScript, these two code snippets are **not** equivalent:
+
+```js
+obj.method();
+```
+
+```js
+var method = obj.method();
+method();
+```
+
+Binding methods helps ensure that the second snippet works the same way as the first one.
+
+With React, typically you only need to bind the methods you *pass* to other components. For example, `<button onClick={this.handleClick}>` passes `this.handleClick` so you want to bind it. However, it is unnecessary to bind the `render` method or the lifecycle methods: we don't pass them to other components.
+
+[This post by Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) explains what binding is, and how functions work in JavaScript, in detail.
+
 ### Why is my function being called every time the component renders?
 
 Make sure you aren't _calling the function_ when you pass it to the component:

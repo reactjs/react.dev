@@ -185,7 +185,7 @@ If you have an event handler such as `onClick` or `onScroll` and want to prevent
 #### Throttle
 
 ```jsx
-import { throttle } from 'lodash'
+import throttle from 'lodash.throttle'
 
 class LoadMoreButton extends React.Component {
   handleClick = throttle(() => {
@@ -201,18 +201,17 @@ class LoadMoreButton extends React.Component {
 #### Debounce
 
 ```jsx
-import { debounce } from 'lodash'
+import debounce from 'lodash.debounce'
 
 class Searchbox extends React.Component {
   handleChange = event => {
     event.persist()
-    this._handleChangeDebounced(event)
+    this._handleChangeDebounced(event.target.value)
   };
 
-  _handleChangeDebounced = debounce(event => {
-      this.props.onChange(event.target.value)
-    }, 250)
-  };
+  _handleChangeDebounced = debounce(value => {
+    this.props.onChange(value)
+  }, 250)
 
   render() {
     return (

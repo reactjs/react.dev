@@ -32,20 +32,15 @@ class StickyResponsiveSidebar extends Component<Props, State> {
     this.state = {
       open: false,
     };
-    this._openNavMenu = this._openNavMenu.bind(this);
-    this._closeNavMenu = this._closeNavMenu.bind(this);
   }
 
-  _openNavMenu: Function;
-  _closeNavMenu: Function;
-
-  _openNavMenu() {
+  _openNavMenu = () => {
     this.setState({open: !this.state.open});
-  }
+  };
 
-  _closeNavMenu() {
+  _closeNavMenu = () => {
     this.setState({open: false});
-  }
+  };
 
   render() {
     const {open} = this.state;

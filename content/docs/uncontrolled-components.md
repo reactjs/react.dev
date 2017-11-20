@@ -6,11 +6,11 @@ permalink: docs/uncontrolled-components.html
 
 In most cases, we recommend using [controlled components](/docs/forms.html) to implement forms. In a controlled component, form data is handled by a React component. The alternative is uncontrolled components, where form data is handled by the DOM itself.
 
-To write an uncontrolled component, instead of writing an event handler for every state update, you can [use a ref](/docs/refs-and-the-dom.html) to get form values from the DOM.
+To write an uncontrolled component, instead of writing an event handler for every state update, you can read form values from the [form](https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement#Properties) itself.
 
 For example, this code accepts a single name in an uncontrolled component:
 
-```javascript{8,17}
+```javascript{9,10,18}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
@@ -18,8 +18,9 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.value);
     event.preventDefault();
+    const name = event.target.elements.name.value;
+    alert(`A name was submitted: ${name}`);
   }
 
   render() {
@@ -27,7 +28,7 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" ref={(input) => this.input = input} />
+          <input type="text" name="name" />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -36,6 +37,7 @@ class NameForm extends React.Component {
 }
 ```
 
+*(todo: update codepen)*  
 [Try it on CodePen.](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
 Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
@@ -55,7 +57,7 @@ render() {
         <input
           defaultValue="Bob"
           type="text"
-          ref={(input) => this.input = input} />
+          name="name" />
       </label>
       <input type="submit" value="Submit" />
     </form>
@@ -63,4 +65,4 @@ render() {
 }
 ```
 
-Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` supports `defaultValue`.
+Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` support `defaultValue`.

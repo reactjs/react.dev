@@ -2,14 +2,14 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
 
 import React, {Component} from 'react';
-import PropTypes from 'prop-types';
 
-function replaceArgs(msg, argList) {
+function replaceArgs(msg: string, argList: Array<any>): string {
   let argIdx = 0;
   return msg.replace(/%s/g, function() {
     const arg = argList[argIdx++];
@@ -17,7 +17,7 @@ function replaceArgs(msg, argList) {
   });
 }
 
-function urlify(str) {
+function urlify(str: string): Array<any> {
   const urlRegex = /(https:\/\/fb\.me\/[a-z\-]+)/g;
 
   const segments = str.split(urlRegex);
@@ -25,6 +25,7 @@ function urlify(str) {
   for (let i = 0; i < segments.length; i++) {
     if (i % 2 === 1) {
       segments[i] = (
+        // $FlowFixMe: We need to properly trace this error: React element 'a' inconsistent use of library definitions
         <a key={i} target="_blank" rel="noopener" href={segments[i]}>
           {segments[i]}
         </a>
@@ -36,7 +37,7 @@ function urlify(str) {
 }
 
 // ?invariant=123&args[]=foo&args[]=bar
-function parseQueryString(location) {
+function parseQueryString(location: Location): null | Array<any> {
   const rawQueryString = location.search.substring(1);
   if (!rawQueryString) {
     return null;
@@ -58,7 +59,12 @@ function parseQueryString(location) {
   return [code, args];
 }
 
-function ErrorResult(props) {
+type ErrorResultProps = {
+  code: mixed,
+  msg: string,
+};
+
+function ErrorResult(props: ErrorResultProps) {
   const code = props.code;
   const errorMsg = props.msg;
 
@@ -79,8 +85,18 @@ function ErrorResult(props) {
   );
 }
 
-class ErrorDecoder extends Component {
-  constructor(...args) {
+type ErrorDecoderProps = {
+  errorCodesString: string,
+  location: Location,
+};
+
+type State = {
+  code: mixed,
+  errorMsg: string,
+};
+
+class ErrorDecoder extends Component<ErrorDecoderProps, State> {
+  constructor(...args: Array<any>) {
     super(...args);
 
     this.state = {
@@ -108,10 +124,5 @@ class ErrorDecoder extends Component {
     return <ErrorResult code={this.state.code} msg={this.state.errorMsg} />;
   }
 }
-
-ErrorDecoder.propTypes = {
-  errorCodesString: PropTypes.string.isRequired,
-  location: PropTypes.object.isRequired,
-};
 
 export default ErrorDecoder;

@@ -2,9 +2,12 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
+
+// FIXME: I actually cannot figure out where this Template is used
 
 // Polyfills for IE
 import 'array-from';
@@ -23,7 +26,12 @@ import 'glamor/reset';
 import 'css/reset.css';
 import 'css/algolia.css';
 
-class Template extends Component {
+type Props = {
+  children: any, // I don't think this is a Node type
+  location: Location,
+};
+
+class Template extends Component<Props> {
   render() {
     const {children, location} = this.props;
 

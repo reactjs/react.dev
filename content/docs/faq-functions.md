@@ -177,3 +177,69 @@ class Alphabet extends React.Component {
   }
 }
 ```
+
+### How can I prevent a function from being called too quickly or too many times in a row?
+
+If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, you can wrap the handler with a utility such as [`_.debounce`](https://lodash.com/docs#debounce) or [`_.throttle`](https://lodash.com/docs#throttle). See [this visualization](http://demo.nimius.net/debounce_throttle/) for a comparison of the two.
+
+> Note:
+>
+> Both `_.debounce` and `_.throttle` provide a `cancel` method to cancel delayed callbacks. You should either call this method from `componentWillUnmount` _or_ check to ensure that the component is still mounted within the delayed function.
+
+#### Throttle
+
+Throttling prevents a function from being called more than once in a given window of time. The example below throttles a "click" handler to prevent calling it more than once per second.
+
+```jsx
+import throttle from "lodash.throttle";
+
+class LoadMoreButton extends React.Component {
+  componentWillUnmount() {
+    this._handleClick.cancel();
+  }
+
+  render() {
+    return <button onClick={this._handleClick}>Load More</button>;
+  }
+
+  _handleClick = throttle(() => {
+    this.props.loadMore();
+  }, 1000);
+}
+```
+
+#### Debounce
+
+Debouncing ensures that a function will not be executed until after a certain amount of time has passed since it was last called. This can be useful when you have to perform some expensive calculation in response to an event that might dispatch rapidly (eg scroll or keyboard events). The example below debounces text input with a 250ms delay.
+
+```jsx
+import debounce from "lodash.debounce";
+
+class Searchbox extends React.Component {
+  componentWillUnmount() {
+    this._handleChangeDebounced.cancel();
+  }
+
+  render() {
+    return (
+      <input
+        type="text"
+        onChange={this._handleChange}
+        placeholder="Search..."
+        defaultValue={this.props.value}
+      />
+    );
+  }
+
+  _handleChange = event => {
+    // React pools events, so we read the value before debounce.
+    // Alternately we could call `event.persist()` and pass the entire event.
+    // For more info see reactjs.org/docs/events.html#event-pooling
+    this._handleChangeDebounced(event.target.value);
+  };
+
+  _handleChangeDebounced = debounce(value => {
+    this.props.onChange(value);
+  }, 250);
+}
+```

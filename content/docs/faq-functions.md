@@ -24,7 +24,8 @@ There are several ways to make sure functions have access to component attribute
 
 ```jsx
 class Foo extends Component {
-  constructor () {
+  constructor(props) {
+    super(props);
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
@@ -54,7 +55,7 @@ class Foo extends Component {
 
 ```jsx
 class Foo extends Component {
-  handleClick () {
+  handleClick() {
     console.log('Click happened');
   }
   render() {
@@ -65,13 +66,13 @@ class Foo extends Component {
 
 >**Note:**
 >
->Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications; (see below).
+>Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications (see below).
 
 #### Arrow Function in Render
 
 ```jsx
 class Foo extends Component {
-  handleClick () {
+  handleClick() {
     console.log('Click happened');
   }
   render() {
@@ -82,7 +83,7 @@ class Foo extends Component {
 
 >**Note:**
 >
->Using an arrow function in render creates a new function each time the component renders, which may have performance implications; (see below).
+>Using an arrow function in render creates a new function each time the component renders, which may have performance implications (see below).
 
 ### Is it OK to use arrow functions in render methods?
 

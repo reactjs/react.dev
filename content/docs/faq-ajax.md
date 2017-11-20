@@ -48,7 +48,7 @@ class MyComponent extends React.Component {
           this.setState({
             isLoaded: true,
             items: result.items
-          })
+          });
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -57,7 +57,7 @@ class MyComponent extends React.Component {
           this.setState({
             isLoaded: true,
             error
-          })        
+          });
         }
       )
   }

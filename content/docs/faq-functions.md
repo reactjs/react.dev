@@ -177,3 +177,52 @@ class Alphabet extends React.Component {
   }
 }
 ```
+
+### How can I prevent a function from being called too quickly or too many times in a row?
+
+If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, you can wrap the handler with a utility such as [`_.debounce`](https://lodash.com/docs#debounce) or [`_.throttle`](https://lodash.com/docs#throttle). For a given `delay`, say `100ms`, debouncing calls the handler after activity stops for that amount of time; throttling prevents the handler from being called more than once per `delay`. See a visualization [here](http://demo.nimius.net/debounce_throttle/).
+
+#### Throttle
+
+```jsx
+import { throttle } from 'lodash'
+
+class LoadMoreButton extends React.Component {
+  handleClick = throttle(() => {
+    this.props.loadMore()
+  }, 100)
+
+  render() {
+    return <button onClick={this.handleClick}>Load More</button>
+  }
+}
+```
+
+#### Debounce
+
+```jsx
+import { debounce } from 'lodash'
+
+class Searchbox extends React.Component {
+  handleChange = event => {
+    event.persist()
+    this._handleChangeDebounced(event)
+  };
+
+  _handleChangeDebounced = debounce(event => {
+      this.props.onChange(event.target.value)
+    }, 250)
+  };
+
+  render() {
+    return (
+      <input
+        type="text"
+        onChange={this.handleChange}
+        placeholder="Search..."
+        defaultValue={this.props.value}
+      />
+    )
+  }
+}
+```

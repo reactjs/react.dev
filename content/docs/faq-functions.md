@@ -96,7 +96,7 @@ Make sure you aren't _calling the function_ when you pass it to the component:
 
 ```jsx
 render() {
-  {/* Wrong: handleClick is called instead of passed as a reference! */}
+  // Wrong: handleClick is called instead of passed as a reference!
   return <button onClick={this.handleClick()}>Click Me</button> 
 }
 ```
@@ -105,7 +105,7 @@ Instead, *pass the function itself* (without parens):
 
 ```jsx
 render() {
-  {/* Correct: handleClick is passed as a reference! */}
+  // Correct: handleClick is passed as a reference!
   return <button onClick={this.handleClick}>Click Me</button> 
 }
 ```
@@ -115,13 +115,13 @@ render() {
 You can use an arrow function to wrap around an event handler and pass parameters: 
 
 ```jsx
-<Element onClick={() => this.handleClick(id)} />
+<button onClick={() => this.handleClick(id)} />
 ```
 
 This is equivalent to calling `.bind`:
 
 ```jsx
-<Element onClick={this.handleClick.bind(this, id)} />
+<button onClick={this.handleClick.bind(this, id)} />
 ```
 
 #### Example: Passing params using arrow functions

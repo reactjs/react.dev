@@ -26,6 +26,10 @@ The documentation is divided into sections to cater to different learning styles
 
 **[FAQ](https://reactjs.org/docs/faq-ajax.html)** has a more conversational tone than the other sections. Here, it's fine to include some content that's not primarily concerned with React, as long as React users are overwhelmingly interested in it (e.g. recommendations on directory structure). It's also okay to show more than a single way to do something in the FAQ, and briefly discuss the tradeoffs. The FAQ prioritizes unblocking people with a working solution over explaining concepts in detail, and can be more opinionated than the rest of the docs, even providing popular library recommendations.
 
+**Try to follow your own instructions.**
+
+When writing step-by-step instructions (e.g. how to install something), try to forget everything you know about the topic, and actually follow the instructions you wrote, a single step at time. Often you will discover that there is implicit knowledge that you forgot to mention, or that there are missing or out-of-order steps in the instructions. Bonus points for getting *somebody else* to follow the steps and watching what they struggle with. Often it would be something very simple that you have not anticipated.
+
 ## Guidelines for Code Examples
 
 ### Syntax
@@ -112,7 +116,7 @@ function hello() {
 Or even multiple ranges:
 
 ````
-```js{2-4,5}
+```js{2-4,6}
 function hello() {
   // these lines
   // will get

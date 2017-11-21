@@ -14,7 +14,7 @@ so that you can understand what actions will and will not be tolerated.
 
 The documentation is divided into sections to cater to different learning styles and use cases. When editing an article, try to match the surrounding text in tone and style. When creating a new article, try to match the tone of the other articles in the same section. Learn about the motivation behind each section below.
 
-**[Tutorial](https://reactjs.org/tutorial/tutorial.html)** is relatively informal, and is designed for people who prefer a hands-on approach to learning, and can tolerate skipping theory in favor of practice. Its goal is to give the reader a feel for a typical React workflow rather than to explain fundamentals in detail. Here we focus on *what* to do and spend less time on *how* or *why* we did it. It is extremely important to do a lot of hand-holding and unambiguously describe every single change. It should be possible for a beginner to mechanically follow every instruction, and still get a working tic-tac-to game.
+**[Tutorial](https://reactjs.org/tutorial/tutorial.html)** is relatively informal, and is designed for people who prefer a hands-on approach to learning, and can tolerate skipping theory in favor of practice. Its goal is to give the reader a feel for a typical React workflow rather than to explain fundamentals in detail. Here we focus on *what* to do and spend less time on *how* or *why* we did it. It is extremely important to do a lot of hand-holding and unambiguously describe every single change. It should be possible for a beginner to mechanically follow every instruction, and still get to a working tic-tac-toe game.
 
 **[Quick Start](https://reactjs.org/docs/hello-world.html)** is designed to introduce fundamental concepts in a step-by-step way. Each individual article in Quick Start builds on the knowledge from the previous ones, so make sure not to add any "cyclical dependencies" between them. It is important that the reader can start with the first article and work their way to the last Quick Start article without ever having to "look ahead" for a definition. This explains some ordering choices (e.g. that state is explained before events, or that "thinking in React" doesn't use refs). Quick Start also serves as a reference manual for React concepts, so it is important to be very strict about their definitions and relationships between them. This is, for example, why we introduce elements before components.
 
@@ -73,3 +73,57 @@ Ignore this rule if you're specifically describing an experimental proposal. Mak
 - Use semicolons.
 - No space between function names and parens (`method() {}` not `method () {}`).
 - When in doubt, use the default style favored by [Prettier](https://prettier.io/playground/).
+
+### Highlighting
+
+Use `js` as the highlighting language in Markdown code blocks:
+
+````
+```js
+// code
+```
+````
+
+Sometimes you'll see blocks with numbers.  
+They tell the website to highlight specific lines.
+
+You can highlight a single line:
+
+````
+```js{2}
+function hello() {
+  // this line will get highlighted
+}
+```
+````
+
+A range of lines:
+
+````
+```js{2-4}
+function hello() {
+  // these lines
+  // will get
+  // highlighted
+}
+```
+````
+
+Or even multiple ranges:
+
+````
+```js{2-4,5}
+function hello() {
+  // these lines
+  // will get
+  // highlighted
+  console.log('hello');
+  // also this one
+  console.log('there');
+}
+```
+````
+
+Be mindful that if you move some code in an example with highlighting, you also need to update the highlighting.
+
+Don't be afraid to often use highlighting! It is very valuable when you need to focus the reader's attention on a particular detail that's easy to miss.

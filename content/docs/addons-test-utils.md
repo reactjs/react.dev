@@ -66,16 +66,16 @@ Simulate an event dispatch on a DOM node with optional `eventData` event data.
 **Clicking an element**
 
 ```javascript
-// <button ref="button">...</button>
-const node = this.refs.button;
+// <button ref={(node) => this.button = node}>...</button>
+const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
 **Changing the value of an input field and then pressing ENTER.**
 
 ```javascript
-// <input ref="input" />
-const node = this.refs.input;
+// <input ref={(node) => this.textInput = node} />
+const node = this.textInput;
 node.value = 'giraffe';
 ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});

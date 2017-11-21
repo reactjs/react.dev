@@ -66,7 +66,7 @@ Then, to create a production build, add the `-p` flag to the `build` command:
 brunch build -p
 ```
 
-Remember that you only need to do this for production builds. You shouldn't pass `-p` flag or apply this plugin in development because it will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't pass the `-p` flag or apply this plugin in development, because it will hide useful React warnings and make the builds much slower.
 
 ### Browserify
 
@@ -147,9 +147,7 @@ For the most efficient webpack production build, make sure to include these plug
 
 ```js
 new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: JSON.stringify('production')
-  }
+  'process.env.NODE_ENV': JSON.stringify('production')
 }),
 new webpack.optimize.UglifyJsPlugin()
 ```

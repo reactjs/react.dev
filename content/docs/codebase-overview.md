@@ -14,45 +14,6 @@ If you want to [contribute to React](/docs/how-to-contribute.html) we hope that 
 
 We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
 
-### Custom Module System
-
-At Facebook, internally we use a custom module system called "Haste". It is similar to [CommonJS](https://nodejs.org/docs/latest/api/modules.html) and also uses `require()` but has a few important differences that often confuse outside contributors.
-
-In CommonJS, when you import a module, you need to specify its relative path:
-
-```js
-// Importing from the same folder:
-var setInnerHTML = require('./setInnerHTML');
-
-// Importing from a different folder:
-var setInnerHTML = require('../utils/setInnerHTML');
-
-// Importing from a deeply nested folder:
-var setInnerHTML = require('../client/utils/setInnerHTML');
-```
-
-However, with Haste **all filenames are globally unique.** In the React codebase, you can import any module from any other module by its name alone:
-
-```js
-var setInnerHTML = require('setInnerHTML');
-```
-
-Haste was originally developed for giant apps like Facebook. It's easy to move files to different folders and import them without worrying about relative paths. The fuzzy file search in any editor always takes you to the correct place thanks to globally unique names.
-
-React itself was extracted from Facebook's codebase and uses Haste for historical reasons. In the future, we will probably [migrate React to use CommonJS or ES Modules](https://github.com/facebook/react/issues/6336) to be more aligned with the community. However, this requires changes in Facebook's internal infrastructure so it is unlikely to happen very soon.
-
-**Haste will make more sense to you if you remember a few rules:**
-
-* All filenames in the React source code are unique. This is why they're sometimes verbose.
-* When you add a new file, make sure you include a [license header](https://github.com/facebook/react/blob/2d7c754f3ba482d69ee3a06dd101ba12cb4592c9/packages/react-dom/src/client/setInnerHTML.js#L1-L8). You can copy it from any existing file. A license header always includes [a line like this](https://github.com/facebook/react/blob/2d7c754f3ba482d69ee3a06dd101ba12cb4592c9/packages/react-dom/src/client/setInnerHTML.js#L7). Change it to match the name of the file you created.
-* Don’t use relative paths when importing. Instead of `require('./setInnerHTML')`, write `require('setInnerHTML')`.
-
-When we compile React for npm, a script copies all the modules into [a single flat directory called `lib`](https://unpkg.com/react@15/lib/) and prepends all `require()` paths with `./`. This way Node, Browserify, webpack, and other tools can understand React build output without being aware of Haste.
-
-**If you're reading React source on GitHub and want to jump to a file, press "t".**
-
-This is a GitHub shortcut for searching the current repo for fuzzy filename matches. Start typing the name of the file you are looking for, and it will show up as the first match.
-
 ### External Dependencies
 
 React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
@@ -249,7 +210,7 @@ Its main goals are:
 * Ability to return multiple elements from `render()`.
 * Better support for error boundaries.
 
-You can read more about it in [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture). While it has shipped with React 16, the async features are not enabled by defaut yet.
+You can read more about it in [React Fiber Architecture](https://github.com/acdlite/react-fiber-architecture). While it has shipped with React 16, the async features are not enabled by default yet.
 
 Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 

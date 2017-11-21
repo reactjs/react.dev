@@ -66,7 +66,7 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 **[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of **[beginner friendly issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Difficulty:+beginner")** that contain bugs which are fairly easy to fix. This is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
 
@@ -95,7 +95,7 @@ In order to accept your pull request, we need you to submit a CLA. You only need
 
 ### Contribution Prerequisites
 
-* You have [Node](https://nodejs.org) installed at v6.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
 * You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
 * You are familiar with Git.
 
@@ -119,12 +119,15 @@ First, run `yarn build`. This will produce pre-built bundles in `build` folder, 
 
 The easiest way to try your changes is to run `yarn build core,dom --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
 
-If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `npm link` to point them to your local `build` folder:
+If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder:
 
 ```sh
-cd your_project
-yarn link ~/path_to_your_react_clone/build/packages/react
-yarn link ~/path_to_your_react_clone/build/packages/react-dom
+cd ~/path_to_your_react_clone/build/packages/react
+yarn link
+cd ~/path_to_your_react_clone/build/packages/react-dom
+yarn link
+cd /path/to/your/project
+yarn link react react-dom
 ```
 
 Every time you run `yarn build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
@@ -144,6 +147,13 @@ However, there are still some styles that the linter cannot pick up. If you are 
 ### Introductory Video
 
 You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
+
+#### Video highlights:
+- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Building and testing React locally
+- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Creating and sending pull requests
+- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Organizing code
+- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
+- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
 
 ### Meeting Notes
 

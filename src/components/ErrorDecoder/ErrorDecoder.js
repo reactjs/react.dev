@@ -7,9 +7,11 @@
 
 'use strict';
 
-import React, {Component} from 'react';
+import React from 'react';
 
-function replaceArgs(msg: string, argList: Array<any>): string {
+import type {Node} from 'react';
+
+function replaceArgs(msg: string, argList: Array<string>): string {
   let argIdx = 0;
   return msg.replace(/%s/g, function() {
     const arg = argList[argIdx++];
@@ -17,28 +19,31 @@ function replaceArgs(msg: string, argList: Array<any>): string {
   });
 }
 
-function urlify(str: string): Array<any> {
+// When the message contains a URL (like https://fb.me/react-refs-must-have-owner),
+// make it a clickable link.
+function urlify(str: string): Node {
   const urlRegex = /(https:\/\/fb\.me\/[a-z\-]+)/g;
 
   const segments = str.split(urlRegex);
 
-  for (let i = 0; i < segments.length; i++) {
+  return segments.map((message, i) => {
     if (i % 2 === 1) {
-      segments[i] = (
-        // $FlowFixMe: We need to properly trace this error: React element 'a' inconsistent use of library definitions
-        <a key={i} target="_blank" rel="noopener" href={segments[i]}>
-          {segments[i]}
+      return (
+        <a key={i} target="_blank" rel="noopener" href={message}>
+          {message}
         </a>
       );
     }
-  }
-
-  return segments;
+    return message;
+  });
 }
 
-// ?invariant=123&args[]=foo&args[]=bar
-function parseQueryString(location: Location): null | Array<any> {
-  const rawQueryString = location.search.substring(1);
+// `?invariant=123&args[]=foo&args[]=bar`
+// or `// ?invariant=123&args[0]=foo&args[1]=bar`
+function parseQueryString(
+  search: string,
+): ?{|code: string, args: Array<string>|} {
+  const rawQueryString = search.substring(1);
   if (!rawQueryString) {
     return null;
   }
@@ -51,20 +56,15 @@ function parseQueryString(location: Location): null | Array<any> {
     const query = decodeURIComponent(queries[i]);
     if (query.indexOf('invariant=') === 0) {
       code = query.slice(10);
-    } else if (query.indexOf('args[]=') === 0) {
-      args.push(query.slice(7));
+    } else if (query.indexOf('args[') === 0) {
+      args.push(query.slice(query.indexOf(']=') + 2));
     }
   }
 
-  return [code, args];
+  return {args, code};
 }
 
-type ErrorResultProps = {
-  code: mixed,
-  msg: string,
-};
-
-function ErrorResult(props: ErrorResultProps) {
+function ErrorResult(props: {|code: ?string, msg: string|}) {
   const code = props.code;
   const errorMsg = props.msg;
 
@@ -85,44 +85,21 @@ function ErrorResult(props: ErrorResultProps) {
   );
 }
 
-type ErrorDecoderProps = {
+function ErrorDecoder(props: {|
   errorCodesString: string,
-  location: Location,
-};
+  location: {search: string},
+|}) {
+  let code = null;
+  let msg = '';
 
-type State = {
-  code: mixed,
-  errorMsg: string,
-};
-
-class ErrorDecoder extends Component<ErrorDecoderProps, State> {
-  constructor(...args: Array<any>) {
-    super(...args);
-
-    this.state = {
-      code: null,
-      errorMsg: '',
-    };
+  const errorCodes = JSON.parse(props.errorCodesString);
+  const parseResult = parseQueryString(props.location.search);
+  if (parseResult != null) {
+    code = parseResult.code;
+    msg = replaceArgs(errorCodes[code], parseResult.args);
   }
 
-  componentWillMount() {
-    const {errorCodesString} = this.props;
-    const errorCodes = JSON.parse(errorCodesString);
-    const parseResult = parseQueryString(this.props.location);
-    if (parseResult != null) {
-      const [code, args] = parseResult;
-      if (errorCodes[code]) {
-        this.setState({
-          code: code,
-          errorMsg: replaceArgs(errorCodes[code], args),
-        });
-      }
-    }
-  }
-
-  render() {
-    return <ErrorResult code={this.state.code} msg={this.state.errorMsg} />;
-  }
+  return <ErrorResult code={code} msg={msg} />;
 }
 
 export default ErrorDecoder;

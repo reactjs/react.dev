@@ -32,6 +32,8 @@
       title: JSX In Depth
     - id: typechecking-with-proptypes
       title: Typechecking With PropTypes
+    - id: static-type-checking
+      title: Static Type Checking
     - id: refs-and-the-dom
       title: Refs and the DOM
     - id: uncontrolled-components
@@ -93,3 +95,19 @@
     title: Implementation Notes
   - id: design-principles
     title: Design Principles
+- title: FAQ
+  items:
+    - id: faq-ajax
+      title: AJAX and APIs
+    - id: faq-build
+      title: Babel, JSX, and Build Steps
+    - id: faq-functions
+      title: Passing Functions to Components
+    - id: faq-state
+      title: Component State
+    - id: faq-styling
+      title: Styling and CSS
+    - id: faq-structure
+      title: File Structure
+    - id: faq-internals
+      title: Virtual DOM and Internals

@@ -15,10 +15,12 @@ Error boundaries are React components that **catch JavaScript errors anywhere in
 
 > Note
 > 
-> Error boundaries do **NOT** work in the following scenarios:
-> * Event Handlers (See below ["How About Try / Catch"](#how-about-trycatch) for details about dealing with errors in event handlers)
+> Error boundaries do **not** catch errors for:
+>
+> * Event handlers ([learn more](#how-about-event-handlers))
 > * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
-> * Server Side Rendering
+> * Server side rendering
+> * Errors thrown in the error boundary itself (rather than its children)
 
 A class component becomes an error boundary if it defines a new lifecycle method called `componentDidCatch(error, info)`:
 
@@ -115,6 +117,10 @@ You can also see the filenames and line numbers in the component stack trace. Th
 
 If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
 
+> Note
+> 
+> Component names displayed in the stack traces depend on the [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property. If you support older browsers and devices which may not yet provide this natively (e.g. IE 11), consider including a `Function.name` polyfill in your bundled application, such as [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatively, you may explicitly set the [`displayName`](/docs/react-component.html#displayname) property on all your components.
+
 
 ## How About try/catch?
 
@@ -136,34 +142,39 @@ However, React components are declarative and specify *what* should be rendered:
 
 Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` hook caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
 
-However, an event handler inside of a React component could leverage `try` / `catch` to deal with errors that occur during event handling.
+## How About Event Handlers?
+
+Error boundaries **do not** catch errors inside event handlers.
+
+React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle hooks, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
+
+If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
 
 ```js{8-12,16-19}
 class MyComponent extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { error: null }
+    this.state = { error: null };
   }
   
   handleClick = () => {
     try {
-      // event handling that could possibly produces an error
-    } catch(error) {
-      this.setState({ error })
+      // Do something that could throw
+    } catch (error) {
+      this.setState({ error });
     }
   }
 
   render() {
     if (this.state.error) {
-      // render a fallback UI
-      return <h1>The Click Handler Produces an Error</h1>
+      return <h1>Caught an error.</h1>
     }
-    // ...
     return <div onClick={this.handleClick}>Click Me</div>
   }
 }
 ```
 
+Note that the above example is demonstrating regular JavaScript behavior and doesn't use error boundaries.
 
 ## Naming Changes from React 15
 

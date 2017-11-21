@@ -19,6 +19,7 @@ module.exports = {
   plugins: [
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
+    'gatsby-transformer-home-example-code',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
     'gatsby-plugin-react-next',
@@ -55,6 +56,19 @@ module.exports = {
             },
           },
           'gatsby-remark-autolink-headers',
+          {
+            resolve: 'gatsby-remark-code-repls',
+            options: {
+              defaultText: 'Try it on CodePen',
+              directory: `${__dirname}/examples/`,
+              externals: [
+                `//unpkg.com/react/umd/react.development.js`,
+                `//unpkg.com/react-dom/umd/react-dom.development.js`,
+              ],
+              redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
+              target: '_blank',
+            },
+          },
           'gatsby-remark-use-jsx',
           {
             resolve: 'gatsby-remark-prismjs',
@@ -135,5 +149,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-catch-links',
   ],
 };

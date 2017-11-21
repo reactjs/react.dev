@@ -291,7 +291,7 @@ For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-hand
 ### `setState()`
 
 ```javascript
-setState(updater, [callback])
+setState(updater[, callback])
 ```
 
 `setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
@@ -323,7 +323,7 @@ The second parameter to `setState()` is an optional callback function that will 
 You may optionally pass an object as the first argument to `setState()` instead of a function:
 
 ```javascript
-setState(stateChange, [callback])
+setState(stateChange[, callback])
 ```
 
 This performs a shallow merge of `stateChange` into the new state, e.g., to adjust a shopping cart item quantity:
@@ -347,7 +347,7 @@ Subsequent calls will override values from previous calls in the same cycle, so 
 
 ```js
 this.setState((prevState) => {
-  return {counter: prevState.quantity + 1};
+  return {quantity: prevState.quantity + 1};
 });
 ```
 

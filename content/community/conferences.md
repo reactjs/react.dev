@@ -7,22 +7,9 @@ permalink: community/conferences.html
 redirect_from: "docs/conferences.html"
 ---
 
+Do you know of a local React.js conference? Add it here! (Please keep the list chronological)
+
 ## Upcoming Conferences
-
-### React Summit 2017
-October 21 in Lagos, Nigeria
-
-[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
-
-### ReactiveConf 2017
-October 25–27, Bratislava, Slovakia
-
-[Website](https://reactiveconf.com)
-
-### React Seoul 2017
-November 4 in Seoul, South Korea
-
-[Website](http://seoul.reactjs.kr/en)
 
 ### React Day Berlin
 December 2, Berlin, Germany
@@ -43,6 +30,11 @@ April 13 in Amsterdam, The Netherlands
 May 17-18 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
+
+### ReactNext 2018
+September 6 in Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
 ### ReactJS Day 2018
 October 5 in Verona, Italy
@@ -182,3 +174,19 @@ October 7 in Sao Paulo, Brazil
 October 13 in Stockholm, Sweden
 
 [Website](https://statejs.com/)
+
+### React Summit 2017
+October 21 in Lagos, Nigeria
+
+[Website](https://reactsummit2017.splashthat.com/) - [Twitter](https://twitter.com/DevCircleLagos/) - [Facebook](https://www.facebook.com/groups/DevCLagos/)
+
+### ReactiveConf 2017
+October 25–27, Bratislava, Slovakia
+
+[Website](https://reactiveconf.com)
+
+### React Seoul 2017
+November 4 in Seoul, South Korea
+
+[Website](http://seoul.reactjs.kr/en)
+

@@ -9,10 +9,10 @@
   "resolutions": {
     "gatsby/graphql": "0.10.5",
     "gatsby/react": "16.0.0",
-    "gatsby/react-dom": "16.0.0"
+    "gatsby/react-dom": "16.0.0",
+    "eslint-plugin-relay/graphql": "0.10.5"
   },
   "dependencies": {
-    "@gaearon/react-live": "1.7.1-with-safari-fix",
     "array-from": "^2.1.1",
     "babel-eslint": "^8.0.1",
     "eslint": "^4.8.0",
@@ -27,6 +27,7 @@
     "flow-bin": "^0.56.0",
     "gatsby": "^1.9.9",
     "gatsby-link": "^1.6.9",
+    "gatsby-plugin-catch-links": "^1.0.9",
     "gatsby-plugin-feed": "^1.3.9",
     "gatsby-plugin-glamor": "^1.6.4",
     "gatsby-plugin-google-analytics": "^1.0.4",
@@ -38,6 +39,7 @@
     "gatsby-plugin-sharp": "^1.6.2",
     "gatsby-plugin-twitter": "^1.0.10",
     "gatsby-remark-autolink-headers": "^1.4.4",
+    "gatsby-remark-code-repls": "^1.0.2",
     "gatsby-remark-copy-linked-files": "^1.5.2",
     "gatsby-remark-images": "^1.5.11",
     "gatsby-remark-prismjs": "^1.2.1",
@@ -49,6 +51,7 @@
     "glamor": "^2.20.40",
     "hex2rgba": "^0.0.1",
     "prettier": "^1.7.4",
+    "react-live": "1.8.0-0",
     "remarkable": "^1.7.1",
     "request-promise": "^4.2.2",
     "rimraf": "^2.6.1",
@@ -72,9 +75,10 @@
   },
   "scripts": {
     "build": "gatsby build",
-    "check-all": "yarn prettier && yarn lint && yarn flow",
-    "ci-check": "yarn prettier:diff && yarn lint && yarn flow",
+    "check-all": "npm-run-all prettier --parallel lint flow",
+    "ci-check": "npm-run-all prettier:diff --parallel lint flow",
     "dev": "gatsby develop -H 0.0.0.0",
+    "flow": "flow",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
     "prettier": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
@@ -82,6 +86,10 @@
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {
-    "eslint-config-prettier": "^2.6.0"
+    "eslint-config-prettier": "^2.6.0",
+    "lz-string": "^1.4.4",
+    "npm-run-all": "^4.1.2",
+    "recursive-readdir": "^2.2.1",
+    "unist-util-map": "^1.0.3"
   }
 }

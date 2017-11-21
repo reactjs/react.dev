@@ -260,7 +260,7 @@ __[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - Defi
 yarn add --dev @types/react
 
 # npm
-npm i -D @types/react
+npm i --save-dev @types/react
 ```
 
 __Local Declarations__
@@ -285,7 +285,7 @@ Note that it is a **third party** project, and is not a part of Create React App
 
 You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
-Ready to code you are! We recommend to check out the following resources to learn more about Typescript:
+You are now ready to code! We recommend to check out the following resources to learn more about Typescript:
 
 * [TypeScript Documentation: Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [TypeScript Documentation: Migrating from Javascript](http://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)

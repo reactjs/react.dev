@@ -325,4 +325,5 @@ If something can be derived from either props or state, it probably shouldn't be
 
 When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
 
-<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" width="100%">
+<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
+

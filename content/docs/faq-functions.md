@@ -117,7 +117,7 @@ Make sure you aren't _calling the function_ when you pass it to the component:
 ```jsx
 render() {
   // Wrong: handleClick is called instead of passed as a reference!
-  return <button onClick={this.handleClick()}>Click Me</button> 
+  return <button onClick={this.handleClick()}>Click Me</button>
 }
 ```
 
@@ -126,13 +126,13 @@ Instead, *pass the function itself* (without parens):
 ```jsx
 render() {
   // Correct: handleClick is passed as a reference!
-  return <button onClick={this.handleClick}>Click Me</button> 
+  return <button onClick={this.handleClick}>Click Me</button>
 }
 ```
 
 ### How do I pass a parameter to an event handler or callback?
 
-You can use an arrow function to wrap around an event handler and pass parameters: 
+You can use an arrow function to wrap around an event handler and pass parameters:
 
 ```jsx
 <button onClick={() => this.handleClick(id)} />
@@ -166,14 +166,14 @@ class Alphabet extends React.Component {
       <div>
         Just clicked: {this.state.justClicked}
         <ul>
-          {this.state.letters.map(letter => 
+          {this.state.letters.map(letter =>
             <li key={letter} onClick={() => this.handleClick(letter)}>
               {letter}
             </li>
           )}
         </ul>
       </div>
-   )
+    )
   }
 }
 ```
@@ -200,31 +200,37 @@ class Alphabet extends React.Component {
       justClicked: e.target.dataset.letter
     });
   }
-  
+
   render() {
     return (
       <div>
         Just clicked: {this.state.justClicked}
         <ul>
-          {this.state.letters.map(letter => 
+          {this.state.letters.map(letter =>
             <li key={letter} data-letter={letter} onClick={this.handleClick}>
               {letter}
             </li>
           )}
         </ul>
       </div>
-   )
+    )
   }
 }
 ```
 
 ### How can I prevent a function from being called too quickly or too many times in a row?
 
-If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, you can wrap the handler with a utility such as [`_.debounce`](https://lodash.com/docs#debounce) or [`_.throttle`](https://lodash.com/docs#throttle). See [this visualization](http://demo.nimius.net/debounce_throttle/) for a comparison of the two.
+If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, then you can limit the rate at which callback is executed. This can be done by using:
+
+- **throttling**: sample changes based on a time based frequency ([`_.throttle`](https://lodash.com/docs#throttle))
+- **debouncing**: publish changes after a period of inactivity ([`_.debounce`](https://lodash.com/docs#debounce))
+- **`requestAnimationFrame` throttling**: sample changes based on [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) ([`raf-schd`](https://github.com/alexreardon/raf-schd))
+
+See [this visualization](http://demo.nimius.net/debounce_throttle/) for a comparison of `throttle` and `debounce` functions
 
 > Note:
 >
-> Both `_.debounce` and `_.throttle` provide a `cancel` method to cancel delayed callbacks. You should either call this method from `componentWillUnmount` _or_ check to ensure that the component is still mounted within the delayed function.
+> `_.debounce` and `_.throttle` provide a `cancel` method to cancel delayed callbacks. You should either call this method from `componentWillUnmount` _or_ check to ensure that the component is still mounted within the delayed function. Similarly, `raf-schd` returns a `frameId` that you can use to cancel the next animation frame when the component unmounts with `cancelAnimationFrame`
 
 #### Throttle
 
@@ -295,3 +301,58 @@ class Searchbox extends React.Component {
   }
 }
 ```
+
+#### `requestAnimationFrame` throttling
+
+[`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a way of queuing a function to be executed in the browser at the optimal time for rendering performance. It is very similar to `setTimeout` except it takes no time argument. A function that is queued with `requestAnimationFrame` will fire in the next frame. The browser will work hard to ensure that there are `60` frames per second (`60 fps`). However, if the browser is unable to it will naturally *limit* the amount of frames in a second. For example, a device might only be able to handle `30 fps` and so you will only get `30` frames in that second. Using `requestAnimationFrame` for throttling is a useful technique in that it prevents you from doing more than `60 updates` in a second. If you are doing `100` updates in a second this creates additional work for the browser that the user will not see anyway.
+
+> Using this technique will only capture the last published value in a frame. You can see an example of how this optimization works on [`MDN`](https://developer.mozilla.org/en-US/docs/Web/Events/scroll)
+
+```jsx
+import rafSchedule from 'raf-schd';
+
+class ScrollListener extends React.Component {
+  constructor(props) {
+    super(props);
+    // keep a record of the id of the next animation frame
+    this.nextFrameId = null;
+    this.handleScroll = this.handleScroll.bind(this);
+
+    // create a new function that will schedule updates
+    this.scheduleUpdate = rafSchedule(this.emitUpdate.bind(this));
+  }
+
+  handleScroll(e) {
+    // When we receive a scroll event, we are going to schedule an update
+    // If we receive many updates within a single frame duration we will
+    // only be publishing the latest value.
+
+    this.nextFrameId = this.scheduleUpdate({ x: e.clientX, y: e.clientY });
+  }
+
+  emitUpdate(point) {
+    this.props.onScroll(point);
+  }
+
+  componentWillUnmount() {
+    // As we are unmounted we can clear the next animation frame
+    cancelAnimationFrame(this.nextFrameId);
+  }
+
+  render() {
+    // Creating a scroll container around a big image
+    return (
+      <div
+        style={{ overflow: 'scroll' }}
+        onScroll={this.handleScroll}
+      >
+        <img src="/my-huge-image.jpg" />
+      </div>
+    );
+  }
+}
+```
+
+#### Testing your rate limiting
+
+When testing your rate limiting code works correctly it is helpful to have the ability to fast forward time. If you are using [`jest`](https://facebook.github.io/jest/) then you can use [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) to fast forward time. If you are using `requestAnimationFrame` throttling then you may find [`raf-stub`](https://github.com/alexreardon/raf-stub) to be a useful tool to control the ticking of animation frames.

@@ -8,7 +8,25 @@ Facebook has adopted a Code of Conduct that we expect project
 participants to adhere to. Please [read the full text](https://code.facebook.com/codeofconduct)
 so that you can understand what actions will and will not be tolerated.
 
-## Guidelines for Documentation
+## Guidelines for Text
+
+**Different sections intentionally have different styles.**
+
+The documentation is divided into sections to cater to different learning styles and use cases. When editing an article, try to match the surrounding text in tone and style. When creating a new article, try to match the tone of the other articles in the same section. Learn about the motivation behind each section below.
+
+**[Tutorial](https://reactjs.org/tutorial/tutorial.html)** is relatively informal, and is designed for people who prefer a hands-on approach to learning, and can tolerate skipping theory in favor of practice. Its goal is to give the reader a feel for a typical React workflow rather than to explain fundamentals in detail. Here we focus on *what* to do and spend less time on *how* or *why* we did it. It is extremely important to do a lot of hand-holding and unambiguously describe every single change. It should be possible for a beginner to mechanically follow every instruction, and still get a working tic-tac-to game.
+
+**[Quick Start](https://reactjs.org/docs/hello-world.html)** is designed to introduce fundamental concepts in a step-by-step way. Each individual article in Quick Start builds on the knowledge from the previous ones, so make sure not to add any "cyclical dependencies" between them. It is important that the reader can start with the first article and work their way to the last Quick Start article without ever having to "look ahead" for a definition. This explains some ordering choices (e.g. that state is explained before events, or that "thinking in React" doesn't use refs). Quick Start also serves as a reference manual for React concepts, so it is important to be very strict about their definitions and relationships between them. This is, for example, why we introduce elements before components.
+
+**[Advanced Guides](https://reactjs.org/docs/jsx-in-depth.html)** are deep dives into topics that aren't essential for a beginner developer but that everyone bumps into sooner or later. They don't have a specific order, and target more experienced developers. If you have a set of recipes fitting a particular use case, and those recipes aren't opinionated (most React users would agree on them), this is the place to add them.
+
+**[Reference](https://reactjs.org/docs/react-api.html)** is organized by APIs rather than concepts. It is intended to be exhaustive. Any corner cases or recommendations that were skipped for brevity in Quick Start or Advanced Guides should be mentioned in the reference documentation for the corresponding APIs.
+
+**[Contributing](https://reactjs.org/docs/how-to-contribute.html)** should stay up-to-date and be friendly to relatively experienced developers.
+
+**[FAQ](https://reactjs.org/docs/faq-ajax.html)** has a more conversational tone than the other sections. Here, it's fine to include some content that's not primarily concerned with React, as long as React users are overwhelmingly interested in it (e.g. recommendations on directory structure). It's also okay to show more than a single way to do something in the FAQ, and briefly discuss the tradeoffs. The FAQ prioritizes unblocking people with a working solution over explaining concepts in detail, and can be more opinionated than the rest of the docs, even providing popular library recommendations.
+
+## Guidelines for Code Examples
 
 ### Syntax
 

@@ -198,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-Next, we will extract a `UserInfo` component that renders an `Avatar` next to user's name:
+Next, we will extract a `UserInfo` component that renders an `Avatar` next to the user's name:
 
 ```js{3-8}
 function UserInfo(props) {

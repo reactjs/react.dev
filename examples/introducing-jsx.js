@@ -15,5 +15,5 @@ const element = (
 
 ReactDOM.render(
   element,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

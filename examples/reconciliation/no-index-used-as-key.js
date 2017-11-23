@@ -33,8 +33,10 @@ class ToDoList extends React.Component {
   sortByEarliest() {
     const sortedList = this.state.list.sort(
       (a, b) => {
-        return a.createdAt - b.createdAt;
-      },
+        return (
+          a.createdAt - b.createdAt
+        );
+      }
     );
     this.setState({
       list: [...sortedList],
@@ -44,8 +46,10 @@ class ToDoList extends React.Component {
   sortByLatest() {
     const sortedList = this.state.list.sort(
       (a, b) => {
-        return b.createdAt - a.createdAt;
-      },
+        return (
+          b.createdAt - a.createdAt
+        );
+      }
     );
     this.setState({
       list: [...sortedList],
@@ -87,25 +91,25 @@ class ToDoList extends React.Component {
         <br />
         <button
           onClick={this.addToStart.bind(
-            this,
+            this
           )}>
           Add New to Start
         </button>
         <button
           onClick={this.addToEnd.bind(
-            this,
+            this
           )}>
           Add New to End
         </button>
         <button
           onClick={this.sortByEarliest.bind(
-            this,
+            this
           )}>
           Sort by Earliest
         </button>
         <button
           onClick={this.sortByLatest.bind(
-            this,
+            this
           )}>
           Sort by Latest
         </button>
@@ -121,7 +125,7 @@ class ToDoList extends React.Component {
                 key={todo.id}
                 {...todo}
               />
-            ),
+            )
           )}
         </table>
       </div>
@@ -131,5 +135,5 @@ class ToDoList extends React.Component {
 
 ReactDOM.render(
   <ToDoList />,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

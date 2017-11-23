@@ -27,7 +27,8 @@ function Comment(props) {
 
 const comment = {
   date: new Date(),
-  text: 'I hope you enjoy learning React!',
+  text:
+    'I hope you enjoy learning React!',
   author: {
     name: 'Hello Kitty',
     avatarUrl:
@@ -40,5 +41,5 @@ ReactDOM.render(
     text={comment.text}
     author={comment.author}
   />,
-  document.getElementById('root'),
+  document.getElementById('root')
 );

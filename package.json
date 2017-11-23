@@ -80,11 +80,11 @@
     "dev": "gatsby develop -H 0.0.0.0",
     "flow": "flow",
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
-    "format:examples": "prettier --config .prettierrc --write --print-width 44 \"examples/**/*.js\"",
+    "format:examples": "prettier --config .prettierrc.examples --write \"examples/**/*.js\"",
     "lint": "eslint .",
     "netlify": "yarn install && yarn build",
     "nit:source": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
-    "nit:examples": "prettier --config .prettierrc --list-different --print-width 44 \"examples/**/*.js\"",
+    "nit:examples": "prettier --config .prettierrc.examples --list-different \"examples/**/*.js\"",
     "prettier": "yarn format:source && yarn format:examples",
     "prettier:diff": "yarn nit:source && yarn nit:examples",
     "reset": "rimraf ./.cache"

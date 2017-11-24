@@ -88,7 +88,7 @@ function ComponentWithTransition() {
 
 Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
 
-React will automatically append a "px" suffix to certain inline style properties. For example:
+React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
 
 ```js
 // This:
@@ -98,6 +98,16 @@ React will automatically append a "px" suffix to certain inline style properties
 
 // Becomes:
 <div style="height: 10px;">
+  Hello World!
+</div>
+
+// This:
+<div style={{ height: '10%' }}>
+  Hello World!
+</div>;
+
+// Becomes:
+<div style="height: 10%;">
   Hello World!
 </div>
 ```

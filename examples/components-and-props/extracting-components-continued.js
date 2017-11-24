@@ -4,9 +4,11 @@ function formatDate(date) {
 
 function Avatar(props) {
   return (
-    <img className="Avatar"
-         src={props.user.avatarUrl}
-         alt={props.user.name} />
+    <img
+      className="Avatar"
+      src={props.user.avatarUrl}
+      alt={props.user.name}
+    />
   );
 }
 
@@ -37,16 +39,19 @@ function Comment(props) {
 
 const comment = {
   date: new Date(),
-  text: 'I hope you enjoy learning React!',
+  text:
+    'I hope you enjoy learning React!',
   author: {
     name: 'Hello Kitty',
-    avatarUrl: 'http://placekitten.com/g/64/64'
-  }
+    avatarUrl:
+      'http://placekitten.com/g/64/64',
+  },
 };
 ReactDOM.render(
   <Comment
     date={comment.date}
     text={comment.text}
-    author={comment.author} />,
+    author={comment.author}
+  />,
   document.getElementById('root')
 );

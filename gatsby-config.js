@@ -57,9 +57,17 @@ module.exports = {
           },
           'gatsby-remark-autolink-headers',
           {
+            resolve: 'gatsby-remark-embed-snippet',
+            options: {
+              classPrefix: 'gatsby-code-',
+              directory: `${__dirname}/examples/`,
+            },
+          },
+          {
             resolve: 'gatsby-remark-code-repls',
             options: {
               defaultText: 'Try it on CodePen',
+              dependencies: ['react', 'react-dom'],
               directory: `${__dirname}/examples/`,
               externals: [
                 `//unpkg.com/react/umd/react.development.js`,

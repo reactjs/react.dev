@@ -27,48 +27,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
 var ReactCSSTransitionGroup = require('react-addons-css-transition-group'); // ES5 with npm
 ```
 
-```javascript{31-36}
-class TodoList extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {items: ['hello', 'world', 'click', 'me']};
-    this.handleAdd = this.handleAdd.bind(this);
-  }
-
-  handleAdd() {
-    const newItems = this.state.items.concat([
-      prompt('Enter some text')
-    ]);
-    this.setState({items: newItems});
-  }
-
-  handleRemove(i) {
-    let newItems = this.state.items.slice();
-    newItems.splice(i, 1);
-    this.setState({items: newItems});
-  }
-
-  render() {
-    const items = this.state.items.map((item, i) => (
-      <div key={item} onClick={() => this.handleRemove(i)}>
-        {item}
-      </div>
-    ));
-
-    return (
-      <div>
-        <button onClick={this.handleAdd}>Add Item</button>
-        <ReactCSSTransitionGroup
-          transitionName="example"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
-          {items}
-        </ReactCSSTransitionGroup>
-      </div>
-    );
-  }
-}
-```
+`embed:animation/react-transition-group.js`
 
 > Note:
 >
@@ -78,25 +37,7 @@ In this component, when a new item is added to `ReactCSSTransitionGroup` it will
 
 You can use these classes to trigger a CSS animation or transition. For example, try adding this CSS and adding a new list item:
 
-```css
-.example-enter {
-  opacity: 0.01;
-}
-
-.example-enter.example-enter-active {
-  opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.example-leave {
-  opacity: 1;
-}
-
-.example-leave.example-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
-}
-```
+`embed:animation/animation.css`
 
 You'll notice that animation durations need to be specified in both the CSS and the render method; this tells React when to remove the animation classes from the element and -- if it's leaving -- when to remove the element from the DOM.
 
@@ -104,20 +45,7 @@ You'll notice that animation durations need to be specified in both the CSS and 
 
 `ReactCSSTransitionGroup` provides the optional prop `transitionAppear`, to add an extra transition phase at the initial mount of the component. There is generally no transition phase at the initial mount as the default value of `transitionAppear` is `false`. The following is an example which passes the prop `transitionAppear` with the value `true`.
 
-```javascript{5-6}
-render() {
-  return (
-    <ReactCSSTransitionGroup
-      transitionName="example"
-      transitionAppear={true}
-      transitionAppearTimeout={500}
-      transitionEnter={false}
-      transitionLeave={false}>
-      <h1>Fading at Initial Mount</h1>
-    </ReactCSSTransitionGroup>
-  );
-}
-```
+`embed:animation/initial-mounting.js`
 
 During the initial mount `ReactCSSTransitionGroup` will get the `example-appear` CSS class and the `example-appear-active` CSS class added in the next tick.
 
@@ -144,30 +72,7 @@ At the initial mount, all children of the `ReactCSSTransitionGroup` will `appear
 
 It is also possible to use custom class names for each of the steps in your transitions. Instead of passing a string into transitionName you can pass an object containing either the `enter` and `leave` class names, or an object containing the `enter`, `enter-active`, `leave-active`, and `leave` class names. If only the enter and leave classes are provided, the enter-active and leave-active classes will be determined by appending '-active' to the end of the class name. Here are two examples using custom classes:
 
-```javascript
-// ...
-<ReactCSSTransitionGroup
-  transitionName={ {
-    enter: 'enter',
-    enterActive: 'enterActive',
-    leave: 'leave',
-    leaveActive: 'leaveActive',
-    appear: 'appear',
-    appearActive: 'appearActive'
-  } }>
-  {item}
-</ReactCSSTransitionGroup>
-
-<ReactCSSTransitionGroup
-  transitionName={ {
-    enter: 'enter',
-    leave: 'leave',
-    appear: 'appear'
-  } }>
-  {item2}
-</ReactCSSTransitionGroup>
-// ...
-```
+`embed:animation/custom-classes.js`
 
 ### Animation Group Must Be Mounted To Work
 
@@ -175,45 +80,13 @@ In order for it to apply transitions to its children, the `ReactCSSTransitionGro
 
 The example below would **not** work, because the `ReactCSSTransitionGroup` is being mounted along with the new item, instead of the new item being mounted within it. Compare this to the [Getting Started](#getting-started) section above to see the difference.
 
-```javascript{4,6,13}
-render() {
-  const items = this.state.items.map((item, i) => (
-    <div key={item} onClick={() => this.handleRemove(i)}>
-      <ReactCSSTransitionGroup transitionName="example">
-        {item}
-      </ReactCSSTransitionGroup>
-    </div>
-  ));
-
-  return (
-    <div>
-      <button onClick={this.handleAdd}>Add Item</button>
-      {items}
-    </div>
-  );
-}
-```
+`embed:animation/invalid-unmounted-example.js`
 
 ### Animating One or Zero Items
 
 In the example above, we rendered a list of items into `ReactCSSTransitionGroup`. However, the children of `ReactCSSTransitionGroup` can also be one or zero items. This makes it possible to animate a single element entering or leaving. Similarly, you can animate a new element replacing the current element. For example, we can implement a simple image carousel like this:
 
-```javascript{10}
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
-function ImageCarousel(props) {
-  return (
-    <div>
-      <ReactCSSTransitionGroup
-        transitionName="carousel"
-        transitionEnterTimeout={300}
-        transitionLeaveTimeout={300}>
-        <img src={props.imageSrc} key={props.imageSrc} />
-      </ReactCSSTransitionGroup>
-    </div>
-  );
-}
-```
+`embed:animation/image-carousel.js`
 
 ### Disabling Animations
 

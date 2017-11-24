@@ -16,12 +16,7 @@ The easiest way to get started with React is to use [this Hello World example co
 
 The smallest React example looks like this:
 
-```js
-ReactDOM.render(
-  <h1>Hello, world!</h1>,
-  document.getElementById('root')
-);
-```
+```embed:hello-world.js```
 
 It renders a header saying "Hello, world!" on the page.
 

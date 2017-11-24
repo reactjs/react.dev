@@ -51,7 +51,7 @@ function MyDiv(props) {
 ```js
 function MyDiv(props) {
 
-  const divProps = Object.assign({}, props);
+  const divProps = {...props}
   delete divProps.layout;
 
   if (props.layout === 'horizontal') {

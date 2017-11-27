@@ -71,7 +71,7 @@ function WarningButton() {
 }
 ```
 
-If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
+If you don't use a JavaScript bundler and loaded React from a `<script />` tag, it is already in scope as the `React` global.
 
 ### Using Dot Notation for JSX Type
 
@@ -93,7 +93,7 @@ function BlueDatePicker() {
 
 ### User-Defined Components Must Be Capitalized
 
-When an element type starts with a lowercase letter, it refers to a built-in component like `<div>` or `<span>` and results in a string `'div'` or `'span'` passed to `React.createElement`. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.
+When an element type starts with a lowercase letter, it refers to a built-in component like `<div />` or `<span />` and results in a string `'div'` or `'span'` passed to `React.createElement`. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.
 
 We recommend naming components with a capital letter. If you do have a component that starts with a lowercase letter, assign it to a capitalized variable before using it in JSX.
 
@@ -265,7 +265,7 @@ const App = () => {
 };
 ```
 
-In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button>` element in the DOM.
+In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button />` element in the DOM.
 All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
 
 Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  

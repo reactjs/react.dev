@@ -82,8 +82,8 @@ Let's recap what happens in this example:
 
 1. We call `ReactDOM.render()` with the `<Welcome name="Sara" />` element.
 2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
-3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
-4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
+3. Our `Welcome` component returns a `<h1>Hello, Sara</h1 />` element as the result.
+4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1 />`.
 
 >**Caveat:**
 >

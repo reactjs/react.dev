@@ -25,7 +25,7 @@ This form has the default HTML form behavior of browsing to a new page when the 
 
 ## Controlled Components
 
-In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with [`setState()`](/docs/react-component.html#setstate).
+In HTML, form elements such as `<input />`, `<textarea />`, and `<select />` typically maintain their own state and update it based on user input. In React, mutable state is typically kept in the state property of components, and only updated with [`setState()`](/docs/react-component.html#setstate).
 
 We can combine the two by making the React state be the "single source of truth". Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a "controlled component".
 
@@ -78,7 +78,7 @@ handleChange(event) {
 
 ## The textarea Tag
 
-In HTML, a `<textarea>` element defines its text by its children:
+In HTML, a `<textarea />` element defines its text by its children:
 
 ```html
 <textarea>
@@ -86,7 +86,7 @@ In HTML, a `<textarea>` element defines its text by its children:
 </textarea>
 ```
 
-In React, a `<textarea>` uses a `value` attribute instead. This way, a form using a `<textarea>` can be written very similarly to a form that uses a single-line input:
+In React, a `<textarea />` uses a `value` attribute instead. This way, a form using a `<textarea />` can be written very similarly to a form that uses a single-line input:
 
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
@@ -127,7 +127,7 @@ Notice that `this.state.value` is initialized in the constructor, so that the te
 
 ## The select Tag
 
-In HTML, `<select>` creates a drop-down list. For example, this HTML creates a drop-down list of flavors:
+In HTML, `<select />` creates a drop-down list. For example, this HTML creates a drop-down list of flavors:
 
 ```html
 <select>
@@ -180,15 +180,15 @@ class FlavorForm extends React.Component {
 
 [Try it on CodePen.](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
-Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
+Overall, this makes it so that `<input type="text" />`, `<textarea />`, and `<select />` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 
 > Note
 >
 > You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
 >
->```js
+ />```js
 ><select multiple={true} value={['B', 'C']}>
->```
+ />```
 
 ## Handling Multiple Inputs
 

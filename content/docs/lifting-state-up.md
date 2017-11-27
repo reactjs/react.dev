@@ -24,7 +24,7 @@ function BoilingVerdict(props) {
 }
 ```
 
-Next, we will create a component called `Calculator`. It renders an `<input>` that lets you enter the temperature, and keeps its value in `this.state.temperature`.
+Next, we will create a component called `Calculator`. It renders an `<input />` that lets you enter the temperature, and keeps its value in `this.state.temperature`.
 
 Additionally, it renders the `BoilingVerdict` for the current input value.
 
@@ -188,7 +188,7 @@ First, we will replace `this.state.temperature` with `this.props.temperature` in
 
 We know that [props are read-only](/docs/components-and-props.html#props-are-read-only). When the `temperature` was in the local state, the `TemperatureInput` could just call `this.setState()` to change it. However, now that the `temperature` is coming from the parent as a prop, the `TemperatureInput` has no control over it.
 
-In React, this is usually solved by making a component "controlled". Just like the DOM `<input>` accepts both a `value` and an `onChange` prop, so can the custom `TemperatureInput` accept both `temperature` and `onTemperatureChange` props from its parent `Calculator`.
+In React, this is usually solved by making a component "controlled". Just like the DOM `<input />` accepts both a `value` and an `onChange` prop, so can the custom `TemperatureInput` accept both `temperature` and `onTemperatureChange` props from its parent `Calculator`.
 
 Now, when the `TemperatureInput` wants to update its temperature, it calls `this.props.onTemperatureChange`:
 
@@ -305,7 +305,7 @@ Now, no matter which input you edit, `this.state.temperature` and `this.state.sc
 
 Let's recap what happens when you edit an input:
 
-* React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in `TemperatureInput` component.
+* React calls the function specified as `onChange` on the DOM `<input />`. In our case, this is the `handleChange` method in `TemperatureInput` component.
 * The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value. Its props, including `onTemperatureChange`, were provided by its parent component, the `Calculator`.
 * When it previously rendered, the `Calculator` has specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
 * Inside these methods, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.

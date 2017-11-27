@@ -111,7 +111,7 @@ ReactDOM.render(
 );
 ```
 
-This code renders into a DOM element with the id of `root`, so you need `<div id="root"></div>` somewhere in your HTML file.
+This code renders into a DOM element with the id of `root`, so you need `<div id="root"></div />` somewhere in your HTML file.
 
 Similarly, you can render a React component inside a DOM element somewhere inside your existing app written with any other JavaScript UI library.
 

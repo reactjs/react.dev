@@ -25,7 +25,7 @@ When diffing two trees, React first compares the two root elements. The behavior
 
 ### Elements Of Different Types
 
-Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. Going from `<a>` to `<img>`, or from `<Article>` to `<Comment>`, or from `<Button>` to `<div>` - any of those will lead to a full rebuild.
+Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. Going from `<a />` to `<img />`, or from `<Article />` to `<Comment />`, or from `<Button />` to `<div />` - any of those will lead to a full rebuild.
 
 When tearing down a tree, old DOM nodes are destroyed. Component instances receive `componentWillUnmount()`. When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive `componentWillMount()` and then `componentDidMount()`. Any state associated with the old tree is lost.
 
@@ -92,7 +92,7 @@ For example, when adding an element at the end of the children, converting betwe
 </ul>
 ```
 
-React will match the two `<li>first</li>` trees, match the two `<li>second</li>` trees, and then insert the `<li>third</li>` tree.
+React will match the two `<li>first</li />` trees, match the two `<li>second</li />` trees, and then insert the `<li>third</li />` tree.
 
 If you implement it naively, inserting an element at the beginning has worse performance. For example, converting between these two trees works poorly:
 
@@ -109,7 +109,7 @@ If you implement it naively, inserting an element at the beginning has worse per
 </ul>
 ```
 
-React will mutate every child instead of realizing it can keep the `<li>Duke</li>` and `<li>Villanova</li>` subtrees intact. This inefficiency can be a problem.
+React will mutate every child instead of realizing it can keep the `<li>Duke</li />` and `<li>Villanova</li />` subtrees intact. This inefficiency can be a problem.
 
 ### Keys
 

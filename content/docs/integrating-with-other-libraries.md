@@ -43,7 +43,7 @@ Note that we defined both `componentDidMount` and `componentWillUnmount` [lifecy
 
 ### Integrating with jQuery Chosen Plugin
 
-For a more concrete example of these concepts, let's write a minimal wrapper for the plugin [Chosen](https://harvesthq.github.io/chosen/), which augments `<select>` inputs.
+For a more concrete example of these concepts, let's write a minimal wrapper for the plugin [Chosen](https://harvesthq.github.io/chosen/), which augments `<select />` inputs.
 
 >**Note:**
 >
@@ -51,9 +51,9 @@ For a more concrete example of these concepts, let's write a minimal wrapper for
 
 First, let's look at what Chosen does to the DOM.
 
-If you call it on a `<select>` DOM node, it reads the attributes off of the original DOM node, hides it with an inline style, and then appends a separate DOM node with its own visual representation right after the `<select>`. Then it fires jQuery events to notify us about the changes.
+If you call it on a `<select />` DOM node, it reads the attributes off of the original DOM node, hides it with an inline style, and then appends a separate DOM node with its own visual representation right after the `<select />`. Then it fires jQuery events to notify us about the changes.
 
-Let's say that this is the API we're striving for with our `<Chosen>` wrapper React component:
+Let's say that this is the API we're striving for with our `<Chosen />` wrapper React component:
 
 ```js
 function Example() {
@@ -69,7 +69,7 @@ function Example() {
 
 We will implement it as an [uncontrolled component](/docs/uncontrolled-components.html) for simplicity.
 
-First, we will create an empty component with a `render()` method where we return `<select>` wrapped in a `<div>`:
+First, we will create an empty component with a `render()` method where we return `<select />` wrapped in a `<div />`:
 
 ```js{4,5}
 class Chosen extends React.Component {
@@ -85,9 +85,9 @@ class Chosen extends React.Component {
 }
 ```
 
-Notice how we wrapped `<select>` in an extra `<div>`. This is necessary because Chosen will append another DOM element right after the `<select>` node we passed to it. However, as far as React is concerned, `<div>` always only has a single child. This is how we ensure that React updates won't conflict with the extra DOM node appended by Chosen. It is important that if you modify the DOM outside of React flow, you must ensure React doesn't have a reason to touch those DOM nodes.
+Notice how we wrapped `<select />` in an extra `<div />`. This is necessary because Chosen will append another DOM element right after the `<select />` node we passed to it. However, as far as React is concerned, `<div />` always only has a single child. This is how we ensure that React updates won't conflict with the extra DOM node appended by Chosen. It is important that if you modify the DOM outside of React flow, you must ensure React doesn't have a reason to touch those DOM nodes.
 
-Next, we will implement the lifecycle hooks. We need to initialize Chosen with the ref to the `<select>` node in `componentDidMount`, and tear it down in `componentWillUnmount`:
+Next, we will implement the lifecycle hooks. We need to initialize Chosen with the ref to the `<select />` node in `componentDidMount`, and tear it down in `componentWillUnmount`:
 
 ```js{2,3,7}
 componentDidMount() {
@@ -108,7 +108,7 @@ Note that React assigns no special meaning to the `this.el` field. It only works
 <select className="Chosen-select" ref={el => this.el = el}>
 ```
 
-This is enough to get our component to render, but we also want to be notified about the value changes. To do this, we will subscribe to the jQuery `change` event on the `<select>` managed by Chosen.
+This is enough to get our component to render, but we also want to be notified about the value changes. To do this, we will subscribe to the jQuery `change` event on the `<select />` managed by Chosen.
 
 We won't pass `this.props.onChange` directly to Chosen because component's props might change over time, and that includes event handlers. Instead, we will declare a `handleChange()` method that calls `this.props.onChange`, and subscribe it to the jQuery `change` event:
 
@@ -133,9 +133,9 @@ handleChange(e) {
 
 [Try it on CodePen.](http://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
-Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen>` component can get different children if parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates, since we no longer let React manage the DOM for us.
+Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen />` component can get different children if parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates, since we no longer let React manage the DOM for us.
 
-Chosen's documentation suggests that we can use jQuery `trigger()` API to notify it about changes to the original DOM element. We will let React take care of updating `this.props.children` inside `<select>`, but we will also add a `componentDidUpdate()` lifecycle hook that notifies Chosen about changes in the children list:
+Chosen's documentation suggests that we can use jQuery `trigger()` API to notify it about changes to the original DOM element. We will let React take care of updating `this.props.children` inside `<select />`, but we will also add a `componentDidUpdate()` lifecycle hook that notifies Chosen about changes in the children list:
 
 ```js{2,3}
 componentDidUpdate(prevProps) {
@@ -145,7 +145,7 @@ componentDidUpdate(prevProps) {
 }
 ```
 
-This way, Chosen will know to update its DOM element when the `<select>` children managed by React change.
+This way, Chosen will know to update its DOM element when the `<select />` children managed by React change.
 
 The complete implementation of the `Chosen` component looks like this:
 
@@ -227,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-From here you could start moving more logic into the component and begin adopting more common React practices. For example, in components it is best not to rely on IDs because the same component can be rendered multiple times. Instead, we will use the [React event system](/docs/handling-events.html) and register the click handler directly on the React `<button>` element:
+From here you could start moving more logic into the component and begin adopting more common React practices. For example, in components it is best not to rely on IDs because the same component can be rendered multiple times. Instead, we will use the [React event system](/docs/handling-events.html) and register the click handler directly on the React `<button />` element:
 
 ```js{2,6,9}
 function Button(props) {
@@ -255,7 +255,7 @@ You can have as many such isolated components as you like, and use `ReactDOM.ren
 
 [Backbone](http://backbonejs.org/) views typically use HTML strings, or string-producing template functions, to create the content for their DOM elements. This process, too, can be replaced with rendering a React component.
 
-Below, we will create a Backbone view called `ParagraphView`. It will override Backbone's `render()` function to render a React `<Paragraph>` component into the DOM element provided by Backbone (`this.el`). Here, too, we are using [`ReactDOM.render()`](/docs/react-dom.html#render):
+Below, we will create a Backbone view called `ParagraphView`. It will override Backbone's `render()` function to render a React `<Paragraph />` component into the DOM element provided by Backbone (`this.el`). Here, too, we are using [`ReactDOM.render()`](/docs/react-dom.html#render):
 
 ```js{1,5,8,12}
 function Paragraph(props) {

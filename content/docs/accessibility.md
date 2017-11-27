@@ -42,7 +42,7 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 ## Accessible Forms
 
 ### Labeling
-Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
+Every HTML form control, such as `<input />` and `<textarea />`, needs to be labeled accessibly. We need to provide descriptive labels that are also exposed to screen readers.
 
 The following resources show us how to do this:
 
@@ -87,7 +87,7 @@ internal page anchors and some styling:
 
 - [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
 
-Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
+Also use landmark elements and roles, such as `<main />` and `<aside />`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
 
 Read more about the use of these elements to enhance accessibility here:
 
@@ -158,7 +158,7 @@ Indicate the human language of page texts as screen reader software uses this to
 
 ### Setting the document title
 
-Set the document `<title>` to correctly describe the current page content as this ensures that the user remains aware of the current page context:
+Set the document `<title />` to correctly describe the current page content as this ensures that the user remains aware of the current page context:
 
 - [WCAG - Understanding the Document Title Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/navigation-mechanisms-title.html)
 

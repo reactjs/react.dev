@@ -16,7 +16,7 @@ You can simplify the development/debugging process by ensuring that errors are t
 
 ### CDN
 
-When loading React (or other libraries that might throw errors) from a CDN, add the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute to your `<script>` tags:
+When loading React (or other libraries that might throw errors) from a CDN, add the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute to your `<script />` tags:
 
 ```html
 <script crossorigin src="..."></script>
@@ -38,4 +38,4 @@ If you use Webpack, we recommend using the `cheap-module-source-map` setting in 
 
 If your application is split into multiple bundles, these bundles may be loaded using JSONP. This may cause errors thrown in the code of these bundles to be treated as cross-origin.
 
-To resolve this, use the [`crossOriginLoading`](https://webpack.js.org/configuration/output/#output-crossoriginloading) setting in development to add the `crossorigin` attribute to the `<script>` tags generated for the JSONP requests.
+To resolve this, use the [`crossOriginLoading`](https://webpack.js.org/configuration/output/#output-crossoriginloading) setting in development to add the `crossorigin` attribute to the `<script />` tags generated for the JSONP requests.

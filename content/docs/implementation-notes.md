@@ -129,7 +129,7 @@ There is no user-defined code associated with host elements.
 
 When the reconciler encounters a host element, it lets the renderer take care of mounting it. For example, React DOM would create a DOM node.
 
-If the host element has children, the reconciler recursively mounts them following the same algorithm as above. It doesn't matter whether children are host (like `<div><hr /></div>`), composite (like `<div><Button /></div>`), or both.
+If the host element has children, the reconciler recursively mounts them following the same algorithm as above. It doesn't matter whether children are host (like `<div><hr /></div />`), composite (like `<div><Button /></div />`), or both.
 
 The DOM nodes produced by the child components will be appended to the parent DOM node, and recursively, the complete DOM structure will be assembled.
 
@@ -375,7 +375,7 @@ class DOMComponent {
 
 The main difference after refactoring from `mountHost()` is that we now keep `this.node` and `this.renderedChildren` associated with the internal DOM component instance. We will also use them for applying non-destructive updates in the future.
 
-As a result, each internal instance, composite or host, now points to its child internal instances. To help visualize this, if a functional `<App>` component renders a `<Button>` class component, and `Button` class renders a `<div>`, the internal instance tree would look like this:
+As a result, each internal instance, composite or host, now points to its child internal instances. To help visualize this, if a functional `<App />` component renders a `<Button />` class component, and `Button` class renders a `<div />`, the internal instance tree would look like this:
 
 ```js
 [object CompositeComponent] {
@@ -393,7 +393,7 @@ As a result, each internal instance, composite or host, now points to its child 
 }
 ```
 
-In the DOM you would only see the `<div>`. However the internal instance tree contains both composite and host internal instances.
+In the DOM you would only see the `<div />`. However the internal instance tree contains both composite and host internal instances.
 
 The composite internal instances need to store:
 
@@ -610,7 +610,7 @@ For example, if it returned `<Button color="red" />` the first time, and `<Butto
     // ...
 ```
 
-However, if the next rendered element has a different `type` than the previously rendered element, we can't update the internal instance. A `<button>` can't "become" an `<input>`.
+However, if the next rendered element has a different `type` than the previously rendered element, we can't update the internal instance. A `<button />` can't "become" an `<input />`.
 
 Instead, we have to unmount the existing internal instance and mount the new one corresponding to the rendered element type. For example, this is what happens when a component that previously rendered a `<button />` renders an `<input />`:
 

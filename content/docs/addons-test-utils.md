@@ -110,7 +110,7 @@ mockComponent(
 )
 ```
 
-Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
+Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div />` (or other tag if `mockTagName` is provided) containing any provided children.
 
 > Note:
 >
@@ -147,7 +147,7 @@ Returns `true` if `element` is a React element whose type is of a React `compone
 isDOMComponent(instance)
 ```
 
-Returns `true` if `instance` is a DOM component (such as a `<div>` or `<span>`).
+Returns `true` if `instance` is a DOM component (such as a `<div />` or `<span />`).
 
 * * *
 
@@ -264,4 +264,3 @@ findRenderedComponentWithType(
 Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
 
 * * *
-

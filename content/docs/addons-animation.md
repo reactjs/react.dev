@@ -245,7 +245,7 @@ var ReactTransitionGroup = require('react-addons-transition-group') // ES5 with 
 
 #### Rendering a Different Component
 
-`ReactTransitionGroup` renders as a `span` by default. You can change this behavior by providing a `component` prop. For example, here's how you would render a `<ul>`:
+`ReactTransitionGroup` renders as a `span` by default. You can change this behavior by providing a `component` prop. For example, here's how you would render a `<ul />`:
 
 ```javascript{1}
 <ReactTransitionGroup component="ul">
@@ -253,7 +253,7 @@ var ReactTransitionGroup = require('react-addons-transition-group') // ES5 with 
 </ReactTransitionGroup>
 ```
 
-Any additional, user-defined, properties will become properties of the rendered component. For example, here's how you would render a `<ul>` with CSS class:
+Any additional, user-defined, properties will become properties of the rendered component. For example, here's how you would render a `<ul />` with CSS class:
 
 ```javascript{1}
 <ReactTransitionGroup component="ul" className="animated-list">
@@ -267,7 +267,7 @@ Every DOM component that React can render is available for use. However, `compon
 
 People often use `ReactTransitionGroup` to animate mounting and unmounting of a single child such as a collapsible panel. Normally `ReactTransitionGroup` wraps all its children in a `span` (or a custom `component` as described above). This is because any React component has to return a single root element, and `ReactTransitionGroup` is no exception to this rule.
 
-However if you only need to render a single child inside `ReactTransitionGroup`, you can completely avoid wrapping it in a `<span>` or any other DOM component. To do this, create a custom component that renders the first child passed to it directly:
+However if you only need to render a single child inside `ReactTransitionGroup`, you can completely avoid wrapping it in a `<span />` or any other DOM component. To do this, create a custom component that renders the first child passed to it directly:
 
 ```javascript
 function FirstChild(props) {
@@ -276,7 +276,7 @@ function FirstChild(props) {
 }
 ```
 
-Now you can specify `FirstChild` as the `component` prop in `<ReactTransitionGroup>` props and avoid any wrappers in the result DOM:
+Now you can specify `FirstChild` as the `component` prop in `<ReactTransitionGroup />` props and avoid any wrappers in the result DOM:
 
 ```javascript
 <ReactTransitionGroup component={FirstChild}>
@@ -284,7 +284,7 @@ Now you can specify `FirstChild` as the `component` prop in `<ReactTransitionGro
 </ReactTransitionGroup>
 ```
 
-This only works when you are animating a single child in and out, such as a collapsible panel. This approach wouldn't work when animating multiple children or replacing the single child with another child, such as an image carousel. For an image carousel, while the current image is animating out, another image will animate in, so `<ReactTransitionGroup>` needs to give them a common DOM parent. You can't avoid the wrapper for multiple children, but you can customize the wrapper with the `component` prop as described above.
+This only works when you are animating a single child in and out, such as a collapsible panel. This approach wouldn't work when animating multiple children or replacing the single child with another child, such as an image carousel. For an image carousel, while the current image is animating out, another image will animate in, so `<ReactTransitionGroup />` needs to give them a common DOM parent. You can't avoid the wrapper for multiple children, but you can customize the wrapper with the `component` prop as described above.
 
 * * *
 

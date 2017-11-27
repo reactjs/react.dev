@@ -145,9 +145,9 @@ If you are using Babel with [Webpack](https://webpack.js.org/), then no addition
 
 Unfortunately, support for Babel 6.x is not available, and there are currently no plans to back-port.
 
-#### Typescript
+#### TypeScript
 
-For Typescript users, please upgrade to [version 2.6.2](https://github.com/Microsoft/TypeScript/releases/tag/v2.6.2). Note that this is important even if you are already on version 2.6.1, since support was added in 2.6.2.
+For TypeScript users, please upgrade to [version 2.6.2](https://github.com/Microsoft/TypeScript/releases/tag/v2.6.2). Note that this is important even if you are already on version 2.6.1, since support was added in 2.6.2.
 
 Upgrade to the latest with the command
 
@@ -156,7 +156,8 @@ yarn upgrade typescript # for yarn users
 npm update typescript # for npm users
 ```
 
-Also, editors may complain about errors in `.tsx` and `.js/.jsx` files using the new syntax. These errors can be safely ignored, or configured for [VS Code](https://code.visualstudio.com/Docs/languages/typescript#_using-newer-typescript-versions) and [Sublime Text](https://github.com/Microsoft/TypeScript-Sublime-Plugin/#note-using-different-versions-of-typescript).
+Also, editors may complain about errors in `.tsx` and `.js/.jsx` files using the new syntax. These errors can be safely ignored, but editor support for JSX fragments are already available with updates for [Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48593), [Visual Studio 2017](https://www.microsoft.com/en-us/download/details.aspx?id=55258), and [Sublime Text via Package Control](https://packagecontrol.io/packages/TypeScript).
+Visual Studio Code will be updated soon, but [can be configured to use TypeScript 2.6.2 and later](https://code.visualstudio.com/Docs/languages/typescript#_using-newer-typescript-versions).
 
 #### Flow
 
@@ -177,4 +178,4 @@ For other tools, please check with the corresponding documentation to check if t
 
 This release was made possible thanks to the core team and our open source contributors. A big thanks to everyone who filed issues, contributed to syntax discussions, reviewed pull requests, added support for JSX fragments in third party libraries, and more!
 
-Also, special thanks to the [Typescript](https://www.typescriptlang.org/) and [Flow](https://flow.org/) teams, as well as the [Babel](https://babeljs.io/) maintainers, who helped make tooling support for the new syntax go seamlessly.
+Also, special thanks to the [TypeScript](https://www.typescriptlang.org/) and [Flow](https://flow.org/) teams, as well as the [Babel](https://babeljs.io/) maintainers, who helped make tooling support for the new syntax go seamlessly.

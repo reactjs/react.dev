@@ -110,8 +110,7 @@ const Footer = ({layoutHasSidebar = false}) => (
             </FooterLink>
             <FooterLink to="/community/videos.html">Videos</FooterLink>
             <FooterLink to="/community/examples.html">Examples</FooterLink>
-            <FooterLink
-              to="/community/debugging-tools.html">
+            <FooterLink to="/community/debugging-tools.html">
               Complementary Tools
             </FooterLink>
           </FooterNav>

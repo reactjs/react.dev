@@ -44,7 +44,7 @@ CSS-in-JS refers to a pattern where CSS is written with Javascript, then extract
 
 [Comparison of CSS-in-JS Libraries](https://github.com/MicheleBertoli/css-in-js)
 
-_Note that this functionality is not a part of React, but provided by third-party libraries._ React does not have an opinion about how styles are defined; if in doubt, define your styles in a separate `*.css` file and refer to them using [`className`](/docs/dom-elements.html#classname).
+_Note that this functionality is not a part of React, but provided by third-party libraries._ React does not have an opinion about how styles are defined; if in doubt, define your styles in a separate `*.css` file as usual and refer to them using [`className`](/docs/dom-elements.html#classname).
 
 ### Can I do animations in React?
 

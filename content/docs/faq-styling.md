@@ -8,12 +8,6 @@ category: FAQ
 
 ### How do I add CSS classes to components?
 
-Import the CSS file in which the styles are scoped:
-
-```jsx
-import from './path/to/Filename.css';
-```
-
 Pass a string as the `className` prop:
 
 ```jsx
@@ -46,7 +40,9 @@ CSS classes are generally more efficient than inline styles.
 
 ### What is CSS-in-JS?
 
-CSS-in-JS refers to a pattern where CSS is written with Javascript, then extracted into a stylesheet.It is `not mandatory` to use CSS-in-JS.
+CSS-in-JS refers to a pattern where CSS is written with Javascript, then extracted into a stylesheet.
+
+It is _not recommended_ to use CSS-in-JS instead you may define your styles in a separate `*.css` file or inline (using the `style` attribute). If you still prefer using CSS-in-JS go checkout various libraries below:
 
 [Comparison of CSS-in-JS Libraries](https://github.com/MicheleBertoli/css-in-js)
 

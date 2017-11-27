@@ -45,6 +45,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## Germany
 * [Berlin](http://www.meetup.com/React-Berlin/)
 * [Hamburg](http://www.meetup.com/Hamburg-React-js-Meetup/)
+* [Karlsruhe](http://www.meetup.com/react_ka/)
 * [Munich](http://www.meetup.com/ReactJS-Meetup-Munich/)
 
 ## Greece

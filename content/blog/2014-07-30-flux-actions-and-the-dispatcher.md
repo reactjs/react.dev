@@ -41,6 +41,6 @@ Problems arise, however, if we have circular dependencies. That is, if Store A n
 Example Chat App
 ----------------
 
-Along with the same dispatcher that Facebook uses in its production applications, we've also published a new example [chat app](https://github.com/facebook/flux/tree/master/examples/flux-chat), slightly more complicated than the simplistic TodoMVC, so that engineers can better understand how Flux solves problems like dependencies between stores and calls to a web API.
+Along with the same dispatcher that Facebook uses in its production applications, we've also published a new example [chat app](https://github.com/facebook/flow/tree/master/examples/flux-chat), slightly more complicated than the simplistic TodoMVC, so that engineers can better understand how Flux solves problems like dependencies between stores and calls to a web API.
 
 We're hopeful that the new Flux repository will grow with time to include additional tools, boilerplate code and further examples. And we hope that Flux will prove as useful to you as it has to us. Enjoy!

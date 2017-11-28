@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -12,7 +13,20 @@ import slugify from './slugify';
  * Helper method to locate the section containing the current URL/path.
  * This method specifically works with the nav_*.yml format.
  */
-const findSectionForPath = (pathname, sections) => {
+
+type Item = {
+  id: string,
+  subitems: Array<Item>,
+};
+
+type Section = {
+  items: Array<Item>,
+};
+
+const findSectionForPath = (
+  pathname: string,
+  sections: Array<Section>,
+): Section | void => {
   let activeSection;
   const slugId = pathname.split('/').slice(-1)[0];
 

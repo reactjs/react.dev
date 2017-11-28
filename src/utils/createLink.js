@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -12,7 +13,19 @@ import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import slugify from 'utils/slugify';
 import {colors, media} from 'theme';
 
-const createLinkBlog = ({isActive, item, section}) => {
+import type {Node} from 'react';
+
+type CreateLinkBaseProps = {
+  isActive: boolean,
+  item: Object,
+  section: Object,
+};
+
+const createLinkBlog = ({
+  isActive,
+  item,
+  section,
+}: CreateLinkBaseProps): Node => {
   return (
     <Link css={[linkCss, isActive && activeLinkCss]} to={item.id}>
       {isActive && <span css={activeLinkBefore} />}
@@ -21,7 +34,11 @@ const createLinkBlog = ({isActive, item, section}) => {
   );
 };
 
-const createLinkCommunity = ({isActive, item, section}) => {
+const createLinkCommunity = ({
+  isActive,
+  item,
+  section,
+}: CreateLinkBaseProps): Node => {
   if (item.href) {
     return (
       <a css={[linkCss]} href={item.href} target="_blank" rel="noopener">
@@ -44,7 +61,11 @@ const createLinkCommunity = ({isActive, item, section}) => {
   });
 };
 
-const createLinkDocs = ({isActive, item, section}) => {
+const createLinkDocs = ({
+  isActive,
+  item,
+  section,
+}: CreateLinkBaseProps): Node => {
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
@@ -55,7 +76,16 @@ const createLinkDocs = ({isActive, item, section}) => {
   );
 };
 
-const createLinkTutorial = ({isActive, item, onLinkClick, section}) => {
+type CreateLinkTutorialProps = {
+  onLinkClick: Function,
+} & CreateLinkBaseProps;
+
+const createLinkTutorial = ({
+  isActive,
+  item,
+  onLinkClick,
+  section,
+}: CreateLinkTutorialProps): Node => {
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}

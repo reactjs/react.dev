@@ -164,7 +164,7 @@ In the **development** mode, you can visualize how components mount, update, and
 
 To do this in Chrome:
 
-1. Load your app with `?react_perf` in the query string (for example, `http://localhost:3000/?react_perf`).
+1. Make sure you're running the application in the development mode.
 
 2. Open the Chrome DevTools **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** tab and press **Record**.
 
@@ -174,10 +174,11 @@ To do this in Chrome:
 
 5. React events will be grouped under the **User Timing** label.
 
+For a more detailed walkthrough, check out [this article by Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
+
 Note that **the numbers are relative so components will render faster in production**. Still, this should help you realize when unrelated UI gets updated by mistake, and how deep and how often your UI updates occur.
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
-
 
 ## Avoid Reconciliation
 

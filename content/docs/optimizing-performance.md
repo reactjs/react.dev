@@ -180,6 +180,12 @@ Note that **the numbers are relative so components will render faster in product
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
+## Virtualize Long Lists
+
+If your application renders very long lists of data (hundreds of rows and more), it is recommended to "virtualize" them by using a component that only renders the visible rows (and a few rows before and after) at any given point in time. This can dramatically reduce the time it takes to re-render the components, as well as the number of created DOM nodes.
+
+[React Virtualized](https://bvaughn.github.io/react-virtualized/) is a popular library that implements this. You may also want to create something more specific to your use case, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3).
+
 ## Avoid Reconciliation
 
 React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a "virtual DOM", but it works the same way on React Native.

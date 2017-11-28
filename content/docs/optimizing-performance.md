@@ -182,11 +182,11 @@ Currently Chrome, Edge, and IE are the only browsers supporting this feature, bu
 
 ## Virtualize Long Lists
 
-If your application renders very long lists of data (hundreds of rows and more), it is recommended to "virtualize" them by using a component that only renders the visible rows (and a few rows before and after) at any given point in time. This can dramatically reduce the time it takes to re-render the components, as well as the number of created DOM nodes.
+If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
 
-[React Virtualized](https://bvaughn.github.io/react-virtualized/) is a popular library that implements this. You may also want to create something more specific to your use case, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3).
-
-## Avoid Reconciliation
+[React Virtualized](https://bvaughn.github.io/react-virtualized/) is one popular windowing library. It provides several reusable components for displaying lists, grids, and tabular data. You can also create your own windowing component, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), if you want something more tailored to your application's specific use case.
+ 
+ ## Avoid Reconciliation
 
 React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a "virtual DOM", but it works the same way on React Native.
 

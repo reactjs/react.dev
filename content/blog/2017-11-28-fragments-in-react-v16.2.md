@@ -3,14 +3,30 @@ title: "Fragments in React v16.2"
 author: [clemmy]
 ---
 
-Today, we're excited to bring the new `Fragment` export to React, which allows users to render **static** fragments without the unnecessary keying of each element in the fragment!
+Today, we're excited to improved support for fragments in React! We are introducing a new `Fragment` export, which allows
+which allows users to render *static* fragments using familiar JSX element syntax.
+
+```jsx
+import React, { Fragment } from 'react';
+
+render() {
+  return (
+    <Fragment>
+      <li>Look ma</li>
+      <li>a list!</li>
+    </Fragment>
+  );
+}
+```
+
+We've also included a new short syntax that is already supported by [some tools](#tooling-support):
 
 ```jsx
 render() {
   return (
     <>
       <li>Look ma</li>
-      <li>no keys!</li>
+      <li>a list!</li>
     </>
   );
 }
@@ -18,10 +34,11 @@ render() {
 
 ### Why Fragments?
 
-When React released version 16, the ability to render an array of elements from a component's `render` method was added. This allowed developers to prevent extraneous markup with `div`s that pollute the HTML. However, it was inconvenient because every element in the array had to be explicitly keyed. Previously, in order to render an array of elements, the following code would be necessary:
+React 16 added the [ability to return an array of elements from a component's `render` method](https://reactjs.org/blog/2017/09/26/react-v16.0.html#new-render-return-types-fragments-and-strings). This allowed developers to prevent extraneous markup with `div`s that pollute the DOM. However, it was inconvenient for users who were writing static JSX because the syntax is completely different from how they would usually write JSX:
 
 ```jsx
 render() {
+  // keys and commas are needed when returning an array in a render
   return [
     <span key="first-span">I am</span>,
     <span key="second-span">static</span>
@@ -29,18 +46,21 @@ render() {
 }
 ```
 
-However, the keys are only necessary for React's reconciliation algorithm when child elements are re-arranged and React needs to figure out which item in one render corresponds to in a subsequent render. If the array is static, then keys aren't necessary and only add extra noise to the code. So, let's omit them:
+So, we added the `Fragment` component to React! `Fragment`s let developers return multiple elements from `render` methods using a familiar syntax that resembles normal JSX elements:
 
 ```jsx
+import React, { Fragment } from 'react';
+
 render() {
-  return [
-    <span>I am</span>,
+  // keys and commas are no longer needed
+  return <Fragment>
+    <span>I am</span>
     <span>static</span>
-  ];
+  </Fragment>;
 }
 ```
 
-But React gives a key warning with the above code! This is because React doesn't know whether the array items can ever rearrange. With fragment syntax, it is clear that the code's intent is to render a static list of children, and not a developer mistake:
+We anticipate that the above will be a common use case, so we added a shorthand syntax for it:
 
 ```jsx
 render() {
@@ -88,27 +108,29 @@ After the release of React 16, people in the React community have created soluti
 
 [For the curious, you can read more about that here.](https://github.com/facebook/react/pull/10783)
 
-Still, we are very thankful to the open source contributors who worked on solving this in the ecosystem.
+We are very thankful to [Gajus Kuizinas](https://github.com/gajus/) and other contributors who prototyped this in open source.
 
 Additionally, there is a [pragma option available in babel-plugin-transform-react-jsx](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx#pragmafrag) that allows the Babel compiler to de-sugar the `<>...</>` syntax to a custom identifier.
 
-### Example Usages
+### Usage
 
 As mentioned above, the most common way to use fragments in React is to simply use `<></>` tags. Generally, in the Javascript compiler phase of your build pipeline, the `<>...</>` will be de-sugared into a `createElement` call with `React.Fragment` as the type.
 
-Take a look at the section on [How to Use it](#how-to-use-it) to see how to update your tooling to support JSX fragments.
+Take a look at the section on [tooling support](#tooling-support) to see how to update your tooling to support JSX fragments.
 
 #### With Attributes and Keys
 
-Note that with the `<></>` syntax, attributes are not allowed to be passed. We made the decision to disallow attributes with fragments since they're semantically different from React elements. However, a fragment can be keyed by using the explicit fragment syntax:
+Note that the `<></>` syntax does not allow attributes on fragments. We made the decision to disallow attributes with fragments since they're semantically different from React elements. However, a fragment can be keyed by using the explicit fragment syntax. A common use case for this is grouping an item list into pairs:
 
 ```jsx
-import { Fragment } from 'react';
+import React, { Fragment } from 'react';
 
-<Fragment key="my-key">
-  <span>Happy</span>
-  <span>Thanksgiving!</span>
-</Fragment>
+items.map(item => (
+  <Fragment key="item.key">
+    <li>{item.title}</li>
+    <li>{item.description}</li>
+  </Fragment>
+))
 ```
 
 In the future, `Fragment` may also support more attributes, such as event handlers.
@@ -117,9 +139,9 @@ In the future, `Fragment` may also support more attributes, such as event handle
 
 You can experiment with JSX fragment syntax on this [CodePen](#) using [React v16.2.0](https://github.com/facebook/react/releases/tag/v16.2.0) and [Babel v7](https://github.com/babel/babel).
 
-### How to Use it
+### Tooling Support
 
-JSX fragments are still very new and some tools in the ecosystem may not be ready for it yet, so please be patient! However, we've tried our best to make it as simple as possible to upgrade from several popular toolchains:
+JSX fragments are still very new and many tools in the ecosystem may not be ready for it yet, so please be patient! We've tried our best to make it as simple as possible to upgrade from several popular toolchains:
 
 #### Create React App
 
@@ -143,7 +165,7 @@ npm update @babel/core @babel/preset-react # for npm users
 
 If you are using Babel with [Webpack](https://webpack.js.org/), then no additional steps need to be done because [babel-loader](https://github.com/babel/babel-loader) will be using your peer-installed version of Babel.
 
-Unfortunately, support for Babel 6.x is not available, and there are currently no plans to back-port.
+Unfortunately, support for Babel 6.x is not available, and there are currently no plans to backport.
 
 #### TypeScript
 
@@ -172,7 +194,7 @@ to update Flow to the latest version.
 
 #### Others
 
-For other tools, please check with the corresponding documentation to check if there is support available. However, it's not a problem at all if you want the functionality of `<></>` without your linters and tooling complaining! You can always start with `<Fragment></Fragment>` and do a code-mod later to replace it with `<></>` when the appropriate support is available.
+For other tools, please check with the corresponding documentation to check if there is support available. However, it's not a problem at all if you want the functionality of `<></>` without your linters and tooling complaining! You can always start with `<Fragment></Fragment>` and do a codemod later to replace it with `<></>` when the appropriate support is available.
 
 ### Acknowledgments
 

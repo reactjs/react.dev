@@ -95,23 +95,13 @@ Style keys are camelCased in order to be consistent with accessing the propertie
 React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
 
 ```js
-// This:
+// Result style: '10px'
 <div style={{ height: 10 }}>
-  Hello World!
-</div>;
-
-// Becomes:
-<div style="height: 10px;">
   Hello World!
 </div>
 
-// This:
+// Result style: '10%'
 <div style={{ height: '10%' }}>
-  Hello World!
-</div>;
-
-// Becomes:
-<div style="height: 10%;">
   Hello World!
 </div>
 ```

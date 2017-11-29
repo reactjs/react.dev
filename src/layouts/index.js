@@ -7,8 +7,6 @@
 
 'use strict';
 
-// FIXME: I actually cannot figure out where this Template is used
-
 // Polyfills for IE
 import 'array-from';
 import 'string.prototype.includes';

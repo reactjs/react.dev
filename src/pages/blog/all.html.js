@@ -89,9 +89,7 @@ const AllBlogPosts = ({data}: Props) => (
                     </span>
                   ))}
                 </div>
-              ) : (
-                null
-              )}
+              ) : null}
             </li>
           ))}
         </ul>

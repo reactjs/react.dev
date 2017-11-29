@@ -12,9 +12,11 @@ category: FAQ
 
 ### What is the difference between state and props?
 
-[state](docs/state-and-lifecycle) and [props](/docs/components-and-props) are plain JS objects which cause re-render whenever they change. While both hold information relating to the component, they are used differently and should be kept separate because:
+[`props`](/docs/components-and-props.html) (short for "properties") and [`state`](/docs/state-and-lifecycle.html) are both just JavaScript objects that trigger a re-render when changed. While both hold information that influences the output of render, they are different in one important way: `props` get passed to the component (similar to function parameters) whereas `state` is managed within the component (similar to variables declared within a function).
 
-* `props` contains information set by the parent component and should not be changed whereas `state` contains private information for the component to initialise, change, and use on it’s own.
+Here are some good resources for further reading on when to use `props` vs `state`:
+* [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+* [ReactJS: Props vs. State](http://lucybain.com/blog/2016/react-state-vs-pros/)
 
 ### Why is `setState` is giving me the wrong value?
 

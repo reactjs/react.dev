@@ -90,7 +90,7 @@ const AllBlogPosts = ({data}: Props) => (
                   ))}
                 </div>
               ) : (
-                <div />
+                null
               )}
             </li>
           ))}

@@ -18,6 +18,7 @@ import createOgUrl from 'utils/createOgUrl';
 import loadScript from 'utils/loadScript';
 import {babelURL} from 'site-constants';
 import ReactDOM from 'react-dom';
+import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
   constructor(props, context) {
@@ -99,10 +100,20 @@ class Home extends Component {
                 maxWidth: 1500, // Positioning of background logo
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                backgroundImage: 'url(/large-logo.svg)',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: '100% 100px',
-                backgroundSize: '50% auto',
+                position: 'relative',
+                '::before': {
+                  content: ' ',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                  backgroundImage: `url(${logoWhiteSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: '100% 100px',
+                  backgroundSize: '50% auto',
+                  opacity: 0.05,
+                },
               },
             }}>
             <Container>

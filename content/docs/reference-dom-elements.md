@@ -60,6 +60,10 @@ The `selected` attribute is supported by `<option>` components. You can use it t
 
 ### style
 
+>Note
+>
+>Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#className) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+
 The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
 
 ```js
@@ -113,8 +117,6 @@ React will automatically append a "px" suffix to certain numeric inline style pr
 ```
 
 Not all style properties are converted to pixel strings though. Certain ones remain unitless (eg `zoom`, `order`, `flex`). A complete list of unitless properties can be seen [here](https://github.com/facebook/react/blob/4131af3e4bf52f3a003537ec95a1655147c81270/src/renderers/dom/shared/CSSProperty.js#L15-L59).
-
-**Note:** Some examples in the documentation use `style` for convenience, but per modern web development best practices, **using the `style` attribute as the primary means of styling elements is _not recommended_.** In most cases, [`className`](#className) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
 
 ### suppressContentEditableWarning
 

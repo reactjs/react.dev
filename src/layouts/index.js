@@ -25,7 +25,7 @@ import 'css/reset.css';
 import 'css/algolia.css';
 
 type Props = {
-  children: any, // I don't think this is a Node type
+  children: Function,
   location: Location,
 };
 

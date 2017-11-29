@@ -2,13 +2,14 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
 
 import slugify from 'utils/slugify';
 
-const toAnchor = (href = '') => {
+const toAnchor = (href: string = ''): string => {
   const index = href.indexOf('#');
   return index >= 0 ? href.substr(index) : '';
 };
@@ -16,7 +17,12 @@ const toAnchor = (href = '') => {
 // TODO Account for redirect_from URLs somehow; they currently won't match.
 // This comment should not be true anymore since we're using 300 redirects
 
-const isItemActive = (location, item) => {
+type Item = {
+  id: string,
+  href: string,
+};
+
+const isItemActive = (location: Location, item: Item): boolean => {
   if (location.hash) {
     if (item.href) {
       return location.hash === toAnchor(item.href);

@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -17,7 +18,7 @@ import DocSearch from './DocSearch';
 
 import logoSvg from 'icons/logo.svg';
 
-const Header = ({location}) => (
+const Header = ({location}: {location: Location}) => (
   <header
     css={{
       backgroundColor: colors.darker,

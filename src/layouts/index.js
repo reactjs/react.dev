@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 'use strict';
@@ -23,7 +24,12 @@ import 'glamor/reset';
 import 'css/reset.css';
 import 'css/algolia.css';
 
-class Template extends Component {
+type Props = {
+  children: Function,
+  location: Location,
+};
+
+class Template extends Component<Props> {
   render() {
     const {children, location} = this.props;
 

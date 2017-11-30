@@ -141,8 +141,7 @@ function tryConvert(temperature, convert) {
     return '';
   }
   const output = convert(input);
-  const rounded = Math.round(output * 1000) / 1000;
-  return rounded.toString();
+  return output.tofixed(3);
 }
 ```
 

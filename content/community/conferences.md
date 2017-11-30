@@ -31,6 +31,11 @@ May 17-18 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
 
+### React Rally
+August 16-17 in Salt Lake City, Utah USA
+
+[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
+
 ### ReactNext 2018
 September 6 in Tel Aviv, Israel
 

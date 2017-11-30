@@ -111,3 +111,5 @@
       title: File Structure
     - id: faq-internals
       title: Virtual DOM and Internals
+    - id: faq-browser-events
+      title: Dispatching Browser Events

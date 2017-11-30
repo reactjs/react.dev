@@ -10,8 +10,7 @@ category: FAQ
 
 Using React does not change the way you can dispatch browser events. You need to use [browser APIs](https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/dispatchEvent) in order to dispatch built-in events like `click` or `submit`.
 
-```js
-
+```js{8}
 function dispatchMouseEvent(eventType, target) {
   const event = new MouseEvent(eventType, {
     bubbles: true,
@@ -39,7 +38,7 @@ Since React attaches event listeners only on the `documentElement`, you need to 
 
 ### Example: Dispatching a `click` event to submit a form
 
-```jsx
+```jsx{3,8,23}
 function dispatchMouseEvent(eventType, target) {
   const event = new MouseEvent(eventType, {
     bubbles: true,

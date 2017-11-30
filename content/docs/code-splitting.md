@@ -198,7 +198,7 @@ const About = Loadable({
 
 const App = () => (
   <Router>
-    <Route path="/" component={Home}/>
+    <Route exact path="/" component={Home}/>
     <Route path="/about" component={About}/>
   </Router>
 );

@@ -83,10 +83,11 @@ The core team is monitoring for pull requests. We will review your pull request 
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
 5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
-6. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`) and also run `yarn prettier-all`.
-7. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
-8. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
-9. If you haven't already, complete the CLA.
+6. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+7. (Optional) Run `yarn prettier-all` to make sure you adhere to code style in the upstream. If you have set custom settings for code formatting then you should run the command.
+8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
+10. If you haven't already, complete the CLA.
 
 ### Contributor License Agreement (CLA)
 

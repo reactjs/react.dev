@@ -22,6 +22,7 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+trolololo
 
 It renders a header saying "Hello, world!" on the page.
 

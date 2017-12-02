@@ -180,6 +180,34 @@ Note that **the numbers are relative so components will render faster in product
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
+## Visualize Component Updates with React DevTools' Highlight Updates Feature
+
+<img src="https://media.giphy.com/media/xUOxfgXNvzy37XlueY/giphy.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
+
+>The above is an example from an [app](https://highlight-demo.firebaseapp.com/) setup to specifically demonstrate a very poorly optimized redraw, more info can be found in this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
+
+You can use the Highlight Updates feature to visualize the number of times on-screen components redraw after an event/action/interaction occurs.  This can be helpful in identifying optimization opportunities.  e.g. A component is redrawing more than it needs to, or is redrawing when it doesn't need to at all.
+
+### Available as:
+
+- [Chrome Browser Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+- [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
+- [Node Package](https://www.npmjs.com/package/react-devtools) - Useful in scenarios not covered by the aforementioned browser extensions, or for code in iFrames.
+
+### Usage:
+
+- Install one of the React DevTools packages above
+- Go in to the console and select the React tab
+- Enable the Highlight Updates option
+
+<img src="https://i.imgur.com/tUBa5k7.png" style="max-width:100%;" alt="How to enable highlight updates" />
+
+- Interact with your page and you should see colored borders momentarily appear around any element that has redrawn.
+
+The color of the border represents how many redraws have occurred on a 'heat' scale, with cold being good and hot being bad.
+
+<img src="https://cloud.githubusercontent.com/assets/1135523/24347510/d5268fdc-12d8-11e7-83fb-643e789a6814.png" style="max-width:100%; margin-top:20px;" alt="List of highlight update colors" />
+
 ## Virtualize Long Lists
 
 If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.

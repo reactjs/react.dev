@@ -136,6 +136,14 @@ class SignUpDialog extends React.Component {
     this.handleSignUp = this.handleSignUp.bind(this);
     this.state = {login: ''};
   }
+  
+  handleChange(e) {
+    this.setState({login: e.target.value});
+  }
+
+  handleSignUp() {
+    alert(`Welcome aboard, ${this.state.login}!`);
+  }
 
   render() {
     return (
@@ -148,14 +156,6 @@ class SignUpDialog extends React.Component {
         </button>
       </Dialog>
     );
-  }
-
-  handleChange(e) {
-    this.setState({login: e.target.value});
-  }
-
-  handleSignUp() {
-    alert(`Welcome aboard, ${this.state.login}!`);
   }
 }
 ```

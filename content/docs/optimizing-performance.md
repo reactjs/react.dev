@@ -182,7 +182,7 @@ Currently Chrome, Edge, and IE are the only browsers supporting this feature, bu
 
 ## Visualize Component Updates with React DevTools' Highlight Updates Feature
 
-<img src="https://media.giphy.com/media/xUOxfgXNvzy37XlueY/giphy.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
+<img src="https://i.imgur.com/dGIGC5p.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
 
 >The above is an example from an [app](https://highlight-demo.firebaseapp.com/) setup to specifically demonstrate a very poorly optimized redraw, more info can be found in this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
 

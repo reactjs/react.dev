@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 /**
  * Theme contains variables shared by styles of multiple components.
  */

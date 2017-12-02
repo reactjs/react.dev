@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import {urlRoot} from 'site-constants';
 
 export default (slug: string): string | null =>

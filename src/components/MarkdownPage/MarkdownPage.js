@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';

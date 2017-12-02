@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import MarkdownPage from './MarkdownPage';
 
 export default MarkdownPage;

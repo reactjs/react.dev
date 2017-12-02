@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import {css} from 'glamor';
 import {colors} from 'theme';
 

@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import React from 'react';
 import {colors} from 'theme';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';

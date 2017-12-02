@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import slugify from 'utils/slugify';
 
 const toAnchor = (href: string = ''): string => {

@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';

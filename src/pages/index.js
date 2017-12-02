@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';

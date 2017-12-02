@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import HeaderLink from './HeaderLink';
 import Link from 'gatsby-link';

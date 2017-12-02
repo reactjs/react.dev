@@ -5,10 +5,19 @@ layout: community
 permalink: community/starter-kits.html
 ---
 
+## Recommended by the React Team
+
+* **[Create React App](https://github.com/facebookincubator/create-react-app)** - An officially supported way to start a client-side React project with no configuration
+* **[Next.js](https://learnnextjs.com/)** - Framework for server-rendered or statically-exported React apps
+* **[Gatsby](https://www.gatsbyjs.org/)** - Blazing-fast static site generator for React
+* **[nwb](https://github.com/insin/nwb)** - A toolkit for React apps, libraries and other npm modules for the web
+* **[razzle](https://github.com/jaredpalmer/razzle)** - Create server-rendered universal JavaScript applications with no configuration
+* **[Neutrino](https://neutrino.js.org/)** - Create and build modern JavaScript applications with zero initial configuration
+
 ## Client-side Kits
 
 * **[React CDK](https://github.com/kadirahq/react-cdk)** - Component Development Kit for React
-* **[React Static Boilerplate](https://github.com/koistya/react-static-boilerplate):** Static site generator based on React.js, Gulp/Webpack, React Hot Loader, Babel, postCSS/cssnext. Best suited for deploying React.js site to GitHub Pages or Amazon S3.
+* **[React Static Boilerplate](https://github.com/koistya/react-static-boilerplate):** Static site generator based on React, Gulp/Webpack, React Hot Loader, Babel, postCSS/cssnext. Best suited for deploying React.js site to GitHub Pages or Amazon S3.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate that make life easier for developers by providing a virtual development environment and production ready build workflow out of the box.  ( React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support )
 * **[React, TypeScript, JSPM starter-kit](https://github.com/piotrwitek/react-ts-jspm-starter-kit):** Unopinionated starter kit to build modular web apps with React & TypeScript powered by JSPM/SystemJS 0.17.X (ES2016, hot-reload, browser-sync, bundle for prod scripts)
 * **[Subschema](https://subschema.github.io/subschema)** - Subschema is a Dependency Injection Library for React, included is a project starter, with webpack, karma and babel.

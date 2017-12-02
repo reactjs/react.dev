@@ -48,6 +48,8 @@
       title: Reconciliation
     - id: context
       title: Context
+    - id: fragments
+      title: Fragments
     - id: portals
       title: Portals
     - id: error-boundaries

@@ -180,33 +180,35 @@ Note that **the numbers are relative so components will render faster in product
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
-## Visualize Component Updates with React DevTools' Highlight Updates Feature
+## Visualize Component Updates with React-DevTools' Highlight Updates Feature
 
-<img src="https://i.imgur.com/dGIGC5p.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
+Whenever state changes, a component's `shouldComponentUpdate()` method gets called, and if not explicitly overwritten it returns `true` by default, which in turn calls the component's `render()` method, and causes a re-render of the virtual DOM.  A more thorough explanation can be had in this [blog post](http://lucybain.com/blog/2017/react-js-when-to-rerender/) from [Lucy Bain](http://lucybain.com/).
 
->The above is an example from an [app](https://highlight-demo.firebaseapp.com/) setup to specifically demonstrate a very poorly optimized redraw, more info can be found in this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
+React is smart enough to know not to update the actual DOM but it still needlessly burns precious cycles in the virtual DOM, which can compound to signifcant performance issues in your app.  React-DevTools' **Highlight Updates** feature can be very handy in helping us identify opportunities for optimisation here.
 
-You can use the Highlight Updates feature to visualize the number of times on-screen components redraw after an event/action/interaction occurs.  This can be helpful in identifying optimization opportunities.  e.g. A component is redrawing more than it needs to, or is redrawing when it doesn't need to at all.
+Let's use it to visualize re-renders:
 
-### Available as:
+- Install React DevTools if you haven't already:
+  - [Chrome Browser Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+  - [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
+  - [Node Package](https://www.npmjs.com/package/react-devtools) - Useful in scenarios not covered by the aforementioned browser extensions, or for code in iFrames.
+- In the developer console select the **Highlight Updates** option in the **React** tab
 
-- [Chrome Browser Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
-- [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
-- [Node Package](https://www.npmjs.com/package/react-devtools) - Useful in scenarios not covered by the aforementioned browser extensions, or for code in iFrames.
-
-### Usage:
-
-- Install one of the React DevTools packages above
-- Go in to the console and select the React tab
-- Enable the Highlight Updates option
-
-<img src="https://i.imgur.com/tUBa5k7.png" style="max-width:100%;" alt="How to enable highlight updates" />
+<img src="https://i.imgur.com/tUBa5k7.png" style="max-width:100%; margin-top:10px;" alt="How to enable highlight updates" />
 
 - Interact with your page and you should see colored borders momentarily appear around any element that has redrawn.
 
-The color of the border represents how many redraws have occurred on a 'heat' scale, with cold being good and hot being bad.
+You should expect to see redraws on components that are updating in the DOM, but you shouldn't see them around components that aren't updating.  So if you see redraws on components that are not updating then you know you have an opportunity to optimize there by not re-rendering it.  In the following example we see a very poorly optimized app; everything is being re-rendered in the virtual DOM even though only the text input component needs to be re-rendered:
+
+<img src="https://i.imgur.com/dGIGC5p.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
+
+>This is an example from an [app](https://highlight-demo.firebaseapp.com/) setup to specifically demonstrate a very poorly optimized redraw, more info can be found in this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
+
+The color of the border represents how many redraws are occurring on a 'heat' scale, with cold being few and hot being many.
 
 <img src="https://cloud.githubusercontent.com/assets/1135523/24347510/d5268fdc-12d8-11e7-83fb-643e789a6814.png" style="max-width:100%; margin-top:20px;" alt="List of highlight update colors" />
+
+You could use `shouldComponentUpdate()` to define when a component's `render()` method can get called, but it's recommended you instead use the `React.PureComponent` helper to create your components, you can read about it just a bit further on in [Avoiding Reconciliation](https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation).
 
 ## Virtualize Long Lists
 

@@ -198,7 +198,7 @@ Let's use it to visualize re-renders:
 
 - Interact with your page and you should see colored borders momentarily appear around any element that has redrawn.
 
-You should expect to see redraws on components that are updating in the DOM, but you shouldn't see them around components that aren't updating.  So if you see redraws on components that are not updating then you know you have an opportunity to optimize there by not re-rendering it.  In the following example we see a very poorly optimized app; everything is being re-rendered in the virtual DOM even though only the text input component needs to be re-rendered:
+You should expect to correctly see redraws on components that are updating in the DOM, but you shouldn't see them around components that are not updating.  So if you see redraws on components that are not updating then you know you have a needless `render()`.  In the following example we see a very poorly optimized app; everything is being re-rendered in the virtual DOM even though only the text input component needs to be re-rendered:
 
 <img src="https://i.imgur.com/dGIGC5p.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
 
@@ -208,7 +208,7 @@ The color of the border represents how many redraws are occurring on a 'heat' sc
 
 <img src="https://cloud.githubusercontent.com/assets/1135523/24347510/d5268fdc-12d8-11e7-83fb-643e789a6814.png" style="max-width:100%; margin-top:20px;" alt="List of highlight update colors" />
 
-You could use `shouldComponentUpdate()` to define when a component's `render()` method can get called, but it's recommended you instead use the `React.PureComponent` helper to create your components, you can read about it just a bit further on in [Avoiding Reconciliation](https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation).
+You could use `shouldComponentUpdate()` to define when a component's `render()` method can get called, but instead it's recommended you use the `React.PureComponent` helper to create your components, you can read about it just a bit further on in [Avoid Reconciliation](https://reactjs.org/docs/optimizing-performance.html#avoid-reconciliation).
 
 ## Virtualize Long Lists
 

@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import Link from 'gatsby-link';
 import React from 'react';
 import {colors, media} from 'theme';

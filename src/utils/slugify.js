@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import slugify from 'slugify';
 
 export default (string: string, directory?: string): string => {

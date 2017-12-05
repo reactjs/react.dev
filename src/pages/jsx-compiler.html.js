@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import Header from 'components/Header';
 import React from 'react';

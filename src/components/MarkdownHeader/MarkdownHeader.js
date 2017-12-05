@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Flex from 'components/Flex';
 import React from 'react';
 import {colors, fonts, media} from 'theme';

@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import React, {Component} from 'react';
 import Sidebar from 'templates/components/Sidebar';

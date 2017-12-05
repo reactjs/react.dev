@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 // $FlowExpectedError
 import navCommunity from '../../content/community/nav.yml';
 // $FlowExpectedError

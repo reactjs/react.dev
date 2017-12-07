@@ -10,9 +10,10 @@ Inspired by [Yarn](https://github.com/yarnpkg/rfcs), [Ember](https://github.com/
 - Create an RFC document detailing your proposal.
 - Submit a PR to the [RFC repository](https://github.com/reactjs/rfcs).
 - Incorporate feedback into the proposal.
-- After discussion, the RFC may be accepted for implementation by the core team.
+- After discussion, the RFC may or may not be accepted by the core team.
+- If the RFC is accepted, the PR is merged.
 
-A more thorough description is available in the repository's [README](https://github.com/reactjs/rfcs/blob/master/README.md). The exact details may change in the future as we continue to refine our process.
+RFCs are accepted when they are approved for implementation in React. A more thorough description of the process is available in the repository's [README](https://github.com/reactjs/rfcs/blob/master/README.md). The exact details may be refined in the future.
 
 ## Who Can Submit RFCs?
 

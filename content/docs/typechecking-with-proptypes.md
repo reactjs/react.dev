@@ -12,7 +12,7 @@ redirect_from:
 >
 >We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
 
-As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flowtype.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. In this example, we are going to use a class component, but the same functionality could also be applied to the so-called stateless or functional components. To run typechecking on the props for a component, you can assign the special `propTypes` property:
+As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flowtype.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -29,6 +29,8 @@ Greeting.propTypes = {
   name: PropTypes.string
 };
 ```
+
+In this example, we are using a class component, but the same functionality could also be applied to the so-called stateless or functional components.
 
 `PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
 

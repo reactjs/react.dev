@@ -4,7 +4,7 @@ title: Fragments
 permalink: docs/fragments.html
 ---
 
-A common pattern in React is for a component to return multiple elements. React provides first-class `Fragment` support that lets you group a list of children without adding extra nodes to the DOM.
+A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
 
 Fragments look like empty JSX tags:
 

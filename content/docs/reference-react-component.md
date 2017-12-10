@@ -174,7 +174,9 @@ componentWillMount()
 
 Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
 
-This is the only lifecycle hook called on server rendering.
+This recommendation is suggested because of the changes being implemented on some of the lifecycle methods to allow rendering to be asynchronous and interruptible. That's why it's important for side-effects (for example, network requests) to live in methods like `componentDidMount` as they are guaranteed to only invoke once and only if the component has actually mounted, thus avoiding requests to get triggered unnecessarily. Using `componentDidMount`, whenever in doubt, will make the eventual migration to async much easier. For more details, you can check [this.](/docs/faq-ajax.html#where-in-the-component-lifecycle-should-i-make-an-ajax-call)
+
+Also, this is the only lifecycle hook called on server rendering.
 
 * * *
 
@@ -283,7 +285,7 @@ A class component becomes an error boundary if it defines this lifecycle method.
 For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Note
-> 
+>
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
 * * *

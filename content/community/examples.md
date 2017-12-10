@@ -10,7 +10,7 @@ There are many example projects created by the React community. Feel free to add
 
 
 * **[Calculator](https://github.com/ahfarmer/calculator)** Implementation of the iOS calculator built in React
-* **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Simple React app for searching emoji
+* **[Emoji Search](https://github.com/alik0211/emoji-search)** Simple React app for searching emoji
 * **[Github Battle App](https://github.com/ReactTraining/react-fundamentals/tree/hosting)** Battle two Github users and see the most popular Github projects for any language.
 * **[Haskell Websockets React Game of Score](https://www.fpcomplete.com/user/dschalk/Websockets%20Game%20of%20Score):** React with a Haskell websockets server.
 * **[K5 Showcase](https://showcase.cloud.global.fujitsu.com):** Sample applications for React.js and Flux.

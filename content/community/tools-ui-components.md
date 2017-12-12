@@ -42,6 +42,7 @@ permalink: community/ui-components.html
 * **[react-ladda](https://github.com/jsdir/react-ladda):** React wrapper for Ladda buttons.
 * **[react-lorem-component](https://github.com/martinandert/react-lorem-component):** Lorem Ipsum placeholder component.
 * **[react-notification](https://github.com/pburtchaell/react-notification):** Snackbar style notifications
+* **[react-toastify](https://github.com/fkhadra/react-toastify):** React notification made easy
 *
 * **[react-select](https://github.com/JedWatson/react-select):** Native React Select / Multiselect input field, similar to Selectize / Chosen / Select2
 * **[react-selectize](https://furqanzafar.github.io/react-selectize/):** A stateless & flexible Select component, designed as a drop in replacement for React.DOM.Select, inspired by Selectize

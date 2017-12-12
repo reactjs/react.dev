@@ -66,7 +66,7 @@ results in a `<Table />` output of:
 </table>
 ```
 
-So, we introduce `Fragments`.
+So, we introduce `Fragment`s.
 
 ## Usage
 
@@ -94,8 +94,6 @@ which results in a correct `<Table />` output of:
 </table>
 ```
 
-You can use `<></>` the same way you'd use any other element.
-
 ### Short Syntax
 
 There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
@@ -113,7 +111,7 @@ class Columns extends React.Component {
 }
 ```
 
-The `<></>` syntax does not accept keys nor attributes.
+You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
 
 Note that **[many tools don't support it yet](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)** so you might want to explicitly write `<React.Fragment>` until the tooling catches up.
 

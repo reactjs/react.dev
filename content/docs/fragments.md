@@ -6,19 +6,19 @@ permalink: docs/fragments.html
 
 A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
 
-Fragments look like empty JSX tags:
-
 ```js
 render() {
   return (
-    <>
+    <React.Fragment>
       <ChildA />
       <ChildB />
       <ChildC />
-    </>
+    </React.Fragment>
   );
 }
 ```
+
+There is also a new [short syntax](#short-syntax) for declaring them, but it isn't supported by all popular tools yet.
 
 ## Motivation
 
@@ -66,7 +66,7 @@ results in a `<Table />` output of:
 </table>
 ```
 
-So, we introduce `Fragments`.
+So, we introduce `Fragment`s.
 
 ## Usage
 
@@ -74,10 +74,10 @@ So, we introduce `Fragments`.
 class Columns extends React.Component {
   render() {
     return (
-      <>
+      <React.Fragment>
         <td>Hello</td>
         <td>World</td>
-      </>
+      </React.Fragment>
     );
   }
 }
@@ -94,32 +94,30 @@ which results in a correct `<Table />` output of:
 </table>
 ```
 
-You can use `<></>` the same way you'd use any other element.
+### Short Syntax
 
-### Explicit Form
-
-Another way to use fragments is by using the `React.Fragment` component, which is available on the main React object.
-This may be necessary is your tooling doesn't support JSX fragments yet.
-Note that in React, `<></>` desugars to `<React.Fragment/>`.
+There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
 
 ```jsx{4,7}
 class Columns extends React.Component {
   render() {
     return (
-      <React.Fragment>
+      <>
         <td>Hello</td>
         <td>World</td>
-      </React.Fragment>
+      </>
     );
   }
 }
 ```
 
+You can use `<></>` the same way you'd use any other element except that it doesn't support keys or attributes.
+
+Note that **[many tools don't support it yet](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)** so you might want to explicitly write `<React.Fragment>` until the tooling catches up.
+
 ### Keyed Fragments
 
-The `<></>` syntax does not accept keys nor attributes.
-
-If you need a keyed fragment, you can use `<React.Fragment />` directly. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
+Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
 
 ```jsx
 function Glossary(props) {
@@ -141,4 +139,4 @@ function Glossary(props) {
 
 ### Live Demo
 
-You can try out JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).

@@ -19,6 +19,7 @@ permalink: community/starter-kits.html
 * **[React CDK](https://github.com/kadirahq/react-cdk)** - Component Development Kit for React
 * **[React Static Boilerplate](https://github.com/koistya/react-static-boilerplate):** Static site generator based on React, Gulp/Webpack, React Hot Loader, Babel, postCSS/cssnext. Best suited for deploying React.js site to GitHub Pages or Amazon S3.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate that make life easier for developers by providing a virtual development environment and production ready build workflow out of the box.  ( React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support )
+* **[Create React App + Redux + React Router](https://github.com/notrab/create-react-app-redux)**: Based on Create React App, this boilerplate comes with Redux, Redux Thunk and React Router all configured ready to go.
 * **[React, TypeScript, JSPM starter-kit](https://github.com/piotrwitek/react-ts-jspm-starter-kit):** Unopinionated starter kit to build modular web apps with React & TypeScript powered by JSPM/SystemJS 0.17.X (ES2016, hot-reload, browser-sync, bundle for prod scripts)
 * **[Subschema](https://subschema.github.io/subschema)** - Subschema is a Dependency Injection Library for React, included is a project starter, with webpack, karma and babel.
 * **[React + Redux + Saga Boilerplate](https://github.com/gilbarbara/react-redux-saga-boilerplate)** -

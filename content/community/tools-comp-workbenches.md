@@ -5,7 +5,7 @@ layout: community
 permalink: community/component-workbenches.html
 ---
 
-* **[React Storybook](https://github.com/kadirahq/react-storybook):** UI component development environment for React.
+* **[Storybook for React](https://github.com/storybooks/storybook):** UI component development environment for React.
 * **[React Styleguidist](https://github.com/styleguidist/react-styleguidist):** Style guide generator & component workbench for React.
 * **[React Showroom](https://github.com/OpusCapita/react-showroom-client):** React based components catalog which provides you with markdown documentation and live examples
 * **[patternplate](https://github.com/sinnerschrader/patternplate)**: A platform for pattern and component library development using React.

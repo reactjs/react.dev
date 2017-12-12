@@ -26,6 +26,7 @@ permalink: community/starter-kits.html
 Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ coverage and enzyme.
 * **[generator-enigma](https://www.npmjs.com/package/generator-enigma)** a minimalist React application scaffolding tool that sets up a ready-to-deploy web app, complete with testing via Jest and optional `react-router` boilerplate.
 * **[Component-Template](https://github.com/reactstrap/component-template)** - A create-react-app based starter kit for building, documenting, & publishing React Components. Includes React Router v4, Bootstrap 4 and Reactstrap.
+* **[rmw-shell](https://github.com/TarikHuber/rmw-shell)** React Most Wanted shell based on CRA that enables you to create applications with react, redux, material-ui and firebase. A complete application shell with routing, code-splitting, i18n, theming, user management and all other "most wanted" parts already integrated. You can update the shell with npm and start with CRA: `create-react-app test-app --scripts-version rmw-react-scripts`
 
 ## Full-stack Kits
 

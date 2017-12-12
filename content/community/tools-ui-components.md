@@ -33,7 +33,6 @@ permalink: community/ui-components.html
 * **[react-document-title](https://github.com/gaearon/react-document-title)** Declarative, nested, stateful, isomorphic document.title for React
 * **[react-dropzone](https://github.com/felixrieseberg/React-Dropzone):** React Dropzone for File-Uploads
 * **[react-forms](http://prometheusresearch.github.io/react-forms/):** Form rendering and validation for React
-*
 * **[react-highlight](https://github.com/akiran/react-highlight):** React component for syntax highlighting
 * **[react-image](https://github.com/yuanyan/react-image):** Like `<img />` and Enhanced Image Component for React.
 * **[react-input-autosize](https://github.com/JedWatson/react-input-autosize):** Like `<input />` but resizes automatically to fit all its content.
@@ -42,7 +41,6 @@ permalink: community/ui-components.html
 * **[react-ladda](https://github.com/jsdir/react-ladda):** React wrapper for Ladda buttons.
 * **[react-lorem-component](https://github.com/martinandert/react-lorem-component):** Lorem Ipsum placeholder component.
 * **[react-notification](https://github.com/pburtchaell/react-notification):** Snackbar style notifications
-*
 * **[react-select](https://github.com/JedWatson/react-select):** Native React Select / Multiselect input field, similar to Selectize / Chosen / Select2
 * **[react-selectize](https://furqanzafar.github.io/react-selectize/):** A stateless & flexible Select component, designed as a drop in replacement for React.DOM.Select, inspired by Selectize
 * **[react-sigma](https://www.npmjs.com/package/react-sigma)**: Lightweight but powerful library for drawing network graphs
@@ -52,6 +50,7 @@ permalink: community/ui-components.html
 * **[react-switch-button](https://github.com/gfazioli/react-switch-button):** Beautiful React Switch button component
 * **[react-tappable](https://github.com/JedWatson/react-tappable)** A Tappable React Component that provides native-feeling onTap events for mobile React apps
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize):** Like `<textarea />` but resizes automatically to fit all its content.
+* **[react-toastify](https://github.com/fkhadra/react-toastify):** React notification made easy
 * **[React-TimeAgo](https://www.npmjs.org/package/react-timeago)** A minimal live updating Time Ago component that smartly converts any time to a 'ago' or 'from now' format and keeps it updated.
 * **[react-translate-component](https://github.com/martinandert/react-translate-component):** React component for i18n.
 * **[react-treeview](https://github.com/chenglou/react-treeview):** Easy, light, flexible tree view.

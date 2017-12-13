@@ -26,7 +26,7 @@ permalink: community/starter-kits.html
 Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ coverage and enzyme.
 * **[generator-enigma](https://www.npmjs.com/package/generator-enigma)** a minimalist React application scaffolding tool that sets up a ready-to-deploy web app, complete with testing via Jest and optional `react-router` boilerplate.
 * **[Component-Template](https://github.com/reactstrap/component-template)** - A create-react-app based starter kit for building, documenting, & publishing React Components. Includes React Router v4, Bootstrap 4 and Reactstrap.
-* **[webcube](https://github.com/dexteryy/Project-WebCube)** - A continuously updated JS infrastructure for modern Universal JS web app/site and static web. It provides built-in support and simplification for redux sub-app, reducer bundle, router, immutable, eslint + prettier, docker, monorepo and and many other must-have tools and best practices.
+* **[webcube](https://github.com/dexteryy/Project-WebCube)** - A JS infrastructure for modern Universal JS web app/sites and static websites. Provides built-in support and simplification for Redux sub-app, reducer bundle, router, immutable, eslint + prettier, docker, monorepo and many other tools.
 
 ## Full-stack Kits
 

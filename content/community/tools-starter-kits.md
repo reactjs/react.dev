@@ -26,6 +26,7 @@ permalink: community/starter-kits.html
 Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ coverage and enzyme.
 * **[generator-enigma](https://www.npmjs.com/package/generator-enigma)** a minimalist React application scaffolding tool that sets up a ready-to-deploy web app, complete with testing via Jest and optional `react-router` boilerplate.
 * **[Component-Template](https://github.com/reactstrap/component-template)** - A create-react-app based starter kit for building, documenting, & publishing React Components. Includes React Router v4, Bootstrap 4 and Reactstrap.
+* **[Rekit](https://github.com/supnate/rekit)** - Toolkit and boilerplates for building scalable web applications with React, Redux and React-router.
 
 ## Full-stack Kits
 

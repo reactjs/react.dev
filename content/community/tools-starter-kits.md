@@ -16,6 +16,7 @@ permalink: community/starter-kits.html
 
 ## Client-side Kits
 
+* **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[React CDK](https://github.com/kadirahq/react-cdk)** - Component Development Kit for React
 * **[React Static Boilerplate](https://github.com/koistya/react-static-boilerplate):** Static site generator based on React, Gulp/Webpack, React Hot Loader, Babel, postCSS/cssnext. Best suited for deploying React.js site to GitHub Pages or Amazon S3.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate that make life easier for developers by providing a virtual development environment and production ready build workflow out of the box.  ( React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support )
@@ -29,6 +30,7 @@ Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ cov
 
 ## Full-stack Kits
 
+* **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[react-universally](https://github.com/ctrlplusb/react-universally)** A starter kit for universal react applications with React, Express, React Router (v4), ES2017, Flow, Jest, Service workers, Data-fetching and code-splitting.
  * **[web-service-template](https://github.com/nandai/web-service-template)** Membership single-page application with React and TypeScript.
  * **[starter-react-flux](https://github.com/SokichiFujita/starter-react-flux)** A generator for React and Flux project with Flux-Utils, Jest, Immutable.js, React Addons, Webpack, ESLint, Babel and ES2015.

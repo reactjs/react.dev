@@ -26,7 +26,7 @@ Instead of artificially separating *technologies* by putting markup and logic in
 
 React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
 
-With that out of the way, let's learn the basics of JSX!
+With that out of the way, let's get started!
 
 ### Embedding Expressions in JSX
 

@@ -1,6 +1,6 @@
 ---
 id: ui-components
-title: UI Componets
+title: UI Components
 layout: community
 permalink: community/ui-components.html
 ---

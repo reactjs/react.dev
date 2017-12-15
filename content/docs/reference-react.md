@@ -71,9 +71,9 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 ### `React.PureComponent`
 
-`React.PureComponent` is exactly like [`React.Component`](#reactcomponent), but implements [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) with a shallow prop and state comparison.
+`React.PureComponent` is exactly like [`React.Component`](#reactcomponent), but implements [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) with a shallow prop and state comparison, which [`React.Component`](#reactcomponent) is missing completely. 
 
-If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases.
+If your React component's `render()` function renders the same result given the same props and state, you can use `React.PureComponent` for a performance boost in some cases. 
 
 > Note
 >

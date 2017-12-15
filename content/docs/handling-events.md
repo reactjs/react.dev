@@ -152,3 +152,21 @@ Inside a loop it is common to want to pass an extra parameter to an event handle
 The above two lines are equivalent, and use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) and [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) respectively.
 
 In both cases, the `e` argument representing the React event will be passed as a second argument after the ID. With an arrow function, we have to pass it explicitly, but with `bind` any further arguments are automatically forwarded.
+
+### Event handlers with Currying
+
+We can accomplish the above without re-binding every on render cycle by using function currying with arrow functions.  To do this we will need to slightly update our event handler to provide the function curry and then the handler to invoke the outer function passing our argument and returning the inner function to be used by the event.
+
+```js
+class LoggingButton extends React.Component {
+  handleClick = (i) => (e) => {
+    console.log(`button ${i} was clicked`);
+  }
+
+  render() {
+    return (
+      <button onClick={this.handleClick(i)}Click me</button>
+    );
+  }
+}
+```

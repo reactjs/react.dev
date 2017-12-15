@@ -1,6 +1,6 @@
 ---
 title: "Behind the Scenes: Improving the Repository Infrastructure"
-author: [gaearon]
+author: [gaearon, bvaughn]
 ---
 
 As we worked on [React 16](/blog/2017/09/26/react-v16.0.html), we revamped the folder structure and much of the build tooling in the React repository. Among other things, we introduced projects such as [Rollup](https://rollupjs.org/), [Prettier](https://prettier.io/), and [Google Closure Compiler](https://developers.google.com/closure/compiler/) into our workflow. People often ask us questions about how we use those tools. In this post, we would like to share some of the changes that we've made to our build and test infrastructure in 2017, and what motivated them.
@@ -343,6 +343,34 @@ As a final build step, we now [record build sizes for all bundles](https://githu
 Keeping the file sizes committed for everyone to see was helpful for tracking size changes and motivating people to find optimization opportunities.
 
 We haven't been entirely happy with this strategy because the JSON file often causes merge conflicts on larger branches. Updating it is also not currently enforced so it gets out of date. In the future, we're considering integrating a bot that would comment on pull requests with the size changes.
+
+## Simplifying the Release Process
+
+We like to release updates to the open source community often. Unfortunately, the old process of creating a release was slow and would typically take an entire day. After some changes to this process, we're now able to do a full release in less than an hour. Here's what we changed.
+
+### Branching Strategy
+
+Most of the time spent in the old release process was due to our branching strategy. The `master` branch was assumed to be unstable and would often contain breaking changes. Releases were done from a `stable` branch, and changes were manually cherry-picked into this branch prior to a release. We had [tooling to help automate](https://github.com/facebook/react/pull/7330) some of this process, but it was still [pretty complicated to use](https://github.com/facebook/react/blob/b5a2a1349d6e804d534f673612357c0be7e1d701/scripts/release-manager/Readme.md).
+
+As of version 16, we now release from the `master` branch. Experimental features and breaking changes are allowed, but must be hidden behind [feature flags](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/packages/shared/ReactFeatureFlags.js) so they can be removed during the build process. The new flat bundles and dead code elimination make it possible for us to do this without fear of leaking unwanted code into open source builds.
+
+### Automated Scripts
+
+After changing to a stable `master`, we created a new [release process checklist](https://github.com/facebook/react/issues/10620). Although much simpler than the previous process, this still involved dozens of steps and forgetting one could result in a broken release.
+
+To address this, we created a new [automated release process](https://github.com/facebook/react/pull/11223) that is [much easier to use](https://github.com/facebook/react/tree/master/scripts/release#react-release-script) and has several built-in checks to ensure that we release a working build. The new process is split into two steps: _build_ and _publish_. Here's what it looks like the first time you run it:
+
+![Release Script overview](../images/blog/release-script-build-overview.png)
+
+The _build_ step does most of the work- verifying permissions, running tests, and checking CI status. Once it finishes, it prints a reminder to update the CHANGELOG and to verify the bundle using the [manual fixtures](#creating-manual-test-fixtures) described above.
+
+![Release Script build confirmation screen](../images/blog/release-script-build-confirmation.png)
+
+All that's left is to tag and publish the release to NPM using the _publish_ script.
+
+![Release Script publish confirmation screen](../images/blog/release-script-publish-confirmation.png)
+
+(You may have noticed a `--dry` flag in the screenshots above. This flag allows us to run a release, end-to-end, without actually publishing to NPM. This is useful when working on the release script itself.)
 
 ## In Conclusion
 

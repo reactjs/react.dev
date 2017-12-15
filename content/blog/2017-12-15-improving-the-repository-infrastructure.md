@@ -181,7 +181,7 @@ We recognize this approach is somewhat fragile. The `toString()` method is not r
 
 ## Catching Mistakes Early
 
-We want to catch bugs as early as possible. However, even with our extensive test coverage, occasionally we make a blunder. We did several changes to our build and test infrastructure this year to make it harder to mess up.
+We want to catch bugs as early as possible. However, even with our extensive test coverage, occasionally we make a blunder. We made several changes to our build and test infrastructure this year to make it harder to mess up.
 
 ### Migrating to ES Modules
 

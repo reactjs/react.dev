@@ -163,7 +163,7 @@ The additional [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function
 
 #### Detecting Misconfigured Dead Code Elimination
 
-Even though [the situation is changing](https://mobile.twitter.com/iamakulov/status/941336777188696066), many popular bundlers don't yet force the users to specify the development or production mode. In this case `process.env.NODE_ENV` is typically provided by a runtime polyfill, but the dead code elimination doesn't work.
+Even though [the situation is changing](https://twitter.com/iamakulov/status/941336777188696066), many popular bundlers don't yet force the users to specify the development or production mode. In this case `process.env.NODE_ENV` is typically provided by a runtime polyfill, but the dead code elimination doesn't work.
 
 We can't completely prevent React users from misconfiguring their bundlers, but we introduced a few additional checks for this in [React DevTools](https://github.com/facebook/react-devtools).
 

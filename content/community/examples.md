@@ -22,3 +22,4 @@ There are many example projects created by the React community. Feel free to add
 * **[Reddit Mobile](https://github.com/reddit/reddit-mobile)** Reddit's mobile platform.
 * **[Bitcoin Price Index (powered by CoinDesk)](http://bitcoinpriceindex.netlify.com)** Simple bitcoin price index data from CoinDesk API.
 * **[Public APIs curated by toddmotto](https://publicapis.netlify.com/)** A collective list of public JSON APIs for use in web development.
+* **[Chartbuzz](https://manidlou.github.io/chartbuzz/)** Create simple charts quickly and easily.

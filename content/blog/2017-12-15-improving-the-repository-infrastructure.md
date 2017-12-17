@@ -127,7 +127,7 @@ if ("production" !== "production") {
 }
 ```
 
-However, if the bundler is miconfigured, you can accidentally ship development code into production. We can't completely prevent this, but we took a few steps to mitigate the common cases when it happens.
+However, if the bundler is misconfigured, you can accidentally ship development code into production. We can't completely prevent this, but we took a few steps to mitigate the common cases when it happens.
 
 #### Protecting Against Late Envification
 

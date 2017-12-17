@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 // Polyfills for IE
 import 'array-from';
 import 'string.prototype.includes';

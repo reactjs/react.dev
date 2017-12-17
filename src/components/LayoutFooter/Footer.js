@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import ExternalFooterLink from './ExternalFooterLink';
 import FooterLink from './FooterLink';

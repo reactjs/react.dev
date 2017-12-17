@@ -37,11 +37,17 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Transforming Elements
 
-`React` also provides some other APIs:
+`React` provides several APIs for manipulating elements:
 
 - [`cloneElement()`](#cloneelement)
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
+
+### Fragments
+
+`React` also provides a component for rendering a multiple elements without a wrapper.
+
+- [`React.Fragment`](#reactfragment)
 
 * * *
 
@@ -87,7 +93,7 @@ React.createElement(
 )
 ```
 
-Create and return a new [React element](/docs/rendering-elements.html) of the given type. The type argument can be either a tag name string (such as `'div'` or `'span'`), or a [React component](/docs/components-and-props.html) type (a class or a function).
+Create and return a new [React element](/docs/rendering-elements.html) of the given type. The type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
 
 Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `React.createElement()`. You will not typically invoke `React.createElement()` directly if you are using JSX. See [React Without JSX](/docs/react-without-jsx.html) to learn more.
 
@@ -123,7 +129,7 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 React.createFactory(type)
 ```
 
-Return a function that produces React elements of a given type. Like [`React.createElement()`](#createElement), the type argument can be either a tag name string (such as `'div'` or `'span'`), or a [React component](/docs/components-and-props.html) type (a class or a function).
+Return a function that produces React elements of a given type. Like [`React.createElement()`](#createElement), the type argument can be either a tag name string (such as `'div'` or `'span'`), a [React component](/docs/components-and-props.html) type (a class or a function), or a [React fragment](#reactfragment) type.
 
 This helper is considered legacy, and we encourage you to either use JSX or use `React.createElement()` directly instead.
 
@@ -192,3 +198,22 @@ Returns the `children` opaque data structure as a flat array with keys assigned 
 > Note:
 >
 > `React.Children.toArray()` changes keys to preserve the semantics of nested arrays when flattening lists of children. That is, `toArray` prefixes each key in the returned array so that each element's key is scoped to the input array containing it.
+
+* * *
+
+### `React.Fragment`
+
+The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
+
+```javascript
+render() {
+  return (
+    <React.Fragment>
+      Some text.
+      <h2>A heading</h2>
+    </React.Fragment>
+  );
+}
+```
+
+You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).

@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import ErrorDecoder from 'components/ErrorDecoder';
 import Flex from 'components/Flex';

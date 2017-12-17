@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import {createElement} from 'glamor/react';
 
 import type {Node} from 'react';

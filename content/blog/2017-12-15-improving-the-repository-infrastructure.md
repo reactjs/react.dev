@@ -119,7 +119,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 ```
 
-After envification, this condition will always be `false`, and can be completely eliminated by most minifers:
+After envification, this condition will always be `false`, and can be completely eliminated by most minifiers:
 
 ```js
 if ("production" !== "production") {
@@ -177,7 +177,7 @@ There is also one more bad scenario. Sometimes, `process.env.NODE_ENV` is set to
 
 We can write a function that contains a [development-only branch](https://github.com/facebook/react/blob/d906de7f602df810c38aa622c83023228b047db6/packages/react-dom/npm/index.js#L11-L20) with an arbitrary string literal. Then, if `process.env.NODE_ENV` is set to `"production"`, we can [call `toString()` on that function](https://github.com/facebook/react-devtools/blob/b370497ba6e873c63479408f11d784095523a630/backend/installGlobalHook.js#L143) and verify that the string literal in the development-only has been stripped out. If it is still there, the dead code elimination didn't work, and we need to warn the developer. Since developers might not notice the React DevTools warnings on a production website, we also [throw an error inside `setTimeout`](https://github.com/facebook/react-devtools/blob/b370497ba6e873c63479408f11d784095523a630/backend/installGlobalHook.js#L153-L160) from React DevTools in the hope that it will be picked up by the error analytics.
 
-We recognize this approach is somewhat fragile. The `toString()` method is not reliable and may change its behavior in future browser versions. This is why we put that logic into React DevTools itself rather than into React. This allows us to remove it later if it becomes problematic. We also warn only if we *found* the special string literal rather than if we *didn't* find it. This way, if the `toString()` output becomes opaque, or is overriden, the warning just won't fire.
+We recognize this approach is somewhat fragile. The `toString()` method is not reliable and may change its behavior in future browser versions. This is why we put that logic into React DevTools itself rather than into React. This allows us to remove it later if it becomes problematic. We also warn only if we *found* the special string literal rather than if we *didn't* find it. This way, if the `toString()` output becomes opaque, or is overridden, the warning just won't fire.
 
 ## Catching Mistakes Early
 
@@ -189,7 +189,7 @@ With the CommonJS `require()` and `module.exports`, it is easy to import a funct
 
 Not only did this provide some extra protection, but it also helped improve the build size. Many React modules only export utility functions, but CommonJS forced us to wrap them into an object. By turning those utility functions into named exports and eliminating the objects that contained them, we let Rollup place them into the top-level scope, and thus let the minifier mangle their names in the production builds.
 
-For now, have decided to only convert the source code to ES Modules, but not the tests. We use powerful utilities like `jest.resetModules()` and want to retain tighter control over when the modules get intialized in tests. In order to consume ES Modules from our tests, we enabled the [Babel CommonJS transform](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/jest/preprocessor.js#L28-L29), but only for the test environment.
+For now, have decided to only convert the source code to ES Modules, but not the tests. We use powerful utilities like `jest.resetModules()` and want to retain tighter control over when the modules get initialized in tests. In order to consume ES Modules from our tests, we enabled the [Babel CommonJS transform](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/jest/preprocessor.js#L28-L29), but only for the test environment.
 
 ### Running Tests in Production Mode
 

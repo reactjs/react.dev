@@ -10,6 +10,14 @@ category: FAQ
 
 `setState()` schedules an update to a component's `state` object. When state changes, the component responds by re-rendering.
 
+### What is the difference between state and props?
+
+[`props`](/docs/components-and-props.html) (short for "properties") and [`state`](/docs/state-and-lifecycle.html) are both just JavaScript objects that trigger a re-render when changed. While both hold information that influences the output of render, they are different in one important way: `props` get passed to the component (similar to function parameters) whereas `state` is managed within the component (similar to variables declared within a function).
+
+Here are some good resources for further reading on when to use `props` vs `state`:
+* [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+* [ReactJS: Props vs. State](http://lucybain.com/blog/2016/react-state-vs-pros/)
+
 ### Why is `setState` is giving me the wrong value?
 
 Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need compute values based on the current state (see below for details).

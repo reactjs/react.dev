@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import React, {Component} from 'react';
 
 let stylesStr;

@@ -2,9 +2,8 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import Container from 'components/Container';
 import ErrorDecoder from 'components/ErrorDecoder';
@@ -19,7 +18,12 @@ import {createLinkDocs} from 'utils/createLink';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sectionListDocs} from 'utils/sectionList';
 
-const ErrorPage = ({data, location}) => (
+type Props = {
+  data: Object,
+  location: Location,
+};
+
+const ErrorPage = ({data, location}: Props) => (
   <Flex
     direction="column"
     grow="1"

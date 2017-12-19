@@ -18,6 +18,8 @@ permalink: community/courses.html
 
 - [React Training: React Patterns](https://reacttraining.com/patterns/) - Free lectures from React Training's "Advanced React.js" course.
 
+- [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
+
 ## Paid Courses
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) - Short instructional videos on React and many other topics.

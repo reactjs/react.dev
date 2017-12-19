@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';

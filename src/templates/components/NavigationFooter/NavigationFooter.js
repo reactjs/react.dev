@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import Link from 'gatsby-link';

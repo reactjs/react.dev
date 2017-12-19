@@ -59,7 +59,7 @@ Typically, elements are not used directly, but get returned from components.
 
 ## [Components](/docs/components-and-props.html)
 
-React components are small, resuable pieces of code that return a React element to be rendered to the page. The simplest version of React component is a plain JavaScript function that returns a React element:
+React components are small, reusable pieces of code that return a React element to be rendered to the page. The simplest version of React component is a plain JavaScript function that returns a React element:
 
 ```js
 function Welcome(props) {

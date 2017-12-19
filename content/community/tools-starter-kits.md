@@ -5,20 +5,34 @@ layout: community
 permalink: community/starter-kits.html
 ---
 
+## Recommended by the React Team
+
+* **[Create React App](https://github.com/facebookincubator/create-react-app)** - An officially supported way to start a client-side React project with no configuration
+* **[Next.js](https://learnnextjs.com/)** - Framework for server-rendered or statically-exported React apps
+* **[Gatsby](https://www.gatsbyjs.org/)** - Blazing-fast static site generator for React
+* **[nwb](https://github.com/insin/nwb)** - A toolkit for React apps, libraries and other npm modules for the web
+* **[razzle](https://github.com/jaredpalmer/razzle)** - Create server-rendered universal JavaScript applications with no configuration
+* **[Neutrino](https://neutrino.js.org/)** - Create and build modern JavaScript applications with zero initial configuration
+
 ## Client-side Kits
 
+* **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[React CDK](https://github.com/kadirahq/react-cdk)** - Component Development Kit for React
-* **[React Static Boilerplate](https://github.com/koistya/react-static-boilerplate):** Static site generator based on React.js, Gulp/Webpack, React Hot Loader, Babel, postCSS/cssnext. Best suited for deploying React.js site to GitHub Pages or Amazon S3.
+* **[React Static Boilerplate](https://github.com/koistya/react-static-boilerplate):** Static site generator based on React, Gulp/Webpack, React Hot Loader, Babel, postCSS/cssnext. Best suited for deploying React.js site to GitHub Pages or Amazon S3.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate that make life easier for developers by providing a virtual development environment and production ready build workflow out of the box.  ( React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support )
+* **[Create React App + Redux + React Router](https://github.com/notrab/create-react-app-redux)**: Based on Create React App, this boilerplate comes with Redux, Redux Thunk and React Router all configured ready to go.
 * **[React, TypeScript, JSPM starter-kit](https://github.com/piotrwitek/react-ts-jspm-starter-kit):** Unopinionated starter kit to build modular web apps with React & TypeScript powered by JSPM/SystemJS 0.17.X (ES2016, hot-reload, browser-sync, bundle for prod scripts)
 * **[Subschema](https://subschema.github.io/subschema)** - Subschema is a Dependency Injection Library for React, included is a project starter, with webpack, karma and babel.
 * **[React + Redux + Saga Boilerplate](https://github.com/gilbarbara/react-redux-saga-boilerplate)** -
 Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ coverage and enzyme.
 * **[generator-enigma](https://www.npmjs.com/package/generator-enigma)** a minimalist React application scaffolding tool that sets up a ready-to-deploy web app, complete with testing via Jest and optional `react-router` boilerplate.
 * **[Component-Template](https://github.com/reactstrap/component-template)** - A create-react-app based starter kit for building, documenting, & publishing React Components. Includes React Router v4, Bootstrap 4 and Reactstrap.
+* **[Rekit](https://github.com/supnate/rekit)** - Toolkit and boilerplates for building scalable web applications with React, Redux and React-router.
+* **[webcube](https://github.com/dexteryy/Project-WebCube)** - A JS infrastructure for modern Universal JS web app/sites and static websites. Provides built-in support and simplification for Redux sub-app, reducer bundle, router, immutable, eslint + prettier, docker, monorepo and many other tools.
 
 ## Full-stack Kits
 
+* **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[react-universally](https://github.com/ctrlplusb/react-universally)** A starter kit for universal react applications with React, Express, React Router (v4), ES2017, Flow, Jest, Service workers, Data-fetching and code-splitting.
  * **[web-service-template](https://github.com/nandai/web-service-template)** Membership single-page application with React and TypeScript.
  * **[starter-react-flux](https://github.com/SokichiFujita/starter-react-flux)** A generator for React and Flux project with Flux-Utils, Jest, Immutable.js, React Addons, Webpack, ESLint, Babel and ES2015.
@@ -78,3 +92,5 @@ Gulp, NPM, Browserify, React, Phonegap, Less, Recess, Underscore, JQuery...
  * **[react-redux-universal-boilerplate](https://github.com/kiki-le-singe/react-redux-universal-boilerplate):**
 An Universal ReactJS/Redux Boilerplate with Babel, Webpack 2, Webpack backend bundling, React Hot Loader 3, sass or cssnext, testing, linting...
  * **[FUJITSU K5 Playground](https://playground.cloud.global.fujitsu.com)** A SPA and BFF generator with React, Flux, Swagger, Node.js, Material-ui, Jest, Webpack, ESLint and Babel.
+ * **[CRA Universal CLI](https://github.com/antonybudianto/cra-universal)** CLI to initialize universal create-react-app without ejecting. Supports Server-side rendering with Code-splitting, and Node Stream rendering.
+ * **[EDGE Platform](https://github.com/sebastian-software/edge)** Universal React/SSR + Apollo GraphQL + JS/CSS Code Splitting + Fine-Tuned Webpack + Localization/Internationalization. Most things are external dependencies. Boilerplate available.

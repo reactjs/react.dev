@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
@@ -18,6 +16,7 @@ import createOgUrl from 'utils/createOgUrl';
 import loadScript from 'utils/loadScript';
 import {babelURL} from 'site-constants';
 import ReactDOM from 'react-dom';
+import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
   constructor(props, context) {
@@ -99,72 +98,88 @@ class Home extends Component {
                 maxWidth: 1500, // Positioning of background logo
                 marginLeft: 'auto',
                 marginRight: 'auto',
-                backgroundImage: 'url(/large-logo.svg)',
-                backgroundRepeat: 'no-repeat',
-                backgroundPosition: '100% 100px',
-                backgroundSize: '50% auto',
+                position: 'relative',
+                '::before': {
+                  content: ' ',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  bottom: 0,
+                  right: 0,
+                  backgroundImage: `url(${logoWhiteSvg})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: '100% 100px',
+                  backgroundSize: '50% auto',
+                  opacity: 0.05,
+                },
               },
             }}>
-            <Container>
-              <h1
-                css={{
-                  color: colors.brand,
-                  textAlign: 'center',
-                  margin: 0,
-                  fontSize: 45,
-                  letterSpacing: '0.01em',
-                  [media.size('xsmall')]: {
-                    fontSize: 30,
-                  },
-                  [media.greaterThan('xlarge')]: {
-                    fontSize: 60,
-                  },
-                }}>
-                React
-              </h1>
-              <p
-                css={{
-                  paddingTop: 15,
-                  textAlign: 'center',
-                  fontSize: 24,
-                  letterSpacing: '0.01em',
-                  fontWeight: 200,
+            <div
+              css={{
+                // Content should be above absolutely-positioned hero image
+                position: 'relative',
+              }}>
+              <Container>
+                <h1
+                  css={{
+                    color: colors.brand,
+                    textAlign: 'center',
+                    margin: 0,
+                    fontSize: 45,
+                    letterSpacing: '0.01em',
+                    [media.size('xsmall')]: {
+                      fontSize: 30,
+                    },
+                    [media.greaterThan('xlarge')]: {
+                      fontSize: 60,
+                    },
+                  }}>
+                  React
+                </h1>
+                <p
+                  css={{
+                    paddingTop: 15,
+                    textAlign: 'center',
+                    fontSize: 24,
+                    letterSpacing: '0.01em',
+                    fontWeight: 200,
 
-                  [media.size('xsmall')]: {
-                    fontSize: 16,
-                    maxWidth: '12em',
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                  },
+                    [media.size('xsmall')]: {
+                      fontSize: 16,
+                      maxWidth: '12em',
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                    },
 
-                  [media.greaterThan('xlarge')]: {
-                    paddingTop: 20,
-                    fontSize: 30,
-                  },
-                }}>
-                A JavaScript library for building user interfaces
-              </p>
-              <Flex
-                valign="center"
-                css={{
-                  paddingTop: 40,
+                    [media.greaterThan('xlarge')]: {
+                      paddingTop: 20,
+                      fontSize: 30,
+                    },
+                  }}>
+                  A JavaScript library for building user interfaces
+                </p>
+                <Flex
+                  valign="center"
+                  css={{
+                    paddingTop: 40,
 
-                  [media.greaterThan('xlarge')]: {
-                    paddingTop: 65,
-                  },
-                }}>
-                <CtaItem>
-                  <ButtonLink to="/docs/hello-world.html" type="primary">
-                    Get Started
-                  </ButtonLink>
-                </CtaItem>
-                <CtaItem>
-                  <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                    Take the Tutorial
-                  </ButtonLink>
-                </CtaItem>
-              </Flex>
-            </Container>
+                    [media.greaterThan('xlarge')]: {
+                      paddingTop: 65,
+                    },
+                  }}>
+                  <CtaItem>
+                    <ButtonLink to="/docs/hello-world.html" type="primary">
+                      Get Started
+                    </ButtonLink>
+                  </CtaItem>
+                  <CtaItem>
+                    <ButtonLink to="/tutorial/tutorial.html" type="secondary">
+                      Take the Tutorial
+                    </ButtonLink>
+                  </CtaItem>
+                </Flex>
+              </Container>
+            </div>
           </div>
         </header>
 

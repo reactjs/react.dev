@@ -62,7 +62,7 @@ We split JSX over multiple lines for readability. While it isn't required, when 
 
 ### JSX is an Expression Too
 
-After compilation, JSX expressions become regular JavaScript objects.
+After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
 
 This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
 

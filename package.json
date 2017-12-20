@@ -88,7 +88,7 @@
     "predev": "yarn install",
     "prettier": "yarn format:source && yarn format:examples",
     "prettier:diff": "yarn nit:source && yarn nit:examples",
-    "reset": "rimraf ./.cache",
+    "reset": "rimraf ./.cache"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.6.0",

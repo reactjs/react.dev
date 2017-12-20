@@ -85,9 +85,10 @@
     "netlify": "yarn install && yarn build",
     "nit:source": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "nit:examples": "prettier --config .prettierrc.examples --list-different \"examples/**/*.js\"",
+    "predev": "yarn install",
     "prettier": "yarn format:source && yarn format:examples",
     "prettier:diff": "yarn nit:source && yarn nit:examples",
-    "reset": "rimraf ./.cache"
+    "reset": "rimraf ./.cache",
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.6.0",

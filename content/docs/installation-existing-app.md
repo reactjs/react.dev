@@ -1,59 +1,8 @@
 ---
-id: installation
-title: Installation
-permalink: docs/installation.html
-redirect_from:
-  - "download.html"
-  - "downloads.html"
-  - "docs/tooling-integration.html"
-  - "docs/package-management.html"
-  - "docs/language-tooling.html"
-  - "docs/environments.html"
-next: hello-world.html
+id: installation-existing-app
+title: Adding React to an Existing Application
+permalink: docs/installation-existing-app.html
 ---
-
-React is flexible and can be used in a variety of projects. You can create new apps with it, but you can also gradually introduce it into an existing codebase without doing a rewrite.
-
-Here are a couple of ways to get started:
-
-* [Try React](#trying-out-react)
-* [Create a New App](#creating-a-new-application)
-* [Add React to an Existing App](#adding-react-to-an-existing-application)
-
-## Trying Out React
-
-If you're just interested in playing around with React, you can use CodePen. Try starting from [this Hello World example code](http://codepen.io/gaearon/pen/rrpgNB?editors=0010). You don't need to install anything; you can just modify the code and see if it works.
-
-If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so don't use it in production.
-
-If you want to use it for a full application, there are two popular ways to get started with React: using Create React App, or adding it to an existing application.
-
-## Creating a New Application
-
-[Create React App](http://github.com/facebookincubator/create-react-app) is the best way to start building a new React single page application. It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 on your machine.
-
-```bash
-npm install -g create-react-app
-create-react-app my-app
-
-cd my-app
-npm start
-```
-
-If you have npm 5.2.0+ installed, you may use [npx](https://www.npmjs.com/package/npx) instead.
-
-```bash
-npx create-react-app my-app
-
-cd my-app
-npm start
-```
-
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. It uses build tools like [Babel](http://babeljs.io/) and [webpack](https://webpack.js.org/) under the hood, but works with zero configuration.
-
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
-
-## Adding React to an Existing Application
 
 You don't need to rewrite your app to start using React.
 

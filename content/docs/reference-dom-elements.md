@@ -54,10 +54,6 @@ Since `for` is a reserved word in JavaScript, React elements use `htmlFor` inste
 
 The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
 
-### selected
-
-The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.
-
 ### style
 
 >Note
@@ -120,7 +116,7 @@ If you set `suppressHydrationWarning` to `true`, React will not warn you about m
 
 ### value
 
-The `value` attribute is supported by `<input>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+The `value` attribute is supported by `<input>`, `<textarea>` and `<select>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
 
 ## All Supported HTML Attributes
 

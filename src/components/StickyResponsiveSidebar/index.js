@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import StickyResponsiveSidebar from './StickyResponsiveSidebar';
 
 export default StickyResponsiveSidebar;

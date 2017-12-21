@@ -40,9 +40,9 @@ CSS classes are generally more efficient than inline styles.
 
 ### What is CSS-in-JS?
 
-CSS-in-JS refers to a pattern where CSS is written with Javascript, then extracted into a stylesheet.
+"CSS-in-JS" refers to a pattern where CSS is composed using JavaScript instead of defined in external files. Read a comparison of CSS-in-JS libraries [here](https://github.com/MicheleBertoli/css-in-js).
 
-[Comparison of CSS-in-JS Libraries](https://github.com/MicheleBertoli/css-in-js)
+_Note that this functionality is not a part of React, but provided by third-party libraries._ React does not have an opinion about how styles are defined; if in doubt, a good starting point is to define your styles in a separate `*.css` file as usual and refer to them using [`className`](/docs/dom-elements.html#classname).
 
 ### Can I do animations in React?
 

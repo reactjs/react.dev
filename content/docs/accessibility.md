@@ -39,6 +39,48 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 />
 ```
 
+## Semantic HTML
+Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
+in our websites will often give us accessibility for free.
+
+- [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+
+Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
+In these cases we should rather use React Fragments to group together multiple elements.
+
+Use `<Fragment>` when a `key` prop is required:
+ 
+```javascript{1,8,11}
+import React, { Fragment } from 'react';
+
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </Fragment>
+      )}
+    </dl>
+  );
+}
+```
+
+Use `<></>` syntax everywhere else:
+
+```javascript
+function ListItem({ item }) {
+  return ( 
+    <>
+      <dt>{item.term}</dt>
+      <dd>{item.description}</dd>>
+    </>
+  );    
+}
+``` 
+
 ## Accessible Forms
 
 ### Labeling
@@ -100,7 +142,7 @@ we need to programmatically nudge the keyboard focus in the right direction. For
 
 The Mozilla Developer Network takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-To set focus in React, we can use [Refs to Components](refs-and-the-dom.html).
+To set focus in React, we can use [Refs to DOM elements](refs-and-the-dom.html).
 
 Using this, we first create a ref to an element in the JSX of a component class:
 
@@ -124,6 +166,28 @@ Then we can focus it elsewhere in our component when needed:
    this.textInput.focus();
  }
  ```
+ 
+Sometimes a parent component needs to set focus to an element in a child component. Although we can create [refs to class components](refs-and-the-dom.html#adding-a-ref-to-a-class-component), 
+we need a pattern that also works with functional components and when [using refs with HOCs](higher-order-components.html#refs-arent-passed-through). 
+To ensure that our parent component can always access the ref, we pass a callback as a prop to the child component to [expose the ref to the parent component](refs-and-the-dom.html#exposing-dom-refs-to-parent-components).
+
+```js
+// Expose the ref with a callback prop
+function Field({ inputRef, ...rest }) {
+  return <input ref={inputRef} {...rest} />;
+}
+
+// Inside a parent class component's render method...
+<Field
+  inputRef={(inputEl) => {
+    // This callback gets passed through as a regular prop
+    this.inputEl = inputEl
+  }}
+/>
+
+// Now you can set focus when required.
+this.inputEl.focus();
+```
 
 A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on 
 the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that 

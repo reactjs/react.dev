@@ -2,15 +2,23 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import React from 'react';
 import {colors} from 'theme';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 
-const ExternalFooterLink = ({children, href, target, rel}) => (
+import type {Node} from 'react';
+
+type Props = {
+  children: Node,
+  href: string,
+  target?: string,
+  rel?: string,
+};
+
+const ExternalFooterLink = ({children, href, target, rel}: Props) => (
   <a
     css={{
       lineHeight: 2,

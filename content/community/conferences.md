@@ -16,6 +16,11 @@ December 2, Berlin, Germany
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/)
 
+### ReactFoo Pune
+January 19-20, Pune, India
+
+[Website](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)
+
 ### AgentConf 2018
 January 25-28 in Dornbirn, Austria
 
@@ -30,6 +35,11 @@ April 13 in Amsterdam, The Netherlands
 May 17-18 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
+
+### React Rally
+August 16-17 in Salt Lake City, Utah USA
+
+[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
 
 ### ReactNext 2018
 September 6 in Tel Aviv, Israel

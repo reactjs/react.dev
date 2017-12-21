@@ -2,9 +2,8 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import Container from 'components/Container';
 import HeaderLink from './HeaderLink';
@@ -17,7 +16,7 @@ import DocSearch from './DocSearch';
 
 import logoSvg from 'icons/logo.svg';
 
-const Header = ({location}) => (
+const Header = ({location}: {location: Location}) => (
   <header
     css={{
       backgroundColor: colors.darker,

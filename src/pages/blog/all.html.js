@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import Link from 'gatsby-link';
 import Container from 'components/Container';
 import Header from 'components/Header';
@@ -76,18 +74,20 @@ const AllBlogPosts = ({data}: Props) => (
                 </Link>
               </h2>
               <MetaTitle>{node.fields.date}</MetaTitle>
-              <div
-                css={{
-                  color: colors.subtle,
-                  marginTop: -5,
-                }}>
-                by{' '}
-                {toCommaSeparatedList(node.frontmatter.author, author => (
-                  <span key={author.frontmatter.name}>
-                    {author.frontmatter.name}
-                  </span>
-                ))}
-              </div>
+              {node.frontmatter.author ? (
+                <div
+                  css={{
+                    color: colors.subtle,
+                    marginTop: -5,
+                  }}>
+                  by{' '}
+                  {toCommaSeparatedList(node.frontmatter.author, author => (
+                    <span key={author.frontmatter.name}>
+                      {author.frontmatter.name}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </li>
           ))}
         </ul>

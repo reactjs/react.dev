@@ -2,9 +2,8 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import Container from 'components/Container';
 import ExternalFooterLink from './ExternalFooterLink';
@@ -13,10 +12,11 @@ import FooterNav from './FooterNav';
 import MetaTitle from 'templates/components/MetaTitle';
 import React from 'react';
 import {colors, media} from 'theme';
+import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
 
 import ossLogoPng from 'images/oss_logo.png';
 
-const Footer = ({layoutHasSidebar = false}) => (
+const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
   <footer
     css={{
       backgroundColor: colors.darker,
@@ -61,17 +61,27 @@ const Footer = ({layoutHasSidebar = false}) => (
           }}>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>Docs</MetaTitle>
-            <FooterLink to="/docs/hello-world.html">Quick Start</FooterLink>
-            <FooterLink to="/docs/thinking-in-react.html">
-              Thinking in React
-            </FooterLink>
-            <FooterLink to="/tutorial/tutorial.html">Tutorial</FooterLink>
-            <FooterLink to="/docs/jsx-in-depth.html">
-              Advanced Guides
-            </FooterLink>
+            {sectionListDocs.map(section => {
+              // Skip the Installation page for Quick Start
+              const defaultItem =
+                section.items[0].id === 'installation'
+                  ? section.items[1].id
+                  : section.items[0].id;
+              return (
+                <FooterLink to={`/docs/${defaultItem}.html`}>
+                  {section.title}
+                </FooterLink>
+              );
+            })}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Community</MetaTitle>
+            <MetaTitle onDark={true}>Channels</MetaTitle>
+            <ExternalFooterLink
+              href="https://github.com/facebook/react"
+              target="_blank"
+              rel="noopener">
+              GitHub
+            </ExternalFooterLink>
             <ExternalFooterLink
               href="http://stackoverflow.com/questions/tagged/reactjs"
               target="_blank"
@@ -104,42 +114,26 @@ const Footer = ({layoutHasSidebar = false}) => (
             </ExternalFooterLink>
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Resources</MetaTitle>
-            <FooterLink to="/community/conferences.html">
-              Conferences
-            </FooterLink>
-            <FooterLink to="/community/videos.html">Videos</FooterLink>
-            <ExternalFooterLink
-              href="https://github.com/facebook/react/wiki/Examples"
-              target="_blank"
-              rel="noopener">
-              Examples
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://github.com/facebook/react/wiki/Complementary-Tools"
-              target="_blank"
-              rel="noopener">
-              Complementary Tools
-            </ExternalFooterLink>
+            <MetaTitle onDark={true}>Community</MetaTitle>
+            {sectionListCommunity.map(section => (
+              <FooterLink to={`/community/${section.items[0].id}.html`}>
+                {section.title}
+              </FooterLink>
+            ))}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>More</MetaTitle>
+            <FooterLink to="/tutorial/tutorial.html">Tutorial</FooterLink>
             <FooterLink to="/blog/">Blog</FooterLink>
-            <ExternalFooterLink
-              href="https://github.com/facebook/react"
-              target="_blank"
-              rel="noopener">
-              GitHub
-            </ExternalFooterLink>
+            <FooterLink to="/acknowledgements.html">
+              Acknowledgements
+            </FooterLink>
             <ExternalFooterLink
               href="http://facebook.github.io/react-native/"
               target="_blank"
               rel="noopener">
               React Native
             </ExternalFooterLink>
-            <FooterLink to="/acknowledgements.html">
-              Acknowledgements
-            </FooterLink>
           </FooterNav>
         </div>
         <section

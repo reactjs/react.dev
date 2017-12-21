@@ -226,7 +226,7 @@ class FileInput extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/fetard/pen/bYvaJY?editors=0010)
+[Try it on CodePen](codepen://components-and-props/input-type-file)
 
 Note how a `ref` to the file input is used to access the file(s) in the submit handler
 

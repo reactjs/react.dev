@@ -4091,8 +4091,8 @@ gatsby-remark-copy-linked-files@^1.5.2:
     unist-util-visit "^1.1.1"
 
 gatsby-remark-embed-snippet@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/gatsby-remark-embed-snippet/-/gatsby-remark-embed-snippet-1.0.3.tgz#50cfd94d1584cc1c851ba5609dbb8fc6a0dfb4f6"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-embed-snippet/-/gatsby-remark-embed-snippet-1.0.5.tgz#ca3d99a642a55412b84605d8f38b9c7d9a21f2ca"
   dependencies:
     babel-runtime "^6.26.0"
     gatsby-remark-prismjs "^1.2.11"
@@ -4188,8 +4188,8 @@ gatsby-transformer-sharp@^1.6.1:
     image-size "^0.6.0"
 
 gatsby@^1.9.135:
-  version "1.9.146"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-1.9.146.tgz#2fb9a354dbc2f064e425e6e984c6f70947b179b0"
+  version "1.9.147"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-1.9.147.tgz#9b4759c9af9096cdb0aad129f4e6143ff50a5fa7"
   dependencies:
     async "^2.1.2"
     babel-code-frame "^6.22.0"

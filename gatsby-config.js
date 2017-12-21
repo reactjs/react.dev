@@ -69,6 +69,13 @@ module.exports = {
               target: '_blank',
             },
           },
+          {
+            resolve: 'gatsby-remark-embed-snippet',
+            options: {
+              classPrefix: 'gatsby-code-',
+              directory: `${__dirname}/examples/`,
+            },
+          },
           'gatsby-remark-use-jsx',
           {
             resolve: 'gatsby-remark-prismjs',

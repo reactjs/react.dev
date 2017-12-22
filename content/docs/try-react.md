@@ -25,7 +25,7 @@ If you prefer to use your own text editor, you can also [download this HTML file
 
 ## Install React
 
-- **[Add React to a New App](/docs/add-react-to-a-new-app.html)** Create a new app with a starter kit like [Create React App].(http://github.com/facebookincubator/create-react-app)
+- **[Add React to a New App](/docs/add-react-to-a-new-app.html)** Create a new app with a starter kit like [Create React App](http://github.com/facebookincubator/create-react-app).
 - **[Add React to an Existing App](/docs/add-react-to-a-new-app.html)** _Advanced configuration._ Use React with a build system like Webpack.
 
 ## Quick Start

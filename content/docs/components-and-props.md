@@ -89,7 +89,7 @@ Let's recap what happens in this example:
 >
 >Always start component names with a capital letter.
 >
->For example, `<div />` represents a DOM tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+>For example, `<div />` represents a DOM tag, but `<Welcome />` represents a component and requires the capital 'W' in `Welcome` to be in scope.
 
 ## Composing Components
 

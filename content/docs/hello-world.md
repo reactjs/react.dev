@@ -2,7 +2,7 @@
 id: hello-world
 title: Hello World
 permalink: docs/hello-world.html
-prev: add-react-to-an-existing-app.html
+prev: cdn-links.html
 next: introducing-jsx.html
 redirect_from:
   - "docs/"

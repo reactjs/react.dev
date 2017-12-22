@@ -3,7 +3,7 @@ id: add-react-to-an-existing-app
 title: Add React to an Existing Application
 permalink: docs/add-react-to-an-existing-app.html
 prev: add-react-to-a-new-app.html
-next: hello-world.html
+next: cdn-links.html
 ---
 
 You don't need to rewrite your app to start using React.
@@ -85,34 +85,4 @@ Learn [how to tell if your website is serving the right version of React](/docs/
 
 ### Using a CDN
 
-If you don't want to use npm to manage client packages, the `react` and `react-dom` npm packages also provide single-file distributions in `umd` folders, which are hosted on a CDN:
-
-```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-```
-
-The versions above are only meant for development, and are not suitable for production. Minified and optimized production versions of React are available at:
-
-```html
-<script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
-```
-
-To load a specific version of `react` and `react-dom`, replace `16` with the version number.
-
-If you use Bower, React is available via the `react` package.
-
-#### Why the `crossorigin` Attribute?
-
-If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute set:
-
-```html
-<script crossorigin src="..."></script>
-```
-
-We also recommend to verify that the CDN you are using sets the `Access-Control-Allow-Origin: *` HTTP header:
-
-![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
-
-This enables a better [error handling experience](/blog/2017/07/26/error-handling-in-react-16.html) in React 16 and later.
+If you don't want to use npm to manage client packages, the `react` and `react-dom` npm packages also provide single-file distributions in `umd` folders. See the [CDN](/docs/cdn-links.html) page for links.

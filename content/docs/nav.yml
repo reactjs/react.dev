@@ -6,6 +6,8 @@
       title: Add React to a New App
     - id: add-react-to-an-existing-app
       title: Add React to an Existing App
+    - id: cdn-links
+      title: CDN Links
 - title: Quick Start
   items:
     - id: hello-world

@@ -10,6 +10,8 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 ## Podcasts
 
+- [Full Stack Radio](http://www.fullstackradio.com/) - A podcast for developers interested in building great software products (currently producing new episodes).
+
 - [JavaScript Air](https://javascriptair.com/) - All about JavaScript (currently not producing new episodes).
 
 - [React 30](https://react30.com/) - A weekly 30-minute podcast all about React (currently not producing new episodes).

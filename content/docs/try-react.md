@@ -1,7 +1,8 @@
 ---
-id: installation-try-react
+id: try-react
 title: Try React
-permalink: docs/installation-try-react.html
+permalink: docs/try-react.html
+next: add-react-to-a-new-app.html
 redirect_from:
   - "docs/installation.html"
   - "download.html"

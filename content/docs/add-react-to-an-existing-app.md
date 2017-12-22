@@ -1,7 +1,9 @@
 ---
-id: installation-existing-app
-title: Adding React to an Existing Application
-permalink: docs/installation-existing-app.html
+id: add-react-to-an-existing-app
+title: Add React to an Existing Application
+permalink: docs/add-react-to-an-existing-app.html
+prev: add-react-to-a-new-app.html
+next: hello-world.html
 ---
 
 You don't need to rewrite your app to start using React.

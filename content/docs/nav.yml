@@ -1,3 +1,11 @@
+- title: Installation
+  items:
+    - id: try-react
+      title: Try React
+    - id: add-react-to-a-new-app
+      title: Add React to a New App
+    - id: add-react-to-an-existing-app
+      title: Add React to an Existing App
 - title: Quick Start
   items:
     - id: hello-world
@@ -24,14 +32,6 @@
       title: Composition vs Inheritance
     - id: thinking-in-react
       title: Thinking In React
-- title: Installation
-  items:
-    - id: installation-try-react
-      title: Try React
-    - id: installation-new-app
-      title: Add React to a New App
-    - id: installation-existing-app
-      title: Add React to an Existing App
 - title: Advanced Guides
   items:
     - id: jsx-in-depth

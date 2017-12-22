@@ -1,7 +1,9 @@
 ---
-id: installation-new-app
-title: Adding React to a New Application
-permalink: docs/installation-new-app.html
+id: add-react-to-a-new-app
+title: Add React to a New Application
+permalink: docs/add-react-to-a-new-app.html
+prev: try-react.html
+next: add-react-to-an-existing-app.html
 ---
 
 The easiest way to get started on a new React project is by using a starter kit.

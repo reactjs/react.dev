@@ -19,7 +19,9 @@ This package provides a React renderer that can be used to render React componen
 
 Essentially, this package makes it easy to grab a snapshot of the platform view hierarchy (similar to a DOM tree) rendered by a React DOM or React Native component without using a browser or [jsdom](https://github.com/tmpvar/jsdom).
 
-**Note:** make sure `react-test-renderer` version is the same with `react`, `react-dom` version.
+>  Note:
+>
+>  To prevent potential incompatibilities, all `react` packages should use the same version (eg `react@16.2.0`, `react-dom@16.2.0`, `react-test-renderer@16.2.0`).
 
 Example:
 

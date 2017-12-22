@@ -27,7 +27,9 @@ If you prefer to use your own text editor, you can also [download this HTML file
 
 ### Quick Start
 
-Head over to the [Quick Start](/docs/hello-world.html) section to try some examples.
+- Head over to the [Quick Start](/docs/hello-world.html) section for a step-by-step introduction to React concepts.
+
+- Try the [Tutorial](/tutorial/tutorial.html) for a hands-on practical example.
 
 ### Install React
 

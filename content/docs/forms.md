@@ -199,34 +199,9 @@ In HTML, a `<input type="file">` lets the user choose one or more files from the
 
 In React, a `<input type="file" />` works similarly to a normal `<input/>` with some major differences. The `<input type="file" />` in React is read-only and hence setting the value of a file programmatically is impossible. You can use the various File management API provided by Javascript to handle the files that are uploaded by the user.
 
-```javascript{7-10,17}
-class FileInput extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+`embed:forms/input-type-file.js`
 
-  handleSubmit (event) {
-    event.preventDefault();
-    alert(`Selected file - ${this.fileInput.files[0].name}`);
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Upload file:
-          <input type='file' ref={input => {this.fileInput = input}} />
-        </label>
-        <br/>
-        <button type='submit'>Submit</button>
-      </form>
-    );
-  }
-}
-```
-
-[Try it on CodePen](codepen://components-and-props/input-type-file)
+[Try it on CodePen](codepen://forms/input-type-file)
 
 Note how a `ref` to the file input is used to access the file(s) in the submit handler
 

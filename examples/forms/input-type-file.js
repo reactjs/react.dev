@@ -3,7 +3,7 @@ class FileInput extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
+// highlight-range{1-4}
   handleSubmit (event) {
     event.preventDefault();
     alert(`Selected file - ${this.fileInput.files[0].name}`);
@@ -14,6 +14,7 @@ class FileInput extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Upload file:
+          {/* highlight-next-line */}
           <input type='file' ref={input => {this.fileInput = input}} />
         </label>
         <br/>

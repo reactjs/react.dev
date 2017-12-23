@@ -89,6 +89,10 @@ npm install --save react react-dom
 
 Both Yarn and npm download packages from the [npm registry](http://npmjs.com/).
 
+>  Note:
+>
+>  To prevent potential incompatibilities, all `react` packages should use the same version (eg `react@16.2.0`, `react-dom@16.2.0`, `react-test-renderer@16.2.0`).
+
 ### Enabling ES6 and JSX
 
 We recommend using React with [Babel](http://babeljs.io/) to let you use ES6 and JSX in your JavaScript code. ES6 is a set of modern JavaScript features that make development easier, and JSX is an extension to the JavaScript language that works nicely with React.

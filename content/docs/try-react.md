@@ -17,7 +17,7 @@ Try React online or set up your local development environment.
 
 ## Online
 
-If you're just interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s).
+If you're just interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
 
 ## Minimal HTML Template
 

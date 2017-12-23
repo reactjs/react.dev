@@ -13,7 +13,7 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-Try React online or set up your local dev environment
+Try React online or set up your local development environment.
 
 ## Online
 

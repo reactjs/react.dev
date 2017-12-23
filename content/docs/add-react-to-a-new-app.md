@@ -10,9 +10,11 @@ The easiest way to get started on a new React project is by using a starter kit.
 
 > Note:
 > 
-> The options on this page are designed to bootstrap single-page applications with linting, testing, bundling, production optimizations, and more. They are fully-featured but require some time and disk space to install.
+> This page describes setting up a single-page application with everything you need for a comfortable development workflow, including linting, testing, production optimizations, and more. Full-featured tools like these require some time and disk space to install.
 >
-> If you are looking for a lightweight environment to experiment with React, check out the [Try React](/docs/try-react.html) page instead. A [single HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) is enough to get you started!
+>If you are looking for a lightweight environment to experiment with React, check out the [Try React](/docs/try-react.html) page instead. **A [single HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) is enough to get you started!**
+>
+> Finally, if you're not building a single-page application, you can either [add React to your existing build pipeline](/docs/add-react-to-an-existing-app.html) or [use it from CDN](/docs/cdn-links.html) and [without a build step](/docs/react-without-jsx.html).
 
 ## Create React App
 
@@ -41,7 +43,9 @@ When you're ready to deploy to production, running `npm run build` will create a
 
 ## Other Starter Kits
 
-See the Community section for a list of [starter kits](/community/starter-kits.html).
+We have created [a curated list of third-party starter kits that we officially recommend](/community/starter-kits.html#recommended-by-the-react-team). They slightly differ in their focus but are all production-ready, well-maintained, and don't require configuration to get started.
+
+You can also check out a list of [other kits](/community/starter-kits.html#other-starter-kits) contributed by the community.
 
 ## Advanced
 

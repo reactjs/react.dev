@@ -19,7 +19,7 @@ Try React online or set up your local development environment.
 
 If you're just interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s).
 
-## HTML Template
+## Minimal HTML Template
 
 If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so don't use it in production.
 

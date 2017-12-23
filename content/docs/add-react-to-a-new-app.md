@@ -44,4 +44,4 @@ See the Community section for a list of [starter kits](/community/starter-kits.h
 
 ## Advanced
 
-For advanced configuration, see [Installing React](/docs/installation-existing-app.html#installing-react) in the next section.
+If you prefer to configure a project manually, see [Installing React](/docs/add-react-to-an-existing-app.html#installing-react) in the next section.

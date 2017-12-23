@@ -62,13 +62,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>Docs</MetaTitle>
             {sectionListDocs.map(section => {
-              // Skip the Installation page for Quick Start
-              const defaultItem =
-                section.items[0].id === 'installation'
-                  ? section.items[1].id
-                  : section.items[0].id;
+              const defaultItem = section.items[0];
               return (
-                <FooterLink to={`/docs/${defaultItem}.html`}>
+                <FooterLink to={`/docs/${defaultItem.id}.html`}>
                   {section.title}
                 </FooterLink>
               );

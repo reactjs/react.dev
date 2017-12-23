@@ -8,6 +8,11 @@ next: add-react-to-an-existing-app.html
 
 The easiest way to get started on a new React project is by using a starter kit.
 
+> Note:
+> 
+> Check out the [Try React](/docs/try-react.html) page if you are looking for light-weight environments to experiment with React.
+> The options on this page are designed to help bootstrap single-page applications with linting, testing, bundling, production optimizations, and more.
+
 ## Create React App
 
 [Create React App](http://github.com/facebookincubator/create-react-app) is the best way to start building a new React single page application. It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 on your machine.

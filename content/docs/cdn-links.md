@@ -22,8 +22,6 @@ The versions above are only meant for development, and are not suitable for prod
 
 To load a specific version of `react` and `react-dom`, replace `16` with the version number.
 
-If you use Bower, React is available via the `react` package.
-
 ### Why the `crossorigin` Attribute?
 
 If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute set:

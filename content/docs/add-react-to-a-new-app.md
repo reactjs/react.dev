@@ -10,7 +10,7 @@ The easiest way to get started on a new React project is by using a starter kit.
 
 > Note:
 > 
-> Check out the [Try React](/docs/try-react.html) page if you are looking for light-weight environments to experiment with React.
+> Check out the [Try React](/docs/try-react.html) page if you are looking for lightweight environments to experiment with React.
 > The options on this page are designed to help bootstrap single-page applications with linting, testing, bundling, production optimizations, and more.
 
 ## Create React App

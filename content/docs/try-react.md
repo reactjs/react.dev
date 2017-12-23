@@ -31,9 +31,9 @@ If you prefer to use your own text editor, you can also [download this HTML file
 
 - Try the [Tutorial](/tutorial/tutorial.html) for a hands-on practical example.
 
-### Install React
+### Complete Development Environment
 
-If you are ready to add React to your app, check out the install guides:
+If you are ready to build a full application with React, check out the install guides. These setups are designed to get you up and running with a gives you a great developer experience and a production-ready setup with linting, testing, and optimizations built-in; however, they require more time to setup amd install. The lighter-weight solutions above are the best fit if you are new to React or just experimenting.
 
-- **[Add React to a New App](/docs/add-react-to-a-new-app.html)** Create a new app with a starter kit like [Create React App](http://github.com/facebookincubator/create-react-app).
-- **[Add React to an Existing App](/docs/add-react-to-a-new-app.html)** Add React to a build system or larger app.
+- [Add React to a New App](/docs/add-react-to-a-new-app.html) Create a new app with a starter kit like [Create React App](http://github.com/facebookincubator/create-react-app).
+- [Add React to an Existing App](/docs/add-react-to-a-new-app.html) Add React to a build system or larger app.

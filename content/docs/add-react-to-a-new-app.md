@@ -43,7 +43,9 @@ When you're ready to deploy to production, running `npm run build` will create a
 
 ## Other Starter Kits
 
-We have created [a curated list of third-party starter kits that we officially recommend](/community/starter-kits.html#recommended-by-the-react-team). They slightly differ in their focus but are all production-ready, well-maintained, and don't require configuration to get started.
+We have created [a curated list of third-party starter kits that we officially recommend](/community/starter-kits.html).
+
+They slightly differ in their focus but are all production-ready, well-maintained, and don't require configuration to get started.
 
 You can also check out a list of [other kits](/community/starter-kits.html#other-starter-kits) contributed by the community.
 

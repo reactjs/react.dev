@@ -38,4 +38,4 @@ The lightweight solutions above are the best fit if you are new to React or just
 When you are ready to build your first application with React, check out the install guides below. These setups are designed to get you up and running with a great developer experience and are ready for production. They include linting, testing, and optimizations built-in; however, they require more time and disk space to set up and install.
 
 - [Add React to a New App](/docs/add-react-to-a-new-app.html): Create a new app with a fully-featured starter kit.
-- [Add React to an Existing App](/docs/add-react-to-a-new-app.html): Add React to a build system or a larger app.
+- [Add React to an Existing App](/docs/add-react-to-an-existing-app.html): Add React to a build system or a larger app.

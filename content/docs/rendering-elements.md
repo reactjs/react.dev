@@ -43,7 +43,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/rrpgNB?editors=1010)
+[](codepen://rendering-elements/render-an-element)
 
 It displays "Hello, world" on the page.
 
@@ -72,7 +72,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
+[](codepen://rendering-elements/update-rendered-element)
 
 It calls `ReactDOM.render()` every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
 
@@ -86,7 +86,7 @@ It calls `ReactDOM.render()` every second from a [`setInterval()`](https://devel
 
 React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
 
-You can verify by inspecting the [last example](http://codepen.io/gaearon/pen/gwoJZk?editors=0010) with the browser tools:
+You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 

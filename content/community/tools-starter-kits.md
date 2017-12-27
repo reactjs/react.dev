@@ -33,3 +33,4 @@ Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ cov
  * **[vortigern](https://github.com/barbar/vortigern)** A universal boilerplate for building web applications w/ TypeScript, React, Redux and more.
  * **[CRA Universal CLI](https://github.com/antonybudianto/cra-universal)** CLI to initialize universal create-react-app without ejecting. Supports Server-side rendering with Code-splitting, and Node Stream rendering.
  * **[EDGE Platform](https://github.com/sebastian-software/edge)** Universal React/SSR + Apollo GraphQL + JS/CSS Code Splitting + Fine-Tuned Webpack + Localization/Internationalization. Most things are external dependencies. Boilerplate available.
+ * **[bae](https://github.com/siddharthkp/bae)** Zero config toolkit. SSR (with data fetching) + routing + streaming + styling (with styled-components) + HMR out of the box.

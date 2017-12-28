@@ -17,3 +17,9 @@ There are many wonderful curated resources the React community has put together.
 - [Awesome React Components](https://github.com/brillout/awesome-react-components) - A curated list of React components.
 
 - [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - A curated list of React talks.
+
+- [React Newsletter](http://reactjsnewsletter.com/) - The free, weekly newsletter of the best React news, articles, projects, and more.
+
+- [Fullstack React Newsletter](http://newsletter.fullstackreact.com/) - Weekly newsletter about the React ecosystem with an emphasis on useful libraries, tutorials and code.
+
+- [React Status](https://react.statuscode.com/) - A weekly roundup of the latest React and React Native links and tutorials.

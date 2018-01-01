@@ -8,7 +8,7 @@ category: Add-Ons
 
 > Note:
 >
-> As of React 16, `react-addons-perf` is not supported. Please use [your browser's profiling tools](/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab) to get insight into which components re-render.
+> As of React 16, `react-addons-perf` is not supported. Please use [your browser's profiling tools](optimizing-performance.md#profiling-components-with-the-chrome-performance-tab) to get insight into which components re-render.
 
 **Importing**
 
@@ -20,7 +20,7 @@ var Perf = require('react-addons-perf'); // ES5 with npm
 
 ## Overview
 
-React is usually quite fast out of the box. However, in situations where you need to squeeze every ounce of performance out of your app, it provides a [shouldComponentUpdate()](/docs/react-component.html#shouldcomponentupdate) hook where you can add optimization hints to React's diff algorithm.
+React is usually quite fast out of the box. However, in situations where you need to squeeze every ounce of performance out of your app, it provides a [shouldComponentUpdate()](react-component.md#shouldcomponentupdate) hook where you can add optimization hints to React's diff algorithm.
 
 In addition to giving you an overview of your app's overall performance, `Perf` is a profiling tool that tells you exactly where you need to put these hooks.
 

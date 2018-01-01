@@ -14,7 +14,7 @@ The easiest way to get started on a new React project is by using a starter kit.
 >
 >If you are looking for a lightweight environment to experiment with React, check out the [Try React](/docs/try-react.html) page instead. **A [single HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) is enough to get you started!**
 >
-> Finally, if you're not building a single-page application, you can either [add React to your existing build pipeline](/docs/add-react-to-an-existing-app.html) or [use it from CDN](/docs/cdn-links.html) and [without a build step](react-without-jsx.html).
+> Finally, if you're not building a single-page application, you can either [add React to your existing build pipeline](add-react-to-an-existing-app.md) or [use it from CDN](cdn-links.md) and [without a build step](react-without-jsx.html).
 
 ## Create React App
 

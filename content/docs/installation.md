@@ -91,7 +91,7 @@ Both Yarn and npm download packages from the [npm registry](http://npmjs.com/).
 
 >  Note:
 >
->  To prevent potential incompatibilities, all `react` packages should use the same version (eg `react@16.2.0`, `react-dom@16.2.0`, `react-test-renderer@16.2.0`).
+>  To prevent potential incompatibilities, all react packages should use the same version. (This includes react, react-dom, react-test-renderer, etc.)
 
 ### Enabling ES6 and JSX
 

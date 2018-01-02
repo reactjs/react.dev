@@ -191,19 +191,19 @@ Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select
 >```
 ## The file input Tag
 
-In HTML, a `<input type="file">` lets the user choose one or more files from their device's storage, allowing the app to handle them as per the use case.
+In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
 
 ```html
 <input type="file" />
 ```
 
-In React, a `<input type="file" />` works similarly to a normal `<input/>` with some major differences. The `<input type="file" />` in React is read-only and hence setting the value of a file programmatically is impossible. You can use the various File management API provided by Javascript to handle the files that are uploaded by the user.
+In React, an `<input type="file" />` works similarly to a normal `<input/>` with one important difference: **it is read-only**. (You can't set the value programmatically.) Instead, you should use the File API to interact with the files.
+
+The following example shows how a `ref` can be used to access file(s) in a submit handler:
 
 `embed:forms/input-type-file.js`
 
 [Try it on CodePen](codepen://forms/input-type-file)
-
-Note how a `ref` to the file input is used to access the file(s) in the submit handler
 
 ## Handling Multiple Inputs
 

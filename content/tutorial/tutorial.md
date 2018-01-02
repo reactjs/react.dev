@@ -913,13 +913,13 @@ Let's show the previous moves made in the game so far. We learned earlier that R
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
+    const moves = history.map((move, moveNumber) => {
+      const desc = moveNumber ?
+        'Go to move #' + moveNumber :
         'Go to game start';
       return (
         <li>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(moveNumber)}>{desc}</button>
         </li>
       );
     });
@@ -997,16 +997,16 @@ Component keys don't need to be globally unique, only unique relative to the imm
 
 ### Implementing Time Travel
 
-For our move list, we already have a unique ID for each step: the number of the move when it happened. In the Game's `render` method, add the key as `<li key={move}>` and the key warning should disappear:
+For our move list, we already have a unique ID for each move: the number of the move when it happened. In the Game's `render` method, add the key as `<li key={moveNumber}>` and the key warning should disappear:
 
 ```js{6}
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
+    const moves = history.map((move, moveNumber) => {
+      const desc = moveNumber ?
+        'Go to move #' + moveNumber :
         'Go to game start';
       return (
-        <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+        <li key={moveNumber}>
+          <button onClick={() => this.jumpTo(moveNumber)}>{desc}</button>
         </li>
       );
     });
@@ -1014,9 +1014,9 @@ For our move list, we already have a unique ID for each step: the number of the 
 
 [View the current code.](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)
 
-Clicking any of the move buttons throws an error because `jumpTo` is undefined. Let's add a new key to Game's state to indicate which step we're currently viewing.
+Clicking any of the move buttons throws an error because `jumpTo` is undefined. Let's add a new key to Game's state to indicate which move we're currently viewing.
 
-First, add `stepNumber: 0` to the initial state in Game's `constructor`:
+First, add `moveNumber: 0` to the initial state in Game's `constructor`:
 
 ```js{8}
 class Game extends React.Component {
@@ -1026,7 +1026,7 @@ class Game extends React.Component {
       history: [{
         squares: Array(9).fill(null),
       }],
-      stepNumber: 0,
+      moveNumber: 0,
       xIsNext: true,
     };
   }
@@ -1041,10 +1041,10 @@ Add a method called `jumpTo` to the Game class:
     // this method has not changed
   }
 
-  jumpTo(step) {
+  jumpTo(moveNumber) {
     this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      moveNumber: moveNumber,
+      xIsNext: (moveNumber % 2) === 0,
     });
   }
 
@@ -1053,11 +1053,11 @@ Add a method called `jumpTo` to the Game class:
   }
 ```
 
-Then update `stepNumber` when a new move is made by adding `stepNumber: history.length` to the state update in Game's `handleClick`. We'll also update `handleClick` to be aware of `stepNumber` when reading the current board state so that you can go back in time then click in the board to create a new entry.:
+Then update `moveNumber` when a new move is made by adding `moveNumber: history.length` to the state update in Game's `handleClick`. We'll also update `handleClick` to be aware of `moveNumber` when reading the current board state so that you can go back in time then click in the board to create a new entry.:
 
 ```javascript{2,13}
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.state.history.slice(0, this.state.moveNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {
@@ -1068,7 +1068,7 @@ Then update `stepNumber` when a new move is made by adding `stepNumber: history.
       history: history.concat([{
         squares: squares
       }]),
-      stepNumber: history.length,
+      moveNumber: history.length,
       xIsNext: !this.state.xIsNext,
     });
   }
@@ -1079,7 +1079,7 @@ Now you can modify Game's `render` to read from that step in the history:
 ```javascript{3}
   render() {
     const history = this.state.history;
-    const current = history[this.state.stepNumber];
+    const current = history[this.state.moveNumber];
     const winner = calculateWinner(current.squares);
 
     // the rest has not changed

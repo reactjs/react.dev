@@ -8,7 +8,7 @@ category: Add-Ons
 
 > Note:
 >
-> As of React 16, `react-addons-perf` is not supported. Please use [your browser's profiling tools](/docs/optimizing-performance.html#profiling-components-with-the-chrome-performance-tab) to get insight into which components re-render.
+> As of React 16, `react-addons-perf` is not supported. Please use [your browser's profiling tools](optimizing-performance.md#profiling-components-with-the-chrome-performance-tab) to get insight into which components re-render.
 
 **Importing**
 

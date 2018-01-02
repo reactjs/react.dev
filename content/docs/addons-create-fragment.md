@@ -8,7 +8,7 @@ category: Add-Ons
 
 > Note:
 >
-> `React.addons` entry point is deprecated as of React v15.5. We now have first class support for fragments which you can read about [here](/docs/fragments.html).
+> `React.addons` entry point is deprecated as of React v15.5. We now have first class support for fragments which you can read about [here](fragments.md).
 
 ## Importing
 

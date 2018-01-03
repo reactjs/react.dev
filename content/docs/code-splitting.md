@@ -129,7 +129,7 @@ parse the dynamic import syntax but is not transforming it. For that you will ne
 ### React Loadable
 
 [React Loadable](https://github.com/thejameskyle/react-loadable) provides you
-with a nice API for introducing code splitting into your app where-ever you
+with a nice API for introducing code splitting into your app wherever you
 render a component.
 
 **Before:**
@@ -157,7 +157,7 @@ const MyComponent = () => (
 );
 ```
 
-React Loadable helps you rendering
+React Loadable helps you create
 [loading states](https://github.com/thejameskyle/react-loadable#creating-a-great-loading-component),
 [error states](https://github.com/thejameskyle/react-loadable#loading-error-states),
 [timeouts](https://github.com/thejameskyle/react-loadable#timing-out-when-the-loader-is-taking-too-long),

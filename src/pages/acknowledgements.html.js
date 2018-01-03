@@ -52,9 +52,7 @@ const Acknowlegements = ({data, location}) => (
             </li>
             <li>
               <a href="http://christopheraue.net/">Christopher Aue</a> for
-              letting us use the <a href="http://reactjs.com/">
-                reactjs.com
-              </a>{' '}
+              letting us use the <a href="http://reactjs.com/">reactjs.com</a>{' '}
               domain name and the{' '}
               <a href="https://twitter.com/reactjs">@reactjs</a> username on
               Twitter.
@@ -70,9 +68,7 @@ const Acknowlegements = ({data, location}) => (
               <a href="https://github.com/react">react</a> org on GitHub.
             </li>
             <li>
-              <a href="https://github.com/voronianski">
-                Dmitri Voronianski
-              </a>{' '}
+              <a href="https://github.com/voronianski">Dmitri Voronianski</a>{' '}
               for letting us use the{' '}
               <a href="https://labs.voronianski.com/oceanic-next-color-scheme/">
                 Oceanic Next

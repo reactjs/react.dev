@@ -62,7 +62,7 @@ function Glossary(props) {
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
         </Fragment>
-      )}
+      ))}
     </dl>
   );
 }

@@ -40,7 +40,9 @@ function add(a, b) {
 console.log(add(16, 26)); // 42
 ```
 
-> Note: Your bundles will end up looking a lot different than this.
+> Note:
+> 
+> Your bundles will end up looking a lot different than this.
 
 If you're using [Create React App](https://github.com/facebookincubator/create-react-app)
 or a similar tool you will have a Webpack setup out of the box to bundle your
@@ -89,7 +91,9 @@ import("./math").then(math => {
 });
 ```
 
-> Note: The dynamic `import()` syntax is a ECMAScript (JavaScript)
+> Note:
+> 
+> The dynamic `import()` syntax is a ECMAScript (JavaScript)
 > [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
 > accepted into the language standard. It is expected to be accepted within the
 > near future.

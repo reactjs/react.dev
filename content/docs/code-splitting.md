@@ -44,9 +44,10 @@ console.log(add(16, 26)); // 42
 > 
 > Your bundles will end up looking a lot different than this.
 
-If you're using [Create React App](https://github.com/facebookincubator/create-react-app)
-or a similar tool you will have a Webpack setup out of the box to bundle your
-app. If you aren't, you'll need to setup bundling yourself. See the
+If you're using [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool you will have a Webpack setup out of the box to bundle your
+app.
+
+If you aren't, you'll need to setup bundling yourself. For example, see the
 [Installation](https://webpack.js.org/guides/installation/) and
 [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
 Webpack docs.
@@ -100,30 +101,11 @@ import("./math").then(math => {
 
 When Webpack comes across this syntax, it automatically start code-splitting
 your app. If you're using Create React App, this is already configured for you
-and you can start using it immediately.
+and you can [start using it](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immediately. It's also supported
+out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
 If you're setting up Webpack yourself, you'll probably want to read Webpack's
-[guide on code splitting](https://webpack.js.org/guides/code-splitting/).
-
-Your Webpack config should look vaguely like this:
-
-```js
-module.exports = {
-  entry: {
-    main: './src/app.js',
-  },
-  output: {
-    // `filename` provides a template for naming your bundles (remember to use `[name]`)
-    filename: '[name].bundle.js',
-    // `chunkFilename` provides a template for naming code-split bundles (optional)
-    chunkFilename: '[name].bundle.js',
-    // `path` is the folder where Webpack will place your bundles
-    path: './dist',
-    // `publicPath` is where Webpack will load your bundles from (optional)
-    publicPath: 'dist/'
-  }
-};
-```
+[guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
 When using [Babel](http://babeljs.io/) you'll need to make sure that Babel can
 parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).

@@ -155,7 +155,7 @@ In both cases, the `e` argument representing the React event will be passed as a
 
 ### Event handlers with Currying
 
-We can accomplish the above without re-binding every on render cycle by using function currying with arrow functions.  To do this we will need to slightly update our event handler to provide the function curry and then the handler to invoke the outer function passing our argument and returning the inner function to be used by the event.
+We can also accomplish event handling by using function currying with arrow functions.  To do this we will need to slightly update our event handler. When the handler is invoked by the render function, the outer function is called which passes our arguments in.  The handler also returns an inner function.  The inner function is what is called when the given event is executed.  The inner function has access to the arguments in the outer function.
 
 ```js
 class LoggingButton extends React.Component {

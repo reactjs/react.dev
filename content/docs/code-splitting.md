@@ -41,7 +41,7 @@ console.log(add(16, 26)); // 42
 ```
 
 > Note:
-> 
+>
 > Your bundles will end up looking a lot different than this.
 
 If you're using [Create React App](https://github.com/facebookincubator/create-react-app), [Next.js](https://github.com/zeit/next.js/), [Gatsby](https://www.gatsbyjs.org/), or a similar tool, you will have a Webpack setup out of the box to bundle your
@@ -59,7 +59,7 @@ if you are including large third-party libraries. You need to keep an eye on
 the code you are including in your bundle so that you don't accidentally make
 it so large that your app takes a long time to load.
 
-To avoid winding up with a large bundle, it's good to get ahead of the problem 
+To avoid winding up with a large bundle, it's good to get ahead of the problem
 and start "splitting" your bundle.
  [Code-Splitting](https://webpack.js.org/guides/code-splitting/) is a feature
 supported by bundlers like Webpack and Browserify (via
@@ -68,7 +68,7 @@ multiple bundles that can be dynamically loaded at runtime.
 
 Code-splitting your app can help you "lazy-load" just the things that are
 currently needed by the user, which can dramatically improve the performance of
-your app. While you haven't reduced the overall amount of code in your app, 
+your app. While you haven't reduced the overall amount of code in your app,
 you've avoided loading code that the user may never need, and reduced the amount
 of code needed during the initial load.
 
@@ -94,7 +94,7 @@ import("./math").then(math => {
 ```
 
 > Note:
-> 
+>
 > The dynamic `import()` syntax is a ECMAScript (JavaScript)
 > [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
 > part of the language standard. It is expected to be accepted within the
@@ -116,7 +116,7 @@ parse the dynamic import syntax but is not transforming it. For that you will ne
 ### React Loadable
 
 [React Loadable](https://github.com/thejameskyle/react-loadable) wraps
-dynamic imports in a nice, React-friendly API for introducing code 
+dynamic imports in a nice, React-friendly API for introducing code
 splitting into your app at a given component.
 
 **Before:**
@@ -184,8 +184,10 @@ const About = Loadable({
 
 const App = () => (
   <Router>
-    <Route exact path="/" component={Home}/>
-    <Route path="/about" component={About}/>
+    <div>
+      <Route exact path="/" component={Home}/>
+      <Route path="/about" component={About}/>
+    </div>
   </Router>
 );
 ```

@@ -167,7 +167,7 @@ libraries like [React Router](https://reacttraining.com/react-router/) and
 [React Loadable](https://github.com/thejameskyle/react-loadable).
 
 ```js
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Loadable from 'react-loadable';
 
 const Loading = () => <div>Loading...</div>;
@@ -184,10 +184,10 @@ const About = Loadable({
 
 const App = () => (
   <Router>
-    <div>
+    <Switch>
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
-    </div>
+    </Switch>
   </Router>
 );
 ```

@@ -198,17 +198,17 @@ You can now visualize these re-renders of the virtual DOM with React DevTools:
 - [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
 - [Standalone Node Package](https://www.npmjs.com/package/react-devtools)
 
-In the developer console select the **Highlight Updates** option in the **React** tab
+In the developer console select the **Highlight Updates** option in the **React** tab:
 
-<img src="https://i.imgur.com/tUBa5k7.png" style="max-width:100%; margin-top:10px;" alt="How to enable highlight updates" />
+<center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="How to enable highlight updates" /></center>
 
 Interact with your page and you should see colored borders momentarily appear around any elements that have redrawn.
 
 You should expect to correctly see redraws on components that are updating in the DOM, but you shouldn't see them around components that are not updating.  So if you see flashing colors around components that should not be updating then you know you have a needless `render()`.
 
-Below is an example of an [app](https://highlight-demo.firebaseapp.com/) setup specifically to demonstrate a very poorly optimized redraw, everything is being re-rendered in the virtual DOM even though only the text input component needs to be re-rendered.  More info can be found in this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
+Below is an example of an app setup specifically to demonstrate a poorly optimized redraw. Even though only the text input changes, the components outside it are being re-rendered. Even though React only updates the changed DOM nodes, re-rendering still takes some time. In many cases it's not a problem, but if the slowdown is noticeable, we can fix it by avoiding reconciliation.  More info can be found in this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
 
-<img src="https://i.imgur.com/dGIGC5p.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" />
+<center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" /></center>
 
 In some cases, your component can speed all of this up by overriding the lifecycle function `shouldComponentUpdate`, which is triggered before the re-rendering process starts. The default implementation of this function returns `true`, leaving React to perform the update:
 

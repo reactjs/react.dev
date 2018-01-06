@@ -159,6 +159,8 @@ You may be interested in watching [this short video](https://www.youtube.com/wat
 - [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
 - [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
 
+For a realistic overview of what it _feels_ like to contribute to React for the first time, check out [this entertaining ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
+
 ### Meeting Notes
 
 React team meets once a week to discuss the development of React, future plans, and priorities. You can find the meeting notes in a [dedicated repository](https://github.com/reactjs/core-notes/).

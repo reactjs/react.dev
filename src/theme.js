@@ -45,14 +45,16 @@ type Size = $Keys<typeof SIZES>;
 const media = {
   between(smallKey: Size, largeKey: Size, excludeLarge: boolean = false) {
     if (excludeLarge) {
-      return `@media (min-width: ${SIZES[smallKey]
-        .min}px) and (max-width: ${SIZES[largeKey].min - 1}px)`;
+      return `@media (min-width: ${
+        SIZES[smallKey].min
+      }px) and (max-width: ${SIZES[largeKey].min - 1}px)`;
     } else {
       if (SIZES[largeKey].max === Infinity) {
         return `@media (min-width: ${SIZES[smallKey].min}px)`;
       } else {
-        return `@media (min-width: ${SIZES[smallKey]
-          .min}px) and (max-width: ${SIZES[largeKey].max}px)`;
+        return `@media (min-width: ${SIZES[smallKey].min}px) and (max-width: ${
+          SIZES[largeKey].max
+        }px)`;
       }
     }
   },

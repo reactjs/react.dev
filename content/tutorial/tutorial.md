@@ -53,7 +53,7 @@ This is more work, but lets you work from the comfort of your editor.
 If you want to do it, here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions](/docs/installation.html#creating-a-new-application) to create a new project.
+2. Follow the [installation instructions](/docs/add-react-to-a-new-app.html) to create a new project.
 
 ```bash
 npm install -g create-react-app

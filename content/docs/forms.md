@@ -189,6 +189,21 @@ Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
+## The file input Tag
+
+In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+
+```html
+<input type="file" />
+```
+
+In React, an `<input type="file" />` works similarly to a normal `<input/>` with one important difference: **it is read-only**. (You can't set the value programmatically.) Instead, you should use the File API to interact with the files.
+
+The following example shows how a `ref` can be used to access file(s) in a submit handler:
+
+`embed:forms/input-type-file.js`
+
+[Try it on CodePen](codepen://forms/input-type-file)
 
 ## Handling Multiple Inputs
 

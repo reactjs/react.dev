@@ -2,7 +2,7 @@
 id: hello-world
 title: Hello World
 permalink: docs/hello-world.html
-prev: installation.html
+prev: cdn-links.html
 next: introducing-jsx.html
 redirect_from:
   - "docs/"
@@ -12,7 +12,7 @@ redirect_from:
   - "docs/getting-started-zh-CN.html"
 ---
 
-The easiest way to get started with React is to use [this Hello World example code on CodePen](codepen://hello-world). You don't need to install anything; you can just open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/installation.html) page.
+The easiest way to get started with React is to use [this Hello World example code on CodePen](codepen://hello-world). You don't need to install anything; you can just open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/try-react.html) section.
 
 The smallest React example looks like this:
 

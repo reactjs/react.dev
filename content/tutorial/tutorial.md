@@ -677,12 +677,12 @@ Replace the `status` declaration in Board's `render` with this code:
       // the rest has not changed
 ```
 
-You can now change `handleClick` in Board to return early and ignore the click if someone has already won the game or if a square is already filled:
+You can now change `handleClick` in Board to return early and ignore the click if a square is already filled or if someone has already won the game:
 
 ```javascript{3-5}
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';

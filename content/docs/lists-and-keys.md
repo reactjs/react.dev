@@ -250,12 +250,22 @@ ReactDOM.render(
 
 Keys serve as a hint to React but they don't get passed to your components. If you need the same value in your component, pass it explicitly as a prop with a different name:
 
-```js{3,4}
+```js{12,13}
+function Post(props) {
+  return (
+    <div key={props.id}>
+      <h3>{props.title}</h3>
+      <p>{props.content}</p>
+    </div>
+  );
+}
+
 const content = posts.map((post) =>
   <Post
     key={post.id}
     id={post.id}
-    title={post.title} />
+    title={post.title}
+    content={post.content} />
 );
 ```
 

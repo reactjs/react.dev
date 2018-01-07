@@ -253,7 +253,7 @@ Keys serve as a hint to React but they don't get passed to your components. If y
 ```js{12,13}
 function Post(props) {
   return (
-    <div key={props.id}>
+    <div id={props.id}>
       <h3>{props.title}</h3>
       <p>{props.content}</p>
     </div>

@@ -20,8 +20,6 @@ Here are some good resources for further reading on when to use `props` vs `stat
 
 ### Is synching state and props a bad idea?
 
-In rare cases, it’s okay to initialize state based on [`props`](/docs/components-and-props.html). One valid use to store props in state is to be able to know its previous values, because props can change over time. This effectively “forks” the props and sets the state with the initial props.
-
 In rare cases, it's okay to initialize state based on props. One valid use to store props in state is to be able to know its previous values, because props can change over time. This effectively "forks" the props and sets the state with the initial props. Here's an example of a valid `React.Component` subclass constructor:
 
 ```js

@@ -45,7 +45,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           [media.between('largerSidebar', 'sidebarFixed', true)]: {
             paddingRight: layoutHasSidebar ? 380 : null,
           },
-        }}>@
+        }}>
         <div
           css={{
             flexWrap: 'wrap',

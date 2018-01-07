@@ -169,7 +169,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            Copyright © 2017 Facebook Inc.
+            Copyright © 2018 Facebook Inc.
           </p>
         </section>
       </div>

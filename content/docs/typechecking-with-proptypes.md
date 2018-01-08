@@ -40,7 +40,7 @@ Here is an example documenting the different validators provided:
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // You can declare that a prop is a specific JS primitive. By default, these
+  // You can declare that a prop is a specific JS type. By default, these
   // are all optional.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,

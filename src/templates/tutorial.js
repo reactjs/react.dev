@@ -2,15 +2,17 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import MarkdownPage from 'components/MarkdownPage';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {createLinkTutorial} from 'utils/createLink';
 import {sectionListTutorial} from 'utils/sectionList';
 
-const Tutorial = ({data, location}) => {
+import type {MarkdownPageData} from 'types';
+
+const Tutorial = ({data, location}: MarkdownPageData) => {
   // HACK The injected location prop doesn't update when hash changes
   // This might be a gatsby issue, or a react-router/history issue,
   // Or we might be using either library incorrectly.
@@ -30,10 +32,6 @@ const Tutorial = ({data, location}) => {
       titlePostfix=" - React"
     />
   );
-};
-
-Tutorial.propTypes = {
-  data: PropTypes.object.isRequired,
 };
 
 // eslint-disable-next-line no-undef

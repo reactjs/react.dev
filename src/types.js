@@ -39,3 +39,8 @@ export type allMarkdownRemarkData = {
 };
 
 export type markdownRemarkData = Node;
+
+export type MarkdownPageData = {
+  data: Object,
+  location: Location,
+};

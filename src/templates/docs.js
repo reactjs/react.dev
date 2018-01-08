@@ -2,15 +2,17 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import MarkdownPage from 'components/MarkdownPage';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {createLinkDocs} from 'utils/createLink';
 import {sectionListDocs} from 'utils/sectionList';
 
-const Docs = ({data, location}) => (
+import type {MarkdownPageData} from 'types';
+
+const Docs = ({data, location}: MarkdownPageData) => (
   <MarkdownPage
     createLink={createLinkDocs}
     location={location}
@@ -19,10 +21,6 @@ const Docs = ({data, location}) => (
     titlePostfix=" - React"
   />
 );
-
-Docs.propTypes = {
-  data: PropTypes.object.isRequired,
-};
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`

@@ -2,16 +2,22 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import Link from 'gatsby-link';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
 
-const NavigationFooter = ({next, prev, location}) => {
+type Props = {
+  next?: string,
+  prev?: string,
+  location: Location,
+};
+
+const NavigationFooter = ({next, prev, location}: Props) => {
   return (
     <div
       css={{
@@ -79,16 +85,18 @@ const NavigationFooter = ({next, prev, location}) => {
   );
 };
 
-NavigationFooter.propTypes = {
-  next: PropTypes.string,
-  prev: PropTypes.string,
-};
-
 export default NavigationFooter;
 
-const linkToTitle = link => link.replace(/-/g, ' ').replace('.html', '');
+const linkToTitle = (link: string): string =>
+  link.replace(/-/g, ' ').replace('.html', '');
 
-const PrimaryLink = ({children, to, location}) => {
+type PrimaryLinkProps = {
+  children: string,
+  to: string,
+  location: Location,
+};
+
+const PrimaryLink = ({children, to, location}: PrimaryLinkProps) => {
   // quick fix
   // TODO: replace this with better method of getting correct full url
   const updatedUrl =
@@ -120,7 +128,7 @@ const PrimaryLink = ({children, to, location}) => {
   );
 };
 
-const SecondaryLabel = ({children}) => (
+const SecondaryLabel = ({children}: {children: string}) => (
   <div
     css={{
       color: colors.brand,

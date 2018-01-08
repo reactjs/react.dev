@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import React from 'react';
@@ -9,6 +10,28 @@ import {colors, media} from 'theme';
 import isItemActive from 'utils/isItemActive';
 import MetaTitle from '../MetaTitle';
 import ChevronSvg from '../ChevronSvg';
+
+type Item = {
+  id: string,
+  href: string,
+  subitems?: Array<Item>,
+};
+
+type SectionProps = {
+  title: string,
+  items: Array<Item>,
+};
+
+type Props = {
+  activeItemId: string,
+  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
+  isActive: boolean,
+  isScrollSync: boolean,
+  location: Location,
+  onLinkClick: Function,
+  onSectionTitleClick: Function,
+  section: SectionProps,
+};
 
 const Section = ({
   activeItemId,
@@ -19,7 +42,7 @@ const Section = ({
   onLinkClick,
   onSectionTitleClick,
   section,
-}) => (
+}: Props) => (
   <div>
     <button
       css={{

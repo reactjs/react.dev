@@ -8,8 +8,8 @@
 import React from 'react';
 
 type Props = {
-  size: number,
-  cssProps: Object,
+  size?: number,
+  cssProps?: Object,
 };
 
 const ChevronSvg = ({size = 10, cssProps = {}}: Props) => (

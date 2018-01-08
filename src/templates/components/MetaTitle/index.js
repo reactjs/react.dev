@@ -2,12 +2,19 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import React from 'react';
 import {colors} from 'theme';
 
-const MetaTitle = ({children, title, cssProps = {}, onDark = false}) => (
+type Props = {
+  children: any,
+  cssProps?: Object,
+  onDark?: boolean,
+};
+
+const MetaTitle = ({children, cssProps = {}, onDark = false}: Props) => (
   <div
     css={{
       color: onDark ? colors.subtleOnDark : colors.subtle,

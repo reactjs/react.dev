@@ -281,3 +281,5 @@ TestRenderer.create(
 );
 expect(focused).toBe(true);
 ```
+
+To learn more, [read the tests](https://github.com/facebook/react/tree/master/packages/react-test-renderer/src/__tests__).

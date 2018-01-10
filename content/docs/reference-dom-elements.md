@@ -52,7 +52,7 @@ Since `for` is a reserved word in JavaScript, React elements use `htmlFor` inste
 
 ### onChange
 
-The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
+The `onChange` event behaves as you would expect it to: whenever a form field is changed, this event is fired. For some form field types, React's `onChange` event is similar to the [DOM `input` event](https://developer.mozilla.org/en-US/docs/Web/Events/input) and unlike the [DOM `change` event](https://developer.mozilla.org/en-US/docs/Web/Events/change), which does not fire until a change is "committed". We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
 
 ### selected
 

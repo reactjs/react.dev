@@ -66,7 +66,7 @@ class NameForm extends React.Component {
 
 [Try it on CodePen.](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
-Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
+Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. In React, the `onChange` event handler is used to listen to changes to form elements of all types. For a text field, React's `onChange` is called on every keystroke, like the [DOM `input` event](https://developer.mozilla.org/en-US/docs/Web/Events/input) and unlike the [DOM `change` event](https://developer.mozilla.org/en-US/docs/Web/Events/change), which normally does not fire until the text field loses focus. Thus, with every keystroke, `handleChange` will update the React state and the displayed value will reflect what the user typed.
 
 With a controlled component, every state mutation will have an associated handler function. This makes it straightforward to modify or validate user input. For example, if we wanted to enforce that names are written with all uppercase letters, we could write `handleChange` as:
 

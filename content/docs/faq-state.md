@@ -20,20 +20,72 @@ Here are some good resources for further reading on when to use `props` vs `stat
 
 ### Is synching state and props a bad idea?
 
-In rare cases, it's okay to initialize state based on props. One valid use to store props in state is to be able to know its previous values, because props can change over time. This effectively "forks" the props and sets the state with the initial props. Here's an example of a valid `React.Component` subclass constructor:
+In rare cases, it's okay to initialize state based on props. One valid use to store props in state is to be able to know its previous values, because props can change over time. This effectively "forks" the props and sets the state with the initial props.
 
-```js
-constructor(props) {
-  super(props);
-  this.state = {
-    color: props.initialColor
-  };
+Here's an example of what not to do:
+
+```js{8,13}
+const App = () => (
+  <Button isOn />
+);
+
+class Button extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { isOn: props.isOn };
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isOn: !prevState.isOn
+    }));
+  }
+
+  render() {
+    return (
+      <button onClick={() => this.handleClick()} >
+        The switch is {this.state.isOn ? 'on' : 'off'}
+      </button>
+    );
+  }
 }
 ```
 
 Beware of this pattern, as state won't be up-to-date with any props update. Instead of syncing props to state, you often want to [lift the state up](/docs/lifting-state-up.html#lifting-state-up) instead.
 
-If you "fork" props by using them for state, you might also want to implement [`componentWillReceiveProps(nextProps)`](/docs/react-component.html#componentwillreceiveprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone.
+If you "fork" props by using them for state, you might also want to implement [`componentWillReceiveProps(nextProps)`](/docs/react-component.html#componentwillreceiveprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone. 
+
+Here's the code which lifts the state up :
+
+```js{5,18}
+class App extends React.Component{
+  constructor(props){
+    super(props);
+    this.state={
+      isOn: true
+    };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    this.setState(prevState => ({
+      isOn: !prevState.isOn
+    }));
+  }
+
+  render(){
+    return(
+      <Button handleClick={this.handleClick} isOn={this.state.isOn} />
+    );
+  }
+}
+
+const Button = (props) => (
+  <button onClick={props.handleClick} >
+    The switch is {props.isOn ? 'on' : 'off'}
+  </button>
+);
+```
 
 ### Why is `setState` is giving me the wrong value?
 

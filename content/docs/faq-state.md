@@ -20,9 +20,7 @@ Here are some good resources for further reading on when to use `props` vs `stat
 
 ### Is synching state and props a bad idea?
 
-In rare cases, it's okay to initialize state based on props. One valid use to store props in state is to be able to know its previous values, because props can change over time. This effectively "forks" the props and sets the state with the initial props.
-
-Here's an example of what not to do:
+Consider the below example showing a `bad practice` to sync props and state :
 
 ```js{8,13}
 const App = () => (
@@ -55,7 +53,7 @@ Beware of this pattern, as state won't be up-to-date with any props update. Inst
 
 If you "fork" props by using them for state, you might also want to implement [`componentWillReceiveProps(nextProps)`](/docs/react-component.html#componentwillreceiveprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone. 
 
-Here's the code which lifts the state up :
+Here's the code which shows a `good practice` by lifting the state to parent :
 
 ```js{5,18}
 class App extends React.Component{

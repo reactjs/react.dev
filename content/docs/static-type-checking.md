@@ -243,7 +243,7 @@ If you use npm, run:
 npm run build
 ```
 
-If you see no output, it mean's that it completed successfully.
+If you see no output, it means that it completed successfully.
 
 
 ### Type Definitions

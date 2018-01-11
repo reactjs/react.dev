@@ -126,9 +126,9 @@ The easiest way to try your changes is to run `yarn build core,dom --type=UMD` a
 If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder:
 
 ```sh
-cd ~/path_to_your_react_clone/build/packages/react
+cd ~/path_to_your_react_clone/build/node_modules/react
 yarn link
-cd ~/path_to_your_react_clone/build/packages/react-dom
+cd ~/path_to_your_react_clone/build/node_modules/react-dom
 yarn link
 cd /path/to/your/project
 yarn link react react-dom

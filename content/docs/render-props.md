@@ -322,12 +322,13 @@ class WithTitleAsync extends React.Component {
   }
 
   render () {
+    const renderProp = this.props.children; // ⬅️
     if (this.state.error) {
       return <span>Title Not Found</span>;
     } else if (!this.state.title) {
       return <span>Getting Title...</span>
     } else {
-      return this.props.children(this.state.title);
+      return renderProp(this.state.title); // ⬅️
     }
   }
 };

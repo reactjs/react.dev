@@ -303,37 +303,23 @@ In cases where you cannot bind the instance method ahead of time in the construc
 Although the examples above use `render`, any prop can be used to implement the render prop pattern. For example, the component below passes a function as the `children` prop:
 
 ```js
-<WithTitleAsync url="/my/api/books/123">
-  { ({ title }) => <h1>{title}</h1> }
-</WithTitleAsync>
+<WithTitle url="/my/api/movies/123">
+  { ({ title }) => <h1>{ title }</h1> }
+</WithTitle>
+```
 
-class WithTitleAsync extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { title: null };
-  }
+```js
+const WithTitle = (props) => {
+  // In a real app the url prop would be used to fetch the title from an API
+  // Here we hard-code an example title
+  const title = 'Babe: Pig in the City';
+  const renderProp = props.children;
 
-  componentDidMount() {
-    fetch(this.props.url)
-      .then(
-        ({ title }) => { this.setState({ title }) },
-        (error) => { this.setState({ error }) }
-      )
-  }
-
-  render () {
-    const renderProp = this.props.children; // ⬅️
-    if (this.state.error) {
-      return <span>Title Not Found</span>;
-    } else if (!this.state.title) {
-      return <span>Getting Title...</span>
-    } else {
-      return renderProp(this.state.title); // ⬅️
-    }
-  }
+  return renderProp(title);
 };
 
-WithTitleAsync.propTypes = {
+WithTitle.propTypes = {
+  url: PropTypes.string.isRequired,
   children: PropTypes.func.isRequired,
 };
 ```

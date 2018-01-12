@@ -314,7 +314,7 @@ class MouseTracker extends React.Component {
   }
 
   renderTheCat(mouse) {
-    return <Cat mouse={mouse} />
+    return <Cat mouse={mouse} />;
   }
 
   render() {

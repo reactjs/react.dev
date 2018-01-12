@@ -297,3 +297,29 @@ class MouseTracker extends React.Component {
 ```
 
 In cases where you cannot bind the instance method ahead of time in the constructor (e.g. because you need to close over the component's props and/or state) you should extend `React.Component` instead.
+
+## Using Props Other Than `render`
+
+Although the examples above use `render`, any prop can be used to implement the render prop pattern. For example, the component below passes a function as the `children` prop:
+
+```js
+<WithTitle url="/my/api/movies/123">
+  { ({ title }) => <h1>{ title }</h1> }
+</WithTitle>
+```
+
+```js
+const WithTitle = (props) => {
+  // In a real app the url prop would be used to fetch the title from an API
+  // Here we hard-code an example title
+  const title = 'Babe: Pig in the City';
+  const renderProp = props.children;
+
+  return renderProp(title);
+};
+
+WithTitle.propTypes = {
+  url: PropTypes.string.isRequired,
+  children: PropTypes.func.isRequired,
+};
+```

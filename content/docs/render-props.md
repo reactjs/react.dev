@@ -235,6 +235,38 @@ function withMouse(Component) {
 
 So using a render prop makes it possible to use either pattern.
 
+## Using Props Other Than `render`
+
+It's important to remember that just because the pattern is called "render props" you don't *have to use a prop named `render` to use this pattern*. In fact, [*any* prop that is a function that a component uses to know what to render is technically a "render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
+
+Although the examples above use `render`, we could just as easily use the `children` prop!
+
+```js
+<Mouse children={mouse => (
+  <p>The mouse position is {mouse.x}, {mouse.y}</p>
+)}/>
+```
+
+And remember, the `children` prop doesn't actually need to be named in the list of "attributes" in your JSX element. Instead, you can put it directly *inside* the element!
+
+```js
+<Mouse>
+  {mouse => (
+    <p>The mouse position is {mouse.x}, {mouse.y}</p>
+  )}
+</Mouse>
+```
+
+You'll see this technique used in the [react-motion](https://github.com/chenglou/react-motion) API.
+
+Since this technique is a little unusual, you'll probably want to explicitly state that `children` should be a function in your `propTypes` when designing an API like this.
+
+```js
+Mouse.propTypes = {
+  children: PropTypes.func.isRequired
+};
+```
+
 ## Caveats
 
 ### Be careful when using Render Props with React.PureComponent
@@ -297,29 +329,3 @@ class MouseTracker extends React.Component {
 ```
 
 In cases where you cannot bind the instance method ahead of time in the constructor (e.g. because you need to close over the component's props and/or state) you should extend `React.Component` instead.
-
-## Using Props Other Than `render`
-
-Although the examples above use `render`, any prop can be used to implement the render prop pattern. For example, the component below passes a function as the `children` prop:
-
-```js
-<WithTitle url="/my/api/movies/123">
-  { ({ title }) => <h1>{ title }</h1> }
-</WithTitle>
-```
-
-```js
-const WithTitle = (props) => {
-  // In a real app the url prop would be used to fetch the title from an API
-  // Here we hard-code an example title
-  const title = 'Babe: Pig in the City';
-  const renderProp = props.children;
-
-  return renderProp(title);
-};
-
-WithTitle.propTypes = {
-  url: PropTypes.string.isRequired,
-  children: PropTypes.func.isRequired,
-};
-```

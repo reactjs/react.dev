@@ -328,4 +328,4 @@ class MouseTracker extends React.Component {
 }
 ```
 
-In cases where you cannot bind the instance method ahead of time in the constructor (e.g. because you need to close over the component's props and/or state) you should extend `React.Component` instead.
+In cases where you cannot bind the instance method ahead of time in the constructor (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.

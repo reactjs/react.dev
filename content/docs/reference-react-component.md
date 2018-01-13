@@ -117,15 +117,17 @@ The `render()` function should be pure, meaning that it does not modify componen
 
 #### Fragments
 
-You can also return multiple items from `render()` using an array:
+You can also return multiple items from `render()` using [fragments](/docs/fragments.html):
 
 ```javascript
 render() {
-  return [
-    <li key="A">First item</li>,
-    <li key="B">Second item</li>,
-    <li key="C">Third item</li>,
-  ];
+  return (
+    <>
+      <li key="A">First item</li>
+      <li key="B">Second item</li>
+      <li key="C">Third item</li>
+    </>
+  );
 }
 ```
 

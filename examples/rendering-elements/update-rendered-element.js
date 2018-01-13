@@ -8,6 +8,7 @@ function tick() {
       </h2>
     </div>
   );
+  // highlight-range{1-4}
   ReactDOM.render(
     element,
     document.getElementById('root')

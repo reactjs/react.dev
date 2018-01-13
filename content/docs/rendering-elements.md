@@ -35,13 +35,7 @@ Applications built with just React usually have a single root DOM node. If you a
 
 To render a React element into a root DOM node, pass both to `ReactDOM.render()`:
 
-```js
-const element = <h1>Hello, world</h1>;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
-```
+`embed:rendering-elements/render-an-element.js`
 
 [](codepen://rendering-elements/render-an-element)
 
@@ -55,22 +49,7 @@ With our knowledge so far, the only way to update the UI is to create a new elem
 
 Consider this ticking clock example:
 
-```js{8-11}
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
-}
-
-setInterval(tick, 1000);
-```
+`embed:rendering-elements/update-rendered-element.js`
 
 [](codepen://rendering-elements/update-rendered-element)
 

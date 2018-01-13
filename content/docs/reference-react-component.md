@@ -122,11 +122,11 @@ You can also return multiple items from `render()` using [fragments](/docs/fragm
 ```javascript
 render() {
   return (
-    <>
+    <React.Fragment>
       <li key="A">First item</li>
       <li key="B">Second item</li>
       <li key="C">Third item</li>
-    </>
+    </React.Fragment>
   );
 }
 ```

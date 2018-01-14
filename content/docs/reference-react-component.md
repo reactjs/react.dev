@@ -299,7 +299,7 @@ A class component becomes an error boundary if it defines this lifecycle method.
 For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Note
-> 
+>
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
 * * *
@@ -335,6 +335,19 @@ this.setState((prevState, props) => {
 Both `prevState` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `prevState`.
 
 The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+
+This callback is automatically binded to `this`, so you can refer to the updated `this.state` within it, without having to manually bind it, or use ES6 arrow functions:
+
+```js{5-7}
+this.setState(
+  function (prevState, props) {
+    return {counter: prevState.counter + props.step};
+  },
+  function () {
+    console.log('Counter is now ', this.state.counter);
+  }
+);
+```
 
 You may optionally pass an object as the first argument to `setState()` instead of a function:
 

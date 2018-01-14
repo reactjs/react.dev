@@ -122,9 +122,9 @@ You can also return multiple items from `render()` using an array:
 ```javascript
 render() {
   return [
-    <li key="A">First item</li>,
-    <li key="B">Second item</li>,
-    <li key="C">Third item</li>,
+    <li key="A">First item</li>,
+    <li key="B">Second item</li>,
+    <li key="C">Third item</li>,
   ];
 }
 ```
@@ -132,6 +132,20 @@ render() {
 > Note:
 >
 > Don't forget to [add keys](/docs/lists-and-keys.html#keys) to elements in a fragment to avoid the key warning.
+
+Since [React 16.2.0](/blog/2017/11/28/react-v16.2.0-fragment-support.html), the same can also be accomplished using [fragments](/docs/fragments.html), which don't require keys for static items:
+
+```javascript
+render() {
+  return (
+    <React.Fragment>
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
+    </React.Fragment>
+  );
+}
+```
 
 * * *
 

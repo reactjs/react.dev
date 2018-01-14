@@ -129,23 +129,23 @@ render() {
 }
 ```
 
-The same can also be accomplished using [fragments](/docs/fragments.html):
+> Note:
+>
+> Don't forget to [add keys](/docs/lists-and-keys.html#keys) to elements in a fragment to avoid the key warning.
+
+The same can also be accomplished using [fragments](/docs/fragments.html), which don't require keys for static items:
 
 ```javascript
 render() {
   return (
     <React.Fragment>
-      <li key="A">First item</li>
-      <li key="B">Second item</li>
-      <li key="C">Third item</li>
+      <li>First item</li>
+      <li>Second item</li>
+      <li>Third item</li>
     </React.Fragment>
   );
 }
 ```
-
-> Note:
->
-> Don't forget to [add keys](/docs/lists-and-keys.html#keys) to elements in a fragment to avoid the key warning.
 
 * * *
 

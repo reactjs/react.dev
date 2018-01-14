@@ -133,7 +133,7 @@ render() {
 >
 > Don't forget to [add keys](/docs/lists-and-keys.html#keys) to elements in a fragment to avoid the key warning.
 
-The same can also be accomplished using [fragments](/docs/fragments.html), which don't require keys for static items:
+Since [React 16.2.0](/blog/2017/11/28/react-v16.2.0-fragment-support.html), the same can also be accomplished using [fragments](/docs/fragments.html), which don't require keys for static items:
 
 ```javascript
 render() {

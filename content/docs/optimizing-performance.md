@@ -164,15 +164,17 @@ In the **development** mode, you can visualize how components mount, update, and
 
 To do this in Chrome:
 
-1. Make sure you're running the application in the development mode.
+1. Temporarily **disable all Chrome extensions, especially React DevTools**. They can significantly skew the results!
 
-2. Open the Chrome DevTools **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** tab and press **Record**.
+2. Make sure you're running the application in the development mode.
 
-3. Perform the actions you want to profile. Don't record more than 20 seconds or Chrome might hang.
+3. Open the Chrome DevTools **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** tab and press **Record**.
 
-4. Stop recording.
+4. Perform the actions you want to profile. Don't record more than 20 seconds or Chrome might hang.
 
-5. React events will be grouped under the **User Timing** label.
+5. Stop recording.
+
+6. React events will be grouped under the **User Timing** label.
 
 For a more detailed walkthrough, check out [this article by Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
 

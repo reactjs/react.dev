@@ -9,21 +9,21 @@ To ensure immutability without performing expensive deep cloning, it is good pra
 
 ### Updating Object Properties
 
-To update an object property, you can make use of the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign): 
+To update an object property, you can make use of [Object.assign{}](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign):
+
+```javascript
+const newData = Object.assign({}, oldData, {
+  propertyToUpdate: newValue
+});
+```
+
+or by using the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_operator), a *proposed* syntax that's enabled in Create React App, Node.js and Chrome but not currently supported by all browsers.
 
 ```javascript
 const newData = {
   ...oldData,
   propertyToUpdate: newValue
 };
-```
-
-or by using [Object.assign{}](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign):
-
-```javascript
-const newData = Object.assign({}, oldData, {
-  propertyToUpdate: newValue
-});
 ```
 
 To update a nested property such as `oldData.first.second.propertyToUpdate` you should remember to copy all of the original object's levels:

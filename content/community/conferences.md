@@ -11,11 +11,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### React Day Berlin
-December 2, Berlin, Germany
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/)
-
 ### ReactFoo Pune
 January 19-20, Pune, India
 
@@ -205,3 +200,7 @@ November 4 in Seoul, South Korea
 
 [Website](http://seoul.reactjs.kr/en)
 
+### React Day Berlin
+December 2, Berlin, Germany
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/)

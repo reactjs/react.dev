@@ -27,7 +27,7 @@ const Section = ({
         backgroundColor: 'transparent',
         border: 0,
         marginTop: 10,
-        outline: none,
+        outline: 'none',
       }}
       onClick={onSectionTitleClick}>
       <MetaTitle

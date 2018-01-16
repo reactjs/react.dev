@@ -35,15 +35,9 @@ Applications built with just React usually have a single root DOM node. If you a
 
 To render a React element into a root DOM node, pass both to `ReactDOM.render()`:
 
-```js
-const element = <h1>Hello, world</h1>;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
-```
+`embed:rendering-elements/render-an-element.js`
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/rrpgNB?editors=1010)
+[](codepen://rendering-elements/render-an-element)
 
 It displays "Hello, world" on the page.
 
@@ -55,24 +49,9 @@ With our knowledge so far, the only way to update the UI is to create a new elem
 
 Consider this ticking clock example:
 
-```js{8-11}
-function tick() {
-  const element = (
-    <div>
-      <h1>Hello, world!</h1>
-      <h2>It is {new Date().toLocaleTimeString()}.</h2>
-    </div>
-  );
-  ReactDOM.render(
-    element,
-    document.getElementById('root')
-  );
-}
+`embed:rendering-elements/update-rendered-element.js`
 
-setInterval(tick, 1000);
-```
-
-[Try it on CodePen.](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
+[](codepen://rendering-elements/update-rendered-element)
 
 It calls `ReactDOM.render()` every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
 
@@ -86,7 +65,7 @@ It calls `ReactDOM.render()` every second from a [`setInterval()`](https://devel
 
 React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
 
-You can verify by inspecting the [last example](http://codepen.io/gaearon/pen/gwoJZk?editors=0010) with the browser tools:
+You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 

@@ -182,13 +182,35 @@ class FlavorForm extends React.Component {
 
 Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 
-> Note
->
-> You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
->
->```js
-><select multiple={true} value={['B', 'C']}>
->```
+### Handling multiple options with `<select>`
+
+It is also possible to select multiple options within a `<select>` tag, by enabling the `multiple` attribute and passing an array into the `value` attribute. This array should contain the corresponding `value` attributes of the `<option>` tags inside the `<select>` tag.
+
+The `handleChange` method from the above example would then change to get the selected values from `event.target.selectedOptions`.
+
+```javascript{4,10-12,24}
+handleChange(event) {
+    const selectedFlavors = Array.from(event.target.selectedOptions).map(function(option){
+      return option.value;
+    });
+    this.setState({value: selectedFlavors});
+  }
+```
+
+The `<select>` inside the render would also change to pass an array to the `value` attribute:
+
+```javascript{4,10-12,24}
+<select value={this.state.value} onChange={this.handleChange} multiple={true}>
+    <option value="grapefruit">Grapefruit</option>
+    <option value="lime">Lime</option>
+    <option value="coconut">Coconut</option>
+    <option value="mango">Mango</option>
+</select>
+```
+
+[Try it on CodePen.](https://codepen.io/nupgrover/pen/RxeqLQ?editors=0010)
+
+
 ## The file input Tag
 
 In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).

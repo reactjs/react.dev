@@ -23,7 +23,7 @@ There are a few good use cases for refs:
 
 Avoid using refs for anything that can be done declaratively.
 
-For example, instead of exposing `open()` and `close()` methods on a `Dialog` component, pass an `isOpen` prop to it.
+For example, instead of exposing `open()` and `close()` methods on a `Dialog` component, pass an `isOpen` prop to it. an example of using dialog in react https://gist.github.com/Peripona/c1915bc1b20611ea27fb38cb37978c7a
 
 ### Don't Overuse Refs
 

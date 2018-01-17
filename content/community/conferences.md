@@ -21,6 +21,11 @@ January 25-28 in Dornbirn, Austria
 
 [Website](http://agent.sh/)
 
+### Reactathon 2018
+March 20-22 in San Francisco, CA
+
+[Website](https://www.reactathon.com) - [Twitter](https://twitter.com/reactathon) - [Facebook](https://www.facebook.com/events/1969072426685921/)
+
 ### React Amsterdam 2018
 April 13 in Amsterdam, The Netherlands
 

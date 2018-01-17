@@ -159,7 +159,7 @@ In the example below, we use it to conditionally render a small block of text.
 
 ```javascript{5}
 render() {
-  const isLoggedIn = this.state.isLoggedIn;
+  const { isLoggedIn } = this.state;
   return (
     <div>
       The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
@@ -172,7 +172,7 @@ It can also be used for larger expressions although it is less obvious what's go
 
 ```js{5,7,9}
 render() {
-  const isLoggedIn = this.state.isLoggedIn;
+  const { isLoggedIn } = this.state;
   return (
     <div>
       {isLoggedIn ? (

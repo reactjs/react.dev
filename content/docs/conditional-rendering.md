@@ -27,7 +27,7 @@ We'll create a `Greeting` component that displays either of these components dep
 
 ```javascript{3-7,11,12}
 function Greeting(props) {
-  const isLoggedIn = props.isLoggedIn;
+  const { isLoggedIn } = props;
   if (isLoggedIn) {
     return <UserGreeting />;
   }
@@ -91,7 +91,7 @@ class LoginControl extends React.Component {
   }
 
   render() {
-    const isLoggedIn = this.state.isLoggedIn;
+    const { isLoggedIn } = this.state;
 
     let button = null;
     if (isLoggedIn) {
@@ -125,7 +125,7 @@ You may [embed any expressions in JSX](/docs/introducing-jsx.html#embedding-expr
 
 ```js{6-10}
 function Mailbox(props) {
-  const unreadMessages = props.unreadMessages;
+  const { unreadMessages } = props;
   return (
     <div>
       <h1>Hello!</h1>
@@ -159,7 +159,7 @@ In the example below, we use it to conditionally render a small block of text.
 
 ```javascript{5}
 render() {
-  const isLoggedIn = this.state.isLoggedIn;
+  const { isLoggedIn } = this.state;
   return (
     <div>
       The user is <b>{isLoggedIn ? 'currently' : 'not'}</b> logged in.
@@ -172,7 +172,7 @@ It can also be used for larger expressions although it is less obvious what's go
 
 ```js{5,7,9}
 render() {
-  const isLoggedIn = this.state.isLoggedIn;
+  const { isLoggedIn } = this.state;
   return (
     <div>
       {isLoggedIn ? (

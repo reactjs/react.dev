@@ -188,21 +188,23 @@ It is also possible to select multiple options within a `<select>` tag, by enabl
 
 The `handleChange` method from the above example would then change to get the selected values from `event.target.selectedOptions`.
 
-```js{2}
+```javascript{4,10-12,24}
 handleChange(event) {
-  const selectedFlavors = Array.from(event.target.selectedOptions).map(options => option.value);
-  this.setState({value: selectedFlavors});
-}
+    const selectedFlavors = Array.from(event.target.selectedOptions).map(function(option){
+      return option.value;
+    });
+    this.setState({value: selectedFlavors});
+  }
 ```
 
 The `<select>` inside the render would also change to pass an array to the `value` attribute:
 
-```html
+```javascript{4,10-12,24}
 <select value={this.state.value} onChange={this.handleChange} multiple={true}>
-  <option value="grapefruit">Grapefruit</option>
-  <option value="lime">Lime</option>
-  <option value="coconut">Coconut</option>
-  <option value="mango">Mango</option>
+    <option value="grapefruit">Grapefruit</option>
+    <option value="lime">Lime</option>
+    <option value="coconut">Coconut</option>
+    <option value="mango">Mango</option>
 </select>
 ```
 

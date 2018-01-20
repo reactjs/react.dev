@@ -2,6 +2,8 @@
 id: context
 title: Context
 permalink: docs/context.html
+prev: reconciliation.html
+next: fragments.html
 ---
 
 > Note:

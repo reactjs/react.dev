@@ -41,7 +41,7 @@ class Calculator extends React.Component {
   }
 
   render() {
-    const temperature = this.state.temperature;
+    const { temperature } = this.state;
     return (
       <fieldset>
         <legend>Enter temperature in Celsius:</legend>
@@ -82,8 +82,8 @@ class TemperatureInput extends React.Component {
   }
 
   render() {
-    const temperature = this.state.temperature;
-    const scale = this.props.scale;
+    const { temperature } = this.state;
+    const { scale } = this.props;
     return (
       <fieldset>
         <legend>Enter temperature in {scaleNames[scale]}:</legend>
@@ -165,7 +165,7 @@ class TemperatureInput extends React.Component {
   }
 
   render() {
-    const temperature = this.state.temperature;
+    const { temperature } = this.state;
     // ...  
 ```
 
@@ -219,8 +219,7 @@ class TemperatureInput extends React.Component {
   }
 
   render() {
-    const temperature = this.props.temperature;
-    const scale = this.props.scale;
+    const { temperature, scale } = this.props;
     return (
       <fieldset>
         <legend>Enter temperature in {scaleNames[scale]}:</legend>
@@ -276,8 +275,7 @@ class Calculator extends React.Component {
   }
 
   render() {
-    const scale = this.state.scale;
-    const temperature = this.state.temperature;
+    const { scale, temperature } = this.state;
     const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
     const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
 

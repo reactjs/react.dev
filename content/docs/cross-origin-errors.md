@@ -39,3 +39,27 @@ If you use Webpack, we recommend using the `cheap-module-source-map` setting in 
 If your application is split into multiple bundles, these bundles may be loaded using JSONP. This may cause errors thrown in the code of these bundles to be treated as cross-origin.
 
 To resolve this, use the [`crossOriginLoading`](https://webpack.js.org/configuration/output/#output-crossoriginloading) setting in development to add the `crossorigin` attribute to the `<script>` tags generated for the JSONP requests.
+
+
+#### Webpack on a separate host/port than the rest of your server
+
+If you are running Webpack Dev Server on something like `localhost:3001` and your web backend on something like `localhost:3000`, then you'll need to have `crossorigin="anonymous"` in the `script` tag that pulls in your Webpack bundle. You'll also need to have Webpack Dev Server send the `Access-Control-Allow-Origin: "*"` header.
+
+In the `devServer` section of your webpack config, do something like to add the proper header:
+```
+ devServer: {
+    port: <port>,
+    headers: {
+      "Access-Control-Allow-Origin": "*"
+    },
+    <whatever else>
+  },
+  ```
+  To add the `crossorigin="anonymous"` attribute, you can use something like this if you are using html-webpack-plugin. Make sure you define that after the `new HtmlWebpackPlugin({...}),`
+  ``` new ScriptExtHtmlWebpackPlugin({
+      custom: {
+        test: 'bundle',
+        attribute: 'crossorigin',
+        value: 'anonymous'
+      }
+    }),```

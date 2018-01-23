@@ -14,7 +14,7 @@ This gem has 2 primary purposes:
 
 ## Packaging react.js
 
-To make `react.js` available for use client-side, simply add `react` to your manifest, and declare the variant you'd like to use in your environment. When you use `:production`, the minified and optimized `react.min.js` will be used instead of the development version. For example:
+To make `react.js` available for use client-side, add `react` to your manifest, and declare the variant you'd like to use in your environment. When you use `:production`, the minified and optimized `react.min.js` will be used instead of the development version. For example:
 
 ```ruby
 # config/environments/development.rb

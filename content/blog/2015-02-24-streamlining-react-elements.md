@@ -50,7 +50,7 @@ The static analysis in Flow is also impaired by this. There is no convenient pla
 
 Therefore, we would like to be able to freeze the element.props object so that it is immediately immutable at the JSX callsite (or createElement). In React 0.13 we will start warning you if you mutate `element.props` after this point.
 
-You can generally refactor these pattern to simply use two different JSX calls:
+You can generally refactor these pattern to use two different JSX calls:
 
 ```js
 if (shouldUseFoo) {
@@ -146,7 +146,7 @@ Have you wondered why JSX depends on React? Couldn’t the transpiler have that 
 
 ### Solution: Make Context Parent-Based Instead of Owner-Based
 
-The first thing we’re doing is warning you if you’re using the "owner" feature in a way that relies on it propagating through owners. Instead, we’re planning on propagating it through parents to its children. In almost all cases, this shouldn’t matter. In fact, parent-based contexts is simply a superset.
+The first thing we’re doing is warning you if you’re using the "owner" feature in a way that relies on it propagating through owners. Instead, we’re planning on propagating it through parents to its children. In almost all cases, this shouldn’t matter. In fact, parent-based contexts is a superset.
 
 ### Solution: Remove the Semantic Implications of Owner
 

@@ -128,4 +128,4 @@ var WithoutLink = createReactClass({
 });
 ```
 
-The `valueLink` prop is also quite simple. It simply handles the `onChange` event and calls `this.props.valueLink.requestChange()` and also uses `this.props.valueLink.value` instead of `this.props.value`. That's it!
+The `valueLink` prop is also quite simple. It handles the `onChange` event and calls `this.props.valueLink.requestChange()` and also uses `this.props.valueLink.value` instead of `this.props.value`. That's it!

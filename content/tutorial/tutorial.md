@@ -514,7 +514,7 @@ To learn more about `shouldComponentUpdate()` and how you can build *pure compon
 
 ### Functional Components
 
-We've removed the constructor, and in fact, React supports a simpler syntax called **functional components** for component types like Square that only consist of a `render` method. Rather than define a class extending `React.Component`, simply write a function that takes props and returns what should be rendered.
+We've removed the constructor, and in fact, React supports a simpler syntax called **functional components** for component types like Square that only consist of a `render` method. Rather than define a class extending `React.Component`, write a function that takes props and returns what should be rendered.
 
 Replace the whole Square class with this function:
 

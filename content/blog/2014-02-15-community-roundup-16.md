@@ -33,7 +33,7 @@ James Padosley wrote a short post on the basics (and merits) of React: [What is 
 
 Taylor Lapeyre ([@taylorlapeyre](https://twitter.com/taylorlapeyre)) wrote another nice [introduction to React](http://words.taylorlapeyre.me/an-introduction-to-react).
 
-> React expects you to do the work of getting and pushing data from the server. This makes it very easy to implement React as a front end solution, since it simply expects you to hand it data. React does all the other work.
+> React expects you to do the work of getting and pushing data from the server. This makes it very easy to implement React as a front end solution, since it expects you to hand it data. React does all the other work.
 >
 > [Read the full post...](http://words.taylorlapeyre.me/an-introduction-to-react)
 

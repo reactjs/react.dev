@@ -5,7 +5,7 @@ author: [sebmarkbage]
 
 Today we're announcing that we're switching to major revisions for React. The current version is 0.14.7. The next release will be: **15.0.0**
 
-This change shouldn't materially affect most of you. Moving to major semver versions simply helps indicate our commitment to stability and gives us the flexibility to add new backwards-compatible features in minor releases. This means we can have fewer major releases and you won't have to wait as long to take advantage of improvements to React. Plus, if you're a component author, this versioning scheme gives you the flexibility to support two major versions of React at the same time so you don't need to leave anyone behind.
+This change shouldn't materially affect most of you. Moving to major semver versions helps indicate our commitment to stability and gives us the flexibility to add new backwards-compatible features in minor releases. This means we can have fewer major releases and you won't have to wait as long to take advantage of improvements to React. Plus, if you're a component author, this versioning scheme gives you the flexibility to support two major versions of React at the same time so you don't need to leave anyone behind.
 
 The core of the React API has been stable for years. Our business as well as many of yours all depend heavily on the use of React as a core piece of our infrastructure. We're committed to the stability as well as the progress of React going forward.
 

@@ -46,7 +46,7 @@ The key is that GraphQL is already static - we just need to fully embrace this f
 
 ## Developer Experience
 
-Next, we've paid attention to the community's feedback and know that, to put it simply, Relay could be "easier" to use (and "simpler" too). This isn't entirely surprising to us - Relay was originally designed as a routing library and gradually morphed into a data-fetching library. Concepts like Relay "routes", for example, no longer serve as critical a role and are just one more concept that developers have to learn about. Another example is mutations: while writes *are* inherently more complex than reads, our API doesn't make the simple things simple enough.
+Next, we've paid attention to the community's feedback and know that, to put it, Relay could be "easier" to use (and "simpler" too). This isn't entirely surprising to us - Relay was originally designed as a routing library and gradually morphed into a data-fetching library. Concepts like Relay "routes", for example, no longer serve as critical a role and are just one more concept that developers have to learn about. Another example is mutations: while writes *are* inherently more complex than reads, our API doesn't make the simple things simple enough.
 
 Alongside our focus on mobile performance, we've also kept the developer experience in mind as we evolve Relay core.
 

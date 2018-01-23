@@ -36,7 +36,7 @@ While this is not going to work for all the attributes since they are camelCased
 
 > So how does exactly React deal with it internally? Two crazy ideas - virtual DOM and synthetic events.
 >
-> You define you components in React. It builds a virtual DOM in JavaScript land which is way more efficient. Then it updates the DOM. (And "virtual DOM" is a very big name for what is simply a JavaScript object with nested key-value pairs)
+> You define you components in React. It builds a virtual DOM in JavaScript land which is way more efficient. Then it updates the DOM. (And "virtual DOM" is a very big name for what is a JavaScript object with nested key-value pairs)
 >
 > Data changes. React computes a diff (in JavaScript land, which is, of course, much more efficient) and updates the single table cell that needs to change. React replicates the state of the virtual DOM into the actual DOM only when and where it's necessary. And does it all at once, in most cases in a single tick of the `requestAnimationFrame()`.
 >

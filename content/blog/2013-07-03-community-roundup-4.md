@@ -42,7 +42,7 @@ Over the past several weeks, members of our team, [Pete Hunt](http://www.petehun
 >
 > [Sortable jQuery Plugin Integration](https://groups.google.com/forum/#!topic/reactjs/mHfBGI3Qwz4)
 >
-> * [JSFiddle](http://jsfiddle.net/LQxy7/): Your React component simply render empty divs, and then in componentDidMount() you call React.renderComponent() on each of those divs to set up a new root React tree. Be sure to explicitly unmountAndReleaseReactRootNode() for each component in componentWillUnmount().
+> * [JSFiddle](http://jsfiddle.net/LQxy7/): Your React component render empty divs, and then in componentDidMount() you call React.renderComponent() on each of those divs to set up a new root React tree. Be sure to explicitly unmountAndReleaseReactRootNode() for each component in componentWillUnmount().
 
 ## Introduction to React Screencast
 

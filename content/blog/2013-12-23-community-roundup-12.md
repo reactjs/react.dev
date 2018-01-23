@@ -73,7 +73,7 @@ React declarative approach is well suited to write games. [Cheng Lou](https://gi
 >
 > The web offers a unique set of challenges, which React offers interesting solutions to. First and foremost among these solutions is the what is called the Mock DOM. Rather than having user code interface with the DOM in a direct fashion, as is the case with most DOM manipulation libraries.
 >
-> You build a model of how you want the DOM end up like. React then inserts this model into the DOM. This is very useful for updates because React simply compares the model or mock DOM against the actual DOM, and then only updates based on the difference between the two states.
+> You build a model of how you want the DOM end up like. React then inserts this model into the DOM. This is very useful for updates because React compares the model or mock DOM against the actual DOM, and then only updates based on the difference between the two states.
 >
 > [Read the full article ...](http://blog.whn.se/post/69621609605/writing-good-react-components)
 

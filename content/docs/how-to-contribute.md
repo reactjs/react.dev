@@ -144,7 +144,7 @@ We use an automatic code formatter called [Prettier](https://prettier.io/).
 Run `yarn prettier` after making any changes to the code.
 
 Then, our linter will catch most issues that may exist in your code.
-You can check the status of your code styling by simply running `yarn linc`.
+You can check the status of your code styling by running `yarn linc`.
 
 However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb's Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
 

@@ -282,7 +282,7 @@ You can put a string between the opening and closing tags and `props.children` w
 <MyComponent>Hello world!</MyComponent>
 ```
 
-This is valid JSX, and `props.children` in `MyComponent` will simply be the string `"Hello world!"`. HTML is unescaped, so you can generally write JSX just like you would write HTML in this way:
+This is valid JSX, and `props.children` in `MyComponent` will be the string `"Hello world!"`. HTML is unescaped, so you can generally write JSX just like you would write HTML in this way:
 
 ```html
 <div>This is valid HTML &amp; JSX at the same time.</div>
@@ -407,7 +407,7 @@ Children passed to a custom component can be anything, as long as that component
 
 ### Booleans, Null, and Undefined Are Ignored
 
-`false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
+`false`, `null`, `undefined`, and `true` are valid children. They don't render. These JSX expressions will all render to the same thing:
 
 ```js
 <div />

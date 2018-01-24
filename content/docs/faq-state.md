@@ -73,8 +73,6 @@ handleSomething() {
 
   // If you read `this.state.count` now, it would still be 0.
   // But when React re-renders the component, it will be 3.
-  
-  // If you need to know the pending state now, keep it in a local variable.
 }
 ```
 

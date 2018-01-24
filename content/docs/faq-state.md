@@ -18,7 +18,7 @@ Here are some good resources for further reading on when to use `props` vs `stat
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 * [ReactJS: Props vs. State](http://lucybain.com/blog/2016/react-state-vs-pros/)
 
-### Why is `setState` is giving me the wrong value?
+### Why is `setState` giving me the wrong value?
 
 Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need compute values based on the current state (see below for details).
 

@@ -45,7 +45,7 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Fragments
 
-`React` also provides a component for rendering a multiple elements without a wrapper.
+`React` also provides a component for rendering multiple elements without a wrapper.
 
 - [`React.Fragment`](#reactfragment)
 

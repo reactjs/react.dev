@@ -161,7 +161,7 @@ Section 2 -- Scope.
           necessary to exercise the Licensed Rights, including
           technical modifications necessary to circumvent Effective
           Technological Measures. For purposes of this Public License,
-          making modifications authorized by this Section 2(a)
+          simply making modifications authorized by this Section 2(a)
           (4) never produces Adapted Material.
 
        5. Downstream recipients.

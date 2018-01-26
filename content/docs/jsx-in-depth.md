@@ -407,7 +407,7 @@ Children passed to a custom component can be anything, as long as that component
 
 ### Booleans, Null, and Undefined Are Ignored
 
-`false`, `null`, `undefined`, and `true` are valid children. They don't render. These JSX expressions will all render to the same thing:
+`false`, `null`, `undefined`, and `true` are valid children, but they don't render. These JSX expressions will all render to the same thing:
 
 ```js
 <div />

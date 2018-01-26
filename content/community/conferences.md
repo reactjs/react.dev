@@ -11,11 +11,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### ReactFoo Pune
-January 19-20, Pune, India
-
-[Website](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)
-
 ### AgentConf 2018
 January 25-28 in Dornbirn, Austria
 
@@ -209,3 +204,8 @@ November 4 in Seoul, South Korea
 December 2, Berlin, Germany
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/)
+
+### ReactFoo Pune
+January 19-20, Pune, India
+
+[Website](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)

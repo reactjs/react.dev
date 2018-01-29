@@ -11,11 +11,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### AgentConf 2018
-January 25-28 in Dornbirn, Austria
-
-[Website](http://agent.sh/)
-
 ### React Amsterdam 2018
 April 13 in Amsterdam, The Netherlands
 
@@ -209,3 +204,9 @@ December 2, Berlin, Germany
 January 19-20, Pune, India
 
 [Website](https://reactfoo.in/2018-pune/) - [Twitter](https://twitter.com/ReactFoo)
+
+### AgentConf 2018
+January 25-28 in Dornbirn, Austria
+
+[Website](http://agent.sh/)
+

@@ -138,7 +138,7 @@ Here is an [in-depth explanation about why keys are necessary](/docs/reconciliat
 
 Keys only make sense in the context of the surrounding array.
 
-For example, if you [extract](/docs/components-and-props.html#extracting-components) a `ListItem` component, you should keep the key on the `<ListItem />` elements in the array rather than on the root `<li>` element in the `ListItem` itself.
+For example, if you [extract](/docs/components-and-props.html#extracting-components) a `ListItem` component, you should keep the key on the `<ListItem />` elements in the array rather than on the `<li>` element in the `ListItem` itself.
 
 **Example: Incorrect Key Usage**
 

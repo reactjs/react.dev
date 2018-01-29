@@ -341,7 +341,7 @@ Instead, use `setState()`:
 this.setState({comment: 'Hello'});
 ```
 
-The only place where you can assign `this.state` is the constructor.
+You can assign `this.state` in the constructor or directly inside the class as a class variable.
 
 ### State Updates May Be Asynchronous
 

@@ -5,7 +5,17 @@ permalink: docs/immutable-updates.html
 layout: docs
 ---
 
-To ensure immutability without performing expensive deep cloning, it is good practice to replace only the values which need updating and to reuse the rest of the original object.
+## Overview
+
+Avoiding mutation of existing data structures is an especially useful technique, and especially in React it has significant benefits.
+
+A great source of trouble in application development comes from the need to track how the data changes over time, and when. Mutation of the app data (that is, its state) can lead to inconsistencies across different parts of your app that shares the same data. This in turn can lead to unpredictable behavior and bugs that are difficult to track.
+
+Additionally, immutable data structures make it easy and cheap to detect when data has changed. If you can use immutable data in performance-critical parts of your application it's easy to implement a fast [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method to significantly speed up your app.
+
+## Techniques
+
+To ensure immutability without performing expensive deep cloning, it is good practice to replace only the values which need updating and to reuse the rest of the original data structure. Below we document several techniques that you can use to this end.
 
 ### Updating Object Properties
 
@@ -72,7 +82,7 @@ or without mutating a copy:
 ```javascript
 // inserting
 const newArray = [
-  ...oldArray.slice(0, insertIndex), 
+  ...oldArray.slice(0, insertIndex),
   newItem,
   ...oldArray.slice(insertIndex)
   ];
@@ -87,5 +97,3 @@ const newArray = [
 ## Utility Libraries
 
 There are many libraries such as [Immutable.js](https://facebook.github.io/immutable-js/) and [immutability-helper](https://github.com/kolodny/immutability-helper) that make dealing with immutable data a lot easier. They provide a more concise and readable syntax to performing immutable updates and some are optimised to perform immutable updates more efficiently than the approaches above.
-
-

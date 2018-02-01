@@ -1109,5 +1109,6 @@ If you have extra time or want to practice your new skills, here are some ideas 
 3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
 4. Add a toggle button that lets you sort the moves in either ascending or descending order.
 5. When someone wins, highlight the three squares that caused the win.
+6. When no one wins, display a message about the result being a draw.
 
 Throughout this tutorial, we have touched on a number of React concepts including elements, components, props, and state. For a more in-depth explanation for each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).

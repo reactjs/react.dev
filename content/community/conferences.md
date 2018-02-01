@@ -41,6 +41,11 @@ September 6 in Tel Aviv, Israel
 
 [Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
+### React Alicante 2018
+September 13-15 in Alicante, Spain
+
+[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+
 ### ReactJS Day 2018
 October 5 in Verona, Italy
 

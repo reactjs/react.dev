@@ -151,6 +151,34 @@ React Loadable helps you create
 [preloading](https://github.com/thejameskyle/react-loadable#preloading), and
 more. It can even help you [server-side render](https://github.com/thejameskyle/react-loadable#------------server-side-rendering) an app with lots of code-splitting.
 
+### Loadable Components
+
+[Loadable Components](https://github.com/smooth-code/loadable-components) provides the simplest possible API to enable code splitting in your React application.
+
+**Before:**
+
+```js
+import OtherComponent from './OtherComponent';
+
+const MyComponent = () => (
+  <OtherComponent/>
+);
+```
+
+**After:**
+
+```js
+import loadable from 'loadable-components';
+
+const LoadableOtherComponent = loadable(() => import('./OtherComponent'))
+
+const MyComponent = () => (
+  <LoadableOtherComponent/>
+);
+```
+
+Loadable Components API is very light, it supports [loading states](https://github.com/smooth-code/loadable-components#custom-loading) and  [error states](https://github.com/smooth-code/loadable-components#error-handling) using [render props pattern](https://reactjs.org/docs/render-props.html) or components. Since it is based on Promise you can handle [timeouts](https://github.com/smooth-code/loadable-components#timeout), [delay](https://github.com/smooth-code/loadable-components#delay) and even  [parallel loading](https://github.com/smooth-code/loadable-components#loading-multiple-resources-in-parallel)... [Server-side rendering](https://github.com/smooth-code/loadable-components#server-side-rendering) is also possible.
+
 ## Route-based code splitting
 
 Deciding where in your app to introduce code splitting can be a bit tricky. You

@@ -77,7 +77,9 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
 
   return (
     <div>
-      <p>The full text of the error you just encountered is:</p>
+      <p>
+        <b>The full text of the error you just encountered is:</b>
+      </p>
       <code>
         <b>{urlify(errorMsg)}</b>
       </code>

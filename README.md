@@ -51,6 +51,12 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
 
+## Translation
+
+If you are interesting in translating `reactjs.org`, please join the Crowdin.
+
+* [Crowdin - React](https://crowdin.com/project/react)
+
 ## Troubleshooting
 
 - `yarn reset` to clear the local cache

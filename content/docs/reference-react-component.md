@@ -367,7 +367,11 @@ this.setState((prevState) => {
 });
 ```
 
-For more detail, see the [State and Lifecycle guide](/docs/state-and-lifecycle.html).
+For more detail, see:
+
+* [State and Lifecycle guide](/docs/state-and-lifecycle.html)
+* [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
+* [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 

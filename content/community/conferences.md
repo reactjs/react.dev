@@ -11,6 +11,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
+### React Native Camp UA 2018
+March 31 in Kiev, Ukraine
+
+[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
+
 ### React Amsterdam 2018
 April 13 in Amsterdam, The Netherlands
 

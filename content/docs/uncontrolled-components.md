@@ -64,3 +64,20 @@ render() {
 ```
 
 Likewise, `<input type="checkbox">` and `<input type="radio">` support `defaultChecked`, and `<select>` and `<textarea>` supports `defaultValue`.
+
+## The file input Tag
+
+In HTML, an `<input type="file">` lets the user choose one or more files from their device storage to be uploaded to a server or manipulated by JavaScript via the [File API](https://developer.mozilla.org/en-US/docs/Web/API/File/Using_files_from_web_applications).
+
+```html
+<input type="file" />
+```
+
+In React, an `<input type="file" />` is always an uncontrolled component because its value can only be set by a user, and not programmatically.
+
+You should use the File API to interact with the files. The following example shows how to create a [ref to the DOM node](/docs/refs-and-the-dom.html) to access file(s) in a submit handler:
+
+`embed:uncontrolled-components/input-type-file.js`
+
+[Try it on CodePen](codepen://uncontrolled-components/input-type-file)
+

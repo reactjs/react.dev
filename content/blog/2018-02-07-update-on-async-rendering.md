@@ -11,7 +11,7 @@ Along the way our research has shown that some of our legacy component lifecycle
 * `componentWillReceiveProps`
 * `componentWillUpdate`
 
-Because of this, we have decided to rename the above lifecycles- (adding an "UNSAFE_" prefix)- in a future release. The plan for this is as follows:
+Because of this, we have decided to rename these lifecycles—(adding an "UNSAFE_" prefix)—in a future release. The plan for this is as follows:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
 * **16.4**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
@@ -39,7 +39,7 @@ In the next section, we'll look at how to update your existing components to pre
 
 ## Updating class components
 
-#### If you're an application developer, **you don't have to do anything about the deprecated methods yet**. The primary purpose of this release is to enable OSS maintainers to update their libraries in advance of any deprecation warnings. (Those warnings will be enabled with the next minor release, version 16.4.)
+#### If you're an application developer, **you don't have to do anything about the deprecated methods yet**. The primary purpose of this update (v16.3) is to enable OSS maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with the next minor release, v16.4.
 
 However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional “recipes” to our documentation that show how to perform common tasks in a way that's async-safe.
 
@@ -56,7 +56,9 @@ The simplest refactor for this type of component is to move the state-updates to
 Here is an example of a component that uses `componentWillMount` to fetch external data::
 `embed:update-on-async-rendering/fetching-external-data-before.js`
 
-The upgrade path for this is just to move data-fetching into `componentDidMount`:
+The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times, or executed unnecessarily).
+
+The upgrade path for this is to move data-fetching into `componentDidMount`:
 `embed:update-on-async-rendering/fetching-external-data-after.js`
 
 > **Note**
@@ -68,36 +70,36 @@ The upgrade path for this is just to move data-fetching into `componentDidMount`
 Here is an example of a component that subscribes to an external event dispatcher when mounting:
 `embed:update-on-async-rendering/adding-event-listeners-before.js`
 
-Unfortunately, this can cause memory leaks in async mode since rendering might be interrupted before it is committed. (In that case, `componentWillUnmount` might not be called.) The solution is to use the `componentDidMount` lifecycle instead:
-`embed:update-on-async-rendering/adding-event-listeners-after.js`
+Unfortunately, this can cause memory leaks for server rendering (where `componentWillUnmount` will never be called) and async rendering (where rendering might be interrupted before it completes, causing `componentWillUnmount` not to be called).
 
-> **Note**
->
-> This potential memory leak is not specific to async. The example shown above would also cause problems when rendering a component to a string.
+The solution is to use the `componentDidMount` lifecycle instead:
+`embed:update-on-async-rendering/adding-event-listeners-after.js`
 
 ### Updating `state` based on `props`
 
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
 `embed:update-on-async-rendering/updating-state-from-props-before.js`
 
-As of version 16.3, this can be done with the new `static getDerivedStateFromProps` lifecycle:
+Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method has been deprecated.
+
+As of version 16.3, the recommended way to update `state` in response to `props` changes is using the new `static getDerivedStateFromProps` lifecycle:
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
 > **Note**
 >
-> That the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill allows this new lifecycle to be used with older versions of React as well.
+> The [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill allows this new lifecycle to be used with older versions of React as well. This can be helpful if you're writing a shared component that is intended for use with multiple versions of React.
 
 ### Invoking external callbacks
 
 Here is an example of a component that calls an external function when its internal state changes:
 `embed:update-on-async-rendering/invoking-external-callbacks-before.js`
 
-This would not be safe to do in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used:
+This would not be safe to do in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
 
 ## OSS maintainers
 
-If you're an open source maintainer, you might be asking yourself what these changes mean for your library. If you implement the above suggestions, what happens with components that depend on the new static `getDerivedStateFromProps` lifecycle? Do you also have to release a new major version that drops compatibility for React 16.2 and older?
+Open source maintainers might be wondering what these changes mean for shared components. If you implement the above suggestions, what happens with components that depend on the new static `getDerivedStateFromProps` lifecycle? Do you also have to release a new major version and drop compatibility for React 16.2 and older?
 
 Fortunately, you do not!
 
@@ -113,7 +115,7 @@ yarn add react-lifecycles-compat
 npm install react-lifecycles-compat --save
 ```
 
-Next, update your component(s) to use the new static lifecycle, `getDerivedStateFromProps`, as described above.
+Next, update your components to use the new static lifecycle, `getDerivedStateFromProps`, as described above.
 
 Lastly, use the polyfill to make your component backwards compatible with older versions of React:
 `embed:update-on-async-rendering/using-react-lifecycles-compat.js`
@@ -124,7 +126,7 @@ Lastly, use the polyfill to make your component backwards compatible with older 
 
 > **Note**
 >
-> These checks are run in development mode only; **they do not impact the production build**.
+> Strict mode checks are run in development mode only; **they do not impact the production build**.
 
 You can enable strict mode for any part of your application. For example:
 `embed:update-on-async-rendering/enabling-strict-mode.js`

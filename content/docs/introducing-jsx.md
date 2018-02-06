@@ -9,7 +9,7 @@ next: rendering-elements.html
 Consider this variable declaration:
 
 ```js
-const element = <h1>Hello, world!</h1>;
+const element = <h1 className="hello">Hello, world!</h1>;
 ```
 
 This funny tag syntax is neither a string nor HTML.

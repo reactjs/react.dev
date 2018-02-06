@@ -72,9 +72,9 @@ Here is an example of a component that subscribes to an external event dispatche
 
 Unfortunately, this can cause memory leaks for server rendering (where `componentWillUnmount` will never be called) and async rendering (where rendering might be interrupted before it completes, causing `componentWillUnmount` not to be called).
 
-People often assume that `componentWillMount` and `componentWillUnmount` are paired, but that is not guaranteed. Only once `componentDidMount` has been called does React guarantee that `componentWillUnmount` will later be called (for clean up).
+People often assume that `componentWillMount` and `componentWillUnmount` are paired, but that is not guaranteed. Only once `componentDidMount` has been called does React guarantee that `componentWillUnmount` will later be called for clean up.
 
-For this reason, the recommended way to add listeners (or subscriptions) is to use the `componentDidMount` lifecycle:
+For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
 ### Updating `state` based on `props`

@@ -16,8 +16,8 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 
 In version 16.3, `StrictMode` helps with:
 * [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
-* Warning about legacy string ref API usage
-* Detecting unexpected side effects
+* [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
+* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
 
 Additional functionality will be added with future releases of React.
 

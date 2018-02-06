@@ -18,7 +18,7 @@ The smallest React example looks like this:
 
 ```js
 ReactDOM.render(
-  <h1>Hello, world!</h1>,
+  <h1 className="hello">Hello, world!</h1>,
   document.getElementById('root')
 );
 ```

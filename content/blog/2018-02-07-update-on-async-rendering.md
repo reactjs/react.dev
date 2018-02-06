@@ -1,6 +1,6 @@
 ---
 title: Update on Async Rendering
-author: [bvaughn]
+author: [bvaughn, gaearon]
 ---
 
 For the past few months, the React team has been experimenting with [asynchronous rendering](/blog/2017/09/26/react-v16.0.html#new-core-architecture), and we are very excited about the new features it enables.

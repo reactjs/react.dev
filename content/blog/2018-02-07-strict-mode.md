@@ -15,7 +15,7 @@ You can enable strict mode for any part of your application. For example:
 In the above example, strict mode checks will *not* be run against the `Header` and `Footer` components. However, `RouteOne` and `RouteTwo`, as well as all of their descendants, will have the checks.
 
 In version 16.3, `StrictMode` helps with:
-* Identifying components with unsafe lifecycles
+* [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
 * Warning about legacy string ref API usage
 * Detecting unexpected side effects
 
@@ -30,6 +30,21 @@ When strict mode is enabled, React compiles a list of all class components using
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
 Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of async rendering in future releases of React.
+
+### Warning about legacy string ref API usage
+
+Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recomendation was to [use the callback form instead](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs).
+
+Version 16.3 adds a new option for managing refs that offers the convenience of a string ref without any of the downsides:
+`embed:16-3-release-blog-create-ref.js`
+
+> **Note:**
+>
+> Callback refs will continue to be supported in addition to the new `createRef` API.
+>
+> You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
+
+[Learn more about the new `createRef` API here.](#)
 
 ### Detecting unexpected side effects
 

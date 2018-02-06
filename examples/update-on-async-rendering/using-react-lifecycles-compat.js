@@ -8,7 +8,7 @@ class ExampleComponent extends React.Component {
     nextProps,
     prevState
   ) {
-    /* ... */
+    // Your state update logic here ...
   }
 }
 

@@ -5,21 +5,13 @@ class ExampleComponent extends React.Component {
   // highlight-next-line
   state = {};
 
-  // highlight-next-line
-  static getDerivedStateFromProps(
-    nextProps,
-    prevState
-  ) {
-    // highlight-range{1-11}
-    if (
-      nextProps.currentRow !==
-      prevState.lastRow
-    ) {
+  // highlight-range{1-8}
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.currentRow !== prevState.lastRow) {
       return {
         lastRow: nextProps.currentRow,
         isScrollingDown:
-          nextProps.currentRow >
-          prevState.lastRow,
+          nextProps.currentRow > prevState.lastRow,
       };
     }
 

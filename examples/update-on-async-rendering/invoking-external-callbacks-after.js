@@ -1,18 +1,12 @@
 // After
 class ExampleComponent extends React.Component {
-  // highlight-next-line
-  componentDidUpdate(
-    prevProps,
-    prevState
-  ) {
-    // highlight-range{1-8}
+  // highlight-range{1-8}
+  componentDidUpdate(prevProps, prevState) {
     if (
       this.state.someStatefulValue !==
       prevState.someStatefulValue
     ) {
-      this.props.onChange(
-        this.state.someStatefulValue
-      );
+      this.props.onChange(this.state.someStatefulValue);
     }
   }
 }

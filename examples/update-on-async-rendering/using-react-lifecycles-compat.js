@@ -4,10 +4,7 @@ import polyfill from 'react-lifecycles-compat';
 
 class ExampleComponent extends React.Component {
   // highlight-next-line
-  static getDerivedStateFromProps(
-    nextProps,
-    prevState
-  ) {
+  static getDerivedStateFromProps(nextProps, prevState) {
     // Your state update logic here ...
   }
 }

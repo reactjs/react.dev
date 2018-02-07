@@ -11,15 +11,15 @@ Along the way our research has shown that some of our legacy component lifecycle
 * `componentWillReceiveProps`
 * `componentWillUpdate`
 
-Because of this, we have decided to rename these lifecycles—(adding an "UNSAFE_" prefix)—in a future release. The plan for this is as follows:
+Because of this, we are adding an "UNSAFE_" prefix to these lifecycles in a future release. React [follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so the migration path is gradual:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
 * **16.4**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
 * **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work in this release.)
 
-In this post, we will explore some of the potential capabilities of async rendering, and we'll outline a migration plan for components that rely on the deprecated lifecycles.
+In this post, we will explore some of the potential capabilities of async rendering, and we'll outline a migration plan for components that rely on these legacy lifecycles.
 
-## What can Asynchronous Rendering do?
+## What can asynchronous rendering do?
 
 #### With every new version, our goal is to improve the user experience of apps created with React.
 
@@ -27,7 +27,7 @@ We have been fine-tuning the performance of React with every new release. Howeve
 
 We found that asynchronous rendering can help in several ways. For example:
 
-1. As users navigate within an app, newly displayed components often have asynchronous dependencies (including data, images, and code splitting). This leads to a lot of boilerplate code managing data fetching and displaying the loading states. It can also lead to a “cascade of spinners” as the data loads, causing DOM reflows and janky user experience. We'd like to make it easier for product developers to express asynchronous dependencies of components- keeping the old UI "alive" for a certain period while the new UI is not "ready" yet. React could render this new UI in the background and provide a declarative way to show a loading indicator if it takes more than a second.
+1. As users navigate within an app, newly displayed components often have asynchronous dependencies (including data, images, and code splitting). This leads to a lot of boilerplate code managing data fetching and displaying the loading states. It can also lead to a "cascade of spinners" as the data loads, causing DOM reflows and janky user experience. We'd like to make it easier for product developers to express asynchronous dependencies of components- keeping the old UI "alive" for a certain period while the new UI is not "ready" yet. React could render this new UI in the background and provide a declarative way to show a loading indicator if it takes more than a second.
 2. Fast updates within a short timeframe often cause jank because React processes each update individually. We'd like to automatically "combine" updates within a few hundred milliseconds when possible so that there is less re-rendering.
 3. Some updates are inherently less important than others. For example, if you're writing a live-updating search filter input like [this](https://zeit.co/blog/domains-search-web#asynchronous-rendering), it is essential that the input is updated immediately (within a few milliseconds). Re-rendering the result list can be done later, and should not block the thread or cause stutter when typing. It would be nice if React had a way to mark the latter updates as having a lower priority. (Note that even debouncing the input doesn't help because if the rendering is synchronous—like in React today—a keystroke can't interrupt the rendering if it already started. Asynchronous rendering solves this by splitting rendering into small chunks that can be paused and later restarted.)
 4. For UI elements like hidden popups and tabs, we'd like to be able to start pre-rendering their content when the browser isn't busy. This way, they can appear instantaneously in response to a later user interaction. However, we don't want to make the initial rendering slower, so it's essential to render such elements lazily ([when the browser is idle](https://developers.google.com/web/updates/2015/08/using-requestidlecallback)).
@@ -41,7 +41,7 @@ In the next section, we'll look at how to update your existing components to pre
 
 #### If you're an application developer, **you don't have to do anything about the deprecated methods yet**. The primary purpose of this update (v16.3) is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with the next minor release, v16.4.
 
-However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional “recipes” to our documentation that show how to perform common tasks in a way that's async-safe.
+However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional "recipes" to our documentation that show how to perform common tasks in a way that's async-safe.
 
 ### Initializing state
 
@@ -96,8 +96,14 @@ As of version 16.3, the recommended way to update `state` in response to `props`
 Here is an example of a component that calls an external function when its internal state changes:
 `embed:update-on-async-rendering/invoking-external-callbacks-before.js`
 
-This would not be safe to do in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
+Sometimes people use `componentWillUpdate` out of a misplaced fear that by the time `componentDidUpdate` fires, it is "too late" to update the state of other components. This is not the case. React ensures that any `setState` calls that happen during `componentDidMount` and `componentDidUpdate` are flushed before the user sees the updated UI. In general, it is better to avoid cascading updates like this, but in some cases they are unavoidable (for example, if you need to position a tooltip after measuring the rendered DOM element).
+
+Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
+
+## Other scenarios
+
+While we tried to cover the most common use cases in this post, we recognize that we might have missed some of them. If you are using `componentWillMount`, `componentWillUpdate`, or `componentWillReceiveProps` in ways that aren't covered by this blog post, and aren't sure how to migrate off these legacy lifecycles, please [file a new issue against our documentation](https://github.com/reactjs/reactjs.org/issues/new) with your code examples and as much background information as you can provide. We will update this document with new alternative patterns as they come up.
 
 ## Open source project maintainers
 

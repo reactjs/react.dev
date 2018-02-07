@@ -1,15 +1,12 @@
 // Before
 class ExampleComponent extends React.Component {
-  // highlight-next-line
   state = {};
 
-  // highlight-range{1-8}
+  // highlight-range{1-6}
   componentWillMount() {
     this.setState({
-      count: 0,
-      derivedValue: computeDerivedValue(
-        this.props
-      ),
+      isScrollingDown: false,
+      lastRow: this.props.currentRow,
     });
   }
 }

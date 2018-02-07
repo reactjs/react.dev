@@ -1,5 +1,5 @@
 ---
-title: Strict mode
+title: Strict Mode
 author: [bvaughn]
 ---
 

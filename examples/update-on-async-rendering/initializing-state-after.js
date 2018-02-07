@@ -1,10 +1,8 @@
 // After
 class ExampleComponent extends React.Component {
-  // highlight-range{1-6}
+  // highlight-range{1-4}
   state = {
-    count: 0,
-    derivedValue: computeDerivedValue(
-      this.props
-    ),
+    isScrollingDown: false,
+    lastRow: this.props.currentRow,
   };
 }

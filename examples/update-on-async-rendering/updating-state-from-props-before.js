@@ -4,16 +4,12 @@ class ExampleComponent extends React.Component {
     isScrollingDown: false,
   };
 
-  // highlight-range{1-12}
+  // highlight-range{1-8}
   componentWillReceiveProps(nextProps) {
-    if (
-      this.props.currentRow !==
-      nextProps.currentRow
-    ) {
+    if (this.props.currentRow !== nextProps.currentRow) {
       this.setState({
         isScrollingDown:
-          nextProps.currentRow >
-          this.props.currentRow,
+          nextProps.currentRow > this.props.currentRow,
       });
     }
   }

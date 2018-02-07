@@ -1,12 +1,11 @@
 // After
 class ExampleComponent extends React.Component {
-  // highlight-range{1-4}
+  // highlight-range{1-3}
   state = {
-    subscribedValue: this.props
-      .dataSource.value,
+    subscribedValue: this.props.dataSource.value,
   };
 
-  // highlight-range{1-19}
+  // highlight-range{1-18}
   componentDidMount() {
     // Event listeners are only safe to add after mount,
     // So they won't leak if mount is interrupted or errors.
@@ -21,8 +20,7 @@ class ExampleComponent extends React.Component {
       this.props.dataSource.value
     ) {
       this.setState({
-        subscribedValue: this.props
-          .dataSource.value,
+        subscribedValue: this.props.dataSource.value,
       });
     }
   }

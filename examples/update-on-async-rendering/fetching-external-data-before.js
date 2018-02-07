@@ -4,11 +4,9 @@ class ExampleComponent extends React.Component {
     externalData: null,
   };
 
-  // highlight-range{1-7}
+  // highlight-range{1-5}
   componentWillMount() {
-    asyncLoadData(
-      this.props.someId
-    ).then(externalData =>
+    asyncLoadData(this.props.someId).then(externalData =>
       this.setState({externalData})
     );
   }

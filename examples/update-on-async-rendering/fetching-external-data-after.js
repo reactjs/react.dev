@@ -7,11 +7,9 @@ class ExampleComponent extends React.Component {
     externalData: null,
   };
 
-  // highlight-range{1-9}
+  // highlight-range{1-7}
   componentDidMount() {
-    asyncLoadData(
-      this.props.someId
-    ).then(externalData => {
+    asyncLoadData(this.props.someId).then(externalData => {
       if (!this._hasUnmounted) {
         this.setState({externalData});
       }

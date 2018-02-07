@@ -3,13 +3,8 @@ class MyComponent extends React.Component {
   divRef = React.createRef();
 
   render() {
-    // highlight-range{4}
-    return (
-      <input
-        type="text"
-        ref={this.divRef}
-      />
-    );
+    // highlight-next-line
+    return <input type="text" ref={this.divRef} />;
   }
 
   componentDidMount() {

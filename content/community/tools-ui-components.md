@@ -32,6 +32,7 @@ permalink: community/ui-components.html
 * **[react-dnd](https://github.com/gaearon/react-dnd)** Flexible HTML5 drag-and-drop mixin for React with full DOM control
 * **[react-document-title](https://github.com/gaearon/react-document-title)** Declarative, nested, stateful, isomorphic document.title for React
 * **[react-dropzone](https://github.com/felixrieseberg/React-Dropzone):** React Dropzone for File-Uploads
+* **[react-filemanager](https://github.com/OpusCapita/filemanager)** React FileManager for browser
 * **[react-forms](http://prometheusresearch.github.io/react-forms/):** Form rendering and validation for React
 * **[react-highlight](https://github.com/akiran/react-highlight):** React component for syntax highlighting
 * **[react-image](https://github.com/yuanyan/react-image):** Like `<img />` and Enhanced Image Component for React.

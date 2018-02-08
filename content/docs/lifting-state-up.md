@@ -46,6 +46,7 @@ class Calculator extends React.Component {
       <fieldset>
         <legend>Enter temperature in Celsius:</legend>
         <input
+          type="number"
           value={temperature}
           onChange={this.handleChange} />
         <BoilingVerdict
@@ -87,7 +88,8 @@ class TemperatureInput extends React.Component {
     return (
       <fieldset>
         <legend>Enter temperature in {scaleNames[scale]}:</legend>
-        <input value={temperature}
+        <input type="number"
+               value={temperature}
                onChange={this.handleChange} />
       </fieldset>
     );
@@ -129,24 +131,6 @@ function toFahrenheit(celsius) {
   return (celsius * 9 / 5) + 32;
 }
 ```
-
-These two functions convert numbers. We will write another function that takes a string `temperature` and a converter function as arguments and returns a string. We will use it to calculate the value of one input based on the other input.
-
-It returns an empty string on an invalid `temperature`, and it keeps the output rounded to the third decimal place:
-
-```js
-function tryConvert(temperature, convert) {
-  const input = parseFloat(temperature);
-  if (Number.isNaN(input)) {
-    return '';
-  }
-  const output = convert(input);
-  const rounded = Math.round(output * 1000) / 1000;
-  return rounded.toString();
-}
-```
-
-For example, `tryConvert('abc', toCelsius)` returns an empty string, and `tryConvert('10.22', toFahrenheit)` returns `'50.396'`.
 
 ## Lifting State Up
 
@@ -224,7 +208,8 @@ class TemperatureInput extends React.Component {
     return (
       <fieldset>
         <legend>Enter temperature in {scaleNames[scale]}:</legend>
-        <input value={temperature}
+        <input type="number"
+               value={temperature}
                onChange={this.handleChange} />
       </fieldset>
     );
@@ -278,8 +263,8 @@ class Calculator extends React.Component {
   render() {
     const scale = this.state.scale;
     const temperature = this.state.temperature;
-    const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
-    const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+    const celsius = scale === 'f' ? ? toCelsius(temperature);
+    const fahrenheit = scale === 'c' ? toFarenheit(temperature);
 
     return (
       <div>

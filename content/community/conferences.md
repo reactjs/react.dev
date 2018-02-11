@@ -11,6 +11,12 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
+### Reactathon 2018
+March 20-22 in San Francisco, USA
+
+[Website](https://www.reactathon.com/) [Twitter](https://twitter.com/reactathon)
+
+
 ### React Native Camp UA 2018
 March 31 in Kiev, Ukraine
 

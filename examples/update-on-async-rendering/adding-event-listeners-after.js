@@ -10,7 +10,7 @@ class ExampleComponent extends React.Component {
     // Event listeners are only safe to add after mount,
     // So they won't leak if mount is interrupted or errors.
     this.props.dataSource.subscribe(
-      this._onSubscriptionChange
+      this.handleSubscriptionChange
     );
 
     // External values could change between render and mount,
@@ -27,11 +27,11 @@ class ExampleComponent extends React.Component {
 
   componentWillUnmount() {
     this.props.dataSource.unsubscribe(
-      this._onSubscriptionChange
+      this.handleSubscriptionChange
     );
   }
 
-  _onSubscriptionChange = subscribedValue => {
+  handleSubscriptionChange = subscribedValue => {
     this.setState({subscribedValue});
   };
 }

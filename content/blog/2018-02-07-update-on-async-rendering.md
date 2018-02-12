@@ -39,7 +39,7 @@ In the next section, we'll look at how to update your existing components to pre
 
 ## Updating class components
 
-#### If you're an application developer, **you don't have to do anything about the deprecated methods yet**. The primary purpose of this update (v16.3) is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with the next minor release, v16.4.
+#### If you're an application developer, **you don't have to do anything about the legacy methods yet**. The primary purpose of this update (v16.3) is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with the next minor release, v16.4.
 
 However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional "recipes" to our documentation that show how to perform common tasks in a way that's async-safe.
 
@@ -60,6 +60,8 @@ The above code is problematic for both server rendering (where the external data
 
 The upgrade path for this is to move data-fetching into `componentDidMount`:
 `embed:update-on-async-rendering/fetching-external-data-after.js`
+
+There is a common misconception that fetching in `componentWillMount` lets you avoid the first empty rendering state. In practice this was never true because React has always executed `render` immediately after `componentWillMount`. If the data is not available by the time `componentWillMount` fires, the first `render` will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to `componentDidMount` has no perceptible effect in the vast majority of cases.
 
 > Note:
 >

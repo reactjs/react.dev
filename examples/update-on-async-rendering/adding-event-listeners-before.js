@@ -8,17 +8,17 @@ class ExampleComponent extends React.Component {
 
     // This is not safe; it can leak!
     this.props.dataSource.subscribe(
-      this._onSubscriptionChange
+      this.handleSubscriptionChange
     );
   }
 
   componentWillUnmount() {
     this.props.dataSource.unsubscribe(
-      this._onSubscriptionChange
+      this.handleSubscriptionChange
     );
   }
 
-  _onSubscriptionChange = subscribedValue => {
+  handleSubscriptionChange = subscribedValue => {
     this.setState({subscribedValue});
   };
 }

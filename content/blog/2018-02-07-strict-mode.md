@@ -50,7 +50,23 @@ Since object refs were largely added as a replacement for string refs, strict mo
 
 ### Detecting unexpected side effects
 
-As a general rule, side-effects should be avoided in certain class component methods (e.g. the `constructor`, `render`, etc). This is because React may invoke these methods more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption). Ignoring this rule can lead to a variety of problems, including memory leaks and invalid state. Unfortunately, it can be difficult to detect these problems as they are often non-deterministic.
+Conceptually, React does work in two phases:
+* The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls lifecycles like `getDerivedStateFromProps` and `render` and then compares the result to the previous render.
+* The **commit** phase is when React applies any changes. (In the case of ReactDOM, this is when React inserts, updates, and removes DOM nodes.) React calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
+
+The commit phase is very fast, but rendering can be slow. For this reason, async mode breaks rendering into multiple pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+
+Render phase lifecycles include the following class component methods:
+* `constructor`
+* `componentWillMount`
+* `componentWillReceiveProps`
+* `componentWillUpdate`
+* `getDerivedStateFromProps`
+* `shouldComponentUpdate`
+* `render`
+* `setState` updater functions
+
+Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they are often [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
 
 Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
 

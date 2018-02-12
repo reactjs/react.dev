@@ -65,7 +65,7 @@ If you use [npm](https://www.npmjs.com/), run:
 npm run flow init
 ```
 
-This command will create a Flow configuration file that you will need to commit
+This command will create a Flow configuration file that you will need to commit.
 
 ### Stripping Flow Syntax from the Compiled Code
 

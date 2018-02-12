@@ -1,5 +1,5 @@
 ---
-title: Strict Mode
+title: Introducing Strict Mode
 author: [bvaughn]
 ---
 
@@ -23,7 +23,7 @@ Additional functionality will be added with future releases of React.
 
 ### Identifying unsafe lifecycles
 
-As previously mentioned, certain legacy lifecycle methods are unsafe for use in async React applications. However, if your application uses third party libraries, it can be difficult to ensure that these lifecycles aren't being used. Fortunately, strict mode can help with this!
+As explained [in this blog post](/blog/2018/02/07/update-on-async-rendering.html), certain legacy lifecycle methods are unsafe for use in async React applications. However, if your application uses third party libraries, it can be difficult to ensure that these lifecycles aren't being used. Fortunately, strict mode can help with this!
 
 When strict mode is enabled, React compiles a list of all class components using the unsafe lifecycles, and logs a warning message with information about these components, like so:
 
@@ -43,6 +43,8 @@ Version 16.3 adds a new option for managing refs that offers the convenience of 
 > Callback refs will continue to be supported in addition to the new `createRef` API.
 >
 > You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
+
+Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
 
 [Learn more about the new `createRef` API here.](#)
 
@@ -64,6 +66,6 @@ Strict mode can't automatically detect side effects for you, but it can help you
 For example, consider the following code:
 `embed:update-on-async-rendering/side-effects-in-constructor.js`
 
-At first glance, this code might not seem problematic. But if `SharedApplicationState.recordEvent` is not idempotent, then instantiating this component multiple times could lead to invalid application state. This sort of subtle bug might not manifest during development, or it might do so inconsistently and so be overlooked.
+At first glance, this code might not seem problematic. But if `SharedApplicationState.recordEvent` is not [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), then instantiating this component multiple times could lead to invalid application state. This sort of subtle bug might not manifest during development, or it might do so inconsistently and so be overlooked.
 
 By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.

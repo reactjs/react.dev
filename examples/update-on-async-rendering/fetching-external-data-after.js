@@ -7,12 +7,25 @@ class ExampleComponent extends React.Component {
   // highlight-range{1-9}
   componentDidMount() {
     this._currentRequest = asyncLoadData(
-      this.props.someID,
+      this.props.id,
       externalData => {
         this._currentRequest = null;
         this.setState({externalData});
       }
     );
+  }
+  // highlight-line
+  // highlight-range{1-11}
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.id !== this.props.id) {
+      this._currentRequest = asyncLoadData(
+        this.props.id,
+        externalData => {
+          this._currentRequest = null;
+          this.setState({externalData});
+        }
+      );
+    }
   }
   // highlight-line
   // highlight-range{1-5}

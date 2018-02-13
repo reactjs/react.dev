@@ -75,12 +75,12 @@ The simplest refactor for this type of component is to move state initialization
 
 ### Fetching external data
 
-Here is an example of a component that uses `componentWillMount` to fetch external data::
+Here is an example of a component that uses `componentWillMount` and `componentWillUpdate` to fetch external data::
 `embed:update-on-async-rendering/fetching-external-data-before.js`
 
 The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times).
 
-The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount`:
+The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount` and `componentDidUpdate`:
 `embed:update-on-async-rendering/fetching-external-data-after.js`
 
 There is a common misconception that fetching in `componentWillMount` lets you avoid the first empty rendering state. In practice this was never true because React has always executed `render` immediately after `componentWillMount`. If the data is not available by the time `componentWillMount` fires, the first `render` will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to `componentDidMount` has no perceptible effect in the vast majority of cases.

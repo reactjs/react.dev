@@ -74,6 +74,8 @@
       title: Accessibility
     - id: code-splitting
       title: Code-Splitting
+    - id: strict-mode
+      title: StrictMode
 - title: Reference
   items:
     - id: react-api

@@ -1,6 +1,7 @@
 ---
+id: strict-mode
 title: StrictMode
-author: [bvaughn]
+permalink: docs/strict-mode.html
 ---
 
 `StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.

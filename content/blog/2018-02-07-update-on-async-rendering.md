@@ -113,9 +113,7 @@ As of version 16.3, the recommended way to update `state` in response to `props`
 
 > Note:
 >
-> The [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill allows this new lifecycle to be used with older versions of React as well. This can be helpful if you're writing a shared component that is intended for use with multiple versions of React.
->
-> This polyfill is not needed for application code that uses a specific version of React. It is only useful for shared components (e.g. open source, NPM packages).
+> The [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables this new lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](http://localhost:8000/blog/2018/02/07/update-on-async-rendering.html#open-source-project-maintainers)
 
 ### Invoking external callbacks
 

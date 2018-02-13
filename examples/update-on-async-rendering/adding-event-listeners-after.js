@@ -4,7 +4,7 @@ class ExampleComponent extends React.Component {
   state = {
     subscribedValue: this.props.dataSource.value,
   };
-
+  // highlight-line
   // highlight-range{1-18}
   componentDidMount() {
     // Event listeners are only safe to add after mount,

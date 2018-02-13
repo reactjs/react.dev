@@ -1,20 +1,17 @@
 import React from 'react';
 
-// highlight-next-line
-const {StrictMode} = React;
-
 function ExampleApplication() {
   return (
     <div>
       <Header />
       {/* highlight-next-line */}
-      <StrictMode>
-        <>
-          <RouteOne />
-          <RouteTwo />
-        </>
+      <React.StrictMode>
+        <div>
+          <ComponentOne />
+          <ComponentTwo />
+        </div>
         {/* highlight-next-line */}
-      </StrictMode>
+      </React.StrictMode>
       <Footer />
     </div>
   );

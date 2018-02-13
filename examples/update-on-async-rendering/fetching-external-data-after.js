@@ -1,24 +1,25 @@
 // After
 class ExampleComponent extends React.Component {
-  // highlight-next-line
-  _hasUnmounted = false;
-
   state = {
     externalData: null,
   };
 
-  // highlight-range{1-7}
+  // highlight-range{1-9}
   componentDidMount() {
-    asyncLoadData(this.props.someId).then(externalData => {
-      if (!this._hasUnmounted) {
+    this._currentRequest = asyncLoadData(
+      this.props.someID,
+      externalData => {
+        this._currentRequest = null;
         this.setState({externalData});
       }
-    });
+    );
   }
-
-  // highlight-range{1-3}
+  // highlight-line
+  // highlight-range{1-5}
   componentWillUnmount() {
-    this._hasUnmounted = true;
+    if (this._currentRequest) {
+      this._currentRequest.cancel();
+    }
   }
 
   render() {

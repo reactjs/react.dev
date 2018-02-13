@@ -1,9 +1,9 @@
 ---
-title: Introducing Strict Mode
+title: StrictMode
 author: [bvaughn]
 ---
 
-`StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It simply activates additional checks and warnings for its descendants.
+`StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.
 
 > Note:
 >
@@ -12,9 +12,9 @@ author: [bvaughn]
 You can enable strict mode for any part of your application. For example:
 `embed:update-on-async-rendering/enabling-strict-mode.js`
 
-In the above example, strict mode checks will *not* be run against the `Header` and `Footer` components. However, `RouteOne` and `RouteTwo`, as well as all of their descendants, will have the checks.
+In the above example, strict mode checks will *not* be run against the `Header` and `Footer` components. However, `ComponentOne` and `ComponentTwo`, as well as all of their descendants, will have the checks.
 
-In version 16.3, `StrictMode` helps with:
+`StrictMode` currently helps with:
 * [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
 * [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
 * [Detecting unexpected side effects](#detecting-unexpected-side-effects)
@@ -35,8 +35,10 @@ Addressing the issues identified by strict mode _now_ will make it easier for yo
 
 Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recomendation was to [use the callback form instead](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
-Version 16.3 adds a new option for managing refs that offers the convenience of a string ref without any of the downsides:
+React 16.3 added a third option that offers the convenience of a string ref without any of the downsides:
 `embed:16-3-release-blog-create-ref.js`
+
+Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
 
 > **Note:**
 >
@@ -44,15 +46,13 @@ Version 16.3 adds a new option for managing refs that offers the convenience of 
 >
 > You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
 
-Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
-
-[Learn more about the new `createRef` API here.](#)
+[Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
 
 ### Detecting unexpected side effects
 
 Conceptually, React does work in two phases:
 * The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
-* The **commit** phase is when React applies any changes. (In the case of ReactDOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
+* The **commit** phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
 
 The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming async mode (which is not enabled by default yet) breaks rendering into multiple pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
 
@@ -66,7 +66,7 @@ Render phase lifecycles include the following class component methods:
 * `render`
 * `setState` updater functions (the first argument)
 
-Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they are often [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
+Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
 
 Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
 

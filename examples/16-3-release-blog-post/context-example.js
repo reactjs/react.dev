@@ -5,7 +5,7 @@ class ThemeProvider extends React.Component {
   state = {theme: 'light'};
 
   render() {
-    // highlight-range{2}
+    // highlight-range{2-4}
     return (
       <ThemeContext.Provider value={this.state.theme}>
         {this.props.children}
@@ -19,15 +19,7 @@ class ThemedButton extends React.Component {
     // highlight-range{2-4}
     return (
       <ThemeContext.Consumer>
-        {theme => {
-          const background = theme ? '#fff' : '#000';
-
-          return (
-            <button style={{background}}>
-              {this.props.children}
-            </button>
-          );
-        }}
+        {theme => <Button theme={theme} />}
       </ThemeContext.Consumer>
     );
   }

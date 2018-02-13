@@ -25,6 +25,10 @@ In this post, we will explore some of the potential capabilities of async render
 
 We have been fine-tuning the performance of React with every new release. However, despite what synthetic benchmarks say, we've found that the bottleneck in real-world apps is generally not React itself, but the application code that uses it. In order to unlock the next wave of performance optimizations and new features, we need React to be smarter about when to re-render components and flush updates to the screen.
 
+> **Note**
+>
+> React already has some optimizations in this regard. For example, React batches state updates so that if you call `setState` multiple times in quick succession, it only renders once.
+
 We found that asynchronous rendering can help in several ways. For example:
 
 1. As users navigate within an app, newly displayed components often have asynchronous dependencies (including data, images, and code splitting). This leads to a lot of boilerplate code managing data fetching and displaying the loading states. It can also lead to a "cascade of spinners" as the data loads, causing DOM reflows and janky user experience. We'd like to make it easier for product developers to express asynchronous dependencies and to wait to show a component until all of its data has been loaded. React could keep the old UI "alive" and interactive for a certain period while the updated UI is not ready yet, and provide a declarative way to show a loading indicator if it takes more than a second.
@@ -74,7 +78,7 @@ The simplest refactor for this type of component is to move state initialization
 Here is an example of a component that uses `componentWillMount` to fetch external data::
 `embed:update-on-async-rendering/fetching-external-data-before.js`
 
-The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times, or executed unnecessarily).
+The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times).
 
 The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount`:
 `embed:update-on-async-rendering/fetching-external-data-after.js`

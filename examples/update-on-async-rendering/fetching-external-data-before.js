@@ -4,24 +4,24 @@ class ExampleComponent extends React.Component {
     externalData: null,
   };
 
-  // highlight-range{1-5}
+  // highlight-range{1-8}
   componentWillMount() {
-    asyncLoadData(this.props.id).then(externalData =>
-      this.setState({externalData})
+    this._asyncRequest = asyncLoadData().then(
+      externalData => {
+        this._asyncRequest = null;
+        this.setState({externalData});
+      }
     );
   }
-  // highlight-line
-  // highlight-range{1-7}
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.id !== this.props.id) {
-      asyncLoadData(this.props.id).then(externalData =>
-        this.setState({externalData})
-      );
+
+  componentWillUnmount() {
+    if (this._asyncRequest) {
+      this._asyncRequest.cancel();
     }
   }
 
   render() {
-    if (this.externalData === null) {
+    if (this.state.externalData === null) {
       // Render loading state ...
     } else {
       // Render real UI ...

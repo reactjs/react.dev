@@ -75,12 +75,12 @@ The simplest refactor for this type of component is to move state initialization
 
 ### Fetching external data
 
-Here is an example of a component that uses `componentWillMount` and `componentWillUpdate` to fetch external data::
+Here is an example of a component that uses `componentWillMount` to fetch external data:
 `embed:update-on-async-rendering/fetching-external-data-before.js`
 
 The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times).
 
-The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount` and `componentDidUpdate`:
+The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount`:
 `embed:update-on-async-rendering/fetching-external-data-after.js`
 
 There is a common misconception that fetching in `componentWillMount` lets you avoid the first empty rendering state. In practice this was never true because React has always executed `render` immediately after `componentWillMount`. If the data is not available by the time `componentWillMount` fires, the first `render` will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to `componentDidMount` has no perceptible effect in the vast majority of cases.
@@ -128,6 +128,18 @@ Sometimes people use `componentWillUpdate` out of a misplaced fear that by the t
 
 Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
+
+### Updating external data when `props` change
+
+Here is an example of a component that fetches external data based on `props` values:
+`embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`
+
+The recommended upgrade path for this component is to move data-updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
+`embed:update-on-async-rendering/updating-external-data-when-props-change-after.js`
+
+> **Note**
+>
+> If you're using an HTTP library that supports cancellation, like [axios](https://www.npmjs.com/package/axios), then it's simple to cancel an in-progress request when unmounting. For native Promises, you can use an approach like [the one shown here](https://gist.github.com/bvaughn/982ab689a41097237f6e9860db7ca8d6).
 
 ## Other scenarios
 

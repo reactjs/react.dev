@@ -11,6 +11,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
+### ReactFest 2018
+March 8-9 in London, UK
+
+[Website](https://reactfest.uk/) [Twitter](https://twitter.com/ReactFest) 
+
 ### Reactathon 2018
 March 20-22 in San Francisco, USA
 

@@ -105,6 +105,9 @@ For this reason, the recommended way to add listeners/subscriptions is to use th
 >
 > Although the pattern above is slightly more verbose, it has an added benefit of deferring the subscription creation until after the component has rendered, reducing the amount of time in the critical render path. In the near future, React may include more tools to reduce code complexity for data fetching cases like this.
 
+You may also need to update subscriptions based on changes in `props`. In this case, you should also wait to _remove_ a subscription until `componentDidUpdate`. For example:
+`embed:update-on-async-rendering/adding-event-listeners-after-continued.js`
+
 ### Updating `state` based on `props`
 
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:

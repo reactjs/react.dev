@@ -71,6 +71,15 @@ class Counter extends React.Component {
 }
 ```
 
+Alternatively if your initial state does not depend on `props` you can use the **experimental** syntax for class property initializer:
+```javascript
+class Counter extends React.Component {
+  state = {message: 'Hello!'};
+  // ...
+}
+```
+Please note that [Class Properties](https://babeljs.io/docs/plugins/transform-class-properties/) syntax is still an **experimental** and it may change, or the proposal might not make it into the language.
+
 With `createReactClass()`, you have to provide a separate `getInitialState` method that returns the initial state:
 
 ```javascript

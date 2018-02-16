@@ -314,7 +314,7 @@ setState(updater[, callback])
 
 Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
 
-`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
+`setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the current state, read about the `updater` argument below.
 
 `setState()` will always lead to a re-render unless `shouldComponentUpdate()` returns `false`. If mutable objects are being used and conditional rendering logic cannot be implemented in `shouldComponentUpdate()`, calling `setState()` only when the new state differs from the previous state will avoid unnecessary re-renders.
 
@@ -324,7 +324,7 @@ The first argument is an `updater` function with the signature:
 (currentState, currentProps) => stateChange
 ```
 
-`prevState` is a reference to the previous state. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `prevState` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+`currentState` is a reference to the current state. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `currentState` and `currentProps`. For instance, suppose we wanted to increment a value in state by `currentProps.step`:
 
 ```javascript
 this.setState((currentState, currentProps) => {
@@ -352,14 +352,14 @@ This form of `setState()` is also asynchronous, and multiple calls during the sa
 
 ```javaScript
 Object.assign(
-  previousState,
+  currentState,
   {quantity: state.quantity + 1},
   {quantity: state.quantity + 1},
   ...
 )
 ```
 
-Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the previous state, we recommend using the updater function form, instead:
+Subsequent calls will override values from previous calls in the same cycle, so the quantity will only be incremented once. If the next state depends on the current state, we recommend using the updater function form, instead:
 
 ```js
 this.setState((currentState) => {

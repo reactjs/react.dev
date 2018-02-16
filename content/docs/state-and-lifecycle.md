@@ -362,8 +362,8 @@ To fix it, use a second form of `setState()` that accepts a function rather than
 
 ```js
 // Correct
-this.setState((prevState, props) => ({
-  counter: prevState.counter + props.increment
+this.setState((currentState, currentProps) => ({
+  counter: currentState.counter + currentProps.increment
 }));
 ```
 
@@ -371,9 +371,9 @@ We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript
 
 ```js
 // Correct
-this.setState(function(prevState, props) {
+this.setState(function(currentState, currentProps) {
   return {
-    counter: prevState.counter + props.increment
+    counter: currentState.counter + currentProps.increment
   };
 });
 ```

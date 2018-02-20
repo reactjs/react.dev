@@ -66,7 +66,7 @@ results in a `<Table />` output of:
 </table>
 ```
 
-So, we introduce `Fragments`.
+So, we introduce `Fragment`'s usage as below.
 
 ## Usage
 

@@ -5,6 +5,18 @@ class ExampleComponent extends React.Component {
     subscribedValue: this.props.dataSource.value,
   };
   // highlight-line
+  // highlight-range{1-10}
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (
+      prevState.subscribedValue !==
+      nextProps.dataSource.value
+    ) {
+      return {
+        subscribedValue: nextProps.dataSource.value,
+      };
+    }
+  }
+  // highlight-line
   // highlight-range{1-3}
   componentDidMount() {
     this.finalizeSubscription();

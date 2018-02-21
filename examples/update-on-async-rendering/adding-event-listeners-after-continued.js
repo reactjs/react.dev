@@ -10,12 +10,14 @@ class ExampleComponent extends React.Component {
     this.finalizeSubscription();
   }
   // highlight-line
-  // highlight-range{1-9}
+  // highlight-range{1-11}
   componentDidUpdate(prevProps, prevState) {
     if (this.props.dataSource !== prevProps.dataSource) {
       // Similar to adding subscriptions,
       // It's only safe to unsubscribe during the commit phase.
-      prevProps.dataSource.dispose();
+      prevProps.dataSource.unsubscribe(
+        this.handleSubscriptionChange
+      );
 
       this.finalizeSubscription();
     }

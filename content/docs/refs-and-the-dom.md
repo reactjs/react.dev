@@ -36,11 +36,35 @@ Your first inclination may be to use refs to "make things happen" in your app. I
 >The examples below have updated to use the new `React.createRef()` API, introduced in React 16.3.
 
 
-React supports a special attribute that you can attach to any component. The `ref` attribute takes a callback function, and the callback will be executed immediately after the component is mounted or unmounted.
+Refs can be created using `React.createRef()` and are commonly assigned to a component class instance in the constructor or via a property initializer.
+
+```javascript{4}
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+}
+```
+
+Refs can then be attached to React elements via the `ref` attribute by passing the property on the class instance as the value to that attribute.
+
+
+```javascript{4,7}
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.myRef = React.createRef();
+  }
+  render() {
+    return <div ref={this.myRef} />;
+  }
+}
+```
 
 When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property. For example, this code uses a `ref` to store a reference to a DOM node:
 
-```javascript{8,9,19}
+```javascript{5,11,21}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
@@ -56,7 +80,7 @@ class CustomTextInput extends React.Component {
 
   render() {
     // tell React that we want the associate the <input> ref
-    // to the `textInput` that we created in the constructor
+    // with the `textInput` that we created in the constructor
     return (
       <div>
         <input
@@ -79,7 +103,7 @@ React will assign the `value` property with the DOM element when the component m
 
 When the `ref` attribute is used on a custom component declared as a class, the `ref` object receives the mounted instance of the component as its `value`. For example, if we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting:
 
-```javascript{3,9}
+```javascript{4,12}
 class AutoFocusTextInput extends React.Component {
   constructor(props) {
     super(props);
@@ -109,7 +133,7 @@ class CustomTextInput extends React.Component {
 
 **You may not use the `ref` attribute on functional components** because they don't have instances:
 
-```javascript{1,7}
+```javascript{1,8,12}
 function MyFunctionalComponent() {
   return <input />;
 }
@@ -166,7 +190,7 @@ Instead, in such cases we recommend exposing a special prop on the child. The ch
 
 This works both for classes and for functional components.
 
-```javascript{4,13}
+```javascript{4,12,16}
 function CustomTextInput(props) {
   return (
     <div>
@@ -196,7 +220,7 @@ This works even though `CustomTextInput` is a functional component. Unlike the s
 
 Another benefit of this pattern is that it works several components deep. For example, imagine `Parent` didn't need that DOM node, but a component that rendered `Parent` (let's call it `Grandparent`) needed access to it. Then we could let the `Grandparent` specify the `inputRef` prop to the `Parent`, and let `Parent` "forward" it to the `CustomTextInput`:
 
-```javascript{4,12,22}
+```javascript{4,12,21,25}
 function CustomTextInput(props) {
   return (
     <div>
@@ -233,9 +257,9 @@ All things considered, we advise against exposing DOM nodes whenever possible, b
 
 ### Callback Refs
 
-The above examples use `React.createRef()`, which can be thought of as "object refs". React also supports an alternative approach called "callback refs", which offer the same functionality as object refs, but also also give more fine-grain control over when refs are set and unset. In much the same way object refs work, callback refs can be used in a similar approach.
+The above examples use `React.createRef()`, which can be thought of as "object refs". React also supports an alternative approach called "callback refs", which offer the same functionality as object refs, but also also give more fine-grain control over when refs are set and unset. Callback refs work in much the same way as object refs.
 
-With callback refs, instead of creating a ref with `React.createRef()`, you instead pass normal JavaScript functions to `ref` attributes. When the `ref` attribute is used on an HTML element, the `ref` callback receives the underlying DOM element as its argument. For example, this code uses the `ref` callback to store a reference to a DOM node:
+With callback refs, instead of creating a ref with `React.createRef()`, you pass normal JavaScript functions to `ref` attributes. When the `ref` attribute is used on an HTML element, the `ref` callback receives the underlying DOM element as its argument. For example, this code uses the `ref` callback to store a reference to a DOM node:
 
 ```javascript{8,9,19}
 class CustomTextInput extends React.Component {

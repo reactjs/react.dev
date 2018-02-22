@@ -105,8 +105,16 @@ For this reason, the recommended way to add listeners/subscriptions is to use th
 >
 > Although the pattern above is slightly more verbose, it has an added benefit of deferring the subscription creation until after the component has rendered, reducing the amount of time in the critical render path. In the near future, React may include more tools to reduce code complexity for data fetching cases like this.
 
-You may also need to update subscriptions based on changes in `props`. In this case, you should also wait to _remove_ a subscription until `componentDidUpdate`. For example:
-`embed:update-on-async-rendering/adding-event-listeners-after-continued.js`
+### Updating subscriptions when `props` change
+
+(This is a continuation of [the example above](#adding-event-listeners-or-subscriptions).)
+
+You may also need to update subscriptions based on changes in `props`. In this case, you should also wait until `componentDidUpdate` before _removing_ a subscription. In the event that a render is cancelled before being committed, this will prevent us from unsubscribing prematurely.
+
+Howeveer, waiting to unsubscribe means that we will need to be careful about how we handle events that are dispatched in between `getDerivedStateFromProps` and `componentDidUpdate` so that we don't put stale values into the `state`. To do this, we should use the callback form of `setState` and compare the event dispatcher to the one currently in `state`.
+
+Here is a example:
+`embed:update-on-async-rendering/updating-subscriptions-when-props-change-after.js`
 
 ### Updating `state` based on `props`
 

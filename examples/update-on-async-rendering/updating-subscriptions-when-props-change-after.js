@@ -1,17 +1,16 @@
 // After
 class ExampleComponent extends React.Component {
-  // highlight-range{1-3}
+  // highlight-range{1-4}
   state = {
+    dataSource: this.props.dataSource,
     subscribedValue: this.props.dataSource.value,
   };
   // highlight-line
-  // highlight-range{1-10}
+  // highlight-range{1-8}
   static getDerivedStateFromProps(nextProps, prevState) {
-    if (
-      prevState.subscribedValue !==
-      nextProps.dataSource.value
-    ) {
+    if (nextProps.dataSource !== prevState.dataSource) {
       return {
+        dataSource: nextProps.dataSource,
         subscribedValue: nextProps.dataSource.value,
       };
     }
@@ -24,10 +23,10 @@ class ExampleComponent extends React.Component {
   // highlight-line
   // highlight-range{1-11}
   componentDidUpdate(prevProps, prevState) {
-    if (this.props.dataSource !== prevProps.dataSource) {
+    if (this.state.dataSource !== prevState.dataSource) {
       // Similar to adding subscriptions,
       // It's only safe to unsubscribe during the commit phase.
-      prevProps.dataSource.unsubscribe(
+      prevState.dataSource.unsubscribe(
         this.handleSubscriptionChange
       );
 
@@ -36,32 +35,39 @@ class ExampleComponent extends React.Component {
   }
 
   componentWillUnmount() {
-    this.props.dataSource.unsubscribe(
+    this.state.dataSource.unsubscribe(
       this.handleSubscriptionChange
     );
   }
 
-  // highlight-range{1-18}
+  // highlight-range{1-14}
   finalizeSubscription() {
     // Event listeners are only safe to add during the commit phase,
     // So they won't leak if render is interrupted or errors.
-    this.props.dataSource.subscribe(
+    this.state.dataSource.subscribe(
       this.handleSubscriptionChange
     );
 
     // External values could change between render and mount,
     // In some cases it may be important to handle this case.
-    if (
-      this.state.subscribedValue !==
-      this.props.dataSource.value
-    ) {
-      this.setState({
-        subscribedValue: this.props.dataSource.value,
-      });
+    const subscribedValue = this.state.dataSource.value;
+    if (subscribedValue !== this.state.subscribedValue) {
+      this.setState({subscribedValue});
     }
   }
+  // highlight-line
+  // highlight-range{1-13}
+  handleSubscriptionChange = dataSource => {
+    this.setState(state => {
+      // If this event belongs to the current data source, update.
+      // Otherwise we should ignore it.
+      if (dataSource === state.dataSource) {
+        return {
+          subscribedValue: dataSource.value,
+        };
+      }
 
-  handleSubscriptionChange = subscribedValue => {
-    this.setState({subscribedValue});
+      return null;
+    });
   };
 }

@@ -31,7 +31,9 @@ class ExampleComponent extends React.Component {
     );
   }
 
-  handleSubscriptionChange = subscribedValue => {
-    this.setState({subscribedValue});
+  handleSubscriptionChange = dataSource => {
+    this.setState({
+      subscribedValue: dataSource.value,
+    });
   };
 }

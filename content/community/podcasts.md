@@ -24,3 +24,6 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 
 - [JavaScript Jabber 73](https://devchat.tv/js-jabber/073-jsj-react-with-pete-hunt-and-jordan-walke) - Pete Hunt and Jordan Walke talk about React.
+
+
+- [Syntax 001](https://syntax.fm/show/001/react-tools) - Wes Bos and Scott Tolinski discuss React dev-tools.

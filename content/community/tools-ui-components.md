@@ -34,7 +34,7 @@ permalink: community/ui-components.html
 * **[react-dropzone](https://github.com/felixrieseberg/React-Dropzone):** React Dropzone for File-Uploads
 * **[react-forms](http://prometheusresearch.github.io/react-forms/):** Form rendering and validation for React
 * **[react-highlight](https://github.com/akiran/react-highlight):** React component for syntax highlighting
-* **[react-image](https://github.com/yuanyan/react-image):** Like `<img />` and Enhanced Image Component for React.
+* **[react-image](https://github.com/mbrevda/react-image):** Like `<img />` and Enhanced Image Component for React.
 * **[react-input-autosize](https://github.com/JedWatson/react-input-autosize):** Like `<input />` but resizes automatically to fit all its content.
 * **[react-intense](https://github.com/brycedorn/react-intense):** A component for viewing large images up close
 * **[react-joyride](https://github.com/gilbarbara/react-joyride):** Create walkthroughs and guided tours for your ReactJS apps.

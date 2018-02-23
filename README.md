@@ -53,7 +53,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 
 ## Translation
 
-If you are interesting in translating `reactjs.org`, please join the Crowdin.
+If you are interested in translating `reactjs.org`, please join the Crowdin.
 
 * [Crowdin - React](https://crowdin.com/project/react)
 

@@ -37,6 +37,12 @@ April 24-26 in Helsinki, Finland
 
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
+### <React.NotAConf /> 2018
+April 28 in Sofia, Bulgaia
+
+[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/groups/1614950305478021/)
+
+
 ### ReactEurope 2018
 May 17-18 in Paris, France
 

@@ -42,9 +42,11 @@ class Welcome extends React.Component {
 }
 ```
 
-The above two components are equivalent from React's point of view.
+The above two components are equivalent from React's point of view (aside from a small performance difference). *
 
 Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use functional components for their conciseness.
+
+&ast; *By default, functional components are a little faster than class components; see [Optimizing Performance](/docs/optimizing-performance.html).*
 
 ## Rendering a Component
 

@@ -414,4 +414,40 @@ In this case, since a new reference is returned when mutating `x`, we can use a 
 
 Two other libraries that can help use immutable data are [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) and [immutability-helper](https://github.com/kolodny/immutability-helper).
 
+Another alternative is to use a linting tool to throw warnings or errors about direct state mutations. This is not foolproof, but can provide decent protection; see for example https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-direct-mutation-state.md.
+
 Immutable data structures provide you with a cheap way to track changes on objects, which is all we need to implement `shouldComponentUpdate`. This can often provide you with a nice performance boost.
+
+## Functional vs. Class Components
+
+Some optimizations were added for functional components in React 16 (in previous versions, there was no performance difference between the two). (Functional components were introduced in the [Components and Props](/docs/components-and-props.html) section.) Class components have additional checks required and overhead in creating the instances that simple functions don't have. However, avoiding these code paths for functional components is a micro-optimization that is unlikely to make a big difference in a real app (unless your class component is overly complex).
+
+Functional components should be favored for components that are stateless and for which you don't need lifecycle methods (those features are only available in class components). The main reason for this recommendation is that it's consistent with good component design: it's best to keep presentational components stateless when possible. The performance advantages are a nice additional benefit, but it's important to understand that functional components do not include any `shouldComponentUpdate` optimizations, unlike `React.PureComponent`. Therefore, if your component's props include complex objects or arrays that would otherwise need to be deeply compared during DOM reconiciliation, it's very possible that a class component with an optimized `shouldComponentUpdate` method will perform much better than the functional version of the same component.
+
+## When to Use the Different Component Types
+
+With all of the different options for implementing components in React, you might be wondering how to decide which one to use in a given situation. It's difficult to provide a general answer to this question because it depends on the context, but here are some guidelines to keep in mind:
+
+### Measurement is the only way to be sure
+
+If you are unsure which kind of component to use, the best way to be certain of which will perform the best is to profile it, as explained above. Otherwise, you could easily make incorrect assumptions or optimize prematurely. Having said that, understanding the below principles is important too and will serve as a good starting point.
+
+### PureComponent is usually a good choice for class components
+
+Unnecessary re-rendering is often very costly in terms of performance. So, if your team understands how `React.PureComponent` works, and is avoiding direct mutations of props and state as explained in the above section about "Not Mutating Data", then it's a good idea to use `PureComponent` for most of your class components because it will provide an automatic performance boost. If you discover in testing that some of your components are not performing well enough, then you should look to see if there are any improvements that could be made by writing your own `shouldComponentUpdate` method instead of using `PureComponent`. You might be able to skip checking certain props if they don't affect whether or not your component should re-render.
+
+If you have concerns about inconsistent development practices on your team that might cause issues when using `PureComponent`, it might seeem safer to only use it on components with simple props (i.e. components for which all the props are primitives rather than objects or arrays). But that would negate the primary benefit of using `PureComponent` (avoiding costly object comparisons), and it is actually the components with more complex props and many children/descendents that benefit most from the `PureComponent` optimization.
+
+Furthermore, if you have a very simple component, it might actually perform better *without* a `shouldComponentUpdate` method. This is because even the comparison to decide whether or not a component should be re-rendered costs something, and if you are often returning true from `shouldComponentUpdate` at the end of that computation, the time spent checking whether or not to re-render is wasted. (However, this is unlikley to be true unless your render function is quite minimal, with little to no logic.) This is another reason to prefer functions over classes for simple presentational components, especially given the optimizations for functional components mentioned above.
+
+### Generally speaking, use functional components whenever possible
+
+If your component doesn't actually need to be written as a class in order to do what it needs to do, start out by writing it as a function. Although React's optimization for functional components is a small one, it's still certainly possible that your functional component will outperform the same component written as a `PureComponent`, and it will definitely outperform the equivalent regular class component. And more importantly, this will help your codebase to be more readable and consistent in accordance with the general guideline of using functions for simple presentational components.
+
+### When to use regular class components
+
+It might not be safe to assume that no one will be directly mutating the props or state passed into your component, especially if you are not actually enforcing this in any way (e.g. with immutable.js). If you work on a team where developers tend to come and go, including a lot of junior developers, or if you are writing a library that will be consumed by a wide audience including React novices, regular class components might be a better choice. It could also be a premature optimization to use `PureComponent` by default if you have any of the above concerns and are not experiencing any performance issues with your app.
+
+### Implement your own `shouldComponentUpdate` method only if needed
+
+Be wary of premature optimization. If you know that `PureComponent`'s `shouldComponentUpdate` method is doing unnecessary work, then it may well be worth the effort of implementing it yourself. But don't do so based on guesswork and assumptions; do it based on profiling.

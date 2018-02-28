@@ -25,7 +25,7 @@ In this post, we will explore some of the potential capabilities of async render
 
 We have been fine-tuning the performance of React with every new release. However, despite what synthetic benchmarks say, we've found that the bottleneck in real-world apps is generally not React itself, but the application code that uses it. In order to unlock the next wave of performance optimizations and new features, we need React to be smarter about when to re-render components and flush updates to the screen.
 
-> **Note**
+> Note
 >
 > React already has some optimizations in this regard. For example, React batches state updates so that if you call `setState` multiple times in quick succession, it only renders once.
 
@@ -85,7 +85,7 @@ The recommended upgrade path for most use cases is to move data-fetching into `c
 
 There is a common misconception that fetching in `componentWillMount` lets you avoid the first empty rendering state. In practice this was never true because React has always executed `render` immediately after `componentWillMount`. If the data is not available by the time `componentWillMount` fires, the first `render` will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to `componentDidMount` has no perceptible effect in the vast majority of cases.
 
-> Note:
+> Note
 >
 > Some advanced use-cases (e.g. libraries like Relay) may want to experiment with eagerly prefetching async data. An example of how this can be done is available [here](https://gist.github.com/bvaughn/89700e525ff423a75ffb63b1b1e30a8f).
 
@@ -101,20 +101,13 @@ People often assume that `componentWillMount` and `componentWillUnmount` are alw
 For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
-> **Note**:
+> Note
 >
 > Although the pattern above is slightly more verbose, it has an added benefit of deferring the subscription creation until after the component has rendered, reducing the amount of time in the critical render path. In the near future, React may include more tools to reduce code complexity for data fetching cases like this.
 
-### Updating subscriptions when `props` change
-
-(This is a continuation of [the example above](#adding-event-listeners-or-subscriptions).)
-
-You may also need to update subscriptions based on changes in `props`. In this case, you should also wait until `componentDidUpdate` before _removing_ a subscription. In the event that a render is cancelled before being committed, this will prevent us from unsubscribing prematurely.
-
-However, waiting to unsubscribe means that we will need to be careful about how we handle events that are dispatched in between `getDerivedStateFromProps` and `componentDidUpdate` so that we don't put stale values into the `state`. To do this, we should use the callback form of `setState` and compare the event dispatcher to the one currently in `state`.
-
-Here is a example:
-`embed:update-on-async-rendering/updating-subscriptions-when-props-change-after.js`
+> Note
+>
+> Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. If you're authoring such a library, we suggest using a technique like [the one shown here](https://gist.github.com/bvaughn/d569177d70b50b58bff69c3c4a5353f3).
 
 ### Updating `state` based on `props`
 
@@ -126,7 +119,7 @@ Although the above code is not problematic in itself, the `componentWillReceiveP
 As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props.):
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
-> Note:
+> Note
 >
 > The [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables this new lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](http://localhost:8000/blog/2018/02/07/update-on-async-rendering.html#open-source-project-maintainers)
 
@@ -148,7 +141,7 @@ Here is an example of a component that fetches external data based on `props` va
 The recommended upgrade path for this component is to move data-updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-after.js`
 
-> **Note**
+> Note
 >
 > If you're using an HTTP library that supports cancellation, like [axios](https://www.npmjs.com/package/axios), then it's simple to cancel an in-progress request when unmounting. For native Promises, you can use an approach like [the one shown here](https://gist.github.com/bvaughn/982ab689a41097237f6e9860db7ca8d6).
 

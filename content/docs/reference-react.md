@@ -104,7 +104,7 @@ Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `Re
 ```
 React.cloneElement(
   element,
-  [props],
+  {props},
   [...children]
 )
 ```

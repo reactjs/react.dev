@@ -48,7 +48,7 @@ However, if you'd like to start using the new component API (or if you're a main
 
 ---
 
-Before we begin, here's a quick reminder of the lifecyle changes in version 16.3:
+Before we begin, here's a quick reminder of the lifecycle changes in version 16.3:
 * We are adding the following lifecycle aliases: `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will be supported.)
 * We are introducing a new, static lifecycle, `getDerivedStateFromProps`:
 

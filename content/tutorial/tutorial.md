@@ -46,7 +46,7 @@ You can now skip the second setup option, and go to the [Overview](#overview) se
 
 **This is completely optional and not required for this tutorial!**
 
-This setup requires more work, but it lets you complete the tutorial using an editor of your choice.
+This setup requires more work but allows you to complete the tutorial using an editor of your choice.
 
 Here are the steps to follow:
 
@@ -133,7 +133,7 @@ If you're curious, `createElement()` is described in more detail in the [API ref
 
 You can put JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
 
-The `ShoppingList` component only renders built-in DOM components. You can compose and render custom React components. In our `ShoppingList` example we can compose and render a React component `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+The `ShoppingList` component only renders built-in DOM components. You can compose and render custom React components. In our `ShoppingList` example, we can compose and render a React component `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
 
 ## The Tutorial
 
@@ -286,7 +286,7 @@ We now have the basic building blocks for our tic-tac-toe game. To have a comple
 
 We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the Board component instead of in each Square. The Board component can tell each Square what to display.
 
-**To collect data from multiple children or have two child components communicate with each other, the childrens' state should reside in the parent component. The parent can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent.**
+**To collect data from multiple children or have two child components communicate with each other, the childrens' state should reside in the parent component. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
 
 Moving states into parent components is common when React components are refactored - let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
 
@@ -330,7 +330,7 @@ class Board extends React.Component {
 }
 ```
 
-We'll fill the board in later so that a board looks something like:
+When we fill the board in later, the board will look something like this:
 
 ```javascript
 [
@@ -379,7 +379,7 @@ Now we're passing down two props from Board to Square: `value` and `onClick`. Th
 
 * Replace `this.state.value` with `this.props.value` in Square's `render` method
 * Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
-* Delete the `constructor` from Square because it Square no longer keeps track of the game's state
+* Delete the `constructor` from Square because Square no longer keeps track of the game's state
 
 After these changes, the Square component looks like this:
 
@@ -466,7 +466,7 @@ We'll be able to click on the Squares to fill them again. Whenever Board's state
 
 ### Why Immutability Is Important
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why it is an important concept to learn.
+In the previous code example, we suggested that you use the `.slice()` operator to create a copy the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
 
 There are generally two methods for changing data. The first method is to *mutate* the data by directly changing the data's values. The second method is to replace the data with a new copy which has the desired changes.
 
@@ -502,13 +502,13 @@ Detecting changes in immutable objects is considerably easier. If the immutable 
 
 #### Determining When to Re-render in React
 
-The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-renderering.
+The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can easily determine if changes have been made which helps to determine when a component requires re-rendering.
 
 You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
 
 ### Functional Components
 
-We'll now change the Square to be a **functional component**. In React, **functional components** are components that only contain a `render` method. Instead of than defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered.
+We'll now change the Square to be a **functional component**. In React, **functional components** are components that only contain a `render` method. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered.
 
 In general, you'll be able to write components in your React applications as functional components: these components tend to be easier to write and React will optimize them in the future.
 
@@ -526,7 +526,7 @@ function Square(props) {
 
 We'll need to change `this.props` to `props` both times it appears.
 
-When we modified the Square to be a functional component, we also changed `onClick={() => props.onClick()}` to `onClick={props.onClick}`. `onClick={props.onClick()}` will not work because it will call the function that is associated with `props.onClick` instead of passing it down.
+When we modified the Square to be a functional component, we also changed `onClick={() => props.onClick()}` to `onClick={props.onClick}`. `onClick={props.onClick()}` will not work because the function that is associated with `props.onClick` will be called immediately instead of being passed down.
 
 [View the current code.](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)
 
@@ -547,7 +547,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time a player moves, the boolean, `xIsNext` will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
+Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -631,7 +631,7 @@ class Board extends React.Component {
 
 ### Declaring a Winner
 
-Since we can show which player's turn is next, we should also indicate which player wins the game. We can indicate a winner by adding this helper function to the end of the file:
+Since we can show which player's turn is next, we should also determine which player wins the game. We can determine a winner by adding this helper function to the end of the file:
 
 ```javascript
 function calculateWinner(squares) {
@@ -986,7 +986,7 @@ When a list is re-rendered, React takes each list item's key and searches the pr
 
 If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended.
 
-Keys do not need to be globally unique. Keys only needs to be unique between components and their sibilings.
+Keys do not need to be globally unique. Keys only needs to be unique between components and their siblings.
 
 
 ### Using Keys to Display the Tic-Tac-Toe Game's History
@@ -1087,8 +1087,8 @@ Congratulations! You've created a tic-tac-toe game that:
 
 * Lets you play tic-tac-toe,
 * Indicates when a player has won the game,
-* Stores the game's history as the game progresses,
-* Allows players to review the game's history and see previous versions of the game's board.
+* Stores a game's history as a game progresses,
+* Allows players to review a game's history and see previous versions of a game's board.
 
 Nice work! We hope you now feel like you have a decent grasp on how React works.
 

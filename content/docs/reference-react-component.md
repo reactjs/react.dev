@@ -336,7 +336,7 @@ Both `prevState` and `props` received by the updater function are guaranteed to 
 
 The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
 
-This callback is automatically binded to `this`, so you can refer to the updated `this.state` within it, without having to manually bind it, or use ES6 arrow functions:
+This callback is automatically bound to `this`, so you can refer to the updated `this.state` within it, without having to manually bind it, or use ES6 arrow functions:
 
 ```js{5-7}
 this.setState(

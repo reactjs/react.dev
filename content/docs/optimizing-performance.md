@@ -442,7 +442,7 @@ Furthermore, if you have a very simple component, it might actually perform bett
 
 ### Generally speaking, use functional components whenever possible
 
-If your component doesn't actually need to be written as a class in order to do what it needs to do, start out by writing it as a function. Although React's optimization for functional components is a small one, it's still certainly possible that your functional component will outperform the same component written as a `PureComponent`, and it will definitely outperform the equivalent regular class component. And more importantly, this will help your codebase to be more readable and consistent in accordance with the general guideline of using functions for simple presentational components.
+If your component doesn't actually need to be written as a class in order to do what it needs to do, start out by writing it as a function. Although React's optimization for functional components is a small one, it's still certainly possible that your functional component will outperform the same component written as a `PureComponent`, and it will definitely outperform the equivalent regular class component (unless you wrote your own `shouldComponentUpdate` method for it). And more importantly, this will help your codebase to be more readable and consistent, following the general guideline of using functions for simple presentational components.
 
 ### When to use regular class components
 

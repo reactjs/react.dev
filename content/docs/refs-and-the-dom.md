@@ -37,8 +37,7 @@ Your first inclination may be to use refs to "make things happen" in your app. I
 >
 >The examples below have updated to use the `React.createRef()` API introduced in React 16.3.
 
-
-Refs can be created using `React.createRef()` and are commonly assigned to an instance property when a component is constructed.
+Refs can be created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the the component.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -51,8 +50,6 @@ class MyComponent extends React.Component {
   }
 }
 ```
-
-Refs can then be attached to React elements via the `ref` attribute by passing the property on the class instance as the value to that attribute.
 
 When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property. For example, this code uses a `ref` to store a reference to a DOM node:
 

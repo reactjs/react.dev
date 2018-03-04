@@ -30,7 +30,7 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 
 ```javascript{3,4}
 <input
-  type="text" 
+  type="text"
   aria-label={labelText}
   aria-required="true"
   onChange={onchangeHandler}
@@ -49,7 +49,7 @@ Sometimes we break HTML semantics when we add `<div>` elements to our JSX to mak
 In these cases we should rather use React Fragments to group together multiple elements.
 
 Use `<Fragment>` when a `key` prop is required:
- 
+
 ```javascript{1,8,11}
 import React, { Fragment } from 'react';
 
@@ -72,14 +72,14 @@ Use `<></>` syntax everywhere else:
 
 ```javascript
 function ListItem({ item }) {
-  return ( 
+  return (
     <>
       <dt>{item.term}</dt>
-      <dd>{item.description}</dd>>
+      <dd>{item.description}</dd>
     </>
   );    
 }
-``` 
+```
 
 ## Accessible Forms
 
@@ -108,7 +108,7 @@ Error situations need to be understood by all users. The following link shows us
 
 ## Focus Control
 
-Ensure that your web application can be fully operated with the keyboard only: 
+Ensure that your web application can be fully operated with the keyboard only:
 
 - [WebAIM talks about keyboard accessibility](http://webaim.org/techniques/keyboard/)
 
@@ -124,7 +124,7 @@ Only ever use CSS that removes this outline, for example by setting `outline: 0`
 
 Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with 
+Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with
 internal page anchors and some styling:
 
 - [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
@@ -137,7 +137,7 @@ Read more about the use of these elements to enhance accessibility here:
 
 ### Programmatically managing focus
 
-Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this, 
+Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this,
 we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
 
 The Mozilla Developer Network takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
@@ -166,9 +166,9 @@ Then we can focus it elsewhere in our component when needed:
    this.textInput.focus();
  }
  ```
- 
-Sometimes a parent component needs to set focus to an element in a child component. Although we can create [refs to class components](refs-and-the-dom.html#adding-a-ref-to-a-class-component), 
-we need a pattern that also works with functional components and when [using refs with HOCs](higher-order-components.html#refs-arent-passed-through). 
+
+Sometimes a parent component needs to set focus to an element in a child component. Although we can create [refs to class components](refs-and-the-dom.html#adding-a-ref-to-a-class-component),
+we need a pattern that also works with functional components and when [using refs with HOCs](higher-order-components.html#refs-arent-passed-through).
 To ensure that our parent component can always access the ref, we pass a callback as a prop to the child component to [expose the ref to the parent component](refs-and-the-dom.html#exposing-dom-refs-to-parent-components).
 
 ```js
@@ -189,8 +189,8 @@ function Field({ inputRef, ...rest }) {
 this.inputEl.focus();
 ```
 
-A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on 
-the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that 
+A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
+the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that
 initially triggered the modal.
 
 >Note:
@@ -203,7 +203,7 @@ initially triggered the modal.
 A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible,
 even the most complex widget can be coded accessibly.
 
-Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/states_and_properties). 
+Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/states_and_properties).
 These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
 
 Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
@@ -256,11 +256,11 @@ By far the easiest and also one of the most important checks is to test if your 
 1. Plugging out your mouse.
 1. Using `Tab` and `Shift+Tab` to browse.
 1. Using `Enter` to activate elements.
-1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns. 
+1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns.
 
 ### Development assistance
 
-We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also 
+We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also
 have access to the following tool:
 
 #### eslint-plugin-jsx-a11y
@@ -268,9 +268,9 @@ have access to the following tool:
 The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many
 IDE's allow you to integrate these findings directly into code analysis and source code windows.
 
-[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules, 
+[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules,
 you can create an `.eslintrc` file in the root of your project with this content:
-                                                                                                      
+
   ```json
   {
     "extends": ["react-app", "plugin:jsx-a11y/recommended"],
@@ -297,7 +297,7 @@ The [Web Accessibility Evaluation Tool](http://wave.webaim.org/extension/) is an
 
 #### Accessibility inspectors and the Accessibility Tree
 
-[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed 
+[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed
 to assistive technology, such as screen readers.
 
 In some browsers we can easily view the accessibility information for each element in the accessibility tree:
@@ -322,7 +322,7 @@ Refer to the following guides on how to best use NVDA:
 
 #### VoiceOver in Safari
 
-VoiceOver is an integrated screen reader on Apple devices. 
+VoiceOver is an integrated screen reader on Apple devices.
 
 Refer to the following guides on how activate and use VoiceOver:
 
@@ -332,7 +332,7 @@ Refer to the following guides on how activate and use VoiceOver:
 
 #### JAWS in Internet Explorer
 
-[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) or JAWS, is a prolifically used screen reader on Windows. 
+[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) or JAWS, is a prolifically used screen reader on Windows.
 
 Refer to the following guides on how to best use JAWS:
 

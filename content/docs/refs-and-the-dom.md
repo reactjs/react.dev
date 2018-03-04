@@ -31,13 +31,13 @@ For example, instead of exposing `open()` and `close()` methods on a `Dialog` co
 
 Your first inclination may be to use refs to "make things happen" in your app. If this is the case, take a moment and think more critically about where state should be owned in the component hierarchy. Often, it becomes clear that the proper place to "own" that state is at a higher level in the hierarchy. See the [Lifting State Up](/docs/lifting-state-up.html) guide for examples of this.
 
-### Adding a Ref to a DOM Element
-
 >**Note:**
 >
 >The examples below have updated to use the `React.createRef()` API introduced in React 16.3.
 
-Refs can be created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the the component.
+### Creating Refs
+
+Refs are created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the the component.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -51,7 +51,25 @@ class MyComponent extends React.Component {
 }
 ```
 
-When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property. For example, this code uses a `ref` to store a reference to a DOM node:
+### Accessing Refs
+
+When a ref is passed to an element in `render`, a reference to the node becomes accessible at the `value` attribute of the ref.
+
+```javascript
+const node = this.myRef.value
+```
+
+The value of the ref differs depending on whether the node is an HTML DOM node, a React class component instance, or a stateless functional component:
+
+- When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property.
+- When the `ref` attribute is used on a custom component declared as a class, the `ref` object receives the mounted instance of the component as its `value`.
+- **You may not use the `ref` attribute on functional components** because they don't have instances.
+
+The examples below demonstrate the differences.
+
+#### Adding a Ref to a DOM Element
+
+This code uses a `ref` to store a reference to a DOM node:
 
 ```javascript{5,12,22}
 class CustomTextInput extends React.Component {
@@ -89,9 +107,9 @@ class CustomTextInput extends React.Component {
 
 React will assign the `value` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle hooks.
 
-### Adding a Ref to a Class Component
+#### Adding a Ref to a Class Component
 
-When the `ref` attribute is used on a custom component declared as a class, the `ref` object receives the mounted instance of the component as its `value`. For example, if we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting:
+If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:
 
 ```javascript{4,7,12}
 class AutoFocusTextInput extends React.Component {
@@ -120,7 +138,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-### Refs and Functional Components
+#### Refs and Functional Components
 
 **You may not use the `ref` attribute on functional components** because they don't have instances:
 

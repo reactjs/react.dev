@@ -94,12 +94,13 @@ React will assign the `value` property with the DOM element when the component m
 
 When the `ref` attribute is used on a custom component declared as a class, the `ref` object receives the mounted instance of the component as its `value`. For example, if we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting:
 
-```javascript{4,12}
+```javascript{4,7,12}
 class AutoFocusTextInput extends React.Component {
   constructor(props) {
     super(props);
     this.textInput = React.createRef();
   }
+
   componentDidMount() {
     this.textInput.value.focusTextInput();
   }
@@ -124,7 +125,7 @@ class CustomTextInput extends React.Component {
 
 **You may not use the `ref` attribute on functional components** because they don't have instances:
 
-```javascript{1,8,12}
+```javascript{1,8,13}
 function MyFunctionalComponent() {
   return <input />;
 }
@@ -167,7 +168,7 @@ function CustomTextInput(props) {
         onClick={handleClick}
       />
     </div>
-  );  
+  );
 }
 ```
 
@@ -211,7 +212,7 @@ This works even though `CustomTextInput` is a functional component. Unlike the s
 
 Another benefit of this pattern is that it works several components deep. For example, imagine `Parent` didn't need that DOM node, but a component that rendered `Parent` (let's call it `Grandparent`) needed access to it. Then we could let the `Grandparent` specify the `inputRef` prop to the `Parent`, and let `Parent` "forward" it to the `CustomTextInput`:
 
-```javascript{4,12,21,25}
+```javascript{4,12,20,24}
 function CustomTextInput(props) {
   return (
     <div>
@@ -227,7 +228,6 @@ function Parent(props) {
     </div>
   );
 }
-
 
 class Grandparent extends React.Component {
   constructor(props) {

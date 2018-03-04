@@ -13,6 +13,8 @@ class TodoApp extends React.Component {
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
           <input
+            aria-label="Add a new to-do item"
+            placeholder="Add a to-do..."
             onChange={this.handleChange}
             value={this.state.text}
           />

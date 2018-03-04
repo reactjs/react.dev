@@ -11,6 +11,8 @@ redirect_from:
 permalink: docs/refs-and-the-dom.html
 ---
 
+Refs provide a way to access DOM nodes and React elements created by React by getting a _reference_ to the element in the render method.
+
 In the typical React dataflow, [props](/docs/components-and-props.html) are the only way that parent components interact with their children. To modify a child, you re-render it with new props. However, there are a few cases where you need to imperatively modify a child outside of the typical dataflow. The child to be modified could be an instance of a React component, or it could be a DOM element. For both of these cases, React provides an escape hatch.
 
 ### When to Use Refs
@@ -35,8 +37,7 @@ Your first inclination may be to use refs to "make things happen" in your app. I
 >
 >The examples below have updated to use the `React.createRef()` API introduced in React 16.3.
 
-
-Refs can be created using `React.createRef()` and are commonly assigned to an instance property when a component is constructed.
+Refs can be created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the the component.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -49,8 +50,6 @@ class MyComponent extends React.Component {
   }
 }
 ```
-
-Refs can then be attached to React elements via the `ref` attribute by passing the property on the class instance as the value to that attribute.
 
 When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property. For example, this code uses a `ref` to store a reference to a DOM node:
 

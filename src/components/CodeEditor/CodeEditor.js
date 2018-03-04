@@ -257,9 +257,13 @@ class CodeEditor extends Component {
                       padding: '5px 10px',
                     },
 
+                    '& label': {
+                      display: 'block',
+                      marginTop: 10,
+                    },
+
                     '& textarea': {
                       width: '100%',
-                      marginTop: 10,
                       height: 60,
                       padding: 5,
                     },

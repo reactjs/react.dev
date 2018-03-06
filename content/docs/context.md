@@ -4,35 +4,71 @@ title: Context
 permalink: docs/context.html
 ---
 
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+## Using Context
+
+Here is an example illustrating how you might inject a "theme" using context:
+
+`embed:context/theme-example.js`
+
+### API
+
+#### `React.createContext`
+
+```js
+const {Provider, Consumer} = React.createContext([default]);
+```
+
+Creates a `{ Provider, Consumer }` pair.
+
+Takes one argument, the default context that Consumers will receive when they don't have a matching Provider.
+
+
+#### `Provider`
+
+```js
+<Provider value={/* some value */}>
+```
+
+A React component that allows Consumers to subscribe to context changes.
+
+Takes one prop, `value`, which will be passed to the [render prop](/docs/render-props.html) of child Consumers for the matching context anywhere in the component tree. One Provider can be connected to many Consumers.
+
+#### `Consumer`
+
+```js
+<Consumer>
+ { value => { /* render something based on the context value */ } }
+</Consumer>
+```
+
+A React component that subscribes to context changes. 
+
+Takes a function as the `children` prop that receives the `value` prop of the matching Provider. This function will be called whenever the Provider's value is updated.
+
 > Note:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types) to define `contextTypes`.
->
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
+> For more information about this pattern, see [render props](/docs/render-props.html).
 
-With React, it's easy to track the flow of data through your React components. When you look at a component, you can see which props are being passed, which makes your apps easy to reason about.
+### Typical Usage
 
-In some cases, you want to pass data through the component tree without having to pass the props down manually at every level.
-You can do this directly in React with the powerful "context" API.
+`embed:context/theme-detailed-theme-context.js`
 
-> Note:
->
-> A [new, safe version of context](https://github.com/reactjs/rfcs/blob/master/text/0002-new-version-of-context.md) is under development for the upcoming 16.3 release.
+`embed:context/theme-detailed-themed-button.js`
+
+`embed:context/theme-detailed-app.js`
 
 
-## Why Not To Use Context
+## Experimental API (Deprecated in React 16.3)
 
-The vast majority of applications do not need to use context.
+> The old experimental API is deprecated as of React 16.3. The API will be supported in all 16.x releases, but applications using it should migrate to the new API.
 
-If you want your application to be stable, don't use context. It is an experimental API and it is likely to break in future releases of React.
+The experimental API lacked a safe mechanism to update context. Version 16.3 introduced a new context API that is more efficient and supports both static type checking and deep updates.
 
-If you aren't familiar with state management libraries like [Redux](https://github.com/reactjs/redux) or [MobX](https://github.com/mobxjs/mobx), don't use context. For many practical applications, these libraries and their React bindings are a good choice for managing state that is relevant to many components. It is far more likely that Redux is the right solution to your problem than that context is the right solution.
+### How To Use Context
 
-If you're still learning React, don't use context. There is usually a better way to implement functionality just using props and state.
-
-If you insist on using context despite these warnings, try to isolate your use of context to a small area and avoid using the context API directly when possible so that it's easier to upgrade when the API changes.
-
-## How To Use Context
+> This section documents a deprecated API
 
 Suppose you have a structure like:
 
@@ -119,7 +155,15 @@ By adding `childContextTypes` and `getChildContext` to `MessageList` (the contex
 
 If `contextTypes` is not defined, then `context` will be an empty object.
 
-## Parent-Child Coupling
+> Note:
+>
+> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types) to define `contextTypes`.
+>
+> We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
+
+### Parent-Child Coupling
+
+> This section documents a deprecated API
 
 Context can also let you build an API where parents and children communicate. For example, one library that works this way is [React Router V4](https://reacttraining.com/react-router):
 
@@ -149,7 +193,9 @@ By passing down some information from the `Router` component, each `Link` and `R
 
 Before you build components with an API similar to this, consider if there are cleaner alternatives. For example, you can pass entire React components as props if you'd like to.
 
-## Referencing Context in Lifecycle Methods
+### Referencing Context in Lifecycle Methods
+
+> This section documents a deprecated API
 
 If `contextTypes` is defined within a component, the following [lifecycle methods](/docs/react-component.html#the-component-lifecycle) will receive an additional parameter, the `context` object:
 
@@ -162,7 +208,9 @@ If `contextTypes` is defined within a component, the following [lifecycle method
 >
 > As of React 16, `componentDidUpdate` no longer receives `prevContext`.
 
-## Referencing Context in Stateless Functional Components
+### Referencing Context in Stateless Functional Components
+
+> This section documents a deprecated API
 
 Stateless functional components are also able to reference `context` if `contextTypes` is defined as a property of the function. The following code shows a `Button` component written as a stateless functional component.
 
@@ -177,7 +225,9 @@ const Button = ({children}, context) =>
 Button.contextTypes = {color: PropTypes.string};
 ```
 
-## Updating Context
+### Updating Context
+
+> This section documents a deprecated API
 
 Don't do it.
 

@@ -271,11 +271,17 @@ Instead of passing a `ref` attribute created by `createRef()`, you pass a functi
 
 The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
 
-```javascript{6,17}
+```javascript{5,7-9,11-14,19,29,34}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
+
     this.textInput = { value: null }; // initial placeholder for the ref
+
+    this.setTextInputRef = element => {
+      this.textInput.value = element
+    };
+
     this.focusTextInput = () => {
       // Focus the text input using the raw DOM API
       this.textInput.value.focus();
@@ -283,7 +289,8 @@ class CustomTextInput extends React.Component {
   }
 
   componentDidMount () {
-    if (this.textInput) this.focusTextInput() // autofocus the input on mount
+    // autofocus the input on mount
+    if (this.textInput.value) this.focusTextInput()
   }
 
   render() {
@@ -293,7 +300,8 @@ class CustomTextInput extends React.Component {
       <div>
         <input
           type="text"
-          ref={element => this.textInput.value = element} />
+          ref={this.setTextInputRef}
+        />
         <input
           type="button"
           value="Focus the text input"

@@ -261,7 +261,7 @@ class Grandparent extends React.Component {
 
 Here, the ref `this.inputElement` is first specified by `Grandparent`. It is passed to the `Parent` as a regular prop called `inputRef`, and the `Parent` passes it to the `CustomTextInput` as a prop too. Finally, the `CustomTextInput` reads the `inputRef` prop and attaches the passed ref as a `ref` attribute to the `<input>`. As a result, `this.inputElement.value` in `Grandparent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
 
-All things considered, we advise against exposing DOM nodes whenever possible, but this can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged.
+When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged.
 
 ### Callback Refs
 

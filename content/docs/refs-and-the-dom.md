@@ -265,7 +265,7 @@ All things considered, we advise against exposing DOM nodes whenever possible, b
 
 ### Callback Refs
 
-React also supports another way to set refs called "callback refs", which give more fine-grain control over when refs are set and unset.
+React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
 
 Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
 

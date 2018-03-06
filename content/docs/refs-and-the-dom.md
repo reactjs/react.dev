@@ -31,9 +31,9 @@ For example, instead of exposing `open()` and `close()` methods on a `Dialog` co
 
 Your first inclination may be to use refs to "make things happen" in your app. If this is the case, take a moment and think more critically about where state should be owned in the component hierarchy. Often, it becomes clear that the proper place to "own" that state is at a higher level in the hierarchy. See the [Lifting State Up](/docs/lifting-state-up.html) guide for examples of this.
 
->**Note:**
+> Note
 >
->The examples below have updated to use the `React.createRef()` API introduced in React 16.3.
+> The examples below have been updated to use the React.createRef() API introduced in React 16.3. If you are using an earlier release of React, we recommend using [#callback-refs](callback refs) instead.
 
 ### Creating Refs
 
@@ -59,10 +59,10 @@ When a ref is passed to an element in `render`, a reference to the node becomes 
 const node = this.myRef.value
 ```
 
-The value of the ref differs depending on whether the node is an HTML DOM node, a React class component instance, or a stateless functional component:
+The value of the ref differs depending on the type of the node:
 
 - When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property.
-- When the `ref` attribute is used on a custom component declared as a class, the `ref` object receives the mounted instance of the component as its `value`.
+- When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `value`.
 - **You may not use the `ref` attribute on functional components** because they don't have instances.
 
 The examples below demonstrate the differences.

@@ -265,18 +265,32 @@ All things considered, we advise against exposing DOM nodes whenever possible, b
 
 ### Callback Refs
 
-React also supports another way to set refs called "callback refs", which give more fine-grain control over when refs are set and unset.
+React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
 
-Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. This example uses the `ref` callback to store a reference to a DOM node:
+Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
 
-```javascript{6,17}
+The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
+
+```javascript{5,7-9,11-14,19,29,34}
 class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
-    this.focusTextInput = () => {
-      // Explicitly focus the text input using the raw DOM API
-      this.textInput.focus();
+
+    this.textInput = { value: null }; // initial placeholder for the ref
+
+    this.setTextInputRef = element => {
+      this.textInput.value = element
     };
+
+    this.focusTextInput = () => {
+      // Focus the text input using the raw DOM API
+      this.textInput.value.focus();
+    };
+  }
+
+  componentDidMount () {
+    // autofocus the input on mount
+    if (this.textInput.value) this.focusTextInput()
   }
 
   render() {
@@ -286,7 +300,8 @@ class CustomTextInput extends React.Component {
       <div>
         <input
           type="text"
-          ref={(input) => { this.textInput = input; }} />
+          ref={this.setTextInputRef}
+        />
         <input
           type="button"
           value="Focus the text input"
@@ -299,8 +314,6 @@ class CustomTextInput extends React.Component {
 ```
 
 React will call the `ref` callback with the DOM element when the component mounts, and call it with `null` when it unmounts. `ref` callbacks are invoked before `componentDidMount` or `componentDidUpdate` lifecycle hooks.
-
-Using the `ref` callback to set a property on the class is a common pattern for accessing DOM elements. The preferred way is to set the property in the `ref` callback like in the above example. There is even a shorter way to write it: `ref={input => this.textInput = input}`. 
 
 You can pass callback refs between components like you can with object refs that were created with `React.createRef()`.
 

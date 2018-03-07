@@ -75,7 +75,7 @@ function ListItem({ item }) {
   return ( 
     <>
       <dt>{item.term}</dt>
-      <dd>{item.description}</dd>>
+      <dd>{item.description}</dd>
     </>
   );    
 }
@@ -133,7 +133,7 @@ Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarca
 
 Read more about the use of these elements to enhance accessibility here:
 
-- [Deque University - HTML 5 and ARIA Landmarks](https://dequeuniversity.com/assets/html/jquery-summit/html5/slides/landmarks.html)
+- [Accessible Landmarks](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### Programmatically managing focus
 

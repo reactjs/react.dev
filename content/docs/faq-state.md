@@ -101,6 +101,6 @@ This [GitHub comment](https://github.com/facebook/react/issues/11527#issuecommen
 
 ### Should I use a state management library like Redux or MobX?
 
-[Maybe.](http://redux.js.org/docs/faq/General.html#general-when-to-use)
+[Maybe.](https://redux.js.org/faq/general#when-should-i-use-redux)
 
 It's a good idea to get to know React first, before adding in additional libraries. You can build quite complex applications using only React.

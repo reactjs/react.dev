@@ -1,9 +1,9 @@
 ---
 title: Update on Async Rendering
-author: [bvaughn, gaearon]
+author: [bvaughn]
 ---
 
-For the past few months, the React team has been experimenting with [asynchronous rendering](/blog/2017/09/26/react-v16.0.html#new-core-architecture), and we are very excited about the new features it enables.
+For the past few months, the React team has been experimenting with [asynchronous rendering](/blog/2018/03/01/sneak-peek-beyond-react-16.html), and we are very excited about the new features it enables.
 
 Along the way, our research has shown that some of our component lifecycles tend to encourage unsafe coding practices. They are:
 
@@ -18,27 +18,6 @@ These lifecycle methods have often been misunderstood and subtly misused; furthe
 * **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work in this release.)
 
 In this post, we will explore some of the potential capabilities of async rendering, and we'll outline a migration plan for components that rely on these legacy lifecycles.
-
-## What can asynchronous rendering do?
-
-#### With every new version, our goal is to make it easier for developers using React to build great user experiences
-
-We have been fine-tuning the performance of React with every new release. However, despite what synthetic benchmarks say, we've found that the bottleneck in real-world apps is generally not React itself, but the application code that uses it. In order to unlock the next wave of performance optimizations and new features, we need React to be smarter about when to re-render components and flush updates to the screen.
-
-> Note
->
-> React already has some optimizations in this regard. For example, React batches state updates so that if you call `setState` multiple times in quick succession, it only renders once.
-
-We found that asynchronous rendering can help in several ways. For example:
-
-1. As users navigate within an app, newly displayed components often have asynchronous dependencies (including data, images, and code splitting). This leads to a lot of boilerplate code managing data fetching and displaying the loading states. It can also lead to a "cascade of spinners" as the data loads, causing DOM reflows and janky user experience. We'd like to make it easier for product developers to express asynchronous dependencies and to wait to show a component until all of its data has been loaded. React could keep the old UI "alive" and interactive for a certain period while the updated UI is not ready yet, and provide a declarative way to show a loading indicator if it takes more than a second.
-2. Fast updates within a short timeframe often cause jank because React processes each update individually. We'd like to automatically "combine" updates within a few hundred milliseconds when possible so that there is less re-rendering.
-3. Some updates are inherently less important than others. For example, if you're writing a [live-updating search filter input](https://zeit.co/blog/domains-search-web#asynchronous-rendering), it is essential that the input is updated immediately (within a few milliseconds). Re-rendering the result list can be done later, and should not block the thread or cause stutter when typing. It would be nice if React had a way to mark the latter updates as having a lower priority. (Note that even debouncing the input doesn't help because if the rendering is synchronous (like in React today)—a keystroke can't interrupt the rendering once it has started. Asynchronous rendering solves this by splitting rendering into small chunks that can be paused and later resumed.)
-4. For UI elements like hidden popups and tabs, we'd like to be able to start pre-rendering their content when the browser isn't busy. This way, they can appear instantaneously in response to a later user interaction. However, we'd like to do this only [when the browser is idle](https://developers.google.com/web/updates/2015/08/using-requestidlecallback) to avoid slowing down other parts of the page.
-
-Of course, it's possible to implement some of these features today, but it's difficult. We hope to make them effortless by building them into React itself. By replacing problematic lifecycles with safer alternatives, we also hope to make it simple to write async-safe React components.
-
-In the next section, we'll look at how to update your existing components to prepare for the upcoming lifecycle changes.
 
 ## Updating class components
 

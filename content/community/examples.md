@@ -19,3 +19,4 @@ There are many example projects created by the React community. Feel free to add
 * **[Product Comparison Page](https://github.com/Rhymond/product-compare-react)** Simple Product Compare page built in React
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL.
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.
+* **[Builder Book](https://github.com/builderbook/builderbook)** Open source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB.

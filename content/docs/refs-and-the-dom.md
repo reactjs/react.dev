@@ -111,7 +111,7 @@ React will assign the `value` property with the DOM element when the component m
 
 If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:
 
-```javascript{4,7,12}
+```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {
   constructor(props) {
     super(props);

@@ -29,3 +29,5 @@ You can use the [raf](https://www.npmjs.com/package/raf) package to shim `reques
 ```js
 import 'raf/polyfill';
 ```
+
+If you're using `jsdom-global` to inject `document`, `window` and other DOM API into Node.js environment, make sure that `raf` polyfill gets imported first before `jsdom-global` to ensure that the right environment gets polyfilled.

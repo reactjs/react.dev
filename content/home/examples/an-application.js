@@ -12,9 +12,13 @@ class TodoApp extends React.Component {
         <h3>TODO</h3>
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
+          <label htmlFor="new-todo">
+            What needs to be done?
+          </label>
           <input
             aria-label="Add a new to-do item"
             placeholder="Add a to-do..."
+            id="new-todo"
             onChange={this.handleChange}
             value={this.state.text}
           />

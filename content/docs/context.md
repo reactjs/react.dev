@@ -15,6 +15,10 @@ With React, it's easy to track the flow of data through your React components. W
 In some cases, you want to pass data through the component tree without having to pass the props down manually at every level.
 You can do this directly in React with the powerful "context" API.
 
+> Note:
+>
+> A [new, safe version of context](https://github.com/reactjs/rfcs/blob/master/text/0002-new-version-of-context.md) is under development for the upcoming 16.3 release.
+
 
 ## Why Not To Use Context
 

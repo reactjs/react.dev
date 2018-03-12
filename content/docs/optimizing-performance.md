@@ -440,6 +440,8 @@ If you have concerns about inconsistent development practices on your team that 
 
 Furthermore, if you have a very simple component, it might actually perform better *without* a `shouldComponentUpdate` method. This is because even the comparison to decide whether or not a component should be re-rendered costs something, and if you are often returning true from `shouldComponentUpdate` at the end of that computation, the time spent checking whether or not to re-render is wasted. (However, this is unlikley to be true unless your render function is quite minimal, with little to no logic.) This is another reason to prefer functions over classes for simple presentational components, especially given the optimizations for functional components mentioned above.
 
+There is one other consideration: the "render prop" technique. Using a render prop can negate the advantage that comes from using `React.PureComponent` if not done carefully. [More information](https://reactjs.org/docs/render-props.html#caveats)
+
 ### Generally speaking, use functional components whenever possible
 
 If your component doesn't actually need to be written as a class in order to do what it needs to do, start out by writing it as a function. Although React's optimization for functional components is a small one, it's still certainly possible that your functional component will outperform the same component written as a `PureComponent`, and it will definitely outperform the equivalent regular class component (unless you wrote your own `shouldComponentUpdate` method for it). And more importantly, this will help your codebase to be more readable and consistent, following the general guideline of using functions for simple presentational components.

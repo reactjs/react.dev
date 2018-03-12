@@ -142,7 +142,7 @@ The problem with this syntax is that a different callback is created each time t
 
 ## Passing Arguments to Event Handlers
 
-Inside a loop it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:
+Inside a loop it is common to want to pass an extra parameter to an event handler. For example, if `id` were the row ID, either of the following would work:
 
 ```js
 <button onClick={(e) => this.deleteRow(id, e)}>Delete Row</button>
@@ -152,3 +152,5 @@ Inside a loop it is common to want to pass an extra parameter to an event handle
 The above two lines are equivalent, and use [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) and [`Function.prototype.bind`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) respectively.
 
 In both cases, the `e` argument representing the React event will be passed as a second argument after the ID. With an arrow function, we have to pass it explicitly, but with `bind` any further arguments are automatically forwarded.
+
+The FAQ page for [Passing Functions to Components](/docs/faq-functions.html) shows more approaches for attaching paramenters to event handlers.

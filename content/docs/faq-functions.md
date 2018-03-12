@@ -146,8 +146,8 @@ This is equivalent to calling `.bind`:
 
 #### Example: Passing params using arrow functions
 
-```jsx
-const A = 65 // ASCII character code
+```jsx{12-14,21}
+const A = 65; // ASCII character code
 
 class Alphabet extends React.Component {
   constructor(props) {
@@ -178,12 +178,12 @@ class Alphabet extends React.Component {
 }
 ```
 
-#### Example: Passing params using data-attributes
+#### Example: Passing params to DOM elements using data-attributes
 
-Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
+Alternately, you can use DOM APIs to store data needed for event handlers on the DOM elements themselves. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on `React.PureComponent` equality checks.
 
-```jsx
-const A = 65 // ASCII character code
+```jsx{13-17,25}
+const A = 65; // ASCII character code
 
 class Alphabet extends React.Component {
   constructor(props) {
@@ -214,6 +214,59 @@ class Alphabet extends React.Component {
         </ul>
       </div>
     )
+  }
+}
+```
+
+#### Example: Passing params to class-based elements using props
+
+The DOM data-attribute approach can be adapted for class-based elements if you pass the data needed for event handlers as props. This works to optimize a large number of elements and pairs well with children that extend `React.PureComponent`.
+
+```jsx{13-15,23,38}
+const A = 65; // ASCII character code
+
+class Alphabet extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+    this.state = {
+      justClicked: null,
+      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
+    };
+  }
+
+  handleClick(letter) {
+    this.setState({ justClicked: letter });
+  }
+
+  render() {
+    return (
+      <div>
+        Just clicked: {this.state.justClicked}
+        <ul>
+          {this.state.letters.map(letter =>
+            <Letter key={letter} letter={letter} onClick={this.handleClick}/>
+          )}
+        </ul>
+      </div>
+    )
+  }
+}
+
+class Letter extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.onClick = this.onClick.bind(this);
+  }
+
+  onClick(e) {
+    this.props.onClick(this.props.letter);
+  }
+
+  render() {
+    return <li onClick={this.onClick}>
+      {this.props.letter}
+    </li>
   }
 }
 ```

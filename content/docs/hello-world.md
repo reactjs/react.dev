@@ -23,7 +23,7 @@ ReactDOM.render(
 );
 ```
 
-It renders a header saying "Hello, world!" on the page.
+It renders a heading saying "Hello, world!" on the page.
 
 The next few sections will gradually introduce you to using React. We will examine the building blocks of React apps: elements and components. Once you master them, you can create complex apps from small reusable pieces.
 

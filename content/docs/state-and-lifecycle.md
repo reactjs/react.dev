@@ -241,7 +241,7 @@ The `componentDidMount()` hook runs after the component output has been rendered
 ```js{2-5}
   componentDidMount() {
     this.timerID = setInterval(
-      () => this.tick(),
+      this.tick,
       1000
     );
   }
@@ -274,7 +274,7 @@ class Clock extends React.Component {
 
   componentDidMount() {
     this.timerID = setInterval(
-      () => this.tick(),
+      this.tick,
       1000
     );
   }

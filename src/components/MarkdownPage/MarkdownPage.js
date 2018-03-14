@@ -31,6 +31,21 @@ type Props = {
   titlePostfix: string,
 };
 
+const getPaginatedTitle = (
+  sectionList: Array<Object>,
+  templateFile: ?string,
+) => {
+  if (!templateFile) {
+    return null;
+  }
+
+  const sectionItems = sectionList.map(section => section.items);
+  const flattenedSectionItems = [].concat.apply([], sectionItems);
+  const linkId = templateFile.replace('.html', '');
+
+  return flattenedSectionItems.find(item => item.id === linkId);
+};
+
 const MarkdownPage = ({
   authors = [],
   createLink,
@@ -44,6 +59,9 @@ const MarkdownPage = ({
 }: Props) => {
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
+
+  const prev = getPaginatedTitle(sectionList, markdownRemark.frontmatter.prev);
+  const next = getPaginatedTitle(sectionList, markdownRemark.frontmatter.next);
 
   return (
     <Flex
@@ -123,13 +141,8 @@ const MarkdownPage = ({
         </Container>
       </div>
 
-      {/* TODO Read prev/next from index map, not this way */}
-      {(markdownRemark.frontmatter.next || markdownRemark.frontmatter.prev) && (
-        <NavigationFooter
-          location={location}
-          next={markdownRemark.frontmatter.next}
-          prev={markdownRemark.frontmatter.prev}
-        />
+      {(next || prev) && (
+        <NavigationFooter location={location} next={next} prev={prev} />
       )}
     </Flex>
   );

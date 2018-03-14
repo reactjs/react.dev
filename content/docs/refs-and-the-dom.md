@@ -53,16 +53,16 @@ class MyComponent extends React.Component {
 
 ### Accessing Refs
 
-When a ref is passed to an element in `render`, a reference to the node becomes accessible at the `value` attribute of the ref.
+When a ref is passed to an element in `render`, a reference to the node becomes accessible at the `current` attribute of the ref.
 
 ```javascript
-const node = this.myRef.value
+const node = this.myRef.current
 ```
 
 The value of the ref differs depending on the type of the node:
 
-- When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `value` property.
-- When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `value`.
+- When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
+- When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
 - **You may not use the `ref` attribute on functional components** because they don't have instances.
 
 The examples below demonstrate the differences.
@@ -82,8 +82,8 @@ class CustomTextInput extends React.Component {
 
   focusTextInput() {
     // Explicitly focus the text input using the raw DOM API
-    // Note: we're accessing "value" to get the DOM node
-    this.textInput.value.focus();
+    // Note: we're accessing "current" to get the DOM node
+    this.textInput.current.focus();
   }
 
   render() {
@@ -105,7 +105,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will assign the `value` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle hooks.
+React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle hooks.
 
 #### Adding a Ref to a Class Component
 
@@ -119,7 +119,7 @@ class AutoFocusTextInput extends React.Component {
   }
 
   componentDidMount() {
-    this.textInput.value.focusTextInput();
+    this.textInput.current.focusTextInput();
   }
 
   render() {
@@ -171,7 +171,7 @@ function CustomTextInput(props) {
   let textInput = React.createRef();
 
   function handleClick() {
-    textInput.value.focus();
+    textInput.current.focus();
   }
 
   return (
@@ -221,7 +221,7 @@ class Parent extends React.Component {
 }
 ```
 
-In the example above, `Parent` passes its class property `this.inputElement` as an `inputRef` prop to the `CustomTextInput`, and the `CustomTextInput` passes the same ref as a special `ref` attribute to the `<input>`. As a result, `this.inputElement.value` in `Parent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
+In the example above, `Parent` passes its class property `this.inputElement` as an `inputRef` prop to the `CustomTextInput`, and the `CustomTextInput` passes the same ref as a special `ref` attribute to the `<input>`. As a result, `this.inputElement.current` in `Parent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
 
 Note that the name of the `inputRef` prop in the above example has no special meaning, as it is a regular component prop. However, using the `ref` attribute on the `<input>` itself is important, as it tells React to attach a ref to its DOM node.
 
@@ -259,7 +259,7 @@ class Grandparent extends React.Component {
 }
 ```
 
-Here, the ref `this.inputElement` is first specified by `Grandparent`. It is passed to the `Parent` as a regular prop called `inputRef`, and the `Parent` passes it to the `CustomTextInput` as a prop too. Finally, the `CustomTextInput` reads the `inputRef` prop and attaches the passed ref as a `ref` attribute to the `<input>`. As a result, `this.inputElement.value` in `Grandparent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
+Here, the ref `this.inputElement` is first specified by `Grandparent`. It is passed to the `Parent` as a regular prop called `inputRef`, and the `Parent` passes it to the `CustomTextInput` as a prop too. Finally, the `CustomTextInput` reads the `inputRef` prop and attaches the passed ref as a `ref` attribute to the `<input>`. As a result, `this.inputElement.current` in `Grandparent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
 
 When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged.
 
@@ -276,21 +276,21 @@ class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
 
-    this.textInput = { value: null }; // initial placeholder for the ref
+    this.textInput = { current: null }; // initial placeholder for the ref
 
     this.setTextInputRef = element => {
-      this.textInput.value = element
+      this.textInput.current = element
     };
 
     this.focusTextInput = () => {
       // Focus the text input using the raw DOM API
-      this.textInput.value.focus();
+      this.textInput.current.focus();
     };
   }
 
   componentDidMount () {
     // autofocus the input on mount
-    if (this.textInput.value) this.focusTextInput()
+    if (this.textInput.current) this.focusTextInput()
   }
 
   render() {

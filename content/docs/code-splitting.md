@@ -164,7 +164,8 @@ interacting with other elements on the page at the same time.
 
 Here's an example of how to setup route-based code splitting into your app using
 libraries like [React Router](https://reacttraining.com/react-router/) and
-[React Loadable](https://github.com/thejameskyle/react-loadable).
+[React Loadable](https://github.com/thejameskyle/react-loadable). You should use 
+render of Route instead of component to prevent remounting behavior based on [React router document](https://reacttraining.com/react-router/core/api/Route/component)
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -185,8 +186,8 @@ const About = Loadable({
 const App = () => (
   <Router>
     <Switch>
-      <Route exact path="/" component={Home}/>
-      <Route path="/about" component={About}/>
+      <Route exact path="/" render={Home}/>
+      <Route path="/about" render={About}/>
     </Switch>
   </Router>
 );

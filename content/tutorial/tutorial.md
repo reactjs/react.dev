@@ -214,11 +214,12 @@ First, add a constructor to the class to initialize the state:
 
 ```javascript{2-7}
 class Square extends React.Component {
+  state = {
+    value: null,
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
+    super(props);    
   }
 
   render() {
@@ -242,11 +243,12 @@ Now the `<button>` tag looks like this:
 
 ```javascript{10-12}
 class Square extends React.Component {
+  state = {
+    value: null,
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      value: null,
-    };
+    super(props);    
   }
 
   render() {
@@ -296,11 +298,12 @@ Pulling state upwards like this is common when refactoring React components, so 
 
 ```javascript{2-7}
 class Board extends React.Component {
+  state = {
+    squares: Array(9).fill(null),
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-    };
+    super(props);    
   }
 
   renderSquare(i) {
@@ -413,11 +416,12 @@ Try clicking a square – you should get an error because we haven't defined `ha
 
 ```javascript{9-13}
 class Board extends React.Component {
+  state = {
+    squares: Array(9).fill(null),
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-    };
+    super(props);    
   }
 
   handleClick(i) {
@@ -542,12 +546,13 @@ Let's default the first move to be by 'X'. Modify our starting state in our Boar
 
 ```javascript{6}
 class Board extends React.Component {
+  state = {
+    squares: Array(9).fill(null),
+    xIsNext: true,
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true,
-    };
+    super(props);    
   }
 ```
 
@@ -578,12 +583,13 @@ After these changes you should have this Board component:
 
 ```javascript{6,11-16,29}
 class Board extends React.Component {
+  state = {
+    squares: Array(9).fill(null),
+    xIsNext: true,
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      squares: Array(9).fill(null),
-      xIsNext: true,
-    };
+    super(props);    
   }
 
   handleClick(i) {
@@ -729,14 +735,15 @@ First, set up the initial state for Game by adding a constructor to it:
 
 ```javascript{2-10}
 class Game extends React.Component {
+  state = {
+    history: [{
+      squares: Array(9).fill(null),
+    }],
+    xIsNext: true,
+  }
+  
   constructor(props) {
-    super(props);
-    this.state = {
-      history: [{
-        squares: Array(9).fill(null),
-      }],
-      xIsNext: true,
-    };
+    super(props);    
   }
 
   render() {

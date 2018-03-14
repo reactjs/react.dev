@@ -16,8 +16,6 @@ class TodoApp extends React.Component {
             What needs to be done?
           </label>
           <input
-            aria-label="Add a new to-do item"
-            placeholder="Add a to-do..."
             id="new-todo"
             onChange={this.handleChange}
             value={this.state.text}

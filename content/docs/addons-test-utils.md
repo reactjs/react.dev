@@ -98,7 +98,7 @@ Render a React element into a detached DOM node in the document. **This function
 > Note:
 >
 > You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
-> Also, despite the name of this method, it doesn't actually render the element to the `document`. Instead it creates a div, renders to that div, and returns the component instance. This method name may be changed in the future (in a major version bump).
+> Also, despite the name of this method, it doesn't actually render the element to the `document`. Instead it creates a div, renders to that div, and returns the component instance (if the rendered component is an instance of Component class). This method name may be changed in the future (in a major version bump).
 
 * * *
 

@@ -44,6 +44,10 @@ This new lifecycle is invoked after a component is instantiated and when it rece
 
 Now let's take a look at some examples.
 
+> Note
+>
+> For brevity, the examples below are written using the experimental class properties transform, but the same migration strategies apply without it.
+
 ### Initializing state
 
 This example shows a component with `setState` calls inside of `componentWillMount`:

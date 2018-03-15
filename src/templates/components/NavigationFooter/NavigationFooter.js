@@ -45,7 +45,7 @@ const NavigationFooter = ({next, prev, location}) => {
                   css={{
                     paddingTop: 10,
                   }}>
-                  <PrimaryLink location={location} to={prev.id}>
+                  <PrimaryLink location={location} to={`${prev.id}.html`}>
                     {prev.title}
                   </PrimaryLink>
                 </div>
@@ -66,7 +66,7 @@ const NavigationFooter = ({next, prev, location}) => {
                   css={{
                     paddingTop: 10,
                   }}>
-                  <PrimaryLink location={location} to={next.id}>
+                  <PrimaryLink location={location} to={`${next.id}.html`}>
                     {next.title}
                   </PrimaryLink>
                 </div>

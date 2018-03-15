@@ -276,15 +276,15 @@ class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
 
-    this.textInput = { current: null }; // initial placeholder for the ref
+    this.textInput = null;
 
     this.setTextInputRef = element => {
-      this.textInput.current = element
+      this.textInput = element
     };
 
     this.focusTextInput = () => {
       // Focus the text input using the raw DOM API
-      this.textInput.current.focus();
+      this.textInput.focus();
     };
   }
 

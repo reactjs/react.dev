@@ -9,6 +9,6 @@ class MyComponent extends React.Component {
 
   componentDidMount() {
     // highlight-next-line
-    this.divRef.value.focus();
+    this.divRef.current.focus();
   }
 }

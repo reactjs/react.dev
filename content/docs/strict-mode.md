@@ -34,7 +34,7 @@ Addressing the issues identified by strict mode _now_ will make it easier for yo
 
 ### Warning about legacy string ref API usage
 
-Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recomendation was to [use the callback form instead](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs).
+Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to [use the callback form instead](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
 React 16.3 added a third option that offers the convenience of a string ref without any of the downsides:
 `embed:16-3-release-blog-post/create-ref-example.js`

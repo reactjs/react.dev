@@ -31,10 +31,7 @@ type Props = {
   titlePostfix: string,
 };
 
-const getPaginatedTitle = (
-  sectionList: Array<Object>,
-  templateFile: ?string,
-) => {
+const getPageById = (sectionList: Array<Object>, templateFile: ?string) => {
   if (!templateFile) {
     return null;
   }
@@ -60,8 +57,8 @@ const MarkdownPage = ({
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
-  const prev = getPaginatedTitle(sectionList, markdownRemark.frontmatter.prev);
-  const next = getPaginatedTitle(sectionList, markdownRemark.frontmatter.next);
+  const prev = getPageById(sectionList, markdownRemark.frontmatter.prev);
+  const next = getPageById(sectionList, markdownRemark.frontmatter.next);
 
   return (
     <Flex

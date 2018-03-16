@@ -16,10 +16,12 @@ function withTheme(Component) {
   }
 
   // Intercept the "ref" and pass it as a custom prop.
-  // highlight-range{1-3}
-  return React.forwardRef((props, ref) => (
-    <ThemedComponent {...props} forwardedRef={ref} />
-  ));
+  // highlight-range{1, 3}
+  return React.forwardRef(function forward(props, ref) {
+    return (
+      <ThemedComponent {...props} forwardedRef={ref} />
+    );
+  });
 }
 
 // highlight-next-line

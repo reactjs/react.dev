@@ -8,7 +8,7 @@ class FancyButton extends React.Component {
   render() {
     // highlight-next-line
     const {label, theme, ...rest} = this.props;
-    // highlight-range{4}
+    // highlight-range{5}
     return (
       <button
         {...rest}

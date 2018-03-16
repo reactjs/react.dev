@@ -394,30 +394,6 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 ### Refs Aren't Passed Through
 
-While the convention for higher-order components is to pass through all props to the wrapped component, it's not possible to pass through refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+While the convention for higher-order components is to pass through all props to the wrapped component, this does not work for refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
 
-If you find yourself facing this problem, the ideal solution is to figure out how to avoid using `ref` at all. Occasionally, users who are new to the React paradigm rely on refs in situations where a prop would work better.
-
-That said, there are times when refs are a necessary escape hatch — React wouldn't support them otherwise. Focusing an input field is an example where you may want imperative control of a component. In that case, one solution is to pass a ref callback as a normal prop, by giving it a different name:
-
-```js
-function Field({ inputRef, ...rest }) {
-  return <input ref={inputRef} {...rest} />;
-}
-
-// Wrap Field in a higher-order component
-const EnhancedField = enhance(Field);
-
-// Inside a class component's render method...
-<EnhancedField
-  inputRef={(inputEl) => {
-    // This callback gets passed through as a regular prop
-    this.inputEl = inputEl
-  }}
-/>
-
-// Now you can call imperative methods
-this.inputEl.focus();
-```
-
-This is not a perfect solution by any means. We prefer that refs remain a library concern, rather than require you to manually handle them. We are exploring ways to solve this problem so that using a HOC is unobservable.
+The solution for this problem is to use the `React.forwardRef` API (introduced with React 16.3). [Learn more about it in the forwarding refs section](/docs/forwarding-refs.html).

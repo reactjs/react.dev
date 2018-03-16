@@ -66,6 +66,8 @@
       title: Web Components
     - id: higher-order-components
       title: Higher-Order Components
+    - id: forwarding-refs
+      title: Forwarding Refs
     - id: render-props
       title: Render Props
     - id: integrating-with-other-libraries

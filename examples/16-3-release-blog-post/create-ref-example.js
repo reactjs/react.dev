@@ -1,14 +1,14 @@
 class MyComponent extends React.Component {
   // highlight-next-line
-  divRef = React.createRef();
+  inputRef = React.createRef();
 
   render() {
     // highlight-next-line
-    return <input type="text" ref={this.divRef} />;
+    return <input type="text" ref={this.inputRef} />;
   }
 
   componentDidMount() {
     // highlight-next-line
-    this.divRef.current.focus();
+    this.inputRef.current.focus();
   }
 }

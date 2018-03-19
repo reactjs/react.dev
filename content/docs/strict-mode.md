@@ -1,6 +1,6 @@
 ---
 id: strict-mode
-title: StrictMode
+title: Strict Mode
 permalink: docs/strict-mode.html
 ---
 

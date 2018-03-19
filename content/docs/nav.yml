@@ -77,7 +77,7 @@
     - id: code-splitting
       title: Code-Splitting
     - id: strict-mode
-      title: StrictMode
+      title: Strict Mode
 - title: Reference
   items:
     - id: react-api

@@ -3,15 +3,17 @@ title: Update on Async Rendering
 author: [bvaughn]
 ---
 
-For the past few months, the React team has been experimenting with [asynchronous rendering](/blog/2018/03/01/sneak-peek-beyond-react-16.html), and we are very excited about the new features it enables.
+For the past few months, the React team has been working on [asynchronous rendering](/blog/2018/03/01/sneak-peek-beyond-react-16.html), and we are very excited about the new features it enables.
 
-Along the way, our research has shown that some of our component lifecycles tend to encourage unsafe coding practices. They are:
+Along the way, we've learned that some of our legacy component lifecycles tend to encourage unsafe coding practices. They are:
 
 * `componentWillMount`
 * `componentWillReceiveProps`
 * `componentWillUpdate`
 
-These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that these potential problems may be more prominent with async rendering. Because of this, we are adding an "UNSAFE_" prefix to these lifecycles in a future release. React [follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so the migration path will be gradual:
+These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that these potential problems may be more prominent with async rendering. Because of this, we are adding an "UNSAFE_" prefix to these lifecycles in a future release.
+
+[React follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so the migration path will be gradual:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
 * **16.4**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)

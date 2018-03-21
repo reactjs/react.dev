@@ -21,9 +21,13 @@ In a typical React application, data is passed top-down (parent to child) via pr
 
 ## Motivation
 
-Context is designed to relieve the pain of passing props down through a deeply nested component tree. For example, in the code below we manually thread through a color prop in order to style the Button and Message components. Using context, we can avoid passing props through intermediate elements.
+Context is designed to relieve the pain of passing props down through a deeply nested component tree. For example, in the code below we manually thread through a color prop in order to style the Button and Message components:
 
-`embed:context/motivation.js`
+`embed:context/motivation-problem.js`
+
+Using context, we can avoid passing props through intermediate elements:
+
+`embed:context/motivation-solution.js`
 
 ## API
 

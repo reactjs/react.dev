@@ -6,6 +6,16 @@ permalink: docs/context.html
 
 Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
+- [API](#api)
+  - [React.createContext](#reactcreatecontext)
+  - [Provider](#provider)
+  - [Consumer](#consumer)
+- [Examples](#examples)
+  - [Static Context](#static-context)
+  - [Dynamic Context](#dynamic-context)
+- [Motivation](#motivation)
+- [Legacy API](#legacy-api)
+
 ## API
 
 ### `React.createContext`

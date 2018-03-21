@@ -336,7 +336,7 @@ const sharedStyles = {
       },
 
       '& li': {
-        marginTop: 20,
+        marginTop: 10,
       },
 
       '& li.button-newapp': {
@@ -345,6 +345,7 @@ const sharedStyles = {
 
       '& ol, & ul': {
         marginLeft: 20,
+        marginTop: 10,
       },
     },
 

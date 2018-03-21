@@ -67,7 +67,7 @@ Here is an example illustrating how you might inject a "theme" using context:
 
 A more complex example with dynamic values for the theme:
 
-**theme-contex.js**
+**theme-context.js**
 `embed:context/theme-detailed-theme-context.js`
 
 **themed-button.js**

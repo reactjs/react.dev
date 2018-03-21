@@ -1,3 +1,4 @@
+// highlight-range{1}
 const ColorContext = React.createContext();
 
 class Button extends React.Component {

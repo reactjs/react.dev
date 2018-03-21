@@ -6,7 +6,7 @@ permalink: docs/context.html
 
 Context provides a way to pass data through the component tree without having to pass props down manually at every level.
 
-Typically, data in a React application is passed top-down (parent to child) via props. But sometimes it's useful to pass values through multiple levels without adding props to every intermediate component. Examples include a language preference, or a UI theme. Many components may rely on those but you don't want to have to pass a locale prop and a theme prop through every level of the tree.
+In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like this between components without having to explicitly pass a prop through every level of the tree.
 
 - [Motivation](#motivation)
 - [API](#api)
@@ -57,7 +57,7 @@ Accepts a `value` prop to be passed to Consumers that are descendants of this Pr
 
 A React component that subscribes to context changes.
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). This function receives the current context value and returns a React node, and will be called whenever the Provider's value is updated.
+Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). This function receives the current context value and returns a React node. It will be called whenever the Provider's value is updated.
 
 > Note:
 > 

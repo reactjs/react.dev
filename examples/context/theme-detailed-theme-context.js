@@ -9,7 +9,7 @@ export const themes = {
   },
 };
 
-// highlight-next-line
+// highlight-range{1-3}
 export const ThemeContext = React.createContext(
   themes.dark
 );

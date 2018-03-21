@@ -1,4 +1,4 @@
-import ThemeContext, {themes} from './theme-context';
+import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './button';
 
 class App extends React.Component {

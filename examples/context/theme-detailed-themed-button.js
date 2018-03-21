@@ -1,4 +1,4 @@
-import ThemeContext from './theme-context';
+import {ThemeContext} from './theme-context';
 
 class ThemedButton extends React.Component {
   // highlight-range{3-10}

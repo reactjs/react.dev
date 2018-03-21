@@ -10,6 +10,6 @@ export const themes = {
 };
 
 // highlight-next-line
-const ThemeContext = React.createContext(themes.dark);
-
-export default ThemeContext;
+export const ThemeContext = React.createContext(
+  themes.dark
+);

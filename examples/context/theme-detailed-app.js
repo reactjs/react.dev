@@ -1,34 +1,27 @@
-import ThemeContext from './theme-context';
+import ThemeContext, {themes} from './theme-context';
 import ThemedButton from './button';
 
 class App extends React.Component {
   state = {
-    theme: {
-      highlight: 'blue',
-      accent: 'purple',
-    },
+    theme: themes.light,
   };
 
-  changeHighlightColor = () => {
-    const colors = ['red', 'blue', 'green'];
-    const randomColor =
-      colors[Math.floor(Math.random() * 3)];
-    this.setState({
-      theme: {
-        ...this.state.theme,
-        highlight: randomColor,
-      },
-    });
+  toggleTheme = () => {
+    this.setState(state => ({
+      theme:
+        state.theme === themes.dark
+          ? themes.light
+          : themes.dark,
+    }));
   };
 
   render() {
+    //highlight-range{2,6}
     return (
       <ThemeContext.Provider value={this.state.theme}>
-        <div>
-          <ThemedButton onClick={this.changeHighlightColor}>
-            Change Theme
-          </ThemedButton>
-        </div>
+        <ThemedButton onClick={this.toggleTheme}>
+          Change Theme
+        </ThemedButton>
       </ThemeContext.Provider>
     );
   }

@@ -4,9 +4,11 @@ title: Legacy Context
 permalink: docs/legacy-context.html
 ---
 
-> This API is deprecated as of React 16.3.
-> 
-> The API will be supported in all 16.x releases, but applications using it should migrate to the [new API](/docs/context.html). The experimental API lacked a safe mechanism to update context. Version 16.3 introduced a new context API that is more efficient and supports both static type checking and deep updates.
+> Deprecation Warning
+>
+> The legacy API has been deprecated and will be removed in version 17.
+> Use the [new context API](/docs/context.html) introduced with version 16.3.
+> The legacy API will continue working for all 16.x releases.
 
 ## How To Use Context
 

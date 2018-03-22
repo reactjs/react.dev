@@ -16,14 +16,14 @@ These lifecycle methods have often been misunderstood and subtly misused; furthe
 [React follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so the migration path will be gradual:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
-* **16.4**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
+* **16.x**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
 * **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work in this release.)
 
 In this post, we will explore some of the potential capabilities of async rendering, and we'll outline a migration plan for components that rely on these legacy lifecycles.
 
 ## Updating class components
 
-#### If you're an application developer, **you don't have to do anything about the legacy methods yet**. The primary purpose of the upcoming version 16.3 is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with the next minor release, version 16.4.
+#### If you're an application developer, **you don't have to do anything about the legacy methods yet**. The primary purpose of the upcoming version 16.3 is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with a future 16.x release.
 
 However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional "recipes" to our documentation that show how to perform common tasks in a way that avoids the problematic lifecycles.
 

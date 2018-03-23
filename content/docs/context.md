@@ -32,7 +32,9 @@ Using context, we can avoid passing props through intermediate elements:
 
 `embed:context/motivation-solution.js`
 
-Note: Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to accessed in many components at multiple levels.
+> Note
+>
+> Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to accessed in many components at multiple levels.
 
 ## API
 
@@ -68,7 +70,7 @@ A React component that subscribes to context changes.
 
 Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is).
 
-> Note:
+> Note
 > 
 > For more information about this pattern, see [render props](/docs/render-props.html).
 
@@ -101,7 +103,7 @@ A more complex example with dynamic values for the theme:
 
 ## Legacy API
 
-> Note:
+> Note
 > 
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in React 17. Read the [legacy context docs here](/docs/legacy-context.html).
  

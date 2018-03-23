@@ -23,14 +23,6 @@ function Toolbar(props) {
 }
 
 class App extends React.Component {
-  static propTypes = {
-    theme: PropTypes.string,
-    signedInUser: PropTypes.shape({
-      id: number,
-      name: string,
-    }),
-  };
-
   render() {
     const {signedInUser, theme} = this.props;
 

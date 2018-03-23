@@ -6,7 +6,7 @@ permalink: docs/legacy-context.html
 
 > Note:
 >
-> The legacy context API will be removed in version 17.
+> The legacy context API will be removed in a future major version.
 > Use the [new context API](/docs/context.html) introduced with version 16.3.
 > The legacy API will continue working for all 16.x releases.
 

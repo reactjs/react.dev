@@ -55,7 +55,7 @@ Accepts a `value` prop to be passed to Consumers that are descendants of this Pr
 
 ```js
 <Consumer>
- { value => { /* render something based on the context value */ } }
+  {value => /* render something based on the context value */}
 </Consumer>
 ```
 

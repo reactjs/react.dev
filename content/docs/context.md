@@ -99,6 +99,8 @@ If two or more context values are often used together, you might want to conside
 
 ## Accessing Context in Lifecycle Methods
 
+Accessing values from context in lifecycle methods is a relatively common use case. Instead of adding context to every lifecycle method, you just need to pass it as a prop, and then work with it just like you'd normally work with a prop.
+
 `embed:context/lifecycles.js`
 
 ## Forwarding Refs to Context Consumers

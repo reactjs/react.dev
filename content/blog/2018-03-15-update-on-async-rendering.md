@@ -29,26 +29,23 @@ However, if you'd like to start using the new component API (or if you're a main
 
 ---
 
-Before we begin, here's a quick reminder of the lifecycle changes in version 16.3:
+Before we begin, here's a quick overview of the lifecycle changes planned for version 16.3:
 * We are adding the following lifecycle aliases: `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will be supported.)
-* We are introducing a new, static lifecycle, `getDerivedStateFromProps`:
+* We are introducing two new lifecycles, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`:
 
-```js
-static getDerivedStateFromProps(
-  nextProps: Props,
-  prevState: State
-): $Shape<State> | null
-```
+`embed:update-on-async-rendering/new-lifecycles-overview.js`
 
-This new lifecycle is invoked after a component is instantiated and when it receives new props. It should return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
+The new static `getSnapshotBeforeUpdate` lifecycle is invoked after a component is instantiated as well as when it receives new props. It should return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
----
+The new `getSnapshotBeforeUpdate` lifecycle gets called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`.
 
-Now let's take a look at some examples.
+We'll look at examples of how both of these lifecycles can be used below.
 
 > Note
 >
 > For brevity, the examples below are written using the experimental class properties transform, but the same migration strategies apply without it.
+
+---
 
 ### Initializing state
 
@@ -129,6 +126,17 @@ The recommended upgrade path for this component is to move data-updates into `co
 > Note
 >
 > If you're using an HTTP library that supports cancellation, like [axios](https://www.npmjs.com/package/axios), then it's simple to cancel an in-progress request when unmounting. For native Promises, you can use an approach like [the one shown here](https://gist.github.com/bvaughn/982ab689a41097237f6e9860db7ca8d6).
+
+### Reading DOM properties before an update
+
+Here is an example of a component that reads a property from the DOM before an update in order to maintain scroll position within a list:
+`embed:update-on-async-rendering/react-dom-properties-before-update-before.js`
+
+In the above example, `componentWillUpdate` is used to read the DOM property. However with async rendering, there may be delays between "render" phase lifecycles (like `componentWillUpdate` and `render`) and "commit" phase lifecycles (like `componentDidUpdate`). A user might continue scrolling during the delay, in which case the position value read from `componentWillUpdate` will be stale.
+
+The solution to this problem is to use the new "commit" phase lifecycle, `getSnapshotBeforeUpdate`. This method gets called _immediately before_ mutations are made (e.g. before the DOM is updated). It can return a value for React to pass as a parameter to `componentDidUpdate`, which gets called _immediately after_ mutations.
+
+`embed:update-on-async-rendering/react-dom-properties-before-update-after.js`
 
 ## Other scenarios
 

@@ -33,14 +33,14 @@ class App extends React.Component {
     // the default dark theme
     //highlight-range{3-5,7}
     return (
-      <div>
+      <Page>
         <ThemeContext.Provider value={this.state.theme}>
           <Toolbar changeTheme={this.toggleTheme} />
         </ThemeContext.Provider>
-        <div>
+        <Section>
           <ThemedButton />
-        </div>
-      </div>
+        </Section>
+      </Page>
     );
   }
 }

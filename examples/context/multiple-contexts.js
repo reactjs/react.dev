@@ -1,5 +1,4 @@
 // Create a theme context, defaulting to light theme
-// highlight-next-line
 const ThemeContext = React.createContext('light');
 
 // Signed-in user context

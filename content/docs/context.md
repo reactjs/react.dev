@@ -88,6 +88,9 @@ A more complex example with dynamic values for the theme:
 **app.js**
 `embed:context/theme-detailed-app.js`
 
+## Consuming Multiple Contexts
+
+`embed:context/multiple-contexts.js`
 ## Legacy API
 
 > The old context API was marked as legacy in React 16.3 and will be removed in version 17.

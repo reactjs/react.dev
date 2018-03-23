@@ -99,7 +99,11 @@ A more complex example with dynamic values for the theme:
 
 ## Forwarding Refs to Context Consumers
 
-`embed:context/forwarding-refs.js`
+**fancy-button.js**
+`embed:context/forwarding-refs-fancy-button.js`
+
+**app.js**
+`embed:context/forwarding-refs-app.js`
 
 ## Legacy API
 

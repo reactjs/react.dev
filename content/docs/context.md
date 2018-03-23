@@ -117,5 +117,5 @@ One issue with the render prop API is that refs don't automatically get passed t
 
 > Note
 > 
-> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React versin. Read the [legacy context docs here](/docs/legacy-context.html).
+> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
  

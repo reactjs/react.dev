@@ -32,7 +32,8 @@ Using context, we can avoid passing props through intermediate elements:
 
 `embed:context/motivation-solution.js`
 
-Note: Don't use context just to avoid passing props a few levels down.
+Note: Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to accessed in many components at multiple levels.
+
 ## API
 
 ### `React.createContext`

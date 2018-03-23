@@ -16,6 +16,9 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Examples](#examples)
   - [Static Context](#static-context)
   - [Dynamic Context](#dynamic-context)
+  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
+  - [Accessing Context in Lifecycle Methods](#accessing-context-in-lifecycle-methods)
+  - [Forwarding Refs to Context Consumers](#forwarding-refs-to-context-consumers)
 - [Legacy API](#legacy-api)
 
 
@@ -91,6 +94,15 @@ A more complex example with dynamic values for the theme:
 ## Consuming Multiple Contexts
 
 `embed:context/multiple-contexts.js`
+
+## Accessing Context in Lifecycle Methods
+
+`embed:context/lifecycles.js`
+
+## Forwarding Refs to Context Consumers
+
+`embed:context/forwarding-refs.js`
+
 ## Legacy API
 
 > The old context API was marked as legacy in React 16.3 and will be removed in version 17.

@@ -295,9 +295,13 @@ If you need to update `state` in response to `props` changes, use `UNSAFE_compon
 
 ### `getSnapshotBeforeUpdate()`
 
-`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture current values (e.g. scroll position) before they are potential changed.
+`getSnapshotBeforeUpdate()` is invoked right before the most recently rendered output is committed to e.g. the DOM. It enables your component to capture current values (e.g. scroll position) before they are potential changed. Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
 
-Any value returned by this lifecycle will be passed as a parameter to `componentDidUpdate()`.
+For example:
+
+`embed:react-component-reference/get-snapshot-before-update.js`
+
+In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` rather than `componentWillUpdate` in order to support async rendering. With async rendering, there may be delays between "render" phase lifecycles (like `componentWillUpdate` and `render`) and "commit" phase lifecycles (like `getSnapshotBeforeUpdate` and `componentDidUpdate`). If a user does something like resize the browser during this time, a `scrollHeight` value read from `componentWillUpdate` will be stale.
 
 * * *
 

@@ -2,27 +2,29 @@ import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './button';
 
 // An intermediate component that uses the ThemedButton
-const Toolbar = props => {
+function Toolbar(props) {
   return (
     <ThemedButton onClick={props.changeTheme}>
       Change Theme
     </ThemedButton>
   );
-};
+}
 
 class App extends React.Component {
-  state = {
-    theme: themes.light,
-  };
+  constructor(props) {
+    this.state = {
+      theme: themes.light,
+    };
 
-  toggleTheme = () => {
-    this.setState(state => ({
-      theme:
-        state.theme === themes.dark
-          ? themes.light
-          : themes.dark,
-    }));
-  };
+    this.toggleTheme = () => {
+      this.setState(state => ({
+        theme:
+          state.theme === themes.dark
+            ? themes.light
+            : themes.dark,
+      }));
+    };
+  }
 
   render() {
     //highlight-range{1-3}
@@ -31,14 +33,14 @@ class App extends React.Component {
     // the default dark theme
     //highlight-range{3-5,7}
     return (
-      <div>
+      <Page>
         <ThemeContext.Provider value={this.state.theme}>
           <Toolbar changeTheme={this.toggleTheme} />
         </ThemeContext.Provider>
-        <div>
+        <Section>
           <ThemedButton />
-        </div>
-      </div>
+        </Section>
+      </Page>
     );
   }
 }

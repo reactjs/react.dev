@@ -1,10 +1,10 @@
-const ThemedButton = props => {
+function ThemedButton(props) {
   //highlight-range{1}
   return <Button theme={props.theme} />;
-};
+}
 
 // An intermediate component
-const Toolbar = props => {
+function Toolbar(props) {
   // highlight-range{1-2,5}
   // The Toolbar component must take an extra theme prop
   // and pass it to the ThemedButton
@@ -13,7 +13,7 @@ const Toolbar = props => {
       <ThemedButton theme={props.theme} />
     </div>
   );
-};
+}
 
 class App extends React.Component {
   render() {

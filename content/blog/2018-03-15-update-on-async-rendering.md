@@ -132,9 +132,11 @@ The recommended upgrade path for this component is to move data-updates into `co
 Here is an example of a component that reads a property from the DOM before an update in order to maintain scroll position within a list:
 `embed:update-on-async-rendering/react-dom-properties-before-update-before.js`
 
-In the above example, `componentWillUpdate` is used to read the DOM property. However with async rendering, there may be delays between "render" phase lifecycles (like `componentWillUpdate` and `render`) and "commit" phase lifecycles (like `componentDidUpdate`). A user might continue scrolling during the delay, in which case the position value read from `componentWillUpdate` will be stale.
+In the above example, `componentWillUpdate` is used to read the DOM property. However with async rendering, there may be delays between "render" phase lifecycles (like `componentWillUpdate` and `render`) and "commit" phase lifecycles (like `componentDidUpdate`). A user might continue scrolling during this delay, in which case the position value read from `componentWillUpdate` will be stale.
 
 The solution to this problem is to use the new "commit" phase lifecycle, `getSnapshotBeforeUpdate`. This method gets called _immediately before_ mutations are made (e.g. before the DOM is updated). It can return a value for React to pass as a parameter to `componentDidUpdate`, which gets called _immediately after_ mutations.
+
+The two lifecycles can be used together like this:
 
 `embed:update-on-async-rendering/react-dom-properties-before-update-after.js`
 

@@ -105,6 +105,8 @@ Accessing values from context in lifecycle methods is a relatively common use ca
 
 ## Forwarding Refs to Context Consumers
 
+One issue with the render prop API is that refs don't automatically get passed to wrapped elements. To get around this, use `React.forwardRef`:
+
 **fancy-button.js**
 `embed:context/forwarding-refs-fancy-button.js`
 

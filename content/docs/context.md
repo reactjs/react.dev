@@ -90,6 +90,6 @@ A more complex example with dynamic values for the theme:
 
 ## Legacy API
 
-> The legacy context API was deprecated in React 16.3 and will be removed in version 17.
+> The old context API was marked as legacy in React 16.3 and will be removed in version 17.
 > 
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. Read the [legacy context docs here](/docs/legacy-context.html).

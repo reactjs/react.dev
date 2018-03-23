@@ -1,9 +1,9 @@
 class App extends React.Component {
   constructor(props) {
-    // highlight-range{2}    
+    // highlight-range{2}
     this.state = {
-      value: {something: 'something'}
-    }
+      value: {something: 'something'},
+    };
   }
 
   render() {
@@ -12,6 +12,6 @@ class App extends React.Component {
       <Provider value={this.state.value}>
         <Toolbar />
       </Provider>
-    )
+    );
   }
 }

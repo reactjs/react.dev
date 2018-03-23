@@ -15,7 +15,7 @@ class App extends React.Component {
     this.state = {
       theme: themes.light,
     };
-  
+
     this.toggleTheme = () => {
       this.setState(state => ({
         theme:

@@ -5,6 +5,6 @@ class App extends React.Component {
       <Provider value={{something: 'something'}}>
         <Toolbar />
       </Provider>
-    )
+    );
   }
 }

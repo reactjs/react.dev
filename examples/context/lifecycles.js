@@ -1,7 +1,13 @@
 class Button extends React.Component {
   componentDidMount() {
     // highlight-next-line
-    alert(this.props.theme);
+    // ThemeContext value is this.props.theme
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // highlight-range{1-2}
+    // Previous ThemeContext value is prevProps.theme
+    // New ThemeContext value is this.props.theme
   }
 
   render() {

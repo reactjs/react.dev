@@ -19,6 +19,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
   - [Accessing Context in Lifecycle Methods](#accessing-context-in-lifecycle-methods)
   - [Forwarding Refs to Context Consumers](#forwarding-refs-to-context-consumers)
+- [Caveats](#caveats)
 - [Legacy API](#legacy-api)
 
 
@@ -68,7 +69,7 @@ Accepts a `value` prop to be passed to Consumers that are descendants of this Pr
 
 A React component that subscribes to context changes.
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).
+Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). (This can cause some issues when passing objects as `value`: see [Caveats](#caveats).)
 
 > Note
 > 
@@ -89,7 +90,7 @@ A more complex example with dynamic values for the theme:
 **app.js**
 `embed:context/theme-detailed-app.js`
 
-## Consuming Multiple Contexts
+### Consuming Multiple Contexts
 
 To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
 
@@ -97,13 +98,13 @@ To keep context re-rendering fast, React needs to make each context consumer a s
 
 If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
 
-## Accessing Context in Lifecycle Methods
+### Accessing Context in Lifecycle Methods
 
 Accessing values from context in lifecycle methods is a relatively common use case. Instead of adding context to every lifecycle method, you just need to pass it as a prop, and then work with it just like you'd normally work with a prop.
 
 `embed:context/lifecycles.js`
 
-## Forwarding Refs to Context Consumers
+### Forwarding Refs to Context Consumers
 
 One issue with the render prop API is that refs don't automatically get passed to wrapped elements. To get around this, use `React.forwardRef`:
 
@@ -112,6 +113,17 @@ One issue with the render prop API is that refs don't automatically get passed t
 
 **app.js**
 `embed:context/forwarding-refs-app.js`
+
+## Caveats
+
+Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
+
+`embed:context/reference-caveats-problem.js`
+
+
+To get around this, lift the value into the parent's state:
+
+`embed:context/reference-caveats-solution.js`
 
 ## Legacy API
 

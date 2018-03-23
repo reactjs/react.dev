@@ -1,7 +1,9 @@
-// Create a theme context, defaulting to light theme
+// Theme context, default to light theme
+// highlight-next-line
 const ThemeContext = React.createContext('light');
 
 // Signed-in user context
+// highlight-next-line
 const UserContext = React.createContext();
 
 class App extends React.Component {
@@ -15,6 +17,7 @@ class App extends React.Component {
   };
 
   render() {
+    // highlight-range{9}
     return (
       <ThemeContext.Provider value={this.props.theme}>
         <UserContext.Provider

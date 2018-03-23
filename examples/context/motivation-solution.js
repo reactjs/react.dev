@@ -2,13 +2,15 @@
 // highlight-next-line
 const ThemeContext = React.createContext('light');
 
-// highlight-range{1,3-5}
-// The ThemedButton receives the theme from context
-const ThemedButton = props => (
-  <ThemeContext.Consumer>
-    {theme => <Button theme={theme} />}
-  </ThemeContext.Consumer>
-);
+const ThemedButton = props => {
+  // highlight-range{1,3-5}
+  // The ThemedButton receives the theme from context
+  return (
+    <ThemeContext.Consumer>
+      {theme => <Button theme={theme} />}
+    </ThemeContext.Consumer>
+  );
+};
 
 // An intermediate component
 const Toolbar = props => {

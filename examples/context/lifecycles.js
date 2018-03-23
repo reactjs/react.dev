@@ -1,5 +1,6 @@
 class Button extends React.Component {
   componentDidMount() {
+    // highlight-next-line
     alert(this.props.theme);
   }
 
@@ -13,6 +14,7 @@ class Button extends React.Component {
   }
 }
 
+// highlight-range{3}
 export default props => (
   <ThemeContext.Consumer>
     {theme => <Button {...props} theme={theme} />}

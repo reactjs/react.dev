@@ -6,7 +6,7 @@ function ThemedButton(props) {
     <ThemeContext.Consumer>
       {theme => (
         <button
-          {this.props}
+          {...props}
           style={{backgroundColor: theme.background}}
         />
       )}

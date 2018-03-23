@@ -101,7 +101,7 @@ A more complex example with dynamic values for the theme:
 
 ## Legacy API
 
-> The old context API was marked as legacy in React 16.3 and will be removed in version 17.
+> Note:
 > 
-> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. Read the [legacy context docs here](/docs/legacy-context.html).
+> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in React 17. Read the [legacy context docs here](/docs/legacy-context.html).
  

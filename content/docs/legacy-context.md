@@ -4,15 +4,15 @@ title: Legacy Context
 permalink: docs/legacy-context.html
 ---
 
-> Deprecation Warning
+> Note:
 >
-> The legacy API has been deprecated and will be removed in version 17.
+> The legacy context API will be removed in version 17.
 > Use the [new context API](/docs/context.html) introduced with version 16.3.
 > The legacy API will continue working for all 16.x releases.
 
 ## How To Use Context
 
-> This section documents a deprecated API. See the [new API](/docs/context.html).
+> This section documents a legacy API. See the [new API](/docs/context.html).
 
 Suppose you have a structure like:
 
@@ -107,7 +107,7 @@ If `contextTypes` is not defined, then `context` will be an empty object.
 
 ### Parent-Child Coupling
 
-> This section documents a deprecated API. See the [new API](/docs/context.html).
+> This section documents a legacy API. See the [new API](/docs/context.html).
 
 Context can also let you build an API where parents and children communicate. For example, one library that works this way is [React Router V4](https://reacttraining.com/react-router):
 
@@ -139,7 +139,7 @@ Before you build components with an API similar to this, consider if there are c
 
 ### Referencing Context in Lifecycle Methods
 
-> This section documents a deprecated API. See the [new API](/docs/context.html).
+> This section documents a legacy API. See the [new API](/docs/context.html).
 
 If `contextTypes` is defined within a component, the following [lifecycle methods](/docs/react-component.html#the-component-lifecycle) will receive an additional parameter, the `context` object:
 
@@ -154,7 +154,7 @@ If `contextTypes` is defined within a component, the following [lifecycle method
 
 ### Referencing Context in Stateless Functional Components
 
-> This section documents a deprecated API. See the [new API](/docs/context.html).
+> This section documents a legacy API. See the [new API](/docs/context.html).
 
 Stateless functional components are also able to reference `context` if `contextTypes` is defined as a property of the function. The following code shows a `Button` component written as a stateless functional component.
 
@@ -171,7 +171,7 @@ Button.contextTypes = {color: PropTypes.string};
 
 ### Updating Context
 
-> This section documents a deprecated API. See the [new API](/docs/context.html).
+> This section documents a legacy API. See the [new API](/docs/context.html).
 
 Don't do it.
 

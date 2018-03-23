@@ -95,7 +95,7 @@ To keep context re-rendering fast, React needs to make each context consumer a s
 
 `embed:context/multiple-contexts.js`
 
-If two or more context values are often used together, you might want to consider creating your own render prop component that provides both. [React Context Composer](https://github.com/FormidableLabs/react-context-composer/) is a simple library to help with this.
+If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
 
 ## Accessing Context in Lifecycle Methods
 

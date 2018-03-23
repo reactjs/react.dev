@@ -7,7 +7,7 @@ const ThemeContext = React.createContext('light');
 const UserContext = React.createContext();
 
 // An intermediate component that depends on both contexts
-const Toolbar = props => {
+function Toolbar(props) {
   // highlight-range{2-10}
   return (
     <ThemeContext.Consumer>
@@ -20,7 +20,7 @@ const Toolbar = props => {
       )}
     </ThemeContext.Consumer>
   );
-};
+}
 
 class App extends React.Component {
   static propTypes = {

@@ -2,13 +2,13 @@ import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './button';
 
 // An intermediate component that uses the ThemedButton
-const Toolbar = props => {
+function Toolbar(props) {
   return (
     <ThemedButton onClick={props.changeTheme}>
       Change Theme
     </ThemedButton>
   );
-};
+}
 
 class App extends React.Component {
   state = {

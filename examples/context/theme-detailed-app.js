@@ -1,6 +1,15 @@
 import {ThemeContext, themes} from './theme-context';
 import ThemedButton from './button';
 
+// An intermediate component that uses the ThemedButton
+const Toolbar = props => {
+  return (
+    <ThemedButton onClick={props.changeTheme}>
+      Change Theme
+    </ThemedButton>
+  );
+};
+
 class App extends React.Component {
   state = {
     theme: themes.light,
@@ -16,13 +25,20 @@ class App extends React.Component {
   };
 
   render() {
-    //highlight-range{2,6}
+    //highlight-range{1-3}
+    // The ThemedButton button inside the ThemeProvider
+    // uses the theme from state while the one outside uses
+    // the default dark theme
+    //highlight-range{3-5,7}
     return (
-      <ThemeContext.Provider value={this.state.theme}>
-        <ThemedButton onClick={this.toggleTheme}>
-          Change Theme
-        </ThemedButton>
-      </ThemeContext.Provider>
+      <div>
+        <ThemeContext.Provider value={this.state.theme}>
+          <Toolbar changeTheme={this.toggleTheme} />
+        </ThemeContext.Provider>
+        <div>
+          <ThemedButton />
+        </div>
+      </div>
     );
   }
 }

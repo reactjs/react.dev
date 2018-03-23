@@ -8,7 +8,7 @@ Context provides a way to pass data through the component tree without having to
 
 In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like this between components without having to explicitly pass a prop through every level of the tree.
 
-- [Motivation](#motivation)
+- [When to Use Context](#when-to-use-context)
 - [API](#api)
   - [React.createContext](#reactcreatecontext)
   - [Provider](#provider)
@@ -22,9 +22,9 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Legacy API](#legacy-api)
 
 
-## Motivation
+## When to Use Context
 
-Context is designed to relieve the pain of passing props down through a deeply nested component tree. For example, in the code below we manually thread through a color prop in order to style the Button and Message components:
+Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
 
 `embed:context/motivation-problem.js`
 
@@ -32,6 +32,7 @@ Using context, we can avoid passing props through intermediate elements:
 
 `embed:context/motivation-solution.js`
 
+Note: Don't use context just to avoid passing props a few levels down.
 ## API
 
 ### `React.createContext`
@@ -72,12 +73,6 @@ Requires a [function as a child](/docs/render-props.html#using-props-other-than-
 
 ## Examples
 
-### Static Context
-
-Here is an example illustrating how you might inject a "theme" using context:
-
-`embed:context/theme-example.js`
-
 ### Dynamic Context
 
 A more complex example with dynamic values for the theme:
@@ -108,3 +103,4 @@ A more complex example with dynamic values for the theme:
 > The old context API was marked as legacy in React 16.3 and will be removed in version 17.
 > 
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. Read the [legacy context docs here](/docs/legacy-context.html).
+ 

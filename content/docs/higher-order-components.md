@@ -9,7 +9,7 @@ A higher-order component (HOC) is an advanced technique in React for reusing com
 Concretely, **a higher-order component is a function that takes a component and returns a new component.**
 
 ```js
-const EnhancedComponent = higherOrderComponent(WrappedComponent);
+const EnhancedComponent = higherOrderComponent(OriginalComponent);
 ```
 
 Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
@@ -122,13 +122,13 @@ const BlogPostWithSubscription = withSubscription(
 );
 ```
 
-The first parameter is the wrapped component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
+The first parameter is the original component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
 
 When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed a `data` prop with the most current data retrieved from `DataSource`:
 
 ```js
 // This function takes a component...
-function withSubscription(WrappedComponent, selectData) {
+function withSubscription(OriginalComponent, selectData) {
   // ...and returns another component...
   return class extends React.Component {
     constructor(props) {
@@ -155,9 +155,9 @@ function withSubscription(WrappedComponent, selectData) {
     }
 
     render() {
-      // ... and renders the wrapped component with the fresh data!
+      // ... and renders the original component with the fresh data!
       // Notice that we pass through any additional props
-      return <WrappedComponent data={this.state.data} {...this.props} />;
+      return <OriginalComponent data={this.state.data} {...this.props} />;
     }
   };
 }
@@ -165,11 +165,11 @@ function withSubscription(WrappedComponent, selectData) {
 
 Note that a HOC doesn't modify the input component, nor does it use inheritance to copy its behavior. Rather, a HOC *composes* the original component by *wrapping* it in a container component. A HOC is a pure function with zero side-effects.
 
-And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
+And that's it! The original component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the original component isn't concerned with where the data came from.
 
-Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the wrapped component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
+Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the original component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
 
-Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.
+Like components, the contract between `withSubscription` and the original component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the original component. This may be useful if you change data-fetching libraries, for example.
 
 ## Don't Mutate the Original Component. Use Composition.
 
@@ -194,18 +194,18 @@ There are a few problems with this. One is that the input component cannot be re
 
 Mutating HOCs are a leaky abstraction—the consumer must know how they are implemented in order to avoid conflicts with other HOCs.
 
-Instead of mutation, HOCs should use composition, by wrapping the input component in a container component:
+Instead of mutation, HOCs should use composition, by wrapping the original component in a container component:
 
 ```js
-function logProps(WrappedComponent) {
+function logProps(OriginalComponent) {
   return class extends React.Component {
     componentWillReceiveProps(nextProps) {
       console.log('Current props: ', this.props);
       console.log('Next props: ', nextProps);
     }
     render() {
-      // Wraps the input component in a container, without mutating it. Good!
-      return <WrappedComponent {...this.props} />;
+      // Wraps the original component in a container, without mutating it. Good!
+      return <OriginalComponent {...this.props} />;
     }
   }
 }
@@ -215,9 +215,9 @@ This HOC has the same functionality as the mutating version while avoiding the p
 
 You may have noticed similarities between HOCs and a pattern called **container components**. Container components are part of a strategy of separating responsibility between high-level and low-level concerns. Containers manage things like subscriptions and state, and pass props to components that handle things like rendering UI. HOCs use containers as part of their implementation. You can think of HOCs as parameterized container component definitions.
 
-## Convention: Pass Unrelated Props Through to the Wrapped Component
+## Convention: Pass Unrelated Props Through to the Original Component
 
-HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
+HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the original component.
 
 HOCs should pass through props that are unrelated to its specific concern. Most HOCs contain a render method that looks something like this:
 
@@ -227,13 +227,13 @@ render() {
   // passed through
   const { extraProp, ...passThroughProps } = this.props;
 
-  // Inject props into the wrapped component. These are usually state values or
+  // Inject props into the original component. These are usually state values or
   // instance methods.
   const injectedProp = someStateOrInstanceMethod;
 
-  // Pass props to wrapped component
+  // Pass props to original component
   return (
-    <WrappedComponent
+    <OriginalComponent
       injectedProp={injectedProp}
       {...passThroughProps}
     />
@@ -245,7 +245,7 @@ This convention helps ensure that HOCs are as flexible and reusable as possible.
 
 ## Convention: Maximizing Composability
 
-Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:
+Not all HOCs look the same. Sometimes they accept only a single argument, the original component:
 
 ```js
 const NavbarWithRouter = withRouter(Navbar);
@@ -279,7 +279,7 @@ This form may seem confusing or unnecessary, but it has a useful property. Singl
 
 ```js
 // Instead of doing this...
-const EnhancedComponent = withRouter(connect(commentSelector)(WrappedComponent))
+const EnhancedComponent = withRouter(connect(commentSelector)(OriginalComponent))
 
 // ... you can use a function composition utility
 // compose(f, g, h) is the same as (...args) => f(g(h(...args)))
@@ -288,7 +288,7 @@ const enhance = compose(
   withRouter,
   connect(commentSelector)
 )
-const EnhancedComponent = enhance(WrappedComponent)
+const EnhancedComponent = enhance(OriginalComponent)
 ```
 
 (This same property also allows `connect` and other enhancer-style HOCs to be used as decorators, an experimental JavaScript proposal.)
@@ -299,17 +299,17 @@ The `compose` utility function is provided by many third-party libraries includi
 
 The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
 
-The most common technique is to wrap the display name of the wrapped component. So if your higher-order component is named `withSubscription`, and the wrapped component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
+The most common technique is to wrap the display name of the original component. So if your higher-order component is named `withSubscription`, and the original component's display name is `CommentList`, use the display name `WithSubscription(CommentList)`:
 
 ```js
-function withSubscription(WrappedComponent) {
+function withSubscription(OriginalComponent) {
   class WithSubscription extends React.Component {/* ... */}
-  WithSubscription.displayName = `WithSubscription(${getDisplayName(WrappedComponent)})`;
+  WithSubscription.displayName = `WithSubscription(${getDisplayName(OriginalComponent)})`;
   return WithSubscription;
 }
 
-function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
+function getDisplayName(OriginalComponent) {
+  return OriginalComponent.displayName || OriginalComponent.name || 'Component';
 }
 ```
 
@@ -348,9 +348,9 @@ When you apply a HOC to a component, though, the original component is wrapped w
 
 ```js
 // Define a static method
-WrappedComponent.staticMethod = function() {/*...*/}
+OriginalComponent.staticMethod = function() {/*...*/}
 // Now apply a HOC
-const EnhancedComponent = enhance(WrappedComponent);
+const EnhancedComponent = enhance(OriginalComponent);
 
 // The enhanced component has no static method
 typeof EnhancedComponent.staticMethod === 'undefined' // true
@@ -359,10 +359,10 @@ typeof EnhancedComponent.staticMethod === 'undefined' // true
 To solve this, you could copy the methods onto the container before returning it:
 
 ```js
-function enhance(WrappedComponent) {
+function enhance(OriginalComponent) {
   class Enhance extends React.Component {/*...*/}
   // Must know exactly which method(s) to copy :(
-  Enhance.staticMethod = WrappedComponent.staticMethod;
+  Enhance.staticMethod = OriginalComponent.staticMethod;
   return Enhance;
 }
 ```
@@ -371,9 +371,9 @@ However, this requires you to know exactly which methods need to be copied. You 
 
 ```js
 import hoistNonReactStatic from 'hoist-non-react-statics';
-function enhance(WrappedComponent) {
+function enhance(OriginalComponent) {
   class Enhance extends React.Component {/*...*/}
-  hoistNonReactStatic(Enhance, WrappedComponent);
+  hoistNonReactStatic(Enhance, OriginalComponent);
   return Enhance;
 }
 ```
@@ -394,7 +394,7 @@ import MyComponent, { someFunction } from './MyComponent.js';
 
 ### Refs Aren't Passed Through
 
-While the convention for higher-order components is to pass through all props to the wrapped component, it's not possible to pass through refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
+While the convention for higher-order components is to pass through all props to the original component, it's not possible to pass through refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the original component.
 
 If you find yourself facing this problem, the ideal solution is to figure out how to avoid using `ref` at all. Occasionally, users who are new to the React paradigm rely on refs in situations where a prop would work better.
 

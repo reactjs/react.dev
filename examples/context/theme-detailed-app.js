@@ -11,18 +11,20 @@ function Toolbar(props) {
 }
 
 class App extends React.Component {
-  state = {
-    theme: themes.light,
-  };
-
-  toggleTheme = () => {
-    this.setState(state => ({
-      theme:
-        state.theme === themes.dark
-          ? themes.light
-          : themes.dark,
-    }));
-  };
+  constructor(props) {
+    this.state = {
+      theme: themes.light,
+    };
+  
+    this.toggleTheme = () => {
+      this.setState(state => ({
+        theme:
+          state.theme === themes.dark
+            ? themes.light
+            : themes.dark,
+      }));
+    };
+  }
 
   render() {
     //highlight-range{1-3}

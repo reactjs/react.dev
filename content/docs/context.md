@@ -14,10 +14,10 @@ In a typical React application, data is passed top-down (parent to child) via pr
   - [Provider](#provider)
   - [Consumer](#consumer)
 - [Examples](#examples)
-  - [Static Context](#static-context)
   - [Dynamic Context](#dynamic-context)
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
   - [Accessing Context in Lifecycle Methods](#accessing-context-in-lifecycle-methods)
+  - [Consuming Context with a HOC](#consuming-context-with-a-hoc)
   - [Forwarding Refs to Context Consumers](#forwarding-refs-to-context-consumers)
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
@@ -103,6 +103,24 @@ If two or more context values are often used together, you might want to conside
 Accessing values from context in lifecycle methods is a relatively common use case. Instead of adding context to every lifecycle method, you just need to pass it as a prop, and then work with it just like you'd normally work with a prop.
 
 `embed:context/lifecycles.js`
+
+### Consuming Context with a HOC
+
+Some types of contexts are consumed by many components (e.g. theme or localization). It can be tedious to explicitly wrap each dependency with a `<Context.Consumer>` element. A [higher-order component](/docs/higher-order-components.html) can help with this.
+
+For example, a button component might consume a theme context like so:
+
+`embed:context/higher-order-component-before.js`
+
+That's alright for a few components, but what if we wanted to use the theme context in a lot of places?
+
+We could create a higher-order component called `withTheme`:
+
+`embed:context/higher-order-component.js`
+
+Now any component that depends on the theme context can easy subscribe to it using the `withTheme` function we've created:
+
+`embed:context/higher-order-component-usage.js`
 
 ### Forwarding Refs to Context Consumers
 

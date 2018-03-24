@@ -35,7 +35,7 @@ Before we begin, here's a quick overview of the lifecycle changes planned for ve
 
 `embed:update-on-async-rendering/new-lifecycles-overview.js`
 
-The new static `getSnapshotBeforeUpdate` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
+The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
 The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`.
 

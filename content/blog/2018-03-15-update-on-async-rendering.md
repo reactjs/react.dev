@@ -55,7 +55,14 @@ We'll look at examples of how both of these lifecycles can be used below.
 >
 > For brevity, the examples below are written using the experimental class properties transform, but the same migration strategies apply without it.
 
----
+## Examples
+- [Initializing state](#initializing-state)
+- [Fetching external data](#fetching-external-data)
+- [Adding event listeners (or subscriptions)](#adding-event-listeners-or-subscriptions)
+- [Updating `state` based on props](#updating-state-based-on-props)
+- [Invoking external callbacks](#invoking-external-callbacks)
+- [Updating external data when props change](#updating-external-data-when-props-change)
+- [Reading DOM properties before an update](#reading-dom-properties-before-an-update)
 
 ### Initializing state
 

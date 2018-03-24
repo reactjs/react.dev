@@ -106,9 +106,15 @@ For this reason, the recommended way to add listeners/subscriptions is to use th
 >
 > Although the pattern above is slightly more verbose, it has an added benefit of deferring the subscription creation until after the component has rendered, reducing the amount of time in the critical render path. In the near future, React may include more tools to reduce code complexity for data fetching cases like this.
 
+Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this.
+
+Rather than passing a subscribable `dataSource` prop as we did in the example above, we could use `create-subscription` to pass in the subscribed value:
+
+`embed:update-on-async-rendering/adding-event-listeners-create-subscription.js`
+
 > Note
->
-> Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. If you're authoring such a library, we suggest using a technique like [the one shown here](https://gist.github.com/bvaughn/d569177d70b50b58bff69c3c4a5353f3).
+> 
+> Libraries like Relay/Apollo should manage subscriptions manually with the same techniques as `create-subscription` uses under the hood (as referenced [here](https://gist.github.com/bvaughn/d569177d70b50b58bff69c3c4a5353f3)) in a way that is most optimized for their library usage.
 
 ### Updating `state` based on `props`
 

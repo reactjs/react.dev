@@ -329,3 +329,59 @@ class MouseTracker extends React.Component {
 ```
 
 In cases where you cannot bind the instance method ahead of time in the constructor (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.
+
+### Be careful if your Render Prop component is a React.PureComponent
+
+If the render prop component (or a higher-order component that it makes use of) is a `React.PureComponent`, it is possible that the component wrapping the render component will not re-render as expected. 
+
+For example, the following example will only render once even though the state of `StatefulComponent` is updated:
+
+```js
+class RenderPropComponent extends React.PureComponent {
+  render() {
+    return <div>Rendering: {this.props.render('some value')}</div>;
+  }
+}
+
+class StatefulComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+       counter: 1,
+    };    
+    this.renderContent = this.renderContent.bind(this);
+    this.tick = this.tick.bind(this);
+    this.interval = null;
+  }
+  
+  componentDidMount() {
+     this.interval = setInterval(this.tick, 100);
+  }
+  
+  componentWillUnmount() {
+    if (this.interval) {
+       clearInterval(this.interval);
+    }
+  }
+  
+  tick() {
+    this.setState({counter: this.state.counter + 1});
+  }
+  
+  renderContent(message) {
+    return <span>{message} - {this.state.counter}</span>;
+  }
+  
+  render() {
+    return (
+       <div>
+         <RenderPropComponent
+           render={this.renderContent}
+         />
+       </div>
+    );
+  }
+}
+```
+
+This is because `RenderPropComponent` is pure and `RenderPropComponent.props.render` is a static function and hence `shouldComponentUpdate` evaluates to `false`. In particular, you may run into this issue if your render prop component uses higher-order components that are pure.

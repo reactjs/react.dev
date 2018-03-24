@@ -3,7 +3,7 @@ title: Update on Async Rendering
 author: [bvaughn]
 ---
 
-For over a year, the React team has been working to implement asynchronous rendering. Last month during his talk at JSConf Iceland, [Dan unveiled some of the exciting new possibilities async rendering unlocks](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Now we'd like to share with you some of the lessons we've learned while working on this feature, and some suggestions we have for preparing your components to be ready for async rendering when it launches.
+For over a year, the React team has been working to implement asynchronous rendering. Last month during his talk at JSConf Iceland, [Dan unveiled some of the exciting new possibilities async rendering unlocks](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Now we'd like to share with you some of the lessons we've learned while working on these features, and some recipes to help prepare your components for async rendering when it launches.
 
 One of the biggest lessons we've learned is that some of our legacy component lifecycles tend to encourage unsafe coding practices. They are:
 
@@ -13,31 +13,41 @@ One of the biggest lessons we've learned is that some of our legacy component li
 
 These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that their potential misuse may be more problematic with async rendering. Because of this, we will be adding an "UNSAFE_" prefix to these lifecycles in an upcoming release.
 
+## Gradual Migration Path
+
 [React follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so this change will be gradual. Our current plan is:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
 * **16.x**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release, but the old names will log a DEV-mode warning.)
 * **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work from this point forward.)
 
-Below, we will outline a migration plan for components that rely on these legacy lifecycles.
+**Note that if you're an application developer, you don't have to do anything about the legacy methods yet. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.**
 
-## Updating class components
-
-#### If you're an application developer, **you don't have to do anything about the legacy methods yet**. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.
-
-However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional "recipes" to our documentation that show how to perform common tasks in a way that avoids the problematic lifecycles.
+At Facebook, we maintain over 50,000 React components, so we're in the same boat as you. We can't rewrite our apps so we will take the gradual migration path together with everyone in the React community.
 
 ---
 
+## Migrating from Legacy Lifecycles
+
+If you'd like to start using the new component APIs introduced in React 16.3 (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional "recipes" to our documentation that show how to perform common tasks in a way that avoids the problematic lifecycles.
+
 Before we begin, here's a quick overview of the lifecycle changes planned for version 16.3:
-* We are adding the following lifecycle aliases: `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will be supported.)
-* We are introducing two new lifecycles, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`:
+* We are **adding the following lifecycle aliases**: `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will be supported.)
+* We are **introducing two new lifecycles**, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`:
 
 `embed:update-on-async-rendering/new-lifecycles-overview.js`
 
+### New lifecycle: `getDerivedStateFromProps`
+
 The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
+Together with `componentDidUpdate`, this new lifecycle should cover all use cases for the legacy `componentWillReceiveProps`.
+
+### New lifecycle: `getSnapshotBeforeUpdate`
+
 The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`.
+
+Together with `componentDidUpdate`, this new lifecycle should cover all use cases for the legacy `componentWillUpdate`.
 
 We'll look at examples of how both of these lifecycles can be used below.
 
@@ -70,6 +80,8 @@ There is a common misconception that fetching in `componentWillMount` lets you a
 > Note
 >
 > Some advanced use-cases (e.g. libraries like Relay) may want to experiment with eagerly prefetching async data. An example of how this can be done is available [here](https://gist.github.com/bvaughn/89700e525ff423a75ffb63b1b1e30a8f).
+>
+> In the longer term, the canonical way to fetch data in React components will likely be based on the “suspense” API [introduced at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Both simple data fetching solutions and libraries like Apollo and Relay will be able to use it under the hood. It is significantly less verbose than either of the above solutions, but at the moment it is not quite ready yet.
 
 ### Adding event listeners (or subscriptions)
 

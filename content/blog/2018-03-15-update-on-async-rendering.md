@@ -3,27 +3,27 @@ title: Update on Async Rendering
 author: [bvaughn]
 ---
 
-For the past few months, the React team has been working on [asynchronous rendering](/blog/2018/03/01/sneak-peek-beyond-react-16.html), and we are very excited about the new features it enables.
+For over a year, the React team has been working to implement asynchronous rendering. Last month during his talk at JSConf Iceland, [Dan unveiled some of the exciting new possibilities async rendering unlocks](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Now we'd like to share with you some of the lessons we've learned while working on this feature, and some suggestions we have for preparing your components to be ready for async rendering when it launches.
 
-Along the way, we've learned that some of our legacy component lifecycles tend to encourage unsafe coding practices. They are:
+One of the biggest lesson we've learned is that some of our legacy component lifecycles tend to encourage unsafe coding practices. They are:
 
 * `componentWillMount`
 * `componentWillReceiveProps`
 * `componentWillUpdate`
 
-These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that these potential problems may be more prominent with async rendering. Because of this, we are adding an "UNSAFE_" prefix to these lifecycles in a future release.
+These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that their potential misuse may be more problematic with async rendering. Because of this, we will be adding an "UNSAFE_" prefix to these lifecycles in an upcoming release.
 
-[React follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so the migration path will be gradual:
+[React follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so this change will be gradual. Our current plan is:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
-* **16.x**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
-* **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work in this release.)
+* **16.x**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release, but the old names will log a DEV-mode warning.)
+* **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work from this point forward.)
 
-In this post, we will explore some of the potential capabilities of async rendering, and we'll outline a migration plan for components that rely on these legacy lifecycles.
+Below, we will outline a migration plan for components that rely on these legacy lifecycles.
 
 ## Updating class components
 
-#### If you're an application developer, **you don't have to do anything about the legacy methods yet**. The primary purpose of the upcoming version 16.3 is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will be enabled with a future 16.x release.
+#### If you're an application developer, **you don't have to do anything about the legacy methods yet**. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.
 
 However, if you'd like to start using the new component API (or if you're a maintainer looking to update your library in advance) here are a few examples that we hope will help you to start thinking about components a bit differently. Over time, we plan to add additional "recipes" to our documentation that show how to perform common tasks in a way that avoids the problematic lifecycles.
 
@@ -35,9 +35,9 @@ Before we begin, here's a quick overview of the lifecycle changes planned for ve
 
 `embed:update-on-async-rendering/new-lifecycles-overview.js`
 
-The new static `getSnapshotBeforeUpdate` lifecycle is invoked after a component is instantiated as well as when it receives new props. It should return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
+The new static `getSnapshotBeforeUpdate` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
-The new `getSnapshotBeforeUpdate` lifecycle gets called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`.
+The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`.
 
 We'll look at examples of how both of these lifecycles can be used below.
 

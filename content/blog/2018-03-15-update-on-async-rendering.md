@@ -5,7 +5,7 @@ author: [bvaughn]
 
 For over a year, the React team has been working to implement asynchronous rendering. Last month during his talk at JSConf Iceland, [Dan unveiled some of the exciting new possibilities async rendering unlocks](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Now we'd like to share with you some of the lessons we've learned while working on this feature, and some suggestions we have for preparing your components to be ready for async rendering when it launches.
 
-One of the biggest lesson we've learned is that some of our legacy component lifecycles tend to encourage unsafe coding practices. They are:
+One of the biggest lessons we've learned is that some of our legacy component lifecycles tend to encourage unsafe coding practices. They are:
 
 * `componentWillMount`
 * `componentWillReceiveProps`

@@ -102,10 +102,6 @@ People often assume that `componentWillMount` and `componentWillUnmount` are alw
 For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
-> Note
->
-> Although the pattern above is slightly more verbose, it has an added benefit of deferring the subscription creation until after the component has rendered, reducing the amount of time in the critical render path. In the near future, React may include more tools to reduce code complexity for data fetching cases like this.
-
 Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this.
 
 Rather than passing a subscribable `dataSource` prop as we did in the example above, we could use `create-subscription` to pass in the subscribed value:
@@ -121,14 +117,14 @@ Rather than passing a subscribable `dataSource` prop as we did in the example ab
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
 `embed:update-on-async-rendering/updating-state-from-props-before.js`
 
-Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method has been deprecated.
+Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method will be deprecated.
 
 As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props.):
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
 > Note
 >
-> The [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables this new lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](http://localhost:8000/blog/2018/02/07/update-on-async-rendering.html#open-source-project-maintainers)
+> If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
 
 ### Invoking external callbacks
 

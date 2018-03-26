@@ -209,7 +209,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Now, instead of effectively cloning the `<Mouse>` component and hard-coding something else in its `render` method to solve for a specific use case, we instead provide a `render` prop that `<Mouse>` can use to dynamically determine what it renders.
+Now, instead of effectively cloning the `<Mouse>` component and hard-coding something else in its `render` method to solve for a specific use case, we provide a `render` prop that `<Mouse>` can use to dynamically determine what it renders.
 
 More concretely, **a render prop is a function prop that a component uses to know what to render.**
 

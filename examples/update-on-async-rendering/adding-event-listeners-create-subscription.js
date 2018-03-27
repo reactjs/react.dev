@@ -1,26 +1,26 @@
 import {createSubscription} from 'create-subscription';
 
 const Subscription = createSubscription({
-  getCurrentValue(source) {
-    // Return the current value of the subscription (source).
+  getCurrentValue(sourceProp) {
+    // Return the current value of the subscription (sourceProp).
     // highlight-next-line
-    return source.value;
+    return sourceProp.value;
   },
 
-  subscribe(source, callback) {
+  subscribe(sourceProp, callback) {
     function handleSubscriptionChange() {
-      callback(dataSource.value);
+      callback(sourceProp.value);
     }
 
-    // Subscribe (e.g. add an event listener) to the subscription (source).
+    // Subscribe (e.g. add an event listener) to the subscription (sourceProp).
     // Call callback(newValue) whenever a subscription changes.
     // highlight-next-line
-    source.subscribe(handleSubscriptionChange);
+    sourceProp.subscribe(handleSubscriptionChange);
 
     // Return an unsubscribe method.
     // highlight-range{1-3}
     return function unsubscribe() {
-      source.unsubscribe(handleSubscriptionChange);
+      sourceProp.unsubscribe(handleSubscriptionChange);
     };
   },
 });

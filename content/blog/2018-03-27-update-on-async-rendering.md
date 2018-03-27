@@ -23,7 +23,7 @@ These lifecycle methods have often been misunderstood and subtly misused; furthe
 
 **Note that if you're an application developer, you don't have to do anything about the legacy methods yet. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.**
 
-At Facebook, we maintain over 50,000 React components, so we're in the same boat as you. We can't rewrite our apps so we will take the gradual migration path together with everyone in the React community.
+We maintain over 50,000 React components at Facebook, so we understand that migrations take time. We will take the gradual migration path together with everyone in the React community.
 
 ---
 
@@ -88,7 +88,7 @@ There is a common misconception that fetching in `componentWillMount` lets you a
 >
 > Some advanced use-cases (e.g. libraries like Relay) may want to experiment with eagerly prefetching async data. An example of how this can be done is available [here](https://gist.github.com/bvaughn/89700e525ff423a75ffb63b1b1e30a8f).
 >
-> In the longer term, the canonical way to fetch data in React components will likely be based on the “suspense” API [introduced at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Both simple data fetching solutions and libraries like Apollo and Relay will be able to use it under the hood. It is significantly less verbose than either of the above solutions, but at the moment it is not quite ready yet.
+> In the longer term, the canonical way to fetch data in React components will likely be based on the “suspense” API [introduced at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Both simple data fetching solutions and libraries like Apollo and Relay will be able to use it under the hood. It is significantly less verbose than either of the above solutions, but will not be finalized in time for the 16.3 release.
 
 ### Adding event listeners (or subscriptions)
 
@@ -124,7 +124,7 @@ As of version 16.3, the recommended way to update `state` in response to `props`
 
 > Note
 >
-> If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
+> If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new `getDerivedStateFromProps` lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
 
 ### Invoking external callbacks
 

@@ -7,7 +7,7 @@ class ExampleComponent extends React.Component {
     isScrollingDown: false,
     lastRow: null,
   };
-  // highlight-line
+
   // highlight-range{1-8}
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.currentRow !== prevState.lastRow) {

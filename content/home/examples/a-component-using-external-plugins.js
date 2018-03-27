@@ -2,7 +2,7 @@ class MarkdownEditor extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
-    this.state = { value: 'Type some *markdown* here!' };
+    this.state = { value: 'Hello, **world**!' };
   }
 
   handleChange(e) {
@@ -18,7 +18,11 @@ class MarkdownEditor extends React.Component {
     return (
       <div className="MarkdownEditor">
         <h3>Input</h3>
+        <label htmlFor="markdown-content">
+          Enter some markdown
+        </label>
         <textarea
+          id="markdown-content"
           onChange={this.handleChange}
           defaultValue={this.state.value}
         />

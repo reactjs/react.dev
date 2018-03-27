@@ -21,7 +21,7 @@ These lifecycle methods have often been misunderstood and subtly misused; furthe
 * **16.x**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release, but the old names will log a DEV-mode warning.)
 * **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work from this point forward.)
 
-**Note that if you're an application developer, you don't have to do anything about the legacy methods yet. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.**
+**Note that if you're a React application developer, you don't have to do anything about the legacy methods yet. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.**
 
 We maintain over 50,000 React components at Facebook, and we don't plan to rewrite them all immediately. We understand that migrations take time. We will take the gradual migration path along with everyone in the React community.
 

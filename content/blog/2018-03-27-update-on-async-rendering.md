@@ -119,7 +119,7 @@ Here is an example of a component that uses the legacy `componentWillReceiveProp
 
 Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method will be deprecated.
 
-As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props.):
+As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props):
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
 > Note
@@ -141,7 +141,7 @@ Either way, it is unsafe to use `componentWillUpdate` for this purpose in async 
 Here is an example of a component that fetches external data based on `props` values:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`
 
-The recommended upgrade path for this component is to move data-updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
+The recommended upgrade path for this component is to move data updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-after.js`
 
 > Note

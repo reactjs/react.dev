@@ -23,7 +23,7 @@ These lifecycle methods have often been misunderstood and subtly misused; furthe
 
 **Note that if you're an application developer, you don't have to do anything about the legacy methods yet. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.**
 
-We maintain over 50,000 React components at Facebook, so we understand that migrations take time. We will take the gradual migration path together with everyone in the React community.
+We maintain over 50,000 React components at Facebook, and we don't plan to rewrite them all immediately. We understand that migrations take time. We will take the gradual migration path along with everyone in the React community.
 
 ---
 

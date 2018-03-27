@@ -35,7 +35,7 @@ render() {
   // `domNode` is any valid DOM node, regardless of its location in the DOM.
   return ReactDOM.createPortal(
     this.props.children,
-    domNode,
+    domNode
   );
 }
 ```

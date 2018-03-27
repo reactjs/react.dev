@@ -41,7 +41,7 @@ We are using [GitHub Issues](https://github.com/facebook/react/issues) for our p
 
 #### Reporting New Issues
 
-The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/84v837e9/) is a great starting point.
+The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
 
 #### Security Bugs
 

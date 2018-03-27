@@ -33,11 +33,11 @@ If you'd like to start using the new component APIs introduced in React 16.3 (or
 
 Before we begin, here's a quick overview of the lifecycle changes planned for version 16.3:
 * We are **adding the following lifecycle aliases**: `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will be supported.)
-* We are **introducing two new lifecycles**, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`:
-
-`embed:update-on-async-rendering/new-lifecycles-overview.js`
+* We are **introducing two new lifecycles**, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`.
 
 ### New lifecycle: `getDerivedStateFromProps`
+
+`embed:update-on-async-rendering/definition-getderivedstatefromprops.js`
 
 The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
@@ -45,9 +45,13 @@ Together with `componentDidUpdate`, this new lifecycle should cover all use case
 
 ### New lifecycle: `getSnapshotBeforeUpdate`
 
+`embed:update-on-async-rendering/definition-getsnapshotbeforeupdate.js`
+
 The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`. (This lifecycle isn't often needed, but can be useful in cases like manually preserving scroll position during rerenders.)
 
 Together with `componentDidUpdate`, this new lifecycle should cover all use cases for the legacy `componentWillUpdate`.
+
+You can find their type signatures [in this gist](https://gist.github.com/gaearon/88634d27abbc4feeb40a698f760f3264).
 
 We'll look at examples of how both of these lifecycles can be used below.
 

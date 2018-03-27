@@ -161,6 +161,10 @@ The two lifecycles can be used together like this:
 
 `embed:update-on-async-rendering/react-dom-properties-before-update-after.js`
 
+> Note
+>
+> If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new `getSnapshotBeforeUpdate` lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
+
 ## Other scenarios
 
 While we tried to cover the most common use cases in this post, we recognize that we might have missed some of them. If you are using `componentWillMount`, `componentWillUpdate`, or `componentWillReceiveProps` in ways that aren't covered by this blog post, and aren't sure how to migrate off these legacy lifecycles, please [file a new issue against our documentation](https://github.com/reactjs/reactjs.org/issues/new) with your code examples and as much background information as you can provide. We will update this document with new alternative patterns as they come up.
@@ -171,7 +175,7 @@ Open source maintainers might be wondering what these changes mean for shared co
 
 Fortunately, you do not!
 
-When React 16.3 is published, we'll also publish a new npm package, [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat). This package polyfills components so that the new `getDerivedStateFromProps` lifecycle will also work with older versions of React (0.14.9+).
+When React 16.3 is published, we'll also publish a new npm package, [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat). This package polyfills components so that the new `getDerivedStateFromProps` and `getSnapshotBeforeUpdate` lifecycles will also work with older versions of React (0.14.9+).
 
 To use this polyfill, first add it as a dependency to your library:
 
@@ -183,7 +187,7 @@ yarn add react-lifecycles-compat
 npm install react-lifecycles-compat --save
 ```
 
-Next, update your components to use the new static lifecycle, `getDerivedStateFromProps`, as described above.
+Next, update your components to use the new lifecycles (as described above).
 
 Lastly, use the polyfill to make your component backwards compatible with older versions of React:
 `embed:update-on-async-rendering/using-react-lifecycles-compat.js`

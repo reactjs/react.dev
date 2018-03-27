@@ -11,14 +11,14 @@ One of the biggest lessons we've learned is that some of our legacy component li
 * `componentWillReceiveProps`
 * `componentWillUpdate`
 
-These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that their potential misuse may be more problematic with async rendering. Because of this, we will be adding an "UNSAFE_" prefix to these lifecycles in an upcoming release.
+These lifecycle methods have often been misunderstood and subtly misused; furthermore, we anticipate that their potential misuse may be more problematic with async rendering. Because of this, we will be adding an "UNSAFE_" prefix to these lifecycles in an upcoming release. (Here, "unsafe" refers not to security but instead conveys that code using these lifecycles will be more likely to have bugs in future versions of React, especially once async rendering is enabled.)
 
 ## Gradual Migration Path
 
 [React follows semantic versioning](/blog/2016/02/19/new-versioning-scheme.html), so this change will be gradual. Our current plan is:
 
 * **16.3**: Introduce aliases for the unsafe lifecycles, `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release.)
-* **16.x**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release, but the old names will log a DEV-mode warning.)
+* **A future 16.x release**: Enable deprecation warning for `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate`. (Both the old lifecycle names and the new aliases will work in this release, but the old names will log a DEV-mode warning.)
 * **17.0**: Remove `componentWillMount`, `componentWillReceiveProps`, and `componentWillUpdate` . (Only the new "UNSAFE_" lifecycle names will work from this point forward.)
 
 **Note that if you're a React application developer, you don't have to do anything about the legacy methods yet. The primary purpose of the upcoming version 16.3 release is to enable open source project maintainers to update their libraries in advance of any deprecation warnings. Those warnings will not be enabled until a future 16.x release.**
@@ -45,15 +45,11 @@ Together with `componentDidUpdate`, this new lifecycle should cover all use case
 
 ### New lifecycle: `getSnapshotBeforeUpdate`
 
-The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`.
+The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`. (This lifecycle isn't often needed, but can be useful in cases like manually preserving scroll position during rerenders.)
 
 Together with `componentDidUpdate`, this new lifecycle should cover all use cases for the legacy `componentWillUpdate`.
 
 We'll look at examples of how both of these lifecycles can be used below.
-
-> Note
->
-> For brevity, the examples below are written using the experimental class properties transform, but the same migration strategies apply without it.
 
 ## Examples
 - [Initializing state](#initializing-state)
@@ -63,6 +59,10 @@ We'll look at examples of how both of these lifecycles can be used below.
 - [Invoking external callbacks](#invoking-external-callbacks)
 - [Updating external data when props change](#updating-external-data-when-props-change)
 - [Reading DOM properties before an update](#reading-dom-properties-before-an-update)
+
+> Note
+>
+> For brevity, the examples below are written using the experimental class properties transform, but the same migration strategies apply without it.
 
 ### Initializing state
 
@@ -102,7 +102,7 @@ People often assume that `componentWillMount` and `componentWillUnmount` are alw
 For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
-Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this.
+Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this. We'll publish it along with React 16.3.
 
 Rather than passing a subscribable `dataSource` prop as we did in the example above, we could use `create-subscription` to pass in the subscribed value:
 
@@ -171,7 +171,7 @@ Open source maintainers might be wondering what these changes mean for shared co
 
 Fortunately, you do not!
 
-In support of version 16.3, we've also created a new NPM package, [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat). This package polyfills components so that the new `getDerivedStateFromProps` lifecycle will also work with older versions of React (0.14.9+).
+When React 16.3 is published, we'll also publish a new npm package, [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat). This package polyfills components so that the new `getDerivedStateFromProps` lifecycle will also work with older versions of React (0.14.9+).
 
 To use this polyfill, first add it as a dependency to your library:
 

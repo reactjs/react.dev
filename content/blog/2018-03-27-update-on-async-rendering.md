@@ -61,7 +61,8 @@ We'll look at examples of how both of these lifecycles can be used below.
 - [Adding event listeners (or subscriptions)](#adding-event-listeners-or-subscriptions)
 - [Updating `state` based on props](#updating-state-based-on-props)
 - [Invoking external callbacks](#invoking-external-callbacks)
-- [Updating external data when props change](#updating-external-data-when-props-change)
+- [Side effects on props change](#side-effects-on-props-change)
+- [Fetching external data when props change](#fetching-external-data-when-props-change)
 - [Reading DOM properties before an update](#reading-dom-properties-before-an-update)
 
 > Note
@@ -148,7 +149,17 @@ Sometimes people use `componentWillUpdate` out of a misplaced fear that by the t
 Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
 
-### Updating external data when `props` change
+### Side effects on props change
+
+Similar to the [example above](#invoking-external-callbacks), sometimes components have side effects when `props` change.
+
+`embed:update-on-async-rendering/side-effects-when-props-change-before.js`
+
+Like `componentWillUpdate`, `componentWillReceiveProps` might get called multiple times for a single update. For this reason it is important to avoid putting side effects in this method. Instead, `componentDidUpdate` should be used since it is guaranteed to be invoked only once per update:
+
+`embed:update-on-async-rendering/side-effects-when-props-change-after.js`
+
+### Fetching external data when `props` change
 
 Here is an example of a component that fetches external data based on `props` values:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`

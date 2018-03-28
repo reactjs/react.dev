@@ -61,7 +61,8 @@ We'll look at examples of how both of these lifecycles can be used below.
 - [Adding event listeners (or subscriptions)](#adding-event-listeners-or-subscriptions)
 - [Updating `state` based on props](#updating-state-based-on-props)
 - [Invoking external callbacks](#invoking-external-callbacks)
-- [Updating external data when props change](#updating-external-data-when-props-change)
+- [Side effects on props change](#side-effects-on-props-change)
+- [Fetching external data when props change](#fetching-external-data-when-props-change)
 - [Reading DOM properties before an update](#reading-dom-properties-before-an-update)
 
 > Note
@@ -128,6 +129,12 @@ Although the above code is not problematic in itself, the `componentWillReceiveP
 As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props):
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
+You may notice in the example above that `props.currentRow` is mirrored in state (as `state.lastRow`). This enables `getDerivedStateFromProps` to access the previous props value in the same way as is done in `componentWillReceiveProps`.
+
+You may wonder why we don't just pass previous props as a parameter to `getDerivedStateFromProps`. We considered this option when designing the API, but ultimately decided against it for two reasons:
+* A `prevProps` parameter would be null the first time `getDerivedStateFromProps` was called (after instantiation), requiring an if-not-null check to be added any time `prevProps` was accessed.
+* Not passing the previous props to this function is a step toward freeing up memory in future versions of React. (If React does not need to pass previous props to lifecycles, then it does not need to keep the previous `props` object in memory.)
+
 > Note
 >
 > If you're writing a shared component, the [`react-lifecycles-compat`](https://github.com/reactjs/react-lifecycles-compat) polyfill enables the new `getDerivedStateFromProps` lifecycle to be used with older versions of React as well. [Learn more about how to use it below.](#open-source-project-maintainers)
@@ -142,7 +149,17 @@ Sometimes people use `componentWillUpdate` out of a misplaced fear that by the t
 Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
 
-### Updating external data when `props` change
+### Side effects on props change
+
+Similar to the [example above](#invoking-external-callbacks), sometimes components have side effects when `props` change.
+
+`embed:update-on-async-rendering/side-effects-when-props-change-before.js`
+
+Like `componentWillUpdate`, `componentWillReceiveProps` might get called multiple times for a single update. For this reason it is important to avoid putting side effects in this method. Instead, `componentDidUpdate` should be used since it is guaranteed to be invoked only once per update:
+
+`embed:update-on-async-rendering/side-effects-when-props-change-after.js`
+
+### Fetching external data when `props` change
 
 Here is an example of a component that fetches external data based on `props` values:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`

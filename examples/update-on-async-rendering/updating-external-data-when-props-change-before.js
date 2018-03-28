@@ -5,14 +5,14 @@ class ExampleComponent extends React.Component {
   };
 
   componentDidMount() {
-    this._loadAsyncData();
+    this._loadAsyncData(this.props.id);
   }
 
   // highlight-range{1-6}
   componentWillReceiveProps(nextProps) {
     if (nextProps.id !== this.props.id) {
       this.setState({externalData: null});
-      this._loadAsyncData();
+      this._loadAsyncData(nextProps.id);
     }
   }
 
@@ -30,8 +30,8 @@ class ExampleComponent extends React.Component {
     }
   }
 
-  _loadAsyncData() {
-    this._asyncRequest = asyncLoadData(this.props.id).then(
+  _loadAsyncData(id) {
+    this._asyncRequest = asyncLoadData(id).then(
       externalData => {
         this._asyncRequest = null;
         this.setState({externalData});

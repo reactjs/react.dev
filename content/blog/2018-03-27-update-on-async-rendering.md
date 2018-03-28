@@ -94,10 +94,6 @@ There is a common misconception that fetching in `componentWillMount` lets you a
 >
 > In the longer term, the canonical way to fetch data in React components will likely be based on the “suspense” API [introduced at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Both simple data fetching solutions and libraries like Apollo and Relay will be able to use it under the hood. It is significantly less verbose than either of the above solutions, but will not be finalized in time for the 16.3 release.
 
-> Note
->
-> When supporting server rendering, it's currently necessary to provide the data synchronously. `componentWillMount` was often used for this purpose, but the `constructor` can be used as a replacement. The upcoming suspense APIs will add a way to do async data fetching cleanly for both client and server rendering.
-
 ### Adding event listeners (or subscriptions)
 
 Here is an example of a component that subscribes to an external event dispatcher when mounting:

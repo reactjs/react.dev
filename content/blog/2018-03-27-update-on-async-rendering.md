@@ -33,11 +33,11 @@ If you'd like to start using the new component APIs introduced in React 16.3 (or
 
 Before we begin, here's a quick overview of the lifecycle changes planned for version 16.3:
 * We are **adding the following lifecycle aliases**: `UNSAFE_componentWillMount`, `UNSAFE_componentWillReceiveProps`, and `UNSAFE_componentWillUpdate`. (Both the old lifecycle names and the new aliases will be supported.)
-* We are **introducing two new lifecycles**, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`:
-
-`embed:update-on-async-rendering/new-lifecycles-overview.js`
+* We are **introducing two new lifecycles**, static `getDerivedStateFromProps` and `getSnapshotBeforeUpdate`.
 
 ### New lifecycle: `getDerivedStateFromProps`
+
+`embed:update-on-async-rendering/definition-getderivedstatefromprops.js`
 
 The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
@@ -45,9 +45,13 @@ Together with `componentDidUpdate`, this new lifecycle should cover all use case
 
 ### New lifecycle: `getSnapshotBeforeUpdate`
 
+`embed:update-on-async-rendering/definition-getsnapshotbeforeupdate.js`
+
 The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`. (This lifecycle isn't often needed, but can be useful in cases like manually preserving scroll position during rerenders.)
 
 Together with `componentDidUpdate`, this new lifecycle should cover all use cases for the legacy `componentWillUpdate`.
+
+You can find their type signatures [in this gist](https://gist.github.com/gaearon/88634d27abbc4feeb40a698f760f3264).
 
 We'll look at examples of how both of these lifecycles can be used below.
 
@@ -57,7 +61,8 @@ We'll look at examples of how both of these lifecycles can be used below.
 - [Adding event listeners (or subscriptions)](#adding-event-listeners-or-subscriptions)
 - [Updating `state` based on props](#updating-state-based-on-props)
 - [Invoking external callbacks](#invoking-external-callbacks)
-- [Updating external data when props change](#updating-external-data-when-props-change)
+- [Side effects on props change](#side-effects-on-props-change)
+- [Fetching external data when props change](#fetching-external-data-when-props-change)
 - [Reading DOM properties before an update](#reading-dom-properties-before-an-update)
 
 > Note
@@ -89,6 +94,8 @@ There is a common misconception that fetching in `componentWillMount` lets you a
 > Some advanced use-cases (e.g. libraries like Relay) may want to experiment with eagerly prefetching async data. An example of how this can be done is available [here](https://gist.github.com/bvaughn/89700e525ff423a75ffb63b1b1e30a8f).
 >
 > In the longer term, the canonical way to fetch data in React components will likely be based on the “suspense” API [introduced at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16.html). Both simple data fetching solutions and libraries like Apollo and Relay will be able to use it under the hood. It is significantly less verbose than either of the above solutions, but will not be finalized in time for the 16.3 release.
+>
+> When supporting server rendering, it's currently necessary to provide the data synchronously – `componentWillMount` was often used for this purpose but the constructor can be used as a replacement. The upcoming suspense APIs will make async data fetching cleanly possible for both client and server rendering.
 
 ### Adding event listeners (or subscriptions)
 
@@ -119,8 +126,14 @@ Here is an example of a component that uses the legacy `componentWillReceiveProp
 
 Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method will be deprecated.
 
-As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props.):
+As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props):
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
+
+You may notice in the example above that `props.currentRow` is mirrored in state (as `state.lastRow`). This enables `getDerivedStateFromProps` to access the previous props value in the same way as is done in `componentWillReceiveProps`.
+
+You may wonder why we don't just pass previous props as a parameter to `getDerivedStateFromProps`. We considered this option when designing the API, but ultimately decided against it for two reasons:
+* A `prevProps` parameter would be null the first time `getDerivedStateFromProps` was called (after instantiation), requiring an if-not-null check to be added any time `prevProps` was accessed.
+* Not passing the previous props to this function is a step toward freeing up memory in future versions of React. (If React does not need to pass previous props to lifecycles, then it does not need to keep the previous `props` object in memory.)
 
 > Note
 >
@@ -136,12 +149,22 @@ Sometimes people use `componentWillUpdate` out of a misplaced fear that by the t
 Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
 `embed:update-on-async-rendering/invoking-external-callbacks-after.js`
 
-### Updating external data when `props` change
+### Side effects on props change
+
+Similar to the [example above](#invoking-external-callbacks), sometimes components have side effects when `props` change.
+
+`embed:update-on-async-rendering/side-effects-when-props-change-before.js`
+
+Like `componentWillUpdate`, `componentWillReceiveProps` might get called multiple times for a single update. For this reason it is important to avoid putting side effects in this method. Instead, `componentDidUpdate` should be used since it is guaranteed to be invoked only once per update:
+
+`embed:update-on-async-rendering/side-effects-when-props-change-after.js`
+
+### Fetching external data when `props` change
 
 Here is an example of a component that fetches external data based on `props` values:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`
 
-The recommended upgrade path for this component is to move data-updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
+The recommended upgrade path for this component is to move data updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
 `embed:update-on-async-rendering/updating-external-data-when-props-change-after.js`
 
 > Note

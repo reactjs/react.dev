@@ -22,3 +22,11 @@ No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
   Hello, {name}!
 </div>
 ```
+
+```jsx
+<div>
+  {/* It also works 
+  for multi-line comments. */}
+  Hello, {name}! 
+</div>
+```

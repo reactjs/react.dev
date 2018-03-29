@@ -69,9 +69,7 @@ Accepts a `value` prop to be passed to Consumers that are descendants of this Pr
 
 A React component that subscribes to context changes.
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The function should be created inline, as shown in the example above, rather than being bound to the instance or otherwise cached. (Refer to the see [Caveats](#consumer-inline-function-as-a-child) section below for more.)
-
-All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). (This can cause some issues when passing objects as `value`: see [Caveats](#objectis).)
+Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). (This can cause some issues when passing objects as `value`: see [Caveats](#caveats).)
 
 > Note
 > 
@@ -135,16 +133,6 @@ One issue with the render prop API is that refs don't automatically get passed t
 `embed:context/forwarding-refs-app.js`
 
 ## Caveats
-
-### `Consumer` Inline Function as a Child
-
-As an optimization to avoid doing unnecessary work, React currently stops rendering when it sees children that are equal to the most recently rendered children. This applies to the [function as a child](/docs/render-props.html#using-props-other-than-render) pattern used by `Consumer` as well which can cause unexpected behavior in some situations:
-`embed:context/consumer-cached-function-as-a-child.js`
-
-To avoid this scenario, we recommend declaring the child function inline:
-`embed:context/consumer-inline-function-as-a-child.js`
-
-### `Object.is`
 
 Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
 

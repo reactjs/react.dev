@@ -11,13 +11,16 @@ import Sidebar from 'templates/components/Sidebar';
 import {colors, media} from 'theme';
 import ChevronSvg from 'templates/components/ChevronSvg';
 
+import type {Node} from 'react';
+import type {CreateLinkBaseProps} from 'types';
+
 type State = {
   open: boolean,
 };
 
 type Props = {
   enableScrollSync?: boolean,
-  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
+  createLink: CreateLinkBaseProps => Node,
   defaultActiveSection: string,
   location: Location,
   sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component

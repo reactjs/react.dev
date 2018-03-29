@@ -17,11 +17,12 @@ import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
 
-import type {Node} from 'types';
+import type {Node as ReactNode} from 'react';
+import type {Node, CreateLinkBaseProps} from 'types';
 
 type Props = {
   authors: Array<string>,
-  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
+  createLink: CreateLinkBaseProps => ReactNode,
   date?: string,
   enableScrollSync?: boolean,
   ogDescription: string,

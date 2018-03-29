@@ -12,12 +12,7 @@ import slugify from 'utils/slugify';
 import {colors, media} from 'theme';
 
 import type {Node} from 'react';
-
-type CreateLinkBaseProps = {
-  isActive: boolean,
-  item: Object,
-  section: Object,
-};
+import type {CreateLinkBaseProps} from 'types';
 
 const createLinkBlog = ({
   isActive,

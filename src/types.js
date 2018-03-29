@@ -39,3 +39,9 @@ export type allMarkdownRemarkData = {
 };
 
 export type markdownRemarkData = Node;
+
+export type CreateLinkBaseProps = {
+  isActive: boolean,
+  item: Object,
+  section: Object,
+};

@@ -6,9 +6,7 @@ class Example extends React.Component {
       <Ctx.Consumer>
         {value => (
           <div>
-            Context value:{value}. Props value:{
-              this.props.counter
-            }
+            Context value:{value}. Props value:{this.props.counter}
           </div>
         )}
       </Ctx.Consumer>

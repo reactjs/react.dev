@@ -4,9 +4,7 @@ class Example extends React.Component {
   renderValue = value => {
     return (
       <div>
-        Context value:{value}. Props value:{
-          this.props.counter
-        }
+        Context value:{value}. Props value:{this.props.counter}
       </div>
     );
   };

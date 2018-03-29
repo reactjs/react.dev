@@ -1,6 +1,10 @@
 class MyComponent extends React.Component {
-  // highlight-next-line
-  inputRef = React.createRef();
+  constructor(props) {
+    super(props);
+
+    // highlight-next-line
+    this.inputRef = React.createRef();
+  }
 
   render() {
     // highlight-next-line

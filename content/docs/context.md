@@ -4,220 +4,148 @@ title: Context
 permalink: docs/context.html
 ---
 
-> Note:
+Context provides a way to pass data through the component tree without having to pass props down manually at every level.
+
+In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like this between components without having to explicitly pass a prop through every level of the tree.
+
+- [When to Use Context](#when-to-use-context)
+- [API](#api)
+  - [React.createContext](#reactcreatecontext)
+  - [Provider](#provider)
+  - [Consumer](#consumer)
+- [Examples](#examples)
+  - [Dynamic Context](#dynamic-context)
+  - [Consuming Multiple Contexts](#consuming-multiple-contexts)
+  - [Accessing Context in Lifecycle Methods](#accessing-context-in-lifecycle-methods)
+  - [Consuming Context with a HOC](#consuming-context-with-a-hoc)
+  - [Forwarding Refs to Context Consumers](#forwarding-refs-to-context-consumers)
+- [Caveats](#caveats)
+- [Legacy API](#legacy-api)
+
+
+## When to Use Context
+
+Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
+
+`embed:context/motivation-problem.js`
+
+Using context, we can avoid passing props through intermediate elements:
+
+`embed:context/motivation-solution.js`
+
+> Note
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types) to define `contextTypes`.
->
->We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
+> Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to accessed in many components at multiple levels.
 
-With React, it's easy to track the flow of data through your React components. When you look at a component, you can see which props are being passed, which makes your apps easy to reason about.
+## API
 
-In some cases, you want to pass data through the component tree without having to pass the props down manually at every level.
-You can do this directly in React with the powerful "context" API.
+### `React.createContext`
 
-> Note:
->
-> A [new, safe version of context](https://github.com/reactjs/rfcs/blob/master/text/0002-new-version-of-context.md) is under development for the upcoming 16.3 release.
-
-
-## Why Not To Use Context
-
-The vast majority of applications do not need to use context.
-
-If you want your application to be stable, don't use context. It is an experimental API and it is likely to break in future releases of React.
-
-If you aren't familiar with state management libraries like [Redux](https://github.com/reactjs/redux) or [MobX](https://github.com/mobxjs/mobx), don't use context. For many practical applications, these libraries and their React bindings are a good choice for managing state that is relevant to many components. It is far more likely that Redux is the right solution to your problem than that context is the right solution.
-
-If you're still learning React, don't use context. There is usually a better way to implement functionality just using props and state.
-
-If you insist on using context despite these warnings, try to isolate your use of context to a small area and avoid using the context API directly when possible so that it's easier to upgrade when the API changes.
-
-## How To Use Context
-
-Suppose you have a structure like:
-
-```javascript
-class Button extends React.Component {
-  render() {
-    return (
-      <button style={{background: this.props.color}}>
-        {this.props.children}
-      </button>
-    );
-  }
-}
-
-class Message extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.text} <Button color={this.props.color}>Delete</Button>
-      </div>
-    );
-  }
-}
-
-class MessageList extends React.Component {
-  render() {
-    const color = "purple";
-    const children = this.props.messages.map((message) =>
-      <Message text={message.text} color={color} />
-    );
-    return <div>{children}</div>;
-  }
-}
+```js
+const {Provider, Consumer} = React.createContext(defaultValue);
 ```
 
-In this example, we manually thread through a `color` prop in order to style the `Button` and `Message` components appropriately. Using context, we can pass this through the tree automatically:
+Creates a `{ Provider, Consumer }` pair.
 
-```javascript{6,13-15,21,28-30,40-42}
-import PropTypes from 'prop-types';
+Optionally accepts a default value to be passed to Consumers without a Provider ancestor.
 
-class Button extends React.Component {
-  render() {
-    return (
-      <button style={{background: this.context.color}}>
-        {this.props.children}
-      </button>
-    );
-  }
-}
+### `Provider`
 
-Button.contextTypes = {
-  color: PropTypes.string
-};
-
-class Message extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.text} <Button>Delete</Button>
-      </div>
-    );
-  }
-}
-
-class MessageList extends React.Component {
-  getChildContext() {
-    return {color: "purple"};
-  }
-
-  render() {
-    const children = this.props.messages.map((message) =>
-      <Message text={message.text} />
-    );
-    return <div>{children}</div>;
-  }
-}
-
-MessageList.childContextTypes = {
-  color: PropTypes.string
-};
+```js
+<Provider value={/* some value */}>
 ```
 
-By adding `childContextTypes` and `getChildContext` to `MessageList` (the context provider), React passes the information down automatically and any component in the subtree (in this case, `Button`) can access it by defining `contextTypes`.
+A React component that allows Consumers to subscribe to context changes.
 
-If `contextTypes` is not defined, then `context` will be an empty object.
+Accepts a `value` prop to be passed to Consumers that are descendants of this Provider. One Provider can be connected to many Consumers. Providers can be nested to override values deeper within the tree.
 
-## Parent-Child Coupling
+### `Consumer`
 
-Context can also let you build an API where parents and children communicate. For example, one library that works this way is [React Router V4](https://reacttraining.com/react-router):
-
-```javascript
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-
-const BasicExample = () => (
-  <Router>
-    <div>
-      <ul>
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/about">About</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-      </ul>
-
-      <hr />
-
-      <Route exact path="/" component={Home} />
-      <Route path="/about" component={About} />
-      <Route path="/topics" component={Topics} />
-    </div>
-  </Router>
-);
+```js
+<Consumer>
+  {value => /* render something based on the context value */}
+</Consumer>
 ```
 
-By passing down some information from the `Router` component, each `Link` and `Route` can communicate back to the containing `Router`.
+A React component that subscribes to context changes.
 
-Before you build components with an API similar to this, consider if there are cleaner alternatives. For example, you can pass entire React components as props if you'd like to.
+Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). (This can cause some issues when passing objects as `value`: see [Caveats](#caveats).)
 
-## Referencing Context in Lifecycle Methods
+> Note
+> 
+> For more information about this pattern, see [render props](/docs/render-props.html).
 
-If `contextTypes` is defined within a component, the following [lifecycle methods](/docs/react-component.html#the-component-lifecycle) will receive an additional parameter, the `context` object:
+## Examples
 
-- [`constructor(props, context)`](/docs/react-component.html#constructor)
-- [`componentWillReceiveProps(nextProps, nextContext)`](/docs/react-component.html#componentwillreceiveprops)
-- [`shouldComponentUpdate(nextProps, nextState, nextContext)`](/docs/react-component.html#shouldcomponentupdate)
-- [`componentWillUpdate(nextProps, nextState, nextContext)`](/docs/react-component.html#componentwillupdate)
+### Dynamic Context
 
-> Note:
->
-> As of React 16, `componentDidUpdate` no longer receives `prevContext`.
+A more complex example with dynamic values for the theme:
 
-## Referencing Context in Stateless Functional Components
+**theme-context.js**
+`embed:context/theme-detailed-theme-context.js`
 
-Stateless functional components are also able to reference `context` if `contextTypes` is defined as a property of the function. The following code shows a `Button` component written as a stateless functional component.
+**themed-button.js**
+`embed:context/theme-detailed-themed-button.js`
 
-```javascript
-import PropTypes from 'prop-types';
+**app.js**
+`embed:context/theme-detailed-app.js`
 
-const Button = ({children}, context) =>
-  <button style={{background: context.color}}>
-    {children}
-  </button>;
+### Consuming Multiple Contexts
 
-Button.contextTypes = {color: PropTypes.string};
-```
+To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
 
-## Updating Context
+`embed:context/multiple-contexts.js`
 
-Don't do it.
+If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
 
-React has an API to update context, but it is fundamentally broken and you should not use it.
+### Accessing Context in Lifecycle Methods
 
-The `getChildContext` function will be called when the state or props changes. In order to update data in the context, trigger a local state update with `this.setState`. This will trigger a new context and changes will be received by the children.
+Accessing values from context in lifecycle methods is a relatively common use case. Instead of adding context to every lifecycle method, you just need to pass it as a prop, and then work with it just like you'd normally work with a prop.
 
-```javascript
-import PropTypes from 'prop-types';
+`embed:context/lifecycles.js`
 
-class MediaQuery extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {type:'desktop'};
-  }
+### Consuming Context with a HOC
 
-  getChildContext() {
-    return {type: this.state.type};
-  }
+Some types of contexts are consumed by many components (e.g. theme or localization). It can be tedious to explicitly wrap each dependency with a `<Context.Consumer>` element. A [higher-order component](/docs/higher-order-components.html) can help with this.
 
-  componentDidMount() {
-    const checkMediaQuery = () => {
-      const type = window.matchMedia("(min-width: 1025px)").matches ? 'desktop' : 'mobile';
-      if (type !== this.state.type) {
-        this.setState({type});
-      }
-    };
+For example, a button component might consume a theme context like so:
 
-    window.addEventListener('resize', checkMediaQuery);
-    checkMediaQuery();
-  }
+`embed:context/higher-order-component-before.js`
 
-  render() {
-    return this.props.children;
-  }
-}
+That's alright for a few components, but what if we wanted to use the theme context in a lot of places?
 
-MediaQuery.childContextTypes = {
-  type: PropTypes.string
-};
-```
+We could create a higher-order component called `withTheme`:
 
-The problem is, if a context value provided by component changes, descendants that use that value won't update if an intermediate parent returns `false` from `shouldComponentUpdate`. This is totally out of control of the components using context, so there's basically no way to reliably update the context. [This blog post](https://medium.com/@mweststrate/how-to-safely-use-react-context-b7e343eff076) has a good explanation of why this is a problem and how you might get around it.
+`embed:context/higher-order-component.js`
+
+Now any component that depends on the theme context can easy subscribe to it using the `withTheme` function we've created:
+
+`embed:context/higher-order-component-usage.js`
+
+### Forwarding Refs to Context Consumers
+
+One issue with the render prop API is that refs don't automatically get passed to wrapped elements. To get around this, use `React.forwardRef`:
+
+**fancy-button.js**
+`embed:context/forwarding-refs-fancy-button.js`
+
+**app.js**
+`embed:context/forwarding-refs-app.js`
+
+## Caveats
+
+Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
+
+`embed:context/reference-caveats-problem.js`
+
+
+To get around this, lift the value into the parent's state:
+
+`embed:context/reference-caveats-solution.js`
+
+## Legacy API
+
+> Note
+> 
+> React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+ 

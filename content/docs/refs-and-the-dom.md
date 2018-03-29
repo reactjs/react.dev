@@ -33,7 +33,7 @@ Your first inclination may be to use refs to "make things happen" in your app. I
 
 > Note
 >
-> The examples below have been updated to use the React.createRef() API introduced in React 16.3. If you are using an earlier release of React, we recommend using [#callback-refs](callback refs) instead.
+> The examples below have been updated to use the React.createRef() API introduced in React 16.3. If you are using an earlier release of React, we recommend using [callback refs](#callback-refs) instead.
 
 ### Creating Refs
 
@@ -345,7 +345,7 @@ If you worked with React before, you might be familiar with an older API where t
 
 > Note
 >
-> If you're currently using `this.refs.textInput` to access refs, we recommend the callback pattern instead.
+> If you're currently using `this.refs.textInput` to access refs, we recommend using either the [callback pattern](#callback-refs) or the [`createRef` API](#creating-refs) instead.
 
 ### Caveats with callback refs
 

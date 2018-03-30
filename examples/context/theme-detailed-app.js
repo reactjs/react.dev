@@ -12,6 +12,7 @@ function Toolbar(props) {
 
 class App extends React.Component {
   constructor(props) {
+    super();
     this.state = {
       theme: themes.light,
     };

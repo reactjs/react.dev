@@ -237,7 +237,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 > Note
 >
-> It is recommended that you use the static [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle instead of `UNSAFE_componentWillReceiveProps`. [Learn more about this recommendation here.](/blog/2018/03/20/react-v-16-3.html#component-lifecycle-changes)
+> It is recommended that you use the static [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle instead of `UNSAFE_componentWillReceiveProps`. [Learn more about this recommendation here.](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes)
 
 `UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
 

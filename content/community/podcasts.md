@@ -12,7 +12,7 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 - [The React Podcast](http://reactpodcast.com) - The podcast about everything React.js, hosted by [React Training](https://reacttraining.com)
 
-- [JS Party](https://changelog.com/jsparty) - A community celebration of JavaScript and the web produce by [Changelog.com](https://changelog.com/) and many members of the JavaScript community.
+- [JS Party](https://changelog.com/jsparty) - A community celebration of JavaScript and the web produced by [Changelog Media](https://changelog.com/) and many members of the JavaScript community.
 
 - [JavaScript Air](https://javascriptair.com/) - All about JavaScript (currently not producing new episodes)
 

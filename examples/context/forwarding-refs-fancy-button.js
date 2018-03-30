@@ -11,6 +11,6 @@ class FancyButton extends React.Component {
 // highlight-range{1,3}
 export default React.forwardRef((props, ref) => (
   <ThemeContext.Consumer>
-    {theme => <Button {...props} theme={theme} ref={ref} />}
+    {theme => <FancyButton {...props} theme={theme} ref={ref} />}
   </ThemeContext.Consumer>
 ));

@@ -25,7 +25,7 @@ class ExampleComponent extends React.Component {
 
   // highlight-range{1-5}
   componentDidUpdate(prevProps, prevState) {
-    if (prevState.externalData === null) {
+    if (this.state.externalData === null) {
       this._loadAsyncData(this.props.id);
     }
   }

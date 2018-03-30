@@ -6,7 +6,11 @@ function withTheme(Component) {
         {theme => (
           // Assign the custom prop "forwardedRef" as a ref
           // highlight-next-line
-          <Component {...rest} ref={forwardedRef} theme={theme} />
+          <Component
+            {...rest}
+            ref={forwardedRef}
+            theme={theme}
+          />
         )}
       </ThemeContext.Consumer>
     );

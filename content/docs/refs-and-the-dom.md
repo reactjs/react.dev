@@ -33,7 +33,7 @@ Your first inclination may be to use refs to "make things happen" in your app. I
 
 > Note
 >
-> The examples below have been updated to use the React.createRef() API introduced in React 16.3. If you are using an earlier release of React, we recommend using [callback refs](#callback-refs) instead.
+> The examples below have been updated to use the `React.createRef()` API introduced in React 16.3. If you are using an earlier release of React, we recommend using [callback refs](#callback-refs) instead.
 
 ### Creating Refs
 
@@ -56,7 +56,7 @@ class MyComponent extends React.Component {
 When a ref is passed to an element in `render`, a reference to the node becomes accessible at the `current` attribute of the ref.
 
 ```javascript
-const node = this.myRef.current
+const node = this.myRef.current;
 ```
 
 The value of the ref differs depending on the type of the node:

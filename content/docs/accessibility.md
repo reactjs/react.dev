@@ -142,18 +142,25 @@ we need to programmatically nudge the keyboard focus in the right direction. For
 
 MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-To set focus in React, we can use [Refs to DOM elements](refs-and-the-dom.html).
+To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.html).
 
 Using this, we first create a ref to an element in the JSX of a component class:
 
-```javascript{2-3,7}
+```javascript{4-5,8-9,13}
 render() {
+  constructor(props) {
+    super(props);
+    // Create a ref to store the textInput DOM element
+    this.textInput = React.createRef();
+  }
+  // ...
   // Use the `ref` callback to store a reference to the text input DOM
   // element in an instance field (for example, this.textInput).
   return (
     <input
       type="text"
-      ref={(input) => { this.textInput = input; }} />
+      ref={this.textInput}
+    />
   );
 }
 ```
@@ -163,33 +170,44 @@ Then we can focus it elsewhere in our component when needed:
  ```javascript
  focus() {
    // Explicitly focus the text input using the raw DOM API
-   this.textInput.focus();
+   // Note: we're accessing "current" to get the DOM node
+   this.textInput.current.focus();
  }
  ```
- 
-Sometimes a parent component needs to set focus to an element in a child component. Although we can create [refs to class components](refs-and-the-dom.html#adding-a-ref-to-a-class-component), 
-we need a pattern that also works with functional components and when [using refs with HOCs](higher-order-components.html#refs-arent-passed-through). 
-To ensure that our parent component can always access the ref, we pass a callback as a prop to the child component to [expose the ref to the parent component](refs-and-the-dom.html#exposing-dom-refs-to-parent-components).
 
-```js
-// Expose the ref with a callback prop
-function Field({ inputRef, ...rest }) {
-  return <input ref={inputRef} {...rest} />;
+Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
+through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+
+```javascript{4,12,16}
+function CustomTextInput(props) {
+  return (
+    <div>
+      <input ref={props.inputRef} />
+    </div>
+  );
 }
 
-// Inside a parent class component's render method...
-<Field
-  inputRef={(inputEl) => {
-    // This callback gets passed through as a regular prop
-    this.inputEl = inputEl
-  }}
+class Parent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputElement = React.createRef();
+  }
+  render() {
+    return (
+      <CustomTextInput inputRef={this.inputElement} />
+    );
+  }
+}
 />
 
 // Now you can set focus when required.
-this.inputEl.focus();
+this.inputElement.current.focus();
 ```
 
-A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on 
+When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC
+does not implement ref forwarding, the above pattern can still be used as a fallback.
+
+A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
 the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that 
 initially triggered the modal.
 
@@ -203,7 +221,7 @@ initially triggered the modal.
 A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible,
 even the most complex widget can be coded accessibly.
 
-Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties). 
+Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
 These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
 
 Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
@@ -285,7 +303,7 @@ test the technical accessibility of your HTML.
 
 #### aXe, aXe-core and react-axe
 
-Deque Systems offers [aXe-core](https://www.deque.com/products/axe-core/) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
+Deque Systems offers [aXe-core](https://github.com/dequelabs/axe-core) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) or aXe, is an accessibility inspector browser extension built on `aXe-core`.
 

@@ -150,10 +150,10 @@ Using this, we first create a ref to an element in the JSX of a component class:
 render() {
   constructor(props) {
     super(props);
-    // create a ref to store the textInput DOM element
+    // Create a ref to store the textInput DOM element
     this.textInput = React.createRef();
   }
-  //...
+  // ...
   // Use the `ref` callback to store a reference to the text input DOM
   // element in an instance field (for example, this.textInput).
   return (

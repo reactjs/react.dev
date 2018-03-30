@@ -1,27 +1,24 @@
 function withTheme(Component) {
-  // Note the second param "ref" provided by React.forwardRef.
-  // We can attach this to Component directly.
-  // highlight-range{1,5}
-  function ThemedComponent(props, ref) {
+  // highlight-next-line
+  function ThemedComponent({forwardedRef, ...rest}) {
     return (
       <ThemeContext.Consumer>
         {theme => (
-          <Component {...props} ref={ref} theme={theme} />
+          // Assign the custom prop "forwardedRef" as a ref
+          // highlight-next-line
+          <Component {...rest} ref={forwardedRef} theme={theme} />
         )}
       </ThemeContext.Consumer>
     );
   }
 
-  // These next lines are not necessary,
-  // But they do give the component a better display name in DevTools,
-  // e.g. "ForwardRef(withTheme(MyComponent))"
-  // highlight-range{1-2}
-  const name = Component.displayName || Component.name;
-  ThemedComponent.displayName = `withTheme(${name})`;
-
-  // Tell React to pass the "ref" to ThemedComponent.
-  // highlight-next-line
-  return React.forwardRef(ThemedComponent);
+  // Note the second param "ref" provided by React.forwardRef.
+  // We can pass it along to ThemedComponent as a regular prop, e.g. "forwardedRef"
+  // And it can then be attached to the Component.
+  // highlight-range{1-3}
+  return React.forwardRef((props, ref) => (
+    <ThemedComponent {...props} forwardedRef={ref} />
+  ));
 }
 
 // highlight-next-line

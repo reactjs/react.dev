@@ -179,7 +179,7 @@ constructor(props) {
 
 Beware of this pattern, as state won't be up-to-date with any props update. Instead of syncing props to state, you often want to [lift the state up](/docs/lifting-state-up.html) instead.
 
-If you "fork" props by using them for state, you might also want to implement [`UNSAFE_componentWillReceiveProps(nextProps)`](#componentwillreceiveprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone.
+If you "fork" props by using them for state, you might also want to implement [`getDerivedStateFromProps()`](#static-getderivedstatefromprops) to keep the state up-to-date with them. But lifting state up is often easier and less bug-prone.
 
 * * *
 
@@ -281,7 +281,7 @@ UNSAFE_componentWillUpdate(nextProps, nextState)
 
 Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
 
-If you need to update `state` in response to `props` changes, use `UNSAFE_componentWillReceiveProps()` instead.
+If you need to update `state` in response to `props` changes, use [`getDerivedStateFromProps()`](#static-getderivedstatefromprops) instead.
 
 > Note
 >

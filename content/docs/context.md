@@ -35,7 +35,7 @@ Using context, we can avoid passing props through intermediate elements:
 
 > Note
 >
-> Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to accessed in many components at multiple levels.
+> Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to be accessed in many components at multiple levels.
 
 ## API
 

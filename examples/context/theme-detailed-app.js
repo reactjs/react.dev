@@ -1,5 +1,5 @@
 import {ThemeContext, themes} from './theme-context';
-import ThemedButton from './button';
+import ThemedButton from './themed-button';
 
 // An intermediate component that uses the ThemedButton
 function Toolbar(props) {

@@ -49,9 +49,10 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 - [`React.Fragment`](#reactfragment)
 
-### Other
+### Refs
 
 - [`React.forwardRef`](#reactforwardref)
+- [`React.createRef`](#reactcreateref)
 
 * * *
 
@@ -228,3 +229,8 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 `embed:reference-react-forward-ref.js`
 
 For more information, see [forwarding refs](/docs/forwarding-refs.html).
+
+### `React.createRef`
+
+`React.createRef` creates a ref that can be attached to React elements via the ref attribute.
+`embed:16-3-release-blog-post/create-ref-example.js`

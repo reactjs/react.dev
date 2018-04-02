@@ -232,5 +232,5 @@ For more information, see [forwarding refs](/docs/forwarding-refs.html).
 
 ### `React.createRef`
 
-`React.createRef` creates a ref that can be attached to React elements via the ref attribute.
+`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
 `embed:16-3-release-blog-post/create-ref-example.js`

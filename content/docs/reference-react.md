@@ -51,8 +51,8 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Refs
 
-- [`React.forwardRef`](#reactforwardref)
 - [`React.createRef`](#reactcreateref)
+- [`React.forwardRef`](#reactforwardref)
 
 * * *
 
@@ -223,14 +223,15 @@ render() {
 
 You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
 
+
+### `React.createRef`
+
+`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
+`embed:16-3-release-blog-post/create-ref-example.js`
+
 ### `React.forwardRef`
 
 `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. Ref forwarding is a technique for passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its descendants. This technique can be particularly useful with [higher-order components](/docs/higher-order-components.html):
 `embed:reference-react-forward-ref.js`
 
 For more information, see [forwarding refs](/docs/forwarding-refs.html).
-
-### `React.createRef`
-
-`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
-`embed:16-3-release-blog-post/create-ref-example.js`

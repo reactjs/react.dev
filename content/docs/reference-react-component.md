@@ -488,7 +488,7 @@ In particular, `this.props.children` is a special prop, typically defined by the
 
 The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
 
-If you don't use it in `render()`, it shouldn't be in the state. For example, you can put timer IDs directly on the instance.
+If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
 
 See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
 

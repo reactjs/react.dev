@@ -1,6 +1,6 @@
 import React from 'react';
 // highlight-next-line
-import polyfill from 'react-lifecycles-compat';
+import {polyfill} from 'react-lifecycles-compat';
 
 class ExampleComponent extends React.Component {
   // highlight-next-line

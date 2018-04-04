@@ -1,13 +1,15 @@
-function ThemedButton(props) {
-  //highlight-range{1}
-  return <Button theme={props.theme} />;
+class App extends React.Component {
+  render() {
+    return <Toolbar theme="dark" />;
+  }
 }
 
-// An intermediate component
 function Toolbar(props) {
-  // highlight-range{1-2,5}
-  // The Toolbar component must take an extra theme prop
-  // and pass it to the ThemedButton
+  // highlight-range{1-4,7}
+  // The Toolbar component must take an extra "theme" prop
+  // and pass it to the ThemedButton. This can become painful
+  // if every single button in the app needs to know the theme
+  // because it would have to be passed through all components.
   return (
     <div>
       <ThemedButton theme={props.theme} />
@@ -15,9 +17,6 @@ function Toolbar(props) {
   );
 }
 
-class App extends React.Component {
-  render() {
-    // highlight-range{1}
-    return <Toolbar theme="dark" />;
-  }
+function ThemedButton(props) {
+  return <Button theme={props.theme} />;
 }

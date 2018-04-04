@@ -1,5 +1,6 @@
 class App extends React.Component {
   constructor(props) {
+    super(props);
     // highlight-range{2}
     this.state = {
       value: {something: 'something'},

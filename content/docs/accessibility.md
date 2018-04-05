@@ -147,21 +147,22 @@ To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.
 Using this, we first create a ref to an element in the JSX of a component class:
 
 ```javascript{4-5,8-9,13}
-render() {
+class CustomTextInput extends React.Component {
   constructor(props) {
     super(props);
     // Create a ref to store the textInput DOM element
     this.textInput = React.createRef();
   }
-  // ...
+  render() {
   // Use the `ref` callback to store a reference to the text input DOM
   // element in an instance field (for example, this.textInput).
-  return (
-    <input
-      type="text"
-      ref={this.textInput}
-    />
-  );
+    return (
+      <input
+        type="text"
+        ref={this.textInput}
+      />
+    );
+  }
 }
 ```
 

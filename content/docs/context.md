@@ -47,7 +47,7 @@ const {Provider, Consumer} = React.createContext(defaultValue);
 
 Creates a `{ Provider, Consumer }` pair.
 
-Optionally accepts a default value to be passed to Consumers without a Provider ancestor.
+Optionally accepts a default value to be passed to Consumers without a Provider ancestor. _Only Consumers that don't have a Provider higher in the tree receive the default value_. 
 
 ### `Provider`
 
@@ -58,6 +58,10 @@ Optionally accepts a default value to be passed to Consumers without a Provider 
 A React component that allows Consumers to subscribe to context changes.
 
 Accepts a `value` prop to be passed to Consumers that are descendants of this Provider. One Provider can be connected to many Consumers. Providers can be nested to override values deeper within the tree.
+
+> Note:
+>
+> If `value` is not provided, Consumers receive `undefined`. To use the default value in a Consumer instead, remove the Provider altogether.
 
 ### `Consumer`
 

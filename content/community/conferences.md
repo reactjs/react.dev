@@ -38,7 +38,7 @@ April 24-26 in Helsinki, Finland
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
 
 ### <React.NotAConf /> 2018
-April 28 in Sofia, Bulgaia
+April 28 in Sofia, Bulgaria
 
 [Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/groups/1614950305478021/)
 

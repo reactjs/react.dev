@@ -45,9 +45,9 @@ Using context, we can avoid passing props through intermediate elements:
 const {Provider, Consumer} = React.createContext(defaultValue);
 ```
 
-Creates a `{ Provider, Consumer }` pair.
+Creates a `{ Provider, Consumer }` pair. When React renders a context `Consumer`, it will read the current context value from the closest matching `Provider` above it in the tree.
 
-Optionally accepts a default value to be passed to Consumers without a Provider ancestor.
+The `defaultValue` argument is the context value React uses if you render a `Consumer` without a matching `Provider` above it in the tree. For example, this is helpful for testing components in isolation without wrapping them.
 
 ### `Provider`
 

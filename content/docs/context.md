@@ -47,7 +47,7 @@ const {Provider, Consumer} = React.createContext(defaultValue);
 
 Creates a `{ Provider, Consumer }` pair. When React renders a context `Consumer`, it will read the current context value from the closest matching `Provider` above it in the tree.
 
-The `defaultValue` argument is the context value React uses if you render a `Consumer` without a matching `Provider` above it in the tree. For example, this is helpful for testing components in isolation without wrapping them.
+The `defaultValue` argument is used when you render a Consumer without a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them.
 
 ### `Provider`
 
@@ -69,7 +69,9 @@ Accepts a `value` prop to be passed to Consumers that are descendants of this Pr
 
 A React component that subscribes to context changes.
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. All consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). (This can cause some issues when passing objects as `value`: see [Caveats](#caveats).)
+Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
+
+All Consumers are re-rendered whenever the Provider value changes. Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). (This can cause some issues when passing objects as `value`: see [Caveats](#caveats).)
 
 > Note
 > 

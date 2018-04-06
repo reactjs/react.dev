@@ -2,11 +2,14 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import Link from 'gatsby-link';
 import React from 'react';
 import {colors, media} from 'theme';
+
+import type {Node} from 'react';
 
 const ArrowSvg = ({cssProps = {}}) => (
   <svg
@@ -25,7 +28,14 @@ const ArrowSvg = ({cssProps = {}}) => (
   </svg>
 );
 
-const ButtonLink = ({children, type, ...rest}) => {
+const ButtonLink = ({
+  children,
+  type,
+  ...rest
+}: {
+  children: Node,
+  type: string,
+}) => {
   let typeStyle;
   switch (type) {
     case 'primary':

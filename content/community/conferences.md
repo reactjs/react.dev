@@ -14,13 +14,12 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ### ReactFest 2018
 March 8-9 in London, UK
 
-[Website](https://reactfest.uk/) [Twitter](https://twitter.com/ReactFest) 
+[Website](https://reactfest.uk/) - [Twitter](https://twitter.com/ReactFest) - [Videos](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
 
 ### Reactathon 2018
 March 20-22 in San Francisco, USA
 
-[Website](https://www.reactathon.com/) [Twitter](https://twitter.com/reactathon)
-
+[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon) - [Videos (fundamentals)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [Videos (advanced day1)](https://www.youtube.com/watch?v=57hmk4GvJpk&list=PLRvKvw42Rc7N0QpX2Rc5CdrqGuxzwD_0H), [Videos (advanced day2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
 
 ### React Native Camp UA 2018
 March 31 in Kiev, Ukraine
@@ -145,17 +144,17 @@ January 20-21 in Dornbirn, Austria
 ### React Conf 2017
 March 13-14 in Santa Clara, CA
 
-[Website](http://conf.reactjs.org/)
+[Website](http://conf.reactjs.org/) - [Videos](https://www.youtube.com/watch?v=7HSd1sk07uU&list=PLb0IAmt7-GS3fZ46IGFirdqKTIxlws7e0)
 
 ### React London 2017
 March 28th at the [QEII Centre, London](http://qeiicentre.london/)
 
-[Website](http://react.london/)
+[Website](http://react.london/) - [Videos](https://www.youtube.com/watch?v=2j9rSur_mnk&list=PLW6ORi0XZU0CFjdoYeC0f5QReBG-NeNKJ)
 
 ### React Amsterdam 2017
 April 21st in Amsterdam, The Netherlands
 
-[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam)
+[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Videos](https://www.youtube.com/watch?v=NQyL-Dm7Kig&list=PLNBNS7NRGKMHxfm0CcYNuINLdRw7r4a9M)
 
 ### ReactEurope 2017
 May 18th & 19th in Paris, France
@@ -165,42 +164,42 @@ May 18th & 19th in Paris, France
 ### Chain React 2017
 July 10-11 in Portland, Oregon USA
 
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
+[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf) - [Videos](https://www.youtube.com/watch?v=cz5BzwgATpc&list=PLFHvL21g9bk3RxJ1Ut5nR_uTZFVOxu522)
 
-### React Rally
+### React Rally 2017
 August 24-25 in Salt Lake City, Utah USA
 
-[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
+[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally) - [Videos](https://www.youtube.com/watch?v=f4KnHNCZcH4&list=PLUD4kD-wL_zZUhvAIHJjueJDPr6qHvkni)
 
 ### React Native EU 2017
 September 6-7 in Wroclaw, Poland
 
-[Website](http://react-native.eu/)
+[Website](http://react-native.eu/) - [Videos](https://www.youtube.com/watch?v=453oKJAqfy0&list=PLzUKC1ci01h_hkn7_KoFA-Au0DXLAQZR7)
 
 ### ReactNext 2017
 September 8-10 in Tel Aviv, Israel
 
-[Website](http://react-next.com/) - [Twitter](https://twitter.com/ReactNext)
+[Website](http://react-next.com/) - [Twitter](https://twitter.com/ReactNext) - [Videos (Hall A)](https://www.youtube.com/watch?v=eKXQw5kR86c&list=PLMYVq3z1QxSqq6D7jxVdqttOX7H_Brq8Z), [Videos (Hall B)](https://www.youtube.com/watch?v=1InokWxYGnE&list=PLMYVq3z1QxSqCZmaqgTXLsrcJ8mZmBF7T)
 
 ### ReactFoo 2017
 September 14 in Bangalore, India
 
-[Website](https://reactfoo.in/2017/)
+[Website](https://reactfoo.in/2017/) - [Videos](https://www.youtube.com/watch?v=3G6tMg29Wnw&list=PL279M8GbNsespKKm1L0NAzYLO6gU5LvfH)
 
 ### React Boston 2017
 September 23-24 in Boston, Massachusetts USA
 
-[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
+[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston) - [Videos](https://www.youtube.com/watch?v=2iPE5l3cl_s&list=PL-fCkV3wv4ub8zJMIhmrrLcQqSR5XPlIT)
 
 ### React Alicante 2017
 September 28-30 in Alicante, Spain
 
-[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante) - [Videos](https://www.youtube.com/watch?v=UMZvRCWo6Dw&list=PLd7nkr8mN0sWvBH_s0foCE6eZTX8BmLUM)
 
 ### ReactJS Day 2017
 October 6 in Verona, Italy
 
-[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+[Website](http://2017.reactjsday.it) - [Twitter](https://twitter.com/reactjsday) - [Videos](https://www.youtube.com/watch?v=bUqqJPIgjNU&list=PLWK9j6ps_unl293VhhN4RYMCISxye3xH9)
 
 ### React Conf Brasil 2017
 October 7 in Sao Paulo, Brazil
@@ -220,7 +219,7 @@ October 21 in Lagos, Nigeria
 ### ReactiveConf 2017
 October 25–27, Bratislava, Slovakia
 
-[Website](https://reactiveconf.com)
+[Website](https://reactiveconf.com) - [Videos](https://www.youtube.com/watch?v=BOKxSFB2hOE&list=PLa2ZZ09WYepMB-I7AiDjDYR8TjO8uoNjs)
 
 ### React Seoul 2017
 November 4 in Seoul, South Korea
@@ -230,7 +229,7 @@ November 4 in Seoul, South Korea
 ### React Day Berlin
 December 2, Berlin, Germany
 
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/)
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/watch?v=UnNLJvHKfSY&list=PL-3BrJ5CiIx5GoXci54-VsrO6GwLhSHEK)
 
 ### ReactFoo Pune
 January 19-20, Pune, India

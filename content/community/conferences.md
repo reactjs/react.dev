@@ -57,7 +57,7 @@ August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
 
-### #byteconf_react_2018
+### #byteconf\_react\_2018
 August 23-24 streamed online, via Twitch
 
 [Website](https://byteconf.com) - [Twitter](https://twitter.com/byteconf)

@@ -1,4 +1,4 @@
-import { ThemeContext } from './theme-context'
+import {ThemeContext} from './theme-context';
 
 function ThemeTogglerButton() {
   // highlight-range{1-2,5}
@@ -6,16 +6,16 @@ function ThemeTogglerButton() {
   // but also a toggleTheme funtion from the context
   return (
     <ThemeContext.Consumer>
-      {({ theme, toggleTheme }) => (
+      {({theme, toggleTheme}) => (
         <button
           onClick={toggleTheme}
-          style={{ backgroundColor: theme.background }}
+          style={{backgroundColor: theme.background}}
         >
           Toggle Theme
         </button>
       )}
     </ThemeContext.Consumer>
-  )
+  );
 }
 
-export default ThemeTogglerButton
+export default ThemeTogglerButton;

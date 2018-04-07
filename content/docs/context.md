@@ -15,6 +15,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
   - [Consumer](#consumer)
 - [Examples](#examples)
   - [Dynamic Context](#dynamic-context)
+  - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
   - [Accessing Context in Lifecycle Methods](#accessing-context-in-lifecycle-methods)
   - [Consuming Context with a HOC](#consuming-context-with-a-hoc)
@@ -91,6 +92,16 @@ A more complex example with dynamic values for the theme:
 
 **app.js**
 `embed:context/theme-detailed-app.js`
+
+### Updating Context from a Nested Component
+
+It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
+
+**theme-toggler-button.js**
+`embed:context/updating-nested-context-theme-toggler-button.js`
+
+**app.js**
+`embed:context/updating-nested-context-app.js`
 
 ### Consuming Multiple Contexts
 

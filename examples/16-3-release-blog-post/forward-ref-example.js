@@ -25,6 +25,10 @@ function withTheme(Component) {
   ));
 }
 
+// Here we assume that FancyButton has been imported into the current scope
+const FancyThemedButton = withTheme(FancyButton);
+
+// Create a ref using the new Referenace API, as above
 // highlight-next-line
 const fancyButtonRef = React.createRef();
 

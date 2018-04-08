@@ -97,6 +97,9 @@ A more complex example with dynamic values for the theme:
 
 It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
 
+**theme-context.js**
+`embed:context/updating-nested-context-context.js`
+
 **theme-toggler-button.js**
 `embed:context/updating-nested-context-theme-toggler-button.js`
 

@@ -19,7 +19,6 @@ module.exports = {
   plugins: [
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
-    'gatsby-transformer-home-example-code',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
     'gatsby-plugin-react-next',
@@ -35,6 +34,19 @@ module.exports = {
       options: {
         path: `${__dirname}/src/pages`,
         name: 'pages',
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'examples',
+        path: `${__dirname}/content/home/examples`,
+      },
+    },
+    {
+      resolve: 'gatsby-transformer-code',
+      options: {
+        name: 'examples',
       },
     },
     {

@@ -25,14 +25,14 @@ class Home extends Component {
     const {data} = props;
 
     const code = data.code.edges.reduce((map, {node}) => {
-      map[node.id] = JSON.parse(node.internal.contentDigest);
+      map[node.name] = node.content;
 
       return map;
     }, {});
 
     const examples = data.examples.edges.map(({node}) => ({
       content: node.html,
-      id: node.fields.slug.replace(/^.+\//, '').replace('.html', ''),
+      id: node.fields.slug.replace(/^.*\//, '').replace('.html', ''),
       title: node.frontmatter.title,
     }));
 
@@ -374,14 +374,14 @@ const CtaItem = ({children, primary = false}) => (
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query IndexMarkdown {
-    code: allExampleCode {
+  query IndexMarkdown{
+    code: allRawCode(
+      filter: {instanceName: {eq: "examples"}}
+    ) {
       edges {
         node {
-          id
-          internal {
-            contentDigest
-          }
+          name
+          content
         }
       }
     }

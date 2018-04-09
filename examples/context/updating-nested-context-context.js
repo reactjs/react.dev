@@ -4,7 +4,7 @@
 // highlight-range{2-4}
 export const ThemeContext = React.createContext({
   theme: themes.dark,
-  // optionally you can pass functions that log an error
+  // implement default behavior...
   toggleTheme: () =>
     console.error('default toggleTheme called'),
 });

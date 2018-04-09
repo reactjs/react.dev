@@ -9,20 +9,20 @@
 // Parse date information out of blog post filename.
 const BLOG_POST_FILENAME_REGEX = /([0-9]+)\-([0-9]+)\-([0-9]+)\-(.+)\.md$/;
 
-function addPathAliasToRedirects(permalink, redirect_from) {
-  if (!permalink || !redirect_from || permalink.indexOf('.html') === -1) {
-    return redirect_from;
+function buildRedirectString(permalink, redirect_from) {
+  if (!permalink || permalink.indexOf('.html') === -1) {
+    return '';
   }
 
   let basePath = permalink.slice(0, permalink.indexOf('.html'));
   let redirects = [basePath, basePath + '/'];
   if (Array.isArray(redirect_from)) {
     redirects = redirects.concat(redirect_from);
-  } else {
-    redirects.push(redirect_from);
+  //} else if (redirect_from) {
+  //  redirects.push(redirect_from);
   }
 
-  return redirects;
+  return JSON.stringify(redirects);
 }
 
 // Add custom fields to MarkdownRemark nodes.
@@ -83,7 +83,7 @@ module.exports = exports.onCreateNode = ({node, boundActionCreators, getNode}) =
       createNodeField({
         node,
         name: 'redirect',
-        value: redirect_from ? JSON.stringify(addPathAliasToRedirects(permalink, redirect_from)) : '',
+        value: buildRedirectString(permalink, redirect_from),
       });
 
       return;

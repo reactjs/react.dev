@@ -7,7 +7,9 @@ author: [sophiebits]
 
 Here's the video courtesy of JSConf Iceland:
 
-<iframe src="https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Freact%2Fvideos%2F1552821821462886%2F&show_text=0&width=560&mute=0" width="560" height="315" scrolling="no" frameborder="0" allowTransparency="true" allowFullScreen="true"></iframe>
+<br>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nLF0n9SACd4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 I think you'll enjoy the talk more if you stop reading here and just watch the video. If you don't have time to watch, a (very) brief summary follows.
 

@@ -1,5 +1,7 @@
 .cache
 .DS_STORE
 .idea
+.ctags
+tags
 node_modules
 public

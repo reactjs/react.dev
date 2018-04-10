@@ -44,6 +44,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## England (UK)
 * [Manchester](http://www.meetup.com/Manchester-React-User-Group/)
 
+## Finland
+* [Helsinki](https://www.meetup.com/ReactJS-Community/)
+
 ## France
 * [Paris](http://www.meetup.com/ReactJS-Paris/)
 

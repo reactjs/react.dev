@@ -7,7 +7,7 @@ author: [sophiebits]
 
 Here's the video courtesy of JSConf Iceland:
 
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nLF0n9SACd4?rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nLF0n9SACd4?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
 
 I think you'll enjoy the talk more if you stop reading here and just watch the video. If you don't have time to watch, a (very) brief summary follows.
 

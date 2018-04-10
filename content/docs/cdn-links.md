@@ -36,7 +36,7 @@ We also recommend to verify that the CDN you are using sets the `Access-Control-
 
 This enables a better [error handling experience](/blog/2017/07/26/error-handling-in-react-16.html) in React 16 and later.
 
-### Why the `integrity` attribute and specific version in production?
+### Why the `integrity` Attribute and Specific Version in Production?
 
 > SRI is a new W3C specification that allows web developers to ensure that resources hosted on third-party servers have not been tampered with. Use of SRI is recommended as a best-practice, whenever libraries are loaded from a third-party source.
 > Learn more about [how to use subresource integrity](https://developer.mozilla.org/en-US/docs/Web/Security/Subresource_Integrity) on MDN.

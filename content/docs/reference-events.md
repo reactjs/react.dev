@@ -76,6 +76,7 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 - [Focus Events](#focus-events)
 - [Form Events](#form-events)
 - [Mouse Events](#mouse-events)
+- [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)
 - [Touch Events](#touch-events)
 - [UI Events](#ui-events)
@@ -212,6 +213,40 @@ number screenX
 number screenY
 boolean shiftKey
 ```
+
+* * *
+
+### Pointer Events
+
+Event names:
+
+```
+onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
+onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
+```
+
+The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+
+Properties:
+
+As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+
+```javascript
+number pointerId
+number width
+number height
+number pressure
+number tiltX
+number tiltY
+string pointerType
+boolean isPrimary
+```
+
+A note on cross-browser support:
+
+Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+
+If your application requires pointer events, we recommend adding a third party pointer event polyfill like [PEP](https://github.com/jquery/PEP).
 
 * * *
 

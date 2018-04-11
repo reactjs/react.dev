@@ -20,3 +20,18 @@ This means that refs intended for our `FancyButton` component will actually be a
 Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
 `embed:forwarding-refs/log-props-after.js`
 
+## Displaying a custom name in DevTools
+
+`React.forwardRef` accepts a render function. React DevTools uses this function to determine what to display for the ref forwarding component.
+
+For example, the following component will appear as "*ForwardRef*" in the DevTools:
+
+`embed:forwarding-refs/wrapped-component.js`
+
+If you name the render function, DevTools will also include its name (e.g. "*ForwardRef(myFunction)*"):
+
+`embed:forwarding-refs/wrapped-component-with-function-name.js`
+
+You can even set the function's `displayName` property to include the component you're wrapping:
+
+`embed:forwarding-refs/customized-display-name.js`

@@ -11,9 +11,9 @@ Ref forwarding is a technique for automatically passing a [ref](/docs/refs-and-t
 Consider a `FancyButton` component that renders the native `button` DOM element:
 `embed:forwarding-refs/fancy-button-simple.js`
 
-React components hide their implementation details, including their rendering output. Other components using `FancyButton` **usually may not** [obtain a ref](/docs/refs-and-the-dom.html) to its inner `button` DOM element. Generally, this limitation is good because it prevents components from relying on each other's DOM structure too much.
+React components hide their implementation details, including their rendered output. Other components using `FancyButton` **usually will not need to** [obtain a ref](/docs/refs-and-the-dom.html) to the inner `button` DOM element. This is good because it prevents components from relying on each other's DOM structure too much.
 
-Although such encapsulation is desirable for application-level components like `FeedStory` or `Comment`, it can be inconvenient for highly reusable "leaf" components like `FancyButton` or `MyTextInput`. Components like `FancyButton` or `MyTextInput` tend to be used throughout the application in a similar manner as a regular DOM `button` and `input`, and accessing their DOM nodes may be unavoidable for managing focus, selection, or animations.
+Although such encapsulation is desirable for application-level components like `FeedStory` or `Comment`, it can be inconvenient for highly reusable "leaf" components like `FancyButton` or `MyTextInput`. These components tend to be used throughout the application in a similar manner as a regular DOM `button` and `input`, and accessing their DOM nodes may be unavoidable for managing focus, selection, or animations.
 
 **Ref forwarding is an opt-in feature that lets some components take a `ref` they receive, and pass it further down (in other words, "forward" it) to a child.**
 
@@ -25,7 +25,7 @@ This way, components using `FancyButton` can get a ref to the underlying `button
 
 Here is a step-by-step explanation of what happens in the above example:
 
-1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.createRef` and save it into a `ref` variable.
+1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.createRef` and assign it to a `ref` variable.
 1. We pass our `ref` down to `<FancyButton ref={ref}>` by specifying it as a JSX attribute.
 1. React passes the `ref` to the `(props, ref) => ...` function inside `forwardRef` as a second argument.
 1. We forward this `ref` argument down to `<button ref={ref}>` by specifying it as a JSX attribute.

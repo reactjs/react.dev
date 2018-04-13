@@ -240,8 +240,8 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 
 `embed:reference-react-forward-ref.js`
 
-In the above example, React passes a `ref` given to `<FancyButton ref={ref}>` element as a second argument to the rendering function inside the `React.forwardRef` call. This rendering function further passes the `ref` to the `<button ref={ref}>` element.
+In the above example, React passes a `ref` given to `<FancyButton ref={ref}>` element as a second argument to the rendering function inside the `React.forwardRef` call. This rendering function passes the `ref` to the `<button ref={ref}>` element.
 
-This is why, after React attaches the ref, `ref.current` will point directly to the `<button>` DOM element instance.
+As a result, after React attaches the ref, `ref.current` will point directly to the `<button>` DOM element instance.
 
 For more information, see [forwarding refs](/docs/forwarding-refs.html).

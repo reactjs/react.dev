@@ -11,6 +11,9 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import React from 'react';
 import {sharedStyles} from 'theme';
 
+// $FlowFixMe This is a valid path
+import versions from '../../content/versions.yml';
+
 const Versions = () => (
   <Container>
     <div css={sharedStyles.articleLayout.container}>
@@ -29,21 +32,13 @@ const Versions = () => (
           </p>
           <p>Documentation for recent releases can also be accessed below:</p>
           <ul>
-            <li>
-              <a href="/version/16.2" rel="nofollow">
-                16.2.0
-              </a>
-            </li>
-            <li>
-              <a href="/version/16.1" rel="nofollow">
-                16.1.1
-              </a>
-            </li>
-            <li>
-              <a href="/version/16.0" rel="nofollow">
-                16.0.0
-              </a>
-            </li>
+            {versions.map(version => (
+              <li key={version.title}>
+                <a href={version.path} rel="nofollow">
+                  {version.title}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -4,9 +4,19 @@ title: Forwarding Refs
 permalink: docs/forwarding-refs.html
 ---
 
-Ref forwarding is a technique for passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its descendants. This technique can be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs).
+Ref forwarding is a technique for passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its descendants.
 
-Let's start with an example HOC that logs component props to the console:
+Let's say you have a `FancyButton` component that uses the native `button` element.
+`embed:forwarding-refs/fancy-button-simple.js`
+
+But using that component means you can't get a `ref` for the `button` outside of its context, which means if you needed it for some reason, you wouldn't be able to use the `FancyButton` component anymore.
+
+With this technique you can use the `FancyButton` but still get the `ref` of the `button`:
+`embed:forwarding-refs/fancy-button-simple-ref.js`
+
+## Usage with higher-order-components
+
+This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
 `embed:forwarding-refs/log-props-before.js`
 
 The "logProps" HOC passes all `props` through to the component it wraps, so the rendered output will be the same. For example, we can use this HOC to log all props that get passed to our "fancy button" component:

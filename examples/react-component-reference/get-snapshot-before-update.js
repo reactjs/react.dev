@@ -1,11 +1,15 @@
 class ScrollingList extends React.Component {
-  listRef = React.createRef();
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     // Are we adding new items to the list?
-    // Capture the current height of the list so we can adjust scroll later.
+    // Capture the scroll position so we can adjust scroll later.
     if (prevProps.list.length < this.props.list.length) {
-      return this.listRef.current.scrollHeight;
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
     }
     return null;
   }
@@ -13,9 +17,10 @@ class ScrollingList extends React.Component {
   componentDidUpdate(prevProps, prevState, snapshot) {
     // If we have a snapshot value, we've just added new items.
     // Adjust scroll so these new items don't push the old ones out of view.
+    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
     if (snapshot !== null) {
-      this.listRef.current.scrollTop +=
-        this.listRef.current.scrollHeight - snapshot;
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
     }
   }
 

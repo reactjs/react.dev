@@ -80,7 +80,10 @@ September 13-15 in Alicante, Spain
 ### ReactJS Day 2018
 October 5 in Verona, Italy
 
-[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
+### ReactiveConf 2018
+October 29-31 in Prague, Czech Republic
+
+[Website](https://goo.gl/mdczo1) - [Twitter](https://twitter.com/ReactiveConf)
 
 ## Past Conferences
 

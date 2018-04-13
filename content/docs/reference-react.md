@@ -231,7 +231,13 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 
 ### `React.forwardRef`
 
-`React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. Ref forwarding is a technique for passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its descendants. This technique can be particularly useful with [higher-order components](/docs/higher-order-components.html):
+`React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. Ref forwarding is a technique for passing a [ref](/docs/refs-and-the-dom.html) through a component to one of its children:
+
 `embed:reference-react-forward-ref.js`
+
+This technique is not very common but is particularly useful in two scenarios:
+
+* [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
+* [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
 
 For more information, see [forwarding refs](/docs/forwarding-refs.html).

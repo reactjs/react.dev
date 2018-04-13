@@ -1,10 +1,10 @@
+// highlight-range{1-2}
 const FancyButton = React.forwardRef((props, ref) => (
-  <button className="button-class" ref={ref}>
+  <button ref={ref} className="FancyButton">
     {props.children}
   </button>
 ));
 
+// You can now get a ref directly to the DOM button:
 const ref = React.createRef();
-
-// You'll now get a `ref` of the `button` element
 <FancyButton ref={ref}>Click me!</FancyButton>;

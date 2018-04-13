@@ -1,6 +1,6 @@
 function FancyButton(props) {
   return (
-    <button className="button-class">
+    <button className="FancyButton">
       {props.children}
     </button>
   );

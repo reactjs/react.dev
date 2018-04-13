@@ -1,5 +1,8 @@
 class ScrollingList extends React.Component {
-  listRef = React.createRef();
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
 
   getSnapshotBeforeUpdate(prevProps, prevState) {
     // Are we adding new items to the list?

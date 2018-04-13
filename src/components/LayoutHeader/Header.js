@@ -10,9 +10,9 @@ import HeaderLink from './HeaderLink';
 import Link from 'gatsby-link';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
+import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
-import VersionToggler from './VersionToggler';
 
 import logoSvg from 'icons/logo.svg';
 
@@ -146,7 +146,25 @@ const Header = ({location}: {location: Location}) => (
               width: 'calc(100% / 6)',
             },
           }}>
-          <VersionToggler />
+          <a
+            css={{
+              padding: '5px 10px',
+              whiteSpace: 'nowrap',
+              ...fonts.small,
+
+              ':hover': {
+                color: colors.brand,
+              },
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: 15,
+              },
+            }}
+            href="/versions">
+            v{version}
+          </a>
           <a
             css={{
               padding: '5px 10px',

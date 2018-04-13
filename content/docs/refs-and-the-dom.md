@@ -195,71 +195,9 @@ In rare cases, you might want to have access to a child's DOM node from a parent
 
 While you could [add a ref to the child component](#adding-a-ref-to-a-class-component), this is not an ideal solution, as you would only get a component instance rather than a DOM node. Additionally, this wouldn't work with functional components.
 
-Instead, in such cases we recommend exposing a special prop on the child. This prop can be named anything other than ref (e.g. inputRef). The child component can then forward the prop to the DOM node as a ref attribute. This lets the parent pass its ref to the child's DOM node through the component in the middle.
+If you use React 16.3 or higher, we recommend to use [ref forwarding](/docs/forwarding-refs.html) for these cases. **Ref forwarding lets components opt into exposing any child component's ref as their own**. You can find a detailed example of how to expose a child's DOM node to a parent component [in the ref forwarding documentation](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
-This works both for classes and for functional components.
-
-```javascript{4,12,16}
-function CustomTextInput(props) {
-  return (
-    <div>
-      <input ref={props.inputRef} />
-    </div>
-  );
-}
-
-class Parent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.inputElement = React.createRef();
-  }
-  render() {
-    return (
-      <CustomTextInput inputRef={this.inputElement} />
-    );
-  }
-}
-```
-
-In the example above, `Parent` passes its class property `this.inputElement` as an `inputRef` prop to the `CustomTextInput`, and the `CustomTextInput` passes the same ref as a special `ref` attribute to the `<input>`. As a result, `this.inputElement.current` in `Parent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
-
-Note that the name of the `inputRef` prop in the above example has no special meaning, as it is a regular component prop. However, using the `ref` attribute on the `<input>` itself is important, as it tells React to attach a ref to its DOM node.
-
-This works even though `CustomTextInput` is a functional component. Unlike the special `ref` attribute which can [only be specified for DOM elements and for class components](#refs-and-functional-components), there are no restrictions on regular component props like `inputRef`.
-
-Another benefit of this pattern is that it works several components deep. For example, imagine `Parent` didn't need that DOM node, but a component that rendered `Parent` (let's call it `Grandparent`) needed access to it. Then we could let the `Grandparent` specify the `inputRef` prop to the `Parent`, and let `Parent` "forward" it to the `CustomTextInput`:
-
-```javascript{4,12,20,24}
-function CustomTextInput(props) {
-  return (
-    <div>
-      <input ref={props.inputRef} />
-    </div>
-  );
-}
-
-function Parent(props) {
-  return (
-    <div>
-      My input: <CustomTextInput inputRef={props.inputRef} />
-    </div>
-  );
-}
-
-class Grandparent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.inputElement = React.createRef();
-  }
-  render() {
-    return (
-      <Parent inputRef={this.inputElement} />
-    );
-  }
-}
-```
-
-Here, the ref `this.inputElement` is first specified by `Grandparent`. It is passed to the `Parent` as a regular prop called `inputRef`, and the `Parent` passes it to the `CustomTextInput` as a prop too. Finally, the `CustomTextInput` reads the `inputRef` prop and attaches the passed ref as a `ref` attribute to the `<input>`. As a result, `this.inputElement.current` in `Grandparent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
+If you use React 16.2 or lower, or if you need more flexibility than provided by ref forwarding, you can use [this alternative approach](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) and explicitly pass a ref as a differently named prop.
 
 When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged.
 

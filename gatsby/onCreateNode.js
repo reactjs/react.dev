@@ -10,16 +10,14 @@
 const BLOG_POST_FILENAME_REGEX = /([0-9]+)\-([0-9]+)\-([0-9]+)\-(.+)\.md$/;
 
 function buildRedirectString(permalink, redirect_from) {
-  if (!permalink || permalink.indexOf('.html') === -1) {
-    return '';
+  if (!permalink || !permalink.endsWith('.html')) {
+    return redirect_from ? JSON.stringify(redirect_from) : '';
   }
 
-  let basePath = permalink.slice(0, permalink.indexOf('.html'));
+  let basePath = permalink.slice(0, -'.html'.length);
   let redirects = [basePath, basePath + '/'];
   if (Array.isArray(redirect_from)) {
     redirects = redirects.concat(redirect_from);
-  //} else if (redirect_from) {
-  //  redirects.push(redirect_from);
   }
 
   return JSON.stringify(redirects);

@@ -11,26 +11,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### ReactFest 2018
-March 8-9 in London, UK
-
-[Website](https://reactfest.uk/) - [Twitter](https://twitter.com/ReactFest) - [Videos](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
-
-### Reactathon 2018
-March 20-22 in San Francisco, USA
-
-[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon) - [Videos (fundamentals)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [Videos (advanced day1)](https://www.youtube.com/watch?v=57hmk4GvJpk&list=PLRvKvw42Rc7N0QpX2Rc5CdrqGuxzwD_0H), [Videos (advanced day2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
-
-### React Native Camp UA 2018
-March 31 in Kiev, Ukraine
-
-[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
-
-### React Amsterdam 2018
-April 13 in Amsterdam, The Netherlands
-
-[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
-
 ### React Finland 2018
 April 24-26 in Helsinki, Finland
 
@@ -246,3 +226,22 @@ January 25-28 in Dornbirn, Austria
 
 [Website](http://agent.sh/)
 
+### ReactFest 2018
+March 8-9 in London, UK
+
+[Website](https://reactfest.uk/) - [Twitter](https://twitter.com/ReactFest) - [Videos](https://www.youtube.com/watch?v=YOCrJ5vRCnw&list=PLRgweB8YtNRt-Sf-A0y446wTJNUaAAmle)
+
+### Reactathon 2018
+March 20-22 in San Francisco, USA
+
+[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon) - [Videos (fundamentals)](https://www.youtube.com/watch?v=knn364bssQU&list=PLRvKvw42Rc7OWK5s-YGGFSmByDzzgC0HP), [Videos (advanced day1)](https://www.youtube.com/watch?v=57hmk4GvJpk&list=PLRvKvw42Rc7N0QpX2Rc5CdrqGuxzwD_0H), [Videos (advanced day2)](https://www.youtube.com/watch?v=1hvQ8p8q0a0&list=PLRvKvw42Rc7Ne46QAjWNWFo1Jf0mQdnIW)
+
+### React Native Camp UA 2018
+March 31 in Kiev, Ukraine
+
+[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
+
+### React Amsterdam 2018
+April 13 in Amsterdam, The Netherlands
+
+[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)

@@ -28,18 +28,25 @@ const Versions = () => (
               target="_blank"
               rel="noopener">
               in GitHub
-            </a>.
+            </a>. Documentation for recent releases can also be found below:
           </p>
-          <p>Documentation for recent releases can also be accessed below:</p>
-          <ul>
-            {versions.map(version => (
-              <li key={version.title}>
-                <a href={version.path} rel="nofollow">
-                  {version.title}
-                </a>
-              </li>
-            ))}
-          </ul>
+          {versions.map(version => (
+            <div key={version.title}>
+              <h3>{version.title}</h3>
+              <ul>
+                <li>
+                  <a href={version.changelog} target="_blank" rel="noopener">
+                    Changelog
+                  </a>
+                </li>
+                <li>
+                  <a href={version.path} rel="nofollow">
+                    Documentation
+                  </a>
+                </li>
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>

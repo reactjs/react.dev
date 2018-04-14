@@ -2,12 +2,15 @@ const {appendFile, exists, readFile, writeFile} = require('fs-extra');
 
 const HEADER_COMMENT = `## Created with gatsby-transformer-versions-yaml`;
 
-module.exports = async function writeRedirectsFile(redirects, publicFolder) {
+// Patterned after the 'gatsby-plugin-netlify' plug-in:
+// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-netlify/src/create-redirects.js
+module.exports = async function writeRedirectsFile(
+  redirects,
+  redirectsFilePath,
+) {
   if (!redirects.length) {
     return null;
   }
-
-  const FILE_PATH = publicFolder(`_redirects`);
 
   // Map redirect data to the format Netlify expects
   // https://www.netlify.com/docs/redirects/
@@ -20,8 +23,7 @@ module.exports = async function writeRedirectsFile(redirects, publicFolder) {
       ...rest
     } = redirect;
 
-    // The order of the first 3 parameters is significant.
-    // The order for rest params (key-value pairs) is arbitrary.
+    // The order of these parameters is significant.
     const pieces = [
       fromPath,
       toPath,
@@ -49,9 +51,9 @@ module.exports = async function writeRedirectsFile(redirects, publicFolder) {
   // Websites may also have statically defined redirects
   // In that case we should append to them (not overwrite)
   // Make sure we aren't just looking at previous build results though
-  const fileExists = await exists(FILE_PATH);
+  const fileExists = await exists(redirectsFilePath);
   if (fileExists) {
-    const fileContents = await readFile(FILE_PATH);
+    const fileContents = await readFile(redirectsFilePath);
     if (fileContents.indexOf(HEADER_COMMENT) < 0) {
       appendToFile = true;
     }
@@ -60,6 +62,6 @@ module.exports = async function writeRedirectsFile(redirects, publicFolder) {
   const data = `${HEADER_COMMENT}\n\n${redirects.join(`\n`)}`;
 
   return appendToFile
-    ? appendFile(FILE_PATH, `\n\n${data}`)
-    : writeFile(FILE_PATH, data);
+    ? appendFile(redirectsFilePath, `\n\n${data}`)
+    : writeFile(redirectsFilePath, data);
 };

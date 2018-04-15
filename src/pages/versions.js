@@ -39,11 +39,13 @@ const Versions = () => (
                     Changelog
                   </a>
                 </li>
-                <li>
-                  <a href={version.path} rel="nofollow">
-                    Documentation
-                  </a>
-                </li>
+                {version.path && (
+                  <li>
+                    <a href={version.path} rel="nofollow">
+                      Documentation
+                    </a>
+                  </li>
+                )}
               </ul>
             </div>
           ))}

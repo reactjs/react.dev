@@ -87,7 +87,7 @@ class CustomTextInput extends React.Component {
   }
 
   render() {
-    // tell React that we want the associate the <input> ref
+    // tell React that we want to associate the <input> ref
     // with the `textInput` that we created in the constructor
     return (
       <div>

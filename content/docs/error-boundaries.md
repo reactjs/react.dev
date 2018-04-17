@@ -84,7 +84,7 @@ componentDidCatch(error, info) {
 
 ## Live Demo
 
-Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16 beta](https://github.com/facebook/react/issues/10294).
+Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16](https://reactjs.org/blog/2017/09/26/react-v16.0.html).
 
 
 ## Where to Place Error Boundaries

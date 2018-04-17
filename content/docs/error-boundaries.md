@@ -14,7 +14,7 @@ A JavaScript error in a part of the UI shouldn’t break the whole app. To solve
 Error boundaries are React components that **catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI** instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
 > Note
-> 
+>
 > Error boundaries do **not** catch errors for:
 >
 > * Event handlers ([learn more](#how-about-event-handlers))
@@ -69,7 +69,7 @@ Note that **error boundaries only catch errors in the components below them in t
 ```js
 //...
 componentDidCatch(error, info) {
-  
+
   /* Example stack information:
      in ComponentThatThrows (created by App)
      in ErrorBoundary (created by App)
@@ -84,7 +84,7 @@ componentDidCatch(error, info) {
 
 ## Live Demo
 
-Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16](https://reactjs.org/blog/2017/09/26/react-v16.0.html).
+Check out [this example of declaring and using an error boundary](https://codepen.io/gaearon/pen/wqvxGa?editors=0010) with [React 16](/blog/2017/09/26/react-v16.0.html).
 
 
 ## Where to Place Error Boundaries
@@ -118,7 +118,7 @@ You can also see the filenames and line numbers in the component stack trace. Th
 If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
 
 > Note
-> 
+>
 > Component names displayed in the stack traces depend on the [`Function.name`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function/name) property. If you support older browsers and devices which may not yet provide this natively (e.g. IE 11), consider including a `Function.name` polyfill in your bundled application, such as [`function.name-polyfill`](https://github.com/JamesMGreene/Function.name). Alternatively, you may explicitly set the [`displayName`](/docs/react-component.html#displayname) property on all your components.
 
 
@@ -156,7 +156,7 @@ class MyComponent extends React.Component {
     super(props);
     this.state = { error: null };
   }
-  
+
   handleClick = () => {
     try {
       // Do something that could throw

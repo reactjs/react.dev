@@ -27,8 +27,9 @@ const Versions = () => (
               href="https://github.com/facebook/react/releases"
               target="_blank"
               rel="noopener">
-              in GitHub
-            </a>. Documentation for recent releases can also be found below:
+              on GitHub
+            </a>.<br />
+            Documentation for recent releases can also be found below:
           </p>
           {versions.map(version => (
             <div key={version.title}>

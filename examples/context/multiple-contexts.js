@@ -3,7 +3,7 @@ const ThemeContext = React.createContext('light');
 
 // Signed-in user context
 const UserContext = React.createContext({
-  name: 'Guest'
+  name: 'Guest',
 });
 
 class App extends React.Component {

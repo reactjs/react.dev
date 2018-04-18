@@ -2,7 +2,9 @@
 const ThemeContext = React.createContext('light');
 
 // Signed-in user context
-const UserContext = React.createContext();
+const UserContext = React.createContext({
+  name: 'Guest'
+});
 
 class App extends React.Component {
   render() {

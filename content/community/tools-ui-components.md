@@ -70,6 +70,7 @@ permalink: community/ui-components.html
 ## Fee Based Components
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
+* **[Essential JS 2](https://www.syncfusion.com/products/react-js2)**: Complete React UI toolkit you will ever need. All the components are developed from the ground up to be modular, light-weight and responsive.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
 * **[jQWidgets React components](http://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.

@@ -134,7 +134,7 @@ We could create a higher-order component called `withTheme`:
 
 `embed:context/higher-order-component.js`
 
-Now any component that depends on the theme context can easy subscribe to it using the `withTheme` function we've created:
+Now any component that depends on the theme context can easily subscribe to it using the `withTheme` function we've created:
 
 `embed:context/higher-order-component-usage.js`
 

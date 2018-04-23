@@ -330,6 +330,8 @@ Testing with a screen reader should form part of your accessibility tests.
 
 Please note that browser / screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
 
+### Commonly Used Screen Readers
+
 #### NVDA in Firefox
 
 [NonVisual Desktop Access](https://www.nvaccess.org/) or NVDA is an open source Windows screen reader that is widely used.
@@ -357,3 +359,14 @@ Refer to the following guides on how to best use JAWS:
 
 - [WebAIM - Using JAWS to Evaluate Web Accessibility](http://webaim.org/articles/jaws/)
 - [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+
+### Other Screen Readers
+
+#### ChromeVox in Google Chrome
+
+[ChromeVox](http://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
+
+Refer to the following guides on how best to use ChromeVox:
+
+- [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
+- [ChromeVox Classic Keyboard Shortcuts Reference](http://www.chromevox.com/keyboard_shortcuts.html)

@@ -103,7 +103,7 @@ if (__DEV__) {
 
 ### Flow
 
-We recently started introducing [Flow](https://flowtype.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
+We recently started introducing [Flow](https://flow.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
 
 We accept pull requests [adding Flow annotations to existing code](https://github.com/facebook/react/pull/7600/files). Flow annotations look like this:
 

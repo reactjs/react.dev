@@ -21,11 +21,15 @@ April 28 in Sofia, Bulgaria
 
 [Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/groups/1614950305478021/)
 
-
 ### ReactEurope 2018
 May 17-18 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
+
+### ReactFoo Mumbai
+May 26 in Mumbai, India
+
+[Website](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
 ### Chain React 2018
 July 11-13 in Portland, Oregon USA
@@ -36,6 +40,11 @@ July 11-13 in Portland, Oregon USA
 August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
+
+### ReactFoo Delhi 
+August 18 in Delhi, India
+
+[Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
 ### #byteconf\_react\_2018
 August 30-31 streamed online, via Twitch
@@ -245,3 +254,5 @@ March 31 in Kiev, Ukraine
 April 13 in Amsterdam, The Netherlands
 
 [Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+
+##

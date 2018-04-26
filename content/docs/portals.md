@@ -44,7 +44,7 @@ A typical use case for portals is when a parent component has an `overflow: hidd
 
 > Note:
 >
-> It is important to remember, when working with portals, you'll need to make sure to follow the proper accessibility guidelines.
+> It is important to remember, when working with portals, you'll need to make sure to follow the proper [accessibility guidelines](/docs/accessibility.html).
 
 [Try it on CodePen.](https://codepen.io/gaearon/pen/yzMaBd)
 

@@ -51,7 +51,7 @@ These methods are called when an instance of a component is being created and in
 
 #### Updating
 
-An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
+An update can be caused by changes to props or state or by explicitly calling the `forceUpdate` method of a class component. These methods are called when a component is being re-rendered:
 
 - [`componentWillReceiveProps()` / `UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)

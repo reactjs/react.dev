@@ -14,7 +14,7 @@ The first argument (`child`) is any [renderable React child](/docs/react-compone
 
 > Note:
 >
-> `createPortal` should be called in the parent component's render method. Using it in lifecycle methods has no effect.
+> `createPortal` does not render imperatively when called (e.g. in a lifecycle). Rather, the element returned from `createPortal` should be included in the parent component's render method.
 
 ## Usage
 

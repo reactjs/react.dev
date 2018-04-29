@@ -156,6 +156,17 @@ You can learn more about this in [webpack documentation](https://webpack.js.org/
 
 Remember that you only need to do this for production builds. You shouldn't apply `UglifyJsPlugin` or `DefinePlugin` with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
 
+In webpack4, instead of using `DefinePlugin`, `'production'` value can be set using `mode` option.  It also provides `UglifyJsPlugin` by default in production mode. 
+```js
+	webpack --mode=production
+```
+or
+```js
+	module.exports = {
+		mode: 'production'
+	};
+```
+
 ## Profiling Components with the Chrome Performance Tab
 
 In the **development** mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:

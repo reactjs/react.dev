@@ -91,6 +91,7 @@
     "reset": "rimraf ./.cache"
   },
   "devDependencies": {
+    "babel-preset-env": "^1.6.1",
     "eslint-config-prettier": "^2.6.0",
     "lz-string": "^1.4.4",
     "npm-run-all": "^4.1.2",

@@ -13,7 +13,7 @@ import MetaTitle from 'templates/components/MetaTitle';
 
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
-) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
+) => Babel.transform(code, {presets: ['env', 'react']}).code;
 
 // eslint-disable-next-line no-undef
 const compileES6 = code => Babel.transform(code, {presets: ['react']}).code;

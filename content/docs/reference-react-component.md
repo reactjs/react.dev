@@ -235,7 +235,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 > Note
 >
-> It is not recommended to use this lifecycle in the new code. If you need to calculate next state based on a change in props, use the static [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle. If you need to perform a side effect (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+> It is not recommended to use this lifecycle in the new code. If you need to calculate next state based on a change in props, use the static [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle. If you need to perform a side effect (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead. For some use cases, you need to use both: `getDerivedStateFromProps` for a calculation, and `componentDidUpdate` for a side effect.
 >
 >[Learn more about this recommendation here.](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes)
 

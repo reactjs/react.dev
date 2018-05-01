@@ -193,8 +193,6 @@ static getDerivedStateFromProps(nextProps, prevState)
 
 Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. You may want to compare new and previous values if you only want to handle changes.
 
-Calling `this.setState()` generally doesn't trigger `getDerivedStateFromProps()`.
-
 * * *
 
 ### `UNSAFE_componentWillMount()`
@@ -237,7 +235,9 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 > Note
 >
-> It is recommended that you use the static [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle instead of `UNSAFE_componentWillReceiveProps`. [Learn more about this recommendation here.](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes)
+> It is not recommended to use this lifecycle in the new code. If you need to calculate next state based on a change in props, use the static [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle. If you need to perform a side effect (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead. For some use cases, you need to use both: `getDerivedStateFromProps` for a calculation, and `componentDidUpdate` for a side effect.
+>
+>[Learn more about this recommendation here.](/blog/2018/03/29/react-v-16-3.html#component-lifecycle-changes)
 
 `UNSAFE_componentWillReceiveProps()` is invoked before a mounted component receives new props. If you need to update the state in response to prop changes (for example, to reset it), you may compare `this.props` and `nextProps` and perform state transitions using `this.setState()` in this method.
 

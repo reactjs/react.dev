@@ -263,7 +263,7 @@ Whenever `this.setState` is called, an update to the component is scheduled, cau
 
 If you click on any square, an X should show up in it.
 
-[View the current code.](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)
+[View the current code.](https://codepen.io/biancaghiurutan/pen/bMWzMP?editors=0010)
 
 ### Developer Tools
 

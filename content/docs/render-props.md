@@ -304,7 +304,7 @@ In this example, each time `<MouseTracker>` renders, it generates a new function
 To get around this problem, you can sometimes define the prop as an instance method, like so:
 
 ```js
-class MouseTracker extends React.Component {
+class MouseTracker extends React.PureComponent {
   // Defined as an instance method, `this.renderTheCat` always
   // refers to *same* function when we use it in render
   renderTheCat(mouse) {

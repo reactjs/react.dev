@@ -268,7 +268,7 @@ In the examples above we declared a separate `listItems` variable and included i
 ```js{3-6}
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
+  const listItems = numbers.map((number) => (
     <ListItem key={number.toString()}
               value={number} />
   );

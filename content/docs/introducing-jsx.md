@@ -30,9 +30,7 @@ With that out of the way, let's get started!
 
 ### Embedding Expressions in JSX
 
-You can embed any [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) in JSX by wrapping it in curly braces.
-
-For example you can declare and define a variable and then use it in your custom element that you will render on the DOM.
+In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
 
 ```js{1,2}
 const name = 'Josh Perez';
@@ -44,7 +42,9 @@ ReactDOM.render(
 );
 ```
 
-`2 + 2`, `user.firstName`, and `formatName(user)` are also valid expressions that can be used in JSX allowing you to add as much complexity and depth to your elements as you need:
+You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+
+In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
 
 ```js{12}
 function formatName(user) {

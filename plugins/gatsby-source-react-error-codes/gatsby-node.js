@@ -20,7 +20,9 @@ exports.sourceNodes = async ({boundActionCreators}) => {
     });
   } catch (error) {
     console.error(
-      `The gatsby-source-react-error-codes plugin has failed:\n${error.message}`,
+      `The gatsby-source-react-error-codes plugin has failed:\n${
+        error.message
+      }`,
     );
 
     process.exit(1);

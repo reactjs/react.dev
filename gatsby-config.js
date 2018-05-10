@@ -2,7 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
-*/
+ */
 
 'use strict';
 
@@ -25,8 +25,7 @@ module.exports = {
     'gatsby-plugin-react-next',
     {
       resolve: 'gatsby-plugin-crowdin',
-      options: {
-      },
+      options: {},
     },
     'gatsby-plugin-twitter',
     {
@@ -76,8 +75,7 @@ module.exports = {
           },
           {
             resolve: 'gatsby-plugin-crowdin',
-            options: {
-            },
+            options: {},
           },
           'gatsby-remark-use-jsx',
           {

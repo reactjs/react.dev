@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import ButtonLink from './ButtonLink';
 
 export default ButtonLink;

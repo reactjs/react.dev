@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import NavigationFooter from './NavigationFooter';
 
 export default NavigationFooter;

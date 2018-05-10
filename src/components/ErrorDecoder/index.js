@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import ErrorDecoder from './ErrorDecoder';
 
 export default ErrorDecoder;

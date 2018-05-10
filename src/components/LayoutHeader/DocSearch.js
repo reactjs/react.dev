@@ -2,12 +2,17 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import React, {Component} from 'react';
 import {colors, media} from 'theme';
 
-class DocSearch extends Component {
+type State = {
+  enabled: boolean,
+};
+
+class DocSearch extends Component<{}, State> {
   state = {
     enabled: true,
   };

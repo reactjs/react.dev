@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import PropTypes from 'prop-types';
 import React from 'react';
 import MarkdownPage from 'components/MarkdownPage';

@@ -60,6 +60,10 @@ The `selected` attribute is supported by `<option>` components. You can use it t
 
 ### style
 
+>Note
+>
+>Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
+
 The `style` attribute accepts a JavaScript object with camelCased properties rather than a CSS string. This is consistent with the DOM `style` JavaScript property, is more efficient, and prevents XSS security holes. For example:
 
 ```js
@@ -88,16 +92,16 @@ function ComponentWithTransition() {
 
 Style keys are camelCased in order to be consistent with accessing the properties on DOM nodes from JS (e.g. `node.style.backgroundImage`). Vendor prefixes [other than `ms`](http://www.andismith.com/blog/2012/02/modernizr-prefixed/) should begin with a capital letter. This is why `WebkitTransition` has an uppercase "W".
 
-React will automatically append a "px" suffix to certain inline style properties. For example:
+React will automatically append a "px" suffix to certain numeric inline style properties. If you want to use units other than "px", specify the value as a string with the desired unit. For example:
 
 ```js
-// This:
+// Result style: '10px'
 <div style={{ height: 10 }}>
   Hello World!
-</div>;
+</div>
 
-// Becomes:
-<div style="height: 10px;">
+// Result style: '10%'
+<div style={{ height: '10%' }}>
   Hello World!
 </div>
 ```
@@ -107,6 +111,12 @@ Not all style properties are converted to pixel strings though. Certain ones rem
 ### suppressContentEditableWarning
 
 Normally, there is a warning when an element with children is also marked as `contentEditable`, because it won't work. This attribute suppresses that warning. Don't use this unless you are building a library like [Draft.js](https://facebook.github.io/draft-js/) that manages `contentEditable` manually.
+
+### suppressHydrationWarning
+
+If you use server-side React rendering, normally there is a warning when the server and the client render different content. However, in some rare cases, it is very hard or impossible to guarantee an exact match. For example, timestamps are expected to differ on the server and on the client.
+
+If you set `suppressHydrationWarning` to `true`, React will not warn you about mismatches in the attributes and the content of that element. It only works one level deep, and is intended to be used as an escape hatch. Don't overuse it. You can read more about hydration in the [`ReactDOM.hydrate()` documentation](/docs/react-dom.html#hydrate).
 
 ### value
 
@@ -129,19 +139,19 @@ These props work similarly to the corresponding HTML attributes, with the except
 Some of the DOM attributes supported by React include:
 
 ```
-accept acceptCharset accessKey action allowFullScreen allowTransparency alt
-async autoComplete autoFocus autoPlay capture cellPadding cellSpacing challenge
-charSet checked cite classID className colSpan cols content contentEditable
-contextMenu controls controlsList coords crossOrigin data dateTime default defer
-dir disabled download draggable encType form formAction formEncType formMethod
-formNoValidate formTarget frameBorder headers height hidden high href hrefLang
-htmlFor httpEquiv icon id inputMode integrity is keyParams keyType kind label
-lang list loop low manifest marginHeight marginWidth max maxLength media
-mediaGroup method min minLength multiple muted name noValidate nonce open
-optimum pattern placeholder poster preload profile radioGroup readOnly rel
-required reversed role rowSpan rows sandbox scope scoped scrolling seamless
-selected shape size sizes span spellCheck src srcDoc srcLang srcSet start step
-style summary tabIndex target title type useMap value width wmode wrap
+accept acceptCharset accessKey action allowFullScreen alt async autoComplete
+autoFocus autoPlay capture cellPadding cellSpacing challenge charSet checked
+cite classID className colSpan cols content contentEditable contextMenu controls
+controlsList coords crossOrigin data dateTime default defer dir disabled
+download draggable encType form formAction formEncType formMethod formNoValidate
+formTarget frameBorder headers height hidden high href hrefLang htmlFor
+httpEquiv icon id inputMode integrity is keyParams keyType kind label lang list
+loop low manifest marginHeight marginWidth max maxLength media mediaGroup method
+min minLength multiple muted name noValidate nonce open optimum pattern
+placeholder poster preload profile radioGroup readOnly rel required reversed
+role rowSpan rows sandbox scope scoped scrolling seamless selected shape size
+sizes span spellCheck src srcDoc srcLang srcSet start step style summary
+tabIndex target title type useMap value width wmode wrap
 ```
 
 Similarly, all SVG attributes are fully supported:

@@ -9,8 +9,8 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. Git
 1. Node: install version 8.4 or greater
 1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
-1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
 1. A fork of the repo (for any contributions)
+1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
 
 ### Installation
 
@@ -23,6 +23,10 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. `open http://localhost:8000` to open the site in your favorite browser
 
 ## Contributing
+
+### Guidelines
+
+The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
 
 ### Create a branch
 
@@ -50,6 +54,12 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. Go to the [reactjs.org repo](https://github.com/reactjs/reactjs.org) and you should see recently pushed branches.
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
+
+## Translation
+
+If you are interesting in translating `reactjs.org`, please join the Crowdin.
+
+* [Crowdin - React](https://crowdin.com/project/react)
 
 ## Troubleshooting
 

@@ -20,6 +20,7 @@ module.exports = {
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
     'gatsby-transformer-home-example-code',
+    'gatsby-transformer-versions-yaml',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
     'gatsby-plugin-react-next',
@@ -76,6 +77,13 @@ module.exports = {
           {
             resolve: 'gatsby-plugin-crowdin',
             options: {},
+          },
+          {
+            resolve: 'gatsby-remark-embed-snippet',
+            options: {
+              classPrefix: 'gatsby-code-',
+              directory: `${__dirname}/examples/`,
+            },
           },
           'gatsby-remark-use-jsx',
           {

@@ -1,7 +1,15 @@
+- title: Installation
+  items:
+    - id: try-react
+      title: Try React
+    - id: add-react-to-a-new-app
+      title: Add React to a New App
+    - id: add-react-to-an-existing-app
+      title: Add React to an Existing App
+    - id: cdn-links
+      title: CDN Links
 - title: Quick Start
   items:
-    - id: installation
-      title: Installation
     - id: hello-world
       title: Hello World
     - id: introducing-jsx
@@ -48,6 +56,8 @@
       title: Reconciliation
     - id: context
       title: Context
+    - id: fragments
+      title: Fragments
     - id: portals
       title: Portals
     - id: error-boundaries
@@ -56,10 +66,18 @@
       title: Web Components
     - id: higher-order-components
       title: Higher-Order Components
+    - id: forwarding-refs
+      title: Forwarding Refs
+    - id: render-props
+      title: Render Props
     - id: integrating-with-other-libraries
       title: Integrating with Other Libraries
     - id: accessibility
       title: Accessibility
+    - id: code-splitting
+      title: Code-Splitting
+    - id: strict-mode
+      title: Strict Mode
 - title: Reference
   items:
     - id: react-api
@@ -95,3 +113,19 @@
     title: Implementation Notes
   - id: design-principles
     title: Design Principles
+- title: FAQ
+  items:
+    - id: faq-ajax
+      title: AJAX and APIs
+    - id: faq-build
+      title: Babel, JSX, and Build Steps
+    - id: faq-functions
+      title: Passing Functions to Components
+    - id: faq-state
+      title: Component State
+    - id: faq-styling
+      title: Styling and CSS
+    - id: faq-structure
+      title: File Structure
+    - id: faq-internals
+      title: Virtual DOM and Internals

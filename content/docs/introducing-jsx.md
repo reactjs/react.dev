@@ -18,11 +18,33 @@ It is called JSX, and it is a syntax extension to JavaScript. We recommend using
 
 JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
 
+### Why JSX?
+
+React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
+
+Instead of artificially separating *technologies* by putting markup and logic in separate files, React [separates *concerns*](https://en.wikipedia.org/wiki/Separation_of_concerns) with loosely coupled units called "components" that contain both. We will come back to components in a [further section](/docs/components-and-props.html), but if you're not yet comfortable putting markup in JS, [this talk](https://www.youtube.com/watch?v=x7cQ3mrcKaY) might convince you otherwise.
+
+React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people find it helpful as a visual aid when working with UI inside the JavaScript code. It also allows React to show more useful error and warning messages.
+
+With that out of the way, let's get started!
+
 ### Embedding Expressions in JSX
 
-You can embed any [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) in JSX by wrapping it in curly braces.
+In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
 
-For example, `2 + 2`, `user.firstName`, and `formatName(user)` are all valid expressions:
+```js{1,2}
+const name = 'Josh Perez';
+const element = <h1>Hello, {name}</h1>;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+
+You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+
+In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
 
 ```js{12}
 function formatName(user) {
@@ -52,7 +74,7 @@ We split JSX over multiple lines for readability. While it isn't required, when 
 
 ### JSX is an Expression Too
 
-After compilation, JSX expressions become regular JavaScript objects.
+After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
 
 This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
 
@@ -83,7 +105,7 @@ Don't put quotes around curly braces when embedding a JavaScript expression in a
 
 >**Warning:**
 >
->Since JSX is closer to JavaScript than HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
 >
 >For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
 
@@ -148,7 +170,7 @@ const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Hello, world'
+    children: 'Hello, world!'
   }
 };
 ```

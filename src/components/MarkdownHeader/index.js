@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import MarkdownHeader from './MarkdownHeader';
 
 export default MarkdownHeader;

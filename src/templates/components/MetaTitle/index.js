@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import React from 'react';
 import {colors} from 'theme';
 

@@ -1,0 +1,14 @@
+- title: '16.3'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1632-april-16-2018
+- title: '16.2'
+  path: /version/16.2
+  url: https://5abc31d8be40f1556f06c4be--reactjs.netlify.com
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1620-november-28-2017
+- title: '16.1'
+  path: /version/16.1
+  url: https://5a1dbcf14c4b93299e65b9a9--reactjs.netlify.com
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1611-november-13-2017
+- title: '16.0'
+  path: /version/16.0
+  url: https://5a046bf5a6188f4b8fa4938a--reactjs.netlify.com
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1600-september-26-2017

@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import React, {Component} from 'react';
 
 let stylesStr;
@@ -46,7 +44,6 @@ export default class HTML extends Component {
           />
           <link rel="icon" href="/favicon.ico" />
           {this.props.headComponents}
-          {js}
           {css}
         </head>
         <body>
@@ -55,6 +52,7 @@ export default class HTML extends Component {
             dangerouslySetInnerHTML={{__html: this.props.body}}
           />
           {this.props.postBodyComponents}
+          {js}
         </body>
       </html>
     );

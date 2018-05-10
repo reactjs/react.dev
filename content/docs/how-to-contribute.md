@@ -41,7 +41,7 @@ We are using [GitHub Issues](https://github.com/facebook/react/issues) for our p
 
 #### Reporting New Issues
 
-The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/84v837e9/) is a great starting point.
+The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
 
 #### Security Bugs
 
@@ -70,7 +70,7 @@ To help you get your feet wet and get you familiar with our contribution process
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
 
-If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take over it but you should still leave a comment.
+If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take it over but you should still leave a comment.
 
 ### Sending a Pull Request
 
@@ -82,10 +82,12 @@ The core team is monitoring for pull requests. We will review your pull request 
 2. Run `yarn` in the repository root.
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
-6. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
-7. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
-8. If you haven't already, complete the CLA.
+5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
+6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
+7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
+10. If you haven't already, complete the CLA.
 
 ### Contributor License Agreement (CLA)
 
@@ -109,6 +111,8 @@ Then, you can run several commands:
 * `yarn test` runs the complete test suite.
 * `yarn test --watch` runs an interactive test watcher.
 * `yarn test <pattern>` runs tests with matching filenames.
+* `yarn test-prod` runs tests in the production environment. It supports all the same options as `yarn test`.
+* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
 * `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
 * `yarn build` creates a `build` folder with all the packages.
 * `yarn build core,dom --type=UMD` creates UMD builds of just React and ReactDOM.
@@ -122,9 +126,9 @@ The easiest way to try your changes is to run `yarn build core,dom --type=UMD` a
 If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder:
 
 ```sh
-cd ~/path_to_your_react_clone/build/packages/react
+cd ~/path_to_your_react_clone/build/node_modules/react
 yarn link
-cd ~/path_to_your_react_clone/build/packages/react-dom
+cd ~/path_to_your_react_clone/build/node_modules/react-dom
 yarn link
 cd /path/to/your/project
 yarn link react react-dom
@@ -155,9 +159,15 @@ You may be interested in watching [this short video](https://www.youtube.com/wat
 - [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
 - [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
 
-### Meeting Notes
+For a realistic overview of what it _feels_ like to contribute to React for the first time, check out [this entertaining ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
 
-React team meets once a week to discuss the development of React, future plans, and priorities. You can find the meeting notes in a [dedicated repository](https://github.com/reactjs/core-notes/).
+### Request for Comments (RFC)
+
+Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
+
+Some changes though are "substantial", and we ask that these be put through a bit of a design process and produce a consensus among the React core team.
+
+The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the project. You can contribute by visiting the [rfcs repository](https://github.com/reactjs/rfcs).
 
 ### License
 

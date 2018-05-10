@@ -4,8 +4,6 @@
  * @emails react-core
  */
 
-'use strict';
-
 import Flex from './Flex';
 
 export default Flex;

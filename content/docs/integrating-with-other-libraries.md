@@ -10,7 +10,7 @@ React can be used in any web application. It can be embedded in other applicatio
 
 React is unaware of changes made to the DOM outside of React. It determines updates based on its own internal representation, and if the same DOM nodes are manipulated by another library, React gets confused and has no way to recover.
 
-This does not mean it is impossible or even necessarily difficult to combine React with other ways of affecting the DOM, you just have to be mindful of what each are doing.
+This does not mean it is impossible or even necessarily difficult to combine React with other ways of affecting the DOM, you just have to be mindful of what each is doing.
 
 The easiest way to avoid conflicts is to prevent the React component from updating. You can do this by rendering elements that React has no reason to update, like an empty `<div />`.
 
@@ -194,7 +194,7 @@ React can be embedded into other applications thanks to the flexibility of [`Rea
 
 Although React is commonly used at startup to load a single root React component into the DOM, `ReactDOM.render()` can also be called multiple times for independent parts of the UI which can be as small as a button, or as large as an app.
 
-In fact, this is exactly how React is used at Facebook. This lets us write applications in React piece by piece, and combine it with our existing server-generated templates and other client-side code.
+In fact, this is exactly how React is used at Facebook. This lets us write applications in React piece by piece, and combine them with our existing server-generated templates and other client-side code.
 
 ### Replacing String-Based Rendering with React
 
@@ -279,7 +279,7 @@ const ParagraphView = Backbone.View.extend({
 
 It is important that we also call `ReactDOM.unmountComponentAtNode()` in the `remove` method so that React unregisters event handlers and other resources associated with the component tree when it is detached.
 
-When a component is removed *from within* a React tree, the cleanup is performed automatically, but because we are removing the entire tree by hand, we must call it this method.
+When a component is removed *from within* a React tree, the cleanup is performed automatically, but because we are removing the entire tree by hand, we must call this method.
 
 ## Integrating with Model Layers
 
@@ -416,7 +416,7 @@ const BackboneNameInput = connectToBackboneModel(NameInput);
 
 function Example(props) {
   function handleChange(e) {
-    model.set('firstName', e.target.value);
+    props.model.set('firstName', e.target.value);
   }
 
   return (

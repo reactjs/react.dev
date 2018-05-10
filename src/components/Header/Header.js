@@ -5,8 +5,6 @@
  * @flow
  */
 
-'use strict';
-
 import React from 'react';
 import {colors, fonts} from 'theme';
 

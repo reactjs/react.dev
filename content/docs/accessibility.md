@@ -39,6 +39,48 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 />
 ```
 
+## Semantic HTML
+Semantic HTML is the foundation of accessibility in a web application. Using the various HTML elements to reinforce the meaning of information
+in our websites will often give us accessibility for free.
+
+- [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
+
+Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
+In these cases we should rather use React Fragments to group together multiple elements.
+
+Use `<Fragment>` when a `key` prop is required:
+ 
+```javascript{1,8,11}
+import React, { Fragment } from 'react';
+
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </Fragment>
+      ))}
+    </dl>
+  );
+}
+```
+
+Use `<></>` syntax everywhere else:
+
+```javascript
+function ListItem({ item }) {
+  return ( 
+    <>
+      <dt>{item.term}</dt>
+      <dd>{item.description}</dd>
+    </>
+  );    
+}
+``` 
+
 ## Accessible Forms
 
 ### Labeling
@@ -91,28 +133,36 @@ Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarca
 
 Read more about the use of these elements to enhance accessibility here:
 
-- [Deque University - HTML 5 and ARIA Landmarks](https://dequeuniversity.com/assets/html/jquery-summit/html5/slides/landmarks.html)
+- [Accessible Landmarks](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### Programmatically managing focus
 
 Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this, 
 we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
 
-The Mozilla Developer Network takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
+MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
 
-To set focus in React, we can use [Refs to Components](refs-and-the-dom.html).
+To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.html).
 
 Using this, we first create a ref to an element in the JSX of a component class:
 
-```javascript{2-3,7}
-render() {
+```javascript{4-5,8-9,13}
+class CustomTextInput extends React.Component {
+  constructor(props) {
+    super(props);
+    // Create a ref to store the textInput DOM element
+    this.textInput = React.createRef();
+  }
+  render() {
   // Use the `ref` callback to store a reference to the text input DOM
   // element in an instance field (for example, this.textInput).
-  return (
-    <input
-      type="text"
-      ref={(input) => { this.textInput = input; }} />
-  );
+    return (
+      <input
+        type="text"
+        ref={this.textInput}
+      />
+    );
+  }
 }
 ```
 
@@ -121,11 +171,44 @@ Then we can focus it elsewhere in our component when needed:
  ```javascript
  focus() {
    // Explicitly focus the text input using the raw DOM API
-   this.textInput.focus();
+   // Note: we're accessing "current" to get the DOM node
+   this.textInput.current.focus();
  }
  ```
 
-A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on 
+Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components)
+through a special prop on the child component that forwards the parent's ref to the child's DOM node.
+
+```javascript{4,12,16}
+function CustomTextInput(props) {
+  return (
+    <div>
+      <input ref={props.inputRef} />
+    </div>
+  );
+}
+
+class Parent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputElement = React.createRef();
+  }
+  render() {
+    return (
+      <CustomTextInput inputRef={this.inputElement} />
+    );
+  }
+}
+/>
+
+// Now you can set focus when required.
+this.inputElement.current.focus();
+```
+
+When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC
+does not implement ref forwarding, the above pattern can still be used as a fallback.
+
+A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
 the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that 
 initially triggered the modal.
 
@@ -139,7 +222,7 @@ initially triggered the modal.
 A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible,
 even the most complex widget can be coded accessibly.
 
-Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/states_and_properties). 
+Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
 These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
 
 Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
@@ -221,7 +304,7 @@ test the technical accessibility of your HTML.
 
 #### aXe, aXe-core and react-axe
 
-Deque Systems offers [aXe-core](https://www.deque.com/products/axe-core/) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
+Deque Systems offers [aXe-core](https://github.com/dequelabs/axe-core) for automated and end-to-end accessibility tests of your applications. This module includes integrations for Selenium.
 
 [The Accessibility Engine](https://www.deque.com/products/axe/) or aXe, is an accessibility inspector browser extension built on `aXe-core`.
 
@@ -246,6 +329,8 @@ In some browsers we can easily view the accessibility information for each eleme
 Testing with a screen reader should form part of your accessibility tests.
 
 Please note that browser / screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
+
+### Commonly Used Screen Readers
 
 #### NVDA in Firefox
 
@@ -274,3 +359,14 @@ Refer to the following guides on how to best use JAWS:
 
 - [WebAIM - Using JAWS to Evaluate Web Accessibility](http://webaim.org/articles/jaws/)
 - [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
+
+### Other Screen Readers
+
+#### ChromeVox in Google Chrome
+
+[ChromeVox](http://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
+
+Refer to the following guides on how best to use ChromeVox:
+
+- [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
+- [ChromeVox Classic Keyboard Shortcuts Reference](http://www.chromevox.com/keyboard_shortcuts.html)

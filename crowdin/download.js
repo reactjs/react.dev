@@ -5,16 +5,41 @@ const {symlink, lstatSync, readdirSync} = require('fs');
 
 const SYMLINKED_TRANSLATIONS_PATH = path.resolve(__dirname, 'translations');
 const DOWNLOADED_TRANSLATIONS_PATH = path.resolve(__dirname, '__translations');
-const DOWNLOADED_TRANSLATIONS_DOCS_PATH = path.resolve(
+
+// Path to the "docs" folder within the downloaded Crowdin translations bundle.
+const downloadedDocsPath = path.resolve(
   __dirname,
   '__translations',
+  config.downloadedRootDirectory,
   'docs',
 );
 
-function main() {
-  const crowdin = new Crowdin({apiKey: config.key, endpointUrl: config.url});
-  process.chdir(SYMLINKED_TRANSLATIONS_PATH);
+// Sanity check (local) Crowdin config file for expected values.
+const validateCrowdinConfig = () => {
+  const errors = [];
+  if (!config.key) {
+    errors.push('key: No process.env.CROWDIN_API_KEY value defined.');
+  }
+  if (!Number.isInteger(config.threshold)) {
+    errors.push(`threshold: Invalid translation threshold defined.`);
+  }
+  if (!config.downloadedRootDirectory) {
+    errors.push('downloadedRootDirectory: No root directory defined for the downloaded translations bundle.');
+  }
+  if (!config.url) {
+    errors.push('url: No Crowdin project URL defined.');
+  }
+  if (errors.length > 0) {
+    console.error('Invalid Crowdin config values for:\n• ' + errors.join('\n• '));
+    throw Error('Invalid Crowdin config');
+  }
+};
 
+// Download Crowdin translations (into DOWNLOADED_TRANSLATIONS_PATH),
+// Filter languages that have been sufficiently translated (based on config.threshold),
+// And setup symlinks for them (in SYMLINKED_TRANSLATIONS_PATH) for Gatsby to read.
+const downloadAndSymlink = () => {
+  const crowdin = new Crowdin({apiKey: config.key, endpointUrl: config.url});
   crowdin
     // .export() // Not sure if this should be called in the script since it could be very slow
     // .then(() => crowdin.downloadToPath(DOWNLOADED_TRANSLATIONS_PATH))
@@ -23,56 +48,56 @@ function main() {
     .then(locales => {
       const usableLocales = locales
         .filter(
-          locale => locale.translated_progress > config.translation_threshold,
+          locale => locale.translated_progress > config.threshold,
         )
         .map(local => local.code);
 
-      const localeDirectories = getDirectories(
-        DOWNLOADED_TRANSLATIONS_DOCS_PATH,
-      );
-
+      const localeDirectories = getLanguageDirectories(downloadedDocsPath);
       const localeToFolderMap = createLocaleToFolderMap(localeDirectories);
 
       usableLocales.forEach(locale => {
         createSymLink(localeToFolderMap.get(locale));
       });
     });
-}
+
+};
 
 // Creates a relative symlink from a downloaded translation in the current working directory
 // Note that the current working directory of this node process should be where the symlink is created
 // or else the relative paths would be incorrect
-function createSymLink(folder) {
-  symlink(`../__translations/docs/${folder}`, folder, err => {
+const createSymLink = (folder) => {
+  const from = path.resolve(downloadedDocsPath, folder);
+  const to = path.resolve(SYMLINKED_TRANSLATIONS_PATH, folder);
+  symlink(from, to, err => {
     if (!err) {
-      console.log(`Created symlink for ${folder}.`);
       return;
     }
 
     if (err.code === 'EEXIST') {
-      console.log(
-        `Skipped creating symlink for ${folder}. A symlink already exists.`,
-      );
+      // eslint-disable-next-line no-console
+      console.info(`Symlink already exists for ${folder}`);
     } else {
       console.error(err);
       process.exit(1);
     }
   });
-}
+};
 
-// When we run getTranslationStatus(), it gives us 2-ALPHA locale codes unless necessary
-// However, the folder structure of downloaded translations always has 4-ALPHA locale codes
-// This function creates a map from a locale code to its corresponding folder name
-function createLocaleToFolderMap(directories) {
-  const twoAlphaLocale = locale => locale.substring(0, 2);
+// Crowdin.getTranslationStatus() provides ISO 639-1 (e.g. "fr" for French) or 639-3 (e.g. "fil" for Filipino) language codes,
+// But the folder structure of downloaded translations uses locale codes (e.g. "fr-FR" for French, "fil-PH" for the Philippines).
+// This function creates a map between language and locale code.
+const createLocaleToFolderMap = (directories) => {
+  const localeToLanguageCode = locale => locale.includes('-') ? locale.substr(0, locale.indexOf('-')) : locale;
   const localeToFolders = new Map();
   const localeToFolder = new Map();
 
   for (let locale of directories) {
+    const languageCode = localeToLanguageCode(locale);
+
     localeToFolders.set(
-      twoAlphaLocale(locale),
-      localeToFolders.has(twoAlphaLocale(locale))
-        ? localeToFolders.get(twoAlphaLocale(locale)).concat(locale)
+      languageCode,
+      localeToFolders.has(languageCode)
+        ? localeToFolders.get(languageCode).concat(locale)
         : [locale],
     );
   }
@@ -88,13 +113,14 @@ function createLocaleToFolderMap(directories) {
   });
 
   return localeToFolder;
-}
+};
 
-function getDirectories(source) {
-  return readdirSync(source).filter(
+// Parse downloaded translation folder to determine which langauges it contains.
+const getLanguageDirectories = source =>
+  readdirSync(source).filter(
     name =>
       lstatSync(path.join(source, name)).isDirectory() && name !== '_data',
   );
-}
 
-main();
+validateCrowdinConfig(config);
+downloadAndSymlink();

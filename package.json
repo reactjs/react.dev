@@ -79,20 +79,20 @@
     "build": "gatsby build",
     "check-all": "npm-run-all prettier --parallel lint flow",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow",
+    "crowdin:download": "node ./crowdin/download",
     "dev": "gatsby develop -H 0.0.0.0",
     "flow": "flow",
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "format:examples": "prettier --config .prettierrc.examples --write \"examples/**/*.js\"",
     "lint": "eslint .",
-    "netlify": "yarn install && yarn translations && yarn build",
+    "netlify": "yarn install && yarn crowdin:download && yarn build",
     "nit:source": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "nit:examples": "prettier --config .prettierrc.examples --list-different \"examples/**/*.js\"",
     "prettier": "yarn format:source && yarn format:examples",
     "prettier:diff": "yarn nit:source && yarn nit:examples",
     "reset": "yarn reset:cache && yarn reset:translations",
     "reset:cache": "rimraf ./.cache",
-    "reset:translations": "rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete",
-    "translations": "node ./crowdin/download"
+    "reset:translations": "rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.6.0",

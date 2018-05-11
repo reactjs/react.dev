@@ -3,8 +3,8 @@ const config = require('./config');
 const path = require('path');
 const {symlink, lstatSync, readdirSync} = require('fs');
 
-const SYMLINKED_TRANSLATIONS_PATH = path.resolve(__dirname, 'translations');
-const DOWNLOADED_TRANSLATIONS_PATH = path.resolve(__dirname, '__exports');
+const SYMLINKED_TRANSLATIONS_PATH = path.resolve(__dirname, '__filtered__');
+const DOWNLOADED_TRANSLATIONS_PATH = path.resolve(__dirname, '__exported__');
 
 // Path to the "docs" folder within the downloaded Crowdin translations bundle.
 const downloadedDocsPath = path.resolve(

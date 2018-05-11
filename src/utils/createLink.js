@@ -15,6 +15,7 @@ import type {Node} from 'react';
 
 type CreateLinkBaseProps = {
   isActive: boolean,
+  isLocalized: ?boolean,
   item: Object,
   location: string,
   section: Object,
@@ -22,6 +23,7 @@ type CreateLinkBaseProps = {
 
 const createLinkBlog = ({
   isActive,
+  isLocalized,
   item,
   location,
   section,
@@ -29,6 +31,7 @@ const createLinkBlog = ({
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
+      isLocalized={isLocalized}
       location={location}
       to={item.id}>
       {isActive && <span css={activeLinkBefore} />}
@@ -39,6 +42,7 @@ const createLinkBlog = ({
 
 const createLinkCommunity = ({
   isActive,
+  isLocalized,
   item,
   location,
   section,
@@ -60,6 +64,7 @@ const createLinkCommunity = ({
   }
   return createLinkDocs({
     isActive,
+    isLocalized,
     item,
     location,
     section,
@@ -68,6 +73,7 @@ const createLinkCommunity = ({
 
 const createLinkDocs = ({
   isActive,
+  isLocalized,
   item,
   location,
   section,
@@ -75,6 +81,7 @@ const createLinkDocs = ({
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
+      isLocalized={isLocalized}
       location={location}
       to={slugify(item.id, section.directory)}>
       {isActive && <span css={activeLinkBefore} />}
@@ -89,6 +96,7 @@ type CreateLinkTutorialProps = {
 
 const createLinkTutorial = ({
   isActive,
+  isLocalized,
   item,
   location,
   onLinkClick,
@@ -97,6 +105,7 @@ const createLinkTutorial = ({
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
+      isLocalized={isLocalized}
       location={location}
       onClick={onLinkClick}
       to={item.href}>

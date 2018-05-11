@@ -80,7 +80,7 @@
     "check-all": "npm-run-all prettier --parallel lint flow",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow",
     "crowdin:download": "node ./crowdin/download",
-    "dev": "gatsby develop -H 0.0.0.0",
+    "dev": "yarn start",
     "flow": "flow",
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "format:examples": "prettier --config .prettierrc.examples --write \"examples/**/*.js\"",
@@ -92,7 +92,8 @@
     "prettier:diff": "yarn nit:source && yarn nit:examples",
     "reset": "yarn reset:cache && yarn reset:translations",
     "reset:cache": "rimraf ./.cache",
-    "reset:translations": "rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete"
+    "reset:translations": "rimraf ./crowdin/__translations && find crowdin/translations -type l -not -name '*en-US' -delete",
+    "start": "gatsby develop -H 0.0.0.0"
   },
   "devDependencies": {
     "eslint-config-prettier": "^2.6.0",

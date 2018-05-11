@@ -14,10 +14,11 @@ const toSectionList = allMarkdownRemark => [
     title: 'Recent Posts',
     items: allMarkdownRemark.edges
       .map(({node}) => ({
-        id: node.fields.id,
+        id: node.fields.slug,
         title: node.frontmatter.title,
       }))
       .concat({
+        isLocalized: false,
         id: '/blog/all.html',
         title: 'All posts ...',
       }),
@@ -76,6 +77,7 @@ export const pageQuery = graphql`
           }
           fields {
             id
+            slug
           }
         }
       }

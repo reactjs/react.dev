@@ -12,10 +12,10 @@ import React from 'react';
 import {getLanguageCodeFromPath} from './utils';
 
 // TODO THis is a hack :( Pass this down via context or some other way?
-const DEFAULT_LANGUAGE = 'en';
+const DEFAULT_LANGUAGE = 'en-US';
 
-const DecoratedLink = ({location, to, ...rest}, ...other) => {
-  if (to.startsWith('/')) {
+const DecoratedLink = ({isLocalized, location, to, ...rest}, ...other) => {
+  if (isLocalized !== false && to.startsWith('/')) {
     const languageCode =
       getLanguageCodeFromPath(location.pathname.substr(1)) || DEFAULT_LANGUAGE;
 
@@ -29,6 +29,7 @@ const DecoratedLink = ({location, to, ...rest}, ...other) => {
 };
 
 DecoratedLink.propTypes = {
+  isLocalized: PropTypes.bool,
   location: PropTypes.object.isRequired,
   to: PropTypes.string.isRequired,
 };

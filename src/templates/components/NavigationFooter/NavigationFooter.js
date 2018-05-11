@@ -11,7 +11,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
 
-const NavigationFooter = ({next, prev, location}) => {
+const NavigationFooter = ({location, next, prev}) => {
   return (
     <div
       css={{

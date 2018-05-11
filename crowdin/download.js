@@ -4,14 +4,12 @@ const path = require('path');
 const {symlink, lstatSync, readdirSync} = require('fs');
 
 const SYMLINKED_TRANSLATIONS_PATH = path.resolve(__dirname, 'translations');
-const DOWNLOADED_TRANSLATIONS_PATH = path.resolve(__dirname, '__translations');
+const DOWNLOADED_TRANSLATIONS_PATH = path.resolve(__dirname, '__exports');
 
 // Path to the "docs" folder within the downloaded Crowdin translations bundle.
 const downloadedDocsPath = path.resolve(
-  __dirname,
-  '__translations',
+  DOWNLOADED_TRANSLATIONS_PATH,
   config.downloadedRootDirectory,
-  'docs',
 );
 
 // Sanity check (local) Crowdin config file for expected values.

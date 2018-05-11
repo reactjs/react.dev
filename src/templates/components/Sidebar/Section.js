@@ -79,6 +79,7 @@ class Section extends React.Component {
                 isActive: isScrollSync
                   ? activeItemId === item.id
                   : isItemActive(location, item),
+                isLocalized: item.isLocalized,
                 item,
                 location,
                 onLinkClick,
@@ -93,6 +94,7 @@ class Section extends React.Component {
                         isActive: isScrollSync
                           ? activeItemId === subitem.id
                           : isItemActive(location, subitem),
+                        isLocalized: subitem.isLocalized,
                         item: subitem,
                         location,
                         onLinkClick,

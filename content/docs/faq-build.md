@@ -30,3 +30,16 @@ No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
   Hello, {name}! 
 </div>
 ```
+
+
+```Avoid this
+<div>
+  {/* comments. */} <span>It won't works</span>
+</div>
+```
+
+```Avoid this in React Native
+<View>
+  {/* comments. */} <Text>It won't works</Text>
+</View>
+```

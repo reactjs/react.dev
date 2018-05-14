@@ -32,14 +32,14 @@ No! Check out ["React Without ES6"](/docs/react-without-es6.html) to learn more.
 ```
 
 
-```Avoid this
+```jsx
 <div>
-  {/* comments. */} <span>It won't works</span>
+  {/* Avoid this. */} <span>It won't works</span>
 </div>
 ```
 
-```Avoid this in React Native
+```jsx
 <View>
-  {/* comments. */} <Text>It won't works</Text>
+  {/* Avoid this in React Native. */} <Text>It won't works</Text>
 </View>
 ```

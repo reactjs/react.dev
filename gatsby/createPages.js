@@ -130,12 +130,14 @@ module.exports = async (params) => {
             process.exit(1);
           }
 
-          redirectToSlugMap[localizedFromPath] = slug;
+          const localizedToPath = `/${languageCode}/${slug.startsWith('/') ? slug.substr(1) : slug}`;
+
+          redirectToSlugMap[localizedFromPath] = localizedToPath;
 
           // Create language-aware redirect
           createRedirect({
             fromPath: localizedFromPath,
-            toPath: slug,
+            toPath: localizedToPath,
             redirectInBrowser: true,
             Language: language,
           });

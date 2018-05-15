@@ -15,6 +15,9 @@ import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
 
 import logoSvg from 'icons/logo.svg';
+import languages from '../../../crowdin/languages.json';
+
+// TODO Use languages array to power locale drop-down
 
 const Header = ({location}: {location: Location}) => (
   <header

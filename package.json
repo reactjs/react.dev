@@ -80,6 +80,7 @@
     "check-all": "npm-run-all prettier --parallel lint flow",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow",
     "crowdin:download": "node ./crowdin/download",
+    "debug": "node --inspect-brk ./node_modules/.bin/gatsby develop -H 0.0.0.0",
     "dev": "yarn start",
     "flow": "flow",
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",

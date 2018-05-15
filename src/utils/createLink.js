@@ -5,7 +5,8 @@
  * @flow
  */
 
-import Link from 'gatsby-plugin-crowdin/Link';
+import LocalizedLink from 'gatsby-plugin-crowdin/Link';
+import Link from 'gatsby-link';
 import React from 'react';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import slugify from 'utils/slugify';
@@ -79,14 +80,14 @@ const createLinkDocs = ({
   section,
 }: CreateLinkBaseProps): Node => {
   return (
-    <Link
+    <LocalizedLink
       css={[linkCss, isActive && activeLinkCss]}
       isLocalized={isLocalized}
       location={location}
       to={slugify(item.id, section.directory)}>
       {isActive && <span css={activeLinkBefore} />}
       {item.title}
-    </Link>
+    </LocalizedLink>
   );
 };
 

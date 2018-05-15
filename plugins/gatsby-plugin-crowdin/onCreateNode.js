@@ -11,6 +11,27 @@ const {
   getLanguageFromLanguageAndRegion,
 } = require('./utils');
 
+/** Params
+{
+  node: {
+    id: "...",
+    children: [],
+    parent: "...",
+    internal: {
+      content: "...",
+      contentDigest: "0351d452c1fabfe0eaec3faa9a60cde3",
+      type: "MarkdownRemark",
+      owner: "gatsby-transformer-remark"
+    },
+    frontmatter: {
+      title: "...",
+      order: 1,
+      parent: "/path/to/parent/file/file.md"
+    },
+    fileAbsolutePath: "/path/to/file.md"
+  }
+}
+ */
 module.exports = exports.onCreateNode = ({
   node,
   boundActionCreators,
@@ -24,6 +45,7 @@ module.exports = exports.onCreateNode = ({
 
       const languageCode = getLanguageCodeFromPath(relativePath);
 
+      // TODO: Only do this for `gatsby-source-filesystem` name=translated sources?
       if (languageCode !== null) {
         const language = getLanguageFromLanguageAndRegion(languageCode);
 

@@ -24,6 +24,13 @@ Docs.propTypes = {
   data: PropTypes.object.isRequired,
 };
 
+// allFile(filter: {internal: {mediaType: {eq: "text/markdown"}}, sourceInstanceName: {eq: "projects"}}) {
+//     allMarkdownRemark(
+//      filter: { fileAbsolutePath: {regex : "\/posts/"} },
+//      sort: {fields: [frontmatter___date], order: DESC},
+//    ) {
+// https://github.com/gatsbyjs/gatsby/issues/1634
+
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
   query TemplateDocsMarkdown($id: String!) {

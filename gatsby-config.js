@@ -45,8 +45,15 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'translations',
-        path: `${__dirname}/crowdin/translations/`,
+        name: 'untranslated',
+        path: `${__dirname}/crowdin/__untranslated__/`,
+      },
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'translated',
+        path: `${__dirname}/crowdin/__translated__/`,
       },
     },
     {

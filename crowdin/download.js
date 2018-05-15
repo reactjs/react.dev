@@ -89,7 +89,7 @@ const createSymLink = (relativePath) => {
 
     if (err.code === 'EEXIST') {
       // eslint-disable-next-line no-console
-      console.info(`Symlink already exists for ${folder}`);
+      console.info(`Symlink already exists for ${to}`);
     } else {
       console.error(err);
       process.exit(1);

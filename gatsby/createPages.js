@@ -7,6 +7,7 @@
 'use strict';
 
 const {resolve} = require('path');
+const {defaultLanguage} = require('../crowdin/config.js');
 
 module.exports = async (params) => {
   const {graphql, boundActionCreators} = params;
@@ -26,8 +27,6 @@ module.exports = async (params) => {
     redirectInBrowser: true,
     toPath: '/',
   });
-
-  // TODO Create localized root redirects for each language
 
   const allMarkdown = await graphql(
     `
@@ -87,25 +86,28 @@ module.exports = async (params) => {
         template = tutorialTemplate;
       }
 
-      const createArticlePage = path => {
-        // TODO This should be a utility exposed by gatsby-plugin-crowdin
-        if (languageCode != null && path.startsWith('/')) {
-          path = `/${languageCode}/${path.substr(1)}`;
-        }
+      const prependSlash = path => path.startsWith('/') ? path : `/${path}`;
 
-        createPage({
-          path,
-          component: template,
-          context: {
-            id,
-            language,
-            languageCode,
-          },
-        });
+      // TODO This should be a utility exposed by gatsby-plugin-crowdin
+      const localizePath = path => {
+        path = prependSlash(path);
+        if (languageCode != null) {
+          return `/${languageCode}${path}`;
+        } else {
+          return path;
+        }
       };
 
       // Register primary URL.
-      createArticlePage(slug);
+      createPage({
+        path: localizePath(slug),
+        component: template,
+        context: {
+          id,
+          language,
+          languageCode,
+        },
+      });
 
       // Register redirects as well if the markdown specifies them.
       if (fields.redirect) {
@@ -115,11 +117,7 @@ module.exports = async (params) => {
         }
 
         redirect.forEach(fromPath => {
-          if (fromPath.startsWith('/')) {
-            fromPath = fromPath.substr(1);
-          }
-
-          const localizedFromPath = `/${languageCode}/${fromPath}`;
+          const localizedFromPath = localizePath(fromPath);
 
           if (redirectToSlugMap[localizedFromPath] != null) {
             console.error(
@@ -130,9 +128,17 @@ module.exports = async (params) => {
             process.exit(1);
           }
 
-          const localizedToPath = `/${languageCode}/${slug.startsWith('/') ? slug.substr(1) : slug}`;
+          const localizedToPath = localizePath(slug);
 
           redirectToSlugMap[localizedFromPath] = localizedToPath;
+
+          if (language === defaultLanguage) {
+            createRedirect({
+              fromPath: prependSlash(fromPath),
+              toPath: localizedToPath,
+              redirectInBrowser: true,
+            });
+          }
 
           // Create language-aware redirect
           createRedirect({

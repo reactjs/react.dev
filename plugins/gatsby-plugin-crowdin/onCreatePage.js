@@ -67,6 +67,9 @@
 }
 */
 
+// TODO THis is a hack :( Read this from pluginOptions?
+const DEFAULT_LANGUAGE_CODE = 'en-US';
+
 // Gatsby has 2 types of pages:
 // (1) Pages generated from Markdown content (src/templates)
 // (2) Pages defined in JavaScript (src/pages)
@@ -84,19 +87,19 @@ module.exports = ({page, boundActionCreators}, pluginOptions) => {
     path, // eg /zn-CH/path/to/template.html, /path/to/page.html
   } = page;
 
-  // TODO: Only do this for `gatsby-source-filesystem` name=translated sources?
-  if (!languageCode) {
-    return; // No-op for JavaScript pages (eg src/pages)
+  // If we're creating a localized page,
+  // Create a non-localized redriect for the default language.
+  // TODO Maybe make this behavior configurable as well via pluginOptions
+  if (languageCode === DEFAULT_LANGUAGE_CODE) {
+    const nonLocalizedPath = path.substr(
+      path.indexOf(languageCode) + languageCode.length,
+    );
+
+    createRedirect({
+      fromPath: nonLocalizedPath,
+      toPath: path,
+      redirectInBrowser: true,
+      Language: language,
+    });
   }
-
-  const nonLocalizedPath = path.substr(
-    path.indexOf(languageCode) + languageCode.length,
-  );
-
-  createRedirect({
-    fromPath: nonLocalizedPath,
-    toPath: path,
-    redirectInBrowser: true,
-    Language: language,
-  });
 };

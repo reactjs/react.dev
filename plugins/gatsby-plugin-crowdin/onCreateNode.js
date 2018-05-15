@@ -41,12 +41,12 @@ module.exports = exports.onCreateNode = ({
 
   switch (node.internal.type) {
     case 'MarkdownRemark':
-      const {relativePath} = getNode(node.parent);
+      // Parent node is owned by the 'gatsby-source-filesystem' plug-in
+      const {relativePath, sourceInstanceName} = getNode(node.parent);
 
-      const languageCode = getLanguageCodeFromPath(relativePath);
-
-      // TODO: Only do this for `gatsby-source-filesystem` name=translated sources?
-      if (languageCode !== null) {
+      // We only need to attribute language metadata for "translated" sources
+      if (sourceInstanceName === 'translated') {
+        const languageCode = getLanguageCodeFromPath(relativePath);
         const language = getLanguageFromLanguageAndRegion(languageCode);
 
         createNodeField({

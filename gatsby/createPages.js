@@ -88,7 +88,8 @@ module.exports = async (params) => {
       }
 
       const createArticlePage = path => {
-        if (path.startsWith('/')) {
+        // TODO This should be a utility exposed by gatsby-plugin-crowdin
+        if (languageCode != null && path.startsWith('/')) {
           path = `/${languageCode}/${path.substr(1)}`;
         }
 

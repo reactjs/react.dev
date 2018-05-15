@@ -5,7 +5,7 @@
  * @flow
  */
 
-import Link from 'gatsby-plugin-crowdin/Link';
+import Link from 'gatsby-link';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
@@ -19,10 +19,9 @@ import type {allMarkdownRemarkData} from 'types';
 
 type Props = {
   data: allMarkdownRemarkData,
-  location: Location,
 };
 
-const AllBlogPosts = ({data, location}: Props) => (
+const AllBlogPosts = ({data}: Props) => (
   <Container>
     <div css={sharedStyles.articleLayout.container}>
       <div css={sharedStyles.articleLayout.content}>
@@ -70,7 +69,6 @@ const AllBlogPosts = ({data, location}: Props) => (
                     },
                   }}
                   key={node.fields.id}
-                  location={location}
                   to={node.fields.slug}>
                   {node.frontmatter.title}
                 </Link>

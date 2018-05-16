@@ -23,24 +23,27 @@ const Translations = () => (
         <TitleAndMetaTags title="React - Translations" />
         <div css={sharedStyles.markdown}>
           <p>
-            React docs have been translated by the community into the following languages:
+            React docs have been translated by the community into the following
+            languages:
           </p>
           <ul>
             {languages.map(language => (
               <li key={language}>
-                <Link
-                  to={`/${language}/docs/hello-world.html`}>
+                <Link to={`/${language}/docs/hello-world.html`}>
                   {language}
                 </Link>
               </li>
             ))}
           </ul>
           <p>
-            Visit <a
+            Visit{' '}
+            <a
               href="https://crowdin.com/project/react"
               target="_blank"
-              rel="noopener">crowdin.com/project/react
-            </a> if you would like to contribute to these translations.
+              rel="noopener">
+              crowdin.com/project/react
+            </a>{' '}
+            if you would like to contribute to these translations.
           </p>
         </div>
       </div>

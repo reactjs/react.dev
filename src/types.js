@@ -14,6 +14,7 @@ export type Node = {
   excerpt: string,
   fields: {
     date?: string,
+    id: string,
     path: string,
     redirect: string,
     slug: string,

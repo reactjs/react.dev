@@ -71,6 +71,11 @@ October 5 in Verona, Italy
 
 [Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
+### React Day Berlin 2018
+November 30, Berlin, Germany
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
+
 ## Past Conferences
 
 ### React.js Conf 2015
@@ -220,7 +225,7 @@ November 4 in Seoul, South Korea
 
 [Website](http://seoul.reactjs.kr/en)
 
-### React Day Berlin
+### React Day Berlin 2017
 December 2, Berlin, Germany
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/watch?v=UnNLJvHKfSY&list=PL-3BrJ5CiIx5GoXci54-VsrO6GwLhSHEK)

@@ -35,7 +35,7 @@ class Template extends Component<Props> {
     let layoutHasSidebar = false;
     if (
       location.pathname.match(
-        /^\/(docs|tutorial|community|blog|contributing|warnings)/,
+        /\/(docs|tutorial|community|blog|contributing|warnings)\//,
       )
     ) {
       layoutHasSidebar = true;

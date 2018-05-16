@@ -1,14 +1,14 @@
 const Crowdin = require('crowdin-node');
 const {downloadedRootDirectory, key, threshold, url, whitelist} = require('./config');
-const fs = require('fs');
-const path = require('path');
+const {existsSync, mkdirSync} = require('fs');
+const {join, resolve} = require('path');
 const {symlink, lstatSync, readdirSync} = require('fs');
 
-const TRANSLATED_PATH = path.resolve(__dirname, '__translated__');
-const EXPORTED_PATH = path.resolve(__dirname, '__exported__');
+const TRANSLATED_PATH = resolve(__dirname, '__translated__');
+const EXPORTED_PATH = resolve(__dirname, '__exported__');
 
 // Path to the "docs" folder within the downloaded Crowdin translations bundle.
-const downloadedDocsPath = path.resolve(
+const downloadedDocsPath = resolve(
   EXPORTED_PATH,
   downloadedRootDirectory,
 );
@@ -56,16 +56,16 @@ const downloadAndSymlink = () => {
 
       usableLocales.forEach(locale => {
         const languageCode = localeToFolderMap.get(locale);
-        const rootLanguageFolder = path.resolve(TRANSLATED_PATH, languageCode);
+        const rootLanguageFolder = resolve(TRANSLATED_PATH, languageCode);
 
         if (Array.isArray(whitelist)) {
-          if (!fs.existsSync(rootLanguageFolder)) {
-            fs.mkdirSync(rootLanguageFolder);
+          if (!existsSync(rootLanguageFolder)) {
+            mkdirSync(rootLanguageFolder);
           }
 
           // Symlink only the whitelisted subdirectories
           whitelist.forEach(subdirectory => {
-            createSymLink(path.join(languageCode, subdirectory));
+            createSymLink(join(languageCode, subdirectory));
           });
         } else {
           // Otherwise symlink the entire language export
@@ -80,8 +80,8 @@ const downloadAndSymlink = () => {
 // Note that the current working directory of this node process should be where the symlink is created
 // or else the relative paths would be incorrect
 const createSymLink = (relativePath) => {
-  const from = path.resolve(downloadedDocsPath, relativePath);
-  const to = path.resolve(TRANSLATED_PATH, relativePath);
+  const from = resolve(downloadedDocsPath, relativePath);
+  const to = resolve(TRANSLATED_PATH, relativePath);
   symlink(from, to, err => {
     if (!err) {
       return;
@@ -133,7 +133,7 @@ const createLocaleToFolderMap = (directories) => {
 const getLanguageDirectories = source =>
   readdirSync(source).filter(
     name =>
-      lstatSync(path.join(source, name)).isDirectory() && name !== '_data',
+      lstatSync(join(source, name)).isDirectory() && name !== '_data',
   );
 
 validateCrowdinConfig();

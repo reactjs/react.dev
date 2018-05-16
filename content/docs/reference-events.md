@@ -246,7 +246,7 @@ A note on cross-browser support:
 
 Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
 
-If your application requires pointer events, we recommend adding a third party pointer event polyfill like [PEP](https://github.com/jquery/PEP).
+If your application requires pointer events, we recommend adding a third party pointer event polyfill.
 
 * * *
 

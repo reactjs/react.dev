@@ -94,3 +94,12 @@ The Yarn task `crowdin:update-languages` determines which translated languages h
 ```
 
 This `languages.json` list is imported into a translations page (`pages/translations.js`) and used to create a list of links to translated docs.
+
+### Locale persistence
+
+By default, legacy links to docs pages (e.g. `/docs/hello-world.html`) are re-routed to a new page (`docs-language-redirect.js`) that determines which locale to redirect to (e.g. `/en-US/docs/hello-world.html`). This is done as follows:
+* First it checks `localStorage` for the user's selected language. If one is found, it is used.
+* Next it checks the user's preferred languages (using `navigator.languages`). If any have been translated, it is used.
+* Lastly it falls back to English.
+
+Each time a user visits a localized docs path, the website updates their currently selected language (in `localStorage`) so that subsequent visits (within this session or a new session) will restore their selected language.

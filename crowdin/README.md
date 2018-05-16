@@ -75,3 +75,22 @@ This configuration is done via `gatsby-config.js`:
 Because of the default initial symlink (`crowdin/__translated__/en-US/docs` -> `content/docs`) Gatsby will still serve English content when run locally, even if the Crowdin script has not been run. This should enable fast iteration and creation of new content.
 
 Translations can be updated by running `yarn crowdin:download` (or automatically as part of CI deployment).
+
+### Language selector
+
+The Yarn task `crowdin:update-languages` determines which translated languages have been downloaded. (This task is automatically run before `yarn dev` or `yarn build` in order to just-in-time update the list.) The task writes a list of locales to a local JSON file, `languages.json`:
+
+```sh
+.
+└── crowdin
+   ├── __exported__
+   │   └── # ...
+   ├── __translated__
+   │   └── # ...
+   ├── __untranslated__
+   │   └── # ...
+   ├── translated-languages.json # This is the list of local translations
+   └── # ...
+```
+
+This `languages.json` list is imported into a translations page (`pages/translations.js`) and used to create a list of links to translated docs.

@@ -11,9 +11,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import Link from 'gatsby-link';
 import React from 'react';
 import {sharedStyles} from 'theme';
-
-// $FlowFixMe This is a valid path
-import languages from '../../crowdin/languages.json';
+import {getTranslatedLanguages} from 'utils/languageUtils';
 
 const Translations = () => (
   <Container>
@@ -27,7 +25,7 @@ const Translations = () => (
             languages:
           </p>
           <ul>
-            {languages.map(language => (
+            {getTranslatedLanguages().map(language => (
               <li key={language}>
                 <Link to={`/${language}/docs/hello-world.html`}>
                   {language}

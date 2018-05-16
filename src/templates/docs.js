@@ -9,16 +9,26 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import {createLinkDocs} from 'utils/createLink';
 import {sectionListDocs} from 'utils/sectionList';
+import {setSelectedLanguage} from 'utils/languageUtils';
 
-const Docs = ({data, location}) => (
-  <MarkdownPage
-    createLink={createLinkDocs}
-    location={location}
-    markdownRemark={data.markdownRemark}
-    sectionList={sectionListDocs}
-    titlePostfix=" - React"
-  />
-);
+const Docs = ({data, location}) => {
+  // Store the user's most recent locale based on the current URL.
+  // We'll restore this language when they visit a new (unlocalized) URL.
+  const matches = location.pathname.substr(1).split('/');
+  if (matches.length > 1) {
+    setSelectedLanguage(matches[0]);
+  }
+
+  return (
+    <MarkdownPage
+      createLink={createLinkDocs}
+      location={location}
+      markdownRemark={data.markdownRemark}
+      sectionList={sectionListDocs}
+      titlePostfix=" - React"
+    />
+  );
+};
 
 Docs.propTypes = {
   data: PropTypes.object.isRequired,

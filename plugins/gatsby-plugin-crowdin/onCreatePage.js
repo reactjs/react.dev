@@ -97,7 +97,7 @@ module.exports = ({page, boundActionCreators}, pluginOptions) => {
 
     createRedirect({
       fromPath: nonLocalizedPath,
-      toPath: path,
+      toPath: `/docs-language-redirect/?${nonLocalizedPath}`,
       redirectInBrowser: true,
       Language: language,
     });

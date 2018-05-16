@@ -24,7 +24,6 @@ type CreateLinkBaseProps = {
 
 const createLinkBlog = ({
   isActive,
-  isLocalized,
   item,
   location,
   section,
@@ -32,7 +31,6 @@ const createLinkBlog = ({
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
-      isLocalized={isLocalized}
       location={location}
       to={item.id}>
       {isActive && <span css={activeLinkBefore} />}
@@ -43,7 +41,6 @@ const createLinkBlog = ({
 
 const createLinkCommunity = ({
   isActive,
-  isLocalized,
   item,
   location,
   section,
@@ -65,7 +62,7 @@ const createLinkCommunity = ({
   }
   return createLinkDocs({
     isActive,
-    isLocalized,
+    isLocalized: false,
     item,
     location,
     section,
@@ -97,7 +94,6 @@ type CreateLinkTutorialProps = {
 
 const createLinkTutorial = ({
   isActive,
-  isLocalized,
   item,
   location,
   onLinkClick,
@@ -106,7 +102,6 @@ const createLinkTutorial = ({
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
-      isLocalized={isLocalized}
       location={location}
       onClick={onLinkClick}
       to={item.href}>

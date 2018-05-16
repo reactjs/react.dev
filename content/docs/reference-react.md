@@ -159,7 +159,7 @@ Verifies the object is a React element. Returns `true` or `false`.
 #### `React.Children.map`
 
 ```javascript
-React.Children.map(children, function[(thisArg)])
+React.Children.map(children, fn[, thisArg])
 ```
 
 Invokes a function on every immediate child contained within `children` with `this` set to `thisArg`. If `children` is a keyed fragment or array it will be traversed: the function will never be passed the container objects. If children is `null` or `undefined`, returns `null` or `undefined` rather than an array.
@@ -167,7 +167,7 @@ Invokes a function on every immediate child contained within `children` with `th
 #### `React.Children.forEach`
 
 ```javascript
-React.Children.forEach(children, function[(thisArg)])
+React.Children.forEach(children, fn[, thisArg])
 ```
 
 Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.

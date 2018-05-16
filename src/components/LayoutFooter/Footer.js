@@ -134,6 +134,8 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               rel="noopener">
               React Native
             </ExternalFooterLink>
+            <FooterLink to="/versions">Versions</FooterLink>
+            <FooterLink to="/translations">Translations</FooterLink>
           </FooterNav>
         </div>
         <section

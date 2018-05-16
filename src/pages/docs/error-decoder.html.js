@@ -100,8 +100,8 @@ const ErrorPage = ({data, location}: Props) => (
 
 // eslint-disable-next-line no-undef
 export const pageQuery = graphql`
-  query ErrorPageMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
+  query ErrorPageMarkdown {
+    markdownRemark(fields: {slug: {eq: "/docs/error-decoder.html"}}) {
       html
       fields {
         path

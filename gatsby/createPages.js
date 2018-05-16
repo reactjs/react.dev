@@ -59,7 +59,7 @@ module.exports = async (params) => {
     const {fields} = edge.node;
     let {id, language, languageCode, slug} = fields;
 
-    if (slug === 'docs/error-decoder.html') {
+    if (slug === '/docs/error-decoder.html') {
       // No-op so far as markdown templates go.
       // Error codes are managed by a page in src/pages
       // (which gets created by Gatsby during a separate phase).

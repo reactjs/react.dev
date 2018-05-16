@@ -39,9 +39,9 @@ function urlify(str: string): Node {
 // `?invariant=123&args[]=foo&args[]=bar`
 // or `// ?invariant=123&args[0]=foo&args[1]=bar`
 function parseQueryString(
-  search: string,
+  search: ?string,
 ): ?{|code: string, args: Array<string>|} {
-  const rawQueryString = search.substring(1);
+  const rawQueryString = search ? search.substring(1) : null;
   if (!rawQueryString) {
     return null;
   }
@@ -89,13 +89,15 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
 
 function ErrorDecoder(props: {|
   errorCodesString: string,
-  location: {search: string},
+  location: {search: ?string},
 |}) {
   let code = null;
   let msg = '';
 
-  const errorCodes = JSON.parse(props.errorCodesString);
-  const parseResult = parseQueryString(props.location.search);
+  const {errorCodesString, location} = props;
+
+  const errorCodes = JSON.parse(errorCodesString);
+  const parseResult = parseQueryString(location.search);
   if (parseResult != null) {
     code = parseResult.code;
     msg = replaceArgs(errorCodes[code], parseResult.args);

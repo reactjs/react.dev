@@ -19,7 +19,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 * [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
 * [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
 * [Detecting unexpected side effects](#detecting-unexpected-side-effects)
-* [Detecting legacy context APIs](#detecting-legacy-context-apis)
+* [Detecting legacy context API](#detecting-legacy-context-api)
 
 Additional functionality will be added with future releases of React.
 
@@ -88,10 +88,10 @@ At first glance, this code might not seem problematic. But if `SharedApplication
 
 By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
 
-### Detecting legacy context APIs
+### Detecting legacy context API
 
-As is explained in the [previous legacy `context` post](/docs/legacy-context.html), the prior usage of context is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show up this warning message in strict mode:
+The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:
 
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
-Read the [new usage of context APIs](/docs/context.html) to help migrate to the new version.
+Read the [new context API documentation](/docs/context.html) to help migrate to the new version.

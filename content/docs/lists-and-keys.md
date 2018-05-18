@@ -72,13 +72,13 @@ ReactDOM.render(
 
 When you run this code, you'll be given a warning that a key should be provided for list items. A "key" is a special string attribute you need to include when creating lists of elements. We'll discuss why it's important in the next section.
 
-Let's assign a `key` to our list items inside `numbers.map()` and fix the missing key issue.
+Let's assign a `key` to our list items inside `numbers.map()` and fix the missing key issue. We will use the index of the list to ensure uniqueness
 
 ```javascript{4}
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <li key={number.toString()}>
+  const listItems = numbers.map((number, index) =>
+    <li key={index}>
       {number}
     </li>
   );
@@ -94,7 +94,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
+[Try it on CodePen.](https://codepen.io/anon/pen/bMOVKz?editors=0011)
 
 ## Keys
 

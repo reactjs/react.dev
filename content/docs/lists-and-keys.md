@@ -102,8 +102,8 @@ Keys help React identify which items have changed, are added, or are removed. Ke
 
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
-const listItems = numbers.map((number) =>
-  <li key={number.toString()}>
+const listItems = numbers.map((number, index) =>
+  <li key={index}>
     {number}
   </li>
 );
@@ -183,9 +183,9 @@ function ListItem(props) {
 
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
+  const listItems = numbers.map((number, index) =>
     // Correct! Key should be specified inside the array.
-    <ListItem key={number.toString()}
+    <ListItem key={index}
               value={number} />
   );
   return (
@@ -268,8 +268,8 @@ In the examples above we declared a separate `listItems` variable and included i
 ```js{3-6}
 function NumberList(props) {
   const numbers = props.numbers;
-  const listItems = numbers.map((number) =>
-    <ListItem key={number.toString()}
+  const listItems = numbers.map((number, index) =>
+    <ListItem key={number.index}
               value={number} />
   );
   return (
@@ -287,8 +287,8 @@ function NumberList(props) {
   const numbers = props.numbers;
   return (
     <ul>
-      {numbers.map((number) =>
-        <ListItem key={number.toString()}
+      {numbers.map((number, index) =>
+        <ListItem key={index}
                   value={number} />
       )}
     </ul>

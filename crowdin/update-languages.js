@@ -4,6 +4,8 @@ const {join, resolve} = require('path');
 const TRANSLATED_LANGUAGES_JSON_PATH = resolve(__dirname, 'languages.json');
 const TRANSLATED_PATH = resolve(__dirname, '__translated__');
 
+// TODO Use crowdin.yaml
+
 // Determine which languages we have translations downloaded for...
 const languages = [];
 readdirSync(TRANSLATED_PATH).forEach(entry => {

@@ -306,7 +306,7 @@ To get around this problem, you can sometimes define the prop as an instance met
 ```js
 class MouseTracker extends React.Component {
   // Defined as an instance method, `this.renderTheCat` always
-  // refers to *same* function when we use it in render
+  // refers to the *same* function when we use it in render
   renderTheCat(mouse) {
     return <Cat mouse={mouse} />;
   }

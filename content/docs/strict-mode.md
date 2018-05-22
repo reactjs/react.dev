@@ -19,6 +19,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 * [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
 * [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
 * [Detecting unexpected side effects](#detecting-unexpected-side-effects)
+* [Detecting legacy context API](#detecting-legacy-context-api)
 
 Additional functionality will be added with future releases of React.
 
@@ -86,3 +87,11 @@ For example, consider the following code:
 At first glance, this code might not seem problematic. But if `SharedApplicationState.recordEvent` is not [idempotent](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning), then instantiating this component multiple times could lead to invalid application state. This sort of subtle bug might not manifest during development, or it might do so inconsistently and so be overlooked.
 
 By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
+
+### Detecting legacy context API
+
+The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:
+
+![](../images/blog/warn-legacy-context-in-strict-mode.png)
+
+Read the [new context API documentation](/docs/context.html) to help migrate to the new version.

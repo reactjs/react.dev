@@ -90,6 +90,10 @@ Each component also provides some other APIs:
   - [`props`](#props)
   - [`state`](#state)
 
+### Lifecycle diagram
+
+![Lifecycle diagram](https://i.imgur.com/bmfcRQm.jpg)
+
 * * *
 
 ## Reference

@@ -66,6 +66,7 @@ module.exports = {
                 `//unpkg.com/react/umd/react.development.js`,
                 `//unpkg.com/react-dom/umd/react-dom.development.js`,
               ],
+              dependencies: [`react`, `react-dom`],
               redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
               target: '_blank',
             },

@@ -222,7 +222,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-The props corresponding to this test instance. For example, a `<Button size="small />` component has `{size: 'small'}` as props.
+The props corresponding to this test instance. For example, a `<Button size="small" />` component has `{size: 'small'}` as props.
 
 ### `testInstance.parent`
 

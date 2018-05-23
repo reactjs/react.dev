@@ -22,6 +22,7 @@ The easiest way to get started on a new React project is by using a starter kit.
 
 ```bash
 npm install -g create-react-app
+
 create-react-app my-app
 
 cd my-app

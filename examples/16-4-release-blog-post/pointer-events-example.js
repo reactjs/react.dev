@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-const CIRCLE_SIZE = 80;
+const CIRCLE_SIZE = 85;
 
 class DragBox extends React.Component {
   state = {

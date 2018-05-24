@@ -76,6 +76,10 @@ handleChange(event) {
 }
 ```
 
+[Try it on CodePen.](https://codepen.io/anon/pen/xjNeWG?editors=0010)
+
+As a side note, you may notice that typing in the middle of an string in the text box will cause the cursor to jump to the end of the text box.  This is expected and there is currently not a recommended way to avoid this behaviour.
+
 ## The textarea Tag
 
 In HTML, a `<textarea>` element defines its text by its children:

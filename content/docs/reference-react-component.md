@@ -186,7 +186,7 @@ If you "fork" props by using them for state, you might also want to implement [`
 ### `static getDerivedStateFromProps()`
 
 ```js
-static getDerivedStateFromProps(nextProps, prevState)
+static getDerivedStateFromProps(props, state)
 ```
 
 `getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.

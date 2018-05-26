@@ -1,0 +1,33 @@
+html, body, #root {
+  width: 100%;
+  height: 100%;
+}
+
+.SplitPane {
+  width: 100%;
+  height: 100%;
+}
+
+.SplitPane-left {
+  float: left;
+  width: 30%;
+  height: 100%;
+}
+
+.SplitPane-right {
+  float: left;
+  width: 70%;
+  height: 100%;
+}
+
+.Contacts {
+  width: 100%;
+  height: 100%; 
+  background: lightblue;
+}
+
+.Chat {
+  width: 100%;
+  height: 100%; 
+  background: pink;
+}

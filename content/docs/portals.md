@@ -4,17 +4,9 @@ title: Portals
 permalink: docs/portals.html
 ---
 
-Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Portals provide a way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
 
-```js
-ReactDOM.createPortal(child, container)
-```
-
-The first argument (`child`) is any [renderable React child](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a DOM element.
-
-## Usage
-
-Normally, when you return an element from a component's render method, it's mounted into the DOM as a child of the nearest parent node:
+Normally, when you return an element from a component's `render()` method, it's mounted into the DOM as a child of the nearest parent node:
 
 ```js{4,6}
 render() {
@@ -27,7 +19,17 @@ render() {
 }
 ```
 
-However, sometimes it's useful to insert a child into a different location in the DOM:
+However, it's sometimes useful to insert a child into a different location in the DOM. A typical use case is when a parent element has an `overflow: hidden` or `z-index` style, but you need the child to visually "break out" of its container. Dialogs, hovercards, and tooltips are some examples of elements that may need to be rendered outside their parent component's DOM to display correctly.
+
+Portals allow you to place these children outside their parent's DOM hierarchy, into any DOM node you have a reference to:
+
+```js
+ReactDOM.createPortal(child, container)
+```
+
+The first argument (`child`) is any [renderable React child](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a reference to a DOM element.
+
+You place the Portal into your component's `render()` method, much like you would with normal React elements:
 
 ```js{6}
 render() {
@@ -40,13 +42,11 @@ render() {
 }
 ```
 
-A typical use case for portals is when a parent component has an `overflow: hidden` or `z-index` style, but you need the child to visually "break out" of its container. For example, dialogs, hovercards, and tooltips.
+[Try it on CodePen.](https://codepen.io/gaearon/pen/yzMaBd)
 
 > Note:
 >
-> It is important to remember, when working with portals, you'll need to make sure to follow the proper accessibility guidelines.
-
-[Try it on CodePen.](https://codepen.io/gaearon/pen/yzMaBd)
+> When working with portals, make sure to follow the proper [accessibility guidelines](/docs/accessibility.html).
 
 ## Event Bubbling Through Portals
 
@@ -149,4 +149,8 @@ ReactDOM.render(<Parent />, appRoot);
 
 [Try it on CodePen.](https://codepen.io/gaearon/pen/jGBWpE)
 
-Catching an event bubbling up from a portal in a parent component allows the development of more flexible abstractions that are not inherently reliant on portals. For example, if you render a `<Modal />` component, the parent can capture its events regardless of whether it's implemented using portals.
+Catching an event bubbling up from a portal in a parent component allows the development of more flexible abstractions that are not inherently reliant on portals. For example, if you render a `<Modal />` component, the parent can capture its events regardless of whether it's implemented using portals or not.
+
+> Note:
+>
+> When elements are placed, via portals, outside the parent component's DOM hierarchy, they will not inherit its CSS styles. They will instead inherit them from the DOM container they're placed into.

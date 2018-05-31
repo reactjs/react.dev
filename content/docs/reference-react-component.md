@@ -186,10 +186,12 @@ If you "fork" props by using them for state, you might also want to implement [`
 ### `static getDerivedStateFromProps()`
 
 ```js
-static getDerivedStateFromProps(props, state)
+static getDerivedStateFromProps(nextProps, currentState)
 ```
 
 `getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
+
+It receives two arguments - the props about to be applied, and the current state. 
 
 Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
 

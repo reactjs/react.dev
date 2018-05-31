@@ -104,6 +104,8 @@ TestRenderer.create(element, options);
 
 Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. The returned instance has the following methods and properties.
 
+You may pass an optional argument, `createNodeMock` function, to mock refs for Jest [snapshot testing](http://facebook.github.io/jest/docs/en/snapshot-testing.html#snapshot-testing-with-jest). Check [this article](https://reactjs.org/blog/2016/11/16/react-v15.4.0.html#mocking-refs-for-snapshot-testing) for detailed usage.
+
 ### `testRenderer.toJSON()`
 
 ```javascript

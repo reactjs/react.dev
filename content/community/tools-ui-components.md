@@ -37,6 +37,7 @@ permalink: community/ui-components.html
 * **[react-highlight](https://github.com/akiran/react-highlight):** React component for syntax highlighting
 * **[react-image](https://github.com/mbrevda/react-image):** Like `<img />` and Enhanced Image Component for React.
 * **[react-input-autosize](https://github.com/JedWatson/react-input-autosize):** Like `<input />` but resizes automatically to fit all its content.
+* **[react-input-trigger](https://github.com/abinavseelan/react-input-trigger):** React component for handling character triggers inside textareas and input fields.
 * **[react-intense](https://github.com/brycedorn/react-intense):** A component for viewing large images up close
 * **[react-joyride](https://github.com/gilbarbara/react-joyride):** Create walkthroughs and guided tours for your ReactJS apps.
 * **[react-ladda](https://github.com/jsdir/react-ladda):** React wrapper for Ladda buttons.

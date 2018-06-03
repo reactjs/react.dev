@@ -1,20 +1,15 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
 
-'use strict';
-
 import Flex from 'components/Flex';
-import PropTypes from 'prop-types';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
 
-const MarkdownHeader = ({title}) => (
+const MarkdownHeader = ({title}: {title: string}) => (
   <Flex type="header" halign="space-between" valign="baseline">
     <h1
       css={{
@@ -35,9 +30,5 @@ const MarkdownHeader = ({title}) => (
     </h1>
   </Flex>
 );
-
-MarkdownHeader.propTypes = {
-  title: PropTypes.string.isRequired,
-};
 
 export default MarkdownHeader;

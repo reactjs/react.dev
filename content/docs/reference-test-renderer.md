@@ -158,7 +158,7 @@ Returns the root "test instance" object that is useful for making assertions abo
 testInstance.find(test)
 ```
 
-Find the first descendant test instance for which `test(testInstance)` returns `true`.
+Find a single descendant test instance for which `test(testInstance)` returns `true`. If `test(testInstance)` does not return `true` for exactly one test instance, it will throw an error.
 
 ### `testInstance.findByType()`
 
@@ -166,7 +166,7 @@ Find the first descendant test instance for which `test(testInstance)` returns `
 testInstance.findByType(type)
 ```
 
-Find the first descendant test instance with the provided `type`.
+Find a single descendant test instance with the provided `type`. If there is not exactly one test instance with the provided `type`, it will throw an error.
 
 ### `testInstance.findByProps()`
 
@@ -174,7 +174,7 @@ Find the first descendant test instance with the provided `type`.
 testInstance.findByProps(props)
 ```
 
-Find the first descendant test instance with the provided `props`.
+Find a single descendant test instance with the provided `props`. If there is not exactly one test instance with the provided `props`, it will throw an error.
 
 ### `testInstance.findAll()`
 
@@ -222,7 +222,7 @@ The component type corresponding to this test instance. For example, a `<Button 
 testInstance.props
 ```
 
-The props corresponding to this test instance. For example, a `<Button size="small />` component has `{size: 'small'}` as props.
+The props corresponding to this test instance. For example, a `<Button size="small" />` component has `{size: 'small'}` as props.
 
 ### `testInstance.parent`
 
@@ -244,7 +244,7 @@ The children test instances of this test instance.
 
 You can pass `createNodeMock` function to `TestRenderer.create` as the option, which allows for custom mock refs.
 `createNodeMock` accepts the current element and should return a mock ref object.
-This is useful when you test a component rely on refs.
+This is useful when you test a component that relies on refs.
 
 ```javascript
 import TestRenderer from 'react-test-renderer';

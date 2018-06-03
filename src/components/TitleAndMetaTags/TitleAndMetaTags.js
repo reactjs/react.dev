@@ -1,20 +1,22 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import Helmet from 'react-helmet';
 import React from 'react';
 
 const defaultDescription = 'A JavaScript library for building user interfaces';
 
-const TitleAndMetaTags = ({title, ogDescription, ogUrl}) => {
+type Props = {
+  title: string,
+  ogDescription: string,
+  ogUrl: string,
+};
+
+const TitleAndMetaTags = ({title, ogDescription, ogUrl}: Props) => {
   return (
     <Helmet title={title}>
       <meta property="og:title" content={title} />

@@ -1,13 +1,9 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 // Polyfills for IE
 import 'array-from';
@@ -26,18 +22,12 @@ import 'glamor/reset';
 import 'css/reset.css';
 import 'css/algolia.css';
 
-class Template extends Component {
-  componentDidMount() {
-    // Initialize Algolia search.
-    // TODO Is this expensive? Should it be deferred until a user is about to search?
-    // eslint-disable-next-line no-undef
-    docsearch({
-      apiKey: '36221914cce388c46d0420343e0bb32e',
-      indexName: 'react',
-      inputSelector: '#algolia-doc-search',
-    });
-  }
+type Props = {
+  children: Function,
+  location: Location,
+};
 
+class Template extends Component<Props> {
   render() {
     const {children, location} = this.props;
 

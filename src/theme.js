@@ -1,14 +1,9 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @providesModule theme
  * @flow
  */
-
-'use strict';
 
 /**
  * Theme contains variables shared by styles of multiple components.
@@ -50,14 +45,16 @@ type Size = $Keys<typeof SIZES>;
 const media = {
   between(smallKey: Size, largeKey: Size, excludeLarge: boolean = false) {
     if (excludeLarge) {
-      return `@media (min-width: ${SIZES[smallKey]
-        .min}px) and (max-width: ${SIZES[largeKey].min - 1}px)`;
+      return `@media (min-width: ${
+        SIZES[smallKey].min
+      }px) and (max-width: ${SIZES[largeKey].min - 1}px)`;
     } else {
       if (SIZES[largeKey].max === Infinity) {
         return `@media (min-width: ${SIZES[smallKey].min}px)`;
       } else {
-        return `@media (min-width: ${SIZES[smallKey]
-          .min}px) and (max-width: ${SIZES[largeKey].max}px)`;
+        return `@media (min-width: ${SIZES[smallKey].min}px) and (max-width: ${
+          SIZES[largeKey].max
+        }px)`;
       }
     }
   },
@@ -103,7 +100,7 @@ const fonts = {
 // Except when they must be used within nested CSS selectors.
 // This is the case for eg markdown content.
 const linkStyle = {
-  backgroundColor: hex2rgba(colors.brandLight, 0.5),
+  backgroundColor: hex2rgba(colors.brandLight, 0.3),
   borderBottom: `1px solid ${hex2rgba(colors.black, 0.2)}`,
   color: colors.text,
 
@@ -238,10 +235,13 @@ const sharedStyles = {
     },
 
     '& p > code, & li > code': {
-      background: hex2rgba(colors.note, 0.3),
-      padding: '0 3px',
-      fontSize: 'inherit',
+      background: hex2rgba(colors.note, 0.2),
       color: colors.text,
+    },
+
+    '& p > code, & li > code, & p > a > code, & li > a > code': {
+      padding: '0 3px',
+      fontSize: 16,
       wordBreak: 'break-word',
     },
 
@@ -327,10 +327,7 @@ const sharedStyles = {
       marginTop: 20,
       fontSize: 16,
       color: colors.text,
-
-      [media.lessThan('small')]: {
-        paddingLeft: 20,
-      },
+      paddingLeft: 20,
 
       '& p, & p:first-of-type': {
         fontSize: 16,
@@ -339,7 +336,7 @@ const sharedStyles = {
       },
 
       '& li': {
-        marginTop: 20,
+        marginTop: 10,
       },
 
       '& li.button-newapp': {
@@ -348,6 +345,7 @@ const sharedStyles = {
 
       '& ol, & ul': {
         marginLeft: 20,
+        marginTop: 10,
       },
     },
 

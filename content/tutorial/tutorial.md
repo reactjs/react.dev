@@ -26,9 +26,9 @@ Once you get a little familiar with the game, feel free to close that tab, as we
 
 ### Prerequisites
 
-We'll assume some familiarity with HTML and JavaScript but you should be able to follow along even if you haven't used them before.
+We'll assume some familiarity with HTML and JavaScript, but you should be able to follow along even if you haven't used them before.
 
-If you need a refresher on JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6, a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use <a href="http://babeljs.io/repl/#?babili=false&evaluate=true&lineWrap=false&presets=es2015%2Creact&experimental=false&loose=false&spec=false&code=const%20element%20%3D%20%3Ch1%3EHello%2C%20world!%3C%2Fh1%3E%3B%0Aconst%20container%20%3D%20document.getElementById('root')%3B%0AReactDOM.render(element%2C%20container)%3B%0A">Babel REPL</a> to check what ES6 code compiles to.
+If you need a refresher on JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6, a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
 
 ### How to Follow Along
 
@@ -53,17 +53,31 @@ This is more work, but lets you work from the comfort of your editor.
 If you want to do it, here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions](/docs/installation.html#creating-a-new-application) to create a new project.
-3. Delete all files in the `src/` folder of the new project.
+2. Follow the [installation instructions](/docs/add-react-to-a-new-app.html) to create a new project.
+
+```bash
+npm install -g create-react-app
+create-react-app my-app
+```
+
+3. Delete all files in the `src/` folder of the new project (don't delete the folder, just its contents).
+
+```bash
+cd my-app
+rm -f src/*
+```
+
 4. Add a file named `index.css` in the `src/` folder with [this CSS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0100).
+
 5. Add a file named `index.js` in the `src/` folder with [this JS code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
+
 6. Add these three lines to the top of `index.js` in the `src/` folder:
 
-    ```js
-    import React from 'react';
-    import ReactDOM from 'react-dom';
-    import './index.css';
-    ```
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import './index.css';
+```
 
 Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
 
@@ -71,7 +85,7 @@ We recommend following [these instructions](http://babeljs.io/docs/editors) to c
 
 ### Help, I'm Stuck!
 
-If you get stuck, check out the [community support resources](https://reactjs.org/community/support.html). In particular, [Reactiflux chat](/community/support.html#reactiflux-chat) is a great way to get quick help. If you don't get a good answer anywhere, please file an issue, and we'll help you out.
+If you get stuck, check out the [community support resources](/community/support.html). In particular, [Reactiflux chat](/community/support.html#reactiflux-chat) is a great way to get quick help. If you don't get a good answer anywhere, please file an issue, and we'll help you out.
 
 With this out of the way, let's get started!
 
@@ -115,7 +129,7 @@ return React.createElement('div', {className: 'shopping-list'},
 );
 ```
 
-[See full expanded version.](https://babeljs.io/repl/#?babili=false&evaluate=false&lineWrap=false&presets=react&targets=&browsers=&builtIns=false&debug=false&experimental=false&loose=false&spec=false&playground=true&code=%3Cdiv%20className%3D%22shopping-list%22%3E%0A%20%20%3Ch1%3EShopping%20List%20for%20%7Bprops.name%7D%3C%2Fh1%3E%0A%20%20%3Cul%3E%0A%20%20%20%20%3Cli%3EInstagram%3C%2Fli%3E%0A%20%20%20%20%3Cli%3EWhatsApp%3C%2Fli%3E%0A%20%20%20%20%3Cli%3EOculus%3C%2Fli%3E%0A%20%20%3C%2Ful%3E%0A%3C%2Fdiv%3E)
+[See full expanded version.](babel://tutorial-expanded-version)
 
 If you're curious, `createElement()` is described in more detail in the [API reference](/docs/react-api.html#createelement), but we won't be using it directly in this tutorial. Instead, we will keep using JSX.
 
@@ -363,7 +377,7 @@ The usual pattern here is pass down a function from Board to Square that gets ca
   }
 ```
 
-We split the returned element into multiple lines for readability, and added parens around it so that JavaScript doesn't insert a semicolon after `return` and break our code.
+We split the returned element into multiple lines for readability, and added parentheses around it so that JavaScript doesn't insert a semicolon after `return` and break our code.
 
 Now we're passing down two props from Board to Square: `value` and `onClick`. The latter is a function that Square can call. Let's make the following changes to Square:
 
@@ -494,7 +508,7 @@ Determining how an immutable object has changed is considerably easier. If the o
 
 #### Determining When to Re-render in React
 
-The biggest benefit of immutability in React comes when you build simple _pure components_. Since immutable data can more easily determine if changes have been made it also helps to determine when a component requires being re-rendered.
+The biggest benefit of immutability in React comes when you build simple _pure components_. Since immutable data can more easily determine if changes have been made, it also helps to determine when a component requires being re-rendered.
 
 To learn more about `shouldComponentUpdate()` and how you can build *pure components* take a look at [Optimizing Performance](/docs/optimizing-performance.html#examples).
 
@@ -524,7 +538,7 @@ While we're cleaning up the code, we also changed `onClick={() => props.onClick(
 
 An obvious defect in our game is that only X can play. Let's fix that.
 
-Let's default the first move to be by 'X'. Modify our starting state in our Board constructor.
+Let's default the first move to be by 'X'. Modify our starting state in our Board constructor:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -537,7 +551,7 @@ class Board extends React.Component {
   }
 ```
 
-Each time we move we shall toggle `xIsNext` by flipping the boolean value and saving the state. Now update Board's `handleClick` function to flip the value of `xIsNext`.
+Each time we move we shall toggle `xIsNext` by flipping the boolean value and saving the state. Now update Board's `handleClick` function to flip the value of `xIsNext`:
 
 ```javascript{3,6}
   handleClick(i) {
@@ -550,7 +564,7 @@ Each time we move we shall toggle `xIsNext` by flipping the boolean value and sa
   }
 ```
 
-Now X and O take turns. Next, change the "status" text in Board's `render` so that it also displays who is next.
+Now X and O take turns. Next, change the "status" text in Board's `render` so that it also displays who is next:
 
 ```javascript{2}
   render() {
@@ -1039,7 +1053,7 @@ Add a method called `jumpTo` to the Game class:
   }
 ```
 
-Then update `stepNumber` when a new move is made by adding `stepNumber: history.length` to the state update in Game's `handleClick`. We'll also update `handleClick` to be aware of `stepNumber` when reading the current board state so that you can go back in time then click in the board to create a new entry.:
+Then update `stepNumber` when a new move is made by adding `stepNumber: history.length` to the state update in Game's `handleClick`. We'll also update `handleClick` to be aware of `stepNumber` when reading the current board state so that you can go back in time then click in the board to create a new entry:
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1090,10 +1104,11 @@ Check out the final result here: [Final Result](https://codepen.io/gaearon/pen/g
 
 If you have extra time or want to practice your new skills, here are some ideas for improvements you could make, listed in order of increasing difficulty:
 
-1. Display the move locations in the format "(1, 3)" instead of "6".
-2. Bold the currently-selected item in the move list.
+1. Display the location for each move in the format (col, row) in the move history list.
+2. Bold the currently selected item in the move list.
 3. Rewrite Board to use two loops to make the squares instead of hardcoding them.
 4. Add a toggle button that lets you sort the moves in either ascending or descending order.
 5. When someone wins, highlight the three squares that caused the win.
+6. When no one wins, display a message about the result being a draw.
 
 Throughout this tutorial, we have touched on a number of React concepts including elements, components, props, and state. For a more in-depth explanation for each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).

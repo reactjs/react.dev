@@ -1,31 +1,29 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
  */
-
-'use strict';
 
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
 import Remarkable from 'remarkable';
-// TODO: switch back to the upstream version of react-live
-// once https://github.com/FormidableLabs/react-live/issues/37 is fixed.
-import {LiveProvider, LiveEditor} from '@gaearon/react-live';
+import {LiveEditor, LiveProvider} from 'react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
 
-const compile = code =>
-  Babel.transform(code, {presets: ['es2015', 'react']}).code; // eslint-disable-line no-undef
+const compileES5 = (
+  code, // eslint-disable-next-line no-undef
+) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
+
+// eslint-disable-next-line no-undef
+const compileES6 = code => Babel.transform(code, {presets: ['react']}).code;
 
 class CodeEditor extends Component {
   constructor(props, context) {
     super(props, context);
 
     this.state = this._updateState(props.code);
+    this.state.showJSX = true;
   }
 
   componentDidMount() {
@@ -41,11 +39,33 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children, code} = this.props;
-    const {error} = this.state;
+    const {children} = this.props;
+    const {
+      compiledES6,
+      code,
+      error,
+      showBabelErrorMessage,
+      showJSX,
+    } = this.state;
+
+    let errorMessage;
+    if (showBabelErrorMessage) {
+      errorMessage = (
+        <span>
+          Babel could not be loaded.
+          <br />
+          <br />
+          This can be caused by an ad blocker. If you're using one, consider
+          adding reactjs.org to the whitelist so the live code examples will
+          work.
+        </span>
+      );
+    } else if (error != null) {
+      errorMessage = error.message;
+    }
 
     return (
-      <LiveProvider code={code} mountStylesheet={false}>
+      <LiveProvider code={showJSX ? code : compiledES6} mountStylesheet={false}>
         <div
           css={{
             [media.greaterThan('xlarge')]: {
@@ -115,24 +135,43 @@ class CodeEditor extends Component {
                   background: colors.darker,
                   color: colors.white,
                 }}>
-                <MetaTitle onDark={true}>Live JSX Editor</MetaTitle>
+                <MetaTitle onDark={true}>
+                  Live JSX Editor
+                  <label
+                    css={{
+                      fontSize: 14,
+                      float: 'right',
+                      cursor: 'pointer',
+                    }}>
+                    <input
+                      checked={this.state.showJSX}
+                      onChange={event =>
+                        this.setState({showJSX: event.target.checked})
+                      }
+                      type="checkbox"
+                    />{' '}
+                    JSX?
+                  </label>
+                </MetaTitle>
               </div>
               <div
                 css={{
                   height: '100%',
                   width: '100%',
                   borderRadius: '0',
+                  maxHeight: '340px !important',
                   marginTop: '0 !important',
                   marginLeft: '0 !important',
                   paddingLeft: '0 !important',
                   marginRight: '0 !important',
                   paddingRight: '0 !important',
+                  marginBottom: '0 !important',
+                  paddingBottom: '20px !important',
                   [media.lessThan('medium')]: {
                     marginBottom: '0 !important',
                   },
 
                   '& pre.prism-code[contenteditable]': {
-                    maxHeight: '280px !important',
                     outline: 0,
                     overflow: 'auto',
                     marginRight: '0 !important',
@@ -140,7 +179,7 @@ class CodeEditor extends Component {
                   },
                 }}
                 className="gatsby-highlight">
-                <LiveEditor onChange={this._onChange} />
+                <LiveEditor ignoreTabKey={true} onChange={this._onChange} />
               </div>
             </div>
             {error && (
@@ -177,7 +216,7 @@ class CodeEditor extends Component {
                     color: colors.error,
                     padding: 10,
                   }}>
-                  {error.message}
+                  {errorMessage}
                 </pre>
               </div>
             )}
@@ -203,6 +242,8 @@ class CodeEditor extends Component {
                 <div
                   css={{
                     padding: 10,
+                    maxHeight: '340px !important',
+                    overflow: 'auto',
 
                     '& input': {
                       width: '100%',
@@ -216,9 +257,13 @@ class CodeEditor extends Component {
                       padding: '5px 10px',
                     },
 
+                    '& label': {
+                      display: 'block',
+                      marginTop: 10,
+                    },
+
                     '& textarea': {
                       width: '100%',
-                      marginTop: 10,
                       height: 60,
                       padding: 5,
                     },
@@ -264,24 +309,38 @@ class CodeEditor extends Component {
     this._mountNode = ref;
   };
 
-  _updateState(code) {
+  _updateState(code, showJSX = true) {
     try {
-      return {
-        compiled: compile(code),
+      let newState = {
+        compiled: compileES5(code),
         error: null,
       };
+
+      if (showJSX) {
+        newState.code = code;
+        newState.compiledES6 = compileES6(code);
+      } else {
+        newState.compiledES6 = code;
+      }
+
+      return newState;
     } catch (error) {
       console.error(error);
+
+      // Certain ad blockers (eg Fair AdBlocker) prevent Babel from loading.
+      // If we suspect this is the case, we can show a more helpful error.
+      const showBabelErrorMessage = !window.Babel;
 
       return {
         compiled: null,
         error,
+        showBabelErrorMessage,
       };
     }
   }
 
   _onChange = code => {
-    this.setState(this._updateState(code));
+    this.setState(state => this._updateState(code, state.showJSX));
   };
 }
 

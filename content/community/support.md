@@ -21,7 +21,7 @@ In the forum there's also a category for job posts and a category for discussion
 
 ## React Community on Hashnode
 
-[Hashnode's React node](https://hashnode.com/n/reactjs) is a great place to stay up-to-date with React discussion, news and stories.
+[Hashnode's React community](https://hashnode.com/n/reactjs) is a great place to stay up-to-date with React discussion, news and stories.
 
 ## Reactiflux Chat
 

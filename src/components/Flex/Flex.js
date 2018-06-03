@@ -1,15 +1,25 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
 
-'use strict';
-
 import {createElement} from 'glamor/react';
+
+import type {Node} from 'react';
+
+type Props = {
+  basis: string,
+  children: Node,
+  direction: string,
+  grow: number,
+  halign: string,
+  shrink: number,
+  type: string,
+  valign: string,
+  rest: Array<any>,
+};
 
 /**
  * Convenience component for declaring a flexbox layout.
@@ -24,7 +34,7 @@ const Flex = ({
   type = 'div',
   valign = 'flex-start',
   ...rest
-}) =>
+}: Props) =>
   createElement(
     type,
     {

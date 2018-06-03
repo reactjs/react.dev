@@ -1,13 +1,8 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
  */
-
-'use strict';
 
 import Container from 'components/Container';
 import Flex from 'components/Flex';
@@ -50,8 +45,8 @@ const NavigationFooter = ({next, prev, location}) => {
                   css={{
                     paddingTop: 10,
                   }}>
-                  <PrimaryLink location={location} to={prev}>
-                    {linkToTitle(prev)}
+                  <PrimaryLink location={location} to={`${prev.id}.html`}>
+                    {prev.title}
                   </PrimaryLink>
                 </div>
               </div>
@@ -71,8 +66,8 @@ const NavigationFooter = ({next, prev, location}) => {
                   css={{
                     paddingTop: 10,
                   }}>
-                  <PrimaryLink location={location} to={next}>
-                    {linkToTitle(next)}
+                  <PrimaryLink location={location} to={`${next.id}.html`}>
+                    {next.title}
                   </PrimaryLink>
                 </div>
               </div>
@@ -85,13 +80,17 @@ const NavigationFooter = ({next, prev, location}) => {
 };
 
 NavigationFooter.propTypes = {
-  next: PropTypes.string,
-  prev: PropTypes.string,
+  next: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
+  prev: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+  }),
 };
 
 export default NavigationFooter;
-
-const linkToTitle = link => link.replace(/-/g, ' ').replace('.html', '');
 
 const PrimaryLink = ({children, to, location}) => {
   // quick fix
@@ -102,7 +101,6 @@ const PrimaryLink = ({children, to, location}) => {
     <Link
       css={{
         display: 'inline',
-        textTransform: 'capitalize',
         borderColor: colors.subtle,
         transition: 'border-color 0.2s ease',
         fontSize: 30,

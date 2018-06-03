@@ -1,11 +1,8 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
-*/
+ */
 
 'use strict';
 
@@ -22,6 +19,8 @@ module.exports = {
   plugins: [
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
+    'gatsby-transformer-home-example-code',
+    'gatsby-transformer-versions-yaml',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
     'gatsby-plugin-react-next',
@@ -58,6 +57,27 @@ module.exports = {
             },
           },
           'gatsby-remark-autolink-headers',
+          {
+            resolve: 'gatsby-remark-code-repls',
+            options: {
+              defaultText: 'Try it on CodePen',
+              directory: `${__dirname}/examples/`,
+              externals: [
+                `//unpkg.com/react/umd/react.development.js`,
+                `//unpkg.com/react-dom/umd/react-dom.development.js`,
+              ],
+              dependencies: [`react`, `react-dom`],
+              redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
+              target: '_blank',
+            },
+          },
+          {
+            resolve: 'gatsby-remark-embed-snippet',
+            options: {
+              classPrefix: 'gatsby-code-',
+              directory: `${__dirname}/examples/`,
+            },
+          },
           'gatsby-remark-use-jsx',
           {
             resolve: 'gatsby-remark-prismjs',
@@ -138,5 +158,6 @@ module.exports = {
       },
     },
     'gatsby-plugin-react-helmet',
+    'gatsby-plugin-catch-links',
   ],
 };

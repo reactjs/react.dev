@@ -1,38 +1,44 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
-import {Component, React} from 'react';
+import React, {Component} from 'react';
 import Sidebar from 'templates/components/Sidebar';
 import {colors, media} from 'theme';
 import ChevronSvg from 'templates/components/ChevronSvg';
 
-class StickyResponsiveSidebar extends Component {
-  constructor(props, context) {
-    super(props, context);
+type State = {
+  open: boolean,
+};
+
+type Props = {
+  enableScrollSync?: boolean,
+  createLink: Function, // TODO: Add better flow type once we Flow-type createLink
+  defaultActiveSection: string,
+  location: Location,
+  sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
+};
+
+class StickyResponsiveSidebar extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
 
     this.state = {
       open: false,
     };
-    this._openNavMenu = this._openNavMenu.bind(this);
-    this._closeNavMenu = this._closeNavMenu.bind(this);
   }
 
-  _openNavMenu() {
+  _openNavMenu = () => {
     this.setState({open: !this.state.open});
-  }
+  };
 
-  _closeNavMenu() {
+  _closeNavMenu = () => {
     this.setState({open: false});
-  }
+  };
 
   render() {
     const {open} = this.state;
@@ -126,7 +132,7 @@ class StickyResponsiveSidebar extends Component {
               },
 
               [media.greaterThan('small')]: {
-                tranform: 'none !important',
+                transform: 'none !important',
               },
             }}>
             <Sidebar closeParentMenu={this._closeNavMenu} {...this.props} />
@@ -147,7 +153,9 @@ class StickyResponsiveSidebar extends Component {
             boxShadow: '0 0 20px rgba(0, 0, 0, 0.3)',
             [media.lessThan('small')]: smallScreenBottomBarStyles,
           }}
-          onClick={this._openNavMenu}>
+          onClick={this._openNavMenu}
+          role="button"
+          tabIndex={0}>
           <Container>
             <div
               css={{

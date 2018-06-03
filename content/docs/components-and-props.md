@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" object argument with data and returns a React element. We call such components "functional" because they are literally JavaScript functions.
+This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "functional" because they are literally JavaScript functions.
 
 You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
 
@@ -76,7 +76,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/YGYmEG?editors=0010)
+[](codepen://components-and-props/rendering-a-component).
 
 Let's recap what happens in this example:
 
@@ -85,11 +85,11 @@ Let's recap what happens in this example:
 3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
 4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
 
->**Caveat:**
+>**Note:** Always start component names with a capital letter.
 >
->Always start component names with a capital letter.
+>React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
 >
->For example, `<div />` represents a DOM tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+>You can read more about the reasoning behind this convention [here.](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)
 
 ## Composing Components
 
@@ -118,13 +118,9 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/KgQKPr?editors=0010)
+[](codepen://components-and-props/composing-components).
 
 Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
-
->**Caveat:**
->
->Components must return a single root element. This is why we added a `<div>` to contain all the `<Welcome />` elements.
 
 ## Extracting Components
 
@@ -156,7 +152,7 @@ function Comment(props) {
 }
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/VKQwEo?editors=0010)
+[](codepen://components-and-props/extracting-components).
 
 It accepts `author` (an object), `text` (a string), and `date` (a date) as props, and describes a comment on a social media website.
 
@@ -202,7 +198,7 @@ function Comment(props) {
 }
 ```
 
-Next, we will extract a `UserInfo` component that renders an `Avatar` next to user's name:
+Next, we will extract a `UserInfo` component that renders an `Avatar` next to the user's name:
 
 ```js{3-8}
 function UserInfo(props) {
@@ -235,7 +231,7 @@ function Comment(props) {
 }
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/rrJNJY?editors=0010)
+[](codepen://components-and-props/extracting-components-continued).
 
 Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be a reusable component.
 

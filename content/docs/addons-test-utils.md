@@ -15,11 +15,13 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 ## Overview
 
-`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](http://facebook.github.io/jest/docs/tutorial-react.html#content).
+`ReactTestUtils` makes it easy to test React components in the testing framework of your choice. At Facebook we use [Jest](https://facebook.github.io/jest/) for painless JavaScript testing. Learn how to get started with Jest through the Jest website's [React Tutorial](http://facebook.github.io/jest/docs/en/tutorial-react.html#content).
 
 > Note:
 >
 > Airbnb has released a testing utility called Enzyme, which makes it easy to assert, manipulate, and traverse your React Components' output. If you're deciding on a unit testing utility to use together with Jest, or any other test runner, it's worth checking out: [http://airbnb.io/enzyme/](http://airbnb.io/enzyme/)
+>
+> Alternatively, there is another testing utility called react-testing-library designed to enable and encourage writing tests that use your components as the end users use them. It also works with any test runner: [https://git.io/react-testing-library](https://git.io/react-testing-library)
 
  - [`Simulate`](#simulate)
  - [`renderIntoDocument()`](#renderintodocument)
@@ -66,16 +68,16 @@ Simulate an event dispatch on a DOM node with optional `eventData` event data.
 **Clicking an element**
 
 ```javascript
-// <button ref="button">...</button>
-const node = this.refs.button;
+// <button ref={(node) => this.button = node}>...</button>
+const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
 
 **Changing the value of an input field and then pressing ENTER.**
 
 ```javascript
-// <input ref="input" />
-const node = this.refs.input;
+// <input ref={(node) => this.textInput = node} />
+const node = this.textInput;
 node.value = 'giraffe';
 ReactTestUtils.Simulate.change(node);
 ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
@@ -111,6 +113,10 @@ mockComponent(
 ```
 
 Pass a mocked component module to this method to augment it with useful methods that allow it to be used as a dummy React component. Instead of rendering as usual, the component will become a simple `<div>` (or other tag if `mockTagName` is provided) containing any provided children.
+
+> Note:
+>
+> `mockComponent()` is a legacy API. We recommend using [shallow rendering](/docs/test-utils.html#shallow-rendering) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
 
 * * *
 

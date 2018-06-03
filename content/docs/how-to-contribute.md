@@ -41,7 +41,7 @@ We are using [GitHub Issues](https://github.com/facebook/react/issues) for our p
 
 #### Reporting New Issues
 
-The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/84v837e9/) is a great starting point.
+The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
 
 #### Security Bugs
 
@@ -66,11 +66,11 @@ Working on your first Pull Request? You can learn how from this free video serie
 
 **[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
 
-To help you get your feet wet and get you familiar with our contribution process, we have a list of **[beginner friendly issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Difficulty:+beginner")** that contain bugs which are fairly easy to fix. This is a great place to get started.
+To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
 
-If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take over it but you should still leave a comment.
+If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take it over but you should still leave a comment.
 
 ### Sending a Pull Request
 
@@ -79,13 +79,15 @@ The core team is monitoring for pull requests. We will review your pull request 
 **Before submitting a pull request,** please make sure the following is done:
 
 1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
-2. If you've added code that should be tested, add tests!
-3. If you've changed APIs, update the documentation.
-4. Ensure the test suite passes (`npm test`).
-5. Format your code with [prettier](https://github.com/prettier/prettier) (`npm run prettier`).
-6. Make sure your code lints (`npm run lint`).
-7. Run the [Flow](https://flowtype.org/) typechecks (`npm run flow`).
-8. If you haven't already, complete the CLA.
+2. Run `yarn` in the repository root.
+3. If you've fixed a bug or added code that should be tested, add tests!
+4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
+5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
+6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
+7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
+8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
+9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
+10. If you haven't already, complete the CLA.
 
 ### Contributor License Agreement (CLA)
 
@@ -95,66 +97,77 @@ In order to accept your pull request, we need you to submit a CLA. You only need
 
 ### Contribution Prerequisites
 
-* You have `node` installed at v4.0.0+ and `npm` at v2.0.0+.
-* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our `npm` dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
-* You are familiar with `npm` and know whether or not you need to use `sudo` when installing packages globally.
-* You are familiar with `git`.
+* You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
+* You are familiar with Git.
 
 ### Development Workflow
 
-After cloning React, run `npm install` to fetch its dependencies.
+After cloning React, run `yarn` to fetch its dependencies.
 Then, you can run several commands:
 
-* `npm run lint` checks the code style.
-* `npm test` runs the complete test suite.
-* `npm test -- --watch` runs an interactive test watcher.
-* `npm test <pattern>` runs tests with matching filenames.
-* `npm run flow` runs the [Flow](https://flowtype.org/) typechecks.
-* `npm run build` creates a `build` folder with all the packages.
+* `yarn lint` checks the code style.
+* `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
+* `yarn test` runs the complete test suite.
+* `yarn test --watch` runs an interactive test watcher.
+* `yarn test <pattern>` runs tests with matching filenames.
+* `yarn test-prod` runs tests in the production environment. It supports all the same options as `yarn test`.
+* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
+* `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
+* `yarn build` creates a `build` folder with all the packages.
+* `yarn build core,dom --type=UMD` creates UMD builds of just React and ReactDOM.
 
-We recommend running `npm test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
 
-First, run `npm run build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
+First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
 
-The easiest way to try your changes is to run `npm run build` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.js` from the `build` folder so it will pick up your changes.
+The easiest way to try your changes is to run `yarn build core,dom --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
 
-If you want to try your changes in your existing React project, you may copy `build/umd/react.development.js`, `build/umd/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `npm link` to point them to your local `build` folder:
+If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder:
 
 ```sh
-cd your_project
-npm link ~/path_to_your_react_clone/build/packages/react
-npm link ~/path_to_your_react_clone/build/packages/react-dom
+cd ~/path_to_your_react_clone/build/node_modules/react
+yarn link
+cd ~/path_to_your_react_clone/build/node_modules/react-dom
+yarn link
+cd /path/to/your/project
+yarn link react react-dom
 ```
 
-Every time you run `npm run build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
+Every time you run `yarn build` in the React folder, the updated versions will appear in your project's `node_modules`. You can then rebuild your project to try your changes.
 
 We still require that your pull request contains unit tests for any new functionality. This way we can ensure that we don't break your code in the future.
 
 ### Style Guide
 
-Our linter will catch most styling issues that may exist in your code.
-You can check the status of your code styling by simply running `npm run lint`.
+We use an automatic code formatter called [Prettier](https://prettier.io/).
+Run `yarn prettier` after making any changes to the code.
+
+Then, our linter will catch most issues that may exist in your code.
+You can check the status of your code styling by simply running `yarn linc`.
 
 However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb's Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
-
-### Code Conventions
-
-* Use semicolons `;`
-* Commas last `,`
-* 2 spaces for indentation (no tabs)
-* Prefer `'` over `"`
-* `'use strict';`
-* 120 character line length (**except documentation**)
-* Write "attractive" code
-* Do not use the optional parameters of `setTimeout` and `setInterval`
 
 ### Introductory Video
 
 You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
 
-### Meeting Notes
+#### Video highlights:
+- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Building and testing React locally
+- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Creating and sending pull requests
+- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Organizing code
+- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
+- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
 
-React team meets once a week to discuss the development of React, future plans, and priorities. You can find the meeting notes in a [dedicated repository](https://github.com/reactjs/core-notes/).
+For a realistic overview of what it _feels_ like to contribute to React for the first time, check out [this entertaining ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
+
+### Request for Comments (RFC)
+
+Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
+
+Some changes though are "substantial", and we ask that these be put through a bit of a design process and produce a consensus among the React core team.
+
+The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the project. You can contribute by visiting the [rfcs repository](https://github.com/reactjs/rfcs).
 
 ### License
 

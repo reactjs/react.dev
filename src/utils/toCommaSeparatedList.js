@@ -1,20 +1,21 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import React from 'react';
 
-const addString = (list, string) =>
+import type {Node} from 'react';
+
+const addString = (list: Array<Node>, string: string) =>
   list.push(<span key={`${list.length}-${string}`}>{string}</span>);
 
-const toCommaSeparatedList = (array, renderCallback) => {
+const toCommaSeparatedList = (
+  array: Array<any>,
+  renderCallback: Function,
+): Array<any> => {
   if (array.length <= 1) {
     return array.map(renderCallback);
   }

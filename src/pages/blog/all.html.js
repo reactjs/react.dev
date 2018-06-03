@@ -1,14 +1,9 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
  * @flow
  */
-
-'use strict';
 
 import Link from 'gatsby-link';
 import Container from 'components/Container';
@@ -79,18 +74,20 @@ const AllBlogPosts = ({data}: Props) => (
                 </Link>
               </h2>
               <MetaTitle>{node.fields.date}</MetaTitle>
-              <div
-                css={{
-                  color: colors.subtle,
-                  marginTop: -5,
-                }}>
-                by{' '}
-                {toCommaSeparatedList(node.frontmatter.author, author => (
-                  <span key={author.frontmatter.name}>
-                    {author.frontmatter.name}
-                  </span>
-                ))}
-              </div>
+              {node.frontmatter.author ? (
+                <div
+                  css={{
+                    color: colors.subtle,
+                    marginTop: -5,
+                  }}>
+                  by{' '}
+                  {toCommaSeparatedList(node.frontmatter.author, author => (
+                    <span key={author.frontmatter.name}>
+                      {author.frontmatter.name}
+                    </span>
+                  ))}
+                </div>
+              ) : null}
             </li>
           ))}
         </ul>

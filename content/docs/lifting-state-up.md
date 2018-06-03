@@ -166,6 +166,7 @@ class TemperatureInput extends React.Component {
 
   render() {
     const temperature = this.state.temperature;
+    // ...  
 ```
 
 However, we want these two inputs to be in sync with each other. When we update the Celsius input, the Fahrenheit input should reflect the converted temperature, and vice versa.
@@ -182,6 +183,7 @@ First, we will replace `this.state.temperature` with `this.props.temperature` in
   render() {
     // Before: const temperature = this.state.temperature;
     const temperature = this.props.temperature;
+    // ...
 ```
 
 We know that [props are read-only](/docs/components-and-props.html#props-are-read-only). When the `temperature` was in the local state, the `TemperatureInput` could just call `this.setState()` to change it. However, now that the `temperature` is coming from the parent as a prop, the `TemperatureInput` has no control over it.
@@ -194,6 +196,7 @@ Now, when the `TemperatureInput` wants to update its temperature, it calls `this
   handleChange(e) {
     // Before: this.setState({temperature: e.target.value});
     this.props.onTemperatureChange(e.target.value);
+    // ...
 ```
 
 >Note:
@@ -322,4 +325,5 @@ If something can be derived from either props or state, it probably shouldn't be
 
 When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
 
-<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" width="100%">
+<img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
+

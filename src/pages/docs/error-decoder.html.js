@@ -1,13 +1,9 @@
 /**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  * @emails react-core
+ * @flow
  */
-
-'use strict';
 
 import Container from 'components/Container';
 import ErrorDecoder from 'components/ErrorDecoder';
@@ -22,7 +18,12 @@ import {createLinkDocs} from 'utils/createLink';
 import findSectionForPath from 'utils/findSectionForPath';
 import {sectionListDocs} from 'utils/sectionList';
 
-const ErrorPage = ({data, location}) => (
+type Props = {
+  data: Object,
+  location: Location,
+};
+
+const ErrorPage = ({data, location}: Props) => (
   <Flex
     direction="column"
     grow="1"

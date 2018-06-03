@@ -297,7 +297,7 @@ create-react-app my-app --scripts-version=react-scripts-ts
 
 Note that it is a **third party** project, and is not a part of Create React App.
 
-You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
+You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter) or [create-react-app-parcel-typescript](https://github.com/sw-yx/create-react-app-parcel-typescript/).
 
 You are now ready to code! We recommend to check out the following resources to learn more about Typescript:
 

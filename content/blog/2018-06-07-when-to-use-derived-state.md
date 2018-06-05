@@ -236,7 +236,9 @@ For **uncontrolled** components, if you're trying to **"reset" one or more state
 
 ## What about memoization?
 
-Another thing we've seen derived state used for is memoization. This isn't necessarily bad, but there are reasons you may want to avoid it. Hopefully the above examples illustrate that there is a certain amount of complexity inherent in using `getDerivedStateFromProps`. This complexity increases with each derived property. For example, if we add a second derived field to our component state then our implementation would need to separately track changes to both:
+We've also seen derived state used to ensure an expensive value is recomputed only when the inputs change. This technique is known as [memoization](https://en.wikipedia.org/wiki/Memoization).
+
+Using derived state for memoization isn't necessarily bad, but there are reasons you may want to avoid it. Hopefully the above examples illustrate that there is a certain amount of complexity inherent in using `getDerivedStateFromProps`. This complexity increases with each derived property. For example, if we add a second derived field to our component state then our implementation would need to separately track changes to both:
 
 ```js
 class Example extends Component {

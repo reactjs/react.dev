@@ -5,7 +5,7 @@ author: [bvaughn]
 
 React 16.4 included a [bugfix for getDerivedStateFromProps](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) that caused some pain in the React community. We apologize for this. We take such changes very seriously. In this case we believe it was the right decision, but we could have done a better job with communication.
 
-[`getDerivedStateFromProps`](/docs/react-component.html#static-getderivedstatefromprops) was introduced in 16.3. At the time, we provided [some examples](/blog/2018/03/27/update-on-async-rendering.html#examples) of how to use the new lifecycle to derive state from props. Our primary goal was to help people migrate from legacy lifecycles to newer ones that are safer to use with the [upcoming async rendering mode](blog/2018/03/01/sneak-peek-beyond-react-16.html).
+The `getDerivedStateFromProps` lifecycle was introduced in 16.3. At the time, we provided [some examples](/blog/2018/03/27/update-on-async-rendering.html#examples) of how to use the new lifecycle to derive state from props. Our primary goal was to help people migrate from legacy lifecycles to newer ones that are safer to use with the [upcoming async rendering mode](blog/2018/03/01/sneak-peek-beyond-react-16.html).
 
 Since that blog post was written, we've observed some common usage patterns for both the legacy `componentWillReceiveProps` and the newer `getDerivedStateFromProps` that cause bugs or otherwise confusing behavior. The 16.4 bugfix [makes this behavior more predictable](https://github.com/facebook/react/issues/12898), but the fixes aren't always obvious. Hopefully this blog post will help!
 
@@ -28,7 +28,7 @@ If your answer to either of the above questions is "no" then there are better pa
 
 ## When should I avoid derived state?
 
-The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) are often used to refer to form components, but they can also be used to describe where a component's state lives. A piece of behavior that is passed in as props can be thought of as **controlled** and one that exists only in internal state can be thought of as **uncontrolled**.
+The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) are often used to refer to form components, but they can also be used to describe where a component's state lives. Data that is passed in as props can be thought of as **controlled** and one that exists only in internal state can be thought of as **uncontrolled**.
 
 The most common mistake with derived state is mixing these two. In other words, when props control a value in state that is also updated by `setState` calls. This may sound similar to the [external data loading example](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change) mentioned above, but it's different in a few important ways.
 
@@ -115,7 +115,9 @@ There is still one subtle problem though, and it's probably easiest to illustra
 
 The reason for this is that `props.email` never actually changed in the above scenario. Both times the "edit profile" form rendered, it would pass our saved email address via props.
 
-This design is fundamentally flawed, but it's an easy mistake to make. [I've made it myself.](https://twitter.com/brian_d_vaughn/status/959600888242307072) Fortunately there are two alternatives that work better. The key to both is for **state to only be owned by a single component**. Let's take a look at each.
+This problem could manifest itself even without a "Reset" button. For example, imagine a password manager app using the above input component. When navigating between details for two accounts with the same initial email, the input would fail to reset because the prop value passed to the component would be the same! This would be a surprise to the user, as a draft change to one account would appear to affect other accounts that happened to share the same email.
+
+This design is fundamentally flawed, but it's also an easy mistake to make. [I've made it myself.](https://twitter.com/brian_d_vaughn/status/959600888242307072) Fortunately there are two alternatives that work better. The key to both is that **for any piece of state, you need to pick a single component that owns it as the source of truth, and avoid duplicating it in other components.** Let's take a look at each.
 
 #### Alternative 1: Fully controlled component
 
@@ -142,7 +144,9 @@ class EmailInput extends Component {
     return <input onChange={this.handleChange} value={this.state.email} />;
   }
 
-  handleChange = event => this.setState({ email: event.target.value });
+  handleChange = event => {
+    this.setState({ email: event.target.value });
+  };
 }
 ```
 
@@ -150,7 +154,7 @@ This design makes the component a little easier to use, but it also has a downsi
 
 #### Option 1: Reset uncontrolled component with a `key`
 
-One approach would be to use a special React prop called `key`. React uses this property to decide whether to [_update_ a component instance or _create_ a new one](/docs/reconciliation.html#keys). In our case, we could use an attribute like a user id to recreate the email input any time a new user is selected. Each time the `EmailInput` is recreated, it will "reset" its state to the value specified by the `defaultEmail` prop.
+One approach would be to use a special React attribute called `key`. React uses this property to decide whether to [_update_ a component instance or _create_ a new one](/docs/reconciliation.html#keys). In our case, we could use an attribute like a user id to recreate the email input any time a new user is selected. Each time the `EmailInput` is recreated, it will "reset" its state to the value specified by the `defaultEmail` prop.
 
 ```js
 <EmailInput
@@ -158,6 +162,10 @@ One approach would be to use a special React prop called `key`. React uses this 
   key={this.props.user.id}
 />
 ```
+
+> Note
+>
+> With this approach, you don't have to add `key` to every input. Instead, it might make sense to put a `key` on the whole form. Every time the key changes, all components within the form will be re-created with a freshly initialized state. While this may sound slow, in practice the difference is often insignificant. It can even be faster if the components have heavy logic that runs on updates.
 
 #### Option 2: Reset uncontrolled component with an id prop
 
@@ -215,6 +223,13 @@ The parent form component could then [use a `ref` to call this method](/docs/glo
 >
 > Refs can be useful when interfacing with imperative third party APIs or in certain, limited use cases like the one mentioned above, but generally we recommend you use them sparingly.
 
+To recap, components may contain a mix of controlled and uncontrolled data. When designing a component, it is important to decide which type of data each property will be. **Controlled** properties are often easier to _write_, but they can require more effort to _use_ as they place the burden of state management on the parent component. **Uncontrolled** properties are often easier to _use_, but they may require special consideration about how to properly update after the component has been created.
+
+There are a couple of options for resetting an uncontrolled component's state. Which one is best depends on the component you are writing. Here is a rough guide:
+1. To reset _all internal state_, use the `key` attribute.
+2. To reset _some internal state_, watch for changes in a special property (e.g. `props.id`).
+3. Otherwise, consider falling back to an imperative instance method called with a `ref`.
+
 ## What about memoization?
 
 Another thing we've seen derived state used for is memoization. This isn't necessarily bad, but there are reasons you may want to avoid it. Hopefully the above examples illustrate that there is a certain amount of complexity inherent in using `getDerivedStateFromProps`. This complexity increases with each derived property. For example, if we add a second derived field to our component state then our implementation would need to separately track changes to both:
@@ -241,7 +256,7 @@ class Example extends Component {
 }
 ```
 
-Although the above pattern _works_, it isn't what `getDerivedStateFromProps` is meant to be used for. This component isn't reacting to **changes in props**. It's just computing values based on the **current props**, and there is a simpler way to do this that doesn't event require state.
+Although the above pattern _works_, it isn't what `getDerivedStateFromProps` is meant to be used for. This component isn't reacting to **changes in props**. It's just computing values based on the **current props**, and there is a simpler way to do this that doesn't even require state.
 
 Let's look at another example to illustrate this. Here is a component that accepts an array of items as `props.list` and allows a user to filter the array by entering text. We could use `getDerivedStateFromProps` for this purpose:
 
@@ -279,7 +294,9 @@ class Example extends Component {
     );
   }
 
-  handleChange = event => this.setState({ filterText: event.target.value });
+  handleChange = event => {
+    this.setState({ filterText: event.target.value });
+  };
 }
 ```
 
@@ -312,7 +329,9 @@ class Example extends Component {
     );
   }
 
-  handleChange = event => this.setState({ filterText: event.target.value });
+  handleChange = event => {
+    this.setState({ filterText: event.target.value });
+  };
 }
 ```
 
@@ -322,7 +341,7 @@ There are a couple of constraints to consider when using memoization though:
 
 1. In most cases, you'll want to **attach the memoized function to a component instance**. This prevents multiple instances of a component from resetting each other's memoized keys.
 1. Typically you'll want to use a memoization helper with a **limited cache size** in order to prevent memory from "leaking" over time. (In the example above, we used `memoize-one` because it only caches the most recent argument and result.)
-1. Memoization will not work properly if `props.items` is recreated each time the parent component renders. Fortunately, this should not be the case for large arrays. If it were, you'd want to address that problem first! (This limitation also applies to the `getDerivedStateFromProps` version above.)
+1. Memoization will not work properly if `props.items` is recreated each time the parent component renders. Hopefully, this should not be the case for large arrays. If it were, you'd want to address that problem first! (This limitation also applies to the `getDerivedStateFromProps` version above.)
 
 ## In closing
 

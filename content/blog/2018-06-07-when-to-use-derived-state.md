@@ -304,7 +304,37 @@ class Example extends Component {
 }
 ```
 
-This implementation is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly memoize. This is true of any memoized function, which suggests an alternative! We could accomplish the behavior with **less complexity** using a memoization helper:
+This implementation is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by just using `PureComponent` and moving the filter operation into the render method: 
+
+```js
+// PureComponents only re-render if at least one state or prop value changes.
+// Change is determined by doing a shallow comparison of state and prop keys.
+class Example extends PureComponent {
+  // State only needs to hold the current filter text value:
+  state = {
+    filterText: ""
+  };
+
+  render() {
+    const filteredList = this.props.list.filter(
+      item => item.text.includes(this.state.filterText)
+    )
+
+    return (
+      <Fragment>
+        <input onChange={this.handleChange} value={this.state.filterText} />
+        <ul>{filteredList.map(item => <li key={item.id}>{item.text}</li>)}</ul>
+      </Fragment>
+    );
+  }
+
+  handleChange = event => {
+    this.setState({ filterText: event.target.value });
+  };
+}
+```
+
+The above approach is much cleaner and simpler than the derived state version, but it has some limitations. Filtering may be slow for large lists, and `PureComponent` won't prevent re-renders if props other than `list` change. In that case, we could add a memoization helper to avoid unnecessarily re-filtering our list:
 
 ```js
 import memoize from "memoize-one";

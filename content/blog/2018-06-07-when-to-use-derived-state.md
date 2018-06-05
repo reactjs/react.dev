@@ -115,7 +115,7 @@ There is still one subtle problem though, and it's probably easiest to illustra
 
 The reason for this is that `props.email` never actually changed in the above scenario. Both times the "edit profile" form rendered, it would pass our saved email address via props.
 
-This problem could manifest itself even without a "Reset" button. For example, imagine a password manager app using the above input component. When navigating between details for two accounts with the same initial email, the input would fail to reset because the prop value passed to the component would be the same! This would be a surprise to the user, as a draft change to one account would appear to affect other accounts that happened to share the same email.
+This problem could manifest itself even without a "reset" button. For example, imagine a password manager app using the above input component. When navigating between details for two accounts with the same initial email, the input would fail to reset because the prop value passed to the component would be the same! This would be a surprise to the user, as a draft change to one account would appear to affect other accounts that happened to share the same email.
 
 This design is fundamentally flawed, but it's also an easy mistake to make. [I've made it myself.](https://twitter.com/brian_d_vaughn/status/959600888242307072) Fortunately there are two alternatives that work better. The key to both is that **for any piece of state, you need to pick a single component that owns it as the source of truth, and avoid duplicating it in other components.** Let's take a look at each.
 

@@ -322,6 +322,8 @@ class Example extends PureComponent {
   };
 
   render() {
+    // The render method on this PureComponent is not called unless either
+    // props.list or state.filterText have referentially different values.
     const filteredList = this.props.list.filter(
       item => item.text.includes(this.state.filterText)
     )

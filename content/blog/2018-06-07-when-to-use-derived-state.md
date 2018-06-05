@@ -3,8 +3,6 @@ title: "When should I use derived state?"
 author: [bvaughn]
 ---
 
-# TODO Use diff of export to migrate changes from Quip without losing links and formatting.
-
 React 16.4 included a [bugfix for `getDerivedStateFromProps`](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) that caused some pain in the React community. We apologize for this. We take such changes very seriously. In this case we believe it was the right decision, but we could have done a better job with communication.
 
 [`getDerivedStateFromProps`](/docs/react-component.html#static-getderivedstatefromprops) was introduced in 16.3. At the time, we provided [some examples](/blog/2018/03/27/update-on-async-rendering.html#examples) of how to use the new lifecycle to derive state from props. Our primary goal was to help people migrate from legacy lifecycles to newer ones that are safer to use with the [upcoming async rendering mode](blog/2018/03/01/sneak-peek-beyond-react-16.html).

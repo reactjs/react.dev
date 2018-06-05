@@ -5,17 +5,21 @@ import {render} from 'react-dom';
 // Don't copy this approach!
 class ExampleInput extends PureComponent {
   state = {
+    prevProps: this.props,
     text: this.props.text,
   };
 
   // This lifecycle will be re-run any time the component is rendered,
-  // Even if props (or props.text) have not changed.
+  // Even if props.text has not changed.
   // For this reason, it should not update state in the way shown below!
   static getDerivedStateFromProps(props, state) {
-    if (props.text) {
+    if (props !== state.prevProps) {
       // This return would override state,
       // Erasing anything the user typed since the last render.
-      return {text: props.text};
+      return {
+        prevProps: props,
+        text: props.text,
+      };
     }
     return null;
   }

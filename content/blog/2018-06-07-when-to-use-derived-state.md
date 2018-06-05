@@ -371,7 +371,7 @@ class Example extends Component {
 }
 ```
 
-This is much simpler and should perform just as well as the previous version!
+This is much simpler and performs just as well as the previous version!
 
 There are a couple of constraints to consider when using memoization though:
 

@@ -75,7 +75,7 @@ For the simple example above, we could "fix" the problem of unexpected rerenders
 />
 ```
 
-The above example binds the validation callback inline and so it will pass a new function prop every time it renders- effectively bypassing `shouldComponentUpdate` entirely. [Here is a demo](TODO) that uses a timer to illustrate this problem. Since you can't prevent others from using your component this way, it's inherently fragile.
+The above example binds the validation callback inline and so it will pass a new function prop every time it renders- effectively bypassing `shouldComponentUpdate` entirely. [Here is a demo](codesandbox://when-to-use-derived-state/derived-state-anti-pattern) that uses a timer to illustrate this problem. Since you can't prevent others from using your component this way, it's inherently fragile.
 
 Hopefully it's clear by now why unconditionally overriding state with props is a bad idea. But what if we were to only update the state when the email prop changes? We'll take a look at that pattern next.
 

@@ -223,9 +223,13 @@ The parent form component could then [use a `ref` to call this method](/docs/glo
 >
 > Refs can be useful when interfacing with imperative third party APIs or in certain, limited use cases like the one mentioned above, but generally we recommend you use them sparingly.
 
-To recap, components may contain a mix of controlled and uncontrolled data. When designing a component, it is important to decide which type of data each property will be. **Controlled** properties are often easier to _write_, but they can require more effort to _use_ as they place the burden of state management on the parent component. **Uncontrolled** properties are often easier to _use_, but they may require special consideration about how to properly update after the component has been created.
+-----
 
-There are a couple of options for resetting an uncontrolled component's state. Which one is best depends on the component you are writing. Here is a rough guide:
+To recap, when designing a component, it is important to decide whether its data will be controlled or uncontrolled.
+
+If you're trying to **"mirror" a prop value in the state**, you can make the component **controlled**, and consolidate the two diverging values in the state of some parent component. For example, rather than accepting a "committed" `props.value` and tracking a "draft" `state.value`– a component could only display `props.value` and call `props.onChange` to notify the parent of a "draft" update. A form component above could then explicitly manage both values in its own state, (e.g. `state.draftValue` and `state.committedValue`), pass one of them down, and reset either of them when appropriate. (Don't forget you can use a nested object if the form contains multiple fields!)
+
+For **uncontrolled** components, if you're trying to **"reset" one or more state fields** when a particular unrelated prop (usually an ID) changes, you have a few options:
 1. To reset _all internal state_, use the `key` attribute.
 2. To reset _some internal state_, watch for changes in a special property (e.g. `props.id`).
 3. Otherwise, consider falling back to an imperative instance method called with a `ref`.

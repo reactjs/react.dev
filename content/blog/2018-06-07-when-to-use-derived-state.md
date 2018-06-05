@@ -38,7 +38,9 @@ Problems arise when any of these constraints are changed. This typically comes i
 
 ### Anti-pattern: Props always override state
 
-A common misconception about both `getDerivedStateFromProps` and `componentWillReceiveProps` is that they are only called when props "change". In reality, these lifecycles are called any time a component is re-rendered. (As of 16.4, `getDerivedStateFromProps` is also called for renders caused by `setState` or `forceUpdate`.) Because of this, it is unsafe to unconditionally override state values using either of these lifecycles.
+A common misconception about both `getDerivedStateFromProps` and `componentWillReceiveProps` is that they are only called when props "change". However, any time a parent component re-renders, the child component still receives the new props. Because of this, it is (and has always been) unsafe to _unconditionally_ override state values using either of these lifecycles.
+
+Before React 16.4, it was difficult to reproduce such bugs consistently because they depend on the timing of parent re-rendering. To expose them consistently, we made `getDerivedStateFromProps` in React 16.4 fire for renders caused by `setState` or `forceUpdate` too. Let’s consider an example to demonstrate the problem.
 
 Here is a `EmailInput` component that accepts an email prop:
 ```js
@@ -59,15 +61,17 @@ class EmailInput extends Component {
     return <input onChange={this.handleChange} value={this.state.email} />;
   }
 
-  handleChange = event => this.setState({ email: event.target.value });
+  handleChange = event => {
+    this.setState({ email: event.target.value });
+  };
 }
 ```
 
-At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But once our component rerenders– either because it called `setState` or because its parent rerendered– anything we've typed into the `<input>` will be lost!
+At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But once our component re-renders– either because it called `setState` or because its parent re-rendered– anything we've typed into the `<input>` will be lost! (See [this demo for an example](codesandbox://when-to-use-derived-state/derived-state-anti-pattern).)
 
 At this point, you might be wondering if this component would have worked with version 16.3. Unfortunately, the answer is "no". Before moving on, let's take a look at why this is.
 
-For the simple example above, we could "fix" the problem of unexpected rerenders using `shouldComponentUpdate`. However in practice, components usually accept multiple props, and our component would rerender if any one of them changed. Even if none of them "changed", props that are functions or objects are often created inline and so will always bypass `shouldComponentUpdate`. For example, what if our component accepted a function to validate the current email address?
+For the simple example above, we could "fix" the problem of unexpected re-renders using `shouldComponentUpdate`. However in practice, components usually accept multiple props, and our component would re-render if any one of them changed. Even if none of them "changed", props that are functions or objects are often created inline and so will always bypass `shouldComponentUpdate`. For example, what if our component accepted a function to validate the current email address?
 ```js
 <EmailInput
   email={this.props.user.email}
@@ -75,7 +79,7 @@ For the simple example above, we could "fix" the problem of unexpected rerenders
 />
 ```
 
-The above example binds the validation callback inline and so it will pass a new function prop every time it renders- effectively bypassing `shouldComponentUpdate` entirely. [Here is a demo](codesandbox://when-to-use-derived-state/derived-state-anti-pattern) that uses a timer to illustrate this problem. Since you can't prevent others from using your component this way, it's inherently fragile.
+The above example binds the validation callback inline and so it will pass a new function prop every time it renders– effectively bypassing `shouldComponentUpdate` entirely. [Here is a demo](codesandbox://when-to-use-derived-state/derived-state-anti-pattern) that uses a timer to illustrate this problem. Because it might break at any time your component needs to accept new props, this design pattern is inherently fragile.
 
 Hopefully it's clear by now why unconditionally overriding state with props is a bad idea. But what if we were to only update the state when the email prop changes? We'll take a look at that pattern next.
 

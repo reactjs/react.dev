@@ -57,13 +57,13 @@ class EmailInput extends Component {
     return null;
   }
 
-  render() {
-    return <input onChange={this.handleChange} value={this.state.email} />;
-  }
-
   handleChange = event => {
     this.setState({ email: event.target.value });
   };
+
+  render() {
+    return <input onChange={this.handleChange} value={this.state.email} />;
+  }
 }
 ```
 
@@ -140,13 +140,13 @@ class EmailInput extends Component {
     email: this.props.defaultEmail
   };
 
-  render() {
-    return <input onChange={this.handleChange} value={this.state.email} />;
-  }
-
   handleChange = event => {
     this.setState({ email: event.target.value });
   };
+
+  render() {
+    return <input onChange={this.handleChange} value={this.state.email} />;
+  }
 }
 ```
 
@@ -291,6 +291,10 @@ class Example extends Component {
     return null;
   }
 
+  handleChange = event => {
+    this.setState({ filterText: event.target.value });
+  };
+
   render() {
     return (
       <Fragment>
@@ -299,10 +303,6 @@ class Example extends Component {
       </Fragment>
     );
   }
-
-  handleChange = event => {
-    this.setState({ filterText: event.target.value });
-  };
 }
 ```
 
@@ -317,6 +317,10 @@ class Example extends PureComponent {
     filterText: ""
   };
 
+  handleChange = event => {
+    this.setState({ filterText: event.target.value });
+  };
+
   render() {
     const filteredList = this.props.list.filter(
       item => item.text.includes(this.state.filterText)
@@ -329,10 +333,6 @@ class Example extends PureComponent {
       </Fragment>
     );
   }
-
-  handleChange = event => {
-    this.setState({ filterText: event.target.value });
-  };
 }
 ```
 
@@ -354,6 +354,10 @@ class Example extends Component {
     )
   );
 
+  handleChange = event => {
+    this.setState({ filterText: event.target.value });
+  };
+
   render() {
     const filteredList = this.filter(this.props.list, this.state.filterText);
 
@@ -364,10 +368,6 @@ class Example extends Component {
       </Fragment>
     );
   }
-
-  handleChange = event => {
-    this.setState({ filterText: event.target.value });
-  };
 }
 ```
 

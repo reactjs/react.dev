@@ -14,13 +14,13 @@ The lifecycle `componentWillReceiveProps` has been around for a long time. Until
 In 16.4, we released a bugfix that [makes derived state behavior more predictable](https://github.com/facebook/react/issues/12898) so the results of misusing it are easier to notice. This blog post will guide you through when derived state should be used, and when there are better alternatives.
 
 We'll cover the following topics:
-* [When should I use derived state?](#when-should-i-use-derived-state)
-* [When should I avoid derived state?](#when-should-i-avoid-derived-state)
+* [How to decide if you should use derived state](#how-to-decide-if-you-should-use-derived-state)
+* [Common bugs when using derived state](#common-bugs-when-using-derived-state)
   * [Anti-pattern: Mirroring props in state](#anti-pattern-mirroring-props-in-state)
   * [Anti-pattern: Erasing state when props change](#anti-pattern-erasing-state-when-props-change)
 * [What about memoization?](#what-about-memoization)
 
-## When should I use derived state?
+## How to Decide if You Should Use Derived State
 
 `getDerivedStateFromProps` exists for only one purpose. It enables a component to update its internal state as the result of **changes in props**. This distinction is important. All problems with derived state that we have seen can be ultimately reduced to either (1) unconditionally updating state from props or (2) updating state whenever props and state don't match. (We'll go over both in more detail below.)
 
@@ -32,7 +32,7 @@ If you're not sure about whether your component should use derived state, here a
 
 If your answer to either of the above questions is “no” (which is almost always the case) then there are better patterns to use! We’ll cover them below.
 
-## When should I avoid derived state?
+## Common Bugs When Using Derived State
 
 The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) are often used to refer to form components, but they can also be used to describe where a component's data lives. Data that is passed in as props can be thought of as **controlled** (because the parent component _controls_ that data). Data that exists only in internal state can be thought of as **uncontrolled** (because the parent can't directly change it).
 

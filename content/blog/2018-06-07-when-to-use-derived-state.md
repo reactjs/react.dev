@@ -67,7 +67,7 @@ class EmailInput extends Component {
 }
 ```
 
-At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But once our component re-renders– either because it called `setState` or because its parent re-rendered– anything we've typed into the `<input>` will be lost! ([See this demo for an example.](https://codesandbox.io/s/m3w9zn1z8x))
+At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But once our component re-renders— either because it called `setState` or because its parent re-rendered— anything we've typed into the `<input>` will be lost! ([See this demo for an example.](https://codesandbox.io/s/m3w9zn1z8x))
 
 At this point, you might be wondering if this component would have worked with version 16.3. Unfortunately, the answer is "no". Before moving on, let's take a look at why this is.
 
@@ -79,7 +79,7 @@ For the simple example above, we could "fix" the problem of unexpected re-render
 />
 ```
 
-The above example binds the validation callback inline and so it will pass a new function prop every time it renders– effectively bypassing `shouldComponentUpdate` entirely. Even before `getDerivedStateFromProps` was introduced, this exact pattern led to bugs in `componentWillReceiveProps`. [Here is another demo that shows it.](https://codesandbox.io/s/jl0w6r9w59)
+The above example binds the validation callback inline and so it will pass a new function prop every time it renders— effectively bypassing `shouldComponentUpdate` entirely. Even before `getDerivedStateFromProps` was introduced, this exact pattern led to bugs in `componentWillReceiveProps`. [Here is another demo that shows it.](https://codesandbox.io/s/jl0w6r9w59)
 
 Hopefully it's clear by now why unconditionally overriding state with props is a bad idea. But what if we were to only update the state when the email prop changes? We'll take a look at that pattern next.
 
@@ -111,7 +111,7 @@ class EmailInput extends Component {
 
 We've just made a big improvement. Now our component will no longer erase what we've typed every time it renders. At this point, what we have is fairly similar to the [scroll direction example](blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props) we mentioned before. (It will also more closely mirror how `componentWillReceiveProps` would have been used in the past.)
 
-There is still one subtle problem though, and it's probably easiest to illustrate with an example. Let's say our `EmailInput` component is used inside of an "edit profile" form. The first time the form is rendered, the component will display our email address. Let's say we edited the form (including our email address) but then changed our mind and clicked a "reset" button. At this point, we would expect all form fields to return to their initial values– but the `EmailInput` component **will not be reset**. Do you know why?
+There is still one subtle problem though, and it's probably easiest to illustrate with an example. Let's say our `EmailInput` component is used inside of an "edit profile" form. The first time the form is rendered, the component will display our email address. Let's say we edited the form (including our email address) but then changed our mind and clicked a "reset" button. At this point, we would expect all form fields to return to their initial values— but the `EmailInput` component **will not be reset**. Do you know why?
 
 The reason for this is that `props.email` never actually changed in the above scenario. Both times the "edit profile" form rendered, it would pass our saved email address via props.
 

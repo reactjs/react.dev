@@ -171,22 +171,22 @@ One approach would be to use a special React attribute called `key`. React uses 
 
 Recreating this simple example component is cheap, but what if the component was expensive to initialize? Or what if it had other state that we _did not want to reset_?
 
-A slight variation on the above approach would be to watch for changes in a prop like "id" and use it to reset state:
+A slight variation on the above approach would be to watch for changes in a prop like "userID" and use it to reset state:
 
 ```js
 class EmailInput extends Component {
   state = {
     email: this.props.defaultEmail,
-    prevPropsID: this.props.id
+    prevPropsUserID: this.props.userID
   };
 
   static getDerivedStateFromProps(props, state) {
     // Any time the current user changes,
     // Reset any parts of state that are tied to that user.
     // In this simple example, that's just the email.
-    if (props.id !== state.prevPropsID) {
+    if (props.userID !== state.prevPropsUserID) {
       return {
-        prevPropsID: props.id,
+        prevPropsUserID: props.userID,
         email: props.email
       };
     }
@@ -201,7 +201,7 @@ This approach can scale better with multiple state values, since fewer compariso
 
 #### Option 3: Reset uncontrolled component with an instance method
 
-Not every component accepts a special prop like "id". (For example, what if we were writing a list component instead, and wanted to accept a scroll offset prop?) For cases like this, we could expose an instance method to imperatively reset the internal state:
+Not every component accepts a special prop like "userID". (For example, what if we were writing a list component instead, and wanted to accept a scroll offset prop?) For cases like this, we could expose an instance method to imperatively reset the internal state:
 
 ```js
 class EmailInput extends Component {
@@ -231,7 +231,7 @@ If you're trying to **"mirror" a prop value in the state**, you can make the com
 
 For **uncontrolled** components, if you're trying to **"reset" one or more state fields** when a particular unrelated prop (usually an ID) changes, you have a few options:
 1. To reset _all internal state_, use the `key` attribute.
-2. To reset _some internal state_, watch for changes in a special property (e.g. `props.id`).
+2. To reset _some internal state_, watch for changes in a special property (e.g. `props.userID`).
 3. Otherwise, consider falling back to an imperative instance method called with a `ref`.
 
 ## What about memoization?

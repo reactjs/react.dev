@@ -30,7 +30,7 @@ If you're not sure about whether your component should use derived state, here a
 * Is the state **derived** from props (as opposed to just mirroring it)?
 * Is the state update specifically triggered by a **props change** (and not just the current props value)?
 
-If your answer to either of the above questions is "no" then there are better patterns to use! (We'll cover them below.)
+If your answer to either of the above questions is “no” (which is almost always the case) then there are better patterns to use! We’ll cover them below.
 
 ## When should I avoid derived state?
 

@@ -3,7 +3,7 @@ title: "When to Use Derived State?"
 author: [bvaughn]
 ---
 
-React 16.4 included a [bugfix for getDerivedStateFromProps](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) that caused some pain in the React community. We apologize for this. We take such changes very seriously. In this case we believe it was the right decision, but we could have done a better job with communication.
+React 16.4 included a [bugfix for getDerivedStateFromProps](/blog/2018/05/23/react-v-16-4.html#bugfix-for-getderivedstatefromprops) which made some existing bugs in React components reproduce more consistently. We carefully considered this change, an although we believe it was the right decision, we apologize for any inconvenience it caused. In this post, we will explain some common problems with deriving state, and the preferred solutions to them.
 
 The `getDerivedStateFromProps` lifecycle was introduced in 16.3. At the time, we provided [some examples](/blog/2018/03/27/update-on-async-rendering.html#examples) of how to use the new lifecycle to derive state from props. Our primary goal was to help people migrate from legacy lifecycles to newer ones that are safer to use with the [upcoming async rendering mode](blog/2018/03/01/sneak-peek-beyond-react-16.html).
 

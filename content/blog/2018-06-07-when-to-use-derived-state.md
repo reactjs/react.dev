@@ -67,7 +67,7 @@ class EmailInput extends Component {
 }
 ```
 
-At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But once our component re-renders– either because it called `setState` or because its parent re-rendered– anything we've typed into the `<input>` will be lost! (See [this demo for an example](codesandbox://when-to-use-derived-state/derived-state-anti-pattern).)
+At first, this component might look okay. State is initialized to the value specified by props and updated when we type into the `<input>`. But once our component re-renders– either because it called `setState` or because its parent re-rendered– anything we've typed into the `<input>` will be lost! ([See this demo for an example.](https://codesandbox.io/s/m3w9zn1z8x))
 
 At this point, you might be wondering if this component would have worked with version 16.3. Unfortunately, the answer is "no". Before moving on, let's take a look at why this is.
 
@@ -79,7 +79,7 @@ For the simple example above, we could "fix" the problem of unexpected re-render
 />
 ```
 
-The above example binds the validation callback inline and so it will pass a new function prop every time it renders– effectively bypassing `shouldComponentUpdate` entirely. [Here is a demo](codesandbox://when-to-use-derived-state/derived-state-anti-pattern) that uses a timer to illustrate this problem. Because it might break at any time your component needs to accept new props, this design pattern is inherently fragile.
+The above example binds the validation callback inline and so it will pass a new function prop every time it renders– effectively bypassing `shouldComponentUpdate` entirely. Even before `getDerivedStateFromProps` was introduced, this exact pattern led to bugs in `componentWillReceiveProps`. [Here is another demo that shows it.](https://codesandbox.io/s/jl0w6r9w59)
 
 Hopefully it's clear by now why unconditionally overriding state with props is a bad idea. But what if we were to only update the state when the email prop changes? We'll take a look at that pattern next.
 
@@ -132,7 +132,7 @@ This approach simplifies the implementation of our component but it also has a p
 
 #### Alternative 2: Fully uncontrolled component
 
-Another alternative would be for our component to fully own the local email state. It could still accept a prop for the initial value, but it would ignore any changes to that prop afterward. For example:
+Another alternative would be for our component to fully own the "draft" email state. This might be helpful if the "committed" state lives in a state container like Redux. In that case, our component could still accept a prop for the _initial_ value, but it would ignore any changes to that prop afterward. For example:
 
 ```js
 class EmailInput extends Component {

@@ -351,7 +351,7 @@ class Example extends PureComponent {
 }
 ```
 
-The above approach is much cleaner and simpler than the derived state version, but it has some limitations. Filtering may be slow for large lists, and `PureComponent` won't prevent re-renders if props other than `list` change. In that case, we could add a memoization helper to avoid unnecessarily re-filtering our list:
+The above approach is much cleaner and simpler than the derived state version, but it has some limitations. Filtering may be slow for large lists, and `PureComponent` won't prevent re-renders if props other than `list` change. To address both of these concerns, we could add a memoization helper to avoid unnecessarily re-filtering our list:
 
 ```js
 import memoize from "memoize-one";

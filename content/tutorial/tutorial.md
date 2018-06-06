@@ -568,7 +568,7 @@ Now X and O take turns. Next, change the "status" text in Board's `render` so th
 
 ```javascript{2}
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
 
     return (
       // the rest has not changed
@@ -605,7 +605,7 @@ class Board extends React.Component {
   }
 
   render() {
-    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    const status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
 
     return (
       <div>
@@ -668,9 +668,9 @@ Replace the `status` declaration in Board's `render` with this code:
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = `Winner ${winner}`;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
     }
 
     return (
@@ -790,9 +790,9 @@ class Board extends React.Component {
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = `Winner ${winner}`;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
     }
 
     return (
@@ -829,9 +829,9 @@ Game's `render` should look at the most recent history entry and can take over c
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = `Winner ${winner}`;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
     }
 
     return (
@@ -915,7 +915,7 @@ Let's show the previous moves made in the game so far. We learned earlier that R
 
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        `Go to move #${move}` :
         'Go to game start';
       return (
         <li>
@@ -926,9 +926,9 @@ Let's show the previous moves made in the game so far. We learned earlier that R
 
     let status;
     if (winner) {
-      status = 'Winner: ' + winner;
+      status = `Winner: ${winner}`;
     } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+      status = `Next player: ${(this.state.xIsNext ? 'X' : 'O')}`;
     }
 
     return (
@@ -1002,7 +1002,7 @@ For our move list, we already have a unique ID for each step: the number of the 
 ```js{6}
     const moves = history.map((step, move) => {
       const desc = move ?
-        'Go to move #' + move :
+        `Go to move #${move}` :
         'Go to game start';
       return (
         <li key={move}>

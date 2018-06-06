@@ -77,7 +77,7 @@ At first, this component might look okay. State is initialized to the value spec
 
 We could use `shouldComponentUpdate` to ensure that our component did not re-render unless props changed. This would fix the simple component showed above. However in practice, components usually accept multiple props, and our component would re-render if any one of them changed— not just email.
 
-Another thing to to keep in mind is function or object props are often created inline and so will always bypass `shouldComponentUpdate`. For example, what if our component accepted a function to validate the current email address?
+Another thing to to keep in mind is that function and object props are often created inline and so will always bypass `shouldComponentUpdate`. For example, what if our component accepted a function to validate the current email address?
 ```js
 <EmailInput
   email={this.props.user.email}

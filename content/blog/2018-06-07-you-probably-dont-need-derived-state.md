@@ -1,5 +1,5 @@
 ---
-title: "When to Use Derived State?"
+title: "You Probably Don't Need Derived State"
 author: [bvaughn]
 ---
 

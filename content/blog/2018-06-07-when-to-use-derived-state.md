@@ -28,7 +28,7 @@ If your answer to either of the above questions is "no" then there are better pa
 
 ## When should I avoid derived state?
 
-The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) are often used to refer to form components, but they can also be used to describe where a component's state lives. Data that is passed in as props can be thought of as **controlled** and one that exists only in internal state can be thought of as **uncontrolled**.
+The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) are often used to refer to form components, but they can also be used to describe where a component's state lives. Data that is passed in as props can be thought of as **controlled** (because the parent component _controls_ that data). Data that exists only in internal state can be thought of as **uncontrolled** (because the parent can't directly change it).
 
 The most common mistake with derived state is mixing these two. In other words, when props control a value in state that is also updated by `setState` calls. This may sound similar to the [external data loading example](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change) mentioned above, but it's different in a few important ways.
 

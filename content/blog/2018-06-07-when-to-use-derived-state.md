@@ -306,7 +306,7 @@ class Example extends Component {
 }
 ```
 
-This implementation is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by just using `PureComponent` and moving the filter operation into the render method: 
+This implementation is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by using `PureComponent` and moving the filter operation into the render method: 
 
 ```js
 // PureComponents only re-render if at least one state or prop value changes.

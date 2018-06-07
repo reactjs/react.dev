@@ -16,6 +16,7 @@ There are many example projects created by the React community. Feel free to add
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** A React & react-router-powered implementation of Hacker News using its Firebase API.
 * **[Pokedex](https://github.com/alik0211/pokedex)** The list of Pokémon with live search
 * **[Progressive Web Tetris](https://github.com/skidding/flatris)** Besides a beautiful, mobile-friendly implementation of Tetris, this project is a playground for integrating and experimenting with web technologies.
+* **[Greedy Snake Game](https://github.com/xiaofengli/react-game/tree/master/reactjs_game/src)** A simple text based implementation of greedy snake for experimenting with reactjs performance.
 * **[Product Comparison Page](https://github.com/Rhymond/product-compare-react)** Simple Product Compare page built in React
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL.
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.

@@ -213,9 +213,9 @@ To recap, when designing a component, it is important to decide whether its data
 Instead of trying to **"mirror" a prop value in state**, make the component **controlled**, and consolidate the two diverging values in the state of some parent component. For example, rather than a child accepting a "committed" `props.value` and tracking a "draft" `state.value`, have the parent manage both `state.draftValue` and `state.committedValue` and control the child's value directly. This makes the data flow more explicit and predictable.
 
 For **uncontrolled** components, if you're trying to reset state when a particular prop (usually an ID) changes, you have a few options:
-1. **To reset _all internal state_, use the `key` attribute (preferred).**
-2. To reset _only certain state fields_, watch for changes in a special property (e.g. `props.userID`).
-3. You can also consider fall back to an imperative instance method using refs.
+* **Recomendation: To reset _all internal state_, use the `key` attribute.**
+* Alternative 1: To reset _only certain state fields_, watch for changes in a special property (e.g. `props.userID`).
+* Alternative 2: You can also consider fall back to an imperative instance method using refs.
 
 ## What about memoization?
 

@@ -135,7 +135,7 @@ function EmailInput(props) {
 }
 ```
 
-This approach simplifies the implementation of our component but it also has a potential downside: our component now requires more effort to use. For example, the parent form component will now also need to manage "draft" (unsaved) email state.
+This approach simplifies the implementation of our component but it also has a potential downside: our component now requires more effort to use. For example, the parent form component will now also need to manage "draft" (unsaved) email state. ([Click here to see a demo of this pattern.](https://codesandbox.io/s/7154w1l551))
 
 #### Alternative 2: Fully uncontrolled component
 
@@ -169,6 +169,8 @@ One approach would be to use a special React attribute called `key`. React uses 
   key={this.props.user.id}
 />
 ```
+
+([Click here to see a demo of this pattern.](https://codesandbox.io/s/6v1znlxyxn))
 
 > Note
 >
@@ -206,6 +208,8 @@ class EmailInput extends Component {
 }
 ```
 
+([Click here to see a demo of this pattern.](https://codesandbox.io/s/rjyvp7l3rq))
+
 > Note
 >
 > Even though the example above shows `getDerivedStateFromProps`, the same technique can be used with `componentWillReceiveProps`.
@@ -230,7 +234,7 @@ class EmailInput extends Component {
 }
 ```
 
-The parent form component could then [use a `ref` to call this method](/docs/glossary.html#refs).
+The parent form component could then [use a `ref` to call this method](/docs/glossary.html#refs). ([Click here to see a demo of this pattern.](https://codesandbox.io/s/l70krvpykl))
 
 > Note
 >

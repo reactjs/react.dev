@@ -120,7 +120,7 @@ We've just made a big improvement. Now our component will no longer erase what w
 
 There is still one subtle problem though, and it's probably easiest to illustrate with an example. Let's say our `EmailInput` component is used inside of an "edit profile" form. The first time the form is rendered, the component will display our email address. Let's say we edited the form (including our email address) but then changed our mind and clicked a "reset" button. At this point, we would expect all form fields to return to their initial values— but the `EmailInput` component **will not be reset**. Do you know why?
 
-The reason for this is that `props.email` never actually changed in the above scenario. Both times the "edit profile" form rendered, it would pass the saved email address via props.
+The reason for this is that "committed" `props.email` never actually changed in the above scenario. (We never clicked "save".) So when the edit form re-rendered the input, it passed the same email address via props.
 
 This problem could manifest itself even without a "reset" button. For example, imagine a password manager app using the above input component. When navigating between details for two accounts with the same email, the input would fail to reset. This is because the prop value passed to the component would be the same for both accounts! This would be a surprise to the user, as a draft change to one account would appear to affect other accounts that happened to share the same email.
 

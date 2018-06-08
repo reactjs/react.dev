@@ -166,7 +166,7 @@ class EmailInput extends Component {
     if (props.userID !== state.prevPropsUserID) {
       return {
         prevPropsUserID: props.userID,
-        email: props.email
+        email: props.defaultEmail
       };
     }
     return null;

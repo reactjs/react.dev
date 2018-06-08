@@ -184,7 +184,7 @@ This also provides the flexibility to only reset parts of our component's intern
 
 #### Alternative 2: Reset uncontrolled component with an instance method
 
-More rarely, you may need to reset state even if there's no appropriate ID to use as `key`. One solution is to reset the key to a random value or autoincrementing number each time you want to reset. One other viable alternative is to exposing an instance method to imperatively reset the internal state:
+More rarely, you may need to reset state even if there's no appropriate ID to use as `key`. One solution is to reset the key to a random value or autoincrementing number each time you want to reset. One other viable alternative is to expose an instance method to imperatively reset the internal state:
 
 ```js
 class EmailInput extends Component {

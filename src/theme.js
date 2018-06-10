@@ -301,6 +301,10 @@ const sharedStyles = {
     '& h3': {
       paddingTop: 45,
 
+      [media.lessThan('small')]: {
+        wordBreak: 'break-all',
+      },
+
       [media.greaterThan('xlarge')]: {
         fontSize: 25,
         lineHeight: 1.3,

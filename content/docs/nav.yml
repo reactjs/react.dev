@@ -85,6 +85,9 @@
       subitems:
         - id: react-component
           title: React.Component
+        - id: react-component
+          anchor: render
+          title: render
     - id: react-dom
       title: ReactDOM
     - id: react-dom-server

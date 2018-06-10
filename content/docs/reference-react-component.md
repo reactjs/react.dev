@@ -37,7 +37,10 @@ Note that **we don't recommend creating your own base component classes**. Code 
 
 ### The Component Lifecycle
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process. Methods prefixed with **`will`** are called right before something happens, and methods prefixed with **`did`** are called right after something happens.
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process.
+
+**You can use [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.**
+
 
 #### Mounting
 
@@ -103,6 +106,8 @@ Each component also provides some other APIs:
 ### Commonly Used Lifecycle Methods
 
 The methods in this section are used most often. The vast majority of your components shouldn't need to implement any other lifecycle methods.
+
+**You can see them all on this [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()`
 
@@ -220,6 +225,9 @@ componentWillUnmount()
 ### Rarely Used Lifecycle Methods
 
 The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them.
+
+**You can see most of them on this [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top.**
+
 
 ### `shouldComponentUpdate()`
 

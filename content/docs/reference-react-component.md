@@ -15,50 +15,70 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-[Components](/docs/components-and-props.html) let you split the UI into independent, reusable pieces, and think about each piece in isolation. `React.Component` is provided by [`React`](/docs/react-api.html).
+[Components](/docs/components-and-props.html) let you split the UI into independent, reusable pieces, and think about each piece in isolation. React provides a `React.Component` base class to let you define encapsulated components that may contain [local state and handle lifecycle events](/docs/state-and-lifecycle.html).
 
 ## Overview
 
-`React.Component` is an abstract base class, so it rarely makes sense to refer to `React.Component` directly. Instead, you will typically subclass it, and define at least a [`render()`](#render) method.
+React provides two ways to define components. For very simple components that just render something based on their props, you can use a function:
 
-Normally you would define a React component as a plain [JavaScript class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
+```js
+function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+}
+```
 
-```javascript
-class Greeting extends React.Component {
+In the example above, we didn't use `React.Component`.
+
+However, sometimes you need to keep some local state in the component, or run some code when it is created, updated, or removed from the DOM. For those cases, you can declare it as a [JavaScript class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) that extends `React.Component`:
+
+```js
+class Welcome extends React.Component {
   render() {
     return <h1>Hello, {this.props.name}</h1>;
   }
 }
 ```
 
-If you don't use ES6 yet, you may use the `create-react-class` module instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+The above two component definitions are equivalent, but currently class components have access to more features. They are described below. The only method you *must* define in a `React.Component` subclass is called [`render()`](#render), the rest are optional.
 
-Note that **we don't recommend creating your own base component classes**. Code reuse is primarily achieved through composition rather than inheritance in React. Take a look at [these common scenarios](/docs/composition-vs-inheritance.html) to get a feel for how to use composition.
+>Note:
+>
+>React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+
+### Avoid Custom Base Classes
+
+**We strongly recommend against creating your own base component classes, both in the application and the library code.**
+
+In React components, code reuse is primarily achieved through composition rather than inheritance. Take a look at [these common scenarios](/docs/composition-vs-inheritance.html) to get a feel for how to use composition.
+
+Avoid creating and extending custom base component classes.
 
 ### The Component Lifecycle
 
 Each component has several "lifecycle methods" that you can override to run code at particular times in the process.
 
-**You can use [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.**
+**You can use [this interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.**
 
-In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exists for relatively rare use cases.
+In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
 
 #### Mounting
 
-These methods are called when an instance of a component is being created and inserted into the DOM:
+These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
 
 - [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [**`render()`**](#render)
 - [**`componentDidMount()`**](#componentdidmount)
 
-These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
-
-- [`componentWillMount()` / `UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- [`componentWillMount()` / `UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
 #### Updating
 
-An update can be caused by changes to props or state. These methods are called when a component is being re-rendered:
+An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
@@ -66,10 +86,12 @@ An update can be caused by changes to props or state. These methods are called w
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
 - [**`componentDidUpdate()`**](#componentdidupdate)
 
-These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
-
-- [`componentWillUpdate()` / `UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
-- [`componentWillReceiveProps()` / `UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
+>Note:
+>
+>These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
+>
+>- [`componentWillUpdate()` / `UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
+>- [`componentWillReceiveProps()` / `UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
 #### Unmounting
 
@@ -106,9 +128,9 @@ Each component also provides some other APIs:
 
 ### Commonly Used Lifecycle Methods
 
-The methods in this section are used most often. The vast majority of your components shouldn't need to implement any other lifecycle methods.
+The methods in this section cover the vast majority of use cases you'll encounter creating React components.
 
-**You can see them all on this [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+**For a visual reference, check out [this interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()`
 
@@ -116,7 +138,7 @@ The methods in this section are used most often. The vast majority of your compo
 render()
 ```
 
-The `render()` method is required.
+The `render()` method is the only required method in a class component.
 
 When called, it should examine `this.props` and `this.state` and return one of the following types:
 
@@ -146,11 +168,27 @@ constructor(props)
 
 The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
 
+Typically, in React constructors are only used for two purposes:
+
+* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
+* Binding [event handler](/docs/handling-events.html) methods to an instance.
+
+You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
+
+```js
+constructor(props) {
+  super(props);
+  // Don't call this.setState() here!
+  this.state = { counter: 0 };
+  this.handleClick = this.handleClick.bind(this);
+}
+```
+
+Constructor is the only place where you should assign `this.state` directly. In all other methods, you need to use `this.setState()` instead.
+
 Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
 
-The constructor is the right place to initialize state. To do so, just assign an object to `this.state`; don't try to call `setState()` from the constructor. The constructor is also often used to bind event handlers to the class instance.
-
->Note:
+>Note
 >
 >**Avoid copying props into state! This is a common mistake:**
 >
@@ -177,11 +215,11 @@ The constructor is the right place to initialize state. To do so, just assign an
 componentDidMount()
 ```
 
-`componentDidMount()` is invoked immediately after a component is mounted. Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
+`componentDidMount()` is invoked immediately after a component is mounted (inserted into the tree). Initialization that requires DOM nodes should go here. If you need to load data from a remote endpoint, this is a good place to instantiate the network request.
 
 This method is a good place to set up any subscriptions. If you do that, don't forget to unsubscribe in `componentWillUnmount()`.
 
-Calling `setState()` in this method will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+You **may call `setState()`** in `componentDidMount()`. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the `render()` will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the `constructor()` instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
 
 * * *
 
@@ -202,10 +240,11 @@ componentDidUpdate(prevProps) {
     this.fetchData(this.props.userID);
   }
 }
-
 ```
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle, the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. (Otherwise this parameter will be undefined.)
+You **may call `setState()`** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
+
+If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
 
 > Note
 >
@@ -219,7 +258,9 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle, the valu
 componentWillUnmount()
 ```
 
-`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`. You should not call `setState()` here because the component will never be re-rendered.
+`componentWillUnmount()` is invoked immediately before a component is unmounted and destroyed. Perform any necessary cleanup in this method, such as invalidating timers, canceling network requests, or cleaning up any subscriptions that were created in `componentDidMount()`.
+
+You **should not call `setState()`** in `componentWillUnmount()` because the component will never be re-rendered. Once a component instance is unmounted, it will never be mounted again.
 
 * * *
 
@@ -227,7 +268,7 @@ componentWillUnmount()
 
 The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them.
 
-**You can see most of them on this [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top.**
+**You can see most of the methods below on [this interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
 
 
 ### `shouldComponentUpdate()`
@@ -238,19 +279,17 @@ shouldComponentUpdate(nextProps, nextState)
 
 Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
 
-**Don't add `shouldComponentUpdate()` to a component unless you have a specific performance problem, and [profiling](/docs/optimizing-performance.html) demonstrates that it solves your problem.**
-
-**If you've determined that it helps, consider using a built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent) instead of writing `shouldComponentUpdate()` by hand if a shallow prop and state comparison is sufficient for your use case.**
-
 `shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
 
-Returning `false` does not prevent child components from re-rendering when *their* state changes.
+**This method only exists as a performance optimization. Do not rely on it to "prevent" a rendering, as it typically leads to bugs.**
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. Note that in the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
-
-If you determine a specific component is slow after profiling, you may change it to inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) which implements `shouldComponentUpdate()` with a shallow prop and state comparison. If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped.
+If you've [determined that adding this method is beneficial](/docs/optimizing-performance.html), **consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent) instead of writing `shouldComponentUpdate()` by hand.** It performs a shallow comparison of props and state, and reduces the chance that you'll forget to update a component when it needs to.
 
 We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+
+If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+
+Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
 
 * * *
 
@@ -272,7 +311,7 @@ This method exists for **very rare use cases** where the state depends on change
 
 * If you want to **"mirror" a prop in the state**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead. Both of these solutions are simpler and lead to fewer bugs.
 
-You can find more guidance for whether to use `getDerivedStateFromProps()` in [this paragraph](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state).
+You can find more guidance for whether to use `getDerivedStateFromProps()` in [this paragraph](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state). If you decide to use it after all, note that it doesn't have access to the component instance (because it's a static method). If it needs some helper functions, you can extract them outside the component class, and keep them pure too. If it seems like it needs access to `this.setState()`, it probably means you either forget it needs to *return* the state, or you're keeping something in the state that can be calculated in the `render()` method instead.
 
 Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
 
@@ -385,9 +424,11 @@ Typically, this method can be replaced by `componentDidUpdate()`. If you were re
 
 * * *
 
-## Methods You Can Call
+## Other APIs
 
-Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components. There are just two of them: `setState()` and `forceUpdate()`.
+Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
+
+There are just two of them: `setState()` and `forceUpdate()`.
 
 ### `setState()`
 

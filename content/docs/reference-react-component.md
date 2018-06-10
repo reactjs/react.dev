@@ -19,7 +19,7 @@ redirect_from:
 
 ## Overview
 
-React provides two ways to define components. For very simple components that just render something based on their props, you can use a function:
+React provides two ways to define components. For very simple components that render something based on their props and don't do anything else, you can use a function:
 
 ```js
 function Welcome(props) {

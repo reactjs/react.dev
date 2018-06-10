@@ -231,6 +231,11 @@ class Example extends Component {
     filterText: "",
   };
 
+  // *******************************************************
+  // NOTE: this example is NOT the recommended approach.
+  // See the examples below for our recommendations instead.
+  // *******************************************************
+
   static getDerivedStateFromProps(props, state) {
     // Re-run the filter whenever the list array or filter text change.
     // Note we need to store prevPropsList and prevFilterText to detect changes.

@@ -152,7 +152,7 @@ The constructor is the right place to initialize state. To do so, just assign an
 
 >Note:
 >
->**Avoid copying props into state! This is a common beginner mistake:**
+>**Avoid copying props into state! This is a common mistake:**
 >
 >```js
 >constructor(props) {

@@ -74,7 +74,7 @@ These methods are called in the following order when an instance of a component 
 >
 >These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
 >
->- [`componentWillMount()` / `UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
+>- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
 #### Updating
 
@@ -90,8 +90,8 @@ An update can be caused by changes to props or state. These methods are called i
 >
 >These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
 >
->- [`componentWillUpdate()` / `UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
->- [`componentWillReceiveProps()` / `UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
+>- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
+>- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
 #### Unmounting
 

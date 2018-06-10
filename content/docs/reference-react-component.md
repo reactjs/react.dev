@@ -142,7 +142,7 @@ The `render()` method is the only required method in a class component.
 
 When called, it should examine `this.props` and `this.state` and return one of the following types:
 
-- **React elements.** Typically created via JSX. An element can either be a representation of a native DOM component (`<div />`), or a user-defined composite component (`<MyComponent />`).
+- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). An [element](/docs/rendering-elements.html) can either be a representation of a native DOM component (e.g. `div`), or a user-defined component (e.g. `MyComponent`).
 - **Arrays and fragments.** Let you return multiple elements from render. See documentation on [fragments](/docs/fragments.html) for more details.
 - **Portals**. Let you render children into a different DOM subtree. See documentation on [portals](/docs/portals.html) for more details.
 - **String and numbers.** These are rendered as text nodes in the DOM.

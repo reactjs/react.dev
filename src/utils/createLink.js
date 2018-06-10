@@ -15,8 +15,16 @@ import type {Node} from 'react';
 
 type CreateLinkBaseProps = {
   isActive: boolean,
-  item: Object,
-  section: Object,
+  item: {
+    id: string,
+    title: string,
+    anchor?: string,
+    href?: string,
+    subitems: Object[],
+  },
+  section: {
+    directory: string,
+  },
 };
 
 const createLinkBlog = ({
@@ -67,7 +75,10 @@ const createLinkDocs = ({
   return (
     <Link
       css={[linkCss, isActive && activeLinkCss]}
-      to={slugify(item.id, section.directory) + `${item.anchor ? ('#' + item.anchor) : ''}`}>
+      to={
+        slugify(item.id, section.directory) +
+        (item.anchor ? `#${item.anchor}` : '')
+      }>
       {isActive && <span css={activeLinkBefore} />}
       {item.title}
     </Link>

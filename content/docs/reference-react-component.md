@@ -235,7 +235,11 @@ The methods in this section correspond to uncommon use cases. They're handy once
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior. **Don't add `shouldComponentUpdate()` to a component unless you have a specific performance problem, and [profiling](/docs/optimizing-performance.html) demonstrates that it solves your problem.**
+Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+
+**Don't add `shouldComponentUpdate()` to a component unless you have a specific performance problem, and [profiling](/docs/optimizing-performance.html) demonstrates that it solves your problem.**
+
+**If you've determined that it helps, consider using a built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent) instead of writing `shouldComponentUpdate()` by hand if a shallow prop and state comparison is sufficient for your use case.**
 
 `shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
 
@@ -257,7 +261,17 @@ static getDerivedStateFromProps(props, state)
 
 `getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
 
-This method exists for **very rare use cases** where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out. **For the majority of cases, it's unnecessary and [there are better and simple alternatives to `getDerivedStateFromProps`](/blog/2018/06/07/you-probably-dont-need-derived-state.html).**
+This method exists for **very rare use cases** where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+
+**For the majority of cases, it is unnecessary and [there are better and simple alternatives to `getDerivedStateFromProps`](/blog/2018/06/07/you-probably-dont-need-derived-state.html):**
+
+* If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+
+* If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+
+* If you want to **"mirror" a prop in the state**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead. Both of these solutions are simpler and lead to fewer bugs.
+
+You can find more guidance for whether to use `getDerivedStateFromProps()` in [this paragraph](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state).
 
 Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
 
@@ -324,15 +338,15 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 > Note:
 >
-> It is not recommended to use this lifecycle in the new code. Using this lifecycle method often leads to bugs and inconsistencies, and for that reason it is going to be deprecated in the future.
+> Using this lifecycle method often leads to bugs and inconsistencies, and for that reason it is going to be deprecated in the future.
 >
-> If you need to perform a side effect (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
+> If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
 >
 > For other use cases, [follow the recommendations in this blog post about derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 > 
-> If you used `componentWillReceiveProps` for re-computing some data only when a prop changes, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+> If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 >
-> If you used `componentWillReceiveProps` to "mirror" a prop in the state, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead. Both of these solutions are simpler and lead to less bugs.
+> If you used `componentWillReceiveProps` to **"mirror" a prop in the state**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead. Both of these solutions are simpler and lead to less bugs.
 >
 > In very rare cases, you might want to use the [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle as a last resort.
 

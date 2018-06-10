@@ -41,15 +41,16 @@ Each component has several "lifecycle methods" that you can override to run code
 
 **You can use [interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.**
 
+In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exists for relatively rare use cases.
 
 #### Mounting
 
 These methods are called when an instance of a component is being created and inserted into the DOM:
 
-- [`constructor()`](#constructor)
+- [**`constructor()`**](#constructor)
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
-- [`render()`](#render)
-- [`componentDidMount()`](#componentdidmount)
+- [**`render()`**](#render)
+- [**`componentDidMount()`**](#componentdidmount)
 
 These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
 
@@ -61,9 +62,9 @@ An update can be caused by changes to props or state. These methods are called w
 
 - [`static getDerivedStateFromProps()`](#static-getderivedstatefromprops)
 - [`shouldComponentUpdate()`](#shouldcomponentupdate)
-- [`render()`](#render)
+- [**`render()`**](#render)
 - [`getSnapshotBeforeUpdate()`](#getsnapshotbeforeupdate)
-- [`componentDidUpdate()`](#componentdidupdate)
+- [**`componentDidUpdate()`**](#componentdidupdate)
 
 These methods are considered legacy and you should [avoid them](/blog/2018/03/27/update-on-async-rendering.html) in new code:
 
@@ -74,7 +75,7 @@ These methods are considered legacy and you should [avoid them](/blog/2018/03/27
 
 This method is called when a component is being removed from the DOM:
 
-- [`componentWillUnmount()`](#componentwillunmount)
+- [**`componentWillUnmount()`**](#componentwillunmount)
 
 #### Error Handling
 

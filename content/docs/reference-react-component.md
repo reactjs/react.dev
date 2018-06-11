@@ -114,7 +114,7 @@ Each component also provides some other APIs:
 
 ### Class Properties
 
-  - [`propTypes`](/docs/typechecking-with-proptypes.html)
+  - [`propTypes`](#proptypes)
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
@@ -517,6 +517,12 @@ Normally you should try to avoid all uses of `forceUpdate()` and only read from 
 * * *
 
 ## Class Properties
+
+### `propTypes`
+
+`propTypes` can be defined as a property on the component class itself, to provide type annotations for props that this class of components expect. These type annotations are used by React to perform validations of the values a component receives as props, issuing warnings if some prop values do not match the type it was annotated with. You can read more about how to use prop types in the section [Typechecking With PropTypes](/docs/typechecking-with-proptypes.html).
+
+* * *
 
 ### `defaultProps`
 

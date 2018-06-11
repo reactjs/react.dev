@@ -15,7 +15,7 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-[Components](/docs/components-and-props.html) let you split the UI into independent, reusable pieces, and think about each piece in isolation. React provides a `React.Component` base class to let you define encapsulated components that may contain [local state and handle lifecycle events](/docs/state-and-lifecycle.html).
+This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
 
 ## Overview
 

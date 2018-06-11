@@ -19,17 +19,7 @@ This page contains a detailed API reference for the React component class defini
 
 ## Overview
 
-React provides two ways to define components. For very simple components that render something based on their props and don't do anything else, you can use a function:
-
-```js
-function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-}
-```
-
-In the example above, we didn't use `React.Component`.
-
-However, sometimes you need to keep some local state in the component, or run some code when it is created, updated, or removed from the DOM. For those cases, you can declare it as a [JavaScript class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) that extends `React.Component`:
+React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
 
 ```js
 class Welcome extends React.Component {
@@ -39,27 +29,17 @@ class Welcome extends React.Component {
 }
 ```
 
-The above two component definitions are equivalent, but currently class components have access to more features. They are described below. The only method you *must* define in a `React.Component` subclass is called [`render()`](#render), the rest are optional.
+The only method you *must* define in a `React.Component` subclass is called [`render()`](#render). All the other methods described on this page are optional.
+
+**We strongly recommend against creating your own base component classes.** In React components, [code reuse is primarily achieved through composition rather than inheritance](/docs/composition-vs-inheritance.html).
 
 >Note:
 >
 >React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
 
-### Avoid Custom Base Classes
-
-**We strongly recommend against creating your own base component classes, both in the application and the library code.**
-
-In React components, code reuse is primarily achieved through composition rather than inheritance. Take a look at [these common scenarios](/docs/composition-vs-inheritance.html) to get a feel for how to use composition.
-
-Avoid creating and extending custom base component classes.
-
 ### The Component Lifecycle
 
-Each component has several "lifecycle methods" that you can override to run code at particular times in the process.
-
-**You can use [this interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.**
-
-In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
+Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
 
 #### Mounting
 
@@ -128,9 +108,7 @@ Each component also provides some other APIs:
 
 ### Commonly Used Lifecycle Methods
 
-The methods in this section cover the vast majority of use cases you'll encounter creating React components.
-
-**For a visual reference, check out [this interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
+The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
 ### `render()`
 
@@ -142,9 +120,9 @@ The `render()` method is the only required method in a class component.
 
 When called, it should examine `this.props` and `this.state` and return one of the following types:
 
-- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). An [element](/docs/rendering-elements.html) can either be a representation of a native DOM component (e.g. `div`), or a user-defined component (e.g. `MyComponent`).
-- **Arrays and fragments.** Let you return multiple elements from render. See documentation on [fragments](/docs/fragments.html) for more details.
-- **Portals**. Let you render children into a different DOM subtree. See documentation on [portals](/docs/portals.html) for more details.
+- **React elements.** Typically created via [JSX](/docs/introducing-jsx.html). For example, `<div />` and `<MyComponent />` are React elements that instruct React to render a DOM node, or another user-defined component, respectively.
+- **Arrays and fragments.** Let you return multiple elements from render. See the documentation on [fragments](/docs/fragments.html) for more details.
+- **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
 - **String and numbers.** These are rendered as text nodes in the DOM.
 - **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
 
@@ -266,9 +244,7 @@ You **should not call `setState()`** in `componentWillUnmount()` because the com
 
 ### Rarely Used Lifecycle Methods
 
-The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them.
-
-**You can see most of the methods below on [this interactive lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
+The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
 
 
 ### `shouldComponentUpdate()`
@@ -281,13 +257,11 @@ Use `shouldComponentUpdate()` to let React know if a component's output is not a
 
 `shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
 
-**This method only exists as a performance optimization. Do not rely on it to "prevent" a rendering, as it typically leads to bugs.**
-
-If you've [determined that adding this method is beneficial](/docs/optimizing-performance.html), **consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent) instead of writing `shouldComponentUpdate()` by hand.** It performs a shallow comparison of props and state, and reduces the chance that you'll forget to update a component when it needs to.
-
-We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
+This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
 
 If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped. Note that returning `false` does not prevent child components from re-rendering when *their* state changes.
+
+We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
 
 Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
 
@@ -301,17 +275,18 @@ static getDerivedStateFromProps(props, state)
 
 `getDerivedStateFromProps` is invoked right before calling the render method, both on the initial mount and on subsequent updates. It should return an object to update the state, or null to update nothing.
 
-This method exists for **very rare use cases** where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
+This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
 
-**For the majority of cases, it is unnecessary and [there are better and simple alternatives to `getDerivedStateFromProps`](/blog/2018/06/07/you-probably-dont-need-derived-state.html):**
+Deriving state leads to verbose code and makes your components difficult to think about.  
+[Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
 * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
 
 * If you want to **re-compute some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 
-* If you want to **"mirror" a prop in the state**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead. Both of these solutions are simpler and lead to fewer bugs.
+* If you want to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
 
-You can find more guidance for whether to use `getDerivedStateFromProps()` in [this paragraph](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state). If you decide to use it after all, note that it doesn't have access to the component instance (because it's a static method). If it needs some helper functions, you can extract them outside the component class, and keep them pure too. If it seems like it needs access to `this.setState()`, it probably means you either forget it needs to *return* the state, or you're keeping something in the state that can be calculated in the `render()` method instead.
+This method doesn't have access to the component instance. If you'd like, you can reuse some code between `getDerivedStateFromProps()` and the other class methods by extracting pure functions of the component props and state outside the class definition.
 
 Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
 
@@ -386,7 +361,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 > 
 > If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
 >
-> If you used `componentWillReceiveProps` to **"mirror" a prop in the state**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead. Both of these solutions are simpler and lead to less bugs.
+> If you used `componentWillReceiveProps` to **"reset" some state when a prop changes**, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a `key`](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
 >
 > In very rare cases, you might want to use the [`getDerivedStateFromProps`](#static-getderivedstatefromprops) lifecycle as a last resort.
 

@@ -12,8 +12,6 @@ redirect_from:
   - "docs/getting-started-zh-CN.html"
 ---
 
-The easiest way to get started with React is to use [this Hello World example code on CodePen](codepen://hello-world). You don't need to install anything; you can open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/try-react.html) section.
-
 The smallest React example looks like this:
 
 ```js
@@ -26,6 +24,10 @@ ReactDOM.render(
 It displays a heading saying "Hello, world!" on the page.
 
 The next few sections will gradually introduce you to using React. We will examine the building blocks of React apps: elements and components. Once you master them, you can create complex apps from small reusable pieces.
+
+## Following Along
+
+The easiest way to get started with React is to use [this Hello World example code on CodePen](codepen://hello-world). You don't need to install anything; you can open it in another tab and follow along as we go through examples. If you'd rather use a local development environment, check out the [Installation](/docs/try-react.html) section.
 
 ## Knowledge Level Assumptions
 

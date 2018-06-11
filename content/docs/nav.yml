@@ -8,7 +8,7 @@
       title: Add React to an Existing App
     - id: cdn-links
       title: CDN Links
-- title: Quick Start
+- title: Main Concepts
   items:
     - id: hello-world
       title: Hello World
@@ -78,7 +78,7 @@
       title: Uncontrolled Components
     - id: web-components
       title: Web Components
-- title: Reference
+- title: API Reference
   items:
     - id: react-api
       title: React

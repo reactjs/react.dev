@@ -39,9 +39,9 @@ Here is a step-by-step explanation of what happens in the above example:
 
 ## Warning for third-party library maintainers
 
-**If you start using `forwardRef` in a third-party library, you should release it as a breaking change.**.  This is because the value returned by `forwardRef` is of a different type than React components have historically been (a `class` extending `React.Component` or a `function`) and many HoC libraries (e.g. `react-redux`' `connect()`) aren't currently compatible with such components.
+**If you start using `forwardRef` in a third-party library, you should release it as a breaking change.**.  This is because your library has an observably different behavior (including the component type and what the ref gets assigned to), and can break apps and other libraries that depend on the old behavior.
 
-Even if you check whether `React.forwardRef` is defined and only use it if it is present, you should release a breaking change, because it may still cause problems for users of your library.
+Conditionally applying `forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps as they upgrade React versions.
 
 ## Forwarding refs in higher-order components
 

@@ -114,6 +114,7 @@ Each component also provides some other APIs:
 
 ### Class Properties
 
+  - [`propTypes`](/docs/typechecking-with-proptypes.html)
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 

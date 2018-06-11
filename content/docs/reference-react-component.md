@@ -94,6 +94,7 @@ Each component also provides some other APIs:
 
 ### Class Properties
 
+  - [`propTypes`](https://reactjs.org/docs/typechecking-with-proptypes.html)
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 

@@ -9,6 +9,7 @@
     - id: cdn-links
       title: CDN Links
 - title: Main Concepts
+  isOrdered: true
   items:
     - id: hello-world
       title: Hello World

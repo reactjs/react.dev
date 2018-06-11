@@ -12,8 +12,6 @@ redirect_from:
   - "docs/getting-started-zh-CN.html"
 ---
 
-Getting Started With React
-
 The smallest React example looks like this:
 
 ```js

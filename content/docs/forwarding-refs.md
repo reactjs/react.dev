@@ -37,7 +37,7 @@ Here is a step-by-step explanation of what happens in the above example:
 >
 >Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
 
-## Warning for third-party library maintainers
+## Warning for component library maintainers
 
 **If you start using `forwardRef` in a third-party library, you should release it as a breaking change.**.  This is because your library has an observably different behavior (including the component type and what the ref gets assigned to), and can break apps and other libraries that depend on the old behavior.
 

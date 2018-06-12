@@ -20,7 +20,7 @@ class FileInput extends React.Component {
           {/* highlight-range{1-6} */}
           <input
             type="file"
-            ref={this.fileInput}}
+            ref={this.fileInput}
           />
         </label>
         <br />

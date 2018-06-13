@@ -17,7 +17,7 @@ class FileInput extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Upload file:
-          {/* highlight-range{1-6} */}
+          {/* highlight-range{1-4} */}
           <input
             type="file"
             ref={this.fileInput}

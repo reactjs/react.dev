@@ -17,6 +17,7 @@ const Docs = ({data, location}) => (
     markdownRemark={data.markdownRemark}
     sectionList={sectionListDocs}
     titlePostfix=" - React"
+    enableKeyboardNavigation
   />
 );
 

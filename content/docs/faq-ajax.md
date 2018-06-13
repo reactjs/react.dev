@@ -82,7 +82,3 @@ class MyComponent extends React.Component {
   }
 }
 ```
-
-### Cancellation
-
-Note that if the component unmounts before an AJAX call is complete, you may see a warning like `cannot read property 'setState' of undefined`. If this is an issue you may want to keep track of inflight AJAX requests and cancel them in the `componentWillUnmount` lifecycle method.

@@ -25,9 +25,9 @@ If you prefer to use your own text editor, you can also [download this HTML file
 
 ## Next Steps
 
-### Quick Start
+### Main Concepts
 
-- Head over to the [Quick Start](/docs/hello-world.html) section for a step-by-step introduction to React concepts.
+- Head over to the [Main Concepts](/docs/hello-world.html) section for a step-by-step introduction to React concepts.
 
 - Try the [Tutorial](/tutorial/tutorial.html) for a hands-on practical example.
 

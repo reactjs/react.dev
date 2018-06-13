@@ -15,6 +15,7 @@ There are many example projects created by the React community. Feel free to add
 * **[K5 Playground](https://playground.cloud.global.fujitsu.com):** Sample applications for React.js and Flux.
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** A React & react-router-powered implementation of Hacker News using its Firebase API.
 * **[Pokedex](https://github.com/alik0211/pokedex)** The list of Pokémon with live search
+* **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Simple ecommerce cart application built using React 
 * **[Progressive Web Tetris](https://github.com/skidding/flatris)** Besides a beautiful, mobile-friendly implementation of Tetris, this project is a playground for integrating and experimenting with web technologies.
 * **[Product Comparison Page](https://github.com/Rhymond/product-compare-react)** Simple Product Compare page built in React
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL.

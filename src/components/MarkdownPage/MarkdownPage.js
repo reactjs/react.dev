@@ -31,7 +31,7 @@ type Props = {
   markdownRemark: Node,
   sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
   titlePostfix: string,
-  enableKeyboardNavigation: boolean,
+  enableKeyboardNavigation?: boolean,
 };
 
 type Page = {

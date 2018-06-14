@@ -78,7 +78,7 @@ Requires a [function as a child](/docs/render-props.html#using-props-other-than-
 
 All Consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant Consumers is not subject to the `shouldComponentUpdate` method, so the Consumer is updated even when an ancestor component bails out of the update.
 
-What this means is that Components which are not descendents of a Consumer but have Consumers in their render functions get updated with new values, but do not actually re-render. Components which have Consumer as their ascendent will re-render whenver the Providers value changes.
+What this means is that Components which are not descendents of a Consumer but have Consumers in their render functions get updated with new values, but do not actually re-render. Components which have Consumer as their ascendent will re-render whenever the Providers value changes.
 
 Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
 

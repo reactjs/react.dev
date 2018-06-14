@@ -27,6 +27,8 @@ function BoilingVerdict(props) {
 Next, we will create a component called `Calculator`. It renders an `<input>` that lets you enter the temperature, and keeps its value in `this.state.temperature`.
 
 Additionally, it renders the `BoilingVerdict` for the current input value.
+`BoilingVerdict` will be rendered if the user enters the temperature
+
 
 ```js{5,9,13,17-21}
 class Calculator extends React.Component {
@@ -48,8 +50,8 @@ class Calculator extends React.Component {
         <input
           value={temperature}
           onChange={this.handleChange} />
-        <BoilingVerdict
-          celsius={parseFloat(temperature)} />
+       {temperature && <BoilingVerdict
+          celsius={parseFloat(temperature)} />}
       </fieldset>
     );
   }

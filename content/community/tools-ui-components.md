@@ -9,6 +9,7 @@ permalink: community/ui-components.html
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react) (in Chinese):** [Amaze UI](https://github.com/allmobilize/amazeui) components built with React.
 * **[Ant Design of React](http://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
 * **[Belle](https://github.com/nikgraf/belle/):** Configurable React Components with great UX.
+* **[Buttermilk](https://buttermilk.js.org/):** A lightweight, dead-simple alternative to React Router.
 * **[chartify](https://github.com/kirillstepkin/chartify)**: Ultra lightweight and customizable React.js chart component.
 * **[Elemental UI](http://elemental-ui.com):** A UI toolkit for React websites and apps, themeable and composed of individually packaged components
 * **[Grommet](http://grommet.io)** The most advanced open source UX framework for enterprise applications.

@@ -45,7 +45,7 @@ Together with `componentDidUpdate`, this new lifecycle should cover all use case
 
 >Note:
 >
->Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which work better for the majority of cases.
+>Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which are enough for most use cases.
 
 ### New lifecycle: `getSnapshotBeforeUpdate`
 
@@ -127,7 +127,7 @@ Rather than passing a subscribable `dataSource` prop as we did in the example ab
 
 >Note:
 >
->Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which work better for the majority of cases.
+>Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which are enough for most use cases.
 
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
 `embed:update-on-async-rendering/updating-state-from-props-before.js`

@@ -23,6 +23,10 @@ In the forum there's also a category for job posts and a category for discussion
 
 [Hashnode's React community](https://hashnode.com/n/reactjs) is a great place to stay up-to-date with React discussion, news and stories.
 
+## Russian Telegram group
+
+[React_Ru](http://xn----7sbbr0a7arc7b.xn--p1ai/) is a good place get support on react related issues.
+
 ## Reactiflux Chat
 
 If you need an answer right away, check out the [Reactiflux Discord](https://discord.gg/0ZcbPKXt5bZjGY5n) community. There are usually a number of React experts there who can help out or point you to somewhere you might want to look.

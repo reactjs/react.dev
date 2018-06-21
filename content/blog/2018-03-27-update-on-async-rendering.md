@@ -45,7 +45,7 @@ Together with `componentDidUpdate`, this new lifecycle should cover all use case
 
 >Note:
 >
->Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which are enough for most use cases.
+>Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods add significant complexity to components. This often leads to [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Consider **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** to make components predictable and maintainable.
 
 ### New lifecycle: `getSnapshotBeforeUpdate`
 
@@ -127,7 +127,7 @@ Rather than passing a subscribable `dataSource` prop as we did in the example ab
 
 >Note:
 >
->Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which are enough for most use cases.
+>Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods add significant complexity to components. This often leads to [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html#common-bugs-when-using-derived-state). Consider **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** to make components predictable and maintainable.
 
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
 `embed:update-on-async-rendering/updating-state-from-props-before.js`

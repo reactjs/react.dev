@@ -189,6 +189,8 @@ Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
+>
+> You will need to iterate over `event.target.options` and look for elements with selected property as `true`, this [stackoverflow thread](https://stackoverflow.com/questions/28624763/retrieving-value-from-select-with-multiple-option-in-react) gives some alternatives.
 
 ## The file input Tag
 

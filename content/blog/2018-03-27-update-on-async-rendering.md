@@ -39,9 +39,13 @@ Before we begin, here's a quick overview of the lifecycle changes planned for ve
 
 `embed:update-on-async-rendering/definition-getderivedstatefromprops.js`
 
-The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as when it receives new props. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
+The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as before it is re-rendered. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
 Together with `componentDidUpdate`, this new lifecycle should cover all use cases for the legacy `componentWillReceiveProps`.
+
+>Note:
+>
+>Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which work better for the majority of cases.
 
 ### New lifecycle: `getSnapshotBeforeUpdate`
 
@@ -120,6 +124,10 @@ Rather than passing a subscribable `dataSource` prop as we did in the example ab
 > Libraries like Relay/Apollo should manage subscriptions manually with the same techniques as `create-subscription` uses under the hood (as referenced [here](https://gist.github.com/bvaughn/d569177d70b50b58bff69c3c4a5353f3)) in a way that is most optimized for their library usage.
 
 ### Updating `state` based on `props`
+
+>Note:
+>
+>Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods make your components complex and often lead to bugs. We published another blog post explaining **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state.html)** which work better for the majority of cases.
 
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
 `embed:update-on-async-rendering/updating-state-from-props-before.js`

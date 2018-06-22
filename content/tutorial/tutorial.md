@@ -28,7 +28,7 @@ You can close the tic-tac-toe game once you're familiar with it. We'll be starti
 
 We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you haven't used them before.
 
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note, that we're also using some features from ES6 - a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
+If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note, that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
 
 ## Setup for the Tutorial
 
@@ -42,13 +42,11 @@ First, open this [starter code](https://codepen.io/gaearon/pen/oWWQNa?editors=00
 
 You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
 
-### Setup Option 2: Create a Local Development Environment
+### Setup Option 2: Local Development Environment
 
 **This is completely optional and not required for this tutorial!**
 
-This setup requires more work but allows you to complete the tutorial using an editor of your choice.
-
-Here are the steps to follow:
+This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
 2. Follow the [installation instructions](/docs/add-react-to-a-new-app.html) to create a new project.
@@ -87,11 +85,11 @@ If you get stuck, check out the [community support resources](/community/support
 
 ## Overview
 
-Now that you're setup, let's get an overview of React!
+Now that you're set up, let's get an overview of React!
 
-### What is React?
+### What Is React?
 
-React is a declarative, efficient, and flexible JavaScript library for building user interfaces.
+React is a declarative, efficient, and flexible JavaScript library for building user interfaces. It lets you create complex UIs from small and isolated pieces of code called "components". 
 
 React has a few different kinds of components, but we'll start with `React.Component` subclasses:
 
@@ -118,7 +116,7 @@ We'll get to the funny XML-like tags soon. Our components tell React what we wan
 
 Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props`, and returns a hierarchy of views to display via the `render` method.
 
-The `render` method returns a *description* of what you want to render. React takes the description and renders it. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
+The `render` method returns a *description* of what you want to see on the screen. React takes the description and displays the result. In particular, `render` returns a **React element**, which is a lightweight description of what to render. Most React developers use a special syntax called "JSX" which makes these structures easier to write. The `<div />` syntax is transformed at build time to `React.createElement('div')`. The example above is equivalent to:
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
@@ -133,9 +131,9 @@ If you're curious, `createElement()` is described in more detail in the [API ref
 
 You can put JavaScript expressions within braces inside JSX. Each React element is a JavaScript object that you can store in a variable or pass around in your program.
 
-The `ShoppingList` component only renders built-in DOM components. You can compose and render custom React components. In our `ShoppingList` example, we can compose and render a React component `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
+The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
 
-## The Tutorial
+## Inspecting the Starter Code
 
 If you're going to work on the tutorial in your browser, open this code in a new tab: [Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
 This is the base of what we're building. We've provided the CSS styling so that you only need focus on learning React and programming the tic-tac-toe game.
@@ -150,7 +148,7 @@ The Square component renders a single `<button>` and the Board renders 9 squares
 
 ### Passing Data Through Props
 
-Let's try passing some data from our Board component to our Square component.
+Just to get our feet wet, let's try passing some data from our Board component to our Square component.
 
 In Board's `renderSquare` method, change the code to pass a prop called `value` to the Square:
 
@@ -185,10 +183,10 @@ After: You should see a number in each square in the rendered output.
 
 [View the current code.](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)
 
-### Add an Interactive Component
+### Making an Interactive Component
 
-Let's fill the Square components with an "X" whenever we click them. 
-We'll change the button tag that is returned in the Square's `render()` function to this:
+Let's fill any Square with an "X" when we click it. 
+First, change the button tag that is returned from the Square component's `render()` function to this:
 
 ```javascript{4}
 class Square extends React.Component {
@@ -206,7 +204,7 @@ If we click on a Square now, we should get an alert in our browser.
 
 The `onClick` assignment uses the new JavaScript [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) syntax. Note that we're passing a function as the `onClick` prop. Passing `onClick={alert('click')}` would fire the alert immediately instead of when a Square is clicked.
 
-React components can have state by setting `this.state` in their constructors. `this.state` should be considered as a private member of a React component. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
+React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
 
 First, we'll add a constructor to the class to initialize the state:
 
@@ -257,9 +255,9 @@ class Square extends React.Component {
 }
 ```
 
-Whenever `this.setState` is called, an update for the Square is scheduled. React will update and re-render the Square and the Square's `this.state.value` will be `'X'`. We'll be able to see the `X` on the game board. If you click on any Square, an `X` should show up.
+By calling `this.setState` from a Square, we tell React to re-render this Square using the new state. After the update, the Square's `this.state.value` will be `'X'`, so we'll see the `X` on the game board. If you click on any Square, an `X` should show up.
 
-In React, if a component is updated and has descendents, React will also update and re-render the component's descendants. 
+When you call `setState` in a component, React will automatically update the components inside of it too.
 
 [View the current code.](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)
 
@@ -280,15 +278,19 @@ After installing React DevTools, you can right-click on any element on the page,
 3. Click "Change View" and then choose "Debug mode".
 4. In the new tab that opens, the devtools should now have a React tab.
 
-## Lifting State Up
+## Completing the Game
 
-We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and ""O"s on the board, and we need a way to determine a winner. Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
+We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and ""O"s on the board, and we need a way to determine a winner.
+
+### Lifting State Up
+
+Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
 
 We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the Board component instead of in each Square. The Board component can tell each Square what to display.
 
-**To collect data from multiple children or have two child components communicate with each other, the childrens' state should reside in the parent component. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
+**To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
 
-Moving states into parent components is common when React components are refactored - let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
+Moving states into parent components is common when React components are refactored -- let's take this opportunity to try it out. We'll add a constructor to the Board and set the Board's initial state to contain an array with 9 nulls. These 9 nulls correspond to the 9 squares:
 
 ```javascript{2-7}
 class Board extends React.Component {
@@ -348,7 +350,9 @@ The Board's `renderSquare` method currently looks like this:
   }
 ```
 
-We'll modify `renderSquare` to pass a prop called `value` to Square:
+In the beginning, we passed the `value` prop down from the Board to show numbers from 1 to 9 in every Square. Then we replaced the numbers with an "X" mark determined by Square's own state. This is why Square currently ignores the `value` prop passed to it by the Board.
+
+However, now we want to lift the state of individual Square components into the parent Board component. We will modify the Board's `renderSquare` method to pass the current `value` from the Board state to each individual Square as a prop. The `value` prop will either be `'X'`, `'O'`, or `null` for empty squares.
 
 ```javascript{2}
   renderSquare(i) {
@@ -358,7 +362,7 @@ We'll modify `renderSquare` to pass a prop called `value` to Square:
 
 [View the current code.](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)
 
-We now need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be a private member of a component, we cannot update the Board's state directly from Square.
+We now need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
 
 To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
 
@@ -373,7 +377,9 @@ To maintain the Board's state's privacy, we'll pass down a function from the Boa
   }
 ```
 
-We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
+>Note
+>
+>We split the returned element into multiple lines for readability, and added parentheses so that JavaScript doesn't insert a semicolon after `return` and break our code.
 
 Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
 
@@ -403,7 +409,9 @@ When a Square is clicked, the `onClick` function provided by the Board is called
 4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
 5. We have not defined the `handleClick()` method yet, so our code crashes.
 
-Note that DOM `<button>` element's `onClick` attribute has a special meaning to React. We could have named Square's `onClick` prop or Board's `handleClick` method differently. In React, however, it is a convention to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+>Note
+>
+>The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could name the Square's `onClick` prop or Board's `handleClick` method differently. In React, however, it is a convention to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
 
 When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
 
@@ -460,15 +468,17 @@ class Board extends React.Component {
 
 [View the current code.](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)
 
-In `handleClick`, we call `.slice()` to create a copy the `squares` array to modify instead of modifying the existing array. To explain why we create a copy of the `squares` array, read our [section](/tutorial/tutorial.html#why-immutability-is-important) about "immutability".
+In `handleClick`, we call `.slice()` to create a copy the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
 
-We'll be able to click on the Squares to fill them again. Whenever Board's state changes, the Square components re-render automatically. Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**.
+We'll be able to click on the Squares to fill them again. Whenever Board's state changes, the Square components re-render automatically.
+
+Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**.
 
 ### Why Immutability Is Important
 
 In the previous code example, we suggested that you use the `.slice()` operator to create a copy the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
 
-There are generally two methods for changing data. The first method is to *mutate* the data by directly changing the data's values. The second method is to replace the data with a new copy which has the desired changes.
+There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
 
 #### Data Change with Mutation
 ```javascript
@@ -488,15 +498,15 @@ var newPlayer = Object.assign({}, player, {score: 2});
 // var newPlayer = {...player, score: 2};
 ```
 
-The end result is the same but by not mutating (or changing the underlying data) directly, our component and overall application performance improves.
+The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
 
-#### Why We Use Immutability in this Tutorial
+#### Making Complex Features Simple
 
 Immutability makes complex features much easier to implement. Later in this tutorial, we will implement a feature that allows us to review the tic-tac-toe game's history. Avoiding direct data mutation allows us to keep previous versions of the game's history.
 
 #### Detecting Changes
 
-Detecting changes in mutable objects is complex because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
+Detecting changes in mutable objects is difficult because they are modified directly. This detection requires the mutable object to be compared to previous copies of itself and the entire object tree to be traversed.
 
 Detecting changes in immutable objects is considerably easier. If the immutable object that is being referenced is different than the previous one, then the object has changed.
 
@@ -508,7 +518,9 @@ You can learn more about `shouldComponentUpdate()` and how you can build *pure c
 
 ### Functional Components
 
-We'll now change the Square to be a **functional component**. In React, **functional components** are components that only contain a `render` method. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered.
+We'll now change the Square to be a **functional component**.
+
+In React, **functional components** are a simpler way to write components that only contain a `render` method. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered.
 
 In general, you'll be able to write components in your React applications as functional components: these components tend to be easier to write and React will optimize them in the future.
 
@@ -526,7 +538,7 @@ function Square(props) {
 
 We'll need to change `this.props` to `props` both times it appears.
 
-When we modified the Square to be a functional component, we also changed `onClick={() => props.onClick()}` to `onClick={props.onClick}`. `onClick={props.onClick()}` will not work because the function that is associated with `props.onClick` will be called immediately instead of being passed down.
+When we modified the Square to be a functional component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). We used the arrow function to access the correct `this` value when Square was a class, but we don't need to worry about `this` inside a functional component.
 
 [View the current code.](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)
 
@@ -534,7 +546,7 @@ When we modified the Square to be a functional component, we also changed `onCli
 
 We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
 
-For now, we'll set the the first move to be 'X' by default. We can set this default by modifying the initial state in our Board constructor:
+We'll set the the first move to be 'X' by default. We can set this default by modifying the initial state in our Board constructor:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -560,7 +572,7 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
   }
 ```
 
-With this change, "X"s and "O"s can take turns. Next, change the "status" text in Board's `render` so that it displays which player has the next turn:
+With this change, "X"s and "O"s can take turns. Let's also change the "status" text in Board's `render` so that it displays which player has the next turn:
 
 ```javascript{2}
   render() {
@@ -631,7 +643,7 @@ class Board extends React.Component {
 
 ### Declaring a Winner
 
-Since we can show which player's turn is next, we should also determine which player wins the game. We can determine a winner by adding this helper function to the end of the file:
+Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. We can determine a winner by adding this helper function to the end of the file:
 
 ```javascript
 function calculateWinner(squares) {
@@ -655,9 +667,7 @@ function calculateWinner(squares) {
 }
 ```
 
-`calculateWinner(squares)` will be called in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Xs Win" or "Os Win".
-
-We'll replace the `status` declaration in Board's `render` function with this code:
+We will call `calculateWinner(squares)` in the Board's `render` function to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in Board's `render` function with this code:
 
 ```javascript{2-8}
   render() {
@@ -673,7 +683,7 @@ We'll replace the `status` declaration in Board's `render` function with this co
       // the rest has not changed
 ```
 
-You can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
 
 ```javascript{3-5}
   handleClick(i) {
@@ -689,18 +699,23 @@ You can now change the Board's `handleClick` function to return early by ignorin
   }
 ```
 
-Congratulations! You have a working tic-tac-toe game _and_ you know the basics of React.
+Congratulations! You now have a working tic-tac-toe game. And now you know the basics of React, which makes *you* the real winner.
 
 [View the current code.](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)
 
-## Storing the Tic-Tac-Toe Game's History
+## Adding Time Travel
 
-By storing the tic-tac-toe game's history, we can revisit past Board configurations. We can achieve this by storing the `squares` array before replacing it with a new `squares` array.
+As a final exercise, let's make it possible to "go back in time" to the previous moves in the game.
 
-We'll create a `history` object to store the `squares` arrays:
+### Storing a History of Moves
+
+If we were mutating the `squares` array, implementing time travel would be very difficult. However, we create a new copy of the `squares` array after every move, and [treat it as immutable](#why-immutability-is-important). This lets us store every past version of the `squares` array, and show how the game board looks after every turn.
+
+We'll store the past `squares` arrays in another array called `history`. The `history` array represents all board states, from the first to the last move, and has a shape like this:
 
 ```javascript
 history = [
+  // Before first move
   {
     squares: [
       null, null, null,
@@ -708,6 +723,7 @@ history = [
       null, null, null,
     ]
   },
+  // After first move
   {
     squares: [
       null, null, null,
@@ -715,11 +731,25 @@ history = [
       null, null, null,
     ]
   },
+  // After second move
+  {
+    squares: [
+      null, null, null,
+      null, 'X', null,
+      null, null, 'O',
+    ]
+  },
   // ...
 ]
 ```
 
-We'll want a top-level Game component to be responsible for displaying the game's history and we can achieve this by moving the state from the Board component to the Game component. Moving the state into the Game component allows us to store all of the game's data at the top-level of our component tree; this includes the `history`.
+Now we need to decide which component should own the `history` state.
+
+### Lifting State Up, Again
+
+We'll want the top-level Game component to display a list of past moves. It will need access to the `history` to do that, so we will place the `history` state in the top-level Game component.
+
+Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we will now lift it up from the Board into the top-level Game component.
 
 First, we'll set up the initial state for the Game component within its constructor:
 
@@ -847,7 +877,7 @@ We'll update the Game component's `render` function to use the most recent histo
   }
 ```
 
-Since the Game is now rendering the game's status, we can refactor the Board's `render` function. After refactoring, the Board's `render` function looks like this:
+Since the Game component is now rendering the game's status, we can remove the corresponding code from the Board's `render` method. After refactoring, the Board's `render` function looks like this:
 
 ```js{1-4}
   render() {
@@ -873,7 +903,7 @@ Since the Game is now rendering the game's status, we can refactor the Board's `
   }
 ```
 
-Next, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`. Concatenation allows us to maintain an accurate history.
+Finally, we need to move the `handleClick` method from the Board component to the Game component. We also need to modify `handleClick` because the Game component's state is structured differently. Within the Game's `handleClick` method, we concatenate new history entries onto `history`. Concatenation allows us to maintain an accurate history.
 
 ```javascript{2-4,10-12}
   handleClick(i) {
@@ -897,11 +927,22 @@ At this point, the Board component only needs the `renderSquare` and `render` me
 
 [View the current code.](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)
 
-### Displaying the Tic-Tac-Toe Game's History
+### Showing the Past Moves
 
-Since we are recording the tic-tac-toe game's history, we can now display the tic-tac-toe game's history. We learned earlier that React elements are first-class JavaScript objects; we can store them and/or pass them around in our applications. To render multiple items in React, we create an array of React elements. Using the `map` function, we can map our data to React elements. The output from the `map` function is an array of React elements. 
+Since we are recording the tic-tac-toe game's history, we can now display it to the player as a list of past moves.
 
-Let's use the `map` function in Game's `render` method:
+We learned earlier that React elements are first-class JavaScript objects; we can pass them around in our applications. To render multiple items in React, we can use an array of React elements.
+
+In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for mapping data to other data, for example:
+
+```js
+const numbers = [1, 2, 3];
+const doubled = numbers.map(x => x * 2); // [2, 4, 6]
+``` 
+
+Using the `map` method, we can map our history of moves to React elements representing buttons on the screen.
+
+Let's use the `map` method in Game's `render` method:
 
 ```javascript{6-15,34}
   render() {
@@ -946,7 +987,7 @@ Let's use the `map` function in Game's `render` method:
 
 [View the current code.](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)
 
-For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which we'll implement. After implementing the `onClick` handler, we should see a list of the moves that have occurred in the game and a warning that says:
+For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which we'll cover in a later section. For now, we should see a list of the moves that have occurred in the game and a warning that says:
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".
@@ -984,14 +1025,16 @@ When a list is re-rendered, React takes each list item's key and searches the pr
 
 **It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended.
+If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
 
 Keys do not need to be globally unique. Keys only needs to be unique between components and their siblings.
 
 
-### Using Keys to Display the Tic-Tac-Toe Game's History
+### Implementing Time Travel
 
-In the tic-tac-toe game's history, we have a unique ID for each step which was recorded when the step occurred. In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
+
+In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
 
 ```js{6}
     const moves = history.map((step, move) => {
@@ -1045,7 +1088,11 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 ```
 
-When a new move is made, we'll update `stepNumber` by adding `stepNumber: history.length` as a parameter to `this.setState`. `this.setState` is called in Game's `handleClick` method. We'll also update `handleClick` to be aware of `stepNumber` when reading the current state. Having `handleClick` be aware of `stepNumber` will enable us to render a specific portion of the game's history:
+We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
+
+The `stepNumber` state we just added reflects the current move to display. When we make a new move and store it in the history, we'll update `stepNumber` by adding `stepNumber: history.length` as part of the `this.setState` argument. This ensures we don't get stuck showing the same move after a new one has been made.
+
+We will also replace reading `this.state.history` with `this.state.history.slice(0, this.state.stepNumber + 1)`. This ensures that if you "go back in time" and then make a new move from that point, we throw away all the "future" history that would now become incorrect.
 
 ```javascript{2,13}
   handleClick(i) {
@@ -1066,7 +1113,7 @@ When a new move is made, we'll update `stepNumber` by adding `stepNumber: histor
   }
 ```
 
-We modify the Game component's `render` method to render the game's history:
+Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
 
 ```javascript{3}
   render() {

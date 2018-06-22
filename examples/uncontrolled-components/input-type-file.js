@@ -1,4 +1,5 @@
 class FileInput extends React.Component {
+  // highlight-range{4}
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);

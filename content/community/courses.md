@@ -35,3 +35,5 @@ permalink: community/courses.html
 - [React Training: Advanced React.js](https://courses.reacttraining.com/p/advanced-react) - Take your React skills to the next level.
 
 - [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
+
+- [React Essentials for Designers](https://learnreact.design) - React courses tailored for designers: the fundamentals, capabilities, limitations and how they relate to design.

@@ -297,6 +297,8 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 
 This use case is not common, but it may occur in UIs like a chat thread that need to handle scroll position in a special way.
 
+A snapshot value (or `null`) should be returned.
+
 For example:
 
 `embed:react-component-reference/get-snapshot-before-update.js`

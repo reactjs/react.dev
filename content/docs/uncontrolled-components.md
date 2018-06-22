@@ -10,7 +10,7 @@ To write an uncontrolled component, instead of writing an event handler for ever
 
 For example, this code accepts a single name in an uncontrolled component:
 
-```javascript{9,18}
+```javascript{5,9,18}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);

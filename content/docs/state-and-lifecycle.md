@@ -104,7 +104,7 @@ class Clock extends React.Component {
 
 `Clock` is now defined as a class rather than a function.
 
-This lets us use additional features such as local state and lifecycle hooks.
+The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle hooks.
 
 ## Adding Local State to a Class
 

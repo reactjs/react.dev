@@ -19,11 +19,11 @@
       forceInternal: true
       subitems:
         - id: setup-option-1-write-code-in-the-browser
-          title: "Setup Option 1: Online Environment"
+          title: "Option 1: Write Code in the Browser"
           href: /tutorial/tutorial.html#setup-option-1-write-code-in-the-browser
           forceInternal: true
         - id: setup-option-2-local-development-environment
-          title: "Setup Option 2: Local Environment"
+          title: "Option 2: Local Development Environment"
           href: /tutorial/tutorial.html#setup-option-2-local-development-environment
           forceInternal: true
         - id: help-im-stuck
@@ -97,9 +97,9 @@
           title: Showing the Past Moves
           href: /tutorial/tutorial.html#showing-the-past-moves
           forceInternal: true
-        - id: keys
-          title: Keys
-          href: /tutorial/tutorial.html#keys
+        - id: picking-a-key
+          title: Picking a Key
+          href: /tutorial/tutorial.html#picking-a-key
           forceInternal: true
         - id: implementing-time-travel
           title: Implementing Time Travel

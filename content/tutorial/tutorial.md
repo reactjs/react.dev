@@ -197,7 +197,7 @@ First, change the button tag that is returned from the Square component's `rende
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={() => alert('click')}>
+      <button className="square" onClick={function() { alert('click'); }}>
         {this.props.value}
       </button>
     );
@@ -205,13 +205,27 @@ class Square extends React.Component {
 }
 ```
 
-If we click on a Square now, we should get an alert in our browser. The `onClick` assignment uses the new JavaScript [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions) syntax.
+If we click on a Square now, we should get an alert in our browser.
 
 >Note
 >
->With `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. Passing `onClick={alert('click')}` would fire the alert immediately instead of when a Square is clicked.
+>To save typing and avoid the [confusing behavior of `this`](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/), we will use the [arrow function syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions) for event handlers here and further below:
+>
+>```javascript{4}
+>class Square extends React.Component {
+>  render() {
+>    return (
+>      <button className="square" onClick={() => alert('click')}>
+>        {this.props.value}
+>      </button>
+>    );
+>  }
+>}
+>```
+>
+>Notice how with `onClick={() => alert('click')}`, we're passing *a function* as the `onClick` prop. It only fires after a click. Forgetting `() =>` and writing `onClick={alert('click')}` is a common mistake, and would fire the alert every time the component re-renders.
 
-We want the Square component to "remember" when it gets clicked, and fill itself with an "X" mark. To "remember" things, components need **state**.
+As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
 
 React components can have state by setting `this.state` in their constructors. `this.state` should be considered as private to a React component that it's defined in. Let's store the current value of the Square in `this.state`, and change it when the Square is clicked.
 

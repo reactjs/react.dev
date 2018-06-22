@@ -7,11 +7,9 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element).
+This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
 
-So far we have only learned one way to update the UI.
-
-We call `ReactDOM.render()` to change the rendered output:
+Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `ReactDOM.render()` to change the rendered output:
 
 ```js{8-11}
 function tick() {
@@ -249,9 +247,7 @@ The `componentDidMount()` hook runs after the component output has been rendered
 
 Note how we save the timer ID right on `this`.
 
-While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that is not used for the visual output.
-
-If you don't use something in `render()`, it shouldn't be in the state.
+While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a timer ID).
 
 We will tear down the timer in the `componentWillUnmount()` lifecycle hook:
 

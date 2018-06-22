@@ -8,7 +8,7 @@ permalink: community/starter-kits.html
 ## Recommended by the React Team
 
 * **[Create React App](https://github.com/facebook/create-react-app)** - An officially supported way to start a client-side React project with no configuration
-* **[Next.js](https://learnnextjs.com/)** - Framework for server-rendered or statically-exported React apps
+* **[Next.js](https://nextjs.org/)** - Framework for server-rendered or statically-exported React apps
 * **[Gatsby](https://www.gatsbyjs.org/)** - Blazing-fast static site generator for React
 * **[nwb](https://github.com/insin/nwb)** - A toolkit for React apps, libraries and other npm modules for the web
 * **[razzle](https://github.com/jaredpalmer/razzle)** - Create server-rendered universal JavaScript applications with no configuration

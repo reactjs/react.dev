@@ -22,6 +22,7 @@ permalink: community/ui-components.html
 * **[React Web](https://github.com/taobaofed/react-web)** A framework for building web apps with React.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component
+* **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
 * **[react-bootstrap](https://github.com/stevoland/react-bootstrap):** Bootstrap 3 components built with React.
 * **[react-bootstrap-dialog](https://github.com/akiroom/react-bootstrap-dialog):** React Dialog component for react-bootstrap, instead of `window.alert` or `window.confirm`
 * **[react-bootstrap-table](https://github.com/AllenFang/react-bootstrap-table):** It's a react table for Bootstrap.
@@ -65,6 +66,7 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
+* **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react)** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
 
 ## Fee Based Components
 

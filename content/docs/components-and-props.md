@@ -16,7 +16,7 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
-Components let you split the UI into independent, reusable pieces, and think about each piece in isolation.
+Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
 
@@ -85,11 +85,11 @@ Let's recap what happens in this example:
 3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
 4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
 
->**Caveat:**
->
->Always start component names with a capital letter.
+>**Note:** Always start component names with a capital letter.
 >
 >React treats components starting with lowercase letters as DOM tags. For example, `<div />` represents an HTML div tag, but `<Welcome />` represents a component and requires `Welcome` to be in scope.
+>
+>You can read more about the reasoning behind this convention [here.](/docs/jsx-in-depth.html#user-defined-components-must-be-capitalized)
 
 ## Composing Components
 

@@ -23,6 +23,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Rio de Janeiro](https://www.meetup.com/pt-BR/React-Rio-de-Janeiro/)
 * [São Paulo](http://www.meetup.com/pt-BR/ReactJS-SP/)
 
+## Bolivia
+* [Bolivia](https://www.meetup.com/ReactBolivia/)
+
 ## Canada
 * [Montreal, QC - ReactJS](https://www.meetup.com/fr-FR/ReactMontreal/)
 * [Montreal, QC - React Native](https://www.meetup.com/fr-FR/React-Native-MTL/)
@@ -58,6 +61,8 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## India
 * [Bangalore](https://www.meetup.com/ReactJS-Bangalore/)
+* [Chennai](https://www.meetup.com/React-Chennai/)
+* [Gurgaon](https://www.meetup.com/React-Gurgaon/)
 
 ## Ireland
 * [Dublin](http://www.meetup.com/ReactJS-Dublin/)
@@ -83,6 +88,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Poland
 * [Warsaw](http://www.meetup.com/React-js-Warsaw/)
+
+## Scotland (UK)
+* [Edinburgh](https://www.meetup.com/React-Scotland/)
 
 ## Spain
 * [Barcelona](http://www.meetup.com/ReactJS-Barcelona/)
@@ -111,6 +119,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [New York, NY - React Native](http://www.meetup.com/React-Native-NYC/)
 * [Palo Alto, CA - React Native](http://www.meetup.com/React-Native-Silicon-Valley/)
 * [Phoenix, AZ - ReactJS](http://www.meetup.com/ReactJS-Phoenix/)
+* [Pittsburgh, PA - ReactJS/React Native](https://www.meetup.com/ReactPgh/)
 * [Portland, OR - ReactJS](http://www.meetup.com/Portland-ReactJS/)
 * [Provo, UT - ReactJS](http://www.meetup.com/ReactJS-Utah/)
 * [Sacramento, CA - ReactJS](http://www.meetup.com/Sacramento-ReactJS-Meetup/)

@@ -162,9 +162,7 @@ const Header = ({location}: {location: Location}) => (
                 borderRadius: 15,
               },
             }}
-            href="https://github.com/facebook/react/releases"
-            target="_blank"
-            rel="noopener">
+            href="/versions">
             v{version}
           </a>
           <a

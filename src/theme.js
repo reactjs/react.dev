@@ -301,6 +301,10 @@ const sharedStyles = {
     '& h3': {
       paddingTop: 45,
 
+      [media.lessThan('small')]: {
+        wordBreak: 'break-all',
+      },
+
       [media.greaterThan('xlarge')]: {
         fontSize: 25,
         lineHeight: 1.3,
@@ -336,7 +340,7 @@ const sharedStyles = {
       },
 
       '& li': {
-        marginTop: 20,
+        marginTop: 10,
       },
 
       '& li.button-newapp': {
@@ -345,6 +349,7 @@ const sharedStyles = {
 
       '& ol, & ul': {
         marginLeft: 20,
+        marginTop: 10,
       },
     },
 

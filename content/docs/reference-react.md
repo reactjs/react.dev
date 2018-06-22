@@ -49,6 +49,11 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 - [`React.Fragment`](#reactfragment)
 
+### Refs
+
+- [`React.createRef`](#reactcreateref)
+- [`React.forwardRef`](#reactforwardref)
+
 * * *
 
 ## Reference
@@ -217,3 +222,26 @@ render() {
 ```
 
 You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
+
+
+### `React.createRef`
+
+`React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
+`embed:16-3-release-blog-post/create-ref-example.js`
+
+### `React.forwardRef`
+
+`React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
+
+* [Forwarding refs to DOM components](/docs/forwarding-refs.html#forwarding-refs-to-dom-components)
+* [Forwarding refs in higher-order-components](/docs/forwarding-refs.html#forwarding-refs-in-higher-order-components)
+
+`React.forwardRef` accepts a rendering function as an argument. React will call this function with `props` and `ref` as two arguments. This function should return a React node.
+
+`embed:reference-react-forward-ref.js`
+
+In the above example, React passes a `ref` given to `<FancyButton ref={ref}>` element as a second argument to the rendering function inside the `React.forwardRef` call. This rendering function passes the `ref` to the `<button ref={ref}>` element.
+
+As a result, after React attaches the ref, `ref.current` will point directly to the `<button>` DOM element instance.
+
+For more information, see [forwarding refs](/docs/forwarding-refs.html).

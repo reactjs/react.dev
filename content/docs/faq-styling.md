@@ -36,7 +36,7 @@ Yes, see the docs on styling [here](/docs/dom-elements.html#style).
 
 ### Are inline styles bad?
 
-CSS classes are generally more efficient than inline styles.
+CSS classes are generally better for performance than inline styles.
 
 ### What is CSS-in-JS?
 

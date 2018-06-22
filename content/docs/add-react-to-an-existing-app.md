@@ -72,6 +72,10 @@ Similarly, you can render a React component inside a DOM element somewhere insid
 
 [Learn more about integrating React with existing code.](/docs/integrating-with-other-libraries.html#integrating-with-other-view-libraries)
 
+### A Complete Example
+
+You can find step-by-step instructions detailing a basic implementation from scratch, including Babel and Webpack setup [here](https://medium.com/@JedaiSaboteur/creating-a-react-app-from-scratch-f3c693b84658).
+
 ### Development and Production Versions
 
 By default, React includes many helpful warnings. These warnings are very useful in development.

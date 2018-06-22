@@ -1,13 +1,15 @@
 class FileInput extends React.Component {
+  // highlight-range{4}
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.fileInput = React.createRef();
   }
   // highlight-range{4}
   handleSubmit(event) {
     event.preventDefault();
     alert(
-      `Selected file - ${this.fileInput.files[0].name}`
+      `Selected file - ${this.fileInput.current.files[0].name}`
     );
   }
 
@@ -16,12 +18,10 @@ class FileInput extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Upload file:
-          {/* highlight-range{1-6} */}
+          {/* highlight-range{1-3} */}
           <input
             type="file"
-            ref={input => {
-              this.fileInput = input;
-            }}
+            ref={this.fileInput}
           />
         </label>
         <br />

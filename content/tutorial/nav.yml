@@ -1,21 +1,30 @@
 - title: Tutorial
   items:
-    - id: before-we-start
-      title: Before We Start
-      href: /tutorial/tutorial.html#before-we-start
+    - id: before-we-start-the-tutorial
+      title: Before We Start the Tutorial
+      href: /tutorial/tutorial.html#before-we-start-the-tutorial
       forceInternal: true
       subitems:
         - id: what-were-building
-          title: What We're Building
-          href: /tutorial/tutorial.html#what-were-building
+          title: What Are We Building?
+          href: /tutorial/tutorial.html#what-are-we-building
           forceInternal: true
         - id: prerequisites
           title: Prerequisites
           href: /tutorial/tutorial.html#prerequisites
           forceInternal: true
-        - id: how-to-follow-along
-          title: How to Follow Along
-          href: /tutorial/tutorial.html#how-to-follow-along
+    - id: setup-for-the-tutorial
+      title: Setup for the Tutorial
+      href: /tutorial/tutorial.html#setup-for-the-tutorial
+      forceInternal: true
+      subitems:
+        - id: setup-option-1-write-code-in-the-browser
+          title: "Option 1: Write Code in the Browser"
+          href: /tutorial/tutorial.html#setup-option-1-write-code-in-the-browser
+          forceInternal: true
+        - id: setup-option-2-local-development-environment
+          title: "Option 2: Local Development Environment"
+          href: /tutorial/tutorial.html#setup-option-2-local-development-environment
           forceInternal: true
         - id: help-im-stuck
           title: Help, I'm Stuck!
@@ -27,30 +36,34 @@
       forceInternal: true
       subitems:
         - id: what-is-react
-          title: What is React?
+          title: What Is React?
           href: /tutorial/tutorial.html#what-is-react
           forceInternal: true
-        - id: getting-started
-          title: Getting Started
-          href: /tutorial/tutorial.html#getting-started
+        - id: inspecting-the-starter-code
+          title: Inspecting the Starter Code
+          href: /tutorial/tutorial.html#inspecting-the-starter-code
           forceInternal: true
         - id: passing-data-through-props
           title: Passing Data Through Props
           href: /tutorial/tutorial.html#passing-data-through-props
           forceInternal: true
-        - id: an-interactive-component
-          title: An Interactive Component
-          href: /tutorial/tutorial.html#an-interactive-component
+        - id: making-an-interactive-component
+          title: Making an Interactive Component
+          href: /tutorial/tutorial.html#making-an-interactive-component
           forceInternal: true
         - id: developer-tools
           title: Developer Tools
           href: /tutorial/tutorial.html#developer-tools
           forceInternal: true
-    - id: lifting-state-up
-      title: Lifting State Up
-      href: /tutorial/tutorial.html#lifting-state-up
+    - id: completing-the-game
+      title: Completing the Game
+      href: /tutorial/tutorial.html#completing-the-game
       forceInternal: true
       subitems:
+        - id: lifting-state-up
+          title: Lifting State Up
+          href: /tutorial/tutorial.html#lifting-state-up
+          forceInternal: true
         - id: why-immutability-is-important
           title: Why Immutability Is Important
           href: /tutorial/tutorial.html#why-immutability-is-important
@@ -67,18 +80,26 @@
           title: Declaring a Winner
           href: /tutorial/tutorial.html#declaring-a-winner
           forceInternal: true
-    - id: storing-a-history
-      title: Storing A History
-      href: /tutorial/tutorial.html#storing-a-history
+    - id: adding-time-travel
+      title: Adding Time Travel
+      href: /tutorial/tutorial.html#adding-time-travel
       forceInternal: true
       subitems:
-        - id: showing-the-moves
-          title: Showing the Moves
-          href: /tutorial/tutorial.html#showing-the-moves
+        - id: storing-a-history-of-moves
+          title: Storing a History of Moves
+          href: /tutorial/tutorial.html#storing-a-history-of-moves
           forceInternal: true
-        - id: keys
-          title: Keys
-          href: /tutorial/tutorial.html#keys
+        - id: lifting-state-up-again
+          title: Lifting State Up, Again
+          href: /tutorial/tutorial.html#lifting-state-up-again
+          forceInternal: true
+        - id: showing-the-past-moves
+          title: Showing the Past Moves
+          href: /tutorial/tutorial.html#showing-the-past-moves
+          forceInternal: true
+        - id: picking-a-key
+          title: Picking a Key
+          href: /tutorial/tutorial.html#picking-a-key
           forceInternal: true
         - id: implementing-time-travel
           title: Implementing Time Travel

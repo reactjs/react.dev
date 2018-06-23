@@ -67,3 +67,13 @@ babel --presets=react-app src -d build
 ```html
 <script src="build/widget.js"></script>
 ```
+
+### 5. Production
+
+You probably already have a minification step for your JavaScript - don't forget to minify your component files too!
+
+_Change React scripts to production mode_
+```
+https://unpkg.com/react@16/umd/react.<strong>production.min.js</strong>
+https://unpkg.com/react-dom@16/umd/react-dom.<strong>production.min.js</strong>
+```

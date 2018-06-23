@@ -21,6 +21,11 @@ August 16-17 in Salt Lake City, Utah USA
 
 [Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
 
+### React DEV Conf China
+August 18 in Guangzhou, China
+
+[Website](https://react.w3ctech.com)
+
 ### ReactFoo Delhi 
 August 18 in Delhi, India
 

@@ -6,11 +6,15 @@ prev: add-react-to-a-new-app.html
 next: cdn-links.html
 ---
 
-You don't need to rewrite your app to start using React.
+Use as little, or as much of React as you need.
 
-We recommend adding React to a small part of your application, such as an individual widget, so you can see if it works well for your use case.
+While you could [create a single-page app](/docs/add-react-to-a-new-app.html) with React, **the vast majority of the websites aren't, and don't need to be single-page apps**.
 
-### 1. Add React [CDN links][cdn] to your HTML
+React has always been designed for progressive adoption, and **you can use as little or as much of React as you need**. Quite often, people only want to add some "sprinkles of interactivity" to an existing page, and React components are a great tool for that.
+
+In some cases, [more parts of the page become driven by React over time](https://www.youtube.com/watch?v=BF58ZJ1ZQxY), but in others React stays as a flexible and unopinionated tool alongside the existing markup and code.
+
+### 1. Add React [CDN links](/docs/cdn-links.html) to your HTML
 
 ```html
 <script
@@ -41,7 +45,7 @@ ReactDOM.render(
 
 ### 3. Compile with Babel
 
-[Babel][babel] is a tool that converts [JSX][jsx] and future JavaScript syntax into ES5 JavaScript compatible with older browsers.
+[Babel](https://babeljs.io) is a tool that converts [JSX](/docs/introducing-jsx.html) and future JavaScript syntax into ES5 JavaScript compatible with older browsers.
 
 _Install `babel` with `yarn` or `npm`_
 
@@ -61,8 +65,3 @@ babel --presets=react-app src -d build
 <script src="build/widget.js"></script>
 ```
 
-<!-- Links: -->
-
-[babel]: https://babeljs.io
-[cdn]: /docs/cdn-links.html
-[jsx]: /docs/introducing-jsx.html

@@ -19,11 +19,11 @@ In some cases, [more parts of the page become driven by React over time](https:/
 ```html
 <script
   crossorigin
-  src="https://unpkg.com/react@16/umd/react.production.min.js">
+  src="https://unpkg.com/react@16/umd/react.development.min.js">
 </script>
 <script
   crossorigin
-  src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js">
+  src="https://unpkg.com/react-dom@16/umd/react-dom.development.min.js">
 </script>
 ```
 
@@ -47,15 +47,18 @@ ReactDOM.render(
 
 [Babel](https://babeljs.io) is a tool that converts [JSX](/docs/introducing-jsx.html) and future JavaScript syntax into ES5 JavaScript compatible with older browsers.
 
-_Install `babel` with `yarn` or `npm`_
+_Install `babel` with [`yarn`](https://yarnpkg.com) or [`npm`](https://npmjs.com)_
 
 ```shell
-npm install --global babel-cli babel-preset-react-app
+npm init # if you don't already have a package.json
+npm install --global babel-cli 
+npm install babel-preset-react-app
 ```
 
 _Example: compile files in `src` folder to `build`_
 
 ```shell
+NODE_ENV=development
 babel --presets=react-app src -d build
 ```
 
@@ -64,4 +67,3 @@ babel --presets=react-app src -d build
 ```html
 <script src="build/widget.js"></script>
 ```
-

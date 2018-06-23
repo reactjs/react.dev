@@ -1,6 +1,6 @@
 ---
 id: tutorial
-title: "Tutorial: Intro To React"
+title: "Tutorial: Intro to React"
 layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html

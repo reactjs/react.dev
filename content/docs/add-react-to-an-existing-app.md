@@ -30,16 +30,33 @@ In some cases, [more parts of the page become driven by React over time](https:/
 ### 2. Write your components
 
 ```js
-// src/widget.js
-class Widget extends React.Component {
+// src/button.js
+
+class Button extends React.Component {
   render() {
-    return <div>Hello, world!</div>;
+    return (
+      <button className="btn">{this.props.label}</button>
+    );
   }
 }
+```
+
+```js
+// Render in several places
 
 ReactDOM.render(
-  <Widget />,
-  document.querySelector('.widget')
+  <Button label="Sign Out" />,
+  document.querySelector('.sign-out')
+);
+
+ReactDOM.render(
+  <Button label="Sign In" />,
+  document.querySelector('.sign-in')
+);
+
+ReactDOM.render(
+  <Button label="Edit" />,
+  document.querySelector('.edit')
 );
 ```
 
@@ -51,7 +68,7 @@ _Install `babel` with [`yarn`](https://yarnpkg.com) or [`npm`](https://npmjs.com
 
 ```shell
 npm init # if you don't already have a package.json
-npm install --global babel-cli 
+npm install --global babel-cli
 npm install babel-preset-react-app
 ```
 
@@ -65,7 +82,7 @@ babel --presets=react-app src -d build
 ### 4. Add components to page
 
 ```html
-<script src="build/widget.js"></script>
+<script src="build/button.js"></script>
 ```
 
 ### 5. Production
@@ -73,6 +90,7 @@ babel --presets=react-app src -d build
 You probably already have a minification step for your JavaScript - don't forget to minify your component files too!
 
 _Change React scripts to production mode_
+
 ```
 https://unpkg.com/react@16/umd/react.<strong>production.min.js</strong>
 https://unpkg.com/react-dom@16/umd/react-dom.<strong>production.min.js</strong>

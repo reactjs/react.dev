@@ -19,11 +19,11 @@ In some cases, [more parts of the page become driven by React over time](https:/
 ```html
 <script
   crossorigin
-  src="https://unpkg.com/react@16/umd/react.development.min.js">
+  src="https://unpkg.com/react@16/umd/react.development.js">
 </script>
 <script
   crossorigin
-  src="https://unpkg.com/react-dom@16/umd/react-dom.development.min.js">
+  src="https://unpkg.com/react-dom@16/umd/react-dom.development.js">
 </script>
 ```
 

@@ -9,7 +9,7 @@ You are probably here because you got one of the following error messages:
 *React 16.0.0+*
 > Warning:
 >
-> Element ref was specified as a string (myRefName) but no owner was set. You may have multiple copies of React loaded. (details: https://fb.me/react-refs-must-have-owner).
+> addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded (details: https://fb.me/react-refs-must-have-owner).
 
 *earlier versions of React*
 > Warning:

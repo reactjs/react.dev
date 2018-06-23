@@ -31,7 +31,7 @@ In some cases, [more parts of the page become driven by React over time](https:/
 
 ```js
 // src/widget.js
-class Widget extends React.Component() {
+class Widget extends React.Component {
   render() {
     return <div>Hello, world!</div>;
   }

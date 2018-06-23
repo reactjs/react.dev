@@ -14,6 +14,21 @@ redirect_from:
 
 ## Before We Start the Tutorial
 
+While you can learn React from the [step-by-step introduction to concepts](/docs/hello-world.html), many people prefer to learn by doing. This tutorial doesn't assume any existing React knowledge, and dives straight into the most important topics you'll encounter daily in React development.
+
+We will build a small game during this tutorial, but the concepts you will learn are fundamental to React, and apply to any apps developed with it.
+
+The tutorial is divided into several sections:
+
+* [Setup for the Tutorial](#setup-for-the-tutorial) will give you a **starting point** to follow the tutorial.
+* [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
+* [Completing the Game](#completing-the-game) will teach you the **most common techniques** in React development.
+* [Adding Time Travel](#adding-time-travel) will give you a **deeper insight** into the unique strengths of React.
+
+You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+
+It's fine to copy and paste code as you're following along the tutorial, but we recommend to type it by hand. This will help you develop a muscle memory and a stronger understanding.
+
 ### What Are We Building?
 
 In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.

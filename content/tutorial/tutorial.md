@@ -20,10 +20,10 @@ We will build a small game during this tutorial, but the concepts you will learn
 
 The tutorial is divided into several sections:
 
-* [Setup for the Tutorial](#setup-for-the-tutorial) will give you a **starting point** to follow the tutorial.
+* [Setup for the Tutorial](#setup-for-the-tutorial) will give you **a starting point** to follow the tutorial.
 * [Overview](#overview) will teach you **the fundamentals** of React: components, props, and state.
-* [Completing the Game](#completing-the-game) will teach you the **most common techniques** in React development.
-* [Adding Time Travel](#adding-time-travel) will give you a **deeper insight** into the unique strengths of React.
+* [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
+* [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
 
 You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
 

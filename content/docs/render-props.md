@@ -104,7 +104,7 @@ As a first pass, you might try rendering the `<Cat>` *inside `<Mouse>`'s `render
 ```js
 class Cat extends React.Component {
   render() {
-    const mouse = this.props.mouse
+    const mouse = this.props.mouse;
     return (
       <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
     );

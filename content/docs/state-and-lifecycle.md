@@ -7,11 +7,9 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element).
+This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
 
-So far we have only learned one way to update the UI.
-
-We call `ReactDOM.render()` to change the rendered output:
+Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `ReactDOM.render()` to change the rendered output:
 
 ```js{8-11}
 function tick() {
@@ -106,7 +104,7 @@ class Clock extends React.Component {
 
 `Clock` is now defined as a class rather than a function.
 
-This lets us use additional features such as local state and lifecycle hooks.
+The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle hooks.
 
 ## Adding Local State to a Class
 

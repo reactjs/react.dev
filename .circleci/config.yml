@@ -2,12 +2,12 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:latest
+      - image: circleci/node:8
     steps:
       - checkout
       - restore_cache:
           keys:
-          - dependencies-{{ checksum "package.json" }}
+          - dependencies-{{ checksum "yarn.lock" }}
           # fallback to using the latest cache if no exact match is found
           - dependencies-
       - run:
@@ -16,7 +16,7 @@ jobs:
       - save_cache:
           paths:
             - node_modules
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{ checksum "yarn.lock" }}
       - run:
           name: Check Prettier, ESLint, Flow
           command: yarn ci-check

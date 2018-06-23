@@ -92,12 +92,13 @@ class LoginControl extends React.Component {
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
-    
-    const button = isLoggedIn ? (
-      <LogoutButton onClick={this.handleLogoutClick} />
-    ) : (
-      <LoginButton onClick={this.handleLoginClick} />
-    );
+    let button;
+
+    if (isLoggedIn) {
+      button = <LogoutButton onClick={this.handleLogoutClick} />;
+    } else {
+      button = <LoginButton onClick={this.handleLoginClick} />
+    }
 
     return (
       <div>
@@ -238,4 +239,4 @@ ReactDOM.render(
 
 [Try it on CodePen.](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance, `componentWillUpdate` and `componentDidUpdate` will still be called.
+Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.

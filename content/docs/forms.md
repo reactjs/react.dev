@@ -64,7 +64,7 @@ class NameForm extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/VmmPgp?editors=0010)
 
 Since the `value` attribute is set on our form element, the displayed value will always be `this.state.value`, making the React state the source of truth. Since `handleChange` runs on every keystroke to update the React state, the displayed value will update as the user types.
 
@@ -178,7 +178,7 @@ class FlavorForm extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
 
 Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 
@@ -254,7 +254,7 @@ class Reservation extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/wgedvV?editors=0010)
 
 Note how we used the ES6 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) syntax to update the state key corresponding to the given input name:
 

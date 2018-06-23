@@ -37,7 +37,7 @@ class NameForm extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
 Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
 
@@ -80,5 +80,5 @@ You should use the File API to interact with the files. The following example sh
 
 `embed:uncontrolled-components/input-type-file.js`
 
-[Try it on CodePen](codepen://uncontrolled-components/input-type-file)
+[](codepen://uncontrolled-components/input-type-file)
 

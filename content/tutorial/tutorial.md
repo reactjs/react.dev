@@ -18,7 +18,7 @@ redirect_from:
 
 In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
 
-You can see what we'll be building here: [Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010). If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
 
 We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and is updated as the game progresses.
 
@@ -38,7 +38,7 @@ There are two ways to complete this tutorial: you can either write the code in y
 
 This is the quickest way to get started!
 
-First, open this [starter code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010) in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
+First, open this **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** in a new tab. The new tab should display an empty tic-tac-toe game board and React code. We will be editing the React code in this tutorial.
 
 You can now skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
 
@@ -135,9 +135,7 @@ The `ShoppingList` component above only renders built-in DOM components like `<d
 
 ## Inspecting the Starter Code
 
-**If you're going to work on the tutorial in your browser,** open this code in a new tab: [Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010).
-
-**If you're going to work on the tutorial locally,** open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
 
 This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need focus on learning React and programming the tic-tac-toe game.
 
@@ -184,7 +182,7 @@ After: You should see a number in each square in the rendered output.
 
 ![React Devtools](../images/tutorial/tictac-numbers.png)
 
-**[View the current code.](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)**
 
 Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
 
@@ -288,7 +286,7 @@ By calling `this.setState` from an `onClick` handler in the Square's `render` me
 
 When you call `setState` in a component, React automatically updates the child components inside of it too.
 
-**[View the current code.](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)**
 
 ### Developer Tools
 
@@ -389,7 +387,7 @@ We will now use the prop passing mechanism again. We will modify the Board to in
   }
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)**
 
 Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
 
@@ -500,7 +498,7 @@ class Board extends React.Component {
 }
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)**
 
 After these changes, we're again able to click on the Squares to fill them. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
 
@@ -568,9 +566,9 @@ function Square(props) {
 }
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
-
 We have changed `this.props` to `props` both times it appears.
+
+**[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
 >Note
 >
@@ -673,7 +671,7 @@ class Board extends React.Component {
 }
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)**
 
 ### Declaring a Winner
 
@@ -733,7 +731,7 @@ We can now change the Board's `handleClick` function to return early by ignoring
   }
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)**
 
 Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So *you're* probably the real winner here.
 
@@ -965,7 +963,7 @@ Finally, we need to move the `handleClick` method from the Board component to th
 
 At this point, the Board component only needs the `renderSquare` and `render` methods. The game's state and the `handleClick` method should be in the Game component.
 
-**[View the current code.](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
 
 ### Showing the Past Moves
 
@@ -1025,7 +1023,7 @@ Let's `map` over the `history` in the Game's `render` method:
   }
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
 For each move in the tic-tac-toes's game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning that says:
 
@@ -1089,7 +1087,7 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
     });
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
+**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)**
 
 Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
 
@@ -1164,9 +1162,9 @@ Finally, we will modify the Game component's `render` method from always renderi
     // the rest has not changed
 ```
 
-**[View the current code.](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
-
 If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+
+**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
 ### Wrapping Up
 
@@ -1179,7 +1177,7 @@ Congratulations! You've created a tic-tac-toe game that:
 
 Nice work! We hope you now feel like you have a decent grasp on how React works.
 
-Check out the final result here: [Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010).
+Check out the final result here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**.
 
 If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game which are listed in order of increasing difficulty:
 

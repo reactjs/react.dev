@@ -42,7 +42,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
 
 This code displays a bullet list of numbers between 1 and 5.
 
@@ -94,7 +94,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
 ## Keys
 
@@ -202,7 +202,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
 
 A good rule of thumb is that elements inside the `map()` call need keys.
 
@@ -246,7 +246,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
 Keys serve as a hint to React but they don't get passed to your components. If you need the same value in your component, pass it explicitly as a prop with a different name:
 
@@ -296,6 +296,6 @@ function NumberList(props) {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 Sometimes this results in clearer code, but this style can also be abused. Like in JavaScript, it is up to you to decide whether it is worth extracting a variable for readability. Keep in mind that if the `map()` body is too nested, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).

@@ -10,7 +10,7 @@ Use as little or as much React as you need.
 
 React is designed for gradual adoption, and **you can use as little or as much React as you need**. Perhaps you only want to add some "sprinkles of interactivity" to an existing page. React components are a great way to do that.
 
-The majority of websites aren't, and don't need to be, [single-page apps](/docs/add-react-to-a-new-app.html). With **a few lines of code and no build tooling**, try React in a small part of your website. You can then either [gradually expand its presence](https://www.youtube.com/watch?v=BF58ZJ1ZQxY), or keep it contained to a few dynamic widgets.
+The majority of websites aren't, and don't need to be, [single-page apps](/docs/add-react-to-a-new-app.html). With **a few lines of code and no build tooling**, try React in a small part of your website. You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
 
 ## Add React in One Minute
 
@@ -18,51 +18,51 @@ In this section, we will show how to add a React component to an existing HTML p
 
 There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/e719c1eff0f004449c3e3c1c816f9937a184ba83.zip)
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/b396eb0333064a2859b6cf27fa6b451f9e4a8c6a.zip)
 
 ### Step 1: Add a DOM Container to the HTML
 
-First, open the HTML markup of the page where you'd like to use React. Add an empty `<div>` tag to mark the spot where you want to display something with it. For example:
+First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
 
 ```html{3}
 <!-- ... existing HTML ... -->
 
-  <div class="like_button_container"></div>
+<div class="like_button_container"></div>
 
 <!-- ... existing HTML ... -->
 ```
 
-We gave this `<div>` a unique `class` HTML attribute. This will allow us to find it from the JavaScript code later.
+We gave this `<div>` a unique `class` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
 
 >Tip
 >
->This `<div>` is called a "DOM container" because it will *contain* a React component. It can be placed **anywhere** inside the `<body>` tag. You can have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
+>You can place a "container" `<div>` like this **anywhere** inside the `<body>` tag. You may have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
 
 ### Step 2: Add the Script Tags
 
 Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
 
 ```html{5,6,9}
-    <!-- ... other HTML ... -->
+  <!-- ... other HTML ... -->
 
-    <!-- Load React. -->
-    <!-- Change .development.js to .production.min.js in both tags before deployment! -->
-    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+  <!-- Load React. -->
+  <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
-    <!-- Load our React component. -->
-    <script src="like_button.js"></script>
+  <!-- Load our React component. -->
+  <script src="like_button.js"></script>
 
-  </body>
-</html>
+</body>
 ```
 
 The first two tags load React. The third one will load your component code.
 
-
 ### Step 3: Create a React Component
 
-Create a file called `like_button.js` next to your HTML page, and paste [this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/a29c36bd29084ac2c3267176db9cd7afd55d399d/LikeButton.js).
+Create a file called `like_button.js` next to your HTML page.
+
+Open this [this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js) and paste it into the file you created.
 
 >Tip
 >
@@ -74,48 +74,43 @@ After the starter code, add two lines to the bottom of `like_button.js`:
 // ... the starter code you pasted ...
 
 let domContainer = document.querySelector('.like_button_container');
-ReactDOM.render(React.createElement(LikeButton), domContainer);
+ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-These two lines of code find the DOM container element, and then display our "Like" button React component inside of it. And that's the end of this section! There is no step four. **You have just added the first React component to your website.**
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
+
+### You're Done!
+
+There is no step four. **You have just added the first React component to your website.**
+
+Check out the next sections for more tips on integrating React.
 
 **[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/e719c1eff0f004449c3e3c1c816f9937a184ba83.zip)**
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/b396eb0333064a2859b6cf27fa6b451f9e4a8c6a.zip)**
 
+## Tip: Minify JavaScript for Production
 
-## Development and Production Versions
+Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
 
+If you already minify the application scripts, all you need to do is to ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
 
-In both `<script>` tags, we used a version of React intended for development:
-
-
-```html
-<script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
-```
-
-It has many helpful warnings and better error messages, but it's not suitable for production.
-
-During deployment, replace `development.js` with `production.min.js` in both tags:
-
-```html
+```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
-Now you can ship React to your users!
+If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
+## Optional: Try React with JSX
 
-## Optional: Add JSX
-
-In the example above, we only relied on features that are natively supported by the browsers.
-
-This is why we used `React.createElement()` to specify what to display on the screen:
+In the examples above, we only relied on features that are natively supported by the browsers. This is why we used a JavaScript function call to tell React what to display:
 
 ```js
+const e = React.createElement;
+
 // Display a "Like" button
-return React.createElement(
+return e(
   'button',
   { onClick: () => this.setState({ liked: true }) },
   'Like'
@@ -125,6 +120,7 @@ return React.createElement(
 However, React also offers an option to use [JSX](/docs/introducing-jsx.html) instead:
 
 ```js
+// Display a "Like" button
 return (
   <button onClick={() => this.setState({ liked: true })}>
     Like
@@ -132,6 +128,32 @@ return (
 );
 ```
 
-While **JSX is optional**, most people prefer it after spending some time with React.
+These two code snippets are equivalent. While **JSX is [completely optional](/docs/react-without-jsx.html)**, many people find it helpful for writing UI code.
 
+### Try JSX Online
 
+The quickest way to try JSX is to use the [online JSX converter](http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=). You can type some code using JSX in the left pane, and copy the output from the right pane.
+
+### Add JSX to a Project
+
+If you want to add JSX to your project, follow these three steps:
+
+1. [Install Node.js](https://nodejs.org/)
+2. Run `npm init -y` in your project folder (**don't skip this step!**)
+3. Run `npm install babel-cli@6 babel-preset-react-app@3`
+
+You can now use JSX!
+
+### How to Compile JSX
+
+Create a folder called `src`. Then run this command in the terminal:
+
+```
+npx babel --watch src --out-dir . --presets react-app/prod 
+```
+
+Inside the `src` folder, you can use JSX and modern JavaScript features. For every source JavaScript file in the `src` directory, this command will create a plain JavaScript file with the same name in the project root. When you edit the files in `src`, the transform will re-run automatically.
+
+For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser.
+
+The tool we just used is called Babel. You can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).

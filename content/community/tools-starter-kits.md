@@ -16,6 +16,7 @@ permalink: community/starter-kits.html
 
 ## Other Starter Kits
 
+* **[create-react-redux-app-structure](https://github.com/shystruk/create-react-redux-app-structure)** - Create React + Redux app structure with build configurations.
 * **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate providing a virtual development environment and production ready build workflow out of the box. (React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support)
 * **[React + Redux + Saga Boilerplate](https://github.com/gilbarbara/react-redux-saga-boilerplate)** -

@@ -22,7 +22,7 @@ In this section, we will show how to add a React component to an existing HTML p
 
 There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/110ba374459fbf15109acbc957c16432e6601eef.zip)
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
 ### Step 1: Add a DOM Container to the HTML
 
@@ -31,12 +31,12 @@ First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the
 ```html{3}
 <!-- ... existing HTML ... -->
 
-<div class="like_button_container"></div>
+<div id="like_button_container"></div>
 
 <!-- ... existing HTML ... -->
 ```
 
-We gave this `<div>` a unique `class` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
+We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
 
 >Tip
 >
@@ -77,7 +77,7 @@ After the starter code, add two lines to the bottom of `like_button.js`:
 ```js{3,4}
 // ... the starter code you pasted ...
 
-const domContainer = document.querySelector('.like_button_container');
+const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
@@ -91,7 +91,7 @@ Check out the next sections for more tips on integrating React.
 
 **[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/110ba374459fbf15109acbc957c16432e6601eef.zip)**
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
 ### Tip: Reuse a Component
 
@@ -172,7 +172,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 >
 >If you see an error message saying "You have mistakingly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
 
-This command starts an automated watcher for JSX. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
+This command starts an automated watcher for JSX. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
 
 As a bonus, this will also let you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).
 

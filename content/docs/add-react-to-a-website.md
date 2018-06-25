@@ -97,9 +97,9 @@ Check out the next sections for more tips on integrating React.
 
 Commonly, you might want to display React components in multiple places on the HTML page. Here is an example that displays the "Like" button three times and passes some data to it:
 
-**[View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)**
+[View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)**
+[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
 
 >Note
 >
@@ -153,20 +153,24 @@ You can play with JSX using [this online converter](http://babeljs.io/repl#?babi
 If you want to add JSX to your project, follow these three steps:
 
 1. [Install Node.js](https://nodejs.org/)
-2. Run `npm init -y` in your project folder (**don't skip this step!**)
+2. **Don't skip this step step:** Run `npm init -y` in your project folder
 3. Run `npm install babel-cli@6 babel-preset-react-app@3`
 
 You can now use JSX!
 
 ### Compile JSX with One Command
 
-**Make sure you've followed the previous steps.** Then create a folder called `src` and run this terminal command:
+Create create a folder called `src` and run this terminal command:
 
 ```
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
-It will start an automated watcher for JSX. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
+>Note
+>
+>If you see an error message saying "You have mistakingly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
+
+This command starts an automated watcher for JSX. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
 
 As a bonus, this will also let you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).
 

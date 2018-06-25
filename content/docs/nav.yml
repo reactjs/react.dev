@@ -1,10 +1,10 @@
 - title: Installation
   items:
-    - id: try-react
-      title: Try React
-    - id: add-react-to-an-existing-app
+    - id: getting-started
+      title: Getting Started
+    - id: add-react-to-a-website
       title: Add React to a Website
-    - id: add-react-to-a-new-app
+    - id: create-a-new-react-app
       title: Create a New React App
     - id: cdn-links
       title: CDN Links

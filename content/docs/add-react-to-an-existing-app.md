@@ -146,12 +146,12 @@ You can now use JSX!
 
 ### How to Compile JSX
 
-Create a folder called `src`. Then run this command in the terminal:
+**Make sure you've followed the previous step.** Then create a folder called `src` and run this terminal command:
 
 ```
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
-This will start an automated watcher. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
+It will start an automated watcher for JSX. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
 
 The tool we just used is called Babel. You can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).

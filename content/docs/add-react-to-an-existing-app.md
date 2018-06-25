@@ -89,6 +89,14 @@ Check out the next sections for more tips on integrating React.
 
 **[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/110ba374459fbf15109acbc957c16432e6601eef.zip)**
 
+## Tip: Using Multiple DOM Containers
+
+Commonly, you might want to display React components in multiple places on the HTML page. Here is a variation on the previous example that displays the "Like" button several times:
+
+**[View the full example source code](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda)**
+
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)**
+
 ## Tip: Minify JavaScript for Production
 
 Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.

@@ -2,7 +2,7 @@
 id: cdn-links
 title: CDN Links
 permalink: docs/cdn-links.html
-prev: add-react-to-an-existing-app.html
+prev: create-a-new-react-app.html
 next: hello-world.html
 ---
 

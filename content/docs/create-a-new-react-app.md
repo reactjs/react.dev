@@ -7,41 +7,72 @@ prev: add-react-to-a-website.html
 next: cdn-links.html
 ---
 
-The easiest way to get started on a new React project is by using a starter kit.
+Use an integrated toolchain for the best user and developer experience.
 
-## Create React App
+This page describes a few popular React toolchains which help with tasks like:
 
-[Create React App](http://github.com/facebookincubator/create-react-app) is the best way to start building a new React single page application. It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 on your machine.
+* Using third-party modules from npm.
+* Surfacing common mistakes during development.
+* Fast development with live-editing CSS and JS.
+* Optimizing the bundles for production.
+* Running unit tests.
 
-```bash
-npm install -g create-react-app
-create-react-app my-app
+All of the toolchains recommended on this page **don't require configuration to get started**.
 
-cd my-app
-npm start
-```
+## HTML with `<script>` Tags
 
-If you have npm 5.2.0+ installed, you may use [npx](https://www.npmjs.com/package/npx) instead.
+If you don't experience the problems described above or don't feel comfortable using JavaScript tools yet, consider [adding React as a plain `<script>` tag on an HTML page](/docs/add-react-to-a-website.html), optionally [with JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
+
+This is also the best way to integrate React into an existing website. You can always add a larger toolchain if you find it helpful!
+
+## Recommended Toolchains
+
+The React team primarily recommends these solutions:
+
+- [Create React App](#create-react-app) (best for [single-page](/docs/glossary.html#single-page-application) apps)
+- [Next.js](#nextjs) (best for Node.js apps)
+- [Gatsby](#gatsby) (best for static websites)
+
+### Create React App
+
+**[Create React App](http://github.com/facebookincubator/create-react-app)** is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
+
+It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 and npm >= 5.2 on your machine. To create a project, run:
 
 ```bash
 npx create-react-app my-app
-
 cd my-app
 npm start
 ```
 
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. It uses build tools like [Babel](http://babeljs.io/) and [webpack](https://webpack.js.org/) under the hood, but works with zero configuration.
+Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it uses [Babel](http://babeljs.io/) and [webpack](https://webpack.js.org/), but you don't need to know anything about them.
 
 When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
 
-## Other Starter Kits
+### Next.js
 
-We have created [a curated list of third-party starter kits that we officially recommend](/community/starter-kits.html).
+**[Next.js](https://nextjs.org/)** is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
 
-They slightly differ in their focus but are all production-ready, well-maintained, and don't require configuration to get started.
+Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
-You can also check out a list of [other kits](/community/starter-kits.html#other-starter-kits) contributed by the community.
+### Gatsby
 
-## Advanced
+**[Gatsby](https://www.gatsbyjs.org/)** is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
 
-If you prefer to configure a project manually, see [Installing React](/docs/add-react-to-an-existing-app.html#installing-react) in the next section.
+Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
+
+## More Flexible Toolchains
+
+These toolchains offer more flexiblity and choice, and are also recommended:
+
+- **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
+
+- **[nwb](https://github.com/insin/nwb)** is particularly great for [publishing React components for npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). It [can be used](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) for creating React apps, too. 
+
+- **[Parcel](https://github.com/parcel-bundler/parcel/)** is a very fast JavaScript bundler that requires no configuration.
+
+- **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+
+## Creating a Toolchain from Scratch
+
+If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.

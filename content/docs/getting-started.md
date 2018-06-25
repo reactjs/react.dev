@@ -28,7 +28,7 @@ This page is an overview of the React documentation and related resources.
 
 ## Try React
 
-React is designed for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section should help you get started.
+React is designed for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
 
 ### Online Playgrounds
 
@@ -47,6 +47,8 @@ As your application grows, you might want to consider a more integrated setup. T
 ## Learn React
 
 People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a more practical approach, we hope you'll find something useful in this section.
+
+Like any unfamiliar approach, React does have a learning curve. With practice and some patience, you will get the hang of it.
 
 ### JavaScript Resources
 

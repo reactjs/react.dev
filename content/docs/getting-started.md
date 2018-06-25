@@ -42,7 +42,7 @@ You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.h
 
 When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option.
 
-As your application grows, you might want to consider a more integrated setup. There are [several recommended solutions](/docs/create-a-new-react-app.html) for creating JavaScript applications with React. Each of them can work with little to no configuration and lets you take a full advantage of the rich React ecosystem.
+As your application grows, you might want to consider a more integrated setup. There are [several recommended solutions](/docs/create-a-new-react-app.html) for creating JavaScript applications with React. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
 
 ## Learn React
 

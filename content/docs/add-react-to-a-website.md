@@ -153,7 +153,7 @@ You can play with JSX using [this online converter](http://babeljs.io/repl#?babi
 If you want to add JSX to your project, follow these three steps:
 
 1. [Install Node.js](https://nodejs.org/)
-2. **Don't skip this step step:** Run `npm init -y` in your project folder
+2. **Don't miss this step:** Run `npm init -y` in your project folder
 3. Run `npm install babel-cli@6 babel-preset-react-app@3`
 
 You can now use JSX!

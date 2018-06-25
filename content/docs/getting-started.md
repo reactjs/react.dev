@@ -46,7 +46,7 @@ As your application grows, you might want to consider a more integrated setup. T
 
 ## Learn React
 
-People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a more practical approach, you can find something for you in this section.
+People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a more practical approach, we hope you'll find something useful in this section.
 
 ### JavaScript Resources
 

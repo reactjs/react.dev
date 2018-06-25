@@ -18,7 +18,7 @@ redirect_from:
   - "docs/environments.html"
 ---
 
-This page is an overview of the React documentation and useful resources.
+This page is an overview of the React documentation and related resources.
 
 - [Try React](#try-react)
 - [Learn React](#learn-react)

@@ -22,8 +22,8 @@ This page is an overview of the React documentation and related resources.
 
 - [Try React](#try-react)
 - [Learn React](#learn-react)
-- [Follow React](#follow-react)
-- [Past Versions](#past-versions)
+- [Staying Informed](#staying-informed)
+- [Versioned Documentation](#versioned-documentation)
 - [Something Missing?](#something-missing)
 
 ## Try React
@@ -82,7 +82,7 @@ This documentation section is useful when you want to learn more details about a
 
 [Glossary](/docs/glossary.html) contains an overview of the most common terms you'll see in the React documentation. There is also a FAQ section dedicated to short questions and answers about common topics, including [making AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), and [file structure](/docs/faq-structure.html).
 
-## Follow React
+## Staying Informed
 
 The [React blog](/blog/) is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted there first.
 
@@ -90,7 +90,7 @@ You can also follow the [@reactjs account](https://twitter.com/reactjs) on Twitt
 
 Not every React release deserves its own blog post, but you can find a detailed changelog for every release [in the `CHANGELOG.md` file in the React repository](https://github.com/facebook/react/blob/master/CHANGELOG.md), as well as on the [Releases](https://github.com/facebook/react) page.
 
-## Past Versions
+## Versioned Documentation
 
 This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation [on a separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
 

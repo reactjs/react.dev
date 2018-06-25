@@ -17,7 +17,7 @@ This page describes a few popular React toolchains which help with tasks like:
 * Optimizing the bundles for production.
 * Running unit tests.
 
-All of the toolchains recommended on this page **don't require configuration to get started**.
+The toolchains recommended on this page **don't require configuration to get started**.
 
 ## HTML with `<script>` Tags
 
@@ -32,6 +32,7 @@ The React team primarily recommends these solutions:
 - [Create React App](#create-react-app) (best for [single-page](/docs/glossary.html#single-page-application) apps)
 - [Next.js](#nextjs) (best for Node.js apps)
 - [Gatsby](#gatsby) (best for static websites)
+- [More Flexible Toolchains](#more-flexible-toolchains)
 
 ### Create React App
 
@@ -61,9 +62,9 @@ Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
 Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
-## More Flexible Toolchains
+### More Flexible Toolchains
 
-These toolchains offer more flexiblity and choice, and are also recommended:
+The following toolchains offer more flexiblity and choice. We recommend them to more experienced users:
 
 - **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
 

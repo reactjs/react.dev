@@ -18,7 +18,7 @@ In this section, we will show how to add a React component to an existing HTML p
 
 There will be no complicated tools or install requirements -- **to complete this section, you only need an internet connection, and a minute of your time.**
 
-Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/b396eb0333064a2859b6cf27fa6b451f9e4a8c6a.zip)
+Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/110ba374459fbf15109acbc957c16432e6601eef.zip)
 
 ### Step 1: Add a DOM Container to the HTML
 
@@ -73,7 +73,7 @@ After the starter code, add two lines to the bottom of `like_button.js`:
 ```js{3,4}
 // ... the starter code you pasted ...
 
-let domContainer = document.querySelector('.like_button_container');
+const domContainer = document.querySelector('.like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
@@ -87,7 +87,7 @@ Check out the next sections for more tips on integrating React.
 
 **[View the full example source code](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605)**
 
-**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/b396eb0333064a2859b6cf27fa6b451f9e4a8c6a.zip)**
+**[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/110ba374459fbf15109acbc957c16432e6601eef.zip)**
 
 ## Tip: Minify JavaScript for Production
 
@@ -152,8 +152,6 @@ Create a folder called `src`. Then run this command in the terminal:
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
-Inside the `src` folder, you can use JSX and modern JavaScript features. For every source JavaScript file in the `src` directory, this command will create a plain JavaScript file with the same name in the project root. When you edit the files in `src`, the transform will re-run automatically.
-
-For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser.
+This will start an automated watcher. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/6132aa19e73ec872dd0fb927667e0d74dea93697/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
 
 The tool we just used is called Babel. You can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).

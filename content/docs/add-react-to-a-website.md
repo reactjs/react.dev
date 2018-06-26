@@ -154,28 +154,18 @@ You can play with JSX using [this online converter](http://babeljs.io/repl#?babi
 
 If you want to add JSX to your project, follow these three steps:
 
-1. [Install Node.js](https://nodejs.org/)
-2. **Don't miss this step:** Run `npm init -y` in your project folder
-    - Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
-3. Run `npm install babel-cli@6 babel-preset-react-app@3`
+1. [Install Node.js](https://nodejs.org/) version 5 or above
+2. Run `npx create-react-babel` in a terminal
+  - Follow the prompts to create a package.json with Babel
+3. Run `npm install`
+4. Move your component files into `src`
+5. `npm run dev` Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
-You can now use JSX!
-
-### Compile JSX with One Command
-
-Create create a folder called `src` and run this terminal command:
-
-```
-npx babel --watch src --out-dir . --presets react-app/prod 
-```
+- Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
 
 >Note
 >
 >`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
->
->If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
-
-Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
 If you now create a file called `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js), the watcher will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
 

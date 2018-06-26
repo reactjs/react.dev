@@ -173,7 +173,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 >
 >`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 >
->If you see an error message saying "You have mistakingly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
+>If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
 
 Don't wait for it to finish -- this command starts an automated watcher for JSX.
 

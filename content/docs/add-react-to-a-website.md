@@ -163,7 +163,7 @@ You can now use JSX!
 
 ### Compile JSX with One Command
 
-Create create a folder called `src` and run this terminal command:
+Create a folder called `src` and run this terminal command:
 
 ```
 npx babel --watch src --out-dir . --presets react-app/prod 

@@ -152,16 +152,17 @@ You can play with JSX using [this online converter](http://babeljs.io/repl#?babi
 
 ### Add JSX to a Project
 
-If you want to add JSX to your project, follow these three steps:
+If you want to add JSX to your project, follow these steps:
 
 1. [Install Node.js](https://nodejs.org/) version 5 or above
 2. Run `npx create-react-babel` in a terminal
   - Follow the prompts to create a package.json with Babel
+  - Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
 3. Run `npm install`
 4. Move your component files into `src`
 5. `npm run dev` Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
-- Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
+You can now use JSX!
 
 >Note
 >

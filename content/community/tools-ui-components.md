@@ -15,7 +15,7 @@ permalink: community/ui-components.html
 * **[Halogen](http://madscript.com/halogen):** A collection of highly customizable loading spinner animations with React.
 * **[Khan Academy's component library](http://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)**: compiles markdown into safe React JSX without using dangerous escape hatches.
-* **[material-ui](http://material-ui.com)** A set of React Components that implement Google's Material Design.
+* **[Material-UI](https://material-ui.com/):** React components that implement Google's Material Design.
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
 * **[React Mdl](https://github.com/tleunen/react-mdl)** React Components for Material Design Lite.

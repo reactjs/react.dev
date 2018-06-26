@@ -16,8 +16,6 @@ permalink: community/courses.html
 
 - [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) - Build a real world application in plain React without complicated tooling.
 
-- [React Training: React Patterns](https://reacttraining.com/patterns/) - Free lectures from React Training's "Advanced React.js" course.
-
 - [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
 
 ## Paid Courses

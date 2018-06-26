@@ -2,11 +2,11 @@
 id: cdn-links
 title: CDN Links
 permalink: docs/cdn-links.html
-prev: add-react-to-an-existing-app.html
+prev: create-a-new-react-app.html
 next: hello-world.html
 ---
 
-The UMD builds of React and ReactDOM are available over a CDN.
+Both React and ReactDOM are available over a CDN.
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>

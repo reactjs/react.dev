@@ -59,12 +59,18 @@ You can now skip the second setup option, and go to the [Overview](#overview) se
 
 ### Setup Option 2: Local Development Environment
 
-**This is completely optional and not required for this tutorial!**
+This is completely optional and not required for this tutorial!
+
+<br>
+
+<details>
+
+<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
 
 This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. Follow the [installation instructions](/docs/add-react-to-a-new-app.html) to create a new project.
+2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
 
 ```bash
 npm install -g create-react-app
@@ -93,6 +99,8 @@ import './index.css';
 Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
 
 We recommend following [these instructions](http://babeljs.io/docs/editors) to configure syntax highlighting for your editor.
+
+</details>
 
 ### Help, I'm Stuck!
 

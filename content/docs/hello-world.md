@@ -4,12 +4,6 @@ title: Hello World
 permalink: docs/hello-world.html
 prev: cdn-links.html
 next: introducing-jsx.html
-redirect_from:
-  - "docs/"
-  - "docs/index.html"
-  - "docs/getting-started.html"
-  - "docs/getting-started-ko-KR.html"
-  - "docs/getting-started-zh-CN.html"
 ---
 
 The smallest React example looks like this:

@@ -72,7 +72,7 @@ Open this [this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98
 
 >Tip
 >
->This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [main concepts guide](/docs/hello-world.html) and a [hands-on tutorial](/tutorial/tutorial.html). For now, let's just get it showing on the screen!
+>This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
 
 After the starter code, add two lines to the bottom of `like_button.js`:
 
@@ -156,6 +156,7 @@ If you want to add JSX to your project, follow these three steps:
 
 1. [Install Node.js](https://nodejs.org/)
 2. **Don't miss this step:** Run `npm init -y` in your project folder
+    - Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
 3. Run `npm install babel-cli@6 babel-preset-react-app@3`
 
 You can now use JSX!
@@ -174,8 +175,10 @@ npx babel --watch src --out-dir . --presets react-app/prod
 >
 >If you see an error message saying "You have mistakingly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
 
-This command starts an automated watcher for JSX. For example, if you create `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js), Babel will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the JSX file, the transform will re-run automatically.
+Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
-As a bonus, this will also let you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).
+If you now create a file called `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js), the watcher will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+
+As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).
 
 If you notice that you're getting comfortable with build tools and want them to do more for you, [the next section](/docs/create-a-new-react-app.html) describes some of the most popular and approachable toolchains. If not -- those script tags will do just fine!

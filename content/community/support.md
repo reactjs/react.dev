@@ -19,6 +19,10 @@ For longer-form conversations about React, we've set up a [discussion forum at *
 
 In the forum there's also a category for job posts and a category for discussion of our weekly meeting notes.
 
+## DEV Community
+
+[DEV's React tag](https://dev.to/t/react) is a place to share React projects, articles and tutorials as well as start discussions and ask for feedback on React-related topics. Developers of all skill-levels are welcome to take part.
+
 ## React Community on Hashnode
 
 [Hashnode's React community](https://hashnode.com/n/reactjs) is a great place to stay up-to-date with React discussion, news and stories.

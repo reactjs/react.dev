@@ -217,6 +217,10 @@ componentDidUpdate(prevProps) {
   if (this.props.userID !== prevProps.userID) {
     this.fetchData(this.props.userID);
   }
+  // No need to compare props if type props is always boolean:
+  if (this.props.isShow) {
+    this.showSomething()
+  }
 }
 ```
 

@@ -20,6 +20,10 @@ redirect_from:
 
 This page is an overview of the React documentation and related resources.
 
+**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+
+---
+
 - [Try React](#try-react)
 - [Learn React](#learn-react)
 - [Staying Informed](#staying-informed)
@@ -32,7 +36,7 @@ React is designed for gradual adoption, and you can use as little or as much Rea
 
 ### Online Playgrounds
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new). If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so don't use it in production.
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new). If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
 
 ### Add React to a Website
 
@@ -52,9 +56,13 @@ Like any unfamiliar approach, React does have a learning curve. With practice an
 
 ### JavaScript Resources
 
-The React documentation assumes some familiarity with the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time. We recommend going through [this JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will likely take you between 30 minutes and an hour but will help you feel more confident learning React.
+The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time. We recommend going through [this JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will likely take you between 30 minutes and an hour but will help you feel more confident learning React.
 
 Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](http://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+
+### Practical Tutorial
+
+If you prefer to learn by doing, check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
 
 ### Main Concepts
 
@@ -63,10 +71,6 @@ For an introduction to the most important React concepts, check out [the step-by
 ### Thinking in React
 
 Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough that was ever written but it's still just as relevant.
-
-### Practical Tutorial
-
-If you prefer to learn by doing, check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
 
 ### Recommended Courses
 

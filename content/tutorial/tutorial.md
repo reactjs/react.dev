@@ -65,7 +65,7 @@ This is completely optional and not required for this tutorial!
 
 <details>
 
-<summary><b>Optional: Click to expand the local development instructions</b></summary>
+<summary><b>Optional: Instructions for following along locally using your preferred text editor</b></summary>
 
 This setup requires more work but allows you to complete the tutorial using an editor of your choice. Here are the steps to follow:
 

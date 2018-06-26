@@ -11,11 +11,11 @@ Use an integrated toolchain for the best user and developer experience.
 
 This page describes a few popular React toolchains which help with tasks like:
 
-* Using third-party modules from npm.
-* Surfacing common mistakes during development.
-* Fast development with live-editing CSS and JS.
-* Optimizing the bundles for production.
-* Running unit tests.
+* Scaling to many files and components.
+* Using third-party libraries from npm.
+* Detecting common mistakes early.
+* Live-editing CSS and JS in development.
+* Optimizing the output for production.
 
 The toolchains recommended on this page **don't require configuration to get started**.
 

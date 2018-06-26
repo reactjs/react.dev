@@ -13,6 +13,8 @@ React is designed for gradual adoption, and **you can use as little or as much R
 
 The majority of websites aren't, and don't need to be, single-page apps. With **a few lines of code and no build tooling**, try React in a small part of your website. You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
 
+---
+
 - [Add React in One Minute](#add-react-in-one-minute)
 - [Optional: Try React with JSX](#optional-try-react-with-jsx)
 
@@ -109,7 +111,7 @@ Commonly, you might want to display React components in multiple places on the H
 
 Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
 
-If you already minify the application scripts, all you need to do is to ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
+If you already minify the application scripts, your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
@@ -125,7 +127,7 @@ In the examples above, we only relied on features that are natively supported by
 ```js
 const e = React.createElement;
 
-// Display a "Like" button
+// Display a "Like" <button>
 return e(
   'button',
   { onClick: () => this.setState({ liked: true }) },
@@ -136,7 +138,7 @@ return e(
 However, React also offers an option to use [JSX](/docs/introducing-jsx.html) instead:
 
 ```js
-// Display a "Like" button
+// Display a "Like" <button>
 return (
   <button onClick={() => this.setState({ liked: true })}>
     Like

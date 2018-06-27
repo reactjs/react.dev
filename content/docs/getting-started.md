@@ -52,21 +52,28 @@ As your application grows, you might want to consider a more integrated setup. T
 
 People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a more practical approach, we hope you'll find something useful in this section.
 
+* If you prefer to **learn by doing**, start with our [practical tutorial](#practical-tutorial).
+* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](#step-by-step-guide).
+
 Like any unfamiliar approach, React does have a learning curve. With practice and some patience, you will get the hang of it.
 
 ### JavaScript Resources
 
-The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time. We recommend going through [this JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will likely take you between 30 minutes and an hour but will help you feel more confident learning React.
+The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
 
-Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](http://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+We recommend going through [this JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will likely take you between 30 minutes and an hour but will help you feel more confident learning React.
+
+>Tip
+>
+>Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](http://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
 
 ### Practical Tutorial
 
-If you prefer to learn by doing, check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
+If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
 
-### Main Concepts
+### Step-by-Step Guide
 
-For an introduction to the most important React concepts, check out [the step-by-step guide to main concepts](/docs/hello-world.html). Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
+If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
 
 ### Thinking in React
 

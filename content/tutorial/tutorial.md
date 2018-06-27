@@ -12,11 +12,15 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
+This tutorial doesn't assume any existing React knowledge.
+
 ## Before We Start the Tutorial
 
-While you can learn React from the [step-by-step introduction to concepts](/docs/hello-world.html), many people prefer to learn by doing. This tutorial doesn't assume any existing React knowledge, and dives straight into the most important topics you'll encounter daily in React development.
+We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React apps, and mastering it will give you a deep understanding of React.
 
-We will build a small game during this tutorial, but the concepts you will learn are fundamental to React, and apply to any apps developed with it.
+>Tip
+>
+>This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
 
 The tutorial is divided into several sections:
 

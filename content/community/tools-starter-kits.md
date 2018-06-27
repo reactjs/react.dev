@@ -9,11 +9,11 @@ permalink: community/starter-kits.html
 
 * **[Create React App](https://github.com/facebook/create-react-app)** - An officially supported way to start a client-side React project with no configuration
 * **[Next.js](https://nextjs.org/)** - Framework for server-rendered or statically-exported React apps
-* **[Gatsby](https://www.gatsbyjs.org/)** - Blazing-fast static site generator for React
+* **[Gatsby](https://www.gatsbyjs.org/)** - Static site generator for React optimized for speed
 * **[nwb](https://github.com/insin/nwb)** - A toolkit for React apps, libraries and other npm modules for the web
 * **[razzle](https://github.com/jaredpalmer/razzle)** - Create server-rendered universal JavaScript applications with no configuration
 * **[Neutrino](https://neutrino.js.org/)** - Create and build modern JavaScript applications with zero initial configuration
-* **[Parcel](https://parceljs.org)** - Blazing fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react)
+* **[Parcel](https://parceljs.org)** - Fast, zero configuration web application bundler
 
 ## Other Starter Kits
 

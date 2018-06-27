@@ -36,7 +36,7 @@ The React team primarily recommends these solutions:
 
 ### Create React App
 
-**[Create React App](http://github.com/facebookincubator/create-react-app)** is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
+[Create React App](http://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
 
 It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 and npm >= 5.2 on your machine. To create a project, run:
 
@@ -56,13 +56,13 @@ When you're ready to deploy to production, running `npm run build` will create a
 
 ### Next.js
 
-**[Next.js](https://nextjs.org/)** is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
 
 Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
 ### Gatsby
 
-**[Gatsby](https://www.gatsbyjs.org/)** is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+[Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
 
 Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
@@ -74,7 +74,7 @@ The following toolchains offer more flexiblity and choice. We recommend them to 
 
 - **[nwb](https://github.com/insin/nwb)** is particularly great for [publishing React components for npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). It [can be used](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) for creating React apps, too. 
 
-- **[Parcel](https://parceljs.org/)** is a blazing fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react)
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 

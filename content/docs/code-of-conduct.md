@@ -1,3 +1,12 @@
+---
+id: code-of-conduct
+title: Code of Conduct
+layout: contributing
+permalink: docs/code-of-conduct.html
+prev: design-principles
+redirect_from: "contributing/code-of-conduct.html"
+---
+
 ## Our Pledge
 
 In the interest of fostering an open and welcoming environment, we as

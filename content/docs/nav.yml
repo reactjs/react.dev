@@ -114,6 +114,8 @@
     title: Implementation Notes
   - id: design-principles
     title: Design Principles
+  - id: code-of-conduct
+    title: Code of Conduct
 - title: FAQ
   items:
     - id: faq-ajax

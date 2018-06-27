@@ -4,6 +4,7 @@ title: Design Principles
 layout: contributing
 permalink: docs/design-principles.html
 prev: implementation-notes.html
+next: code-of-conduct.html
 redirect_from: "contributing/design-principles.html"
 ---
 

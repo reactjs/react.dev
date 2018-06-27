@@ -76,6 +76,18 @@ handleSomething() {
 }
 ```
 
+One common pitfall when writing arrow functions is accidentally relying on labels and implicit returns:
+
+```js
+// good
+this.setState(({ bool }) => ({ bool: !bool }));
+
+// bad
+this.setState(({ bool }) => { bool: !bool }); // doesn't actually update state
+```
+
+This is because `bool:` in the second example is interpreted as a [label](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/label) instead of an object key, so the arrow function in the second example actually returns `undefined`. This may cause very confusing bugs, so we recommend using [eslint:no-labels](https://eslint.org/docs/rules/no-labels) to warn when this happen. This rule does come with [eslint-config-react-app](https://github.com/facebook/create-react-app/blob/d36603979591f37eed6f7a3efcba136e7547e75d/packages/eslint-config-react-app/index.js#L81) so if you use `create-react-app` you don't need to worry, but take note if you have your own custom ESLint setup.
+
 [Learn more about setState](/docs/react-component.html#setstate)
 
 ### When is `setState` asynchronous?

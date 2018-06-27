@@ -403,7 +403,7 @@ function ListOfTenThings() {
 }
 ```
 
-Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
+Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of. For more information about this pattern, see the [Render Props guide](/docs/render-props.html).
 
 ### Booleans, Null, and Undefined Are Ignored
 

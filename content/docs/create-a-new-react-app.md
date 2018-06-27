@@ -74,7 +74,7 @@ The following toolchains offer more flexiblity and choice. We recommend them to 
 
 - **[nwb](https://github.com/insin/nwb)** is particularly great for [publishing React components for npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). It [can be used](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) for creating React apps, too. 
 
-- **[Parcel](https://parceljs.org/)** is a very fast JavaScript bundler that requires no configuration.
+- **[Parcel](https://parceljs.org/)** is a blazing fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react)
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 

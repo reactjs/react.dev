@@ -32,11 +32,13 @@ This page is an overview of the React documentation and related resources.
 
 ## Try React
 
-React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
+React has been designed from the start for gradual adoption, and **you can use as little or as much React as you need.** Whether you want to get a taste of React, add some interactivity to a simple HTML page, or start a complex React-powered app, the links in this section will help you get started.
 
 ### Online Playgrounds
 
-If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new). If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
+If you're interested in playing around with React, you can use an online code playground. Try a Hello World template on [CodePen](codepen://hello-world) or [CodeSandbox](https://codesandbox.io/s/new).
+
+If you prefer to use your own text editor, you can also [download this HTML file](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html), edit it, and open it from the local filesystem in your browser. It does a slow runtime code transformation, so we'd only recommend using this for simple demos.
 
 ### Add React to a Website
 
@@ -44,24 +46,24 @@ You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.h
 
 ### Create a New React App
 
-When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option.
+When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
 
-As your application grows, you might want to consider a more integrated setup. There are [several recommended solutions](/docs/create-a-new-react-app.html) for creating JavaScript applications with React. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
+As your application grows, you might want to consider a more integrated setup. There are [several JavaScript toolchains](/docs/create-a-new-react-app.html) we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
 
 ## Learn React
 
-People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a more practical approach, we hope you'll find something useful in this section.
+People come to React from different backgrounds and with different learning styles. Whether you prefer a more theoretical or a practical approach, we hope you'll find this section helpful.
 
-* If you prefer to **learn by doing**, start with our [practical tutorial](#practical-tutorial).
-* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](#step-by-step-guide).
+* If you prefer to **learn by doing**, start with our [practical tutorial](/tutorial/tutorial.html).
+* If you prefer to **learn concepts step by step**, start with our [guide to main concepts](/docs/hello-world.html).
 
-Like any unfamiliar approach, React does have a learning curve. With practice and some patience, you will get the hang of it.
+Like any unfamiliar technology, React does have a learning curve. With practice and some patience, you *will* get the hang of it.
 
 ### JavaScript Resources
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
 
-We recommend going through [this JavaScript tutorial](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will likely take you between 30 minutes and an hour but will help you feel more confident learning React.
+We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
 
 >Tip
 >
@@ -77,7 +79,7 @@ If you prefer to **learn concepts step by step,** our [guide to main concepts](/
 
 ### Thinking in React
 
-Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough that was ever written but it's still just as relevant.
+Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough but it's still just as relevant.
 
 ### Recommended Courses
 

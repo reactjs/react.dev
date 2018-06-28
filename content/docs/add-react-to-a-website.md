@@ -68,13 +68,13 @@ The first two tags load React. The third one will load your component code.
 
 Create a file called `like_button.js` next to your HTML page.
 
-Open [this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js) and paste it into the file you created.
+Open **[this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
 
 >Tip
 >
 >This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
 
-After the starter code, add two lines to the bottom of `like_button.js`:
+After the **[the starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
 
 ```js{3,4}
 // ... the starter code you pasted ...
@@ -161,12 +161,12 @@ Go to your project folder in the terminal, and paste these two commands:
 
 >Tip
 >
->You **won't need to use npm for anything else.** Those `<script>` tags will keep working!
+>We're **using npm here only to install the JSX preprocessor;** you won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
 
 Congratulations! You just added a **production-ready JSX setup** to your project.
 
 
-### Compile JSX with One Command
+### Run JSX Preprocessor
 
 Create a folder called `src` and run this terminal command:
 
@@ -182,7 +182,7 @@ npx babel --watch src --out-dir . --presets react-app/prod
 
 Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
-If you now create a file called `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js), the watcher will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+If you now create a file called `src/like_button.js` with this **[JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
 
 As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).
 

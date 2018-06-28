@@ -8,9 +8,6 @@ class HelloMessage extends React.Component {
   }
 }
 
-// DOM element to render React inside
-const mountNode = document.querySelector("#hello-message")
-
 ReactDOM.render(
   <HelloMessage name="Taylor" />,
   mountNode

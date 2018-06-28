@@ -152,7 +152,7 @@ You can play with JSX using [this online converter](http://babeljs.io/repl#?babi
 
 ### Add JSX to a Project
 
-Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **feels a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
+Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **is a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
 
 Go to your project folder in the terminal, and paste these two commands:
 

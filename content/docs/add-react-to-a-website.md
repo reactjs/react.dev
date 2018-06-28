@@ -16,7 +16,7 @@ The majority of websites aren't, and don't need to be, single-page apps. With **
 ---
 
 - [Add React in One Minute](#add-react-in-one-minute)
-- [Optional: Try React with JSX](#optional-try-react-with-jsx)
+- [Optional: Try React with JSX](#optional-try-react-with-jsx) (no bundler necessary!)
 
 ## Add React in One Minute
 
@@ -111,7 +111,7 @@ Commonly, you might want to display React components in multiple places on the H
 
 Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
 
-If you already minify the application scripts, **your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:**
+If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
@@ -152,14 +152,19 @@ You can play with JSX using [this online converter](http://babeljs.io/repl#?babi
 
 ### Add JSX to a Project
 
-If you want to add JSX to your project, follow these three steps:
+Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **feels a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
 
-1. [Install Node.js](https://nodejs.org/)
-2. **Don't miss this step:** Run `npm init -y` in your project folder
-    - Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
-3. Run `npm install babel-cli@6 babel-preset-react-app@3`
+Go to your project folder in the terminal, and paste these two commands:
 
-You can now use JSX!
+1. **Step 1:** Run `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
+2. **Step 2:** Run `npm install babel-cli@6 babel-preset-react-app@3`
+
+>Tip
+>
+>You **won't need to use npm for anything else.** Those `<script>` tags will keep working!
+
+Congratulations! You just added a **production-ready JSX setup** to your project.
+
 
 ### Compile JSX with One Command
 

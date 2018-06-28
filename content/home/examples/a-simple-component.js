@@ -8,7 +8,8 @@ class HelloMessage extends React.Component {
   }
 }
 
+
 ReactDOM.render(
   <HelloMessage name="Taylor" />,
-  mountNode
+  mountNode       //A reference to the DOM element that you would like to render "HelloMessage" in.
 );

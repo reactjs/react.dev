@@ -20,7 +20,7 @@ We will build a small game during this tutorial. **You might be tempted to skip 
 
 >Tip
 >
->This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
+>This tutorial is designed for people who prefer to **learn by doing**. If you prefer learning concepts from the ground up, check out our [conceptual step-by-step guide](/docs/hello-world.html). You might find this tutorial and the guide complementary to each other.
 
 The tutorial is divided into several sections:
 
@@ -162,7 +162,7 @@ The `ShoppingList` component above only renders built-in DOM components like `<d
 
 ## Inspecting the Starter Code
 
-If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
+If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** open `src/index.js` in your project folder instead (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
 
 This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need focus on learning React and programming the tic-tac-toe game.
 
@@ -321,7 +321,7 @@ The React Devtools extension for [Chrome](https://chrome.google.com/webstore/det
 
 <img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
 
-The React DevTools let you check the props and the state of your React components.
+Moreover, the React DevTools let you check the props and the state of your React components, which makes it easier to debug the data flow and keep track of how they change in your application.
 
 After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
 
@@ -332,6 +332,15 @@ After installing React DevTools, you can right-click on any element on the page,
 3. Click "Change View" and then choose "Debug mode".
 4. In the new tab that opens, the devtools should now have a React tab.
 
+### A Quick Summary Before Moving On
+
+You've *already* learned most of the underlying basic building blocks of a React application. Before moving on to the next section, let's recap a little bit and see what makes React special:
+
+* Use **components** as the most basic building block to compose complex UIs and application structure.
+* Use **props** to have uni-directional data flow (passed from parent components to children components), to enable communication between components.
+* Use **state** and add event listeners to your component, to make it interactive.
+* The React Devtools extension is a great utility to help you develop a React application.
+
 ## Completing the Game
 
 We now have the basic building blocks for our tic-tac-toe game. To have a complete game, we now need to alternate placing "X"s and "O"s on the board, and we need a way to determine a winner.
@@ -340,7 +349,7 @@ We now have the basic building blocks for our tic-tac-toe game. To have a comple
 
 Currently, each Square component maintains the game's state. To check for a winner, we'll maintain the value of each of the 9 squares in one location.
 
-We may think that Board should just ask each Square for the Square's state. Although this approach is possible in React, we discourage it because the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
+We may think that Board should just ask each Square for the Square's own state. Although this approach is possible in React, we discourage it because it conflicts with the **uni-directional data flow (top-down)** convention of React, which makes the code becomes difficult to understand, susceptible to bugs, and hard to refactor. Instead, the best approach is to store the game's state in the parent Board component instead of in each Square. The Board component can tell each Square what to display by passing a prop, [just like we did when we passed a number to each Square](#passing-data-through-props).
 
 **To collect data from multiple children, or to have two child components communicate with each other, you need to declare the shared state in their parent component instead. The parent component can pass the state back down to the children by using props; this keeps the child components in sync with each other and with the parent component.**
 
@@ -418,7 +427,7 @@ We will now use the prop passing mechanism again. We will modify the Board to in
 
 Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
 
-Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
+Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way **for the Square to update the Board's state**. Since state is considered to be private to a component that defines it, we cannot update the Board's state directly from Square.
 
 To maintain the Board's state's privacy, we'll pass down a function from the Board to the Square. This function will get called when a Square is clicked. We'll change the `renderSquare` method in Board to:
 
@@ -535,7 +544,7 @@ Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` 
 
 ### Why Immutability Is Important
 
-In the previous code example, we suggested that you use the `.slice()` operator to create a copy of the `squares` array to modify instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
+[An immutable object](https://en.wikipedia.org/wiki/Immutable_object) is an object whose state cannot be **modified** after it is created. In the previous code example, we suggested that you use the `.slice()` operator to **create a copy of the `squares` array to modify instead of modifying the existing array**. We'll now discuss immutability and why immutability is important to learn.
 
 There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
 
@@ -579,7 +588,7 @@ You can learn more about `shouldComponentUpdate()` and how you can build *pure c
 
 We'll now change the Square to be a **functional component**.
 
-In React, **functional components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Functional components are less tedious to write than classes, and many components can be expressed this way.
+We've covered how we create a React component by creating a class that extends `React.Component`. Other than that, **functional components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Functional components are less tedious to write than classes, and many components can be expressed this way.
 
 Replace the Square class with this function:
 
@@ -1003,7 +1012,7 @@ In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-U
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
 Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
 
@@ -1090,7 +1099,8 @@ When a list is re-rendered, React takes each list item's key and searches the pr
 
 **It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
+> Warning:
+> If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
 
 Keys do not need to be globally unique. Keys only needs to be unique between components and their siblings.
 
@@ -1215,4 +1225,8 @@ If you have extra time or want to practice your new React skills, here are some 
 5. When someone wins, highlight the three squares that caused the win.
 6. When no one wins, display a message about the result being a draw.
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+Throughout this tutorial, we touched on React concepts including elements, components, props, and state.
+
+For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html).
+
+To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).

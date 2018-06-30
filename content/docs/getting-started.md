@@ -26,7 +26,7 @@ This page is an overview of the React documentation and related resources.
 
 - [Try React](#try-react)
 - [Learn React](#learn-react)
-- [Staying Informed](#staying-informed)
+- [Stay Informed](#stay-informed)
 - [Versioned Documentation](#versioned-documentation)
 - [Something Missing?](#something-missing)
 
@@ -42,11 +42,9 @@ If you prefer to use your own text editor, you can also [download this HTML file
 
 ### Add React to a Website
 
-You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+You can [add React to an HTML page through a script tag in just one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
 
 ### Create a New React App
-
-When starting a React project, [a simple HTML page with script tags](/docs/add-react-to-a-website.html) might still be the best option. It only takes a minute to set up!
 
 As your application grows, you might want to consider a more integrated setup. There are [several JavaScript toolchains](/docs/create-a-new-react-app.html) we recommend for larger applications. Each of them can work with little to no configuration and lets you take full advantage of the rich React ecosystem.
 
@@ -67,7 +65,7 @@ The [React homepage](/) contains a few small React examples with a live editor. 
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
 
-We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but after this you will feel more confident learning React.
 
 >Tip
 >
@@ -77,7 +75,7 @@ We recommend going through [this JavaScript overview](https://developer.mozilla.
 
 If you prefer to **learn by doing,** check out our [practical tutorial](/tutorial/tutorial.html). In this tutorial, we build a tic-tac-toe game in React. You might be tempted to skip it because you're not building games -- but give it a chance. The techniques you'll learn in the tutorial are fundamental to building *any* React apps, and mastering it will give you a much deeper understanding.
 
-### Step-by-Step Guide
+### Conceptual Step-by-Step Guide
 
 If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
 
@@ -101,7 +99,7 @@ This documentation section is useful when you want to learn more details about a
 
 The [glossary](/docs/glossary.html) contains an overview of the most common terms you'll see in the React documentation. There is also a FAQ section dedicated to short questions and answers about common topics, including [making AJAX requests](/docs/faq-ajax.html), [component state](/docs/faq-state.html), and [file structure](/docs/faq-structure.html).
 
-## Staying Informed
+## Stay Informed
 
 The [React blog](/blog/) is the official source for the updates from the React team. Anything important, including release notes or deprecation notices, will be posted there first.
 

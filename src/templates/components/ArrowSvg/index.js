@@ -1,10 +1,6 @@
 import React from 'react';
 
-type Props = {
-  cssProps: Object,
-};
-
-const ArrowSvg = ({cssProps = {}}: Props) => (
+const ArrowSvg = ({cssProps = {}}: {cssProps: Object}) => (
   <svg
     css={cssProps}
     height="20"

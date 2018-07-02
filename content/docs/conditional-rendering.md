@@ -191,10 +191,10 @@ Just like in JavaScript, it is up to you to choose an appropriate style based on
 
 In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
 
-In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
+In the example below, the `<warningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
 
 ```javascript{2-4,29}
-function WarningBanner(props) {
+function warningBanner(props) {
   if (!props.warn) {
     return null;
   }
@@ -222,7 +222,7 @@ class Page extends React.Component {
   render() {
     return (
       <div>
-        <WarningBanner warn={this.state.showWarning} />
+        <warningBanner warn={this.state.showWarning} />
         <button onClick={this.handleToggleClick}>
           {this.state.showWarning ? 'Hide' : 'Show'}
         </button>

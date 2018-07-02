@@ -707,14 +707,14 @@ Now that we show which player's turn is next, we should also show when the game 
 ```javascript
 function calculateWinner(squares) {
   const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
+    [0, 1, 2], // first row
+    [3, 4, 5], // second row
+    [6, 7, 8], // third row
+    [0, 3, 6], // first column
+    [1, 4, 7], // second column
+    [2, 5, 8], // third column
+    [0, 4, 8], // top-left to bottom-right diagonal
+    [2, 4, 6], // top-right to bottom-left diagonal 
   ];
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];

@@ -16,7 +16,7 @@ The majority of websites aren't, and don't need to be, single-page apps. With **
 ---
 
 - [Add React in One Minute](#add-react-in-one-minute)
-- [Optional: Try React with JSX](#optional-try-react-with-jsx)
+- [Optional: Try React with JSX](#optional-try-react-with-jsx) (no bundler necessary!)
 
 ## Add React in One Minute
 
@@ -68,13 +68,13 @@ The first two tags load React. The third one will load your component code.
 
 Create a file called `like_button.js` next to your HTML page.
 
-Open this [this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js) and paste it into the file you created.
+Open **[this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)** and paste it into the file you created.
 
 >Tip
 >
 >This code defines a React component called `LikeButton`. Don't worry if you don't understand it yet -- we'll cover the building blocks of React later in our [hands-on tutorial](/tutorial/tutorial.html) and [main concepts guide](/docs/hello-world.html). For now, let's just get it showing on the screen!
 
-After the starter code, add two lines to the bottom of `like_button.js`:
+After **[the starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
 
 ```js{3,4}
 // ... the starter code you pasted ...
@@ -111,7 +111,7 @@ Commonly, you might want to display React components in multiple places on the H
 
 Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
 
-If you already minify the application scripts, **your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:**
+If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
 
 ```js
 <script src="https://unpkg.com/react@16/umd/react.production.min.js" crossorigin></script>
@@ -150,6 +150,18 @@ These two code snippets are equivalent. While **JSX is [completely optional](/do
 
 You can play with JSX using [this online converter](http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
 
+### Quickly Try JSX
+
+The quickest way to try JSX in your project is to add this `<script>` tag to your page:
+
+```html
+<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+```
+
+Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) that you can download and play with.
+
+This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
+
 ### Add JSX to a Project
 
 If you want to add JSX to your project, follow these steps:
@@ -162,13 +174,12 @@ If you want to add JSX to your project, follow these steps:
 1. Move your component files into `src`
 1. `npm run dev` Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
-You can now use JSX!
 
 >Note
 >
 >`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 
-If you now create a file called `src/like_button.js` with this [JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js), the watcher will create a compiled `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
+If you now create a file called `src/like_button.js` with this **[JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
 
 As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](http://babeljs.io/docs/en/babel-cli/).
 

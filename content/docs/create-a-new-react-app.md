@@ -19,24 +19,24 @@ This page describes a few popular React toolchains which help with tasks like:
 
 The toolchains recommended on this page **don't require configuration to get started**.
 
-## HTML with `<script>` Tags
+## You Might Not Need a Toolchain
 
 If you don't experience the problems described above or don't feel comfortable using JavaScript tools yet, consider [adding React as a plain `<script>` tag on an HTML page](/docs/add-react-to-a-website.html), optionally [with JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
-This is also the best way to integrate React into an existing website. You can always add a larger toolchain if you find it helpful!
+This is also **the easiest way to integrate React into an existing website.** You can always add a larger toolchain if you find it helpful!
 
 ## Recommended Toolchains
 
 The React team primarily recommends these solutions:
 
-- [Create React App](#create-react-app) (best for [single-page](/docs/glossary.html#single-page-application) apps)
-- [Next.js](#nextjs) (best for Node.js apps)
-- [Gatsby](#gatsby) (best for static websites)
-- [More Flexible Toolchains](#more-flexible-toolchains)
+- If you're **learning React** or **creating a new [single-page](/docs/glossary.html#single-page-application) app,** use [Create React App](#create-react-app).
+- If you're building a **server-rendered website with Node.js,** try [Next.js](#nextjs).
+- If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
+- If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
 
 ### Create React App
 
-**[Create React App](http://github.com/facebookincubator/create-react-app)** is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
+[Create React App](http://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
 
 It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have Node >= 6 and npm >= 5.2 on your machine. To create a project, run:
 
@@ -56,13 +56,13 @@ When you're ready to deploy to production, running `npm run build` will create a
 
 ### Next.js
 
-**[Next.js](https://nextjs.org/)** is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
 
 Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
 ### Gatsby
 
-**[Gatsby](https://www.gatsbyjs.org/)** is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+[Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
 
 Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
@@ -74,7 +74,7 @@ The following toolchains offer more flexiblity and choice. We recommend them to 
 
 - **[nwb](https://github.com/insin/nwb)** is particularly great for [publishing React components for npm](https://github.com/insin/nwb/blob/master/docs/guides/ReactComponents.md#developing-react-components-and-libraries-with-nwb). It [can be used](https://github.com/insin/nwb/blob/master/docs/guides/ReactApps.md#developing-react-apps-with-nwb) for creating React apps, too. 
 
-- **[Parcel](https://parceljs.org/)** is a very fast JavaScript bundler that requires no configuration.
+- **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes.html#react).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 

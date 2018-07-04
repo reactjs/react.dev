@@ -24,7 +24,7 @@ The add-ons below are considered legacy and their use is discouraged. They will 
 - [`PureRenderMixin`](/docs/pure-render-mixin.html). Use [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
 - [`shallowCompare`](/docs/shallow-compare.html), a helper function that performs a shallow comparison for props and state in a component to decide if a component should update. We recommend using [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
 - [`update`](/docs/update.html). Use [`kolodny/immutability-helper`](https://github.com/kolodny/immutability-helper) instead.
-- [`ReactDOMFactories`](/warnings/legacy-factories.html), pre-configured DOM factories to make React easier to use without JSX.
+- [`ReactDOMFactories`](https://www.npmjs.com/package/react-dom-factories), pre-configured DOM factories to make React easier to use without JSX.
 
 ### Deprecated Add-ons
 
@@ -40,7 +40,7 @@ import createFragment from 'react-addons-create-fragment'; // ES6
 var createFragment = require('react-addons-create-fragment'); // ES5 with npm
 ```
 
-When using a CDN, you can use `react-with-addons.js` instead of `react.js`:
+When using React 15 or earlier from a CDN, you can use `react-with-addons.js` instead of `react.js`:
 
 ```html
 <script src="https://unpkg.com/react@15/dist/react-with-addons.js"></script>

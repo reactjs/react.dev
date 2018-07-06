@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run:
           name: Install
-          command: yarn install
+          command: npm install
       - run:
           name: Check Prettier, ESLint, Flow
           command: yarn ci-check

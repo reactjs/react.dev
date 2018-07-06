@@ -12,7 +12,6 @@ permalink: community/ui-components.html
 * **[chartify](https://github.com/kirillstepkin/chartify)**: Ultra lightweight and customizable React.js chart component.
 * **[Elemental UI](http://elemental-ui.com):** A UI toolkit for React websites and apps, themeable and composed of individually packaged components
 * **[Grommet](http://grommet.io)** The most advanced open source UX framework for enterprise applications.
-* **[Halogen](http://madscript.com/halogen):** A collection of highly customizable loading spinner animations with React.
 * **[Khan Academy's component library](http://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)**: compiles markdown into safe React JSX without using dangerous escape hatches.
 * **[Material-UI](https://material-ui.com/):** React components that implement Google's Material Design.

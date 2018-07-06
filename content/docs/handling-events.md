@@ -16,6 +16,7 @@ Handling events with React elements is very similar to handling events on DOM el
 For example, the HTML:
 
 ```html
+// HTML example
 <button onclick="activateLasers()">
   Activate Lasers
 </button>
@@ -24,6 +25,7 @@ For example, the HTML:
 is slightly different in React:
 
 ```js{1}
+// React example
 <button onClick={activateLasers}>
   Activate Lasers
 </button>

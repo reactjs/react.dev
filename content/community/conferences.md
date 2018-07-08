@@ -56,6 +56,11 @@ October 5 in Verona, Italy
 
 [Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
+### Connect.Tech 2018
+October 17-19, Atlanta, USA
+
+[Website](http://connect.tech) - [Twitter](https://twitter.com/connect_js) - [Promo Video](https://www.youtube.com/watch?v=6GkQzaTifiQ)
+
 ### React Day Berlin 2018
 November 30, Berlin, Germany
 

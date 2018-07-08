@@ -150,7 +150,7 @@ By default, React DOM [escapes](http://stackoverflow.com/questions/7381974/which
 
 ### JSX Represents Objects
 
-Babel compiles JSX down to `React.createElement()` calls.
+Babel transpiles JSX down to `React.createElement()` calls.
 
 These two examples are identical:
 
@@ -185,7 +185,7 @@ const element = {
 
 These objects are called "React elements". You can think of them as descriptions of what you want to see on the screen. React reads these objects and uses them to construct the DOM and keep it up to date.
 
-We will explore rendering React elements to the DOM in the next section.
+It's helpful to keep this object model in mind, as we will explore rendering React elements to the DOM in the next section.
 
 >**Tip:**
 >

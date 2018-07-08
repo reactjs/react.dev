@@ -59,6 +59,7 @@ const user = {
 const element = (
   <h1>
     Hello, {formatName(user)}!
+    //Hello, Harper Perez!
   </h1>
 );
 
@@ -78,13 +79,15 @@ After compilation, JSX expressions become regular JavaScript function calls and 
 
 This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
 
-```js{3,5}
+```js{4,6}
+//Refer to above snippet for `user` variable and `formatName()`
 function getGreeting(user) {
   if (user) {
     return <h1>Hello, {formatName(user)}!</h1>;
   }
   return <h1>Hello, Stranger.</h1>;
 }
+//returns <h1>Hello, Harper Perez!</h1>
 ```
 
 ### Specifying Attributes with JSX

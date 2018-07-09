@@ -215,7 +215,7 @@ Congratulations! You've just "passed a prop" from a parent Board component to a 
 
 ### Making an Interactive Component
 
-Let's fill the Square component with an "X" when we click it. 
+Let's fill the Square component with an "X" when we click it.
 First, change the button tag that is returned from the Square component's `render()` function to this:
 
 ```javascript{4}
@@ -605,7 +605,7 @@ We have changed `this.props` to `props` both times it appears.
 
 We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
 
-We'll set the the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
 
 ```javascript{6}
 class Board extends React.Component {
@@ -1003,7 +1003,7 @@ In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-U
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
 Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
 

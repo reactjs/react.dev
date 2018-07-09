@@ -148,10 +148,10 @@ class Clock extends React.Component {
 Note how we pass `props` to the base constructor:
 
 ```js{2}
-  constructor(props) {
-    super(props);
-    this.state = {date: new Date()};
-  }
+constructor(props) {
+  super(props);
+  this.state = {date: new Date()};
+}
 ```
 
 Class components should always call the base constructor with `props`.
@@ -237,12 +237,12 @@ These methods are called "lifecycle hooks".
 The `componentDidMount()` hook runs after the component output has been rendered to the DOM. This is a good place to set up a timer:
 
 ```js{2-5}
-  componentDidMount() {
-    this.timerID = setInterval(
-      () => this.tick(),
-      1000
-    );
-  }
+componentDidMount() {
+  this.timerID = setInterval(
+    () => this.tick(),
+    1000
+  );
+}
 ```
 
 Note how we save the timer ID right on `this`.
@@ -252,9 +252,9 @@ While `this.props` is set up by React itself and `this.state` has a special mean
 We will tear down the timer in the `componentWillUnmount()` lifecycle hook:
 
 ```js{2}
-  componentWillUnmount() {
-    clearInterval(this.timerID);
-  }
+componentWillUnmount() {
+  clearInterval(this.timerID);
+}
 ```
 
 Finally, we will implement a method called `tick()` that the `Clock` component will run every second.
@@ -381,31 +381,31 @@ When you call `setState()`, React merges the object you provide into the current
 For example, your state may contain several independent variables:
 
 ```js{4,5}
-  constructor(props) {
-    super(props);
-    this.state = {
-      posts: [],
-      comments: []
-    };
-  }
+constructor(props) {
+  super(props);
+  this.state = {
+    posts: [],
+    comments: []
+  };
+}
 ```
 
 Then you can update them independently with separate `setState()` calls:
 
 ```js{4,10}
-  componentDidMount() {
-    fetchPosts().then(response => {
-      this.setState({
-        posts: response.posts
-      });
+componentDidMount() {
+  fetchPosts().then(response => {
+    this.setState({
+      posts: response.posts
     });
+  });
 
-    fetchComments().then(response => {
-      this.setState({
-        comments: response.comments
-      });
+  fetchComments().then(response => {
+    this.setState({
+      comments: response.comments
     });
-  }
+  });
+}
 ```
 
 The merging is shallow, so `this.setState({comments})` leaves `this.state.posts` intact, but completely replaces `this.state.comments`.

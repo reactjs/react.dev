@@ -8,11 +8,9 @@ jobs:
       - restore_cache:
           keys:
           - dependencies-{{ checksum "yarn.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - dependencies-
       - run:
           name: Install
-          command: yarn install
+          command: yarn install --pure-lockfile
       - save_cache:
           paths:
             - node_modules

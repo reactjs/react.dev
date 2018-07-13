@@ -3,7 +3,7 @@ id: pure-render-mixin
 title: PureRenderMixin
 layout: docs
 category: Reference
-permalink: docs/pure-render-mixin.html
+permalink: docs/pure-render-mixin-old.html
 ---
 
 > Note

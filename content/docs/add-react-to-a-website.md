@@ -164,35 +164,20 @@ This approach is fine for learning and creating simple demos. However, it makes 
 
 ### Add JSX to a Project
 
-Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **is a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
+If you want to add JSX to your project, follow these steps:
 
-Go to your project folder in the terminal, and paste these two commands:
+1. [Install Node.js](https://nodejs.org/) version 5 or above
+1. Run `npx create-react-babel` in a terminal
+   - Follow the prompts to create a package.json with Babel
+   - Tip: If you get an **error message** starting with "Invalid name", rename the project folder to only contain lowercase ASCII letters or hyphens (e.g. `my-project`), and try again.
+1. Run `npm install`
+1. Move your component files into `src`
+1. `npm run dev` Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
-1. **Step 1:** Run `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. **Step 2:** Run `npm install babel-cli@6 babel-preset-react-app@3`
-
->Tip
->
->We're **using npm here only to install the JSX preprocessor;** you won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
-
-Congratulations! You just added a **production-ready JSX setup** to your project.
-
-
-### Run JSX Preprocessor
-
-Create a folder called `src` and run this terminal command:
-
-```
-npx babel --watch src --out-dir . --presets react-app/prod 
-```
 
 >Note
 >
 >`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
->
->If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
-
-Don't wait for it to finish -- this command starts an automated watcher for JSX.
 
 If you now create a file called `src/like_button.js` with this **[JSX starter code](https://cdn.rawgit.com/gaearon/c8e112dc74ac44aac4f673f2c39d19d1/raw/09b951c86c1bf1116af741fa4664511f2f179f0a/like_button.js)**, the watcher will create a preprocessed `like_button.js` with the plain JavaScript code suitable for the browser. When you edit the source file with JSX, the transform will re-run automatically.
 

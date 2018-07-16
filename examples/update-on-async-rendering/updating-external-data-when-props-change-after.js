@@ -5,13 +5,13 @@ class ExampleComponent extends React.Component {
   };
 
   // highlight-range{1-13}
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(props, state) {
     // Store prevId in state so we can compare when props change.
     // Clear out previously-loaded data (so we don't render stale stuff).
-    if (nextProps.id !== prevState.prevId) {
+    if (props.id !== state.prevId) {
       return {
         externalData: null,
-        prevId: nextProps.id,
+        prevId: props.id,
       };
     }
 

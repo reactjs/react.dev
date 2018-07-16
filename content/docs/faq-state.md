@@ -22,7 +22,7 @@ Here are some good resources for further reading on when to use `props` vs `stat
 
 In React, both `this.props` and `this.state` represent the *rendered* values, i.e. what's currently on the screen.
 
-Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need compute values based on the current state (see below for details).
+Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need to compute values based on the current state (see below for details).
 
 Example of code that will *not* behave as expected:
 

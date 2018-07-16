@@ -48,7 +48,7 @@ A typical use case for portals is when a parent component has an `overflow: hidd
 >
 > For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/yzMaBd)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
 ## Event Bubbling Through Portals
 
@@ -149,6 +149,6 @@ function Child() {
 ReactDOM.render(<Parent />, appRoot);
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/jGBWpE)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
 
 Catching an event bubbling up from a portal in a parent component allows the development of more flexible abstractions that are not inherently reliant on portals. For example, if you render a `<Modal />` component, the parent can capture its events regardless of whether it's implemented using portals.

@@ -18,6 +18,8 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 - [React Native Radio](https://devchat.tv/react-native-radio)
 
+- [React Round Up](https://devchat.tv/react-round-up) - React focused podcast from devchat.tv
+
 ## Episodes
 
 - [CodeWinds Episode 4](http://codewinds.com/podcast/004.html) - Pete Hunt talks with Jeff Barczewski about React.

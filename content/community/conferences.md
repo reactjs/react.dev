@@ -56,6 +56,11 @@ October 5 in Verona, Italy
 
 [Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
+### React Conf Brasil 2018
+October 20 in Sao Paulo, Brazil
+
+[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
+
 ### React Day Berlin 2018
 November 30, Berlin, Germany
 

@@ -78,7 +78,7 @@
     "format:source": "prettier --config .prettierrc --write \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "format:examples": "prettier --config .prettierrc.examples --write \"examples/**/*.js\"",
     "lint": "eslint .",
-    "netlify": "yarn install --check-files && yarn build",
+    "netlify": "rimraf node_modules && yarn install --frozen-lockfile --check-files && yarn build",
     "nit:source": "prettier --config .prettierrc --list-different \"{gatsby-*.js,{flow-typed,plugins,src}/**/*.js}\"",
     "nit:examples": "prettier --config .prettierrc.examples --list-different \"examples/**/*.js\"",
     "prettier": "yarn format:source && yarn format:examples",

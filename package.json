@@ -6,12 +6,6 @@
   "bugs": {
     "url": "https://github.com/reactjs/reactjs.org"
   },
-  "resolutions": {
-    "gatsby/graphql": "0.10.5",
-    "gatsby/react": "16.0.0",
-    "gatsby/react-dom": "16.0.0",
-    "eslint-plugin-relay/graphql": "0.10.5"
-  },
   "dependencies": {
     "array-from": "^2.1.1",
     "babel-eslint": "^8.0.1",

@@ -216,6 +216,141 @@ initially triggered the modal.
 >While this is a very important accessibility feature, it is also a technique that should be used judiciously. Use it to repair the keyboard focus flow when it is disturbed, not to try and anticipate how
 >users want to use applications.
 
+## Mouse and pointer events
+
+Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where
+keyboard users cannot use your application.
+
+To illustrate this, let's look at a prolific example of broken accessibility caused by click events. This is the outside click pattern, where a user can disable an opened popover by clicking outside the element. 
+
+<img src="../images/docs/outerclick-with-mouse.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with a mouse showing that the close action works." />
+
+This is typically implemented by attaching a `click` event to the `window` object that closes the popover:
+
+```javascript{12-14,26-30}
+class OuterClickExample extends React.Component {
+constructor(props) {
+    super(props);
+
+    this.state = { isOpen: false };
+    this.toggleContainer = createRef();
+
+    this.onClickHandler = this.onClickHandler.bind(this);
+    this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
+  }
+
+  componentDidMount() {
+    window.addEventListener('click', this.onClickOutsideHandler);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('click', this.onClickOutsideHandler);
+  }
+
+  onClickHandler() {
+    this.setState(currentState => ({
+      isOpen: !currentState.isOpen
+    }));
+  }
+
+  onClickOutsideHandler(event) {
+    if (this.state.isOpen && !this.toggleContainer.current.contains(event.target)) {
+      this.setState({ isOpen: false });
+    }
+  }
+  
+  render() {
+    return (
+      <div ref={this.toggleContainer}>
+        <button onClick={this.onClickHandler}>Select an option</button>
+        {this.state.isOpen ? (
+          <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+          </ul>
+        ) : null}
+      </div>
+    );
+  }
+}
+```
+
+This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element 
+as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
+
+<img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keybard showing the popover not being closed on blur and it obscuring other screen elements." />
+
+The same functionality can be achieved by using an appropriate event handlers instead, such as `onBlur` and `onFocus`:
+
+```javascript{19-29,31-34,37-38,40-41}
+class BlurExample extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { isOpen: false };
+    this.timeOutId = null;
+
+    this.onClickHandler = this.onClickHandler.bind(this);
+    this.onBlurHandler = this.onBlurHandler.bind(this);
+    this.onFocusHandler = this.onFocusHandler.bind(this);
+  }
+
+  onClickHandler() {
+    this.setState(currentState => ({
+      isOpen: !currentState.isOpen
+    }));
+  }
+    
+  // We close the popover on the next tick by using setTimeout. 
+  // This is necessary because we need to first check if 
+  // another child of the element has received focus as
+  // the blur event fires prior to the new focus event. 
+  onBlurHandler() {
+    this.timeOutId = setTimeout(() => {
+      this.setState({
+        isOpen: false
+      });
+    });
+  }
+
+  // If a child receives focus, do not close the popover.
+  onFocusHandler() {
+    clearTimeout(this.timeOutId);
+  }
+
+  render() {
+    // React assists us by bubbling the blur and 
+    // focus events to the parent.
+    return (
+      <div onBlur={this.onBlurHandler} 
+           onFocus={this.onFocusHandler}>
+        <button onClick={this.onClickHandler} 
+                aria-haspopup="true" 
+                aria-expanded={this.state.isOpen}>
+          Select an option
+        </button>
+        {this.state.isOpen ? (
+          <ul>
+            <li>Option 1</li>
+            <li>Option 2</li>
+            <li>Option 3</li>
+          </ul>
+        ) : null}
+      </div>
+    );
+  }
+}
+```
+
+This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake 
+the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.  
+
+<img src="../images/docs/blur-popover-close.gif" alt="A popover list correctly closing for both mouse and keyboard users." />
+
+This is one example of many cases where depending on only pointer and mouse events will break functionality for keyboard users. Always testing with the keyboard will immediately
+highlight the problem areas which can then be fixed by using keyboard aware event handlers.
+
 ## More Complex Widgets
 
 A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible,

@@ -5,7 +5,8 @@ layout: contributing
 permalink: docs/implementation-notes.html
 prev: codebase-overview.html
 next: design-principles.html
-redirect_from: "contributing/implementation-notes.html"
+redirect_from:
+  - "contributing/implementation-notes.html"
 ---
 
 This section is a collection of implementation notes for the [stack reconciler](/docs/codebase-overview.html#stack-reconciler).

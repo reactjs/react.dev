@@ -2,7 +2,8 @@
 id: add-react-to-a-website
 title: Add React to a Website
 permalink: docs/add-react-to-a-website.html
-redirect_from: "docs/add-react-to-an-existing-app.html"
+redirect_from:
+  - "docs/add-react-to-an-existing-app.html"
 prev: getting-started.html
 next: create-a-new-react-app.html
 ---

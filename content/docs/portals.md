@@ -44,7 +44,9 @@ A typical use case for portals is when a parent component has an `overflow: hidd
 
 > Note:
 >
-> It is important to remember, when working with portals, you'll need to make sure to follow the proper accessibility guidelines.
+> When working with portals, remember that [managing keyboard focus](/docs/accessibility.html#programmatically-managing-focus) becomes very important.
+>
+> For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 

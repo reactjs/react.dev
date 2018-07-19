@@ -4,7 +4,8 @@ title: Videos
 layout: community
 sectionid: community
 permalink: community/videos.html
-redirect_from: "docs/videos.html"
+redirect_from:
+ - "docs/videos.html"
 ---
 
 Videos dedicated to the discussion of React and the React ecosystem.

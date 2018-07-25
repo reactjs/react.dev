@@ -31,7 +31,6 @@ css.global('.gatsby-highlight', {
   borderRadius: 10,
   overflow: 'auto',
   tabSize: '1.5em',
-  padding: '1rem',
 });
 
 css.global(
@@ -40,7 +39,9 @@ css.global(
 .gatsby-highlight pre[class*="gatsby-code-"],
 .gatsby-highlight pre.prism-code`,
   {
+    display: 'block',
     height: 'auto !important',
+    margin: '1rem',
     fontSize: 14,
     lineHeight: '20px',
     whiteSpace: 'pre-wrap',

@@ -35,9 +35,9 @@ css.global('.gatsby-highlight', {
 
 css.global(
   `
-.gatsby-highlight code[class*="gatsby-code-"],
-.gatsby-highlight pre[class*="gatsby-code-"],
-.gatsby-highlight pre.prism-code`,
+.gatsby-highlight > code[class*="gatsby-code-"],
+.gatsby-highlight > pre[class*="gatsby-code-"],
+.gatsby-highlight > pre.prism-code`,
   {
     height: 'auto !important',
     margin: '1rem',

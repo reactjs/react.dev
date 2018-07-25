@@ -9,6 +9,7 @@ Context provides a way to pass data through the component tree without having to
 In a typical React application, data is passed top-down (parent to child) via props, but this can be cumbersome for certain types of props (e.g. locale preference, UI theme) that are required by many components within an application. Context provides a way to share values like these between components without having to explicitly pass a prop through every level of the tree.
 
 - [When to Use Context](#when-to-use-context)
+- [Before You Use Context](#before-you-use-context)
 - [API](#api)
   - [React.createContext](#reactcreatecontext)
   - [Provider](#provider)
@@ -23,7 +24,6 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
 
-
 ## When to Use Context
 
 Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
@@ -34,9 +34,62 @@ Using context, we can avoid passing props through intermediate elements:
 
 `embed:context/motivation-solution.js`
 
-> Note
->
-> Don't use context just to avoid passing props a few levels down. Stick to cases where the same data needs to be accessed in many components at multiple levels.
+## Before You Use Context
+
+Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
+
+**If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
+
+For example, consider an `App` component that passes a `user` prop several levels down so that a deeply nested `Avatar` component can read it:
+
+```js
+<App />
+// ... which renders ...
+<PageLayout user={user} />
+// ... which renders ...
+<NavigationBar user={user} /> 
+// ... which renders ...
+<Avatar user={user} />
+```
+
+It might feel redundant to pass down the `user` prop through many levels if in the end only the `Avatar` component really needs it. It's also annoying that if the `Avatar` component needs more props from the top, you have to remember to add them at all the intermediate levels too.
+
+To solve this issue **without context**, change `PageLayout` and `NavigationBar` to [accept a `children` prop](/docs/composition-vs-inheritance.html#containment). Then the `App` component could pass `<Avatar user={user} />` down as a child, and neither of the components below would need to know about the `user` prop:
+
+```js
+function App(props) {
+  return (
+    <PageLayout>
+      <NavigationBar>
+        <Avatar user={props.user} />
+      </NavigationBar>
+    </PageLayout>
+  );
+}
+```
+
+You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
+
+```js
+function App(props) {
+  const content = <Feed user={props.user} />;
+  const topBar = (
+    <NavigationBar>
+      <Avatar user={props.user} />
+    </NavigationBar>
+  );
+  return (
+    <PageLayout
+      topBar={topBar}
+      content={content}
+    />
+  );
+}
+```
+
+This pattern is sufficient for many cases when you need to decouple a child from its immediate parents. You can take it even further with [render props](/docs/render-props.html) if the child needs to communicate with the parent before rendering.
+
+However, **sometimes data needs to be accessible by many components in the tree, and at different nesting levels.** Current locale, theme, or a data cache are good examples of this. The most appropriate solution to those use cases is context.
 
 ## API
 

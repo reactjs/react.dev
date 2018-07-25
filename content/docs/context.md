@@ -89,7 +89,7 @@ function App(props) {
 
 This pattern is sufficient for many cases when you need to decouple a child from its immediate parents. You can take it even further with [render props](/docs/render-props.html) if the child needs to communicate with the parent before rendering.
 
-However, **sometimes data needs to be accessible by many components in the tree, and at different nesting levels.** Current locale, theme, or a data cache are good examples of this. The most appropriate solution to those use cases is context.
+However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache. 
 
 ## API
 

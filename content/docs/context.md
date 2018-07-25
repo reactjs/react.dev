@@ -40,10 +40,10 @@ Context is primarily used when some data needs to be accessible by *many* compon
 
 **If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
 
-For example, consider an `App` component that passes a `user` prop several levels down so that a deeply nested `Avatar` component can read it:
+For example, consider a `Page` component that passes a `user` prop several levels down so that a deeply nested `Avatar` component can read it:
 
 ```js
-<App />
+<Page user={user} />
 // ... which renders ...
 <PageLayout user={user} />
 // ... which renders ...
@@ -52,16 +52,17 @@ For example, consider an `App` component that passes a `user` prop several level
 <Avatar user={user} />
 ```
 
-It might feel redundant to pass down the `user` prop through many levels if in the end only the `Avatar` component really needs it. It's also annoying that if the `Avatar` component needs more props from the top, you have to remember to add them at all the intermediate levels too.
+It might feel redundant to pass down the `user` prop through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
 
-To solve this issue **without context**, change `PageLayout` and `NavigationBar` to [accept a `children` prop](/docs/composition-vs-inheritance.html#containment). Then the `App` component could pass `<Avatar user={user} />` down as a child, and neither of the components below would need to know about the `user` prop:
+To solve this issue **without context**, change `PageLayout` and `NavigationBar` to [accept a `children` prop](/docs/composition-vs-inheritance.html#containment). Then the `Page` component could pass `<Avatar user={user} />` down as a child, and neither of the components below would need to know about the `user` prop:
 
 ```js
-function App(props) {
+function Page(props) {
+  const user = props.user;
   return (
     <PageLayout>
       <NavigationBar>
-        <Avatar user={props.user} />
+        <Avatar user={user} />
       </NavigationBar>
     </PageLayout>
   );
@@ -71,11 +72,12 @@ function App(props) {
 You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
 
 ```js
-function App(props) {
-  const content = <Feed user={props.user} />;
+function Page(props) {
+  const user = props.user;
+  const content = <Feed user={user} />;
   const topBar = (
     <NavigationBar>
-      <Avatar user={props.user} />
+      <Avatar user={user} />
     </NavigationBar>
   );
   return (

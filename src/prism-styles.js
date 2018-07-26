@@ -10,17 +10,18 @@ import {colors} from 'theme';
 
 const prismColors = {
   char: '#D8DEE9',
-  comment: '#999999',
-  keyword: '#c5a5c5',
-  lineHighlight: '#14161a',
-  primitive: '#5a9bcf',
-  string: '#8dc891',
+  comment: '#889dd0',
+  keyword: '#c8afff',
+  lineHighlight: '#2f354c',
+  primitive: '#f99e65',
+  string: '#84eabd',
   variable: '#d7deea',
-  boolean: '#ff8b50',
-  punctuation: '#5FB3B3',
-  tag: '#fc929e',
-  function: '#79b6f2',
-  className: '#FAC863',
+  boolean: '#ffa3d4',
+  punctuation: '#8bd7f0',
+  tag: '#ff94be',
+  function: '#82bdff',
+  className: '#ffe198',
+  attrName: '#ffdbaa',
   method: '#6699CC',
   operator: '#fc929e',
 };
@@ -33,6 +34,10 @@ css.global('.gatsby-highlight', {
   tabSize: '1.5em',
 });
 
+css.global('.token.script.language-javascript', {
+  color: colors.white,
+});
+
 css.global(
   `
 .gatsby-highlight > code[class*="gatsby-code-"],
@@ -42,7 +47,7 @@ css.global(
     height: 'auto !important',
     margin: '1rem',
     fontSize: 14,
-    lineHeight: '20px',
+    lineHeight: '1.6',
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
   },
@@ -60,7 +65,7 @@ css.global('.gatsby-highlight-code-line', {
 });
 
 css.global('.token.attr-name', {
-  color: prismColors.keyword,
+  color: prismColors.attrName,
 });
 
 css.global(
@@ -100,9 +105,14 @@ css.global(`.token.string`, {
   color: prismColors.string,
 });
 
-css.global(`.token.punctuation`, {
-  color: prismColors.punctuation,
-});
+css.global(
+  `
+.token.punctuation,
+.token.operator`,
+  {
+    color: prismColors.punctuation,
+  },
+);
 
 css.global(
   `
@@ -121,7 +131,6 @@ css.global(`.token.function`, {
 
 css.global(
   `
-.token.operator,
 .token.entity,
 .token.url,
 .token.variable`,

@@ -30,7 +30,7 @@ Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most 
 
 ```javascript{3,4}
 <input
-  type="text" 
+  type="text"
   aria-label={labelText}
   aria-required="true"
   onChange={onchangeHandler}
@@ -49,7 +49,7 @@ Sometimes we break HTML semantics when we add `<div>` elements to our JSX to mak
 In these cases we should rather use React Fragments to group together multiple elements.
 
 Use `<Fragment>` when a `key` prop is required:
- 
+
 ```javascript{1,8,11}
 import React, { Fragment } from 'react';
 
@@ -72,14 +72,14 @@ Use `<></>` syntax everywhere else:
 
 ```javascript
 function ListItem({ item }) {
-  return ( 
+  return (
     <>
       <dt>{item.term}</dt>
       <dd>{item.description}</dd>
     </>
-  );    
+  );
 }
-``` 
+```
 
 ## Accessible Forms
 
@@ -108,7 +108,7 @@ Error situations need to be understood by all users. The following link shows us
 
 ## Focus Control
 
-Ensure that your web application can be fully operated with the keyboard only: 
+Ensure that your web application can be fully operated with the keyboard only:
 
 - [WebAIM talks about keyboard accessibility](http://webaim.org/techniques/keyboard/)
 
@@ -124,7 +124,7 @@ Only ever use CSS that removes this outline, for example by setting `outline: 0`
 
 Provide a mechanism to allow users to skip past navigation sections in your application as this assists and speeds up keyboard navigation.
 
-Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with 
+Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with
 internal page anchors and some styling:
 
 - [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
@@ -137,7 +137,7 @@ Read more about the use of these elements to enhance accessibility here:
 
 ### Programmatically managing focus
 
-Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this, 
+Our React applications continuously modify the HTML DOM during runtime, sometimes leading to keyboard focus being lost or set to an unexpected element. In order to repair this,
 we need to programmatically nudge the keyboard focus in the right direction. For example, by resetting keyboard focus to a button that opened a modal window after that modal window is closed.
 
 MDN Web Docs takes a look at this and describes how we can build [keyboard-navigable JavaScript widgets](https://developer.mozilla.org/en-US/docs/Web/Accessibility/Keyboard-navigable_JavaScript_widgets).
@@ -208,7 +208,7 @@ When using a HOC to extend components, it is recommended to [forward the ref](/d
 does not implement ref forwarding, the above pattern can still be used as a fallback.
 
 A great focus management example is the [react-aria-modal](https://github.com/davidtheclark/react-aria-modal). This is a relatively rare example of a fully accessible modal window. Not only does it set initial focus on
-the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that 
+the cancel button (preventing the keyboard user from accidentally activating the success action) and trap keyboard focus inside the modal, it also resets focus back to the element that
 initially triggered the modal.
 
 >Note:
@@ -221,7 +221,7 @@ initially triggered the modal.
 Ensure that all functionality exposed through a mouse or pointer event can also be accessed using the keyboard alone. Depending only on the pointer device will lead to many cases where
 keyboard users cannot use your application.
 
-To illustrate this, let's look at a prolific example of broken accessibility caused by click events. This is the outside click pattern, where a user can disable an opened popover by clicking outside the element. 
+To illustrate this, let's look at a prolific example of broken accessibility caused by click events. This is the outside click pattern, where a user can disable an opened popover by clicking outside the element.
 
 <img src="../images/docs/outerclick-with-mouse.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with a mouse showing that the close action works." />
 
@@ -258,7 +258,7 @@ constructor(props) {
       this.setState({ isOpen: false });
     }
   }
-  
+
   render() {
     return (
       <div ref={this.toggleContainer}>
@@ -276,7 +276,7 @@ constructor(props) {
 }
 ```
 
-This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element 
+This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element
 as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
 
 <img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keybard showing the popover not being closed on blur and it obscuring other screen elements." />
@@ -301,11 +301,11 @@ class BlurExample extends React.Component {
       isOpen: !currentState.isOpen
     }));
   }
-    
-  // We close the popover on the next tick by using setTimeout. 
-  // This is necessary because we need to first check if 
+
+  // We close the popover on the next tick by using setTimeout.
+  // This is necessary because we need to first check if
   // another child of the element has received focus as
-  // the blur event fires prior to the new focus event. 
+  // the blur event fires prior to the new focus event.
   onBlurHandler() {
     this.timeOutId = setTimeout(() => {
       this.setState({
@@ -320,13 +320,13 @@ class BlurExample extends React.Component {
   }
 
   render() {
-    // React assists us by bubbling the blur and 
+    // React assists us by bubbling the blur and
     // focus events to the parent.
     return (
-      <div onBlur={this.onBlurHandler} 
+      <div onBlur={this.onBlurHandler}
            onFocus={this.onFocusHandler}>
-        <button onClick={this.onClickHandler} 
-                aria-haspopup="true" 
+        <button onClick={this.onClickHandler}
+                aria-haspopup="true"
                 aria-expanded={this.state.isOpen}>
           Select an option
         </button>
@@ -343,8 +343,8 @@ class BlurExample extends React.Component {
 }
 ```
 
-This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake 
-the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.  
+This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake
+the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
 
 <img src="../images/docs/blur-popover-close.gif" alt="A popover list correctly closing for both mouse and keyboard users." />
 
@@ -409,11 +409,11 @@ By far the easiest and also one of the most important checks is to test if your 
 1. Plugging out your mouse.
 1. Using `Tab` and `Shift+Tab` to browse.
 1. Using `Enter` to activate elements.
-1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns. 
+1. Where required, using your keyboard arrow keys to interact with some elements, such as menus and dropdowns.
 
 ### Development assistance
 
-We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also 
+We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also
 have access to the following tool:
 
 #### eslint-plugin-jsx-a11y
@@ -421,9 +421,9 @@ have access to the following tool:
 The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) plugin for ESLint provides AST linting feedback regarding accessibility issues in your JSX. Many
 IDE's allow you to integrate these findings directly into code analysis and source code windows.
 
-[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules, 
+[Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules,
 you can create an `.eslintrc` file in the root of your project with this content:
-                                                                                                      
+
   ```json
   {
     "extends": ["react-app", "plugin:jsx-a11y/recommended"],
@@ -450,7 +450,7 @@ The [Web Accessibility Evaluation Tool](http://wave.webaim.org/extension/) is an
 
 #### Accessibility inspectors and the Accessibility Tree
 
-[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed 
+[The Accessibility Tree](https://www.paciellogroup.com/blog/2015/01/the-browser-accessibility-tree/) is a subset of the DOM tree that contains accessible objects for every DOM element that should be exposed
 to assistive technology, such as screen readers.
 
 In some browsers we can easily view the accessibility information for each element in the accessibility tree:
@@ -477,7 +477,7 @@ Refer to the following guides on how to best use NVDA:
 
 #### VoiceOver in Safari
 
-VoiceOver is an integrated screen reader on Apple devices. 
+VoiceOver is an integrated screen reader on Apple devices.
 
 Refer to the following guides on how activate and use VoiceOver:
 
@@ -487,7 +487,7 @@ Refer to the following guides on how activate and use VoiceOver:
 
 #### JAWS in Internet Explorer
 
-[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) or JAWS, is a prolifically used screen reader on Windows. 
+[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) or JAWS, is a prolifically used screen reader on Windows.
 
 Refer to the following guides on how to best use JAWS:
 

@@ -26,7 +26,7 @@ The following WCAG checklists provide an overview:
 
 The [Web Accessibility Initiative - Accessible Rich Internet Applications](https://www.w3.org/WAI/intro/aria) document contains techniques for building fully accessible JavaScript widgets.
 
-Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be lowercased:
+Note that all `aria-*` HTML attributes are fully supported in JSX. Whereas most DOM properties and attributes in React are camelCased, these attributes should be hyphen-cased (also known as kebab-case, lisp-case, etc) as they are in plain HTML:
 
 ```javascript{3,4}
 <input
@@ -46,18 +46,28 @@ in our websites will often give us accessibility for free.
 - [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
 Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use React Fragments to group together multiple elements.
+In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
 
-Use `<Fragment>` when a `key` prop is required:
+For example,
 
-```javascript{1,8,11}
+```javascript{1,5,8,18,21}
 import React, { Fragment } from 'react';
+
+function ListItem({ item }) {
+  return (
+    <Fragment>
+      <dt>{item.term}</dt>
+      <dd>{item.description}</dd>
+    </Fragment>
+  );
+}
 
 function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Without the `key`, React will fire a key warning
+        // When mapping a collection, the `key` prop is required.
+        // Without it, React will fire a key warning
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -68,9 +78,9 @@ function Glossary(props) {
 }
 ```
 
-Use `<></>` syntax everywhere else:
+You can also use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it, but only if you don't need any props, like the `key`:
 
-```javascript
+```javascript{3,6}
 function ListItem({ item }) {
   return (
     <>
@@ -80,6 +90,8 @@ function ListItem({ item }) {
   );
 }
 ```
+
+For more info, see [the Fragments documentation](/docs/fragments.html).
 
 ## Accessible Forms
 

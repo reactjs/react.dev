@@ -52,6 +52,11 @@ September 13-15 in Alicante, Spain
 
 [Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
 
+### React Boston 2018
+September 29-30 in Boston, Massachusetts USA
+
+[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
+
 ### ReactJS Day 2018
 October 5 in Verona, Italy
 

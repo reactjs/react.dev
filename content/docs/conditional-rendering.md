@@ -190,7 +190,7 @@ Just like in JavaScript, it is up to you to choose an appropriate style based on
 
 ### Preventing Component from Rendering
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` or `false` instead of its render output.
 
 In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
 
@@ -238,6 +238,18 @@ ReactDOM.render(
 );
 ```
 
+In this refactored version of `<WarningBanner />` (below), you can see the benefits of returning `false` over `null`. Here we use a logical AND to return either `false` or the rendered warning.
+
+```javascript
+const WarningBanner = ({ warn }) => (
+  warn && (
+    <div className="warning">
+      Warning!
+    </div>
+  )
+);
+```
+
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.
+Returning `null` or `false` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.

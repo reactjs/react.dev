@@ -6,8 +6,8 @@
 
 'use strict';
 
-module.exports = async ({page, boundActionCreators}) => {
-  const {createPage} = boundActionCreators;
+module.exports = async ({page, actions}) => {
+  const {createPage} = actions;
 
   return new Promise(resolvePromise => {
     // page.matchPath is a special key that's used for matching pages only on the client.

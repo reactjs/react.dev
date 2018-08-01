@@ -8,8 +8,8 @@
 
 const {resolve} = require('path');
 
-module.exports = async ({graphql, boundActionCreators}) => {
-  const {createPage, createRedirect} = boundActionCreators;
+module.exports = async ({graphql, actions}) => {
+  const {createPage, createRedirect} = actions;
 
   // Used to detect and prevent duplicate redirects
   const redirectToSlugMap = {};
@@ -129,7 +129,7 @@ module.exports = async ({graphql, boundActionCreators}) => {
       {
         allMarkdownRemark(
           limit: 1
-          filter: {id: {regex: "/blog/"}}
+          filter: {fileAbsolutePath: {regex: "/blog/"}}
           sort: {fields: [fields___date], order: DESC}
         ) {
           edges {
@@ -143,6 +143,7 @@ module.exports = async ({graphql, boundActionCreators}) => {
       }
     `,
   );
+
   const newestBlogNode = newestBlogEntry.data.allMarkdownRemark.edges[0].node;
 
   // Blog landing page should always show the most recent blog entry.

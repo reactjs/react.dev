@@ -23,7 +23,6 @@ module.exports = {
     'gatsby-transformer-versions-yaml',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
-    'gatsby-plugin-react-next',
     'gatsby-plugin-twitter',
     {
       resolve: 'gatsby-plugin-nprogress',
@@ -134,7 +133,7 @@ module.exports = {
               {
                   allMarkdownRemark
                   (limit: 10,
-                  filter: {id: {regex: "/blog/"}},
+                  filter: {fileAbsolutePath: {regex: "/blog/"}},
                   sort: {fields: [fields___date],
                   order: DESC}) {
                     edges {

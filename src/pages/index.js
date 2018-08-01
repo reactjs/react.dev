@@ -10,7 +10,9 @@ import Flex from 'components/Flex';
 import mountCodeExample from 'utils/mountCodeExample';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import {StaticQuery, graphql} from 'gatsby';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import Layout from 'components/Layout';
 import {colors, media, sharedStyles} from 'theme';
 import createOgUrl from 'utils/createOgUrl';
 import loadScript from 'utils/loadScript';
@@ -334,7 +336,6 @@ Home.propTypes = {
     examples: PropTypes.object.isRequired,
     marketing: PropTypes.object.isRequired,
   }).isRequired,
-  location: PropTypes.object.isRequired,
 };
 
 function renderExamplePlaceholder(containerId) {
@@ -372,52 +373,58 @@ const CtaItem = ({children, primary = false}) => (
   </div>
 );
 
-// eslint-disable-next-line no-undef
-export const pageQuery = graphql`
-  query IndexMarkdown {
-    code: allExampleCode {
-      edges {
-        node {
-          id
-          internal {
-            contentDigest
+export default ({location}) => (
+  <StaticQuery
+    query={graphql`
+      query IndexMarkdown {
+        code: allExampleCode {
+          edges {
+            node {
+              id
+              internal {
+                contentDigest
+              }
+            }
+          }
+        }
+        examples: allMarkdownRemark(
+          filter: {fileAbsolutePath: {regex: "//home/examples//"}}
+          sort: {fields: [frontmatter___order], order: ASC}
+        ) {
+          edges {
+            node {
+              fields {
+                slug
+              }
+              frontmatter {
+                title
+              }
+              html
+            }
+          }
+        }
+        marketing: allMarkdownRemark(
+          filter: {fileAbsolutePath: {regex: "//home/marketing//"}}
+          sort: {fields: [frontmatter___order], order: ASC}
+        ) {
+          edges {
+            node {
+              frontmatter {
+                title
+              }
+              html
+            }
           }
         }
       }
-    }
-    examples: allMarkdownRemark(
-      filter: {id: {regex: "//home/examples//"}}
-      sort: {fields: [frontmatter___order], order: ASC}
-    ) {
-      edges {
-        node {
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-          }
-          html
-        }
-      }
-    }
-    marketing: allMarkdownRemark(
-      filter: {id: {regex: "//home/marketing//"}}
-      sort: {fields: [frontmatter___order], order: ASC}
-    ) {
-      edges {
-        node {
-          frontmatter {
-            title
-          }
-          html
-        }
-      }
-    }
-  }
-`;
-
-export default Home;
+    `}>
+    {data => (
+      <Layout location={location}>
+        <Home data={data} />
+      </Layout>
+    )}
+  </StaticQuery>
+);
 
 const sectionStyles = {
   marginTop: 20,

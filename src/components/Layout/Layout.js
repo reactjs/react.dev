@@ -11,20 +11,14 @@ import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
 
-// Import global styles
-import '../../prism-styles';
-import 'glamor/reset';
-import 'css/reset.css';
-import 'css/algolia.css';
+const JS_NPM_URLS = [
+  '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
+];
 
 type Props = {
   children: Function,
   location: Location,
 };
-
-const JS_NPM_URLS = [
-  '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
-];
 
 class Template extends Component<Props> {
   render() {

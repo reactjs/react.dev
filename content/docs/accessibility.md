@@ -66,8 +66,7 @@ function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // When mapping a collection, the `key` prop is required.
-        // Without it, React will fire a key warning
+        // Fragments also should have a `key` prop when mapping collections
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
@@ -78,7 +77,7 @@ function Glossary(props) {
 }
 ```
 
-You can also use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it, but only if you don't need any props, like the `key`:
+When you don't need any props on the Fragment tag you can also use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
 
 ```javascript{3,6}
 function ListItem({ item }) {

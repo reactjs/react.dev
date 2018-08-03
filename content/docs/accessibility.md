@@ -66,7 +66,7 @@ function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
-        // Fragments also should have a `key` prop when mapping collections
+        // Fragments should also have a `key` prop when mapping collections
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>

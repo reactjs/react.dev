@@ -27,7 +27,9 @@ export default class HTML extends React.Component {
             dangerouslySetInnerHTML={{__html: this.props.body}}
           />
           {this.props.postBodyComponents}
-          {JS_NPM_URLS.map(url => <script key={url} src={url} />)}
+          {JS_NPM_URLS.map(url => (
+            <script key={url} src={url} />
+          ))}
         </body>
       </html>
     );

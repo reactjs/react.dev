@@ -42,6 +42,7 @@
     "gatsby-transformer-sharp": "next",
     "glamor": "^2.20.40",
     "hex2rgba": "^0.0.1",
+    "normalize.css": "^8.0.0",
     "prettier": "^1.7.4",
     "prismjs": "^1.15.0",
     "react": "^16.4.1",

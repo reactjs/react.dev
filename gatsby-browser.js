@@ -7,9 +7,9 @@
 'use strict';
 
 // Import global styles
-require('./src/prism-styles');
-require('glamor/reset');
+require('normalize.css');
 require('./src/css/reset.css');
+require('./src/prism-styles');
 require('./src/css/algolia.css');
 
 // A stub function is needed because gatsby won't load this file otherwise

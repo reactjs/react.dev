@@ -19,11 +19,6 @@ type Props = {
 const TitleAndMetaTags = ({title, ogDescription, ogUrl}: Props) => {
   return (
     <Helmet title={title}>
-      <html lang="en" />
-      <meta charSet="utf-8" />
-      <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <link rel="icon" href="/favicon.ico" />
       <meta property="og:title" content={title} />
       <meta property="og:type" content="website" />
       {ogUrl && <meta property="og:url" content={ogUrl} />}

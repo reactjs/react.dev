@@ -11,10 +11,6 @@ import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
 
-const JS_NPM_URLS = [
-  '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
-];
-
 type Props = {
   children: Function,
   location: Location,
@@ -33,8 +29,6 @@ class Template extends Component<Props> {
     ) {
       layoutHasSidebar = true;
     }
-
-    const js = JS_NPM_URLS.map(url => <script key={url} src={url} />);
 
     return (
       <div
@@ -60,7 +54,6 @@ class Template extends Component<Props> {
             },
           }}>
           {children}
-          {js}
         </Flex>
         <Footer layoutHasSidebar={layoutHasSidebar} />
       </div>

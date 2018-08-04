@@ -12,7 +12,6 @@ There are many example projects created by the React community. Feel free to add
 * **[Calculator](https://github.com/ahfarmer/calculator)** Implementation of the iOS calculator built in React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Simple React app for searching emoji
 * **[Github Battle App](https://github.com/ReactTraining/react-fundamentals/tree/hosting)** Battle two Github users and see the most popular Github projects for any language.
-* **[K5 Playground](https://playground.cloud.global.fujitsu.com):** Sample applications for React.js and Flux.
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** A React & react-router-powered implementation of Hacker News using its Firebase API.
 * **[Pokedex](https://github.com/alik0211/pokedex)** The list of Pokémon with live search
 * **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Simple ecommerce cart application built using React 

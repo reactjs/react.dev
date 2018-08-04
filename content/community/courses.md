@@ -12,6 +12,8 @@ permalink: community/courses.html
 
 - [Egghead.io: Start Learning React](https://egghead.io/courses/start-learning-react) - This series will explore the basic fundamentals of React to get you started.
 
+- [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) - A beginner-friendly crash course through the most important React topics.
+
 - [React Armory: Learn React by Itself](https://reactarmory.com/guides/learn-react-by-itself) - With React Armory, you can learn React without the buzzwords.
 
 - [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) - Build a real world application in plain React without complicated tooling.
@@ -35,3 +37,5 @@ permalink: community/courses.html
 - [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
 
 - [React Essentials for Designers](https://learnreact.design) - React courses tailored for designers: the fundamentals, capabilities, limitations and how they relate to design.
+
+- [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.

@@ -752,8 +752,8 @@
   resolved "https://registry.yarnpkg.com/@types/mkdirp/-/mkdirp-0.3.29.tgz#7f2ad7ec55f914482fc9b1ec4bb1ae6028d46066"
 
 "@types/node@*":
-  version "10.5.5"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.5.tgz#8e84d24e896cd77b0d4f73df274027e3149ec2ba"
+  version "10.5.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.5.6.tgz#1640f021dd0eaf12e731e54198c12ad2e020dc8e"
 
 "@types/node@^7.0.11":
   version "7.0.68"
@@ -2517,8 +2517,8 @@ command-exists@^1.2.2:
   resolved "https://registry.yarnpkg.com/command-exists/-/command-exists-1.2.7.tgz#16828f0c3ff2b0c58805861ef211b64fc15692a8"
 
 commander@^2.11.0:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.16.0.tgz#f16390593996ceb4f3eeb020b31d78528f7f8a50"
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.0.tgz#9d07b25e2a6f198b76d8b756a0e8a9604a6a1a60"
 
 commander@~2.13.0:
   version "2.13.0"
@@ -4595,8 +4595,8 @@ gatsby-link@^2.0.0-beta.6:
     ric "^1.3.0"
 
 gatsby-plugin-catch-links@^2.0.2-beta.5:
-  version "2.0.2-beta.5"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.0.2-beta.5.tgz#9a90d7e69bc26c42e48ef6157e47642a8e4d9865"
+  version "2.0.2-beta.7"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.0.2-beta.7.tgz#b49b7cdc672196242e57ca94619c8401831c687f"
   dependencies:
     "@babel/runtime" "7.0.0-beta.52"
 
@@ -4830,8 +4830,8 @@ gatsby-transformer-sharp@next:
     probe-image-size "^4.0.0"
 
 gatsby@^2.0.0-beta.64:
-  version "2.0.0-beta.67"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-beta.67.tgz#33cbab20b3c968141a00ce6662dacb0a0d33b081"
+  version "2.0.0-beta.69"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-beta.69.tgz#d2afa332111eefa5d177c9d97603f4e77a9fdafa"
   dependencies:
     "@babel/code-frame" "7.0.0-beta.52"
     "@babel/core" "7.0.0-beta.52"
@@ -8990,8 +8990,8 @@ regenerator-runtime@^0.11.0, regenerator-runtime@^0.11.1:
   resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.11.1.tgz#be05ad7f9bf7d22e056f9726cee5017fbf19e2e9"
 
 regenerator-runtime@^0.12.0:
-  version "0.12.0"
-  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.0.tgz#8052ac952d85b10f3425192cd0c53f45cf65c6cb"
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/regenerator-runtime/-/regenerator-runtime-0.12.1.tgz#fa1a71544764c036f8c49b13a08b2594c9f8a0de"
 
 regenerator-transform@^0.13.3:
   version "0.13.3"

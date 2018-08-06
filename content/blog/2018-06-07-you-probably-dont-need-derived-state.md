@@ -43,8 +43,11 @@ A common misconception is that `getDerivedStateFromProps` and `componentWillRece
 Let’s consider an example to demonstrate the problem. Here is a `EmailInput` component that "mirrors" an email prop in state:
 ```js
 class EmailInput extends Component {
-  state = { email: this.props.email };
-
+  constructor(props) {
+    super(props);
+    this.state = { email: props.email };
+  }
+  
   render() {
     return <input onChange={this.handleChange} value={this.state.email} />;
   }
@@ -73,9 +76,10 @@ Continuing the example above, we could avoid accidentally erasing state by only 
 
 ```js
 class EmailInput extends Component {
-  state = {
-    email: this.props.email
-  };
+  constructor(props) {
+    super(props);
+    this.state = { email: props.email };
+  }
 
   componentWillReceiveProps(nextProps) {
     // Any time props.email changes, update state.
@@ -119,7 +123,10 @@ Another alternative would be for our component to fully own the "draft" email st
 
 ```js
 class EmailInput extends Component {
-  state = { email: this.props.defaultEmail };
+  constructor(props) {
+    super(props);
+    this.state = { email: props.defaultEmail };
+  }
 
   handleChange = event => {
     this.setState({ email: event.target.value });
@@ -154,10 +161,13 @@ If `key` doesn't work for some reason (perhaps the component is very expensive t
 
 ```js
 class EmailInput extends Component {
-  state = {
-    email: this.props.defaultEmail,
-    prevPropsUserID: this.props.userID
-  };
+  constructor(props) {
+    super(props);
+    this.state = { 
+      email: props.defaultEmail,
+      prevPropsUserID: props.userID 
+    };
+  }
 
   static getDerivedStateFromProps(props, state) {
     // Any time the current user changes,
@@ -188,9 +198,10 @@ More rarely, you may need to reset state even if there's no appropriate ID to us
 
 ```js
 class EmailInput extends Component {
-  state = {
-    email: this.props.defaultEmail
-  };
+  constructor(props) {
+    super(props);
+    this.state = { email: props.defaultEmail };
+  }
 
   resetEmailForNewUser(newEmail) {
     this.setState({ email: newEmail });
@@ -227,9 +238,10 @@ Let's look at an example of one component that takes one prop—a list of items�
 
 ```js
 class Example extends Component {
-  state = {
-    filterText: "",
-  };
+  constructor(props) {
+    super(props);
+    this.state = { filterText: "" };
+  }
 
   // *******************************************************
   // NOTE: this example is NOT the recommended approach.
@@ -273,10 +285,11 @@ This implementation avoids recalculating `filteredList` more often than necessar
 // PureComponents only rerender if at least one state or prop value changes.
 // Change is determined by doing a shallow comparison of state and prop keys.
 class Example extends PureComponent {
-  // State only needs to hold the current filter text value:
-  state = {
-    filterText: ""
-  };
+  constructor(props) {
+    super(props);
+    // State only needs to hold the current filter text value:
+    this.state = { filterText: "" };
+  }
 
   handleChange = event => {
     this.setState({ filterText: event.target.value });
@@ -305,13 +318,16 @@ The above approach is much cleaner and simpler than the derived state version. O
 import memoize from "memoize-one";
 
 class Example extends Component {
-  // State only needs to hold the current filter text value:
-  state = { filterText: "" };
+  constructor(props) {
+    super(props);
+    // State only needs to hold the current filter text value:
+    this.state = { filterText: "" };
 
-  // Re-run the filter whenever the list array or filter text changes:
-  filter = memoize(
-    (list, filterText) => list.filter(item => item.text.includes(filterText))
-  );
+    // Re-run the filter whenever the list array or filter text changes:
+    this.filter = memoize((list, filterText) =>
+      list.filter(item => item.text.includes(filterText))
+    );
+  }
 
   handleChange = event => {
     this.setState({ filterText: event.target.value });

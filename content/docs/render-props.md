@@ -322,4 +322,25 @@ class MouseTracker extends React.Component {
 }
 ```
 
+Or using functions!!, like so:
+
+```js
+// Defined as a simple function, `renderTheCat` always
+// refers to *same* function when we use it in render
+function renderTheCat(mouse) {
+  return <Cat mouse={mouse}>;
+}
+
+class MouseTracker extends React.Component {
+  render() {
+    return (
+      <div>
+        <h1>Move the mouse around!</h1>
+        <Mouse render={renderTheCat} />
+      </div>
+    );
+  }
+}
+```
+
 In cases where you cannot define the prop statically (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.

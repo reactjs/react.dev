@@ -95,7 +95,7 @@ function ErrorDecoder(props: {|
   let msg = '';
 
   const errorCodes = JSON.parse(props.errorCodesString);
-  const parseResult = parseQueryString(props.location.search);
+  const parseResult = parseQueryString(props.location.search || '');
   if (parseResult != null) {
     code = parseResult.code;
     msg = replaceArgs(errorCodes[code], parseResult.args);

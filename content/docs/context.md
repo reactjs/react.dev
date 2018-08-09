@@ -227,6 +227,8 @@ One issue with the render prop API is that refs don't automatically get passed t
 
 ## Caveats
 
+### Value reference equality
+
 Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
 
 `embed:context/reference-caveats-problem.js`
@@ -235,6 +237,10 @@ Because context uses reference identity to determine when to re-render, there ar
 To get around this, lift the value into the parent's state:
 
 `embed:context/reference-caveats-solution.js`
+
+### Multiple instances in `node_modules`
+
+Context Providers and Consumers must come from the exact same `React.createContext` call. If a package imports Provider or Consumer components and are then consumed from other packages, it is possible that multiple instances of the Provider/Consumer components will exist in the `node_modules` tree and they will fail to communicate as expected. To mitigate this, these other packages should specify peer dependency (rather than regular depenency) on the package that exports the context Provider or Consumer components so the package manager will ensure a single instance exists in the `node_modules` tree.
 
 ## Legacy API
 

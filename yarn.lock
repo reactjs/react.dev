@@ -4798,8 +4798,8 @@ gatsby-transformer-sharp@next:
     probe-image-size "^4.0.0"
 
 gatsby@^2.0.0-beta.64:
-  version "2.0.0-beta.87"
-  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-beta.87.tgz#9059676410044e936d88255d74ed794bf5324237"
+  version "2.0.0-beta.89"
+  resolved "https://registry.yarnpkg.com/gatsby/-/gatsby-2.0.0-beta.89.tgz#b2b8320bcc6aa5492699f17b6f16a2ffeae4d423"
   dependencies:
     "@babel/code-frame" "7.0.0-beta.52"
     "@babel/core" "7.0.0-beta.52"

@@ -63,6 +63,10 @@ Like any unfamiliar technology, React does have a learning curve. With practice 
 
 The [React homepage](/) contains a few small React examples with a live editor. Even if you don't know anything about React yet, try changing their code and see how it affects the result.
 
+### React for Designers
+
+If you're coming from a design background, [these resources](http://reactfordesigners.com/) are a great place to get started.
+
 ### JavaScript Resources
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.

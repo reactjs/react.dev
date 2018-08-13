@@ -62,6 +62,11 @@ October 20 in Sao Paulo, Brazil
 
 [Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
 
+### React Conf 2018
+October 25-26 in Henderson, Nevada USA
+
+[Website](https://conf.reactjs.org/)
+
 ### React Day Berlin 2018
 November 30, Berlin, Germany
 

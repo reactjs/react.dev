@@ -39,7 +39,7 @@
     "gatsby-remark-smartypants": "next",
     "gatsby-source-filesystem": "next",
     "gatsby-transformer-remark": "^2.1.1-beta.6",
-    "gatsby-transformer-sharp": "next",
+    "gatsby-transformer-sharp": "^2.1.1-beta.7",
     "glamor": "^2.20.40",
     "hex2rgba": "^0.0.1",
     "normalize.css": "^8.0.0",

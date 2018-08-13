@@ -12,11 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### Chain React 2018
-July 11-13 in Portland, Oregon USA
-
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
-
 ### React Rally
 August 16-17 in Salt Lake City, Utah USA
 
@@ -275,5 +270,10 @@ May 17-18 in Paris, France
 May 26 in Mumbai, India
 
 [Website](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+
+### Chain React 2018
+July 11-13 in Portland, Oregon USA
+
+[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
 
 ##

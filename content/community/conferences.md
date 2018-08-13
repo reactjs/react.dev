@@ -27,10 +27,10 @@ August 18 in Delhi, India
 
 [Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
-### #byteconf\_react\_2018
-August 30-31 streamed online, via Twitch
+### Byteconf React 2018
+August 31 streamed online, via Twitch
 
-[Website](https://byteconf.com) - [Twitter](https://twitter.com/byteconf)
+[Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
 
 ### React Native EU 2018
 September 5-6 in Wrocław, Poland

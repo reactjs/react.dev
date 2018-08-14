@@ -36,4 +36,7 @@ class MarkdownEditor extends React.Component {
   }
 }
 
-ReactDOM.render(<MarkdownEditor />, mountNode);
+ReactDOM.render(
+  <MarkdownEditor />,
+  document.getElementById('external-plugin-example')
+);

@@ -27,5 +27,7 @@ class Timer extends React.Component {
   }
 }
 
-ReactDOM.render(<Timer />,
-               document.getElementById('stateful-component'));
+ReactDOM.render(
+  <Timer />,
+  document.getElementById('stateful-component')
+);

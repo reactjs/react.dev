@@ -9,33 +9,30 @@ import {css} from 'glamor';
 import {colors} from 'theme';
 
 const prismColors = {
+  background: '#122031',
   char: '#D8DEE9',
-  comment: '#889dd0',
-  keyword: '#c8afff',
-  lineHighlight: '#2f354c',
-  primitive: '#f99e65',
-  string: '#84eabd',
-  variable: '#d7deea',
-  boolean: '#ffa3d4',
-  punctuation: '#8bd7f0',
-  tag: '#ff94be',
-  function: '#82bdff',
-  className: '#ffe198',
-  attrName: '#ffdbaa',
+  comment: '#9999c5',
+  keyword: '#dfa9f9',
+  lineHighlight: '#232e44',
+  primitive: '#ff8d5b',
+  string: '#ffe9b0',
+  variable: '#eaf0fb',
+  boolean: '#ff7c8b',
+  punctuation: '#a4f5f5',
+  tag: '#3ce6da',
+  tagClass: '#fc9464',
+  function: '#80b6ff',
+  className: '#ffdb7f',
+  attrName: '#d6f78f',
   method: '#6699CC',
-  operator: '#fc929e',
 };
 
 css.global('.gatsby-highlight', {
-  background: colors.dark,
-  color: colors.white,
+  background: prismColors.background,
+  color: prismColors.variable,
   borderRadius: 10,
   overflow: 'auto',
   tabSize: '1.5em',
-});
-
-css.global('.token.script.language-javascript', {
-  color: colors.white,
 });
 
 css.global(
@@ -47,7 +44,7 @@ css.global(
     height: 'auto !important',
     margin: '1rem',
     fontSize: 14,
-    lineHeight: '1.6',
+    lineHeight: '20px',
     whiteSpace: 'pre-wrap',
     wordBreak: 'break-word',
   },
@@ -107,8 +104,8 @@ css.global(`.token.string`, {
 
 css.global(
   `
-.token.punctuation,
-.token.operator`,
+  .token.punctuation,
+  .token.operator`,
   {
     color: prismColors.punctuation,
   },
@@ -147,6 +144,10 @@ css.global('.token.keyword', {
   color: prismColors.keyword,
 });
 
+css.global('.token.tag.class-name', {
+  color: prismColors.tagClass,
+});
+
 css.global(
   `
 .token.atrule,
@@ -173,4 +174,8 @@ css.global('.token.entity', {
 
 css.global('.namespace', {
   opacity: 0.7,
+});
+
+css.global('.token.language-javascript', {
+  color: prismColors.variable,
 });

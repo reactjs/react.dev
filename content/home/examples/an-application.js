@@ -60,4 +60,7 @@ class TodoList extends React.Component {
   }
 }
 
-ReactDOM.render(<TodoApp />, mountNode);
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('application')
+);

@@ -198,7 +198,7 @@ Verifies that `children` has only one child (a React element) and returns it. Ot
 React.Children.toArray(children)
 ```
 
-Returns the `children` opaque data structure as a flat array with keys assigned to each child. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice `this.props.children` before passing it down.
+Returns the `children` opaque data structure as a flat array with keys assigned to each child, filtering out invalid elements such as `undefined`, `null` and `boolean` values. Useful if you want to manipulate collections of children in your render methods, especially if you want to reorder or slice `this.props.children` before passing it down.
 
 > Note:
 >

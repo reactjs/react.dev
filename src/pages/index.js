@@ -74,7 +74,7 @@ class Home extends Component {
     return (
       <div css={{width: '100%'}}>
         <TitleAndMetaTags
-          title="React - A JavaScript library for building user interfaces"
+          title="React &ndash; A JavaScript library for building user interfaces"
           ogUrl={createOgUrl('index.html')}
         />
         <header

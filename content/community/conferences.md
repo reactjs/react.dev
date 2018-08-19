@@ -37,11 +37,6 @@ September 5-6 in Wrocław, Poland
 
 [Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
-### ReactNext 2018
-September 6 in Tel Aviv, Israel
-
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
-
 ### React Alicante 2018
 September 13-15 in Alicante, Spain
 
@@ -66,6 +61,11 @@ October 20 in Sao Paulo, Brazil
 October 25-26 in Henderson, Nevada USA
 
 [Website](https://conf.reactjs.org/)
+
+### ReactNext 2018
+November 4 in Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
 ### React Day Berlin 2018
 November 30, Berlin, Germany

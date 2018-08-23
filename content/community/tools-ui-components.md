@@ -25,7 +25,7 @@ permalink: community/ui-components.html
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
 * **[react-bootstrap](https://github.com/stevoland/react-bootstrap):** Bootstrap 3 components built with React.
 * **[react-bootstrap-dialog](https://github.com/akiroom/react-bootstrap-dialog):** React Dialog component for react-bootstrap, instead of `window.alert` or `window.confirm`
-* **[react-bootstrap-table](https://github.com/AllenFang/react-bootstrap-table):** It's a react table for Bootstrap.
+* **[react-bootstrap-table2](https://github.com/react-bootstrap-table/react-bootstrap-table2):** It's a react table for Bootstrap.
 * **[react-component](https://github.com/react-component/):** A collection of react components maintained by Alibaba/Alipay employee.
 * **[react-data-menu](https://github.com/dkozar/react-data-menu):** Smart data-driven menu rendered in an overlay. Hints-based aligning with custom renderers and factories. Never clipped by other components or screen edges.
 * **[react-date-picker](https://github.com/Hacker0x01/react-datepicker):** A simple and reusable datepicker component for React.

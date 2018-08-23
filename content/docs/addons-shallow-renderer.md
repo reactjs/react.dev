@@ -36,7 +36,7 @@ Then you can assert:
 import ShallowRenderer from 'react-test-renderer/shallow';
 
 // in your test:
-const renderer = new ShallowRenderer();
+const renderer = ShallowRenderer().createRenderer();
 renderer.render(<MyComponent />);
 const result = renderer.getRenderOutput();
 

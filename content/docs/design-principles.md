@@ -40,7 +40,7 @@ We always discuss such improvement proposals with the community. You can find so
 
 React is pragmatic. It is driven by the needs of the products written at Facebook. While it is influenced by some paradigms that are not yet fully mainstream such as functional programming, staying accessible to a wide range of developers with different skills and experience levels is an explicit goal of the project.
 
-If we want to deprecate a pattern that we don't like, it is our responsibility to consider all existing use cases for it and [educate the community about the alternatives](/blog/2016/07/13/mixins-considered-harmful.html) before we deprecate it. If some pattern that is useful for building apps is hard to express in a declarative way, we will [provide an imperative API](/docs/more-about-refs.html) for it. If we can't figure out a perfect API for something that we found necessary in many apps, we will [provide a temporary subpar working API](/docs/context.html) as long as it is possible to get rid of it later and it leaves the door open for future improvements.
+If we want to deprecate a pattern that we don't like, it is our responsibility to consider all existing use cases for it and [educate the community about the alternatives](/blog/2016/07/13/mixins-considered-harmful.html) before we deprecate it. If some pattern that is useful for building apps is hard to express in a declarative way, we will [provide an imperative API](/docs/more-about-refs.html) for it. If we can't figure out a perfect API for something that we found necessary in many apps, we will [provide a temporary subpar working API](/docs/legacy-context.html) as long as it is possible to get rid of it later and it leaves the door open for future improvements.
 
 ### Stability
 

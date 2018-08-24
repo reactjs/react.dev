@@ -77,7 +77,7 @@ class Home extends Component {
     return (
       <Layout location={location}>
         <TitleAndMetaTags
-          title="React - A JavaScript library for building user interfaces"
+          title="React &ndash; A JavaScript library for building user interfaces"
           ogUrl={createOgUrl('index.html')}
         />
         <div css={{width: '100%'}}>

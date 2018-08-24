@@ -12,11 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### Chain React 2018
-July 11-13 in Portland, Oregon USA
-
-[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
-
 ### React Rally
 August 16-17 in Salt Lake City, Utah USA
 
@@ -32,20 +27,15 @@ August 18 in Delhi, India
 
 [Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
 
-### #byteconf\_react\_2018
-August 30-31 streamed online, via Twitch
+### Byteconf React 2018
+August 31 streamed online, via Twitch
 
-[Website](https://byteconf.com) - [Twitter](https://twitter.com/byteconf)
+[Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
 
 ### React Native EU 2018
 September 5-6 in Wrocław, Poland
 
 [Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
-
-### ReactNext 2018
-September 6 in Tel Aviv, Israel
-
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
 ### React Alicante 2018
 September 13-15 in Alicante, Spain
@@ -66,6 +56,16 @@ October 5 in Verona, Italy
 October 20 in Sao Paulo, Brazil
 
 [Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
+
+### React Conf 2018
+October 25-26 in Henderson, Nevada USA
+
+[Website](https://conf.reactjs.org/)
+
+### ReactNext 2018
+November 4 in Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
 
 ### React Day Berlin 2018
 November 30, Berlin, Germany
@@ -275,5 +275,10 @@ May 17-18 in Paris, France
 May 26 in Mumbai, India
 
 [Website](https://reactfoo.in/2018-mumbai/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+
+### Chain React 2018
+July 11-13 in Portland, Oregon USA
+
+[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
 
 ##

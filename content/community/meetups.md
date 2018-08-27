@@ -20,6 +20,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Brazil
 * [Belo Horizonte](http://www.meetup.com/reactbh/)
+* [Curitiba](https://www.meetup.com/pt-br/ReactJS-CWB/)
 * [Rio de Janeiro](https://www.meetup.com/pt-BR/React-Rio-de-Janeiro/)
 * [São Paulo](http://www.meetup.com/pt-BR/ReactJS-SP/)
 

@@ -38,10 +38,18 @@ class MyComponent extends React.Component {
       isLoaded: false,
       items: []
     };
+    // Note: If the component unmounts before the AJAX call is complete
+    // you may see a error like 'Can’t call setState (or forceUpdate) 
+    // on an unmounted component.' To avoid this, we can abort any XHR request
+    // in componentWillUnmount lifecycle
+    // Read more on abort controller in AJAX calls
+    // https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort 
+    this.abortController = new window.AbortController();
+    this.mySignal = this.abortController.signal;
   }
 
   componentDidMount() {
-    fetch("https://api.example.com/items")
+    fetch("https://api.example.com/items", { signal: this.mySignal })
       .then(res => res.json())
       .then(
         (result) => {
@@ -54,12 +62,22 @@ class MyComponent extends React.Component {
         // instead of a catch() block so that we don't swallow
         // exceptions from actual bugs in components.
         (error) => {
+          if (error.name === 'AbortError') {
+            // If the AJAX request was aborted you can check that here
+            console.log('Fetch aborted:', error.message);
+          }
           this.setState({
             isLoaded: true,
             error
           });
         }
       )
+  }
+
+  componentWillUnmount() {
+    // When the component unmounts abort the AJAX request, to avoid
+    // unnecessary memory leaks in your application.
+    this.abortController.abort();
   }
 
   render() {

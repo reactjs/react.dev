@@ -45,11 +45,12 @@ class MyComponent extends React.Component {
     // Read more on abort controller in AJAX calls
     // https://developer.mozilla.org/en-US/docs/Web/API/AbortController/abort 
     this.abortController = new window.AbortController();
-    this.mySignal = this.abortController.signal;
   }
 
   componentDidMount() {
-    fetch("https://api.example.com/items", { signal: this.mySignal })
+    fetch("https://api.example.com/items", { 
+        signal: this.abortController.signal
+      })
       .then(res => res.json())
       .then(
         (result) => {
@@ -65,11 +66,9 @@ class MyComponent extends React.Component {
           if (error.name === 'AbortError') {
             // If the AJAX request was aborted you can check that here
             console.log('Fetch aborted:', error.message);
+          } else {
+            this.setState({ isLoaded: true, error });
           }
-          this.setState({
-            isLoaded: true,
-            error
-          });
         }
       )
   }

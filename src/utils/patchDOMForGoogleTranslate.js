@@ -12,6 +12,7 @@
 
 export default function patchDOMForGoogleTranslate() {
   const originalRemoveChild = Node.prototype.removeChild;
+  // $FlowFixMe Intentionally monkepatching.
   Node.prototype.removeChild = function(child) {
     if (child.parentNode !== this) {
       if (typeof console !== 'undefined') {
@@ -21,12 +22,13 @@ export default function patchDOMForGoogleTranslate() {
           this,
         );
       }
-      return;
+      return child;
     }
     return originalRemoveChild.apply(this, arguments);
   };
 
   const originalInsertBefore = Node.prototype.insertBefore;
+  // $FlowFixMe Intentionally monkepatching.
   Node.prototype.insertBefore = function(newNode, referenceNode) {
     if (referenceNode && referenceNode.parentNode !== this) {
       if (typeof console !== 'undefined') {
@@ -36,7 +38,7 @@ export default function patchDOMForGoogleTranslate() {
           this,
         );
       }
-      return;
+      return newNode;
     }
     return originalInsertBefore.apply(this, arguments);
   };

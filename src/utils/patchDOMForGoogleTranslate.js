@@ -11,6 +11,10 @@
 // https://github.com/facebook/react/issues/12460
 
 export default function patchDOMForGoogleTranslate() {
+  if (typeof Node !== 'function' || Node.prototype == null) {
+    return;
+  }
+
   const originalRemoveChild = Node.prototype.removeChild;
   // $FlowFixMe Intentionally monkepatching.
   Node.prototype.removeChild = function(child) {

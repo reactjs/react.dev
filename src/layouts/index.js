@@ -10,6 +10,7 @@ import 'array-from';
 import 'string.prototype.includes';
 import 'string.prototype.repeat';
 
+import patchDOMForGoogleTranslate from 'utils/patchDOMForGoogleTranslate';
 import React, {Component} from 'react';
 import Flex from 'components/Flex';
 import Footer from 'components/LayoutFooter';
@@ -21,6 +22,8 @@ import '../prism-styles';
 import 'glamor/reset';
 import 'css/reset.css';
 import 'css/algolia.css';
+
+patchDOMForGoogleTranslate();
 
 type Props = {
   children: Function,

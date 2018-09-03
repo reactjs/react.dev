@@ -5,11 +5,14 @@
  * @flow
  */
 
+import patchDOMForGoogleTranslate from 'utils/patchDOMForGoogleTranslate';
 import React, {Component} from 'react';
 import Flex from 'components/Flex';
 import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
+
+patchDOMForGoogleTranslate();
 
 type Props = {
   children: Function,

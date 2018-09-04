@@ -59,9 +59,9 @@ Passing an update function allows you to access the current state value inside t
 
 ```jsx
 incrementCount() {
-  this.setState((prevState) => {
-    // Important: read `prevState` instead of `this.state` when updating.
-    return {count: prevState.count + 1}
+  this.setState((state) => {
+    // Important: read `state` instead of `this.state` when updating.
+    return {count: state.count + 1}
   });
 }
 

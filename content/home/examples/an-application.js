@@ -41,8 +41,8 @@ class TodoApp extends React.Component {
       text: this.state.text,
       id: Date.now()
     };
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
+    this.setState(state => ({
+      items: state.items.concat(newItem),
       text: ''
     }));
   }

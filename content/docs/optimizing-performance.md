@@ -339,8 +339,8 @@ The simplest way to avoid this problem is to avoid mutating values that you are 
 
 ```javascript
 handleClick() {
-  this.setState(prevState => ({
-    words: prevState.words.concat(['marklar'])
+  this.setState(state => ({
+    words: state.words.concat(['marklar'])
   }));
 }
 ```
@@ -349,8 +349,8 @@ ES6 supports a [spread syntax](https://developer.mozilla.org/en-US/docs/Web/Java
 
 ```js
 handleClick() {
-  this.setState(prevState => ({
-    words: [...prevState.words, 'marklar'],
+  this.setState(state => ({
+    words: [...state.words, 'marklar'],
   }));
 };
 ```

@@ -78,17 +78,14 @@ It will render either `<LoginButton />` or `<LogoutButton />` depending on its c
 class LoginControl extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {isLoggedIn: false};
   }
 
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
-  }
-
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+  handleClick() {
+    this.setState(prevState => {
+      isLoggedIn: !prevState.isLoggedIn
+    });
   }
 
   render() {
@@ -96,9 +93,9 @@ class LoginControl extends React.Component {
     let button;
 
     if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
+      button = <LogoutButton onClick={this.handleClick} />;
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} />
+      button = <LoginButton onClick={this.handleClick} />;
     }
 
     return (

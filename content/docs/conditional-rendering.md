@@ -174,9 +174,9 @@ render() {
   return (
     <div>
       {isLoggedIn ? (
-        <LogoutButton onClick={this.handleLogoutClick} />
+        <LogoutButton onClick={this.handleClick} />
       ) : (
-        <LoginButton onClick={this.handleLoginClick} />
+        <LoginButton onClick={this.handleClick} />
       )}
     </div>
   );

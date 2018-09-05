@@ -7,13 +7,13 @@ permalink: community/ui-components.html
 
 ## Free Components
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react) (in Chinese):** [Amaze UI](https://github.com/allmobilize/amazeui) components built with React.
-* **[Ant Design of React](http://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
+* **[Ant Design of React](https://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
 * **[Belle](https://github.com/nikgraf/belle/):** Configurable React Components with great UX.
 * **[chartify](https://github.com/kirillstepkin/chartify)**: Ultra lightweight and customizable React.js chart component.
 * **[Elemental UI](http://elemental-ui.com):** A UI toolkit for React websites and apps, themeable and composed of individually packaged components
-* **[Grommet](http://grommet.io)** The most advanced open source UX framework for enterprise applications.
-* **[Halogen](http://madscript.com/halogen):** A collection of highly customizable loading spinner animations with React.
-* **[Khan Academy's component library](http://khan.github.io/react-components/)**
+* **[Grommet](https://grommet.io/)** The most advanced open source UX framework for enterprise applications.
+* **[Halogen](https://yuanyan.github.io/halogen/):** A collection of highly customizable loading spinner animations with React.
+* **[Khan Academy's component library](https://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)**: compiles markdown into safe React JSX without using dangerous escape hatches.
 * **[Material-UI](https://material-ui.com/):** React components that implement Google's Material Design.
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
@@ -33,7 +33,7 @@ permalink: community/ui-components.html
 * **[react-dnd](https://github.com/gaearon/react-dnd)** Flexible HTML5 drag-and-drop mixin for React with full DOM control
 * **[react-document-title](https://github.com/gaearon/react-document-title)** Declarative, nested, stateful, isomorphic document.title for React
 * **[react-dropzone](https://github.com/felixrieseberg/React-Dropzone):** React Dropzone for File-Uploads
-* **[react-forms](http://prometheusresearch.github.io/react-forms/):** Form rendering and validation for React
+* **[react-forms](https://prometheusresearch.github.io/react-forms/):** Form rendering and validation for React
 * **[react-highlight](https://github.com/akiran/react-highlight):** React component for syntax highlighting
 * **[react-image](https://github.com/mbrevda/react-image):** Like `<img />` and Enhanced Image Component for React.
 * **[react-input-autosize](https://github.com/JedWatson/react-input-autosize):** Like `<input />` but resizes automatically to fit all its content.
@@ -60,7 +60,7 @@ permalink: community/ui-components.html
 * **[reactstrap](https://reactstrap.github.io/):** Simple Bootstrap 4 components built with [tether](http://tether.io/)
 * **[recharts](https://github.com/recharts/recharts)**: A composable charting library built on React components.
 * **[Selectivity](https://arendjr.github.io/selectivity/):** Modular and light-weight selection library.
-* **[Semantic-ui](http://react.semantic-ui.com/)**: The official Semantic-UI-React integration, Advanced components and declarative UI.
+* **[Semantic-ui](https://react.semantic-ui.com/)**: The official Semantic-UI-React integration, Advanced components and declarative UI.
 * **[storybook-addon-material-ui](https://github.com/sm-react/storybook-addon-material-ui)** A storybook addon for material-ui.
 * **[tcomb-form](https://github.com/gcanti/tcomb-form):** Automatically generate form markup, automatic labels and inline validation from a domain model.
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
@@ -73,5 +73,5 @@ permalink: community/ui-components.html
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
-* **[jQWidgets React components](http://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
+* **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.

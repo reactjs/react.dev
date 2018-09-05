@@ -16,7 +16,7 @@ if (process.env.NODE_ENV === `production`) {
 }
 
 const JS_NPM_URLS = [
-  '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
+  'https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
 ];
 
 export default class HTML extends Component {

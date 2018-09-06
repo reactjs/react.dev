@@ -65,27 +65,15 @@ function ListItem({ item }) {
 function Glossary(props) {
   return (
     <dl>
-      <ListItem item={term: 'Fragment', description: 'A piece of something.' }>
-      <ListItem item={term: 'React', description: 'Respond.' }>
+      {props.items.map(item => (
+        <ListItem item={item} key={item.id} />
+      ))}
     </dl>
   );
 }
 ```
 
-When you don't need any props on the Fragment tag you can also use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
-
-```javascript{3,6}
-function ListItem({ item }) {
-  return (
-    <>
-      <dt>{item.term}</dt>
-      <dd>{item.description}</dd>
-    </>
-  );
-}
-```
-
-You may also map a collection of items to an array of fragments as you would any other type of element:
+You can map a collection of items to an array of fragments as you would any other type of element as well:
 
 ```javascript{6,9}
 function Glossary(props) {
@@ -99,6 +87,19 @@ function Glossary(props) {
         </Fragment>
       ))}
     </dl>
+  );
+}
+```
+
+When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+
+```javascript{3,6}
+function ListItem({ item }) {
+  return (
+    <>
+      <dt>{item.term}</dt>
+      <dd>{item.description}</dd>
+    </>
   );
 }
 ```

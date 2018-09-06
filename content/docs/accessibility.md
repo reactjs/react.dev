@@ -50,7 +50,7 @@ In these cases we should rather use [React Fragments](/docs/fragments.html) to g
 
 For example,
 
-```javascript{1,5,8,18,21}
+```javascript{1,5,8}
 import React, { Fragment } from 'react';
 
 function ListItem({ item }) {
@@ -66,6 +66,20 @@ function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
+        <ListItem item={item} key={item.id} />
+      ))}
+    </dl>
+  );
+}
+```
+
+You can map a collection of items to an array of fragments as you would any other type of element as well:
+
+```javascript{6,9}
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
         // Fragments should also have a `key` prop when mapping collections
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
@@ -77,7 +91,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can also use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
 
 ```javascript{3,6}
 function ListItem({ item }) {

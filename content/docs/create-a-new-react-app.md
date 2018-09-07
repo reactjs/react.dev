@@ -18,7 +18,7 @@ This page describes a few popular React toolchains which help with tasks like:
 * Live-editing CSS and JS in development.
 * Optimizing the output for production.
 
-The toolchains recommended on this page **don't require configuration to get started**.
+The toolchains recommended on this page **don't require configuration to get started** [Installation Guide](https://github.com/facebook/create-react-app).
 
 ## You Might Not Need a Toolchain
 

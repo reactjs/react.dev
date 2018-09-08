@@ -12,31 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### React Rally
-August 16-17 in Salt Lake City, Utah USA
-
-[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
-
-### React DEV Conf China
-August 18 in Guangzhou, China
-
-[Website](https://react.w3ctech.com)
-
-### ReactFoo Delhi 
-August 18 in Delhi, India
-
-[Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
-
-### Byteconf React 2018
-August 31 streamed online, via Twitch
-
-[Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
-
-### React Native EU 2018
-September 5-6 in Wrocław, Poland
-
-[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
-
 ### React Alicante 2018
 September 13-15 in Alicante, Spain
 
@@ -280,5 +255,30 @@ May 26 in Mumbai, India
 July 11-13 in Portland, Oregon USA
 
 [Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/chainreactconf)
+
+### React Rally
+August 16-17 in Salt Lake City, Utah USA
+
+[Website](http://www.reactrally.com) - [Twitter](https://twitter.com/reactrally)
+
+### React DEV Conf China
+August 18 in Guangzhou, China
+
+[Website](https://react.w3ctech.com)
+
+### ReactFoo Delhi 
+August 18 in Delhi, India
+
+[Website](https://reactfoo.in/2018-delhi/) - [Twitter](https://twitter.com/reactfoo) - [Past talks](https://hasgeek.tv)
+
+### Byteconf React 2018
+August 31 streamed online, via Twitch
+
+[Website](https://byteconf.com) - [Twitch](https://twitch.tv/byteconf) - [Twitter](https://twitter.com/byteconf)
+
+### React Native EU 2018
+September 5-6 in Wrocław, Poland
+
+[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
 ##

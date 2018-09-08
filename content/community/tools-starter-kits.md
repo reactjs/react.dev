@@ -8,18 +8,19 @@ permalink: community/starter-kits.html
 ## Recommended by the React Team
 
 * **[Create React App](https://github.com/facebook/create-react-app)** - An officially supported way to start a client-side React project with no configuration
-* **[Next.js](https://learnnextjs.com/)** - Framework for server-rendered or statically-exported React apps
-* **[Gatsby](https://www.gatsbyjs.org/)** - Blazing-fast static site generator for React
+* **[Next.js](https://nextjs.org/)** - Framework for server-rendered or statically-exported React apps
+* **[Gatsby](https://www.gatsbyjs.org/)** - Static site generator for React optimized for speed
 * **[nwb](https://github.com/insin/nwb)** - A toolkit for React apps, libraries and other npm modules for the web
 * **[razzle](https://github.com/jaredpalmer/razzle)** - Create server-rendered universal JavaScript applications with no configuration
 * **[Neutrino](https://neutrino.js.org/)** - Create and build modern JavaScript applications with zero initial configuration
+* **[Parcel](https://parceljs.org)** - Fast, zero configuration web application bundler
 
 ## Other Starter Kits
 
 * **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate providing a virtual development environment and production ready build workflow out of the box. (React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support)
 * **[React + Redux + Saga Boilerplate](https://github.com/gilbarbara/react-redux-saga-boilerplate)** -
-Ready to grow boilerplate with react-router, redux, saga, webpack 2, jest w/ coverage and enzyme.
+Ready to grow boilerplate with react-router, redux, saga, webpack 3, jest w/ coverage and enzyme.
 * **[Create React App + Redux + React Router](https://github.com/notrab/create-react-app-redux)**: Based on Create React App, this boilerplate comes with Redux, Redux Thunk and React Router all configured ready to go.
 * **[react-slingshot](https://github.com/coryhouse/react-slingshot):** React + Redux starter kit with Babel, hot reloading, testing, linting and a working example app.
 * **[Este](https://github.com/este/este):** Dev stack and starter kit for functional and universal (browser, server, mobile) React applications. Everything you need to start is included.

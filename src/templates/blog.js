@@ -33,7 +33,7 @@ const Blog = ({data, location}) => (
     ogDescription={data.markdownRemark.excerpt}
     markdownRemark={data.markdownRemark}
     sectionList={toSectionList(data.allMarkdownRemark)}
-    titlePostfix=" - React Blog"
+    titlePostfix=" &ndash; React Blog"
   />
 );
 
@@ -60,7 +60,9 @@ export const pageQuery = graphql`
       }
       fields {
         date(formatString: "MMMM DD, YYYY")
-        path
+        path {
+          id
+        }
         slug
       }
     }

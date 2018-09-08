@@ -16,7 +16,7 @@ const Community = ({data, location}) => (
     location={location}
     markdownRemark={data.markdownRemark}
     sectionList={sectionListCommunity}
-    titlePostfix=" - React"
+    titlePostfix=" &ndash; React"
   />
 );
 
@@ -35,7 +35,9 @@ export const pageQuery = graphql`
         prev
       }
       fields {
-        path
+        path {
+          id
+        }
         slug
       }
     }

@@ -13,7 +13,7 @@ class Button extends React.Component {
   render() {
     const {theme, children} = this.props;
     return (
-      <button className={theme ? 'dark' : 'light'}>
+      <button className={theme || 'light'}>
         {children}
       </button>
     );

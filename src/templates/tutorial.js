@@ -27,7 +27,7 @@ const Tutorial = ({data, location}) => {
       location={location}
       markdownRemark={data.markdownRemark}
       sectionList={sectionListTutorial}
-      titlePostfix=" - React"
+      titlePostfix=" &ndash; React"
     />
   );
 };
@@ -47,7 +47,9 @@ export const pageQuery = graphql`
         prev
       }
       fields {
-        path
+        path {
+          id
+        }
         slug
       }
     }

@@ -99,6 +99,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               Reactiflux Chat
             </ExternalFooterLink>
             <ExternalFooterLink
+              href="https://dev.to/t/react"
+              target="_blank"
+              rel="noopener">
+              DEV Community
+            </ExternalFooterLink>
+            <ExternalFooterLink
               href="https://www.facebook.com/react"
               target="_blank"
               rel="noopener">

@@ -1,5 +1,5 @@
 class Example extends React.Component {
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(props, state) {
     // ...
   }
 }

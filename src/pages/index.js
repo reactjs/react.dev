@@ -74,7 +74,7 @@ class Home extends Component {
     return (
       <div css={{width: '100%'}}>
         <TitleAndMetaTags
-          title="React - A JavaScript library for building user interfaces"
+          title="React &ndash; A JavaScript library for building user interfaces"
           ogUrl={createOgUrl('index.html')}
         />
         <header
@@ -168,7 +168,7 @@ class Home extends Component {
                     },
                   }}>
                   <CtaItem>
-                    <ButtonLink to="/docs/hello-world.html" type="primary">
+                    <ButtonLink to="/docs/getting-started.html" type="primary">
                       Get Started
                     </ButtonLink>
                   </CtaItem>
@@ -311,7 +311,7 @@ class Home extends Component {
           <Container>
             <Flex valign="center">
               <CtaItem>
-                <ButtonLink to="/docs/hello-world.html" type="primary">
+                <ButtonLink to="/docs/getting-started.html" type="primary">
                   Get Started
                 </ButtonLink>
               </CtaItem>

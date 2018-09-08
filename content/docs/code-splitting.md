@@ -97,7 +97,7 @@ import("./math").then(math => {
 >
 > The dynamic `import()` syntax is a ECMAScript (JavaScript)
 > [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted within the
+> part of the language standard. It is expected to be accepted in the
 > near future.
 
 When Webpack comes across this syntax, it automatically starts code-splitting

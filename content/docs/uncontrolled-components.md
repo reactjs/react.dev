@@ -10,15 +10,16 @@ To write an uncontrolled component, instead of writing an event handler for ever
 
 For example, this code accepts a single name in an uncontrolled component:
 
-```javascript{8,17}
+```javascript{5,9,18}
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.input = React.createRef();
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.value);
+    alert('A name was submitted: ' + this.input.current.value);
     event.preventDefault();
   }
 
@@ -27,7 +28,7 @@ class NameForm extends React.Component {
       <form onSubmit={this.handleSubmit}>
         <label>
           Name:
-          <input type="text" ref={(input) => this.input = input} />
+          <input type="text" ref={this.input} />
         </label>
         <input type="submit" value="Submit" />
       </form>
@@ -36,7 +37,7 @@ class NameForm extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/WooRWa?editors=0010)
 
 Since an uncontrolled component keeps the source of truth in the DOM, it is sometimes easier to integrate React and non-React code when using uncontrolled components. It can also be slightly less code if you want to be quick and dirty. Otherwise, you should usually use controlled components.
 
@@ -55,7 +56,7 @@ render() {
         <input
           defaultValue="Bob"
           type="text"
-          ref={(input) => this.input = input} />
+          ref={this.input} />
       </label>
       <input type="submit" value="Submit" />
     </form>
@@ -79,5 +80,5 @@ You should use the File API to interact with the files. The following example sh
 
 `embed:uncontrolled-components/input-type-file.js`
 
-[Try it on CodePen](codepen://uncontrolled-components/input-type-file)
+[](codepen://uncontrolled-components/input-type-file)
 

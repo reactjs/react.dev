@@ -47,6 +47,11 @@ November 30, Berlin, Germany
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
 
+### React Amsterdam 2019
+April 12 in Amsterdam, The Netherlands
+
+[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+
 ## Past Conferences
 
 ### React.js Conf 2015

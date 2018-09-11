@@ -5,6 +5,7 @@ layout: community
 permalink: community/component-workbenches.html
 ---
 
+* **[Docz](https://github.com/pedronauck/docz):** An incredible environment to develop your components and generates beautiful and highly customizable documentation easily using MDX.
 * **[Storybook for React](https://github.com/storybooks/storybook):** UI component development environment for React.
 * **[React Styleguidist](https://github.com/styleguidist/react-styleguidist):** Style guide generator & component workbench for React.
 * **[React Showroom](https://github.com/OpusCapita/react-showroom-client):** React based components catalog which provides you with markdown documentation and live examples

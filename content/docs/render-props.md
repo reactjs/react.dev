@@ -52,7 +52,7 @@ class MouseTracker extends React.Component {
 
 As the cursor moves around the screen, the component displays its (x, y) coordinates in a `<p>`.
 
-Now the question is: How can we reuse this behavior in another component? In other words, if another component needs to know about the cursor position, can we encapsulate that behavior so that we can easily share it with that component?
+Now the question is: How can we reuse this behavior in another component? In other words, if another component needs to know about the cursor position, can we encapsulate this behavior so that we can easily share it with that component?
 
 Since components are the basic unit of code reuse in React, let's try refactoring the code a bit to use a `<Mouse>` component that encapsulates the behavior we need to reuse elsewhere.
 

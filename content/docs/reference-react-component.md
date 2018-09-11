@@ -459,9 +459,10 @@ This form of `setState()` is also asynchronous, and multiple calls during the sa
 
 ```javaScript
 Object.assign(
+  {},
   previousState,
-  {quantity: state.quantity + 1},
-  {quantity: state.quantity + 1},
+  {quantity: previousState.quantity + 1},
+  {quantity: previousState.quantity + 1},
   ...
 )
 ```

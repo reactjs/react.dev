@@ -304,7 +304,7 @@ constructor(props) {
 This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element
 as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
 
-<img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keybard showing the popover not being closed on blur and it obscuring other screen elements." />
+<img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
 
 The same functionality can be achieved by using an appropriate event handlers instead, such as `onBlur` and `onFocus`:
 

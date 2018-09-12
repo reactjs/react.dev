@@ -75,13 +75,19 @@ Use it to specify a threshold and the profiler will hide all commits that were _
 ### Flame chart
 
 The flame chart view represents the state of your application for a particular commit.
-Each bar in the chart represents a React component (e.g. `App`, `Nav`) and the color of the bar represents how long that component took to render.
+Each bar in the chart represents a React component (e.g. `App`, `Nav`).
+The size and color of the bar represents how long it took to render the component and its children.
+(The width of a bar represents how much time was spent _when the component last rendered_ and the color represents how much time was spent _as part of the current commit_.)
 
 ![Example flame chart](../images/blog/introducing-the-react-profiler/flame-chart.png)
 
 > Note:
+>
+> The width of a bar indicates how long it took to render the component (and its children) when they last rendered.
+> If the component did not re-render as part of this commit, the time represents a previous render.
+> The wider a component is, the longer it took to render.
 > 
-> The color of a bar indicates how long that commit took to render in the selected commit.
+> The color of a bar indicates how long the component (and its children) took to render in the selected commit.
 > Yellow components took more time, blue components took less time, and gray components did not render at all during this commit.
 
 For example, the commit shown above took a total of 18.4ms to render.
@@ -97,7 +103,7 @@ You can drill into these to learn more about what the component actually rendere
 
 ![Viewing a component's props and state for a commit](../images/blog/introducing-the-react-profiler/props-and-state.gif)
 
-In some cases, selecting a comonent and stepping between commits may also provide a hint as to _why_ the component rendered:
+In some cases, selecting a component and stepping between commits may also provide a hint as to _why_ the component rendered:
 
 ![Seeing which values changed between commits](../images/blog/introducing-the-react-profiler/see-which-props-changed.gif)
 
@@ -122,7 +128,7 @@ As with the flame chart, you can zoom in or out on a ranked chart by clicking on
 ### Component chart
 
 Sometimes it's useful to see how many times a particular component rendered while you were profiling.
-The component chart chart provides this information in the form of a bar chart.
+The component chart provides this information in the form of a bar chart.
 Each bar in the chart represents a time when the component rendered.
 The color and height of each bar corresponds to how long the component took to render _relative to other components_ in a particular commit.
 

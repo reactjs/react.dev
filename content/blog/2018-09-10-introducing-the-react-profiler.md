@@ -8,7 +8,7 @@ It will be fully compatible with our upcoming [time slicing and suspense](/blog/
 
 This blog post covers the following topics:
 * [Profiling an application](#profiling-an-application)
-* [Reading performace data](#reading-performace-data)
+* [Reading performance data](#reading-performance-data)
   * [Browsing commits](#browsing-commits)
   * [Filtering commits](#filtering-commits)
   * [Flame chart](#flame-chart)
@@ -42,9 +42,9 @@ When you are finished profiling, click the "Stop" button.
 ![Click "stop" when you are finished profiling](../images/blog/introducing-the-react-profiler/stop-profiling.png)
 
 Assuming your application rendered at least once while profiling, DevTools will show several ways to view the performance data.
-We'll [take a look at each of these below](#reading-performace-data).
+We'll [take a look at each of these below](#reading-performance-data).
 
-## Reading performace data
+## Reading performance data
 
 ### Browsing commits
 Conceptually, React does work in two phases:

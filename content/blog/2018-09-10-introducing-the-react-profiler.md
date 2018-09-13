@@ -44,7 +44,7 @@ When you are finished profiling, click the "Stop" button.
 Assuming your application rendered at least once while profiling, DevTools will show several ways to view the performance data.
 We'll [take a look at each of these below](#reading-performace-data).
 
-## Reading performace data
+## Reading performance data
 
 ### Browsing commits
 Conceptually, React does work in two phases:

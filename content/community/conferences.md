@@ -12,11 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### React Alicante 2018
-September 13-15 in Alicante, Spain
-
-[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
-
 ### React Boston 2018
 September 29-30 in Boston, Massachusetts USA
 
@@ -51,6 +46,11 @@ November 30, Berlin, Germany
 April 12 in Amsterdam, The Netherlands
 
 [Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
+
+### ReactEurope 2019
+May 23-24 in Paris, France
+
+[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ## Past Conferences
 
@@ -285,5 +285,10 @@ August 31 streamed online, via Twitch
 September 5-6 in Wrocław, Poland
 
 [Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
+
+### React Alicante 2018
+September 13-15 in Alicante, Spain
+
+[Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
 
 ##

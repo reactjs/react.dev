@@ -236,8 +236,10 @@ number pointerId
 number width
 number height
 number pressure
+number tangentialPressure
 number tiltX
 number tiltY
+number twist
 string pointerType
 boolean isPrimary
 ```

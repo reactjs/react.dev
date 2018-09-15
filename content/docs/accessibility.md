@@ -50,7 +50,7 @@ In these cases we should rather use [React Fragments](/docs/fragments.html) to g
 
 For example,
 
-```javascript{1,5,8,18,21}
+```javascript{1,5,8}
 import React, { Fragment } from 'react';
 
 function ListItem({ item }) {
@@ -66,6 +66,20 @@ function Glossary(props) {
   return (
     <dl>
       {props.items.map(item => (
+        <ListItem item={item} key={item.id} />
+      ))}
+    </dl>
+  );
+}
+```
+
+You can map a collection of items to an array of fragments as you would any other type of element as well:
+
+```javascript{6,9}
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
         // Fragments should also have a `key` prop when mapping collections
         <Fragment key={item.id}>
           <dt>{item.term}</dt>
@@ -77,7 +91,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can also use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
 
 ```javascript{3,6}
 function ListItem({ item }) {
@@ -290,7 +304,7 @@ constructor(props) {
 This may work fine for users with pointer devices, such as a mouse, but operating this with the keyboard alone leads to broken functionality when tabbing to the next element
 as the `window` object never receives a `click` event. This can lead to obscured functionality which blocks users from using your application.
 
-<img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keybard showing the popover not being closed on blur and it obscuring other screen elements." />
+<img src="../images/docs/outerclick-with-keyboard.gif" alt="A toggle button opening a popover list implemented with the click outside pattern and operated with the keyboard showing the popover not being closed on blur and it obscuring other screen elements." />
 
 The same functionality can be achieved by using an appropriate event handlers instead, such as `onBlur` and `onFocus`:
 

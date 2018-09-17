@@ -183,6 +183,23 @@ Note that **the numbers are relative so components will render faster in product
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
+## Profiling Components with the DevTools Profiler
+
+`react-dom` 16.5+ and `react-native` 0.57+ provide enhanced profiling capabilities in DEV mode with the React DevTools Profiler.
+An overview of the Profiler can be found in the blog post ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
+A video walk through of the profiler is also [available on YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
+
+If you haven't yet installed the React DevTools, you can find them here:
+
+- [Chrome Browser Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
+- [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
+- [Standalone Node Package](https://www.npmjs.com/package/react-devtools)
+
+> Note
+>
+> A production profiling bundle of `react-dom` is also available as `react-dom/profiling`.
+> Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling)
+
 ## Virtualize Long Lists
 
 If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.

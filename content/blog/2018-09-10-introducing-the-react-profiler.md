@@ -149,16 +149,16 @@ If the selected component did not render at all during the profiling session, th
 
 ### Interactions
 
-React recently added another [experimental API](https://fb.me/react-interaction-tracking) for tracking the _cause_ of an update.
-"Interactions" tracked with this API will also be shown in the profiler:
+React recently added another [experimental API](https://fb.me/react-interaction-tracing) for tracing the _cause_ of an update.
+"Interactions" traced with this API will also be shown in the profiler:
 
 ![The interactions panel](../images/blog/introducing-the-react-profiler/interactions.png)
 
-The image above shows a profiling session that tracked four interactions.
-Each row represents an interaction that was tracked.
+The image above shows a profiling session that traced four interactions.
+Each row represents an interaction that was traced.
 The colored dots along the row represent commits that were related to that interaction.
 
-You can also see which interactions were tracked for a particular commit from the flame chart and ranked chart views as well:
+You can also see which interactions were traced for a particular commit from the flame chart and ranked chart views as well:
 
 ![List of interactions for a commit](../images/blog/introducing-the-react-profiler/interactions-for-commit.png)
 
@@ -166,7 +166,7 @@ You can navigate between interactions and commits by clicking on them:
 
 ![Navigate between interactions and commits](../images/blog/introducing-the-react-profiler/navigate-between-interactions-and-commits.gif)
 
-The tracking API is still new and we will cover it in more detail in a future blog post.
+The tracing API is still new and we will cover it in more detail in a future blog post.
 
 ## Troubleshooting
 

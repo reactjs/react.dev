@@ -88,13 +88,13 @@ If you manually configured Babel for your project, you will need to install a sp
 If you use Yarn, run:
 
 ```bash
-yarn add --dev babel-preset-flow
+yarn add --dev @babel/preset-flow
 ```
 
 If you use npm, run:
 
 ```bash
-npm install --save-dev babel-preset-flow
+npm install --save-dev @babel/preset-flow
 ```
 
 Then add the `flow` preset to your [Babel configuration](http://babeljs.io/docs/usage/babelrc/). For example, if you configure Babel through `.babelrc` file, it could look like this:
@@ -102,8 +102,8 @@ Then add the `flow` preset to your [Babel configuration](http://babeljs.io/docs/
 ```js{3}
 {
   "presets": [
-    "flow",
-    "react"
+    "@babel/preset-flow",
+    "@babel/preset-react"
   ]
 }
 ```
@@ -261,7 +261,7 @@ If you see no output, it means that it completed successfully.
 
 
 ### Type Definitions
-To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project. 
+To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project.
 
 There are two main ways to get declarations for a library:
 
@@ -313,7 +313,7 @@ Reason is developed at Facebook, and is used in some of its products like Messen
 
 ## Kotlin
 
-[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
+[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html).
 
 JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
 

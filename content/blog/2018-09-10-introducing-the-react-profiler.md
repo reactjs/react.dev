@@ -18,6 +18,7 @@ This blog post covers the following topics:
 * [Troubleshooting](#troubleshooting)
   * [No profiling data has been recorded for the selected root](#no-profiling-data-has-been-recorded-for-the-selected-root)
   * [No timing data to display for the selected commit](#no-timing-data-to-display-for-the-selected-commit)
+* [Deep dive video](#deep-dive-video)
 
 ## Profiling an application
 
@@ -186,3 +187,11 @@ Sometimes a commit may be so fast that `performance.now()` doesn't give DevTools
 In this case, the following message will be shown:
 
 ![No timing data to display for the selected commit](../images/blog/introducing-the-react-profiler/no-timing-data-for-commit.png)
+
+## Deep dive video
+
+The following video demonstrates how the React profiler can be used to detect and improve performance bottlenecks in an actual React application.
+
+<br>
+
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nySib7ipZdk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

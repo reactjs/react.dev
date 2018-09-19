@@ -24,8 +24,8 @@ function buildRedirectString(permalink, redirect_from) {
 }
 
 // Add custom fields to MarkdownRemark nodes.
-module.exports = exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
-  const {createNodeField} = boundActionCreators;
+module.exports = exports.onCreateNode = ({node, actions, getNode}) => {
+  const {createNodeField} = actions;
 
   switch (node.internal.type) {
     case 'MarkdownRemark':

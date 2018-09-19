@@ -5,23 +5,12 @@
  * @flow
  */
 
-// Polyfills for IE
-import 'array-from';
-import 'string.prototype.includes';
-import 'string.prototype.repeat';
-
 import patchDOMForGoogleTranslate from 'utils/patchDOMForGoogleTranslate';
 import React, {Component} from 'react';
 import Flex from 'components/Flex';
 import Footer from 'components/LayoutFooter';
 import Header from 'components/LayoutHeader';
 import {media} from 'theme';
-
-// Import global styles
-import '../prism-styles';
-import 'glamor/reset';
-import 'css/reset.css';
-import 'css/algolia.css';
 
 patchDOMForGoogleTranslate();
 
@@ -67,7 +56,7 @@ class Template extends Component<Props> {
               marginTop: 40,
             },
           }}>
-          {children()}
+          {children}
         </Flex>
         <Footer layoutHasSidebar={layoutHasSidebar} />
       </div>

@@ -56,7 +56,7 @@ class Calculator extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
 ## Adding a Second Input
 
@@ -110,7 +110,7 @@ class Calculator extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBryx?editors=0010)
 
 We have two inputs now, but when you enter the temperature in one of them, the other doesn't update. This contradicts our requirement: we want to keep them in sync.
 
@@ -299,19 +299,20 @@ class Calculator extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
 
 Now, no matter which input you edit, `this.state.temperature` and `this.state.scale` in the `Calculator` get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.
 
 Let's recap what happens when you edit an input:
 
-* React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in `TemperatureInput` component.
+* React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component.
 * The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value. Its props, including `onTemperatureChange`, were provided by its parent component, the `Calculator`.
 * When it previously rendered, the `Calculator` has specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
 * Inside these methods, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.
 * React calls the `Calculator` component's `render` method to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.
 * React calls the `render` methods of the individual `TemperatureInput` components with their new props specified by the `Calculator`. It learns what their UI should look like.
-* React DOM updates the DOM to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.
+* React calls the `render` method of the `BoilingVerdict` component, passing the temperature in Celsius as its props.
+* React DOM updates the DOM with the boiling verdict and to match the desired input values. The input we just edited receives its current value, and the other input is updated to the temperature after conversion.
 
 Every update goes through the same steps so the inputs stay in sync.
 

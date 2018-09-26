@@ -2,16 +2,15 @@
 id: state-and-lifecycle
 title: State and Lifecycle
 permalink: docs/state-and-lifecycle.html
-redirect_from: "docs/interactivity-and-dynamic-uis.html"
+redirect_from:
+  - "docs/interactivity-and-dynamic-uis.html"
 prev: components-and-props.html
 next: handling-events.html
 ---
 
-Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element).
+This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
 
-So far we have only learned one way to update the UI.
-
-We call `ReactDOM.render()` to change the rendered output:
+Consider the ticking clock example from [one of the previous sections](/docs/rendering-elements.html#updating-the-rendered-element). In [Rendering Elements](/docs/rendering-elements.html#rendering-an-element-into-the-dom), we have only learned one way to update the UI. We call `ReactDOM.render()` to change the rendered output:
 
 ```js{8-11}
 function tick() {
@@ -30,7 +29,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/gwoJZk?editors=0010)
 
 In this section, we will learn how to make the `Clock` component truly reusable and encapsulated. It will set up its own timer and update itself every second.
 
@@ -56,7 +55,7 @@ function tick() {
 setInterval(tick, 1000);
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/dpdoYR?editors=0010)
 
 However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
 
@@ -102,11 +101,11 @@ class Clock extends React.Component {
 }
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/zKRGpo?editors=0010)
 
 `Clock` is now defined as a class rather than a function.
 
-This lets us use additional features such as local state and lifecycle hooks.
+The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle hooks.
 
 ## Adding Local State to a Class
 
@@ -194,7 +193,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/KgQpJd?editors=0010)
 
 Next, we'll make the `Clock` set up its own timer and update itself every second.
 
@@ -249,9 +248,7 @@ The `componentDidMount()` hook runs after the component output has been rendered
 
 Note how we save the timer ID right on `this`.
 
-While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that is not used for the visual output.
-
-If you don't use something in `render()`, it shouldn't be in the state.
+While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a timer ID).
 
 We will tear down the timer in the `componentWillUnmount()` lifecycle hook:
 
@@ -305,7 +302,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/amqdNA?editors=0010)
 
 Now the clock ticks every second.
 
@@ -362,8 +359,8 @@ To fix it, use a second form of `setState()` that accepts a function rather than
 
 ```js
 // Correct
-this.setState((prevState, props) => ({
-  counter: prevState.counter + props.increment
+this.setState((state, props) => ({
+  counter: state.counter + props.increment
 }));
 ```
 
@@ -371,9 +368,9 @@ We used an [arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript
 
 ```js
 // Correct
-this.setState(function(prevState, props) {
+this.setState(function(state, props) {
   return {
-    counter: prevState.counter + props.increment
+    counter: state.counter + props.increment
   };
 });
 ```
@@ -440,7 +437,7 @@ function FormattedDate(props) {
 }
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/zKRqNB?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/zKRqNB?editors=0010)
 
 This is commonly called a "top-down" or "unidirectional" data flow. Any state is always owned by some specific component, and any data or UI derived from that state can only affect components "below" them in the tree.
 
@@ -465,7 +462,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
+[**Try it on CodePen**](http://codepen.io/gaearon/pen/vXdGmd?editors=0010)
 
 Each `Clock` sets up its own timer and updates independently.
 

@@ -20,9 +20,9 @@ module.exports = {
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
     'gatsby-transformer-home-example-code',
+    'gatsby-transformer-versions-yaml',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
-    'gatsby-plugin-react-next',
     'gatsby-plugin-twitter',
     {
       resolve: 'gatsby-plugin-nprogress',
@@ -59,12 +59,13 @@ module.exports = {
           {
             resolve: 'gatsby-remark-code-repls',
             options: {
-              defaultText: 'Try it on CodePen',
+              defaultText: '<b>Try it on CodePen</b>',
               directory: `${__dirname}/examples/`,
               externals: [
                 `//unpkg.com/react/umd/react.development.js`,
                 `//unpkg.com/react-dom/umd/react-dom.development.js`,
               ],
+              dependencies: [`react`, `react-dom`],
               redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
               target: '_blank',
             },
@@ -132,7 +133,7 @@ module.exports = {
               {
                   allMarkdownRemark
                   (limit: 10,
-                  filter: {id: {regex: "/blog/"}},
+                  filter: {fileAbsolutePath: {regex: "/blog/"}},
                   sort: {fields: [fields___date],
                   order: DESC}) {
                     edges {

@@ -15,16 +15,17 @@ permalink: community/ui-components.html
 * **[Halogen](http://madscript.com/halogen):** A collection of highly customizable loading spinner animations with React.
 * **[Khan Academy's component library](http://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)**: compiles markdown into safe React JSX without using dangerous escape hatches.
-* **[material-ui](http://material-ui.com)** A set of React Components that implement Google's Material Design.
+* **[Material-UI](https://material-ui.com/):** React components that implement Google's Material Design.
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
 * **[React Mdl](https://github.com/tleunen/react-mdl)** React Components for Material Design Lite.
 * **[React Web](https://github.com/taobaofed/react-web)** A framework for building web apps with React.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component
+* **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
 * **[react-bootstrap](https://github.com/stevoland/react-bootstrap):** Bootstrap 3 components built with React.
 * **[react-bootstrap-dialog](https://github.com/akiroom/react-bootstrap-dialog):** React Dialog component for react-bootstrap, instead of `window.alert` or `window.confirm`
-* **[react-bootstrap-table](https://github.com/AllenFang/react-bootstrap-table):** It's a react table for Bootstrap.
+* **[react-bootstrap-table2](https://github.com/react-bootstrap-table/react-bootstrap-table2):** It's a react table for Bootstrap.
 * **[react-component](https://github.com/react-component/):** A collection of react components maintained by Alibaba/Alipay employee.
 * **[react-data-menu](https://github.com/dkozar/react-data-menu):** Smart data-driven menu rendered in an overlay. Hints-based aligning with custom renderers and factories. Never clipped by other components or screen edges.
 * **[react-date-picker](https://github.com/Hacker0x01/react-datepicker):** A simple and reusable datepicker component for React.
@@ -34,7 +35,7 @@ permalink: community/ui-components.html
 * **[react-dropzone](https://github.com/felixrieseberg/React-Dropzone):** React Dropzone for File-Uploads
 * **[react-forms](http://prometheusresearch.github.io/react-forms/):** Form rendering and validation for React
 * **[react-highlight](https://github.com/akiran/react-highlight):** React component for syntax highlighting
-* **[react-image](https://github.com/yuanyan/react-image):** Like `<img />` and Enhanced Image Component for React.
+* **[react-image](https://github.com/mbrevda/react-image):** Like `<img />` and Enhanced Image Component for React.
 * **[react-input-autosize](https://github.com/JedWatson/react-input-autosize):** Like `<input />` but resizes automatically to fit all its content.
 * **[react-intense](https://github.com/brycedorn/react-intense):** A component for viewing large images up close
 * **[react-joyride](https://github.com/gilbarbara/react-joyride):** Create walkthroughs and guided tours for your ReactJS apps.
@@ -65,6 +66,7 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
+* **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react)** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
 
 ## Fee Based Components
 

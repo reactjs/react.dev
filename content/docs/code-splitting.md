@@ -97,10 +97,10 @@ import("./math").then(math => {
 >
 > The dynamic `import()` syntax is a ECMAScript (JavaScript)
 > [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted within the
+> part of the language standard. It is expected to be accepted in the
 > near future.
 
-When Webpack comes across this syntax, it automatically start code-splitting
+When Webpack comes across this syntax, it automatically starts code-splitting
 your app. If you're using Create React App, this is already configured for you
 and you can [start using it](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#code-splitting) immediately. It's also supported
 out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
@@ -157,7 +157,7 @@ Deciding where in your app to introduce code splitting can be a bit tricky. You
 want to make sure you choose places that will split bundles evenly, but won't
 disrupt the user experience.
 
-A good place is to start is with routes. Most people on the web are used to
+A good place to start is with routes. Most people on the web are used to
 page transitions taking some amount of time to load. You also tend to be
 re-rendering the entire page at once so your users are unlikely to be
 interacting with other elements on the page at the same time.

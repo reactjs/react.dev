@@ -15,9 +15,7 @@ function Comment(props) {
           {props.author.name}
         </div>
       </div>
-      <div className="Comment-text">
-        {props.text}
-      </div>
+      <div className="Comment-text">{props.text}</div>
       <div className="Comment-date">
         {formatDate(props.date)}
       </div>
@@ -27,12 +25,10 @@ function Comment(props) {
 
 const comment = {
   date: new Date(),
-  text:
-    'I hope you enjoy learning React!',
+  text: 'I hope you enjoy learning React!',
   author: {
     name: 'Hello Kitty',
-    avatarUrl:
-      'http://placekitten.com/g/64/64',
+    avatarUrl: 'http://placekitten.com/g/64/64',
   },
 };
 ReactDOM.render(

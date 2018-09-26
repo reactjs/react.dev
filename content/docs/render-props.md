@@ -104,7 +104,7 @@ As a first pass, you might try rendering the `<Cat>` *inside `<Mouse>`'s `render
 ```js
 class Cat extends React.Component {
   render() {
-    const mouse = this.props.mouse
+    const mouse = this.props.mouse;
     return (
       <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
     );
@@ -209,7 +209,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-Now, instead of effectively cloning the `<Mouse>` component and hard-coding something else in its `render` method to solve for a specific use case, we instead provide a `render` prop that `<Mouse>` can use to dynamically determine what it renders.
+Now, instead of effectively cloning the `<Mouse>` component and hard-coding something else in its `render` method to solve for a specific use case, we provide a `render` prop that `<Mouse>` can use to dynamically determine what it renders.
 
 More concretely, **a render prop is a function prop that a component uses to know what to render.**
 
@@ -305,14 +305,8 @@ To get around this problem, you can sometimes define the prop as an instance met
 
 ```js
 class MouseTracker extends React.Component {
-  constructor(props) {
-    super(props);
-
-    // This binding ensures that `this.renderTheCat` always refers
-    // to the *same* function when we use it in render.
-    this.renderTheCat = this.renderTheCat.bind(this);
-  }
-
+  // Defined as an instance method, `this.renderTheCat` always
+  // refers to *same* function when we use it in render
   renderTheCat(mouse) {
     return <Cat mouse={mouse} />;
   }
@@ -328,4 +322,4 @@ class MouseTracker extends React.Component {
 }
 ```
 
-In cases where you cannot bind the instance method ahead of time in the constructor (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.
+In cases where you cannot define the prop statically (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.

@@ -64,7 +64,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             {sectionListDocs.map(section => {
               const defaultItem = section.items[0];
               return (
-                <FooterLink to={`/docs/${defaultItem.id}.html`}>
+                <FooterLink
+                  to={`/docs/${defaultItem.id}.html`}
+                  key={section.title}>
                   {section.title}
                 </FooterLink>
               );
@@ -97,6 +99,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               Reactiflux Chat
             </ExternalFooterLink>
             <ExternalFooterLink
+              href="https://dev.to/t/react"
+              target="_blank"
+              rel="noopener">
+              DEV Community
+            </ExternalFooterLink>
+            <ExternalFooterLink
               href="https://www.facebook.com/react"
               target="_blank"
               rel="noopener">
@@ -112,7 +120,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>Community</MetaTitle>
             {sectionListCommunity.map(section => (
-              <FooterLink to={`/community/${section.items[0].id}.html`}>
+              <FooterLink
+                to={`/community/${section.items[0].id}.html`}
+                key={section.title}>
                 {section.title}
               </FooterLink>
             ))}

@@ -41,7 +41,7 @@ We are using [GitHub Issues](https://github.com/facebook/react/issues) for our p
 
 #### Reporting New Issues
 
-The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/84v837e9/) is a great starting point.
+The best way to get your bug fixed is to provide a reduced test case. This [JSFiddle template](https://jsfiddle.net/Luktwrdm/) is a great starting point.
 
 #### Security Bugs
 
@@ -70,7 +70,7 @@ To help you get your feet wet and get you familiar with our contribution process
 
 If you decide to fix an issue, please be sure to check the comment thread in case somebody is already working on a fix. If nobody is working on it at the moment, please leave a comment stating that you intend to work on it so other people don't accidentally duplicate your effort.
 
-If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take over it but you should still leave a comment.
+If somebody claims an issue but doesn't follow up for more than two weeks, it's fine to take it over but you should still leave a comment.
 
 ### Sending a Pull Request
 
@@ -161,9 +161,13 @@ You may be interested in watching [this short video](https://www.youtube.com/wat
 
 For a realistic overview of what it _feels_ like to contribute to React for the first time, check out [this entertaining ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
 
-### Meeting Notes
+### Request for Comments (RFC)
 
-React team meets once a week to discuss the development of React, future plans, and priorities. You can find the meeting notes in a [dedicated repository](https://github.com/reactjs/core-notes/).
+Many changes, including bug fixes and documentation improvements can be implemented and reviewed via the normal GitHub pull request workflow.
+
+Some changes though are "substantial", and we ask that these be put through a bit of a design process and produce a consensus among the React core team.
+
+The "RFC" (request for comments) process is intended to provide a consistent and controlled path for new features to enter the project. You can contribute by visiting the [rfcs repository](https://github.com/reactjs/rfcs).
 
 ### License
 

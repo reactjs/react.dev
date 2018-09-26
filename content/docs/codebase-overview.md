@@ -5,7 +5,8 @@ layout: contributing
 permalink: docs/codebase-overview.html
 prev: how-to-contribute.html
 next: implementation-notes.html
-redirect_from: "contributing/codebase-overview.html"
+redirect_from:
+  - "contributing/codebase-overview.html"
 ---
 
 This section will give you an overview of the React codebase organization, its conventions, and the implementation.
@@ -103,7 +104,7 @@ if (__DEV__) {
 
 ### Flow
 
-We recently started introducing [Flow](https://flowtype.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
+We recently started introducing [Flow](https://flow.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
 
 We accept pull requests [adding Flow annotations to existing code](https://github.com/facebook/react/pull/7600/files). Flow annotations look like this:
 

@@ -3,8 +3,8 @@ const {join, resolve} = require('path');
 
 // Store code snippets in GraphQL for the home page examples.
 // Snippets will be matched with markdown templates of the same name.
-exports.sourceNodes = ({graphql, boundActionCreators}) => {
-  const {createNode} = boundActionCreators;
+exports.sourceNodes = ({graphql, actions}) => {
+  const {createNode} = actions;
 
   const path = resolve(__dirname, '../../content/home/examples');
   const files = readdirSync(path);

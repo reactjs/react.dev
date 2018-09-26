@@ -2,7 +2,8 @@
 id: composition-vs-inheritance
 title: Composition vs Inheritance
 permalink: docs/composition-vs-inheritance.html
-redirect_from: "docs/multiple-components.html"
+redirect_from:
+  - "docs/multiple-components.html"
 prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
@@ -44,7 +45,7 @@ function WelcomeDialog() {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)
+**[Try it on CodePen](https://codepen.io/gaearon/pen/ozqNOV?editors=0010)**
 
 Anything inside the `<FancyBorder>` JSX tag gets passed into the `FancyBorder` component as a `children` prop. Since `FancyBorder` renders `{props.children}` inside a `<div>`, the passed elements appear in the final output.
 
@@ -77,7 +78,7 @@ function App() {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZOJp?editors=0010)
 
 React elements like `<Contacts />` and `<Chat />` are just objects, so you can pass them as props like any other data. This approach may remind you of "slots" in other libraries but there are no limitations on what you can pass as props in React.
 
@@ -110,7 +111,7 @@ function WelcomeDialog() {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
 Composition works equally well for components defined as classes:
 
@@ -160,7 +161,7 @@ class SignUpDialog extends React.Component {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
 ## So What About Inheritance?
 

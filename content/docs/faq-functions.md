@@ -155,7 +155,7 @@ class Alphabet extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.state = {
       justClicked: null,
-      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i)).
+      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
     };
   }
   handleClick(letter) {

@@ -2,20 +2,20 @@
   items:
     - id: support
       title: Support
-    - id: conferences
-      title: Conferences
+    - id: courses
+      title: Courses
+    - id: examples
+      title: Examples
     - id: meetups
       title: Meetups
+    - id: conferences
+      title: Conferences
     - id: articles
       title: Articles
     - id: podcasts
       title: Podcasts
     - id: videos
       title: Videos
-    - id: courses
-      title: Courses
-    - id: examples
-      title: Examples
     - id: external-resources
       title: External Resources
 - title: Tools

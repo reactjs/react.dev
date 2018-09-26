@@ -170,7 +170,7 @@ Adding JSX to a project doesn't require complicated tools like a bundler or a de
 Go to your project folder in the terminal, and paste these two commands:
 
 1. **Step 1:** Run `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. **Step 2:** Run `npm install @babel/core @babel/cli babel-preset-react-app@3`
+2. **Step 2:** Run `npm install @babel/core @babel/cli babel-preset-react-app@4`
 
 >Tip
 >

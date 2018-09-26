@@ -42,6 +42,11 @@ November 30, Berlin, Germany
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
 
+### App.js Conf 2019
+April 4-5 in Kraków, Poland
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
 ### React Amsterdam 2019
 April 12 in Amsterdam, The Netherlands
 

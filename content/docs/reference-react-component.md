@@ -307,7 +307,7 @@ For example:
 
 `embed:react-component-reference/get-snapshot-before-update.js`
 
-In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `componentDidUpdate`). `getSnapshotBeforeUpdate` lives between the "render" phase lifecycles and "commit" phase lifecycles in the "pre-commit" phase before React updates the DOM and refs. It presents the last opportunity to read the previously committed DOM and return the values to be used by the "commit" phase lifecycles. 
+In the above examples, it is important to read the `scrollHeight` property in `getSnapshotBeforeUpdate` because there may be delays between "render" phase lifecycles (like `render`) and "commit" phase lifecycles (like `componentDidUpdate` and `componentDidUpdate`). `getSnapshotBeforeUpdate` being the first step in the "commit" phase lifecycles presents the last oppotunity to read the previously committed DOM before React updates the DOM and refs.
 
 * * *
 

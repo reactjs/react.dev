@@ -63,6 +63,7 @@ class Section extends React.Component {
         <ul
           id={uid}
           css={{
+            fontFeatureSettings: "'tnum'",
             marginBottom: 10,
 
             [media.greaterThan('small')]: {

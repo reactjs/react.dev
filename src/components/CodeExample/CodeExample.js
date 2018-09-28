@@ -62,7 +62,7 @@ class CodeExample extends Component {
 CodeExample.propTypes = {
   children: PropTypes.node,
   code: PropTypes.string.isRequired,
-  loaded: PropTypes.bool.isRequired
+  loaded: PropTypes.bool.isRequired,
 };
 
 export default CodeExample;

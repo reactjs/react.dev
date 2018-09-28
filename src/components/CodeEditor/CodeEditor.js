@@ -65,8 +65,10 @@ class CodeEditor extends Component {
     }
 
     return (
-      <div css={{ flex: 1 }}>
-      <LiveProvider code={showJSX ? code : compiledES6} mountStylesheet={false}>
+      <div css={{flex: 1}}>
+        <LiveProvider
+          code={showJSX ? code : compiledES6}
+          mountStylesheet={false}>
           <div
             css={{
               [media.greaterThan('medium')]: {
@@ -234,7 +236,7 @@ class CodeEditor extends Component {
               </div>
             )}
           </div>
-      </LiveProvider>
+        </LiveProvider>
       </div>
     );
   }

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {colors, media} from 'theme';
 import CodeEditor from '../CodeEditor/CodeEditor';
 
@@ -7,16 +7,28 @@ class CodeExample extends Component {
     const {children, code, loaded} = this.props;
     return (
       <div
-      css={{
-        [media.greaterThan('xlarge')]: {
-          display: 'flex',
-          flexDirection: 'row',
-        },
+        css={{
+          marginTop: 40,
 
-        [media.lessThan('large')]: {
-          display: 'block',
-        },
-      }}>
+          '&:first-child': {
+            marginTop: 0,
+          },
+
+          [media.greaterThan('xlarge')]: {
+            marginTop: 80,
+          },
+        }}>
+        <div
+          css={{
+            [media.greaterThan('xlarge')]: {
+              display: 'flex',
+              flexDirection: 'row',
+            },
+
+            [media.lessThan('large')]: {
+              display: 'block',
+            },
+          }}>
           {children && (
             <div
               css={{
@@ -45,9 +57,14 @@ class CodeExample extends Component {
               {children}
             </div>
           )}
-          {loaded ? <CodeEditor code={code} /> : <h4>Loading code example...</h4>}
+          {loaded ? (
+            <CodeEditor code={code} />
+          ) : (
+            <h4>Loading code example...</h4>
+          )}
+        </div>
       </div>
-    )
+    );
   }
 }
 

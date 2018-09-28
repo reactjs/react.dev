@@ -22,24 +22,28 @@ import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
   state = {
-    babelLoaded: false
+    babelLoaded: false,
   };
 
   componentDidMount() {
-    loadScript(babelURL).then(() => {
-      this.setState({
-        babelLoaded: true
-      });
-    }, error => {
-      console.error('Babel failed to load.');
-    });
+    loadScript(babelURL).then(
+      () => {
+        this.setState({
+          babelLoaded: true,
+        });
+      },
+      error => {
+        console.error('Babel failed to load.');
+      },
+    );
   }
+
   render() {
     const {babelLoaded} = this.state;
     const {data, location} = this.props;
     const {codeExamples, examples, marketing} = data;
 
-    const code = codeExamples.edges.reduce((lookup, { node }) => {
+    const code = codeExamples.edges.reduce((lookup, {node}) => {
       lookup[node.mdAbsolutePath] = node.code;
       return lookup;
     }, {});
@@ -187,7 +191,7 @@ class Home extends Component {
                       whiteSpace: 'nowrap',
                     },
                   }}>
-                  {marketing.edges.map(({ node: column }, index) => (
+                  {marketing.edges.map(({node: column}, index) => (
                     <div
                       key={index}
                       css={{
@@ -238,7 +242,7 @@ class Home extends Component {
                         ]}>
                         {column.frontmatter.title}
                       </h3>
-                      <div dangerouslySetInnerHTML={{__html: column.html }} />
+                      <div dangerouslySetInnerHTML={{__html: column.html}} />
                     </div>
                   ))}
                 </div>
@@ -253,27 +257,14 @@ class Home extends Component {
               />
               <section css={sectionStyles}>
                 <div id="examples">
-                  {examples.edges.map(({ node }, index) => (
-                    <div
+                  {examples.edges.map(({node}, index) => (
+                    <CodeExample
                       key={index}
-                      css={{
-                        marginTop: 40,
-
-                        '&:first-child': {
-                          marginTop: 0,
-                        },
-
-                        [media.greaterThan('xlarge')]: {
-                          marginTop: 80,
-                        },
-                      }}>
-                      <CodeExample code={code[node.fileAbsolutePath]} loaded={babelLoaded}>
-                        <h3 css={headingStyles}>{node.frontmatter.title}</h3>
-                        <div
-                          dangerouslySetInnerHTML={{__html: node.html}}
-                        />
-                      </CodeExample>
-                    </div>
+                      code={code[node.fileAbsolutePath]}
+                      loaded={babelLoaded}>
+                      <h3 css={headingStyles}>{node.frontmatter.title}</h3>
+                      <div dangerouslySetInnerHTML={{__html: node.html}} />
+                    </CodeExample>
                   ))}
                 </div>
               </section>

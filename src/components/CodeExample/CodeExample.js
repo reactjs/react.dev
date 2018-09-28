@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
+
 import {colors, media} from 'theme';
 import CodeEditor from '../CodeEditor/CodeEditor';
 
@@ -56,5 +58,11 @@ class CodeExample extends Component {
     );
   }
 }
+
+CodeExample.propTypes = {
+  children: PropTypes.node,
+  code: PropTypes.string.isRequired,
+  loaded: PropTypes.bool.isRequired
+};
 
 export default CodeExample;

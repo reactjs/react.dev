@@ -35,6 +35,10 @@ class CodeEditor extends Component {
   componentDidUpdate(prevProps, prevState) {
     if (prevState.compiled !== this.state.compiled) {
       this._render();
+    } else if (this.props.code !== prevProps.code) {
+      this.setState({
+        code: this.props.code,
+      });
     }
   }
 

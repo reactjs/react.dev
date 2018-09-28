@@ -1,6 +1,5 @@
 const crypto = require(`crypto`);
 
-// docblock goes here
 const createContentDigest = obj =>
   crypto
     .createHash(`md5`)
@@ -9,7 +8,7 @@ const createContentDigest = obj =>
 
 // Store code snippets in GraphQL for the home page examples.
 // Snippets will be matched with markdown templates of the same name.
-exports.onCreateNode = async ({node, loadNodeContent, actions}) => {
+exports.onCreateNode = async ({actions, node, loadNodeContent}) => {
   const {createNode} = actions;
   const {absolutePath, ext, name, relativeDirectory, sourceInstanceName} = node;
 

@@ -65,47 +65,8 @@ class CodeEditor extends Component {
     }
 
     return (
+      <div css={{ flex: 1 }}>
       <LiveProvider code={showJSX ? code : compiledES6} mountStylesheet={false}>
-        <div
-          css={{
-            [media.greaterThan('xlarge')]: {
-              display: 'flex',
-              flexDirection: 'row',
-            },
-
-            [media.lessThan('large')]: {
-              display: 'block',
-            },
-          }}>
-          {children && (
-            <div
-              css={{
-                flex: '0 0 33%',
-
-                [media.lessThan('xlarge')]: {
-                  marginBottom: 20,
-                },
-
-                '& h3': {
-                  color: colors.dark,
-                  maxWidth: '11em',
-                  paddingTop: 0,
-                },
-
-                '& p': {
-                  marginTop: 15,
-                  marginRight: 40,
-                  lineHeight: 1.7,
-
-                  [media.greaterThan('xlarge')]: {
-                    marginTop: 25,
-                  },
-                },
-              }}>
-              {children}
-            </div>
-          )}
-
           <div
             css={{
               [media.greaterThan('medium')]: {
@@ -273,8 +234,8 @@ class CodeEditor extends Component {
               </div>
             )}
           </div>
-        </div>
       </LiveProvider>
+      </div>
     );
   }
 

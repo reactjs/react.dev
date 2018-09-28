@@ -21,7 +21,7 @@ exports.onCreateNode = async ({actions, node, loadNodeContent}) => {
     createNode({
       id: name,
       children: [],
-      parent: 'EXAMPLES',
+      parent: node.id,
       code,
       mdAbsolutePath: absolutePath.replace(/\.js$/, '.md'),
       internal: {

@@ -37,7 +37,12 @@ class Home extends Component {
   render() {
     const {babelLoaded} = this.state;
     const {data, location} = this.props;
-    const {examples, marketing} = data;
+    const {codeExamples, examples, marketing} = data;
+
+    const code = codeExamples.edges.reduce((lookup, { node }) => {
+      lookup[node.mdAbsolutePath] = node.code;
+      return lookup;
+    }, {});
 
     return (
       <Layout location={location}>
@@ -262,7 +267,7 @@ class Home extends Component {
                           marginTop: 80,
                         },
                       }}>
-                      <CodeExample code={node.code} loaded={babelLoaded}>
+                      <CodeExample code={code[node.fileAbsolutePath]} loaded={babelLoaded}>
                         <h3 css={headingStyles}>{node.frontmatter.title}</h3>
                         <div
                           dangerouslySetInnerHTML={{__html: node.html}}
@@ -347,13 +352,23 @@ const CtaItem = ({children, primary = false}) => (
 
 export const pageQuery = graphql`
   query IndexMarkdown {
+    codeExamples: allExampleCode {
+      edges {
+        node {
+          id
+          code
+          mdAbsolutePath
+        }
+      }
+    }
+
     examples: allMarkdownRemark(
       filter: {fileAbsolutePath: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
       edges {
         node {
-          code
+          fileAbsolutePath
           fields {
             slug
           }

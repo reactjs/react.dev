@@ -36,9 +36,7 @@ class CodeEditor extends Component {
     if (prevState.compiled !== this.state.compiled) {
       this._render();
     } else if (this.props.code !== prevProps.code) {
-      this.setState({
-        code: this.props.code,
-      });
+      this.setState(this._updateState(this.props.code));
     }
   }
 

@@ -6,15 +6,21 @@ import CodeEditor from '../CodeEditor/CodeEditor';
 
 class CodeExample extends Component {
   render() {
-    const {children, code, loaded} = this.props;
+    const {children, code, id, loaded} = this.props;
     return (
       <div
+        id={id}
         css={{
           marginTop: 40,
 
           '&:first-child': {
             marginTop: 0,
           },
+
+          '& .react-live': {
+            width: '100%',
+          },
+
           [media.greaterThan('xlarge')]: {
             display: 'flex',
             flexDirection: 'row',
@@ -29,7 +35,6 @@ class CodeExample extends Component {
           <div
             css={{
               flex: '0 0 33%',
-
               [media.lessThan('xlarge')]: {
                 marginBottom: 20,
               },

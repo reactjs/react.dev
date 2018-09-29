@@ -44,7 +44,7 @@ class Home extends Component {
     const {codeExamples, examples, marketing} = data;
 
     const code = codeExamples.edges.reduce((lookup, {node}) => {
-      lookup[node.mdAbsolutePath] = node.code;
+      lookup[node.mdAbsolutePath] = node;
       return lookup;
     }, {});
 
@@ -257,15 +257,19 @@ class Home extends Component {
               />
               <section css={sectionStyles}>
                 <div id="examples">
-                  {examples.edges.map(({node}, index) => (
-                    <CodeExample
-                      key={index}
-                      code={code[node.fileAbsolutePath]}
-                      loaded={babelLoaded}>
-                      <h3 css={headingStyles}>{node.frontmatter.title}</h3>
-                      <div dangerouslySetInnerHTML={{__html: node.html}} />
-                    </CodeExample>
-                  ))}
+                  {examples.edges.map(({node}, index) => {
+                    const snippet = code[node.fileAbsolutePath];
+                    return (
+                      <CodeExample
+                        key={index}
+                        id={snippet.id}
+                        code={snippet.code}
+                        loaded={babelLoaded}>
+                        <h3 css={headingStyles}>{node.frontmatter.title}</h3>
+                        <div dangerouslySetInnerHTML={{__html: node.html}} />
+                      </CodeExample>
+                    );
+                  })}
                 </div>
               </section>
             </div>

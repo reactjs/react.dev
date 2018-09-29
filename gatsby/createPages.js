@@ -147,9 +147,11 @@ module.exports = async ({graphql, actions}) => {
   const newestBlogNode = newestBlogEntry.data.allMarkdownRemark.edges[0].node;
 
   // Blog landing page should always show the most recent blog entry.
-  createRedirect({
-    fromPath: '/blog/',
-    redirectInBrowser: true,
-    toPath: newestBlogNode.fields.slug,
+  ['/blog/', '/blog'].map(slug => {
+    createRedirect({
+      fromPath: slug,
+      redirectInBrowser: true,
+      toPath: newestBlogNode.fields.slug,
+    });
   });
 };

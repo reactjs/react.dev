@@ -5,6 +5,7 @@ layout: community
 sectionid: community
 permalink: community/support.html
 redirect_from:
+  - "community/"
   - "support.html"
 ---
 

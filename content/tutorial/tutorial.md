@@ -5,6 +5,7 @@ layout: tutorial
 sectionid: tutorial
 permalink: tutorial/tutorial.html
 redirect_from:
+  - "tutorial/"
   - "docs/tutorial.html"
   - "docs/why-react.html"
   - "docs/tutorial-ja-JP.html"
@@ -215,7 +216,7 @@ Congratulations! You've just "passed a prop" from a parent Board component to a 
 
 ### Making an Interactive Component
 
-Let's fill the Square component with an "X" when we click it. 
+Let's fill the Square component with an "X" when we click it.
 First, change the button tag that is returned from the Square component's `render()` function to this:
 
 ```javascript{4}
@@ -1003,7 +1004,7 @@ In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-U
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
 Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
 

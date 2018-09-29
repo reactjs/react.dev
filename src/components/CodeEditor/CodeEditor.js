@@ -45,7 +45,6 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children} = this.props;
     const {
       compiledES6,
       code,

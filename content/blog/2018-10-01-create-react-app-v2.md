@@ -5,7 +5,7 @@ author: [timer]
 
 We are excited to announce there are numerous new use cases supported by Create React App out of the box, making it more versatile than ever.
 
-As usual with Create React App, **you can enjoy these improvements in your existing non-ejected apps by updating a single dependency** and following our [migration instructions](https://github.com/facebook/create-react-app/releases/tag/v2.0.0).
+As usual with Create React App, **you can enjoy these improvements in your existing non-ejected apps by updating a single dependency** and following our [migration instructions](https://github.com/facebook/create-react-app/releases/tag/v2.0.2).
 
 Newly created apps will get these improvements automatically.
 

@@ -1,78 +1,91 @@
 ---
-title: "Create React App v2"
+title: "Create React App 2.0: Babel 7, Sass, and More"
 author: [timer]
 ---
 
-We are excited to announce there are numerous new use cases supported by Create React App out of the box, making it more versatile than ever.
+This new release brings a year's worth of updates with a single dependency update.
 
-As usual with Create React App, **you can enjoy these improvements in your existing non-ejected apps by updating a single dependency** and following our [migration instructions](https://github.com/facebook/create-react-app/releases/tag/v2.0.2).
+While React itself [doesn't require any build dependencies](/docs/create-a-new-react-app.html), it can be challenging to write a complex app without a fast test runner, a production minifier, and a modular codebase. Since the very first release, the goal of [Create React App](https://github.com/facebook/create-react-app) has been to help you focus on what matters the most -- your application code -- and handle build and testing setup for you.
 
-Newly created apps will get these improvements automatically.
+Many of the tools it relies on have since released new versions containing new features and performance improvements: [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), and [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html). However, updating them manually and making them work well together takes a lot of effort. And this is exactly what [Create React App 2.0 contributors](https://github.com/facebook/create-react-app/graphs/contributors) have been busy with for the past few months: **migrating the configuration and dependencies so that you don't need to do it yourself.**
 
-### Packages using new JavaScript features in `node_modules` now work
+Now that Create React App 2.0 is out of beta, let's see what's new and how you can try it!
 
->*This change was contributed by [@gaearon](https://github.com/gaearon) in [#3776](https://github.com/facebook/create-react-app/pull/3776).*
+>Note
+>
+>Don't feel pressured to upgrade anything. If you're satisfied with the current feature set, its performance, and reliability, you can keep using the version you're currently at! It might also be a good idea to let the 2.0 release stabilize a little bit before switching to it in production.
 
-JavaScript has been maturing rapidly for the past few years, introducing new syntax and runtime features.
-Unfortunately, it takes time for these features to reach end-users. To accommodate this, we compile all application source code down to a level understood by all browsers.
+## TLDR: What's New
 
-There was a missing piece of the puzzle, though: the packages you consume from `node_modules`.
-Compiling third party code is difficult because there's no way to know you're doing it correctly. However, we're finding more and more developers are wanting to forget the past and publish packages using new language features (we don't blame them).
+Here's a short summary of what's new in this release:
 
-Starting in Create React App v2, we now compile **all** [ES.Next<sup>[1]</sup>](#footnotes) features found in `node_modules` automatically. This means you can consume packages and not worry about them being syntax-incompatible with any browser.
+* 🎉 Full support for **[Sass](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) and [CSS Modules](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet)** out of the box.
+* 🐠 [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), including **support for the [React fragment syntax](/docs/fragments.html#short-syntax)** and many bugfixes.
+* 📦 [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), including **[long-term hashing and automatic vendor chunk splitting](https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366)** out of the box.
+* 🃏 [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), including many new matchers and an **[interactive snapshot mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode)**.
+* 💎 Support for **[Apollo](https://github.com/leoasis/graphql-tag.macro#usage)**, **[Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604)**, **[Markdown/MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995)**, and other third-party [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transforms.
+* 🌠 Support for **[importing SVG files as React components](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs)**.
+* 🐈 Experimental support for **[Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101)** that uses Yarn cache instead of `node_modules`.
+* 🕸 An option to provide a **[custom proxy implementation](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually)** in development.
+* 🚀 Automatic **compilation of modern standard JavaScript features inside `node_modules`**. This lets you use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without asking their authors to provide an ES5 build.
+* 💄 Ability to choose target browsers for **smaller CSS bundles**.
+* 👷‍♀️ Service workers are now **opt-in** and use [Workbox](https://developers.google.com/web/tools/workbox/).
 
-### CSS Modules
+**All of these features work out of the box** -- to enable them, follow the below instructions.
 
->*This change was contributed by [@ro-savage](https://github.com/ro-savage) and the community in [#2285](https://github.com/facebook/create-react-app/pull/2285).*
+## Starting a Project with Create React App 2.0
 
-CSS Modules automatically applies scoping to imported CSS, creating a unique class name.
-This unique class name prevents clashing, allowing the same class name to be used within many CSS files without worry.
+You don't need to update anything special. Starting from today, when you run `create-react-app` it will use the 2.0 version of the template by default. Have fun!
 
-![Demo of CSS Modules](https://puu.sh/BDW5D/63094e3256.gif)
+If you want to **use the old 1.x template** for some reason, you can do that by passing `--scripts-version=react-scripts@1.x` as an argument to `create-react-app`.
 
-**This is an optional feature.** Regular HTML stylesheets and JS imported stylesheets are fully supported. CSS Modules are only added when explicitly named as a css module stylesheet using the extension `.module.css`.
+## Updating a Project to Create React App 2.0
 
-### Sass Support
+Upgrading a non-ejected project to Create React App 2.0 should usually be straightforward. Open `package.json` in the root of your project and find `react-scripts` there.
 
->*This change was contributed by [@Fabianopb](https://github.com/Fabianopb) in [#4195](https://github.com/facebook/create-react-app/pull/4195).*
+Then change its version to `2.0.3`:
 
-![Demo of Sass Support](https://puu.sh/BDWfl/b2fa5c988c.gif)
+```js{2}
+  // ... other dependencies ...
+  "react-scripts": "2.0.3"
+```
 
-### Import SVGs as React Components
+Run `npm install` (or `yarn`, if you use it). **For many projects, this one-line change is sufficient to upgrade!**
 
->*This change was contributed by [@iansu](https://github.com/iansu) in [#3718](https://github.com/facebook/create-react-app/pull/3718).*
+<blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><p lang="en" dir="ltr">working here... thanks for all the new functionality 👍</p>&mdash; Stephen Haney (@sdothaney) <a href="https://twitter.com/sdothaney/status/1046822703116607490?ref_src=twsrc%5Etfw">October 1, 2018</a></blockquote>
 
-### webpack 4
+Here's a few more tips to get you started.
 
->*This change was contributed by [@andriijas](https://github.com/andriijas) in [#4077](https://github.com/facebook/create-react-app/pull/4077), [@bugzpodder](https://github.com/bugzpodder) in [#4504](https://github.com/facebook/create-react-app/pull/4504), and [@Timer](https://github.com/Timer) in [#5030](https://github.com/facebook/create-react-app/pull/5030)/[#5058](https://github.com/facebook/create-react-app/pull/5058).*
+**When you run `npm start` for the first time after the upgrade,** you'll get a prompt asking about which browsers you'd like to support. Press `y` to accept the default ones. They'll be written to your `package.json` and you can edit them any time. Create React App will use this information to produce smaller CSS bundles if you only target modern browsers.
 
-We have upgraded to [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4) to take advantage of its much faster internals and reduced bundle sizes.
-While the webpack configuration format has changed, Create React App users who didn't eject will gain these benefits with no action required. [<sup>[2]</sup>](#footnotes)
+**If `npm start` still doesn't quite work for you after the upgrade,** [check out the more detailed migration instructions in the changelog](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#202-october-1-2018). There *are* a few breaking changes in this release but the scope of them is limited, so they shouldn't take more than a few hours to sort out. Note that **[support for older browsers](https://github.com/facebook/create-react-app/blob/next/packages/react-app-polyfill/README.md) is now opt-in** to reduce the polyfill size.
 
-The most notable new feature is the ability to reliably split your bundle into chunks, improving long-term caching and consequently page load times.
+**If you previously ejected but now want to upgrade,** one common solution is to find the commits where you ejected (and any subsequent commits changing the configuration), revert them, upgrade, and later optionally eject again. It's also possible that the feature you ejected for (maybe Sass or CSS Modules?) is now supported out of the box — read below.
 
-### Babel Macros
+>Note
+>
+>Due to a possible bug in npm, you might see warnings about unsatisfied peer dependencies. You should be able to ignore them. As far as we're aware, this issue isn't present with Yarn.
 
->*This change was contributed by [@kentcdodds](https://github.com/kentcdodds) and [@threepointone](https://github.com/threepointone) in [#3675](https://github.com/facebook/create-react-app/pull/3675).*
+## Breaking Changes
 
-### Jest 23
+Here's a short list of breaking changes in this release:
 
-> *This change was contributed by [@aisensiy](https://github.com/aisensiy) in [#3124](https://github.com/facebook/create-react-app/pull/3124) and [@skoging](https://github.com/skoging) in [#4846](https://github.com/facebook/create-react-app/pull/4846).*
+* PropTypes definitions are automatically stripped out of the production builds.
+* Support for older browsers (such as IE 9 to IE 11) is now opt-in with a [separate package](https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill).
+* Code-splitting with `import()` now behaves closer to specification, while `require.ensure()` is disabled.
+* The default Jest environment now includes jsdom.
+* Support for specifying an object as `proxy` setting was replaced with support for a custom proxy module.
+* Support for `.mjs` extension was removed until the ecosystem around it stabilizes.
 
-We are now using the latest version of Jest that includes numerous bug fixes and improvements. You can read more about the changes in [Jest 22](https://jestjs.io/blog/2017/12/18/jest-22) and [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing) blog posts.
+If we accidentally left something out, please [let us know](https://github.com/facebook/create-react-app/issues/new)!
 
-Highlights include a new [interactive snapshot mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode), [Jest Each](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#jest-each), [hints for what's causing a test to hang](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#debug-hanging-tests), and [code frames in test failures](https://jestjs.io/blog/2017/12/18/jest-22#codeframe-in-test-failures).
+## Learn More
 
-![Interactive Snapshot Mode](https://jestjs.io/img/blog/23-interactive.gif)
+You can find the full changelog in the [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). Please report any issues to our [issue tracker](https://github.com/facebook/create-react-app/issues/new) and we'll try to fix them and help you!
 
-### And More!
+## Thanks
 
-There's many other goodies, such as [code splitting for dependencies](https://github.com/facebook/create-react-app/pull/5047), [a preflight check to prevent obscure errors](https://github.com/facebook/create-react-app/pull/3771), [customizable browser](https://github.com/facebook/create-react-app/pull/3644) [support for CSS](https://github.com/facebook/create-react-app/pull/4716), [removal of PropTypes in production](https://github.com/facebook/create-react-app/pull/3818), [smaller builds with Babel tricks](https://github.com/facebook/create-react-app/pull/4248), [a new JavaScript minifier](https://github.com/facebook/create-react-app/pull/5026), [compiling code in parallel](https://github.com/facebook/create-react-app/pull/3778), [a user definable proxy](https://github.com/facebook/create-react-app/pull/5073), and other enhancements!
+This release wouldn't be possible without our wonderful community of contributors. We'd like to thank [Andreas Cederström](https://github.com/andriijas), [Clement Hoang](https://github.com/clemmy), [Brian Ng](https://github.com/existentialism), [Kent C. Dodds](https://github.com/kentcdodds), [Ade Viankakrisna Fadlil](https://github.com/viankakrisna), [Andrey Sitnik](https://github.com/ai), [Ro Savage](https://github.com/ro-savage), [Fabiano Brito](https://github.com/Fabianopb), [Ian Sutherland](https://github.com/iansu), [Pete Nykänen](https://github.com/petetnt), [Jeffrey Posnick](https://github.com/jeffposnick), [Jack Zhao](https://github.com/bugzpodder), [Tobias Koppers](https://github.com/sokra), [Henry Zhu](https://github.com/hzoo), [Maël Nison](https://github.com/arcanis), [XiaoYan Li](https://github.com/lixiaoyan), [Marko Trebizan](https://github.com/themre), [Marek Suscak](https://github.com/mareksuscak), [Mikhail Osher](https://github.com/miraage), and many others who provided feedback and testing for this release.
 
----
 
-#### Footnotes
 
-<small>[1]: ES.Next does [not include language *proposals*](https://github.com/tc39/proposals). ES.Next refers to [finished proposals (stage 4)](https://github.com/tc39/proposals/blob/master/finished-proposals.md) not yet published as formal specification.</small>
-
-<small>[2]: If you had to eject your app for one reason or another, webpack provides a [configuration migration guide](https://webpack.js.org/migrate/) that you can follow to update your apps. Note that with each release of Create React App, we are working to support more use cases out of the box so that you don't have to eject in the future.</small>

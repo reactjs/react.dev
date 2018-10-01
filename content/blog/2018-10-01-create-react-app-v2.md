@@ -36,6 +36,8 @@ This unique class name prevents clashing, allowing the same class name to be use
 
 >*This change was contributed by [@Fabianopb](https://github.com/Fabianopb) in [#4195](https://github.com/facebook/create-react-app/pull/4195).*
 
+![Demo of Sass Support](https://puu.sh/BDWfl/b2fa5c988c.gif)
+
 ### Import SVGs as React Components
 
 >*This change was contributed by [@iansu](https://github.com/iansu) in [#3718](https://github.com/facebook/create-react-app/pull/3718).*

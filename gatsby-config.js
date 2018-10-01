@@ -33,14 +33,14 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'pages',
         path: `${__dirname}/src/pages`,
+        name: 'pages',
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'content',
+        name: 'packages',
         path: `${__dirname}/content/`,
       },
     },

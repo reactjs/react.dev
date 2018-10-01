@@ -7,46 +7,72 @@
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
-import CodeExample from 'components/CodeExample';
+import mountCodeExample from 'utils/mountCodeExample';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {graphql} from 'gatsby';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import Layout from 'components/Layout';
 import {colors, media, sharedStyles} from 'theme';
-import loadScript from 'utils/loadScript';
 import createOgUrl from 'utils/createOgUrl';
+import loadScript from 'utils/loadScript';
 import {babelURL} from 'site-constants';
 import ReactDOM from 'react-dom';
 import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
-  state = {
-    babelLoaded: false,
-  };
+  constructor(props, context) {
+    super(props, context);
+
+    const {data} = props;
+
+    const code = data.code.edges.reduce((map, {node}) => {
+      map[node.id] = JSON.parse(node.internal.contentDigest);
+
+      return map;
+    }, {});
+
+    const examples = data.examples.edges.map(({node}) => ({
+      content: node.html,
+      id: node.fields.slug.replace(/^.+\//, '').replace('.html', ''),
+      title: node.frontmatter.title,
+    }));
+
+    const marketing = data.marketing.edges.map(({node}) => ({
+      title: node.frontmatter.title,
+      content: node.html,
+    }));
+
+    this.state = {
+      code,
+      examples,
+      marketing,
+    };
+  }
 
   componentDidMount() {
-    loadScript(babelURL).then(
-      () => {
-        this.setState({
-          babelLoaded: true,
-        });
-      },
-      error => {
-        console.error('Babel failed to load.');
-      },
-    );
+    const {code, examples} = this.state;
+
+    examples.forEach(({id}) => {
+      renderExamplePlaceholder(id);
+    });
+
+    function mountCodeExamples() {
+      examples.forEach(({id}) => {
+        mountCodeExample(id, code[id]);
+      });
+    }
+
+    loadScript(babelURL).then(mountCodeExamples, error => {
+      console.error('Babel failed to load.');
+
+      mountCodeExamples();
+    });
   }
 
   render() {
-    const {babelLoaded} = this.state;
-    const {data, location} = this.props;
-    const {codeExamples, examples, marketing} = data;
-
-    const code = codeExamples.edges.reduce((lookup, {node}) => {
-      lookup[node.mdAbsolutePath] = node;
-      return lookup;
-    }, {});
+    const {examples, marketing} = this.state;
+    const {location} = this.props;
 
     return (
       <Layout location={location}>
@@ -191,7 +217,7 @@ class Home extends Component {
                       whiteSpace: 'nowrap',
                     },
                   }}>
-                  {marketing.edges.map(({node: column}, index) => (
+                  {marketing.map((column, index) => (
                     <div
                       key={index}
                       css={{
@@ -240,9 +266,9 @@ class Home extends Component {
                             },
                           },
                         ]}>
-                        {column.frontmatter.title}
+                        {column.title}
                       </h3>
-                      <div dangerouslySetInnerHTML={{__html: column.html}} />
+                      <div dangerouslySetInnerHTML={{__html: column.content}} />
                     </div>
                   ))}
                 </div>
@@ -257,19 +283,27 @@ class Home extends Component {
               />
               <section css={sectionStyles}>
                 <div id="examples">
-                  {examples.edges.map(({node}, index) => {
-                    const snippet = code[node.fileAbsolutePath];
-                    return (
-                      <CodeExample
-                        key={index}
-                        id={snippet.id}
-                        code={snippet.code}
-                        loaded={babelLoaded}>
-                        <h3 css={headingStyles}>{node.frontmatter.title}</h3>
-                        <div dangerouslySetInnerHTML={{__html: node.html}} />
-                      </CodeExample>
-                    );
-                  })}
+                  {examples.map((example, index) => (
+                    <div
+                      key={index}
+                      css={{
+                        marginTop: 40,
+
+                        '&:first-child': {
+                          marginTop: 0,
+                        },
+
+                        [media.greaterThan('xlarge')]: {
+                          marginTop: 80,
+                        },
+                      }}>
+                      <h3 css={headingStyles}>{example.title}</h3>
+                      <div
+                        dangerouslySetInnerHTML={{__html: example.content}}
+                      />
+                      <div id={example.id} />
+                    </div>
+                  ))}
                 </div>
               </section>
             </div>
@@ -305,6 +339,7 @@ class Home extends Component {
 
 Home.propTypes = {
   data: PropTypes.shape({
+    code: PropTypes.object.isRequired,
     examples: PropTypes.object.isRequired,
     marketing: PropTypes.object.isRequired,
   }).isRequired,
@@ -347,23 +382,22 @@ const CtaItem = ({children, primary = false}) => (
 
 export const pageQuery = graphql`
   query IndexMarkdown {
-    codeExamples: allExampleCode {
+    code: allExampleCode {
       edges {
         node {
           id
-          code
-          mdAbsolutePath
+          internal {
+            contentDigest
+          }
         }
       }
     }
-
     examples: allMarkdownRemark(
       filter: {fileAbsolutePath: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
       edges {
         node {
-          fileAbsolutePath
           fields {
             slug
           }

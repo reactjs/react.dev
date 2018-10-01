@@ -223,3 +223,22 @@ ReactDOM.render(
 ```
 
 If a component is using multiple mixins and several mixins define the same lifecycle method (i.e. several mixins want to do some cleanup when the component is destroyed), all of the lifecycle methods are guaranteed to be called. Methods defined on mixins run in the order mixins were listed, followed by a method call on the component.
+
+## getDerivedStateFromProps
+
+If you need to add the static [`getDerivedStateFromProps`](/docs/react-component.html#static-getderivedstatefromprops) lifecycle, you can do it by adding the method `getDerivedStateFromProps()` under the `statics` key like:
+
+```js{2-5}
+var Component = createReactClass({
+  statics: {
+    getDerivedStateFromProps(props, state) {
+      // ...
+    },
+    render() {
+      <div>I am a component</div>
+    }
+  }
+});
+```
+
+**Note:** Note `getDerivedStateFromProps` is generally meant to be last resort and not recommended except a few edge cases. You can read more about it in [this blog post](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html)

@@ -19,7 +19,7 @@ Unfortunately, it takes time for these features to reach end-users. To accommoda
 There was a missing piece of the puzzle, though: the packages you consume from `node_modules`.
 Compiling third party code is difficult because there's no way to know you're doing it correctly. However, we're finding more and more developers are wanting to forget the past and publish packages using new language features (we don't blame them).
 
-Starting in Create React App v2, we now compile **all** [ES.Next<sup>[1]</sup>](#footnotes) features found in `node_modules`. This means you can consume packages and not worry about them being syntax-incompatible with any browser.
+Starting in Create React App v2, we now compile **all** [ES.Next<sup>[1]</sup>](#footnotes) features found in `node_modules` automatically. This means you can consume packages and not worry about them being syntax-incompatible with any browser.
 
 ### CSS Modules
 

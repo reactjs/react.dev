@@ -28,6 +28,8 @@ Starting in Create React App v2, we now compile **all** [ES.Next<sup>[1]</sup>](
 CSS Modules automatically applies scoping to imported CSS, creating a unique class name.
 This unique class name prevents clashing, allowing the same class name to be used within many CSS files without worry.
 
+![Demo of CSS Modules](https://puu.sh/BDW5D/63094e3256.gif)
+
 **This is an optional feature.** Regular HTML stylesheets and JS imported stylesheets are fully supported. CSS Modules are only added when explicitly named as a css module stylesheet using the extension `.module.css`.
 
 ### Sass Support

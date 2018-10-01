@@ -9,7 +9,7 @@ As usual with Create React App, **you can enjoy these improvements in your exist
 
 Newly created apps will get these improvements automatically.
 
-### Compiling `node_modules`
+### Packages using new JavaScript features in `node_modules` now work
 
 >*This change was contributed by [@gaearon](https://github.com/gaearon) in [#3776](https://github.com/facebook/create-react-app/pull/3776).*
 

@@ -1073,9 +1073,9 @@ Imagine transitioning from
 to
 
 ```html
-<li>Ben: 9 tasks left</li>
+<li>Ben: 5 tasks left</li>
 <li>Claudia: 8 tasks left</li>
-<li>Alexa: 5 tasks left</li>
+<li>Alexa: 7 tasks left</li>
 ```
 
 In addition to the updated counts, a human reading this would probably say that we swapped Alexa and Ben's ordering and inserted Claudia between Alexa and Ben. However, React is a computer program and does not know what we intended. Because React cannot know our intentions, we need to specify a *key* property for each list item to differentiate each list item from its siblings. One option would be to use the strings `alexa`, `ben`, `claudia`. If we were displaying data from a database, Alexa, Ben, and Claudia's database IDs could be used as keys.

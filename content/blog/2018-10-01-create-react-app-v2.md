@@ -3,9 +3,9 @@ title: "Create React App 2.0: Babel 7, Sass, and More"
 author: [timer]
 ---
 
-This new release brings a year's worth of updates with a single dependency update.
+Create React App 2.0 has been released today, and it brings a year's worth of improvements in a single dependency update.
 
-While React itself [doesn't require any build dependencies](/docs/create-a-new-react-app.html), it can be challenging to write a complex app without a fast test runner, a production minifier, and a modular codebase. Since the very first release, the goal of [Create React App](https://github.com/facebook/create-react-app) has been to help you focus on what matters the most -- your application code -- and handle build and testing setup for you.
+While React itself [doesn't require any build dependencies](/docs/create-a-new-react-app.html), it can be challenging to write a complex app without a fast test runner, a production minifier, and a modular codebase. Since the very first release, the goal of [Create React App](https://github.com/facebook/create-react-app) has been to help you focus on what matters the most -- your application code -- and to handle build and testing setup for you.
 
 Many of the tools it relies on have since released new versions containing new features and performance improvements: [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), and [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html). However, updating them manually and making them work well together takes a lot of effort. And this is exactly what [Create React App 2.0 contributors](https://github.com/facebook/create-react-app/graphs/contributors) have been busy with for the past few months: **migrating the configuration and dependencies so that you don't need to do it yourself.**
 
@@ -15,21 +15,21 @@ Now that Create React App 2.0 is out of beta, let's see what's new and how you c
 >
 >Don't feel pressured to upgrade anything. If you're satisfied with the current feature set, its performance, and reliability, you can keep using the version you're currently at! It might also be a good idea to let the 2.0 release stabilize a little bit before switching to it in production.
 
-## TLDR: What's New
+## What's New
 
 Here's a short summary of what's new in this release:
 
-* 🎉 Full support for **[Sass](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) and [CSS Modules](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet)** out of the box.
-* 🐠 [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), including **support for the [React fragment syntax](/docs/fragments.html#short-syntax)** and many bugfixes.
-* 📦 [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4), including **[long-term hashing and automatic vendor chunk splitting](https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366)** out of the box.
-* 🃏 [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), including many new matchers and an **[interactive snapshot mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode)**.
-* 💎 Support for **[Apollo](https://github.com/leoasis/graphql-tag.macro#usage)**, **[Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604)**, **[Markdown/MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995)**, and other third-party [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transforms.
-* 🌠 Support for **[importing SVG files as React components](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs)**.
-* 🐈 Experimental support for **[Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101)** that uses Yarn cache instead of `node_modules`.
-* 🕸 An option to provide a **[custom proxy implementation](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually)** in development.
-* 🚀 Automatic **compilation of modern standard JavaScript features inside `node_modules`**. This lets you use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without asking their authors to provide an ES5 build.
-* 💄 Ability to choose target browsers for **smaller CSS bundles**.
-* 👷‍♀️ Service workers are now **opt-in** and use [Workbox](https://developers.google.com/web/tools/workbox/).
+* 🎉 More styling options: you can use [Sass](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-sass-stylesheet) and [CSS Modules](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-a-css-modules-stylesheet) out of the box.
+* 🐠 We updated to [Babel 7](https://babeljs.io/blog/2018/08/27/7.0.0), including support for the [React fragment syntax](/docs/fragments.html#short-syntax) and many bugfixes.
+* 📦 We updated to [webpack 4](https://medium.com/webpack/webpack-4-released-today-6cdb994702d4) which automatically splits JS bundles more intelligently.
+* 🃏 We updated to [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), which includes an [interactive mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode) for reviewing snapshots.
+* 💎 You can use [Apollo](https://github.com/leoasis/graphql-tag.macro#usage), [Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604), [MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995), and other third-party [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transforms.
+* 🌠 You can now [import an SVG as a React component](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs), and use it in JSX.
+* 🐈 You can try the experimental [Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101) that removes `node_modules`.
+* 🕸 You can now [plug your own proxy implementation](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) in development to match your backend API.
+* 🚀 You can now use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without breaking the build.
+* 💄 You can now optionally get a smaller CSS bundle if you only plan to target modern browsers.
+* 👷‍♀️ Service workers are now opt-in and are built using Google's [Workbox](https://developers.google.com/web/tools/workbox/).
 
 **All of these features work out of the box** -- to enable them, follow the below instructions.
 

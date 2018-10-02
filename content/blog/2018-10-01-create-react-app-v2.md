@@ -70,18 +70,18 @@ Here's a few more tips to get you started.
 
 Here's a short list of breaking changes in this release:
 
-* PropTypes definitions are automatically stripped out of the production builds.
+* Node 6 is no longer supported.
 * Support for older browsers (such as IE 9 to IE 11) is now opt-in with a [separate package](https://github.com/facebook/create-react-app/tree/master/packages/react-app-polyfill).
 * Code-splitting with `import()` now behaves closer to specification, while `require.ensure()` is disabled.
 * The default Jest environment now includes jsdom.
 * Support for specifying an object as `proxy` setting was replaced with support for a custom proxy module.
 * Support for `.mjs` extension was removed until the ecosystem around it stabilizes.
+* PropTypes definitions are automatically stripped out of the production builds.
 
-If we accidentally left something out, please [let us know](https://github.com/facebook/create-react-app/issues/new)!
-
+If either of these points affects you, [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3) contain more detailed instructions.
 ## Learn More
 
-You can find the full changelog in the [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). Please report any issues to our [issue tracker](https://github.com/facebook/create-react-app/issues/new) and we'll try to fix them and help you!
+You can find the full changelog in the [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). Please also report any issues to our [issue tracker](https://github.com/facebook/create-react-app/issues/new) and we'll try to fix them and help you!
 
 ## Thanks
 

@@ -28,7 +28,8 @@ Here's a short summary of what's new in this release:
 * 🐈 You can try the experimental [Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101) that removes `node_modules`.
 * 🕸 You can now [plug your own proxy implementation](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) in development to match your backend API.
 * 🚀 You can now use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without breaking the build.
-* 💄 You can now optionally get a smaller CSS bundle if you only plan to target modern browsers.
+* 💄 We added [PostCSS](https://github.com/csstools/postcss-preset-env#postcss-preset-env-) so you can use [new CSS features](https://cssdb.org/) in old browsers.
+* ✂️ You can now optionally get a smaller CSS bundle if you only plan to target modern browsers.
 * 👷‍♀️ Service workers are now opt-in and are built using Google's [Workbox](https://developers.google.com/web/tools/workbox/).
 
 **All of these features work out of the box** -- to enable them, follow the below instructions.

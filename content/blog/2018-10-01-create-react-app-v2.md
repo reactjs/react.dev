@@ -1,6 +1,6 @@
 ---
 title: "Create React App 2.0: Babel 7, Sass, and More"
-author: [timer]
+author: [timer, gaearon]
 ---
 
 Create React App 2.0 has been released today, and it brings a year's worth of improvements in a single dependency update.
@@ -86,6 +86,3 @@ You can find the full changelog in the [2.0.3 release notes](https://github.com/
 ## Thanks
 
 This release wouldn't be possible without our wonderful community of contributors. We'd like to thank [Andreas Cederström](https://github.com/andriijas), [Clement Hoang](https://github.com/clemmy), [Brian Ng](https://github.com/existentialism), [Kent C. Dodds](https://github.com/kentcdodds), [Ade Viankakrisna Fadlil](https://github.com/viankakrisna), [Andrey Sitnik](https://github.com/ai), [Ro Savage](https://github.com/ro-savage), [Fabiano Brito](https://github.com/Fabianopb), [Ian Sutherland](https://github.com/iansu), [Pete Nykänen](https://github.com/petetnt), [Jeffrey Posnick](https://github.com/jeffposnick), [Jack Zhao](https://github.com/bugzpodder), [Tobias Koppers](https://github.com/sokra), [Henry Zhu](https://github.com/hzoo), [Maël Nison](https://github.com/arcanis), [XiaoYan Li](https://github.com/lixiaoyan), [Marko Trebizan](https://github.com/themre), [Marek Suscak](https://github.com/mareksuscak), [Mikhail Osher](https://github.com/miraage), and many others who provided feedback and testing for this release.
-
-
-

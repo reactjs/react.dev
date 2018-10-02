@@ -60,7 +60,7 @@ Here's a few more tips to get you started.
 
 **If `npm start` still doesn't quite work for you after the upgrade,** [check out the more detailed migration instructions in the changelog](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#202-october-1-2018). There *are* a few breaking changes in this release but the scope of them is limited, so they shouldn't take more than a few hours to sort out. Note that **[support for older browsers](https://github.com/facebook/create-react-app/blob/next/packages/react-app-polyfill/README.md) is now opt-in** to reduce the polyfill size.
 
-**If you previously ejected but now want to upgrade,** one common solution is to find the commits where you ejected (and any subsequent commits changing the configuration), revert them, upgrade, and later optionally eject again. It's also possible that the feature you ejected for (maybe Sass or CSS Modules?) is now supported out of the box — read below.
+**If you previously ejected but now want to upgrade,** one common solution is to find the commits where you ejected (and any subsequent commits changing the configuration), revert them, upgrade, and later optionally eject again. It's also possible that the feature you ejected for (maybe Sass or CSS Modules?) is now supported out of the box.
 
 >Note
 >

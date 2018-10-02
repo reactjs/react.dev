@@ -79,9 +79,14 @@ Here's a short list of breaking changes in this release:
 * PropTypes definitions are automatically stripped out of the production builds.
 
 If either of these points affects you, [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3) contain more detailed instructions.
+
 ## Learn More
 
-You can find the full changelog in the [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). Please also report any issues to our [issue tracker](https://github.com/facebook/create-react-app/issues/new) and we'll try to fix them and help you!
+You can find the full changelog in the [release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). This was a large release, and we may have missed something. Please report any problems to our [issue tracker](https://github.com/facebook/create-react-app/issues/new) and we'll try to help.
+
+>Note
+>
+>If you've been using 2.x alpha versions, we provide [separate migration instructions](https://gist.github.com/gaearon/8650d1c70e436e5eff01f396dffc4114) for them.
 
 ## Thanks
 

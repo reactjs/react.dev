@@ -107,9 +107,7 @@ export const pageQuery = graphql`
     markdownRemark(fields: {slug: {eq: $slug}}) {
       html
       fields {
-        path {
-          id
-        }
+        path
       }
       frontmatter {
         title

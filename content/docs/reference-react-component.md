@@ -379,7 +379,7 @@ It receives two parameters:
 
 
 `componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
-It can be used for things like logging errors:
+It should be used for things like logging errors:
 
 ```js{12-19}
 class ErrorBoundary extends React.Component {

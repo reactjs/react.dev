@@ -575,11 +575,11 @@ The main benefit of immutability is that it helps you build _pure components_ in
 
 You can learn more about `shouldComponentUpdate()` and how you can build *pure components* by reading [Optimizing Performance](/docs/optimizing-performance.html#examples).
 
-### Functional Components
+### Function Components
 
-We'll now change the Square to be a **functional component**.
+We'll now change the Square to be a **function component**.
 
-In React, **functional components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Functional components are less tedious to write than classes, and many components can be expressed this way.
+In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
 
 Replace the Square class with this function:
 
@@ -599,7 +599,7 @@ We have changed `this.props` to `props` both times it appears.
 
 >Note
 >
->When we modified the Square to be a functional component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). In a class, we used an arrow function to access the correct `this` value, but in a functional component we don't need to worry about `this`.
+>When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides). In a class, we used an arrow function to access the correct `this` value, but in a function component we don't need to worry about `this`.
 
 ### Taking Turns
 

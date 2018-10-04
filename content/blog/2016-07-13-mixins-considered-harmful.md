@@ -373,7 +373,7 @@ function withSubscription(WrappedComponent) {
   });
 }
 
-// Optional change: convert CommentList to a functional component
+// Optional change: convert CommentList to a function component
 // because it doesn't use lifecycle hooks or state.
 function CommentList(props) {
   var comments = props.comments;
@@ -467,7 +467,7 @@ Props keep component dependencies explicit, easy to replace, and enforceable wit
 
 > **Note:**
 >
-> Defining components as functions is not required. There is also nothing wrong with using lifecycle hooks and state—they are first-class React features. We use functional components in this example because they are easier to read and we didn’t need those extra features, but classes would work just as fine.
+> Defining components as functions is not required. There is also nothing wrong with using lifecycle hooks and state—they are first-class React features. We use function components in this example because they are easier to read and we didn’t need those extra features, but classes would work just as fine.
 
 ### Context
 

@@ -99,7 +99,7 @@ When a component renders to `null` or `false`, `findDOMNode` returns `null`. Whe
 >
 > `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created) an exception will be thrown.
 >
-> `findDOMNode` cannot be used on functional components.
+> `findDOMNode` cannot be used on function components.
 
 * * *
 

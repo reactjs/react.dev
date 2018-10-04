@@ -294,9 +294,9 @@ class Button extends React.Component {
 }
 ```
 
-When a component is defined as a class, it is a little bit more powerful than a functional component. It can store some local state and perform custom logic when the corresponding DOM node is created or destroyed.
+When a component is defined as a class, it is a little bit more powerful than a function component. It can store some local state and perform custom logic when the corresponding DOM node is created or destroyed.
 
-A functional component is less powerful but is simpler, and acts like a class component with just a single `render()` method. Unless you need features available only in a class, we encourage you to use functional components instead.
+A function component is less powerful but is simpler, and acts like a class component with just a single `render()` method. Unless you need features available only in a class, we encourage you to use function components instead.
 
 **However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.**
 
@@ -370,7 +370,7 @@ When a component receives some props as an input, it is because a particular par
 
 An *instance* is what you refer to as `this` in the component class you write. It is useful for [storing local state and reacting to the lifecycle events](/docs/component-api.html).
 
-Functional components don’t have instances at all. Class components have instances, but you never need to create a component instance directly—React takes care of this.
+Function components don’t have instances at all. Class components have instances, but you never need to create a component instance directly—React takes care of this.
 
 Finally, to create elements, use [`React.createElement()`](/docs/top-level-api.html#react.createelement), [JSX](/docs/jsx-in-depth.html), or an [element factory helper](/docs/top-level-api.html#react.createfactory). Don’t write elements as plain objects in the real code—just know that they are plain objects under the hood.
 

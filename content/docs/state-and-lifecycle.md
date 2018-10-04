@@ -76,7 +76,7 @@ We [mentioned before](/docs/components-and-props.html#functional-and-class-compo
 
 ## Converting a Function to a Class
 
-You can convert a functional component like `Clock` to a class in five steps:
+You can convert a function component like `Clock` to a class in five steps:
 
 1. Create an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), with the same name, that extends `React.Component`.
 

@@ -143,7 +143,7 @@ class CustomTextInput extends React.Component {
 **You may not use the `ref` attribute on function components** because they don't have instances:
 
 ```javascript{1,8,13}
-function MyFunctionalComponent() {
+function MyFunctionComponent() {
   return <input />;
 }
 
@@ -155,7 +155,7 @@ class Parent extends React.Component {
   render() {
     // This will *not* work!
     return (
-      <MyFunctionalComponent ref={this.textInput} />
+      <MyFunctionComponent ref={this.textInput} />
     );
   }
 }

@@ -102,7 +102,7 @@ import './index.css';
 
 Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
 
-We recommend following [these instructions](http://babeljs.io/docs/editors) to configure syntax highlighting for your editor.
+We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
 
 </details>
 

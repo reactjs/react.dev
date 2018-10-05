@@ -22,9 +22,9 @@ The example API returns a JSON object like this:
 
 ```
 {
-  items: [
-    { id: 1, name: 'Apples', price: '$2' },
-    { id: 2, name: 'Peaches', price: '$5' }
+  "items": [
+    { "id": 1, "name": "Apples",  "price": "$2" },
+    { "id": 2, "name": "Peaches", "price": "$5" }
   ] 
 }
 ```

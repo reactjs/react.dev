@@ -1,3 +1,3 @@
-declare module 'gatsby-link' {
+declare module 'gatsby' {
   declare module.exports: any;
 }

@@ -104,7 +104,7 @@ This design is fundamentally flawed, but it's also an easy mistake to make. ([I'
 
 ### Recommendation: Fully controlled component
 
-One way to avoid the problems mentioned above is to remove state from our component entirely. If the email address only exists as a prop, then we don't have to worry about conflicts with state. We could even convert `EmailInput` to a lighter-weight functional component:
+One way to avoid the problems mentioned above is to remove state from our component entirely. If the email address only exists as a prop, then we don't have to worry about conflicts with state. We could even convert `EmailInput` to a lighter-weight function component:
 ```js
 function EmailInput(props) {
   return <input onChange={props.onChange} value={props.email} />;

@@ -68,9 +68,9 @@
           title: Why Immutability Is Important
           href: /tutorial/tutorial.html#why-immutability-is-important
           forceInternal: true
-        - id: functional-components
-          title: Functional Components
-          href: /tutorial/tutorial.html#functional-components
+        - id: function-components
+          title: Function Components
+          href: /tutorial/tutorial.html#function-components
           forceInternal: true
         - id: taking-turns
           title: Taking Turns

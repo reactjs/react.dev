@@ -18,13 +18,13 @@ You are probably here because you got one of the following error messages:
 
 This usually means one of three things:
 
-- You are trying to add a `ref` to a functional component.
+- You are trying to add a `ref` to a function component.
 - You are trying to add a `ref` to an element that is being created outside of a component's render() function.
 - You have multiple (conflicting) copies of React loaded (eg. due to a misconfigured npm dependency)
 
-## Refs on Functional Components
+## Refs on Function Components
 
-If `<Foo>` is a functional component, you can't add a ref to it:
+If `<Foo>` is a function component, you can't add a ref to it:
 
 ```js
 // Doesn't work if Foo is a function!

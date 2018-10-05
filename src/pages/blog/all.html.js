@@ -5,7 +5,8 @@
  * @flow
  */
 
-import Link from 'gatsby-link';
+import {graphql, Link} from 'gatsby';
+import Layout from 'components/Layout';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
@@ -19,88 +20,90 @@ import type {allMarkdownRemarkData} from 'types';
 
 type Props = {
   data: allMarkdownRemarkData,
+  location: Location,
 };
 
-const AllBlogPosts = ({data}: Props) => (
-  <Container>
-    <div css={sharedStyles.articleLayout.container}>
-      <div css={sharedStyles.articleLayout.content}>
-        <Header>All Posts</Header>
-        <TitleAndMetaTags
-          ogUrl={`${urlRoot}/blog/all.html`}
-          title="React - All Posts"
-        />
-        <ul
-          css={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            marginLeft: -40,
-          }}>
-          {data.allMarkdownRemark.edges.map(({node}) => (
-            <li
-              css={{
-                paddingLeft: 40,
-                paddingTop: 40,
-                borderTop: '1px dotted #ececec',
-                paddingBottom: 40,
-                width: '100%',
-
-                [media.size('medium')]: {
-                  width: '50%',
-                },
-
-                [media.greaterThan('large')]: {
-                  width: '33.33%',
-                },
-              }}
-              key={node.fields.slug}>
-              <h2
+const AllBlogPosts = ({data, location}: Props) => (
+  <Layout location={location}>
+    <Container>
+      <div css={sharedStyles.articleLayout.container}>
+        <div css={sharedStyles.articleLayout.content}>
+          <Header>All Posts</Header>
+          <TitleAndMetaTags
+            ogUrl={`${urlRoot}/blog/all.html`}
+            title="React - All Posts"
+          />
+          <ul
+            css={{
+              display: 'flex',
+              flexWrap: 'wrap',
+              marginLeft: -40,
+            }}>
+            {data.allMarkdownRemark.edges.map(({node}) => (
+              <li
                 css={{
-                  fontSize: 24,
-                  color: colors.dark,
-                  lineHeight: 1.3,
-                  fontWeight: 700,
-                }}>
-                <Link
+                  paddingLeft: 40,
+                  paddingTop: 40,
+                  borderTop: '1px dotted #ececec',
+                  paddingBottom: 40,
+                  width: '100%',
+
+                  [media.size('medium')]: {
+                    width: '50%',
+                  },
+
+                  [media.greaterThan('large')]: {
+                    width: '33.33%',
+                  },
+                }}
+                key={node.fields.slug}>
+                <h2
                   css={{
-                    borderBottom: '1px solid #ececec',
-                    ':hover': {
-                      borderBottomColor: colors.black,
-                    },
-                  }}
-                  key={node.fields.slug}
-                  to={node.fields.slug}>
-                  {node.frontmatter.title}
-                </Link>
-              </h2>
-              <MetaTitle>{node.fields.date}</MetaTitle>
-              {node.frontmatter.author ? (
-                <div
-                  css={{
-                    color: colors.subtle,
-                    marginTop: -5,
+                    fontSize: 24,
+                    color: colors.dark,
+                    lineHeight: 1.3,
+                    fontWeight: 700,
                   }}>
-                  by{' '}
-                  {toCommaSeparatedList(node.frontmatter.author, author => (
-                    <span key={author.frontmatter.name}>
-                      {author.frontmatter.name}
-                    </span>
-                  ))}
-                </div>
-              ) : null}
-            </li>
-          ))}
-        </ul>
+                  <Link
+                    css={{
+                      borderBottom: '1px solid #ececec',
+                      ':hover': {
+                        borderBottomColor: colors.black,
+                      },
+                    }}
+                    key={node.fields.slug}
+                    to={node.fields.slug}>
+                    {node.frontmatter.title}
+                  </Link>
+                </h2>
+                <MetaTitle>{node.fields.date}</MetaTitle>
+                {node.frontmatter.author ? (
+                  <div
+                    css={{
+                      color: colors.subtle,
+                      marginTop: -5,
+                    }}>
+                    by{' '}
+                    {toCommaSeparatedList(node.frontmatter.author, author => (
+                      <span key={author.frontmatter.name}>
+                        {author.frontmatter.name}
+                      </span>
+                    ))}
+                  </div>
+                ) : null}
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-    </div>
-  </Container>
+    </Container>
+  </Layout>
 );
 
-// eslint-disable-next-line no-undef
 export const pageQuery = graphql`
   query AllBlogPostsPageQuery {
     allMarkdownRemark(
-      filter: {id: {regex: "/blog/"}}
+      filter: {fileAbsolutePath: {regex: "/blog/"}}
       sort: {fields: [fields___date], order: DESC}
     ) {
       edges {

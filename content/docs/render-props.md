@@ -323,3 +323,5 @@ class MouseTracker extends React.Component {
 ```
 
 In cases where you cannot define the prop statically (e.g. because you need to close over the component's props and/or state) `<Mouse>` should extend `React.Component` instead.
+
+If you'd like another explanation of the render props pattern, check out [this explanation by Robin Wieruch](https://www.robinwieruch.de/react-render-props-pattern/). The article is one of the most approachable explanations of the render prop pattern on the internet backed by highlighted code examples throughout.

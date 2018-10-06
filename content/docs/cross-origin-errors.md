@@ -14,6 +14,27 @@ If an error is thrown from a [different origin](https://developer.mozilla.org/en
 
 You can simplify the development/debugging process by ensuring that errors are thrown with a same-origin policy. Below are some common causes of cross-origin errors and ways to address them.
 
+### DISABLING CORB THROUGH BROWSER
+
+If you do it in safari it takes no time, Just enable the developer menu from Preferences >> Advanced, and select "Disable Cross-Origin Restrictions" from the develop menu. If you want local only, then you only need to enable the developer menu, and select "Disable local file restrictions" from the develop menu.
+
+and in Chrome for OSX open Terminal and run:
+
+`$ open -a Google\ Chrome --args --disable-web-security --user-data-dir`
+
+`--user-data-dir required on Chrome 49+ on OSX`
+
+For Linux run:
+
+`$ google-chrome --disable-web-security`
+Also if you're trying to access local files for dev purposes like AJAX or JSON, you can use this flag too.
+
+`-–allow-file-access-from-files`
+For Windows go into the command prompt and go into the folder where Chrome.exe is and type
+
+`chrome.exe --disable-web-security`
+That should disable the same origin policy and allow you to access local files.
+
 ### CDN
 
 When loading React (or other libraries that might throw errors) from a CDN, add the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute to your `<script>` tags:

@@ -72,7 +72,7 @@ Instead, **do** write this:
 ```js
 class MyComponent extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.handleChange = this.handleChange.bind(this);
     this.state = {value: ''};
   }

@@ -234,7 +234,7 @@ import ReactTransitionGroup from 'react-addons-transition-group' // ES6
 var ReactTransitionGroup = require('react-addons-transition-group') // ES5 with npm
 ```
 
-`ReactTransitionGroup` is the basis for animations. When children are declaratively added or removed from it (as in the [example above](#getting-started)), special lifecycle hooks are called on them.
+`ReactTransitionGroup` is the basis for animations. When children are declaratively added or removed from it (as in the [example above](#getting-started)), special lifecycle methods are called on them.
 
  - [`componentWillAppear()`](#componentwillappear)
  - [`componentDidAppear()`](#componentdidappear)

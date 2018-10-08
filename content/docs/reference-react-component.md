@@ -343,7 +343,7 @@ UNSAFE_componentWillMount()
 
 Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
 
-This is the only lifecycle hook called on server rendering.
+This is the only lifecycle method called on server rendering.
 
 > Note
 >

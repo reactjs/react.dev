@@ -374,7 +374,7 @@ function withSubscription(WrappedComponent) {
 }
 
 // Optional change: convert CommentList to a function component
-// because it doesn't use lifecycle hooks or state.
+// because it doesn't use lifecycle methods or state.
 function CommentList(props) {
   var comments = props.comments;
   return (
@@ -442,7 +442,7 @@ If you see rendering logic inside a mixin, it’s time to extract a component!
 
 Instead of `RowMixin`, we will define a `<RowHeader>` component. We will also replace the convention of defining a `getHeaderText()` method with the standard mechanism of top-data flow in React: passing props.
 
-Finally, since neither of those components currently need lifecycle hooks or state, we can declare them as simple functions:
+Finally, since neither of those components currently need lifecycle methods or state, we can declare them as simple functions:
 
 ```js
 function RowHeader(props) {
@@ -467,7 +467,7 @@ Props keep component dependencies explicit, easy to replace, and enforceable wit
 
 > **Note:**
 >
-> Defining components as functions is not required. There is also nothing wrong with using lifecycle hooks and state—they are first-class React features. We use function components in this example because they are easier to read and we didn’t need those extra features, but classes would work just as fine.
+> Defining components as functions is not required. There is also nothing wrong with using lifecycle methods and state—they are first-class React features. We use function components in this example because they are easier to read and we didn’t need those extra features, but classes would work just as fine.
 
 ### Context
 
@@ -605,7 +605,7 @@ var Button = React.createClass({
 
 ### Other Use Cases
 
-Sometimes people use mixins to selectively add logging to lifecycle hooks in some components. In the future, we intend to provide an [official DevTools API](https://github.com/facebook/react/issues/5306) that would let you implement something similar without touching the components. However it’s still very much a work in progress. If you heavily depend on logging mixins for debugging, you might want to keep using those mixins for a little longer.
+Sometimes people use mixins to selectively add logging to lifecycle methods in some components. In the future, we intend to provide an [official DevTools API](https://github.com/facebook/react/issues/5306) that would let you implement something similar without touching the components. However it’s still very much a work in progress. If you heavily depend on logging mixins for debugging, you might want to keep using those mixins for a little longer.
 
 If you can’t accomplish something with a component, a higher-order component, or a utility module, it could be mean that React should provide this out of the box. [File an issue](https://github.com/facebook/react/issues/new) to tell us about your use case for mixins, and we’ll help you consider alternatives or perhaps implement your feature request.
 

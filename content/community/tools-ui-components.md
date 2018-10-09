@@ -67,6 +67,7 @@ permalink: community/ui-components.html
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
 * **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react)** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
+* **[PrimeReact](https://www.primefaces.org/primereact/)** A rich UI component suite for React featuring 70+ open source components.
 
 ## Fee Based Components
 

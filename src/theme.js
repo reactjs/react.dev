@@ -302,7 +302,8 @@ const sharedStyles = {
       paddingTop: 45,
 
       [media.lessThan('small')]: {
-        wordBreak: 'break-all',
+        overflowWrap: 'break-word',
+        wordBreak: 'break-word',
       },
 
       [media.greaterThan('xlarge')]: {

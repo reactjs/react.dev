@@ -605,7 +605,7 @@ We have changed `this.props` to `props` both times it appears.
 
 We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.
 
-We'll set the the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
+We'll set the first move to be "X" by default. We can set this default by modifying the initial state in our Board constructor:
 
 ```javascript{6}
 class Board extends React.Component {

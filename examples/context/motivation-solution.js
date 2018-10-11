@@ -36,7 +36,7 @@ function ThemedButton(props) {
   // In this example, the current theme is "dark".
   return (
     <ThemeContext.Consumer>
-      {theme => <Button {...props} theme={theme} />}
+      {value => <Button {...props} theme={value} />}
     </ThemeContext.Consumer>
   );
 }

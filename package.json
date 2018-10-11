@@ -56,7 +56,7 @@
     "unist-util-visit": "^1.1.3"
   },
   "engines": {
-    "node": "^8.4.0",
+    "node": ">8.4.0",
     "yarn": "^1.3.2"
   },
   "homepage": "https://reactjs.org/",

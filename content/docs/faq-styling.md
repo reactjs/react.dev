@@ -28,7 +28,9 @@ render() {
 }
 ```
 
-If you often find yourself writing code like this, [classnames](https://www.npmjs.com/package/classnames) package can simplify it.
+>Tip
+>
+>If you often find yourself writing code like this, [classnames](https://www.npmjs.com/package/classnames#usage-with-reactjs) package can simplify it.
 
 ### Can I use inline styles?
 

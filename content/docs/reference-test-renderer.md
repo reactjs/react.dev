@@ -142,7 +142,7 @@ Unmount the in-memory tree, triggering the appropriate lifecycle events.
 testRenderer.getInstance()
 ```
 
-Return the instance corresponding to the root element, if available. This will not work if the root element is a functional component because they don't have instances.
+Return the instance corresponding to the root element, if available. This will not work if the root element is a function component because they don't have instances.
 
 ### `testRenderer.root`
 
@@ -206,7 +206,7 @@ Find all descendant test instances with the provided `props`.
 testInstance.instance
 ```
 
-The component instance corresponding to this test instance. It is only available for class components, as functional components don't have instances. It matches the `this` value inside the given component.
+The component instance corresponding to this test instance. It is only available for class components, as function components don't have instances. It matches the `this` value inside the given component.
 
 ### `testInstance.type`
 

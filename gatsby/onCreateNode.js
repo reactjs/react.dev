@@ -6,6 +6,8 @@
 
 'use strict';
 
+const path = require('path');
+
 // Parse date information out of blog post filename.
 const BLOG_POST_FILENAME_REGEX = /([0-9]+)\-([0-9]+)\-([0-9]+)\-(.+)\.md$/;
 
@@ -30,7 +32,7 @@ module.exports = exports.onCreateNode = ({node, actions, getNode}) => {
   switch (node.internal.type) {
     case 'MarkdownRemark':
       const {permalink, redirect_from} = node.frontmatter;
-      const {relativePath} = getNode(node.parent);
+      const {relativePath, sourceInstanceName} = getNode(node.parent);
 
       let slug = permalink;
 
@@ -71,10 +73,11 @@ module.exports = exports.onCreateNode = ({node, actions, getNode}) => {
       });
 
       // Used to generate a GitHub edit link.
+      // this presumes that the name in gastby-config.js refers to parent folder
       createNodeField({
         node,
         name: 'path',
-        value: relativePath,
+        value: path.join(sourceInstanceName, relativePath),
       });
 
       // Used by createPages() above to register redirects.

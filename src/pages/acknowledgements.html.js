@@ -53,7 +53,7 @@ const Acknowlegements = ({data, location}) => (
                 name on npm.
               </li>
               <li>
-                <a href="http://christopheraue.net/">Christopher Aue</a> for
+                <a href="https://christopheraue.net/">Christopher Aue</a> for
                 letting us use the <a href="http://reactjs.com/">reactjs.com</a>{' '}
                 domain name and the{' '}
                 <a href="https://twitter.com/reactjs">@reactjs</a> username on

@@ -20,7 +20,7 @@ Components let you split the UI into independent, reusable pieces, and think abo
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
 
-## Functional and Class Components
+## Function and Class Components
 
 The simplest way to define a component is to write a JavaScript function:
 
@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "functional" because they are literally JavaScript functions.
+This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.
 
 You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
 
@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 The above two components are equivalent from React's point of view.
 
-Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use functional components for their conciseness.
+Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use function components for their conciseness.
 
 ## Rendering a Component
 
@@ -237,7 +237,7 @@ Extracting components might seem like grunt work at first, but having a palette 
 
 ## Props are Read-Only
 
-Whether you declare a component [as a function or a class](#functional-and-class-components), it must never modify its own props. Consider this `sum` function:
+Whether you declare a component [as a function or a class](#function-and-class-components), it must never modify its own props. Consider this `sum` function:
 
 ```js
 function sum(a, b) {

@@ -12,16 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### React Boston 2018
-September 29-30 in Boston, Massachusetts USA
-
-[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
-
-### ReactJS Day 2018
-October 5 in Verona, Italy
-
-[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
-
 ### React Conf Brasil 2018
 October 20 in Sao Paulo, Brazil
 
@@ -295,5 +285,15 @@ September 5-6 in Wrocław, Poland
 September 13-15 in Alicante, Spain
 
 [Website](http://reactalicante.es) - [Twitter](https://twitter.com/ReactAlicante)
+
+### React Boston 2018
+September 29-30 in Boston, Massachusetts USA
+
+[Website](http://www.reactboston.com/) - [Twitter](https://twitter.com/ReactBoston)
+
+### ReactJS Day 2018
+October 5 in Verona, Italy
+
+[Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
 ##

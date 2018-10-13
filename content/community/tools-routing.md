@@ -13,4 +13,5 @@ permalink: community/routing.html
   * **[mvc-router](https://github.com/rajeev-k/mvc-router)** Use the Model-View-Controller (MVC) pattern to build React applications.
  * **[react-mini-router](https://github.com/larrymyers/react-mini-router)** A minimal URL router mixin.
  * **[react-router](https://github.com/rackt/react-router)** - A popular declarative router for React
+ * **[@reach/router](https://github.com/reach/router)** - Next Generation Routing for React
  * **[react-router-component](https://github.com/andreypopp/react-router-component)** Declarative routing.

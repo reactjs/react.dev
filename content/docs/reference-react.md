@@ -227,6 +227,19 @@ render() {
 
 You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
 
+for example:
+
+```javascript
+render() {
+  return (
+    <>
+      Some text.
+      <h2>A heading</h2>
+    </>
+  );
+}
+```
+
 > Note:
 >
 > if you need use key in fragment, you must use `<Fragment key={}>` instead `<>`

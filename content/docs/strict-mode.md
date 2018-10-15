@@ -18,7 +18,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 `StrictMode` currently helps with:
 * [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
 * [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
-* [Detecting unexpected side effects](#detecting-unexpected-side-effects)
+* [Enforcing idempotency](#enforcing-idempotency)
 * [Detecting legacy context API](#detecting-legacy-context-api)
 
 Additional functionality will be added with future releases of React.
@@ -50,7 +50,7 @@ Since object refs were largely added as a replacement for string refs, strict mo
 
 [Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
 
-### Detecting unexpected side effects
+### Enforcing [idempotency](https://en.wikipedia.org/wiki/Idempotence#Computer_science_meaning)
 
 Conceptually, React does work in two phases:
 * The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
@@ -68,9 +68,9 @@ Render phase lifecycles include the following class component methods:
 * `render`
 * `setState` updater functions (the first argument)
 
-Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
+Because the above methods might be called more than once, it's important that they do not contain non-idempotent side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
 
-Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
+Strict mode can't automatically detect dangerous side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
 
 * Class component `constructor` method
 * The `render` method

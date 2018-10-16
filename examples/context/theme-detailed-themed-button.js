@@ -1,17 +1,18 @@
 import {ThemeContext} from './theme-context';
 
-function ThemedButton(props) {
-  // highlight-range{2-9}
-  return (
-    <ThemeContext.Consumer>
-      {theme => (
-        <button
-          {...props}
-          style={{backgroundColor: theme.background}}
-        />
-      )}
-    </ThemeContext.Consumer>
-  );
+class ThemedButton extends React.Component {
+  // highlight-range{3,12}
+  render() {
+    let props = this.props;
+    let theme = this.context;
+    return (
+      <button
+        {...props}
+        style={{backgroundColor: theme.background}}
+      />
+    );
+  }
 }
+ThemedButton.contextType = ThemeContext;
 
 export default ThemedButton;

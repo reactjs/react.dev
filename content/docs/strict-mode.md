@@ -18,6 +18,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 `StrictMode` currently helps with:
 * [Identifying components with unsafe lifecycles](#identifying-unsafe-lifecycles)
 * [Warning about legacy string ref API usage](#warning-about-legacy-string-ref-api-usage)
+* [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
 * [Detecting unexpected side effects](#detecting-unexpected-side-effects)
 * [Detecting legacy context API](#detecting-legacy-context-api)
 
@@ -49,6 +50,32 @@ Since object refs were largely added as a replacement for string refs, strict mo
 > You don't need to replace callback refs in your components. They are slightly more flexible, so they will remain as an advanced feature.
 
 [Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
+
+### Warning about deprecated findDOMNode usage
+
+React used to support `findDOMNode` to search the tree for a DOM node given a class instance. Normally you don't need this because you can [attach a ref directly to a DOM node](/docs/refs-and-the-dom.html#creating-refs).
+
+`findDOMNode` can also be used on class components but this was breaking abstraction levels by allowing a parent to demand that certain children was rendered. It creates a refactoring hazard where you can't change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` only returns the first child, but with the use of Fragments, it is possible for a component to render multiple DOM nodes. `findDOMNode` is a one time read API. It only gave you an answer when you asked for it. If a child component renders a different node, there is no way to handle this change. Therefore `findDOMNode` only worked if components always return a single DOM node that never changes.
+
+You can instead make this explicit by pass a ref to your custom component and pass that along to the DOM using [ref forwarding](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
+
+You can also add a wrapper DOM node in your component and attach a ref directly to it.
+
+```javascript{4,7}
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.wrapper = React.createRef();
+  }
+  render() {
+    return <div ref={this.wrapper}>{this.props.children}</div>;
+  }
+}
+```
+
+> Note:
+>
+> In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute can be used if you don't want the node to be part of the layout.
 
 ### Detecting unexpected side effects
 

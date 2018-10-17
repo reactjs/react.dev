@@ -222,7 +222,7 @@ First, change the button tag that is returned from the Square component's `rende
 class Square extends React.Component {
   render() {
     return (
-      <button className="square" onClick={function() { alert('click'); }}>
+      <button className="square" onClick={() => { alert('click'); }>
         {this.props.value}
       </button>
     );

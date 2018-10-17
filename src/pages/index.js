@@ -235,7 +235,6 @@ class Home extends Component {
 
                               [media.greaterThan('xlarge')]: {
                                 fontSize: 24,
-                                fontWeight: 200,
                               },
                             },
                           },

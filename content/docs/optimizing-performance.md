@@ -187,7 +187,7 @@ Currently Chrome, Edge, and IE are the only browsers supporting this feature, bu
 
 `react-dom` 16.5+ and `react-native` 0.57+ provide enhanced profiling capabilities in DEV mode with the React DevTools Profiler.
 An overview of the Profiler can be found in the blog post ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
-A video walk through of the profiler is also [available on YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
+A video walkthrough of the profiler is also [available on YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
 
 If you haven't yet installed the React DevTools, you can find them here:
 

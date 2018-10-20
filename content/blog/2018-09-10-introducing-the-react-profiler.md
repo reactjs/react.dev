@@ -173,7 +173,7 @@ The tracing API is still new and we will cover it in more detail in a future blo
 
 ### No profiling data has been recorded for the selected root
 
-If your your application has multiple "roots", you may see the following message after profiling:
+If your application has multiple "roots", you may see the following message after profiling:
 ![No profiling data has been recorded for the selected root](../images/blog/introducing-the-react-profiler/no-profiler-data-multi-root.png)
 
 This message indicates that no performance data was recorded for the root that's selected in the "Elements" panel.

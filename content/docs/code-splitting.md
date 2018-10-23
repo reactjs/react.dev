@@ -181,10 +181,10 @@ const MyComponent = () => (
 
 ### Error boundaries
 
-If the other module fails to load it will trigger an error. For example, due to network failure. To handle these errors to show a nice user experience and manage recovery see the [Error boundaries](/docs/error-boundaries.html) guide. Once you've created your Error boundary. You can use it anywhere above your lazy components to display an error state when there's a network error.
+If the other module fails to load (for example, due to network failure), it will trigger an error. You can handle these errors to show a nice user experience and manage recovery with [Error Boundaries](/docs/error-boundaries.html). Once you've created your Error Boundary, you can use it anywhere above your lazy components to display an error state when there's a network error.
 
 ```js
-import MyErrorBoundary from "/MyErrorBoundary";
+import MyErrorBoundary from '/MyErrorBoundary';
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 

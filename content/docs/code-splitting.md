@@ -113,7 +113,9 @@ parse the dynamic import syntax but is not transforming it. For that you will ne
 
 ## `React.lazy`
 
-> Note: `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we still recommend [React Loadable](https://github.com/thejameskyle/react-loadable). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/thejameskyle/react-loadable#------------server-side-rendering).
+> Note:
+>
+> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we still recommend [React Loadable](https://github.com/thejameskyle/react-loadable). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/thejameskyle/react-loadable#------------server-side-rendering).
 
 The `React.lazy` function lets you render an dynamic import as a regular component.
 
@@ -122,11 +124,13 @@ The `React.lazy` function lets you render an dynamic import as a regular compone
 ```js
 import OtherComponent from './OtherComponent';
 
-const MyComponent = () => (
-  <div>
-    <OtherComponent/>
-  </div>
-);
+function MyComponent() {
+  return (
+    <div>
+      <OtherComponent />
+    </div>
+  );
+}
 ```
 
 **After:**
@@ -134,11 +138,13 @@ const MyComponent = () => (
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
-const MyComponent = () => (
-  <div>
-    <OtherComponent />
-  </div>
-);
+function MyComponent() {
+  return (
+    <div>
+      <OtherComponent />
+    </div>
+  );
+}
 ```
 
 This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
@@ -152,13 +158,15 @@ If the module containing the `OtherComponent` is not yet loaded by the time `MyC
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 
-const MyComponent = () => (
-  <div>
-    <Suspense fallback={<div>Loading...</div>}>
-      <OtherComponent />
-    </Suspense>
-  </div>
-);
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <OtherComponent />
+      </Suspense>
+    </div>
+  );
+}
 ```
 
 The `fallback` prop accepts any React elements that you want to render while waiting for the component to load. You can place the `Suspense` component anywhere above the lazy component. You can even wrap multiple lazy components with a single `Suspense` component.
@@ -167,16 +175,18 @@ The `fallback` prop accepts any React elements that you want to render while wai
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
 const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 
-const MyComponent = () => (
-  <div>
-    <Suspense fallback={<div>Loading...</div>}>
-      <section>
-        <OtherComponent />
-        <AnotherComponent />
-      </section>
-    </Suspense>
-  </div>
-);
+function MyComponent() {
+  return (
+    <div>
+      <Suspense fallback={<div>Loading...</div>}>
+        <section>
+          <OtherComponent />
+          <AnotherComponent />
+        </section>
+      </Suspense>
+    </div>
+  );
+}
 ```
 
 ### Error boundaries

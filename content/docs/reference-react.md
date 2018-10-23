@@ -26,6 +26,10 @@ React components let you split the UI into independent, reusable pieces, and thi
 
 If you don't use ES6 classes, you may use the `create-react-class` module instead. See [Using React without ES6](/docs/react-without-es6.html) for more information.
 
+React components can also be defined as functions which can be wrapped:
+
+- [`React.memo`](#reactmemo)
+
 ### Creating React Elements
 
 We recommend [using JSX](/docs/introducing-jsx.html) to describe what your UI should look like. Each JSX element is just syntactic sugar for calling [`React.createElement()`](#createelement). You will not typically invoke the following methods directly if you are using JSX.
@@ -85,6 +89,42 @@ If your React component's `render()` function renders the same result given the 
 > `React.PureComponent`'s `shouldComponentUpdate()` only shallowly compares the objects. If these contain complex data structures, it may produce false-negatives for deeper differences. Only extend `PureComponent` when you expect to have simple props and state, or use [`forceUpdate()`](/docs/react-component.html#forceupdate) when you know deep data structures have changed. Or, consider using [immutable objects](https://facebook.github.io/immutable-js/) to facilitate fast comparisons of nested data.
 >
 > Furthermore, `React.PureComponent`'s `shouldComponentUpdate()` skips prop updates for the whole component subtree. Make sure all the children components are also "pure".
+
+* * *
+
+### `React.memo`
+
+```javascript
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+```
+
+`React.memo` is a [higher order component](/docs/higher-order-components.html). It's similar to [`React.PureComponent`](#reactpurecomponent) but for function components instead of classes.
+
+If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+
+By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+
+```javascript
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+```
+
+This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.
+
+> Note
+>
+> Unlike the [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method on class components, the `areEqual` function returns `true` if the props are equal and `false` if the props are not equal. This is the inverse from `shouldComponentUpdate`.
 
 * * *
 

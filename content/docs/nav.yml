@@ -104,6 +104,25 @@
       title: JS Environment Requirements
     - id: glossary
       title: Glossary
+- title: Hooks (Proposal)
+  isOrdered: true
+  items:
+      - id: hooks-intro
+        title: Introducing Hooks
+      - id: hooks-overview
+        title: Hooks at a Glance
+      - id: hooks-state
+        title: Using the State Hook
+      - id: hooks-effect
+        title: Using the Effect Hook
+      - id: hooks-rules
+        title: Rules of Hooks
+      - id: hooks-custom
+        title: Writing Custom Hooks
+      - id: hooks-reference
+        title: Hooks API Reference
+      - id: hooks-faq
+        title: Hooks FAQ
 - title: Contributing
   items:
   - id: how-to-contribute

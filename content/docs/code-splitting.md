@@ -228,7 +228,7 @@ libraries like [React Router](https://reacttraining.com/react-router/) with `Rea
 
 ```js
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import React, {Suspense, lazy} from 'react';
+import React, { Suspense, lazy } from 'react';
 
 const Home = lazy(() => import('./routes/Home'));
 const About = lazy(() => import('./routes/About'));
@@ -257,11 +257,11 @@ export const MyUnusedComponent = /* ... */;
 
 ```js
 // MyComponent.js
-export {MyComponent as default} from "./ManyComponents.js";
+export { MyComponent as default } from "./ManyComponents.js";
 ```
 
 ```js
 // MyApp.js
-import React, {lazy} from 'react';
+import React, { lazy } from 'react';
 const MyComponent = lazy(() => import("./MyComponent.js"));
 ```

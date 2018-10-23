@@ -26,7 +26,7 @@ React components let you split the UI into independent, reusable pieces, and thi
 
 If you don't use ES6 classes, you may use the `create-react-class` module instead. See [Using React without ES6](/docs/react-without-es6.html) for more information.
 
-React components can also be defined as functions which can be wrapped by further functionality.
+React components can also be defined as functions which can be wrapped:
 
 - [`React.memo`](#reactmemo)
 
@@ -102,7 +102,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 `React.memo` is a [higher order component](/docs/higher-order-components.html). It's similar to [`React.PureComponent`](#reactpurecomponent) but for function components instead of classes.
 
-If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result.
+If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
 
 By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
 

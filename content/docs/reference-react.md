@@ -110,14 +110,14 @@ By default it will only shallowly compare complex objects in the props object. I
 function MyComponent(props) {
   /* render using props */
 }
-function equals(prevProps, nextProps) {
+function areEqual(prevProps, nextProps) {
   /*
   return true if passing nextProps to render would return
   the same result as passing prevProps to render,
   otherwise return false
   */
 }
-export default React.memo(MyComponent, equals);
+export default React.memo(MyComponent, areEqual);
 ```
 
 This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.

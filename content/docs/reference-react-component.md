@@ -81,8 +81,9 @@ This method is called when a component is being removed from the DOM:
 
 #### Error Handling
 
-This method is called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
+These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
 
+- [`static getDerivedStateFromError()`](#getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
 ### Other APIs
@@ -290,6 +291,7 @@ This method doesn't have access to the component instance. If you'd like, you ca
 
 Note that this method is fired on *every* render, regardless of the cause. This is in contrast to `UNSAFE_componentWillReceiveProps`, which only fires when the parent causes a re-render and not as a result of a local `setState`.
 
+* * *
 
 ### `getSnapshotBeforeUpdate()`
 
@@ -311,21 +313,110 @@ In the above examples, it is important to read the `scrollHeight` property in `g
 
 * * *
 
-### `componentDidCatch()`
-
-```javascript
-componentDidCatch(error, info)
-```
+### Error boundaries
 
 [Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
-A class component becomes an error boundary if it defines this lifecycle method. Calling `setState()` in it lets you capture an unhandled JavaScript error in the below tree and display a fallback UI. Only use error boundaries for recovering from unexpected exceptions; don't try to use them for control flow.
+A class component becomes an error boundary if it defines either (or both) of the lifecycle methods `static getDerivedStateFromError()` or `componentDidCatch()`. Updating state from these lifecycles lets you capture an unhandled JavaScript error in the below tree and display a fallback UI.
+
+Only use error boundaries for recovering from unexpected exceptions; **don't try to use them for control flow.**
 
 For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Note
 > 
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
+
+### `static getDerivedStateFromError()`
+```javascript
+static getDerivedStateFromError(error)
+```
+
+This lifecycle is invoked after an error has been thrown by a descendant component.
+It receives the error that was thrown as a parameter and should return a value to update state.
+
+```js{7-10,13-16}
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
+}
+```
+
+> Note
+>
+> `getDerivedStateFromError()` is called during the "render" phase, so side-effects are not permitted.
+For those use cases, use `componentDidCatch()` instead.
+
+* * *
+
+### `componentDidCatch()`
+
+```javascript
+componentDidCatch(error, info)
+```
+
+This lifecycle is invoked after an error has been thrown by a descendant component.
+It receives two parameters:
+
+1. `error` - The error that was thrown.
+2. `info` - An object with a `componentStack` key containing [information about which component threw the error](/docs/error-boundaries.html#component-stack-traces).
+
+
+`componentDidCatch()` is called during the "commit" phase, so side-effects are permitted.
+It should be used for things like logging errors:
+
+```js{12-19}
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    // Example "componentStack":
+    //   in ComponentThatThrows (created by App)
+    //   in ErrorBoundary (created by App)
+    //   in div (created by App)
+    //   in App
+    logComponentStackToMyService(info.componentStack);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return <h1>Something went wrong.</h1>;
+    }
+
+    return this.props.children; 
+  }
+}
+```
+
+> Note
+> 
+> In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
+> Use `static getDerivedStateFromError()` to handle fallback rendering instead.
 
 * * *
 

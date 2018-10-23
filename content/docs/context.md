@@ -161,7 +161,7 @@ class MyClass extends React.Component {
 MyClass.contextType = MyContext;
 ```
 
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the life-cycles including the render function.
+The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
 
 > Note:
 >

@@ -95,7 +95,7 @@ If your React component's `render()` function renders the same result given the 
 ### `React.memo`
 
 ```javascript
-const MyComponent = React.memo(function(props) {
+const MyComponent = React.memo(function MyComponent(props) {
   /* render using props */
 });
 ```
@@ -107,7 +107,7 @@ If your function component renders the same result given the same props, you can
 By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
 
 ```javascript
-function render(props) {
+function MyComponent(props) {
   /* render using props */
 }
 function equals(prevProps, nextProps) {
@@ -117,7 +117,7 @@ function equals(prevProps, nextProps) {
   otherwise return false
   */
 }
-const MyComponent = React.memo(render, equals);
+export default React.memo(MyComponent, equals);
 ```
 
 This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.

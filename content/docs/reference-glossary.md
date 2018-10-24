@@ -97,7 +97,7 @@ If you need to modify some value in response to user input or a network response
 `props.children` is available on every component. It contains the content between the opening and closing tags of a component. For example:
 
 ```js
-<Welcome>Hello world!</Welcome>
+const welcome = <Welcome>Hello world!</Welcome>;
 ```
 
 The string `Hello world!` is available in `props.children` in the `Welcome` component:

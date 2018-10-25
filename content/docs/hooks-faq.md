@@ -113,7 +113,7 @@ There are a few more heuristics, and they might change over time as we fine-tune
 
 * `getDerivedStateFromProps`: Schedule an update [while rendering](#how-do-i-implement-getderivedstatefromprops) instead.
 
-* `shouldComponentUpdate`: See `React.pure` [below](#how-do-i-implement-shouldcomponentupdate).
+* `shouldComponentUpdate`: See `React.memo` [below](#how-do-i-implement-shouldcomponentupdate).
 
 * `render`: This is the function component body itself.
 
@@ -319,17 +319,17 @@ Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditional
 
 ### How do I implement `shouldComponentUpdate`?
 
-You can wrap a function component with `React.pure` to shallowly compare its props:
+You can wrap a function component with `React.memo` to shallowly compare its props:
 
 ```js
-const Button = React.pure((props) => {
+const Button = React.memo((props) => {
   // your component
 });
 ```
 
-It's not a Hook because it doesn't compose like Hooks do. `React.pure` is equivalent to `PureComponent`, but it only compares props. (You can also add a second argument to specify a custom comparison function that takes the old and new props. If it returns true, the update is skipped.)
+It's not a Hook because it doesn't compose like Hooks do. `React.memo` is equivalent to `PureComponent`, but it only compares props. (You can also add a second argument to specify a custom comparison function that takes the old and new props. If it returns true, the update is skipped.)
 
-`React.pure` doesn't compare state because there is no single state object to compare. But you can make children pure too, or even [optimize individual children with `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
+`React.memo` doesn't compare state because there is no single state object to compare. But you can make children pure too, or even [optimize individual children with `useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations).
 
 
 ### How to memoize calculations?

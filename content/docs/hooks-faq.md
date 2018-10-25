@@ -407,7 +407,7 @@ function TodosApp() {
 }
 ```
 
-Any child in the tree inside `TodosApp` can read use the `dispatch` function to pass actions up to `TodosApp`:
+Any child in the tree inside `TodosApp` can use the `dispatch` function to pass actions up to `TodosApp`:
 
 ```js{2,3}
 function DeepChild(props) {

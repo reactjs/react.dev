@@ -93,4 +93,4 @@ We intend for Hooks to cover all existing use cases for classes, but **we will k
 
 ## Next Steps
 
-By the end of this page, you should have a rough idea of what problems Hooks are solving, but many details are probably unclear. Don't worry! **Let's now go to [the next page](/docs/hooks-overview.html) where we start learning about Hooks by example.**
+By now you should have a rough idea of what problems Hooks are solving, but many details are probably unclear. Don't worry! **Let's go to [the next page](/docs/hooks-overview.html) where we'll start learning about Hooks by example.**

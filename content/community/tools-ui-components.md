@@ -69,7 +69,6 @@ permalink: community/ui-components.html
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
 
-
 ## Fee Based Components
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.

@@ -258,7 +258,7 @@ function ExampleWithManyStates() {
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
 ```
 
-In the above component, we have `age`, `fruit`, or `todos` as local variables, and we can update them individually:
+In the above component, we have `age`, `fruit`, and `todos` as local variables, and we can update them individually:
 
 ```js
   function handleOrangeClick() {

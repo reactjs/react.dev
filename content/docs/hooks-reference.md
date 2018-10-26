@@ -163,7 +163,7 @@ const context = useContext(Context);
 
 Accepts a context object (the value returned from `React.createContext`) and returns the current context value, as given by the nearest context provider for the given context.
 
-When the provider updates, this Hook will trigger a rerender with the latest context value.
+When the provider updates, this Hook will trigger a re-render with the latest context value.
 
 ## Additional Hooks
 
@@ -278,7 +278,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
 
-Pass a "create" function and an array of inputs. `useMemo` will only recompute the memoized value when one of the inputs has changed. This optimization helps to avoid expensive calculations on every render.
+Pass a "create" function and an array of inputs. `useMemo` will only re-compute the memoized value when one of the inputs has changed. This optimization helps to avoid expensive calculations on every render.
 
 If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
 

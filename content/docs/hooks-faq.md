@@ -396,7 +396,7 @@ In large component trees, an alternative we recommend is to pass down a `dispatc
 const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
-  // Tip: `dispatch` won't change between re-renders
+  // Note: `dispatch` won't change between re-renders
   const [todos, dispatch] = useReducer(todosReducer);
 
   return (

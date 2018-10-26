@@ -175,9 +175,9 @@ The following Hooks are either variants of the basic ones from the previous sect
 const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
-An alternative to [`useState`](https://our.intern.facebook.com/intern/wiki/React_Hooks/#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
+An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
 
-Here's the counter example from the [`useState`](https://our.intern.facebook.com/intern/wiki/React_Hooks/#usestate) section, rewritten to use a reducer:
+Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
 
 ```js
 const initialState = {count: 0};

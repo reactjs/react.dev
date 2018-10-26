@@ -16,7 +16,9 @@ permalink: community/ui-components.html
 * **[Khan Academy's component library](https://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)**: compiles markdown into safe React JSX without using dangerous escape hatches.
 * **[Material-UI](https://material-ui.com/):** React components that implement Google's Material Design.
+* **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react):** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
+* **[PrimeReact](https://www.primefaces.org/primereact/):** A rich UI component suite for React featuring 70+ open source components.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
 * **[React Mdl](https://github.com/tleunen/react-mdl)** React Components for Material Design Lite.
 * **[React Web](https://github.com/taobaofed/react-web)** A framework for building web apps with React.
@@ -66,7 +68,6 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
-* **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react)** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
 
 ## Fee Based Components
 

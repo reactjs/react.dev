@@ -127,7 +127,7 @@ Yes! The [`useRef()`](/docs/hooks-reference.html#useref) Hook isn't just for DOM
 
 You can write to it from inside `useEffect`:
 
-```js{2,8,15}
+```js{2,8}
 function Timer() {
   const intervalRef = useRef();
 

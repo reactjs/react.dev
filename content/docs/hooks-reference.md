@@ -105,7 +105,7 @@ By default, effects run after every completed render, but you can choose to fire
 
 #### Cleaning up an effect
 
-Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to `useEffect` may return a clean-up function. For example, to create a subscription
+Often, effects create resources that need to be cleaned up before the component leaves the screen, such as a subscription or timer ID. To do this, the function passed to `useEffect` may return a clean-up function. For example, to create a subscription:
 
 ```js
 useEffect(() => {

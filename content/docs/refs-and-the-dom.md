@@ -97,6 +97,7 @@ class CustomTextInput extends React.Component {
         <input
           type="button"
           value="Focus the text input"
+          // Note: We do not pass "this.textInput.current.focus" here directly
           onClick={this.focusTextInput}
         />
       </div>
@@ -105,7 +106,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods.
+React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods. For this reason, we need to wrap `this.textInput.current.focus()` with focusTextInput, instead of passing `this.textInput.current.focus` directly to `onClick`handler.
 
 #### Adding a Ref to a Class Component
 

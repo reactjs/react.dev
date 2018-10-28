@@ -9,6 +9,7 @@ permalink: community/meetups.html
 Do you have a local React.js meetup? Add it here! (Please keep the list alphabetical)
 
 ## Australia
+* [Brisbane](https://www.meetup.com/reactbris/)
 * [Melbourne](https://www.meetup.com/React-Melbourne/)
 * [Sydney](https://www.meetup.com/React-Sydney/)
 

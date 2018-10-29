@@ -81,7 +81,7 @@ To solve these problems, **Hooks let you use more of React's features without cl
 
 >**TLDR: There are no plans to remove classes from React.**
 
-We know that React developers are focused on shipping products and don't have time to look into every new API that's being released. Hooks are very new, and it might be better to wait for more examples and tutorials before considering learning or adopting them.
+We know that React developers are focused on shipping products and don't have time to look into every new API that's being released. Keep in mind that Hooks are very new and were designed to work alongside Suspense. It might be best to wait until Suspense is fully released and more examples are shown before considering adopting them.
 
 We also understand that the bar for adding a new primitive to React is extremely high. For curious readers, we have prepared a [detailed RFC](https://github.com/reactjs/rfcs/pull/68) that dives into motivation with more details, and provides extra perspective on the specific design decisions and related prior art.
 

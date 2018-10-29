@@ -11,7 +11,7 @@ prev: hooks-overview.html
 The [previous page](/docs/hooks-intro.html) introduced Hooks with this example:
 
 ```js{4-5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"

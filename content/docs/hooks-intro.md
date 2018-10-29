@@ -29,6 +29,12 @@ This new function `useState` is the first "Hook" we'll learn about, but this exa
 
 **You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.
 
+## Video Introduction
+
+At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
+
+<iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
+
 ## No Breaking Changes
 
 Before we continue, note that Hooks are:

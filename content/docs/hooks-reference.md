@@ -92,7 +92,7 @@ const [state, setState] = useState(() => {
 ### `useEffect`
 
 ```js
-useEffect(didUpdate);
+useEffect(didUpdate, [inputs]);
 ```
 
 Accepts a function that contains imperative, possibly effectful code.
@@ -133,7 +133,7 @@ The default behavior for effects is to fire the effect after every completed ren
 
 However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` props has changed.
 
-To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
+To implement this, pass a second argument to `useEffect` that is the array of input values that the effect depends on. Our updated example now looks like this:
 
 ```js
 useEffect(

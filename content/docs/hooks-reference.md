@@ -92,7 +92,7 @@ const [state, setState] = useState(() => {
 ### `useEffect`
 
 ```js
-useEffect(didUpdate, [inputs]);
+useEffect(didUpdate, [dependencies]);
 ```
 
 Accepts a function that contains imperative, possibly effectful code.
@@ -129,11 +129,11 @@ Although `useEffect` is deferred until after the browser has painted, it's guara
 
 #### Conditionally firing an effect
 
-The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its inputs changes.
+The default behavior for effects is to fire the effect after every completed render. That way an effect is always recreated if one of its dependencies changes.
 
 However, this may be overkill in some cases, like the subscription example from the previous section. We don't need to create a new subscription on every update, only if the `source` props has changed.
 
-To implement this, pass a second argument to `useEffect` that is the array of input values that the effect depends on. Our updated example now looks like this:
+To implement this, pass a second argument to `useEffect` that is the array of values that the effect depends on. Our updated example now looks like this:
 
 ```js
 useEffect(
@@ -149,11 +149,11 @@ useEffect(
 
 Now the subscription will only be recreated when `props.source` changes.
 
-Passing in an empty array `[]` of inputs tells React that your effect doesn't depend on any values from the component, so that effect would run only on mount and unmount, never on updates.
+Passing in an empty array `[]` of dependencies tells React that your effect doesn't depend on any values from the component, so that effect would run only on mount and unmount, never on updates.
 
 > Note
 >
-> The array of inputs is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+> The array of dependencies is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
 
 ### `useContext`
 
@@ -262,13 +262,13 @@ const memoizedCallback = useCallback(
 
 Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.
 
-Pass an inline callback and an array of inputs. `useCallback` will return a memoized version of the callback that only changes if one of the inputs has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
+Pass an inline callback and an array of dependencies. `useCallback` will return a memoized version of the callback that only changes if one of the dependencies has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
 
-`useCallback(fn, inputs)` is equivalent to `useMemo(() => fn, inputs)`.
+`useCallback(fn, dependencies)` is equivalent to `useMemo(() => fn, dependencies)`.
 
 > Note
 >
-> The array of inputs is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+> The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
 
 ### `useMemo`
 
@@ -278,13 +278,13 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
 
-Pass a "create" function and an array of inputs. `useMemo` will only recompute the memoized value when one of the inputs has changed. This optimization helps to avoid expensive calculations on every render.
+Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
 
 If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
 
 > Note
 >
-> The array of inputs is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+> The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.
 
 ### `useRef`
 
@@ -317,7 +317,7 @@ Note that `useRef()` is useful for more than the `ref` attribute. It's [handy fo
 ### `useImperativeMethods`
 
 ```js
-useImperativeMethods(ref, createInstance, [inputs])
+useImperativeMethods(ref, createInstance, [dependencies])
 ```
 
 `useImperativeMethods` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeMethods` should be used with `forwardRef`:

@@ -1,5 +1,5 @@
 ---
-title: An Application
+title: Une application
 order: 2
 ---
 

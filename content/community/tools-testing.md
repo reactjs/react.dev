@@ -7,6 +7,7 @@ permalink: community/testing.html
 
 * **[Enzyme](https://github.com/airbnb/enzyme/):** a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components' output.
 * **[Jest](https://facebook.github.io/jest/):** Delightful JavaScript testing used by Facebook to test all JavaScript code including React applications.
+* **[react-testing-examples](https://react-testing-examples.com):** Searchable library of React testing examples.
 * **[react-testing-library](https://github.com/kentcdodds/react-testing-library):** 🐐 Simple and complete React DOM testing utilities that encourage good testing practices.
 * **[React-unit](https://github.com/pzavolinsky/react-unit):** a lightweight unit test library for ReactJS with very few (js-only) dependencies.
 * **[Skin-deep](https://github.com/glenjamin/skin-deep):** Testing helpers for use with React's shallowRender test utils.

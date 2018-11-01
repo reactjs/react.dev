@@ -29,7 +29,7 @@ is slightly different in React:
 </button>
 ```
 
-Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:
+Another difference is that you cannot return `false` to prevent default behavior in React [as with a plain HTML inline or jQuery event handler](https://css-tricks.com/dangers-stopping-event-propagation/). You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default link behavior of opening a new page, you can write:
 
 ```html
 <a href="#" onclick="console.log('The link was clicked.'); return false">

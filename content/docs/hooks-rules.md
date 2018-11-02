@@ -47,7 +47,7 @@ npm install eslint-plugin-react-hooks@next
 
 In the future, we intend to include this plugin by default into Create React App and similar toolkits.
 
-**You can skip to the next page explaining how to write [custom Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
+**You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
 
 ## Explanation
 
@@ -134,4 +134,4 @@ React wouldn't know what to return for the second `useState` Hook call. React ex
 
 ## Next Steps
 
-Finally, we're ready to learn about [writing custom Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.

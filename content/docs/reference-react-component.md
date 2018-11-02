@@ -83,7 +83,7 @@ This method is called when a component is being removed from the DOM:
 
 These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
 
-- [`static getDerivedStateFromError()`](#getderivedstatefromerror)
+- [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
 ### Other APIs

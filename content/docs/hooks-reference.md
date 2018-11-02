@@ -149,7 +149,7 @@ useEffect(
 
 Now the subscription will only be recreated when `props.source` changes.
 
-Passing in an empty array `[]` of inputs tells React that your effect doesn't depend on any values from the component, so that effect would run only on mount and unmount, never on updates.
+Passing in an empty array `[]` of inputs tells React that your effect doesn't depend on any values from the component, so that effect would run only on mount and clean up on unmount; it won't run on updates.
 
 > Note
 >

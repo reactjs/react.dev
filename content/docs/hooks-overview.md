@@ -64,7 +64,7 @@ The [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScrip
 
 Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes -- they let you use React without classes. (We [don't recommend](/docs/hooks-intro.html#gradual-adoption-strategy) rewriting your existing components overnight but you can start using Hooks in the new ones if you'd like.)
 
-React provides a few built-in Hooks like `useState`. You can also create custom Hooks to reuse stateful behavior between different components. We'll look at the built-in Hooks first.
+React provides a few built-in Hooks like `useState`. You can also create your own Hooks to reuse stateful behavior between different components. We'll look at the built-in Hooks first.
 
 >Detailed Explanation
 >
@@ -174,7 +174,7 @@ We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-h
 >
 >You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
 
-## 💡 Custom Hooks
+## 💡 Building Your Own Hooks
 
 Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
 
@@ -239,7 +239,7 @@ You can write custom Hooks that cover a wide range of use cases like form handli
 
 >Detailed Explanation
 >
->You can learn more about custom Hooks on a dedicated page: [Writing Custom Hooks](/docs/hooks-custom.html).
+>You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
 
 ## 🔌 Other Hooks
 

@@ -246,6 +246,8 @@ function Counter() {
 }
 ```
 
+This is useful when you want to diff the previous value with the current value, and do something only if they are different: if `Counter` rerenders for any other unrelated reason, `prevCount` will correctly catch up with `count`.
+
 This might be a bit convoluted but you can extract it into a custom Hook:
 
 ```js{3,7}

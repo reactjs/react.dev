@@ -441,7 +441,7 @@ function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
 
-  useEffect(() => {
+  useMutationEffect(() => {
     textRef.current = text; // Write it to the ref
   });
 
@@ -482,7 +482,7 @@ function useEventCallback(fn, dependencies) {
     throw new Error('Cannot call an event handler while rendering.');
   });
 
-  useEffect(() => {
+  useMutationEffect(() => {
     ref.current = fn;
   }, [fn, ...dependencies]);
 

@@ -387,7 +387,7 @@ Normally, JavaScript expressions inserted in JSX will evaluate to a string, a Re
 ```js{4,13}
 // Calls the children callback numTimes to produce a repeated component
 function Repeat(props) {
-  let items = [];
+  const items = [];
   for (let i = 0; i < props.numTimes; i++) {
     items.push(props.children(i));
   }

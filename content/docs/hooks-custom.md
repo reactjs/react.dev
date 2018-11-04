@@ -1,6 +1,6 @@
 ---
 id: hooks-custom
-title: Writing Custom Hooks
+title: Building Your Own Hooks
 permalink: docs/hooks-custom.html
 next: hooks-reference.html
 prev: hooks-rules.html

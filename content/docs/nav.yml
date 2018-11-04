@@ -118,7 +118,7 @@
       - id: hooks-rules
         title: Rules of Hooks
       - id: hooks-custom
-        title: Writing Custom Hooks
+        title: Building Your Own Hooks
       - id: hooks-reference
         title: Hooks API Reference
       - id: hooks-faq

@@ -33,6 +33,8 @@ This new function `useState` is the first "Hook" we'll learn about, but this exa
 
 At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
 
+<br>
+
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 
 ## No Breaking Changes
@@ -59,7 +61,7 @@ React doesn't offer a way to "attach" reusable behavior to a component (for exam
 
 With Hooks, you can extract stateful logic from a component so it can be tested independently and reused. **Hooks allow you to reuse stateful logic without changing your component hierarchy.** This makes it easy to share Hooks among many components or with the community.
 
-We'll discuss this more in [Writing Custom Hooks](/docs/hooks-custom.html).
+We'll discuss this more in [Building Your Own Hooks](/docs/hooks-custom.html).
 
 ### Complex components become hard to understand
 

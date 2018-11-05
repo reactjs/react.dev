@@ -153,7 +153,7 @@ Passing in an empty array `[]` of inputs tells React that your effect doesn't de
 
 > Note
 >
-> The array of inputs is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
+> The array of inputs is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the inputs array. Similarly, the array should be a static length (i.e. you cannot change what inputs the effect depends upon during runtime). In the future, a sufficiently advanced compiler could create this array automatically.
 
 ### `useContext`
 

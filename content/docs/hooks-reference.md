@@ -253,9 +253,7 @@ function Counter({initialCount}) {
 
 ```js
 const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
-  },
+  () => doSomething(a, b),
   [a, b],
 );
 ```

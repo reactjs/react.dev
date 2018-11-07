@@ -55,6 +55,7 @@ module.exports = {
               maxWidth: 840,
             },
           },
+          'gatsby-remark-external-links',
           'gatsby-remark-autolink-headers',
           {
             resolve: 'gatsby-remark-code-repls',

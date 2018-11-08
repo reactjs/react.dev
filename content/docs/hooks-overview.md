@@ -23,7 +23,7 @@ This is a fast-paced overview. If you get confused, look for a yellow box like t
 This example renders a counter. When you click the button, it increments the value:
 
 ```js{1,4,5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
@@ -79,7 +79,7 @@ The Effect Hook, `useEffect`, adds the ability to perform side effects from a fu
 For example, this component sets the document title after React updates the DOM:
 
 ```js{1,6-10}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function Example() {
   const [count, setCount] = useState(0);
@@ -106,7 +106,7 @@ When you call `useEffect`, you're telling React to run your "effect" function af
 Effects may also optionally specify how to "clean up" after them by returning a function. For example, this component uses an effect to subscribe to a friend's online status, and cleans up by unsubscribing from it:
 
 ```js{10-16}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
@@ -183,7 +183,7 @@ Earlier on this page, we introduced a `FriendStatus` component that calls the `u
 First, we'll extract this logic into a custom Hook called `useFriendStatus`:
 
 ```js{3}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);

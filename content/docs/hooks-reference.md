@@ -323,7 +323,7 @@ useImperativeMethods(ref, createInstance, [inputs])
 `useImperativeMethods` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeMethods` should be used with `forwardRef`:
 
 ```js
-function FancyInput(props, ref) {
+const FancyInput = forwardRef((props, ref) => {
   const inputRef = useRef();
   useImperativeMethods(ref, () => ({
     focus: () => {
@@ -331,8 +331,7 @@ function FancyInput(props, ref) {
     }
   }));
   return <input ref={inputRef} ... />;
-}
-FancyInput = forwardRef(FancyInput);
+});
 ```
 
 In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.

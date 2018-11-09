@@ -29,9 +29,11 @@ class Table extends React.Component {
   render() {
     return (
       <table>
-        <tr>
-          <Columns />
-        </tr>
+        <tbody>
+          <tr>
+            <Columns />
+          </tr>
+        </tbody>
       </table>
     );
   }

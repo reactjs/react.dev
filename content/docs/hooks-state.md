@@ -58,7 +58,7 @@ class Example extends React.Component {
 
 The state starts as `{ count: 0 }`, and we increment `state.count` when the user clicks a button by calling `this.setState()`. We'll use snippets from this class throughout the page.
 
->Note
+>Note:
 >
 >You might be wondering why we're using a counter here instead of a more realistic example. This is to help us focus on the API while we're still making our first steps with Hooks.
 
@@ -148,7 +148,7 @@ function Example() {
 
 We declare a state variable called `count`, and set it to `0`. React will remember its current value between re-renders, and provide the most recent one to our function. If we want to update the current `count`, we can call `setCount`.
 
->Note
+>Note:
 >
 >You might be wondering: why is `useState` not named `createState` instead?
 >
@@ -242,7 +242,7 @@ This JavaScript syntax is called ["array destructuring"](https://developer.mozil
 
 When we declare a state variable with `useState`, it returns a pair — an array with two items. The first item is the current value, and the second is a function that lets us update it. Using `[0]` and `[1]` to access them is a bit confusing because they have a specific meaning. This is why we use array destructuring instead.
 
->Note
+>Note:
 >
 >You might be curious how React knows which component `useState` corresponds to since we're not passing anything like `this` back to React. We'll answer [this question](/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) and many others in the FAQ section.
 

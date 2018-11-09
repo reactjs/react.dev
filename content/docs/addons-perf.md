@@ -83,7 +83,7 @@ Perf.getLastMeasurements()
 
 Get the opaque data structure describing measurements from the last start-stop session. You can save it and pass it to the other print methods in [`Perf`](#printing-results) to analyze past measurements.
 
-> Note
+> Note:
 >
 > Don't rely on the exact format of the return value because it may change in minor releases. We will update the documentation if the return value format becomes a supported part of the public API.
 

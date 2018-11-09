@@ -6,7 +6,7 @@ category: Reference
 permalink: docs/pure-render-mixin-old.html
 ---
 
-> Note
+> Note:
 
 > The `PureRenderMixin` mixin predates `React.PureComponent`. This reference doc is provided for legacy purposes, and you should consider using [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
 

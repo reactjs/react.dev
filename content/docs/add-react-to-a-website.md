@@ -104,7 +104,7 @@ Commonly, you might want to display React components in multiple places on the H
 
 [Download the full example (2KB zipped)](https://gist.github.com/gaearon/faa67b76a6c47adbab04f739cba7ceda/archive/9d0dd0ee941fea05fd1357502e5aa348abb84c12.zip)
 
->Note
+>Note:
 >
 >This strategy is mostly useful while React-powered parts of the page are isolated from each other. Inside React code, it's easier to use [component composition](/docs/components-and-props.html#composing-components) instead.
 
@@ -187,7 +187,7 @@ Create a folder called `src` and run this terminal command:
 npx babel --watch src --out-dir . --presets react-app/prod 
 ```
 
->Note
+>Note:
 >
 >`npx` is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
 >

@@ -195,7 +195,7 @@ If you haven't yet installed the React DevTools, you can find them here:
 - [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
 - [Standalone Node Package](https://www.npmjs.com/package/react-devtools)
 
-> Note
+> Note:
 >
 > A production profiling bundle of `react-dom` is also available as `react-dom/profiling`.
 > Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling)

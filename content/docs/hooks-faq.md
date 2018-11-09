@@ -430,7 +430,7 @@ Note that you can still choose whether to pass the application *state* down as p
 
 ### How to read an often-changing value from `useCallback`?
 
->Note
+>Note:
 >
 >We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
 >

@@ -77,3 +77,4 @@ permalink: community/ui-components.html
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)**: UI for React Developers.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.
+* **[Syncfusion React UI Components](https://www.syncfusion.com/react-ui-components)** 50+ line of business UI components with Material, Bootstrap and Fabric theme.

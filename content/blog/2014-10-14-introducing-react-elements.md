@@ -1,7 +1,8 @@
 ---
 title: "Introducing React Elements"
 author: [sebmarkbage]
-redirect_from: "blog/2014/10/14/introducting-react-elements.html"
+redirect_from:
+  - "blog/2014/10/14/introducting-react-elements.html"
 ---
 
 The upcoming React 0.12 tweaks some APIs to get us close to the final 1.0 API. This release is all about setting us up for making the `ReactElement` type really FAST, [jest unit testing](https://facebook.github.io/jest/) easier, making classes simpler (in preparation for ES6 classes) and better integration with third-party languages!

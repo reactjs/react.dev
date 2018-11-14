@@ -20,9 +20,9 @@ var Perf = require('react-addons-perf'); // ES5 with npm
 
 ## Overview
 
-React is usually quite fast out of the box. However, in situations where you need to squeeze every ounce of performance out of your app, it provides a [shouldComponentUpdate()](/docs/react-component.html#shouldcomponentupdate) hook where you can add optimization hints to React's diff algorithm.
+React is usually quite fast out of the box. However, in situations where you need to squeeze every ounce of performance out of your app, it provides a [shouldComponentUpdate()](/docs/react-component.html#shouldcomponentupdate) method where you can add optimization hints to React's diff algorithm.
 
-In addition to giving you an overview of your app's overall performance, `Perf` is a profiling tool that tells you exactly where you need to put these hooks.
+In addition to giving you an overview of your app's overall performance, `Perf` is a profiling tool that tells you exactly where you need to put these methods.
 
 See these articles for an introduction to React performance tooling:
 

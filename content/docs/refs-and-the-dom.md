@@ -63,7 +63,7 @@ The value of the ref differs depending on the type of the node:
 
 - When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
 - When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
-- **You may not use the `ref` attribute on functional components** because they don't have instances.
+- **You may not use the `ref` attribute on function components** because they don't have instances.
 
 The examples below demonstrate the differences.
 
@@ -105,7 +105,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle hooks.
+React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods.
 
 #### Adding a Ref to a Class Component
 
@@ -138,12 +138,12 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-#### Refs and Functional Components
+#### Refs and Function Components
 
-**You may not use the `ref` attribute on functional components** because they don't have instances:
+**You may not use the `ref` attribute on function components** because they don't have instances:
 
 ```javascript{1,8,13}
-function MyFunctionalComponent() {
+function MyFunctionComponent() {
   return <input />;
 }
 
@@ -155,7 +155,7 @@ class Parent extends React.Component {
   render() {
     // This will *not* work!
     return (
-      <MyFunctionalComponent ref={this.textInput} />
+      <MyFunctionComponent ref={this.textInput} />
     );
   }
 }
@@ -163,7 +163,7 @@ class Parent extends React.Component {
 
 You should convert the component to a class if you need a ref to it, just like you do when you need lifecycle methods or state.
 
-You can, however, **use the `ref` attribute inside a functional component** as long as you refer to a DOM element or a class component:
+You can, however, **use the `ref` attribute inside a function component** as long as you refer to a DOM element or a class component:
 
 ```javascript{2,3,6,13}
 function CustomTextInput(props) {
@@ -193,13 +193,13 @@ function CustomTextInput(props) {
 
 In rare cases, you might want to have access to a child's DOM node from a parent component. This is generally not recommended because it breaks component encapsulation, but it can occasionally be useful for triggering focus or measuring the size or position of a child DOM node.
 
-While you could [add a ref to the child component](#adding-a-ref-to-a-class-component), this is not an ideal solution, as you would only get a component instance rather than a DOM node. Additionally, this wouldn't work with functional components.
+While you could [add a ref to the child component](#adding-a-ref-to-a-class-component), this is not an ideal solution, as you would only get a component instance rather than a DOM node. Additionally, this wouldn't work with function components.
 
 If you use React 16.3 or higher, we recommend to use [ref forwarding](/docs/forwarding-refs.html) for these cases. **Ref forwarding lets components opt into exposing any child component's ref as their own**. You can find a detailed example of how to expose a child's DOM node to a parent component [in the ref forwarding documentation](/docs/forwarding-refs.html#forwarding-refs-to-dom-components).
 
 If you use React 16.2 or lower, or if you need more flexibility than provided by ref forwarding, you can use [this alternative approach](https://gist.github.com/gaearon/1a018a023347fe1c2476073330cc5509) and explicitly pass a ref as a differently named prop.
 
-When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged.
+When possible, we advise against exposing DOM nodes, but it can be a useful escape hatch. Note that this approach requires you to add some code to the child component. If you have absolutely no control over the child component implementation, your last option is to use [`findDOMNode()`](/docs/react-dom.html#finddomnode), but it is discouraged and deprecated in [`StrictMode`](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
 
 ### Callback Refs
 
@@ -251,7 +251,7 @@ class CustomTextInput extends React.Component {
 }
 ```
 
-React will call the `ref` callback with the DOM element when the component mounts, and call it with `null` when it unmounts. `ref` callbacks are invoked before `componentDidMount` or `componentDidUpdate` lifecycle hooks.
+React will call the `ref` callback with the DOM element when the component mounts, and call it with `null` when it unmounts. Refs are guaranteed to be up-to-date before `componentDidMount` or `componentDidUpdate` fires.
 
 You can pass callback refs between components like you can with object refs that were created with `React.createRef()`.
 

@@ -7,7 +7,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ### Prerequisites
 
 1. Git
-1. Node: install version 8.4 or greater
+1. Node: any 8.x version starting with 8.4.0 or greater
 1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
 1. A fork of the repo (for any contributions)
 1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
@@ -64,3 +64,6 @@ If you are interesting in translating `reactjs.org`, please join the Crowdin.
 ## Troubleshooting
 
 - `yarn reset` to clear the local cache
+
+## License
+Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the `LICENSE-DOCS.md` file.

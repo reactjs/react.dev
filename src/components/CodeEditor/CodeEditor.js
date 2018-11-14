@@ -38,6 +38,12 @@ class CodeEditor extends Component {
     }
   }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.code !== nextProps.code) {
+      this.setState(this._updateState(nextProps.code));
+    }
+  }
+
   render() {
     const {children} = this.props;
     const {
@@ -68,211 +74,169 @@ class CodeEditor extends Component {
       <LiveProvider code={showJSX ? code : compiledES6} mountStylesheet={false}>
         <div
           css={{
-            [media.greaterThan('xlarge')]: {
+            [media.greaterThan('medium')]: {
               display: 'flex',
+              alignItems: 'stretch',
               flexDirection: 'row',
             },
 
-            [media.lessThan('large')]: {
+            [media.lessThan('small')]: {
               display: 'block',
             },
           }}>
-          {children && (
-            <div
-              css={{
-                flex: '0 0 33%',
-
-                [media.lessThan('xlarge')]: {
-                  marginBottom: 20,
-                },
-
-                '& h3': {
-                  color: colors.dark,
-                  maxWidth: '11em',
-                  paddingTop: 0,
-                },
-
-                '& p': {
-                  marginTop: 15,
-                  marginRight: 40,
-                  lineHeight: 1.7,
-
-                  [media.greaterThan('xlarge')]: {
-                    marginTop: 25,
-                  },
-                },
-              }}>
-              {children}
-            </div>
-          )}
-
           <div
             css={{
-              [media.greaterThan('medium')]: {
-                flex: '0 0 67%',
-                display: 'flex',
-                alignItems: 'stretch',
-                flexDirection: 'row',
-              },
+              flex: '0 0 70%',
+              overflow: 'hidden',
+              borderRadius: '10px 0 0 10px',
 
-              [media.lessThan('small')]: {
-                display: 'block',
+              [media.lessThan('medium')]: {
+                borderRadius: '10px 10px 0 0',
               },
             }}>
             <div
               css={{
-                flex: '0 0 70%',
+                padding: '0px 10px',
+                background: colors.darker,
+                color: colors.white,
+              }}>
+              <MetaTitle onDark={true}>
+                Live JSX Editor
+                <label
+                  css={{
+                    fontSize: 14,
+                    float: 'right',
+                    cursor: 'pointer',
+                  }}>
+                  <input
+                    checked={this.state.showJSX}
+                    onChange={event =>
+                      this.setState({showJSX: event.target.checked})
+                    }
+                    type="checkbox"
+                  />{' '}
+                  JSX?
+                </label>
+              </MetaTitle>
+            </div>
+            <div
+              css={{
+                height: '100%',
+                width: '100%',
+                borderRadius: '0',
+                maxHeight: '340px !important',
+                marginTop: '0 !important',
+                marginLeft: '0 !important',
+                paddingLeft: '0 !important',
+                marginRight: '0 !important',
+                paddingRight: '0 !important',
+                marginBottom: '0 !important',
+                paddingBottom: '20px !important',
+                [media.lessThan('medium')]: {
+                  marginBottom: '0 !important',
+                },
+
+                '& pre.prism-code[contenteditable]': {
+                  outline: 0,
+                  overflow: 'auto',
+                  marginRight: '0 !important',
+                  marginBottom: '0 !important',
+                },
+              }}
+              className="gatsby-highlight">
+              <LiveEditor ignoreTabKey={true} onChange={this._onChange} />
+            </div>
+          </div>
+          {error && (
+            <div
+              css={{
+                flex: '0 0 30%',
                 overflow: 'hidden',
-                borderRadius: '10px 0 0 10px',
+                border: `1px solid ${colors.error}`,
+                borderRadius: '0 10px 10px 0',
+                fontSize: 12,
+                lineHeight: 1.5,
 
                 [media.lessThan('medium')]: {
-                  borderRadius: '10px 10px 0 0',
+                  borderRadius: '0 0 10px 10px',
                 },
               }}>
               <div
                 css={{
                   padding: '0px 10px',
-                  background: colors.darker,
+                  background: colors.error,
                   color: colors.white,
                 }}>
-                <MetaTitle onDark={true}>
-                  Live JSX Editor
-                  <label
-                    css={{
-                      fontSize: 14,
-                      float: 'right',
-                      cursor: 'pointer',
-                    }}>
-                    <input
-                      checked={this.state.showJSX}
-                      onChange={event =>
-                        this.setState({showJSX: event.target.checked})
-                      }
-                      type="checkbox"
-                    />{' '}
-                    JSX?
-                  </label>
-                </MetaTitle>
-              </div>
-              <div
-                css={{
-                  height: '100%',
-                  width: '100%',
-                  borderRadius: '0',
-                  maxHeight: '340px !important',
-                  marginTop: '0 !important',
-                  marginLeft: '0 !important',
-                  paddingLeft: '0 !important',
-                  marginRight: '0 !important',
-                  paddingRight: '0 !important',
-                  marginBottom: '0 !important',
-                  paddingBottom: '20px !important',
-                  [media.lessThan('medium')]: {
-                    marginBottom: '0 !important',
-                  },
-
-                  '& pre.prism-code[contenteditable]': {
-                    outline: 0,
-                    overflow: 'auto',
-                    marginRight: '0 !important',
-                    marginBottom: '0 !important',
-                  },
-                }}
-                className="gatsby-highlight">
-                <LiveEditor ignoreTabKey={true} onChange={this._onChange} />
-              </div>
-            </div>
-            {error && (
-              <div
-                css={{
-                  flex: '0 0 30%',
-                  overflow: 'hidden',
-                  border: `1px solid ${colors.error}`,
-                  borderRadius: '0 10px 10px 0',
-                  fontSize: 12,
-                  lineHeight: 1.5,
-
-                  [media.lessThan('medium')]: {
-                    borderRadius: '0 0 10px 10px',
-                  },
-                }}>
-                <div
-                  css={{
-                    padding: '0px 10px',
-                    background: colors.error,
+                <MetaTitle
+                  cssProps={{
                     color: colors.white,
                   }}>
-                  <MetaTitle
-                    cssProps={{
-                      color: colors.white,
-                    }}>
-                    Error
-                  </MetaTitle>
-                </div>
-                <pre
-                  css={{
-                    whiteSpace: 'pre-wrap',
-                    wordBreak: 'break-word',
-                    color: colors.error,
-                    padding: 10,
-                  }}>
-                  {errorMessage}
-                </pre>
+                  Error
+                </MetaTitle>
               </div>
-            )}
-            {!error && (
+              <pre
+                css={{
+                  whiteSpace: 'pre-wrap',
+                  wordBreak: 'break-word',
+                  color: colors.error,
+                  padding: 10,
+                }}>
+                {errorMessage}
+              </pre>
+            </div>
+          )}
+          {!error && (
+            <div
+              css={{
+                flex: '0 0 30%',
+                overflow: 'hidden',
+                border: `1px solid ${colors.divider}`,
+                borderRadius: '0 10px 10px 0',
+
+                [media.lessThan('medium')]: {
+                  borderRadius: '0 0 10px 10px',
+                },
+              }}>
               <div
                 css={{
-                  flex: '0 0 30%',
-                  overflow: 'hidden',
-                  border: `1px solid ${colors.divider}`,
-                  borderRadius: '0 10px 10px 0',
-
-                  [media.lessThan('medium')]: {
-                    borderRadius: '0 0 10px 10px',
-                  },
+                  padding: '0 10px',
+                  backgroundColor: colors.divider,
                 }}>
-                <div
-                  css={{
-                    padding: '0 10px',
-                    backgroundColor: colors.divider,
-                  }}>
-                  <MetaTitle>Result</MetaTitle>
-                </div>
-                <div
-                  css={{
-                    padding: 10,
-                    maxHeight: '340px !important',
-                    overflow: 'auto',
-
-                    '& input': {
-                      width: '100%',
-                      display: 'block',
-                      border: '1px solid #ccc', // TODO
-                      padding: 5,
-                    },
-
-                    '& button': {
-                      marginTop: 10,
-                      padding: '5px 10px',
-                    },
-
-                    '& label': {
-                      display: 'block',
-                      marginTop: 10,
-                    },
-
-                    '& textarea': {
-                      width: '100%',
-                      height: 60,
-                      padding: 5,
-                    },
-                  }}
-                  ref={this._setMountRef}
-                />
+                <MetaTitle>Result</MetaTitle>
               </div>
-            )}
-          </div>
+              <div
+                css={{
+                  padding: 10,
+                  maxHeight: '340px !important',
+                  overflow: 'auto',
+
+                  '& input': {
+                    width: '100%',
+                    display: 'block',
+                    border: '1px solid #ccc', // TODO
+                    padding: 5,
+                  },
+
+                  '& button': {
+                    marginTop: 10,
+                    padding: '5px 10px',
+                  },
+
+                  '& label': {
+                    display: 'block',
+                    marginTop: 10,
+                  },
+
+                  '& textarea': {
+                    width: '100%',
+                    height: 60,
+                    padding: 5,
+                  },
+                }}
+                ref={this._setMountRef}
+              />
+            </div>
+          )}
         </div>
       </LiveProvider>
     );

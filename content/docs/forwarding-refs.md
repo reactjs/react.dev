@@ -33,9 +33,15 @@ Here is a step-by-step explanation of what happens in the above example:
 
 >Note
 >
->The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular functional or class components don't receive the `ref` argument, and ref is not available in props either.
+>The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular function or class components don't receive the `ref` argument, and ref is not available in props either.
 >
 >Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
+
+## Note for component library maintainers
+
+**When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
+
+Conditionally applying `React.forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps when they upgrade React itself.
 
 ## Forwarding refs in higher-order components
 

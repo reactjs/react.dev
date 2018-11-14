@@ -81,7 +81,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               GitHub
             </ExternalFooterLink>
             <ExternalFooterLink
-              href="http://stackoverflow.com/questions/tagged/reactjs"
+              href="https://stackoverflow.com/questions/tagged/reactjs"
               target="_blank"
               rel="noopener">
               Stack Overflow
@@ -97,6 +97,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               target="_blank"
               rel="noopener">
               Reactiflux Chat
+            </ExternalFooterLink>
+            <ExternalFooterLink
+              href="https://dev.to/t/react"
+              target="_blank"
+              rel="noopener">
+              DEV Community
             </ExternalFooterLink>
             <ExternalFooterLink
               href="https://www.facebook.com/react"
@@ -129,7 +135,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               Acknowledgements
             </FooterLink>
             <ExternalFooterLink
-              href="http://facebook.github.io/react-native/"
+              href="https://facebook.github.io/react-native/"
               target="_blank"
               rel="noopener">
               React Native

@@ -241,7 +241,7 @@ const sharedStyles = {
 
     '& p > code, & li > code, & p > a > code, & li > a > code': {
       padding: '0 3px',
-      fontSize: 16,
+      fontSize: '0.94em', // 16px on 17px text, smaller in smaller text
       wordBreak: 'break-word',
     },
 
@@ -300,6 +300,11 @@ const sharedStyles = {
 
     '& h3': {
       paddingTop: 45,
+
+      [media.lessThan('small')]: {
+        overflowWrap: 'break-word',
+        wordBreak: 'break-word',
+      },
 
       [media.greaterThan('xlarge')]: {
         fontSize: 25,

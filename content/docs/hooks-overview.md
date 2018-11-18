@@ -23,7 +23,7 @@ This is a fast-paced overview. If you get confused, look for a yellow box like t
 This example renders a counter. When you click the button, it increments the value:
 
 ```js{1,4,5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"

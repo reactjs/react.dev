@@ -23,6 +23,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [How much of my React knowledge stays relevant?](#how-much-of-my-react-knowledge-stays-relevant)
   * [Should I use Hooks, classes, or a mix of both?](#should-i-use-hooks-classes-or-a-mix-of-both)
   * [Do Hooks cover all use cases for classes?](#do-hooks-cover-all-use-cases-for-classes)
+  * [Do I need to rewrite my class components if I want to use custom Hooks inside them?](#do-i-need-to-rewrite-my-class-components-if-i-want-to-use-custom-hooks-inside-them)
   * [Do Hooks replace render props and higher-order components?](#do-hooks-replace-render-props-and-higher-order-components)
   * [What do Hooks mean for popular APIs like Redux connect() and React Router?](#what-do-hooks-mean-for-popular-apis-like-redux-connect-and-react-router)
   * [Do Hooks work with static typing?](#do-hooks-work-with-static-typing)
@@ -71,6 +72,35 @@ You can't use Hooks *inside* of a class component, but you can definitely mix cl
 Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
 
 It is a very early time for Hooks, so some integrations like DevTools support or Flow/TypeScript typings may not be ready yet. Some third-party libraries might also not be compatible with Hooks at the moment.
+
+### Do I need to rewrite my class components if I want to use custom Hooks inside them?
+
+Custom Hooks can only be used within function components, but if you want access to data from a custom Hook in a class component, you can wrap it using render props or a higher-order component:
+
+```js{7-10,15-19}
+// Your custom hook
+function useBlogPost(id) {
+  // ...
+  return blogPost;
+}
+
+function WithBlogPost(props) {
+  const blogPost = useBlogPost(props.id);
+  return props.children(blogPost);
+}
+
+class BlogPostPreview extends React.Component {
+  render() {
+    return (
+      <WithBlogPost id={this.props.id}>
+        {(blogPost) => {
+          // ...
+        }}
+      </WithBlogPost>
+    )
+  }
+}
+```
 
 ### Do Hooks replace render props and higher-order components?
 

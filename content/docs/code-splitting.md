@@ -147,6 +147,8 @@ function MyComponent() {
 }
 ```
 
+_*Note*: in order to make this snippet work you also need `Suspense`, please keep reading._
+
 This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.

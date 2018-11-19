@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
+### React Norway 2019
+June 12th 2019. Larvik, Norway
+
+[Website](https://reactnorway.com) - [Twitter](https://twitter.com/reactnorway)
+
 ### React Conf Brasil 2018
 October 20 in Sao Paulo, Brazil
 

@@ -115,6 +115,7 @@ const sharedStyles = {
   articleLayout: {
     container: {
       display: 'flex',
+      flexDirection: 'column',
       minHeight: 'calc(100vh - 60px)',
       [media.greaterThan('sidebarFixed')]: {
         maxWidth: 840,

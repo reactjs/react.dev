@@ -121,6 +121,9 @@ const sharedStyles = {
         marginLeft: 'auto',
         marginRight: 'auto',
       },
+      [media.lessThan('small')]: {
+        flexDirection: 'column',
+      },
     },
     content: {
       marginTop: 40,

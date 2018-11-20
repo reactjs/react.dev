@@ -122,7 +122,7 @@ const sharedStyles = {
         marginRight: 'auto',
       },
       [media.lessThan('small')]: {
-        flexDirection: 'column'
+        flexDirection: 'column',
       },
     },
     content: {

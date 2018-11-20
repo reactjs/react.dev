@@ -187,6 +187,14 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
+Similiar to `this.setState()`, `setCount` also accepts an updater function:
+
+```js{1}
+  <button onClick={() => setCount((currentCount) => currentCount + 1)}>
+    Click Me
+  </button>
+```
+
 ## Recap
 
 Let's now **recap what we learned line by line** and check our understanding.
@@ -197,7 +205,7 @@ Let's now **recap what we learned line by line** and check our understanding.
 -->
 ```js{1,4,9}
  1:  import { useState } from 'react';
- 2: 
+ 2:
  3:  function Example() {
  4:    const [count, setCount] = useState(0);
  5:
@@ -273,7 +281,7 @@ We provide more recommendations on splitting independent state variables [in the
 
 ## Next Steps
 
-On this page we've learned about one of the Hooks provided by React, called `useState`. We're also sometimes going to refer to it as the "State Hook". It lets us add local state to React function components -- which we did for the first time ever! 
+On this page we've learned about one of the Hooks provided by React, called `useState`. We're also sometimes going to refer to it as the "State Hook". It lets us add local state to React function components -- which we did for the first time ever!
 
 We also learned a little bit more about what Hooks are. Hooks are functions that let you "hook into" React features from function components. Their names always start with `use`, and there are more Hooks we haven't seen yet.
 

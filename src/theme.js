@@ -115,12 +115,14 @@ const sharedStyles = {
   articleLayout: {
     container: {
       display: 'flex',
-      flexDirection: 'column',
       minHeight: 'calc(100vh - 60px)',
       [media.greaterThan('sidebarFixed')]: {
         maxWidth: 840,
         marginLeft: 'auto',
         marginRight: 'auto',
+      },
+      [media.lessThan('small')]: {
+        flexDirection: 'column'
       },
     },
     content: {

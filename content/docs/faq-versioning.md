@@ -22,6 +22,8 @@ Breaking changes are inconvenient for everyone, so we try to minimize the number
 
 Instead, we release new features in minor versions. That means that minor releases are often more interesting and compelling than majors, despite their unassuming name.
 
+Minor and patch releases are backwards compatible and won't have breaking changes. Backwards compatible means that if you take an existing app and upgrade to a new minor or patch release, we expect your code will still work without changes. (However, to use new features, you might need to restructure your code or wait for third-party library updates.)
+
 ### Commitment to Stability
 
 As we change React over time, we try to minimize the effort required to take advantage of new features. When possible, we'll keep an older API working, even if that means putting it in a separate package. For example, [mixins have been discouraged for years](/blog/2016/07/13/mixins-considered-harmful.html) but they're supported to this day [via create-react-class](/docs/react-without-es6.html#mixins) and many codebases continue to use them in stable, legacy code.
@@ -41,6 +43,7 @@ In general, we *don't* bump the major version number for changes to:
 * **Development warnings.** Since these don't affect production behavior, we may add new warnings or modify existing warnings in between major versions. In fact, this is what allows us to reliably warn about upcoming breaking changes.
 * **APIs starting with `unstable_`.** These are provided as experimental features whose APIs we are not yet confident in. By releasing these with an `unstable_` prefix, we can iterate faster and get to a stable API sooner.
 * **Alpha and canary versions of React.** We provide alpha versions of React as a way to test new features early, but we need the flexibility to make changes based on what we learn in the alpha period. If you use these versions, note that APIs may change before the stable release.
+* **`react-reconciler` API changes.** The `react-reconciler` package is an experimental way to let you make your own renderers like React DOM itself. It uses the same version numbers as `react-dom`, but its API is not stable and may change at any time. If you depend on it, we recommend pinning to an exact version.
 * **Undocumented APIs and internal data structures.** If you access internal property names like `__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED` or `__reactInternalInstance$uk43rzhitjg`, there is no warranty.  You are on your own.
 
 This policy is designed to be pragmatic: certainly, we don't want to cause headaches for you. If we bumped the major version for all of these changes, we would end up releasing more major versions and ultimately causing more versioning pain for the community. It would also mean that we can't make progress in improving React as fast as we'd like.

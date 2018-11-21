@@ -31,7 +31,7 @@ Here is a step-by-step explanation of what happens in the above example:
 1. We forward this `ref` argument down to `<button ref={ref}>` by specifying it as a JSX attribute.
 1. When the ref is attached, `ref.current` will point to the `<button>` DOM node.
 
->Note
+>Note:
 >
 >The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular function or class components don't receive the `ref` argument, and ref is not available in props either.
 >

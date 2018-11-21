@@ -65,7 +65,7 @@ function Counter({initialCount}) {
 
 The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to 0.
 
-> Note
+> Note:
 >
 > Unlike the `setState` method found in class components, `useState` does not automatically merge update objects. You can replicate this behavior by combining the function updater form with object spread syntax:
 >
@@ -151,7 +151,7 @@ Now the subscription will only be recreated when `props.source` changes.
 
 Passing in an empty array `[]` of inputs tells React that your effect doesn't depend on any values from the component, so that effect would run only on mount and clean up on unmount; it won't run on updates.
 
-> Note
+> Note:
 >
 > The array of inputs is not passed as arguments to the effect function. Conceptually, though, that's what they represent: every value referenced inside the effect function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
 
@@ -274,7 +274,7 @@ Pass an inline callback and an array of inputs. `useCallback` will return a memo
 
 `useCallback(fn, inputs)` is equivalent to `useMemo(() => fn, inputs)`.
 
-> Note
+> Note:
 >
 > The array of inputs is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
 
@@ -290,7 +290,7 @@ Pass a "create" function and an array of inputs. `useMemo` will only recompute t
 
 If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
 
-> Note
+> Note:
 >
 > The array of inputs is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.
 
@@ -351,7 +351,7 @@ The signature is identical to `useEffect`, but it fires synchronously during the
 
 Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 
->Note
+>Note:
 >
 >Avoid reading from the DOM in `useMutationEffect`. If you do, you can cause performance problems by introducing [layout thrash](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing). When reading computed styles or layout information, `useLayoutEffect` is more appropriate.
 

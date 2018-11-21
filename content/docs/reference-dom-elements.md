@@ -60,7 +60,7 @@ The `selected` attribute is supported by `<option>` components. You can use it t
 
 ### style
 
->Note
+>Note:
 >
 >Some examples in the documentation use `style` for convenience, but **using the `style` attribute as the primary means of styling elements is generally not recommended.** In most cases, [`className`](#classname) should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time. See also [FAQ: Styling and CSS](/docs/faq-styling.html).
 

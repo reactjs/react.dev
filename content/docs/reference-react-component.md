@@ -131,7 +131,7 @@ The `render()` function should be pure, meaning that it does not modify componen
 
 If you need to interact with the browser, perform your work in `componentDidMount()` or the other lifecycle methods instead. Keeping `render()` pure makes components easier to think about.
 
-> Note
+> Note:
 >
 > `render()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
 
@@ -167,7 +167,7 @@ Constructor is the only place where you should assign `this.state` directly. In 
 
 Avoid introducing any side-effects or subscriptions in the constructor. For those use cases, use `componentDidMount()` instead.
 
->Note
+>Note:
 >
 >**Avoid copying props into state! This is a common mistake:**
 >

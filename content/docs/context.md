@@ -133,7 +133,7 @@ All consumers that are descendants of a Provider will re-render whenever the Pro
 
 Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
 
-> Note
+> Note:
 > 
 > The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
 
@@ -192,7 +192,7 @@ A React component that subscribes to context changes. This lets you subscribe to
 
 Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
 
-> Note
+> Note:
 > 
 > For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
 
@@ -245,7 +245,7 @@ To get around this, lift the value into the parent's state:
 
 ## Legacy API
 
-> Note
+> Note:
 > 
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
  

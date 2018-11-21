@@ -20,7 +20,7 @@ In this document, we'll discuss why higher-order components are useful, and how 
 
 ## Use HOCs For Cross-Cutting Concerns
 
-> **Note**
+> **Note:**
 >
 > We previously recommended mixins as a way to handle cross-cutting concerns. We've since realized that mixins create more trouble than they are worth. [Read more](/blog/2016/07/13/mixins-considered-harmful.html) about why we've moved away from mixins and how you can transition your existing components.
 

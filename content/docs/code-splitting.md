@@ -151,6 +151,20 @@ This will automatically load the bundle containing the `OtherComponent` when thi
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
 
+> Note:
+>
+> You might be tempted to use `React.lazy` to declare your lazy loaded resource inside the component which works, but keep in mind that the resulting component would be remounted on every render of containing component.
+
+```js
+function MyComponent() {
+  return (
+    {/* Don't do this */}
+    <Route path="/foo" component={React.lazy(() => import('./OtherComponent'))} />
+  );
+}
+```
+
+
 ### Suspense
 
 If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.

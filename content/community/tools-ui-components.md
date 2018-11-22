@@ -64,6 +64,7 @@ permalink: community/ui-components.html
 * **[Selectivity](https://arendjr.github.io/selectivity/):** Modular and light-weight selection library.
 * **[Semantic-ui](https://react.semantic-ui.com/)**: The official Semantic-UI-React integration, Advanced components and declarative UI.
 * **[storybook-addon-material-ui](https://github.com/sm-react/storybook-addon-material-ui)** A storybook addon for material-ui.
+* **[tenon-ui](https://tenon-ui.info/)** Accessible UI components with composable views. Includes `<forms />` components with data management and validation.
 * **[tcomb-form](https://github.com/gcanti/tcomb-form):** Automatically generate form markup, automatic labels and inline validation from a domain model.
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.

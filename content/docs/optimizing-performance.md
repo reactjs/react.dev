@@ -240,7 +240,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 If you know that in some situations your component doesn't need to update, you can return `false` from `shouldComponentUpdate` instead, to skip the whole rendering process, including calling `render()` on this component and below.
 
-In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state.
+In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state. You can also wrap your function components in [`React.memo`](/docs/react-api.html#reactmemo), which does the same thing.
 
 ## shouldComponentUpdate In Action
 
@@ -349,6 +349,30 @@ class WordAdder extends React.Component {
 ```
 
 The problem is that `PureComponent` will do a simple comparison between the old and new values of `this.props.words`. Since this code mutates the `words` array in the `handleClick` method of `WordAdder`, the old and new values of `this.props.words` will compare as equal, even though the actual words in the array have changed. The `ListOfWords` will thus not update even though it has new words that should be rendered.
+
+If you are using functional components instead of class components, you can wrap them in [`React.memo`](/docs/react-api.html#reactmemo), which is a [higher-order component](/docs/higher-order-components.html) that works in a similar way to `shouldComponentUpdate`.
+
+```javascript
+const Welcome = React.memo(function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+});
+```
+
+By default, `React.memo` will shallowly compare the old and new props, similar to `React.PureComponent`. However, if you need to customize the comparison behaviour, you can pass a comparison function as the second parameter.
+
+```javascript
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+```
 
 ## The Power Of Not Mutating Data
 

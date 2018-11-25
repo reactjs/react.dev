@@ -19,6 +19,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
   - [Dynamic Context](#dynamic-context)
   - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
+  - [Consuming Context in Lifecycle Methods](#consuming-context-in-lifecycle-methods)
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
 
@@ -231,6 +232,48 @@ To keep context re-rendering fast, React needs to make each context consumer a s
 `embed:context/multiple-contexts.js`
 
 If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
+
+### Consuming Context in Lifecycle Methods
+
+It is possible that we might want to use the context value on lifecycle methods or in constructor, but context value is not directly available on this methods. In this case we can wrap this component with another Wrapper Component which is use to pass the context value through props. Example:
+
+**theme-toggler-button.js**
+```js
+import { ThemeContext } from "./theme-context";
+
+function ThemeTogglerButtonWrapper() {
+  return (
+    <ThemeContext.Consumer>
+      {contextValue => <ThemeTogglerButton {...contextValue} />}
+    </ThemeContext.Consumer>
+  );
+}
+
+class ThemeTogglerButton extends React.Component {
+  // The Theme Toggler Button receives not only the theme
+  // but also a toggleTheme function from the props passsed down by Wrapper
+
+  constructor(props) {
+    super(props);
+    console.log(props);
+  }
+  
+  render() {
+    const { toggleTheme, theme } = this.props;
+    console.log(this.props);
+    return (
+      <button
+        onClick={toggleTheme}
+        style={{ backgroundColor: theme.background }}
+      >
+        Toggle Theme
+      </button>
+    );
+  }
+}
+
+export default ThemeTogglerButtonWrapper;
+```
 
 ## Caveats
 

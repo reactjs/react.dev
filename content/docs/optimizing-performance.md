@@ -350,30 +350,6 @@ class WordAdder extends React.Component {
 
 The problem is that `PureComponent` will do a simple comparison between the old and new values of `this.props.words`. Since this code mutates the `words` array in the `handleClick` method of `WordAdder`, the old and new values of `this.props.words` will compare as equal, even though the actual words in the array have changed. The `ListOfWords` will thus not update even though it has new words that should be rendered.
 
-If you are using functional components instead of class components, you can wrap them in [`React.memo`](/docs/react-api.html#reactmemo), which is a [higher-order component](/docs/higher-order-components.html) that works in a similar way to `shouldComponentUpdate`.
-
-```javascript
-const Welcome = React.memo(function Welcome(props) {
-  return <h1>Hello, {props.name}</h1>;
-});
-```
-
-By default, `React.memo` will shallowly compare the old and new props, similar to `React.PureComponent`. However, if you need to customize the comparison behaviour, you can pass a comparison function as the second parameter.
-
-```javascript
-function MyComponent(props) {
-  /* render using props */
-}
-function areEqual(prevProps, nextProps) {
-  /*
-  return true if passing nextProps to render would return
-  the same result as passing prevProps to render,
-  otherwise return false
-  */
-}
-export default React.memo(MyComponent, areEqual);
-```
-
 ## The Power Of Not Mutating Data
 
 The simplest way to avoid this problem is to avoid mutating values that you are using as props or state. For example, the `handleClick` method above could be rewritten using `concat` as:
@@ -457,3 +433,29 @@ In this case, since a new reference is returned when mutating `x`, we can use a 
 Two other libraries that can help use immutable data are [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) and [immutability-helper](https://github.com/kolodny/immutability-helper).
 
 Immutable data structures provide you with a cheap way to track changes on objects, which is all we need to implement `shouldComponentUpdate`. This can often provide you with a nice performance boost.
+
+## Functional Components and `React.memo`
+
+If you are using functional components instead of class components, you can wrap them in [`React.memo`](/docs/react-api.html#reactmemo), which is a [higher-order component](/docs/higher-order-components.html) that works in a similar way to `shouldComponentUpdate`.
+
+```javascript
+const Welcome = React.memo(function Welcome(props) {
+  return <h1>Hello, {props.name}</h1>;
+});
+```
+
+By default, `React.memo` will shallowly compare the old and new props, similar to `React.PureComponent`. However, if you need to customize the comparison behaviour, you can pass a comparison function as the second parameter.
+
+```javascript
+function MyComponent(props) {
+  /* render using props */
+}
+function areEqual(prevProps, nextProps) {
+  /*
+  return true if passing nextProps to render would return
+  the same result as passing prevProps to render,
+  otherwise return false
+  */
+}
+export default React.memo(MyComponent, areEqual);
+```

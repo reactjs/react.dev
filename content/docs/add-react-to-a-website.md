@@ -58,7 +58,7 @@ Next, add three `<script>` tags to the HTML page right before the closing `</bod
   <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
 
   <!-- Load our React component. -->
-  <script src="like_button.js"></script>
+  <script type="text/jsx" src="like_button.js"></script>
 
 </body>
 ```

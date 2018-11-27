@@ -22,7 +22,6 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useMemo`](#usememo)
   - [`useRef`](#useref)
   - [`useImperativeMethods`](#useimperativemethods)
-  - [`useMutationEffect`](#usemutationeffect)
   - [`useLayoutEffect`](#uselayouteffect)
 
 ## Basic Hooks
@@ -123,7 +122,7 @@ The clean-up function runs before the component is removed from the UI to preven
 
 Unlike `componentDidMount` and `componentDidUpdate`, the function passed to `useEffect` fires **after** layout and paint, during a deferred event. This makes it suitable for the many common side effects, like setting up subscriptions and event handlers, because most types of work shouldn't block the browser from updating the screen.
 
-However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides two additional Hooks: [`useMutationEffect`](#usemutationeffect) and [`useLayoutEffect`](#uselayouteffect). These Hooks have the same signature as `useEffect`, and only differ in when they are fired.
+However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides one additional Hook called [`useLayoutEffect`](#uselayouteffect). It has the same signature as `useEffect`, and only differs in when it is fired.
 
 Although `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
 
@@ -345,19 +344,9 @@ FancyInput = forwardRef(FancyInput);
 
 In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.
 
-### `useMutationEffect`
-
-The signature is identical to `useEffect`, but it fires synchronously during the same phase that React performs its DOM mutations, before sibling components have been updated. Use this to perform custom DOM mutations.
-
-Prefer the standard `useEffect` when possible to avoid blocking visual updates.
-
->Note
->
->Avoid reading from the DOM in `useMutationEffect`. If you do, you can cause performance problems by introducing [layout thrash](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing). When reading computed styles or layout information, `useLayoutEffect` is more appropriate.
-
 ### `useLayoutEffect`
 
-The signature is identical to `useEffect`, but it fires synchronously *after* all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
 
 Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 

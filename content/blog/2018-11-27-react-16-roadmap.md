@@ -12,7 +12,7 @@ We plan to split the rollout of new React features into the following milestones
 * React 16.6: [Suspense for Code Splitting](#react-166-suspense-for-code-splitting-shipped) (*already shipped*)
 * React 16.7: [React Hooks](#react-167-hooks-q1-2019) (~Q1 2019)
 * React 16.8: [Concurrent Mode](#react-168-concurrent-mode-q2-2019) (~Q2 2019)
-* React 16.9: [Suspense for Data Fetching](#react-169-suspense-for-data-fetching-q3-2019) (~Q3 2019)
+* React 16.9: [Suspense for Data Fetching](#react-169-suspense-for-data-fetching-mid-2019) (~mid 2019)
 
 These are estimates, and the details may change as we're further along. There's at least two more projects we plan to complete in 2019. They require more exploration and aren't tied to a particular release yet:
 
@@ -133,7 +133,7 @@ Concurrent Mode is a big part of our vision for React. For CPU-bound work, it al
 
 **Recommendation:** If you wish to adopt Concurrent Mode in the future, wrapping some component subtrees in [`<React.StrictMode>`](https://reactjs.org/docs/strict-mode.html) and fixing the resulting warnings is a good first step. In general it's not expected that legacy code would immediately be compatible. For example, at Facebook we mostly intend to use the Concurrent Mode in the more recently developed codebases, and keep the legacy ones running in the synchronous mode for the near future.
 
-### React 16.9: Suspense for Data Fetching (~Q3 2019)
+### React 16.9: Suspense for Data Fetching (~mid 2019)
 
 As mentioned earlier, *Suspense* refers to React's ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In the already shipped React 16.6, the only supported use case for Suspense is code splitting. In the future 16.9 release, we'd like to provide officially supported ways to use it for data fetching too. We'll provide a reference implementation of a basic "React Cache" that's compatible with Suspense, but you can also write your own. Data fetching libraries like Apollo and Relay will be able to integrate with Suspense by following a simple specification that we'll document.
 

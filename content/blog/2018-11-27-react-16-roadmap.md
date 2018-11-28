@@ -34,10 +34,7 @@ The gradual release strategy helps us refine the APIs, but the transitional peri
 
 ### [React 16.6](/blog/2018/10/23/react-v-16-6.html): Suspense for Code Splitting (shipped)
 
-*Suspense* refers to React's new ability to "suspend" rendering while comp
-
-
-nts are waiting for something, and display a loading indicator. In React 16.6, Suspense supports only one use case: lazy loading components with `React.lazy()` and `<React.Suspense>`.
+*Suspense* refers to React's new ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In React 16.6, Suspense supports only one use case: lazy loading components with `React.lazy()` and `<React.Suspense>`.
 
 ```js
 // This component is loaded dynamically

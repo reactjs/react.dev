@@ -28,13 +28,16 @@ We expect to get more clarity on their timeline in the coming months.
 
 ## Release Timeline
 
-We have a single vision for how all of these features fit together, but we're releasing each part as soon as it is ready so that you can test and start using them sooner. The API design doesn't always make sense when looking at once piece in isolation; this post lays out the major parts of our plan to help you see the whole picture. (See our [versioning policy](/docs/faq-versioning.html) to learn more about our commitment to stability.)
+We have a single vision for how all of these features fit together, but we're releasing each part as soon as it is ready so that you can test and start using them sooner. The API design doesn't always make sense when looking at one piece in isolation; this post lays out the major parts of our plan to help you see the whole picture. (See our [versioning policy](/docs/faq-versioning.html) to learn more about our commitment to stability.)
 
 The gradual release strategy helps us refine the APIs, but the transitional period when some things aren't ready can be confusing. Let's look at what these different features mean for your app, how they relate to each other, and when you can expect to start learning and using them.
 
 ### [React 16.6](/blog/2018/10/23/react-v-16-6.html): Suspense for Code Splitting (shipped)
 
-*Suspense* refers to React's new ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In React 16.6, Suspense supports only one use case: lazy loading components with `React.lazy()` and `<React.Suspense>`.
+*Suspense* refers to React's new ability to "suspend" rendering while comp
+
+
+nts are waiting for something, and display a loading indicator. In React 16.6, Suspense supports only one use case: lazy loading components with `React.lazy()` and `<React.Suspense>`.
 
 ```js
 // This component is loaded dynamically

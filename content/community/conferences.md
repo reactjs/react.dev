@@ -57,6 +57,10 @@ June 12th 2019. Larvik, Norway
 
 [Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
 
+### ComponentsConf 2019
+6th September 2019 in Melbourne, Australia
+[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
+
 ## Past Conferences
 
 ### React.js Conf 2015

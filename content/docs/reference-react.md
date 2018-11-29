@@ -60,7 +60,7 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 
 ### Suspense
 
-Suspense lets components "wait" for asynchronous work to be done before rendering. Currently, Suspense only supports one use case: [code splitting with `React.lazy`](/docs/code-splitting.html#reactlazy). In the future, it will be possible to use Suspense for data fetching, but it's not supported yet. Today, Suspense only works on the client. Server-side rendering support is [in the works](/blog/2018/11/27/react-16-roadmap.html#suspense-for-server-rendering).
+Suspense lets components "wait" for asynchronous work to be done before rendering. Currently, Suspense only supports one use case: [code splitting with `React.lazy`](/docs/code-splitting.html#reactlazy). In the future, it will be possible to use Suspense for data fetching. Today, Suspense only works on the client. Server-side rendering support is [in the works](/blog/2018/11/27/react-16-roadmap.html#suspense-for-server-rendering).
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)

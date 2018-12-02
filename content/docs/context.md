@@ -57,11 +57,10 @@ It might feel redundant to pass down the `user` and `avatarSize` props through m
 One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
 
 ```js
-function Page(props) {
-  const user = props.user;
+function Page({ user, avatarSize }) {
   const userLink = (
     <Link href={user.permalink}>
-      <Avatar user={user} size={props.avatarSize} />
+      <Avatar user={user} size={avatarSize} />
     </Link>
   );
   return <PageLayout userLink={userLink} />;

@@ -107,6 +107,38 @@ class CustomTextInput extends React.Component {
 
 React will assign the `current` property with the DOM element when the component mounts, and assign it back to `null` when it unmounts. `ref` updates happen before `componentDidMount` or `componentDidUpdate` lifecycle methods.
 
+> Note
+>
+> If returning early from `render` method, without reaching `ref` attribute, `this.refName.current` will be `null` in `componentDidMount`.  
+> Accessing it in `componentDidUpdate` will give you the `ref`
+
+```jsx{10,14,18}
+class LateRef extends React.Component {
+  constructor(props) {
+    super(props);
+    this.refName = React.createRef();
+    this.state = { data: null };
+    setTimeout(() => this.setState({ data: "data" }), 0);
+  }
+
+  componentDidMount() {
+    console.log(this.refName.current); // null
+  }
+
+  componentDidUpdate() {
+    console.log(this.refName.current); // div
+  }
+
+  render() {
+    if (!this.state.data) { return null; } // early return
+
+    return (
+      <div ref={this.refName}>{data}</div>
+    );
+  }
+}
+```
+
 #### Adding a Ref to a Class Component
 
 If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:

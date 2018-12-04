@@ -68,7 +68,7 @@ function Page(props) {
 }
 
 // Now, we have:
-<Page user={user} />
+<Page user={user} avatarSize={avatarSize}/>
 // ... which renders ...
 <PageLayout userLink={...} />
 // ... which renders ...

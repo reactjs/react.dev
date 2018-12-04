@@ -271,6 +271,41 @@ You **don't have to** use many state variables. State variables can hold objects
 
 We provide more recommendations on splitting independent state variables [in the FAQ](/docs/hooks-faq.html#should-i-use-one-or-many-state-variables).
 
+### Tip: State Updates May Be Asynchronous
+
+The documentation for [State and Lifecycle](/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous) mentions that React may batch multiple calls to `setState` into a single update.  This can also happen with the `useState` hook.  In fact, it's even more likely that the state variable will be stale by the time you get to it.
+
+But with `setState`, there's an easy method for making sure that you're making updates based on the newest value.  We can pass a callback to `setState` that takes the current value as an argument, and returns an object with the correct update.
+
+```js{1}
+  <button onClick={() => this.setState((state) => {
+    return { count: state.count + 1 };
+  })}>
+    Click me
+  </button>
+```
+
+The `useState` hook has the same mechanism prebuilt.  If you're updating the state based on its current value, you can pass a callback to the update function that accepts the current value as an argument, and returns the updated value.
+
+```js{9}
+ 1:  import { useState } from 'react';
+ 2: 
+ 3:  function Example() {
+ 4:    const [count, setCount] = useState(0);
+ 5:
+ 6:    return (
+ 7:      <div>
+ 8:        <p>You clicked {count} times</p>
+ 9:        <button onClick={() => setCount(currentCount => currentCount + 1)}>
+10:         Click me
+11:        </button>
+12:      </div>
+13:    );
+14:  }
+```
+
+Now you know for sure that no matter the order of operations, and no matter how many updates React merges together, your updates will be based on fresh data.
+
 ## Next Steps
 
 On this page we've learned about one of the Hooks provided by React, called `useState`. We're also sometimes going to refer to it as the "State Hook". It lets us add local state to React function components -- which we did for the first time ever! 

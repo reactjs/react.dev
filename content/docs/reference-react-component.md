@@ -430,15 +430,15 @@ The lifecycle methods below are marked as "legacy". They still work, but we don'
 UNSAFE_componentWillMount()
 ```
 
+> Note
+>
+> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+
 `UNSAFE_componentWillMount()` is invoked just before mounting occurs. It is called before `render()`, therefore calling `setState()` synchronously in this method will not trigger an extra rendering. Generally, we recommend using the `constructor()` instead for initializing state.
 
 Avoid introducing any side-effects or subscriptions in this method. For those use cases, use `componentDidMount()` instead.
 
 This is the only lifecycle method called on server rendering.
-
-> Note
->
-> This lifecycle was previously named `componentWillMount`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
 
 * * *
 
@@ -448,9 +448,13 @@ This is the only lifecycle method called on server rendering.
 UNSAFE_componentWillReceiveProps(nextProps)
 ```
 
+> Note
+>
+> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+
 > Note:
 >
-> We added "UNSAFE_" to this lifecycle's name because using it often leads to bugs and inconsistencies.
+> Using this lifecycle method often leads to bugs and inconsistencies
 >
 > * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
 > * If you used `componentWillReceiveProps` for **re-computing some data only when a prop changes**, [use a memoization helper instead](/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
@@ -464,10 +468,6 @@ Note that if a parent component causes your component to re-render, this method 
 
 React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
 
-> Note
->
-> This lifecycle was previously named `componentWillReceiveProps`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
-
 * * *
 
 ### `UNSAFE_componentWillUpdate()`
@@ -476,15 +476,15 @@ React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props durin
 UNSAFE_componentWillUpdate(nextProps, nextState)
 ```
 
+> Note
+>
+> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+
 `UNSAFE_componentWillUpdate()` is invoked just before rendering when new props or state are being received. Use this as an opportunity to perform preparation before an update occurs. This method is not called for the initial render.
 
 Note that you cannot call `this.setState()` here; nor should you do anything else (e.g. dispatch a Redux action) that would trigger an update to a React component before `UNSAFE_componentWillUpdate()` returns.
 
 Typically, this method can be replaced by `componentDidUpdate()`. If you were reading from the DOM in this method (e.g. to save a scroll position), you can move that logic to `getSnapshotBeforeUpdate()`.
-
-> Note
->
-> This lifecycle was previously named `componentWillUpdate`. That name will continue to work until version 17. Use the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
 
 > Note
 >

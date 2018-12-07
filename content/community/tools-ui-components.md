@@ -68,6 +68,8 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
+* **[MDBootstrap](https://mdbootstrap.com/docs/react/):** React Bootstrap UI KIT with a large library of react components.
+
 
 ## Fee Based Components
 

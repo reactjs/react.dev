@@ -447,7 +447,7 @@ The [eslint-plugin-jsx-a11y](https://github.com/evcohen/eslint-plugin-jsx-a11y) 
 IDE's allow you to integrate these findings directly into code analysis and source code windows.
 
 [Create React App](https://github.com/facebookincubator/create-react-app) has this plugin with a subset of rules activated. If you want to enable even more accessibility rules,
-you can create an `.eslintrc` file in the root of your project with this content:
+you can create an `.eslintrc.json` file in the root of your project with this content:
 
   ```json
   {

@@ -35,18 +35,18 @@ For example, if we want to make the previous example log the name when it is sub
 class NameForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = { value: '' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert(`A name was submitted: ${this.state.value}`);
     event.preventDefault();
   }
 
@@ -72,7 +72,7 @@ With a controlled component, every state mutation will have an associated handle
 
 ```javascript{2}
 handleChange(event) {
-  this.setState({value: event.target.value.toUpperCase()});
+  this.setState({ value: event.target.value.toUpperCase() });
 }
 ```
 
@@ -101,11 +101,11 @@ class EssayForm extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
+    alert(`An essay was submitted: ${this.state.value}`);
     event.preventDefault();
   }
 
@@ -144,18 +144,18 @@ Note that the Coconut option is initially selected, because of the `selected` at
 class FlavorForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: 'coconut'};
+    this.state = { value: 'coconut' };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
+    alert(`Your favorite flavor is: ${this.state.value}`);
     event.preventDefault();
   }
 
@@ -212,7 +212,7 @@ class Reservation extends React.Component {
     super(props);
     this.state = {
       isGoing: true,
-      numberOfGuests: 2
+      numberOfGuests: 2,
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -224,7 +224,7 @@ class Reservation extends React.Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -260,7 +260,7 @@ Note how we used the ES6 [computed property name](https://developer.mozilla.org/
 
 ```js{2}
 this.setState({
-  [name]: value
+  [name]: value,
 });
 ```
 

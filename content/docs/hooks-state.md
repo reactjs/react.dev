@@ -47,7 +47,7 @@ class Example extends React.Component {
     return (
       <div>
         <p>You clicked {this.state.count} times</p>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+        <button onClick={() => this.setState(state => ({ count: state.count + 1 }))}>
           Click me
         </button>
       </div>
@@ -174,7 +174,7 @@ In a function, we can use `count` directly:
 In a class, we need to call `this.setState()` to update the `count` state:
 
 ```js{1}
-  <button onClick={() => this.setState({ count: this.state.count + 1 })}>
+  <button onClick={() => this.setState(state => ({ count: state.count + 1 }))}>
     Click me
   </button>
 ```

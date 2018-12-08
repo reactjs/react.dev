@@ -240,7 +240,7 @@ shouldComponentUpdate(nextProps, nextState) {
 
 If you know that in some situations your component doesn't need to update, you can return `false` from `shouldComponentUpdate` instead, to skip the whole rendering process, including calling `render()` on this component and below.
 
-In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state. You can also wrap your function components in [`React.memo`](/docs/react-api.html#reactmemo), which does the same thing.
+In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state. You can also wrap your functional components in [`React.memo`](/docs/react-api.html#reactmemo), which does the same thing.
 
 ## shouldComponentUpdate In Action
 

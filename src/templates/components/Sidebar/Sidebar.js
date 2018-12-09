@@ -52,7 +52,7 @@ class Sidebar extends Component {
         {sectionList.map((section, index) => (
           <SectionComponent
             createLink={createLink}
-            isActive={activeSection === section || sectionList.length === 1}
+            isActive={true}
             key={index}
             location={location}
             onLinkClick={closeParentMenu}

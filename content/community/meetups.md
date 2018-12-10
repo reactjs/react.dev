@@ -82,6 +82,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Norway](https://reactjs-norway.webflow.io/)
 * [Oslo](https://www.meetup.com/ReactJS-Oslo-Meetup/)
 
+## Pakistan
+* [Karachi](https://www.facebook.com/groups/902678696597634/)
+
 ## Peru
 * [Lima](https://www.meetup.com/ReactJS-Peru/)
 

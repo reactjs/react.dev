@@ -6,7 +6,7 @@ next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha.
 
 Building your own Hooks lets you extract component logic into reusable functions.
 
@@ -103,7 +103,7 @@ The purpose of our `useFriendStatus` Hook is to subscribe us to a friend's statu
 ```js
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
-  
+
   // ...
 
   return isOnline;

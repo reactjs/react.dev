@@ -6,7 +6,7 @@ prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha.
 
 This page describes the APIs for the built-in Hooks in React.
 

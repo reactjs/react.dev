@@ -35,7 +35,9 @@ class Section extends React.Component {
             border: 0,
             marginTop: 10,
           }}
-          onClick={onSectionTitleClick}>
+          onClick={onSectionTitleClick}
+          onMouseDown={(e) => e.currentTarget.style.outline = 'none'}
+          onBlur={(e) => e.currentTarget.style.removeProperty('outline')}>
           <MetaTitle
             cssProps={{
               [media.greaterThan('small')]: {

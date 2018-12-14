@@ -32,6 +32,24 @@ Greeting.propTypes = {
 
 `PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
 
+#### PropTypes on functional components
+
+There is a misconception in JavaScript community, mostly among beginners, that `propTypes` can only be set to class components. But it is not true, in fact `propTypes` can be set to any functional component even if you use arrow functions:
+
+```javascript
+import PropTypes from 'prop-types';
+
+const Greeting = (props) => {
+  return (
+    <h1>Hello, {props.name}</h1>
+  );
+}
+
+Greeting.propTypes = {
+  name: PropTypes.string
+};
+```
+
 ### PropTypes
 
 Here is an example documenting the different validators provided:

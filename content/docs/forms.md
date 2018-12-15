@@ -219,9 +219,9 @@ class Reservation extends React.Component {
   }
 
   handleInputChange(event) {
-    const target = event.target;
+    const { target } = event;
     const value = target.type === 'checkbox' ? target.checked : target.value;
-    const name = target.name;
+    const { name } = target;
 
     this.setState({
       [name]: value

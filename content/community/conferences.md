@@ -53,7 +53,7 @@ June 12th 2019. Larvik, Norway
 [Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
 ### React India 2019
-22nd - 24th August 2019 in Goa, India
+26th - 28th September 2019 in Goa, India
 
 [Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
 

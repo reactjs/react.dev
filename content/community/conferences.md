@@ -42,6 +42,11 @@ April 12 in Amsterdam, The Netherlands
 
 [Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
+### React Finland 2019
+April 24-26 in Helsinki, Finland
+
+[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland)
+
 ### ReactEurope 2019
 May 23-24 in Paris, France
 

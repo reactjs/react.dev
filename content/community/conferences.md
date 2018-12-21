@@ -61,7 +61,7 @@ June 12th 2019. Larvik, Norway
 6th September 2019 in Melbourne, Australia
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
-### React Norway 2019
+### React New York 2019
 September 13th, 2019. New York, USA
 
 [Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)

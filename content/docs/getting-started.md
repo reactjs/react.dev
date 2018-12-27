@@ -71,6 +71,10 @@ If you feel that the React documentation goes at a faster pace than you're comfo
 
 If you're coming from a design background, [these resources](http://reactfordesigners.com/) are a great place to get started.
 
+### React for Visual Learners
+
+If you are a visual learner who prefers highly visual examples, videos, and text, [Kirupa Chinnathambi's Learning React](https://www.kirupa.com/react/index.htm) starts with the basics and goes all the way to more advanced topics.
+
 ### JavaScript Resources
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.

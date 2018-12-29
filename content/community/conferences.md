@@ -12,26 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### React Conf Brasil 2018
-October 20 in Sao Paulo, Brazil
-
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
-
-### React Conf 2018
-October 25-26 in Henderson, Nevada USA
-
-[Website](https://conf.reactjs.org/)
-
-### ReactNext 2018
-November 4 in Tel Aviv, Israel
-
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
-
-### React Day Berlin 2018
-November 30, Berlin, Germany
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
-
 ### App.js Conf 2019
 April 4-5 in Kraków, Poland
 
@@ -310,4 +290,22 @@ October 5 in Verona, Italy
 
 [Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
-##
+### React Conf Brasil 2018
+October 20 in Sao Paulo, Brazil
+
+[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
+
+### React Conf 2018
+October 25-26 in Henderson, Nevada USA
+
+[Website](https://conf.reactjs.org/)
+
+### ReactNext 2018
+November 4 in Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
+
+### React Day Berlin 2018
+November 30, Berlin, Germany
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)

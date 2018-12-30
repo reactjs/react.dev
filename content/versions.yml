@@ -24,3 +24,7 @@
   path: /version/16.0
   url: https://5a046bf5a6188f4b8fa4938a--reactjs.netlify.com
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1600-september-26-2017
+- title: '15.6'
+  path: /version/15.6
+  url: https://react-legacy.netlify.com
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1562-september-25-2017

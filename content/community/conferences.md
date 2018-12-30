@@ -41,6 +41,10 @@ June 12th 2019. Larvik, Norway
 6th September 2019 in Melbourne, Australia
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
+### React Iran 2019
+31th January 2019 in Tehran, Iran
+[Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
+
 ## Past Conferences
 
 ### React.js Conf 2015

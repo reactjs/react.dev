@@ -45,15 +45,17 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## England (UK)
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
+* [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 
 ## France
 * [Paris](https://www.meetup.com/ReactJS-Paris/)
 
 ## Germany
-* [Berlin](https://www.meetup.com/React-Berlin/)
 * [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
+* [React Berlin](https://www.meetup.com/React-Berlin/)
+* [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
 
 ## Greece
 * [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)

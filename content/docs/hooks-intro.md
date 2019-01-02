@@ -43,7 +43,7 @@ Before we continue, note that Hooks are:
 
 * **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
 * **100% backwards-compatible.** Hooks don't contain any breaking changes.
-* **Available now.** Hooks are currently in an alpha release, and we hope to include them in React 16.7 after receiving community feedback.
+* **Available now.** Hooks are currently in an alpha release, and we hope to include them in React 16.x after receiving community feedback.
 
 **There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
 

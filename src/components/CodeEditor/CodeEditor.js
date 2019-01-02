@@ -27,8 +27,6 @@ class CodeEditor extends Component {
   }
 
   componentDidMount() {
-    // Initial render() will always be a no-op,
-    // Because the mountNode ref won't exist yet.
     this._render();
   }
 
@@ -45,7 +43,7 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children} = this.props;
+    const {children, containerNodeID} = this.props;
     const {
       compiledES6,
       code,
@@ -205,6 +203,7 @@ class CodeEditor extends Component {
                 <MetaTitle>Result</MetaTitle>
               </div>
               <div
+                id={containerNodeID}
                 css={{
                   padding: 10,
                   maxHeight: '340px !important',
@@ -233,7 +232,6 @@ class CodeEditor extends Component {
                     padding: 5,
                   },
                 }}
-                ref={this._setMountRef}
               />
             </div>
           )}
@@ -243,21 +241,16 @@ class CodeEditor extends Component {
   }
 
   _render() {
-    if (!this._mountNode) {
-      return;
-    }
-
     const {compiled} = this.state;
 
     try {
       // Example code requires React, ReactDOM, and Remarkable to be within scope.
       // It also requires a "mountNode" variable for ReactDOM.render()
       // eslint-disable-next-line no-new-func
-      new Function('React', 'ReactDOM', 'Remarkable', 'mountNode', compiled)(
+      new Function('React', 'ReactDOM', 'Remarkable', compiled)(
         React,
         ReactDOM,
         Remarkable,
-        this._mountNode,
       );
     } catch (error) {
       console.error(error);
@@ -268,10 +261,6 @@ class CodeEditor extends Component {
       });
     }
   }
-
-  _setMountRef = ref => {
-    this._mountNode = ref;
-  };
 
   _updateState(code, showJSX = true) {
     try {

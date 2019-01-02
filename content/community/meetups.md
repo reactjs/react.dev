@@ -96,6 +96,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## Poland
 * [Warsaw](https://www.meetup.com/React-js-Warsaw/)
 
+## Portugal
+* [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
+
 ## Scotland (UK)
 * [Edinburgh](https://www.meetup.com/React-Scotland/)
 

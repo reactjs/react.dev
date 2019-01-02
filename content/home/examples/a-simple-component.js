@@ -8,6 +8,8 @@ class HelloMessage extends React.Component {
   }
 }
 
+// let mountNode = document.querySelector('#message')
+
 ReactDOM.render(
   <HelloMessage name="Taylor" />,
   mountNode

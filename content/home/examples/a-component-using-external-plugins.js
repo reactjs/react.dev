@@ -36,6 +36,7 @@ class MarkdownEditor extends React.Component {
   }
 }
 
-// let mountNode = document.querySelector('#markdown')
-
-ReactDOM.render(<MarkdownEditor />, mountNode);
+ReactDOM.render(
+  <MarkdownEditor />,
+  document.getElementById('markdown-example')
+);

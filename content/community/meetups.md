@@ -45,12 +45,15 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## England (UK)
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
+* [London](http://www.meetup.com/JavaScript-London/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 
 ## France
 * [Paris](https://www.meetup.com/ReactJS-Paris/)
+* [Paris JavaScript](https://www.meetup.com/JavaScript-Paris/)
 
 ## Germany
+* [Berlin](https://www.meetup.com/JavaScript-Berlin/)
 * [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
@@ -76,6 +79,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Netherlands
 * [Amsterdam](https://www.meetup.com/React-Amsterdam/)
+* [Amsterdam JavaScript](https://www.meetup.com/JavaScript-Amsterdam/)
 
 ## New Zealand
 * [Wellington](https://www.meetup.com/React-Wellington/)
@@ -104,6 +108,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Spain
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)
+* [Barcelona JavaScript](https://www.meetup.com/JavaScript-Barcelona/)
 
 ## Sweden
 * [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)

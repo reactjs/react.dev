@@ -699,7 +699,7 @@ class DOMComponent {
 
 Then, host components need to update their children. Unlike composite components, they might contain more than a single child.
 
-In this simplified example, we use an array of internal instances and iterate over it, either updating or replacing the internal instances depending on whether the received `type` matches their previous `type`. The real reconciler also takes element's `key` in the account and track moves in addition to insertions and deletions, but we will omit this logic.
+In this simplified example, we use an array of internal instances and iterate over it, either updating or replacing the internal instances depending on whether the received `type` matches their previous `type`. The real reconciler also takes element's `key` into account and track moves in addition to insertions and deletions, but we will omit this logic.
 
 We collect DOM operations on children in a list so we can execute them in batch:
 
@@ -885,7 +885,7 @@ This document is simplified compared to the real codebase. There are a few impor
 
 * [`ReactMultiChild`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/shared/stack/reconciler/ReactMultiChild.js) implements processing the operation queue for child insertions, deletions, and moves independently of the renderer.
 
-* `mount()`, `receive()`, and `unmount()` are really called `mountComponent()`, `receiveComponent()`, and `unmountComponent()` in React codebase for legacy reasons, but they receive elements.
+* `mount()`, `receive()`, and `unmount()` are, for legacy reasons, really called `mountComponent()`, `receiveComponent()`, and `unmountComponent()` in the React codebase, but they receive elements.
 
 * Properties on the internal instances start with an underscore, e.g. `_currentElement`. They are considered to be read-only public fields throughout the codebase.
 

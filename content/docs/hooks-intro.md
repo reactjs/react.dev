@@ -8,7 +8,7 @@ next: hooks-overview.html
 *Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha.
 
 ```js{4,5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
@@ -44,6 +44,14 @@ Before we continue, note that Hooks are:
 * **Completely opt-in.** You can try Hooks in a few components without rewriting any existing code. But you don't have to learn or use Hooks right now if you don't want to.
 * **100% backwards-compatible.** Hooks don't contain any breaking changes.
 * **Available now.** Hooks are currently in an alpha release, and we hope to include them in React 16.x after receiving community feedback.
+* **Check your `package.json`**. Be sure if your file contains the following code.
+  ```json{1}
+    ...
+    "dependencies": {
+      "react": "16.7.0-alpha.0",
+      "react-dom": "16.7.0-alpha.0"
+    }
+  ```
 
 **There are no plans to remove classes from React.** You can read more about the gradual adoption strategy for Hooks in the [bottom section](#gradual-adoption-strategy) of this page.
 

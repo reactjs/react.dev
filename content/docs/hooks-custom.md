@@ -167,7 +167,7 @@ function ChatRecipientPicker() {
   const isRecipientOnline = useFriendStatus(recipientID);
 
   return (
-    <div>
+    <>
       <Circle color={isRecipientOnline ? 'green' : 'red'} />
       <select
         value={recipientID}
@@ -179,7 +179,7 @@ function ChatRecipientPicker() {
           </option>
         ))}
       </select>
-    </div>
+    </>
   );
 }
 ```

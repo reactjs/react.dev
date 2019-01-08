@@ -52,12 +52,12 @@ If the new state is computed using the previous state, you can pass a function t
 function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
   return (
-    <div>
+    <>
       Count: {count}
       <button onClick={() => setCount(0)}>Reset</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-    </div>
+    </>
   );
 }
 ```
@@ -241,7 +241,7 @@ function Counter({initialCount}) {
   );
 
   return (
-    <div>
+    <>
       Count: {state.count}
       <button
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
@@ -249,7 +249,7 @@ function Counter({initialCount}) {
       </button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
-    </div>
+    </>
   );
 }
 ```
@@ -311,10 +311,10 @@ function TextInputWithFocusButton() {
     inputEl.current.focus();
   };
   return (
-    <form>
+    <>
       <input ref={inputEl} type="text" />
       <button onClick={onButtonClick}>Focus the input</button>
-    </form>
+    </>
   );
 }
 ```

@@ -12,40 +12,38 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
-### React Conf Brasil 2018
-October 20 in Sao Paulo, Brazil
-
-[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
-
-### React Conf 2018
-October 25-26 in Henderson, Nevada USA
-
-[Website](https://conf.reactjs.org/)
-
-### ReactNext 2018
-November 4 in Tel Aviv, Israel
-
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
-
-### React Day Berlin 2018
-November 30, Berlin, Germany
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)
+### React Iran 2019
+January 31, 2019 in Tehran, Iran
+[Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
 
 ### App.js Conf 2019
-April 4-5 in Kraków, Poland
+April 4-5, 2019 in Kraków, Poland
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
 ### React Amsterdam 2019
-April 12 in Amsterdam, The Netherlands
+April 12, 2019 in Amsterdam, The Netherlands
 
 [Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
 ### ReactEurope 2019
-May 23-24 in Paris, France
+May 23-24, 2019 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+
+### React Norway 2019
+June 12, 2019. Larvik, Norway
+
+[Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
+
+### React India 2019
+September 26-28, 2019 in Goa, India
+
+[Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
+
+### ComponentsConf 2019
+September 6, 2019 in Melbourne, Australia
+[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ## Past Conferences
 
@@ -296,4 +294,22 @@ October 5 in Verona, Italy
 
 [Website](http://2018.reactjsday.it) - [Twitter](https://twitter.com/reactjsday)
 
-##
+### React Conf Brasil 2018
+October 20 in Sao Paulo, Brazil
+
+[Website](http://reactconfbr.com.br) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/reactconf)
+
+### React Conf 2018
+October 25-26 in Henderson, Nevada USA
+
+[Website](https://conf.reactjs.org/)
+
+### ReactNext 2018
+November 4 in Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Facebook](https://facebook.com/ReactNext2016)
+
+### React Day Berlin 2018
+November 30, Berlin, Germany
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/channel/UC1EYHmQYBUJjkmL6OtK4rlw)

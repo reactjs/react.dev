@@ -263,6 +263,7 @@ class Home extends Component {
                         key={index}
                         id={snippet.id}
                         code={snippet.code}
+                        containerNodeID={node.frontmatter.domid}
                         loaded={babelLoaded}>
                         <h3 css={headingStyles}>{node.frontmatter.title}</h3>
                         <div dangerouslySetInnerHTML={{__html: node.html}} />
@@ -368,6 +369,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            domid
           }
           html
         }

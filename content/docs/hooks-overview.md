@@ -6,7 +6,7 @@ next: hooks-state.html
 prev: hooks-intro.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha.
 
 Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users.
 
@@ -251,7 +251,7 @@ function Example() {
   const theme = useContext(ThemeContext);
   // ...
 }
-``` 
+```
 
 And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local state of complex components with a reducer:
 
@@ -259,7 +259,7 @@ And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local 
 function Todos() {
   const [todos, dispatch] = useReducer(todosReducer);
   // ...
-``` 
+```
 
 >Detailed Explanation
 >

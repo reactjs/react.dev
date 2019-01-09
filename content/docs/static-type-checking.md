@@ -170,6 +170,23 @@ To use TypeScript, you need to:
 
 Let's go over these in detail.
 
+### Using TypeScript with Create React App
+
+Create React App supports TypeScript out of the box.
+
+To create a **new project** with TypeScript support, run:
+
+```bash
+npx create-react-app my-app --typescript
+```
+
+You can also add it to an **existing Create React App project**, [as documented here](https://facebook.github.io/create-react-app/docs/adding-typescript).
+
+>Note:
+>
+>If you use Create React App, you can **skip the rest of this page**. It describes the manual setup which doesn't apply to Create React App users.
+
+
 ### Adding TypeScript to a Project
 It all begins with running one command in your terminal.
 
@@ -286,18 +303,6 @@ declare module 'querystring' {
   export function parse(val: string): object
 }
 ```
-
-### Using TypeScript with Create React App
-
-Create React App supports TypeScript out of the box. You can use it like this:
-
-```bash
-create-react-app my-app --typescript
-```
-
-If you have an existing project, [you can read the documentation](https://facebook.github.io/create-react-app/docs/adding-typescript) on adding TypeScript.
-
-You can also try [typescript-react-starter](https://github.com/Microsoft/TypeScript-React-Starter#typescript-react-starter).
 
 You are now ready to code! We recommend to check out the following resources to learn more about TypeScript:
 

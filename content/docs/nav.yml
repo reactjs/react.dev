@@ -104,7 +104,7 @@
       title: JS Environment Requirements
     - id: glossary
       title: Glossary
-- title: Hooks (Proposal)
+- title: Hooks (Preview)
   isOrdered: true
   items:
       - id: hooks-intro
@@ -147,5 +147,7 @@
       title: Styling and CSS
     - id: faq-structure
       title: File Structure
+    - id: faq-versioning
+      title: Versioning Policy
     - id: faq-internals
       title: Virtual DOM and Internals

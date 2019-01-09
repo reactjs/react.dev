@@ -115,7 +115,7 @@ parse the dynamic import syntax but is not transforming it. For that you will ne
 
 > Note:
 >
-> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we still recommend [React Loadable](https://github.com/thejameskyle/react-loadable). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/thejameskyle/react-loadable#------------server-side-rendering).
+> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
 
 The `React.lazy` function lets you render a dynamic import as a regular component.
 

@@ -5,7 +5,7 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha.
 
 This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
 
@@ -407,7 +407,7 @@ function TodosApp() {
 }
 ```
 
-Any child in the tree inside `TodosApp` can read use the `dispatch` function to pass actions up to `TodosApp`:
+Any child in the tree inside `TodosApp` can use the `dispatch` function to pass actions up to `TodosApp`:
 
 ```js{2,3}
 function DeepChild(props) {
@@ -443,7 +443,7 @@ function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
 
-  useMutationEffect(() => {
+  useLayoutEffect(() => {
     textRef.current = text; // Write it to the ref
   });
 
@@ -484,7 +484,7 @@ function useEventCallback(fn, dependencies) {
     throw new Error('Cannot call an event handler while rendering.');
   });
 
-  useMutationEffect(() => {
+  useLayoutEffect(() => {
     ref.current = fn;
   }, [fn, ...dependencies]);
 

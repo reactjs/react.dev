@@ -324,7 +324,7 @@ Note that `useRef()` is useful for more than the `ref` attribute. It's [handy fo
 ### `useImperativeHandle`
 
 ```js
-useImperativeHandle(ref, createInstance, [inputs])
+useImperativeHandle(ref, createHandle, [inputs])
 ```
 
 `useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:

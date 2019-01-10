@@ -21,7 +21,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
   - [`useRef`](#useref)
-  - [`useImperativeMethods`](#useimperativemethods)
+  - [`useImperativeHandle`](#useimperativehandle)
   - [`useLayoutEffect`](#uselayouteffect)
 
 ## Basic Hooks
@@ -321,18 +321,18 @@ function TextInputWithFocusButton() {
 
 Note that `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
 
-### `useImperativeMethods`
+### `useImperativeHandle`
 
 ```js
-useImperativeMethods(ref, createInstance, [inputs])
+useImperativeHandle(ref, createInstance, [inputs])
 ```
 
-`useImperativeMethods` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeMethods` should be used with `forwardRef`:
+`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
 
 ```js
 function FancyInput(props, ref) {
   const inputRef = useRef();
-  useImperativeMethods(ref, () => ({
+  useImperativeHandle(ref, () => ({
     focus: () => {
       inputRef.current.focus();
     }

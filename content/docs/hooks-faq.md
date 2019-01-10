@@ -304,7 +304,7 @@ This might look strange at first, but an update during rendering is exactly what
 
 ### Can I make a ref to a function component?
 
-While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeMethods`](/docs/hooks-reference.html#useimperativemethods) Hook.
+While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
 
 ### What does `const [thing, setThing] = useState()` mean?
 

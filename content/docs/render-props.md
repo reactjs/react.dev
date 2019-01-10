@@ -221,7 +221,7 @@ One interesting thing to note about render props is that you can implement most 
 // If you really want a HOC for some reason, you can easily
 // create one using a regular component with a render prop!
 function withMouse(Component) {
-  return class extends React.Component {
+  return class Mouse extends React.Component {
     render() {
       return (
         <Mouse render={mouse => (

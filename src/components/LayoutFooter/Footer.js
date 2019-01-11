@@ -16,6 +16,8 @@ import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
 
 import ossLogoPng from 'images/oss_logo.png';
 
+const getCurrentYear = () => new Date().getFullYear();
+
 const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
   <footer
     css={{
@@ -179,7 +181,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            Copyright © 2018 Facebook Inc.
+            {`Copyright © ${getCurrentYear()} Facebook Inc.`}
           </p>
         </section>
       </div>

@@ -140,7 +140,7 @@ It also shows that each time it rendered, it was the most "expensive" component 
 
 To view this chart, either double-click on a component _or_ select a component and click on the blue bar chart icon in the right detail pane.
 You can return to the previous chart by clicking the "x" button in the right detail pane.
-You can aso double click on a particular bar to view more information about that commit.
+You can also double click on a particular bar to view more information about that commit.
 
 ![How to view all renders for a specific component](../images/blog/introducing-the-react-profiler/see-all-commits-for-a-fiber.gif)
 

@@ -361,7 +361,7 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 useDebugValue(value)
 ```
 
-`useDebugValue` can be used to provide a label for the React DevTools to display beside of a custom hook.
+`useDebugValue` can be used to display a label for custom hooks in React DevTools.
 
 For example, consider the `useFriendStatus` custom hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
 
@@ -371,7 +371,7 @@ function useFriendStatus(friendID) {
 
   // ...
 
-  // Show a label in DevTools beside of this hook
+  // Show a label in DevTools next to this hook
   // e.g. "FriendStatus: Online"
   useDebugValue(isOnline ? 'Online' : 'Offline');
 

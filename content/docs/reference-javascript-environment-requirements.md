@@ -11,7 +11,6 @@ React 16 depends on the collection types [Map](https://developer.mozilla.org/en-
 A polyfilled environment for React 16 using core-js to support older browsers might look like:
 
 ```js
-import 'core-js/es6/promise';
 import 'core-js/es6/map';
 import 'core-js/es6/set';
 

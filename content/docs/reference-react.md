@@ -312,7 +312,7 @@ Note that rendering `lazy` components requires that there's a `<React.Suspense>`
 
 > **Note**
 >
-> Using React.lazy with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
+> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
 
 ### `React.Suspense`
 

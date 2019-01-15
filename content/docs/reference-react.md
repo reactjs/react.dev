@@ -310,6 +310,10 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
 
+> **Note**
+>
+> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
+
 ### `React.Suspense`
 
 `React.Suspense` let you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:

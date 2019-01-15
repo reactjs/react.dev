@@ -23,6 +23,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useRef`](#useref)
   - [`useImperativeMethods`](#useimperativemethods)
   - [`useLayoutEffect`](#uselayouteffect)
+  - [`useDebugValue`](#usedebugvalue)
 
 ## Basic Hooks
 
@@ -353,3 +354,31 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 > Tip
 >
 > If you're migrating code from a class component, `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`, so if you're unsure of which effect Hook to use, it's probably the least risky.
+
+### `useDebugValue`
+
+```js
+useDebugValue(value)
+```
+
+`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+
+For example, consider the `useFriendStatus` custom hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+
+```js{6-8}
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  // ...
+
+  // Show a label in DevTools next to this hook
+  // e.g. "FriendStatus: Online"
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+
+  return isOnline;
+}
+```
+
+> Tip
+>
+> We don't recommend adding debug values to every custom hook. It's most valuable for custom hooks that are part of shared libraries.

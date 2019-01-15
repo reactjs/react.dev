@@ -1,5 +1,9 @@
+- title: '16.7'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1670-december-19-2018
 - title: '16.6'
+  path: /version/16.6
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1660-october-23-2018
+  url: https://5c11762d4be4d10008916ab1--reactjs.netlify.com/
 - title: '16.5'
   path: /version/16.5
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1650-september-5-2018

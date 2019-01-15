@@ -309,6 +309,7 @@ You are now ready to code! We recommend to check out the following resources to 
 * [TypeScript Documentation: Basic Types](https://www.typescriptlang.org/docs/handbook/basic-types.html)
 * [TypeScript Documentation: Migrating from Javascript](https://www.typescriptlang.org/docs/handbook/migrating-from-javascript.html)
 * [TypeScript Documentation: React and Webpack](https://www.typescriptlang.org/docs/handbook/react-&-webpack.html)
+* [React-TypeScript Cheatsheet](https://github.com/sw-yx/react-typescript-cheatsheet/) - Community maintained guide for React devs new to TypeScript
 
 ## Reason
 

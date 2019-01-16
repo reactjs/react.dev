@@ -49,7 +49,7 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 
 [Joel Burget](http://joelburget.com/) wrote a blog post talking about the way we would write React-like components in Backbone and Handlebars.
 
-> The problem here is that we're trying to maniplate a tree, but there's a textual layer we have to go through. Our views are represented as a tree - the subviews are children of CommentCollectionView - and they end up as part of a tree in the DOM. But there's a Handlebars layer in the middle (which deals in flat strings), so the hierarchy must be destructed and rebuilt when we render.
+> The problem here is that we're trying to manipulate a tree, but there's a textual layer we have to go through. Our views are represented as a tree - the subviews are children of CommentCollectionView - and they end up as part of a tree in the DOM. But there's a Handlebars layer in the middle (which deals in flat strings), so the hierarchy must be destructed and rebuilt when we render.
 >
 > What does it take to render a collection view? In the Backbone/Handlebars view of the world you have to render the template (with stubs), render each subview which replaces a stub, and keep a reference to each subview (or anything within the view that could change in the future).
 >

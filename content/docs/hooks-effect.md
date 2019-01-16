@@ -118,7 +118,11 @@ function Example() {
 
 **Why is `useEffect` called inside a component?** Placing `useEffect` inside the component lets us access the `count` state variable (or any props) right from the effect. We don't need a special API to read it -- it's already in the function scope. Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
 
-**Does `useEffect` run after every render?** Yes! By default, it runs both after the first render *and* after every update. (We will later talk about [how to customize this](#tip-optimizing-performance-by-skipping-effects).) Instead of thinking in terms of "mounting" and "updating", you might find it easier to think that effects happen "after render". React guarantees the DOM has been updated by the time it runs the effects.
+**Does `useEffect` run after every render?** Yes! By default, it runs both after the first render *and* after every update. (We will later talk about [how to customize this](#tip-optimizing-performance-by-skipping-effects).) Instead of thinking in terms of "mounting" and "updating", you might find it easier to think that effects happen "after render". React guarantees the DOM and the state have been updated by the time it runs the effects.
+
+>Tip
+>
+>Since there is no `setState` callback on state hooks, you could use a [custom hook](/docs/hooks-custom.html) with `useEffect` to simulate a `setState` callback if you need to ensure the state has been updated after setting it with a state hook.
 
 ### Detailed Explanation
 

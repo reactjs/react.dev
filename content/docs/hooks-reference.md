@@ -290,6 +290,8 @@ Pass a "create" function and an array of inputs. `useMemo` will only recompute t
 
 If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
 
+**Don't rely on `useMemo` for correctness.** React treats it as an optimization hint and does not *guarantee* to retain the memoized value. For example, React may choose to "forget" some previously memoized values to free memory, and recalculate them on next render.
+
 > Note
 >
 > The array of inputs is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.

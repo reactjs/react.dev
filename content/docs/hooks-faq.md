@@ -41,6 +41,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [Can I skip an effect on updates?](#can-i-skip-an-effect-on-updates)
   * [How do I implement shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
   * [How to memoize calculations?](#how-to-memoize-calculations)
+  * [How to create expensive objects lazily?](#how-to-create-expensive-objects-lazily)
   * [Are Hooks slow because of creating functions in render?](#are-hooks-slow-because-of-creating-functions-in-render)
   * [How to avoid passing callbacks down?](#how-to-avoid-passing-callbacks-down)
   * [How to read an often-changing value from useCallback?](#how-to-read-an-often-changing-value-from-usecallback)
@@ -342,7 +343,9 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 This code calls `computeExpensiveValue(a, b)`. But if the inputs `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
 
-Conveniently, this also lets you skip an expensive re-render of a child:
+`useMemo` is treated as a hint rather than guarantee. React may still choose to "forget" some previously memoized values to free memory, and recalculate them on next render.
+
+Conveniently, `useMemo` also lets you skip an expensive re-render of a child:
 
 ```js
 function Parent({ a, b }) {
@@ -360,6 +363,67 @@ function Parent({ a, b }) {
 ```
 
 Note that this approach won't work in a loop because Hook calls [can't](/docs/hooks-rules.html) be placed inside loops. But you can extract a separate component for the list item, and call `useMemo` there.
+
+### How to create expensive objects lazily?
+
+`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes need to be sure an object is only created once.
+
+**The first common use case is when creating the initial state is expensive:**
+
+```js
+function Table(props) {
+  // ⚠️ createRows() is called on every render
+  const [rows, setRows] = useState(createRows(props.count));
+  // ...
+}
+```
+
+To avoid re-creating the ignored initial state, we can pass a **function** to `useState`:
+
+```js
+function Table(props) {
+  // ✅ createRows() is only called once
+  const [rows, setRows] = useState(() => createRows(props.count));
+  // ...
+}
+```
+
+React will only call this function during the first render. See the [`useState` API reference](/docs/hooks-reference.html#usestate).
+
+**You might also occasionally want to avoid re-creating the `useRef()` initial value.** For example, maybe you want to ensure some imperative class instance only gets created once:
+
+```js
+function Image(props) {
+  // ⚠️ IntersectionObserver is created on every render
+  const ref = useRef(new IntersectionObserver(onIntersect));
+  // ...
+}
+```
+
+`useRef` **does not** accept a special function overload like `useState`. Instead, you can write your own function that creates and sets it lazily:
+
+```js
+function Image(props) {
+  const ref = useRef(null);
+
+  // ✅ IntersectionObserver is created lazily once
+  function getObserver() {
+    let observer = ref.current;
+    if (observer !== null) {
+      return observer;
+    }
+    let newObserver = new IntersectionObserver(onIntersect);
+    ref.current = newObserver;
+    return newObserver;
+  }
+
+  // When you need it, call getObserver()
+  // ...
+}
+```
+
+This avoids creating an expensive object until it's truly needed for the first time. If you use Flow or TypeScript, you can also give `getObserver()` a non-nullable type for convenience.
+
 
 ### Are Hooks slow because of creating functions in render?
 
@@ -496,6 +560,7 @@ function useEventCallback(fn, dependencies) {
 ```
 
 In either case, we **don't recommend this pattern** and only show it here for completeness. Instead, it is preferable to [avoid passing callbacks deep down](#how-to-avoid-passing-callbacks-down).
+
 
 ## Under the Hood
 

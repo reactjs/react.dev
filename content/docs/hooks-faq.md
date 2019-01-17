@@ -156,7 +156,7 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
   // ...
 ```
 
-Conceptually, you can think of refs as similar to instance variables in a class. Avoid setting refs during rendering -- this can lead to surprising behavior. Instead, only modify refs in event handlers and effects.
+Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
 
 ### Should I use one or many state variables?
 

@@ -282,7 +282,7 @@ See also [the recommended pattern for derived state](#how-do-i-implement-getderi
 
 ### How do I implement `getDerivedStateFromProps`?
 
-While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), for the rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
+While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
 
 Here, we store the previous value of the `row` prop in a state variable so that we can compare:
 
@@ -343,7 +343,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 This code calls `computeExpensiveValue(a, b)`. But if the inputs `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
 
-`useMemo` is treated as a hint rather than guarantee. React may still choose to "forget" some previously memoized values to free memory, and recalculate them on next render.
+**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance. (For rare cases when a value must *never* recomputed, you can [lazily initialize](#how-to-create-expensive-objects-lazily) a ref.)
 
 Conveniently, `useMemo` also lets you skip an expensive re-render of a child:
 

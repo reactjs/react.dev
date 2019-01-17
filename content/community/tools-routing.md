@@ -11,6 +11,7 @@ permalink: community/routing.html
 * **[Director](https://github.com/flatiron/director)** - A tiny and isomorphic URL router for JavaScript.
 * **[Finch](http://stoodder.github.io/finchjs/)** - A simple, yet powerful, javascript route handling library.
 * **[mvc-router](https://github.com/rajeev-k/mvc-router)** Use the Model-View-Controller (MVC) pattern to build React applications.
+* **[Reach Router](https://reach.tech/router)** An Accessible Router for React
 * **[react-mini-router](https://github.com/larrymyers/react-mini-router)** A minimal URL router mixin.
 * **[react-passage](https://github.com/dollarshaveclub/react-passage):** Passage helps when linking or redirecting to routes that may or may not be in your react app.
 * **[react-router](https://github.com/rackt/react-router)** - A popular declarative router for React

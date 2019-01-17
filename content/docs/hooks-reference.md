@@ -384,3 +384,14 @@ function useFriendStatus(friendID) {
 > Tip
 >
 > We don't recommend adding debug values to every custom hook. It's most valuable for custom hooks that are part of shared libraries.
+
+#### Defer formatting debug values
+
+In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a hook is actually inspected.
+
+For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the hooks is inspected. It receives the debug value as a parameter and should return a formatted display value.
+
+For example a custom hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+```js
+useDebugValue(date, date => date.toDateString());
+```

@@ -15,3 +15,4 @@ permalink: community/routing.html
 * **[react-passage](https://github.com/dollarshaveclub/react-passage):** Passage helps when linking or redirecting to routes that may or may not be in your react app.
 * **[react-router](https://github.com/rackt/react-router)** - A popular declarative router for React
 * **[react-router-component](https://github.com/andreypopp/react-router-component)** Declarative routing.
+* **[Reach Router](https://reach.tech/router)** An Accessible Router for React

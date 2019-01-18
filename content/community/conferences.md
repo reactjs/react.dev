@@ -36,19 +36,24 @@ June 12, 2019. Larvik, Norway
 
 [Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
-### React India 2019
-September 26-28, 2019 in Goa, India
-
-[Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
-
 ### ComponentsConf 2019
 September 6, 2019 in Melbourne, Australia
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
+
+### React Native EU 2019
+September 5-6 in Wrocław, Poland
+
+[Website](https://react-native.eu) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu)
 
 ### React New York 2019
 September 13th, 2019. New York, USA
 
 [Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
+
+### React India 2019
+September 26-28, 2019 in Goa, India
+
+[Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
 
 ## Past Conferences
 

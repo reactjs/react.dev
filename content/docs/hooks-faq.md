@@ -5,7 +5,7 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.0.
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
 
 This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
 

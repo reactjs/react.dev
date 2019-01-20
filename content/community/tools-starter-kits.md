@@ -29,7 +29,7 @@ Ready to grow boilerplate with react-router, redux, saga, webpack 3, jest w/ cov
  * **[starter-react-flux](https://github.com/SokichiFujita/starter-react-flux)** A generator for React and Flux project with Flux-Utils, Jest, Immutable.js, React Addons, Webpack, ESLint, Babel and ES2015.
  * **[react-async-starter](https://github.com/didierfranc/react-async-starter):** React + Redux + Fetch + ES7 Async with Webpack, Babel and hot reloading.
  * **[Kriasoft React Starter Kit](https://github.com/kriasoft/react-starter-kit):** Gulp, Webpack, BrowserSync + [React Starter Kit for Visual Studio](https://marketplace.visualstudio.com/items?itemName=KonstantinTarkus.ReactjsStarterKit)
- * **[electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate)** A React + Flux Electron application boilerplate based on React, Flux, React Router, Webpack, React Hot Loader
+ * **[electron-react-boilerplate](https://github.com/electron-react-boilerplate/electron-react-boilerplate)** A React + Redux + Electron application boilerplate for scalable cross-platform desktop apps
  * **[react-boilerplate](https://github.com/mxstbr/react-boilerplate)** Quick setup for performance orientated, offline-first React.js applications featuring Redux, hot-reloading, PostCSS, react-router, ServiceWorker, AppCache, FontFaceObserver and Mocha.
  * **[vortigern](https://github.com/barbar/vortigern)** A universal boilerplate for building web applications w/ TypeScript, React, Redux and more.
  * **[CRA Universal CLI](https://github.com/antonybudianto/cra-universal)** CLI to initialize universal create-react-app without ejecting. Supports Server-side rendering with Code-splitting, and Node Stream rendering.

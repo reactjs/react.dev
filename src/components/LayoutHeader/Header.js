@@ -119,19 +119,9 @@ const Header = ({location}: {location: Location}) => (
             to="/docs/getting-started.html"
           />
           <HeaderLink
-            isActive={location.pathname.includes('/tutorial/')}
-            title="Tutorial"
-            to="/tutorial/tutorial.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/community/')}
-            title="Community"
-            to="/community/support.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/blog')}
-            title="Blog"
-            to="/blog/"
+            isActive={location.pathname.includes('/architect/')}
+            title="Architect"
+            to="/architect/architect.html"
           />
         </nav>
 

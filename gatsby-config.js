@@ -8,10 +8,10 @@
 
 module.exports = {
   siteMetadata: {
-    title: 'React: A JavaScript library for building user interfaces',
-    siteUrl: 'https://reactjs.org',
-    rssFeedTitle: 'React',
-    rssFeedDescription: 'A JavaScript library for building user interfaces',
+    title: 'VietBibleCloud: A Bible research tool developed for Vietnam',
+    siteUrl: 'https://docs.vietbible.com',
+    rssFeedTitle: 'VietBible',
+    rssFeedDescription: 'A Bible research tool developed for Vietnam',
   },
   mapping: {
     'MarkdownRemark.frontmatter.author': 'AuthorYaml',

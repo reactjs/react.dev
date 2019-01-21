@@ -1,0 +1,11 @@
+- title: Architect
+  items:
+    - id: database-design
+      title: Database design
+      href: /architect/architect.html#database-design
+      forceInternal: true
+    - id: glossary
+      title: Glossary
+      href: /architect/architect.html#glossary
+      forceInternal: true
+

@@ -12,6 +12,10 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences
 
+### React Conf Iran 2019
+May 30, 2019 in Tehran, Iran
+[Website](https://reactconf.ir/) - [Twitter](https://twitter.com/reactconf_ir) - [Facebook](https://www.facebook.com/reactconfiran) - [Instagram](https://www.instagram.com/reactconf)
+
 ### React Iran 2019
 January 31, 2019 in Tehran, Iran
 [Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)

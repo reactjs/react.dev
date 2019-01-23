@@ -45,15 +45,18 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## England (UK)
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
+* [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
 
 ## France
 * [Paris](https://www.meetup.com/ReactJS-Paris/)
 
 ## Germany
-* [Berlin](https://www.meetup.com/React-Berlin/)
+* [Düsseldorf](https://www.meetup.com/de-DE/ReactJS-Meetup-Dusseldorf/)
 * [Hamburg](https://www.meetup.com/Hamburg-React-js-Meetup/)
 * [Karlsruhe](https://www.meetup.com/react_ka/)
 * [Munich](https://www.meetup.com/ReactJS-Meetup-Munich/)
+* [React Berlin](https://www.meetup.com/React-Berlin/)
+* [React.JS Girls Berlin](https://www.meetup.com/ReactJS-Girls-Berlin/)
 
 ## Greece
 * [Thessaloniki](https://www.meetup.com/Thessaloniki-ReactJS-Meetup/)
@@ -82,6 +85,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Norway](https://reactjs-norway.webflow.io/)
 * [Oslo](https://www.meetup.com/ReactJS-Oslo-Meetup/)
 
+## Pakistan
+* [Karachi](https://www.facebook.com/groups/902678696597634/)
+
 ## Peru
 * [Lima](https://www.meetup.com/ReactJS-Peru/)
 
@@ -90,6 +96,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Poland
 * [Warsaw](https://www.meetup.com/React-js-Warsaw/)
+
+## Portugal
+* [Lisbon](https://www.meetup.com/JavaScript-Lisbon/)
 
 ## Scotland (UK)
 * [Edinburgh](https://www.meetup.com/React-Scotland/)

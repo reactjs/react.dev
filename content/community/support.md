@@ -24,7 +24,6 @@ Each community consists of many thousands of React users.
 
 * [DEV's React community](https://dev.to/t/react)
 * [Hashnode's React community](https://hashnode.com/n/reactjs)
-* [React Discuss](https://discuss.reactjs.org/)
 * [Reactiflux online chat](https://discord.gg/0ZcbPKXt5bZjGY5n)
 * [Reddit's React community](https://www.reddit.com/r/reactjs/)
 * [Spectrum's React community](https://spectrum.chat/react)

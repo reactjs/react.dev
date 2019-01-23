@@ -66,4 +66,4 @@ If you are interesting in translating `reactjs.org`, please join the Crowdin.
 - `yarn reset` to clear the local cache
 
 ## License
-Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the `LICENSE-DOCS.md` file.
+Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/open-source-explorer/reactjs.org/blob/master/LICENSE-DOCS.md) file.

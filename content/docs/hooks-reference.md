@@ -6,7 +6,7 @@ prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
 
 This page describes the APIs for the built-in Hooks in React.
 
@@ -21,9 +21,9 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useCallback`](#usecallback)
   - [`useMemo`](#usememo)
   - [`useRef`](#useref)
-  - [`useImperativeMethods`](#useimperativemethods)
-  - [`useMutationEffect`](#usemutationeffect)
+  - [`useImperativeHandle`](#useimperativehandle)
   - [`useLayoutEffect`](#uselayouteffect)
+  - [`useDebugValue`](#usedebugvalue)
 
 ## Basic Hooks
 
@@ -55,7 +55,7 @@ function Counter({initialCount}) {
   return (
     <>
       Count: {count}
-      <button onClick={() => setCount(0)}>Reset</button>
+      <button onClick={() => setCount(initialCount)}>Reset</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
     </>
@@ -123,7 +123,7 @@ The clean-up function runs before the component is removed from the UI to preven
 
 Unlike `componentDidMount` and `componentDidUpdate`, the function passed to `useEffect` fires **after** layout and paint, during a deferred event. This makes it suitable for the many common side effects, like setting up subscriptions and event handlers, because most types of work shouldn't block the browser from updating the screen.
 
-However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides two additional Hooks: [`useMutationEffect`](#usemutationeffect) and [`useLayoutEffect`](#uselayouteffect). These Hooks have the same signature as `useEffect`, and only differ in when they are fired.
+However, not all effects can be deferred. For example, a DOM mutation that is visible to the user must fire synchronously before the next paint so that the user does not perceive a visual inconsistency. (The distinction is conceptually similar to passive versus active event listeners.) For these types of effects, React provides one additional Hook called [`useLayoutEffect`](#uselayouteffect). It has the same signature as `useEffect`, and only differs in when it is fired.
 
 Although `useEffect` is deferred until after the browser has painted, it's guaranteed to fire before any new renders. React will always flush a previous render's effects before starting a new update.
 
@@ -190,11 +190,15 @@ function reducer(state, action) {
       return {count: state.count + 1};
     case 'decrement':
       return {count: state.count - 1};
+    default:
+      // A reducer must always return a valid state.
+      // Alternatively you can throw an error if an invalid action is dispatched.
+      return state;
   }
 }
 
 function Counter({initialCount}) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, {count: initialCount});
   return (
     <>
       Count: {state.count}
@@ -223,6 +227,10 @@ function reducer(state, action) {
       return {count: state.count + 1};
     case 'decrement':
       return {count: state.count - 1};
+    default:
+      // A reducer must always return a valid state.
+      // Alternatively you can throw an error if an invalid action is dispatched.
+      return state;
   }
 }
 
@@ -280,7 +288,11 @@ Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
 
 Pass a "create" function and an array of dependencies. `useMemo` will only recompute the memoized value when one of the dependencies has changed. This optimization helps to avoid expensive calculations on every render.
 
+Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+
 If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
+
+**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
 
 > Note
 >
@@ -314,18 +326,18 @@ function TextInputWithFocusButton() {
 
 Note that `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
 
-### `useImperativeMethods`
+### `useImperativeHandle`
 
 ```js
-useImperativeMethods(ref, createInstance, [dependencies])
+useImperativeHandle(ref, createHandle, [dependencies])
 ```
 
-`useImperativeMethods` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeMethods` should be used with `forwardRef`:
+`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
 
 ```js
 function FancyInput(props, ref) {
   const inputRef = useRef();
-  useImperativeMethods(ref, () => ({
+  useImperativeHandle(ref, () => ({
     focus: () => {
       inputRef.current.focus();
     }
@@ -337,22 +349,51 @@ FancyInput = forwardRef(FancyInput);
 
 In this example, a parent component that renders `<FancyInput ref={fancyInputRef} />` would be able to call `fancyInputRef.current.focus()`.
 
-### `useMutationEffect`
-
-The signature is identical to `useEffect`, but it fires synchronously during the same phase that React performs its DOM mutations, before sibling components have been updated. Use this to perform custom DOM mutations.
-
-Prefer the standard `useEffect` when possible to avoid blocking visual updates.
-
->Note
->
->Avoid reading from the DOM in `useMutationEffect`. If you do, you can cause performance problems by introducing [layout thrash](https://developers.google.com/web/fundamentals/performance/rendering/avoid-large-complex-layouts-and-layout-thrashing). When reading computed styles or layout information, `useLayoutEffect` is more appropriate.
-
 ### `useLayoutEffect`
 
-The signature is identical to `useEffect`, but it fires synchronously *after* all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
+The signature is identical to `useEffect`, but it fires synchronously after all DOM mutations. Use this to read layout from the DOM and synchronously re-render. Updates scheduled inside `useLayoutEffect` will be flushed synchronously, before the browser has a chance to paint.
 
 Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 
 > Tip
 >
 > If you're migrating code from a class component, `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`, so if you're unsure of which effect Hook to use, it's probably the least risky.
+
+### `useDebugValue`
+
+```js
+useDebugValue(value)
+```
+
+`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+
+For example, consider the `useFriendStatus` custom hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+
+```js{6-8}
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  // ...
+
+  // Show a label in DevTools next to this hook
+  // e.g. "FriendStatus: Online"
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+
+  return isOnline;
+}
+```
+
+> Tip
+>
+> We don't recommend adding debug values to every custom hook. It's most valuable for custom hooks that are part of shared libraries.
+
+#### Defer formatting debug values
+
+In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a hook is actually inspected.
+
+For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the hooks is inspected. It receives the debug value as a parameter and should return a formatted display value.
+
+For example a custom hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+```js
+useDebugValue(date, date => date.toDateString());
+```

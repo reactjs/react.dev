@@ -5,7 +5,7 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
 
 This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
 
@@ -41,6 +41,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [Can I skip an effect on updates?](#can-i-skip-an-effect-on-updates)
   * [How do I implement shouldComponentUpdate?](#how-do-i-implement-shouldcomponentupdate)
   * [How to memoize calculations?](#how-to-memoize-calculations)
+  * [How to create expensive objects lazily?](#how-to-create-expensive-objects-lazily)
   * [Are Hooks slow because of creating functions in render?](#are-hooks-slow-because-of-creating-functions-in-render)
   * [How to avoid passing callbacks down?](#how-to-avoid-passing-callbacks-down)
   * [How to read an often-changing value from useCallback?](#how-to-read-an-often-changing-value-from-usecallback)
@@ -155,7 +156,7 @@ If we just wanted to set an interval, we wouldn't need the ref (`id` could be lo
   // ...
 ```
 
-Conceptually, you can think of refs as similar to instance variables in a class. Avoid setting refs during rendering -- this can lead to surprising behavior. Instead, only modify refs in event handlers and effects.
+Conceptually, you can think of refs as similar to instance variables in a class. Unless you're doing [lazy initialization](#how-to-create-expensive-objects-lazily), avoid setting refs during rendering -- this can lead to surprising behavior. Instead, typically you want to modify refs in event handlers and effects.
 
 ### Should I use one or many state variables?
 
@@ -281,7 +282,7 @@ See also [the recommended pattern for derived state](#how-do-i-implement-getderi
 
 ### How do I implement `getDerivedStateFromProps`?
 
-While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), for the rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
+While you probably [don't need it](/blog/2018/06/07/you-probably-dont-need-derived-state.html), in rare cases that you do (such as implementing a `<Transition>` component), you can update the state right during rendering. React will re-run the component with updated state immediately after exiting the first render so it wouldn't be expensive.
 
 Here, we store the previous value of the `row` prop in a state variable so that we can compare:
 
@@ -304,7 +305,7 @@ This might look strange at first, but an update during rendering is exactly what
 
 ### Can I make a ref to a function component?
 
-While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeMethods`](/docs/hooks-reference.html#useimperativemethods) Hook.
+While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
 
 ### What does `const [thing, setThing] = useState()` mean?
 
@@ -342,7 +343,11 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 
 This code calls `computeExpensiveValue(a, b)`. But if the inputs `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
 
-Conveniently, this also lets you skip an expensive re-render of a child:
+Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+
+**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance. (For rare cases when a value must *never* be recomputed, you can [lazily initialize](#how-to-create-expensive-objects-lazily) a ref.)
+
+Conveniently, `useMemo` also lets you skip an expensive re-render of a child:
 
 ```js
 function Parent({ a, b }) {
@@ -360,6 +365,67 @@ function Parent({ a, b }) {
 ```
 
 Note that this approach won't work in a loop because Hook calls [can't](/docs/hooks-rules.html) be placed inside loops. But you can extract a separate component for the list item, and call `useMemo` there.
+
+### How to create expensive objects lazily?
+
+`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes need to be sure an object is only created once.
+
+**The first common use case is when creating the initial state is expensive:**
+
+```js
+function Table(props) {
+  // ⚠️ createRows() is called on every render
+  const [rows, setRows] = useState(createRows(props.count));
+  // ...
+}
+```
+
+To avoid re-creating the ignored initial state, we can pass a **function** to `useState`:
+
+```js
+function Table(props) {
+  // ✅ createRows() is only called once
+  const [rows, setRows] = useState(() => createRows(props.count));
+  // ...
+}
+```
+
+React will only call this function during the first render. See the [`useState` API reference](/docs/hooks-reference.html#usestate).
+
+**You might also occasionally want to avoid re-creating the `useRef()` initial value.** For example, maybe you want to ensure some imperative class instance only gets created once:
+
+```js
+function Image(props) {
+  // ⚠️ IntersectionObserver is created on every render
+  const ref = useRef(new IntersectionObserver(onIntersect));
+  // ...
+}
+```
+
+`useRef` **does not** accept a special function overload like `useState`. Instead, you can write your own function that creates and sets it lazily:
+
+```js
+function Image(props) {
+  const ref = useRef(null);
+
+  // ✅ IntersectionObserver is created lazily once
+  function getObserver() {
+    let observer = ref.current;
+    if (observer !== null) {
+      return observer;
+    }
+    let newObserver = new IntersectionObserver(onIntersect);
+    ref.current = newObserver;
+    return newObserver;
+  }
+
+  // When you need it, call getObserver()
+  // ...
+}
+```
+
+This avoids creating an expensive object until it's truly needed for the first time. If you use Flow or TypeScript, you can also give `getObserver()` a non-nullable type for convenience.
+
 
 ### Are Hooks slow because of creating functions in render?
 
@@ -407,7 +473,7 @@ function TodosApp() {
 }
 ```
 
-Any child in the tree inside `TodosApp` can read use the `dispatch` function to pass actions up to `TodosApp`:
+Any child in the tree inside `TodosApp` can use the `dispatch` function to pass actions up to `TodosApp`:
 
 ```js{2,3}
 function DeepChild(props) {
@@ -443,7 +509,7 @@ function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
 
-  useMutationEffect(() => {
+  useLayoutEffect(() => {
     textRef.current = text; // Write it to the ref
   });
 
@@ -484,7 +550,7 @@ function useEventCallback(fn, dependencies) {
     throw new Error('Cannot call an event handler while rendering.');
   });
 
-  useMutationEffect(() => {
+  useLayoutEffect(() => {
     ref.current = fn;
   }, [fn, ...dependencies]);
 
@@ -496,6 +562,7 @@ function useEventCallback(fn, dependencies) {
 ```
 
 In either case, we **don't recommend this pattern** and only show it here for completeness. Instead, it is preferable to [avoid passing callbacks deep down](#how-to-avoid-passing-callbacks-down).
+
 
 ## Under the Hood
 

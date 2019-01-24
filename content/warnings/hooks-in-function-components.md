@@ -8,7 +8,7 @@ You are probably here because you got the following error message:
 
 > Hooks can only be called inside the body of a function component.
 
-This usually means that you've tried to call one on React's [Hooks](/hooks-intro.html) from outside the body of a [function component](/docs/components-and-props.html#function-and-class-components). This breaks the [Rules of Hooks](/docs/hooks-rules.html). Some examples of code that could trigger this error -
+This usually means that you've tried to call one on React's [Hooks](/docs/hooks-intro.html) from outside the body of a [function component](/docs/components-and-props.html#function-and-class-components). This breaks the [Rules of Hooks](/docs/hooks-rules.html). Some examples of code that could trigger this error -
 
 ### Calling a hook inside an event handler:
 

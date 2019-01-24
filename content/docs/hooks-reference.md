@@ -6,7 +6,7 @@ prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.0.
+*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
 
 This page describes the APIs for the built-in Hooks in React.
 
@@ -23,6 +23,7 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useRef`](#useref)
   - [`useImperativeHandle`](#useimperativehandle)
   - [`useLayoutEffect`](#uselayouteffect)
+  - [`useDebugValue`](#usedebugvalue)
 
 ## Basic Hooks
 
@@ -287,7 +288,11 @@ Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) value.
 
 Pass a "create" function and an array of inputs. `useMemo` will only recompute the memoized value when one of the inputs has changed. This optimization helps to avoid expensive calculations on every render.
 
+Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
+
 If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
+
+**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
 
 > Note
 >
@@ -353,3 +358,42 @@ Prefer the standard `useEffect` when possible to avoid blocking visual updates.
 > Tip
 >
 > If you're migrating code from a class component, `useLayoutEffect` fires in the same phase as `componentDidMount` and `componentDidUpdate`, so if you're unsure of which effect Hook to use, it's probably the least risky.
+
+### `useDebugValue`
+
+```js
+useDebugValue(value)
+```
+
+`useDebugValue` can be used to display a label for custom hooks in React DevTools.
+
+For example, consider the `useFriendStatus` custom hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+
+```js{6-8}
+function useFriendStatus(friendID) {
+  const [isOnline, setIsOnline] = useState(null);
+
+  // ...
+
+  // Show a label in DevTools next to this hook
+  // e.g. "FriendStatus: Online"
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+
+  return isOnline;
+}
+```
+
+> Tip
+>
+> We don't recommend adding debug values to every custom hook. It's most valuable for custom hooks that are part of shared libraries.
+
+#### Defer formatting debug values
+
+In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a hook is actually inspected.
+
+For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the hooks is inspected. It receives the debug value as a parameter and should return a formatted display value.
+
+For example a custom hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+```js
+useDebugValue(date, date => date.toDateString());
+```

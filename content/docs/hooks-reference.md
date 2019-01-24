@@ -6,7 +6,7 @@ prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
+*Hooks* let you use state and other React features without writing a class.
 
 This page describes the APIs for the built-in Hooks in React.
 
@@ -367,7 +367,7 @@ useDebugValue(value)
 
 `useDebugValue` can be used to display a label for custom hooks in React DevTools.
 
-For example, consider the `useFriendStatus` custom hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
+For example, consider the `useFriendStatus` custom Hook described in ["Building Your Own Hooks"](/docs/hooks-custom.html):
 
 ```js{6-8}
 function useFriendStatus(friendID) {
@@ -375,7 +375,7 @@ function useFriendStatus(friendID) {
 
   // ...
 
-  // Show a label in DevTools next to this hook
+  // Show a label in DevTools next to this Hook
   // e.g. "FriendStatus: Online"
   useDebugValue(isOnline ? 'Online' : 'Offline');
 
@@ -385,15 +385,16 @@ function useFriendStatus(friendID) {
 
 > Tip
 >
-> We don't recommend adding debug values to every custom hook. It's most valuable for custom hooks that are part of shared libraries.
+> We don't recommend adding debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries.
 
 #### Defer formatting debug values
 
-In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a hook is actually inspected.
+In some cases formatting a value for display might be an expensive operation. It's also unnecessary unless a Hook is actually inspected.
 
-For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the hooks is inspected. It receives the debug value as a parameter and should return a formatted display value.
+For this reason `useDebugValue` accepts a formatting function as an optional second parameter. This function is only called if the Hooks are inspected. It receives the debug value as a parameter and should return a formatted display value.
 
-For example a custom hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+For example a custom Hook that returned a `Date` value could avoid calling the `toDateString` function unnecessarily by passing the following formatter:
+
 ```js
 useDebugValue(date, date => date.toDateString());
 ```

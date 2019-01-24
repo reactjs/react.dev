@@ -104,7 +104,7 @@
       title: JS Environment Requirements
     - id: glossary
       title: Glossary
-- title: Hooks (Preview)
+- title: Hooks (New)
   isOrdered: true
   items:
       - id: hooks-intro

@@ -169,7 +169,7 @@ The `contextType` property on a class can be assigned a Context object created b
 >
 > If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use a **static** class field to initialize your `contextType`.
 >
-> When use `Class.contextType`, `React.createContext` should be call in separate files, and not in same file as `Provider/parent`,that will cause circular dependency problem.
+> Context creation should be Moved in a separated file, that both the parent component (that holds the Provider), and the child component (that consumes) imports from. This can avoid circular reference problem.([Check out this example on CodeSandBox.](https://codesandbox.io/s/6x0w7vyozw))
 
 
 ```js

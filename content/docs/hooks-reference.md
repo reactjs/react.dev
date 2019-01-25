@@ -6,7 +6,7 @@ prev: hooks-custom.html
 next: hooks-faq.html
 ---
 
-*Hooks* let you use state and other React features without writing a class.
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
 This page describes the APIs for the built-in Hooks in React.
 

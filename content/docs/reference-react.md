@@ -65,6 +65,26 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
+### Hooks
+
+Hooks are a new feature available in React 16.8 and higher. They let you use state and other React features without writing a class.
+
+They have a [separate](/docs/hooks-intro.html) documentation section and an API reference page:
+
+- [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
+  - [`useState`](/docs/hooks-reference.html#usestate)
+  - [`useEffect`](/docs/hooks-reference.html#useeffect)
+  - [`useContext`](/docs/hooks-reference.html#usecontext)
+- [Additional Hooks](/docs/hooks-reference.html#additional-hooks)
+  - [`useReducer`](/docs/hooks-reference.html#usereducer)
+  - [`useCallback`](/docs/hooks-reference.html#usecallback)
+  - [`useMemo`](/docs/hooks-reference.html#usememo)
+  - [`useRef`](/docs/hooks-reference.html#useref)
+  - [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle)
+  - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
+  - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
+
+
 * * *
 
 ## Reference

@@ -75,10 +75,10 @@ For the most efficient Browserify production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify uglify-js uglifyify 
+npm install --save-dev envify uglify-js uglifyify
 
 # If you use Yarn
-yarn add --dev envify uglify-js uglifyify 
+yarn add --dev envify uglify-js uglifyify
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
@@ -109,10 +109,10 @@ For the most efficient Rollup production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
 
 # If you use Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify
 ```
 
 To create a production build, make sure that you add these plugins **(the order matters)**:
@@ -144,7 +144,7 @@ Remember that you only need to do this for production builds. You shouldn't appl
 >If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
 >This section is only relevant if you configure webpack directly.
 
-For the most efficient webpack production build, make sure to include these plugins in your production configuration:
+For the most efficient webpack version 3 and below production build, make sure to include these plugins in your production configuration:
 
 ```js
 new webpack.DefinePlugin({
@@ -153,9 +153,24 @@ new webpack.DefinePlugin({
 new webpack.optimize.UglifyJsPlugin()
 ```
 
-You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production-build/).
+Webpack version 4 applies these optimizations by default when running in `production` mode, which can be enabled via the following methods:
 
-Remember that you only need to do this for production builds. You shouldn't apply `UglifyJsPlugin` or `DefinePlugin` with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+```bash
+## CLI
+webpack -p
+```
+
+```js
+// webpack.config.production.js
+module.exports = {
+  ...,
+  mode : 'production'
+}
+```
+
+Remember to only use these listed optimization methods for production-level builds. `production` mode in webpack version 4 automatically applies the listed optimizations for webpack version 3 and below. As such, `UglifyJsPlugin` (`TerserPlugin` by default for webpack version 4) or `DefinePlugin` with a `'production'` value will hide useful React warnings, and make the builds much slower.
+
+You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production-build/).
 
 ## Profiling Components with the Chrome Performance Tab
 

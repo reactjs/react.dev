@@ -66,3 +66,58 @@ You can think of the shallowRenderer as a "place" to render the component you're
 After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
 
 You can then begin to assert facts about the output.
+
+## Shallow Renderer Testing Example
+
+In this example, let's test the code using shallow renderer when creating a new react app. 
+
+Follow the guide lines on creating a new react app ['(create-react-app) here.'](https://reactjs.org/docs/create-a-new-react-app.html)
+
+On creating the app, code has already been provided in the files like App.js and App.test.js. We can test this code using Jest and Enzyme. ['Jest'](https://jestjs.io/docs/en/tutorial-react) is a JavaScript unit testing framework, used by Facebook to test services and React applications. ['Enzyme'](https://airbnb.io/enzyme/) is a JavaScript Testing utility for React that makes it easier to assert, manipulate, and traverse your React Components’ output. 
+
+Let's rewrite the code in App.test.js using shallow renderer. 
+
+```javascript
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+import { shallow } from 'enzyme';
+
+
+it('shallow render without crashing', () => {
+  const wrapper = shallow(<App />);
+  const learn = <a
+  className="App-link"
+  href="https://reactjs.org"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Learn React
+</a>;
+
+  expect(wrapper.contains(learn)).toEqual(true);
+});
+
+```
+
+Run 'npm test' after, to get check if testing was successful. 
+
+If successful, it should look like this:
+
+```java
+ PASS  src/App.test.js
+  √ shallow render without crashing (14ms)
+
+Test Suites: 1 passed, 1 total
+Tests:       1 passed, 1 total
+Snapshots:   0 total
+Time:        5.552s
+Ran all test suites.
+
+```
+
+This is a simple testing of Shallow Renderer that shows, if you change something in a child component it won’t change shallow output of your component or if a bug was introduced to a child component, it won’t break your component under test.
+
+

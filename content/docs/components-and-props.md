@@ -122,6 +122,13 @@ ReactDOM.render(
 
 Typically, new React apps have a single `App` component at the very top. However, if you integrate React into an existing app, you might start bottom-up with a small component like `Button` and gradually work your way to the top of the view hierarchy.
 
+
+>**Notice:** How `<Welcome>` tag is wrapped in a `<div>`
+>
+>In React, You can only return a single node, so in case you want to return 2 or more elements you can wrap them in a parent element. It can be any tag, not just div.
+>
+>You can also use [`React.Fragments`](/docs/react-api.html#reactfragment) for this
+
 ## Extracting Components
 
 Don't be afraid to split components into smaller components.

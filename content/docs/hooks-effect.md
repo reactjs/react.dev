@@ -333,7 +333,7 @@ function FriendStatusWithCounter(props) {
 
 ### Explanation: Why Effects Run on Each Update
 
-If you're used to classes, you might be wondering why the effect cleanup phase happens after every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
+If you're used to classes, you might be wondering why the effect cleanup phase happens before every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
 
 [Earlier on this page](#example-using-classes-1), we introduced an example `FriendStatus` component that displays whether a friend is online or not. Our class reads `friend.id` from `this.props`, subscribes to the friend status after the component mounts, and unsubscribes during unmounting:
 

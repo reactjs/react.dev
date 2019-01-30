@@ -30,6 +30,7 @@ class Section extends React.Component {
           aria-expanded={isActive}
           aria-controls={uid}
           css={{
+            outline: 'none',
             cursor: 'pointer',
             backgroundColor: 'transparent',
             border: 0,

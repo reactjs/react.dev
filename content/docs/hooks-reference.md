@@ -165,6 +165,27 @@ Accepts a context object (the value returned from `React.createContext`) and ret
 
 When the provider updates, this Hook will trigger a rerender with the latest context value.
 
+#### The provider
+
+There is no hook for `Context.Provider` as [this would break composability](https://overreacted.io/why-isnt-x-a-hook/). Continue using the provider in your JSX [as you would in any class component](/docs/context.html#contextprovider):
+
+```js
+function ContextProvider() {
+  const [value, setValue] = useState('');
+  
+  //Code updating Context value
+
+  return (
+      <Context.Provider value={value}>
+          { /* children */ }
+      </Context.Provider>
+  );
+}
+```
+>Tip
+>
+>The `useContext` hook cannot be used in the same component declaring the related provider. Should there be [a good reason](/docs/context.html#before-you-use-context) to do this, extract the view requiring `useContext` to a new component. 
+
 ## Additional Hooks
 
 The following Hooks are either variants of the basic ones from the previous section, or only needed for specific edge cases. Don't stress about learning them up front.

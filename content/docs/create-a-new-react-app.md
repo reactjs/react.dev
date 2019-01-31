@@ -79,6 +79,8 @@ The following toolchains offer more flexiblity and choice. We recommend them to 
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 
+- **[React Static](https://github.com/nozzle/react-static)** is a fast and lightweight progressive static site generator for React. With a developer experience similar to Create React App, it also supports plugins, automatic code-splitting, pre-rendered static files, and near instant navigation
+
 ## Creating a Toolchain from Scratch
 
 A JavaScript build toolchain typically consists of:

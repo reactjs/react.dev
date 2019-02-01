@@ -87,7 +87,7 @@ You can use the [`eslint-plugin-react-hooks` plugin](https://www.npmjs.com/packa
 
 ## Duplicate React
 
-In order for Hooks to work, `react` import from your application code needs to resolve to the same module as the `react` import from inside the `react-dom` package.
+In order for Hooks to work, the `react` import from your application code needs to resolve to the same module as the `react` import from inside the `react-dom` package.
 
 If these `react` imports resolve to two different exports objects, you will see this warning. This may happen if you **accidentally end up with two copies** of the `react` package.
 

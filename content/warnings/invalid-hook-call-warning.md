@@ -29,15 +29,7 @@ You can only call Hooks **while React is rendering a function component**:
 
 **Learn more about this in the [Rules of Hooks](/docs/hooks-rules.html).**
 
-To avoid confusion, it’s **not** supported to call Hooks in other cases:
-
-* 🔴 Do not call Hooks in class components.
-* 🔴 Do not call in event handlers.
-* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
-
-If you break these rules, you might see this error.
-
-```js{2-3,8-9,15-16,23-24,33-34}
+```js{2-3,8-9}
 function Counter() {
   // ✅ Good: top-level in a function component
   const [count, setCount] = useState(0);
@@ -49,7 +41,17 @@ function useWindowWidth() {
   const [width, setWidth] = useState(window.innerWidth);
   // ...
 }
+```
 
+To avoid confusion, it’s **not** supported to call Hooks in other cases:
+
+* 🔴 Do not call Hooks in class components.
+* 🔴 Do not call in event handlers.
+* 🔴 Do not call Hooks inside functions passed to `useMemo`, `useReducer`, or `useEffect`.
+
+If you break these rules, you might see this error.
+
+```js{3-4,11-12,20-21}
 function Bad1() {
   function handleClick() {
     // 🔴 Bad: inside an event handler (to fix, move it outside!)
@@ -66,7 +68,6 @@ function Bad2() {
   });
   // ...
 }
-
 
 class Bad3 extends React.Component {
   render() {

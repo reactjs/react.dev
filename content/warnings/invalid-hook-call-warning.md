@@ -115,7 +115,7 @@ This problem can also come up when you use `npm link` or an equivalent. In that 
 
 >Note
 >
->In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if you call `ReactDOM.render()` for a component with a different `require('react')` than seen by `react-dom`.
+>In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the component and the `react-dom` copy it was rendered with.
 
 ## Other Causes
 

@@ -20,7 +20,7 @@ The following WCAG checklists provide an overview:
 
 - [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
 - [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
-- [Checklist from The A11Y Project](http://a11yproject.com/checklist.html)
+- [Checklist from The A11Y Project](https://a11yproject.com/checklist.html)
 
 ### WAI-ARIA
 
@@ -412,7 +412,7 @@ Ensure that all readable text on your website has sufficient color contrast to r
 
 - [WCAG - Understanding the Color Contrast Requirement](https://www.w3.org/TR/UNDERSTANDING-WCAG20/visual-audio-contrast-contrast.html)
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
-- [A11yProject - What is Color Contrast](http://a11yproject.com/posts/what-is-color-contrast/)
+- [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
 
 It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](http://jxnblk.com/colorable/).
 

@@ -155,7 +155,7 @@ There are multiple injection points in the codebase. In the future, we intend to
 
 ### Multiple Packages
 
-React is a [monorepo](http://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
+React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
 
 ### React Core
 

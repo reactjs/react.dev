@@ -158,7 +158,7 @@ Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarca
 
 Read more about the use of these elements to enhance accessibility here:
 
-- [Accessible Landmarks](http://www.scottohara.me/blog/2018/03/03/landmarks.html)
+- [Accessible Landmarks](https://www.scottohara.me/blog/2018/03/03/landmarks.html)
 
 ### Programmatically managing focus
 
@@ -387,7 +387,7 @@ These are toolboxes filled with HTML attributes that are fully supported in JSX 
 Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
 
 - [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](http://heydonworks.com/practical_aria_examples/)
+- [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)
 - [Inclusive Components](https://inclusive-components.design/)
 
 ## Other Points for Consideration
@@ -414,7 +414,7 @@ Ensure that all readable text on your website has sufficient color contrast to r
 - [Everything About Color Contrast And Why You Should Rethink It](https://www.smashingmagazine.com/2014/10/color-contrast-tips-and-tools-for-accessibility/)
 - [A11yProject - What is Color Contrast](https://a11yproject.com/posts/what-is-color-contrast/)
 
-It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](http://jxnblk.com/colorable/).
+It can be tedious to manually calculate the proper color combinations for all cases in your website so instead, you can [calculate an entire accessible color palette with Colorable](https://jxnblk.com/colorable/).
 
 Both the aXe and WAVE tools mentioned below also include color contrast tests and will report on contrast errors.
 
@@ -471,7 +471,7 @@ You can also use the [react-axe](https://github.com/dylanb/react-axe) module to 
 
 #### WebAIM WAVE
 
-The [Web Accessibility Evaluation Tool](http://wave.webaim.org/extension/) is another accessibility browser extension.
+The [Web Accessibility Evaluation Tool](https://wave.webaim.org/extension/) is another accessibility browser extension.
 
 #### Accessibility inspectors and the Accessibility Tree
 
@@ -513,7 +513,7 @@ Refer to the following guides on how activate and use VoiceOver:
 
 #### JAWS in Internet Explorer
 
-[Job Access With Speech](http://www.freedomscientific.com/Products/Blindness/JAWS) or JAWS, is a prolifically used screen reader on Windows.
+[Job Access With Speech](https://www.freedomscientific.com/Products/Blindness/JAWS) or JAWS, is a prolifically used screen reader on Windows.
 
 Refer to the following guides on how to best use JAWS:
 
@@ -524,9 +524,9 @@ Refer to the following guides on how to best use JAWS:
 
 #### ChromeVox in Google Chrome
 
-[ChromeVox](http://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
+[ChromeVox](https://www.chromevox.com/) is an integrated screen reader on Chromebooks and is available [as an extension](https://chrome.google.com/webstore/detail/chromevox/kgejglhpjiefppelpmljglcjbhoiplfn?hl=en) for Google Chrome.
 
 Refer to the following guides on how best to use ChromeVox:
 
 - [Google Chromebook Help - Use the Built-in Screen Reader](https://support.google.com/chromebook/answer/7031755?hl=en)
-- [ChromeVox Classic Keyboard Shortcuts Reference](http://www.chromevox.com/keyboard_shortcuts.html)
+- [ChromeVox Classic Keyboard Shortcuts Reference](https://www.chromevox.com/keyboard_shortcuts.html)

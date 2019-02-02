@@ -148,7 +148,7 @@ Optimizing for search is also important because of our reliance on [codemods](ht
 
 [JSX](/docs/introducing-jsx.html) plays a similar role. While it is not required with React, we use it extensively at Facebook both for aesthetic and pragmatic reasons.
 
-In our codebase, JSX provides an unambiguous hint to the tools that they are dealing with a React element tree. This makes it possible to add build-time optimizations such as [hoisting constant elements](http://babeljs.io/docs/plugins/transform-react-constant-elements/), safely lint and codemod internal component usage, and [include JSX source location](https://github.com/facebook/react/pull/6771) into the warnings.
+In our codebase, JSX provides an unambiguous hint to the tools that they are dealing with a React element tree. This makes it possible to add build-time optimizations such as [hoisting constant elements](https://babeljs.io/docs/plugins/transform-react-constant-elements/), safely lint and codemod internal component usage, and [include JSX source location](https://github.com/facebook/react/pull/6771) into the warnings.
 
 ### Dogfooding
 

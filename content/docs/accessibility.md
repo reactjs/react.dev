@@ -19,7 +19,7 @@ The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) pr
 The following WCAG checklists provide an overview:
 
 - [WCAG checklist from Wuhcag](https://www.wuhcag.com/wcag-checklist/)
-- [WCAG checklist from WebAIM](http://webaim.org/standards/wcag/checklist)
+- [WCAG checklist from WebAIM](https://webaim.org/standards/wcag/checklist)
 - [Checklist from The A11Y Project](http://a11yproject.com/checklist.html)
 
 ### WAI-ARIA
@@ -114,7 +114,7 @@ Every HTML form control, such as `<input>` and `<textarea>`, needs to be labeled
 The following resources show us how to do this:
 
 - [The W3C shows us how to label elements](https://www.w3.org/WAI/tutorials/forms/labels/)
-- [WebAIM shows us how to label elements](http://webaim.org/techniques/forms/controls)
+- [WebAIM shows us how to label elements](https://webaim.org/techniques/forms/controls)
 - [The Paciello Group explains accessible names](https://www.paciellogroup.com/blog/2017/04/what-is-an-accessible-name/)
 
 Although these standard HTML practices can be directly used in React, note that the `for` attribute is written as `htmlFor` in JSX:
@@ -129,13 +129,13 @@ Although these standard HTML practices can be directly used in React, note that 
 Error situations need to be understood by all users. The following link shows us how to expose error texts to screen readers as well:
 
 - [The W3C demonstrates user notifications](https://www.w3.org/WAI/tutorials/forms/notifications/)
-- [WebAIM looks at form validation](http://webaim.org/techniques/formvalidation/)
+- [WebAIM looks at form validation](https://webaim.org/techniques/formvalidation/)
 
 ## Focus Control
 
 Ensure that your web application can be fully operated with the keyboard only:
 
-- [WebAIM talks about keyboard accessibility](http://webaim.org/techniques/keyboard/)
+- [WebAIM talks about keyboard accessibility](https://webaim.org/techniques/keyboard/)
 
 ### Keyboard focus and focus outline
 
@@ -152,7 +152,7 @@ Provide a mechanism to allow users to skip past navigation sections in your appl
 Skiplinks or Skip Navigation Links are hidden navigation links that only become visible when keyboard users interact with the page. They are very easy to implement with
 internal page anchors and some styling:
 
-- [WebAIM - Skip Navigation Links](http://webaim.org/techniques/skipnav/)
+- [WebAIM - Skip Navigation Links](https://webaim.org/techniques/skipnav/)
 
 Also use landmark elements and roles, such as `<main>` and `<aside>`, to demarcate page regions as assistive technology allow the user to quickly navigate to these sections.
 
@@ -396,7 +396,7 @@ Each type of widget has a specific design pattern and is expected to function in
 
 Indicate the human language of page texts as screen reader software uses this to select the correct voice settings:
 
-- [WebAIM - Document Language](http://webaim.org/techniques/screenreader/#language)
+- [WebAIM - Document Language](https://webaim.org/techniques/screenreader/#language)
 
 ### Setting the document title
 
@@ -420,7 +420,7 @@ Both the aXe and WAVE tools mentioned below also include color contrast tests an
 
 If you want to extend your contrast testing abilities you can use these tools:
 
-- [WebAIM - Color Contrast Checker](http://webaim.org/resources/contrastchecker/)
+- [WebAIM - Color Contrast Checker](https://webaim.org/resources/contrastchecker/)
 - [The Paciello Group - Color Contrast Analyzer](https://www.paciellogroup.com/resources/contrastanalyser/)
 
 ## Development and Testing Tools
@@ -498,7 +498,7 @@ Please note that browser / screen reader combinations matter. It is recommended 
 
 Refer to the following guides on how to best use NVDA:
 
-- [WebAIM - Using NVDA to Evaluate Web Accessibility](http://webaim.org/articles/nvda/)
+- [WebAIM - Using NVDA to Evaluate Web Accessibility](https://webaim.org/articles/nvda/)
 - [Deque - NVDA Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/nvda-keyboard-shortcuts)
 
 #### VoiceOver in Safari
@@ -507,7 +507,7 @@ VoiceOver is an integrated screen reader on Apple devices.
 
 Refer to the following guides on how activate and use VoiceOver:
 
-- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](http://webaim.org/articles/voiceover/)
+- [WebAIM - Using VoiceOver to Evaluate Web Accessibility](https://webaim.org/articles/voiceover/)
 - [Deque - VoiceOver for OS X Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-keyboard-shortcuts)
 - [Deque - VoiceOver for iOS Shortcuts](https://dequeuniversity.com/screenreaders/voiceover-ios-shortcuts)
 
@@ -517,7 +517,7 @@ Refer to the following guides on how activate and use VoiceOver:
 
 Refer to the following guides on how to best use JAWS:
 
-- [WebAIM - Using JAWS to Evaluate Web Accessibility](http://webaim.org/articles/jaws/)
+- [WebAIM - Using JAWS to Evaluate Web Accessibility](https://webaim.org/articles/jaws/)
 - [Deque - JAWS Keyboard Shortcuts](https://dequeuniversity.com/screenreaders/jaws-keyboard-shortcuts)
 
 ### Other Screen Readers

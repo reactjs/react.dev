@@ -151,6 +151,20 @@ This will automatically load the bundle containing the `OtherComponent` when thi
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
 
+When using dynamic imports, such as those within `React.lazy`, ["magic comments"](https://webpack.js.org/api/module-methods/#magic-comments) can be used to name the imported bundle. The following snippet will produce a bundle named `other-component` instead of the default `0.bundle.js`.
+
+```js
+const OtherComponent = React.lazy(() => import(/* webpackChunkName: "other-component" */ './OtherComponent'));
+
+function MyComponent() {
+  return (
+    <div>
+      <OtherComponent />
+    </div>
+  );
+}
+```
+
 ### Suspense
 
 If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.

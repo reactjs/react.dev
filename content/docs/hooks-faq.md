@@ -37,6 +37,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [Can I run an effect only on updates?](#can-i-run-an-effect-only-on-updates)
   * [How to get the previous props or state?](#how-to-get-the-previous-props-or-state)
   * [How do I implement getDerivedStateFromProps?](#how-do-i-implement-getderivedstatefromprops)
+  * [Is there something like forceUpdate?](#is-there-something-like-forceupdate)
   * [Can I make a ref to a function component?](#can-i-make-a-ref-to-a-function-component)
   * [What does const [thing, setThing] = useState() mean?](#what-does-const-thing-setthing--usestate-mean)
 * **[Performance Optimizations](#performance-optimizations)**
@@ -321,6 +322,22 @@ function ScrollView({row}) {
 ```
 
 This might look strange at first, but an update during rendering is exactly what `getDerivedStateFromProps` has always been like conceptually.
+
+### Is there something like forceUpdate?
+
+Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-reference.html#bailing-out-of-a-state-update) if the next value is the same as the previous one. Mutating state in place and calling `setState` will not cause a re-render.
+
+Normally, you shouldn't mutate local state in React. However, as an escape hatch, you can use an incrementing counter to force a re-render even if the state has not changed:
+
+```js
+  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+
+  function handleClick() {
+    forceUpdate();
+  }
+```
+
+Try to avoid this pattern if possible.
 
 ### Can I make a ref to a function component?
 

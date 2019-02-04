@@ -89,6 +89,10 @@ const [state, setState] = useState(() => {
 });
 ```
 
+#### Bailing out of a state update
+
+If you update a State Hook to the same value as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
+
 ### `useEffect`
 
 ```js
@@ -172,20 +176,18 @@ The following Hooks are either variants of the basic ones from the previous sect
 ### `useReducer`
 
 ```js
-const [state, dispatch] = useReducer(reducer, initialState);
+const [state, dispatch] = useReducer(reducer, initialArg, init);
 ```
 
 An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
 
+`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+
 Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
 
 ```js
-const initialState = {count: 0};
-
 function reducer(state, action) {
   switch (action.type) {
-    case 'reset':
-      return initialState;
     case 'increment':
       return {count: state.count + 1};
     case 'decrement':
@@ -202,9 +204,6 @@ function Counter({initialCount}) {
   return (
     <>
       Count: {state.count}
-      <button onClick={() => dispatch({type: 'reset'})}>
-        Reset
-      </button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
     </>
@@ -212,21 +211,52 @@ function Counter({initialCount}) {
 }
 ```
 
+#### Specifying the initial state
+
+There’s a few different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
+
+```js{3}
+  const [state, dispatch] = useReducer(
+    reducer,
+    {count: initialCount}
+  );
+```
+
+>Note
+>
+>React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can write `state = initialState` both in the reducer and inside the `useReducer` destructuring assignment, but it's not encouraged.
+
 #### Lazy initialization
 
-`useReducer` accepts an optional third argument, `initialAction`. If provided, the initial action is applied during the initial render. This is useful for computing an initial state that includes values passed via props:
+If calculating the initial state is expensive, you can initialize it lazily. In that case, you can skip the second argument (and pass `undefined`). The third `useReducer` argument is an optional `init` function that you can provide to calculate the initial value once:
 
-```js
-const initialState = {count: 0};
+```js{3-4}
+  const [state, dispatch] = useReducer(
+    reducer,
+    undefined,
+    () => ({count: initialCount})
+  );
+```
+
+#### Lazy initialization with a transform
+
+For the most flexibility, you can specify *both* the second `initialArg` and the third `init` function arguments. In that case, the initial state will be set to `init(initialArg)`.
+
+This is handy if you want to extract the lazy initialization logic outside your reducer:
+
+```js{1-3,11-12,21,26}
+function init(initialCount) {
+  return {count: initialCount};
+}
 
 function reducer(state, action) {
   switch (action.type) {
-    case 'reset':
-      return {count: action.payload};
     case 'increment':
       return {count: state.count + 1};
     case 'decrement':
       return {count: state.count - 1};
+    case 'reset':
+      return init(action.payload);
     default:
       // A reducer must always return a valid state.
       // Alternatively you can throw an error if an invalid action is dispatched.
@@ -235,12 +265,7 @@ function reducer(state, action) {
 }
 
 function Counter({initialCount}) {
-  const [state, dispatch] = useReducer(
-    reducer,
-    initialState,
-    {type: 'reset', payload: initialCount},
-  );
-
+  const [state, dispatch] = useReducer(reducer, initialCount, init);
   return (
     <>
       Count: {state.count}
@@ -255,7 +280,9 @@ function Counter({initialCount}) {
 }
 ```
 
-`useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values. It also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
+#### Bailing out of a dispatch
+
+If you return the same value from a Reducer Hook as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)
 
 ### `useCallback`
 

@@ -639,4 +639,4 @@ If some value isn't used for rendering or data flow (for example, a timer ID), y
 
 See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
 
-Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.
+Never mutate `this.state` directly (apart from inside the [`constructor`](#constructor)), as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.

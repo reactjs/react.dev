@@ -153,7 +153,7 @@ afterEach(() => {
 });
 
 it('can render and update a counter', () => {
-  // Test first render and componentDidMount
+  // Test first render and effect
   act(() => {
     ReactDOM.render(<Counter />, container);
   });
@@ -162,7 +162,7 @@ it('can render and update a counter', () => {
   expect(label.textContent).toBe('You clicked 0 times');
   expect(document.title).toBe('You clicked 0 times');
 
-  // Test second render and componentDidUpdate
+  // Test second render and effect
   act(() => {
     button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
   });

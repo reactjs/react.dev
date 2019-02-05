@@ -6,12 +6,12 @@ next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
-*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
 The [previous page](/docs/hooks-intro.html) introduced Hooks with this example:
 
 ```js{4-5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
@@ -91,7 +91,7 @@ Hooks **don't** work inside classes. But you can use them instead of writing cla
 Our new example starts by importing the `useState` Hook from React:
 
 ```js{1}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // ...
@@ -123,7 +123,7 @@ class Example extends React.Component {
 In a function component, we have no `this`, so we can't assign or read `this.state`. Instead, we call the `useState` Hook directly inside our component:
 
 ```js{4,5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
@@ -139,7 +139,7 @@ function Example() {
 Now that we know what the `useState` Hook does, our example should make more sense:
 
 ```js{4,5}
-import { useState } from 'react';
+import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
@@ -196,7 +196,7 @@ Let's now **recap what we learned line by line** and check our understanding.
   But if GitHub got away with it for years we can cheat.
 -->
 ```js{1,4,9}
- 1:  import { useState } from 'react';
+ 1:  import React, { useState } from 'react';
  2:
  3:  function Example() {
  4:    const [count, setCount] = useState(0);

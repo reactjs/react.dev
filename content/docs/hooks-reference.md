@@ -78,7 +78,7 @@ The "+" and "-" buttons use the functional form, because the updated value is ba
 >
 > Another option is `useReducer`, which is more suited for managing state objects that contain multiple sub-values.
 
-#### Lazy initialization
+#### Lazy initial state
 
 The `initialState` argument is the state used during the initial render. In subsequent renders, it is disregarded. If the initial state is the result of an expensive computation, you may provide a function instead, which will be executed only on the initial render:
 
@@ -186,6 +186,8 @@ An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, ac
 Here's the counter example from the [`useState`](#usestate) section, rewritten to use a reducer:
 
 ```js
+const initialState = {count: 0};
+
 function reducer(state, action) {
   switch (action.type) {
     case 'increment':
@@ -193,14 +195,12 @@ function reducer(state, action) {
     case 'decrement':
       return {count: state.count - 1};
     default:
-      // A reducer must always return a valid state.
-      // Alternatively you can throw an error if an invalid action is dispatched.
-      return state;
+      throw new Error();
   }
 }
 
 function Counter({initialCount}) {
-  const [state, dispatch] = useReducer(reducer, {count: initialCount});
+  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
       Count: {state.count}
@@ -213,7 +213,7 @@ function Counter({initialCount}) {
 
 #### Specifying the initial state
 
-There’s a few different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
+There’s two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
 
 ```js{3}
   const [state, dispatch] = useReducer(
@@ -224,25 +224,13 @@ There’s a few different ways to initialize `useReducer` state. You may choose 
 
 >Note
 >
->React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can write `state = initialState` both in the reducer and inside the `useReducer` destructuring assignment, but it's not encouraged.
+>React doesn’t use the `state = initialState` argument convention popularized by Redux. The initial value sometimes needs to depend on props and so is specified from the Hook call instead. If you feel strongly about this, you can call `useReducer(reducer, undefined, reducer)` to emulate the Redux behavior, but it's not encouraged.
 
 #### Lazy initialization
 
-If calculating the initial state is expensive, you can initialize it lazily. In that case, you can skip the second argument (and pass `undefined`). The third `useReducer` argument is an optional `init` function that you can provide to calculate the initial value once:
+You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. The initial state will be set to `init(initialArg)`.
 
-```js{3-4}
-  const [state, dispatch] = useReducer(
-    reducer,
-    undefined,
-    () => ({count: initialCount})
-  );
-```
-
-#### Lazy initialization with a transform
-
-For the most flexibility, you can specify *both* the second `initialArg` and the third `init` function arguments. In that case, the initial state will be set to `init(initialArg)`.
-
-This is handy if you want to extract the lazy initialization logic outside your reducer:
+It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action:
 
 ```js{1-3,11-12,21,26}
 function init(initialCount) {

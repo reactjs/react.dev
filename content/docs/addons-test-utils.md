@@ -19,12 +19,11 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 > Note:
 >
-> Airbnb has released a testing utility called Enzyme, which makes it easy to assert, manipulate, and traverse your React Components' output. If you're deciding on a unit testing utility to use together with Jest, or any other test runner, it's worth checking out: [http://airbnb.io/enzyme/](http://airbnb.io/enzyme/)
+> We recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to enable and encourage writing tests that use your components as the end users do.
 >
-> Alternatively, there is another testing utility called react-testing-library designed to enable and encourage writing tests that use your components as the end users use them. It also works with any test runner: [https://git.io/react-testing-library](https://git.io/react-testing-library)
+> Alternatively, Airbnb has released a testing utility called [Enzyme](http://airbnb.io/enzyme/), which makes it easy to assert, manipulate, and traverse your React Components' output.
 
- - [`Simulate`](#simulate)
- - [`renderIntoDocument()`](#renderintodocument)
+ - [`act()`](#act)
  - [`mockComponent()`](#mockcomponent)
  - [`isElement()`](#iselement)
  - [`isElementOfType()`](#iselementoftype)
@@ -38,68 +37,88 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
  - [`findRenderedDOMComponentWithTag()`](#findrendereddomcomponentwithtag)
  - [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype)
  - [`findRenderedComponentWithType()`](#findrenderedcomponentwithtype)
+ - [`renderIntoDocument()`](#renderintodocument)
+ - [`Simulate`](#simulate)
 
 ## Reference
 
-## Shallow Rendering
+### `act()`
 
-When writing unit tests for React, shallow rendering can be helpful. Shallow rendering lets you render a component "one level deep" and assert facts about what its render method returns, without worrying about the behavior of child components, which are not instantiated or rendered. This does not require a DOM.
+To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
 
-> Note:
->
-> The shallow renderer has moved to `react-test-renderer/shallow`.<br>
-> [Learn more about shallow rendering on its reference page.](/docs/shallow-renderer.html)
+For example, let's say we have this `Counter` component:
 
-## Other Utilities
-
-### `Simulate`
-
-```javascript
-Simulate.{eventName}(
-  element,
-  [eventData]
-)
+```js
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {count: 0};
+    this.handleClick = this.handleClick.bind(this);
+  }
+  componentDidMount() {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+  componentDidUpdate() {
+    document.title = `You clicked ${this.state.count} times`;
+  }
+  handleClick() {
+    this.setState(state => ({
+      count: state.count + 1,
+    }));
+  }
+  render() {
+    return (
+      <div>
+        <p>You clicked {this.state.count} times</p>
+        <button onClick={this.handleClick}>
+          Click me
+        </button>
+      </div>
+    );
+  }
+}
 ```
 
-Simulate an event dispatch on a DOM node with optional `eventData` event data.
+Here is how we can test it:
 
-`Simulate` has a method for [every event that React understands](/docs/events.html#supported-events).
+```js{3,20-22,29-31}
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { act } from 'react-dom/test-utils';
+import Counter from './Counter';
 
-**Clicking an element**
+let container;
 
-```javascript
-// <button ref={(node) => this.button = node}>...</button>
-const node = this.button;
-ReactTestUtils.Simulate.click(node);
+beforeEach(() => {
+  container = document.createElement('div');
+  document.body.appendChild(container);
+});
+
+afterEach(() => {
+  document.body.removeChild(container);
+  container = null;
+});
+
+it('can render and update a counter', () => {
+  // Test first render and componentDidMount
+  act(() => {
+    ReactDOM.render(<Counter />, container);
+  });
+  const button = container.querySelector('button');
+  const label = container.querySelector('p');
+  expect(label.textContent).toBe('You clicked 0 times');
+  expect(document.title).toBe('You clicked 0 times');
+
+  // Test second render and componentDidUpdate
+  act(() => {
+    button.dispatchEvent(new MouseEvent('click', {bubbles: true}));
+  });
+  expect(label.textContent).toBe('You clicked 1 times');
+  expect(document.title).toBe('You clicked 1 times');
+});
 ```
 
-**Changing the value of an input field and then pressing ENTER.**
-
-```javascript
-// <input ref={(node) => this.textInput = node} />
-const node = this.textInput;
-node.value = 'giraffe';
-ReactTestUtils.Simulate.change(node);
-ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
-```
-
-> Note
->
-> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
-
-* * *
-
-### `renderIntoDocument()`
-
-```javascript
-renderIntoDocument(element)
-```
-
-Render a React element into a detached DOM node in the document. **This function requires a DOM.**
-
-> Note:
->
-> You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
+Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a helper like [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) to reduce the boilerplate code.
 
 * * *
 
@@ -265,5 +284,62 @@ findRenderedComponentWithType(
 
 Same as [`scryRenderedComponentsWithType()`](#scryrenderedcomponentswithtype) but expects there to be one result and returns that one result, or throws exception if there is any other number of matches besides one.
 
+***
+
+### `renderIntoDocument()`
+
+```javascript
+renderIntoDocument(element)
+```
+
+Render a React element into a detached DOM node in the document. **This function requires a DOM.** It is effectively equivalent to:
+
+```js
+const domContainer = document.createElement('div');
+ReactDOM.render(element, domContainer);
+```
+
+> Note:
+>
+> You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
+
 * * *
 
+## Other Utilities
+
+### `Simulate`
+
+```javascript
+Simulate.{eventName}(
+  element,
+  [eventData]
+)
+```
+
+Simulate an event dispatch on a DOM node with optional `eventData` event data.
+
+`Simulate` has a method for [every event that React understands](/docs/events.html#supported-events).
+
+**Clicking an element**
+
+```javascript
+// <button ref={(node) => this.button = node}>...</button>
+const node = this.button;
+ReactTestUtils.Simulate.click(node);
+```
+
+**Changing the value of an input field and then pressing ENTER.**
+
+```javascript
+// <input ref={(node) => this.textInput = node} />
+const node = this.textInput;
+node.value = 'giraffe';
+ReactTestUtils.Simulate.change(node);
+ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
+```
+
+> Note
+>
+> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
+
+* * *

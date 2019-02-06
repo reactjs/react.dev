@@ -59,7 +59,7 @@ exports.onRenderBody = ({setHeadComponents}, pluginOptions) => {
   `;
 
   const style = icon ? (
-    <style key={`gatsby-remark-autolink-headers-style`} type="text/css">
+    <style key="gatsby-remark-header-custom-ids-style" type="text/css">
       {styles}
     </style>
   ) : (
@@ -69,7 +69,7 @@ exports.onRenderBody = ({setHeadComponents}, pluginOptions) => {
   return setHeadComponents([
     style,
     <script
-      key={`gatsby-remark-autolink-headers-script`}
+      key="gatsby-remark-header-custom-ids-script"
       dangerouslySetInnerHTML={{__html: script}}
     />,
   ]);

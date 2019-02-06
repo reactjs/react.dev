@@ -6,14 +6,14 @@ next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
-*Hooks* are an upcoming feature that lets you use state and other React features without writing a class. They're currently in React v16.8.0-alpha.1.
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
 Building your own Hooks lets you extract component logic into reusable functions.
 
 When we were learning about [using the Effect Hook](/docs/hooks-effect.html#example-using-hooks-1), we saw this component from a chat application that displays a message indicating whether a friend is online or offline:
 
 ```js{4-15}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
@@ -39,7 +39,7 @@ function FriendStatus(props) {
 Now let's say that our chat application also has a contact list, and we want to render names of online users with a green color. We could copy and paste similar logic above into our `FriendListItem` component but it wouldn't be ideal:
 
 ```js{4-15}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function FriendListItem(props) {
   const [isOnline, setIsOnline] = useState(null);
@@ -74,7 +74,7 @@ When we want to share logic between two JavaScript functions, we extract it to a
 **A custom Hook is a JavaScript function whose name starts with "`use`" and that may call other Hooks.** For example, `useFriendStatus` below is our first custom Hook:
 
 ```js{3}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);

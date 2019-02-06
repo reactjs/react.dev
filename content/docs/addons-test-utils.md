@@ -46,6 +46,10 @@ var ReactTestUtils = require('react-dom/test-utils'); // ES5 with npm
 
 To prepare a component for assertions, wrap the code rendering it and performing updates inside an `act()` call. This makes your test run closer to how React works in the browser.
 
+>Note
+>
+>If you use `react-test-renderer`, it also provides an `act` export that behaves the same way.
+
 For example, let's say we have this `Counter` component:
 
 ```js

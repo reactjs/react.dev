@@ -25,7 +25,16 @@ module.exports = (
   slugs.reset();
 
   visit(markdownAST, 'heading', node => {
-    const id = slugs.slug(toString(node), maintainCase);
+    // Support custom-id syntax.
+    const rawHeader = toString(node);
+    const match = /^.+(\s*\{#([a-z0-9\-_]+?)\}\s*)$/.exec(rawHeader);
+    const id = match ? match[2] : slugs.slug(rawHeader, maintainCase);
+    if (match) {
+      // Remove the custom ID part from the text node.
+      const lastNode = node.children[node.children.length - 1];
+      lastNode.value = lastNode.value.replace(match[1], '');
+    }
+
     const data = patch(node, 'data', {});
 
     patch(data, 'id', id);

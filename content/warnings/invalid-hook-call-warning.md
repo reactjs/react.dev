@@ -18,7 +18,7 @@ Let's look at each of these cases.
 
 ## Mismatching Versions of React and React DOM
 
-You might be using a version of `react-dom` (< 16.8.0) or `react-native` (< 0.60) that doesn't yet support Hooks. You can run `npm ls react-dom` or `npm ls react-native` in your application folder to check which version you're using. If you find more than one of them, this might also create problems (more on that below).
+You might be using a version of `react-dom` (< 16.8.0) or `react-native` (< 0.59) that doesn't yet support Hooks. You can run `npm ls react-dom` or `npm ls react-native` in your application folder to check which version you're using. If you find more than one of them, this might also create problems (more on that below).
 
 ## Breaking the Rules of Hooks
 

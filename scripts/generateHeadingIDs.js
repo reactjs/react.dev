@@ -1,4 +1,5 @@
 const fs = require('fs');
+const GithubSlugger = require('github-slugger');
 
 function walk(dir) {
   let results = [];
@@ -24,7 +25,7 @@ function generateID(text) {
     .replace(/[^-a-z0-9]/g, '');
 }
 
-function addHeaderID(line) {
+function addHeaderID(line, slugger) {
   // check if we're a header at all
   if (!line.startsWith('#')) {
     return line;
@@ -35,10 +36,12 @@ function addHeaderID(line) {
   }
   const headingText = line.slice(line.indexOf(' ')).trim();
   const headingLevel = line.slice(0, line.indexOf(' '));
-  return `${headingLevel} ${headingText} {#${generateID(headingText)}}`;
+  return `${headingLevel} ${headingText} {#${slugger.slug(headingText)}}`;
 }
 
 function addHeaderIDs(lines) {
+  // Sluggers should be per file
+  const slugger = new GithubSlugger();
   let inCode = false;
   const results = [];
   lines.forEach(line => {
@@ -53,7 +56,7 @@ function addHeaderIDs(lines) {
       return;
     }
 
-    results.push(addHeaderID(line));
+    results.push(addHeaderID(line, slugger));
   });
   return results;
 }

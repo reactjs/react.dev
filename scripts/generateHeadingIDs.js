@@ -26,9 +26,13 @@ function generateID(text) {
 
 function addHeaderID(line) {
   // check if we're a header at all
-  if (!line.startsWith('#')) return line;
+  if (!line.startsWith('#')) {
+    return line;
+  }
   // check if it already has an id
-  if (/\{#[-A-Za-z0-9]+\}/.test(line)) return line;
+  if (/\{#[-A-Za-z0-9]+\}/.test(line)) {
+    return line;
+  }
   const headingText = line.slice(line.indexOf(' ')).trim();
   const headingLevel = line.slice(0, line.indexOf(' '));
   return `${headingLevel} ${headingText} {#${generateID(headingText)}}`;
@@ -58,7 +62,9 @@ const [path] = process.argv.slice(2);
 
 const files = walk(path);
 files.forEach(file => {
-  if (!file.endsWith('.md')) return;
+  if (!file.endsWith('.md')) {
+    return;
+  }
 
   const content = fs.readFileSync(file, 'utf8');
   const lines = content.split('\n');

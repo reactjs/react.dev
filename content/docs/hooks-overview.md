@@ -68,7 +68,7 @@ React provides a few built-in Hooks like `useState`. You can also create your ow
 >
 >You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
 
-## ⚡️ Effect Hook {#️-effect-hook}
+## ⚡️ Effect Hook {#-effect-hook}
 
 You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
 

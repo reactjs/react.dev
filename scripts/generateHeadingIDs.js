@@ -31,9 +31,11 @@ function addHeaderID(line, slugger) {
   if (/\{#[^}]+\}/.test(line)) {
     return line;
   }
-  const headingText = stripLinks(line.slice(line.indexOf(' ')).trim());
+  const headingText = line.slice(line.indexOf(' ')).trim();
   const headingLevel = line.slice(0, line.indexOf(' '));
-  return `${headingLevel} ${headingText} {#${slugger.slug(headingText)}}`;
+  return `${headingLevel} ${headingText} {#${slugger.slug(
+    stripLinks(headingText),
+  )}}`;
 }
 
 function addHeaderIDs(lines) {

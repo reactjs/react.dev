@@ -24,7 +24,7 @@ function addHeaderID(line, slugger) {
     return line;
   }
   // check if it already has an id
-  if (/\{#[-A-Za-z0-9]+\}/.test(line)) {
+  if (/\{#[^}]+\}/.test(line)) {
     return line;
   }
   const headingText = line.slice(line.indexOf(' ')).trim();

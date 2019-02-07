@@ -74,7 +74,7 @@ State is similar to props, but it is private and fully controlled by the compone
 
 We [mentioned before](/docs/components-and-props.html#functional-and-class-components) that components defined as classes have some additional features. Local state is exactly that: a feature available only to classes.
 
-## Converting a Function to a Class {#converting-a-function-to-a-class}
+## Converting a Function to a Class
 
 You can convert a function component like `Clock` to a class in five steps:
 
@@ -107,7 +107,7 @@ class Clock extends React.Component {
 
 The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle methods.
 
-## Adding Local State to a Class {#adding-local-state-to-a-class}
+## Adding Local State to a Class
 
 We will move the `date` from props to state in three steps:
 
@@ -197,7 +197,7 @@ ReactDOM.render(
 
 Next, we'll make the `Clock` set up its own timer and update itself every second.
 
-## Adding Lifecycle Methods to a Class {#adding-lifecycle-methods-to-a-class}
+## Adding Lifecycle Methods to a Class
 
 In applications with many components, it's very important to free up resources taken by the components when they are destroyed.
 
@@ -318,11 +318,11 @@ Let's quickly recap what's going on and the order in which the methods are calle
 
 5) If the `Clock` component is ever removed from the DOM, React calls the `componentWillUnmount()` lifecycle method so the timer is stopped.
 
-## Using State Correctly {#using-state-correctly}
+## Using State Correctly
 
 There are three things you should know about `setState()`.
 
-### Do Not Modify State Directly {#do-not-modify-state-directly}
+### Do Not Modify State Directly
 
 For example, this will not re-render a component:
 
@@ -340,7 +340,7 @@ this.setState({comment: 'Hello'});
 
 The only place where you can assign `this.state` is the constructor.
 
-### State Updates May Be Asynchronous {#state-updates-may-be-asynchronous}
+### State Updates May Be Asynchronous
 
 React may batch multiple `setState()` calls into a single update for performance.
 
@@ -375,7 +375,7 @@ this.setState(function(state, props) {
 });
 ```
 
-### State Updates are Merged {#state-updates-are-merged}
+### State Updates are Merged
 
 When you call `setState()`, React merges the object you provide into the current state.
 
@@ -411,7 +411,7 @@ Then you can update them independently with separate `setState()` calls:
 
 The merging is shallow, so `this.setState({comments})` leaves `this.state.posts` intact, but completely replaces `this.state.comments`.
 
-## The Data Flows Down {#the-data-flows-down}
+## The Data Flows Down
 
 Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn't care whether it is defined as a function or a class.
 

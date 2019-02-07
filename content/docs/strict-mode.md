@@ -24,7 +24,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 
 Additional functionality will be added with future releases of React.
 
-### Identifying unsafe lifecycles {#identifying-unsafe-lifecycles}
+### Identifying unsafe lifecycles
 
 As explained [in this blog post](/blog/2018/03/27/update-on-async-rendering.html), certain legacy lifecycle methods are unsafe for use in async React applications. However, if your application uses third party libraries, it can be difficult to ensure that these lifecycles aren't being used. Fortunately, strict mode can help with this!
 
@@ -34,7 +34,7 @@ When strict mode is enabled, React compiles a list of all class components using
 
 Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of async rendering in future releases of React.
 
-### Warning about legacy string ref API usage {#warning-about-legacy-string-ref-api-usage}
+### Warning about legacy string ref API usage
 
 Previously, React provided two ways for managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to [use the callback form instead](/docs/refs-and-the-dom.html#legacy-api-string-refs).
 
@@ -51,7 +51,7 @@ Since object refs were largely added as a replacement for string refs, strict mo
 
 [Learn more about the new `createRef` API here.](/docs/refs-and-the-dom.html)
 
-### Warning about deprecated findDOMNode usage {#warning-about-deprecated-finddomnode-usage}
+### Warning about deprecated findDOMNode usage
 
 React used to support `findDOMNode` to search the tree for a DOM node given a class instance. Normally you don't need this because you can [attach a ref directly to a DOM node](/docs/refs-and-the-dom.html#creating-refs).
 
@@ -77,7 +77,7 @@ class MyComponent extends React.Component {
 >
 > In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute can be used if you don't want the node to be part of the layout.
 
-### Detecting unexpected side effects {#detecting-unexpected-side-effects}
+### Detecting unexpected side effects
 
 Conceptually, React does work in two phases:
 * The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
@@ -115,7 +115,7 @@ At first glance, this code might not seem problematic. But if `SharedApplication
 
 By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
 
-### Detecting legacy context API {#detecting-legacy-context-api}
+### Detecting legacy context API
 
 The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:
 

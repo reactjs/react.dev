@@ -6,7 +6,7 @@ sectionid: community
 permalink: community/courses.html
 ---
 
-## Free Courses {#free-courses}
+## Free Courses
 
 - [Codecademy: React 101](https://www.codecademy.com/learn/react-101) - Codecademy's introductory course for React.
 
@@ -22,7 +22,7 @@ permalink: community/courses.html
 
 - [Free React Bootcamp](https://tylermcginnis.com/free-react-bootcamp/) - Recordings from three days of a free online React bootcamp.
 
-## Paid Courses {#paid-courses}
+## Paid Courses
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) - Short instructional videos on React and many other topics.
 

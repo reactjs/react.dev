@@ -22,7 +22,7 @@ This usually means one of three things:
 - You are trying to add a `ref` to an element that is being created outside of a component's render() function.
 - You have multiple (conflicting) copies of React loaded (eg. due to a misconfigured npm dependency)
 
-## Refs on Function Components {#refs-on-function-components}
+## Refs on Function Components
 
 If `<Foo>` is a function component, you can't add a ref to it:
 
@@ -33,7 +33,7 @@ If `<Foo>` is a function component, you can't add a ref to it:
 
 If you need to add a ref to a component, convert it to a class first, or consider not using refs as they are [rarely necessary](/docs/refs-and-the-dom.html#when-to-use-refs).
 
-## Strings Refs Outside the Render Method {#strings-refs-outside-the-render-method}
+## Strings Refs Outside the Render Method
 
 This usually means that you're trying to add a ref to a component that doesn't have an owner (that is, was not created inside of another component's `render` method). For example, this won't work:
 
@@ -56,7 +56,7 @@ ReactDOM.render(
 
 Consider if you [really need a ref](/docs/refs-and-the-dom.html#when-to-use-refs) before using this approach.
 
-## Multiple copies of React {#multiple-copies-of-react}
+## Multiple copies of React
 
 Bower does a good job of deduplicating dependencies, but npm does not. If you aren't doing anything (fancy) with refs, there is a good chance that the problem is not with your refs, but rather an issue with having multiple copies of React loaded into your project. Sometimes, when you pull in a third-party module via npm, you will get a duplicate copy of the dependency library, and this can create problems.
 

@@ -67,7 +67,7 @@ Instead, we'd like to share this logic between `FriendStatus` and `FriendListIte
 
 Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html). We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
 
-## Extracting a Custom Hook {#extracting-a-custom-hook}
+## Extracting a Custom Hook
 
 When we want to share logic between two JavaScript functions, we extract it to a third function. Both components and Hooks are functions, so this works for them too!
 
@@ -112,7 +112,7 @@ function useFriendStatus(friendID) {
 
 Now let's see how we can use our custom Hook.
 
-## Using a Custom Hook {#using-a-custom-hook}
+## Using a Custom Hook
 
 In the beginning, our stated goal was to remove the duplicated logic from the `FriendStatus` and `FriendListItem` components. Both of them want to know whether a friend is online.
 
@@ -149,7 +149,7 @@ function FriendListItem(props) {
 
 **How does a custom Hook get isolated state?** Each *call* to a Hook gets isolated state. Because we call `useFriendStatus` directly, from React's point of view our component just calls `useState` and `useEffect`. And as we [learned](/docs/hooks-state.html#tip-using-multiple-state-variables) [earlier](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), we can call `useState` and `useEffect` many times in one component, and they will be completely independent.
 
-### Tip: Pass Information Between Hooks {#tip-pass-information-between-hooks}
+### Tip: Pass Information Between Hooks
 
 Since Hooks are functions, we can pass information between them.
 
@@ -195,7 +195,7 @@ Because the `useState` Hook call gives us the latest value of the `recipientID` 
 
 This lets us know whether the *currently selected* friend is online. If we pick a different friend and update the `recipientID` state variable, our `useFriendStatus` Hook will unsubscribe from the previously selected friend, and subscribe to the status of the newly selected one.
 
-## `useYourImagination()` {#useyourimagination}
+## `useYourImagination()`
 
 Custom Hooks offer the flexibility of sharing logic that wasn't possible in React components before. You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. What's more, you can build Hooks that are just as easy to use as React's built-in features.
 

@@ -58,7 +58,7 @@ class Calculator extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## Adding a Second Input {#adding-a-second-input}
+## Adding a Second Input
 
 Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
 
@@ -116,7 +116,7 @@ We have two inputs now, but when you enter the temperature in one of them, the o
 
 We also can't display the `BoilingVerdict` from `Calculator`. The `Calculator` doesn't know the current temperature because it is hidden inside the `TemperatureInput`.
 
-## Writing Conversion Functions {#writing-conversion-functions}
+## Writing Conversion Functions
 
 First, we will write two functions to convert from Celsius to Fahrenheit and back:
 
@@ -148,7 +148,7 @@ function tryConvert(temperature, convert) {
 
 For example, `tryConvert('abc', toCelsius)` returns an empty string, and `tryConvert('10.22', toFahrenheit)` returns `'50.396'`.
 
-## Lifting State Up {#lifting-state-up}
+## Lifting State Up
 
 Currently, both `TemperatureInput` components independently keep their values in the local state:
 
@@ -316,7 +316,7 @@ Let's recap what happens when you edit an input:
 
 Every update goes through the same steps so the inputs stay in sync.
 
-## Lessons Learned {#lessons-learned}
+## Lessons Learned
 
 There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the [top-down data flow](/docs/state-and-lifecycle.html#the-data-flows-down).
 

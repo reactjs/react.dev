@@ -5,7 +5,7 @@ layout: community
 permalink: community/jsx-integrations.html
 ---
 
-## Editor Integrations {#editor-integrations}
+## Editor Integrations
 * **[Sublime Text: babel-sublime](https://github.com/babel/babel-sublime):** Snippets, syntax highlighting and optimized color schemes for Sublime Text
 * **[Atom: language-babel](https://atom.io/packages/language-babel)** Support for es2016, JSX and Flow.
 * **[Visual Studio Code](https://code.visualstudio.com/updates/vFebruary#_languages-javascript)** Visual Studio Code supports JSX directly.
@@ -15,7 +15,7 @@ permalink: community/jsx-integrations.html
 * **[web-mode.el](http://web-mode.org):** An autonomous emacs major mode that indents and highlights JSX.  No support for Automatic Semicolon Insertion.
 * **[vim-jsx](https://github.com/mxw/vim-jsx):** Syntax highlighting and indenting for JSX
 
-## Build Tools {#build-tools}
+## Build Tools
 
 * **[Create React App](https://github.com/facebookincubator/create-react-app):** An **officially supported** way to create React apps with no configuration.
 * **[nwb](https://github.com/insin/nwb)**: A toolkit for React, Preact & Inferno apps, React libraries and other npm modules for the web, with no configuration (until you need it)

@@ -18,7 +18,7 @@ Libraries that use render props include [React Router](https://reacttraining.com
 
 In this document, we’ll discuss why render props are useful, and how to write your own.
 
-## Use Render Props for Cross-Cutting Concerns {#use-render-props-for-cross-cutting-concerns}
+## Use Render Props for Cross-Cutting Concerns
 
 Components are the primary unit of code reuse in React, but it's not always obvious how to share the state or behavior that one component encapsulates to other components that need that same state.
 
@@ -235,7 +235,7 @@ function withMouse(Component) {
 
 So using a render prop makes it possible to use either pattern.
 
-## Using Props Other Than `render` {#using-props-other-than-render}
+## Using Props Other Than `render`
 
 It's important to remember that just because the pattern is called "render props" you don't *have to use a prop named `render` to use this pattern*. In fact, [*any* prop that is a function that a component uses to know what to render is technically a "render prop"](https://cdb.reacttraining.com/use-a-render-prop-50de598f11ce).
 
@@ -267,9 +267,9 @@ Mouse.propTypes = {
 };
 ```
 
-## Caveats {#caveats}
+## Caveats
 
-### Be careful when using Render Props with React.PureComponent {#be-careful-when-using-render-props-with-reactpurecomponent}
+### Be careful when using Render Props with React.PureComponent
 
 Using a render prop can negate the advantage that comes from using [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) if you create the function inside a `render` method. This is because the shallow prop comparison will always return `false` for new props, and each `render` in this case will generate a new value for the render prop.
 

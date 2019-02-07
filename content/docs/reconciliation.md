@@ -6,7 +6,7 @@ permalink: docs/reconciliation.html
 
 React provides a declarative API so that you don't have to worry about exactly what changes on every update. This makes writing applications a lot easier, but it might not be obvious how this is implemented within React. This article explains the choices we made in React's "diffing" algorithm so that component updates are predictable while being fast enough for high-performance apps.
 
-## Motivation {#motivation}
+## Motivation
 
 When you use React, at a single point in time you can think of the `render()` function as creating a tree of React elements. On the next state or props update, that `render()` function will return a different tree of React elements. React then needs to figure out how to efficiently update the UI to match the most recent tree.
 
@@ -19,11 +19,11 @@ If we used this in React, displaying 1000 elements would require in the order of
 
 In practice, these assumptions are valid for almost all practical use cases.
 
-## The Diffing Algorithm {#the-diffing-algorithm}
+## The Diffing Algorithm
 
 When diffing two trees, React first compares the two root elements. The behavior is different depending on the types of the root elements.
 
-### Elements Of Different Types {#elements-of-different-types}
+### Elements Of Different Types
 
 Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. Going from `<a>` to `<img>`, or from `<Article>` to `<Comment>`, or from `<Button>` to `<div>` - any of those will lead to a full rebuild.
 
@@ -43,7 +43,7 @@ Any components below the root will also get unmounted and have their state destr
 
 This will destroy the old `Counter` and remount a new one.
 
-### DOM Elements Of The Same Type {#dom-elements-of-the-same-type}
+### DOM Elements Of The Same Type
 
 When comparing two React DOM elements of the same type, React looks at the attributes of both, keeps the same underlying DOM node, and only updates the changed attributes. For example:
 
@@ -67,13 +67,13 @@ When converting between these two elements, React knows to only modify the `colo
 
 After handling the DOM node, React then recurses on the children.
 
-### Component Elements Of The Same Type {#component-elements-of-the-same-type}
+### Component Elements Of The Same Type
 
 When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `componentWillReceiveProps()` and `componentWillUpdate()` on the underlying instance.
 
 Next, the `render()` method is called and the diff algorithm recurses on the previous result and the new result.
 
-### Recursing On Children {#recursing-on-children}
+### Recursing On Children
 
 By default, when recursing on the children of a DOM node, React just iterates over both lists of children at the same time and generates a mutation whenever there's a difference.
 
@@ -111,7 +111,7 @@ If you implement it naively, inserting an element at the beginning has worse per
 
 React will mutate every child instead of realizing it can keep the `<li>Duke</li>` and `<li>Villanova</li>` subtrees intact. This inefficiency can be a problem.
 
-### Keys {#keys}
+### Keys
 
 In order to solve this issue, React supports a `key` attribute. When children have keys, React uses the key to match children in the original tree with children in the subsequent tree. For example, adding a `key` to our inefficient example above can make the tree conversion efficient:
 
@@ -144,7 +144,7 @@ Reorders can also cause issues with component state when indexes are used as key
 
 [Here](codepen://reconciliation/index-used-as-key) is an example of the issues that can be caused by using indexes as keys on CodePen, and [here](codepen://reconciliation/no-index-used-as-key) is an updated version of the same example showing how not using indexes as keys will fix these reordering, sorting, and prepending issues.
 
-## Tradeoffs {#tradeoffs}
+## Tradeoffs
 
 It is important to remember that the reconciliation algorithm is an implementation detail. React could rerender the whole app on every action; the end result would be the same. Just to be clear, rerender in this context means calling `render` for all components, it doesn't mean React will unmount and remount them. It will only apply the differences following the rules stated in the previous sections.
 

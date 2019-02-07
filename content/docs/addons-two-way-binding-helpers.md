@@ -17,7 +17,7 @@ import LinkedStateMixin from 'react-addons-linked-state-mixin'; // ES6
 var LinkedStateMixin = require('react-addons-linked-state-mixin'); // ES5 with npm
 ```
 
-## Overview {#overview}
+## Overview
 
 `LinkedStateMixin` is an easy way to express two-way binding with React.
 
@@ -33,7 +33,7 @@ Two-way binding -- implicitly enforcing that some value in the DOM is always con
 >
 > `LinkedStateMixin` is just a thin wrapper and convention around the `onChange`/`setState()` pattern. It doesn't fundamentally change how data flows in your React application.
 
-## LinkedStateMixin: Before and After {#linkedstatemixin-before-and-after}
+## LinkedStateMixin: Before and After
 
 Here's a simple form example without using `LinkedStateMixin`:
 
@@ -79,11 +79,11 @@ Note that checkboxes have a special behavior regarding their `value` attribute, 
 <input type="checkbox" checkedLink={this.linkState('booleanValue')} />
 ```
 
-## Under the Hood {#under-the-hood}
+## Under the Hood
 
 There are two sides to `LinkedStateMixin`: the place where you create the `valueLink` instance and the place where you use it. To prove how simple `LinkedStateMixin` is, let's rewrite each side separately to be more explicit.
 
-### valueLink Without LinkedStateMixin {#valuelink-without-linkedstatemixin}
+### valueLink Without LinkedStateMixin
 
 ```javascript{7-9,11-14}
 var createReactClass = require('create-react-class');
@@ -107,7 +107,7 @@ var WithoutMixin = createReactClass({
 
 As you can see, `valueLink` objects are very simple objects that just have a `value` and `requestChange` prop. And `LinkedStateMixin` is similarly simple: it just populates those fields with a value from `this.state` and a callback that calls `this.setState()`.
 
-### LinkedStateMixin Without valueLink {#linkedstatemixin-without-valuelink}
+### LinkedStateMixin Without valueLink
 
 ```javascript
 var LinkedStateMixin = require('react-addons-linked-state-mixin');

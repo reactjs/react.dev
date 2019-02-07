@@ -16,7 +16,7 @@ redirect_from:
 
 The [`ReactTransitionGroup`](#low-level-api-reacttransitiongroup) add-on component is a low-level API for animation, and [`ReactCSSTransitionGroup`](#high-level-api-reactcsstransitiongroup) is an add-on component for easily implementing basic CSS animations and transitions.
 
-## High-level API: ReactCSSTransitionGroup {#high-level-api-reactcsstransitiongroup}
+## High-level API: ReactCSSTransitionGroup
 
 `ReactCSSTransitionGroup` is a high-level API based on [`ReactTransitionGroup`](#low-level-api-reacttransitiongroup) and is an easy way to perform CSS transitions and animations when a React component enters or leaves the DOM. It's inspired by the excellent [ng-animate](https://docs.angularjs.org/api/ngAnimate) library.
 
@@ -100,7 +100,7 @@ You can use these classes to trigger a CSS animation or transition. For example,
 
 You'll notice that animation durations need to be specified in both the CSS and the render method; this tells React when to remove the animation classes from the element and -- if it's leaving -- when to remove the element from the DOM.
 
-### Animate Initial Mounting {#animate-initial-mounting}
+### Animate Initial Mounting
 
 `ReactCSSTransitionGroup` provides the optional prop `transitionAppear`, to add an extra transition phase at the initial mount of the component. There is generally no transition phase at the initial mount as the default value of `transitionAppear` is `false`. The following is an example which passes the prop `transitionAppear` with the value `true`.
 
@@ -140,7 +140,7 @@ At the initial mount, all children of the `ReactCSSTransitionGroup` will `appear
 >
 > However, the default values of `transitionEnter` and `transitionLeave` are `true` so you must specify `transitionEnterTimeout` and `transitionLeaveTimeout` by default. If you don't need either enter or leave animations, pass `transitionEnter={false}` or `transitionLeave={false}`.
 
-### Custom Classes {#custom-classes}
+### Custom Classes
 
 It is also possible to use custom class names for each of the steps in your transitions. Instead of passing a string into transitionName you can pass an object containing either the `enter` and `leave` class names, or an object containing the `enter`, `enter-active`, `leave-active`, and `leave` class names. If only the enter and leave classes are provided, the enter-active and leave-active classes will be determined by appending '-active' to the end of the class name. Here are two examples using custom classes:
 
@@ -169,7 +169,7 @@ It is also possible to use custom class names for each of the steps in your tran
 // ...
 ```
 
-### Animation Group Must Be Mounted To Work {#animation-group-must-be-mounted-to-work}
+### Animation Group Must Be Mounted To Work
 
 In order for it to apply transitions to its children, the `ReactCSSTransitionGroup` must already be mounted in the DOM or the prop `transitionAppear` must be set to `true`.
 
@@ -194,7 +194,7 @@ render() {
 }
 ```
 
-### Animating One or Zero Items {#animating-one-or-zero-items}
+### Animating One or Zero Items
 
 In the example above, we rendered a list of items into `ReactCSSTransitionGroup`. However, the children of `ReactCSSTransitionGroup` can also be one or zero items. This makes it possible to animate a single element entering or leaving. Similarly, you can animate a new element replacing the current element. For example, we can implement a simple image carousel like this:
 
@@ -215,7 +215,7 @@ function ImageCarousel(props) {
 }
 ```
 
-### Disabling Animations {#disabling-animations}
+### Disabling Animations
 
 You can disable animating `enter` or `leave` animations if you want. For example, sometimes you may want an `enter` animation and no `leave` animation, but `ReactCSSTransitionGroup` waits for an animation to complete before removing your DOM node. You can add `transitionEnter={false}` or `transitionLeave={false}` props to `ReactCSSTransitionGroup` to disable these animations.
 
@@ -225,7 +225,7 @@ You can disable animating `enter` or `leave` animations if you want. For example
 
 * * *
 
-## Low-level API: ReactTransitionGroup {#low-level-api-reacttransitiongroup}
+## Low-level API: ReactTransitionGroup
 
 **Importing**
 
@@ -243,7 +243,7 @@ var ReactTransitionGroup = require('react-addons-transition-group') // ES5 with 
  - [`componentWillLeave()`](#componentwillleave)
  - [`componentDidLeave()`](#componentdidleave)
 
-#### Rendering a Different Component {#rendering-a-different-component}
+#### Rendering a Different Component
 
 `ReactTransitionGroup` renders as a `span` by default. You can change this behavior by providing a `component` prop. For example, here's how you would render a `<ul>`:
 
@@ -263,7 +263,7 @@ Any additional, user-defined, properties will become properties of the rendered 
 
 Every DOM component that React can render is available for use. However, `component` does not need to be a DOM component. It can be any React component you want; even ones you've written yourself! Just write `component={List}` and your component will receive `this.props.children`.
 
-#### Rendering a Single Child {#rendering-a-single-child}
+#### Rendering a Single Child
 
 People often use `ReactTransitionGroup` to animate mounting and unmounting of a single child such as a collapsible panel. Normally `ReactTransitionGroup` wraps all its children in a `span` (or a custom `component` as described above). This is because any React component has to return a single root element, and `ReactTransitionGroup` is no exception to this rule.
 
@@ -288,9 +288,9 @@ This only works when you are animating a single child in and out, such as a coll
 
 * * *
 
-## Reference {#reference}
+## Reference
 
-### `componentWillAppear()` {#componentwillappear}
+### `componentWillAppear()`
 
 ```javascript
 componentWillAppear(callback)
@@ -300,7 +300,7 @@ This is called at the same time as `componentDidMount()` for components that are
 
 * * *
 
-### `componentDidAppear()` {#componentdidappear}
+### `componentDidAppear()`
 
 ```javascript
 componentDidAppear()
@@ -310,7 +310,7 @@ This is called after the `callback` function that was passed to `componentWillAp
 
 * * *
 
-### `componentWillEnter()` {#componentwillenter}
+### `componentWillEnter()`
 
 ```javascript
 componentWillEnter(callback)
@@ -320,7 +320,7 @@ This is called at the same time as `componentDidMount()` for components added to
 
 * * *
 
-### `componentDidEnter()` {#componentdidenter}
+### `componentDidEnter()`
 
 ```javascript
 componentDidEnter()
@@ -330,7 +330,7 @@ This is called after the `callback` function that was passed to [`componentWillE
 
 * * *
 
-### `componentWillLeave()` {#componentwillleave}
+### `componentWillLeave()`
 
 ```javascript
 componentWillLeave(callback)
@@ -340,7 +340,7 @@ This is called when the child has been removed from the `ReactTransitionGroup`. 
 
 * * *
 
-### `componentDidLeave()` {#componentdidleave}
+### `componentDidLeave()`
 
 ```javascript
 componentDidLeave()

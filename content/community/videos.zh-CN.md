@@ -6,7 +6,7 @@ prev: conferences-zh-CN.html
 next: complementary-tools-zh-CN.html
 ---
 
-### Rethinking best practices - JSConf.eu {#rethinking-best-practices---jsconfeu}
+### Rethinking best practices - JSConf.eu
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe>
 
@@ -14,14 +14,14 @@ next: complementary-tools-zh-CN.html
 
 * * *
 
-### Thinking in react - tagtree.tv {#thinking-in-react---tagtreetv}
+### Thinking in react - tagtree.tv
 
 一个 [tagtree.tv](http://tagtree.tv/) 传达 [Thinking in React](/docs/thinking-in-react.html) 原则的视频  在构建一个简单app时。
 <figure><a href="http://tagtree.tv/thinking-in-react"><img src="../images/docs/thinking-in-react-tagtree.png"></a></figure>
 
 * * *
 
-### Secrets of the Virtual DOM - MtnWest JS {#secrets-of-the-virtual-dom---mtnwest-js}
+### Secrets of the Virtual DOM - MtnWest JS
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/h3KksH8gfcQ" frameborder="0" allowfullscreen></iframe>
 
@@ -29,14 +29,14 @@ next: complementary-tools-zh-CN.html
 
 * * *
 
-### Going big with React {#going-big-with-react}
+### Going big with React
 
 "理论上，所有的JS框架都大有可为：干净的实现,快速的代码设计,完美的执行。但是当你压力测试时Javascript会怎样？当你丢进6MB的代码时会怎样？在这次演讲中，我们会探究React在高压环境下如何表现，以及它如何帮助我们的团队在大规模时构建安全代码。 "
 <figure><a href="https://skillsmatter.com/skillscasts/5429-going-big-with-react#video"><img src="https://i.vimeocdn.com/video/481670116_650.jpg"></a></figure>
 
 * * *
 
-### CodeWinds {#codewinds}
+### CodeWinds
 
 [Pete Hunt](http://www.petehunt.net/) 与 [Jeff Barczewski](http://jeff.barczewski.com/) 在 CodeWinds Episode 4 上关于 React 的谈话.
 <figure><a href="http://codewinds.com/4"><img src="../images/docs/codewinds-004.png"></a></figure>
@@ -69,7 +69,7 @@ next: complementary-tools-zh-CN.html
 
 * * *
 
-### JavaScript Jabber {#javascript-jabber}
+### JavaScript Jabber
 
 [Pete Hunt](http://www.petehunt.net/) 和 [Jordan Walke](https://github.com/jordwalke) 在 JavaScript Jabber 73 上关于React的谈话.
 <figure><a href="http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/#content"><img src="../images/docs/javascript-jabber.png"></a></figure>
@@ -97,7 +97,7 @@ next: complementary-tools-zh-CN.html
 
 * * *
 
-### Introduction to React.js - Facebook Seattle {#introduction-to-reactjs---facebook-seattle}
+### Introduction to React.js - Facebook Seattle
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/XxVg_s8xAms" frameborder="0" allowfullscreen></iframe>
 
@@ -105,14 +105,14 @@ next: complementary-tools-zh-CN.html
 
 * * *
 
-### Backbone + React + Middleman Screencast {#backbone--react--middleman-screencast}
+### Backbone + React + Middleman Screencast
 <iframe width="650" height="488" src="https://www.youtube-nocookie.com/embed/iul1fWHVU6A" frameborder="0" allowfullscreen></iframe>
 
 Backbone 是一个在用React实现 REST API 接口的极好方法。这个屏博展示了用 [Backbone-React-Component](https://github.com/magalhas/backbone-react-component)如何整合两者. Middleman 是在本例中使用的框架但很容易被替换成其他框架。对此可支持的template可以在[这里](https://github.com/jbhatab/middleman-backbone-react-template) 找到. -- [Open Minded Innovations](http://www.openmindedinnovations.com/)
 
 * * *
 
-### Developing User Interfaces With React - Super VanJS {#developing-user-interfaces-with-react---super-vanjs}
+### Developing User Interfaces With React - Super VanJS
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/1OeXsL5mr4g" frameborder="0" allowfullscreen></iframe>
 
@@ -120,7 +120,7 @@ Backbone 是一个在用React实现 REST API 接口的极好方法。这个屏�
 
 * * *
 
-### Introduction to React - LAWebSpeed meetup {#introduction-to-react---lawebspeed-meetup}
+### Introduction to React - LAWebSpeed meetup
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/SMMRJif5QW0" frameborder="0" allowfullscreen></iframe>
 
@@ -128,7 +128,7 @@ Backbone 是一个在用React实现 REST API 接口的极好方法。这个屏�
 
 * * *
 
-### React, or how to make life simpler - FrontEnd Dev Conf '14 {#react-or-how-to-make-life-simpler---frontend-dev-conf-14}
+### React, or how to make life simpler - FrontEnd Dev Conf '14
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/YJNUK0EA_Jo" frameborder="0" allowfullscreen></iframe>
 
@@ -136,19 +136,19 @@ Backbone 是一个在用React实现 REST API 接口的极好方法。这个屏�
 
 * * *
 
-### "Functional DOM programming" - Meteor DevShop 11 {#functional-dom-programming---meteor-devshop-11}
+### "Functional DOM programming" - Meteor DevShop 11
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/qqVbr_LaCIo" frameborder="0" allowfullscreen></iframe>
 
 * * *
 
-### "Rethinking Web App Development at Facebook" - Facebook F8 Conference 2014 {#rethinking-web-app-development-at-facebook---facebook-f8-conference-2014}
+### "Rethinking Web App Development at Facebook" - Facebook F8 Conference 2014
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/nYkdrAPrdcw" frameborder="0" allowfullscreen></iframe>
 
 * * *
 
-### React and Flux: Building Applications with a Unidirectional Data Flow - Forward JS 2014 {#react-and-flux-building-applications-with-a-unidirectional-data-flow---forward-js-2014}
+### React and Flux: Building Applications with a Unidirectional Data Flow - Forward JS 2014
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
 
@@ -156,7 +156,7 @@ Facebook 工程师 [Bill Fisher](https://twitter.com/fisherwebdev) 和 [Jing Che
 
 * * *
 
-### Server-Side Rendering of Isomorphic Apps at SoundCloud {#server-side-rendering-of-isomorphic-apps-at-soundcloud}
+### Server-Side Rendering of Isomorphic Apps at SoundCloud
 
 <iframe src="https://player.vimeo.com/video/108488724" width="100%" height="365" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
@@ -166,7 +166,7 @@ Facebook 工程师 [Bill Fisher](https://twitter.com/fisherwebdev) 和 [Jing Che
 
 * * *
 
-### Introducing React Native (+Playlist) - React.js Conf 2015 {#introducing-react-native-playlist---reactjs-conf-2015}
+### Introducing React Native (+Playlist) - React.js Conf 2015
 
 <iframe width="650" height="366" src="https://www.youtube-nocookie.com/embed/KVZ-P-ZI6W4?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
 

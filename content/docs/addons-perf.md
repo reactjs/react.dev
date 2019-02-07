@@ -18,7 +18,7 @@ var Perf = require('react-addons-perf'); // ES5 with npm
 ```
 
 
-## Overview {#overview}
+## Overview
 
 React is usually quite fast out of the box. However, in situations where you need to squeeze every ounce of performance out of your app, it provides a [shouldComponentUpdate()](/docs/react-component.html#shouldcomponentupdate) method where you can add optimization hints to React's diff algorithm.
 
@@ -30,23 +30,23 @@ See these articles for an introduction to React performance tooling:
  - ["Performance Engineering with React"](http://benchling.engineering/performance-engineering-with-react/)
  - ["A Deep Dive into React Perf Debugging"](http://benchling.engineering/deep-dive-react-perf-debugging/) 
 
-### Development vs. Production Builds {#development-vs-production-builds}
+### Development vs. Production Builds
 
 If you're benchmarking or seeing performance problems in your React apps, make sure you're testing with the [minified production build](/downloads.html). The development build includes extra warnings that are helpful when building your apps, but it is slower due to the extra bookkeeping it does.
 
 However, the perf tools described on this page only work when using the development build of React. Therefore, the profiler only serves to indicate the _relatively_ expensive parts of your app.
 
-### Using Perf {#using-perf}
+### Using Perf
 
 The `Perf` object can be used with React in development mode only. You should not include this bundle when building your app for production.
 
-#### Getting Measurements {#getting-measurements}
+#### Getting Measurements
 
  - [`start()`](#start)
  - [`stop()`](#stop)
  - [`getLastMeasurements()`](#getlastmeasurements)
 
-#### Printing Results {#printing-results}
+#### Printing Results
 
 The following methods use the measurements returned by [`Perf.getLastMeasurements()`](#getlastmeasurements) to pretty-print the result.
 
@@ -58,10 +58,10 @@ The following methods use the measurements returned by [`Perf.getLastMeasurement
 
 * * *
 
-## Reference {#reference}
+## Reference
 
-### `start()` {#start}
-### `stop()` {#stop}
+### `start()`
+### `stop()`
 
 ```javascript
 Perf.start()
@@ -75,7 +75,7 @@ After stopping, you will need [`Perf.getLastMeasurements()`](#getlastmeasurement
 
 * * *
 
-### `getLastMeasurements()` {#getlastmeasurements}
+### `getLastMeasurements()`
 
 ```javascript
 Perf.getLastMeasurements()
@@ -89,7 +89,7 @@ Get the opaque data structure describing measurements from the last start-stop s
 
 * * *
 
-### `printInclusive()` {#printinclusive}
+### `printInclusive()`
 
 ```javascript
 Perf.printInclusive(measurements)
@@ -101,7 +101,7 @@ Prints the overall time taken. When no arguments are passed, `printInclusive` de
 
 * * *
 
-### `printExclusive()` {#printexclusive}
+### `printExclusive()`
 
 ```javascript
 Perf.printExclusive(measurements)
@@ -113,7 +113,7 @@ Perf.printExclusive(measurements)
 
 * * *
 
-### `printWasted()` {#printwasted}
+### `printWasted()`
 
 ```javascript
 Perf.printWasted(measurements)
@@ -127,7 +127,7 @@ Perf.printWasted(measurements)
 
 * * *
 
-### `printOperations()` {#printoperations}
+### `printOperations()`
 
 ```javascript
 Perf.printOperations(measurements)
@@ -139,7 +139,7 @@ Prints the underlying DOM manipulations, e.g. "set innerHTML" and "remove".
 
 * * *
 
-### `printDOM()` {#printdom}
+### `printDOM()`
 
 ```javascript
 Perf.printDOM(measurements)

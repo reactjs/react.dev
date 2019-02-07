@@ -8,7 +8,7 @@ permalink: community/podcasts.html
 
 Podcasts dedicated to React and individual podcast episodes with React discussions.
 
-## Podcasts {#podcasts}
+## Podcasts
 
 - [The React Podcast](https://reactpodcast.simplecast.fm/) - The podcast about everything React.js, hosted by [React Training](https://reacttraining.com)
 
@@ -18,7 +18,7 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 - [React Native Radio](https://devchat.tv/react-native-radio)
 
-## Episodes {#episodes}
+## Episodes
 
 - [CodeWinds Episode 4](https://codewinds.com/podcast/004.html) - Pete Hunt talks with Jeff Barczewski about React.
 

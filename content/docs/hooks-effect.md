@@ -43,11 +43,11 @@ Data fetching, setting up a subscription, and manually changing the DOM in React
 
 There are two common kinds of side effects in React components: those that don't require cleanup, and those that do. Let's look at this distinction in more detail.
 
-## Effects Without Cleanup {#effects-without-cleanup}
+## Effects Without Cleanup
 
 Sometimes, we want to **run some additional code after React has updated the DOM.** Network requests, manual DOM mutations, and logging are common examples of effects that don't require a cleanup. We say that because we can run them and immediately forget about them. Let's compare how classes and Hooks let us express such side effects.
 
-### Example Using Classes {#example-using-classes}
+### Example Using Classes
 
 In React class components, the `render` method itself shouldn't cause side effects. It would be too early -- we typically want to perform our effects *after* React has updated the DOM.
 
@@ -89,7 +89,7 @@ This is because in many cases we want to perform the same side effect regardless
 
 Now let's see how we can do the same with the `useEffect` Hook.
 
-### Example Using Hooks {#example-using-hooks}
+### Example Using Hooks
 
 We've already seen this example at the top of this page, but let's take a closer look at it:
 
@@ -120,7 +120,7 @@ function Example() {
 
 **Does `useEffect` run after every render?** Yes! By default, it runs both after the first render *and* after every update. (We will later talk about [how to customize this](#tip-optimizing-performance-by-skipping-effects).) Instead of thinking in terms of "mounting" and "updating", you might find it easier to think that effects happen "after render". React guarantees the DOM has been updated by the time it runs the effects.
 
-### Detailed Explanation {#detailed-explanation}
+### Detailed Explanation
 
 Now that we know more about effects, these lines should make sense:
 
@@ -141,11 +141,11 @@ Experienced JavaScript developers might notice that the function passed to `useE
 >
 >Unlike `componentDidMount` or `componentDidUpdate`, effects scheduled with `useEffect` don't block the browser from updating the screen. This makes your app feel more responsive. The majority of effects don't need to happen synchronously. In the uncommon cases where they do (such as measuring the layout), there is a separate [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect) Hook with an API identical to `useEffect`.
 
-## Effects with Cleanup {#effects-with-cleanup}
+## Effects with Cleanup
 
 Earlier, we looked at how to express side effects that don't require any cleanup. However, some effects do. For example, **we might want to set up a subscription** to some external data source. In that case, it is important to clean up so that we don't introduce a memory leak! Let's compare how we can do it with classes and with Hooks.
 
-### Example Using Classes {#example-using-classes-1}
+### Example Using Classes
 
 In a React class, you would typically set up a subscription in `componentDidMount`, and clean it up in `componentWillUnmount`. For example, let's say we have a `ChatAPI` module that lets us subscribe to a friend's online status. Here's how we might subscribe and display that status using a class:
 
@@ -192,7 +192,7 @@ Notice how `componentDidMount` and `componentWillUnmount` need to mirror each ot
 >
 >Eagle-eyed readers may notice that this example also needs a `componentDidUpdate` method to be fully correct. We'll ignore this for now but will come back to it in a [later section](#explanation-why-effects-run-on-each-update) of this page.
 
-### Example Using Hooks {#example-using-hooks-1}
+### Example Using Hooks
 
 Let's see how we could write this component with Hooks.
 
@@ -231,7 +231,7 @@ function FriendStatus(props) {
 >
 >We don't have to return a named function from the effect. We called it `cleanup` here to clarify its purpose, but you could return an arrow function or call it something different.
 
-## Recap {#recap}
+## Recap
 
 We've learned that `useEffect` lets us express different kinds of side effects after a component renders. Some effects might require cleanup so they return a function:
 
@@ -260,11 +260,11 @@ The Effect Hook unifies both use cases with a single API.
 
 -------------
 
-## Tips for Using Effects {#tips-for-using-effects}
+## Tips for Using Effects
 
 We'll continue this page with an in-depth look at some aspects of `useEffect` that experienced React users will likely be curious about. Don't feel obligated to dig into them now. You can always come back to this page to learn more details about the Effect Hook.
 
-### Tip: Use Multiple Effects to Separate Concerns {#tip-use-multiple-effects-to-separate-concerns}
+### Tip: Use Multiple Effects to Separate Concerns
 
 One of the problems we outlined in the [Motivation](/docs/hooks-intro.html#complex-components-become-hard-to-understand) for Hooks is that class lifecycle methods often contain unrelated logic, but related logic gets broken up into several methods. Here is a component that combines the counter and the friend status indicator logic from the previous examples:
 
@@ -331,7 +331,7 @@ function FriendStatusWithCounter(props) {
 
 **Hooks lets us split the code based on what it is doing** rather than a lifecycle method name. React will apply *every* effect used by the component, in the order they were specified.
 
-### Explanation: Why Effects Run on Each Update {#explanation-why-effects-run-on-each-update}
+### Explanation: Why Effects Run on Each Update
 
 If you're used to classes, you might be wondering why the effect cleanup phase happens after every re-render, and not just once during unmounting. Let's look at a practical example to see why this design helps us create components with fewer bugs.
 
@@ -423,7 +423,7 @@ ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Clean up last e
 
 This behavior ensures consistency by default and prevents bugs that are common in class components due to missing update logic.
 
-### Tip: Optimizing Performance by Skipping Effects {#tip-optimizing-performance-by-skipping-effects}
+### Tip: Optimizing Performance by Skipping Effects
 
 In some cases, cleaning up or applying the effect after every render might create a performance problem. In class components, we can solve this by writing an extra comparison with `prevProps` or `prevState` inside `componentDidUpdate`:
 
@@ -466,7 +466,7 @@ In the future, the second argument might get added automatically by a build-time
 >
 >If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the inputs array always works. While passing `[]` is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, we suggest not making it a habit because it often leads to bugs, [as discussed above](#explanation-why-effects-run-on-each-update). Don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
 
-## Next Steps {#next-steps}
+## Next Steps
 
 Congratulations! This was a long page, but hopefully by the end most of your questions about effects were answered. You've learned both the State Hook and the Effect Hook, and there is a *lot* you can do with both of them combined. They cover most of the use cases for classes -- and where they don't, you might find the [additional Hooks](/docs/hooks-reference.html) helpful.
 

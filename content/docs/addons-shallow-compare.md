@@ -17,7 +17,7 @@ import shallowCompare from 'react-addons-shallow-compare'; // ES6
 var shallowCompare = require('react-addons-shallow-compare'); // ES5 with npm
 ```
 
-## Overview {#overview}
+## Overview
 
 Before [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) was introduced, `shallowCompare` was commonly used to achieve the same functionality as [`PureRenderMixin`](pure-render-mixin.html) while using ES6 classes with React.
 

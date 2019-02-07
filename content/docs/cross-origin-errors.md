@@ -14,7 +14,7 @@ If an error is thrown from a [different origin](https://developer.mozilla.org/en
 
 You can simplify the development/debugging process by ensuring that errors are thrown with a same-origin policy. Below are some common causes of cross-origin errors and ways to address them.
 
-### CDN {#cdn}
+### CDN
 
 When loading React (or other libraries that might throw errors) from a CDN, add the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute to your `<script>` tags:
 
@@ -26,15 +26,15 @@ Also ensure the CDN responds with the `Access-Control-Allow-Origin: *` HTTP head
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
-### Webpack {#webpack}
+### Webpack
 
-#### Source maps {#source-maps}
+#### Source maps
 
 Some JavaScript bundlers may wrap the application code with `eval` statements in development. (For example Webpack will do this if [`devtool`](https://webpack.js.org/configuration/devtool/) is set to any value containing the word "eval".) This may cause errors to be treated as cross-origin.
 
 If you use Webpack, we recommend using the `cheap-module-source-map` setting in development to avoid this problem.
 
-#### Code splitting {#code-splitting}
+#### Code splitting
 
 If your application is split into multiple bundles, these bundles may be loaded using JSONP. This may cause errors thrown in the code of these bundles to be treated as cross-origin.
 

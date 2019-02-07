@@ -10,14 +10,14 @@ category: Add-Ons
 >
 > `React.addons` entry point is deprecated as of React v15.5. We now have first class support for fragments which you can read about [here](/docs/fragments.html).
 
-## Importing {#importing}
+## Importing
 
 ```javascript
 import createFragment from 'react-addons-create-fragment'; // ES6
 var createFragment = require('react-addons-create-fragment'); // ES5 with npm
 ```
 
-## Overview {#overview}
+## Overview
 
 In most cases, you can use the `key` prop to specify keys on the elements you're returning from `render`. However, this breaks down in one situation: if you have two sets of children that you need to reorder, there's no way to put a key on each set without adding a wrapper element.
 
@@ -39,7 +39,7 @@ The children will unmount and remount as you change the `swapped` prop because t
 
 To solve this problem, you can use the `createFragment` add-on to give keys to the sets of children.
 
-#### `Array<ReactNode> createFragment(object children)` {#arrayreactnode-createfragmentobject-children}
+#### `Array<ReactNode> createFragment(object children)`
 
 Instead of creating arrays, we write:
 

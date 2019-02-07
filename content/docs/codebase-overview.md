@@ -15,13 +15,13 @@ If you want to [contribute to React](/docs/how-to-contribute.html) we hope that 
 
 We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
 
-### External Dependencies {#external-dependencies}
+### External Dependencies
 
 React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
 
 The [fbjs repository](https://github.com/facebook/fbjs) exists because React shares some small utilities with libraries like [Relay](https://github.com/facebook/relay), and we keep them in sync. We don't depend on equivalent small modules in the Node ecosystem because we want Facebook engineers to be able to make changes to them whenever necessary. None of the utilities inside fbjs are considered to be public API, and they are only intended for use by Facebook projects such as React.
 
-### Top-Level Folders {#top-level-folders}
+### Top-Level Folders
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
 
@@ -33,13 +33,13 @@ The documentation is hosted [in a separate repository from React](https://github
 
 There are a few other top-level folders but they are mostly used for the tooling and you likely won't ever encounter them when contributing.
 
-### Colocated Tests {#colocated-tests}
+### Colocated Tests
 
 We don't have a top-level directory for unit tests. Instead, we put them into a directory called `__tests__` relative to the files that they test.
 
 For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/setInnerHTML.js) is located in [`__tests__/setInnerHTML-test.js`](https://github.com/facebook/react/blob/87724bd87506325fcaf2648c70fc1f43411a87be/src/renderers/dom/client/utils/__tests__/setInnerHTML-test.js) right next to it.
 
-### Warnings and Invariants {#warnings-and-invariants}
+### Warnings and Invariants
 
 The React codebase uses the `warning` module to display warnings:
 
@@ -88,7 +88,7 @@ invariant(
 
 It is important to keep development and production behavior similar, so `invariant` throws both in development and in production. The error messages are automatically replaced with error codes in production to avoid negatively affecting the byte size.
 
-### Development and Production {#development-and-production}
+### Development and Production
 
 You can use `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
 
@@ -102,7 +102,7 @@ if (__DEV__) {
 }
 ```
 
-### Flow {#flow}
+### Flow
 
 We recently started introducing [Flow](https://flow.org/) checks to the codebase. Files marked with the `@flow` annotation in the license header comment are being typechecked.
 
@@ -120,7 +120,7 @@ ReactRef.detachRefs = function(
 When possible, new code should use Flow annotations.
 You can run `yarn flow` locally to check your code with Flow.
 
-### Dynamic Injection {#dynamic-injection}
+### Dynamic Injection
 
 React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.
 
@@ -153,11 +153,11 @@ The `injection` field is not handled specially in any way. But by convention, it
 
 There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.
 
-### Multiple Packages {#multiple-packages}
+### Multiple Packages
 
 React is a [monorepo](http://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
 
-### React Core {#react-core}
+### React Core
 
 The "core" of React includes all the [top-level `React` APIs](/docs/top-level-api.html#react), for example:
 
@@ -169,7 +169,7 @@ The "core" of React includes all the [top-level `React` APIs](/docs/top-level-ap
 
 The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
 
-### Renderers {#renderers}
+### Renderers
 
 React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](http://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
 
@@ -187,7 +187,7 @@ The only other officially supported renderer is [`react-art`](https://github.com
 >
 >Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
 
-### Reconcilers {#reconcilers}
+### Reconcilers
 
 Even vastly different renderers like React DOM and React Native need to share a lot of logic. In particular, the [reconciliation](/docs/reconciliation.html) algorithm should be as similar as possible so that declarative rendering, custom components, state, lifecycle methods, and refs work consistently across platforms.
 
@@ -195,11 +195,11 @@ To solve this, different renderers share some code between them. We call this pa
 
 Reconcilers are not packaged separately because they currently have no public API. Instead, they are exclusively used by renderers such as React DOM and React Native.
 
-### Stack Reconciler {#stack-reconciler}
+### Stack Reconciler
 
 The "stack" reconciler is the implementation powering React 15 and earlier. We have since stopped using it, but it is documented in detail in the [next section](/docs/implementation-notes.html).
 
-### Fiber Reconciler {#fiber-reconciler}
+### Fiber Reconciler
 
 The "fiber" reconciler is a new effort aiming to resolve the problems inherent in the stack reconciler and fix a few long-standing issues. It has been the default reconciler since React 16.
 
@@ -215,12 +215,12 @@ You can read more about React Fiber Architecture [here](https://github.com/acdli
 
 Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 
-### Event System {#event-system}
+### Event System
 
 React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/events`](https://github.com/facebook/react/tree/master/packages/events).
 
 There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
 
-### What Next? {#what-next}
+### What Next?
 
 Read the [next section](/docs/implementation-notes.html) to learn about the pre-React 16 implementation of reconciler in more detail. We haven't documented the internals of the new reconciler yet.

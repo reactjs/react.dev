@@ -8,7 +8,7 @@ category: Reference
 
 This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
 
-## Overview {#overview}
+## Overview
 
 Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
 
@@ -35,7 +35,7 @@ string type
 >
 > As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
 
-### Event Pooling {#event-pooling}
+### Event Pooling
 
 The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
 This is for performance reasons.
@@ -64,7 +64,7 @@ function onClick(event) {
 >
 > If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
 
-## Supported Events {#supported-events}
+## Supported Events
 
 React normalizes events so that they have consistent properties across different browsers.
 
@@ -89,9 +89,9 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 
 * * *
 
-## Reference {#reference}
+## Reference
 
-### Clipboard Events {#clipboard-events}
+### Clipboard Events
 
 Event names:
 
@@ -107,7 +107,7 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events {#composition-events}
+### Composition Events
 
 Event names:
 
@@ -124,7 +124,7 @@ string data
 
 * * *
 
-### Keyboard Events {#keyboard-events}
+### Keyboard Events
 
 Event names:
 
@@ -153,7 +153,7 @@ The `key` property can take any of the values documented in the [DOM Level 3 Eve
 
 * * *
 
-### Focus Events {#focus-events}
+### Focus Events
 
 Event names:
 
@@ -171,7 +171,7 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events {#form-events}
+### Form Events
 
 Event names:
 
@@ -183,7 +183,7 @@ For more information about the onChange event, see [Forms](/docs/forms.html).
 
 * * *
 
-### Mouse Events {#mouse-events}
+### Mouse Events
 
 Event names:
 
@@ -216,7 +216,7 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events {#pointer-events}
+### Pointer Events
 
 Event names:
 
@@ -252,7 +252,7 @@ If your application requires pointer events, we recommend adding a third party p
 
 * * *
 
-### Selection Events {#selection-events}
+### Selection Events
 
 Event names:
 
@@ -262,7 +262,7 @@ onSelect
 
 * * *
 
-### Touch Events {#touch-events}
+### Touch Events
 
 Event names:
 
@@ -285,7 +285,7 @@ DOMTouchList touches
 
 * * *
 
-### UI Events {#ui-events}
+### UI Events
 
 Event names:
 
@@ -302,7 +302,7 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events {#wheel-events}
+### Wheel Events
 
 Event names:
 
@@ -321,7 +321,7 @@ number deltaZ
 
 * * *
 
-### Media Events {#media-events}
+### Media Events
 
 Event names:
 
@@ -334,7 +334,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events {#image-events}
+### Image Events
 
 Event names:
 
@@ -344,7 +344,7 @@ onLoad onError
 
 * * *
 
-### Animation Events {#animation-events}
+### Animation Events
 
 Event names:
 
@@ -362,7 +362,7 @@ float elapsedTime
 
 * * *
 
-### Transition Events {#transition-events}
+### Transition Events
 
 Event names:
 
@@ -380,7 +380,7 @@ float elapsedTime
 
 * * *
 
-### Other Events {#other-events}
+### Other Events
 
 Event names:
 

@@ -6,7 +6,7 @@ layout: docs
 category: FAQ
 ---
 
-### How do I pass an event handler (like onClick) to a component?
+### How do I pass an event handler (like onClick) to a component? {#how-do-i-pass-an-event-handler-like-onclick-to-a-component}
 
 Pass event handlers and other functions as props to child components:
 
@@ -16,11 +16,11 @@ Pass event handlers and other functions as props to child components:
 
 If you need to have access to the parent component in the handler, you also need to bind the function to the component instance (see below).
 
-### How do I bind a function to a component instance?
+### How do I bind a function to a component instance? {#how-do-i-bind-a-function-to-a-component-instance}
 
 There are several ways to make sure functions have access to component attributes like `this.props` and `this.state`, depending on which syntax and build steps you are using.
 
-#### Bind in Constructor (ES2015)
+#### Bind in Constructor (ES2015) {#bind-in-constructor-es2015}
 
 ```jsx
 class Foo extends Component {
@@ -37,7 +37,7 @@ class Foo extends Component {
 }
 ```
 
-#### Class Properties (Stage 3 Proposal)
+#### Class Properties (Stage 3 Proposal) {#class-properties-stage-3-proposal}
 
 ```jsx
 class Foo extends Component {
@@ -51,7 +51,7 @@ class Foo extends Component {
 }
 ```
 
-#### Bind in Render
+#### Bind in Render {#bind-in-render}
 
 ```jsx
 class Foo extends Component {
@@ -68,7 +68,7 @@ class Foo extends Component {
 >
 >Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications (see below).
 
-#### Arrow Function in Render
+#### Arrow Function in Render {#arrow-function-in-render}
 
 ```jsx
 class Foo extends Component {
@@ -85,13 +85,13 @@ class Foo extends Component {
 >
 >Using an arrow function in render creates a new function each time the component renders, which may have performance implications (see below).
 
-### Is it OK to use arrow functions in render methods?
+### Is it OK to use arrow functions in render methods? {#is-it-ok-to-use-arrow-functions-in-render-methods}
 
 Generally speaking, yes, it is OK, and it is often the easiest way to pass parameters to callback functions.
 
 If you do have performance issues, by all means, optimize!
 
-### Why is binding necessary at all?
+### Why is binding necessary at all? {#why-is-binding-necessary-at-all}
 
 In JavaScript, these two code snippets are **not** equivalent:
 
@@ -110,7 +110,7 @@ With React, typically you only need to bind the methods you *pass* to other comp
 
 [This post by Yehuda Katz](http://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) explains what binding is, and how functions work in JavaScript, in detail.
 
-### Why is my function being called every time the component renders?
+### Why is my function being called every time the component renders? {#why-is-my-function-being-called-every-time-the-component-renders}
 
 Make sure you aren't _calling the function_ when you pass it to the component:
 
@@ -130,7 +130,7 @@ render() {
 }
 ```
 
-### How do I pass a parameter to an event handler or callback?
+### How do I pass a parameter to an event handler or callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
 
 You can use an arrow function to wrap around an event handler and pass parameters:
 
@@ -144,7 +144,7 @@ This is equivalent to calling `.bind`:
 <button onClick={this.handleClick.bind(this, id)} />
 ```
 
-#### Example: Passing params using arrow functions
+#### Example: Passing params using arrow functions {#example-passing-params-using-arrow-functions}
 
 ```jsx
 const A = 65 // ASCII character code
@@ -178,7 +178,7 @@ class Alphabet extends React.Component {
 }
 ```
 
-#### Example: Passing params using data-attributes
+#### Example: Passing params using data-attributes {#example-passing-params-using-data-attributes}
 
 Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
 
@@ -218,7 +218,7 @@ class Alphabet extends React.Component {
 }
 ```
 
-### How can I prevent a function from being called too quickly or too many times in a row?
+### How can I prevent a function from being called too quickly or too many times in a row? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
 
 If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, then you can limit the rate at which callback is executed. This can be done by using:
 
@@ -232,7 +232,7 @@ See [this visualization](http://demo.nimius.net/debounce_throttle/) for a compar
 >
 > `_.debounce`, `_.throttle` and `raf-schd` provide a `cancel` method to cancel delayed callbacks. You should either call this method from `componentWillUnmount` _or_ check to ensure that the component is still mounted within the delayed function.
 
-#### Throttle
+#### Throttle {#throttle}
 
 Throttling prevents a function from being called more than once in a given window of time. The example below throttles a "click" handler to prevent calling it more than once per second.
 
@@ -260,7 +260,7 @@ class LoadMoreButton extends React.Component {
 }
 ```
 
-#### Debounce
+#### Debounce {#debounce}
 
 Debouncing ensures that a function will not be executed until after a certain amount of time has passed since it was last called. This can be useful when you have to perform some expensive calculation in response to an event that might dispatch rapidly (eg scroll or keyboard events). The example below debounces text input with a 250ms delay.
 
@@ -302,7 +302,7 @@ class Searchbox extends React.Component {
 }
 ```
 
-#### `requestAnimationFrame` throttling
+#### `requestAnimationFrame` throttling {#requestanimationframe-throttling}
 
 [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) is a way of queuing a function to be executed in the browser at the optimal time for rendering performance. A function that is queued with `requestAnimationFrame` will fire in the next frame. The browser will work hard to ensure that there are 60 frames per second (60 fps). However, if the browser is unable to it will naturally *limit* the amount of frames in a second. For example, a device might only be able to handle 30 fps and so you will only get 30 frames in that second. Using `requestAnimationFrame` for throttling is a useful technique in that it prevents you from doing more than 60 updates in a second. If you are doing 100 updates in a second this creates additional work for the browser that the user will not see anyway.
 
@@ -349,6 +349,6 @@ class ScrollListener extends React.Component {
 }
 ```
 
-#### Testing your rate limiting
+#### Testing your rate limiting {#testing-your-rate-limiting}
 
 When testing your rate limiting code works correctly it is helpful to have the ability to fast forward time. If you are using [`jest`](https://facebook.github.io/jest/) then you can use [`mock timers`](https://facebook.github.io/jest/docs/en/timer-mocks.html) to fast forward time. If you are using `requestAnimationFrame` throttling then you may find [`raf-stub`](https://github.com/alexreardon/raf-stub) to be a useful tool to control the ticking of animation frames.

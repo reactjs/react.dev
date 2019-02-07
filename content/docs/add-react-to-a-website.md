@@ -19,7 +19,7 @@ The majority of websites aren't, and don't need to be, single-page apps. With **
 - [Add React in One Minute](#add-react-in-one-minute)
 - [Optional: Try React with JSX](#optional-try-react-with-jsx) (no bundler necessary!)
 
-## Add React in One Minute
+## Add React in One Minute {#add-react-in-one-minute}
 
 In this section, we will show how to add a React component to an existing HTML page. You can follow along with your own website, or create an empty HTML file to practice.
 
@@ -27,7 +27,7 @@ There will be no complicated tools or install requirements -- **to complete this
 
 Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)
 
-### Step 1: Add a DOM Container to the HTML
+### Step 1: Add a DOM Container to the HTML {#step-1-add-a-dom-container-to-the-html}
 
 First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
 
@@ -45,7 +45,7 @@ We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it
 >
 >You can place a "container" `<div>` like this **anywhere** inside the `<body>` tag. You may have as many independent DOM containers on one page as you need. They are usually empty -- React will replace any existing content inside DOM containers.
 
-### Step 2: Add the Script Tags
+### Step 2: Add the Script Tags {#step-2-add-the-script-tags}
 
 Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
 
@@ -65,7 +65,7 @@ Next, add three `<script>` tags to the HTML page right before the closing `</bod
 
 The first two tags load React. The third one will load your component code.
 
-### Step 3: Create a React Component
+### Step 3: Create a React Component {#step-3-create-a-react-component}
 
 Create a file called `like_button.js` next to your HTML page.
 
@@ -86,7 +86,7 @@ ReactDOM.render(e(LikeButton), domContainer);
 
 These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
 
-### That's It!
+### That's It! {#thats-it}
 
 There is no step four. **You have just added the first React component to your website.**
 
@@ -96,7 +96,7 @@ Check out the next sections for more tips on integrating React.
 
 **[Download the full example (2KB zipped)](https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605/archive/f6c882b6ae18bde42dcf6fdb751aae93495a2275.zip)**
 
-### Tip: Reuse a Component
+### Tip: Reuse a Component {#tip-reuse-a-component}
 
 Commonly, you might want to display React components in multiple places on the HTML page. Here is an example that displays the "Like" button three times and passes some data to it:
 
@@ -108,7 +108,7 @@ Commonly, you might want to display React components in multiple places on the H
 >
 >This strategy is mostly useful while React-powered parts of the page are isolated from each other. Inside React code, it's easier to use [component composition](/docs/components-and-props.html#composing-components) instead.
 
-### Tip: Minify JavaScript for Production
+### Tip: Minify JavaScript for Production {#tip-minify-javascript-for-production}
 
 Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
 
@@ -121,7 +121,7 @@ If you already minify the application scripts, **your site will be production-re
 
 If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
 
-## Optional: Try React with JSX
+## Optional: Try React with JSX {#optional-try-react-with-jsx}
 
 In the examples above, we only relied on features that are natively supported by the browsers. This is why we used a JavaScript function call to tell React what to display:
 
@@ -151,7 +151,7 @@ These two code snippets are equivalent. While **JSX is [completely optional](/do
 
 You can play with JSX using [this online converter](http://babeljs.io/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=Q&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2%2Cstage-3&prettier=true&targets=Node-6.12&version=6.26.0&envVersion=).
 
-### Quickly Try JSX
+### Quickly Try JSX {#quickly-try-jsx}
 
 The quickest way to try JSX in your project is to add this `<script>` tag to your page:
 
@@ -163,7 +163,7 @@ Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribut
 
 This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
 
-### Add JSX to a Project
+### Add JSX to a Project {#add-jsx-to-a-project}
 
 Adding JSX to a project doesn't require complicated tools like a bundler or a development server. Essentially, adding JSX **is a lot like adding a CSS preprocessor.** The only requirement is to have [Node.js](https://nodejs.org/) installed on your computer.
 
@@ -179,7 +179,7 @@ Go to your project folder in the terminal, and paste these two commands:
 Congratulations! You just added a **production-ready JSX setup** to your project.
 
 
-### Run JSX Preprocessor
+### Run JSX Preprocessor {#run-jsx-preprocessor}
 
 Create a folder called `src` and run this terminal command:
 

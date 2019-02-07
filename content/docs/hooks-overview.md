@@ -16,7 +16,7 @@ Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). Th
 
 **↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
 
-## 📌 State Hook
+## 📌 State Hook {#-state-hook}
 
 This example renders a counter. When you click the button, it increments the value:
 
@@ -42,7 +42,7 @@ Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We 
 
 The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
 
-#### Declaring multiple state variables
+#### Declaring multiple state variables {#declaring-multiple-state-variables}
 
 You can use the State Hook more than once in a single component:
 
@@ -58,7 +58,7 @@ function ExampleWithManyStates() {
 
 The [array destructuring](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Array_destructuring) syntax lets us give different names to the state variables we declared by calling `useState`. These names aren't a part of the `useState` API. Instead, React assumes that if you call `useState` many times, you do it in the same order during every render. We'll come back to why this works and when this is useful later.
 
-#### But what is a Hook?
+#### But what is a Hook? {#but-what-is-a-hook}
 
 Hooks are functions that let you “hook into” React state and lifecycle features from function components. Hooks don't work inside classes -- they let you use React without classes. (We [don't recommend](/docs/hooks-intro.html#gradual-adoption-strategy) rewriting your existing components overnight but you can start using Hooks in the new ones if you'd like.)
 
@@ -68,7 +68,7 @@ React provides a few built-in Hooks like `useState`. You can also create your ow
 >
 >You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
 
-## ⚡️ Effect Hook
+## ⚡️ Effect Hook {#️-effect-hook}
 
 You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
 
@@ -159,7 +159,7 @@ Hooks let you organize side effects in a component by what pieces are related (s
 >
 >You can learn more about `useEffect` on a dedicated page: [Using the Effect Hook](/docs/hooks-effect.html).
 
-## ✌️ Rules of Hooks
+## ✌️ Rules of Hooks {#️-rules-of-hooks}
 
 Hooks are JavaScript functions, but they impose two additional rules:
 
@@ -172,7 +172,7 @@ We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-h
 >
 >You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
 
-## 💡 Building Your Own Hooks
+## 💡 Building Your Own Hooks {#-building-your-own-hooks}
 
 Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
 
@@ -239,7 +239,7 @@ You can write custom Hooks that cover a wide range of use cases like form handli
 >
 >You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
 
-## 🔌 Other Hooks
+## 🔌 Other Hooks {#-other-hooks}
 
 There are a few less commonly used built-in Hooks that you might find useful. For example, [`useContext`](/docs/hooks-reference.html#usecontext) lets you subscribe to React context without introducing nesting:
 
@@ -263,7 +263,7 @@ function Todos() {
 >
 >You can learn more about all the built-in Hooks on a dedicated page: [Hooks API Reference](/docs/hooks-reference.html).
 
-## Next Steps
+## Next Steps {#next-steps}
 
 Phew, that was fast! If some things didn't quite make sense or you'd like to learn more in detail, you can read the next pages, starting with the [State Hook](/docs/hooks-state.html) documentation.
 

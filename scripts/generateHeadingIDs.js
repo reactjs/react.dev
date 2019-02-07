@@ -18,13 +18,6 @@ function walk(dir) {
   return results;
 }
 
-function generateID(text) {
-  return text
-    .toLowerCase()
-    .replace(/\s/g, '-')
-    .replace(/[^-a-z0-9]/g, '');
-}
-
 function addHeaderID(line, slugger) {
   // check if we're a header at all
   if (!line.startsWith('#')) {

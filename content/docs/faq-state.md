@@ -6,11 +6,11 @@ layout: docs
 category: FAQ
 ---
 
-### What does `setState` do?
+### What does `setState` do? {#what-does-setstate-do}
 
 `setState()` schedules an update to a component's `state` object. When state changes, the component responds by re-rendering.
 
-### What is the difference between `state` and `props`?
+### What is the difference between `state` and `props`? {#what-is-the-difference-between-state-and-props}
 
 [`props`](/docs/components-and-props.html) (short for "properties") and [`state`](/docs/state-and-lifecycle.html) are both plain JavaScript objects. While both hold information that influences the output of render, they are different in one important way: `props` get passed *to* the component (similar to function parameters) whereas `state` is managed *within* the component (similar to variables declared within a function).
 
@@ -18,7 +18,7 @@ Here are some good resources for further reading on when to use `props` vs `stat
 * [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
 * [ReactJS: Props vs. State](http://lucybain.com/blog/2016/react-state-vs-pros/)
 
-### Why is `setState` giving me the wrong value?
+### Why is `setState` giving me the wrong value? {#why-is-setstate-giving-me-the-wrong-value}
 
 In React, both `this.props` and `this.state` represent the *rendered* values, i.e. what's currently on the screen.
 
@@ -49,11 +49,11 @@ handleSomething() {
 
 See below for how to fix this problem.
 
-### How do I update state with values that depend on the current state? 
+### How do I update state with values that depend on the current state? {#how-do-i-update-state-with-values-that-depend-on-the-current-state}
 
 Pass a function instead of an object to `setState` to ensure the call always uses the most updated version of state (see below). 
 
-### What is the difference between passing an object or a function in `setState`?
+### What is the difference between passing an object or a function in `setState`? {#what-is-the-difference-between-passing-an-object-or-a-function-in-setstate}
 
 Passing an update function allows you to access the current state value inside the updater. Since `setState` calls are batched, this lets you chain updates and ensure they build on top of each other instead of conflicting:
 
@@ -78,7 +78,7 @@ handleSomething() {
 
 [Learn more about setState](/docs/react-component.html#setstate)
 
-### When is `setState` asynchronous?
+### When is `setState` asynchronous? {#when-is-setstate-asynchronous}
 
 Currently, `setState` is asynchronous inside event handlers.
 
@@ -86,7 +86,7 @@ This ensures, for example, that if both `Parent` and `Child` call `setState` dur
 
 This is an implementation detail so avoid relying on it directly. In the future versions, React will batch updates by default in more cases.
 
-### Why doesn't React update `this.state` synchronously?
+### Why doesn't React update `this.state` synchronously? {#why-doesnt-react-update-thisstate-synchronously}
 
 As explained in the previous section, React intentionally "waits" until all components call `setState()` in their event handlers before starting to re-render. This boosts performance by avoiding unnecessary re-renders.
 
@@ -99,7 +99,7 @@ There are two main reasons:
 
 This [GitHub comment](https://github.com/facebook/react/issues/11527#issuecomment-360199710) dives deep into the specific examples.
 
-### Should I use a state management library like Redux or MobX?
+### Should I use a state management library like Redux or MobX? {#should-i-use-a-state-management-library-like-redux-or-mobx}
 
 [Maybe.](https://redux.js.org/faq/general#when-should-i-use-redux)
 

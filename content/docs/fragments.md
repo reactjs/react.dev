@@ -20,7 +20,7 @@ render() {
 
 There is also a new [short syntax](#short-syntax) for declaring them, but it isn't supported by all popular tools yet.
 
-## Motivation
+## Motivation {#motivation}
 
 A common pattern is for a component to return a list of children. Take this example React snippet:
 
@@ -68,7 +68,7 @@ results in a `<Table />` output of:
 
 Fragments solve this problem.
 
-## Usage
+## Usage {#usage}
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -94,7 +94,7 @@ which results in a correct `<Table />` output of:
 </table>
 ```
 
-### Short Syntax
+### Short Syntax {#short-syntax}
 
 There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
 
@@ -115,7 +115,7 @@ You can use `<></>` the same way you'd use any other element except that it does
 
 Note that **[many tools don't support it yet](/blog/2017/11/28/react-v16.2.0-fragment-support.html#support-for-fragment-syntax)** so you might want to explicitly write `<React.Fragment>` until the tooling catches up.
 
-### Keyed Fragments
+### Keyed Fragments {#keyed-fragments}
 
 Fragments declared with the explicit `<React.Fragment>` syntax may have keys. A use case for this is mapping a collection to an array of fragments -- for example, to create a description list:
 
@@ -137,6 +137,6 @@ function Glossary(props) {
 
 `key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
 
-### Live Demo
+### Live Demo {#live-demo}
 
 You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).

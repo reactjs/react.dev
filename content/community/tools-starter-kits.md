@@ -5,7 +5,7 @@ layout: community
 permalink: community/starter-kits.html
 ---
 
-## Recommended by the React Team
+## Recommended by the React Team {#recommended-by-the-react-team}
 
 * **[Create React App](https://github.com/facebook/create-react-app)** - An officially supported way to start a client-side React project with no configuration
 * **[Next.js](https://nextjs.org/)** - Framework for server-rendered or statically-exported React apps
@@ -15,7 +15,7 @@ permalink: community/starter-kits.html
 * **[Neutrino](https://neutrino.js.org/)** - Create and build modern JavaScript applications with zero initial configuration
 * **[Parcel](https://parceljs.org)** - Fast, zero configuration web application bundler
 
-## Other Starter Kits
+## Other Starter Kits {#other-starter-kits}
 
 * **[kyt](https://github.com/nytimes/kyt)** - The framework that the New York Times uses to develop and build their web properties. It's somewhat opinionated but configurable, and includes starter kits with options to build full-stack or static/client-side apps with the following tools: Express, React, static assets, latest ES, CSS/Sass Modules, Jest, code-splitting, ESLint/Prettier, StyleLint, PostCSS, and inline SVGs.
 * **[React Redux Boilerplate](https://github.com/iroy2000/react-redux-boilerplate):** React Redux Boilerplate is a workflow boilerplate providing a virtual development environment and production ready build workflow out of the box. (React, Redux, Reselect, Redux Actions, ES6, ESLint, Webpack with integrated environment config support)

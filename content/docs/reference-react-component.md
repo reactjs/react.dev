@@ -17,7 +17,7 @@ redirect_from:
 
 This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
 
-## Overview
+## Overview {#overview}
 
 React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
 
@@ -37,11 +37,11 @@ The only method you *must* define in a `React.Component` subclass is called [`re
 >
 >React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
 
-### The Component Lifecycle
+### The Component Lifecycle {#the-component-lifecycle}
 
 Each component has several "lifecycle methods" that you can override to run code at particular times in the process. **You can use [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) as a cheat sheet.** In the list below, commonly used lifecycle methods are marked as **bold**. The rest of them exist for relatively rare use cases.
 
-#### Mounting
+#### Mounting {#mounting}
 
 These methods are called in the following order when an instance of a component is being created and inserted into the DOM:
 
@@ -56,7 +56,7 @@ These methods are called in the following order when an instance of a component 
 >
 >- [`UNSAFE_componentWillMount()`](#unsafe_componentwillmount)
 
-#### Updating
+#### Updating {#updating}
 
 An update can be caused by changes to props or state. These methods are called in the following order when a component is being re-rendered:
 
@@ -73,45 +73,45 @@ An update can be caused by changes to props or state. These methods are called i
 >- [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate)
 >- [`UNSAFE_componentWillReceiveProps()`](#unsafe_componentwillreceiveprops)
 
-#### Unmounting
+#### Unmounting {#unmounting}
 
 This method is called when a component is being removed from the DOM:
 
 - [**`componentWillUnmount()`**](#componentwillunmount)
 
-#### Error Handling
+#### Error Handling {#error-handling}
 
 These methods are called when there is an error during rendering, in a lifecycle method, or in the constructor of any child component.
 
 - [`static getDerivedStateFromError()`](#static-getderivedstatefromerror)
 - [`componentDidCatch()`](#componentdidcatch)
 
-### Other APIs
+### Other APIs {#other-apis}
 
 Each component also provides some other APIs:
 
   - [`setState()`](#setstate)
   - [`forceUpdate()`](#forceupdate)
 
-### Class Properties
+### Class Properties {#class-properties}
 
   - [`defaultProps`](#defaultprops)
   - [`displayName`](#displayname)
 
-### Instance Properties
+### Instance Properties {#instance-properties}
 
   - [`props`](#props)
   - [`state`](#state)
 
 * * *
 
-## Reference
+## Reference {#reference}
 
-### Commonly Used Lifecycle Methods
+### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
 
 The methods in this section cover the vast majority of use cases you'll encounter creating React components. **For a visual reference, check out [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/).**
 
-### `render()`
+### `render()` {#render}
 
 ```javascript
 render()
@@ -137,7 +137,7 @@ If you need to interact with the browser, perform your work in `componentDidMoun
 
 * * *
 
-### `constructor()`
+### `constructor()` {#constructor}
 
 ```javascript
 constructor(props)
@@ -188,7 +188,7 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 
 * * *
 
-### `componentDidMount()`
+### `componentDidMount()` {#componentdidmount}
 
 ```javascript
 componentDidMount()
@@ -202,7 +202,7 @@ You **may call `setState()` immediately** in `componentDidMount()`. It will trig
 
 * * *
 
-### `componentDidUpdate()`
+### `componentDidUpdate()` {#componentdidupdate}
 
 ```javascript
 componentDidUpdate(prevProps, prevState, snapshot)
@@ -231,7 +231,7 @@ If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is
 
 * * *
 
-### `componentWillUnmount()`
+### `componentWillUnmount()` {#componentwillunmount}
 
 ```javascript
 componentWillUnmount()
@@ -243,12 +243,12 @@ You **should not call `setState()`** in `componentWillUnmount()` because the com
 
 * * *
 
-### Rarely Used Lifecycle Methods
+### Rarely Used Lifecycle Methods {#rarely-used-lifecycle-methods}
 
 The methods in this section correspond to uncommon use cases. They're handy once in a while, but most of your components probably don't need any of them. **You can see most of the methods below on [this lifecycle diagram](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/) if you click the "Show less common lifecycles" checkbox at the top of it.**
 
 
-### `shouldComponentUpdate()`
+### `shouldComponentUpdate()` {#shouldcomponentupdate}
 
 ```javascript
 shouldComponentUpdate(nextProps, nextState)
@@ -268,7 +268,7 @@ Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_component
 
 * * *
 
-### `static getDerivedStateFromProps()`
+### `static getDerivedStateFromProps()` {#static-getderivedstatefromprops}
 
 ```js
 static getDerivedStateFromProps(props, state)
@@ -293,7 +293,7 @@ Note that this method is fired on *every* render, regardless of the cause. This 
 
 * * *
 
-### `getSnapshotBeforeUpdate()`
+### `getSnapshotBeforeUpdate()` {#getsnapshotbeforeupdate}
 
 ```javascript
 getSnapshotBeforeUpdate(prevProps, prevState)
@@ -313,7 +313,7 @@ In the above examples, it is important to read the `scrollHeight` property in `g
 
 * * *
 
-### Error boundaries
+### Error boundaries {#error-boundaries}
 
 [Error boundaries](/docs/error-boundaries.html) are React components that catch JavaScript errors anywhere in their child component tree, log those errors, and display a fallback UI instead of the component tree that crashed. Error boundaries catch errors during rendering, in lifecycle methods, and in constructors of the whole tree below them.
 
@@ -327,7 +327,7 @@ For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-hand
 > 
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
-### `static getDerivedStateFromError()`
+### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
 ```javascript
 static getDerivedStateFromError(error)
 ```
@@ -365,7 +365,7 @@ For those use cases, use `componentDidCatch()` instead.
 
 * * *
 
-### `componentDidCatch()`
+### `componentDidCatch()` {#componentdidcatch}
 
 ```javascript
 componentDidCatch(error, info)
@@ -420,11 +420,11 @@ class ErrorBoundary extends React.Component {
 
 * * *
 
-### Legacy Lifecycle Methods
+### Legacy Lifecycle Methods {#legacy-lifecycle-methods}
 
 The lifecycle methods below are marked as "legacy". They still work, but we don't recommend using them in the new code. You can learn more about migrating away from legacy lifecycle methods in [this blog post](/blog/2018/03/27/update-on-async-rendering.html).
 
-### `UNSAFE_componentWillMount()`
+### `UNSAFE_componentWillMount()` {#unsafe_componentwillmount}
 
 ```javascript
 UNSAFE_componentWillMount()
@@ -442,7 +442,7 @@ This is the only lifecycle method called on server rendering.
 
 * * *
 
-### `UNSAFE_componentWillReceiveProps()`
+### `UNSAFE_componentWillReceiveProps()` {#unsafe_componentwillreceiveprops}
 
 ```javascript
 UNSAFE_componentWillReceiveProps(nextProps)
@@ -470,7 +470,7 @@ React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props durin
 
 * * *
 
-### `UNSAFE_componentWillUpdate()`
+### `UNSAFE_componentWillUpdate()` {#unsafe_componentwillupdate}
 
 ```javascript
 UNSAFE_componentWillUpdate(nextProps, nextState)
@@ -492,13 +492,13 @@ Typically, this method can be replaced by `componentDidUpdate()`. If you were re
 
 * * *
 
-## Other APIs
+## Other APIs {#other-apis-1}
 
 Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
 
 There are just two of them: `setState()` and `forceUpdate()`.
 
-### `setState()`
+### `setState()` {#setstate}
 
 ```javascript
 setState(updater[, callback])
@@ -569,7 +569,7 @@ For more detail, see:
 
 * * *
 
-### `forceUpdate()`
+### `forceUpdate()` {#forceupdate}
 
 ```javascript
 component.forceUpdate(callback)
@@ -583,9 +583,9 @@ Normally you should try to avoid all uses of `forceUpdate()` and only read from 
 
 * * *
 
-## Class Properties
+## Class Properties {#class-properties-1}
 
-### `defaultProps`
+### `defaultProps` {#defaultprops}
 
 `defaultProps` can be defined as a property on the component class itself, to set the default props for the class. This is used for undefined props, but not for null props. For example:
 
@@ -617,21 +617,21 @@ If `props.color` is set to null, it will remain null:
 
 * * *
 
-### `displayName`
+### `displayName` {#displayname}
 
 The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
 
 * * *
 
-## Instance Properties
+## Instance Properties {#instance-properties-1}
 
-### `props`
+### `props` {#props}
 
 `this.props` contains the props that were defined by the caller of this component. See [Components and Props](/docs/components-and-props.html) for an introduction to props.
 
 In particular, `this.props.children` is a special prop, typically defined by the child tags in the JSX expression rather than in the tag itself.
 
-### `state`
+### `state` {#state}
 
 The state contains data specific to this component that may change over time. The state is user-defined, and it should be a plain JavaScript object.
 

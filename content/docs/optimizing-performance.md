@@ -8,7 +8,7 @@ redirect_from:
 
 Internally, React uses several clever techniques to minimize the number of costly DOM operations required to update the UI. For many applications, using React will lead to a fast user interface without doing much work to specifically optimize for performance. Nevertheless, there are several ways you can speed up your React application.
 
-## Use the Production Build
+## Use the Production Build {#use-the-production-build}
 
 If you're benchmarking or experiencing performance problems in your React apps, make sure you're testing with the minified production build.
 
@@ -26,7 +26,7 @@ It is expected that you use the development mode when working on your app, and t
 
 You can find instructions for building your app for production below.
 
-### Create React App
+### Create React App {#create-react-app}
 
 If your project is built with [Create React App](https://github.com/facebookincubator/create-react-app), run:
 
@@ -38,7 +38,7 @@ This will create a production build of your app in the `build/` folder of your p
 
 Remember that this is only necessary before deploying to production. For normal development, use `npm start`.
 
-### Single-File Builds
+### Single-File Builds {#single-file-builds}
 
 We offer production-ready versions of React and React DOM as single files:
 
@@ -49,7 +49,7 @@ We offer production-ready versions of React and React DOM as single files:
 
 Remember that only React files ending with `.production.min.js` are suitable for production.
 
-### Brunch
+### Brunch {#brunch}
 
 For the most efficient Brunch production build, install the [`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) plugin:
 
@@ -69,7 +69,7 @@ brunch build -p
 
 Remember that you only need to do this for production builds. You shouldn't pass the `-p` flag or apply this plugin in development, because it will hide useful React warnings and make the builds much slower.
 
-### Browserify
+### Browserify {#browserify}
 
 For the most efficient Browserify production build, install a few plugins:
 
@@ -103,7 +103,7 @@ browserify ./index.js \
 
 Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
 
-### Rollup
+### Rollup {#rollup}
 
 For the most efficient Rollup production build, install a few plugins:
 
@@ -137,7 +137,7 @@ For a complete setup example [see this gist](https://gist.github.com/Rich-Harris
 
 Remember that you only need to do this for production builds. You shouldn't apply the `uglify` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
 
-### webpack
+### webpack {#webpack}
 
 >**Note:**
 >
@@ -157,7 +157,7 @@ You can learn more about this in [webpack documentation](https://webpack.js.org/
 
 Remember that you only need to do this for production builds. You shouldn't apply `UglifyJsPlugin` or `DefinePlugin` with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
 
-## Profiling Components with the Chrome Performance Tab
+## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
 
 In the **development** mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:
 
@@ -183,7 +183,7 @@ Note that **the numbers are relative so components will render faster in product
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
-## Profiling Components with the DevTools Profiler
+## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5+ and `react-native` 0.57+ provide enhanced profiling capabilities in DEV mode with the React DevTools Profiler.
 An overview of the Profiler can be found in the blog post ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
@@ -200,13 +200,13 @@ If you haven't yet installed the React DevTools, you can find them here:
 > A production profiling bundle of `react-dom` is also available as `react-dom/profiling`.
 > Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling)
 
-## Virtualize Long Lists
+## Virtualize Long Lists {#virtualize-long-lists}
 
 If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
 
 [react-window](https://react-window.now.sh/) and [react-virtualized](https://bvaughn.github.io/react-virtualized/) are popular windowing libraries. They provide several reusable components for displaying lists, grids, and tabular data. You can also create your own windowing component, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), if you want something more tailored to your application's specific use case.
 
-## Avoid Reconciliation
+## Avoid Reconciliation {#avoid-reconciliation}
 
 React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a "virtual DOM", but it works the same way on React Native.
 
@@ -242,7 +242,7 @@ If you know that in some situations your component doesn't need to update, you c
 
 In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state.
 
-## shouldComponentUpdate In Action
+## shouldComponentUpdate In Action {#shouldcomponentupdate-in-action}
 
 Here's a subtree of components. For each one, `SCU` indicates what `shouldComponentUpdate` returned, and `vDOMEq` indicates whether the rendered React elements were equivalent. Finally, the circle's color indicates whether the component had to be reconciled or not.
 
@@ -256,7 +256,7 @@ The last interesting case is C8. React had to render this component, but since t
 
 Note that React only had to do DOM mutations for C6, which was inevitable. For C8, it bailed out by comparing the rendered React elements, and for C2's subtree and C7, it didn't even have to compare the elements as we bailed out on `shouldComponentUpdate`, and `render` was not called.
 
-## Examples
+## Examples {#examples}
 
 If the only way your component ever changes is when the `props.color` or the `state.count` variable changes, you could have `shouldComponentUpdate` check that:
 
@@ -350,7 +350,7 @@ class WordAdder extends React.Component {
 
 The problem is that `PureComponent` will do a simple comparison between the old and new values of `this.props.words`. Since this code mutates the `words` array in the `handleClick` method of `WordAdder`, the old and new values of `this.props.words` will compare as equal, even though the actual words in the array have changed. The `ListOfWords` will thus not update even though it has new words that should be rendered.
 
-## The Power Of Not Mutating Data
+## The Power Of Not Mutating Data {#the-power-of-not-mutating-data}
 
 The simplest way to avoid this problem is to avoid mutating values that you are using as props or state. For example, the `handleClick` method above could be rewritten using `concat` as:
 
@@ -400,7 +400,7 @@ function updateColorMap(colormap) {
 
 If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
 
-## Using Immutable Data Structures
+## Using Immutable Data Structures {#using-immutable-data-structures}
 
 [Immutable.js](https://github.com/facebook/immutable-js) is another way to solve this problem. It provides immutable, persistent collections that work via structural sharing:
 

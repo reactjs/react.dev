@@ -49,13 +49,13 @@ React.createElement(
 
 If you want to test out how some specific JSX is converted into JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
 
-## Specifying The React Element Type
+## Specifying The React Element Type {#specifying-the-react-element-type}
 
 The first part of a JSX tag determines the type of the React element.
 
 Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
 
-### React Must Be in Scope
+### React Must Be in Scope {#react-must-be-in-scope}
 
 Since JSX compiles into calls to `React.createElement`, the `React` library must also always be in scope from your JSX code.
 
@@ -73,7 +73,7 @@ function WarningButton() {
 
 If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
 
-### Using Dot Notation for JSX Type
+### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
 
 You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:
 
@@ -91,7 +91,7 @@ function BlueDatePicker() {
 }
 ```
 
-### User-Defined Components Must Be Capitalized
+### User-Defined Components Must Be Capitalized {#user-defined-components-must-be-capitalized}
 
 When an element type starts with a lowercase letter, it refers to a built-in component like `<div>` or `<span>` and results in a string `'div'` or `'span'` passed to `React.createElement`. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.
 
@@ -131,7 +131,7 @@ function HelloWorld() {
 }
 ```
 
-### Choosing the Type at Runtime
+### Choosing the Type at Runtime {#choosing-the-type-at-runtime}
 
 You cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:
 
@@ -168,11 +168,11 @@ function Story(props) {
 }
 ```
 
-## Props in JSX
+## Props in JSX {#props-in-jsx}
 
 There are several different ways to specify props in JSX.
 
-### JavaScript Expressions as Props
+### JavaScript Expressions as Props {#javascript-expressions-as-props}
 
 You can pass any JavaScript expression as a prop, by surrounding it with `{}`. For example, in this JSX:
 
@@ -198,7 +198,7 @@ function NumberDescriber(props) {
 
 You can learn more about [conditional rendering](/docs/conditional-rendering.html) and [loops](/docs/lists-and-keys.html) in the corresponding sections.
 
-### String Literals
+### String Literals {#string-literals}
 
 You can pass a string literal as a prop. These two JSX expressions are equivalent:
 
@@ -218,7 +218,7 @@ When you pass a string literal, its value is HTML-unescaped. So these two JSX ex
 
 This behavior is usually not relevant. It's only mentioned here for completeness.
 
-### Props Default to "True"
+### Props Default to "True" {#props-default-to-true}
 
 If you pass no value for a prop, it defaults to `true`. These two JSX expressions are equivalent:
 
@@ -230,7 +230,7 @@ If you pass no value for a prop, it defaults to `true`. These two JSX expression
 
 In general, we don't recommend using this because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
 
-### Spread Attributes
+### Spread Attributes {#spread-attributes}
 
 If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" operator to pass the whole props object. These two components are equivalent:
 
@@ -270,11 +270,11 @@ All other props are passed via the `...other` object making this component reall
 
 Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  
 
-## Children in JSX
+## Children in JSX {#children-in-jsx}
 
 In JSX expressions that contain both an opening tag and a closing tag, the content between those tags is passed as a special prop: `props.children`. There are several different ways to pass children:
 
-### String Literals
+### String Literals {#string-literals-1}
 
 You can put a string between the opening and closing tags and `props.children` will just be that string. This is useful for many of the built-in HTML elements. For example:
 
@@ -308,7 +308,7 @@ JSX removes whitespace at the beginning and ending of a line. It also removes bl
 </div>
 ```
 
-### JSX Children
+### JSX Children {#jsx-children}
 
 You can provide more JSX elements as the children. This is useful for displaying nested components:
 
@@ -345,7 +345,7 @@ render() {
 }
 ```
 
-### JavaScript Expressions as Children
+### JavaScript Expressions as Children {#javascript-expressions-as-children}
 
 You can pass any JavaScript expression as children, by enclosing it within `{}`. For example, these expressions are equivalent:
 
@@ -380,7 +380,7 @@ function Hello(props) {
 }
 ```
 
-### Functions as Children
+### Functions as Children {#functions-as-children}
 
 Normally, JavaScript expressions inserted in JSX will evaluate to a string, a React element, or a list of those things. However, `props.children` works just like any other prop in that it can pass any sort of data, not just the sorts that React knows how to render. For example, if you have a custom component, you could have it take a callback as `props.children`:
 
@@ -405,7 +405,7 @@ function ListOfTenThings() {
 
 Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
 
-### Booleans, Null, and Undefined Are Ignored
+### Booleans, Null, and Undefined Are Ignored {#booleans-null-and-undefined-are-ignored}
 
 `false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
 

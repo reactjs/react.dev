@@ -18,6 +18,10 @@ function walk(dir) {
   return results;
 }
 
+function stripLinks(line) {
+  return line.replace(/\[([^\]]+)\]\([^)]+\)/, (match, p1) => p1);
+}
+
 function addHeaderID(line, slugger) {
   // check if we're a header at all
   if (!line.startsWith('#')) {
@@ -27,7 +31,10 @@ function addHeaderID(line, slugger) {
   if (/\{#[^}]+\}/.test(line)) {
     return line;
   }
-  const headingText = line.slice(line.indexOf(' ')).trim();
+  if (/\[[^\]]+\]/.test(line)) {
+    console.log(line);
+  }
+  const headingText = stripLinks(line.slice(line.indexOf(' ')).trim());
   const headingLevel = line.slice(0, line.indexOf(' '));
   return `${headingLevel} ${headingText} {#${slugger.slug(headingText)}}`;
 }

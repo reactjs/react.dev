@@ -57,9 +57,7 @@ The documentation is divided into several sections with a different tone and pur
 
 ## Translation
 
-If you are interesting in translating `reactjs.org`, please join the Crowdin.
-
-* [Crowdin - React](https://crowdin.com/project/react)
+If you are interesting in translating `reactjs.org`, please see the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
 
 ## Troubleshooting
 

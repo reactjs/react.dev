@@ -17,3 +17,5 @@ There are many wonderful curated resources the React community has put together.
 - [Awesome React Components](https://github.com/brillout/awesome-react-components) - A curated list of React components.
 
 - [Awesome React Talks](https://github.com/tiaanduplessis/awesome-react-talks) - A curated list of React talks.
+
+- [React Resources](https://reactresources.com) - A daily updated list of new React learning resources, libraries and jobs.

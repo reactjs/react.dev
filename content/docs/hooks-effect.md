@@ -160,14 +160,14 @@ class FriendStatus extends React.Component {
   componentDidMount() {
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: this.props.friend.status })
     );
   }
 
   componentWillUnmount() {
     ChatAPI.unsubscribeFromFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: null })
     );
   }
 
@@ -209,10 +209,10 @@ function FriendStatus(props) {
   }
 
   useEffect(() => {
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    ChatAPI.subscribeToFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: props.friend.status }));
     // Specify how to clean up after this effect:
     return function cleanup() {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: null }));
     };
   });
 
@@ -237,9 +237,9 @@ We've learned that `useEffect` lets us express different kinds of side effects a
 
 ```js
   useEffect(() => {
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    ChatAPI.subscribeToFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: props.friend.status }));
     return () => {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: null }));
     };
   });
 ```
@@ -280,7 +280,7 @@ class FriendStatusWithCounter extends React.Component {
     document.title = `You clicked ${this.state.count} times`;
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: this.props.friend.status })
     );
   }
 
@@ -291,7 +291,7 @@ class FriendStatusWithCounter extends React.Component {
   componentWillUnmount() {
     ChatAPI.unsubscribeFromFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: null })
     );
   }
 
@@ -316,9 +316,9 @@ function FriendStatusWithCounter(props) {
 
   const [isOnline, setIsOnline] = useState(null);
   useEffect(() => {
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    ChatAPI.subscribeToFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: props.friend.status }));
     return () => {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: null }));
     };
   });
 
@@ -341,14 +341,14 @@ If you're used to classes, you might be wondering why the effect cleanup phase h
   componentDidMount() {
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: this.props.friend.status })
     );
   }
 
   componentWillUnmount() {
     ChatAPI.unsubscribeFromFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: null })
     );
   }
 ```
@@ -361,7 +361,7 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
   componentDidMount() {
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: this.props.friend.status })
     );
   }
 
@@ -369,19 +369,19 @@ In a class component, we would need to add `componentDidUpdate` to handle this c
     // Unsubscribe from the previous friend.id
     ChatAPI.unsubscribeFromFriendStatus(
       prevProps.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: null })
     );
     // Subscribe to the next friend.id
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: this.props.friend.status })
     );
   }
 
   componentWillUnmount() {
     ChatAPI.unsubscribeFromFriendStatus(
       this.props.friend.id,
-      this.handleStatusChange
+      () => this.handleStatusChange({ isOnline: null })
     );
   }
 ```
@@ -394,9 +394,9 @@ Now consider the version of this component that uses Hooks:
 function FriendStatus(props) {
   // ...
   useEffect(() => {
-    ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+    ChatAPI.subscribeToFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: props.friend.status }));
     return () => {
-      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+      ChatAPI.unsubscribeFromFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: null }));
     };
   });
 ```
@@ -407,18 +407,18 @@ There is no special code for handling updates because `useEffect` handles them *
 
 ```js
 // Mount with { friend: { id: 100 } } props
-ChatAPI.subscribeToFriendStatus(100, handleStatusChange);     // Run first effect
+ChatAPI.subscribeToFriendStatus(100, () => handleStatusChange({ isOnline: props.friend.status }));     // Run first effect
 
 // Update with { friend: { id: 200 } } props
-ChatAPI.unsubscribeFromFriendStatus(100, handleStatusChange); // Clean up previous effect
-ChatAPI.subscribeToFriendStatus(200, handleStatusChange);     // Run next effect
+ChatAPI.unsubscribeFromFriendStatus(100, () => handleStatusChange({ isOnline: null })); // Clean up previous effect
+ChatAPI.subscribeToFriendStatus(200, () => handleStatusChange({ isOnline: props.friend.status }));     // Run next effect
 
 // Update with { friend: { id: 300 } } props
-ChatAPI.unsubscribeFromFriendStatus(200, handleStatusChange); // Clean up previous effect
-ChatAPI.subscribeToFriendStatus(300, handleStatusChange);     // Run next effect
+ChatAPI.unsubscribeFromFriendStatus(200, () => handleStatusChange({ isOnline: null })); // Clean up previous effect
+ChatAPI.subscribeToFriendStatus(300, () => handleStatusChange({ isOnline: props.friend.status }));     // Run next effect
 
 // Unmount
-ChatAPI.unsubscribeFromFriendStatus(300, handleStatusChange); // Clean up last effect
+ChatAPI.unsubscribeFromFriendStatus(300, () => handleStatusChange({ isOnline: null })); // Clean up last effect
 ```
 
 This behavior ensures consistency by default and prevents bugs that are common in class components due to missing update logic.
@@ -451,9 +451,9 @@ This also works for effects that have a cleanup phase:
 
 ```js{6}
 useEffect(() => {
-  ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
+  ChatAPI.subscribeToFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: props.friend.status }));
   return () => {
-    ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
+    ChatAPI.unsubscribeFromFriendStatus(props.friend.id, () => handleStatusChange({ isOnline: null }));
   };
 }, [props.friend.id]); // Only re-subscribe if props.friend.id changes
 ```

@@ -82,7 +82,9 @@ npx create-react-app my-app
 
 3. Delete all files in the `src/` folder of the new project 
 
-> Note: **don't delete the entire `src` folder, just the original source files inside it.**.  We'll replace the default source files with examples for this project in the next step.
+> Note:
+>
+>**Don't delete the entire `src` folder, just the original source files inside it.** We'll replace the default source files with examples for this project in the next step.
 
 ```bash
 cd my-app

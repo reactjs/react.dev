@@ -110,7 +110,7 @@ const Header = ({location}: {location: Location}) => (
             },
             [media.lessThan('small')]: {
               maskImage:
-                'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
+                'linear-gradient(to right, transparent, black 10px, black 90%, transparent)',
             },
           }}>
           <HeaderLink

@@ -16,6 +16,10 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 January 31, 2019 in Tehran, Iran
 [Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
 
+### ReactFoo 2019 {#reactfoo-blr-2019}
+March 2, 2019 in Bangalore, India
+[Website](https://hasgeek.com/reactfoo/2019) - [Twitter](https://twitter.com/reactfoo)
+
 ### App.js Conf 2019 {#appjs-conf-2019}
 April 4-5, 2019 in Kraków, Poland
 

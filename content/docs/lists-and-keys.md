@@ -50,7 +50,7 @@ This code displays a bullet list of numbers between 1 and 5.
 
 Usually you would render lists inside a [component](/docs/components-and-props.html).
 
-We can refactor the previous example into a component that accepts an array of `numbers` and outputs an unordered list of elements.
+We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {

@@ -10,7 +10,7 @@ You might have heard about features like "Hooks", "Suspense", and "Concurrent Re
 We plan to split the rollout of new React features into the following milestones:
 
 * React 16.6 with [Suspense for Code Splitting](#react-166-shipped-the-one-with-suspense-for-code-splitting) (*already shipped*)
-* A minor 16.x release with [React Hooks](#react-16x-q1-2019-the-one-with-hooks) (~Q1 2019)
+* A minor 16.8 release with [React Hooks](#react-16x-q1-2019-the-one-with-hooks) (*already shipped*)
 * A minor 16.x release with [Concurrent Mode](#react-16x-q2-2019-the-one-with-concurrent-mode) (~Q2 2019)
 * A minor 16.x release with [Suspense for Data Fetching](#react-16x-mid-2019-the-one-with-suspense-for-data-fetching) (~mid 2019)
 

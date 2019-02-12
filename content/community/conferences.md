@@ -36,6 +36,11 @@ June 12, 2019. Larvik, Norway
 
 [Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
+### React Week '19 {#RWNY19}
+July 15-21, 2019. New York City, USA
+
+[Website](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
+
 ### ComponentsConf 2019 {#componentsconf-2019}
 September 6, 2019 in Melbourne, Australia
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)

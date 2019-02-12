@@ -10,11 +10,11 @@ You might have heard about features like "Hooks", "Suspense", and "Concurrent Re
 We plan to split the rollout of new React features into the following milestones:
 
 * React 16.6 with [Suspense for Code Splitting](#react-166-shipped-the-one-with-suspense-for-code-splitting) (*already shipped*)
-* A minor 16.x release with [React Hooks](#react-16x-q1-2019-the-one-with-hooks) (~Q1 2019)
+* React 16.8 with [React Hooks](#react-16x-q1-2019-the-one-with-hooks) (*already shipped*)
 * A minor 16.x release with [Concurrent Mode](#react-16x-q2-2019-the-one-with-concurrent-mode) (~Q2 2019)
 * A minor 16.x release with [Suspense for Data Fetching](#react-16x-mid-2019-the-one-with-suspense-for-data-fetching) (~mid 2019)
 
-*(The original version of this post used exact version numbers. We edited it to reflect that there might need to be a few other minor releases in the middle between these ones.)*
+*(The original version of this post used exact version numbers. We edited it to reflect that there might need to be a few other minor releases in the middle between these ones. We've also made updates to this document since the release of 16.8)*
 
 These are estimates, and the details may change as we're further along. There's at least two more projects we plan to complete in 2019. They require more exploration and aren't tied to a particular release yet:
 
@@ -67,7 +67,7 @@ Code splitting is just the first step for Suspense. Our longer term vision for S
 
 **Recommendation:** If you only do client rendering, we recommend widely adopting `React.lazy()` and `<React.Suspense>` for code splitting React components. If you do server rendering, you'll have to wait with adoption until the new server renderer is ready.
 
-### React 16.x (~Q1 2019): The One with Hooks {#react-16x-q1-2019-the-one-with-hooks}
+### React 16.8 (shipped): The One with Hooks {#react-16x-q1-2019-the-one-with-hooks}
 
 *Hooks* let you use features like state and lifecycle from function components. They also let you reuse stateful logic between components without introducing extra nesting in your tree.
 
@@ -89,13 +89,11 @@ function Example() {
 
 Hooks [introduction](/docs/hooks-intro.html) and [overview](/docs/hooks-overview.html) are good places to start. Watch [these talks](https://www.youtube.com/watch?v=V-QO-KO90iQ) for a video introduction and a deep dive. The [FAQ](/docs/hooks-faq.html) should answer most of your further questions. To learn more about the motivation behind Hooks, you can read [this article](https://medium.com/@dan_abramov/making-sense-of-react-hooks-fdbde8803889). Some of the rationale for the API design of Hooks is explained in [this RFC thread reply](https://github.com/reactjs/rfcs/pull/68#issuecomment-439314884).
 
-We have been dogfooding Hooks at Facebook since September. We don't expect major bugs in the implementation. Hooks are only available in the 16.7 alpha versions of React. Some of their API is expected to change in the final version (see the end of [this comment](https://github.com/reactjs/rfcs/pull/68#issuecomment-439314884) for details). It is possible that the minor release with Hooks might not be React 16.7.
-
 Hooks represent our vision for the future of React. They solve both problems that React users experience directly ("wrapper hell" of render props and higher-order components, duplication of logic in lifecycle methods), and the issues we've encountered optimizing React at scale (such as difficulties in inlining components with a compiler). Hooks don't deprecate classes. However, if Hooks are successful, it is possible that in a future *major* release class support might move to a separate package, reducing the default bundle size of React.
 
-**Status in React DOM:** The first version of `react` and `react-dom` supporting Hooks is `16.7.0-alpha.0`. We expect to publish more alphas over the next months (at the time of writing, the latest one is `16.7.0-alpha.2`). You can try them by installing `react@next` with `react-dom@next`. Don't forget to update `react-dom` -- otherwise Hooks won't work.
+**Status in React DOM:** Available since React 16.8.0.
 
-**Status in React DOM Server:** The same 16.7 alpha versions of `react-dom` fully support Hooks with `react-dom/server`.
+**Status in React DOM Server:** Available since React 16.8.0.
 
 **Status in React Native:** There is no officially supported way to try Hooks in React Native yet. If you're feeling adventurous, check out [this thread](https://github.com/facebook/react-native/issues/21967) for unofficial instructions. There is a known issue with `useEffect` firing too late which still needs to be solved.
 

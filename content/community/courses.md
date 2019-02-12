@@ -28,6 +28,8 @@ permalink: community/courses.html
 
 - [Frontend Masters](https://frontendmasters.com/courses/) - Video courses on React and other frontend frameworks.
 
+- [React - The Complete Guide (incl Hooks, React Router, Redux)](https://www.udemy.com/react-the-complete-guide-incl-redux/)- Dive in and learn React from scratch! Learn Reactjs, Hooks, Redux, React Routing, Animations, Next.js and way more!
+
 - [Fullstack React](https://www.fullstackreact.com/) - The up-to-date, in-depth, complete guide to React and friends.
 
 - [Pure React](https://daveceddia.com/pure-react/) - A step-by-step guide to mastering React.

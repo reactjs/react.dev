@@ -273,12 +273,7 @@ If you return the same value from a Reducer Hook as the current state, React wil
 ### `useCallback` {#usecallback}
 
 ```js
-const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
-  },
-  [a, b],
-);
+const memoizedCallback = useCallback(doSomething, [a, b]);
 ```
 
 Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.

@@ -80,7 +80,7 @@ This setup requires more work but allows you to complete the tutorial using an e
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Delete all files in the `src/` folder of the new project
 
 > Note:
 >
@@ -227,7 +227,7 @@ Congratulations! You've just "passed a prop" from a parent Board component to a 
 
 ### Making an Interactive Component {#making-an-interactive-component}
 
-Let's fill the Square component with an "X" when we click it. 
+Let's fill the Square component with an "X" when we click it.
 First, change the button tag that is returned from the Square component's `render()` function to this:
 
 ```javascript{4}
@@ -591,7 +591,7 @@ You can learn more about `shouldComponentUpdate()` and how you can build *pure c
 
 We'll now change the Square to be a **function component**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+In React, **function components** are a simpler way to write components that only contain a `render` method. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
 
 Replace the Square class with this function:
 
@@ -1015,7 +1015,7 @@ In JavaScript, arrays have a [`map()` method](https://developer.mozilla.org/en-U
 ```js
 const numbers = [1, 2, 3];
 const doubled = numbers.map(x => x * 2); // [2, 4, 6]
-``` 
+```
 
 Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
 

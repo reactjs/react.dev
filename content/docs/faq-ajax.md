@@ -12,7 +12,7 @@ You can use any AJAX library you like with React. Some popular ones are [Axios](
 
 ### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
-You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
+You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. Making the AJAX request in `componentDidMount` ensures that the component is mounted, therefore, allowing the call to `setState`. Conversely, if the AJAX call was made in the `constructor`, __we are not guaranteed that the component would be mounted before the AJAX request resolved__ so we would not be able to call `setState` on an unmounted component. 
 
 ### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
 

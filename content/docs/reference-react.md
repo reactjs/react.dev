@@ -124,11 +124,12 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-`React.memo` is a [higher order component](/docs/higher-order-components.html). It's similar to [`React.PureComponent`](#reactpurecomponent) but for function components instead of classes.
+`React.memo` is a [higher order component](/docs/higher-order-components.html) similar to [`React.PureComponent`](#reactpurecomponent) or `shouldComponentUpdate` but for functional components instead of classes.  
 
-If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
+Memoization is a common optimization technique in many programming contexts where the output of a function is cached alongside its arguments to prevent expensive re-calculation.  In the context of React, rendering a component can be expensive, and `React.memo` is the means to memoize a functional React component.  
 
-By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+In simpler terms, a memoized functional component will not be re-rendered if its props do not change.  By default, a shallow comparison is used, meaning that functions wrapped with `React.memo` behave the same way that class components extending `PureComponent` do. A custom comparator function can be passed as a second parameter to `React.memo`, giving you as much control in a functional component as `shouldComponentUpdate` offers to class components.  
+
 
 ```javascript
 function MyComponent(props) {
@@ -149,6 +150,10 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 > Note
 >
 > Unlike the [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method on class components, the `areEqual` function returns `true` if the props are equal and `false` if the props are not equal. This is the inverse from `shouldComponentUpdate`.
+
+> Performance Note
+> 
+> Unlike other more general purpose memoization techniques, React does not maintain a memoization cache, but compares the current set of props with the previous set of props, so there is not a significant memory cost to this method of memoization.  This also means that changing a prop's current value back to a previous value *will* issue a re-render, mirroring the semantics of `shouldComponentUpdate`.
 
 * * *
 

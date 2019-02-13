@@ -34,7 +34,7 @@
     - id: composition-vs-inheritance
       title: Composition vs Inheritance
     - id: thinking-in-react
-      title: Философия React
+      title: Thinking In React
 - title: Advanced Guides
   items:
     - id: accessibility

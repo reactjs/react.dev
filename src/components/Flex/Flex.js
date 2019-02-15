@@ -5,8 +5,6 @@
  * @flow
  */
 
-import {createElement} from 'glamor/react';
-
 import type {Node} from 'react';
 
 type Props = {
@@ -31,25 +29,23 @@ const Flex = ({
   grow = 0,
   halign = 'flex-start',
   shrink = 1,
-  type = 'div',
+  type: Type = 'div',
   valign = 'flex-start',
   ...rest
-}: Props) =>
-  createElement(
-    type,
-    {
-      css: {
-        display: 'flex',
-        flexDirection: direction,
-        flexGrow: grow,
-        flexShrink: shrink,
-        flexBasis: basis,
-        justifyContent: direction === 'row' ? halign : valign,
-        alignItems: direction === 'row' ? valign : halign,
-      },
-      ...rest,
-    },
-    children,
-  );
+}: Props) => (
+  <Type
+    css={{
+      display: 'flex',
+      flexDirection: direction,
+      flexGrow: grow,
+      flexShrink: shrink,
+      flexBasis: basis,
+      justifyContent: direction === 'row' ? halign : valign,
+      alignItems: direction === 'row' ? valign : halign,
+    }}
+    {...rest}>
+    {children}
+  </Type>
+);
 
 export default Flex;

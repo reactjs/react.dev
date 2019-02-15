@@ -22,7 +22,7 @@ module.exports = {
     'gatsby-transformer-home-example-code',
     'gatsby-transformer-versions-yaml',
     'gatsby-plugin-netlify',
-    'gatsby-plugin-glamor',
+    'gatsby-plugin-emotion',
     'gatsby-plugin-twitter',
     {
       resolve: 'gatsby-plugin-nprogress',

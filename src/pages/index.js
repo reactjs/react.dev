@@ -78,7 +78,7 @@ class Home extends Component {
                   marginRight: 'auto',
                   position: 'relative',
                   '::before': {
-                    content: ' ',
+                    content: '" "',
                     position: 'absolute',
                     top: 0,
                     left: 0,
@@ -330,12 +330,12 @@ const CtaItem = ({children, primary = false}) => (
         paddingLeft: 40,
       },
 
-      '&:first-child': {
+      '&:first-of-type': {
         textAlign: 'right',
         paddingRight: 15,
       },
 
-      '&:nth-child(2)': {
+      '&:nth-of-type(2)': {
         [media.greaterThan('small')]: {
           paddingLeft: 15,
         },

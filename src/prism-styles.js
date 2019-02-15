@@ -5,7 +5,7 @@
  * @flow
  */
 
-import {css} from 'glamor';
+import {injectGlobal} from 'emotion';
 import {colors} from 'theme';
 
 const prismColors = {
@@ -25,144 +25,127 @@ const prismColors = {
   operator: '#fc929e',
 };
 
-css.global('.gatsby-highlight', {
-  background: colors.dark,
-  color: colors.white,
-  borderRadius: 10,
-  overflow: 'auto',
-  tabSize: '1.5em',
-  WebkitOverflowScrolling: 'touch',
-});
+injectGlobal`.gatsby-highlight {
+  background: ${colors.dark};
+  color: ${colors.white};
+  border-radius: 10px;
+  overflow: auto;
+  tab-size: 1.5em;
+  -webkit-overflow-scrolling: touch;
+}`;
 
-css.global(
-  `
+injectGlobal`
 .gatsby-highlight > code[class*="gatsby-code-"],
 .gatsby-highlight > pre[class*="gatsby-code-"],
-.gatsby-highlight > pre.prism-code`,
-  {
-    height: 'auto !important',
-    margin: '1rem',
-    fontSize: 14,
-    lineHeight: '20px',
-    whiteSpace: 'pre-wrap',
-    wordBreak: 'break-word',
-  },
-);
+.gatsby-highlight > pre.prism-code {
+  height: auto !important;
+  margin: 1rem;
+  font-size: 14px;
+  line-height: 20px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}`;
 
-css.global('.gatsby-highlight + .gatsby-highlight', {
-  marginTop: 20,
-});
+injectGlobal`.gatsby-highlight + .gatsby-highlight {
+  margin-top: 20px
+}`;
 
-css.global('.gatsby-highlight-code-line', {
-  backgroundColor: prismColors.lineHighlight,
-  display: 'block',
-  margin: '-0.125rem calc(-1rem - 15px)',
-  padding: '0.125rem calc(1rem + 15px)',
-});
+injectGlobal`.gatsby-highlight-code-line {
+  background-color: ${prismColors.lineHighlight};
+  display: block;
+  margin: -0.125rem calc(-1rem - 15px);
+  padding: 0.125rem calc(1rem + 15px);
+}`;
 
-css.global('.token.attr-name', {
-  color: prismColors.keyword,
-});
+injectGlobal`.token.attr-name {
+  color: ${prismColors.keyword};
+}`;
 
-css.global(
-  `
+injectGlobal`
 .token.comment,
 .token.block-comment,
 .token.prolog,
 .token.doctype,
-.token.cdata`,
-  {
-    color: prismColors.comment,
-  },
-);
+.token.cdata {
+  color: ${prismColors.comment}
+}`;
 
-css.global(
-  `
+injectGlobal`
 .token.property,
 .token.number,
 .token.function-name,
 .token.constant,
 .token.symbol,
-.token.deleted`,
-  {
-    color: prismColors.primitive,
-  },
-);
+.token.deleted {
+  color: ${prismColors.primitive}
+}`;
 
-css.global(`.token.boolean`, {
-  color: prismColors.boolean,
-});
+injectGlobal`.token.boolean {
+  color: ${prismColors.boolean}
+}`;
 
-css.global(`.token.tag`, {
-  color: prismColors.tag,
-});
+injectGlobal`.token.tag {
+  color: ${prismColors.tag}
+}`;
 
-css.global(`.token.string`, {
-  color: prismColors.string,
-});
+injectGlobal`.token.string {
+  color: ${prismColors.string}
+}`;
 
-css.global(`.token.punctuation`, {
-  color: prismColors.punctuation,
-});
+injectGlobal`.token.punctuation {
+  color: ${prismColors.punctuation}
+}`;
 
-css.global(
-  `
+injectGlobal`
 .token.selector,
 .token.char,
 .token.builtin,
-.token.inserted`,
-  {
-    color: prismColors.char,
-  },
-);
+.token.inserted {
+  color: ${prismColors.char}
+}`;
 
-css.global(`.token.function`, {
-  color: prismColors.function,
-});
+injectGlobal`.token.function {
+  color: ${prismColors.function}
+}`;
 
-css.global(
-  `
+injectGlobal`
 .token.operator,
 .token.entity,
 .token.url,
-.token.variable`,
-  {
-    color: prismColors.variable,
-  },
-);
+.token.variable {
+  color: ${prismColors.variable}
+}`;
 
-css.global('.token.attr-value', {
-  color: prismColors.string,
-});
+injectGlobal`.token.attr-value {
+  color: ${prismColors.string}
+}`;
 
-css.global('.token.keyword', {
-  color: prismColors.keyword,
-});
+injectGlobal`.token.keyword {
+  color: ${prismColors.keyword}
+}`;
 
-css.global(
-  `
+injectGlobal`
 .token.atrule,
-.token.class-name`,
-  {
-    color: prismColors.className,
-  },
-);
+.token.class-name{
+  color: ${prismColors.className}
+}`;
 
-css.global('.token.important', {
-  fontWeight: 400,
-});
+injectGlobal`.token.important {
+  font-weight: 400
+}`;
 
-css.global('.token.bold', {
-  fontWeight: 700,
-});
-css.global('.token.italic', {
-  fontStyle: 'italic',
-});
+injectGlobal`.token.bold {
+  font-weight: 700
+}`;
 
-css.global('.token.entity', {
-  cursor: 'help',
-});
+injectGlobal`.token.italic {
+  font-style: italic
+}`;
 
-css.global('.namespace', {
-  opacity: 0.7,
-});
+injectGlobal`.token.entity {
+  cursor: help
+}`;
+
+injectGlobal`.namespace {
+  opacity: 0.7
+}`;

@@ -42,8 +42,8 @@ class DocSearch extends Component<{}, State> {
           flex: '0 0 auto',
           flexDirection: 'row',
           alignItems: 'center',
-          paddingLeft: '0.5rem',
-          paddingRight: '0.5rem',
+          paddingLeft: '0.25rem',
+          paddingRight: '0.25rem',
 
           [media.lessThan('small')]: {
             justifyContent: 'flex-end',
@@ -58,7 +58,7 @@ class DocSearch extends Component<{}, State> {
             width: 'calc(100% / 6)',
           },
           [media.greaterThan('small')]: {
-            minWidth: 120,
+            minWidth: 100,
           },
         }}>
         <input
@@ -71,12 +71,12 @@ class DocSearch extends Component<{}, State> {
             fontWeight: 300,
             fontFamily: 'inherit',
             position: 'relative',
-            padding: '5px 5px 5px 29px',
+            padding: '4px 4px 4px 29px',
             backgroundImage: 'url(/search.svg)',
             backgroundSize: '16px 16px',
             backgroundRepeat: 'no-repeat',
             backgroundPositionY: 'center',
-            backgroundPositionX: '5px',
+            backgroundPositionX: '4px',
 
             ':focus': {
               outline: 0,

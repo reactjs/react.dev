@@ -82,9 +82,9 @@ class Section extends React.Component {
                   : isItemActive(location, item),
                 item: section.isOrdered
                   ? {
-                      ...item,
-                      title: `${index + 1}. ${item.title}`,
-                    }
+                    ...item,
+                    title: `${index + 1}. ${item.title}`,
+                  }
                   : item,
                 location,
                 onLinkClick,

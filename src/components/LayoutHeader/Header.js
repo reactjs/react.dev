@@ -124,6 +124,11 @@ const Header = ({location}: {location: Location}) => (
             [media.lessThan('small')]: {
               maskImage:
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
+              marginLeft: -10,
+              paddingLeft: 10,
+              '> :last-child': {
+                paddingRight: 20,
+              },
             },
           }}>
           {navHeader.items.map(link => (

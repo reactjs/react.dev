@@ -10,7 +10,7 @@ import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
-import {language, version} from 'site-constants';
+import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
 
@@ -182,7 +182,7 @@ const Header = ({location}: {location: Location}) => (
               },
             }}
             to="/languages">
-            {language}
+            Languages
           </Link>
           <a
             css={{

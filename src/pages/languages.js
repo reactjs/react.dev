@@ -15,10 +15,10 @@ import {media, sharedStyles} from 'theme';
 // $FlowFixMe This is a valid path
 import languages from '../../content/languages.yml';
 
-const completedLangauges = languages
+const completedLanguages = languages
   .filter(language => language.is_completed)
   .sort((a, b) => a.code.localeCompare(b.code));
-const inProgressLangauges = languages
+const inProgressLanguages = languages
   .filter(language => !language.is_completed)
   .sort((a, b) => a.code.localeCompare(b.code));
 
@@ -45,7 +45,7 @@ const Languages = ({location}: Props) => (
                 flexWrap: 'wrap',
                 marginLeft: -20,
               }}>
-              {completedLangauges.map(language => (
+              {completedLanguages.map(language => (
                 <Language
                   key={language.code}
                   code={language.code}
@@ -63,7 +63,7 @@ const Languages = ({location}: Props) => (
                 flexWrap: 'wrap',
                 marginLeft: -20,
               }}>
-              {inProgressLangauges.map(language => (
+              {inProgressLanguages.map(language => (
                 <Language
                   key={language.code}
                   code={language.code}

@@ -5,6 +5,7 @@ layout: community
 permalink: community/model-management.html
 ---
 
+* **[react-model](https://github.com/byte-fe/react-model):** The next generation model management library for React.
 * **[Alt](https://alt.js.org/):** Pure vanilla flux made isomorphic and without the boilerplate.
 * **[astarisx](https://zuudo.github.io/astarisx/):** Highly Composable MVVM Framework for React with built-in pushState router.
 * **[avers](https://github.com/wereHamster/avers):** A modern client-side model abstraction library.

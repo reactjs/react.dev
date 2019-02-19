@@ -92,6 +92,7 @@ const Header = ({location}: {location: Location}) => (
 
         <nav
           css={{
+            flex: '1',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'stretch',
@@ -99,7 +100,6 @@ const Header = ({location}: {location: Location}) => (
             overflowY: 'hidden',
             WebkitOverflowScrolling: 'touch',
             height: '100%',
-            width: '60%',
 
             [media.size('xsmall')]: {
               flexGrow: '1',
@@ -141,6 +141,7 @@ const Header = ({location}: {location: Location}) => (
           css={{
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'flex-end',
             width: 'auto',
 
             //[media.lessThan('medium')]: {
@@ -195,6 +196,8 @@ const Header = ({location}: {location: Location}) => (
             <LanguagesIcon />{' '}
             <span
               css={{
+                marginLeft: '0.5rem',
+
                 [media.lessThan('medium')]: {
                   display: 'none',
                 },
@@ -246,8 +249,7 @@ const LanguagesIcon = () => (
     xmlns="http://www.w3.org/2000/svg"
     width="24"
     height="24"
-    viewBox="0 0 24 24"
-    css={{marginRight: '0.5rem'}}>
+    viewBox="0 0 24 24">
     <path d="M0 0h24v24H0z" fill="none" />
     <path
       css={{fill: 'currentColor'}}

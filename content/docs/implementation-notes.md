@@ -17,17 +17,17 @@ It also assumes an understanding of the [differences between React components, t
 
 The stack reconciler was used in React 15 and earlier. It is located at [src/renderers/shared/stack/reconciler](https://github.com/facebook/react/tree/15-stable/src/renderers/shared/stack/reconciler).
 
-### Video: Building React from Scratch
+### Video: Building React from Scratch {#video-building-react-from-scratch}
 
 [Paul O'Shannessy](https://twitter.com/zpao) gave a talk about [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) that largely inspired this document.
 
 Both this document and his talk are simplifications of the real codebase so you might get a better understanding by getting familiar with both of them.
 
-### Overview
+### Overview {#overview}
 
 The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#stack-renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
 
-### Mounting as a Recursive Process
+### Mounting as a Recursive Process {#mounting-as-a-recursive-process}
 
 Let's consider the first time you mount a component:
 
@@ -113,7 +113,7 @@ Let's recap a few key ideas in the example above:
 * User-defined components (e.g. `App`) can be classes or functions but they all "render to" elements.
 * "Mounting" is a recursive process that creates a DOM or Native tree given the top-level React element (e.g. `<App />`).
 
-### Mounting Host Elements
+### Mounting Host Elements {#mounting-host-elements}
 
 This process would be useless if we didn't render something to the screen as a result.
 
@@ -231,7 +231,7 @@ rootEl.appendChild(node);
 
 This is working but still far from how the reconciler is really implemented. The key missing ingredient is support for updates.
 
-### Introducing Internal Instances
+### Introducing Internal Instances {#introducing-internal-instances}
 
 The key feature of React is that you can re-render everything, and it won't recreate the DOM or reset the state:
 
@@ -432,7 +432,7 @@ var rootEl = document.getElementById('root');
 mountTree(<App />, rootEl);
 ```
 
-### Unmounting
+### Unmounting {#unmounting}
 
 Now that we have internal instances that hold onto their children and the DOM nodes, we can implement unmounting. For a composite component, unmounting calls a lifecycle method and recurses.
 
@@ -516,7 +516,7 @@ function mountTree(element, containerNode) {
 
 Now, running `unmountTree()`, or running `mountTree()` repeatedly, removes the old tree and runs the `componentWillUnmount()` lifecycle method on components.
 
-### Updating
+### Updating {#updating}
 
 In the previous section, we implemented unmounting. However React wouldn't be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:
 
@@ -552,7 +552,7 @@ Its job is to do whatever is necessary to bring the component (and any of its ch
 
 This is the part that is often described as "virtual DOM diffing" although what really happens is that we walk the internal tree recursively and let each internal instance receive an update.
 
-### Updating Composite Components
+### Updating Composite Components {#updating-composite-components}
 
 When a composite component receives a new element, we run the `componentWillUpdate()` lifecycle method.
 
@@ -666,7 +666,7 @@ class DOMComponent {
 }
 ```
 
-### Updating Host Components
+### Updating Host Components {#updating-host-components}
 
 Host component implementations, such as `DOMComponent`, update differently. When they receive an element, they need to update the underlying platform-specific view. In case of React DOM, this means updating the DOM attributes:
 
@@ -811,7 +811,7 @@ As the last step, we execute the DOM operations. Again, the real reconciler code
 
 And that is it for updating host components.
 
-### Top-Level Updates
+### Top-Level Updates {#top-level-updates}
 
 Now that both `CompositeComponent` and `DOMComponent` implement the `receive(nextElement)` method, we can change the top-level `mountTree()` function to use it when the element `type` is the same as it was the last time:
 
@@ -850,7 +850,7 @@ mountTree(<App />, rootEl);
 
 These are the basics of how React works internally.
 
-### What We Left Out
+### What We Left Out {#what-we-left-out}
 
 This document is simplified compared to the real codebase. There are a few important aspects we didn't address:
 
@@ -872,7 +872,7 @@ This document is simplified compared to the real codebase. There are a few impor
 
 * React puts information about the current update into an internal object called "transaction". Transactions are useful for keeping track of the queue of pending lifecycle methods, the current DOM nesting for the warnings, and anything else that is "global" to a specific update. Transactions also ensure React "cleans everything up" after updates. For example, the transaction class provided by React DOM restores the input selection after any update.
 
-### Jumping into the Code
+### Jumping into the Code {#jumping-into-the-code}
 
 * [`ReactMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/client/ReactMount.js) is where the code like `mountTree()` and `unmountTree()` from this tutorial lives. It takes care of mounting and unmounting top-level components. [`ReactNativeMount`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeMount.js) is its React Native analog.
 * [`ReactDOMComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/dom/shared/ReactDOMComponent.js) is the equivalent of `DOMComponent` in this tutorial. It implements the host component class for React DOM renderer. [`ReactNativeBaseComponent`](https://github.com/facebook/react/blob/83381c1673d14cd16cf747e34c945291e5518a86/src/renderers/native/ReactNativeBaseComponent.js) is its React Native analog.
@@ -889,10 +889,10 @@ This document is simplified compared to the real codebase. There are a few impor
 
 * Properties on the internal instances start with an underscore, e.g. `_currentElement`. They are considered to be read-only public fields throughout the codebase.
 
-### Future Directions
+### Future Directions {#future-directions}
 
 Stack reconciler has inherent limitations such as being synchronous and unable to interrupt the work or split it in chunks. There is a work in progress on the [new Fiber reconciler](/docs/codebase-overview.html#fiber-reconciler) with a [completely different architecture](https://github.com/acdlite/react-fiber-architecture). In the future, we intend to replace stack reconciler with it, but at the moment it is far from feature parity.
 
-### Next Steps
+### Next Steps {#next-steps}
 
 Read the [next section](/docs/design-principles.html) to learn about the guiding principles we use for React development.

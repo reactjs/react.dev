@@ -10,7 +10,7 @@ permalink: docs/legacy-context.html
 > Use the [new context API](/docs/context.html) introduced with version 16.3.
 > The legacy API will continue working for all 16.x releases.
 
-## How To Use Context
+## How To Use Context {#how-to-use-context}
 
 > This section documents a legacy API. See the [new API](/docs/context.html).
 
@@ -105,7 +105,7 @@ If `contextTypes` is not defined, then `context` will be an empty object.
 >
 > We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
 
-### Parent-Child Coupling
+### Parent-Child Coupling {#parent-child-coupling}
 
 > This section documents a legacy API. See the [new API](/docs/context.html).
 
@@ -137,7 +137,7 @@ By passing down some information from the `Router` component, each `Link` and `R
 
 Before you build components with an API similar to this, consider if there are cleaner alternatives. For example, you can pass entire React components as props if you'd like to.
 
-### Referencing Context in Lifecycle Methods
+### Referencing Context in Lifecycle Methods {#referencing-context-in-lifecycle-methods}
 
 > This section documents a legacy API. See the [new API](/docs/context.html).
 
@@ -152,7 +152,7 @@ If `contextTypes` is defined within a component, the following [lifecycle method
 >
 > As of React 16, `componentDidUpdate` no longer receives `prevContext`.
 
-### Referencing Context in Stateless Function Components
+### Referencing Context in Stateless Function Components {#referencing-context-in-stateless-function-components}
 
 > This section documents a legacy API. See the [new API](/docs/context.html).
 
@@ -169,7 +169,7 @@ const Button = ({children}, context) =>
 Button.contextTypes = {color: PropTypes.string};
 ```
 
-### Updating Context
+### Updating Context {#updating-context}
 
 > This section documents a legacy API. See the [new API](/docs/context.html).
 

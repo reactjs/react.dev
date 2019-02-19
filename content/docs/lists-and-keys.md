@@ -20,7 +20,7 @@ This code logs `[2, 4, 6, 8, 10]` to the console.
 
 In React, transforming arrays into lists of [elements](/docs/rendering-elements.html) is nearly identical.
 
-### Rendering Multiple Components
+### Rendering Multiple Components {#rendering-multiple-components}
 
 You can build collections of elements and [include them in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) using curly braces `{}`.
 
@@ -46,11 +46,11 @@ ReactDOM.render(
 
 This code displays a bullet list of numbers between 1 and 5.
 
-### Basic List Component
+### Basic List Component {#basic-list-component}
 
 Usually you would render lists inside a [component](/docs/components-and-props.html).
 
-We can refactor the previous example into a component that accepts an array of `numbers` and outputs an unordered list of elements.
+We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -96,7 +96,7 @@ ReactDOM.render(
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## Keys
+## Keys {#keys}
 
 Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:
 
@@ -134,7 +134,7 @@ We don't recommend using indexes for keys if the order of items may change. This
 
 Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
 
-### Extracting Components with Keys
+### Extracting Components with Keys {#extracting-components-with-keys}
 
 Keys only make sense in the context of the surrounding array.
 
@@ -206,7 +206,7 @@ ReactDOM.render(
 
 A good rule of thumb is that elements inside the `map()` call need keys.
 
-### Keys Must Only Be Unique Among Siblings
+### Keys Must Only Be Unique Among Siblings {#keys-must-only-be-unique-among-siblings}
 
 Keys used within arrays should be unique among their siblings. However they don't need to be globally unique. We can use the same keys when we produce two different arrays:
 
@@ -261,7 +261,7 @@ const content = posts.map((post) =>
 
 With the example above, the `Post` component can read `props.id`, but not `props.key`.
 
-### Embedding map() in JSX
+### Embedding map() in JSX {#embedding-map-in-jsx}
 
 In the examples above we declared a separate `listItems` variable and included it in JSX:
 

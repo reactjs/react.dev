@@ -67,6 +67,12 @@ Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
 Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
+### ReactCMS {#reactcms}
+
+[ReactCMS](https://github.com/5TechCenter/ReactCMS) is the open-source blogging software that's built with MongoDB, Express, React/Redux and Node.js. If you are planning to build a custom MERN stack blogging application, you can just fork and modify it according to your desired customization and to include some additional functionalities.
+
+Visit [ReactCMS on GitHub](https://github.com/5TechCenter/ReactCMS).
+
 ### More Flexible Toolchains {#more-flexible-toolchains}
 
 The following toolchains offer more flexiblity and choice. We recommend them to more experienced users:

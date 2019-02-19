@@ -1,124 +1,133 @@
+# Status enums indicate what percentage of "core" content has been translated:
+# 0: Incomplete (0–49%)
+# 1: Partially complete (50–94%)
+# 2: Complete (95–100%)
+
+- name: English
+  translated_name: English
+  code:
+  status: 2
 - name: Arabic
   translated_name: العربية
   code: ar
-  is_completed: false
+  status: 0
 - name: Azerbaijani
   translated_name: Azərbaycanca
   code: az
-  is_completed: false
+  status: 0
 - name: Bulgarian
   translated_name: Български
   code: bg
-  is_completed: false
+  status: 0
 - name: Bengali
   translated_name: বাংলা
   code: bn
-  is_completed: false
+  status: 0
 - name: German
   translated_name: Deutsch
   code: de
-  is_completed: false
+  status: 0
 - name: Spanish
   translated_name: Español
   code: es
-  is_completed: true
+  status: 2
 - name: Persian
   translated_name: فارسی
   code: fa
-  is_completed: false
+  status: 0
 - name: French
   translated_name: Français
   code: fr
-  is_completed: false
+  status: 0
 - name: Hebrew
   translated_name: עברית
   code: he
-  is_completed: false
+  status: 0
 - name: Hindi
   translated_name: हिन्दी
   code: hi
-  is_completed: false
+  status: 0
 - name: Armenian
   translated_name: Հայերեն
   code: hy
-  is_completed: false
+  status: 0
 - name: Indonesian
   translated_name: Bahasa Indonesia
   code: id
-  is_completed: false
+  status: 0
 - name: Italian
   translated_name: Italiano
   code: it
-  is_completed: false
+  status: 0
 - name: Japanese
   translated_name: 日本語
   code: ja
-  is_completed: true
+  status: 1
 - name: Korean
   translated_name: 한국어
   code: ko
-  is_completed: false
+  status: 0
 - name: Malayalam
   translated_name: മലയാളം
   code: ml
-  is_completed: false
+  status: 0
 - name: Nepali
   translated_name: नेपाली
   code: ne
-  is_completed: false
+  status: 0
 - name: Dutch
   translated_name: Nederlands
   code: nl
-  is_completed: false
+  status: 0
 - name: Polish
   translated_name: Polski
   code: pl
-  is_completed: false
+  status: 0
 - name: Portuguese (Brazil)
   translated_name: Português do Brasil
   code: pt-BR
-  is_completed: true
+  status: 1
 - name: Portuguese (Portugal)
   translated_name: Português europeu
   code: pt-PT
-  is_completed: false
+  status: 0
 - name: Romanian
   translated_name: Română
   code: ro
-  is_completed: false
+  status: 0
 - name: Russian
   translated_name: Русский
   code: ru
-  is_completed: false
+  status: 0
 - name: Sinhala
   translated_name: සිංහල
   code: si
-  is_completed: false
+  status: 0
 - name: Tamil
   translated_name: தமிழ்
   code: ta
-  is_completed: false
+  status: 0
 - name: Turkish
   translated_name: Türkçe
   code: tr
-  is_completed: false
+  status: 0
 - name: Ukrainian
   translated_name: Українська
   code: uk
-  is_completed: false
+  status: 0
 - name: Uzbek
   translated_name: Oʻzbekcha
   code: uz
-  is_completed: false
+  status: 0
 - name: Vietnamese
   translated_name: Tiếng Việt
   code: vi
-  is_completed: false
+  status: 0
 - name: Simplified Chinese
   translated_name: 简体中文
   code: zh-hans
-  is_completed: false
+  status: 0
 - name: Traditional Chinese
   translated_name: 繁體中文
   code: zh-hant
-  is_completed: false
+  status: 0

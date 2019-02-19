@@ -62,13 +62,11 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>Docs</MetaTitle>
             {sectionListDocs.map(section => {
-              // Skip the Installation page for Quick Start
-              const defaultItem =
-                section.items[0].id === 'installation'
-                  ? section.items[1].id
-                  : section.items[0].id;
+              const defaultItem = section.items[0];
               return (
-                <FooterLink to={`/docs/${defaultItem}.html`}>
+                <FooterLink
+                  to={`/docs/${defaultItem.id}.html`}
+                  key={section.title}>
                   {section.title}
                 </FooterLink>
               );
@@ -83,7 +81,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               GitHub
             </ExternalFooterLink>
             <ExternalFooterLink
-              href="http://stackoverflow.com/questions/tagged/reactjs"
+              href="https://stackoverflow.com/questions/tagged/reactjs"
               target="_blank"
               rel="noopener">
               Stack Overflow
@@ -101,6 +99,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               Reactiflux Chat
             </ExternalFooterLink>
             <ExternalFooterLink
+              href="https://dev.to/t/react"
+              target="_blank"
+              rel="noopener">
+              DEV Community
+            </ExternalFooterLink>
+            <ExternalFooterLink
               href="https://www.facebook.com/react"
               target="_blank"
               rel="noopener">
@@ -116,7 +120,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>Community</MetaTitle>
             {sectionListCommunity.map(section => (
-              <FooterLink to={`/community/${section.items[0].id}.html`}>
+              <FooterLink
+                to={`/community/${section.items[0].id}.html`}
+                key={section.title}>
                 {section.title}
               </FooterLink>
             ))}
@@ -129,7 +135,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               Acknowledgements
             </FooterLink>
             <ExternalFooterLink
-              href="http://facebook.github.io/react-native/"
+              href="https://facebook.github.io/react-native/"
               target="_blank"
               rel="noopener">
               React Native
@@ -173,7 +179,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            Copyright © 2017 Facebook Inc.
+            {`Copyright © ${new Date().getFullYear()} Facebook Inc.`}
           </p>
         </section>
       </div>

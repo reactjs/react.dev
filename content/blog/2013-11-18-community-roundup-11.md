@@ -5,14 +5,14 @@ author: [vjeux]
 
 This round-up is the proof that React has taken off from its Facebook's root: it features three in-depth presentations of React done by external people. This is awesome, keep them coming!
 
-## Super VanJS 2013 Talk
+## Super VanJS 2013 Talk {#super-vanjs-2013-talk}
 
 [Steve Luscher](https://github.com/steveluscher) working at [LeanPub](https://leanpub.com/) made a 30 min talk at [Super VanJS](https://twitter.com/vanjs). He does a remarkable job at explaining why React is so fast with very exciting demos using the HTML5 Audio API.
 
 <figure><iframe width="650" height="338" src="//www.youtube-nocookie.com/embed/1OeXsL5mr4g" frameborder="0" allowfullscreen></iframe></figure>
 
 
-## React Tips
+## React Tips {#react-tips}
 
 [Connor McSheffrey](http://connormcsheffrey.com/) and [Cheng Lou](https://github.com/chenglou) added a new section to the documentation. It's a list of small tips that you will probably find useful while working on React. Since each article is very small and focused, we [encourage you to contribute](/tips/introduction.html)!
 
@@ -30,7 +30,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 - [False in JSX](/tips/false-in-jsx.html)
 
 
-## Intro to the React Framework
+## Intro to the React Framework {#intro-to-the-react-framework}
 
 [Pavan Podila](http://blog.pixelingene.com/) wrote an in-depth introduction to React on TutsPlus. This is definitively worth reading.
 
@@ -40,7 +40,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 > [Read the full article ...](http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660)
 
 
-## 140-characters textarea
+## 140-characters textarea {#140-characters-textarea}
 
 [Brian Kim](https://github.com/brainkim) wrote a small textarea component that gradually turns red as you reach the 140-characters limit. Because he only changes the background color, React is smart enough not to mess with the text selection.
 
@@ -48,13 +48,13 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 <script async src="//codepen.io/assets/embed/ei.js"></script>
 
 
-## Genesis Skeleton
+## Genesis Skeleton {#genesis-skeleton}
 
 [Eric Clemmons](https://ericclemmons.github.io/) is working on a "Modern, opinionated, full-stack starter kit for rapid, streamlined application development". The version 0.4.0 has just been released and has first-class support for React.
 <figure><a href="http://genesis-skeleton.com/"><img src="../images/blog/genesis_skeleton.png"></a>a></figure>
 
 
-## AgFlow Talk
+## AgFlow Talk {#agflow-talk}
 
 [Robert Zaremba](http://rz.scale-it.pl/) working on [AgFlow](http://www.agflow.com/) recently talked in Poland about React.
 
@@ -67,7 +67,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 <figure><iframe src="https://docs.google.com/presentation/d/1JSFbjCuuexwOHCeHWBMNRIJdyfD2Z0ZQwX65WOWkfaI/embed?start=false" frameborder="0" width="100%" height="468" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"> </iframe></figure>
 
 
-## JSX
+## JSX {#jsx}
 
 [Todd Kennedy](http://tck.io/) working at Cond&eacute; Nast wrote [JSXHint](https://github.com/CondeNast/JSXHint) and explains in a blog post his perspective on JSX.
 
@@ -79,13 +79,13 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 > [Read the full article...](http://tck.io/posts/jsxhint_and_react.html)
 
 
-## Photo Gallery
+## Photo Gallery {#photo-gallery}
 
 [Maykel Loomans](http://miekd.com/), designer at Instagram, wrote a gallery for photos he shot using React.
 <figure><a href="http://photos.miekd.com/xoxo2013/"><img src="../images/blog/xoxo2013.png"></a>a></figure>
 
 
-## Random Tweet
+## Random Tweet {#random-tweet}
 
 <img src="../images/blog/steve_reverse.gif" style="float: right;" />
 <div style="width: 320px;"><blockquote class="twitter-tweet"><p>I think this reversed gif of Steve Urkel best describes my changing emotions towards the React Lib <a href="http://t.co/JoX0XqSXX3">http://t.co/JoX0XqSXX3</a></p>&mdash; Ryan Seddon (@ryanseddon) <a href="https://twitter.com/ryanseddon/statuses/398572848802852864">November 7, 2013</a></blockquote></div>

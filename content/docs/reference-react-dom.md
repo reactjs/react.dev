@@ -8,7 +8,7 @@ permalink: docs/react-dom.html
 
 If you load React from a `<script>` tag, these top-level APIs are available on the `ReactDOM` global. If you use ES6 with npm, you can write `import ReactDOM from 'react-dom'`. If you use ES5 with npm, you can write `var ReactDOM = require('react-dom')`.
 
-## Overview
+## Overview {#overview}
 
 The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside of the React model if you need to. Most of your components should not need to use this module.
 
@@ -18,9 +18,9 @@ The `react-dom` package provides DOM-specific methods that can be used at the to
 - [`findDOMNode()`](#finddomnode)
 - [`createPortal()`](#createportal)
 
-### Browser Support
+### Browser Support {#browser-support}
 
-React supports all popular browsers, including Internet Explorer 9 and above, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older browsers.
+React supports all popular browsers, including Internet Explorer 9 and above, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older browsers such as IE 9 and IE 10.
 
 > Note
 >
@@ -28,9 +28,9 @@ React supports all popular browsers, including Internet Explorer 9 and above, al
 
 * * *
 
-## Reference
+## Reference {#reference}
 
-### `render()`
+### `render()` {#render}
 
 ```javascript
 ReactDOM.render(element, container[, callback])
@@ -56,7 +56,7 @@ If the optional callback is provided, it will be executed after the component is
 
 * * *
 
-### `hydrate()`
+### `hydrate()` {#hydrate}
 
 ```javascript
 ReactDOM.hydrate(element, container[, callback])
@@ -74,7 +74,7 @@ Remember to be mindful of user experience on slow connections. The JavaScript co
 
 * * *
 
-### `unmountComponentAtNode()`
+### `unmountComponentAtNode()` {#unmountcomponentatnode}
 
 ```javascript
 ReactDOM.unmountComponentAtNode(container)
@@ -84,7 +84,11 @@ Remove a mounted React component from the DOM and clean up its event handlers an
 
 * * *
 
-### `findDOMNode()`
+### `findDOMNode()` {#finddomnode}
+
+> Note:
+>
+> `findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction. [It has been deprecated in `StrictMode`.](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 ```javascript
 ReactDOM.findDOMNode(component)
@@ -95,15 +99,13 @@ When a component renders to `null` or `false`, `findDOMNode` returns `null`. Whe
 
 > Note:
 >
-> `findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction.
->
 > `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created) an exception will be thrown.
 >
-> `findDOMNode` cannot be used on functional components.
+> `findDOMNode` cannot be used on function components.
 
 * * *
 
-### `createPortal()`
+### `createPortal()` {#createportal}
 
 ```javascript
 ReactDOM.createPortal(child, container)

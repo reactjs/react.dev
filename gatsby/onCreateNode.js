@@ -6,17 +6,33 @@
 
 'use strict';
 
+const path = require('path');
+
 // Parse date information out of blog post filename.
 const BLOG_POST_FILENAME_REGEX = /([0-9]+)\-([0-9]+)\-([0-9]+)\-(.+)\.md$/;
 
+function buildRedirectString(permalink, redirect_from) {
+  if (!permalink || !permalink.endsWith('.html')) {
+    return redirect_from ? JSON.stringify(redirect_from) : '';
+  }
+
+  let basePath = permalink.slice(0, -'.html'.length);
+  let redirects = [basePath, basePath + '/'];
+  if (Array.isArray(redirect_from)) {
+    redirects = redirects.concat(redirect_from);
+  }
+
+  return JSON.stringify(redirects);
+}
+
 // Add custom fields to MarkdownRemark nodes.
-module.exports = exports.onCreateNode = ({node, boundActionCreators, getNode}) => {
-  const {createNodeField} = boundActionCreators;
+module.exports = exports.onCreateNode = ({node, actions, getNode}) => {
+  const {createNodeField} = actions;
 
   switch (node.internal.type) {
     case 'MarkdownRemark':
       const {permalink, redirect_from} = node.frontmatter;
-      const {relativePath} = getNode(node.parent);
+      const {relativePath, sourceInstanceName} = getNode(node.parent);
 
       let slug = permalink;
 
@@ -57,18 +73,20 @@ module.exports = exports.onCreateNode = ({node, boundActionCreators, getNode}) =
       });
 
       // Used to generate a GitHub edit link.
+      // this presumes that the name in gastby-config.js refers to parent folder
       createNodeField({
         node,
         name: 'path',
-        value: relativePath,
+        value: path.join(sourceInstanceName, relativePath),
       });
 
       // Used by createPages() above to register redirects.
       createNodeField({
         node,
         name: 'redirect',
-        value: redirect_from ? JSON.stringify(redirect_from) : '',
+        value: buildRedirectString(permalink, redirect_from),
       });
+
       return;
   }
 };

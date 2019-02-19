@@ -7,10 +7,10 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ### Prerequisites
 
 1. Git
-1. Node: install version 8.4 or greater
+1. Node: any 8.x version starting with 8.4.0 or greater
 1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
-1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
 1. A fork of the repo (for any contributions)
+1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
 
 ### Installation
 
@@ -23,6 +23,10 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. `open http://localhost:8000` to open the site in your favorite browser
 
 ## Contributing
+
+### Guidelines
+
+The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
 
 ### Create a branch
 
@@ -51,6 +55,16 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. Follow GitHub's instructions.
 1. If possible, include screenshots of visual changes. A Netlify build will also be automatically created once you make your PR so other people can see your change.
 
+## Translation
+
+If you are interested in translating `reactjs.org`, please see the current translation efforts at [isreacttranslatedyet.com](https://www.isreacttranslatedyet.com/).
+
+
+If your language does not have a translation and you would like to create one, please follow the instructions at [reactjs.org Translations](https://github.com/reactjs/reactjs.org-translation#translating-reactjsorg).
+
 ## Troubleshooting
 
 - `yarn reset` to clear the local cache
+
+## License
+Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/open-source-explorer/reactjs.org/blob/master/LICENSE-DOCS.md) file.

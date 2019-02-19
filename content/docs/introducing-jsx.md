@@ -18,7 +18,7 @@ It is called JSX, and it is a syntax extension to JavaScript. We recommend using
 
 JSX produces React "elements". We will explore rendering them to the DOM in the [next section](/docs/rendering-elements.html). Below, you can find the basics of JSX necessary to get you started.
 
-### Why JSX?
+### Why JSX? {#why-jsx}
 
 React embraces the fact that rendering logic is inherently coupled with other UI logic: how events are handled, how the state changes over time, and how the data is prepared for display.
 
@@ -28,11 +28,23 @@ React [doesn't require](/docs/react-without-jsx.html) using JSX, but most people
 
 With that out of the way, let's get started!
 
-### Embedding Expressions in JSX
+### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
 
-You can embed any [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) in JSX by wrapping it in curly braces.
+In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
 
-For example, `2 + 2`, `user.firstName`, and `formatName(user)` are all valid expressions:
+```js{1,2}
+const name = 'Josh Perez';
+const element = <h1>Hello, {name}</h1>;
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+
+You can put any valid [JavaScript expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Expressions_and_Operators#Expressions) inside the curly braces in JSX. For example, `2 + 2`, `user.firstName`, or `formatName(user)` are all valid JavaScript expressions.
+
+In the example below, we embed the result of calling a JavaScript function, `formatName(user)`, into an `<h1>` element.
 
 ```js{12}
 function formatName(user) {
@@ -56,11 +68,11 @@ ReactDOM.render(
 );
 ```
 
-[](codepen://introducing-jsx).
+[](codepen://introducing-jsx)
 
 We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](http://stackoverflow.com/q/2846283).
 
-### JSX is an Expression Too
+### JSX is an Expression Too {#jsx-is-an-expression-too}
 
 After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
 
@@ -75,7 +87,7 @@ function getGreeting(user) {
 }
 ```
 
-### Specifying Attributes with JSX
+### Specifying Attributes with JSX {#specifying-attributes-with-jsx}
 
 You may use quotes to specify string literals as attributes:
 
@@ -93,11 +105,11 @@ Don't put quotes around curly braces when embedding a JavaScript expression in a
 
 >**Warning:**
 >
->Since JSX is closer to JavaScript than HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
+>Since JSX is closer to JavaScript than to HTML, React DOM uses `camelCase` property naming convention instead of HTML attribute names.
 >
 >For example, `class` becomes [`className`](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) in JSX, and `tabindex` becomes [`tabIndex`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/tabIndex).
 
-### Specifying Children with JSX
+### Specifying Children with JSX {#specifying-children-with-jsx}
 
 If a tag is empty, you may close it immediately with `/>`, like XML:
 
@@ -116,7 +128,7 @@ const element = (
 );
 ```
 
-### JSX Prevents Injection Attacks
+### JSX Prevents Injection Attacks {#jsx-prevents-injection-attacks}
 
 It is safe to embed user input in JSX:
 
@@ -128,7 +140,7 @@ const element = <h1>{title}</h1>;
 
 By default, React DOM [escapes](http://stackoverflow.com/questions/7381974/which-characters-need-to-be-escaped-on-html) any values embedded in JSX before rendering them. Thus it ensures that you can never inject anything that's not explicitly written in your application. Everything is converted to a string before being rendered. This helps prevent [XSS (cross-site-scripting)](https://en.wikipedia.org/wiki/Cross-site_scripting) attacks.
 
-### JSX Represents Objects
+### JSX Represents Objects {#jsx-represents-objects}
 
 Babel compiles JSX down to `React.createElement()` calls.
 
@@ -158,7 +170,7 @@ const element = {
   type: 'h1',
   props: {
     className: 'greeting',
-    children: 'Hello, world'
+    children: 'Hello, world!'
   }
 };
 ```

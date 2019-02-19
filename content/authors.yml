@@ -18,7 +18,7 @@ clemmy:
   url: https://twitter.com/c8hoang
 Daniel15:
   name: Daniel Lo Nigro
-  url: http://dan.cx/
+  url: https://d.sb/
 fisherwebdev:
   name: Bill Fisher
   url: https://twitter.com/fisherwebdev
@@ -69,10 +69,13 @@ sebmarkbage:
   url: https://twitter.com/sebmarkbage
 sophiebits:
   name: Sophie Alpert
-  url: https://sophiealpert.com
+  url: https://sophiebits.com/
 steveluscher:
   name: Steven Luscher
   url: https://twitter.com/steveluscher
+timer:
+  name: Joe Haddad
+  url: https://twitter.com/timer150
 vjeux:
   name: Vjeux
   url: https://twitter.com/vjeux
@@ -82,3 +85,6 @@ wincent:
 zpao:
   name: Paul O’Shannessy
   url: https://twitter.com/zpao
+tomocchino:
+  name: Tom Occhino
+  url: https://twitter.com/tomocchino

@@ -20,11 +20,11 @@ This code logs `[2, 4, 6, 8, 10]` to the console.
 
 In React, transforming arrays into lists of [elements](/docs/rendering-elements.html) is nearly identical.
 
-### Rendering Multiple Components
+### Rendering Multiple Components {#rendering-multiple-components}
 
 You can build collections of elements and [include them in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) using curly braces `{}`.
 
-Below, we loop through the `numbers` array using the JavaScript [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function. We return an `<li>` element for each item. Finally, we assign the resulting array of elements to `listItems`:
+Below, we loop through the `numbers` array using the JavaScript [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function. We return a `<li>` element for each item. Finally, we assign the resulting array of elements to `listItems`:
 
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
@@ -42,15 +42,15 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/GjPyQr?editors=0011)
 
 This code displays a bullet list of numbers between 1 and 5.
 
-### Basic List Component
+### Basic List Component {#basic-list-component}
 
 Usually you would render lists inside a [component](/docs/components-and-props.html).
 
-We can refactor the previous example into a component that accepts an array of `numbers` and outputs an unordered list of elements.
+We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
 
 ```javascript{3-5,7,13}
 function NumberList(props) {
@@ -94,9 +94,9 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/jrXYRR?editors=0011)
 
-## Keys
+## Keys {#keys}
 
 Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity:
 
@@ -134,11 +134,11 @@ We don't recommend using indexes for keys if the order of items may change. This
 
 Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
 
-### Extracting Components with Keys
+### Extracting Components with Keys {#extracting-components-with-keys}
 
 Keys only make sense in the context of the surrounding array.
 
-For example, if you [extract](/docs/components-and-props.html#extracting-components) a `ListItem` component, you should keep the key on the `<ListItem />` elements in the array rather than on the root `<li>` element in the `ListItem` itself.
+For example, if you [extract](/docs/components-and-props.html#extracting-components) a `ListItem` component, you should keep the key on the `<ListItem />` elements in the array rather than on the `<li>` element in the `ListItem` itself.
 
 **Example: Incorrect Key Usage**
 
@@ -202,11 +202,11 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOGM?editors=0010)
 
 A good rule of thumb is that elements inside the `map()` call need keys.
 
-### Keys Must Only Be Unique Among Siblings
+### Keys Must Only Be Unique Among Siblings {#keys-must-only-be-unique-among-siblings}
 
 Keys used within arrays should be unique among their siblings. However they don't need to be globally unique. We can use the same keys when we produce two different arrays:
 
@@ -246,7 +246,7 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/NRZYGN?editors=0010)
 
 Keys serve as a hint to React but they don't get passed to your components. If you need the same value in your component, pass it explicitly as a prop with a different name:
 
@@ -261,7 +261,7 @@ const content = posts.map((post) =>
 
 With the example above, the `Post` component can read `props.id`, but not `props.key`.
 
-### Embedding map() in JSX
+### Embedding map() in JSX {#embedding-map-in-jsx}
 
 In the examples above we declared a separate `listItems` variable and included it in JSX:
 
@@ -280,7 +280,7 @@ function NumberList(props) {
 }
 ```
 
-JSX allows [embedding any expressions](/docs/introducing-jsx.html#embedding-expressions-in-jsx) in curly braces so we could inline the `map()` result:
+JSX allows [embedding any expression](/docs/introducing-jsx.html#embedding-expressions-in-jsx) in curly braces so we could inline the `map()` result:
 
 ```js{5-8}
 function NumberList(props) {
@@ -296,6 +296,6 @@ function NumberList(props) {
 }
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 Sometimes this results in clearer code, but this style can also be abused. Like in JavaScript, it is up to you to decide whether it is worth extracting a variable for readability. Keep in mind that if the `map()` body is too nested, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).

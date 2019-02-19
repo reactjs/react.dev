@@ -4,7 +4,8 @@ title: Conditional Rendering
 permalink: docs/conditional-rendering.html
 prev: handling-events.html
 next: lists-and-keys.html
-redirect_from: "tips/false-in-jsx.html"
+redirect_from:
+  - "tips/false-in-jsx.html"
 ---
 
 In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.
@@ -41,11 +42,11 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/ZpVxNq?editors=0011)
 
 This example renders a different greeting depending on the value of `isLoggedIn` prop.
 
-### Element Variables
+### Element Variables {#element-variables}
 
 You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn't change.
 
@@ -92,8 +93,8 @@ class LoginControl extends React.Component {
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
+    let button;
 
-    let button = null;
     if (isLoggedIn) {
       button = <LogoutButton onClick={this.handleLogoutClick} />;
     } else {
@@ -115,11 +116,11 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 
 While declaring a variable and using an `if` statement is a fine way to conditionally render a component, sometimes you might want to use a shorter syntax. There are a few ways to inline conditions in JSX, explained below.
 
-### Inline If with Logical && Operator
+### Inline If with Logical && Operator {#inline-if-with-logical--operator}
 
 You may [embed any expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
 
@@ -145,13 +146,13 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
 It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
 
 Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
 
-### Inline If-Else with Conditional Operator
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
 Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
@@ -187,7 +188,7 @@ render() {
 
 Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
 
-### Preventing Component from Rendering
+### Preventing Component from Rendering {#preventing-component-from-rendering}
 
 In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
 
@@ -209,13 +210,13 @@ function WarningBanner(props) {
 class Page extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {showWarning: true}
+    this.state = {showWarning: true};
     this.handleToggleClick = this.handleToggleClick.bind(this);
   }
 
   handleToggleClick() {
-    this.setState(prevState => ({
-      showWarning: !prevState.showWarning
+    this.setState(state => ({
+      showWarning: !state.showWarning
     }));
   }
 
@@ -237,6 +238,6 @@ ReactDOM.render(
 );
 ```
 
-[Try it on CodePen.](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/Xjoqwm?editors=0010)
 
-Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance, `componentWillUpdate` and `componentDidUpdate` will still be called.
+Returning `null` from a component's `render` method does not affect the firing of the component's lifecycle methods. For instance `componentDidUpdate` will still be called.

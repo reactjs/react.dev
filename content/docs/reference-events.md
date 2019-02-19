@@ -8,7 +8,7 @@ category: Reference
 
 This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
 
-## Overview
+## Overview {#overview}
 
 Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
 
@@ -35,7 +35,7 @@ string type
 >
 > As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
 
-### Event Pooling
+### Event Pooling {#event-pooling}
 
 The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
 This is for performance reasons.
@@ -64,7 +64,7 @@ function onClick(event) {
 >
 > If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
 
-## Supported Events
+## Supported Events {#supported-events}
 
 React normalizes events so that they have consistent properties across different browsers.
 
@@ -76,6 +76,7 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 - [Focus Events](#focus-events)
 - [Form Events](#form-events)
 - [Mouse Events](#mouse-events)
+- [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)
 - [Touch Events](#touch-events)
 - [UI Events](#ui-events)
@@ -88,9 +89,9 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 
 * * *
 
-## Reference
+## Reference {#reference}
 
-### Clipboard Events
+### Clipboard Events {#clipboard-events}
 
 Event names:
 
@@ -106,7 +107,7 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events
+### Composition Events {#composition-events}
 
 Event names:
 
@@ -123,7 +124,7 @@ string data
 
 * * *
 
-### Keyboard Events
+### Keyboard Events {#keyboard-events}
 
 Event names:
 
@@ -152,7 +153,7 @@ The `key` property can take any of the values documented in the [DOM Level 3 Eve
 
 * * *
 
-### Focus Events
+### Focus Events {#focus-events}
 
 Event names:
 
@@ -170,7 +171,7 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events
+### Form Events {#form-events}
 
 Event names:
 
@@ -182,7 +183,7 @@ For more information about the onChange event, see [Forms](/docs/forms.html).
 
 * * *
 
-### Mouse Events
+### Mouse Events {#mouse-events}
 
 Event names:
 
@@ -215,7 +216,43 @@ boolean shiftKey
 
 * * *
 
-### Selection Events
+### Pointer Events {#pointer-events}
+
+Event names:
+
+```
+onPointerDown onPointerMove onPointerUp onPointerCancel onGotPointerCapture
+onLostPointerCapture onPointerEnter onPointerLeave onPointerOver onPointerOut
+```
+
+The `onPointerEnter` and `onPointerLeave` events propagate from the element being left to the one being entered instead of ordinary bubbling and do not have a capture phase.
+
+Properties:
+
+As defined in the [W3 spec](https://www.w3.org/TR/pointerevents/), pointer events extend [Mouse Events](#mouse-events) with the following properties:
+
+```javascript
+number pointerId
+number width
+number height
+number pressure
+number tangentialPressure
+number tiltX
+number tiltY
+number twist
+string pointerType
+boolean isPrimary
+```
+
+A note on cross-browser support:
+
+Pointer events are not yet supported in every browser (at the time of writing this article, supported browsers include: Chrome, Firefox, Edge, and Internet Explorer). React deliberately does not polyfill support for other browsers because a standard-conform polyfill would significantly increase the bundle size of `react-dom`.
+
+If your application requires pointer events, we recommend adding a third party pointer event polyfill.
+
+* * *
+
+### Selection Events {#selection-events}
 
 Event names:
 
@@ -225,7 +262,7 @@ onSelect
 
 * * *
 
-### Touch Events
+### Touch Events {#touch-events}
 
 Event names:
 
@@ -248,7 +285,7 @@ DOMTouchList touches
 
 * * *
 
-### UI Events
+### UI Events {#ui-events}
 
 Event names:
 
@@ -265,7 +302,7 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events
+### Wheel Events {#wheel-events}
 
 Event names:
 
@@ -284,7 +321,7 @@ number deltaZ
 
 * * *
 
-### Media Events
+### Media Events {#media-events}
 
 Event names:
 
@@ -297,7 +334,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events
+### Image Events {#image-events}
 
 Event names:
 
@@ -307,7 +344,7 @@ onLoad onError
 
 * * *
 
-### Animation Events
+### Animation Events {#animation-events}
 
 Event names:
 
@@ -325,7 +362,7 @@ float elapsedTime
 
 * * *
 
-### Transition Events
+### Transition Events {#transition-events}
 
 Event names:
 
@@ -343,7 +380,7 @@ float elapsedTime
 
 * * *
 
-### Other Events
+### Other Events {#other-events}
 
 Event names:
 

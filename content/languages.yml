@@ -85,11 +85,11 @@
   status: 0
 - name: Portuguese (Brazil)
   translated_name: Português do Brasil
-  code: pt-BR
+  code: pt-br
   status: 1
 - name: Portuguese (Portugal)
   translated_name: Português europeu
-  code: pt-PT
+  code: pt-pt
   status: 0
 - name: Romanian
   translated_name: Română

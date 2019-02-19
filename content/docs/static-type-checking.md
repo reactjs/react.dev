@@ -219,7 +219,7 @@ Congrats! You've installed the latest version of TypeScript into your project. I
 The compiler is of no help to us until we tell it what to do. In TypeScript, these rules are defined in a special file called `tsconfig.json`. To generate this file run:
 
 ```bash
-tsc --init
+npx tsc --init
 ```
 
 Looking at the now generated `tsconfig.json`, you can see that there are many options you can use to configure the compiler. For a detailed description of all the options, check [here](https://www.typescriptlang.org/docs/handbook/tsconfig-json.html).

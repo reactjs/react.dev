@@ -220,13 +220,13 @@ The compiler is of no help to us until we tell it what to do. In TypeScript, the
 
 If you use [Yarn](https://yarnpkg.com/), run:
 
-```shell
+```bash
 yarn run tsc --init
 ```
 
 If you use [npm](https://www.npmjs.com/), run:
 
-```shell
+```bash
 npx tsc --init
 ```
 

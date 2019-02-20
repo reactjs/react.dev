@@ -5,7 +5,7 @@ permalink: docs/hooks-faq.html
 prev: hooks-reference.html
 ---
 
-*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
+*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React app, allowing you to compose state and other React features into sharable logic.
 
 This page answers some of the frequently asked questions about [Hooks](/docs/hooks-overview.html).
 

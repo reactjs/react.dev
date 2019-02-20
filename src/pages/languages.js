@@ -86,20 +86,22 @@ const LanguagesGrid = ({languages}) => (
       flexWrap: 'wrap',
       marginLeft: -20,
     }}>
-    {languages.map(({code, name, status, translated_name}) => (
-      <Language
-        key={code}
-        code={code}
-        name={name}
-        status={status}
-        translatedName={translated_name}
-      />
-    ))}
+    {languages
+      .sort((a, b) => a.code.localeCompare(b.code))
+      .map(({code, name, status, translated_name}) => (
+        <Language
+          key={code}
+          code={code}
+          name={name}
+          status={status}
+          translatedName={translated_name}
+        />
+      ))}
   </ul>
 );
 
 const Language = ({code, name, status, translatedName}) => {
-  const prefix = code ? `${code}.` : '';
+  const prefix = code === 'en' ? '' : `${code}.`;
 
   return (
     <li

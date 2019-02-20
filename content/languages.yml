@@ -5,7 +5,7 @@
 
 - name: English
   translated_name: English
-  code:
+  code: en
   status: 2
 - name: Arabic
   translated_name: العربية

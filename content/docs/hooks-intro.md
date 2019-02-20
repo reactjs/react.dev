@@ -5,7 +5,7 @@ permalink: docs/hooks-intro.html
 next: hooks-overview.html
 ---
 
-*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React app, allowing you to compose state and other React features into sharable logic.
+*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React component, allowing you to compose state and other React features into sharable logic.
 
 ```js{4,5}
 import React, { useState } from 'react';

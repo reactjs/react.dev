@@ -67,7 +67,7 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 ### Hooks {#hooks}
 
-*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React app, allowing you to compose state and other React features into sharable logic. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
+*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React component, allowing you to compose state and other React features into sharable logic. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
 
 - [Basic Hooks](/docs/hooks-reference.html#basic-hooks)
   - [`useState`](/docs/hooks-reference.html#usestate)

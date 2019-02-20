@@ -6,7 +6,7 @@ next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React app, allowing you to compose state and other React features into sharable logic.
+*Hooks* are a new addition in React 16.8. They are the fundamental building blocks of a React component, allowing you to compose state and other React features into sharable logic.
 
 Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
 

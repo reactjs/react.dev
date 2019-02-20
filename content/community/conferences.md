@@ -41,6 +41,11 @@ June 12, 2019. Larvik, Norway
 
 [Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
 
+### React Loop 2019 {#react-loop-2019}
+June 21, 2019 Chicago, Illinois USA
+
+[Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
+
 ### ComponentsConf 2019 {#componentsconf-2019}
 September 6, 2019 in Melbourne, Australia
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)

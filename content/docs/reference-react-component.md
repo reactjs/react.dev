@@ -19,7 +19,7 @@ This page contains a detailed API reference for the React component class defini
 
 ## Overview {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+React lets you define components as classes or functions. Features of components defined as classes are described in detail on this page. To define a React component class, you need to extend `React.Component`:
 
 ```js
 class Welcome extends React.Component {

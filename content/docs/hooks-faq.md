@@ -466,7 +466,7 @@ Note that this approach won't work in a loop because Hook calls [can't](/docs/ho
 
 ### How to create expensive objects lazily? {#how-to-create-expensive-objects-lazily}
 
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes need to be sure an object is only created once.
+`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
 
 **The first common use case is when creating the initial state is expensive:**
 

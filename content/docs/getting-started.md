@@ -69,7 +69,7 @@ If you feel that the React documentation goes at a faster pace than you're comfo
 
 ### React for Designers {#react-for-designers}
 
-If you're coming from a design background, [these resources](http://reactfordesigners.com/) are a great place to get started.
+If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
 
 ### JavaScript Resources {#javascript-resources}
 

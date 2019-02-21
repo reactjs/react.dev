@@ -4,7 +4,7 @@ title: Integrating with Other Libraries
 permalink: docs/integrating-with-other-libraries.html
 ---
 
-React can be used in any web application. It can be embedded in other applications and, with a little care, other applications can be embedded in React. This guide will examine some of the more common use cases, focusing on integration with [jQuery](https://jquery.com/) and [Backbone](http://backbonejs.org/), but the same ideas can be applied to integrating components with any existing code.
+React can be used in any web application. It can be embedded in other applications and, with a little care, other applications can be embedded in React. This guide will examine some of the more common use cases, focusing on integration with [jQuery](https://jquery.com/) and [Backbone](https://backbonejs.org/), but the same ideas can be applied to integrating components with any existing code.
 
 ## Integrating with DOM Manipulation Plugins {#integrating-with-dom-manipulation-plugins}
 
@@ -100,7 +100,7 @@ componentWillUnmount() {
 }
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/qmqeQx?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
 
 Note that React assigns no special meaning to the `this.el` field. It only works because we have previously assigned this field from a `ref` in the `render()` method:
 
@@ -131,7 +131,7 @@ handleChange(e) {
 }
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/bWgbeE?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
 Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen>` component can get different children if parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates, since we no longer let React manage the DOM for us.
 
@@ -186,7 +186,7 @@ class Chosen extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/xdgKOz?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/xdgKOz?editors=0010)
 
 ## Integrating with Other View Libraries {#integrating-with-other-view-libraries}
 
@@ -247,13 +247,13 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/RVKbvW?editors=1010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/RVKbvW?editors=1010)
 
 You can have as many such isolated components as you like, and use `ReactDOM.render()` to render them to different DOM containers. Gradually, as you convert more of your app to React, you will be able to combine them into larger components, and move some of the `ReactDOM.render()` calls up the hierarchy.
 
 ### Embedding React in a Backbone View {#embedding-react-in-a-backbone-view}
 
-[Backbone](http://backbonejs.org/) views typically use HTML strings, or string-producing template functions, to create the content for their DOM elements. This process, too, can be replaced with rendering a React component.
+[Backbone](https://backbonejs.org/) views typically use HTML strings, or string-producing template functions, to create the content for their DOM elements. This process, too, can be replaced with rendering a React component.
 
 Below, we will create a Backbone view called `ParagraphView`. It will override Backbone's `render()` function to render a React `<Paragraph>` component into the DOM element provided by Backbone (`this.el`). Here, too, we are using [`ReactDOM.render()`](/docs/react-dom.html#render):
 
@@ -275,7 +275,7 @@ const ParagraphView = Backbone.View.extend({
 });
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/gWgOYL?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/gWgOYL?editors=0010)
 
 It is important that we also call `ReactDOM.unmountComponentAtNode()` in the `remove` method so that React unregisters event handlers and other resources associated with the component tree when it is detached.
 
@@ -283,11 +283,11 @@ When a component is removed *from within* a React tree, the cleanup is performed
 
 ## Integrating with Model Layers {#integrating-with-model-layers}
 
-While it is generally recommended to use unidirectional data flow such as [React state](/docs/lifting-state-up.html), [Flux](http://facebook.github.io/flux/), or [Redux](http://redux.js.org/), React components can use a model layer from other frameworks and libraries.
+While it is generally recommended to use unidirectional data flow such as [React state](/docs/lifting-state-up.html), [Flux](https://facebook.github.io/flux/), or [Redux](https://redux.js.org/), React components can use a model layer from other frameworks and libraries.
 
 ### Using Backbone Models in React Components {#using-backbone-models-in-react-components}
 
-The simplest way to consume [Backbone](http://backbonejs.org/) models and collections from a React component is to listen to the various change events and manually force an update.
+The simplest way to consume [Backbone](https://backbonejs.org/) models and collections from a React component is to listen to the various change events and manually force an update.
 
 Components responsible for rendering models would listen to `'change'` events, while components responsible for rendering collections would listen for `'add'` and `'remove'` events. In both cases, call [`this.forceUpdate()`](/docs/react-component.html#forceupdate) to rerender the component with the new data.
 
@@ -347,7 +347,7 @@ class List extends React.Component {
 }
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/GmrREm?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/GmrREm?editors=0010)
 
 ### Extracting Data from Backbone Models {#extracting-data-from-backbone-models}
 
@@ -434,6 +434,6 @@ ReactDOM.render(
 );
 ```
 
-[**Try it on CodePen**](http://codepen.io/gaearon/pen/PmWwwa?editors=0010)
+[**Try it on CodePen**](https://codepen.io/gaearon/pen/PmWwwa?editors=0010)
 
 This technique is not limited to Backbone. You can use React with any model library by subscribing to its changes in the lifecycle methods and, optionally, copying the data into the local React state.

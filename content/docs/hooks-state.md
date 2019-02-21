@@ -30,7 +30,7 @@ function Example() {
 
 We'll start learning about Hooks by comparing this code to an equivalent class example.
 
-## Equivalent Class Example
+## Equivalent Class Example {#equivalent-class-example}
 
 If you used classes in React before, this code should look familiar:
 
@@ -62,7 +62,7 @@ The state starts as `{ count: 0 }`, and we increment `state.count` when the user
 >
 >You might be wondering why we're using a counter here instead of a more realistic example. This is to help us focus on the API while we're still making our first steps with Hooks.
 
-## Hooks and Function Components
+## Hooks and Function Components {#hooks-and-function-components}
 
 As a reminder, function components in React look like this:
 
@@ -86,7 +86,7 @@ You might have previously known these as "stateless components". We're now intro
 
 Hooks **don't** work inside classes. But you can use them instead of writing classes.
 
-## What's a Hook?
+## What's a Hook? {#whats-a-hook}
 
 Our new example starts by importing the `useState` Hook from React:
 
@@ -106,7 +106,7 @@ function Example() {
 >
 >There are some special rules about where you can and can't use Hooks within a component. We'll learn them in [Rules of Hooks](/docs/hooks-rules.html).
 
-## Declaring a State Variable
+## Declaring a State Variable {#declaring-a-state-variable}
 
 In a class, we initialize the `count` state to `0` by setting `this.state` to `{ count: 0 }` in the constructor:
 
@@ -154,7 +154,7 @@ We declare a state variable called `count`, and set it to `0`. React will rememb
 >
 >"Create" wouldn't be quite accurate because the state is only created the first time our component renders. During the next renders, `useState` gives us the current state. Otherwise it wouldn't be "state" at all! There's also a reason why Hook names *always* start with `use`. We'll learn why later in the [Rules of Hooks](/docs/hooks-rules.html).
 
-## Reading State
+## Reading State {#reading-state}
 
 When we want to display the current count in a class, we read `this.state.count`:
 
@@ -169,7 +169,7 @@ In a function, we can use `count` directly:
   <p>You clicked {count} times</p>
 ```
 
-## Updating State
+## Updating State {#updating-state}
 
 In a class, we need to call `this.setState()` to update the `count` state:
 
@@ -187,7 +187,7 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
-## Recap
+## Recap {#recap}
 
 Let's now **recap what we learned line by line** and check our understanding.
 
@@ -218,7 +218,7 @@ Let's now **recap what we learned line by line** and check our understanding.
 
 This might seem like a lot to take in at first. Don't rush it! If you're lost in the explanation, look at the code above again and try to read it from top to bottom. We promise that once you try to "forget" how state works in classes, and look at this code with fresh eyes, it will make sense.
 
-### Tip: What Do Square Brackets Mean?
+### Tip: What Do Square Brackets Mean? {#tip-what-do-square-brackets-mean}
 
 You might have noticed the square brackets when we declare a state variable:
 
@@ -246,7 +246,7 @@ When we declare a state variable with `useState`, it returns a pair — an array
 >
 >You might be curious how React knows which component `useState` corresponds to since we're not passing anything like `this` back to React. We'll answer [this question](/docs/hooks-faq.html#how-does-react-associate-hook-calls-with-components) and many others in the FAQ section.
 
-### Tip: Using Multiple State Variables
+### Tip: Using Multiple State Variables {#tip-using-multiple-state-variables}
 
 Declaring state variables as a pair of `[something, setSomething]` is also handy because it lets us give *different* names to different state variables if we want to use more than one:
 
@@ -271,7 +271,7 @@ You **don't have to** use many state variables. State variables can hold objects
 
 We provide more recommendations on splitting independent state variables [in the FAQ](/docs/hooks-faq.html#should-i-use-one-or-many-state-variables).
 
-## Next Steps
+## Next Steps {#next-steps}
 
 On this page we've learned about one of the Hooks provided by React, called `useState`. We're also sometimes going to refer to it as the "State Hook". It lets us add local state to React function components -- which we did for the first time ever!
 

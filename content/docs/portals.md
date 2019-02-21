@@ -12,7 +12,7 @@ ReactDOM.createPortal(child, container)
 
 The first argument (`child`) is any [renderable React child](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a DOM element.
 
-## Usage
+## Usage {#usage}
 
 Normally, when you return an element from a component's render method, it's mounted into the DOM as a child of the nearest parent node:
 
@@ -50,7 +50,7 @@ A typical use case for portals is when a parent component has an `overflow: hidd
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
-## Event Bubbling Through Portals
+## Event Bubbling Through Portals {#event-bubbling-through-portals}
 
 Even though a portal can be anywhere in the DOM tree, it behaves like a normal React child in every other way. Features like context work exactly the same regardless of whether the child is a portal, as the portal still exists in the *React tree* regardless of position in the *DOM tree*.
 

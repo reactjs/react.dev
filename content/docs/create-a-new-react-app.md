@@ -20,13 +20,13 @@ This page describes a few popular React toolchains which help with tasks like:
 
 The toolchains recommended on this page **don't require configuration to get started**.
 
-## You Might Not Need a Toolchain
+## You Might Not Need a Toolchain {#you-might-not-need-a-toolchain}
 
 If you don't experience the problems described above or don't feel comfortable using JavaScript tools yet, consider [adding React as a plain `<script>` tag on an HTML page](/docs/add-react-to-a-website.html), optionally [with JSX](/docs/add-react-to-a-website.html#optional-try-react-with-jsx).
 
 This is also **the easiest way to integrate React into an existing website.** You can always add a larger toolchain if you find it helpful!
 
-## Recommended Toolchains
+## Recommended Toolchains {#recommended-toolchains}
 
 The React team primarily recommends these solutions:
 
@@ -35,7 +35,7 @@ The React team primarily recommends these solutions:
 - If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
 - If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
 
-### Create React App
+### Create React App {#create-react-app}
 
 [Create React App](https://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
 
@@ -55,19 +55,19 @@ Create React App doesn't handle backend logic or databases; it just creates a fr
 
 When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app-) and the [User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents).
 
-### Next.js
+### Next.js {#nextjs}
 
 [Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
 
 Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
-### Gatsby
+### Gatsby {#gatsby}
 
 [Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
 
 Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
 
-### More Flexible Toolchains
+### More Flexible Toolchains {#more-flexible-toolchains}
 
 The following toolchains offer more flexiblity and choice. We recommend them to more experienced users:
 
@@ -79,7 +79,7 @@ The following toolchains offer more flexiblity and choice. We recommend them to 
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 
-## Creating a Toolchain from Scratch
+## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
 
 A JavaScript build toolchain typically consists of:
 

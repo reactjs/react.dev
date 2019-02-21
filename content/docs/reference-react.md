@@ -15,9 +15,9 @@ redirect_from:
 
 `React` is the entry point to the React library. If you load React from a `<script>` tag, these top-level APIs are available on the `React` global. If you use ES6 with npm, you can write `import React from 'react'`. If you use ES5 with npm, you can write `var React = require('react')`.
 
-## Overview
+## Overview {#overview}
 
-### Components
+### Components {#components}
 
 React components let you split the UI into independent, reusable pieces, and think about each piece in isolation. React components can be defined by subclassing `React.Component` or `React.PureComponent`.
 
@@ -30,7 +30,7 @@ React components can also be defined as functions which can be wrapped:
 
 - [`React.memo`](#reactmemo)
 
-### Creating React Elements
+### Creating React Elements {#creating-react-elements}
 
 We recommend [using JSX](/docs/introducing-jsx.html) to describe what your UI should look like. Each JSX element is just syntactic sugar for calling [`React.createElement()`](#createelement). You will not typically invoke the following methods directly if you are using JSX.
 
@@ -39,7 +39,7 @@ We recommend [using JSX](/docs/introducing-jsx.html) to describe what your UI sh
 
 See [Using React without JSX](/docs/react-without-jsx.html) for more information.
 
-### Transforming Elements
+### Transforming Elements {#transforming-elements}
 
 `React` provides several APIs for manipulating elements:
 
@@ -47,25 +47,25 @@ See [Using React without JSX](/docs/react-without-jsx.html) for more information
 - [`isValidElement()`](#isvalidelement)
 - [`React.Children`](#reactchildren)
 
-### Fragments
+### Fragments {#fragments}
 
 `React` also provides a component for rendering multiple elements without a wrapper.
 
 - [`React.Fragment`](#reactfragment)
 
-### Refs
+### Refs {#refs}
 
 - [`React.createRef`](#reactcreateref)
 - [`React.forwardRef`](#reactforwardref)
 
-### Suspense
+### Suspense {#suspense}
 
 Suspense lets components "wait" for something before rendering. Today, Suspense only supports one use case: [loading components dynamically with `React.lazy`](/docs/code-splitting.html#reactlazy). In the future, it will support other use cases like data fetching.
 
 - [`React.lazy`](#reactlazy)
 - [`React.Suspense`](#reactsuspense)
 
-### Hooks
+### Hooks {#hooks}
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class. Hooks have a [dedicated docs section](/docs/hooks-intro.html) and a separate API reference:
 
@@ -84,9 +84,9 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 * * *
 
-## Reference
+## Reference {#reference}
 
-### `React.Component`
+### `React.Component` {#reactcomponent}
 
 `React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
@@ -102,7 +102,7 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 * * *
 
-### `React.PureComponent`
+### `React.PureComponent` {#reactpurecomponent}
 
 `React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison. 
 
@@ -116,7 +116,7 @@ If your React component's `render()` function renders the same result given the 
 
 * * *
 
-### `React.memo`
+### `React.memo` {#reactmemo}
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -152,7 +152,7 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 
 * * *
 
-### `createElement()`
+### `createElement()` {#createelement}
 
 ```javascript
 React.createElement(
@@ -168,7 +168,7 @@ Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `Re
 
 * * *
 
-### `cloneElement()`
+### `cloneElement()` {#cloneelement}
 
 ```
 React.cloneElement(
@@ -192,7 +192,7 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 
 * * *
 
-### `createFactory()`
+### `createFactory()` {#createfactory}
 
 ```javascript
 React.createFactory(type)
@@ -206,7 +206,7 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 
 * * *
 
-### `isValidElement()`
+### `isValidElement()` {#isvalidelement}
 
 ```javascript
 React.isValidElement(object)
@@ -216,11 +216,11 @@ Verifies the object is a React element. Returns `true` or `false`.
 
 * * *
 
-### `React.Children`
+### `React.Children` {#reactchildren}
 
 `React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
 
-#### `React.Children.map`
+#### `React.Children.map` {#reactchildrenmap}
 
 ```javascript
 React.Children.map(children, function[(thisArg)])
@@ -232,7 +232,7 @@ Invokes a function on every immediate child contained within `children` with `th
 >
 > If `children` is a `Fragment` it will be treated as a single child and not traversed.
 
-#### `React.Children.forEach`
+#### `React.Children.forEach` {#reactchildrenforeach}
 
 ```javascript
 React.Children.forEach(children, function[(thisArg)])
@@ -240,7 +240,7 @@ React.Children.forEach(children, function[(thisArg)])
 
 Like [`React.Children.map()`](#reactchildrenmap) but does not return an array.
 
-#### `React.Children.count`
+#### `React.Children.count` {#reactchildrencount}
 
 ```javascript
 React.Children.count(children)
@@ -248,7 +248,7 @@ React.Children.count(children)
 
 Returns the total number of components in `children`, equal to the number of times that a callback passed to `map` or `forEach` would be invoked.
 
-#### `React.Children.only`
+#### `React.Children.only` {#reactchildrenonly}
 
 ```javascript
 React.Children.only(children)
@@ -260,7 +260,7 @@ Verifies that `children` has only one child (a React element) and returns it. Ot
 >
 >`React.Children.only()` does not accept the return value of [`React.Children.map()`](#reactchildrenmap) because it is an array rather than a React element.
 
-#### `React.Children.toArray`
+#### `React.Children.toArray` {#reactchildrentoarray}
 
 ```javascript
 React.Children.toArray(children)
@@ -274,7 +274,7 @@ Returns the `children` opaque data structure as a flat array with keys assigned 
 
 * * *
 
-### `React.Fragment`
+### `React.Fragment` {#reactfragment}
 
 The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
 
@@ -292,12 +292,12 @@ render() {
 You can also use it with the shorthand `<></>` syntax. For more information, see [React v16.2.0: Improved Support for Fragments](/blog/2017/11/28/react-v16.2.0-fragment-support.html).
 
 
-### `React.createRef`
+### `React.createRef` {#reactcreateref}
 
 `React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
 `embed:16-3-release-blog-post/create-ref-example.js`
 
-### `React.forwardRef`
+### `React.forwardRef` {#reactforwardref}
 
 `React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
 
@@ -314,7 +314,7 @@ As a result, after React attaches the ref, `ref.current` will point directly to 
 
 For more information, see [forwarding refs](/docs/forwarding-refs.html).
 
-### `React.lazy`
+### `React.lazy` {#reactlazy}
 
 `React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
 
@@ -331,7 +331,7 @@ Note that rendering `lazy` components requires that there's a `<React.Suspense>`
 >
 > Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
 
-### `React.Suspense`
+### `React.Suspense` {#reactsuspense}
 
 `React.Suspense` let you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
 

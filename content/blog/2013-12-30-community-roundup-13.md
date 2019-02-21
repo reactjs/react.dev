@@ -6,7 +6,7 @@ author: [vjeux]
 Happy holidays! This blog post is a little-late Christmas present for all the React users. Hopefully it will inspire you to write awesome web apps in 2014!
 
 
-## React Touch
+## React Touch {#react-touch}
 
 [Pete Hunt](http://www.petehunt.net/) wrote three demos showing that React can be used to run 60fps native-like experiences on mobile web. A frosted glass effect, an image gallery with 3d animations and an infinite scroll view.
 
@@ -15,14 +15,14 @@ Happy holidays! This blog post is a little-late Christmas present for all the Re
 [Try out the demos!](https://petehunt.github.io/react-touch/)
 
 
-## Introduction to React
+## Introduction to React {#introduction-to-react}
 
 [Stoyan Stefanov](http://www.phpied.com/) talked at Joe Dev On Tech about React. He goes over all the features of the library and ends with a concrete example.
 
 <figure><iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/SMMRJif5QW0" frameborder="0" allowfullscreen></iframe></figure>
 
 
-## JSX: E4X The Good Parts
+## JSX: E4X The Good Parts {#jsx-e4x-the-good-parts}
 
 JSX is often compared to the now defunct E4X, [Vjeux](http://blog.vjeux.com/) went over all the E4X features and explained how JSX is different and hopefully doesn't repeat the same mistakes.
 
@@ -35,7 +35,7 @@ JSX is often compared to the now defunct E4X, [Vjeux](http://blog.vjeux.com/) we
 > [Continue reading ...](http://blog.vjeux.com/2013/javascript/jsx-e4x-the-good-parts.html)
 
 
-## React + Socket.io
+## React + Socket.io {#react--socketio}
 
 [Geert Pasteels](http://enome.be/nl) made a small experiment with Socket.io. He wrote a very small mixin that synchronizes React state with the server. Just include this mixin to your React component and it is now live!
 
@@ -60,7 +60,7 @@ componentWillUnmount: function () {
 [Check it out on GitHub...](https://github.com/Enome/react.io)
 
 
-## cssobjectify
+## cssobjectify {#cssobjectify}
 
 [Andrey Popp](http://andreypopp.com/) implemented a source transform that takes a CSS file and converts it to JSON. This integrates pretty nicely with React.
 
@@ -89,7 +89,7 @@ var MyComponent = React.createClass({
 [Check it out on GitHub...](https://github.com/andreypopp/cssobjectify)
 
 
-## ngReact
+## ngReact {#ngreact}
 
 [David Chang](http://davidandsuzi.com/) working at [HasOffer](http://www.hasoffers.com/) wanted to speed up his Angular app and replaced Angular primitives by React at different layers. When using React naively it is 67% faster, but when combining it with angular's transclusion it is 450% slower.
 
@@ -99,7 +99,7 @@ var MyComponent = React.createClass({
 > [Read the full article...](http://davidandsuzi.com/ngreact-react-components-in-angular/)
 
 
-## vim-jsx
+## vim-jsx {#vim-jsx}
 
 [Max Wang](https://github.com/mxw) made a vim syntax highlighting and indentation plugin for vim.
 
@@ -112,6 +112,6 @@ var MyComponent = React.createClass({
 > [View on GitHub...](https://github.com/mxw/vim-jsx)
 
 
-## Random Tweet
+## Random Tweet {#random-tweet}
 
 <center><blockquote class="twitter-tweet" lang="en"><p>I may be starting to get annoying with this, but ReactJS is really exciting. I truly feel the virtual DOM is a game changer.</p>&mdash; Eric Florenzano (@ericflo) <a href="https://twitter.com/ericflo/statuses/413842834974732288">December 20, 2013</a></blockquote></center>

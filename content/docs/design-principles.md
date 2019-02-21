@@ -16,7 +16,7 @@ We wrote this document so that you have a better idea of how we decide what Reac
 >
 >For an introduction to React, check out [Thinking in React](/docs/thinking-in-react.html) instead.
 
-### Composition
+### Composition {#composition}
 
 The key feature of React is composition of components. Components written by different people should work well together. It is important to us that you can add functionality to a component without causing rippling changes throughout the codebase.
 
@@ -26,7 +26,7 @@ There is nothing "bad" about using state or lifecycle methods in components. Lik
 
 Components are often described as "just functions" but in our view they need to be more than that to be useful. In React, components describe any composable behavior, and this includes rendering, lifecycle, and state. Some external libraries like [Relay](https://facebook.github.io/relay/) augment components with other responsibilities such as describing data dependencies. It is possible that those ideas might make it back into React too in some form.
 
-### Common Abstraction
+### Common Abstraction {#common-abstraction}
 
 In general we [resist adding features](https://www.youtube.com/watch?v=4anAwXYqLG8) that can be implemented in userland. We don't want to bloat your apps with useless library code. However, there are exceptions to this.
 
@@ -36,13 +36,13 @@ This is why sometimes we add features to React itself. If we notice that many co
 
 We always discuss such improvement proposals with the community. You can find some of those discussions by the ["big picture"](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"Type:+Big+Picture") label on the React issue tracker.
 
-### Escape Hatches
+### Escape Hatches {#escape-hatches}
 
 React is pragmatic. It is driven by the needs of the products written at Facebook. While it is influenced by some paradigms that are not yet fully mainstream such as functional programming, staying accessible to a wide range of developers with different skills and experience levels is an explicit goal of the project.
 
 If we want to deprecate a pattern that we don't like, it is our responsibility to consider all existing use cases for it and [educate the community about the alternatives](/blog/2016/07/13/mixins-considered-harmful.html) before we deprecate it. If some pattern that is useful for building apps is hard to express in a declarative way, we will [provide an imperative API](/docs/more-about-refs.html) for it. If we can't figure out a perfect API for something that we found necessary in many apps, we will [provide a temporary subpar working API](/docs/legacy-context.html) as long as it is possible to get rid of it later and it leaves the door open for future improvements.
 
-### Stability
+### Stability {#stability}
 
 We value API stability. At Facebook, we have more than 50 thousand components using React. Many other companies, including [Twitter](https://twitter.com/) and [Airbnb](https://www.airbnb.com/), are also heavy users of React. This is why we are usually reluctant to change public APIs or behavior.
 
@@ -62,13 +62,13 @@ When we add a deprecation warning, we keep it for the rest of the current major 
 
 You can find the codemods that we released in the [react-codemod](https://github.com/reactjs/react-codemod) repository.
 
-### Interoperability
+### Interoperability {#interoperability}
 
 We place high value in interoperability with existing systems and gradual adoption. Facebook has a massive non-React codebase. Its website uses a mix of a server-side component system called XHP, internal UI libraries that came before React, and React itself. It is important to us that any product team can [start using React for a small feature](https://www.youtube.com/watch?v=BF58ZJ1ZQxY) rather than rewrite their code to bet on it.
 
 This is why React provides escape hatches to work with mutable models, and tries to work well together with other UI libraries. You can wrap an existing imperative UI into a declarative component, and vice versa. This is crucial for gradual adoption.
 
-### Scheduling
+### Scheduling {#scheduling}
 
 Even when your components are described as functions, when you use React you don't call them directly. Every component returns a [description of what needs to be rendered](/blog/2015/12/18/react-components-elements-and-instances.html#elements-describe-the-tree), and that description may include both user-written components like `<LikeButton>` and platform-specific components like `<div>`. It is up to React to "unroll" `<LikeButton>` at some point in the future and actually apply changes to the UI tree according to the render results of the components recursively.
 
@@ -88,7 +88,7 @@ It is a key goal for React that the amount of the user code that executes before
 
 There is an internal joke in the team that React should have been called "Schedule" because React does not want to be fully "reactive".
 
-### Developer Experience
+### Developer Experience {#developer-experience}
 
 Providing a good developer experience is important to us.
 
@@ -100,7 +100,7 @@ The usage patterns that we see internally at Facebook help us understand what th
 
 We are always looking out for ways to improve the developer experience. We love to hear your suggestions and accept your contributions to make it even better.
 
-### Debugging
+### Debugging {#debugging}
 
 When something goes wrong, it is important that you have breadcrumbs to trace the mistake to its source in the codebase. In React, props and state are those breadcrumbs.
 
@@ -114,7 +114,7 @@ This ability to trace any UI to the data that produced it in the form of current
 
 While the UI is dynamic, we believe that synchronous `render()` functions of props and state turn debugging from guesswork into a boring but finite procedure. We would like to preserve this constraint in React even though it makes some use cases, like complex animations, harder.
 
-### Configuration
+### Configuration {#configuration}
 
 We find global runtime configuration options to be problematic.
 
@@ -124,7 +124,7 @@ What if somebody calls such a function from a third-party component library? Wha
 
 We do, however, provide some global configuration on the build level. For example, we provide separate development and production builds. We may also [add a profiling build](https://github.com/facebook/react/issues/6627) in the future, and we are open to considering other build flags.
 
-### Beyond the DOM
+### Beyond the DOM {#beyond-the-dom}
 
 We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://facebook.github.io/react-native/) is just as important both to Facebook and the community.
 
@@ -132,13 +132,13 @@ Being renderer-agnostic is an important design constraint of React. It adds some
 
 Having a single programming model lets us form engineering teams around products instead of platforms. So far the tradeoff has been worth it for us.
 
-### Implementation
+### Implementation {#implementation}
 
 We try to provide elegant APIs where possible. We are much less concerned with the implementation being elegant. The real world is far from perfect, and to a reasonable extent we prefer to put the ugly code into the library if it means the user does not have to write it. When we evaluate new code, we are looking for an implementation that is correct, performant and affords a good developer experience. Elegance is secondary.
 
 We prefer boring code to clever code. Code is disposable and often changes. So it is important that it [doesn't introduce new internal abstractions unless absolutely necessary](https://youtu.be/4anAwXYqLG8?t=13m9s). Verbose code that is easy to move around, change and remove is preferred to elegant code that is prematurely abstracted and hard to change.
 
-### Optimized for Tooling
+### Optimized for Tooling {#optimized-for-tooling}
 
 Some commonly used APIs have verbose names. For example, we use `componentDidMount()` instead of `didMount()` or `onMount()`. This is [intentional](https://github.com/reactjs/react-future/issues/40#issuecomment-142442124). The goal is to make the points of interaction with the library highly visible.
 
@@ -150,7 +150,7 @@ Optimizing for search is also important because of our reliance on [codemods](ht
 
 In our codebase, JSX provides an unambiguous hint to the tools that they are dealing with a React element tree. This makes it possible to add build-time optimizations such as [hoisting constant elements](https://babeljs.io/docs/en/babel-plugin-transform-react-constant-elements/), safely lint and codemod internal component usage, and [include JSX source location](https://github.com/facebook/react/pull/6771) into the warnings.
 
-### Dogfooding
+### Dogfooding {#dogfooding}
 
 We try our best to address the problems raised by the community. However we are likely to prioritize the issues that people are *also* experiencing internally at Facebook. Perhaps counter-intuitively, we think this is the main reason why the community can bet on React.
 

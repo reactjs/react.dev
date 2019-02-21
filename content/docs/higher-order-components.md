@@ -14,11 +14,11 @@ const EnhancedComponent = higherOrderComponent(WrappedComponent);
 
 Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
 
-HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reactjs/react-redux/blob/master/docs/api.md#connectmapstatetoprops-mapdispatchtoprops-mergeprops-options) and Relay's [`createFragmentContainer`](https://facebook.github.io/relay/docs/en/fragment-container.html).
+HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html).
 
 In this document, we'll discuss why higher-order components are useful, and how to write your own.
 
-## Use HOCs For Cross-Cutting Concerns
+## Use HOCs For Cross-Cutting Concerns {#use-hocs-for-cross-cutting-concerns}
 
 > **Note**
 >
@@ -171,7 +171,7 @@ Because `withSubscription` is a normal function, you can add as many or as few a
 
 Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.
 
-## Don't Mutate the Original Component. Use Composition.
+## Don't Mutate the Original Component. Use Composition. {#dont-mutate-the-original-component-use-composition}
 
 Resist the temptation to modify a component's prototype (or otherwise mutate it) inside a HOC.
 
@@ -215,7 +215,7 @@ This HOC has the same functionality as the mutating version while avoiding the p
 
 You may have noticed similarities between HOCs and a pattern called **container components**. Container components are part of a strategy of separating responsibility between high-level and low-level concerns. Containers manage things like subscriptions and state, and pass props to components that handle things like rendering UI. HOCs use containers as part of their implementation. You can think of HOCs as parameterized container component definitions.
 
-## Convention: Pass Unrelated Props Through to the Wrapped Component
+## Convention: Pass Unrelated Props Through to the Wrapped Component {#convention-pass-unrelated-props-through-to-the-wrapped-component}
 
 HOCs add features to a component. They shouldn't drastically alter its contract. It's expected that the component returned from a HOC has a similar interface to the wrapped component.
 
@@ -243,7 +243,7 @@ render() {
 
 This convention helps ensure that HOCs are as flexible and reusable as possible.
 
-## Convention: Maximizing Composability
+## Convention: Maximizing Composability {#convention-maximizing-composability}
 
 Not all HOCs look the same. Sometimes they accept only a single argument, the wrapped component:
 
@@ -295,7 +295,7 @@ const EnhancedComponent = enhance(WrappedComponent)
 
 The `compose` utility function is provided by many third-party libraries including lodash (as [`lodash.flowRight`](https://lodash.com/docs/#flowRight)), [Redux](https://redux.js.org/api/compose), and [Ramda](https://ramdajs.com/docs/#compose).
 
-## Convention: Wrap the Display Name for Easy Debugging
+## Convention: Wrap the Display Name for Easy Debugging {#convention-wrap-the-display-name-for-easy-debugging}
 
 The container components created by HOCs show up in the [React Developer Tools](https://github.com/facebook/react-devtools) like any other component. To ease debugging, choose a display name that communicates that it's the result of a HOC.
 
@@ -314,11 +314,11 @@ function getDisplayName(WrappedComponent) {
 ```
 
 
-## Caveats
+## Caveats {#caveats}
 
 Higher-order components come with a few caveats that aren't immediately obvious if you're new to React.
 
-### Don't Use HOCs Inside the render Method
+### Don't Use HOCs Inside the render Method {#dont-use-hocs-inside-the-render-method}
 
 React's diffing algorithm (called reconciliation) uses component identity to determine whether it should update the existing subtree or throw it away and mount a new one. If the component returned from `render` is identical (`===`) to the component from the previous render, React recursively updates the subtree by diffing it with the new one. If they're not equal, the previous subtree is unmounted completely.
 
@@ -340,7 +340,7 @@ Instead, apply HOCs outside the component definition so that the resulting compo
 
 In those rare cases where you need to apply a HOC dynamically, you can also do it inside a component's lifecycle methods or its constructor.
 
-### Static Methods Must Be Copied Over
+### Static Methods Must Be Copied Over {#static-methods-must-be-copied-over}
 
 Sometimes it's useful to define a static method on a React component. For example, Relay containers expose a static method `getFragment` to facilitate the composition of GraphQL fragments.
 
@@ -392,7 +392,7 @@ export { someFunction };
 import MyComponent, { someFunction } from './MyComponent.js';
 ```
 
-### Refs Aren't Passed Through
+### Refs Aren't Passed Through {#refs-arent-passed-through}
 
 While the convention for higher-order components is to pass through all props to the wrapped component, this does not work for refs. That's because `ref` is not really a prop — like `key`, it's handled specially by React. If you add a ref to an element whose component is the result of a HOC, the ref refers to an instance of the outermost container component, not the wrapped component.
 

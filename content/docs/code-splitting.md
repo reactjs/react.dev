@@ -4,7 +4,7 @@ title: Code-Splitting
 permalink: docs/code-splitting.html
 ---
 
-## Bundling
+## Bundling {#bundling}
 
 Most React apps will have their files "bundled" using tools like
 [Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
@@ -12,7 +12,7 @@ Bundling is the process of following imported files and merging them into a
 single file: a "bundle". This bundle can then be included on a webpage to load
 an entire app at once.
 
-#### Example
+#### Example {#example}
 
 **App:**
 
@@ -52,7 +52,7 @@ If you aren't, you'll need to setup bundling yourself. For example, see the
 [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
 Webpack docs.
 
-## Code Splitting
+## Code Splitting {#code-splitting}
 
 Bundling is great, but as your app grows, your bundle will grow too. Especially
 if you are including large third-party libraries. You need to keep an eye on
@@ -72,7 +72,7 @@ your app. While you haven't reduced the overall amount of code in your app,
 you've avoided loading code that the user may never need, and reduced the amount
 of code needed during the initial load.
 
-## `import()`
+## `import()` {#import}
 
 The best way to introduce code-splitting into your app is through the dynamic
 `import()` syntax.
@@ -111,7 +111,7 @@ If you're setting up Webpack yourself, you'll probably want to read Webpack's
 When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
 parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
 
-## `React.lazy`
+## `React.lazy` {#reactlazy}
 
 > Note:
 >
@@ -151,7 +151,7 @@ This will automatically load the bundle containing the `OtherComponent` when thi
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
 
-### Suspense
+### Suspense {#suspense}
 
 If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.
 
@@ -189,7 +189,7 @@ function MyComponent() {
 }
 ```
 
-### Error boundaries
+### Error boundaries {#error-boundaries}
 
 If the other module fails to load (for example, due to network failure), it will trigger an error. You can handle these errors to show a nice user experience and manage recovery with [Error Boundaries](/docs/error-boundaries.html). Once you've created your Error Boundary, you can use it anywhere above your lazy components to display an error state when there's a network error.
 
@@ -212,7 +212,7 @@ const MyComponent = () => (
 );
 ```
 
-## Route-based code splitting
+## Route-based code splitting {#route-based-code-splitting}
 
 Deciding where in your app to introduce code splitting can be a bit tricky. You
 want to make sure you choose places that will split bundles evenly, but won't
@@ -245,7 +245,7 @@ const App = () => (
 );
 ```
 
-## Named Exports
+## Named Exports {#named-exports}
 
 `React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that treeshaking keeps working and that you don't pull in unused components.
 

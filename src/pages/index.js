@@ -310,13 +310,6 @@ Home.propTypes = {
   }).isRequired,
 };
 
-function renderExamplePlaceholder(containerId) {
-  ReactDOM.render(
-    <h4>Loading code example...</h4>,
-    document.getElementById(containerId),
-  );
-}
-
 const CtaItem = ({children, primary = false}) => (
   <div
     css={{

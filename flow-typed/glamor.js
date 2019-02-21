@@ -15,7 +15,3 @@ declare module 'glamor/react' {
     propMerge: Function,
   };
 }
-
-declare module 'glamor/reset' {
-  declare module.exports: any;
-}

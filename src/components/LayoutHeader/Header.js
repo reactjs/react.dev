@@ -7,7 +7,7 @@
 
 import Container from 'components/Container';
 import HeaderLink from './HeaderLink';
-import Link from 'gatsby-link';
+import {Link} from 'gatsby';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
 import {version} from 'site-constants';
@@ -146,7 +146,7 @@ const Header = ({location}: {location: Location}) => (
               width: 'calc(100% / 6)',
             },
           }}>
-          <a
+          <Link
             css={{
               padding: '5px 10px',
               whiteSpace: 'nowrap',
@@ -162,9 +162,9 @@ const Header = ({location}: {location: Location}) => (
                 borderRadius: 15,
               },
             }}
-            href="/versions">
+            to="/versions">
             v{version}
-          </a>
+          </Link>
           <a
             css={{
               padding: '5px 10px',

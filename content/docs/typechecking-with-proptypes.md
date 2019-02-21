@@ -32,7 +32,7 @@ Greeting.propTypes = {
 
 `PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
 
-### PropTypes
+### PropTypes {#proptypes}
 
 Here is an example documenting the different validators provided:
 
@@ -119,7 +119,7 @@ MyComponent.propTypes = {
 };
 ```
 
-### Requiring Single Child
+### Requiring Single Child {#requiring-single-child}
 
 With `PropTypes.element` you can specify that only a single child can be passed to a component as children.
 
@@ -143,7 +143,7 @@ MyComponent.propTypes = {
 };
 ```
 
-### Default Prop Values
+### Default Prop Values {#default-prop-values}
 
 You can define default values for your `props` by assigning to the special `defaultProps` property:
 

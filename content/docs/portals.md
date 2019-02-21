@@ -12,7 +12,7 @@ ReactDOM.createPortal(child, container)
 
 The first argument (`child`) is any [renderable React child](/docs/react-component.html#render), such as an element, string, or fragment. The second argument (`container`) is a DOM element.
 
-## Usage
+## Usage {#usage}
 
 Normally, when you return an element from a component's render method, it's mounted into the DOM as a child of the nearest parent node:
 
@@ -44,11 +44,13 @@ A typical use case for portals is when a parent component has an `overflow: hidd
 
 > Note:
 >
-> It is important to remember, when working with portals, you'll need to make sure to follow the proper accessibility guidelines.
+> When working with portals, remember that [managing keyboard focus](/docs/accessibility.html#programmatically-managing-focus) becomes very important.
+>
+> For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
 
-## Event Bubbling Through Portals
+## Event Bubbling Through Portals {#event-bubbling-through-portals}
 
 Even though a portal can be anywhere in the DOM tree, it behaves like a normal React child in every other way. Features like context work exactly the same regardless of whether the child is a portal, as the portal still exists in the *React tree* regardless of position in the *DOM tree*.
 
@@ -111,8 +113,8 @@ class Parent extends React.Component {
     // This will fire when the button in Child is clicked,
     // updating Parent's state, even though button
     // is not direct descendant in the DOM.
-    this.setState(prevState => ({
-      clicks: prevState.clicks + 1
+    this.setState(state => ({
+      clicks: state.clicks + 1
     }));
   }
 

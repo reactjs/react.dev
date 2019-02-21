@@ -285,7 +285,7 @@ Returns a [memoized](https://en.wikipedia.org/wiki/Memoization) callback.
 
 Pass an inline callback and an array of inputs. `useCallback` will return a memoized version of the callback that only changes if one of the inputs has changed. This is useful when passing callbacks to optimized child components that rely on reference equality to prevent unnecessary renders (e.g. `shouldComponentUpdate`).
 
-`useCallback(fn, inputs)` is equivalent to `useMemo(() => fn, inputs)`.
+`useCallback(fn, inputs)` is equivalent to `useMemo(() => fn(), inputs)`.
 
 > Note
 >

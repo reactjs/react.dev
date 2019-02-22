@@ -29,7 +29,7 @@ Colin also [blogged about his experience using React Native](http://blog.scottlo
 
 Spencer Ahrens and I had the great pleasure to talk about React Native on [The Changelog](https://thechangelog.com/149/) podcast. It was really fun to chat for an hour, I hope that you'll enjoy listening to it. :)
 
-<audio src="http://fdlyr.co/d/changelog/cdn.5by5.tv/audio/broadcasts/changelog/2015/changelog-149.mp3" controls="controls" style="width: 100%"></audio>
+<audio src="https://cdn.changelog.com/uploads/podcast/149/the-changelog-149.mp3" controls="controls" style="width: 100%"></audio>
 
 
 ## Hacker News {#hacker-news}

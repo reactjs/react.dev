@@ -69,7 +69,7 @@ If you feel that the React documentation goes at a faster pace than you're comfo
 
 ### React for Designers {#react-for-designers}
 
-If you're coming from a design background, [these resources](http://reactfordesigners.com/) are a great place to get started.
+If you're coming from a design background, [these resources](https://reactfordesigners.com/) are a great place to get started.
 
 ### JavaScript Resources {#javascript-resources}
 
@@ -79,7 +79,7 @@ We recommend going through [this JavaScript overview](https://developer.mozilla.
 
 >Tip
 >
->Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](http://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
+>Whenever you get confused by something in JavaScript, [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](https://javascript.info/) are great websites to check. There are also [community support forums](/community/support.html) where you can ask for help.
 
 ### Practical Tutorial {#practical-tutorial}
 

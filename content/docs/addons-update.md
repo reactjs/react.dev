@@ -21,7 +21,7 @@ var update = require('react-addons-update'); // ES5 with npm
 
 React lets you use whatever style of data management you want, including mutation. However, if you can use immutable data in performance-critical parts of your application it's easy to implement a fast [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method to significantly speed up your app.
 
-Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like [Clojure](http://clojure.org/). However, we've provided a simple immutability helper, `update()`, that makes dealing with this type of data much easier, *without* fundamentally changing how your data is represented. You can also take a look at Facebook's [Immutable-js](https://facebook.github.io/immutable-js/docs/) and the [Advanced Performance](/docs/advanced-performance.html) section for more detail on Immutable-js.
+Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like [Clojure](https://clojure.org/). However, we've provided a simple immutability helper, `update()`, that makes dealing with this type of data much easier, *without* fundamentally changing how your data is represented. You can also take a look at Facebook's [Immutable-js](https://facebook.github.io/immutable-js/docs/) and the [Advanced Performance](/docs/advanced-performance.html) section for more detail on Immutable-js.
 
 ### The Main Idea {#the-main-idea}
 
@@ -67,7 +67,7 @@ const newData = update(myData, {
 });
 ```
 
-While the syntax takes a little getting used to (though it's inspired by [MongoDB's query language](http://docs.mongodb.org/manual/core/crud-introduction/#query)) there's no redundancy, it's statically analyzable and it's not much more typing than the mutative version.
+While the syntax takes a little getting used to (though it's inspired by [MongoDB's query language](https://docs.mongodb.com/manual/crud/#query)) there's no redundancy, it's statically analyzable and it's not much more typing than the mutative version.
 
 The `$`-prefixed keys are called *commands*. The data structure they are "mutating" is called the *target*.
 

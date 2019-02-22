@@ -51,7 +51,7 @@ Shallow testing currently has some limitations, namely not supporting refs.
 
 > Note:
 >
-> We also recommend checking out Enzyme's [Shallow Rendering API](http://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
+> We also recommend checking out Enzyme's [Shallow Rendering API](https://airbnb.io/enzyme/docs/api/shallow.html). It provides a nicer higher-level API over the same functionality.
 
 ## Reference {#reference}
 

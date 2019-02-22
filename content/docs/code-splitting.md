@@ -108,7 +108,7 @@ out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 If you're setting up Webpack yourself, you'll probably want to read Webpack's
 [guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
-When using [Babel](http://babeljs.io/), you'll need to make sure that Babel can
+When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
 parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
 
 ## `React.lazy` {#reactlazy}

@@ -199,7 +199,7 @@ function reducer(state, action) {
   }
 }
 
-function Counter({initialCount}) {
+function Counter({initialState}) {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>

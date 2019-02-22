@@ -155,7 +155,7 @@ There are multiple injection points in the codebase. In the future, we intend to
 
 ### Multiple Packages {#multiple-packages}
 
-React is a [monorepo](http://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
+React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
 
 ### React Core {#react-core}
 
@@ -171,7 +171,7 @@ The code for React core is located in [`packages/react`](https://github.com/face
 
 ### Renderers {#renderers}
 
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](http://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
+React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
 
 **Renderers manage how a React tree turns into the underlying platform calls.**
 
@@ -211,7 +211,7 @@ Its main goals are:
 * Ability to return multiple elements from `render()`.
 * Better support for error boundaries.
 
-You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/index.php/2018/11/29/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
+You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://medium.com/react-in-depth/inside-fiber-in-depth-overview-of-the-new-reconciliation-algorithm-in-react-e1c04700ef6e). While it has shipped with React 16, the async features are not enabled by default yet.
 
 Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
 

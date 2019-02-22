@@ -16,7 +16,7 @@ Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). Th
 
 **↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
 
-## 📌 State Hook {#-state-hook}
+## 📌 State Hook {#state-hook}
 
 This example renders a counter. When you click the button, it increments the value:
 
@@ -68,7 +68,7 @@ React provides a few built-in Hooks like `useState`. You can also create your ow
 >
 >You can learn more about the State Hook on a dedicated page: [Using the State Hook](/docs/hooks-state.html).
 
-## ⚡️ Effect Hook {#️-effect-hook}
+## ⚡️ Effect Hook {#effect-hook}
 
 You've likely performed data fetching, subscriptions, or manually changing the DOM from React components before. We call these operations "side effects" (or "effects" for short) because they can affect other components and can't be done during rendering.
 
@@ -159,7 +159,7 @@ Hooks let you organize side effects in a component by what pieces are related (s
 >
 >You can learn more about `useEffect` on a dedicated page: [Using the Effect Hook](/docs/hooks-effect.html).
 
-## ✌️ Rules of Hooks {#️-rules-of-hooks}
+## ✌️ Rules of Hooks {#rules-of-hooks}
 
 Hooks are JavaScript functions, but they impose two additional rules:
 
@@ -172,7 +172,7 @@ We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-h
 >
 >You can learn more about these rules on a dedicated page: [Rules of Hooks](/docs/hooks-rules.html).
 
-## 💡 Building Your Own Hooks {#-building-your-own-hooks}
+## 💡 Building Your Own Hooks {#building-your-own-hooks}
 
 Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
 
@@ -239,7 +239,7 @@ You can write custom Hooks that cover a wide range of use cases like form handli
 >
 >You can learn more about custom Hooks on a dedicated page: [Building Your Own Hooks](/docs/hooks-custom.html).
 
-## 🔌 Other Hooks {#-other-hooks}
+## 🔌 Other Hooks {#other-hooks}
 
 There are a few less commonly used built-in Hooks that you might find useful. For example, [`useContext`](/docs/hooks-reference.html#usecontext) lets you subscribe to React context without introducing nesting:
 

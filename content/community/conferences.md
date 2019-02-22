@@ -16,6 +16,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 January 31, 2019 in Tehran, Iran
 [Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
 
+### Reactathon 2019 {#reactathon-2019}
+March 30-31, 2019 in San Francisco, USA
+
+[Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
+
 ### App.js Conf 2019 {#appjs-conf-2019}
 April 4-5, 2019 in Kraków, Poland
 
@@ -31,10 +36,20 @@ May 23-24, 2019 in Paris, France
 
 [Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
+### React Conf Armenia 2019 {#react-conf-am-19}
+May 25, 2019 in Yerevan, Armenia
+
+[Website](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
+
 ### React Norway 2019 {#react-norway-2019}
 June 12, 2019. Larvik, Norway
 
 [Website](https://reactnorway.com) - [Twitter](https://twitter.com/ReactNorway)
+
+### React Loop 2019 {#react-loop-2019}
+June 21, 2019 Chicago, Illinois USA
+
+[Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
 ### React Week '19 {#RWNY19}
 July 15-21, 2019. New York City, USA

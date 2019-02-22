@@ -17,7 +17,6 @@ import {colors, media, sharedStyles} from 'theme';
 import loadScript from 'utils/loadScript';
 import createOgUrl from 'utils/createOgUrl';
 import {babelURL} from 'site-constants';
-import ReactDOM from 'react-dom';
 import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {

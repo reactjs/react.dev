@@ -2,7 +2,7 @@
 id: static-type-checking
 title: Static Type Checking
 permalink: docs/static-type-checking.html
-prev: typechecking-with-prototypes.html
+prev: typechecking-with-proptypes.html
 next: refs-and-the-dom.html
 ---
 

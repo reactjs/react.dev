@@ -3,7 +3,7 @@ title: "¡React en español! and Other Languages"
 author: [tesseralis]
 ---
 
-We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can check out our ongoing efforts in the new [Languages](/languages) page!
+We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can check out our ongoing efforts in the new [Languages](/languages) page.
 
 In addition, the following three languages have completed translating most of the React Docs! 🎉
 

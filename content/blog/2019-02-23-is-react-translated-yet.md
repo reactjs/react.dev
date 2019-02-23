@@ -3,15 +3,15 @@ title: "Is React Translated Yet? ¡Sí! Sim! はい！"
 author: [tesseralis]
 ---
 
-We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can check out our ongoing efforts on the new [Languages](/languages) page.
+We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can find them on the new [Languages](/languages) page.
 
 In addition, the following three languages have completed translating most of the React Docs! 🎉
 
-* Spanish: [es.reactjs.org](https://es.reactjs.org)
-* Japanese: [ja.reactjs.org](https://ja.reactjs.org)
-* Brazilian Portuguese [pt-br.reactjs.org](https://pt-br.reactjs.org)
+* **Spanish: [es.reactjs.org](https://es.reactjs.org)**
+* **Japanese: [ja.reactjs.org](https://ja.reactjs.org)**
+* **Brazilian Portuguese: [pt-br.reactjs.org](https://pt-br.reactjs.org)**
 
-Special congratulations to the Spanish team for being the first to *completely* translate the core pages of the docs!
+Special congratulations to [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), and all the contributors to the Spanish translation team for being the first to *completely* translate the core pages of the docs!
 
 ## Why Localization Matters
 

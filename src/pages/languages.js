@@ -56,7 +56,7 @@ const Languages = ({location}: Props) => (
 
             <LanguagesGrid languages={complete} />
 
-            <h2>Partially Translated</h2>
+            <h2>In Progress</h2>
             <LanguagesGrid languages={partial} />
 
             <h2>Needs Contributors</h2>

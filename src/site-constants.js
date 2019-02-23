@@ -11,4 +11,4 @@ const urlRoot = 'https://reactjs.org';
 const version = '16.8.3';
 const babelURL = 'https://unpkg.com/babel-standalone@6.26.0/babel.min.js';
 
-export {urlRoot, version, babelURL};
+export {babelURL, urlRoot, version};

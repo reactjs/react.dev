@@ -1,0 +1,133 @@
+# Status enums indicate what percentage of "core" content has been translated:
+# 0: Incomplete (0–49%)
+# 1: Partially complete (50–94%)
+# 2: Complete (95–100%)
+
+- name: English
+  translated_name: English
+  code: en
+  status: 2
+- name: Arabic
+  translated_name: العربية
+  code: ar
+  status: 0
+- name: Azerbaijani
+  translated_name: Azərbaycanca
+  code: az
+  status: 0
+- name: Bulgarian
+  translated_name: Български
+  code: bg
+  status: 0
+- name: Bengali
+  translated_name: বাংলা
+  code: bn
+  status: 0
+- name: German
+  translated_name: Deutsch
+  code: de
+  status: 0
+- name: Spanish
+  translated_name: Español
+  code: es
+  status: 2
+- name: Persian
+  translated_name: فارسی
+  code: fa
+  status: 0
+- name: French
+  translated_name: Français
+  code: fr
+  status: 0
+- name: Hebrew
+  translated_name: עברית
+  code: he
+  status: 0
+- name: Hindi
+  translated_name: हिन्दी
+  code: hi
+  status: 0
+- name: Armenian
+  translated_name: Հայերեն
+  code: hy
+  status: 0
+- name: Indonesian
+  translated_name: Bahasa Indonesia
+  code: id
+  status: 0
+- name: Italian
+  translated_name: Italiano
+  code: it
+  status: 0
+- name: Japanese
+  translated_name: 日本語
+  code: ja
+  status: 1
+- name: Korean
+  translated_name: 한국어
+  code: ko
+  status: 0
+- name: Malayalam
+  translated_name: മലയാളം
+  code: ml
+  status: 0
+- name: Nepali
+  translated_name: नेपाली
+  code: ne
+  status: 0
+- name: Dutch
+  translated_name: Nederlands
+  code: nl
+  status: 0
+- name: Polish
+  translated_name: Polski
+  code: pl
+  status: 0
+- name: Portuguese (Brazil)
+  translated_name: Português do Brasil
+  code: pt-br
+  status: 1
+- name: Portuguese (Portugal)
+  translated_name: Português europeu
+  code: pt-pt
+  status: 0
+- name: Romanian
+  translated_name: Română
+  code: ro
+  status: 0
+- name: Russian
+  translated_name: Русский
+  code: ru
+  status: 0
+- name: Sinhala
+  translated_name: සිංහල
+  code: si
+  status: 0
+- name: Tamil
+  translated_name: தமிழ்
+  code: ta
+  status: 0
+- name: Turkish
+  translated_name: Türkçe
+  code: tr
+  status: 0
+- name: Ukrainian
+  translated_name: Українська
+  code: uk
+  status: 0
+- name: Uzbek
+  translated_name: Oʻzbekcha
+  code: uz
+  status: 0
+- name: Vietnamese
+  translated_name: Tiếng Việt
+  code: vi
+  status: 0
+- name: Simplified Chinese
+  translated_name: 简体中文
+  code: zh-hans
+  status: 0
+- name: Traditional Chinese
+  translated_name: 繁體中文
+  code: zh-hant
+  status: 0

@@ -42,27 +42,23 @@ class DocSearch extends Component<{}, State> {
           flex: '0 0 auto',
           flexDirection: 'row',
           alignItems: 'center',
-          paddingLeft: '0.5rem',
-          paddingRight: '0.5rem',
+          paddingLeft: '0.25rem',
+          paddingRight: '0.25rem',
 
-          [media.lessThan('small')]: {
-            justifyContent: 'flex-end',
-          },
           [media.lessThan('large')]: {
+            justifyContent: 'flex-end',
             marginRight: 10,
           },
-          [media.between('small', 'medium')]: {
-            width: 'calc(100% / 3)',
-          },
           [media.between('medium', 'xlarge')]: {
-            width: 'calc(100% / 6)',
+            //width: 'calc(100% / 6)',
           },
-          [media.greaterThan('small')]: {
-            minWidth: 120,
+          [media.greaterThan('large')]: {
+            minWidth: 100,
           },
         }}>
         <input
           css={{
+            width: '100%',
             appearance: 'none',
             background: 'transparent',
             border: 0,
@@ -71,12 +67,12 @@ class DocSearch extends Component<{}, State> {
             fontWeight: 300,
             fontFamily: 'inherit',
             position: 'relative',
-            padding: '5px 5px 5px 29px',
+            padding: '4px 4px 4px 29px',
             backgroundImage: 'url(/search.svg)',
             backgroundSize: '16px 16px',
             backgroundRepeat: 'no-repeat',
             backgroundPositionY: 'center',
-            backgroundPositionX: '5px',
+            backgroundPositionX: '4px',
 
             ':focus': {
               outline: 0,
@@ -86,11 +82,6 @@ class DocSearch extends Component<{}, State> {
 
             [media.lessThan('large')]: {
               fontSize: 16,
-            },
-            [media.greaterThan('small')]: {
-              width: '100%',
-            },
-            [media.lessThan('small')]: {
               width: '16px',
               transition: 'width 0.2s ease, padding 0.2s ease',
               paddingLeft: '16px',
@@ -104,7 +95,7 @@ class DocSearch extends Component<{}, State> {
           }}
           id="algolia-doc-search"
           type="search"
-          placeholder="Search docs"
+          placeholder="Search"
           aria-label="Search docs"
         />
       </form>

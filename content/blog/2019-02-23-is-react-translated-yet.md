@@ -11,7 +11,7 @@ In addition, the following three languages have completed translating most of th
 * **Japanese: [ja.reactjs.org](https://ja.reactjs.org)**
 * **Brazilian Portuguese: [pt-br.reactjs.org](https://pt-br.reactjs.org)**
 
-Special congratulations to [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), and all the contributors to the Spanish translation team for being the first to *completely* translate the core pages of the docs!
+Special congratulations to [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), and all the contributors to the Spanish translation for being the first to *completely* translate the core pages of the docs!
 
 ## Why Localization Matters
 

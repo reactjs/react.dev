@@ -43,7 +43,7 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children, containerNodeID} = this.props;
+    const {containerNodeID} = this.props;
     const {
       compiledES6,
       code,

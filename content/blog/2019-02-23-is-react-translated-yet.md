@@ -31,7 +31,7 @@ Hi everyone! I'm [Nat](https://twitter.com/tesseralis)! You may know me as the [
 
 Our original approach for translations was to use a SaaS platform that allows users to submit translations. There was already a [pull request](https://github.com/reactjs/reactjs.org/pull/873) to integrate it and my original responsibility was to finish that integration. However, we had concerns about the feasibility of that integration and the current quality of translations on the platform. Our primary concern was ensuring that translations kept up to date with the main repo and didn't become "stale".
 
-[Dan](https://twitter.com/gaearon) encouraged me to look for alternate solutions, and we stumbled across how [Vue](https://vuejs.org) maintained its translations -- through different forks of the main repo on GitHub. In particular, the [Japanese translation](jp.vuejs.org) used a bot to periodically check for changes in the English repo and submits pull requests whenever there is a change.
+[Dan](https://twitter.com/gaearon) encouraged me to look for alternate solutions, and we stumbled across how [Vue](https://vuejs.org) maintained its translations -- through different forks of the main repo on GitHub. In particular, the [Japanese translation](https://jp.vuejs.org) used a bot to periodically check for changes in the English repo and submits pull requests whenever there is a change.
 
 This approach appealed to us for several reasons:
 
@@ -47,7 +47,7 @@ Because of the automation, the rest of the maintance went mostly smoothly. We ev
 
 ## The Bot
 
-The most challenging part was getting the bot to sync changes from the English version of the site. Initially we were using the [che-tsumi](https://github.com/vuejs-jp/che-tsumi) bot created by the Japanese Vue translation team, but we soon decided to build our own bot to suit our needs. In particular, the che-tsumi bot works by [cherry picking](https://git-scm.com/docs/git-cherry-pick) new commits. This ended up causing a cavalade of new issues that were interconnected, especially when [Hooks were released](https://reactjs.org/blog/2019/02/06/react-v16.8.0.html).
+The most challenging part was getting the bot to sync changes from the English version of the site. Initially we were using the [che-tsumi](https://github.com/vuejs-jp/che-tsumi) bot created by the Japanese Vue translation team, but we soon decided to build our own bot to suit our needs. In particular, the che-tsumi bot works by [cherry picking](https://git-scm.com/docs/git-cherry-pick) new commits. This ended up causing a cavalade of new issues that were interconnected, especially when [Hooks were released](/blog/2019/02/06/react-v16.8.0.html).
 
 In the end, we decided that instead of cherry picking each commit, it made more sense to merge all new commits and create a pull request around once a day. Conflicts are merged as-is and listed in the [pull request](https://github.com/reactjs/pt-BR.reactjs.org/pull/114), leaving a checklist for maintainers to fix.
 
@@ -67,9 +67,9 @@ There are, as always, improvements I want to make to the bot. Right now it doesn
 
 Finally, I would like to extend my gratitude to the following people and groups:
 
+ * All the translation maintainers and contributors who are helping translate React to more than thirty languages.
  * The [Vue.js Japan User Group](https://github.com/vuejs-jp) for initiating the idea of having bot-managed translations, and especially [Hanatani Takuma](https://github.com/potato4d) for helping us understand their approach and helping maintain the Japanese translation.
  * [Soichiro Miki](https://github.com/smikitki) for many [contributions](https://github.com/reactjs/reactjs.org/pull/1636) and thoughtful comments on the overall translation process, as well as for maintaining the Japanese translation.
- * All the translation maintainers and contributors who are helping translate React to more than thirty languages.
  * [Eric Nakagawa](https://github.com/ericnakagawa) for managing our previous translation process.
  * [Brian Vaughn](https://github.com/bvaughn) for setting up the [languages page](/languages) and managing all the subdomains.
 

@@ -41,7 +41,6 @@ class CodeExample extends Component {
 
               '& h3': {
                 color: colors.dark,
-                maxWidth: '11em',
                 paddingTop: 0,
               },
 

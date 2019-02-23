@@ -54,7 +54,7 @@ For example, consider a `Page` component that passes a `user` and `avatarSize` p
 
 It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` prop:
+One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
 
 ```js
 function Page(props) {
@@ -68,7 +68,7 @@ function Page(props) {
 }
 
 // Now, we have:
-<Page user={user} />
+<Page user={user} avatarSize={avatarSize} />
 // ... which renders ...
 <PageLayout userLink={...} />
 // ... which renders ...

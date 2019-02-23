@@ -1,9 +1,9 @@
 ---
-title: "¡React en español! and Other Languages"
+title: "Is React Translated Yet? ¡Sí! Sim! はい！"
 author: [tesseralis]
 ---
 
-We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can check out our ongoing efforts in the new [Languages](/languages) page.
+We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into *over 30* languages! You can check out our ongoing efforts on the new [Languages](/languages) page.
 
 In addition, the following three languages have completed translating most of the React Docs! 🎉
 
@@ -70,8 +70,7 @@ Finally, I would like to extend my gratitude to the following people and groups:
  * The [Vue.js Japan User Group](https://github.com/vuejs-jp) for initiating the idea of having bot-managed translations, and especially [Hanatani Takuma](https://github.com/potato4d) for helping us understand their approach and helping maintain the Japanese translation.
  * [Soichiro Miki](https://github.com/smikitki) for many [contributions](https://github.com/reactjs/reactjs.org/pull/1636) and thoughtful comments on the overall translation process, as well as for maintaining the Japanese translation.
  * All the translation maintainers and contributors who are helping translate React to more than thirty languages.
- * The Spanish translation maintainers: [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), and [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), and contributors for pushing the Spanish translation through the finish line!
  * [Eric Nakagawa](https://github.com/ericnakagawa) for managing our previous translation process.
  * [Brian Vaughn](https://github.com/bvaughn) for setting up the [languages page](/languages) and managing all the subdomains.
 
- And finally, thank you to [Dan Abramov](https://github.com/gaearon) for giving me this opportunity and being a great mentor along the way.
+ And finally, thank you to [Dan Abramov](https://twitter.com/dan_abramov) for giving me this opportunity and being a great mentor along the way.

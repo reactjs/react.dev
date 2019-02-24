@@ -101,6 +101,13 @@ const Header = ({location}: {location: Location}) => (
             WebkitOverflowScrolling: 'touch',
             height: '100%',
 
+            // Hide horizontal scrollbar
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            '::-webkit-scrollbar': {
+              display: 'none',
+            },
+
             [media.size('xsmall')]: {
               flexGrow: '1',
               width: 'auto',

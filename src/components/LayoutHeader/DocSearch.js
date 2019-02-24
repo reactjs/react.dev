@@ -45,14 +45,16 @@ class DocSearch extends Component<{}, State> {
           paddingLeft: '0.25rem',
           paddingRight: '0.25rem',
 
-          [media.lessThan('large')]: {
+          [media.lessThan('expandedSearch')]: {
             justifyContent: 'flex-end',
             marginRight: 10,
           },
-          [media.between('medium', 'xlarge')]: {
-            //width: 'calc(100% / 6)',
-          },
-          [media.greaterThan('large')]: {
+          // TODO: Something like this could show the full search box in more cases
+          // but it currently breaks its expanding animation.
+          // [media.between('mediumSearch', 'largerSearch')]: {
+          //   width: 'calc(100% / 8)',
+          // },
+          [media.greaterThan('expandedSearch')]: {
             minWidth: 100,
           },
         }}>
@@ -80,7 +82,7 @@ class DocSearch extends Component<{}, State> {
               borderRadius: '0.25rem',
             },
 
-            [media.lessThan('large')]: {
+            [media.lessThan('expandedSearch')]: {
               fontSize: 16,
               width: '16px',
               transition: 'width 0.2s ease, padding 0.2s ease',

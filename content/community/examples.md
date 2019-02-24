@@ -21,3 +21,4 @@ There are many example projects created by the React community. Feel free to add
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB.
 * **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** A space which allows user to play with Google fonts. Built with React, Redux and React-Router.
+* **[SaaS Boilerplate](https://github.com/async-labs/saas)** Open source boilerplate app to build your own SaaS product. Built with React, Material-UI, Next, MobX, Express, Node, Mongoose, MongoDB. Written with TypeScript.

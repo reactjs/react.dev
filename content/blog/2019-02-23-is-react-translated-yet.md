@@ -31,7 +31,7 @@ Hi everyone! I'm [Nat](https://twitter.com/tesseralis)! You may know me as the [
 
 Our original approach for translations was to use a SaaS platform that allows users to submit translations. There was already a [pull request](https://github.com/reactjs/reactjs.org/pull/873) to integrate it and my original responsibility was to finish that integration. However, we had concerns about the feasibility of that integration and the current quality of translations on the platform. Our primary concern was ensuring that translations kept up to date with the main repo and didn't become "stale".
 
-[Dan](https://twitter.com/gaearon) encouraged me to look for alternate solutions, and we stumbled across how [Vue](https://vuejs.org) maintained its translations -- through different forks of the main repo on GitHub. In particular, the [Japanese translation](https://jp.vuejs.org) used a bot to periodically check for changes in the English repo and submits pull requests whenever there is a change.
+[Dan](https://twitter.com/dan_abramov) encouraged me to look for alternate solutions, and we stumbled across how [Vue](https://vuejs.org) maintained its translations -- through different forks of the main repo on GitHub. In particular, the [Japanese translation](https://jp.vuejs.org) used a bot to periodically check for changes in the English repo and submits pull requests whenever there is a change.
 
 This approach appealed to us for several reasons:
 

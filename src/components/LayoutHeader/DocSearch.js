@@ -45,15 +45,16 @@ class DocSearch extends Component<{}, State> {
           paddingLeft: '0.25rem',
           paddingRight: '0.25rem',
 
-          [media.lessThan('large')]: {
+          [media.lessThan('mediumSearch')]: {
             justifyContent: 'flex-end',
             marginRight: 10,
           },
-          [media.between('medium', 'xlarge')]: {
-            //width: 'calc(100% / 6)',
+          [media.between('mediumSearch', 'largerSearch')]: {
+            width: 'calc(100% / 8)',
           },
-          [media.greaterThan('large')]: {
+          [media.greaterThan('largerSearch')]: {
             minWidth: 100,
+            width: 'auto',
           },
         }}>
         <input
@@ -80,7 +81,7 @@ class DocSearch extends Component<{}, State> {
               borderRadius: '0.25rem',
             },
 
-            [media.lessThan('large')]: {
+            [media.lessThan('mediumSearch')]: {
               fontSize: 16,
               width: '16px',
               transition: 'width 0.2s ease, padding 0.2s ease',

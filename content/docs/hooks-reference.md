@@ -43,7 +43,7 @@ The `setState` function is used to update the state. It accepts a new state valu
 setState(newState);
 ```
 
-During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates.
+During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates. Changes to the value of the `initialState` argument after the first render are ignored.
 
 #### Functional updates {#functional-updates}
 

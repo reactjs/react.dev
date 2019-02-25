@@ -69,7 +69,7 @@ Finally, I would like to extend my gratitude to the following people and groups:
 
  * All the translation maintainers and contributors who are helping translate React to more than thirty languages.
  * The [Vue.js Japan User Group](https://github.com/vuejs-jp) for initiating the idea of having bot-managed translations, and especially [Hanatani Takuma](https://github.com/potato4d) for helping us understand their approach and helping maintain the Japanese translation.
- * [Soichiro Miki](https://github.com/smikitki) for many [contributions](https://github.com/reactjs/reactjs.org/pull/1636) and thoughtful comments on the overall translation process, as well as for maintaining the Japanese translation.
+ * [Soichiro Miki](https://github.com/smikitky) for many [contributions](https://github.com/reactjs/reactjs.org/pull/1636) and thoughtful comments on the overall translation process, as well as for maintaining the Japanese translation.
  * [Eric Nakagawa](https://github.com/ericnakagawa) for managing our previous translation process.
  * [Brian Vaughn](https://github.com/bvaughn) for setting up the [languages page](/languages) and managing all the subdomains.
 

@@ -45,14 +45,11 @@ class DocSearch extends Component<{}, State> {
           paddingLeft: '0.25rem',
           paddingRight: '0.25rem',
 
-          [media.lessThan('large')]: {
+          [media.lessThan('xlarge')]: {
             justifyContent: 'flex-end',
             marginRight: 10,
           },
-          [media.between('medium', 'xlarge')]: {
-            //width: 'calc(100% / 6)',
-          },
-          [media.greaterThan('large')]: {
+          [media.greaterThan('xlarge')]: {
             minWidth: 100,
           },
         }}>
@@ -80,7 +77,7 @@ class DocSearch extends Component<{}, State> {
               borderRadius: '0.25rem',
             },
 
-            [media.lessThan('large')]: {
+            [media.lessThan('xlarge')]: {
               fontSize: 16,
               width: '16px',
               transition: 'width 0.2s ease, padding 0.2s ease',

@@ -33,18 +33,12 @@ const Header = ({location}: {location: Location}) => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          height: 60,
-          [media.between('small', 'large')]: {
-            height: 50,
-          },
-          [media.lessThan('small')]: {
-            height: 40,
-          },
         }}>
         <Link
           css={{
             display: 'flex',
-            marginRight: 10,
+            flex: '0 0 auto',
+            marginRight: 8,
             height: '100%',
             alignItems: 'center',
             color: colors.brand,
@@ -52,13 +46,6 @@ const Header = ({location}: {location: Location}) => (
             ':focus': {
               outline: 0,
               color: colors.white,
-            },
-
-            [media.greaterThan('small')]: {
-              width: 'calc(100% / 6)',
-            },
-            [media.lessThan('small')]: {
-              flex: '0 0 auto',
             },
           }}
           to="/">
@@ -102,15 +89,12 @@ const Header = ({location}: {location: Location}) => (
             height: '100%',
 
             [media.size('xsmall')]: {
+              flexWrap: 'wrap',
               flexGrow: '1',
               width: 'auto',
             },
             [media.greaterThan('xlarge')]: {
               width: null,
-            },
-            [media.lessThan('small')]: {
-              maskImage:
-                'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
           <HeaderLink
@@ -143,17 +127,10 @@ const Header = ({location}: {location: Location}) => (
             alignItems: 'center',
             justifyContent: 'flex-end',
             width: 'auto',
-
-            //[media.lessThan('medium')]: {
-            //width: 'auto',
-            //},
-            //[media.greaterThan('large')]: {
-            //width: 'calc(100% / 4)',
-            //},
           }}>
           <Link
             css={{
-              padding: '5px 10px',
+              padding: '5px 8px',
               whiteSpace: 'nowrap',
               ...fonts.small,
 
@@ -178,7 +155,7 @@ const Header = ({location}: {location: Location}) => (
             css={{
               display: 'flex',
               alignItems: 'center',
-              padding: '5px 10px',
+              padding: '5px 8px',
               whiteSpace: 'nowrap',
               ...fonts.small,
 
@@ -207,8 +184,8 @@ const Header = ({location}: {location: Location}) => (
           </Link>
           <a
             css={{
-              padding: '5px 10px',
-              marginLeft: 10,
+              padding: '5px 8px',
+              marginLeft: 8,
               whiteSpace: 'nowrap',
               ...fonts.small,
 

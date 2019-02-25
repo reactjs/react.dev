@@ -30,6 +30,11 @@ const Container = ({children}: {children: Node}) => (
       [media.size('xxlarge')]: {
         maxWidth: 1260,
       },
+
+      [media.lessThan('small')]: {
+        paddingLeft: 8,
+        paddingRight: 8,
+      },
     }}>
     {children}
   </div>

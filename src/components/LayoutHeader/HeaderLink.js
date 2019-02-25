@@ -28,9 +28,15 @@ const style = {
   alignItems: 'center',
   color: colors.white,
   transition: 'color 0.2s ease-out',
-  paddingLeft: 15,
-  paddingRight: 15,
+  padding: '0 15px',
   fontWeight: 300,
+  minHeight: 60,
+  [media.between('small', 'large')]: {
+    minHeight: 50,
+  },
+  [media.lessThan('small')]: {
+    minHeight: 40,
+  },
 
   ':focus': {
     outline: 0,
@@ -39,18 +45,16 @@ const style = {
   },
 
   [media.size('xsmall')]: {
-    paddingLeft: 8,
-    paddingRight: 8,
+    padding: '0 8px',
+    fontSize: 14,
   },
 
   [media.between('small', 'medium')]: {
-    paddingLeft: 10,
-    paddingRight: 10,
+    padding: '0 10px',
   },
 
   [media.greaterThan('xlarge')]: {
-    paddingLeft: 20,
-    paddingRight: 20,
+    padding: '0 20px',
     fontSize: 18,
 
     ':hover:not(:focus)': {

@@ -14,3 +14,4 @@ permalink: community/articles.html
 - [Simple React Development in 2017](https://hackernoon.com/simple-react-development-in-2017-113bd563691f) - Joshua Comeau's guide to showcase how easy it can be to start modern React development.
 - [React FAQ](https://reactfaq.site/) - An external site with articles that try to answer frequently asked questions about React.
 - [Visual Guide to State in React](https://daveceddia.com/visual-guide-to-state-in-react/) - Dave Ceddia's visual guide to React state.
+- [All the fundamental React.js concepts, jammed into one article](https://medium.freecodecamp.org/all-the-fundamental-react-js-concepts-jammed-into-this-single-medium-article-c83f9b53eac2) - Sameer Buna's 15 min read article covers all fundamentals concepts for react.js

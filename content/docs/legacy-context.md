@@ -152,11 +152,11 @@ If `contextTypes` is defined within a component, the following [lifecycle method
 >
 > As of React 16, `componentDidUpdate` no longer receives `prevContext`.
 
-### Referencing Context in Stateless Function Components {#referencing-context-in-stateless-function-components}
+### Referencing Context in Function Components {#referencing-context-in-stateless-function-components}
 
 > This section documents a legacy API. See the [new API](/docs/context.html).
 
-Stateless function components are also able to reference `context` if `contextTypes` is defined as a property of the function. The following code shows a `Button` component written as a stateless function component.
+Function components are also able to reference `context` if `contextTypes` is defined as a property of the function. The following code shows a `Button` component written as a function component.
 
 ```javascript
 import PropTypes from 'prop-types';

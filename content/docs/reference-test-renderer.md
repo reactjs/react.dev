@@ -70,6 +70,7 @@ expect(testInstance.findByProps({className: "sub"}).children).toEqual(['Sub']);
 ### TestRenderer {#testrenderer}
 
 * [`TestRenderer.create()`](#testrenderercreate)
+* [`TestRenderer.act()`](#testrendereract)
 
 ### TestRenderer instance {#testrenderer-instance}
 
@@ -103,6 +104,62 @@ TestRenderer.create(element, options);
 ```
 
 Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. The returned instance has the following methods and properties.
+
+### `TestRenderer.act()` {#testrendereract}
+
+```javascript
+TestRenderer.act(callback);
+```
+
+To prepare a component for assertions, wrap the code rendering it and performing updates inside an act() call.
+
+>Note
+>
+>If you use `react-dom/test-utils`, it also provides an `act` export that behaves the same way.
+
+Let's say we have `Counter` component:
+
+```js
+import React from 'react';
+
+const Counter = () => {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <div>
+      <button onClick={() => setCount(count + 1)}>Increment me</button>
+      <span>{count}</span>
+    </div>
+  );
+};
+```
+
+Here is how we can test it:
+
+```js
+import React from 'react';
+import ReactTestRenderer from 'react-test-renderer';
+import Counter from './Counter';
+
+test('can render and update a counter', () => {
+  let testRenderer;
+  ReactTestRenderer.act(() => {
+    testRenderer = ReactTestRenderer.create(<Counter />);
+  });
+  const testInstance = testRenderer.root;
+  const increment = testInstance.findByType('span');
+  const incrementButton = testInstance.findByType('button');
+
+  expect(increment.props.children).toEqual(0);
+
+  ReactTestRenderer.act(() => {
+    incrementButton.props.onClick();
+  });
+
+  expect(increment.props.children).toEqual(1);
+});
+```
+
 
 ### `testRenderer.toJSON()` {#testrenderertojson}
 

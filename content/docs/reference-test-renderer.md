@@ -10,7 +10,7 @@ category: Reference
 
 ```javascript
 import TestRenderer from 'react-test-renderer'; // ES6
-const TestRenderer = require('react-test-renderer'); // ES5 with npm
+var TestRenderer = require('react-test-renderer'); // ES5 with npm
 ```
 
 ## Overview {#overview}

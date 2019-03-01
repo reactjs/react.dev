@@ -561,7 +561,7 @@ const TodosDispatch = React.createContext(null);
 
 function TodosApp() {
   // Note: `dispatch` won't change between re-renders
-  const [todos, dispatch] = useReducer(todosReducer);
+  const [todos, dispatch] = useReducer(todosReducer, []);
 
   return (
     <TodosDispatch.Provider value={dispatch}>

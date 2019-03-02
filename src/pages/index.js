@@ -18,6 +18,8 @@ import loadScript from 'utils/loadScript';
 import createOgUrl from 'utils/createOgUrl';
 import {babelURL} from 'site-constants';
 import logoWhiteSvg from 'icons/logo-white.svg';
+import bannerImage from '../images/apple_items.jpg';
+import { white } from 'ansi-colors';
 
 class Home extends Component {
   state = {
@@ -56,8 +58,8 @@ class Home extends Component {
         <div css={{width: '100%'}}>
           <header
             css={{
-              backgroundColor: colors.dark,
-              color: colors.white,
+      
+
             }}>
             <div
               css={{
@@ -73,22 +75,14 @@ class Home extends Component {
                   paddingTop: 95,
                   paddingBottom: 85,
                   maxWidth: 1500, // Positioning of background logo
+                  height: '700px',
                   marginLeft: 'auto',
                   marginRight: 'auto',
                   position: 'relative',
-                  '::before': {
-                    content: ' ',
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    right: 0,
-                    backgroundImage: `url(${logoWhiteSvg})`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundPosition: '100% 100px',
-                    backgroundSize: '50% auto',
-                    opacity: 0.05,
-                  },
+                  backgroundImage: `url(${bannerImage})`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: '100% 100%',
+                  backgroundSize: '100% 110%',
                 },
               }}>
               <div
@@ -99,7 +93,7 @@ class Home extends Component {
                 <Container>
                   <h1
                     css={{
-                      color: colors.brand,
+                      color:colors.white,
                       textAlign: 'center',
                       margin: 0,
                       fontSize: 45,
@@ -111,7 +105,7 @@ class Home extends Component {
                         fontSize: 60,
                       },
                     }}>
-                    React
+                    This Month's Theme
                   </h1>
                   <p
                     css={{
@@ -120,7 +114,7 @@ class Home extends Component {
                       fontSize: 24,
                       letterSpacing: '0.01em',
                       fontWeight: 200,
-
+                      color:colors.white,
                       [media.size('xsmall')]: {
                         fontSize: 16,
                         maxWidth: '12em',
@@ -133,7 +127,7 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    A JavaScript library for building user interfaces
+                    Tech
                   </p>
                   <Flex
                     valign="center"
@@ -148,14 +142,10 @@ class Home extends Component {
                       <ButtonLink
                         to="/docs/getting-started.html"
                         type="primary">
-                        Get Started
+                        Buy
                       </ButtonLink>
                     </CtaItem>
-                    <CtaItem>
-                      <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                        Take the Tutorial
-                      </ButtonLink>
-                    </CtaItem>
+
                   </Flex>
                 </Container>
               </div>
@@ -181,25 +171,9 @@ const CtaItem = ({children, primary = false}) => (
   <div
     css={{
       width: '50%',
+      textAlign: 'center',
+      marginLeft: '25%'
 
-      [media.between('small', 'large')]: {
-        paddingLeft: 20,
-      },
-
-      [media.greaterThan('xlarge')]: {
-        paddingLeft: 40,
-      },
-
-      '&:first-child': {
-        textAlign: 'right',
-        paddingRight: 15,
-      },
-
-      '&:nth-child(2)': {
-        [media.greaterThan('small')]: {
-          paddingLeft: 15,
-        },
-      },
     }}>
     {children}
   </div>

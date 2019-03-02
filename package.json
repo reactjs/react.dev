@@ -10,6 +10,7 @@
     "@material-ui/core": "^3.9.2",
     "axios": "^0.18.0",
     "babel-eslint": "^8.0.1",
+    "client-oauth2": "^4.2.3",
     "eslint": "^4.8.0",
     "eslint-config-fbjs": "^2.0.0",
     "eslint-config-react": "^1.1.7",

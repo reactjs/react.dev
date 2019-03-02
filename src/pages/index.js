@@ -5,9 +5,10 @@
  */
 
 import ButtonLink from 'components/ButtonLink';
+import Button from '@material-ui/core/Button';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
-import BuyerListingPage from 'components/BuyerListingPage';
+import CodeExample from 'components/CodeExample';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {graphql} from 'gatsby';
@@ -18,10 +19,12 @@ import loadScript from 'utils/loadScript';
 import createOgUrl from 'utils/createOgUrl';
 import {babelURL} from 'site-constants';
 import logoWhiteSvg from 'icons/logo-white.svg';
+import LoginPage from 'components/LoginPage';
 
 class Home extends Component {
   state = {
     babelLoaded: false,
+    isLogin: false,
   };
 
   componentDidMount() {
@@ -37,17 +40,34 @@ class Home extends Component {
     );
   }
 
+  handleLogin() {
+    console.log('handle login ran');
+    this.setState({
+      isLogin: true,
+    });
+  }
+
+  handleLogout() {
+    console.log('handle logout ran');
+    this.setState({
+      isLogin: false,
+    });
+  }
+
   render() {
     const {babelLoaded} = this.state;
     const {data, location} = this.props;
     const {codeExamples, examples, marketing} = data;
+    const {isLogin} = this.state;
+    const {handleLogin} = this.handleLogin;
+    const {handleLogout} = this.handleLogout;
 
     const code = codeExamples.edges.reduce((lookup, {node}) => {
       lookup[node.mdAbsolutePath] = node;
       return lookup;
     }, {});
 
-    return (
+    return isLogin ? (
       <Layout location={location}>
         <TitleAndMetaTags
           title="React &ndash; A JavaScript library for building user interfaces"
@@ -111,7 +131,7 @@ class Home extends Component {
                         fontSize: 60,
                       },
                     }}>
-                    React
+                    This is sparta
                   </h1>
                   <p
                     css={{
@@ -143,29 +163,144 @@ class Home extends Component {
                       [media.greaterThan('xlarge')]: {
                         paddingTop: 65,
                       },
-                    }}>
-                    <CtaItem>
-                      <ButtonLink
-                        to="/docs/getting-started.html"
-                        type="primary">
-                        Get Started
-                      </ButtonLink>
-                    </CtaItem>
-                    <CtaItem>
-                      <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                        Take the Tutorial
-                      </ButtonLink>
-                    </CtaItem>
-                  </Flex>
+                    }}
+                  />
                 </Container>
               </div>
             </div>
           </header>
+          <Container>
+            <div css={sharedStyles.markdown}>
+              <section
+                css={[
+                  sectionStyles,
+                  {
+                    [media.lessThan('medium')]: {
+                      marginTop: 0,
+                      marginBottom: 0,
+                      overflowX: 'auto',
+                      paddingTop: 30,
+                      WebkitOverflowScrolling: 'touch',
+                      position: 'relative',
+                      maskImage:
+                        'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
+                    },
+                  },
+                ]}>
+                <div
+                  css={{
+                    display: 'flex',
+                    flexDirection: 'row',
 
-          <BuyerListingPage />
+                    [media.lessThan('medium')]: {
+                      display: 'block',
+                      whiteSpace: 'nowrap',
+                    },
+                  }}>
+                  {marketing.edges.map(({node: column}, index) => (
+                    <div
+                      key={index}
+                      css={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                        flex: '0 1 33%',
+                        marginLeft: 40,
 
+                        '&:first-of-type': {
+                          marginLeft: 0,
+
+                          [media.lessThan('medium')]: {
+                            marginLeft: 10,
+                          },
+                        },
+
+                        [media.lessThan('medium')]: {
+                          display: 'inline-block',
+                          verticalAlign: 'top',
+                          marginLeft: 0,
+                          whiteSpace: 'normal',
+                          width: '75%',
+                          marginRight: 20,
+                          paddingBottom: 40,
+
+                          '&:first-of-type': {
+                            marginTop: 0,
+                          },
+                        },
+                      }}>
+                      <h3
+                        css={[
+                          headingStyles,
+                          {
+                            '&&': {
+                              // Make specificity higher than the site-wide h3 styles.
+                              color: colors.subtle,
+                              paddingTop: 0,
+                              fontWeight: 300,
+                              fontSize: 20,
+
+                              [media.greaterThan('xlarge')]: {
+                                fontSize: 24,
+                              },
+                            },
+                          },
+                        ]}>
+                        {column.frontmatter.title}
+                      </h3>
+                      <div dangerouslySetInnerHTML={{__html: column.html}} />
+                    </div>
+                  ))}
+                </div>
+              </section>
+              <hr
+                css={{
+                  height: 1,
+                  marginBottom: -1,
+                  border: 'none',
+                  borderBottom: `1 solid ${colors.divider}`,
+                }}
+              />
+              <section css={sectionStyles}>
+                <div id="examples">
+                  {examples.edges.map(({node}, index) => {
+                    const snippet = code[node.fileAbsolutePath];
+                    return (
+                      <CodeExample
+                        key={index}
+                        id={snippet.id}
+                        code={snippet.code}
+                        containerNodeID={node.frontmatter.domid}
+                        loaded={babelLoaded}>
+                        <h3 css={headingStyles}>{node.frontmatter.title}</h3>
+                        <div dangerouslySetInnerHTML={{__html: node.html}} />
+                      </CodeExample>
+                    );
+                  })}
+                </div>
+              </section>
+            </div>
+          </Container>
+          <section
+            css={{
+              background: colors.dark,
+              color: colors.white,
+              paddingTop: 45,
+              paddingBottom: 45,
+            }}>
+            <Container styles={{alignItems: 'center'}}>
+              <Button
+                variant="contained"
+                onClick={() => {
+                  this.handleLogout();
+                }}>
+                Logout
+              </Button>
+            </Container>
+          </section>
         </div>
       </Layout>
+    ) : (
+      <LoginPage handleLogin={() => this.handleLogin()} />
     );
   }
 }

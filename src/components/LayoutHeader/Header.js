@@ -9,8 +9,6 @@ import Container from 'components/Container';
 import {Link} from 'gatsby';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
-import {version} from 'site-constants';
-import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 
 import logoSvg from 'icons/logo.svg';
 
@@ -84,7 +82,7 @@ const Header = ({location}: {location: Location}) => (
                 border: 0,
               },
             }}>
-            React
+            Pandora Bae
           </span>
         </Link>
 
@@ -117,87 +115,11 @@ const Header = ({location}: {location: Location}) => (
               maskImage:
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
-          }}>
-
-
-        </nav>
-
-        <div
-          css={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            width: 'auto',
-
-            //[media.lessThan('medium')]: {
-            //width: 'auto',
-            //},
-            //[media.greaterThan('large')]: {
-            //width: 'calc(100% / 4)',
-            //},
-          }}>
-          <Link
-            css={{
-              padding: '5px 10px',
-              whiteSpace: 'nowrap',
-              ...fonts.small,
-
-              ':hover': {
-                color: colors.brand,
-              },
-
-              ':focus': {
-                outline: 0,
-                backgroundColor: colors.lighter,
-                borderRadius: 15,
-              },
-
-              [media.lessThan('medium')]: {
-                display: 'none',
-              },
-            }}
-            to="/versions">
-            v{version}
-          </Link>
-  
-          <a
-            css={{
-              padding: '5px 10px',
-              marginLeft: 10,
-              whiteSpace: 'nowrap',
-              ...fonts.small,
-
-              ':hover': {
-                color: colors.brand,
-              },
-
-              ':focus': {
-                outline: 0,
-                backgroundColor: colors.lighter,
-                borderRadius: 15,
-              },
-
-              [media.lessThan('large')]: {
-                display: 'none',
-              },
-            }}
-            href="https://github.com/facebook/react/"
-            target="_blank"
-            rel="noopener">
-            GitHub
-            <ExternalLinkSvg
-              cssProps={{
-                marginLeft: 5,
-                verticalAlign: -2,
-                color: colors.subtle,
-              }}
-            />
-          </a>
-        </div>
+          }}
+        />
       </div>
     </Container>
   </header>
 );
-
 
 export default Header;

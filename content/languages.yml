@@ -62,7 +62,7 @@
 - name: Japanese
   translated_name: 日本語
   code: ja
-  status: 1
+  status: 2
 - name: Korean
   translated_name: 한국어
   code: ko

@@ -16,25 +16,21 @@ import {media, sharedStyles} from 'theme';
 import languages from '../../content/languages.yml';
 
 // Status enums indicate what percentage of "core" content has been translated:
-// 0: Incomplete (0–49%)
-// 1: Partially complete (50–94%)
-// 2: Complete (95–100%)
-const {complete, incomplete, partial} = languages.reduce(
+// 0: In progress (<100%)
+// 1: Complete (100%)
+const {complete, inProgress} = languages.reduce(
   (reduced, language) => {
     switch (language.status) {
       case 0:
-        reduced.incomplete.push(language);
+        reduced.inProgress.push(language);
         break;
       case 1:
-        reduced.partial.push(language);
-        break;
-      case 2:
         reduced.complete.push(language);
         break;
     }
     return reduced;
   },
-  {complete: [], incomplete: [], partial: []},
+  {complete: [], inProgress: []},
 );
 
 type Props = {
@@ -57,10 +53,13 @@ const Languages = ({location}: Props) => (
             <LanguagesGrid languages={complete} />
 
             <h2>In Progress</h2>
-            <LanguagesGrid languages={partial} />
 
-            <h2>Needs Contributors</h2>
-            <LanguagesGrid languages={incomplete} />
+            <p>
+              Translations for the following languages are in progress and need
+              additional contributors:
+            </p>
+
+            <LanguagesGrid languages={inProgress} />
 
             <p>
               Don't see your language above?{' '}

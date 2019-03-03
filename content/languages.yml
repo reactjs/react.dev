@@ -1,7 +1,7 @@
 # Status enums indicate what percentage of "core" content has been translated:
-# 0: In progress (<50%)
+# 0: Incomplete (0-49%)
 # 1: Partially complete (50-99%)
-# 1: Complete (100%)
+# 2: Complete (100%)
 
 - name: English
   translated_name: English

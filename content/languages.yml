@@ -1,11 +1,12 @@
 # Status enums indicate what percentage of "core" content has been translated:
-# 0: In progress (<100%)
+# 0: In progress (<50%)
+# 1: Partially complete (50-99%)
 # 1: Complete (100%)
 
 - name: English
   translated_name: English
   code: en
-  status: 1
+  status: 2
 - name: Arabic
   translated_name: العربية
   code: ar
@@ -33,7 +34,7 @@
 - name: Spanish
   translated_name: Español
   code: es
-  status: 1
+  status: 2
 - name: Persian
   translated_name: فارسی
   code: fa
@@ -41,7 +42,7 @@
 - name: French
   translated_name: Français
   code: fr
-  status: 0
+  status: 1
 - name: Gujarati
   translated_name: ગુજરાતી
   code: gu
@@ -69,7 +70,7 @@
 - name: Japanese
   translated_name: 日本語
   code: ja
-  status: 1
+  status: 2
 - name: Central Khmer
   translated_name: ភាសាខ្មែរ
   code: km
@@ -105,7 +106,7 @@
 - name: Portuguese (Brazil)
   translated_name: Português do Brasil
   code: pt-br
-  status: 0
+  status: 1
 - name: Portuguese (Portugal)
   translated_name: Português europeu
   code: pt-pt
@@ -117,7 +118,7 @@
 - name: Russian
   translated_name: Русский
   code: ru
-  status: 0
+  status: 1
 - name: Sinhala
   translated_name: සිංහල
   code: si
@@ -137,7 +138,7 @@
 - name: Ukrainian
   translated_name: Українська
   code: uk
-  status: 0
+  status: 1
 - name: Urdu
   translated_name: اردو
   code: ur
@@ -153,7 +154,7 @@
 - name: Simplified Chinese
   translated_name: 简体中文
   code: zh-hans
-  status: 0
+  status: 1
 - name: Traditional Chinese
   translated_name: 繁體中文
   code: zh-hant

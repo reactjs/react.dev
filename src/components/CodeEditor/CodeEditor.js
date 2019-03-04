@@ -12,9 +12,10 @@ import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
 
 // Replace unicode to text for other languages
-const unicodeToText = (text) => text
-  .replace(/\\u[\dA-F]{4}/gi, 
-    match => String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16)));
+const unicodeToText = text =>
+  text.replace(/\\u[\dA-F]{4}/gi, match =>
+    String.fromCharCode(parseInt(match.replace(/\\u/g, ''), 16)),
+  );
 
 const compileES5 = (
   code, // eslint-disable-next-line no-undef

@@ -110,7 +110,7 @@ Commonly, you might want to display React components in multiple places on the H
 
 ### Tip: Minify JavaScript for Production {#tip-minify-javascript-for-production}
 
-Before deploying your website to production, be mindful that unminifed JavaScript can significantly slow down the page for your users.
+Before deploying your website to production, be mindful that unminified JavaScript can significantly slow down the page for your users.
 
 If you already minify the application scripts, **your site will be production-ready** if you ensure that the deployed HTML loads the versions of React ending in `production.min.js`:
 

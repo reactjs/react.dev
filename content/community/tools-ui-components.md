@@ -73,6 +73,7 @@ permalink: community/ui-components.html
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
+* **[FancyGrid](https://fancygrid.com.com)** JavaScript Grid library for Enterprise.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)**: UI for React Developers.

@@ -248,4 +248,21 @@ To get around this, lift the value into the parent's state:
 > Note
 > 
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
+
+## Hooks API {#hooks-api}
+It is possible to use the new hooks api for consuming context. See `useContext` [section of hooks api docs](/docs/hooks-reference.html#usecontext)
+
+Continuing on from "Consuming Multiple Contexts" section above, using hooks you could implement it this way
+
+```js
+import React, {useContext} from 'react'
+
+function Content() {
+  const theme = useContext(ThemeContext)
+  const user = useContext(UserContext)
+  
+  return <ProfilePage user={user} theme={theme} />
+}
+
+```
  

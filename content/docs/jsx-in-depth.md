@@ -74,14 +74,14 @@ Si vous n'utilisez pas un bundler Javascript et que vous ne chargez pas React à
 
 ### Utilisation de la notation en point pour les types JSX {#using-dot-notation-for-jsx-type}
 
-You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:
+Vous pouvez également vous référez à un composant React en utilisant la notation en point de JSX. Ceci est pratique si vous avez un seul module qui exporte plusieurs composants React. Par exemple si `MyComponents.DatePicker` est un composant, vous pouvez directement l'utiliser dans JSX avec:
 
 ```js{10}
 import React from 'react';
 
 const MyComponents = {
   DatePicker: function DatePicker(props) {
-    return <div>Imagine a {props.color} datepicker here.</div>;
+    return <div>Imaginez une {props.color} datepicker ici.</div>;
   }
 }
 
@@ -90,49 +90,49 @@ function BlueDatePicker() {
 }
 ```
 
-### User-Defined Components Must Be Capitalized {#user-defined-components-must-be-capitalized}
+### Les composants qui définissent les utilisateurs doivent être en majuscule {#user-defined-components-must-be-capitalized}
 
-When an element type starts with a lowercase letter, it refers to a built-in component like `<div>` or `<span>` and results in a string `'div'` or `'span'` passed to `React.createElement`. Types that start with a capital letter like `<Foo />` compile to `React.createElement(Foo)` and correspond to a component defined or imported in your JavaScript file.
+Quand un élément commence avec une lettre minuscule il fait référence à un composant intégré tel que `<div>` ou `<span>` et donne une chaîne de caractères `'div'` ou `'span'` passée à `React.createElement`. Les types qui commencent avec une lettre majuscule comme `<Foo />` sont compilés en `React.createElement(Foo)` et correspondent à un composant défini ou importé dans votre fichié Javascript.
 
-We recommend naming components with a capital letter. If you do have a component that starts with a lowercase letter, assign it to a capitalized variable before using it in JSX.
+Nous recommandons de nommer les composants avec une lettre majuscule. Si vous avez un composant qui démarre avec une lettre minuscule, affectez-le à une variable avec une lettre majuscule avant de l'utiliser dans votre JSX.
 
-For example, this code will not run as expected:
+Par exemple, ce code ne s'executera pas comme prévu:
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Wrong! This is a component and should have been capitalized:
+// Faux! Ceci est un composant est devrait être en lettre majuscule:
 function hello(props) {
-  // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+  // Correct! Cette utilisation de <div> fonctionne car div est une balise HTML valide:
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Wrong! React thinks <hello /> is an HTML tag because it's not capitalized:
+  // Faux! React pense que <hello /> est une balise HTML car il n'est pas en majuscule:
   return <hello toWhat="World" />;
 }
 ```
 
-To fix this, we will rename `hello` to `Hello` and use `<Hello />` when referring to it:
+Pour corriger cela, nous allons renommer `hello` en `Hello` et utiliser `<Hello />` lorsqu'on le mentionne:
 
 ```js{3,4,10,11}
 import React from 'react';
 
-// Correct! This is a component and should be capitalized:
+// Correct! Ceci est un composant et doit être en majuscule:
 function Hello(props) {
-  // Correct! This use of <div> is legitimate because div is a valid HTML tag:
+  // Correct! Cette utilisation de <div> fonctionne car div est une balise HTML valide:
   return <div>Hello {props.toWhat}</div>;
 }
 
 function HelloWorld() {
-  // Correct! React knows <Hello /> is a component because it's capitalized.
+  // Correct! React sait que <Hello /> est un composant car il est en majuscule.
   return <Hello toWhat="World" />;
 }
 ```
 
-### Choosing the Type at Runtime {#choosing-the-type-at-runtime}
+### Choix du type au moment de l'exécution {#choosing-the-type-at-runtime}
 
-You cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:
+Vous ne pouvez pas utiliser une expression générale pour le type d'élément React. Si vous voulez utiliser une expression pour définir le type d'un élément, initialisez-la d'abord à une variable en minuscule. Cela arrive en général lorsque vous voulez afficher un composant différent basé sur une props:
 
 ```js{10,11}
 import React from 'react';
@@ -144,12 +144,12 @@ const components = {
 };
 
 function Story(props) {
-  // Wrong! JSX type can't be an expression.
+  // Faux! Un type JSX ne peut pas être une expression.
   return <components[props.storyType] story={props.story} />;
 }
 ```
 
-To fix this, we will assign the type to a capitalized variable first:
+Pour corriger cela, nous allons d'abord initialiser le type à une variable commençant par une majuscule:
 
 ```js{10-12}
 import React from 'react';
@@ -161,41 +161,40 @@ const components = {
 };
 
 function Story(props) {
-  // Correct! JSX type can be a capitalized variable.
+  // Correct! Un type JSX peut être une variable commeçant par une majuscule.
   const SpecificStory = components[props.storyType];
   return <SpecificStory story={props.story} />;
 }
 ```
 
-## Props in JSX {#props-in-jsx}
+## Les props en JSX {#props-in-jsx}
 
-There are several different ways to specify props in JSX.
+Il y a différents moyens de définir les props en JSX.
 
-### JavaScript Expressions as Props {#javascript-expressions-as-props}
+### Les expressions Javascript comme props {#javascript-expressions-as-props}
 
-You can pass any JavaScript expression as a prop, by surrounding it with `{}`. For example, in this JSX:
+Vous pouvez passer n'importe quelle expression Javascript comme props, en l'entourant de `{}`. Par exemple, dans ce code JSX:
 
 ```js
 <MyComponent foo={1 + 2 + 3 + 4} />
 ```
 
-For `MyComponent`, the value of `props.foo` will be `10` because the expression `1 + 2 + 3 + 4` gets evaluated.
+Pour `MyComponent`, la valeur de `props.foo` sera `10` parce que l'expression `1 + 2 + 3 + 4` est évaluée.
 
-`if` statements and `for` loops are not expressions in JavaScript, so they can't be used in JSX directly. Instead, you can put these in the surrounding code. For example:
+Les déclarations `if` et les boucles `for` ne sont pas des expressions en Javascript, donc elle ne peuvent pas être directement utilisées en JSX. À la place,  vous pouvez les mettre dans le code environnant. Par exemple:
 
 ```js{3-7}
 function NumberDescriber(props) {
   let description;
   if (props.number % 2 == 0) {
-    description = <strong>even</strong>;
+    description = <strong>pair</strong>;
   } else {
-    description = <i>odd</i>;
+    description = <i>impair</i>;
   }
-  return <div>{props.number} is an {description} number</div>;
+  return <div>{props.number} est un nombre {description}</div>;
 }
 ```
-
-You can learn more about [conditional rendering](/docs/conditional-rendering.html) and [loops](/docs/lists-and-keys.html) in the corresponding sections.
+Vous pouvez en savoir plus sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes.
 
 ### String Literals {#string-literals}
 

@@ -196,9 +196,9 @@ function NumberDescriber(props) {
 ```
 Vous pouvez en savoir plus sur les [conditions](/docs/conditional-rendering.html) et les [boucles](/docs/lists-and-keys.html) au sein des sections correspondantes.
 
-### String Literals {#string-literals}
+### Les expressions litérales {#string-literals}
 
-You can pass a string literal as a prop. These two JSX expressions are equivalent:
+Vous pouvez passer une expression litérale comme props. Les deux expressions JSX ci-dessous sont équivalentes:
 
 ```js
 <MyComponent message="hello world" />
@@ -206,7 +206,7 @@ You can pass a string literal as a prop. These two JSX expressions are equivalen
 <MyComponent message={'hello world'} />
 ```
 
-When you pass a string literal, its value is HTML-unescaped. So these two JSX expressions are equivalent:
+Quand vous passez une expression littérale, sa valeur est du HTML-unescaped. Donc ces deux expressions JSX sont équivalentes:
 
 ```js
 <MyComponent message="&lt;3" />
@@ -214,11 +214,11 @@ When you pass a string literal, its value is HTML-unescaped. So these two JSX ex
 <MyComponent message={'<3'} />
 ```
 
-This behavior is usually not relevant. It's only mentioned here for completeness.
+Ce comportement n'est en général pas pertinent. ce n'est mentionné ici que par souci d'exhaustivité.
 
-### Props Default to "True" {#props-default-to-true}
+### Les props initialisées à "True" {#props-default-to-true}
 
-If you pass no value for a prop, it defaults to `true`. These two JSX expressions are equivalent:
+Si vous n'affectez aucune valeur à une props, sa valeur par défaut sera `true`. Ces deux expressions JSX sont équivalentes:
 
 ```js
 <MyTextBox autocomplete />
@@ -226,11 +226,11 @@ If you pass no value for a prop, it defaults to `true`. These two JSX expression
 <MyTextBox autocomplete={true} />
 ```
 
-In general, we don't recommend using this because it can be confused with the [ES6 object shorthand](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` which is short for `{foo: foo}` rather than `{foo: true}`. This behavior is just there so that it matches the behavior of HTML.
+En général, nous ne recommandons pas l'utilisation de ceci car cela peut petre confondu avec [l'abrévation des objets ES6](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#New_notations_in_ECMAScript_2015) `{foo}` qui est l'abréviation de `{foo: foo}` aulieu de `{foo: true}`. Ce comportement existe uniquement pour qu'il corresponde au comportement du HTML.
 
-### Spread Attributes {#spread-attributes}
+### Syntaxe de décomposition {#spread-attributes}
 
-If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" operator to pass the whole props object. These two components are equivalent:
+Si vous avez déjà un objet `props` et vous voulez l'utiliser en JSX, vous pouvez utiliser l'opérateur de diffusion ("spread operator") `...` pour faire passer l'ensemble de l'objet props. Ces deux composants sont équivalents:
 
 ```js{7}
 function App1() {
@@ -243,7 +243,7 @@ function App2() {
 }
 ```
 
-You can also pick specific props that your component will consume while passing all other props using the spread operator.
+Vous pouvez aussi choisir certaines props que votre composant utilisera en passant toutes les autres props avec l'opérateur de diffusion.
 
 ```js{2}
 const Button = props => {
@@ -255,7 +255,7 @@ const Button = props => {
 const App = () => {
   return (
     <div>
-      <Button kind="primary" onClick={() => console.log("clicked!")}>
+      <Button kind="primary" onClick={() => console.log("cliqué!")}>
         Hello World!
       </Button>
     </div>
@@ -263,10 +263,10 @@ const App = () => {
 };
 ```
 
-In the example above, the `kind` prop is safely consumed and *is not* passed on to the `<button>` element in the DOM.
-All other props are passed via the `...other` object making this component really flexible. You can see that it passes an `onClick` and `children` props.
+Dans l'exemple ci-dessus, la prop `kind` est utilisée en toute sécurité et *n'est pas* passé à l'élément `<button>` dans le DOM.
+Toutes les autres props sont passées via l'objet `...other` rendant ce composant très flexible. Vous pouvez voir que cela passe les props `onClick` et `children`.
 
-Spread attributes can be useful but they also make it easy to pass unnecessary props to components that don't care about them or to pass invalid HTML attributes to the DOM. We recommend using this syntax sparingly.  
+Les attributs de diffusion peuvent être utiles, mais ils permettent aussi de passer facilement des props inutiles aux composants qui ne s'en soucient pas ou de passer des attributs HTML invalides au DOM. Nous vous recommandons d'utiliser cette syntaxe avec parcimonie.  
 
 ## Children in JSX {#children-in-jsx}
 

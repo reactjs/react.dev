@@ -268,25 +268,26 @@ Toutes les autres props sont passées via l'objet `...other` rendant ce composan
 
 Les attributs de diffusion peuvent être utiles, mais ils permettent aussi de passer facilement des props inutiles aux composants qui ne s'en soucient pas ou de passer des attributs HTML invalides au DOM. Nous vous recommandons d'utiliser cette syntaxe avec parcimonie.  
 
-## Children in JSX {#children-in-jsx}
+## Les enfants en JSX {#children-in-jsx}
 
-In JSX expressions that contain both an opening tag and a closing tag, the content between those tags is passed as a special prop: `props.children`. There are several different ways to pass children:
+Dans les expressions JSX qui contiennent une balise ouvrante et une balise fermante, le contenu entre ces deux balises est passé comme une prop spéciale: `props.children`. Il existe plusieurs moyens pour passer ces enfants:
 
-### String Literals {#string-literals-1}
+### Littéraux de chaînes de caractères {#string-literals-1}
 
-You can put a string between the opening and closing tags and `props.children` will just be that string. This is useful for many of the built-in HTML elements. For example:
+Vous oouvez mettre une chaîne de caractères entre une balise ouvrante et une fermante et `props.children` définira cette chaîne de caractère. 
+You can put a string between the opening and closing tags and `props.children` will just be that string. Ceci est utile pour la plupart des éléments HTML intégrés. Par exemple:
 
 ```js
 <MyComponent>Hello world!</MyComponent>
 ```
 
-This is valid JSX, and `props.children` in `MyComponent` will simply be the string `"Hello world!"`. HTML is unescaped, so you can generally write JSX just like you would write HTML in this way:
+Ceci est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Hello world!"`. Le HTML est unescape, donc vous pouvez généralement écrire JSX de la même façon que vous écrivez du HTML de cette façon :
 
 ```html
-<div>This is valid HTML &amp; JSX at the same time.</div>
+<div>Ceci est à la fois du HTML &amp; du JSX valides.</div>
 ```
 
-JSX removes whitespace at the beginning and ending of a line. It also removes blank lines. New lines adjacent to tags are removed; new lines that occur in the middle of string literals are condensed into a single space. So these all render to the same thing:
+JSX supprime les espaces au début et à la fin d'une ligne. Il supprime également les lignes vides. Les nouvelles lignes adjacentes aux balises sont supprimées; les nouvelles lignes qui apparaissent au milieu d'une chaîne de caractères sont condensées en un seul espace. Donc, tous les codes ci-dessous donnent le même résultat :
 
 ```js
 <div>Hello World</div>
@@ -306,9 +307,9 @@ JSX removes whitespace at the beginning and ending of a line. It also removes bl
 </div>
 ```
 
-### JSX Children {#jsx-children}
+### Enfants JSX {#jsx-children}
 
-You can provide more JSX elements as the children. This is useful for displaying nested components:
+Vous pouvez fournir plus d'éléments JSX en tant qu'enfants. Ceci est utile pour afficher les composants imbriqués :
 
 ```js
 <MyContainer>
@@ -318,6 +319,7 @@ You can provide more JSX elements as the children. This is useful for displaying
 ```
 
 You can mix together different types of children, so you can use string literals together with JSX children. This is another way in which JSX is like HTML, so that this is both valid JSX and valid HTML:
+Vous pouvez mélanger ensemble différents types d'enfants, il est donc possible d'utiliser des chaînes de caractères littérales avec des enfants JSX. Nous avons ici encore un aspect où JSX est comme le HTML, ceci est du code JSX et HTML valide:
 
 ```html
 <div>
@@ -329,13 +331,13 @@ You can mix together different types of children, so you can use string literals
 </div>
 ```
 
-A React component can also return an array of elements:
+Un composant React peut aussi renvoyer un tableau d'éléments:
 
 ```js
 render() {
-  // No need to wrap list items in an extra element!
+  // Pas besoin d'envelopper les éléments de la liste dans un élément supplémentaire !
   return [
-    // Don't forget the keys :)
+    // N'oubliez pas les "keys" :)
     <li key="A">First item</li>,
     <li key="B">Second item</li>,
     <li key="C">Third item</li>,
@@ -343,9 +345,9 @@ render() {
 }
 ```
 
-### JavaScript Expressions as Children {#javascript-expressions-as-children}
+### Les expressions JavaScript comme Enfants {#javascript-expressions-as-children}
 
-You can pass any JavaScript expression as children, by enclosing it within `{}`. For example, these expressions are equivalent:
+Vous pouvez passer n'importe quelle expression JavaScript en tant qu'enfant, en l'enfermant dans des `{}`. Par exemple, ces expressions sont équivalentes :
 
 ```js
 <MyComponent>foo</MyComponent>
@@ -353,7 +355,7 @@ You can pass any JavaScript expression as children, by enclosing it within `{}`.
 <MyComponent>{'foo'}</MyComponent>
 ```
 
-This is often useful for rendering a list of JSX expressions of arbitrary length. For example, this renders an HTML list:
+Ceci est souvent utile pour rendre une liste d'expressions JSX de longueur arbitraire. Par exemple, cela rend une liste HTML :
 
 ```js{2,9}
 function Item(props) {
@@ -370,7 +372,7 @@ function TodoList() {
 }
 ```
 
-JavaScript expressions can be mixed with other types of children. This is often useful in lieu of string templates:
+Les expressions JavaScript peuvent être mélangées avec d'autres types d'enfants. Ceci est souvent utile à la place des modèles de chaînes de caractères:
 
 ```js{2}
 function Hello(props) {
@@ -378,7 +380,7 @@ function Hello(props) {
 }
 ```
 
-### Functions as Children {#functions-as-children}
+### Les fonctions comme Enfants {#functions-as-children}
 
 Normally, JavaScript expressions inserted in JSX will evaluate to a string, a React element, or a list of those things. However, `props.children` works just like any other prop in that it can pass any sort of data, not just the sorts that React knows how to render. For example, if you have a custom component, you could have it take a callback as `props.children`:
 

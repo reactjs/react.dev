@@ -384,8 +384,11 @@ function Hello(props) {
 
 Normally, JavaScript expressions inserted in JSX will evaluate to a string, a React element, or a list of those things. However, `props.children` works just like any other prop in that it can pass any sort of data, not just the sorts that React knows how to render. For example, if you have a custom component, you could have it take a callback as `props.children`:
 
+Normalement, les expressions Javascript insérées dans JSX évalueront une chaîne, un élément React ou une liste de ceux-ci. Cependant, `props.children` fonctionne exactement comme n'importe quelle prop dans le sens qi'elle peut passer n'importe quel genre de données, pas seulement celles que React sait rendre. Par exemple, si vous avez un composant personnalisé, vous pouvez lui faire prendre un callback comme `props.children' : 
+
 ```js{4,13}
-// Calls the children callback numTimes to produce a repeated component
+
+// Appelle les enfants callback numTimes pour produire un composant répété
 function Repeat(props) {
   let items = [];
   for (let i = 0; i < props.numTimes; i++) {
@@ -397,17 +400,17 @@ function Repeat(props) {
 function ListOfTenThings() {
   return (
     <Repeat numTimes={10}>
-      {(index) => <div key={index}>This is item {index} in the list</div>}
+      {(index) => <div key={index}>Ceci est l'item {index} de la liste</div>}
     </Repeat>
   );
 }
 ```
 
-Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
+Les enfants passés d'un composant personnalisé peuvent être n'importe quoi, tant que ce composant les transforme en quelque chose que React peut comprendre avant le rendu. Cette utilisation n'est pas courante, mais elle fonctionne si vous voulez étendre ce dont JSX est capable.
 
-### Booleans, Null, and Undefined Are Ignored {#booleans-null-and-undefined-are-ignored}
+### Booléens, Null, et Undefined Sont Ignorés {#booleans-null-and-undefined-are-ignored}
 
-`false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
+`false`, `null`, `undefined`, et `true` sont des enfants valides. Ils ne sont pas rendus. Ces expressions JSX rendront toutes la même chose :
 
 ```js
 <div />
@@ -423,7 +426,7 @@ Children passed to a custom component can be anything, as long as that component
 <div>{true}</div>
 ```
 
-This can be useful to conditionally render React elements. This JSX only renders a `<Header />` if `showHeader` is `true`:
+Ceci peut être utile pour le rendu conditionnel des éléments React. Ce JSX rend un `<Header />` uniquement si `showHeader` est à `true`:
 
 ```js{2}
 <div>
@@ -432,7 +435,7 @@ This can be useful to conditionally render React elements. This JSX only renders
 </div>
 ```
 
-One caveat is that some ["falsy" values](https://developer.mozilla.org/en-US/docs/Glossary/Falsy), such as the `0` number, are still rendered by React. For example, this code will not behave as you might expect because `0` will be printed when `props.messages` is an empty array:
+Une mise en garde s'impose : certains valeurs ["falsy"](https://developer.mozilla.org/en-US/docs/Glossary/Falsy), comme le nombre `0`, sont rendus par React. Par exemple, ce code ne se comportera pas comme vous l'esperez car `0` sera imprimée lorsque `props.messages` est un tableau vide:
 
 ```js{2}
 <div>
@@ -442,7 +445,8 @@ One caveat is that some ["falsy" values](https://developer.mozilla.org/en-US/doc
 </div>
 ```
 
-To fix this, make sure that the expression before `&&` is always boolean:
+
+Pour corriger cela, assurez-vous que l'expression avant `&&` est toujours un booléen:
 
 ```js{2}
 <div>
@@ -453,9 +457,10 @@ To fix this, make sure that the expression before `&&` is always boolean:
 ```
 
 Conversely, if you want a value like `false`, `true`, `null`, or `undefined` to appear in the output, you have to [convert it to a string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) first:
+À l'inverse, si vous voulez qu'une valeur comme `false`, `true`, `null`, ou `undefined` apparaisse comme rendu, vous devez d'abord le [convertir en une chaîne de caractères](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) 
 
 ```js{2}
 <div>
-  My JavaScript variable is {String(myVariable)}.
+  Ma variable Javascript est {String(myVariable)}.
 </div>
 ```

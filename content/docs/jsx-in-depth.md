@@ -206,7 +206,7 @@ Vous pouvez passer une expression littérale comme props. Les deux expressions J
 <MyComponent message={'hello world'} />
 ```
 
-Quand vous passez une expression littérale, sa valeur est du unescape HTML. Donc ces deux expressions JSX sont équivalentes:
+Quand vous passez une expression littérale, sa valeur est du HTML non-échappé. Donc ces deux expressions JSX sont équivalentes:
 
 ```js
 <MyComponent message="&lt;3" />
@@ -280,7 +280,7 @@ Vous pouvez mettre une chaîne de caractères entre une balise ouvrante et une f
 <MyComponent>Hello world!</MyComponent>
 ```
 
-Ceci est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Hello world!"`. Le HTML est unescape, donc vous pouvez généralement écrire du JSX de la même façon que vous écrivez du HTML, c'est-à-dire :
+Ceci est du JSX valide, et `props.children` dans `MyComponent` sera simplement la chaîne de caractères `"Hello world!"`. Le HTML est non-échappé, donc vous pouvez généralement écrire du JSX de la même façon que vous écrivez du HTML, c'est-à-dire :
 
 ```html
 <div>Ceci est à la fois du HTML &amp; du JSX valides.</div>

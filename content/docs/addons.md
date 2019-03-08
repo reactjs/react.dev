@@ -17,7 +17,7 @@ The add-ons below are in the development (unminified) version of React only:
 - [`Perf`](/docs/perf.html), a performance profiling tool for finding optimization opportunities.
 - [`ReactTestUtils`](/docs/test-utils.html), simple helpers for writing test cases.
 
-### Legacy Add-ons
+### Legacy Add-ons {#legacy-add-ons}
 
 The add-ons below are considered legacy and their use is discouraged. They will keep working in observable future, but there is no further development.
 
@@ -26,12 +26,12 @@ The add-ons below are considered legacy and their use is discouraged. They will 
 - [`update`](/docs/update.html). Use [`kolodny/immutability-helper`](https://github.com/kolodny/immutability-helper) instead.
 - [`ReactDOMFactories`](https://www.npmjs.com/package/react-dom-factories), pre-configured DOM factories to make React easier to use without JSX.
 
-### Deprecated Add-ons
+### Deprecated Add-ons {#deprecated-add-ons}
 
 - [`LinkedStateMixin`](/docs/two-way-binding-helpers.html) has been deprecated.
 - [`TransitionGroup` and `CSSTransitionGroup`](/docs/animation.html) have been deprecated in favor of [their drop-in replacements](https://github.com/reactjs/react-transition-group/tree/v1-stable).
 
-## Using React with Add-ons
+## Using React with Add-ons {#using-react-with-add-ons}
 
 You can install the add-ons individually from npm (e.g. `npm install react-addons-create-fragment`) and import them:
 

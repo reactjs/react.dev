@@ -9,11 +9,11 @@ import {css} from 'glamor';
 import {colors} from 'theme';
 
 const prismColors = {
-  background: '#252932',
+  background: '#282c33',
   char: '#D8DEE9',
-  comment: '#9999c5',
+  comment: '#92a4b0',
   keyword: '#dfa9f9',
-  lineHighlight: '#313949',
+  lineHighlight: '#383d47',
   primitive: '#ff8d5b',
   string: '#ffd48f',
   variable: '#eaf0fb',

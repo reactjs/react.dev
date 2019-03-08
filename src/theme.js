@@ -38,6 +38,9 @@ const SIZES = {
   // Sidebar/nav related tweakpoints
   largerSidebar: {min: 1100, max: 1339},
   sidebarFixed: {min: 2000, max: Infinity},
+
+  // Topbar related tweakpoints
+  expandedSearch: {min: 1180, max: Infinity},
 };
 
 type Size = $Keys<typeof SIZES>;
@@ -120,6 +123,9 @@ const sharedStyles = {
         maxWidth: 840,
         marginLeft: 'auto',
         marginRight: 'auto',
+      },
+      [media.lessThan('small')]: {
+        flexDirection: 'column',
       },
     },
     content: {
@@ -241,7 +247,7 @@ const sharedStyles = {
 
     '& p > code, & li > code, & p > a > code, & li > a > code': {
       padding: '0 3px',
-      fontSize: 16,
+      fontSize: '0.94em', // 16px on 17px text, smaller in smaller text
       wordBreak: 'break-word',
     },
 
@@ -302,7 +308,8 @@ const sharedStyles = {
       paddingTop: 45,
 
       [media.lessThan('small')]: {
-        wordBreak: 'break-all',
+        overflowWrap: 'break-word',
+        wordBreak: 'break-word',
       },
 
       [media.greaterThan('xlarge')]: {

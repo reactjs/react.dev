@@ -9,16 +9,16 @@ import {css} from 'glamor';
 import {colors} from 'theme';
 
 const prismColors = {
-  background: '#122031',
+  background: '#252932',
   char: '#D8DEE9',
   comment: '#9999c5',
   keyword: '#dfa9f9',
-  lineHighlight: '#232e44',
+  lineHighlight: '#313949',
   primitive: '#ff8d5b',
-  string: '#ffe9b0',
+  string: '#ffd48f',
   variable: '#eaf0fb',
   boolean: '#ff7c8b',
-  punctuation: '#a4f5f5',
+  punctuation: '#90deff',
   tag: '#3ce6da',
   tagClass: '#fc9464',
   function: '#80b6ff',

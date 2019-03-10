@@ -3,7 +3,7 @@ id: hooks-state
 title: Using the Effect Hook
 permalink: docs/hooks-effect.html
 next: hooks-rules.html
-prev: hooks-intro.html
+prev: hooks-state.html
 ---
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.

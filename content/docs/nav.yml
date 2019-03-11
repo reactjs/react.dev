@@ -123,6 +123,8 @@
         title: Hooks API Reference
       - id: hooks-faq
         title: Hooks FAQ
+      - id: hooks-recipes
+        title: Hooks Recipes
 - title: Contributing
   items:
   - id: how-to-contribute

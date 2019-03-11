@@ -26,7 +26,7 @@
 - name: German
   translated_name: Deutsch
   code: de
-  status: 0
+  status: 1
 - name: Greek
   translated_name: Ελληνικά
   code: el
@@ -50,7 +50,7 @@
 - name: Hebrew
   translated_name: עברית
   code: he
-  status: 0
+  status: 1
 - name: Hindi
   translated_name: हिन्दी
   code: hi
@@ -102,11 +102,11 @@
 - name: Polish
   translated_name: Polski
   code: pl
-  status: 0
+  status: 1
 - name: Portuguese (Brazil)
   translated_name: Português do Brasil
   code: pt-br
-  status: 1
+  status: 2
 - name: Portuguese (Portugal)
   translated_name: Português europeu
   code: pt-pt

@@ -19,8 +19,6 @@ We don't necessarily recommend any of these conventions in React apps. Many of t
 
 React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
 
-The [fbjs repository](https://github.com/facebook/fbjs) exists because React shares some small utilities with libraries like [Relay](https://github.com/facebook/relay), and we keep them in sync. We don't depend on equivalent small modules in the Node ecosystem because we want Facebook engineers to be able to make changes to them whenever necessary. None of the utilities inside fbjs are considered to be public API, and they are only intended for use by Facebook projects such as React.
-
 ### Top-Level Folders {#top-level-folders}
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:

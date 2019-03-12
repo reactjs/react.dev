@@ -287,6 +287,8 @@ Pass an inline callback and an array of inputs. `useCallback` will return a memo
 
 `useCallback(fn, inputs)` is equivalent to `useMemo(() => fn, inputs)`.
 
+By default, if no inputs argument is passed in, the callback will not be memoized. Pass an empty array as inputs if you would like to memoize the callback for the lifetime of the component.
+
 > Note
 >
 > The array of inputs is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the inputs array. In the future, a sufficiently advanced compiler could create this array automatically.

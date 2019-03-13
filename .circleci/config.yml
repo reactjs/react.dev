@@ -1,20 +1,61 @@
-version: 2
-jobs:
-  build:
+references:
+  defaults: &defaults
+    working_directory: ~/project
     docker:
-      - image: circleci/node:8
+      - image: circleci/node:8-browsers
+
+  cache_key: &cache_key
+    todo-v1-{{ .Branch }}-{{ checksum "yarn.lock" }}
+
+  attach_workspace: &attach_workspace
+    attach_workspace:
+      at: ~/
+
+version: 2.1
+jobs:
+  install:
+    <<: *defaults
     steps:
       - checkout
       - restore_cache:
-          keys:
-          - dependencies-{{ checksum "yarn.lock" }}
+          name: Restore cache
+          key: *cache_key
       - run:
-          name: Install
-          command: yarn install --pure-lockfile
+          name: Install dependencies
+          command: yarn
       - save_cache:
+          name: Save cache
+          key: *cache_key
           paths:
             - node_modules
-          key: dependencies-{{ checksum "yarn.lock" }}
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project
+            - .ssh
+  lint:
+    <<: *defaults
+    steps:
+      - *attach_workspace
       - run:
           name: Check Prettier, ESLint, Flow
           command: yarn ci-check
+  test:
+    <<: *defaults
+    steps:
+      - *attach_workspace
+      - run:
+          name: Visual Regression
+          command: yarn visual-regression
+workflows:
+  version: 2.1
+  default:
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install
+      - test:
+          requires:
+            - install
+            - lint

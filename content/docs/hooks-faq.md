@@ -32,6 +32,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [What exactly do the lint rules enforce?](#what-exactly-do-the-lint-rules-enforce)
 * **[From Classes to Hooks](#from-classes-to-hooks)**
   * [How do lifecycle methods correspond to Hooks?](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [How can I do data fetching with Hooks?](#how-can-i-do-data-fetching-with-hooks)
   * [Is there something like instance variables?](#is-there-something-like-instance-variables)
   * [Should I use one or many state variables?](#should-i-use-one-or-many-state-variables)
   * [Can I run an effect only on updates?](#can-i-run-an-effect-only-on-updates)
@@ -206,6 +207,10 @@ There are a few more heuristics, and they might change over time as we fine-tune
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: The [`useEffect` Hook](/docs/hooks-reference.html#useeffect) can express all combinations of these (including [less](#can-i-skip-an-effect-on-updates) [common](#can-i-run-an-effect-only-on-updates) cases).
 
 * `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+
+### How can I do data fetching with Hooks?
+
+Check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) to learn more about data fetching with Hooks.
 
 ### Is there something like instance variables? {#is-there-something-like-instance-variables}
 
@@ -461,34 +466,45 @@ Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditional
 
 Generally speaking, no.
 
-```js
-useEffect(() => {
-  doSomething();
-}, []); // 🔴 This is not safe
-```
-
-Instead, usually you'll want to move the function definition *inside* an effect. That makes it easy to see what values from the component scope it depends on:
-
-```js{3,7}
-useEffect(() => {
+```js{3,8}
+function Example() {
   function doSomething() {
     console.log(someProp);
   }
 
-  doSomething();
-}, [someProp]); // ✅ OK (our effect only uses `someProp`)
+  useEffect(() => {
+    doSomething();
+  }, []); // 🔴 This is not safe (it calls `doSomething` which uses `someProp`)
+}
+```
+
+It's difficult to remember which props or state are used by functions outside of the effect. This is why **usually you'll want to declare functions needed by an effect *inside* of it.** Then it's easy to see what values from the component scope that effect depends on:
+
+```js{4,8}
+function Example() {
+  useEffect(() => {
+    function doSomething() {
+      console.log(someProp);
+    }
+
+    doSomething();
+  }, [someProp]); // ✅ OK (our effect only uses `someProp`)
+}
 ```
 
 If after that we still don't use any values from the component scope, it's safe to specify `[]`:
 
-```js{6}
+```js{7}
 useEffect(() => {
   function doSomething() {
+    console.log('hello');
   }
 
   doSomething();
 }, []); // ✅ OK in this example because we don't use *any* values from component scope
 ```
+
+Depending on your use case, there are a few more options described below.
 
 >Note
 >
@@ -496,7 +512,7 @@ useEffect(() => {
 
 Let's see why this matters.
 
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, or anything derived from them.  
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.  
 
 It is **only** safe to omit a function from the dependency list if nothing in it (or the functions called by it) references props, state, or values derived from them. This example has a bug:
 
@@ -551,13 +567,16 @@ This also allows you to handle out-of-order responses with a local variable insi
   }, [productId]);
 ```
 
-(Check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) to learn more about data fetching with Hooks.)
-
 We moved the function inside the effect so it doesn't need to be in its dependency list.
+
+>Tip
+>
+>Check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) to learn more about data fetching with Hooks.
 
 **If for some reason you _can't_ move a function inside an effect, there are a few more options:**
 
 * **You can try moving that function outside of your component**. In that case, the function is guaranteed to not reference any props or state, and also doesn't need to be in the list of dependencies.
+* If the function you're calling is a pure computation and is safe to call while rendering, you may **call it outside of the effect instead,** and make the effect depend on the returned value.
 * As a last resort, you can **add a function to effect dependencies but _wrap its definition_** into the [`useCallback`](/docs/hooks-reference.html#usecallback) Hook. This ensures it doesn't change on every render unless *its own* dependencies also change:
 
 ```js{2-5}
@@ -618,7 +637,7 @@ function Counter() {
 
 (The identity of the `setCount` function is guaranteed to be stable so it's safe to omit.)
 
-In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is also guaranteed to be stable** — even if the reducer is inside the component and reads its props.
+In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
 
 As a last resort, if you want to something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
 

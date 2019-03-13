@@ -18,7 +18,11 @@ const pages = [
 ];
 
 (async () => {
-  let browser = await puppeteer.launch({headless: true});
+  let browser = await puppeteer.launch({
+    headless: true,
+    args: ['–no-sandbox', '–disable-setuid-sandbox', '--single-process'],
+  });
+
   let page = await browser.newPage();
 
   let snapshots = pages.map(route => {

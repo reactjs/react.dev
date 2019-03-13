@@ -557,7 +557,7 @@ We moved the function inside the effect so it doesn't need to be in its dependen
 
 **If for some reason you _can't_ move a function inside an effect, there are a few more options:**
 
-* **You can try moving that function outside of your component**. In that case, the function guaranteed to not reference any props or state, and also doesn't need to be in the list of dependencies.
+* **You can try moving that function outside of your component**. In that case, the function is guaranteed to not reference any props or state, and also doesn't need to be in the list of dependencies.
 * As a last resort, you can **add a function to effect dependencies but _wrap its definition_** into the [`useCallback`](/docs/hooks-reference.html#usecallback) Hook. This ensures it doesn't change on every render unless *its own* dependencies also change:
 
 ```js{2-5}

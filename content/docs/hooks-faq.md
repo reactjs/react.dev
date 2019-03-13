@@ -616,7 +616,7 @@ function Counter() {
 }
 ```
 
-(The identify of the `setCount` function is guaranteed to be stable so it's safe to omit.)
+(The identity of the `setCount` function is guaranteed to be stable so it's safe to omit.)
 
 In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is also guaranteed to be stable** — even if the reducer is inside the component and reads its props.
 

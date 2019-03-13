@@ -34,6 +34,8 @@ permalink: community/courses.html
 
 - [React for Beginners](https://reactforbeginners.com/) - Learn React in just a couple of afternoons.
 
+- [React for Interface Design](https://react.design) - A course teaching the parts of React useful for interface designers
+
 - [React for Designers](https://designcode.io/react) - A 6-hour React course for designers, by designers.
 
 - [React Essentials for Designers](https://learnreact.design) - React courses tailored for designers: the fundamentals, capabilities, limitations and how they relate to design.

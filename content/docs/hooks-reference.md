@@ -45,7 +45,7 @@ setState(newState);
 
 During subsequent re-renders, the first value returned by `useState` will always be the most recent state after applying updates.
 
->Note
+>Tip
 >
 >React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
@@ -222,7 +222,7 @@ function Counter({initialState}) {
 }
 ```
 
->Note
+>Tip
 >
 >React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
@@ -357,6 +357,12 @@ function TextInputWithFocusButton() {
 ```
 
 Note that `useRef()` is useful for more than the `ref` attribute. It's [handy for keeping any mutable value around](/docs/hooks-faq.html#is-there-something-like-instance-variables) similar to how you'd use instance fields in classes.
+
+>Tip
+>
+>React guarantees that ref object identity (not its `current` prop) is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>
+>Also keep in mind that *including* `ref.current` list in the dependency list is usually a mistake because `ref.current` changes *after* rendering. If you want to re-run some code whenever a ref changes, you might want to use the function `ref={callback}` API instead.
 
 ### `useImperativeHandle` {#useimperativehandle}
 

@@ -78,7 +78,7 @@
 - name: Korean
   translated_name: 한국어
   code: ko
-  status: 0
+  status: 1
 - name: Kurdish
   translated_name: کوردی‎
   code: ku
@@ -118,7 +118,7 @@
 - name: Russian
   translated_name: Русский
   code: ru
-  status: 1
+  status: 2
 - name: Sinhala
   translated_name: සිංහල
   code: si
@@ -137,7 +137,7 @@
 - name: Turkish
   translated_name: Türkçe
   code: tr
-  status: 0
+  status: 1
 - name: Ukrainian
   translated_name: Українська
   code: uk

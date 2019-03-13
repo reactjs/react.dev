@@ -61,8 +61,8 @@ class Home extends Component {
             }}>
             <div
               css={{
-                paddingTop: 45,
-                paddingBottom: 20,
+                paddingTop: 10,
+                paddingBottom: 10,
 
                 [media.greaterThan('small')]: {
                   paddingTop: 60,
@@ -250,7 +250,7 @@ class Home extends Component {
                   height: 1,
                   marginBottom: -1,
                   border: 'none',
-                  borderBottom: `1 solid ${colors.divider}`,
+                  borderBottom: `2 solid ${colors.divider}`,
                 }}
               />
               <section css={sectionStyles}>

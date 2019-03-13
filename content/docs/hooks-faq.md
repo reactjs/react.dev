@@ -210,7 +210,7 @@ There are a few more heuristics, and they might change over time as we fine-tune
 
 ### How can I do data fetching with Hooks?
 
-Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) to learn more about data fetching with Hooks.
+Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
 
 ### Is there something like instance variables? {#is-there-something-like-instance-variables}
 

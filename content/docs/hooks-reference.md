@@ -360,7 +360,7 @@ Note that `useRef()` is useful for more than the `ref` attribute. It's [handy fo
 
 >Tip
 >
->React guarantees that ref object identity (not its `current` prop) is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React guarantees that ref object identity (but not its `current` property) is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 >
 >Also keep in mind that *including* `ref.current` list in the dependency list is usually a mistake because `ref.current` changes *after* rendering. If you want to re-run some code whenever a ref changes, you might want to use the function `ref={callback}` API instead.
 

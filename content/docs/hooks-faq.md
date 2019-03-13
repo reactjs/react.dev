@@ -467,7 +467,7 @@ Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditional
 Generally speaking, no.
 
 ```js{3,8}
-function Example() {
+function Example({ someProp }) {
   function doSomething() {
     console.log(someProp);
   }
@@ -481,7 +481,7 @@ function Example() {
 It's difficult to remember which props or state are used by functions outside of the effect. This is why **usually you'll want to declare functions needed by an effect *inside* of it.** Then it's easy to see what values from the component scope that effect depends on:
 
 ```js{4,8}
-function Example() {
+function Example({ someProp }) {
   useEffect(() => {
     function doSomething() {
       console.log(someProp);

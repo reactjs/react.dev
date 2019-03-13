@@ -43,7 +43,7 @@ We started of with an initial trial period of three languages: Spanish, Japanese
 
 After the trial period, we were ready to accept more languages. I created [a script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) to automate the creation of the new language repo, and a site, [Is React Translated Yet?](https://isreacttranslatedyet.com), to track progress on the different translations. We started *10* new translations on our first day alone!
 
-Because of the automation, the rest of the maintance went mostly smoothly. We eventually created a [Slack channel](https://rt-slack-invite.herokuapp.com) to make it easier for translators to share information, and I released a guide solidifying the [responsibilities of maintainers](https://github.com/reactjs/reactjs.org-translation/blob/master/maintainer-guide.md). Allowing translators to talk with each other was a great boon -- for example, the Arabic, Persian, and Hebrew translations were able to talk to each other in order to get [right-to-left text](https://en.wikipedia.org/wiki/Right-to-left) working!
+Because of the automation, the rest of the maintenance went mostly smoothly. We eventually created a [Slack channel](https://rt-slack-invite.herokuapp.com) to make it easier for translators to share information, and I released a guide solidifying the [responsibilities of maintainers](https://github.com/reactjs/reactjs.org-translation/blob/master/maintainer-guide.md). Allowing translators to talk with each other was a great boon -- for example, the Arabic, Persian, and Hebrew translations were able to talk to each other in order to get [right-to-left text](https://en.wikipedia.org/wiki/Right-to-left) working!
 
 ## The Bot {#the-bot}
 

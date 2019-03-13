@@ -11,6 +11,12 @@ import {LiveEditor, LiveProvider} from 'react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
 
+// Replace unicode to text for other languages
+const unicodeToText = text =>
+  text.replace(/\\u([\dA-F]{4})/gi, (_, p1) =>
+    String.fromCharCode(parseInt(p1, 16)),
+  );
+
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
 ) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
@@ -271,7 +277,7 @@ class CodeEditor extends Component {
 
       if (showJSX) {
         newState.code = code;
-        newState.compiledES6 = compileES6(code);
+        newState.compiledES6 = unicodeToText(compileES6(code));
       } else {
         newState.compiledES6 = code;
       }

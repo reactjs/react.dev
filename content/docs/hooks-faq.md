@@ -372,7 +372,7 @@ See also [the recommended pattern for derived state](#how-do-i-implement-getderi
 
 ### Why am I seeing stale props or state inside my function? {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 
-Any function inside a component, including event handlers and effects, “sees” the props and state from the render it was defined in. For example, consider code like this:
+Any function inside a component, including event handlers and effects, "sees" the props and state from the render it was created in. For example, consider code like this:
 
 ```js
 function Example() {

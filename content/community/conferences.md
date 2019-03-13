@@ -76,6 +76,11 @@ September 26-28, 2019 in Goa, India
 
 [Website](https://www.reactindia.io/) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia)
 
+### React Alicante 2019 {#react-alicante-2019}
+September 26-28, 2019 in Alicante, Spain
+
+[Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+
 ## Past Conferences {#past-conferences}
 
 ### React.js Conf 2015 {#reactjs-conf-2015}

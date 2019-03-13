@@ -32,6 +32,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [What exactly do the lint rules enforce?](#what-exactly-do-the-lint-rules-enforce)
 * **[From Classes to Hooks](#from-classes-to-hooks)**
   * [How do lifecycle methods correspond to Hooks?](#how-do-lifecycle-methods-correspond-to-hooks)
+  * [What is the flow of a function component that uses Hooks?](#hook-flow-diagram)
   * [How can I do data fetching with Hooks?](#how-can-i-do-data-fetching-with-hooks)
   * [Is there something like instance variables?](#is-there-something-like-instance-variables)
   * [Should I use one or many state variables?](#should-i-use-one-or-many-state-variables)
@@ -207,6 +208,17 @@ There are a few more heuristics, and they might change over time as we fine-tune
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: The [`useEffect` Hook](/docs/hooks-reference.html#useeffect) can express all combinations of these (including [less](#can-i-skip-an-effect-on-updates) [common](#can-i-run-an-effect-only-on-updates) cases).
 
 * `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+
+### What is the flow of a function component that uses Hooks? {#hook-flow-diagram}
+
+This diagram visually explains, at a high level, the execution flow of a function component that uses Hooks.
+
+![Mockup](../images/docs/hook-flow-cropped.png)
+
+Notes:
+1. Updates are caused by a parent re-render, state change, or context change.
+1. Lazy initializers are functions passed to useState and useReducer.
+1. A [printable PDF](https://github.com/donavon/hook-flow) version is also available.
 
 ### How can I do data fetching with Hooks?
 

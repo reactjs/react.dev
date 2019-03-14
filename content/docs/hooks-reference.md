@@ -320,7 +320,7 @@ Pass a "create" function and an array of dependencies. `useMemo` will only recom
 
 Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
 
-If no array is provided, a new value will be computed whenever a new function instance is passed as the first argument. (With an inline function, on every render.)
+If no array is provided, a new value will be computed on every render.
 
 **You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
 

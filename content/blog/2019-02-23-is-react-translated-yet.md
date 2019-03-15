@@ -55,7 +55,7 @@ Creating the [sync script](https://github.com/reactjs/reactjs.org-translation/bl
 
 The problem was finding a place for the bot to run. I'm a frontend developer for a reason -- Heroku and its ilk are alien to me and *endlessly* frustrating. In fact, until this past Tuesday, I was running the script by hand on my local machine!
 
-The biggest challenge was space. Each fork of the repo is around 100MB -- which takes minutes to clone on my local machine. We have *32* forks, and the free tiers or most deployment platforms I checked limited you to 512MB of storage. 
+The biggest challenge was space. Each fork of the repo is around 100MB -- which takes minutes to clone on my local machine. We have *32* forks, and the free tiers of most deployment platforms I checked limited you to 512MB of storage. 
 
 After lots of notepad calculations, I found a solution: delete each repo once we've finished the script and limit the concurrency of `sync` scripts that run at once to be within the storage requirements. Luckily, Heroku dynos have a much faster Internet connection and are able to clone even the React repo quickly.
 

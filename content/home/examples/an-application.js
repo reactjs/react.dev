@@ -1,63 +1,52 @@
-class TodoApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { items: [], text: '' };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+function TodoApp() {
+  const [items, setItems] = React.useState([]);
+  const [text, setText] = React.useState(text);
 
-  render() {
-    return (
-      <div>
-        <h3>TODO</h3>
-        <TodoList items={this.state.items} />
-        <form onSubmit={this.handleSubmit}>
-          <label htmlFor="new-todo">
-            What needs to be done?
-          </label>
-          <input
-            id="new-todo"
-            onChange={this.handleChange}
-            value={this.state.text}
-          />
-          <button>
-            Add #{this.state.items.length + 1}
-          </button>
-        </form>
-      </div>
-    );
+  function handleChange(event) {
+    setText(event.target.value);
   }
-
-  handleChange(e) {
-    this.setState({ text: e.target.value });
-  }
-
-  handleSubmit(e) {
-    e.preventDefault();
-    if (!this.state.text.length) {
+  function handleSubmit(event) {
+    event.preventDefault();
+    if (!text.length) {
       return;
     }
     const newItem = {
-      text: this.state.text,
+      text: text,
       id: Date.now()
     };
-    this.setState(state => ({
-      items: state.items.concat(newItem),
-      text: ''
-    }));
+
+    setItems(currentItems => currentItems.concat(newItem));
   }
+
+  return (
+    <div>
+      <h3>TODO</h3>
+      <TodoList items={items} />
+      <form onSubmit={handleSubmit}>
+        <label htmlFor="new-todo">
+          What needs to be done?
+        </label>
+        <input
+          id="new-todo"
+          onChange={handleChange}
+          value={text}
+        />
+        <button>
+          Add #{items.length + 1}
+        </button>
+      </form>
+    </div>
+  );
 }
 
-class TodoList extends React.Component {
-  render() {
-    return (
-      <ul>
-        {this.props.items.map(item => (
-          <li key={item.id}>{item.text}</li>
-        ))}
-      </ul>
-    );
-  }
+function TodoList(props) {
+  return (
+    <ul>
+      {props.items.map(item => (
+        <li key={item.id}>{item.text}</li>
+      ))}
+    </ul>
+  );
 }
 
 ReactDOM.render(

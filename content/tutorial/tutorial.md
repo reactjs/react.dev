@@ -722,6 +722,7 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
 
 ```javascript{2-8}
   render() {
+    const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');  
     const winner = calculateWinner(this.state.squares);
     let status;
     if (winner) {

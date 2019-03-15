@@ -1,5 +1,9 @@
-const WrappedComponent = React.forwardRef(
-  function myFunction(props, ref) {
-    return <LogProps {...props} forwardedRef={ref} />;
+const FancyButton = React.forwardRef(
+  function Button(props, ref) {
+    return (
+      <button ref={ref} className="FancyButton">
+        {props.children}
+      </button>
+    );
   }
 );

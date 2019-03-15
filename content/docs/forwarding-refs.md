@@ -67,7 +67,7 @@ For example, the following component will appear as "*ForwardRef*" in the DevToo
 
 `embed:forwarding-refs/wrapped-component.js`
 
-If you name the render function, DevTools will also include its name (e.g. "*ForwardRef(myFunction)*"):
+If you name the render function, DevTools will also include its name (e.g. "*ForwardRef(Button)*"):
 
 `embed:forwarding-refs/wrapped-component-with-function-name.js`
 

@@ -322,7 +322,7 @@ Remember that the function passed to `useMemo` runs during rendering. Don't do a
 
 If no array is provided, a new value will be computed on every render.
 
-**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components.
+**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. This means that a value from `useMemo` in a `useEffect` dependency list may trigger the effect without any "real" changes. However, if an additional run of that effect does not break your component, you should feel free to use it in that regard.
 
 > Note
 >

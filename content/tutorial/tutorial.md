@@ -170,7 +170,7 @@ JSX comes with the full power of JavaScript. You can put *any* JavaScript expres
 
 The `ShoppingList` component above only renders built-in DOM components like `<div />` and `<li />`. But you can compose and render custom React components too. For example, we can now refer to the whole shopping list by writing `<ShoppingList />`. Each React component is encapsulated and can operate independently; this allows you to build complex UIs from simple components.
 
-## Inspecting the Starter Code {#inspecting-the-starter-code}
+### Inspecting the Starter Code {#inspecting-the-starter-code}
 
 If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
 

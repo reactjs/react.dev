@@ -908,7 +908,7 @@ function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     textRef.current = text; // Write it to the ref
   });
 
@@ -949,7 +949,7 @@ function useEventCallback(fn, dependencies) {
     throw new Error('Cannot call an event handler while rendering.');
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     ref.current = fn;
   }, [fn, ...dependencies]);
 

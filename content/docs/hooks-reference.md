@@ -188,6 +188,8 @@ Don't forget that the argument to `useContext` must be the *context object itsel
  * **Incorrect:** `useContext(MyContext.Consumer)`
  * **Incorrect:** `useContext(MyContext.Provider)`
 
+A component calling `useContext` will always re-render when the context value changes. If re-rendering the component is expensive, you can [optimize it by using memoization](https://github.com/facebook/react/issues/15156#issuecomment-474590693).
+
 >Tip
 >
 >If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.

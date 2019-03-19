@@ -190,7 +190,7 @@ Don't forget that the argument to `useContext` must be the *context object itsel
 
 >Tip
 >
->If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `contextType = MyContext` in a class, or `<MyContext.Consumer>` render prop API.
+>If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.
 >
 >`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
 

@@ -130,6 +130,7 @@
 - name: Swedish
   translated_name: Svenska
   code: sv
+  status: 0
 - name: Tamil
   translated_name: தமிழ்
   code: ta

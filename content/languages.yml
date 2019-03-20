@@ -66,11 +66,15 @@
 - name: Italian
   translated_name: Italiano
   code: it
-  status: 0
+  status: 1
 - name: Japanese
   translated_name: 日本語
   code: ja
   status: 2
+- name: Georgian
+  translated_name: ქართული
+  code: ka
+  status: 0
 - name: Central Khmer
   translated_name: ភាសាខ្មែរ
   code: km
@@ -126,6 +130,7 @@
 - name: Swedish
   translated_name: Svenska
   code: sv
+  status: 0
 - name: Tamil
   translated_name: தமிழ்
   code: ta
@@ -133,6 +138,10 @@
 - name: Telugu
   translated_name: తెలుగు
   code: te
+  status: 0
+- name: Thai
+  translated_name: ไทย
+  code: th
   status: 0
 - name: Turkish
   translated_name: Türkçe
@@ -157,7 +166,7 @@
 - name: Simplified Chinese
   translated_name: 简体中文
   code: zh-hans
-  status: 1
+  status: 2
 - name: Traditional Chinese
   translated_name: 繁體中文
   code: zh-hant

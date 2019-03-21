@@ -2,12 +2,13 @@ const React = require(`react`);
 
 const pluginDefaults = {
   className: `anchor`,
+  classNameFix: `hided-anchor`,
   icon: true,
   offsetY: 0,
 };
 
 exports.onRenderBody = ({setHeadComponents}, pluginOptions) => {
-  const {className, icon, offsetY} = Object.assign(
+  const {className, classNameFix, icon, offsetY} = Object.assign(
     pluginDefaults,
     pluginOptions,
   );
@@ -17,6 +18,9 @@ exports.onRenderBody = ({setHeadComponents}, pluginOptions) => {
       float: left;
       padding-right: 4px;
       margin-left: -20px;
+    }
+    .${classNameFix} {
+      position: absolute;
     }
     h1 .${className} svg,
     h2 .${className} svg,

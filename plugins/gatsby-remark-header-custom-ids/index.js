@@ -12,7 +12,12 @@ const svgIcon = `<svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 
 
 module.exports = (
   {markdownAST},
-  {icon = svgIcon, className = `anchor`, maintainCase = false, classNameFix = 'hided-anchor'},
+  {
+    icon = svgIcon,
+    className = `anchor`,
+    maintainCase = false,
+    classNameFix = 'hided-anchor',
+  },
 ) => {
   slugs.reset();
 
@@ -28,39 +33,42 @@ module.exports = (
     }
 
     if (icon !== false) {
-      node.children.unshift({
-        type: 'div',
-        title: null,
-        data: {
-          hProperties: {
-            name: `${id}`,
-            class: classNameFix,
-          },
-          hChildren: [
-            {
-              type: 'raw',
-              value: '&nbsp;',
+      node.children.unshift(
+        {
+          type: 'div',
+          title: null,
+          data: {
+            hProperties: {
+              name: `${id}`,
+              class: classNameFix,
             },
-          ],
-        },
-      }, {
-        type: 'link',
-        url: `#${id}`,
-        title: null,
-        data: {
-          hProperties: {
-            'aria-hidden': true,
-            class: className,
+            hChildren: [
+              {
+                type: 'raw',
+                value: '&nbsp;',
+              },
+            ],
           },
-          hChildren: [
-            {
-              type: 'raw',
-              // The Octicon link icon is the default. But users can set their own icon via the "icon" option.
-              value: icon,
-            },
-          ],
         },
-      });
+        {
+          type: 'link',
+          url: `#${id}`,
+          title: null,
+          data: {
+            hProperties: {
+              'aria-hidden': true,
+              class: className,
+            },
+            hChildren: [
+              {
+                type: 'raw',
+                // The Octicon link icon is the default. But users can set their own icon via the "icon" option.
+                value: icon,
+              },
+            ],
+          },
+        },
+      );
     }
   });
 

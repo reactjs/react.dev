@@ -25,6 +25,11 @@ A playlist of videos from React.js Conf 2016.
 A playlist of videos from React.js Conf 2015.
 <iframe title="React.js Conf 2015" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
 
+### Going Big with React {#going-big-with-react}
+
+Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale - (2015 - 0h31m).
+<iframe title="Areeb Malik - Going Big With React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/9qcBlN6-qwY" frameborder="0" allowfullscreen></iframe>
+
 ### Secrets of the Virtual DOM {#secrets-of-the-virtual-dom}
 
 Pete Hunt at Mountain West JavaScript 2014 discusses why a virtual DOM was built for React, how it compares to other systems, and its relevance to the future of browser technologies - (2014 - 0h44m).
@@ -49,12 +54,6 @@ Stoyan Stefanov gives an introduction to React at LAWebSpeed meetup - (2014 - 0h
 
 Facebook engineers Bill Fisher and Jing Chen talk about Flux and React at Forward JS 2014, and how using an application architecture with a unidirectional data flow cleans up a lot of their code.
 <iframe title="React and Flux: Building Applications with a Unidirectional Data Flow" width="650" height="366" src="https://www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
-
-### Going Big with React {#going-big-with-react}
-
-Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale - (2014 - 0h31m).
-[![going big with React](https://i.vimeocdn.com/video/481670116_650.jpg)]
-
 
 ### Rethinking Best Practices {#rethinking-best-practices}
 

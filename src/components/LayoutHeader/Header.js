@@ -122,7 +122,7 @@ const Header = ({location}: {location: Location}) => (
               flexDirection: 'row',
               marginLeft: 'auto',
               marginRight: 'auto',
-          }}>
+            }}>
             <HeaderLink
               isActive={location.pathname.includes('/docs/')}
               title="Docs"

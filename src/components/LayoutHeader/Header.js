@@ -54,9 +54,6 @@ const Header = ({location}: {location: Location}) => (
               color: colors.white,
             },
 
-            [media.greaterThan('small')]: {
-              width: 'calc(100% / 6)',
-            },
             [media.lessThan('small')]: {
               flex: '0 0 auto',
             },
@@ -94,7 +91,6 @@ const Header = ({location}: {location: Location}) => (
           css={{
             flex: '1',
             display: 'flex',
-            flexDirection: 'row',
             alignItems: 'stretch',
             overflowX: 'auto',
             overflowY: 'hidden',
@@ -120,26 +116,34 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
-          <HeaderLink
-            isActive={location.pathname.includes('/docs/')}
-            title="Docs"
-            to="/docs/getting-started.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/tutorial/')}
-            title="Tutorial"
-            to="/tutorial/tutorial.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/blog')}
-            title="Blog"
-            to="/blog/"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/community/')}
-            title="Community"
-            to="/community/support.html"
-          />
+          <div
+            css={{
+              display: 'flex',
+              flexDirection: 'row',
+              marginLeft: 'auto',
+              marginRight: 'auto',
+          }}>
+            <HeaderLink
+              isActive={location.pathname.includes('/docs/')}
+              title="Docs"
+              to="/docs/getting-started.html"
+            />
+            <HeaderLink
+              isActive={location.pathname.includes('/tutorial/')}
+              title="Tutorial"
+              to="/tutorial/tutorial.html"
+            />
+            <HeaderLink
+              isActive={location.pathname.includes('/blog')}
+              title="Blog"
+              to="/blog/"
+            />
+            <HeaderLink
+              isActive={location.pathname.includes('/community/')}
+              title="Community"
+              to="/community/support.html"
+            />
+          </div>
         </nav>
 
         <DocSearch />

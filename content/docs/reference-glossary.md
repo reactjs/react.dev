@@ -148,6 +148,8 @@ Keys only need to be unique among sibling elements in the same array. They don't
 
 Don't pass something like `Math.random()` to keys. It is important that keys have a "stable identity" across re-renders so that React can determine when items are added, removed, or re-ordered. Ideally, keys should correspond to unique and stable identifiers coming from your data, such as `post.id`.
 
+Don't generate keys inside of the component's render function if the key generation algorithm is not a pure function.  Using a non-pure key generation algorithm (such as a uuid generator) will cause the elements to rerender every time the component updates, thus defeating the purpose of using keys at all.
+
 ## [Refs](/docs/refs-and-the-dom.html) {#refs}
 
 React supports a special attribute that you can attach to any component. The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.

@@ -52,11 +52,6 @@ June 21, 2019 Chicago, Illinois USA
 
 [Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
-### React Week '19 {#RWNY19}
-July 15-21, 2019. New York City, USA
-
-[Website](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
-
 ### React Rally 2019
 August 22-23, 2019. Salt Lake City, USA.
 

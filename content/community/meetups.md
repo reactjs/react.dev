@@ -130,7 +130,6 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [New York, NY - ReactJS](https://www.meetup.com/NYC-Javascript-React-Group/)
 * [New York, NY - React Ladies](https://www.meetup.com/React-Ladies/)
 * [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
-* [New York, NY - ReactNYC](https://www.meetup.com/ReactNYC/)
 * [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
 * [Phoenix, AZ - ReactJS](https://www.meetup.com/ReactJS-Phoenix/)
 * [Pittsburgh, PA - ReactJS/React Native](https://www.meetup.com/ReactPgh/)

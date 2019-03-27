@@ -64,13 +64,14 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
 Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 
 * React DOM
+* React Native
 * React DOM Server
 * React Test Renderer
 * React Shallow Renderer
 
 Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
 
-React Native will fully support Hooks in its next stable release.
+Hooks are supported in React Native starting in 0.59.0 -- you can find more information about that release in [this blog post.](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059)
 
 ### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
 

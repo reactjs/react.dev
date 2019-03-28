@@ -146,7 +146,7 @@
 - name: Turkish
   translated_name: Türkçe
   code: tr
-  status: 1
+  status: 2
 - name: Ukrainian
   translated_name: Українська
   code: uk

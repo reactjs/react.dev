@@ -234,7 +234,7 @@ class TemperatureInput extends React.Component {
 
 Now let's turn to the `Calculator` component.
 
-We will store the current input's `temperature` and `scale` in its local state. This is the state we "lifted up" from the inputs, and it will serve as the "source of truth" for both of them. It is the minimal representation of all the data we need to know in order to render both inputs.
+We will store the current input's `temperature` and `scale` in the local state of the `Calculator`. This is the state we "lifted up" from the inputs, and it will serve as the "source of truth" for both of them. It is the minimal representation of all the data we need to know in order to render both inputs.
 
 For example, if we enter 37 into the Celsius input, the state of the `Calculator` component will be:
 

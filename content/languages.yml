@@ -79,6 +79,10 @@
   translated_name: ភាសាខ្មែរ
   code: km
   status: 0
+- name: Kannada
+  translated_name: ಕನ್ನಡ
+  code: kn
+  status: 0
 - name: Korean
   translated_name: 한국어
   code: ko

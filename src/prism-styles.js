@@ -31,6 +31,7 @@ css.global('.gatsby-highlight', {
   borderRadius: 10,
   overflow: 'auto',
   tabSize: '1.5em',
+  WebkitOverflowScrolling: 'touch',
 });
 
 css.global(

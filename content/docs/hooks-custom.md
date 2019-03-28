@@ -6,23 +6,23 @@ next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
 Building your own Hooks lets you extract component logic into reusable functions.
 
 When we were learning about [using the Effect Hook](/docs/hooks-effect.html#example-using-hooks-1), we saw this component from a chat application that displays a message indicating whether a friend is online or offline:
 
 ```js{4-15}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function FriendStatus(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -39,16 +39,16 @@ function FriendStatus(props) {
 Now let's say that our chat application also has a contact list, and we want to render names of online users with a green color. We could copy and paste similar logic above into our `FriendListItem` component but it wouldn't be ideal:
 
 ```js{4-15}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function FriendListItem(props) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
@@ -67,23 +67,23 @@ Instead, we'd like to share this logic between `FriendStatus` and `FriendListIte
 
 Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html). We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
 
-## Extracting a Custom Hook
+## Extracting a Custom Hook {#extracting-a-custom-hook}
 
 When we want to share logic between two JavaScript functions, we extract it to a third function. Both components and Hooks are functions, so this works for them too!
 
 **A custom Hook is a JavaScript function whose name starts with "`use`" and that may call other Hooks.** For example, `useFriendStatus` below is our first custom Hook:
 
 ```js{3}
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
 
-  function handleStatusChange(status) {
-    setIsOnline(status.isOnline);
-  }
-
   useEffect(() => {
+    function handleStatusChange(status) {
+      setIsOnline(status.isOnline);
+    }
+
     ChatAPI.subscribeToFriendStatus(friendID, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(friendID, handleStatusChange);
@@ -103,7 +103,7 @@ The purpose of our `useFriendStatus` Hook is to subscribe us to a friend's statu
 ```js
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
-  
+
   // ...
 
   return isOnline;
@@ -112,7 +112,7 @@ function useFriendStatus(friendID) {
 
 Now let's see how we can use our custom Hook.
 
-## Using a Custom Hook
+## Using a Custom Hook {#using-a-custom-hook}
 
 In the beginning, our stated goal was to remove the duplicated logic from the `FriendStatus` and `FriendListItem` components. Both of them want to know whether a friend is online.
 
@@ -149,7 +149,7 @@ function FriendListItem(props) {
 
 **How does a custom Hook get isolated state?** Each *call* to a Hook gets isolated state. Because we call `useFriendStatus` directly, from React's point of view our component just calls `useState` and `useEffect`. And as we [learned](/docs/hooks-state.html#tip-using-multiple-state-variables) [earlier](/docs/hooks-effect.html#tip-use-multiple-effects-to-separate-concerns), we can call `useState` and `useEffect` many times in one component, and they will be completely independent.
 
-### Tip: Pass Information Between Hooks
+### Tip: Pass Information Between Hooks {#tip-pass-information-between-hooks}
 
 Since Hooks are functions, we can pass information between them.
 
@@ -195,7 +195,7 @@ Because the `useState` Hook call gives us the latest value of the `recipientID` 
 
 This lets us know whether the *currently selected* friend is online. If we pick a different friend and update the `recipientID` state variable, our `useFriendStatus` Hook will unsubscribe from the previously selected friend, and subscribe to the status of the newly selected one.
 
-## `useYourImagination()`
+## `useYourImagination()` {#useyourimagination}
 
 Custom Hooks offer the flexibility of sharing logic that wasn't possible in React components before. You can write custom Hooks that cover a wide range of use cases like form handling, animation, declarative subscriptions, timers, and probably many more we haven't considered. What's more, you can build Hooks that are just as easy to use as React's built-in features.
 

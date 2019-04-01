@@ -10,6 +10,7 @@ permalink: community/routing.html
 * **[component-router](https://github.com/in-flux/component-router):** Flux-based routing solution for components
 * **[Director](https://github.com/flatiron/director)** - A tiny and isomorphic URL router for JavaScript.
 * **[Finch](http://stoodder.github.io/finchjs/)** - A simple, yet powerful, javascript route handling library.
+* **[hookrouter](https://github.com/Paratron/hookrouter)** A small, easily nestable router based on hooks.
 * **[mvc-router](https://github.com/rajeev-k/mvc-router)** Use the Model-View-Controller (MVC) pattern to build React applications.
 * **[Reach Router](https://reach.tech/router)** An Accessible Router for React
 * **[react-mini-router](https://github.com/larrymyers/react-mini-router)** A minimal URL router mixin.

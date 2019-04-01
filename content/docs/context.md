@@ -243,6 +243,8 @@ To get around this, lift the value into the parent's state:
 
 `embed:context/reference-caveats-solution.js`
 
+If you want to pass certain props as context, you don't need to use state. [Memoize instead](https://reactjs.org/blog/2018/06/07/you-probably-dont-need-derived-state.html#what-about-memoization).
+
 ## Legacy API {#legacy-api}
 
 > Note

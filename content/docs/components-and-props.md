@@ -204,9 +204,9 @@ Next, we will extract a `UserInfo` component that renders an `Avatar` next to th
 function UserInfo(props) {
   return (
     <div className="UserInfo">
-      <Avatar user={props.user} />
+      <Avatar user={props.author} />
       <div className="UserInfo-name">
-        {props.user.name}
+        {props.author.name}
       </div>
     </div>
   );

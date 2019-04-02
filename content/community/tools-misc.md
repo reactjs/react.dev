@@ -17,3 +17,4 @@ permalink: community/misc.html
 * **[ReactCSS](http://reactcss.com/):** Inline Styles in JS with support for React.
 * **[ReactQuestionnaire](https://github.com/kouryuu/react-questionnaire):** Simple react components for building a questionnaire or survey.
 * **[renderjs.io](https://renderjs.io/):** SEO for Reactjs. Service for making reactjs application crawlable and shareable.
+* **[react-loops](https://github.com/leebyron/react-loops):** Works with React Hooks as part of the React Velcro Architecture.

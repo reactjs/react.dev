@@ -76,7 +76,7 @@ September 26-28, 2019 in Alicante, Spain
 
 [Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
 
-### React Advanced {#react-advanced-2019}
+### React Advanced 2019 {#react-advanced-2019}
 October 25, 2019 in London, UK
 
 [Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)

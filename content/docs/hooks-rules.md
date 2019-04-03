@@ -56,6 +56,9 @@ As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variable
 
 ```js
 function Form() {
+
+  //...changeVar
+  
   // 1. Use the name state variable
   const [name, setName] = useState('Mary');
 
@@ -70,7 +73,7 @@ function Form() {
   // 4. Use an effect for updating the title
   useEffect(function updateTitle() {
     document.title = name + ' ' + surname;
-  });
+  }, [changeVar]);
 
   // ...
 }

@@ -151,6 +151,7 @@ function FriendStatusWithCounter(props) {
     setIsOnline(status.isOnline);
   }
   // ...
+}  
 ```
 
 Hooks let you organize side effects in a component by what pieces are related (such as adding and removing a subscription), rather than forcing a split based on lifecycle methods.
@@ -257,6 +258,7 @@ And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local 
 function Todos() {
   const [todos, dispatch] = useReducer(todosReducer);
   // ...
+}  
 ```
 
 >Detailed Explanation

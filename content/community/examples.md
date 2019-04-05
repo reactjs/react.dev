@@ -21,3 +21,4 @@ There are many example projects created by the React community. Feel free to add
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB.
 * **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** A space which allows user to play with Google fonts. Built with React, Redux and React-Router.
+* **[React Movie](https://github.com/oliver-gomes/react-movie)** Modern fast movie database web app with React using The Movie DB API. All the new popular movies are populated along with search bar for your own movie search.

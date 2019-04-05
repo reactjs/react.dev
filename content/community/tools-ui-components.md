@@ -67,6 +67,7 @@ permalink: community/ui-components.html
 * **[tcomb-form](https://github.com/gcanti/tcomb-form):** Automatically generate form markup, automatic labels and inline validation from a domain model.
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
+* **[Griffith](https://github.com/zhihu/griffith)**: A React-based web video player.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
 
 ## Fee Based Components {#fee-based-components}

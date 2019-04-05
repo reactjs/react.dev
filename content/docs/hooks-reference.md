@@ -51,7 +51,25 @@ During subsequent re-renders, the first value returned by `useState` will always
 
 #### Functional updates {#functional-updates}
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. 
+
+Example without `setState`:
+
+```js
+function Counter({initialCount}) {
+  const [count, setCount] = useState(initialCount);
+  return (
+    <>
+      Счёт: {count}
+      <button onClick={() => setCount(initialCount)}>Сбросить</button>
+      <button onClick={() => setCount(count + 1)}>+</button>
+      <button onClick={() => setCount(count - 1)}>-</button>
+    </>
+  );
+}
+```
+
+Here's an example of a counter component that uses both forms of `setState`:
 
 ```js
 function Counter({initialCount}) {

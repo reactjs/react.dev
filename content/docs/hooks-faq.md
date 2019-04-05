@@ -209,7 +209,7 @@ There are a few more heuristics, and they might change over time as we fine-tune
 
 * `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
 
-### How can I do data fetching with Hooks?
+### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
 
 Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
 
@@ -654,7 +654,7 @@ function ProductDetails({ fetchProduct })
 
 Note that in the above example we **need** to keep the function in the dependencies list. This ensures that a change in the `productId` prop of `ProductPage` automatically triggers a refetch in the `ProductDetails` component.
 
-### What can I do if my effect dependencies change too often?
+### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
 Sometimes, your effect may be using reading state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
 

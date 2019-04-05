@@ -60,7 +60,7 @@ function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
   return (
     <>
-      Счёт: {count}
+      Count: {count}
       <button onClick={() => setCount(initialCount)}>Сбросить</button>
       <button onClick={() => setCount(count + 1)}>+</button>
       <button onClick={() => setCount(count - 1)}>-</button>

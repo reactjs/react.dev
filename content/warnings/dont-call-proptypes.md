@@ -12,7 +12,7 @@ permalink: warnings/dont-call-proptypes.html
 
 In a future major release of React, the code that implements PropType validation functions will be stripped in production. Once this happens, any code that calls these functions manually (that isn't stripped in production) will throw an error.
 
-### Declaring PropTypes is still fine
+### Declaring PropTypes is still fine {#declaring-proptypes-is-still-fine}
 
 The normal usage of PropTypes is still supported:
 
@@ -24,7 +24,7 @@ Button.propTypes = {
 
 Nothing changes here.
 
-### Don’t call PropTypes directly
+### Don’t call PropTypes directly {#dont-call-proptypes-directly}
 
 Using PropTypes in any other way than annotating React components with them is no longer supported:
 
@@ -42,7 +42,7 @@ If you depend on using PropTypes like this, we encourage you to use or create a 
 
 If you don't fix the warning, this code will crash in production with React 16.
 
-### If you don't call PropTypes directly but still get the warning
+### If you don't call PropTypes directly but still get the warning {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 
 Inspect the stack trace produced by the warning. You will find the component definition responsible for the PropTypes direct call. Most likely, the issue is due to third-party PropTypes that wrap React’s PropTypes, for example:
 
@@ -57,7 +57,7 @@ Button.propTypes = {
 
 In this case, `ThirdPartyPropTypes.deprecated` is a wrapper calling `PropTypes.bool`. This pattern by itself is fine, but triggers a false positive because React thinks you are calling PropTypes directly. The next section explains how to fix this problem for a library implementing something like `ThirdPartyPropTypes`. If it's not a library you wrote, you can file an issue against it.
 
-### Fixing the false positive in third party PropTypes
+### Fixing the false positive in third party PropTypes {#fixing-the-false-positive-in-third-party-proptypes}
 
 If you are an author of a third party PropTypes library and you let consumers wrap existing React PropTypes, they might start seeing this warning coming from your library. This happens because React doesn't see a "secret" last argument that [it passes](https://github.com/facebook/react/pull/7132) to detect manual PropTypes calls.
 

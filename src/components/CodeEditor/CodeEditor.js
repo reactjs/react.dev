@@ -11,6 +11,12 @@ import {LiveEditor, LiveProvider} from 'react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
 
+// Replace unicode to text for other languages
+const unicodeToText = text =>
+  text.replace(/\\u([\dA-F]{4})/gi, (_, p1) =>
+    String.fromCharCode(parseInt(p1, 16)),
+  );
+
 const compileES5 = (
   code, // eslint-disable-next-line no-undef
 ) => Babel.transform(code, {presets: ['es2015', 'react']}).code;
@@ -27,8 +33,6 @@ class CodeEditor extends Component {
   }
 
   componentDidMount() {
-    // Initial render() will always be a no-op,
-    // Because the mountNode ref won't exist yet.
     this._render();
   }
 
@@ -45,7 +49,7 @@ class CodeEditor extends Component {
   }
 
   render() {
-    const {children} = this.props;
+    const {containerNodeID} = this.props;
     const {
       compiledES6,
       code,
@@ -205,6 +209,7 @@ class CodeEditor extends Component {
                 <MetaTitle>Result</MetaTitle>
               </div>
               <div
+                id={containerNodeID}
                 css={{
                   padding: 10,
                   maxHeight: '340px !important',
@@ -233,7 +238,6 @@ class CodeEditor extends Component {
                     padding: 5,
                   },
                 }}
-                ref={this._setMountRef}
               />
             </div>
           )}
@@ -243,21 +247,16 @@ class CodeEditor extends Component {
   }
 
   _render() {
-    if (!this._mountNode) {
-      return;
-    }
-
     const {compiled} = this.state;
 
     try {
       // Example code requires React, ReactDOM, and Remarkable to be within scope.
       // It also requires a "mountNode" variable for ReactDOM.render()
       // eslint-disable-next-line no-new-func
-      new Function('React', 'ReactDOM', 'Remarkable', 'mountNode', compiled)(
+      new Function('React', 'ReactDOM', 'Remarkable', compiled)(
         React,
         ReactDOM,
         Remarkable,
-        this._mountNode,
       );
     } catch (error) {
       console.error(error);
@@ -269,10 +268,6 @@ class CodeEditor extends Component {
     }
   }
 
-  _setMountRef = ref => {
-    this._mountNode = ref;
-  };
-
   _updateState(code, showJSX = true) {
     try {
       let newState = {
@@ -282,7 +277,7 @@ class CodeEditor extends Component {
 
       if (showJSX) {
         newState.code = code;
-        newState.compiledES6 = compileES6(code);
+        newState.compiledES6 = unicodeToText(compileES6(code));
       } else {
         newState.compiledES6 = code;
       }

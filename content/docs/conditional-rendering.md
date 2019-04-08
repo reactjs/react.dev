@@ -46,7 +46,7 @@ ReactDOM.render(
 
 This example renders a different greeting depending on the value of `isLoggedIn` prop.
 
-### Element Variables
+### Element Variables {#element-variables}
 
 You can use variables to store elements. This can help you conditionally render a part of the component while the rest of the output doesn't change.
 
@@ -120,7 +120,7 @@ ReactDOM.render(
 
 While declaring a variable and using an `if` statement is a fine way to conditionally render a component, sometimes you might want to use a shorter syntax. There are a few ways to inline conditions in JSX, explained below.
 
-### Inline If with Logical && Operator
+### Inline If with Logical && Operator {#inline-if-with-logical--operator}
 
 You may [embed any expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
 
@@ -152,7 +152,7 @@ It works because in JavaScript, `true && expression` always evaluates to `expres
 
 Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
 
-### Inline If-Else with Conditional Operator
+### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
 Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
 
@@ -188,7 +188,7 @@ render() {
 
 Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
 
-### Preventing Component from Rendering
+### Preventing Component from Rendering {#preventing-component-from-rendering}
 
 In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
 

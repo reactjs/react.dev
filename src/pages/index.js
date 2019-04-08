@@ -17,7 +17,6 @@ import {colors, media, sharedStyles} from 'theme';
 import loadScript from 'utils/loadScript';
 import createOgUrl from 'utils/createOgUrl';
 import {babelURL} from 'site-constants';
-import ReactDOM from 'react-dom';
 import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
@@ -263,6 +262,7 @@ class Home extends Component {
                         key={index}
                         id={snippet.id}
                         code={snippet.code}
+                        containerNodeID={node.frontmatter.domid}
                         loaded={babelLoaded}>
                         <h3 css={headingStyles}>{node.frontmatter.title}</h3>
                         <div dangerouslySetInnerHTML={{__html: node.html}} />
@@ -308,13 +308,6 @@ Home.propTypes = {
     marketing: PropTypes.object.isRequired,
   }).isRequired,
 };
-
-function renderExamplePlaceholder(containerId) {
-  ReactDOM.render(
-    <h4>Loading code example...</h4>,
-    document.getElementById(containerId),
-  );
-}
 
 const CtaItem = ({children, primary = false}) => (
   <div
@@ -368,6 +361,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            domid
           }
           html
         }

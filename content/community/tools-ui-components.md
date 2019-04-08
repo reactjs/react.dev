@@ -5,7 +5,7 @@ layout: community
 permalink: community/ui-components.html
 ---
 
-## Free Components
+## Free Components {#free-components}
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react) (in Chinese):** [Amaze UI](https://github.com/allmobilize/amazeui) components built with React.
 * **[Ant Design of React](https://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
 * **[Belle](https://github.com/nikgraf/belle/):** Configurable React Components with great UX.
@@ -69,7 +69,7 @@ permalink: community/ui-components.html
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
 
-## Fee Based Components
+## Fee Based Components {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.

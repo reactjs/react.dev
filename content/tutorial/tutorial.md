@@ -611,7 +611,7 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
 ```javascript{3,6}
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'O' : 'X';
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
@@ -645,7 +645,7 @@ class Board extends React.Component {
 
   handleClick(i) {
     const squares = this.state.squares.slice();
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'O' : 'X';
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
@@ -742,7 +742,7 @@ We can now change the Board's `handleClick` function to return early by ignoring
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'O' : 'X';
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
@@ -849,7 +849,7 @@ class Board extends React.Component {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'O' : 'X';
     this.setState({
       squares: squares,
       xIsNext: !this.state.xIsNext,
@@ -966,7 +966,7 @@ Finally, we need to move the `handleClick` method from the Board component to th
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'O' : 'X';
     this.setState({
       history: history.concat([{
         squares: squares,
@@ -1159,7 +1159,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    squares[i] = this.state.xIsNext ? 'O' : 'X';
     this.setState({
       history: history.concat([{
         squares: squares

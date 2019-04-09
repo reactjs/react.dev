@@ -57,6 +57,11 @@ July 15-21, 2019. New York City, USA
 
 [Website](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
 
+### Chain React 2019
+July 11-12, 2019. Portland, OR, USA.
+
+[Website](https://infinite.red/ChainReactConf)
+
 ### React Rally 2019 {#react-rally-2019}
 August 22-23, 2019. Salt Lake City, USA.
 
@@ -64,6 +69,7 @@ August 22-23, 2019. Salt Lake City, USA.
 
 ### ComponentsConf 2019 {#componentsconf-2019}
 September 6, 2019 in Melbourne, Australia
+
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React Native EU 2019 {#react-native-eu-2019}

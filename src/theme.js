@@ -286,14 +286,23 @@ const sharedStyles = {
 
     '& h2': {
       borderTop: `1px solid ${colors.divider}`,
-      marginTop: 44,
-      paddingTop: 40,
+      marginTop: 64,
+      paddingTop: 60,
       lineHeight: 1.2,
 
       ':first-child': {
         borderTop: 0,
         marginTop: 0,
         paddingTop: 0,
+      },
+
+      [media.between('small', 'large')]: {
+        marginTop: 54,
+        paddingTop: 50,
+      },
+      [media.lessThan('small')]: {
+        marginTop: 44,
+        paddingTop: 40,
       },
 
       [media.lessThan('large')]: {

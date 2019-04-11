@@ -841,6 +841,9 @@ Next, we'll have the Board component receive `squares` and `onClick` props from 
 * Replace `this.handleClick(i)` with `this.props.onClick(i)` in Board's `renderSquare`.
 
 The Board component now looks like this:
+(note: if you try to run this now, you will get an error like "TypeError: Cannot read property 'squares' of null
+    at Board.render (pen.js:134:47)" when the render method tries to execute "    const winner = calculateWinner(this.state.squares);
+". This is because we have moved the squares state up into the Game class but have not removed the references to it. We will fix it in the next step)
 
 ```javascript{17,18}
 class Board extends React.Component {

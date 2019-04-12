@@ -27,7 +27,7 @@ April 12, 2019 in Amsterdam, The Netherlands
 
 [Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam)
 
-### ReactJS Girls Conference 
+### ReactJS Girls Conference
 May 3, 2019 in London, UK
 
 [Website](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
@@ -360,3 +360,8 @@ November 30, Berlin, Germany
 January 31, 2019 in Tehran, Iran
 
 [Website](http://reactiran.com) - [Instagram](https://www.instagram.com/reactiran/)
+
+### <React.NotAConf /> 2019 {#reactnotaconf--2019}
+May 11 in Sofia, Bulgaria
+
+[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)

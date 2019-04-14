@@ -12,20 +12,15 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### App.js Conf 2019 {#appjs-conf-2019}
-April 4-5, 2019 in Kraków, Poland
-
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
-
-### React Amsterdam 2019 {#react-amsterdam-2019}
-April 12, 2019 in Amsterdam, The Netherlands
-
-[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
-
-### ReactJS Girls Conference 
+### ReactJS Girls Conference
 May 3, 2019 in London, UK
 
 [Website](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
+
+### <React.NotAConf /> 2019 {#reactnotaconf--2019}
+May 11 in Sofia, Bulgaria
+
+[Website](http://react-not-a-conf.com/) - [Twitter](https://twitter.com/reactnotaconf) - [Facebook](https://www.facebook.com/events/780891358936156)
 
 ### ReactEurope 2019 {#reacteurope-2019}
 May 23-24, 2019 in Paris, France
@@ -47,6 +42,11 @@ June 21, 2019 Chicago, Illinois USA
 
 [Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
+### Chain React 2019
+July 11-12, 2019. Portland, OR, USA.
+
+[Website](https://infinite.red/ChainReactConf)
+
 ### React Rally 2019
 August 22-23, 2019. Salt Lake City, USA.
 
@@ -54,6 +54,7 @@ August 22-23, 2019. Salt Lake City, USA.
 
 ### ComponentsConf 2019 {#componentsconf-2019}
 September 6, 2019 in Melbourne, Australia
+
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/componentsconf)
 
 ### React Native EU 2019 {#react-native-eu-2019}
@@ -364,3 +365,13 @@ January 31, 2019 in Tehran, Iran
 March 30-31, 2019 in San Francisco, USA
 
 [Website](https://www.reactathon.com/) - [Twitter](https://twitter.com/reactathon)
+
+### App.js Conf 2019 {#appjs-conf-2019}
+April 4-5, 2019 in Kraków, Poland
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
+### React Amsterdam 2019 {#react-amsterdam-2019}
+April 12, 2019 in Amsterdam, The Netherlands
+
+[Website](https://react.amsterdam) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)

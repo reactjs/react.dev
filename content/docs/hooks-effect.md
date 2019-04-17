@@ -442,15 +442,19 @@ componentDidUpdate(prevProps, prevState) {
 
 This requirement is common enough that it is built into the `useEffect` Hook API. You can tell React to *skip* applying an effect if certain values haven't changed between re-renders. To do so, pass an array as an optional second argument to `useEffect`:
 
-```js{3}
+```js{3,7}
 useEffect(() => {
   document.title = `You clicked ${count} times`;
 }, [count]); // Only re-run the effect if count changes
+
+useEffect(() => {
+  document.title = `You clicked ${count} times`;
+}, [count, other]); // Only re-run if count or other changes
 ```
 
 In the example above, we pass `[count]` as the second argument. What does this mean? If the `count` is `5`, and then our component re-renders with `count` still equal to `5`, React will compare `[5]` from the previous render and `[5]` from the next render. Because all items in the array are the same (`5 === 5`), React would skip the effect. That's our optimization.
 
-When we render with `count` updated to `6`, React will compare the items in the `[5]` array from the previous render to items in the `[6]` array from the next render. This time, React will re-apply the effect because `5 !== 6`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
+When we render with `count` updated to `6`, React will compare the items in the `[5]` array from the previous render to items in the `[6]` array from the next render. This time, React will re-apply the effect because `5 !== 6`. If there are multiple items in the array `[count, other]`, React will re-run the effect even if just one of them is different.
 
 This also works for effects that have a cleanup phase:
 

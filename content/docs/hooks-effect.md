@@ -479,6 +479,27 @@ In the future, the second argument might get added automatically by a build-time
 >
 >We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
 
+### Tip: Doing async calls in Effects {#doing-async-calls-in-effects}
+
+Sometimes you need to fetch data for your component when it mounts. Perfect timing to do this would be in `componentDidMount` lifecycle method like this:
+
+```js
+componentDidMount() {
+  this.props.fetchUsers()
+    .then(users => this.setState({ users }))
+}
+```
+
+To do the same with Effects, you can use `useEffect`:
+
+```
+[users, setUsers] = useState([])
+
+useEffect(() => fetchUsers().then(users => setUsers(users), [])
+```
+
+By passing `[]` empty array as the second argument of `useEffect` you are making sure that this Effect gets called only once when component is mounted. This is similar to `componentDidMount` where you would usually call your asynchronous requests.
+
 ## Next Steps {#next-steps}
 
 Congratulations! This was a long page, but hopefully by the end most of your questions about effects were answered. You've learned both the State Hook and the Effect Hook, and there is a *lot* you can do with both of them combined. They cover most of the use cases for classes -- and where they don't, you might find the [additional Hooks](/docs/hooks-reference.html) helpful.

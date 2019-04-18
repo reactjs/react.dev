@@ -492,7 +492,7 @@ componentDidMount() {
 
 To do the same with Effects, you can use `useEffect`:
 
-```
+```js
 [users, setUsers] = useState([])
 
 useEffect(() => fetchUsers().then(users => setUsers(users), [])

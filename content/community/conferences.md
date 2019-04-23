@@ -12,7 +12,7 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### ReactJS Girls Conference {#reactjs-girls-conference}
+### ReactJS Girls Conference
 May 3, 2019 in London, UK
 
 [Website](https://reactjsgirls.com/) - [Twitter](https://twitter.com/reactjsgirls)
@@ -42,17 +42,12 @@ June 21, 2019 Chicago, Illinois USA
 
 [Website](https://reactloop.com) - [Twitter](https://twitter.com/ReactLoop)
 
-### React Week '19 {#RWNY19}
-July 15-21, 2019. New York City, USA
-
-[Website](https://reactweek.nyc) - [Twitter](https://twitter.com/ReactWeek)
-
 ### Chain React 2019
 July 11-12, 2019. Portland, OR, USA.
 
 [Website](https://infinite.red/ChainReactConf)
 
-### React Rally 2019 {#react-rally-2019}
+### React Rally 2019
 August 22-23, 2019. Salt Lake City, USA.
 
 [Website](https://www.reactrally.com/) - [Twitter](https://twitter.com/ReactRally) - [Instagram](https://www.instagram.com/reactrally/)

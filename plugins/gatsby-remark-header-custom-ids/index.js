@@ -20,7 +20,12 @@ const svgIcon = `<svg aria-hidden="true" height="16" version="1.1" viewBox="0 0 
 
 module.exports = (
   {markdownAST},
-  {icon = svgIcon, className = `anchor`, maintainCase = false},
+  {
+    icon = svgIcon,
+    className = `anchor`,
+    maintainCase = false,
+    classNameFix = 'hided-anchor',
+  },
 ) => {
   slugs.reset();
 
@@ -44,24 +49,42 @@ module.exports = (
     patch(data.hProperties, 'id', id);
 
     if (icon !== false) {
-      node.children.unshift({
-        type: 'link',
-        url: `#${id}`,
-        title: null,
-        data: {
-          hProperties: {
-            'aria-hidden': true,
-            class: className,
-          },
-          hChildren: [
-            {
-              type: 'raw',
-              // The Octicon link icon is the default. But users can set their own icon via the "icon" option.
-              value: icon,
+      node.children.unshift(
+        {
+          type: 'div',
+          title: null,
+          data: {
+            hProperties: {
+              name: `${id}`,
+              class: classNameFix,
             },
-          ],
+            hChildren: [
+              {
+                type: 'raw',
+                value: '&nbsp;',
+              },
+            ],
+          },
         },
-      });
+        {
+          type: 'link',
+          url: `#${id}`,
+          title: null,
+          data: {
+            hProperties: {
+              'aria-hidden': true,
+              class: className,
+            },
+            hChildren: [
+              {
+                type: 'raw',
+                // The Octicon link icon is the default. But users can set their own icon via the "icon" option.
+                value: icon,
+              },
+            ],
+          },
+        },
+      );
     }
   });
 

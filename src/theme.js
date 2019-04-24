@@ -286,8 +286,8 @@ const sharedStyles = {
 
     '& h2': {
       borderTop: `1px solid ${colors.divider}`,
-      marginTop: 64,
-      paddingTop: 60,
+      marginTop: 60,
+      paddingTop: 65,
       lineHeight: 1.2,
 
       ':first-child': {
@@ -297,12 +297,12 @@ const sharedStyles = {
       },
 
       [media.between('small', 'large')]: {
-        marginTop: 54,
-        paddingTop: 50,
+        marginTop: 50,
+        paddingTop: 55,
       },
       [media.lessThan('small')]: {
-        marginTop: 44,
-        paddingTop: 40,
+        marginTop: 40,
+        paddingTop: 45,
       },
 
       [media.lessThan('large')]: {
@@ -319,9 +319,14 @@ const sharedStyles = {
     },
 
     '& h3': {
-      paddingTop: 45,
+      paddingTop: 65,
+
+      [media.between('small', 'large')]: {
+        paddingTop: 55,
+      },
 
       [media.lessThan('small')]: {
+        paddingTop: 45,
         overflowWrap: 'break-word',
         wordBreak: 'break-word',
       },
@@ -330,10 +335,6 @@ const sharedStyles = {
         fontSize: 25,
         lineHeight: 1.3,
       },
-    },
-
-    '& h2 + h3, & h2 + h3:first-of-type': {
-      paddingTop: 30,
     },
 
     '& h4': {

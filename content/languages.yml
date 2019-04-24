@@ -30,7 +30,7 @@
 - name: Greek
   translated_name: Ελληνικά
   code: el
-  status: 0
+  status: 1
 - name: Spanish
   translated_name: Español
   code: es
@@ -154,7 +154,7 @@
 - name: Ukrainian
   translated_name: Українська
   code: uk
-  status: 1
+  status: 2
 - name: Urdu
   translated_name: اردو
   code: ur

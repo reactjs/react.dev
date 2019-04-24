@@ -341,8 +341,16 @@ const sharedStyles = {
       fontSize: 20,
       color: colors.subtle,
       lineHeight: 1.3,
-      marginTop: 50,
+      paddingTop: 65,
       fontWeight: 400,
+
+      [media.between('small', 'large')]: {
+        paddingTop: 55,
+      },
+
+      [media.lessThan('small')]: {
+        paddingTop: 45,
+      },
     },
 
     '& h4 + p': {

@@ -69,7 +69,7 @@ Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [ga
 
 ### More Flexible Toolchains {#more-flexible-toolchains}
 
-The following toolchains offer more flexiblity and choice. We recommend them to more experienced users:
+The following toolchains offer more flexibility and choice. We recommend them to more experienced users:
 
 - **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
 

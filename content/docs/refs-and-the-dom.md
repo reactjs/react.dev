@@ -189,6 +189,10 @@ function CustomTextInput(props) {
 }
 ```
 
+> Note
+>
+> In this examples a new Ref is created on every render. For function components we recommend using [useRef](/docs/hooks-reference.html#useref) instead since it returns the same ref across multiple renders.
+
 ### Exposing DOM Refs to Parent Components {#exposing-dom-refs-to-parent-components}
 
 In rare cases, you might want to have access to a child's DOM node from a parent component. This is generally not recommended because it breaks component encapsulation, but it can occasionally be useful for triggering focus or measuring the size or position of a child DOM node.

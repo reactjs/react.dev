@@ -17,7 +17,6 @@ import {colors, media, sharedStyles} from 'theme';
 import loadScript from 'utils/loadScript';
 import createOgUrl from 'utils/createOgUrl';
 import {babelURL} from 'site-constants';
-import ReactDOM from 'react-dom';
 import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
@@ -63,7 +62,7 @@ class Home extends Component {
             <div
               css={{
                 paddingTop: 45,
-                paddingBottom: 20,
+                paddingBottom: 10,
 
                 [media.greaterThan('small')]: {
                   paddingTop: 60,
@@ -138,8 +137,11 @@ class Home extends Component {
                   </p>
                   <Flex
                     valign="center"
+                    halign="center"
                     css={{
                       paddingTop: 40,
+                      flexWrap: 'wrap',
+                      justifyContent: 'center',
 
                       [media.greaterThan('xlarge')]: {
                         paddingTop: 65,
@@ -263,6 +265,7 @@ class Home extends Component {
                         key={index}
                         id={snippet.id}
                         code={snippet.code}
+                        containerNodeID={node.frontmatter.domid}
                         loaded={babelLoaded}>
                         <h3 css={headingStyles}>{node.frontmatter.title}</h3>
                         <div dangerouslySetInnerHTML={{__html: node.html}} />
@@ -279,10 +282,16 @@ class Home extends Component {
               background: colors.dark,
               color: colors.white,
               paddingTop: 45,
-              paddingBottom: 45,
+              paddingBottom: 25,
             }}>
             <Container>
-              <Flex valign="center">
+              <Flex
+                valign="center"
+                halign="center"
+                css={{
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                }}>
                 <CtaItem>
                   <ButtonLink to="/docs/getting-started.html" type="primary">
                     Get Started
@@ -309,18 +318,9 @@ Home.propTypes = {
   }).isRequired,
 };
 
-function renderExamplePlaceholder(containerId) {
-  ReactDOM.render(
-    <h4>Loading code example...</h4>,
-    document.getElementById(containerId),
-  );
-}
-
 const CtaItem = ({children, primary = false}) => (
   <div
     css={{
-      width: '50%',
-
       [media.between('small', 'large')]: {
         paddingLeft: 20,
       },
@@ -331,12 +331,21 @@ const CtaItem = ({children, primary = false}) => (
 
       '&:first-child': {
         textAlign: 'right',
-        paddingRight: 15,
+        paddingRight: 7,
+        paddingLeft: 7,
+        [media.lessThan('small')]: {
+          marginBottom: 10,
+        },
       },
 
       '&:nth-child(2)': {
+        paddingRight: 7,
+        paddingLeft: 7,
         [media.greaterThan('small')]: {
           paddingLeft: 15,
+        },
+        [media.lessThan('small')]: {
+          marginBottom: 10,
         },
       },
     }}>
@@ -368,6 +377,7 @@ export const pageQuery = graphql`
           }
           frontmatter {
             title
+            domid
           }
           html
         }

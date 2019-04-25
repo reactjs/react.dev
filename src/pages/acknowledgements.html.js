@@ -54,10 +54,10 @@ const Acknowlegements = ({data, location}) => (
               </li>
               <li>
                 <a href="https://christopheraue.net/">Christopher Aue</a> for
-                letting us use the <a href="http://reactjs.com/">reactjs.com</a>{' '}
-                domain name and the{' '}
-                <a href="https://twitter.com/reactjs">@reactjs</a> username on
-                Twitter.
+                letting us use the{' '}
+                <a href="https://reactjs.com/">reactjs.com</a> domain name and
+                the <a href="https://twitter.com/reactjs">@reactjs</a> username
+                on Twitter.
               </li>
               <li>
                 <a href="https://github.com/ProjectMoon">ProjectMoon</a> for

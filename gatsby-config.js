@@ -56,7 +56,7 @@ module.exports = {
             },
           },
           'gatsby-remark-external-links',
-          'gatsby-remark-autolink-headers',
+          'gatsby-remark-header-custom-ids',
           {
             resolve: 'gatsby-remark-code-repls',
             options: {

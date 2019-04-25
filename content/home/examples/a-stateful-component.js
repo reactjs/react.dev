@@ -27,4 +27,7 @@ class Timer extends React.Component {
   }
 }
 
-ReactDOM.render(<Timer />, mountNode);
+ReactDOM.render(
+  <Timer />,
+  document.getElementById('timer-example')
+);

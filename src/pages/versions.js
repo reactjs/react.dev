@@ -36,7 +36,14 @@ const Versions = ({location}: Props) => (
                 on GitHub
               </a>
               .<br />
-              Documentation for recent releases can also be found below:
+              Documentation for recent releases can also be found below.
+            </p>
+            <p>
+              See our FAQ for information about{' '}
+              <a href="/docs/faq-versioning.html">
+                our versioning policy and commitment to stability
+              </a>
+              .
             </p>
             {versions.map(version => (
               <div key={version.title}>

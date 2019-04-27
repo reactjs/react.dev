@@ -348,11 +348,22 @@ const sharedStyles = {
     },
 
     '& h4': {
+      position: 'relative',
       fontSize: 20,
       color: colors.subtle,
       lineHeight: 1.3,
       marginTop: 50,
       fontWeight: 400,
+
+      '& .hided-anchor': {
+        top: -50,
+        fontSize: 0,
+      },
+      [media.greaterThan('xlarge')]: {
+        '& .hided-anchor': {
+          top: -70,
+        },
+      },
     },
 
     '& h4 + p': {

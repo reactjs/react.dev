@@ -285,7 +285,7 @@ const sharedStyles = {
     },
 
     '& h2': {
-      '&::before': {
+      '::before': {
         content: ' ',
         display: 'block',
         borderBottom: `1px solid ${colors.divider}`,
@@ -296,9 +296,13 @@ const sharedStyles = {
       lineHeight: 1.2,
 
       ':first-child': {
-        borderTop: 0,
-        marginTop: 0,
-        paddingTop: 0,
+        '::before': {
+          content: ' ',
+          display: 'block',
+          borderBottom: 0,
+          marginTop: -80,
+          paddingTop: 40,
+        },
       },
 
       [media.lessThan('large')]: {
@@ -315,11 +319,11 @@ const sharedStyles = {
     },
 
     '& h3': {
-      '&::before': {
+      '::before': {
         content: ' ',
         display: 'block',
-        paddingTop: 60,
-        marginTop: -15,
+        paddingTop: 90,
+        marginTop: -45,
       },
 
       [media.lessThan('small')]: {
@@ -334,15 +338,20 @@ const sharedStyles = {
     },
 
     '& h2 + h3, & h2 + h3:first-of-type': {
-      paddingTop: 30,
-    },
-
-    '& h4': {
-      '&::before': {
+      '::before': {
         content: ' ',
         display: 'block',
         paddingTop: 60,
-        marginTop: -10,
+        marginTop: -30,
+      },
+    },
+
+    '& h4': {
+      '::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 100,
+        marginTop: -50,
       },
 
       fontSize: 20,

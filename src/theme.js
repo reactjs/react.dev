@@ -319,7 +319,7 @@ const sharedStyles = {
         content: ' ',
         display: 'block',
         paddingTop: 60,
-        marginTop: '-15px',
+        marginTop: -15,
       },
 
       [media.lessThan('small')]: {
@@ -342,7 +342,7 @@ const sharedStyles = {
         content: ' ',
         display: 'block',
         paddingTop: 60,
-        marginTop: '-10px',
+        marginTop: -10,
       },
 
       fontSize: 20,

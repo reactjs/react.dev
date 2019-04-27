@@ -300,8 +300,8 @@ const sharedStyles = {
           content: ' ',
           display: 'block',
           borderBottom: 0,
-          marginTop: -80,
           paddingTop: 40,
+          marginTop: -80,
         },
       },
 

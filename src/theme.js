@@ -285,24 +285,20 @@ const sharedStyles = {
     },
 
     '& h2': {
-      borderTop: `1px solid ${colors.divider}`,
-      marginTop: 60,
-      paddingTop: 65,
+      '&::before': {
+        content: ' ',
+        display: 'block',
+        borderBottom: `1px solid ${colors.divider}`,
+        paddingTop: 44,
+        marginBottom: 40,
+      },
+
       lineHeight: 1.2,
 
       ':first-child': {
         borderTop: 0,
         marginTop: 0,
         paddingTop: 0,
-      },
-
-      [media.between('small', 'large')]: {
-        marginTop: 50,
-        paddingTop: 55,
-      },
-      [media.lessThan('small')]: {
-        marginTop: 40,
-        paddingTop: 45,
       },
 
       [media.lessThan('large')]: {
@@ -319,14 +315,14 @@ const sharedStyles = {
     },
 
     '& h3': {
-      paddingTop: 65,
-
-      [media.between('small', 'large')]: {
-        paddingTop: 55,
+      '&::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 60,
+        marginTop: '-15px',
       },
 
       [media.lessThan('small')]: {
-        paddingTop: 45,
         overflowWrap: 'break-word',
         wordBreak: 'break-word',
       },
@@ -337,20 +333,22 @@ const sharedStyles = {
       },
     },
 
+    '& h2 + h3, & h2 + h3:first-of-type': {
+      paddingTop: 30,
+    },
+
     '& h4': {
+      '&::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 60,
+        marginTop: '-10px',
+      },
+
       fontSize: 20,
       color: colors.subtle,
       lineHeight: 1.3,
-      paddingTop: 65,
       fontWeight: 400,
-
-      [media.between('small', 'large')]: {
-        paddingTop: 55,
-      },
-
-      [media.lessThan('small')]: {
-        paddingTop: 45,
-      },
     },
 
     '& h4 + p': {

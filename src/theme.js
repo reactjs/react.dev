@@ -341,8 +341,8 @@ const sharedStyles = {
       '::before': {
         content: ' ',
         display: 'block',
-        paddingTop: 90,
-        marginTop: -60,
+        paddingTop: 60,
+        marginTop: -30,
       },
     },
 

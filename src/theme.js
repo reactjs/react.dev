@@ -350,8 +350,8 @@ const sharedStyles = {
       '::before': {
         content: ' ',
         display: 'block',
-        paddingTop: 85,
-        marginTop: -60,
+        paddingTop: 100,
+        marginTop: -50,
       },
 
       fontSize: 20,
@@ -438,6 +438,15 @@ const sharedStyles = {
 
     '& .gatsby-highlight + blockquote': {
       marginTop: 40,
+    },
+
+    '& .gatsby-highlight + h4': {
+      '::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 85,
+        marginTop: -60,
+      },
     },
   },
 };

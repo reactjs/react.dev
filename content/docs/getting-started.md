@@ -99,7 +99,7 @@ Sometimes people find third-party books and video courses more helpful than the 
 
 ### Advanced Concepts {#advanced-concepts}
 
-Once you're comfortable with the [main concepts](#main-concepts) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+Once you're comfortable with the [main concepts](/docs/hello-world.html) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
 
 ### API Reference {#api-reference}
 

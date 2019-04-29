@@ -102,7 +102,7 @@ Note that React may still need to render that specific component again before ba
 ### `useEffect` {#useeffect}
 
 ```js
-useEffect(didUpdate);
+useEffect(didUpdate, [deps]);
 ```
 
 Accepts a function that contains imperative, possibly effectful code.

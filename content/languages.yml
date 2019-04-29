@@ -23,6 +23,10 @@
   translated_name: বাংলা
   code: bn
   status: 0
+- name: Catalan
+  translated_name: Català
+  code: ca
+  status: 0
 - name: German
   translated_name: Deutsch
   code: de
@@ -99,6 +103,10 @@
   translated_name: മലയാളം
   code: ml
   status: 0
+- name: Mongolian
+  translated_name: Монгол хэл
+  code: mn
+  status: 0
 - name: Nepali
   translated_name: नेपाली
   code: ne
@@ -110,7 +118,7 @@
 - name: Polish
   translated_name: Polski
   code: pl
-  status: 1
+  status: 2
 - name: Portuguese (Brazil)
   translated_name: Português do Brasil
   code: pt-br

@@ -66,3 +66,9 @@ You can think of the shallowRenderer as a "place" to render the component you're
 After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getRenderOutput()` to get the shallowly rendered output.
 
 You can then begin to assert facts about the output.
+
+### `shallowRenderer.getMountedInstance()` {#shallowrenderergetmountedinstance}
+
+After `shallowRenderer.render()` has been called, you can use `shallowRenderer.getMountedInstance()` to get the component instance.
+
+You can then call exposed component and lifecycle methods.

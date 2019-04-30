@@ -38,6 +38,9 @@ const SIZES = {
   // Sidebar/nav related tweakpoints
   largerSidebar: {min: 1100, max: 1339},
   sidebarFixed: {min: 2000, max: Infinity},
+
+  // Topbar related tweakpoints
+  expandedSearch: {min: 1180, max: Infinity},
 };
 
 type Size = $Keys<typeof SIZES>;
@@ -85,6 +88,11 @@ const fonts = {
     fontSize: 60,
     lineHeight: '65px',
     fontWeight: 700,
+
+    [media.lessThan('small')]: {
+      overflowWrap: 'break-word',
+      wordBreak: 'break-word',
+    },
 
     [media.lessThan('medium')]: {
       fontSize: 40,
@@ -277,15 +285,24 @@ const sharedStyles = {
     },
 
     '& h2': {
-      borderTop: `1px solid ${colors.divider}`,
-      marginTop: 44,
-      paddingTop: 40,
+      '::before': {
+        content: ' ',
+        display: 'block',
+        borderBottom: `1px solid ${colors.divider}`,
+        paddingTop: 44,
+        marginBottom: 40,
+      },
+
       lineHeight: 1.2,
 
       ':first-child': {
-        borderTop: 0,
-        marginTop: 0,
-        paddingTop: 0,
+        '::before': {
+          content: ' ',
+          display: 'block',
+          borderBottom: 0,
+          paddingTop: 40,
+          marginTop: -80,
+        },
       },
 
       [media.lessThan('large')]: {
@@ -302,7 +319,12 @@ const sharedStyles = {
     },
 
     '& h3': {
-      paddingTop: 45,
+      '::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 90,
+        marginTop: -45,
+      },
 
       [media.lessThan('small')]: {
         overflowWrap: 'break-word',
@@ -316,14 +338,25 @@ const sharedStyles = {
     },
 
     '& h2 + h3, & h2 + h3:first-of-type': {
-      paddingTop: 30,
+      '::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 60,
+        marginTop: -30,
+      },
     },
 
     '& h4': {
+      '::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 100,
+        marginTop: -50,
+      },
+
       fontSize: 20,
       color: colors.subtle,
       lineHeight: 1.3,
-      marginTop: 50,
       fontWeight: 400,
     },
 
@@ -397,10 +430,23 @@ const sharedStyles = {
           marginTop: 0,
         },
       },
+
+      '& .gatsby-highlight': {
+        marginLeft: 0,
+      },
     },
 
     '& .gatsby-highlight + blockquote': {
       marginTop: 40,
+    },
+
+    '& .gatsby-highlight + h4': {
+      '::before': {
+        content: ' ',
+        display: 'block',
+        paddingTop: 85,
+        marginTop: -60,
+      },
     },
   },
 };

@@ -15,7 +15,7 @@ Now that Create React App 2.0 is out of beta, let's see what's new and how you c
 >
 >Don't feel pressured to upgrade anything. If you're satisfied with the current feature set, its performance, and reliability, you can keep using the version you're currently at! It might also be a good idea to let the 2.0 release stabilize a little bit before switching to it in production.
 
-## What's New
+## What's New {#whats-new}
 
 Here's a short summary of what's new in this release:
 
@@ -25,7 +25,7 @@ Here's a short summary of what's new in this release:
 * 🃏 We updated to [Jest 23](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing.html), which includes an [interactive mode](https://jestjs.io/blog/2018/05/29/jest-23-blazing-fast-delightful-testing#interactive-snapshot-mode) for reviewing snapshots.
 * 💄 We added [PostCSS](https://preset-env.cssdb.org/features#stage-3) so you can use new CSS features in old browsers.
 * 💎 You can use [Apollo](https://github.com/leoasis/graphql-tag.macro#usage), [Relay Modern](https://github.com/facebook/relay/pull/2171#issuecomment-411459604), [MDX](https://github.com/facebook/create-react-app/issues/5149#issuecomment-425396995), and other third-party [Babel Macros](https://babeljs.io/blog/2017/09/11/zero-config-with-babel-macros) transforms.
-* 🌠 You can now [import an SVG as a React component](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#adding-svgs), and use it in JSX.
+* 🌠 You can now [import an SVG as a React component](https://facebook.github.io/create-react-app/docs/adding-images-fonts-and-files#adding-svgs), and use it in JSX.
 * 🐈 You can try the experimental [Yarn Plug'n'Play mode](https://github.com/yarnpkg/rfcs/pull/101) that removes `node_modules`.
 * 🕸 You can now [plug your own proxy implementation](https://github.com/facebook/create-react-app/blob/master/packages/react-scripts/template/README.md#configuring-the-proxy-manually) in development to match your backend API.
 * 🚀 You can now use [packages written for latest Node versions](https://github.com/sindresorhus/ama/issues/446#issuecomment-281014491) without breaking the build.
@@ -34,13 +34,13 @@ Here's a short summary of what's new in this release:
 
 **All of these features work out of the box** -- to enable them, follow the below instructions.
 
-## Starting a Project with Create React App 2.0
+## Starting a Project with Create React App 2.0 {#starting-a-project-with-create-react-app-20}
 
 You don't need to update anything special. Starting from today, when you run `create-react-app` it will use the 2.0 version of the template by default. Have fun!
 
 If you want to **use the old 1.x template** for some reason, you can do that by passing `--scripts-version=react-scripts@1.x` as an argument to `create-react-app`.
 
-## Updating a Project to Create React App 2.0
+## Updating a Project to Create React App 2.0 {#updating-a-project-to-create-react-app-20}
 
 Upgrading a non-ejected project to Create React App 2.0 should usually be straightforward. Open `package.json` in the root of your project and find `react-scripts` there.
 
@@ -67,7 +67,7 @@ Here are a few more tips to get you started.
 >
 >Due to a possible bug in npm, you might see warnings about unsatisfied peer dependencies. You should be able to ignore them. As far as we're aware, this issue isn't present with Yarn.
 
-## Breaking Changes
+## Breaking Changes {#breaking-changes}
 
 Here's a short list of breaking changes in this release:
 
@@ -81,7 +81,7 @@ Here's a short list of breaking changes in this release:
 
 If either of these points affects you, [2.0.3 release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3) contain more detailed instructions.
 
-## Learn More
+## Learn More {#learn-more}
 
 You can find the full changelog in the [release notes](https://github.com/facebook/create-react-app/releases/tag/v2.0.3). This was a large release, and we may have missed something. Please report any problems to our [issue tracker](https://github.com/facebook/create-react-app/issues/new) and we'll try to help.
 
@@ -89,6 +89,6 @@ You can find the full changelog in the [release notes](https://github.com/facebo
 >
 >If you've been using 2.x alpha versions, we provide [separate migration instructions](https://gist.github.com/gaearon/8650d1c70e436e5eff01f396dffc4114) for them.
 
-## Thanks
+## Thanks {#thanks}
 
 This release wouldn't be possible without our wonderful community of contributors. We'd like to thank [Andreas Cederström](https://github.com/andriijas), [Clement Hoang](https://github.com/clemmy), [Brian Ng](https://github.com/existentialism), [Kent C. Dodds](https://github.com/kentcdodds), [Ade Viankakrisna Fadlil](https://github.com/viankakrisna), [Andrey Sitnik](https://github.com/ai), [Ro Savage](https://github.com/ro-savage), [Fabiano Brito](https://github.com/Fabianopb), [Ian Sutherland](https://github.com/iansu), [Pete Nykänen](https://github.com/petetnt), [Jeffrey Posnick](https://github.com/jeffposnick), [Jack Zhao](https://github.com/bugzpodder), [Tobias Koppers](https://github.com/sokra), [Henry Zhu](https://github.com/hzoo), [Maël Nison](https://github.com/arcanis), [XiaoYan Li](https://github.com/lixiaoyan), [Marko Trebizan](https://github.com/themre), [Marek Suscak](https://github.com/mareksuscak), [Mikhail Osher](https://github.com/miraage), and many others who provided feedback and testing for this release.

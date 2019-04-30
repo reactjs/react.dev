@@ -6,7 +6,7 @@ import CodeEditor from '../CodeEditor/CodeEditor';
 
 class CodeExample extends Component {
   render() {
-    const {children, code, id, loaded} = this.props;
+    const {children, code, id, containerNodeID, loaded} = this.props;
     return (
       <div
         id={id}
@@ -58,7 +58,11 @@ class CodeExample extends Component {
             {children}
           </div>
         )}
-        {loaded ? <CodeEditor code={code} /> : <h4>Loading code example...</h4>}
+        {loaded ? (
+          <CodeEditor code={code} containerNodeID={containerNodeID} />
+        ) : (
+          <h4>Loading code example...</h4>
+        )}
       </div>
     );
   }

@@ -5,7 +5,7 @@ author: [vjeux]
 
 The highlight of this week is that an interaction-heavy app has been ported to React. React components are solving issues they had with nested views.
 
-## Moving From Backbone To React
+## Moving From Backbone To React {#moving-from-backbone-to-react}
 
 [Clay Allsopp](https://twitter.com/clayallsopp) successfully ported [Propeller](http://usepropeller.com/blog/posts/from-backbone-to-react/), a fairly big, interaction-heavy JavaScript app, to React.
 
@@ -17,7 +17,7 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 >
 > [Read the full post...](http://usepropeller.com/blog/posts/from-backbone-to-react/)
 
-## Grunt Task for JSX
+## Grunt Task for JSX {#grunt-task-for-jsx}
 
 [Eric Clemmons](https://ericclemmons.github.io/) wrote a task for [Grunt](http://gruntjs.com/) that applies the JSX transformation to your JavaScript files. It also works with [Browserify](http://browserify.org/) if you want all your files to be concatenated and minified together.
 
@@ -45,11 +45,11 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 >
 > [Check out the project ...](https://github.com/ericclemmons/grunt-react)
 
-## Backbone/Handlebars Nested Views
+## Backbone/Handlebars Nested Views {#backbonehandlebars-nested-views}
 
 [Joel Burget](http://joelburget.com/) wrote a blog post talking about the way we would write React-like components in Backbone and Handlebars.
 
-> The problem here is that we're trying to maniplate a tree, but there's a textual layer we have to go through. Our views are represented as a tree - the subviews are children of CommentCollectionView - and they end up as part of a tree in the DOM. But there's a Handlebars layer in the middle (which deals in flat strings), so the hierarchy must be destructed and rebuilt when we render.
+> The problem here is that we're trying to manipulate a tree, but there's a textual layer we have to go through. Our views are represented as a tree - the subviews are children of CommentCollectionView - and they end up as part of a tree in the DOM. But there's a Handlebars layer in the middle (which deals in flat strings), so the hierarchy must be destructed and rebuilt when we render.
 >
 > What does it take to render a collection view? In the Backbone/Handlebars view of the world you have to render the template (with stubs), render each subview which replaces a stub, and keep a reference to each subview (or anything within the view that could change in the future).
 >
@@ -57,13 +57,13 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 >
 > [Read the full post...](http://joelburget.com/react/)
 
-## JSRomandie Meetup
+## JSRomandie Meetup {#jsromandie-meetup}
 
 [Renault John Lecoultre](https://twitter.com/renajohn/) from [BugBuster](http://www.bugbuster.com) did a React introduction talk at a JS meetup called [JS Romandie](https://twitter.com/jsromandie) last week.
 
 <script async class="speakerdeck-embed" data-id="888a9d50c01b01300df36658d0894ac1" data-ratio="1.33333333333333" src="//speakerdeck.com/assets/embed.js"></script>
 
-## CoffeeScript integration
+## CoffeeScript integration {#coffeescript-integration}
 
 [Vjeux](http://blog.vjeux.com/) used the fact that JSX is just a syntactic sugar on-top of regular JS to rewrite the React front-page examples in CoffeeScript.
 
@@ -81,7 +81,7 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 >
 > [Read the full post...](http://blog.vjeux.com/2013/javascript/react-coffeescript.html)
 
-## Tutorial in Plain JavaScript
+## Tutorial in Plain JavaScript {#tutorial-in-plain-javascript}
 
 We've seen a lot of people comparing React with various frameworks. [Ricardo Tomasi](http://ricardo.cc/) decided to re-implement the tutorial without any framework, just plain JavaScript.
 

@@ -11,10 +11,10 @@ There are many example projects created by the React community. Feel free to add
 
 * **[Calculator](https://github.com/ahfarmer/calculator)** Implementation of the iOS calculator built in React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** Simple React app for searching emoji
-* **[Github Battle App](https://github.com/ReactTraining/react-fundamentals/tree/hosting)** Battle two Github users and see the most popular Github projects for any language.
+* **[Github Battle App](https://tm.dev/react-course-project/)** Battle two Github users and see the most popular Github projects for any language.
 * **[React Powered Hacker News Client](https://github.com/insin/react-hn)** A React & react-router-powered implementation of Hacker News using its Firebase API.
 * **[Pokedex](https://github.com/alik0211/pokedex)** The list of Pokémon with live search
-* **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Simple ecommerce cart application built using React 
+* **[Shopping Cart](https://github.com/jeffersonRibeiro/react-shopping-cart)** Simple ecommerce cart application built using React
 * **[Progressive Web Tetris](https://github.com/skidding/flatris)** Besides a beautiful, mobile-friendly implementation of Tetris, this project is a playground for integrating and experimenting with web technologies.
 * **[Product Comparison Page](https://github.com/Rhymond/product-compare-react)** Simple Product Compare page built in React
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL.

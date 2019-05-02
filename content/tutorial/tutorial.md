@@ -739,8 +739,8 @@ We can now change the Board's `handleClick` function to return early by ignoring
 ```javascript{3-5}
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
+    if (squares[i] || calculateWinner(squares)) {
+      return; 
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
     this.setState({
@@ -846,7 +846,7 @@ The Board component now looks like this:
 class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -963,7 +963,7 @@ Finally, we need to move the `handleClick` method from the Board component to th
     const history = this.state.history;
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -1007,10 +1007,10 @@ Let's `map` over the `history` in the Game's `render` method:
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+    const moves = history.map((_, move) => {
+      const desc = (0 === move) ?
+        'Go to game start' :
+        'Go to move #' + move;
       return (
         <li>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -1094,10 +1094,10 @@ In the tic-tac-toe game's history, each past move has a unique ID associated wit
 In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
 
 ```js{6}
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+    const moves = history.map((_, move) => {
+      const desc = (0 === move) ?
+        'Go to game start' :
+        'Go to move #' + move;
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -1156,7 +1156,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';

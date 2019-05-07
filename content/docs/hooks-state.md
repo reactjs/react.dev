@@ -187,6 +187,15 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
+>Note
+>
+>You might be wondering: why is `setCount` not named `this.setState` instead?
+>
+>In a function, 
+>we already have setCount and count as variables, 
+>Prefer functional updates [Functional updates](/docs/hooks-reference.html#functional-updates).
+
+
 ## Recap {#recap}
 
 Let's now **recap what we learned line by line** and check our understanding.

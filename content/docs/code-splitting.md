@@ -52,7 +52,7 @@ If you aren't, you'll need to setup bundling yourself. For example, see the
 [Getting Started](https://webpack.js.org/guides/getting-started/) guides on the
 Webpack docs.
 
-## Code Splitting {#code-splitting}
+## Code-Splitting {#code-splitting}
 
 Bundling is great, but as your app grows, your bundle will grow too. Especially
 if you are including large third-party libraries. You need to keep an eye on
@@ -106,7 +106,7 @@ and you can [start using it](https://facebook.github.io/create-react-app/docs/co
 out of the box in [Next.js](https://github.com/zeit/next.js/#dynamic-import).
 
 If you're setting up Webpack yourself, you'll probably want to read Webpack's
-[guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
+[guide on code-splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
 When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
 parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
@@ -212,9 +212,9 @@ const MyComponent = () => (
 );
 ```
 
-## Route-based code splitting {#route-based-code-splitting}
+## Route-based code-splitting {#route-based-code-splitting}
 
-Deciding where in your app to introduce code splitting can be a bit tricky. You
+Deciding where in your app to introduce code-splitting can be a bit tricky. You
 want to make sure you choose places that will split bundles evenly, but won't
 disrupt the user experience.
 
@@ -223,7 +223,7 @@ page transitions taking some amount of time to load. You also tend to be
 re-rendering the entire page at once so your users are unlikely to be
 interacting with other elements on the page at the same time.
 
-Here's an example of how to setup route-based code splitting into your app using
+Here's an example of how to setup route-based code-splitting into your app using
 libraries like [React Router](https://reacttraining.com/react-router/) with `React.lazy`.
 
 ```js

@@ -106,7 +106,7 @@ class Cat extends React.Component {
   render() {
     const mouse = this.props.mouse;
     return (
-      <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+      <img src="/cat.jpg" alt="This is a cat" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
     );
   }
 }
@@ -162,7 +162,7 @@ class Cat extends React.Component {
   render() {
     const mouse = this.props.mouse;
     return (
-      <img src="/cat.jpg" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
+      <img src="/cat.jpg" alt="This is a cat" style={{ position: 'absolute', left: mouse.x, top: mouse.y }} />
     );
   }
 }

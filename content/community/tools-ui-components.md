@@ -25,7 +25,7 @@ permalink: community/ui-components.html
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
-* **[react-bootstrap](https://github.com/stevoland/react-bootstrap):** Bootstrap 3 components built with React.
+* **[react-bootstrap](https://github.com/stevoland/react-bootstrap):** Bootstrap 3 and 4 components built with React.
 * **[react-bootstrap-dialog](https://github.com/akiroom/react-bootstrap-dialog):** React Dialog component for react-bootstrap, instead of `window.alert` or `window.confirm`
 * **[react-bootstrap-table2](https://github.com/react-bootstrap-table/react-bootstrap-table2):** It's a react table for Bootstrap.
 * **[react-component](https://github.com/react-component/):** A collection of react components maintained by Alibaba/Alipay employee.

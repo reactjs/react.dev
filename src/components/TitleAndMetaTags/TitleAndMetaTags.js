@@ -28,6 +28,7 @@ const TitleAndMetaTags = ({title, ogDescription, ogUrl}: Props) => {
         content={ogDescription || defaultDescription}
       />
       <meta property="fb:app_id" content="623268441017527" />
+      {ogUrl && <link rel="canonical" href={ogUrl} />}
     </Helmet>
   );
 };

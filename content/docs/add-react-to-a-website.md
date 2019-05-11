@@ -161,6 +161,15 @@ The quickest way to try JSX in your project is to add this `<script>` tag to you
 
 Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/master/static/html/single-file-example.html) that you can download and play with.
 
+>Note
+>This approach will not work if you inlcude an external script file due to CORS policy.
+>For Example : 
+```html
+<script src="someScript.js" type="text/babel"></script>
+```
+>The above code will generate an error.
+
+
 This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
 
 ### Add JSX to a Project {#add-jsx-to-a-project}

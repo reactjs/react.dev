@@ -292,14 +292,15 @@ class Calculator extends React.Component {
           temperature={fahrenheit}
           onTemperatureChange={this.handleFahrenheitChange} />
         <BoilingVerdict
-          celsius={parseFloat(celsius)} />
+          scale={this.state.scale}
+          temperature={this.state.temperature} />
       </div>
     );
   }
 }
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/WZpxpz?editors=0010)
+[**Try it on CodePen**](https://codepen.io/kambleaa007/pen/mYryPq?editors=0011)
 
 Now, no matter which input you edit, `this.state.temperature` and `this.state.scale` in the `Calculator` get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.
 

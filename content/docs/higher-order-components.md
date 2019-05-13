@@ -181,7 +181,7 @@ function logProps(InputComponent) {
     console.log('Current props: ', this.props);
     console.log('Next props: ', nextProps);
   };
-  // The fact that we're returning the original input is a hint that it has
+  // The fact that we're not returning the original input is a hint that it has
   // been mutated.
   return InputComponent;
 }

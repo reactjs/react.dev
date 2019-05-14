@@ -439,7 +439,7 @@ Both `useState` and `useReducer` Hooks [bail out of updates](/docs/hooks-referen
 Normally, you shouldn't mutate local state in React. However, as an escape hatch, you can use an incrementing counter to force a re-render even if the state has not changed:
 
 ```js
-  const [ignored, forceUpdate] = useReducer(x => x + 1, 0);
+  const forceUpdate = useReducer(x => x + 1, 0)[1];
 
   function handleClick() {
     forceUpdate();

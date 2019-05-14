@@ -8,7 +8,7 @@ category: Add-Ons
 
 > Note:
 >
-> `LinkedStateMixin` is deprecated as of React v15. The recommendation is to explicitly [set the value and change handler](https://reactjs.org/docs/forms.html), instead of using `LinkedStateMixin`.
+> `LinkedStateMixin` is deprecated as of React v15. The recommendation is to explicitly [set the value and change handler](https://reactjs.org/docs/lifting-state-up.html#lessons-learned), instead of using `LinkedStateMixin`.
 
 **Importing**
 

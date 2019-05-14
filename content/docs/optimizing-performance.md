@@ -71,35 +71,28 @@ Remember that you only need to do this for production builds. You shouldn't pass
 
 ### Browserify {#browserify}
 
-For the most efficient Browserify production build, install a few plugins:
+For the most efficient Browserify production build, install a couple of plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify terser uglifyify 
+npm install --save-dev envify terser
 
 # If you use Yarn
-yarn add --dev envify terser uglifyify 
+yarn add --dev envify terser
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
 
 * The [`envify`](https://github.com/hughsk/envify) transform ensures the right build environment is set. Make it global (`-g`).
-* The [`uglifyify`](https://github.com/hughsk/uglifyify) transform removes development imports. Make it global too (`-g`).
-* Finally, the resulting bundle is piped to [`terser`](https://github.com/terser-js/terser) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
+* [`terser`](https://github.com/terser-js/terser) minifies resulting bundle by removing developement imports, mangling and compressing.
 
 For example:
 
 ```
 browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
-  -g uglifyify \
   | terser --compress --mangle > ./bundle.js
 ```
-
->**Note:**
->
->Package `terser` substitutes `uglify-js` for ES6+.<br>
->It retains API and CLI compatibility with `uglify-js@3`.
 
 Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
 

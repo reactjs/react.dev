@@ -92,7 +92,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Hello, world!</h1>
-        <h2>It is {this.props.date.toLocaleTimeString()}.</h2>
+        <h2>It is {this.props.date.toLocaleTimeString()}.</h2> {/* Date object converted to time string */}
       </div>
     );
   }
@@ -117,7 +117,7 @@ class Clock extends React.Component {
     return (
       <div>
         <h1>Hello, world!</h1>
-        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+        <h2>It is {this.state.date.toLocaleTimeString()}.</h2>    {/* Date object converted to time string */}
       </div>
     );
   }

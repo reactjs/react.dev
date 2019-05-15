@@ -27,7 +27,7 @@ const Versions = ({location}: Props) => (
         <div css={sharedStyles.articleLayout.content}>
           <Header>React Versions</Header>
           <TitleAndMetaTags
-            canonicalUrl={`${urlRoot}/versions`}
+            canonicalUrl={`${urlRoot}/versions/`}
             title="React - Versions"
           />
           <div css={sharedStyles.markdown}>

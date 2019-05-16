@@ -54,8 +54,11 @@ MyComponent.propTypes = {
   // (or fragment) containing these types.
   optionalNode: PropTypes.node,
 
-  // A React element.
+  // A React element (i.e: <ReactElement />).
   optionalElement: PropTypes.element,
+  
+  // A React element type (i.e: ReactElement)
+  optionalElementType: PropTypes.elementType,
 
   // You can also declare that a prop is an instance of a class. This uses
   // JS's instanceof operator.

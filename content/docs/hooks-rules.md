@@ -46,7 +46,7 @@ npm install eslint-plugin-react-hooks --save-dev
 }
 ```
 
-In the future, we intend to include this plugin by default into Create React App and similar toolkits.
+Starting with [Create React App 3.0.0](https://github.com/facebook/create-react-app/blob/master/CHANGELOG.md#300-april-22-2019), those rules are enforced. Any rule violation will cause your build to fail.
 
 **You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
 

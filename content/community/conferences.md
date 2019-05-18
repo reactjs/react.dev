@@ -57,6 +57,11 @@ September 13th, 2019. New York, USA
 
 [Website](https://reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
 
+### React Live 2019 {#react-live-2019}
+September 13th, 2019. Amsterdam, The Netherlands
+
+[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
+
 ### React Boston 2019 {#react-boston-2019}
 September 21-22, 2019 in Boston, Massachusetts USA
 

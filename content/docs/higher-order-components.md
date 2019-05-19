@@ -167,6 +167,51 @@ Note that a HOC doesn't modify the input component, nor does it use inheritance 
 
 And that's it! The wrapped component receives all the props of the container, along with a new prop, `data`, which it uses to render its output. The HOC isn't concerned with how or why the data is used, and the wrapped component isn't concerned with where the data came from.
 
+Now when we use `withSubscription`, we can adjust the original wrapped components so they depend on the functionality of the HOC:
+
+```js
+class CommentList extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  // Remove any functionality implemented by the HOC
+
+  render() {
+  
+    // We now receive the comments as data from the parent (HOC)
+    const comments = this.props.data;
+    
+    return (
+      <div>
+        {comments.map((comment) => (
+          <Comment comment={comment} key={comment.id} />
+        ))}
+      </div>
+    );
+  }
+}
+```
+
+
+```js
+class BlogPost extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  // Remove any functionality implemented by the HOC
+
+  render() {
+  
+    // We now receive the blogPost as data from the parent (HOC)
+    const blogPost = this.props.data;
+    
+    return <TextBlock text={blogPost} />;
+  }
+}
+```
+
 Because `withSubscription` is a normal function, you can add as many or as few arguments as you like. For example, you may want to make the name of the `data` prop configurable, to further isolate the HOC from the wrapped component. Or you could accept an argument that configures `shouldComponentUpdate`, or one that configures the data source. These are all possible because the HOC has full control over how the component is defined.
 
 Like components, the contract between `withSubscription` and the wrapped component is entirely props-based. This makes it easy to swap one HOC for a different one, as long as they provide the same props to the wrapped component. This may be useful if you change data-fetching libraries, for example.

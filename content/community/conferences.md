@@ -22,6 +22,11 @@ May 25, 2019 in Yerevan, Armenia
 
 [Website](https://reactconf.am/) - [Twitter](https://twitter.com/ReactConfAM) - [Facebook](https://www.facebook.com/reactconf.am/) - [YouTube](https://www.youtube.com/c/JavaScriptConferenceArmenia) - [CFP](http://bit.ly/speakReact)
 
+### ReactNext 2019 {#react-next-2019}
+June 11, 2019. Tel Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
+
 ### React Norway 2019 {#react-norway-2019}
 June 12, 2019. Larvik, Norway
 

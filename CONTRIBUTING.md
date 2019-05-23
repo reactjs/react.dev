@@ -71,11 +71,8 @@ Instead, **do** write this:
 
 ```js
 class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {value: ''};
-  }
+  this.state = {value: ''};
+  
   handleChange(e) {
     this.setState({value: e.target.value});
   }

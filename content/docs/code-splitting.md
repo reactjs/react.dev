@@ -248,3 +248,13 @@ export { MyComponent as default } from "./ManyComponents.js";
 import React, { lazy } from 'react';
 const MyComponent = lazy(() => import("./MyComponent.js"));
 ```
+
+Or you can chain `import` call and map `default` export
+
+```js
+// MyApp.js
+import React, { lazy } from 'react';
+const MyComponent = lazy(
+  () => import('./MyComponent').then(module => ({ default: module.MyComponent }))
+);
+```

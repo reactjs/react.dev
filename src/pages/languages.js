@@ -140,7 +140,11 @@ const Language = ({code, name, status, translatedName}) => {
         }}>
         {status === 0 && translatedName}
         {status > 0 && (
-          <a href={`https://${prefix}reactjs.org/`} rel="nofollow">
+          <a
+            href={`https://${prefix}reactjs.org/`}
+            rel="nofollow"
+            lang={code}
+            hrefLang={code}>
             {translatedName}
           </a>
         )}
@@ -152,10 +156,7 @@ const Language = ({code, name, status, translatedName}) => {
           }}
           href={`https://github.com/reactjs/${prefix}reactjs.org/`}
           target="_blank"
-          rel="noopener"
-          lang={prefix}
-          hreflang={prefix}
->
+          rel="noopener">
           Contribute
         </a>
       </div>

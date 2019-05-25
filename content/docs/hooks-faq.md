@@ -656,7 +656,7 @@ Note that in the above example we **need** to keep the function in the dependenc
 
 ### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-Sometimes, your effect may be using reading state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
+Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
 
 ```js{6,9}
 function Counter() {

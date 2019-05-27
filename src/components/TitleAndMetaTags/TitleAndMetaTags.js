@@ -21,12 +21,12 @@ type Props = {
 
 // only provide alternate links to pages in languages where 95-100% of core content has been translated
 // which is determined by status enum of 2
-const languagesToLinkTo = languages.filter(language => {
+const completeLanguages = languages.filter(language => {
   return language.status == 2;
 });
 
 const alternatePages = canonicalUrl => {
-  const pages = languagesToLinkTo.map(language => (
+  return completeLanguages.map(language => (
     <link
       rel="alternate"
       hreflang={language.code === 'en' ? 'x-default' : language.code}
@@ -38,7 +38,6 @@ const alternatePages = canonicalUrl => {
       )}
     />
   ));
-  return pages;
 };
 
 const TitleAndMetaTags = ({title, ogDescription, canonicalUrl}: Props) => {

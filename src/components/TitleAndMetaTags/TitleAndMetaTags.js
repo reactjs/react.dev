@@ -28,8 +28,9 @@ const completeLanguages = languages.filter(language => {
 const alternatePages = canonicalUrl => {
   return completeLanguages.map(language => (
     <link
+      key={('alt-', language.code)}
       rel="alternate"
-      hreflang={language.code === 'en' ? 'x-default' : language.code}
+      hreflang={language.code}
       href={canonicalUrl.replace(
         urlRoot,
         `https://${
@@ -38,6 +39,10 @@ const alternatePages = canonicalUrl => {
       )}
     />
   ));
+};
+
+const defaultPage = canonicalUrl => {
+  return canonicalUrl.replace(urlRoot, 'https://reactjs.org');
 };
 
 const TitleAndMetaTags = ({title, ogDescription, canonicalUrl}: Props) => {
@@ -53,6 +58,13 @@ const TitleAndMetaTags = ({title, ogDescription, canonicalUrl}: Props) => {
       />
       <meta property="fb:app_id" content="623268441017527" />
       {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+      {canonicalUrl && (
+        <link
+          rel="alternate"
+          href={defaultPage(canonicalUrl)}
+          hreflang="x-default"
+        />
+      )}
       {canonicalUrl && alternatePages(canonicalUrl)}
     </Helmet>
   );

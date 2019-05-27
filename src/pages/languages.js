@@ -106,6 +106,7 @@ const LanguagesGrid = ({languages}) => (
 
 const Language = ({code, name, status, translatedName}) => {
   const prefix = code === 'en' ? '' : `${code}.`;
+  const hrefLang = code === 'en' ? 'x-default' : code;
 
   return (
     <li
@@ -144,7 +145,7 @@ const Language = ({code, name, status, translatedName}) => {
             href={`https://${prefix}reactjs.org/`}
             rel="nofollow"
             lang={code}
-            hrefLang={code}>
+            hrefLang={hrefLang}>
             {translatedName}
           </a>
         )}

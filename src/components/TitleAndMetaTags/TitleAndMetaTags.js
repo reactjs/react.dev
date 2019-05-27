@@ -29,7 +29,7 @@ const alternatePages = canonicalUrl => {
   const pages = languagesToLinkTo.map(language => (
     <link
       rel="alternate"
-      hreflang={language.code}
+      hreflang={language.code === 'en' ? 'x-default' : language.code}
       href={canonicalUrl.replace(
         urlRoot,
         `https://${

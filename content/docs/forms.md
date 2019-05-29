@@ -182,13 +182,58 @@ class FlavorForm extends React.Component {
 
 Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 
-> Note
->
-> You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
->
->```js
-><select multiple={true} value={['B', 'C']}>
->```
+### Selecting multiple options {#selecting-multiple-options}
+
+You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
+
+```javascript{4,10-15,18,27-30}
+class FlavorForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { values: ['coconut'] };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    const options = Array.from(event.target);
+    const selectedOptions = options.filter(option => option.selected);
+    const selectedValues = selectedOptions.map(option => option.value);
+    this.setState({ values: selectedValues });
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite flavors are: ' + this.state.values);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite flavor:
+          <select
+            multiple={true}
+            value={this.state.values}
+            onChange={this.handleChange}
+          >
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+```
+
+[**Try it on CodePen**](https://codepen.io/anon/pen/pmxJRd?editors=0011)
+
+Notice that [Array.from()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from) is used to transform `event.target` into an array, so we can use the [filter()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter) and [map()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) functions to obtain the values from the selected options.
 
 ## The file input Tag {#the-file-input-tag}
 

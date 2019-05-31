@@ -12,5 +12,4 @@ permalink: community/articles.html
 - [You're missing the point of React](https://medium.com/@dan_abramov/youre-missing-the-point-of-react-a20e34a51e1a) - Dan Abramov's article about the best parts of React.
 - [Timeline for Learning React](https://daveceddia.com/timeline-for-learning-react/) - Dave Ceddia's recommended timeline for learning React and the React ecosystem.
 - [Simple React Development in 2017](https://hackernoon.com/simple-react-development-in-2017-113bd563691f) - Joshua Comeau's guide to showcase how easy it can be to start modern React development.
-- [React FAQ](https://reactfaq.site/) - An external site with articles that try to answer frequently asked questions about React.
 - [Visual Guide to State in React](https://daveceddia.com/visual-guide-to-state-in-react/) - Dave Ceddia's visual guide to React state.

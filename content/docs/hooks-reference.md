@@ -288,7 +288,7 @@ function reducer(state, action) {
 }
 
 function Counter({initialCount}) {
-  const [state, dispatch] = useReducer(reducer, {count: initialCount}, init);
+  const [state, dispatch] = useReducer(reducer, initialCount, init);
   return (
     <>
       Count: {state.count}

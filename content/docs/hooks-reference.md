@@ -203,10 +203,10 @@ The following Hooks are either variants of the basic ones from the previous sect
 ### `useReducer` {#usereducer}
 
 ```js
-const [state, dispatch] = useReducer(reducer, initialArg, init);
+const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
-An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState`, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
+An alternative to [`useState`](#usestate). Accepts a reducer of type `(state, action) => newState` and an initial state, and returns the current state paired with a `dispatch` method. (If you're familiar with Redux, you already know how this works.)
 
 `useReducer` is usually preferable to `useState` when you have complex state logic that involves multiple sub-values or when the next state depends on the previous one. `useReducer` also lets you optimize performance for components that trigger deep updates because [you can pass `dispatch` down instead of callbacks](/docs/hooks-faq.html#how-to-avoid-passing-callbacks-down).
 
@@ -259,7 +259,13 @@ There’s two different ways to initialize `useReducer` state. You may choose ei
 
 #### Lazy initialization {#lazy-initialization}
 
-You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. The initial state will be set to `init(initialArg)`.
+You can also create the initial state lazily. To do this, you can pass an `init` function as the third argument. 
+
+```js
+const [state, dispatch] = useReducer(reducer, initialArg, init);
+```
+
+The initial state will be set to `init(initialArg)`.
 
 It lets you extract the logic for calculating the initial state outside the reducer. This is also handy for resetting the state later in response to an action:
 

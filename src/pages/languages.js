@@ -140,7 +140,11 @@ const Language = ({code, name, status, translatedName}) => {
         }}>
         {status === 0 && translatedName}
         {status > 0 && (
-          <a href={`https://${prefix}reactjs.org/`} rel="nofollow">
+          <a
+            href={`https://${prefix}reactjs.org/`}
+            rel="nofollow"
+            lang={code}
+            hrefLang={code}>
             {translatedName}
           </a>
         )}

@@ -8,6 +8,7 @@ permalink: community/ui-components.html
 ## Free Components {#free-components}
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react) (in Chinese):** [Amaze UI](https://github.com/allmobilize/amazeui) components built with React.
 * **[Ant Design of React](https://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
+* **[Base Web](https://github.com/uber-web/baseui):** Customizable and accessible React UI components that implement the Base design language.
 * **[Belle](https://github.com/nikgraf/belle/):** Configurable React Components with great UX.
 * **[chartify](https://github.com/kirillstepkin/chartify)**: Ultra lightweight and customizable React.js chart component.
 * **[Elemental UI](http://elemental-ui.com):** A UI toolkit for React websites and apps, themeable and composed of individually packaged components

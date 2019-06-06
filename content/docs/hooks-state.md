@@ -187,6 +187,14 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
+We could also call setCount with a function which will be invoked on call.
+
+```js{1}
+  <button onClick={() => setCount(() => count + 1)}>
+    Click me
+  </button>
+```
+
 ## Recap {#recap}
 
 Let's now **recap what we learned line by line** and check our understanding.

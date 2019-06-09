@@ -8,7 +8,7 @@ category: Reference
 
 > Note:
 >
-> `shallowCompare` is a legacy add-on. Use [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
+> `shallowCompare` is a legacy add-on. Use [`React.memo`](/docs/react-api.html#reactmemo) or [`React.PureComponent`](/docs/react-api.html#reactpurecomponent) instead.
 
 **Importing**
 

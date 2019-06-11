@@ -20,6 +20,7 @@ permalink: community/ui-components.html
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
 * **[PrimeReact](https://www.primefaces.org/primereact/):** A rich UI component suite for React featuring 70+ open source components.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
+* **[Material Components for React](https://github.com/material-components/material-components-web-react)** MDC React is the official implementation of Google's Material Design Components.
 * **[React Native for Web](https://github.com/necolas/react-native-web)** Makes it possible to run React Native components and APIs on the web using React DOM.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component

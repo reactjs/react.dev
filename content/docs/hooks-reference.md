@@ -297,6 +297,27 @@ function Counter({initialCount}) {
 }
 ```
 
+#### useReducer with any function
+
+You don't *have* to use a Redux style reducer that takes an action object with a `type` property. You can use `useReducer` when you have to make a single kind of change to a more complex object that depends on its previous state. A key difference between `useReducer` and `useState` is that the dispatch function has access to the previous state.
+
+```js
+const notAReduxStyleReducer = (state, newValue) => [...state, newValue];
+
+const KeyboardLogger = () => {
+  const [sequence, appendValue] = useReducer(notAReduxStyleReducer, []);
+  return (
+    <div>
+      <label>
+        Type something
+      <input onChange={event => appendValue(event.target.value)} />
+      </label>
+      <p>Things you have typed are: {sequence.map(typedValue => <p>{typedValue}</p>)}.</p>
+    </div>
+  );
+}
+```
+
 #### Bailing out of a dispatch {#bailing-out-of-a-dispatch}
 
 If you return the same value from a Reducer Hook as the current state, React will bail out without rendering the children or firing effects. (React uses the [`Object.is` comparison algorithm](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description).)

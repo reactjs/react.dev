@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import {colors, media} from 'theme';
 import CodeEditor from '../CodeEditor/CodeEditor';
 
-
 const CodeExample = ({children, code, id, containerNodeID, loaded}) => {
   return (
     <div

@@ -63,7 +63,7 @@ const CodeExample = ({children, code, id, containerNodeID, loaded}) => {
       )}
     </div>
   );
-}
+};
 
 CodeExample.propTypes = {
   children: PropTypes.node,

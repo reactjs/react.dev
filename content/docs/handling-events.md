@@ -102,7 +102,6 @@ If calling `bind` annoys you, there are two ways you can get around this. If you
 ```js{2-6}
 class LoggingButton extends React.Component {
   // This syntax ensures `this` is bound within handleClick.
-  // Warning: this is *experimental* syntax.
   handleClick = () => {
     console.log('this is:', this);
   }

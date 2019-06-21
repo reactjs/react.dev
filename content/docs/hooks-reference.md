@@ -307,8 +307,8 @@ Note that React may still need to render that specific component again before ba
 
 ```js
 const memoizedCallback = useCallback(
-  () => {
-    doSomething(a, b);
+  (c) => {
+    doSomething(a, b, c);
   },
   [a, b],
 );

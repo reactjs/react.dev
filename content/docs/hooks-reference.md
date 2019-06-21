@@ -307,10 +307,9 @@ Note that React may still need to render that specific component again before ba
 
 ```js
 const memoizedCallback = useCallback(
-// callbacks can take arguments
-(argA, argB) => {
-  doSomething(a, b, argA, argB);
-    doSomething(a, b, c);
+  // callbacks can take arguments
+  (argA, argB) => {
+    doSomething(a, b, argA, argB);
   },
   [a, b],
 );

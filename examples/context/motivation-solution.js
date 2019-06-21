@@ -36,6 +36,6 @@ class ThemedButton extends React.Component {
   // In this example, the current theme is "dark".
   static contextType = ThemeContext;
   render() {
-    return <Button theme={this.context} />;
+    return <Button theme={this.contextType} />;
   }
 }

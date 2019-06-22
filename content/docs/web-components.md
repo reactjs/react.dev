@@ -12,20 +12,56 @@ Most people who use React don't use Web Components, but you may want to, especia
 
 ## Using Web Components in React {#using-web-components-in-react}
 
+Web components are just custom (HTML) elements which can be used directly in React:
+
 ```javascript
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello <x-search>{this.props.name}</x-search>!</div>;
-  }
-}
+const Dropdown = props => {
+  return <my-dropdown></my-dropdown>;
+};
 ```
 
-> Note:
->
-> Web Components often expose an imperative API. For instance, a `video` Web Component might expose `play()` and `pause()` functions. To access the imperative APIs of a Web Component, you will need to use a ref to interact with the DOM node directly. If you are using third-party Web Components, the best solution is to write a React component that behaves as a wrapper for your Web Component.
->
-> Events emitted by a Web Component may not properly propagate through a React render tree.
-> You will need to manually attach event handlers to handle these events within your React components.
+It's possible to pass JavaScript primitives directly as attributes. However, in case of arrays and objects, make sure to pass them in JSON format if you want to use them as attributes. As alternative, it's also possible to pass informatin as properties by defining them on the element instance. Last but not least, functions should be registered as event listeners. Events emitted by a Web Component may not properly propagate through a React render tree. You will need to manually attach event handlers to handle these events within your React components.
+
+```javascript
+const Dropdown = ({ label, option, options, onChange }) => {
+  const ref = React.createRef();
+
+  React.useLayoutEffect(() => {
+    ref.current.addEventListener('onChange', customEvent =>
+      onChange(customEvent.detail)
+    );
+  }, []);
+
+  return (
+    <my-dropdown
+      ref={ref}
+      label={label}
+      option={option}
+      options={JSON.stringify(options)}
+    />
+  );
+};
+```
+
+Check out [this walkthrough with a real Web Component](https://www.robinwieruch.de/react-web-components/), if you want to dig deeper on how to use Web Components in React. Also there exists a custom React hook, called [use-custom-element](https://github.com/the-road-to-learn-react/use-custom-element), which takes care about all the event listener registration and transformation of arrays/objects into JSON.
+
+```
+import useCustomElement from 'use-custom-element';
+
+const Dropdown = props => {
+  const [customElementProps, ref] = useCustomElement(props);
+
+  return <my-dropdown {...customElementProps} ref={ref} />;
+};
+```
+
+### FAQ
+
+**Imperative API**
+
+Web Components often expose an imperative API. For instance, a `video` Web Component might expose `play()` and `pause()` functions. To access the imperative APIs of a Web Component, you will need to use a ref to interact with the DOM node directly. If you are using third-party Web Components, the best solution is to write a React component that behaves as a wrapper for your Web Component.
+
+**React Sepcific Attributes**
 
 One common confusion is that Web Components use "class" instead of "className".
 

@@ -5,7 +5,7 @@ layout: community
 permalink: community/ui-components.html
 ---
 
-## Free Components
+## Free Components {#free-components}
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react) (in Chinese):** [Amaze UI](https://github.com/allmobilize/amazeui) components built with React.
 * **[Ant Design of React](https://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
 * **[Belle](https://github.com/nikgraf/belle/):** Configurable React Components with great UX.
@@ -16,10 +16,12 @@ permalink: community/ui-components.html
 * **[Khan Academy's component library](https://khan.github.io/react-components/)**
 * **[markdown-to-jsx](https://www.npmjs.com/package/markdown-to-jsx)**: compiles markdown into safe React JSX without using dangerous escape hatches.
 * **[Material-UI](https://material-ui.com/):** React components that implement Google's Material Design.
+* **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react):** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
+* **[PrimeReact](https://www.primefaces.org/primereact/):** A rich UI component suite for React featuring 70+ open source components.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
-* **[React Mdl](https://github.com/tleunen/react-mdl)** React Components for Material Design Lite.
-* **[React Web](https://github.com/taobaofed/react-web)** A framework for building web apps with React.
+* **[Material Components for React](https://github.com/material-components/material-components-web-react)** MDC React is the official implementation of Google's Material Design Components.
+* **[React Native for Web](https://github.com/necolas/react-native-web)** Makes it possible to run React Native components and APIs on the web using React DOM.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
@@ -48,7 +50,7 @@ permalink: community/ui-components.html
 * **[react-slick](https://github.com/akiran/react-slick):** Carousel component built with React
 * **[react-sparklines](https://borisyankov.github.io/react-sparklines/):** Beautiful and expressive sparklines component
 * **[react-spreadsheet](https://github.com/felixrieseberg/React-Spreadsheet-Component):** React Spreadsheets / Editable tables with Excel-Style keyboard input and navigation
-* **[react-switch-button](https://github.com/gfazioli/react-switch-button):** Beautiful React Switch button component
+* **[react-toggle](https://github.com/gfazioli/react-toggle):** A React UI component to display a toggle button control
 * **[react-tappable](https://github.com/JedWatson/react-tappable)** A Tappable React Component that provides native-feeling onTap events for mobile React apps
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize):** Like `<textarea />` but resizes automatically to fit all its content.
 * **[react-toastify](https://github.com/fkhadra/react-toastify):** React notification made easy
@@ -66,9 +68,8 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
-* **[Mobiscroll Lite for React](https://mobiscroll.com/forms/react)** A collection of 15 free UI components ranging from inputs, selects, sliders, alerts to rating.
 
-## Fee Based Components
+## Fee Based Components {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.

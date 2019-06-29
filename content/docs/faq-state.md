@@ -94,7 +94,7 @@ state = {
 
 If you want to update `user.lastname` without replacing the whole `user` object in the state, use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) in the update function:
 
-```js{4-7}
+```jsx{4-7}
 changeLastName() {
   this.setState((state) => {
     return {

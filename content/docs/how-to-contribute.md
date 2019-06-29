@@ -50,7 +50,7 @@ Facebook has a [bounty program](https://www.facebook.com/whitehat/) for the safe
 ### How to Get in Touch {#how-to-get-in-touch}
 
 * IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
-* [Discussion Forums](https://reactjs.org/community/support.html#popular-discussion-forums)
+* [Discussion forums](https://reactjs.org/community/support.html#popular-discussion-forums)
 
 There is also [an active community of React users on the Discord chat platform](https://www.reactiflux.com/) in case you need help with React.
 

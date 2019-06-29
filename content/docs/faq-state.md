@@ -92,7 +92,7 @@ state = {
 }
 ```
 
-If you want to update `user.lastname` without replacing the whole `user` object in the state, use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) in the update function:
+If you want to update `user.lastname` while keeping the other properties the same, use the [spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) in the update function to copy the original keys to a new object:
 
 ```jsx{4-7}
 changeLastName() {

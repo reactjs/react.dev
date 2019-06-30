@@ -244,7 +244,7 @@ function Counter() {
 
 #### Specifying the initial state {#specifying-the-initial-state}
 
-There’s two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
+There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:
 
 ```js{3}
   const [state, dispatch] = useReducer(

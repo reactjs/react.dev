@@ -157,7 +157,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-Note that the above example is demonstrating regular JavaScript behavior and doesn't use error boundaries.
+Note that the above example is demonstrating regular JavaScript behavior and doesn't use error boundaries. However, throwing an error like ```js throw new Error(`ERROR:${this.state.error}`)``` will trigger the surrounding Error Boundary.
 
 ## Naming Changes from React 15 {#naming-changes-from-react-15}
 

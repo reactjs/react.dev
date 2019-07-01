@@ -683,10 +683,9 @@ Specifying `[count]` as a list of dependencies would fix the bug, but would caus
 function Counter() {
   const [count, setCount] = useState(0);
 
-12345678901234567890123456789012345678901234567890123456789012345678901234567890
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(c => c + 1); // ✅ Doesn't depend on `count` variable outside
+      setCount(c => c + 1); // ✅ This doesn't depend on `count` variable outside
     }, 1000);
     return () => clearInterval(id);
   }, []); // ✅ Our effect doesn't use any variables in the component scope

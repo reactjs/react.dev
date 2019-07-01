@@ -51,14 +51,14 @@ Remember that only React files ending with `.production.min.js` are suitable for
 
 ### Brunch {#brunch}
 
-For the most efficient Brunch production build, install the [`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) plugin:
+For the most efficient Brunch production build, install the [`terser-brunch`](https://github.com/brunch/terser-brunch) plugin:
 
 ```
 # If you use npm
-npm install --save-dev uglify-js-brunch
+npm install --save-dev terser-brunch
 
 # If you use Yarn
-yarn add --dev uglify-js-brunch
+yarn add --dev terser-brunch
 ```
 
 Then, to create a production build, add the `-p` flag to the `build` command:
@@ -75,17 +75,17 @@ For the most efficient Browserify production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify uglify-js uglifyify 
+npm install --save-dev envify terser uglifyify 
 
 # If you use Yarn
-yarn add --dev envify uglify-js uglifyify 
+yarn add --dev envify terser uglifyify 
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
 
 * The [`envify`](https://github.com/hughsk/envify) transform ensures the right build environment is set. Make it global (`-g`).
 * The [`uglifyify`](https://github.com/hughsk/uglifyify) transform removes development imports. Make it global too (`-g`).
-* Finally, the resulting bundle is piped to [`uglify-js`](https://github.com/mishoo/UglifyJS2) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
+* Finally, the resulting bundle is piped to [`terser`](https://github.com/terser-js/terser) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
 
 For example:
 
@@ -93,13 +93,8 @@ For example:
 browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
   -g uglifyify \
-  | uglifyjs --compress --mangle > ./bundle.js
+  | terser --compress --mangle > ./bundle.js
 ```
-
->**Note:**
->
->The package name is `uglify-js`, but the binary it provides is called `uglifyjs`.<br>
->This is not a typo.
 
 Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
 
@@ -107,19 +102,19 @@ Remember that you only need to do this for production builds. You shouldn't appl
 
 For the most efficient Rollup production build, install a few plugins:
 
-```
+```bash
 # If you use npm
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 
 # If you use Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
 To create a production build, make sure that you add these plugins **(the order matters)**:
 
 * The [`replace`](https://github.com/rollup/rollup-plugin-replace) plugin ensures the right build environment is set.
 * The [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) plugin provides support for CommonJS in Rollup.
-* The [`uglify`](https://github.com/TrySound/rollup-plugin-uglify) plugin compresses and mangles the final bundle.
+* The [`terser`](https://github.com/TrySound/rollup-plugin-terser) plugin compresses and mangles the final bundle.
 
 ```js
 plugins: [
@@ -128,14 +123,14 @@ plugins: [
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
   require('rollup-plugin-commonjs')(),
-  require('rollup-plugin-uglify')(),
+  require('rollup-plugin-terser')(),
   // ...
 ]
 ```
 
 For a complete setup example [see this gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
 
-Remember that you only need to do this for production builds. You shouldn't apply the `uglify` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't apply the `terser` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
 
 ### webpack {#webpack}
 
@@ -144,18 +139,22 @@ Remember that you only need to do this for production builds. You shouldn't appl
 >If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
 >This section is only relevant if you configure webpack directly.
 
-For the most efficient webpack production build, make sure to include these plugins in your production configuration:
+Webpack v4+ will minify your code by default in production mode.
 
 ```js
-new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify('production')
-}),
-new webpack.optimize.UglifyJsPlugin()
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'production'
+  optimization: {
+    minimizer: [new TerserPlugin({ /* additional options here */ })],
+  },
+};
 ```
 
 You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production/).
 
-Remember that you only need to do this for production builds. You shouldn't apply `UglifyJsPlugin` or `DefinePlugin` with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because it will hide useful React warnings, and make the builds much slower.
 
 ## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
 

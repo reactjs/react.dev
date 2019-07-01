@@ -675,15 +675,18 @@ function Counter() {
 }
 ```
 
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
+The empty set of dependencies, `[]`, means that the effect will only run once when the component mounts, and not on every re-render. The problem is that inside the `setInterval` callback, the value of `count` is not changing. We've created a closure with the value of `count` set to `0` as it was on the first run. Every second, this callback calls `setCount(0 + 1)`, so the count never goes above 1.
+
+Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
 
 ```js{6,9}
 function Counter() {
   const [count, setCount] = useState(0);
 
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(c => c + 1); // ✅ This doesn't depend on `count` variable outside
+      setCount(c => c + 1); // ✅ Doesn't depend on `count` variable outside
     }, 1000);
     return () => clearInterval(id);
   }, []); // ✅ Our effect doesn't use any variables in the component scope
@@ -693,6 +696,8 @@ function Counter() {
 ```
 
 (The identity of the `setCount` function is guaranteed to be stable so it's safe to omit.)
+
+Now, the `setInterval` callback executes once a second, but each time, the inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback to `setCount` here.)
 
 In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
 

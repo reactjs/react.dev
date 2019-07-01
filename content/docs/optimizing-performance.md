@@ -130,7 +130,7 @@ plugins: [
 
 For a complete setup example [see this gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
 
-Remember that you only need to do this for production builds. You shouldn't apply the `uglify` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't apply the `terser` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
 
 ### webpack {#webpack}
 
@@ -154,7 +154,7 @@ module.exports = {
 
 You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production/).
 
-Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because they will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because it will hide useful React warnings, and make the builds much slower.
 
 ## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
 

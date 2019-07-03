@@ -296,3 +296,61 @@ It can sometimes be tedious to use controlled components, because you need to wr
 ## Fully-Fledged Solutions {#fully-fledged-solutions}
 
 If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+
+## The radio button input Tag {#The-radio-button-input-Tag}
+
+If you want select one value of multiple values then you can use input type="radio"
+
+```javascript
+export default class ReactRadioButton extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedLanguage: ""
+    };
+  }
+
+  // Using an arrow function, if you not bind function in constructor then you use arrow function.
+  handleOptionChange = (event) => {
+    const { name, value } = event && event.target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  render() {
+    const { selectedLanguage } = this.state;
+    return (
+      <div>
+        <div>
+          <label>
+            <input type="radio"
+                   name="selectedLanguage"
+                   value="reactjs"
+                   checked={selectedLanguage === "reactjs"}
+                   onChange={this.handleOptionChange}/>React js
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio"
+                   name="selectedLanguage"
+                   value="reactnative"
+                   checked={selectedLanguage === "reactnative"}
+                   onChange={this.handleOptionChange}/>React native
+          </label>
+        </div>
+        <div>
+          <label>
+            <input type="radio"
+                   name="selectedLanguage"
+                   value="nodejs"
+                   checked={selectedLanguage === "nodejs"}
+                   onChange={this.handleOptionChange}/>Node js
+          </label>
+        </div>
+      </div>
+    );
+  }
+}
+```

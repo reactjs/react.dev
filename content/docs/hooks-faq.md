@@ -70,8 +70,6 @@ Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 
 Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
 
-React Native will fully support Hooks in its next stable release.
-
 ### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
 
 No. There are [no plans](/docs/hooks-intro.html#gradual-adoption-strategy) to remove classes from React -- we all need to keep shipping products and can't afford rewrites. We recommend trying Hooks in new code.

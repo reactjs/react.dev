@@ -1,5 +1,5 @@
 ---
-title: "Is React Translated Yet? ¡Sí! Sim! はい！"
+title: "Is React Translated Yet? ¡Sí! Sím! はい！"
 author: [tesseralis]
 ---
 

@@ -74,8 +74,8 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 - [Composition Events](#composition-events)
 - [Keyboard Events](#keyboard-events)
 - [Focus Events](#focus-events)
-- [Form Events](#for
-m-events)
+- [Form Events](#form-events)
+- [Generic Events](#generic-events)
 - [Mouse Events](#mouse-events)
 - [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)

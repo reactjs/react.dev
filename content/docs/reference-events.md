@@ -74,7 +74,8 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 - [Composition Events](#composition-events)
 - [Keyboard Events](#keyboard-events)
 - [Focus Events](#focus-events)
-- [Form Events](#form-events)
+- [Form Events](#for
+m-events)
 - [Mouse Events](#mouse-events)
 - [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)
@@ -176,10 +177,20 @@ DOMEventTarget relatedTarget
 Event names:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 For more information about the onChange event, see [Forms](/docs/forms.html).
+
+* * *
+
+### Generic Events {#generic-events}
+
+Event names:
+
+```
+onError onLoad
+```
 
 * * *
 

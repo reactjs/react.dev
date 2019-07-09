@@ -146,6 +146,7 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             display: 'none', // gets overriden at small screen sizes
             cursor: 'pointer',
             outline: 'none',
+            WebkitTapHighlightColory: 'transparent',
             position: 'fixed',
             right: 20,
             zIndex: 3,

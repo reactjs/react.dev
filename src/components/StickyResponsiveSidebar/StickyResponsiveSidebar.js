@@ -145,6 +145,7 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             color: colors.brand,
             display: 'none', // gets overriden at small screen sizes
             cursor: 'pointer',
+            outline: 'none',
             position: 'fixed',
             right: 20,
             zIndex: 3,

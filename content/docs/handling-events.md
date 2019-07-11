@@ -58,6 +58,8 @@ Here, `e` is a synthetic event. React defines these synthetic events according t
 
 When using React you should generally not need to call `addEventListener` to add listeners to a DOM element after it is created. Instead, just provide a listener when the element is initially rendered.
 
+To invoke the function inside of the element (ex. <button onClick={this.handleClick}> Click me</button>) if you put braces after the function name inside curly braces (ex. this.handleClick() ) it will invoke function right away and will not invoke it on click. Take in account this syntax of invoking event function.
+
 When you define a component using an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), a common pattern is for an event handler to be a method on the class. For example, this `Toggle` component renders a button that lets the user toggle between "ON" and "OFF" states:
 
 ```js{6,7,10-14,18}

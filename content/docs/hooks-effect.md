@@ -495,7 +495,7 @@ To do the same with Effects, you can use `useEffect`:
 ```js
 [users, setUsers] = useState([])
 
-useEffect(() => fetchUsers().then(users => setUsers(users), [])
+useEffect(() => { fetchUsers().then(users => setUsers(users) }, [])
 ```
 
 By passing `[]` empty array as the second argument of `useEffect` you are making sure that this Effect gets called only once when component is mounted. This is similar to `componentDidMount` where you would usually call your asynchronous requests.

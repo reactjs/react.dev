@@ -22,8 +22,6 @@ The versions above are only meant for development, and are not suitable for prod
 
 To load a specific version of `react` and `react-dom`, replace `16` with the version number.
 
-Both React and ReactDOM are available on PageCDN ([React](https://pagecdn.com/lib/react), [ReactDOM](https://pagecdn.com/lib/react-dom)) and CDNJS ([React](https://cdnjs.com/libraries/react), [ReactDOM](https://cdnjs.com/libraries/react-dom)).
-
 ### Why the `crossorigin` Attribute? {#why-the-crossorigin-attribute}
 
 If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute set:

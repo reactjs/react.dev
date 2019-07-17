@@ -107,6 +107,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## Scotland (UK) {#scotland-uk}
 * [Edinburgh](https://www.meetup.com/React-Scotland/)
 
+## Singapore {#singapore}
+* [Singapore - React Knowledgeable](https://reactknowledgeable.org/)
+
 ## Spain {#spain}
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)
 

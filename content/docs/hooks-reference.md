@@ -102,10 +102,10 @@ Note that React may still need to render that specific component again before ba
 ### `useEffect` {#useeffect}
 
 ```js
-useEffect(didUpdate);
+useEffect(didUpdate, [updatedProps]);
 ```
 
-Accepts a function that contains imperative, possibly effectful code.
+Accepts a function that contains imperative, possibly effectful code and, optionally, an array of values to depend on the conditional fire of effect.
 
 Mutations, subscriptions, timers, logging, and other side effects are not allowed inside the main body of a function component (referred to as React's _render phase_). Doing so will lead to confusing bugs and inconsistencies in the UI.
 

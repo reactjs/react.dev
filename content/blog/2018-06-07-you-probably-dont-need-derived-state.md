@@ -180,7 +180,7 @@ This also provides the flexibility to only reset parts of our component's intern
 
 > Note
 >
-> Even though the example above shows `getDerivedStateFromProps`, the same technique can be used with `componentWillReceiveProps`.
+> The same technique can be used with `componentWillReceiveProps`, however you should avoid it as it is considered legacy and deprecated.
 
 #### Alternative 2: Reset uncontrolled component with an instance method {#alternative-2-reset-uncontrolled-component-with-an-instance-method}
 

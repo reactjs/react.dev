@@ -73,6 +73,8 @@
       title: Static Type Checking
     - id: strict-mode
       title: Strict Mode
+    - id: testing
+      title: Testing
     - id: typechecking-with-proptypes
       title: Typechecking With PropTypes
     - id: uncontrolled-components

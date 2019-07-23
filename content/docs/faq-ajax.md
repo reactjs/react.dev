@@ -82,3 +82,63 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+### Where in the component lifecycle should I make an AJAX call with hooks? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call-hooks}
+
+You should create a `useEffect` hook to update your component when the data is retrieved.
+
+### Example: Using AJAX results to set local state with hooks {#example-using-ajax-results-to-set-local-state-hooks}
+
+The component below demonstrates how to make an AJAX call using the `useEffect` hook to populate local component state. 
+
+The example API returns a JSON object like this:
+
+```
+{
+  "items": [
+    { "id": 1, "name": "Apples",  "price": "$2" },
+    { "id": 2, "name": "Peaches", "price": "$5" }
+  ] 
+}
+```
+
+```jsx
+function MyComponent() {
+  const [state, setState] = React.useState({
+    error: null,
+    isLoaded: false,
+    items: []
+  })
+  const {error, isLoaded, items} = state
+
+  React.useEffect(() => {
+    setState({isLoaded: false, error: null, items: []})
+    fetch("https://api.example.com/items")
+    .then(res => res.json())
+    .then(
+      result => {
+        setState({isLoaded: true, items: result})
+      },
+      error => {
+        setState({isLoaded: true, error: error})
+      },
+    )
+  }, [])
+
+    if (error) {
+      return <div>Error: {error.message}</div>;
+    } else if (!isLoaded) {
+      return <div>Loading...</div>;
+    } else {
+      return (
+        <ul>
+          {items.map(item => (
+            <li key={item.name}>
+              {item.name} {item.price}
+            </li>
+          ))}
+        </ul>
+      );
+    }
+}
+```

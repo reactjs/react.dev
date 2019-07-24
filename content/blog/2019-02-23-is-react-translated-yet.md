@@ -23,7 +23,7 @@ In the past, React community members have created unofficial translations for [C
 
 If you would like to help out on a current translation, check out the [Languages](/languages) page and click on the "Contribute" link for your language.
 
-Can't find your language? If you'd like to maintain your langauge's translation fork, follow the instructions in the [translation repo](https://github.com/reactjs/reactjs.org-translation#starting-a-new-translation)!
+Can't find your language? If you'd like to maintain your language's translation fork, follow the instructions in the [translation repo](https://github.com/reactjs/reactjs.org-translation#starting-a-new-translation)!
 
 ## Backstory {#backstory}
 

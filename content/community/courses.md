@@ -47,3 +47,5 @@ permalink: community/courses.html
 - [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
+
+- [React Development at General Assembly](https://generalassemb.ly/education/react-development?where=online) - Learn to leverage React's power in this hands on, project-based course.

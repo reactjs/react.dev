@@ -66,7 +66,7 @@ it("renders with or without a name", () => {
 
 ### Data fetching {#data-fetching}
 
-Mocking data fetching with 'fake' data prevents flaky tests, and makes them run faster.
+Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with 'fake' data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an "end-to-end" framework that tells whether the whole app is working together.
 
 ```jsx
 // user.js

@@ -4,7 +4,11 @@ title: act
 permalink: docs/act.html
 ---
 
-Tests typically resemble the [arrange / act / assert design pattern](http://wiki.c2.com/?ArrangeActAssert). When writing UI tests, tasks like rendering, user events, or data fetching can be considered as 'units' of interaction with a user interface. `act()` provides an abstraction to grouping these actions, and making sure the rendering surface reflects a state where all these actions have been 'committed' (ie, the DOM has been updated). For example:
+`act()` provides an abstraction to make sure what's rendered reflects a state where pending actions have been 'committed' and the DOM has been updated. When writing UI tests, tasks like rendering, user events, or data fetching can be considered as 'units' of interaction with a user interface. `act` allows you be sure all effects related to a unit have been processed before asserting on the result.
+
+Note: The name `act` comes from the `act` section of the [arrange-act-assert pattern](http://wiki.c2.com/?ArrangeActAssert). 
+
+For example:
 
 ```jsx
 import { render } from "react-dom";

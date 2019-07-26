@@ -148,12 +148,13 @@ To implement this, pass a second argument to `useEffect` that is the array of va
 ```js
 useEffect(
   () => {
-    const subscription = props.source.subscribe();
-    return () => {
-      subscription.unsubscribe();
-    };
+    fetch(`https://www.example.com/api/data?name=${props.query.name}`)
+      .then(response => response.json())
+      .then(data => {
+        setData(data) // useState hook
+      })
   },
-  [props.source],
+  [props.query.name],
 );
 ```
 

@@ -276,7 +276,7 @@ Now let's say we want to write some logic that changes `left` and `top` when the
   // ...
 ```
 
-This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
+This is because when we update a state variable, we *replace* its value, just as `this.setState` replaces the immutable state variable with a new variable that has all the same property values as the old state object except the properties that are changed by the object that is passed to `this.setState`. But 'this.setState` does this replacement under the hood, so you don't need to explicity add `...state` to the object passed to `this.setState`. 
 
 If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
 

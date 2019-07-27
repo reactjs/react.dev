@@ -86,7 +86,8 @@
     "nit:examples": "prettier --config examples/.prettierrc --list-different \"examples/**/*.js\"",
     "prettier": "yarn format:source && yarn format:examples",
     "prettier:diff": "yarn nit:source && yarn nit:examples",
-    "reset": "rimraf ./.cache"
+    "reset": "rimraf ./.cache",
+    "start": "yarn dev"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",

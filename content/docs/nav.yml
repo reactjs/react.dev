@@ -59,6 +59,8 @@
       title: Optimizing Performance
     - id: portals
       title: Portals
+    - id: profiler
+      title: Profiler
     - id: react-without-es6
       title: React Without ES6
     - id: react-without-jsx

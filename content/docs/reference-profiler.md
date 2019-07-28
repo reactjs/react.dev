@@ -18,7 +18,7 @@ Its purpose is to help identify parts of an application that are slow and may be
 
 ## Usage
 
-A `Profiler` can be added anywhere within a React tree to measure the cost of rendering that part of the tree.
+A `Profiler` can be added anywhere in a React tree to measure the cost of rendering that part of the tree.
 It requires two props: an `id` (string) and an `onRender` callback (function) which React calls any time a component within the tree "commits" an update.
 
 For example, to profile a `Navigation` component and its descendants:
@@ -94,13 +94,13 @@ Let's take a closer look at each of the props:
 
 * **`id: string`** - 
 The `id` prop of the `Profiler` tree that has just committed.
-This can be used to identify which tree was committed if a shared callback is used to profile multiple parts of an application.
+This can be used to identify which part of the tree was committed if you are using multiple profilers.
 * **`phase: "mount" | "update"`** -
-Identifies whether the tree has just been mounted for the first time or re-rendered due to a change in `props`, `state`, or hooks.
+Identifies whether the tree has just been mounted for the first time or re-rendered due to a change in props, state, or hooks.
 * **`actualDuration: number`** -
 Time spent rendering the `Profiler` and its descendants for the current update.
 This indicates how well the subtree makes use of memoization (e.g. [`React.memo`](/docs/react-api.html#reactmemo), [`useMemo`](/docs/hooks-reference.html#usememo), [`shouldComponentUpdate`](/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate)).
-Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific `props` change.
+Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
 * **`baseDuration: number`** -
 Duration of the most recent `render` time for each individual component within the `Profiler` tree.
 This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization).
@@ -108,7 +108,7 @@ This value estimates a worst-case cost of rendering (e.g. the initial mount or a
 Timestamp when React began rendering the current update.
 * **`commitTime: number`** -
 Timestamp when React committed the current update.
-This value is shared between all `Profiler`s in a commit, enabling them to be grouped if desirable.
+This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
 * **`interactions: Set`** -
 Set of ["interactions"](http://fb.me/react-interaction-tracing) that were being traced the update was scheduled (e.g. when `render` or `setState` were called).
 

@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### Render-Atlanta 2020 {#render-atlanta-2020}
+May 4-6, 2020. Atlanta, GA, USA.
+
+[Website](https://renderatl.com)
+
 ### React Rally 2019 {#react-rally-2019}
 August 22-23, 2019. Salt Lake City, USA.
 
@@ -401,7 +406,3 @@ July 11-12, 2019. Portland, OR, USA.
 
 [Website](https://infinite.red/ChainReactConf)
 
-### Render-Atlanta 2020 {#render-atlanta-2020}
-May 4-6, 2020. Atlanta, GA, USA.
-
-[Website](https://renderatl.com)

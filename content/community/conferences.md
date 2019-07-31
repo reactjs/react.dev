@@ -67,6 +67,11 @@ December 6, 2019 in Berlin, Germany
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
 
+### ReactConf AU 2020 {#reactconfau}
+February 27 & 28, 2020 in Sydney, Australia
+
+[Website](https://reactconfau.com/) - [Twitter](https://twitter.com/reactconfau) - [Facebook](https://www.facebook.com/reactconfau) - [Instagram](https://www.instagram.com/reactconfau/)
+
 ## Past Conferences {#past-conferences}
 
 ### React.js Conf 2015 {#reactjs-conf-2015}

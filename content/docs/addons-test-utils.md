@@ -99,6 +99,9 @@ beforeEach(() => {
 });
 
 afterEach(() => {
+  act(() => {
+    ReactDOM.unmountComponentAtNode(container);
+  });
   document.body.removeChild(container);
   container = null;
 });

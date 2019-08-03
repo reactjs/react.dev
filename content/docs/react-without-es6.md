@@ -184,13 +184,13 @@ One common use case is a component wanting to update itself on a time interval. 
 ```javascript
 var SetIntervalMixin = {
   componentWillMount: function() {
-    this.intervals = [];
+    this.interval = null;
   },
   setInterval: function() {
-    this.intervals.push(setInterval.apply(null, arguments));
+    this.interval = setInterval.apply(null, arguments);
   },
   componentWillUnmount: function() {
-    this.intervals.forEach(clearInterval);
+    clearInterval(this.interval);
   }
 };
 

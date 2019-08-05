@@ -18,7 +18,7 @@ const Tutorial = ({data, location}) => {
         enableScrollSync
         createLink={createLinkTutorial}
         location={location}
-        markdownRemark={data.markdownRemark}
+        mdx={data.mdx}
         sectionList={sectionListTutorial}
         titlePostfix=" &ndash; React"
       />
@@ -28,8 +28,8 @@ const Tutorial = ({data, location}) => {
 
 export const pageQuery = graphql`
   query TemplateTutorialMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
+    mdx(fields: {slug: {eq: $slug}}) {
+      body
       frontmatter {
         title
         next

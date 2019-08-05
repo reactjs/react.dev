@@ -63,7 +63,7 @@ You can now skip the second setup option, and go to the [Overview](#overview) se
 
 This is completely optional and not required for this tutorial!
 
-<br>
+<br />
 
 <details>
 
@@ -331,7 +331,7 @@ When you call `setState` in a component, React automatically updates the child c
 
 The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
 
-<img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%">
+<img src="../images/tutorial/devtools.png" alt="React Devtools" style="max-width: 100%" />
 
 The React DevTools let you check the props and the state of your React components.
 

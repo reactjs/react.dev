@@ -17,7 +17,7 @@ const Docs = ({data, location}) => (
     <MarkdownPage
       createLink={createLinkDocs}
       location={location}
-      markdownRemark={data.markdownRemark}
+      mdx={data.mdx}
       sectionList={sectionListDocs}
       titlePostfix=" &ndash; React"
     />
@@ -30,8 +30,8 @@ Docs.propTypes = {
 
 export const pageQuery = graphql`
   query TemplateDocsMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
+    mdx(fields: {slug: {eq: $slug}}) {
+      body
       frontmatter {
         title
         next

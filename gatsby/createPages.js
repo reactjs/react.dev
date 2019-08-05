@@ -29,7 +29,7 @@ module.exports = async ({graphql, actions}) => {
   const allMarkdown = await graphql(
     `
       {
-        allMarkdownRemark(limit: 1000) {
+        allMdx(limit: 1000) {
           edges {
             node {
               fields {
@@ -49,7 +49,7 @@ module.exports = async ({graphql, actions}) => {
     throw Error(allMarkdown.errors);
   }
 
-  allMarkdown.data.allMarkdownRemark.edges.forEach(edge => {
+  allMarkdown.data.allMdx.edges.forEach(edge => {
     const slug = edge.node.fields.slug;
 
     if (slug === 'docs/error-decoder.html') {
@@ -127,7 +127,7 @@ module.exports = async ({graphql, actions}) => {
   const newestBlogEntry = await graphql(
     `
       {
-        allMarkdownRemark(
+        allMdx(
           limit: 1
           filter: {fileAbsolutePath: {regex: "/blog/"}}
           sort: {fields: [fields___date], order: DESC}
@@ -144,7 +144,7 @@ module.exports = async ({graphql, actions}) => {
     `,
   );
 
-  const newestBlogNode = newestBlogEntry.data.allMarkdownRemark.edges[0].node;
+  const newestBlogNode = newestBlogEntry.data.allMdx.edges[0].node;
 
   // Blog landing page should always show the most recent blog entry.
   ['/blog/', '/blog'].map(slug => {

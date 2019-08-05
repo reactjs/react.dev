@@ -15,7 +15,7 @@ We organized a React hackathon last week-end in the Facebook Seattle office. 50 
 > The game itself is pretty simple. People join the "room" by going to [http://qu.izti.me](http://qu.izti.me/) on their device. Large displays will show a leaderboard along with the game, and small displays (such as phones) will act as personal gamepads. Users will see questions and a choice of answers. The faster you answer, the more points you earn.
 >
 > In my opinion, Socket.io and React go together like chocolate and peanut butter. The page was always an accurate representation of the game object.
-><figure><a href="http://bold-it.com/javascript/facebook-react-example/"><img src="../images/blog/quiztime.png"></a></figure>
+><figure><a href="http://bold-it.com/javascript/facebook-react-example/"><img src="../images/blog/quiztime.png" /></a></figure>
 >
 > [Read More...](http://bold-it.com/javascript/facebook-react-example/)
 
@@ -73,8 +73,8 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 >
 > The panel is rendered with a random panel- class on each request, and the progress bar gets a random widthX class.
 >
-> With Turbolinks alone, the entire <body> would be replaced, and transitions would not happen. In this little demo though, React adds and removes classes and text, and the attribute changes are animated with CSS transitions. The DOM is otherwise left intact.
-><figure><a href="https://turbo-react.herokuapp.com/"><img src="../images/blog/turboreact.png"></a></figure>
+> With Turbolinks alone, the entire `<body>` would be replaced, and transitions would not happen. In this little demo though, React adds and removes classes and text, and the attribute changes are animated with CSS transitions. The DOM is otherwise left intact.
+><figure><a href="https://turbo-react.herokuapp.com/"><img src="../images/blog/turboreact.png" /></a></figure>
 >
 > [Check out the demo...](https://turbo-react.herokuapp.com/)
 

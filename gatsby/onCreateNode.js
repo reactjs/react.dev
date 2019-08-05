@@ -25,12 +25,12 @@ function buildRedirectString(permalink, redirect_from) {
   return JSON.stringify(redirects);
 }
 
-// Add custom fields to MarkdownRemark nodes.
+// Add custom fields to Mdx nodes.
 module.exports = exports.onCreateNode = ({node, actions, getNode}) => {
   const {createNodeField} = actions;
 
   switch (node.internal.type) {
-    case 'MarkdownRemark':
+    case 'Mdx':
       const {permalink, redirect_from} = node.frontmatter;
       const {relativePath, sourceInstanceName} = getNode(node.parent);
 

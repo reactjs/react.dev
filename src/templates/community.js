@@ -16,7 +16,7 @@ const Community = ({data, location}) => (
     <MarkdownPage
       createLink={createLinkCommunity}
       location={location}
-      markdownRemark={data.markdownRemark}
+      mdx={data.mdx}
       sectionList={sectionListCommunity}
       titlePostfix=" &ndash; React"
     />
@@ -25,8 +25,8 @@ const Community = ({data, location}) => (
 
 export const pageQuery = graphql`
   query TemplateCommunityMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
+    mdx(fields: {slug: {eq: $slug}}) {
+      body
       frontmatter {
         title
         next

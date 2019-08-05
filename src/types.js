@@ -32,10 +32,10 @@ export type Edge = {
   node: Node,
 };
 
-export type allMarkdownRemarkData = {
-  allMarkdownRemark: {
+export type allMdxData = {
+  allMdx: {
     edges: Array<Edge>,
   },
 };
 
-export type markdownRemarkData = Node;
+export type mdxData = Node;

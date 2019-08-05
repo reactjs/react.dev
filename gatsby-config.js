@@ -14,7 +14,7 @@ module.exports = {
     rssFeedDescription: 'A JavaScript library for building user interfaces',
   },
   mapping: {
-    'MarkdownRemark.frontmatter.author': 'AuthorYaml',
+    'Mdx.frontmatter.author': 'AuthorYaml',
   },
   plugins: [
     'gatsby-source-react-error-codes',
@@ -45,18 +45,23 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-transformer-remark',
+      resolve: 'gatsby-plugin-mdx',
       options: {
-        plugins: [
-          'gatsby-remark-responsive-iframe',
+        extensions: [`.mdx`, `.md`],
+        gatsbyRemarkPlugins: [
+          {resolve: 'gatsby-remark-responsive-iframe'},
           {
             resolve: 'gatsby-remark-images',
             options: {
               maxWidth: 840,
             },
           },
-          'gatsby-remark-external-links',
-          'gatsby-remark-header-custom-ids',
+          {resolve: 'gatsby-remark-external-links'},
+          {
+            resolve: require.resolve(
+              './plugins/gatsby-remark-header-custom-ids',
+            ),
+          },
           {
             resolve: 'gatsby-remark-code-repls',
             options: {
@@ -78,15 +83,15 @@ module.exports = {
               directory: `${__dirname}/examples/`,
             },
           },
-          'gatsby-remark-use-jsx',
+          {resolve: require.resolve('./plugins/gatsby-remark-use-jsx')},
           {
             resolve: 'gatsby-remark-prismjs',
             options: {
               classPrefix: 'gatsby-code-',
             },
           },
-          'gatsby-remark-copy-linked-files',
-          'gatsby-remark-smartypants',
+          {resolve: 'gatsby-remark-copy-linked-files'},
+          {resolve: 'gatsby-remark-smartypants'},
         ],
       },
     },
@@ -114,8 +119,8 @@ module.exports = {
         }`,
         feeds: [
           {
-            serialize: ({query: {site, allMarkdownRemark}}) => {
-              return allMarkdownRemark.edges.map(edge => {
+            serialize: ({query: {site, allMdx}}) => {
+              return allMdx.edges.map(edge => {
                 return Object.assign(
                   {},
                   {
@@ -132,7 +137,7 @@ module.exports = {
             },
             query: `
               {
-                  allMarkdownRemark
+                  allMdx
                   (limit: 10,
                   filter: {fileAbsolutePath: {regex: "/blog/"}},
                   sort: {fields: [fields___date],

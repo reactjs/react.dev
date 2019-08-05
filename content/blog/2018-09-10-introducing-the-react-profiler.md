@@ -192,6 +192,6 @@ In this case, the following message will be shown:
 
 The following video demonstrates how the React profiler can be used to detect and improve performance bottlenecks in an actual React application.
 
-<br>
+<br />
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/nySib7ipZdk?rel=0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>

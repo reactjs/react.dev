@@ -35,7 +35,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 [Pavan Podila](http://blog.pixelingene.com/) wrote an in-depth introduction to React on TutsPlus. This is definitively worth reading.
 
 > Within a component-tree, data should always flow down. A parent-component should set the props of a child-component to pass any data from the parent to the child. This is termed as the Owner-Owned pair. On the other hand user-events (mouse, keyboard, touches) will always bubble up from the child all the way to the root component, unless handled in between.
-<figure><a href="http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660"><img src="../images/blog/tutsplus.png"></a></figure>
+<figure><a href="http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660"><img src="../images/blog/tutsplus.png" /></a></figure>
 >
 > [Read the full article ...](http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660)
 
@@ -51,7 +51,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 ## Genesis Skeleton {#genesis-skeleton}
 
 [Eric Clemmons](https://ericclemmons.github.io/) is working on a "Modern, opinionated, full-stack starter kit for rapid, streamlined application development". The version 0.4.0 has just been released and has first-class support for React.
-<figure><a href="http://genesis-skeleton.com/"><img src="../images/blog/genesis_skeleton.png"></a>a></figure>
+<figure><a href="http://genesis-skeleton.com/"><img src="../images/blog/genesis_skeleton.png" /></a>a></figure>
 
 
 ## AgFlow Talk {#agflow-talk}
@@ -82,7 +82,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 ## Photo Gallery {#photo-gallery}
 
 [Maykel Loomans](http://miekd.com/), designer at Instagram, wrote a gallery for photos he shot using React.
-<figure><a href="http://photos.miekd.com/xoxo2013/"><img src="../images/blog/xoxo2013.png"></a>a></figure>
+<figure><a href="http://photos.miekd.com/xoxo2013/"><img src="../images/blog/xoxo2013.png" /></a>a></figure>
 
 
 ## Random Tweet {#random-tweet}

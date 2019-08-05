@@ -10,6 +10,7 @@ import Flex from 'components/Flex';
 import CodeExample from 'components/CodeExample';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import {graphql} from 'gatsby';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import Layout from 'components/Layout';
@@ -243,7 +244,7 @@ class Home extends Component {
                         ]}>
                         {column.frontmatter.title}
                       </h3>
-                      <div dangerouslySetInnerHTML={{__html: column.html}} />
+                      <MDXRenderer>{column.body}</MDXRenderer>
                     </div>
                   ))}
                 </div>
@@ -268,7 +269,7 @@ class Home extends Component {
                         containerNodeID={node.frontmatter.domid}
                         loaded={babelLoaded}>
                         <h3 css={headingStyles}>{node.frontmatter.title}</h3>
-                        <div dangerouslySetInnerHTML={{__html: node.html}} />
+                        <MDXRenderer>{node.body}</MDXRenderer>
                       </CodeExample>
                     );
                   })}
@@ -365,7 +366,7 @@ export const pageQuery = graphql`
       }
     }
 
-    examples: allMarkdownRemark(
+    examples: allMdx(
       filter: {fileAbsolutePath: {regex: "//home/examples//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
@@ -379,11 +380,11 @@ export const pageQuery = graphql`
             title
             domid
           }
-          html
+          body
         }
       }
     }
-    marketing: allMarkdownRemark(
+    marketing: allMdx(
       filter: {fileAbsolutePath: {regex: "//home/marketing//"}}
       sort: {fields: [frontmatter___order], order: ASC}
     ) {
@@ -392,7 +393,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
           }
-          html
+          body
         }
       }
     }

@@ -11,6 +11,7 @@ import Flex from 'components/Flex';
 import hex2rgba from 'hex2rgba';
 import MarkdownHeader from 'components/MarkdownHeader';
 import React from 'react';
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import {graphql} from 'gatsby';
 import Layout from 'components/Layout';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
@@ -49,18 +50,15 @@ const ErrorPage = ({data, location}: Props) => (
               minHeight: 'calc(100vh - 40px)',
             }}>
             <MarkdownHeader
-              path={data.markdownRemark.fields.path}
-              title={data.markdownRemark.frontmatter.title}
+              path={data.mdx.fields.path}
+              title={data.mdx.frontmatter.title}
             />
-            <TitleAndMetaTags
-              title={`React - ${data.markdownRemark.frontmatter.title}`}
-            />
+            <TitleAndMetaTags title={`React - ${data.mdx.frontmatter.title}`} />
 
             <div css={sharedStyles.articleLayout.content}>
-              <div
-                css={sharedStyles.markdown}
-                dangerouslySetInnerHTML={{__html: data.markdownRemark.html}}
-              />
+              <div css={sharedStyles.markdown}>
+                <MDXRenderer>{data.mdx.body}</MDXRenderer>
+              </div>
               <div
                 css={[
                   sharedStyles.markdown,
@@ -93,7 +91,7 @@ const ErrorPage = ({data, location}: Props) => (
               )}
               location={location}
               sectionList={sectionListDocs}
-              title={data.markdownRemark.frontmatter.title}
+              title={data.mdx.frontmatter.title}
             />
           </div>
         </div>
@@ -104,8 +102,8 @@ const ErrorPage = ({data, location}: Props) => (
 
 export const pageQuery = graphql`
   query ErrorPageMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
+    mdx(fields: {slug: {eq: $slug}}) {
+      body
       fields {
         path
       }

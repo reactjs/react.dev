@@ -16,10 +16,10 @@ import {colors, media, sharedStyles} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import MetaTitle from 'templates/components/MetaTitle';
 
-import type {allMarkdownRemarkData} from 'types';
+import type {allMdxData} from 'types';
 
 type Props = {
-  data: allMarkdownRemarkData,
+  data: allMdxData,
   location: Location,
 };
 
@@ -39,7 +39,7 @@ const AllBlogPosts = ({data, location}: Props) => (
               flexWrap: 'wrap',
               marginLeft: -40,
             }}>
-            {data.allMarkdownRemark.edges.map(({node}) => (
+            {data.allMdx.edges.map(({node}) => (
               <li
                 css={{
                   paddingLeft: 40,
@@ -102,7 +102,7 @@ const AllBlogPosts = ({data, location}: Props) => (
 
 export const pageQuery = graphql`
   query AllBlogPostsPageQuery {
-    allMarkdownRemark(
+    allMdx(
       filter: {fileAbsolutePath: {regex: "/blog/"}}
       sort: {fields: [fields___date], order: DESC}
     ) {

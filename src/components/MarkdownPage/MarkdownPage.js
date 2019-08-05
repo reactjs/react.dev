@@ -7,6 +7,7 @@
 
 import Container from 'components/Container';
 import Flex from 'components/Flex';
+import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
 import React from 'react';
@@ -26,7 +27,7 @@ type Props = {
   enableScrollSync?: boolean,
   ogDescription: string,
   location: Location,
-  markdownRemark: Node,
+  mdx: Node,
   sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
   titlePostfix: string,
 };
@@ -50,15 +51,15 @@ const MarkdownPage = ({
   enableScrollSync,
   ogDescription,
   location,
-  markdownRemark,
+  mdx,
   sectionList,
   titlePostfix = '',
 }: Props) => {
   const hasAuthors = authors.length > 0;
-  const titlePrefix = markdownRemark.frontmatter.title || '';
+  const titlePrefix = mdx.frontmatter.title || '';
 
-  const prev = getPageById(sectionList, markdownRemark.frontmatter.prev);
-  const next = getPageById(sectionList, markdownRemark.frontmatter.next);
+  const prev = getPageById(sectionList, mdx.frontmatter.prev);
+  const next = getPageById(sectionList, mdx.frontmatter.next);
 
   return (
     <Flex
@@ -74,7 +75,7 @@ const MarkdownPage = ({
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
-        canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
+        canonicalUrl={createCanonicalUrl(mdx.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
       <div css={{flex: '1 0 auto'}}>
@@ -103,17 +104,16 @@ const MarkdownPage = ({
               )}
 
               <div css={sharedStyles.articleLayout.content}>
-                <div
-                  css={[sharedStyles.markdown]}
-                  dangerouslySetInnerHTML={{__html: markdownRemark.html}}
-                />
+                <div css={[sharedStyles.markdown]}>
+                  <MDXRenderer>{mdx.body}</MDXRenderer>
+                </div>
 
-                {markdownRemark.fields.path && (
+                {mdx.fields.path && (
                   <div css={{marginTop: 80}}>
                     <a
                       css={sharedStyles.articleLayout.editLink}
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${
-                        markdownRemark.fields.path
+                        mdx.fields.path
                       }`}>
                       Edit this page
                     </a>

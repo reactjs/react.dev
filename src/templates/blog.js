@@ -10,10 +10,10 @@ import Layout from 'components/Layout';
 import MarkdownPage from 'components/MarkdownPage';
 import {createLinkBlog} from 'utils/createLink';
 
-const toSectionList = allMarkdownRemark => [
+const toSectionList = allMdx => [
   {
     title: 'Recent Posts',
-    items: allMarkdownRemark.edges
+    items: allMdx.edges
       .map(({node}) => ({
         id: node.fields.slug,
         title: node.frontmatter.title,
@@ -28,13 +28,13 @@ const toSectionList = allMarkdownRemark => [
 const Blog = ({data, location}) => (
   <Layout location={location}>
     <MarkdownPage
-      authors={data.markdownRemark.frontmatter.author}
+      authors={data.mdx.frontmatter.author}
       createLink={createLinkBlog}
-      date={data.markdownRemark.fields.date}
+      date={data.mdx.fields.date}
       location={location}
-      ogDescription={data.markdownRemark.excerpt}
-      markdownRemark={data.markdownRemark}
-      sectionList={toSectionList(data.allMarkdownRemark)}
+      ogDescription={data.mdx.excerpt}
+      mdx={data.mdx}
+      sectionList={toSectionList(data.allMdx)}
       titlePostfix=" &ndash; React Blog"
     />
   </Layout>
@@ -42,8 +42,8 @@ const Blog = ({data, location}) => (
 
 export const pageQuery = graphql`
   query TemplateBlogMarkdown($slug: String!) {
-    markdownRemark(fields: {slug: {eq: $slug}}) {
-      html
+    mdx(fields: {slug: {eq: $slug}}) {
+      body
       excerpt(pruneLength: 500)
       frontmatter {
         title
@@ -62,7 +62,7 @@ export const pageQuery = graphql`
         slug
       }
     }
-    allMarkdownRemark(
+    allMdx(
       limit: 10
       filter: {fileAbsolutePath: {regex: "/blog/"}}
       sort: {fields: [fields___date], order: DESC}

@@ -37,7 +37,7 @@ This new function `useState` is the first "Hook" we'll learn about, but this exa
 
 At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by Ryan Florence demonstrating how to refactor an application to use them. Watch the video here:
 
-<br>
+<br />
 
 <iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
 

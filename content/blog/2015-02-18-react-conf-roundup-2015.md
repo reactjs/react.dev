@@ -169,6 +169,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-gibbon"></a>Beyond the DOM <a class="hash-link" href="#talk-gibbon">#</a></h3>
     <p>
       <strong>Jafar Husain</strong> told us a story about how Netflix was able to push React into places where the DOM could not go.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/eNC0mRYGWgc" frameborder="0" allowfullscreen></iframe>
@@ -180,6 +181,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-visualization"></a>Data Visualization <a class="hash-link" href="#talk-visualization">#</a></h3>
     <p>
       <strong>Zach Nation</strong> showed us how we can produce visualizations from over 45 million data points without breaking a sweat.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/2ii1lEkIv1s" frameborder="0" allowfullscreen></iframe>
@@ -191,6 +193,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-refracted"></a>React Refracted <a class="hash-link" href="#talk-refracted">#</a></h3>
     <p>
       <strong>David Nolen</strong> gave us a view of React from a non-JavaScript perspective, challenging some common intuition along the way.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/5hGHdETNteE" frameborder="0" allowfullscreen></iframe>
@@ -202,6 +205,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-flux-panel"></a>Flux Panel <a class="hash-link" href="#talk-flux-panel">#</a></h3>
     <p>
       <strong>Bill Fisher</strong> coordinated a Flux panel together with <strong>Michael Ridgway</strong>, <strong>Spike Brehm</strong>, <strong>Andres Suarez</strong>, <strong>Jing Chen</strong>, <strong>Ian Obermiller</strong>, and <strong>Kyle Davis</strong>.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/LTj4O7WJJ98" frameborder="0" allowfullscreen></iframe>
@@ -213,6 +217,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-communication"></a>Component communication <a class="hash-link" href="#talk-communication">#</a></h3>
     <p>
       <strong>Bonnie Eisenman</strong> led us through the â€˜adapterâ€™ approach to inter-component communication taken by her team at Codecademy.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/ZM6wXoFTY3o" frameborder="0" allowfullscreen></iframe>
@@ -224,6 +229,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-typescript"></a>Flow and TypeScript <a class="hash-link" href="#talk-typescript">#</a></h3>
     <p>
       <strong>James Brantly</strong> demonstrated how we can reap the benefits of static typing using both Flow and TypeScript.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/9PTa9-PPVAc" frameborder="0" allowfullscreen></iframe>
@@ -235,6 +241,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
     <h3 style="margin-top:0"><a class="anchor" name="talk-qa"></a>Core Team Q&amp;A <a class="hash-link" href="#talk-qa">#</a></h3>
     <p>
       <strong>Tom Occhino</strong>, <strong>Sophie Alpert</strong>, <strong>Lee Byron</strong>, <strong>Christopher Chedeau</strong>, <strong>Sebastian MarkbÃ¥ge</strong>, <strong>Jing Chen</strong>, and <strong>Dan Schafer</strong> closed the conference with a Q&amp;A session.
+    </p>
   </div>
   <div class="skinny-col">
     <iframe width="650" height="171" src="https://www.youtube-nocookie.com/embed/EPpkboSKvPI" frameborder="0" allowfullscreen></iframe>

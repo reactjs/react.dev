@@ -24,7 +24,7 @@ export type Node = {
     prev?: string,
     title: string,
   },
-  html: string,
+  body: string,
   id: string,
 };
 

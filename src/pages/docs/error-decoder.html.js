@@ -11,6 +11,7 @@ import Flex from 'components/Flex';
 import hex2rgba from 'hex2rgba';
 import MarkdownHeader from 'components/MarkdownHeader';
 import React from 'react';
+// $FlowFixMe
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import {graphql} from 'gatsby';
 import Layout from 'components/Layout';

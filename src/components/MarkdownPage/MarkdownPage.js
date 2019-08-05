@@ -7,6 +7,7 @@
 
 import Container from 'components/Container';
 import Flex from 'components/Flex';
+// $FlowFixMe
 import MDXRenderer from 'gatsby-plugin-mdx/mdx-renderer';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';

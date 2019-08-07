@@ -109,7 +109,7 @@ React will assign the `current` property with the DOM element when the component
 
 #### Adding a Ref to a Class Component {#adding-a-ref-to-a-class-component}
 
-If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref to get access to the custom input and call its `focusTextInput` method manually:
+If we wanted to wrap the `CustomTextInput` above to simulate it being clicked immediately after mounting, we could use a ref in (uncontrolled components)[/docs/uncontrolled-components.html] to get access to the custom input and call its `focusTextInput` method manually:
 
 ```javascript{4,8,13}
 class AutoFocusTextInput extends React.Component {

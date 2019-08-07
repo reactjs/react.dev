@@ -31,11 +31,11 @@ function Toolbar(props) {
 
 class ThemedButton extends React.Component {
   // highlight-range{1-3,6}
-  // Assign a contextType to read the current theme context.
-  // React will find the closest theme Provider above and use its value.
+  // Assign a contextType to read the current ThemeContext.
+  // React will find the closest ThemeContext Provider above and use its value.
   // In this example, the current theme is "dark".
   static contextType = ThemeContext;
   render() {
-    return <Button theme={this.context} />;
+    return <Button theme={this.contextType} />;
   }
 }

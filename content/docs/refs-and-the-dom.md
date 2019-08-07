@@ -140,7 +140,7 @@ class CustomTextInput extends React.Component {
 
 #### Refs and Function Components {#refs-and-function-components}
 
-**You may not use the `ref` attribute on function components** because they don't have instances:
+**See our [Hooks API Reference](https://reactjs.org/docs/hooks-reference.html#useref) to learn how you can now use the `ref` attribute on function components**:
 
 ```javascript{1,8,13}
 function MyFunctionComponent() {

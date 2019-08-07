@@ -53,8 +53,7 @@ Facebook engineers Bill Fisher and Jing Chen talk about Flux and React at Forwar
 ### Going Big with React {#going-big-with-react}
 
 Areeb Malik investigates how React performs in a high stress situation, and how it helped his team build safe code on a massive scale - (2014 - 0h31m).
-[![going big with React](https://i.vimeocdn.com/video/481670116_650.jpg)]
-
+<iframe title="Areeb Malik : Going big with React" width="650" height="366" src="https://www.youtube-nocookie.com/embed/9qcBlN6-qwY" frameborder="0" allowfullscreen></iframe>
 
 ### Rethinking Best Practices {#rethinking-best-practices}
 

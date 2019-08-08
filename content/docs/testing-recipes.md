@@ -546,6 +546,6 @@ domAct(() => {
 expect(root).toMatchSnapshot();
 ```
 
-### Something missing?
+### Something missing? {#something-missing}
 
 If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.

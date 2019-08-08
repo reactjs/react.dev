@@ -4,6 +4,11 @@ author: [gaearon]
 ---
 
 You might have heard about features like "Hooks", "Suspense", and "Concurrent Rendering" in the previous blog posts and talks. In this post, we'll look at how they fit together and the expected timeline for their availability in a stable release of React.
+
+> An Update from August, 2019
+>
+> You can find an update to this roadmap in the [React 16.9 release blog post](/blog/2019/08/08/react-v16.9.0.html#an-update-to-the-roadmap).
+
  
 ## tl;dr {#tldr}
 

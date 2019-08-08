@@ -125,6 +125,14 @@
         title: Hooks API Reference
       - id: hooks-faq
         title: Hooks FAQ
+- title: Testing
+  items:
+    - id: testing 
+      title: Testing Overview
+    - id: testing-recipes
+      title: Testing Recipes
+    - id: testing-environments
+      title: Testing Environments
 - title: Contributing
   items:
   - id: how-to-contribute

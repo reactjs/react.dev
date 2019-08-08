@@ -122,7 +122,9 @@ it('can render and update a counter', () => {
 });
 ```
 
-Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a helper like [`react-testing-library`](https://github.com/kentcdodds/react-testing-library) to reduce the boilerplate code.
+- Don't forget that dispatching DOM events only works when the DOM container is added to the `document`. You can use a library like [React Testing Library](https://testing-library.com/react) to reduce the boilerplate code.
+
+- The [`recipes`](/docs/recipes.html) document contains more details on how `act()` behaves, with examples and usage.
 
 * * *
 
@@ -139,7 +141,7 @@ Pass a mocked component module to this method to augment it with useful methods 
 
 > Note:
 >
-> `mockComponent()` is a legacy API. We recommend using [shallow rendering](/docs/shallow-renderer.html) or [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
+> `mockComponent()` is a legacy API. We recommend using [`jest.mock()`](https://facebook.github.io/jest/docs/en/tutorial-react-native.html#mock-native-modules-using-jestmock) instead.
 
 * * *
 

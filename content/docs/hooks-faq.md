@@ -180,7 +180,7 @@ The calls to `act()` will also flush the effects inside of them.
 
 If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
 
-To reduce the boilerplate, we recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to encourage writing tests that use your components as the end users do.
+To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
 
 ### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
 

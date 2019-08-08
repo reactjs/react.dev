@@ -5,17 +5,19 @@ permalink: docs/testing-recipes.html
 prev: testing-environments.html
 ---
 
-Common testing patterns for React components
+Common testing patterns for React components.
 
 > Note:
 >
-> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment in [the Environments doc](/docs/testing-environments.html).
+> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/docs/testing-environments.html) page.
 
-These testing strategies work just as well for class components as they do for function components.
+On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
-### Setup / Teardown
+### Setup / Teardown {#setup--teardown}
 
-For each test, we usually want to render our React app to a DOM element that's attached to `document`. Further, we want to 'clean up' and unmount the app once the test is over. It's useful to write this in `beforeEach`/`afterEach` blocks so that they'll always run and isolate the effects of a test to itself.
+For each test, we usually want to render our React tree to a DOM element that's attached to `document`. This is important so that it can receive DOM events. When the test ends, we want to "clean up" and unmount the tree from the `document`.
+
+A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
 
 ```jsx
 import { unmountComponentAtNode } from "react-dom";
@@ -35,17 +37,30 @@ afterEach(() => {
 });
 ```
 
+You may use a different pattern, but keep in mind that we want to execute the cleanup *even if a test fails*. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
+
 ### `act()` {#act}
 
-When writing UI tests, tasks like rendering, user events, or data fetching can be considered as 'units' of interaction with a user interface. `act()` makes sure all updates related to these 'units' have been processed and applied to the DOM before asserting on the result. This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these gurantees. (To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.)
+When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
+
+```js
+act(() => {
+  // render components
+});
+// make assertions
+````
+
+This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these gurantees.
+
+You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.
 
 > Note:
 >
-> The name `act` comes from the [arrange-act-assert pattern](http://wiki.c2.com/?ArrangeActAssert).
+> The name `act` comes from the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert) pattern.
 
 ### Rendering {#rendering}
 
-Testing whether a component renders correctly for given props is a useful signal to the stability of a component. Consider a simple component that renders a message based on a prop.
+Commonly, you might want to test whether a component renders correctly for given props. Consider a simple component that renders a message based on a prop:
 
 ```jsx
 // hello.js
@@ -106,7 +121,7 @@ it("renders with or without a name", () => {
 
 ### Data fetching {#data-fetching}
 
-Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with 'fake' data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an "end-to-end" framework that tells whether the whole app is working together.
+Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
 
 ```jsx
 // user.js
@@ -187,7 +202,9 @@ it("renders user data", async () => {
 
 ### Mocking modules {#mocking-modules}
 
-Some modules might not work well inside a testing environment, or may not be as essential to the tests itself. Mocking out these modules with different versions can make it easier to write tests for your own code. In this example, a `Contact` component embeds a GoogleMaps component from [`@react-google-maps/api`](https://react-google-maps-api-docs.netlify.com/)
+Some modules might not work well inside a testing environment, or may not be as essential to the test itself. Mocking out these modules with dummy replacements can make it easier to write tests for your own code.
+
+Consider a `Contact` component that embeds a third-party `GoogleMap` component:
 
 ```jsx
 // map.js
@@ -221,7 +238,7 @@ function Contact(props) {
 }
 ```
 
-In a testing environment, it's not very useful to load the Map component, besides also being inessential to testing our own code. In this situation, we can mock out the dependency itself to a dummy component, and run our tests.
+If we don't want to load this component in our tests, we can mock out the dependency itself to a dummy component, and run our tests:
 
 ```jsx{10,31-32}
 // contact.test.js
@@ -261,7 +278,7 @@ it("should render contact information", () => {
 
 ### Events {#events}
 
-Dispatch real events on components and elements, and observe the side effects of those actions on UI elements. Consider a `Toggle` component:
+We recommend dispatching real DOM events on DOM elements, and then asserting on the result. Consider a `Toggle` component:
 
 ```jsx
 // toggle.js
@@ -338,9 +355,15 @@ it("changes value when clicked", () => {
 });
 ```
 
+Diffrent DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+
+>Note:
+>
+>React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
+
 ### Timers {#timers}
 
-UIs could use timer based functions like `setTimeout` to run time sensitive code. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds.
+Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
 
 ```jsx
 //card.js
@@ -445,11 +468,13 @@ it("should accept selections", () => {
 });
 ```
 
+You can use fake timers only in some tests. Above, we enabled them by calling `jest.useFakeTimers()`. The main advantage they provide is that your test doesn't actually have to wait five seconds to execute, and you also didn't need to make the component code more convoluted just for testing.
+
 ### Snapshot testing {#snapshot-testing}
 
-Frameworks like Jest also let you save 'snapshots' of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can 'save' renderered components and verify they don't break in the future.
+Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the renderered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
 
-In this example, we render a component and format the rendered html with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot.
+In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
 
 ```jsx{28-31}
 // hello.test.js, again
@@ -502,7 +527,7 @@ it("should render a greeting", () => {
 });
 ```
 
-It's typically better to make more specific assertions than to use snapshots (or at least ensure that the snapshot is small) because these kinds of tests include implementation details meaning they break easily and teams can get desensitized to snapshot breakages.
+It's typically better to make more specific assertions than to use snapshots. These kinds of tests include implementation details so they break easily, and teams can get desensitized to snapshot breakages. Selectively [mocking some child components](#mocking-modules) can help reduce the size of snapshots and keep them readable for the code review.
 
 ### Multiple renderers {#multiple-renderers}
 
@@ -520,3 +545,7 @@ domAct(() => {
 });
 expect(root).toMatchSnapshot();
 ```
+
+### Something missing?
+
+If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.

@@ -37,7 +37,7 @@ afterEach(() => {
 });
 ```
 
-You may use a different pattern, but keep in mind that we want to execute the cleanup *even if a test fails*. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
+You may use a different pattern, but keep in mind that we want to execute the cleanup _even if a test fails_. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
 
 ### `act()` {#act}
 
@@ -48,7 +48,7 @@ act(() => {
   // render components
 });
 // make assertions
-````
+```
 
 This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these gurantees.
 
@@ -68,12 +68,11 @@ Commonly, you might want to test whether a component renders correctly for given
 import React from "react";
 
 export default function Hello(props) {
-  if(props.name){
-    return <h1>Hello, {props.name}!</h1>
+  if (props.name) {
+    return <h1>Hello, {props.name}!</h1>;
+  } else {
+    return <span>Hey, stranger</span>;
   }
-  else {
-    return <span>Hey, stranger</span>    
-  }  
 }
 ```
 
@@ -230,8 +229,13 @@ function Contact(props) {
   return (
     <div>
       <address>
-        Contact {props.name} via <a data-test-id="email" href={"mailto:" + props.email}>email</a>
-        or on their <a href={props.site}>website</a>.
+        Contact {props.name} via{" "}
+        <a data-test-id="email" href={"mailto:" + props.email}>
+          email
+        </a>
+        or on their <a data-test-id="site" href={props.site}>
+          website
+        </a>.
       </address>
       <Map center={props.center} />
     </div>
@@ -252,9 +256,13 @@ import Contact from "./contact";
 import MockedMap from "./map";
 
 jest.mock("./map", () => {
-  return function DummyMap(){
-    return <div>{props.center.lat}:{props.center.long}</div>
-  }
+  return function DummyMap(props) {
+    return (
+      <div data-test-id="map">
+        {props.center.lat}:{props.center.long}
+      </div>
+    );
+  };
 });
 
 let container = null;
@@ -272,13 +280,27 @@ afterEach(() => {
 });
 
 it("should render contact information", () => {
-  const center = { lat: 0, lang: 0 };
+  const center = { lat: 0, long: 0 };
   act(() => {
-    render(<Contact name="" email="" site="" center={center} />, container);
+    render(
+      <Contact
+        name="Joni Baez"
+        email="test@example.com"
+        site="http://test.com"
+        center={center}
+      />,
+      container
+    );
   });
-  expect(container.querySelector('[data-test-id="email"]'))
-
-  
+  expect(
+    container.querySelector("[data-test-id='email']").getAttribute("href")
+  ).toEqual("mailto:test@example.com");
+  expect(
+    container.querySelector('[data-test-id="site"]').getAttribute("href")
+  ).toEqual("http://test.com");
+  expect(container.querySelector('[data-test-id="map"]').textContent).toEqual(
+    "0:0"
+  );
 });
 ```
 
@@ -362,9 +384,9 @@ it("changes value when clicked", () => {
 
 Diffrent DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
 
->Note:
+> Note:
 >
->React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
+> React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
 
 ### Timers {#timers}
 
@@ -377,25 +399,23 @@ import React, { useEffect } from "react";
 
 export default function Card(props) {
   useEffect(() => {
-      const timeoutID = setTimeout(() => {
-        props.onSelect(null);
-      }, 500);
-      return () => {
-        clearTimeout(timeoutID);
-      };
-    },
-    [props.onSelect]
-  );
-  
-  return [1, 2, 3, 4].map(choice => 
+    const timeoutID = setTimeout(() => {
+      props.onSelect(null);
+    }, 500);
+    return () => {
+      clearTimeout(timeoutID);
+    };
+  }, [props.onSelect]);
+
+  return [1, 2, 3, 4].map(choice => (
     <button
       key={choice}
       data-test-id={choice}
       onClick={() => props.onSelect(choice)}
     >
       {choice}
-    </button>)
-  
+    </button>
+  ));
 }
 ```
 

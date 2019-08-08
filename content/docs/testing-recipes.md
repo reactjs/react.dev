@@ -53,11 +53,12 @@ Testing whether a component renders correctly for given props is a useful signal
 import React from "react";
 
 export default function Hello(props) {
-  return props.name === undefined ? (
-    <h1>Hello, {props.name}!</h1>
-  ) : (
-    <span>Hey, stranger</span>
-  );
+  if(props.name){
+    return <h1>Hello, {props.name}!</h1>
+  }
+  else {
+    return <span>Hey, stranger</span>    
+  }  
 }
 ```
 
@@ -95,12 +96,12 @@ it("renders with or without a name", () => {
   act(() => {
     render(<Hello name="Jenny" />, container);
   });
-  expect(container.textContent).toBe("Hello Jenny!");
+  expect(container.textContent).toBe("Hello, Jenny!");
 
   act(() => {
     render(<Hello name="Margaret" />, container);
   });
-  expect(container.textContent).toBe("Hello Margaret!");
+  expect(container.textContent).toBe("Hello, Margaret!");
 });
 ```
 
@@ -173,7 +174,7 @@ it("renders user data", async () => {
 
   // Use the asynchronous version of act to apply resolved promises
   await act(async () => {
-    render(<User id="123" />, div);
+    render(<User id="123" />, container);
   });
 
   expect(container.querySelector("summary").textContent).toBe(fakeUser.name);
@@ -212,7 +213,7 @@ function Contact(props) {
   return (
     <div>
       <address>
-        Contact {props.name} via <a href={"mailto:" + props.email}>email</a>
+        Contact {props.name} via <a data-test-id="email" href={"mailto:" + props.email}>email</a>
         or on their <a href={props.site}>website</a>.
       </address>
       <Map center={props.center} />
@@ -233,7 +234,11 @@ import { act } from "react-dom/test-utils";
 import Contact from "./contact";
 import MockedMap from "./map";
 
-jest.mock("./map", () => jest.fn(() => "DummyMap"));
+jest.mock("./map", () => {
+  return function DummyMap(){
+    return <div>{props.center.lat}:{props.center.long}</div>
+  }
+});
 
 let container = null;
 beforeEach(() => {
@@ -254,8 +259,9 @@ it("should render contact information", () => {
   act(() => {
     render(<Contact name="" email="" site="" center={center} />, container);
   });
-  // ensure the mocked map component function was called correctly
-  expect(MockedMap).toHaveBeenCalledWith({ id: "example-map", center }, {});
+  expect(container.querySelector('[data-test-id="email"]'))
+
+  
 });
 ```
 
@@ -269,13 +275,12 @@ Dispatch real events on components and elements, and observe the side effects of
 import React, { useState } from "react";
 
 export default function Toggle(props) {
-  // initial, onChange
-  const [state, setState] = useState(Boolean(initial));
+  const [state, setState] = useState(false);
   return (
     <button
       onClick={() => {
         setState(previousState => !previousState);
-        onChange(!previousState);
+        props.onChange(!state);
       }}
       data-testid="toggle"
     >
@@ -314,18 +319,18 @@ afterEach(() => {
 it("changes value when clicked", () => {
   const onChange = jest.fn();
   act(() => {
-    render(<Toggle initial={true} onChange={onChange} />, container);
+    render(<Toggle onChange={onChange} />, container);
   });
 
   // get a hold of the button element, and trigger some clicks on it
   const button = document.querySelector("[data-testid=toggle]");
-  expect(button.innerText).toBe("Turn on!");
+  expect(button.innerHTML).toBe("Turn off");
   act(() => {
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 
   expect(onChange).toHaveBeenCalledTimes(1);
-  expect(button.innerText).toBe("Turn off!");
+  expect(button.innerHTML).toBe("Turn on");
 
   act(() => {
     for (let i = 0; i < 5; i++) {
@@ -333,8 +338,8 @@ it("changes value when clicked", () => {
     }
   });
 
-  expect(onChange).toHaveBeenCalledTimes(5);
-  expect(button.innerText).toBe("Turn on!");
+  expect(onChange).toHaveBeenCalledTimes(6);
+  expect(button.innerHTML).toBe("Turn on!");
 });
 ```
 
@@ -348,26 +353,26 @@ UIs could use timer based functions like `setTimeout` to run time sensitive code
 import React, { useEffect } from "react";
 
 export default function Card(props) {
-  useEffect(
-    props => {
+  useEffect(() => {
       const timeoutID = setTimeout(() => {
         props.onSelect(null);
-      }, 5000);
+      }, 500);
       return () => {
         clearTimeout(timeoutID);
       };
     },
     [props.onSelect]
   );
-  return [1, 2, 3, 4].map(choice => {
+  
+  return [1, 2, 3, 4].map(choice => 
     <button
       key={choice}
       data-test-id={choice}
       onClick={() => props.onSelect(choice)}
     >
       {choice}
-    </button>;
-  });
+    </button>)
+  
 }
 ```
 

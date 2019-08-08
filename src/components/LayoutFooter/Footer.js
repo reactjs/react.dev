@@ -86,12 +86,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               rel="noopener">
               Stack Overflow
             </ExternalFooterLink>
-            <ExternalFooterLink
+            <FooterLink
               href="https://reactjs.org/community/support.html#popular-discussion-forums"
               target="_blank"
               rel="noopener">
               Discussion Forums
-            </ExternalFooterLink>
+            </FooterLink>
             <ExternalFooterLink
               href="https://discord.gg/0ZcbPKXt5bZjGY5n"
               target="_blank"

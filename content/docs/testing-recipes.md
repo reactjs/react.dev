@@ -2,7 +2,8 @@
 id: testing-recipes
 title: Testing Recipes
 permalink: docs/testing-recipes.html
-prev: testing-environments.html
+prev: testing.html
+next: testing-environments.html
 ---
 
 Common testing patterns for React components.
@@ -50,7 +51,7 @@ act(() => {
 // make assertions
 ```
 
-This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these gurantees.
+This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these guarantees.
 
 You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.
 
@@ -130,16 +131,21 @@ import React, { useState, useEffect } from "react";
 
 export default function User(props) {
   const [user, setUser] = useState(null);
+
   async function fetchUserData(id) {
     const response = await fetch("/" + id);
     setUser(await response.json());
   }
+
   useEffect(() => {
     fetchUserData(props.id);
   }, [props.id]);
-  return user === null ? (
-    "loading..."
-  ) : (
+
+  if (!user) {
+    return "loading...";
+  }
+
+  return (
     <details>
       <summary>{user.name}</summary>
       <strong>{user.age}</strong> years old
@@ -152,7 +158,7 @@ export default function User(props) {
 
 We can write tests for it:
 
-```jsx{23-32,44}
+```jsx{23-33,44-45}
 // user.test.js
 
 import React from "react";
@@ -180,6 +186,7 @@ it("renders user data", async () => {
     age: "32",
     address: "123, Charming Avenue"
   };
+
   jest.spyOn(global, "fetch").mockImplementation(() =>
     Promise.resolve({
       json: () => Promise.resolve(fakeUser)
@@ -245,7 +252,7 @@ function Contact(props) {
 
 If we don't want to load this component in our tests, we can mock out the dependency itself to a dummy component, and run our tests:
 
-```jsx{10,31-32}
+```jsx{10-18}
 // contact.test.js
 
 import React from "react";
@@ -292,12 +299,15 @@ it("should render contact information", () => {
       container
     );
   });
+
   expect(
     container.querySelector("[data-test-id='email']").getAttribute("href")
   ).toEqual("mailto:test@example.com");
+
   expect(
     container.querySelector('[data-test-id="site"]').getAttribute("href")
   ).toEqual("http://test.com");
+
   expect(container.querySelector('[data-test-id="map"]').textContent).toEqual(
     "0:0"
   );
@@ -331,7 +341,7 @@ export default function Toggle(props) {
 
 We could write tests for it:
 
-```jsx{13-14,34,42}
+```jsx{13-14,35,43}
 // toggle.test.js
 
 import React from "react";
@@ -364,6 +374,7 @@ it("changes value when clicked", () => {
   // get a hold of the button element, and trigger some clicks on it
   const button = document.querySelector("[data-testid=toggle]");
   expect(button.innerHTML).toBe("Turn off");
+
   act(() => {
     button.dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
@@ -421,7 +432,7 @@ export default function Card(props) {
 
 We can write tests for this component by leveraging [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), and testing the different states it can be in.
 
-```jsx{7,29,33,44,51}
+```jsx{7,31,37,49,59}
 // card.test.js
 
 import React from "react";
@@ -449,10 +460,14 @@ it("should select null after timing out", () => {
   act(() => {
     render(<Card onSelect={onSelect} />, container);
   });
+
+  // move ahead in time by 100ms
   act(() => {
     jest.advanceTimersByTime(100);
   });
   expect(onSelect).not.toHaveBeenCalled();
+
+  // and then move ahead by 1 second
   act(() => {
     jest.advanceTimersByTime(1000);
   });
@@ -464,13 +479,17 @@ it("should cleanup on being removed", () => {
   act(() => {
     render(<Card onSelect={onSelect} />, container);
   });
+
   act(() => {
     jest.advanceTimersByTime(100);
   });
   expect(onSelect).not.toHaveBeenCalled();
+
+  // unmount the app
   act(() => {
     render(null, container);
   });
+
   act(() => {
     jest.advanceTimersByTime(1000);
   });
@@ -501,7 +520,7 @@ Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapsho
 
 In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
 
-```jsx{28-31}
+```jsx{29-31}
 // hello.test.js, again
 
 import React from "react";
@@ -571,6 +590,6 @@ domAct(() => {
 expect(root).toMatchSnapshot();
 ```
 
-### Something missing?
+### Something missing? {#something-missing}
 
 If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.

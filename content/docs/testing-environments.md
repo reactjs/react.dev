@@ -2,8 +2,7 @@
 id: testing-environments
 title: Testing Environments
 permalink: docs/testing-environments.html
-next: testing-recipes.html
-prev: testing.html
+prev: testing-recipes.html
 ---
 
 <!-- This document is intended for folks who are comfortable with JavaScript, and have probably written tests with it. It acts as a reference for the differences in testing environments for React components, and how those differences affect the tests that they write. This document also assumes a slant towards web-based react-dom components, but has notes for other renderers. -->

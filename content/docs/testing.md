@@ -4,7 +4,7 @@ title: Testing Overview
 permalink: docs/testing.html
 redirect_from:
   - "community/testing.html"
-next: testing-environments.html
+next: testing-recipes.html
 ---
 
 You can test React components similar to testing other JavaScript code.
@@ -15,11 +15,6 @@ There are a few ways to test React components. Broadly, they divide into two cat
 * **Running a complete app** in a realistic browser environment (also known as “end-to-end” tests).
 
 This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of scope of this section.
-
-This section is divided in two pages:
-
-- [Environments](/docs/testing-environments.html): What to consider when setting up a testing environment for React components.
-- [Recipes](/docs/testing-recipes.html): Common patterns when writing tests for React components.
 
 ### Tradeoffs {#tradeoffs}
 
@@ -37,3 +32,9 @@ Different answers may work for different teams and products.
 
 **[React Testing Library](https://testing-library.com/react)** is a set of helpers that let you test React components without relying on their implementation details. This approach makes refactoring a breeze and also nudges you towards best practices for accessibility. Although it doesn't provide a way to "shallowly" render a component without its children, a test runner like Jest lets you do this by [mocking](/docs/testing-recipes.html#mocking-modules).
 
+### Learn more {#learn-more}
+
+This section is divided in two pages:
+
+- [Recipes](/docs/testing-recipes.html): Common patterns when writing tests for React components.
+- [Environments](/docs/testing-environments.html): What to consider when setting up a testing environment for React components.

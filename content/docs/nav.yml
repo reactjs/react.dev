@@ -127,10 +127,10 @@
   items:
     - id: testing 
       title: Testing Overview
-    - id: testing-environments
-      title: Testing Environments
     - id: testing-recipes
       title: Testing Recipes
+    - id: testing-environments
+      title: Testing Environments
 - title: Contributing
   items:
   - id: how-to-contribute

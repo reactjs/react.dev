@@ -491,7 +491,7 @@ it("should cleanup on being removed", () => {
   });
 
   act(() => {
-    jest.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(5000);
   });
   expect(onSelect).not.toHaveBeenCalled();
 });

@@ -114,6 +114,6 @@ Set of ["interactions"](http://fb.me/react-interaction-tracing) that were being 
 
 > Note
 >
-> Interactions can be used to identify the cause of an update, althoguh the API for tracing them is still experimental.
+> Interactions can be used to identify the cause of an update, although the API for tracing them is still experimental.
 >
 > Learn more about it at [fb.me/react-interaction-tracing](http://fb.me/react-interaction-tracing)

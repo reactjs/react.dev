@@ -14,7 +14,19 @@ Common testing patterns for React components.
 
 On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
-### Setup / Teardown {#setup--teardown}
+- [Setup/Teardown ](#setup--teardown)
+- [`act()`](#act)
+- [Data Fetching](#data-fetching)
+- [Mocking Modules](#mocking-modules)
+- [Events](#events)
+- [Timers](#timers)
+- [Snapshot Testing](#snapshot-testing)
+- [Multiple Renderers](#multiple-renderers)
+- [Something Missing?](#something-missing)
+
+---
+
+### Setup/Teardown {#setup--teardown}
 
 For each test, we usually want to render our React tree to a DOM element that's attached to `document`. This is important so that it can receive DOM events. When the test ends, we want to "clean up" and unmount the tree from the `document`.
 
@@ -40,6 +52,8 @@ afterEach(() => {
 
 You may use a different pattern, but keep in mind that we want to execute the cleanup _even if a test fails_. Otherwise, tests can become "leaky", and one test can change the behavior of another test. That makes them difficult to debug.
 
+---
+
 ### `act()` {#act}
 
 When writing UI tests, tasks like rendering, user events, or data fetching can be considered as "units" of interaction with a user interface. React provides a helper called `act()` that makes sure all updates related to these "units" have been processed and applied to the DOM before you make any assertions:
@@ -58,6 +72,8 @@ You might find using `act()` directly a bit too verbose. To avoid some of the bo
 > Note:
 >
 > The name `act` comes from the [Arrange-Act-Assert](http://wiki.c2.com/?ArrangeActAssert) pattern.
+
+---
 
 ### Rendering {#rendering}
 
@@ -120,7 +136,9 @@ it("renders with or without a name", () => {
 });
 ```
 
-### Data fetching {#data-fetching}
+---
+
+### Data Fetching {#data-fetching}
 
 Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
 
@@ -207,7 +225,9 @@ it("renders user data", async () => {
 });
 ```
 
-### Mocking modules {#mocking-modules}
+---
+
+### Mocking Modules {#mocking-modules}
 
 Some modules might not work well inside a testing environment, or may not be as essential to the test itself. Mocking out these modules with dummy replacements can make it easier to write tests for your own code.
 
@@ -314,6 +334,8 @@ it("should render contact information", () => {
 });
 ```
 
+---
+
 ### Events {#events}
 
 We recommend dispatching real DOM events on DOM elements, and then asserting on the result. Consider a `Toggle` component:
@@ -398,6 +420,8 @@ Different DOM events and their properties are described in [MDN](https://develop
 > Note:
 >
 > React Testing Library offers a [more concise helper](https://testing-library.com/docs/dom-testing-library/api-events) for firing events.
+
+---
 
 ### Timers {#timers}
 
@@ -514,7 +538,9 @@ it("should accept selections", () => {
 
 You can use fake timers only in some tests. Above, we enabled them by calling `jest.useFakeTimers()`. The main advantage they provide is that your test doesn't actually have to wait five seconds to execute, and you also didn't need to make the component code more convoluted just for testing.
 
-### Snapshot testing {#snapshot-testing}
+---
+
+### Snapshot Testing {#snapshot-testing}
 
 Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapshot` / `toMatchInlineSnapshot`](https://jestjs.io/docs/en/snapshot-testing). With these, we can "save" the renderered component output and ensure that a change to it has to be explicitly committed as a change to the snapshot.
 
@@ -573,7 +599,9 @@ it("should render a greeting", () => {
 
 It's typically better to make more specific assertions than to use snapshots. These kinds of tests include implementation details so they break easily, and teams can get desensitized to snapshot breakages. Selectively [mocking some child components](#mocking-modules) can help reduce the size of snapshots and keep them readable for the code review.
 
-### Multiple renderers {#multiple-renderers}
+---
+
+### Multiple Renderers {#multiple-renderers}
 
 In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `ReactDOM.render` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
 
@@ -590,6 +618,8 @@ domAct(() => {
 expect(root).toMatchSnapshot();
 ```
 
-### Something missing? {#something-missing}
+---
+
+### Something Missing? {#something-missing}
 
 If some common scenario is not covered, please let us know on the [issue tracker](https://github.com/reactjs/reactjs.org/issues) for the documentation website.

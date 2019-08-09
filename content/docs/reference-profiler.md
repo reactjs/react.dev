@@ -73,7 +73,7 @@ render(
 ## `onRender` Callback
 
 The `Profiler` requires an `onRender` function as a prop.
-React calls calls this function any time a component within the profiled tree "commits" an update.
+React calls this function any time a component within the profiled tree "commits" an update.
 It receives parameters describing what was rendered and how long it took.
 
 ```js

@@ -32,7 +32,7 @@ cd your_project
 npx react-codemod rename-unsafe-lifecycles
 ```
 
-Learn more on the [16.9.0 release post.](https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods) 
+Learn more about this codemod on the [16.9.0 release post.](https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods) 
 
 ---
 

@@ -412,7 +412,7 @@ export default function Card(props) {
   useEffect(() => {
     const timeoutID = setTimeout(() => {
       props.onSelect(null);
-    }, 500);
+    }, 5000);
     return () => {
       clearTimeout(timeoutID);
     };
@@ -467,9 +467,9 @@ it("should select null after timing out", () => {
   });
   expect(onSelect).not.toHaveBeenCalled();
 
-  // and then move ahead by 1 second
+  // and then move ahead by 5 seconds
   act(() => {
-    jest.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(5000);
   });
   expect(onSelect).toHaveBeenCalledWith(null);
 });
@@ -491,7 +491,7 @@ it("should cleanup on being removed", () => {
   });
 
   act(() => {
-    jest.advanceTimersByTime(1000);
+    jest.advanceTimersByTime(5000);
   });
   expect(onSelect).not.toHaveBeenCalled();
 });

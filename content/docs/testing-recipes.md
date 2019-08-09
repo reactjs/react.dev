@@ -237,10 +237,10 @@ function Contact(props) {
     <div>
       <address>
         Contact {props.name} via{" "}
-        <a data-test-id="email" href={"mailto:" + props.email}>
+        <a data-testid="email" href={"mailto:" + props.email}>
           email
         </a>
-        or on their <a data-test-id="site" href={props.site}>
+        or on their <a data-testid="site" href={props.site}>
           website
         </a>.
       </address>
@@ -265,7 +265,7 @@ import MockedMap from "./map";
 jest.mock("./map", () => {
   return function DummyMap(props) {
     return (
-      <div data-test-id="map">
+      <div data-testid="map">
         {props.center.lat}:{props.center.long}
       </div>
     );
@@ -301,14 +301,14 @@ it("should render contact information", () => {
   });
 
   expect(
-    container.querySelector("[data-test-id='email']").getAttribute("href")
+    container.querySelector("[data-testid='email']").getAttribute("href")
   ).toEqual("mailto:test@example.com");
 
   expect(
-    container.querySelector('[data-test-id="site"]').getAttribute("href")
+    container.querySelector('[data-testid="site"]').getAttribute("href")
   ).toEqual("http://test.com");
 
-  expect(container.querySelector('[data-test-id="map"]').textContent).toEqual(
+  expect(container.querySelector('[data-testid="map"]').textContent).toEqual(
     "0:0"
   );
 });
@@ -389,7 +389,7 @@ it("changes value when clicked", () => {
   });
 
   expect(onChange).toHaveBeenCalledTimes(6);
-  expect(button.innerHTML).toBe("Turn on!");
+  expect(button.innerHTML).toBe("Turn on");
 });
 ```
 
@@ -404,7 +404,7 @@ Different DOM events and their properties are described in [MDN](https://develop
 Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
 
 ```jsx
-//card.js
+// card.js
 
 import React, { useEffect } from "react";
 
@@ -421,7 +421,7 @@ export default function Card(props) {
   return [1, 2, 3, 4].map(choice => (
     <button
       key={choice}
-      data-test-id={choice}
+      data-testid={choice}
       onClick={() => props.onSelect(choice)}
     >
       {choice}
@@ -504,7 +504,7 @@ it("should accept selections", () => {
 
   act(() => {
     container
-      .querySelector("[data-test-id=2]")
+      .querySelector("[data-testid=2]")
       .dispatchEvent(new MouseEvent("click", { bubbles: true }));
   });
 

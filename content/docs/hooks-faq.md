@@ -118,6 +118,10 @@ Importantly, custom Hooks give you the power to constrain React API if you'd lik
 
 From React's point of view, a component using Hooks is just a regular component. If your testing solution doesn't rely on React internals, testing components with Hooks shouldn't be different from how you normally test components.
 
+>Note
+>
+>[Testing Recipes](/docs/testing-recipes.html) include many examples that you can copy and paste.
+
 For example, let's say we have this counter component:
 
 ```js
@@ -181,6 +185,8 @@ The calls to `act()` will also flush the effects inside of them.
 If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
 
 To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
+
+For more information, check out [Testing Recipes](/docs/testing-recipes.html).
 
 ### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
 

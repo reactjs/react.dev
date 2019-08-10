@@ -78,7 +78,7 @@ After compilation, JSX expressions become regular JavaScript function calls and 
 
 This means that you can use JSX inside of `if` statements and `for` loops, assign it to variables, accept it as arguments, and return it from functions:
 
-```js{3,5}
+```js{3,4}
 function getGreeting(user) {
   return user
     ? <h1>Hello, {formatName(user)}!</h1>

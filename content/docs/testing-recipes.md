@@ -425,7 +425,7 @@ Different DOM events and their properties are described in [MDN](https://develop
 
 ### Timers {#timers}
 
-Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
+Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 500 milliseconds:
 
 ```jsx
 // card.js

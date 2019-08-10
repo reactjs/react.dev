@@ -16,7 +16,7 @@ This tutorial doesn't assume any existing React knowledge.
 
 ## Before We Start the Tutorial {#before-we-start-the-tutorial}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
+We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering them will give you a deep understanding of React.
 
 >Tip
 >
@@ -78,7 +78,7 @@ This setup requires more work but allows you to complete the tutorial using an e
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Delete all the files in the `src/` folder of the new project 
 
 > Note:
 >
@@ -174,7 +174,7 @@ The `ShoppingList` component above only renders built-in DOM components like `<d
 
 If you're going to work on the tutorial **in your browser,** open this code in a new tab: **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)**. If you're going to work on the tutorial **locally,** instead open `src/index.js` in your project folder (you have already touched this file during the [setup](#setup-option-2-local-development-environment)).
 
-This Starter Code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+This Starter Code is the base of what we're building. We've provided the CSS styling so that you have to only focus on learning React and programming the tic-tac-toe game.
 
 By inspecting the code, you'll notice that we have three React components:
 
@@ -337,7 +337,7 @@ The React DevTools let you check the props and the state of your React component
 
 After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tab will appear as the last tab to the right.
 
-**However, note there are a few extra steps to get it working with CodePen:**
+**However, note that there are a few extra steps to get it working with CodePen:**
 
 1. Log in or register and confirm your email (required to prevent spam).
 2. Click the "Fork" button.
@@ -1207,4 +1207,4 @@ If you have extra time or want to practice your new React skills, here are some 
 5. When someone wins, highlight the three squares that caused the win.
 6. When no one wins, display a message about the result being a draw.
 
-Throughout this tutorial, we touched on React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).
+Throughout this tutorial, we touched several React concepts including elements, components, props, and state. For a more detailed explanation of each of these topics, check out [the rest of the documentation](/docs/hello-world.html). To learn more about defining components, check out the [`React.Component` API reference](/docs/react-component.html).

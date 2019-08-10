@@ -28,7 +28,7 @@ By following this rule, you ensure that all stateful logic in a component is cle
 We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
 
 ```bash
-npm install eslint-plugin-react-hooks
+npm install eslint-plugin-react-hooks --save-dev
 ```
 
 ```js
@@ -41,7 +41,7 @@ npm install eslint-plugin-react-hooks
   "rules": {
     // ...
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-    "react-hooks/exhaustive-deps": "warning" // Checks effect dependencies
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 }
 ```

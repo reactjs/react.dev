@@ -42,6 +42,7 @@ This page answers some of the frequently asked questions about [Hooks](/docs/hoo
   * [How do I implement getDerivedStateFromProps?](#how-do-i-implement-getderivedstatefromprops)
   * [Is there something like forceUpdate?](#is-there-something-like-forceupdate)
   * [Can I make a ref to a function component?](#can-i-make-a-ref-to-a-function-component)
+  * [How can I measure a DOM node?](#how-can-i-measure-a-dom-node)
   * [What does const [thing, setThing] = useState() mean?](#what-does-const-thing-setthing--usestate-mean)
 * **[Performance Optimizations](#performance-optimizations)**
   * [Can I skip an effect on updates?](#can-i-skip-an-effect-on-updates)
@@ -70,7 +71,7 @@ Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 
 Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
 
-React Native will fully support Hooks in its next stable release.
+React Native 0.59 and above support Hooks.
 
 ### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -180,7 +181,7 @@ The calls to `act()` will also flush the effects inside of them.
 
 If you need to test a custom Hook, you can do so by creating a component in your test, and using your Hook from it. Then you can test the component you wrote.
 
-To reduce the boilerplate, we recommend using [`react-testing-library`](https://git.io/react-testing-library) which is designed to encourage writing tests that use your components as the end users do.
+To reduce the boilerplate, we recommend using [React Testing Library](https://testing-library.com/react) which is designed to encourage writing tests that use your components as the end users do.
 
 ### What exactly do the [lint rules](https://www.npmjs.com/package/eslint-plugin-react-hooks) enforce? {#what-exactly-do-the-lint-rules-enforce}
 
@@ -220,7 +221,7 @@ Notes:
 1. Lazy initializers are functions passed to useState and useReducer.
 1. A [printable PDF](https://github.com/donavon/hook-flow) version is also available.
 
-### How can I do data fetching with Hooks?
+### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
 
 Here is a [small demo](https://codesandbox.io/s/jvvkoo8pq3) to get you started. To learn more, check out [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) about data fetching with Hooks.
 
@@ -463,6 +464,60 @@ Try to avoid this pattern if possible.
 
 While you shouldn't need this often, you may expose some imperative methods to a parent component with the [`useImperativeHandle`](/docs/hooks-reference.html#useimperativehandle) Hook.
 
+### How can I measure a DOM node? {#how-can-i-measure-a-dom-node}
+
+In order to measure the position or size of a DOM node, you can use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+
+```js{4-8,12}
+function MeasureExample() {
+  const [height, setHeight] = useState(0);
+
+  const measuredRef = useCallback(node => {
+    if (node !== null) {
+      setHeight(node.getBoundingClientRect().height);
+    }
+  }, []);
+
+  return (
+    <>
+      <h1 ref={measuredRef}>Hello, world</h1>
+      <h2>The above header is {Math.round(height)}px tall</h2>
+    </>
+  );
+}
+```
+
+We didn't choose `useRef` in this example because an object ref doesn't notify us about *changes* to the current ref value. Using a callback ref ensures that [even if a child component displays the measured node later](https://codesandbox.io/s/818zzk8m78) (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
+
+Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
+
+If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
+
+```js{2}
+function MeasureExample() {
+  const [rect, ref] = useClientRect();
+  return (
+    <>
+      <h1 ref={ref}>Hello, world</h1>
+      {rect !== null &&
+        <h2>The above header is {Math.round(rect.height)}px tall</h2>
+      }
+    </>
+  );
+}
+
+function useClientRect() {
+  const [rect, setRect] = useState(null);
+  const ref = useCallback(node => {
+    if (node !== null) {
+      setRect(node.getBoundingClientRect());
+    }
+  }, []);
+  return [rect, ref];
+}
+```
+
+
 ### What does `const [thing, setThing] = useState()` mean? {#what-does-const-thing-setthing--usestate-mean}
 
 If you're not familiar with this syntax, check out the [explanation](/docs/hooks-state.html#tip-what-do-square-brackets-mean) in the State Hook documentation.
@@ -479,7 +534,7 @@ Yes. See [conditionally firing an effect](/docs/hooks-reference.html#conditional
 Generally speaking, no.
 
 ```js{3,8}
-function Example() {
+function Example({ someProp }) {
   function doSomething() {
     console.log(someProp);
   }
@@ -493,7 +548,7 @@ function Example() {
 It's difficult to remember which props or state are used by functions outside of the effect. This is why **usually you'll want to declare functions needed by an effect *inside* of it.** Then it's easy to see what values from the component scope that effect depends on:
 
 ```js{4,8}
-function Example() {
+function Example({ someProp }) {
   useEffect(() => {
     function doSomething() {
       console.log(someProp);
@@ -524,7 +579,7 @@ Depending on your use case, there are a few more options described below.
 
 Let's see why this matters.
 
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.  
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.
 
 It is **only** safe to omit a function from the dependency list if nothing in it (or the functions called by it) references props, state, or values derived from them. This example has a bug:
 
@@ -567,7 +622,7 @@ function ProductPage({ productId }) {
 
 This also allows you to handle out-of-order responses with a local variable inside the effect:
 
-```js{2,6,8}
+```js{2,6,10}
   useEffect(() => {
     let ignore = false;
     async function fetchProduct() {
@@ -575,6 +630,8 @@ This also allows you to handle out-of-order responses with a local variable insi
       const json = await response.json();
       if (!ignore) setProduct(json);
     }
+
+    fetchProduct();
     return () => { ignore = true };
   }, [productId]);
 ```
@@ -611,9 +668,9 @@ function ProductDetails({ fetchProduct })
 
 Note that in the above example we **need** to keep the function in the dependencies list. This ensures that a change in the `productId` prop of `ProductPage` automatically triggers a refetch in the `ProductDetails` component.
 
-### What can I do if my effect dependencies change too often?
+### What can I do if my effect dependencies change too often? {#what-can-i-do-if-my-effect-dependencies-change-too-often}
 
-Sometimes, your effect may be using reading state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
+Sometimes, your effect may be using state that changes too often. You might be tempted to omit that state from a list of dependencies, but that usually leads to bugs:
 
 ```js{6,9}
 function Counter() {
@@ -630,7 +687,9 @@ function Counter() {
 }
 ```
 
-Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
+The empty set of dependencies, `[]`, means that the effect will only run once when the component mounts, and not on every re-render. The problem is that inside the `setInterval` callback, the value of `count` does not change, because we've created a closure with the value of `count` set to `0` as it was when the effect callback ran. Every second, this callback then calls `setCount(0 + 1)`, so the count never goes above 1.
+
+Specifying `[count]` as a list of dependencies would fix the bug, but would cause the interval to be reset on every change. Effectively, each `setInterval` would get one chance to execute before being cleared (similar to a `setTimeout`.) That may not be desirable. To fix this, we can use the [functional update form of `setState`](/docs/hooks-reference.html#functional-updates). It lets us specify *how* the state needs to change without referencing the *current* state:
 
 ```js{6,9}
 function Counter() {
@@ -649,9 +708,11 @@ function Counter() {
 
 (The identity of the `setCount` function is guaranteed to be stable so it's safe to omit.)
 
+Now, the `setInterval` callback executes once a second, but each time the inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback here.)
+
 In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
 
-As a last resort, if you want to something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
+As a last resort, if you want something like `this` in a class, you can [use a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables) to hold a mutable variable. Then you can write and read to it. For example:
 
 ```js{2-6,10-11,16}
 function Example(props) {
@@ -697,7 +758,7 @@ The [`useMemo`](/docs/hooks-reference.html#usememo) Hook lets you cache calculat
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 
-This code calls `computeExpensiveValue(a, b)`. But if the inputs `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
+This code calls `computeExpensiveValue(a, b)`. But if the dependencies `[a, b]` haven't changed since the last value, `useMemo` skips calling it a second time and simply reuses the last value it returned.
 
 Remember that the function passed to `useMemo` runs during rendering. Don't do anything there that you wouldn't normally do while rendering. For example, side effects belong in `useEffect`, not `useMemo`.
 
@@ -724,7 +785,7 @@ Note that this approach won't work in a loop because Hook calls [can't](/docs/ho
 
 ### How to create expensive objects lazily? {#how-to-create-expensive-objects-lazily}
 
-`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the inputs are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
+`useMemo` lets you [memoize an expensive calculation](#how-to-memoize-calculations) if the dependencies are the same. However, it only serves as a hint, and doesn't *guarantee* the computation won't re-run. But sometimes you need to be sure an object is only created once.
 
 **The first common use case is when creating the initial state is expensive:**
 
@@ -766,13 +827,10 @@ function Image(props) {
 
   // ✅ IntersectionObserver is created lazily once
   function getObserver() {
-    let observer = ref.current;
-    if (observer !== null) {
-      return observer;
+    if (ref.current === null) {
+      ref.current = new IntersectionObserver(onIntersect);
     }
-    let newObserver = new IntersectionObserver(onIntersect);
-    ref.current = newObserver;
-    return newObserver;
+    return ref.current;
   }
 
   // When you need it, call getObserver()
@@ -804,9 +862,9 @@ Traditionally, performance concerns around inline functions in React have been r
     }, [a, b]);
     ```
 
-* The [`useMemo` Hook](/docs/hooks-faq.html#how-to-memoize-calculations) makes it easier to control when individual children update, reducing the need for pure components.
+* The [`useMemo`](/docs/hooks-faq.html#how-to-memoize-calculations) Hook makes it easier to control when individual children update, reducing the need for pure components.
 
-* Finally, the `useReducer` Hook reduces the need to pass callbacks deeply, as explained below.
+* Finally, the [`useReducer`](/docs/hooks-reference.html#usereducer) Hook reduces the need to pass callbacks deeply, as explained below.
 
 ### How to avoid passing callbacks down? {#how-to-avoid-passing-callbacks-down}
 
@@ -865,7 +923,7 @@ function Form() {
   const [text, updateText] = useState('');
   const textRef = useRef();
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     textRef.current = text; // Write it to the ref
   });
 
@@ -906,7 +964,7 @@ function useEventCallback(fn, dependencies) {
     throw new Error('Cannot call an event handler while rendering.');
   });
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     ref.current = fn;
   }, [fn, ...dependencies]);
 

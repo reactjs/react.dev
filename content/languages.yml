@@ -10,15 +10,15 @@
 - name: Arabic
   translated_name: العربية
   code: ar
-  status: 1
+  status: 2
 - name: Azerbaijani
   translated_name: Azərbaycanca
   code: az
-  status: 0
+  status: 1
 - name: Bulgarian
   translated_name: Български
   code: bg
-  status: 0
+  status: 1
 - name: Bengali
   translated_name: বাংলা
   code: bn
@@ -66,7 +66,7 @@
 - name: Indonesian
   translated_name: Bahasa Indonesia
   code: id
-  status: 0
+  status: 1
 - name: Italian
   translated_name: Italiano
   code: it
@@ -106,7 +106,7 @@
 - name: Mongolian
   translated_name: Монгол хэл
   code: mn
-  status: 0
+  status: 1
 - name: Nepali
   translated_name: नेपाली
   code: ne

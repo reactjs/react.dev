@@ -106,7 +106,7 @@ Often, render props and higher-order components render only a single child. We t
 
 You can continue to use the exact same APIs as you always have; they'll continue to work.
 
-React-Redux [supports Hooks API](https://react-redux.js.org/next/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
 
 Libraries like React Router might support hooks in the future.
 

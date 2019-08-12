@@ -110,6 +110,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Spain {#spain}
 * [Barcelona](https://www.meetup.com/ReactJS-Barcelona/)
+* [Canarias](https://www.meetup.com/React-Canarias/)
 
 ## Sweden {#sweden}
 * [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)

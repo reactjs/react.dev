@@ -29,7 +29,7 @@ Below, we loop through the `numbers` array using the JavaScript [`map()`](https:
 ```javascript{2-4}
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
-  <li>{number}</li>
+  <li key={number}>{number * 2}</li>
 );
 ```
 

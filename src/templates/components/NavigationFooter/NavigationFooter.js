@@ -46,10 +46,10 @@ const NavigationFooter = ({next, prev, location}) => {
                   css={{
                     paddingTop: 10,
                   }}>
-                  <ArrowSvg
-                    cssProps={{marginRight: 10, transform: 'rotateY(180deg)'}}
-                  />
                   <PrimaryLink location={location} to={`${prev.id}.html`}>
+                    <ArrowSvg
+                      cssProps={{marginRight: 10, transform: 'rotateY(180deg)'}}
+                    />
                     {prev.title}
                   </PrimaryLink>
                 </div>
@@ -72,8 +72,8 @@ const NavigationFooter = ({next, prev, location}) => {
                   }}>
                   <PrimaryLink location={location} to={`${next.id}.html`}>
                     {next.title}
+                    <ArrowSvg cssProps={{marginLeft: 10}} />
                   </PrimaryLink>
-                  <ArrowSvg cssProps={{marginLeft: 10}} />
                 </div>
               </div>
             </Flex>

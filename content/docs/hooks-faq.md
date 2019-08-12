@@ -106,7 +106,9 @@ Often, render props and higher-order components render only a single child. We t
 
 You can continue to use the exact same APIs as you always have; they'll continue to work.
 
-In the future, new versions of these libraries might also export custom Hooks such as `useRedux()` or `useRouter()` that let you use the same features without needing wrapper components.
+React Redux since v7.1.0 [supports Hooks API](https://react-redux.js.org/api/hooks) and exposes hooks like `useDispatch` or `useSelector`.
+
+Libraries like React Router might support hooks in the future.
 
 ### Do Hooks work with static typing? {#do-hooks-work-with-static-typing}
 

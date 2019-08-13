@@ -20,8 +20,8 @@ At a high level, this new version should offer significant performance gains and
 * `16.x`: Supported
 
 **`react-native`**
-* `0`-`0.60`: Not supported
-* `0.61`: Supported
+* `0`-`0.61`: Not supported
+* `0.62`: Supported
 
 ## How do I get the new DevTools?
 

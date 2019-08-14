@@ -198,7 +198,7 @@ In HTML, an `<input type="file">` lets the user choose one or more files from th
 <input type="file" />
 ```
 
-Because its value is read-only, it is an **uncontrolled** component in React. It is discussed together with other uncontrolled components [later in the documentation](/docs/uncontrolled-components.html#the-file-input-tag).
+Because its value is read-only, it is an **uncontrolled** component in React. It is discussed together with other uncontrolled components [later in the documentation](/docs/uncontrolled-components.html#alternatives-to-controlled-components).
 
 ## Handling Multiple Inputs {#handling-multiple-inputs}
 

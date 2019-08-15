@@ -10,6 +10,8 @@ A lot has changed in version 4!
 At a high level, this new version should offer significant performance gains and an improved navigation experience.
 It also offers full support for React Hooks, including inspecting nested objects.
 
+![DevTools version 4 screenshot](../images/blog/devtools-v4-screenshot.png)
+
 [See the changelog](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-release-date-tbd) for demo videos and more details on new features.
 
 ## Which versions of React are supported?

@@ -12,7 +12,7 @@ It also offers full support for React Hooks, including inspecting nested objects
 
 ![DevTools version 4 screenshot](../images/blog/devtools-v4-screenshot.png)
 
-[See the changelog](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-release-date-tbd) for demo videos and more details on new features.
+[See the changelog](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-august-15-2019) for demo videos and more details on new features.
 
 ## Which versions of React are supported?
 

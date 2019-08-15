@@ -8,8 +8,9 @@ We are excited to announce a new release of the React Developer Tools, available
 
 A lot has changed in version 4!
 At a high level, this new version should offer significant performance gains and an improved navigation experience.
+It also offers full support for React Hooks, including inspecting nested objects.
 
-[See the changelog](https://github.com/bvaughn/react-devtools-experimental/blob/master/CHANGELOG.md) for demo videos and more details on new features.
+[See the changelog](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-release-date-tbd) for demo videos and more details on new features.
 
 ## Which versions of React are supported?
 
@@ -28,7 +29,7 @@ At a high level, this new version should offer significant performance gains and
 React DevTools is available as an extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/).
 If you have already installed the extension, it should update automatically within the next couple of hours.
 
-Standalone users (e.g. React Native or Safari) can install the new version [from NPM](https://www.npmjs.com/package/react-devtools):
+If you use the standalone shell (e.g. in React Native or Safari), you can install the new version [from NPM](https://www.npmjs.com/package/react-devtools):
 
 ```shell
 npm install -g react-devtools@^4
@@ -36,7 +37,7 @@ npm install -g react-devtools@^4
 
 ## Where did all of the DOM elements go?
 
-The new DevTools provides a way to filter components from the tree to make it easier to navigate large applications.
+The new DevTools provides a way to filter components from the tree to make it easier to navigate deeply nested hierarchies.
 Host nodes (e.g. HTML `<div>`, React Native `<View>`) are *hidden by default*, but this filter can be disabled:
 
 ![DevTools component filters](../images/blog/devtools-component-filters.gif)
@@ -70,4 +71,4 @@ We'd like to thank everyone who tested the early release of DevTools version 4.
 Your feedback helped improve this initial release significantly.
 
 We still have many exciting features planned and feedback is always welcome!
-Please feel free to open a [GitHub issue](https://github.com/bvaughn/react-devtools-experimental/issues/new) or tag [@brian\_d\_vaughn on Twitter](https://twitter.com/brian_d_vaughn).
+Please feel free to open a [GitHub issue](https://github.com/facebook/react/issues/new?labels=Component:%20Developer%20Tools) or tag [@reactjs on Twitter](https://twitter.com/reactjs).

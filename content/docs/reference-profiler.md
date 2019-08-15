@@ -44,7 +44,7 @@ render(
     <Profiler id="Main" onRender={callback}>
       <Main {...props} />
     </Profiler>
-    </App>
+  </App>
 );
 ```
 

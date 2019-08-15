@@ -67,7 +67,7 @@ function Counter({initialCount}) {
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to 0.
+The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
 
 > Note
 >
@@ -226,7 +226,7 @@ function reducer(state, action) {
   }
 }
 
-function Counter({initialState}) {
+function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <>
@@ -244,7 +244,7 @@ function Counter({initialState}) {
 
 #### Specifying the initial state {#specifying-the-initial-state}
 
-There’s two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way to pass the initial state as a second argument:
+There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:
 
 ```js{3}
   const [state, dispatch] = useReducer(

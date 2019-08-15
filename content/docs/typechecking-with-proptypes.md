@@ -57,6 +57,9 @@ MyComponent.propTypes = {
   // A React element.
   optionalElement: PropTypes.element,
 
+  // A React element type (ie. MyComponent).
+  optionalElementType: PropTypes.elementType,
+  
   // You can also declare that a prop is an instance of a class. This uses
   // JS's instanceof operator.
   optionalMessage: PropTypes.instanceOf(Message),
@@ -83,6 +86,12 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
+  
+  // An object with warnings on extra properties
+  optionalObjectWithStrictShape: PropTypes.exact({
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),   
 
   // You can chain any of the above with `isRequired` to make sure a warning
   // is shown if the prop isn't provided.

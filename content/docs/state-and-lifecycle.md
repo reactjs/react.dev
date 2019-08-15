@@ -72,8 +72,6 @@ To implement this, we need to add "state" to the `Clock` component.
 
 State is similar to props, but it is private and fully controlled by the component.
 
-We [mentioned before](/docs/components-and-props.html#functional-and-class-components) that components defined as classes have some additional features. Local state is exactly that: a feature available only to classes.
-
 ## Converting a Function to a Class {#converting-a-function-to-a-class}
 
 You can convert a function component like `Clock` to a class in five steps:
@@ -246,7 +244,7 @@ The `componentDidMount()` method runs after the component output has been render
   }
 ```
 
-Note how we save the timer ID right on `this`.
+Note how we save the timer ID right on `this` (`this.timerID`).
 
 While `this.props` is set up by React itself and `this.state` has a special meaning, you are free to add additional fields to the class manually if you need to store something that doesn’t participate in the data flow (like a timer ID).
 

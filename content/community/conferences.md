@@ -89,7 +89,7 @@ June 15, 2020. Tel Aviv, Israel.
 
 
 ### React Week NY 2020 {#react-week-NY-2020}
-July 17, 2020. New York, New York.
+July 17, 2020. New York City, USA.
 
 [Website](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek) 
 

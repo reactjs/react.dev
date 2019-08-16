@@ -381,36 +381,4 @@ function updateColorMap(colormap) {
 
 If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
 
-## Using Immutable Data Structures {#using-immutable-data-structures}
-
-[Immutable.js](https://github.com/facebook/immutable-js) is another way to solve this problem. It provides immutable, persistent collections that work via structural sharing:
-
-* *Immutable*: once created, a collection cannot be altered at another point in time.
-* *Persistent*: new collections can be created from a previous collection and a mutation such as set. The original collection is still valid after the new collection is created.
-* *Structural Sharing*: new collections are created using as much of the same structure as the original collection as possible, reducing copying to a minimum to improve performance.
-
-Immutability makes tracking changes cheap. A change will always result in a new object so we only need to check if the reference to the object has changed. For example, in this regular JavaScript code:
-
-```javascript
-const x = { foo: 'bar' };
-const y = x;
-y.foo = 'baz';
-x === y; // true
-```
-
-Although `y` was edited, since it's a reference to the same object as `x`, this comparison returns `true`. You can write similar code with immutable.js:
-
-```javascript
-const SomeRecord = Immutable.Record({ foo: null });
-const x = new SomeRecord({ foo: 'bar' });
-const y = x.set('foo', 'baz');
-const z = x.set('foo', 'bar');
-x === y; // false
-x === z; // true
-```
-
-In this case, since a new reference is returned when mutating `x`, we can use a reference equality check `(x === y)` to verify that the new value stored in `y` is different than the original value stored in `x`.
-
-Other libraries that can help use immutable data include [Immer](https://github.com/mweststrate/immer), [immutability-helper](https://github.com/kolodny/immutability-helper), and [seamless-immutable](https://github.com/rtfeldman/seamless-immutable).
-
-Immutable data structures provide you with a cheap way to track changes on objects, which is all we need to implement `shouldComponentUpdate`. This can often provide you with a nice performance boost.
+When you deal with deeply nested objects, updating them in an immutable way can feel convoluted. If you run into this problem, check out [Immer](https://github.com/mweststrate/immer) or [immutability-helper](https://github.com/kolodny/immutability-helper). These libraries let you write highly readable code without losing the benefits of immutability.

@@ -42,48 +42,54 @@ type Props = {
   location: Location,
 };
 
-const Languages = ({location}: Props) => (
-  <Layout location={location}>
-    <Container>
-      <div css={sharedStyles.articleLayout.container}>
-        <div css={sharedStyles.articleLayout.content}>
-          <Header>Languages</Header>
-          <TitleAndMetaTags
-            canonicalUrl={`${urlRoot}/languages/`}
-            title="React - Languages"
-          />
+const Languages = ({location}: Props) => {
+  console.log('#', location.hash);
+  const pathname = location.hash.startsWith('#!/')
+    ? location.hash.slice(2)
+    : '/';
+  return (
+    <Layout location={location}>
+      <Container>
+        <div css={sharedStyles.articleLayout.container}>
+          <div css={sharedStyles.articleLayout.content}>
+            <Header>Languages</Header>
+            <TitleAndMetaTags
+              canonicalUrl={`${urlRoot}/languages/`}
+              title="React - Languages"
+            />
 
-          <div css={sharedStyles.markdown}>
-            <p>
-              The React documentation is available in the following languages:
-            </p>
+            <div css={sharedStyles.markdown}>
+              <p>
+                The React documentation is available in the following languages:
+              </p>
 
-            <LanguagesGrid languages={complete} />
+              <LanguagesGrid pathname={pathname} languages={complete} />
 
-            <h2>In Progress</h2>
-            <LanguagesGrid languages={partial} />
+              <h2>In Progress</h2>
+              <LanguagesGrid pathname={pathname} languages={partial} />
 
-            <h2>Needs Contributors</h2>
-            <LanguagesGrid languages={incomplete} />
+              <h2>Needs Contributors</h2>
+              <LanguagesGrid pathname={pathname} languages={incomplete} />
 
-            <p>
-              Don't see your language above?{' '}
-              <a
-                href="https://github.com/reactjs/reactjs.org-translation#reactjsorg-translation"
-                target="_blank"
-                rel="noopener">
-                Let us know
-              </a>
-              .
-            </p>
+              <p>
+                Don't see your language above?{' '}
+                <a
+                  href="https://github.com/reactjs/reactjs.org-translation#reactjsorg-translation"
+                  target="_blank"
+                  rel="noopener">
+                  Let us know
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
-  </Layout>
-);
+      </Container>
+    </Layout>
+  );
+};
 
-const LanguagesGrid = ({languages}) => (
+const LanguagesGrid = ({languages, pathname}) => (
   <ul
     css={{
       display: 'flex',
@@ -97,6 +103,7 @@ const LanguagesGrid = ({languages}) => (
           key={code}
           code={code}
           name={name}
+          pathname={pathname}
           status={status}
           translatedName={translated_name}
         />
@@ -104,7 +111,7 @@ const LanguagesGrid = ({languages}) => (
   </ul>
 );
 
-const Language = ({code, name, status, translatedName}) => {
+const Language = ({code, name, pathname, status, translatedName}) => {
   const prefix = code === 'en' ? '' : `${code}.`;
 
   return (
@@ -141,7 +148,7 @@ const Language = ({code, name, status, translatedName}) => {
         {status === 0 && translatedName}
         {status > 0 && (
           <a
-            href={`https://${prefix}reactjs.org/`}
+            href={`https://${prefix}reactjs.org${pathname}`}
             rel="nofollow"
             lang={code}
             hrefLang={code}>

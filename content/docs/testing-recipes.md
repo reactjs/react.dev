@@ -176,7 +176,7 @@ export default function User(props) {
 
 We can write tests for it:
 
-```jsx{23-33,44-45}
+```jsx{20-21,25-35}
 // user.test.js
 
 import React from "react";
@@ -196,6 +196,8 @@ afterEach(() => {
   unmountComponentAtNode(container);
   container.remove();
   container = null;
+  // remove the mock to ensure tests are completely isolated
+  global.fetch.mockRestore();
 });
 
 it("renders user data", async () => {
@@ -205,11 +207,9 @@ it("renders user data", async () => {
     address: "123, Charming Avenue"
   };
 
-  jest.spyOn(global, "fetch").mockImplementation(() =>
-    Promise.resolve({
-      json: () => Promise.resolve(fakeUser)
-    })
-  );
+  jest.spyOn(global, "fetch").mockResolvedValue({
+    json: () => Promise.resolve(fakeUser)
+  });
 
   // Use the asynchronous version of act to apply resolved promises
   await act(async () => {
@@ -219,9 +219,6 @@ it("renders user data", async () => {
   expect(container.querySelector("summary").textContent).toBe(fakeUser.name);
   expect(container.querySelector("strong").textContent).toBe(fakeUser.age);
   expect(container.textContent).toContain(fakeUser.address);
-
-  // remove the mock to ensure tests are completely isolated
-  global.fetch.mockRestore();
 });
 ```
 

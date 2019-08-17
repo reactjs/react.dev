@@ -13,6 +13,7 @@ import {colors, fonts, media} from 'theme';
 import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
+import LanguageDropdown from './LanguageDropdown';
 
 import logoSvg from 'icons/logo.svg';
 
@@ -181,37 +182,38 @@ const Header = ({location}: {location: Location}) => (
             to="/versions">
             v{version}
           </Link>
-          <Link
-            css={{
-              display: 'flex',
-              alignItems: 'center',
-              padding: '5px 10px',
-              whiteSpace: 'nowrap',
-              ...fonts.small,
-
-              ':hover': {
-                color: colors.brand,
-              },
-
-              ':focus': {
-                outline: 0,
-                backgroundColor: colors.lighter,
-                borderRadius: 15,
-              },
-            }}
-            to="/languages">
-            <LanguagesIcon />{' '}
-            <span
+          <LanguageDropdown location={location}>
+            <div
               css={{
-                marginLeft: '0.5rem',
+                display: 'flex',
+                alignItems: 'center',
+                padding: '5px 10px',
+                whiteSpace: 'nowrap',
+                ...fonts.small,
 
-                [media.lessThan('medium')]: {
-                  display: 'none',
+                ':hover': {
+                  color: colors.brand,
+                },
+
+                ':focus': {
+                  outline: 0,
+                  backgroundColor: colors.lighter,
+                  borderRadius: 15,
                 },
               }}>
-              Languages
-            </span>
-          </Link>
+              <LanguagesIcon />{' '}
+              <span
+                css={{
+                  marginLeft: '0.5rem',
+
+                  [media.lessThan('medium')]: {
+                    display: 'none',
+                  },
+                }}>
+                Languages
+              </span>
+            </div>
+          </LanguageDropdown>
           <a
             css={{
               padding: '5px 10px',

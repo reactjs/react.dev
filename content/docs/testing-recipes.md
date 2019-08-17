@@ -176,7 +176,7 @@ export default function User(props) {
 
 We can write tests for it:
 
-```jsx{20-21,25-35}
+```jsx{20-21,25-33}
 // user.test.js
 
 import React from "react";

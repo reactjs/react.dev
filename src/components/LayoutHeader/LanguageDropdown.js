@@ -1,3 +1,10 @@
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * @emails react-core
+ * @flow
+ */
+
 import React from 'react';
 import {Link} from 'gatsby';
 
@@ -11,9 +18,9 @@ const completeLanguages = languages.filter(language => {
   return language.status == 2;
 });
 
-function getPageLink(code, pathname) {
+function getPageLink(code, {pathname, hash}) {
   const prefix = code === 'en' ? '' : `${code}.`;
-  return `https://${prefix}reactjs.org${pathname}`;
+  return `https://${prefix}reactjs.org${pathname + hash}`;
 }
 
 export default function LanguageDropdown({children, location}) {
@@ -49,7 +56,7 @@ export default function LanguageDropdown({children, location}) {
             css={linkStyle}
             key={lang.code}
             target="_blank"
-            href={getPageLink(lang.code, location.pathname)}>
+            href={getPageLink(lang.code, location)}>
             {lang.translated_name}
           </MenuLink>
         ))}

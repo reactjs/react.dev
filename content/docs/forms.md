@@ -123,6 +123,8 @@ class EssayForm extends React.Component {
 }
 ```
 
+[**Try it on CodePen**](https://codepen.io/rodrigocsoares/pen/VwZKbMR)
+
 Notice that `this.state.value` is initialized in the constructor, so that the text area starts off with some text in it.
 
 ## The select Tag {#the-select-tag}

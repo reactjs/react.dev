@@ -2,6 +2,7 @@
  * Copyright (c) 2013-present, Facebook, Inc.
  *
  * @emails react-core
+ * @flow
  */
 
 import Layout from 'components/Layout';
@@ -11,10 +12,9 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import React from 'react';
 import {urlRoot} from 'site-constants';
 import {sharedStyles} from 'theme';
+import names from 'content/acknowledgements.yml';
 
-import names from '../../content/acknowledgements.yml';
-
-const Acknowlegements = ({data, location}) => (
+const Acknowlegements = ({location}: {location: Location}) => (
   <Layout location={location}>
     <Container>
       <div css={sharedStyles.articleLayout.container}>

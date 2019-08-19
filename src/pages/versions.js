@@ -12,9 +12,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import React from 'react';
 import {urlRoot} from 'site-constants';
 import {sharedStyles} from 'theme';
-
-// $FlowFixMe This is a valid path
-import versions from '../../content/versions.yml';
+import versions from 'content/versions.yml';
 
 type Props = {
   location: Location,

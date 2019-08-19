@@ -12,9 +12,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import React from 'react';
 import {urlRoot} from 'site-constants';
 import {media, sharedStyles} from 'theme';
-
-// $FlowFixMe This is a valid path
-import languages from '../../content/languages.yml';
+import languages from 'content/languages.yml';
 
 // Status enums indicate what percentage of "core" content has been translated:
 // 0: Incomplete (0–49%)

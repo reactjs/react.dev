@@ -5,22 +5,19 @@
  * @flow
  */
 
-// $FlowExpectedError
-import navCommunity from '../../content/community/nav.yml';
-// $FlowExpectedError
-import navDocs from '../../content/docs/nav.yml';
-// $FlowExpectedError
-import navTutorial from '../../content/tutorial/nav.yml';
+import navCommunity from 'content/community/nav.yml';
+import navDocs from 'content/docs/nav.yml';
+import navTutorial from 'content/tutorial/nav.yml';
 
 const sectionListDocs = navDocs.map(
-  (item: Object): Object => ({
+  (item): Object => ({
     ...item,
     directory: 'docs',
   }),
 );
 
 const sectionListCommunity = navCommunity.map(
-  (item: Object): Object => ({
+  (item): Object => ({
     ...item,
     directory: 'community',
   }),

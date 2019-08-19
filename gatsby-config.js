@@ -6,6 +6,8 @@
 
 'use strict';
 
+const path = require('path');
+
 module.exports = {
   siteMetadata: {
     title: 'React: A JavaScript library for building user interfaces',
@@ -24,6 +26,13 @@ module.exports = {
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
     'gatsby-plugin-twitter',
+    {
+      resolve: 'gatsby-plugin-root-import',
+      options: {
+        src: path.join(__dirname, 'src'),
+        content: path.join(__dirname, 'content'),
+      },
+    },
     {
       resolve: 'gatsby-plugin-nprogress',
       options: {

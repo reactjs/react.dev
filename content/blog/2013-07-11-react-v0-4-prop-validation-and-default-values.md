@@ -24,7 +24,7 @@ React.createClass({
     // A prop named "dialog" that requires an instance of Dialog.
     dialog: React.PropTypes.instanceOf(Dialog).isRequired
   },
-  ...
+  …
 });
 ```
 
@@ -51,7 +51,7 @@ React.createClass({
       value: 'default value'
     };
   }
-  ...
+  …
 });
 ```
 

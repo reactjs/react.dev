@@ -17,7 +17,7 @@ We're looking forward to part 2!
 
 > React is not a full MVC framework, and this is actually one of its strengths. Many who adopt React choose to do so alongside their favorite MVC framework, like Backbone. React has no opinions about routing or syncing data, so you can easily use your favorite tools to handle those aspects of your frontend application. You'll often see React used to manage specific parts of an application's UI and not others. React really shines, however, when you fully embrace its strategies and make it the core of your application's interface.
 >
-> [Read the full article...](http://lincolnloop.com/blog/architecting-your-app-react-part-1/)
+> [Read the full article…](http://lincolnloop.com/blog/architecting-your-app-react-part-1/)
 
 ## React vs. async DOM manipulation {#react-vs-async-dom-manipulation}
 
@@ -50,7 +50,7 @@ Daniel Lo Nigro ([@Daniel15](https://twitter.com/Daniel15)) created [React-Magic
 
 > React-Magic intercepts all navigation (link clicks and form posts) and loads the requested page via an AJAX request. React is then used to "diff" the old HTML with the new HTML, and only update the parts of the DOM that have been changed.
 >
-> [Check out the project on GitHub...](https://github.com/reactjs/react-magic)
+> [Check out the project on GitHub…](https://github.com/reactjs/react-magic)
 
 On a related note, [Reactize](https://turbo-react.herokuapp.com/) by Ross Allen ([@ssorallen](https://twitter.com/ssorallen)) is a similarly awesome project: A wrapper for Rails' [Turbolinks](https://github.com/rails/turbolinks/), which seems to have inspired John Lynch ([@johnrlynch](https://twitter.com/johnrlynch)) to then create [a server-rendered version using the JSX transformer in Rails middleware](http://www.rigelgroupllc.com/blog/2014/01/12/react-jsx-transformer-in-rails-middleware/).
 
@@ -70,7 +70,7 @@ Ian Bicking ([@ianbicking](https://twitter.com/ianbicking)) of Mozilla Labs [exp
 >
 > That said, React gives you a very strong view component out of the box with the performance baked right in. Try as I did, I couldn't actually get it any faster. So pretty impressive stuff.
 >
->[Read the full post...](http://davidandsuzi.com/ngreact-update/)
+>[Read the full post…](http://davidandsuzi.com/ngreact-update/)
 
 
 React was also recently mentioned at ng-conf, where the Angular team commented on React's concept of the virtual DOM:

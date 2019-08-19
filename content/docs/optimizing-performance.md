@@ -75,10 +75,10 @@ For the most efficient Browserify production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify terser uglifyify 
+npm install --save-dev envify terser uglifyify
 
 # If you use Yarn
-yarn add --dev envify terser uglifyify 
+yarn add --dev envify terser uglifyify
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
@@ -118,13 +118,13 @@ To create a production build, make sure that you add these plugins **(the order 
 
 ```js
 plugins: [
-  // ...
+  // …
   require('rollup-plugin-replace')({
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
   require('rollup-plugin-commonjs')(),
   require('rollup-plugin-terser')(),
-  // ...
+  // …
 ]
 ```
 

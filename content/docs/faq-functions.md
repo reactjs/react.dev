@@ -283,7 +283,7 @@ class Searchbox extends React.Component {
       <input
         type="text"
         onChange={this.handleChange}
-        placeholder="Search..."
+        placeholder="Search…"
         defaultValue={this.props.value}
       />
     );

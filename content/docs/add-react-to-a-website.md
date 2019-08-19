@@ -32,11 +32,11 @@ Optional: [Download the full example (2KB zipped)](https://gist.github.com/gaear
 First, open the HTML page you want to edit. Add an empty `<div>` tag to mark the spot where you want to display something with React. For example:
 
 ```html{3}
-<!-- ... existing HTML ... -->
+<!-- … existing HTML… -->
 
 <div id="like_button_container"></div>
 
-<!-- ... existing HTML ... -->
+<!-- … existing HTML… -->
 ```
 
 We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it from the JavaScript code later and display a React component inside of it.
@@ -50,7 +50,7 @@ We gave this `<div>` a unique `id` HTML attribute. This will allow us to find it
 Next, add three `<script>` tags to the HTML page right before the closing `</body>` tag:
 
 ```html{5,6,9}
-  <!-- ... other HTML ... -->
+  <!-- … other HTML… -->
 
   <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
@@ -78,13 +78,13 @@ Open **[this starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c
 After **[the starter code](https://cdn.rawgit.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
 
 ```js{3,4}
-// ... the starter code you pasted ...
+// … the starter code you pasted…
 
 const domContainer = document.querySelector('#like_button_container');
 ReactDOM.render(e(LikeButton), domContainer);
 ```
 
-These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it. 
+These two lines of code find the `<div>` we added to our HTML in the first step, and then display our "Like" button React component inside of it.
 
 ### That's It! {#thats-it}
 
@@ -184,7 +184,7 @@ Congratulations! You just added a **production-ready JSX setup** to your project
 Create a folder called `src` and run this terminal command:
 
 ```
-npx babel --watch src --out-dir . --presets react-app/prod 
+npx babel --watch src --out-dir . --presets react-app/prod
 ```
 
 >Note

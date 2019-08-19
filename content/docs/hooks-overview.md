@@ -52,7 +52,7 @@ function ExampleWithManyStates() {
   const [age, setAge] = useState(42);
   const [fruit, setFruit] = useState('banana');
   const [todos, setTodos] = useState([{ text: 'Learn Hooks' }]);
-  // ...
+  // …
 }
 ```
 
@@ -122,7 +122,7 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Loading…';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -150,7 +150,7 @@ function FriendStatusWithCounter(props) {
   function handleStatusChange(status) {
     setIsOnline(status.isOnline);
   }
-  // ...
+  // …
 ```
 
 Hooks let you organize side effects in a component by what pieces are related (such as adding and removing a subscription), rather than forcing a split based on lifecycle methods.
@@ -211,7 +211,7 @@ function FriendStatus(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Loading…';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -247,7 +247,7 @@ There are a few less commonly used built-in Hooks that you might find useful. Fo
 function Example() {
   const locale = useContext(LocaleContext);
   const theme = useContext(ThemeContext);
-  // ...
+  // …
 }
 ```
 
@@ -256,7 +256,7 @@ And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local 
 ```js{2}
 function Todos() {
   const [todos, dispatch] = useReducer(todosReducer);
-  // ...
+  // …
 ```
 
 >Detailed Explanation

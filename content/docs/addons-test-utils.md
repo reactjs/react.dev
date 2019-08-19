@@ -329,7 +329,7 @@ Simulate an event dispatch on a DOM node with optional `eventData` event data.
 **Clicking an element**
 
 ```javascript
-// <button ref={(node) => this.button = node}>...</button>
+// <button ref={(node) => this.button = node}>…</button>
 const node = this.button;
 ReactTestUtils.Simulate.click(node);
 ```
@@ -346,6 +346,6 @@ ReactTestUtils.Simulate.keyDown(node, {key: "Enter", keyCode: 13, which: 13});
 
 > Note
 >
-> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc...) as React is not creating any of these for you.
+> You will have to provide any event property that you're using in your component (e.g. keyCode, which, etc…) as React is not creating any of these for you.
 
 * * *

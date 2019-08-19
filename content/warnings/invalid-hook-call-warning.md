@@ -33,13 +33,13 @@ You can only call Hooks **while React is rendering a function component**:
 function Counter() {
   // ✅ Good: top-level in a function component
   const [count, setCount] = useState(0);
-  // ...
+  // …
 }
 
 function useWindowWidth() {
   // ✅ Good: top-level in a custom Hook
   const [width, setWidth] = useState(window.innerWidth);
-  // ...
+  // …
 }
 ```
 
@@ -57,7 +57,7 @@ function Bad1() {
     // 🔴 Bad: inside an event handler (to fix, move it outside!)
     const theme = useContext(ThemeContext);
   }
-  // ...
+  // …
 }
 
 function Bad2() {
@@ -66,14 +66,14 @@ function Bad2() {
     const theme = useContext(ThemeContext);
     return createStyle(theme);
   });
-  // ...
+  // …
 }
 
 class Bad3 extends React.Component {
   render() {
     // 🔴 Bad: inside a class component
     useEffect(() => {})
-    // ...
+    // …
   }
 }
 ```

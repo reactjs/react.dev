@@ -29,7 +29,7 @@ If you mutate data like this:
 
 ```js
 myData.x.y.z = 7;
-// or...
+// or…
 myData.a.b.push(9);
 ```
 

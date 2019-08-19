@@ -41,7 +41,7 @@ Give us a shoutout on IRC or [React Google Groups](https://groups.google.com/for
 ### Adobe Brackets {#adobe-brackets}
 [Kevin Dangoor](http://www.kevindangoor.com) works on [Brackets](http://brackets.io/?lang=en), the open-source code editor. After writing [his first impression on React](http://www.kevindangoor.com/2014/05/simplifying-code-with-react/), he followed up with another insightful [article](http://www.kevindangoor.com/2014/05/react-in-brackets/) on how to gradually make the code transition, how to preserve the editor's good parts, and how to tune Brackets' tooling around JSX.
 
-> We don’t need to switch to React everywhere, all at once. It’s not a framework that imposes anything on the application structure. [...] Easy, iterative adoption is definitely something in React’s favor for us.
+> We don’t need to switch to React everywhere, all at once. It’s not a framework that imposes anything on the application structure. […] Easy, iterative adoption is definitely something in React’s favor for us.
 
 ### Storehouse {#storehouse}
 [Storehouse](https://www.storehouse.co) (Apple Design Award 2014)'s web presence is build with React. Here's [an example story](https://www.storehouse.co/stories/y2ad-mexico-city-clouds). Congratulations on the award!

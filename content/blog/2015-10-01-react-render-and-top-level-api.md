@@ -68,7 +68,7 @@ class ReactComponentRenderer {
   setProps(partialProps, callback) {
     if (this.klass == null) {
       console.warn(
-        'setProps(...): Can only update a mounted or ' +
+        'setProps(…): Can only update a mounted or ' +
         'mounting component. This usually means you called setProps() on ' +
         'an unmounted component. This is a no-op.'
       );

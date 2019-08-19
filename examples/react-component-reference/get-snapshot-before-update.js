@@ -26,7 +26,7 @@ class ScrollingList extends React.Component {
 
   render() {
     return (
-      <div ref={this.listRef}>{/* ...contents... */}</div>
+      <div ref={this.listRef}>{/* … contents… */}</div>
     );
   }
 }

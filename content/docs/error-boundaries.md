@@ -47,7 +47,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -112,7 +112,7 @@ If you don’t use Create React App, you can add [this plugin](https://www.npmjs
 try {
   showButton();
 } catch (error) {
-  // ...
+  // …
 }
 ```
 

@@ -7,7 +7,7 @@ permalink: docs/code-splitting.html
 ## Bundling {#bundling}
 
 Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or 
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or
 [Browserify](http://browserify.org/).
 Bundling is the process of following imported files and merging them into a
 single file: a "bundle". This bundle can then be included on a webpage to load
@@ -162,7 +162,7 @@ const OtherComponent = React.lazy(() => import('./OtherComponent'));
 function MyComponent() {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading…</div>}>
         <OtherComponent />
       </Suspense>
     </div>
@@ -179,7 +179,7 @@ const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 function MyComponent() {
   return (
     <div>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading…</div>}>
         <section>
           <OtherComponent />
           <AnotherComponent />
@@ -202,7 +202,7 @@ const AnotherComponent = React.lazy(() => import('./AnotherComponent'));
 const MyComponent = () => (
   <div>
     <MyErrorBoundary>
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<div>Loading…</div>}>
         <section>
           <OtherComponent />
           <AnotherComponent />
@@ -236,7 +236,7 @@ const About = lazy(() => import('./routes/About'));
 
 const App = () => (
   <Router>
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Loading…</div>}>
       <Switch>
         <Route exact path="/" component={Home}/>
         <Route path="/about" component={About}/>
@@ -252,8 +252,8 @@ const App = () => (
 
 ```js
 // ManyComponents.js
-export const MyComponent = /* ... */;
-export const MyUnusedComponent = /* ... */;
+export const MyComponent = /* … */;
+export const MyUnusedComponent = /* … */;
 ```
 
 ```js

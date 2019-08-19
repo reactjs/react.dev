@@ -37,7 +37,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 > Within a component-tree, data should always flow down. A parent-component should set the props of a child-component to pass any data from the parent to the child. This is termed as the Owner-Owned pair. On the other hand user-events (mouse, keyboard, touches) will always bubble up from the child all the way to the root component, unless handled in between.
 <figure><a href="http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660"><img src="../images/blog/tutsplus.png"></a></figure>
 >
-> [Read the full article ...](http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660)
+> [Read the full article…](http://dev.tutsplus.com/tutorials/intro-to-the-react-framework--net-35660)
 
 
 ## 140-characters textarea {#140-characters-textarea}
@@ -58,11 +58,11 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 
 [Robert Zaremba](http://rz.scale-it.pl/) working on [AgFlow](http://www.agflow.com/) recently talked in Poland about React.
 
-> In a nutshell, I presented why we chose React among other available options (ember.js, angular, backbone ...) in AgFlow, where I’m leading an application development.
+> In a nutshell, I presented why we chose React among other available options (ember.js, angular, backbone…) in AgFlow, where I’m leading an application development.
 >
 > During the talk a wanted to highlight that React is not about implementing a Model, but a way to construct visible components with some state. React is simple. It is super simple, you can learn it in 1h. On the other hand what is model? Which functionality it should provide? React does one thing and does it the best (for me)!
 >
-> [Read the full article...](http://rz.scale-it.pl/2013/10/20/frontend_components_in_react.html)
+> [Read the full article…](http://rz.scale-it.pl/2013/10/20/frontend_components_in_react.html)
 
 <figure><iframe src="https://docs.google.com/presentation/d/1JSFbjCuuexwOHCeHWBMNRIJdyfD2Z0ZQwX65WOWkfaI/embed?start=false" frameborder="0" width="100%" height="468" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"> </iframe></figure>
 
@@ -76,7 +76,7 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 >
 > Creating elements in memory is quick -- copying those elements into the DOM is where the slowness occurs. This is due to a variety of issues, most namely reflow/paint. Changing the items in the DOM causes the browser to re-paint the display, apply styles, etc. We want to keep those operations to an absolute minimum, especially if we're dealing with something that needs to update the DOM frequently.
 >
-> [Read the full article...](http://tck.io/posts/jsxhint_and_react.html)
+> [Read the full article…](http://tck.io/posts/jsxhint_and_react.html)
 
 
 ## Photo Gallery {#photo-gallery}

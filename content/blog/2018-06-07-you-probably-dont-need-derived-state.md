@@ -85,8 +85,8 @@ class EmailInput extends Component {
       });
     }
   }
-  
-  // ...
+
+  // …
 }
 ```
 
@@ -172,7 +172,7 @@ class EmailInput extends Component {
     return null;
   }
 
-  // ...
+  // …
 }
 ```
 
@@ -196,7 +196,7 @@ class EmailInput extends Component {
     this.setState({ email: newEmail });
   }
 
-  // ...
+  // …
 }
 ```
 
@@ -267,7 +267,7 @@ class Example extends Component {
 }
 ```
 
-This implementation avoids recalculating `filteredList` more often than necessary. But it is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by using `PureComponent` and moving the filter operation into the render method: 
+This implementation avoids recalculating `filteredList` more often than necessary. But it is more complicated than it needs to be, because it has to separately track and detect changes in both props and state in order to properly update the filtered list. In this example, we could simplify things by using `PureComponent` and moving the filter operation into the render method:
 
 ```js
 // PureComponents only rerender if at least one state or prop value changes.

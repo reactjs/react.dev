@@ -18,7 +18,7 @@ exports.onPostBuild = async ({store}) => {
     '_redirects',
   );
 
-  // versions.yml structure is [{path: string, url: string, ...}, ...]
+  // versions.yml structure is [{path: string, url: string, …}, …]
   createRedirects(
     versions.filter(version => version.path && version.url).map(version => ({
       fromPath: version.path,

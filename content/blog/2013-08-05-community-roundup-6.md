@@ -23,7 +23,7 @@ This is the first Community Round-up where none of the items are from Facebook/I
 >
 > `reactify` transform activates for files with either `.jsx` extension or `/** @jsx React.DOM */` pragma as a first line for any `.js` file.
 >
-> [Check it out on GitHub...](https://github.com/andreypopp/reactify)
+> [Check it out on GitHub…](https://github.com/andreypopp/reactify)
 
 
 
@@ -49,7 +49,7 @@ este.demos.react.todoApp = este.react.create (`/** @lends {React.ReactComponent.
     ]
 ```
 
-[Check it out on GitHub...](https://github.com/steida/este-library/blob/master/este/demos/thirdparty/react/start.coffee)
+[Check it out on GitHub…](https://github.com/steida/este-library/blob/master/este/demos/thirdparty/react/start.coffee)
 
 
 ## React Stylus Boilerplate {#react-stylus-boilerplate}
@@ -64,7 +64,7 @@ este.demos.react.todoApp = este.react.create (`/** @lends {React.ReactComponent.
 >   - `grunt build` to compile JSX and Stylus into a development build
 >   - `grunt dist` to minify and optimize the development build for production
 >
-> [Check it out on GitHub...](https://github.com/zaim/react-stylus-boilerplate)
+> [Check it out on GitHub…](https://github.com/zaim/react-stylus-boilerplate)
 
 
 ## WebFUI {#webfui}
@@ -76,4 +76,4 @@ este.demos.react.todoApp = este.react.create (`/** @lends {React.ReactComponent.
 > Your implementation is more robust, and so I think the next point release of webfui will simply delegate all the "hard work" to react.js and will only focus on the areas where it adds value (enabling purely functional UI programming in clojurescript, and some other stuff related to streamlining event handling)
 > <figure><a href="https://groups.google.com/forum/#!msg/reactjs/e3bYersyd64/qODfcuBR9LwJ"><img src="../images/blog/landoflisp.png"></a></figure>
 >
-> [Read the full post...](https://groups.google.com/forum/#!msg/reactjs/e3bYersyd64/qODfcuBR9LwJ)
+> [Read the full post…](https://groups.google.com/forum/#!msg/reactjs/e3bYersyd64/qODfcuBR9LwJ)

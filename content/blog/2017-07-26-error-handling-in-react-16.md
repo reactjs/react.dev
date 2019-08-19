@@ -95,7 +95,7 @@ If you don’t use Create React App, you can add [this plugin](https://www.npmjs
 try {
   showButton();
 } catch (error) {
-  // ...
+  // …
 }
 ```
 

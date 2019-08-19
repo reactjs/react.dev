@@ -134,7 +134,7 @@ Note that this only works if `CustomTextInput` is declared as a class:
 
 ```js{1}
 class CustomTextInput extends React.Component {
-  // ...
+  // …
 }
 ```
 
@@ -205,7 +205,7 @@ When possible, we advise against exposing DOM nodes, but it can be a useful esca
 
 React also supports another way to set refs called "callback refs", which gives more fine-grain control over when refs are set and unset.
 
-Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere. 
+Instead of passing a `ref` attribute created by `createRef()`, you pass a function. The function receives the React component instance or HTML DOM element as its argument, which can be stored and accessed elsewhere.
 
 The example below implements a common pattern: using the `ref` callback to store a reference to a DOM node in an instance property.
 
@@ -279,7 +279,7 @@ In the example above, `Parent` passes its ref callback as an `inputRef` prop to 
 
 ### Legacy API: String Refs {#legacy-api-string-refs}
 
-If you worked with React before, you might be familiar with an older API where the `ref` attribute is a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against it because string refs have [some issues](https://github.com/facebook/react/pull/8333#issuecomment-271648615), are considered legacy, and **are likely to be removed in one of the future releases**. 
+If you worked with React before, you might be familiar with an older API where the `ref` attribute is a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against it because string refs have [some issues](https://github.com/facebook/react/pull/8333#issuecomment-271648615), are considered legacy, and **are likely to be removed in one of the future releases**.
 
 > Note
 >

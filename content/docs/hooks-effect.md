@@ -180,7 +180,7 @@ class FriendStatus extends React.Component {
 
   render() {
     if (this.state.isOnline === null) {
-      return 'Loading...';
+      return 'Loading…';
     }
     return this.state.isOnline ? 'Online' : 'Offline';
   }
@@ -218,7 +218,7 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Loading…';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -305,7 +305,7 @@ class FriendStatusWithCounter extends React.Component {
       isOnline: status.isOnline
     });
   }
-  // ...
+  // …
 ```
 
 Note how the logic that sets `document.title` is split between `componentDidMount` and `componentDidUpdate`. The subscription logic is also spread between `componentDidMount` and `componentWillUnmount`. And `componentDidMount` contains code for both tasks.
@@ -330,7 +330,7 @@ function FriendStatusWithCounter(props) {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
   });
-  // ...
+  // …
 }
 ```
 
@@ -397,9 +397,9 @@ Now consider the version of this component that uses Hooks:
 
 ```js
 function FriendStatus(props) {
-  // ...
+  // …
   useEffect(() => {
-    // ...
+    // …
     ChatAPI.subscribeToFriendStatus(props.friend.id, handleStatusChange);
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);

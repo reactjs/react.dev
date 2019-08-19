@@ -22,11 +22,11 @@ The first steps toward working with Jest are as follows:
 
 ```javascript
 {
-  ...
+  …
   "scripts": {
     "test": "jest"
   }
-  ...
+  …
 }
 ```
 
@@ -154,7 +154,7 @@ describe('TodoStore', function() {
 });
 ```
 
-You can take a look at all this code in the [TodoStore's tests on GitHub](https://github.com/facebook/flux/tree/master/examples/flux-todomvc/js/stores/__tests__/TodoStore-test.js) as well. 
+You can take a look at all this code in the [TodoStore's tests on GitHub](https://github.com/facebook/flux/tree/master/examples/flux-todomvc/js/stores/__tests__/TodoStore-test.js) as well.
 
 
 Mocking Data Derived from Other Stores
@@ -199,7 +199,7 @@ for (var id in allTodos) {
     break;
   }
 }
-...
+…
 
 return (
   <section id="main">
@@ -208,7 +208,7 @@ return (
     type="checkbox"
     checked={allChecked ? 'checked' : ''}
   />
-  ...
+  …
   </section>
 );
 ```
@@ -270,19 +270,19 @@ function getTodoState() {
 }
 
 var TodoApp = React.createClass({
-...
+…
 
   /**
    * @return {object}
    */
   render: function() {
     return (
-      ...
+      …
       <MainSection
         allTodos={this.state.allTodos}
         areAllComplete={this.state.areAllComplete}
       />
-      ...
+      …
     );
   },
 
@@ -300,7 +300,7 @@ And then we'll utilize that property for the rendering of the checkbox.
 
 ```javascript
 render: function() {
-  ...
+  …
 
   return (
     <section id="main">
@@ -309,7 +309,7 @@ render: function() {
       type="checkbox"
       checked={this.props.areAllComplete ? 'checked' : ''}
     />
-    ...
+    …
     </section>
   );
 },

@@ -30,7 +30,7 @@ function FriendStatus(props) {
   });
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Loading…';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -104,7 +104,7 @@ The purpose of our `useFriendStatus` Hook is to subscribe us to a friend's statu
 function useFriendStatus(friendID) {
   const [isOnline, setIsOnline] = useState(null);
 
-  // ...
+  // …
 
   return isOnline;
 }
@@ -123,7 +123,7 @@ function FriendStatus(props) {
   const isOnline = useFriendStatus(props.friend.id);
 
   if (isOnline === null) {
-    return 'Loading...';
+    return 'Loading…';
   }
   return isOnline ? 'Online' : 'Offline';
 }
@@ -211,7 +211,7 @@ function todosReducer(state, action) {
         text: action.text,
         completed: false
       }];
-    // ... other actions ...
+    // … other actions…
     default:
       return state;
   }
@@ -245,7 +245,7 @@ function Todos() {
     dispatch({ type: 'add', text });
   }
 
-  // ...
+  // …
 }
 ```
 

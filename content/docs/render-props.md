@@ -57,7 +57,7 @@ Now the question is: How can we reuse this behavior in another component? In oth
 Since components are the basic unit of code reuse in React, let's try refactoring the code a bit to use a `<Mouse>` component that encapsulates the behavior we need to reuse elsewhere.
 
 ```js
-// The <Mouse> component encapsulates the behavior we need...
+// The <Mouse> component encapsulates the behavior we need…
 class Mouse extends React.Component {
   constructor(props) {
     super(props);
@@ -76,7 +76,7 @@ class Mouse extends React.Component {
     return (
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
-        {/* ...but how do we render something other than a <p>? */}
+        {/* … but how do we render something other than a <p>? */}
         <p>The current mouse position is ({this.state.x}, {this.state.y})</p>
       </div>
     );
@@ -130,7 +130,7 @@ class MouseWithCat extends React.Component {
       <div style={{ height: '100%' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          We could just swap out the <p> for a <Cat> here ... but then
+          We could just swap out the <p> for a <Cat> here… but then
           we would need to create a separate <MouseWithSomethingElse>
           component every time we need to use it, so <MouseWithCat>
           isn't really reusable yet.
@@ -277,7 +277,7 @@ For example, continuing with our `<Mouse>` component from above, if `Mouse` were
 
 ```js
 class Mouse extends React.PureComponent {
-  // Same implementation as above...
+  // Same implementation as above…
 }
 
 class MouseTracker extends React.Component {

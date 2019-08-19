@@ -15,7 +15,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 >
 > My current opinion is using tools like Grunt, Browserify, Bower and multiple grunt plugins to get the job done. I also opted for Zepto over jQuery and the Flatiron Project's Director when I need a router. Oh and for the last little bit of tech that makes you mad, I am in the SASS camp when it comes to stylesheets
 >
-> [Check it out on GitHub...](https://github.com/intabulas/reactjs-baseline)
+> [Check it out on GitHub…](https://github.com/intabulas/reactjs-baseline)
 
 
 ## Animal Sounds {#animal-sounds}
@@ -23,7 +23,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 [Josh Duck](http://joshduck.com/) used React in order to build a Windows 8 tablet app. This is a good example of a touch app written in React.
 [![](../images/blog/animal-sounds.jpg)](http://apps.microsoft.com/windows/en-us/app/baby-play-animal-sounds/9280825c-2ed9-41c0-ba38-aa9a5b890bb9)
 
-[Download the app...](http://apps.microsoft.com/windows/en-us/app/baby-play-animal-sounds/9280825c-2ed9-41c0-ba38-aa9a5b890bb9)
+[Download the app…](http://apps.microsoft.com/windows/en-us/app/baby-play-animal-sounds/9280825c-2ed9-41c0-ba38-aa9a5b890bb9)
 
 
 ## React Rails Tutorial {#react-rails-tutorial}
@@ -39,7 +39,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 > ```
 > Then visit http://localhost:3000/app to see the React application that is explained in the React Tutorial. Try opening multiple tabs!
 >
-> [View on GitHub...](https://github.com/necrodome/react-rails-tutorial)
+> [View on GitHub…](https://github.com/necrodome/react-rails-tutorial)
 
 ## Mixing with Backbone {#mixing-with-backbone}
 
@@ -47,7 +47,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 
 [View code on JSFiddle](http://jsfiddle.net/djkojb/qZf48/13/)
 
-[Check out the blog post...](http://eldar.djafarov.com/2013/11/reactjs-mixing-with-backbone/)
+[Check out the blog post…](http://eldar.djafarov.com/2013/11/reactjs-mixing-with-backbone/)
 
 
 ## React Infinite Scroll {#react-infinite-scroll}
@@ -59,7 +59,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
   pageStart={0}
   loadMore={loadFunc}
   hasMore={true || false}
-  loader={<div className="loader">Loading ...</div>}>
+  loader={<div className="loader">Loading…</div>}>
   {items} // <-- This is the "stuff" you want to load
 </InfiniteScroll>
 ```
@@ -71,7 +71,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 
 [Thomas Aylott](http://subtlegradient.com/) implemented an API that looks like Web Components but using React underneath.
 
-[View the source on JSFiddle...](http://jsfiddle.net/SubtleGradient/ue2Aa)
+[View the source on JSFiddle…](http://jsfiddle.net/SubtleGradient/ue2Aa)
 
 ## React vs Angular {#react-vs-angular}
 
@@ -81,7 +81,7 @@ React is often compared with Angular. [Pete Hunt](http://skulbuny.com/2013/10/31
 >
 > I’ve done a lot of work benchmarking, building apps, and reading the code of Angular to try to come up with a reasonable comparison between their ways of doing things.
 >
-> [Read the full post...](http://skulbuny.com/2013/10/31/react-vs-angular/)
+> [Read the full post…](http://skulbuny.com/2013/10/31/react-vs-angular/)
 
 
 

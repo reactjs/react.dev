@@ -21,7 +21,7 @@ We've also reached a point where there are too many questions for us to handle d
 >
 > Then to finally get to answer your question, that set of DOM mutations then goes into a queue and we can plug in arbitrary flushing strategies for that. For example, when we originally launched React in open source, every setState would immediately trigger a flush to the DOM. That wasn't part of the contract of setState, but that was just our strategy and it worked pretty well. Then this totally awesome open source contributor Sophie Alpert at Khan Academy built a new batching strategy which would basically queue up every single DOM update and state change that happened within an event tick and would execute them in bulk at the end of the event tick.
 >
-> [Read the full conversation ...](http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/)
+> [Read the full conversation…](http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/)
 
 
 ## JSXTransformer Trick {#jsxtransformer-trick}
@@ -46,7 +46,7 @@ While this is not going to work for all the attributes since they are camelCased
 >
 > The good thing about the virtual DOM is that it's all in JavaScript land. You build all your UI in JavaScript. Which means it can be rendered on the server side, so you initial view is fast (and any SEO concerns are addressed). Also, if there are especially heavy operations they can be threaded into WebWorkers, which otherwise have no DOM access.
 >
-> [Read More ...](http://www.phpied.com/remarkable-react/)
+> [Read More…](http://www.phpied.com/remarkable-react/)
 
 
 ## Markdown in React {#markdown-in-react}
@@ -64,4 +64,4 @@ While this is not going to work for all the attributes since they are camelCased
 
 [Vjeux](http://blog.vjeux.com/) re-implemented the display part of the IRC logger in React. Just 130 lines are needed for a performant infinite scroll with timestamps and color-coded author names.
 
-[View the source on JSFiddle...](http://jsfiddle.net/vjeux/QL9tz)
+[View the source on JSFiddle…](http://jsfiddle.net/vjeux/QL9tz)

@@ -74,7 +74,7 @@ Roman Liutikov found a way to [use webpack and Babel to run on React Native](htt
 
 ## A Dynamic, Crazy, Native Mobile Future—Powered by JavaScript {#a-dynamic-crazy-native-mobile-futurepowered-by-javascript}
 
-Clay Allsopp wrote a post about [all the crazy things you could do with a JavaScript engine that renders native views](https://medium.com/@clayallsopp/a-dynamic-crazy-native-mobile-future-powered-by-javascript-70f2d56b1987). What about native embeds, seamless native browser, native search engine or even app generation...
+Clay Allsopp wrote a post about [all the crazy things you could do with a JavaScript engine that renders native views](https://medium.com/@clayallsopp/a-dynamic-crazy-native-mobile-future-powered-by-javascript-70f2d56b1987). What about native embeds, seamless native browser, native search engine or even app generation…
 
 
 ## Random Tweet {#random-tweet}

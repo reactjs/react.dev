@@ -46,7 +46,7 @@ permalink: community/jsx-integrations.html
 * **[mimosa-react](https://github.com/dbashford/mimosa-react):** [Mimosa](http://mimosa.io) plugin.
 * **[react-grails-asset-pipeline](https://github.com/peh/react-grails-asset-pipeline):** Assets for react and precompilation of jsx files in [Grails](https://grails.org/).
 * **[gore-gulp](https://github.com/goreutils/gore-gulp):** Wrapper around [webpack](https://webpack.github.io/), [eslint](https://eslint.org/), [mocha](https://mochajs.org/) for ease of use and zero configuration.
-* **[webpack](https://github.com/webpack/webpack):** Packs CommonJs/AMD modules for the browser. Allows to split your codebase into multiple bundles, which can be loaded on demand. Support loaders to preprocess files, i.e. json, jade, coffee, css, less, ... and your custom stuff.
+* **[webpack](https://github.com/webpack/webpack):** Packs CommonJs/AMD modules for the browser. Allows to split your codebase into multiple bundles, which can be loaded on demand. Support loaders to preprocess files, i.e. json, jade, coffee, css, less,… and your custom stuff.
 * **[webpack-bbq](https://github.com/wenbing/webpack-bbq):** transform your src to lib, supports server rendering and static rendering.
 * **[jsxtransformer](https://github.com/cronn-de/jsxtransformer):** Compile pipeline for jsx files in Java
 * **[babylon-jsx](https://github.com/marionebl/babylon-jsx)**: Transform JSX to ES2015 with babylon sans babel

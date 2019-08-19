@@ -1,6 +1,6 @@
 function logProps(Component) {
   class LogProps extends React.Component {
-    // ...
+    // …
   }
 
   function forwardRef(props, ref) {

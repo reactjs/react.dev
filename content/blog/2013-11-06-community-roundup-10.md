@@ -42,9 +42,9 @@ The best part is that no drastic changes have been required to support all those
 > - Problem: Can't host node.js apps / I have tons of PHP code
 > - Solution: Use PHP then!
 >
-> [**Read part 1 ...**](http://www.phpied.com/server-side-react-with-php/)
+> [**Read part 1…**](http://www.phpied.com/server-side-react-with-php/)
 >
-> [**Read part 2 ...**](http://www.phpied.com/server-side-react-with-php-part-2/)
+> [**Read part 2…**](http://www.phpied.com/server-side-react-with-php-part-2/)
 >
 > Rendered markup on the server:
 > <figure><a href="http://www.phpied.com/server-side-react-with-php-part-2/"><img src="../images/blog/react-php.png"></a></figure>
@@ -101,7 +101,7 @@ The fact that you can control when components are rendered is a very important c
 
 > Eerily similar, no? Maybe Facebook was inspired by Fruit Machine (after all, we got there first), but more likely, it just shows that this is a pretty decent way to solve the problem, and great minds think alike. We're graduating to a third phase in the evolution of web best practice - from intermingling of markup, style and behaviour, through a phase in which those concerns became ever more separated and encapsulated, and finally to a model where we can do that separation at a component level. Developments like Web Components show the direction the web community is moving, and frameworks like React and Fruit Machine are in fact not a lot more than polyfills for that promised behaviour to come.
 >
-> [Read the full article...](http://labs.ft.com/2013/10/client-side-layout-engines-react-vs-fruitmachine/)
+> [Read the full article…](http://labs.ft.com/2013/10/client-side-layout-engines-react-vs-fruitmachine/)
 
 Even though we weren't inspired by FruitMachine (React has been used in production since before FruitMachine was open sourced), it's great to see similar technologies emerging and becoming popular.
 
@@ -115,7 +115,7 @@ Even though we weren't inspired by FruitMachine (React has been used in producti
 >
 > Install the plugin via npm with `npm install --save react-brunch`.
 >
-> [Read more...](https://npmjs.org/package/react-brunch)
+> [Read more…](https://npmjs.org/package/react-brunch)
 
 ## Random Tweet {#random-tweet}
 

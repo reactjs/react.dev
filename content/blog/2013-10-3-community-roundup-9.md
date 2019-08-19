@@ -17,7 +17,7 @@ We organized a React hackathon last week-end in the Facebook Seattle office. 50 
 > In my opinion, Socket.io and React go together like chocolate and peanut butter. The page was always an accurate representation of the game object.
 ><figure><a href="http://bold-it.com/javascript/facebook-react-example/"><img src="../images/blog/quiztime.png"></a></figure>
 >
-> [Read More...](http://bold-it.com/javascript/facebook-react-example/)
+> [Read More…](http://bold-it.com/javascript/facebook-react-example/)
 
 ## JSConf EU Talk: Rethinking Best Practices {#jsconf-eu-talk-rethinking-best-practices}
 
@@ -49,7 +49,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
   [:div {:class-name "test"} "hello"])
 ```
 
-[Check it out on GitHub...](https://github.com/piranha/pump)
+[Check it out on GitHub…](https://github.com/piranha/pump)
 
 
 ## JSXHint {#jsxhint}
@@ -62,7 +62,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 > npm install -g jsxhint
 > ```
 >
-> [Check it out on GitHub...](https://github.com/CondeNast/JSXHint)
+> [Check it out on GitHub…](https://github.com/CondeNast/JSXHint)
 
 
 ## Turbo React {#turbo-react}
@@ -76,7 +76,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 > With Turbolinks alone, the entire <body> would be replaced, and transitions would not happen. In this little demo though, React adds and removes classes and text, and the attribute changes are animated with CSS transitions. The DOM is otherwise left intact.
 ><figure><a href="https://turbo-react.herokuapp.com/"><img src="../images/blog/turboreact.png"></a></figure>
 >
-> [Check out the demo...](https://turbo-react.herokuapp.com/)
+> [Check out the demo…](https://turbo-react.herokuapp.com/)
 
 
 ## Reactive Table {#reactive-table}
@@ -95,4 +95,4 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 >
 > You see that React components are defined using a regular JS object. Some properties and methods of the object such as render() have special meanings, the rest is upforgrabs.
 >
-> [Read the full article...](http://www.phpied.com/reactive-table/)
+> [Read the full article…](http://www.phpied.com/reactive-table/)

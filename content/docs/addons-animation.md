@@ -145,7 +145,7 @@ At the initial mount, all children of the `ReactCSSTransitionGroup` will `appear
 It is also possible to use custom class names for each of the steps in your transitions. Instead of passing a string into transitionName you can pass an object containing either the `enter` and `leave` class names, or an object containing the `enter`, `enter-active`, `leave-active`, and `leave` class names. If only the enter and leave classes are provided, the enter-active and leave-active classes will be determined by appending '-active' to the end of the class name. Here are two examples using custom classes:
 
 ```javascript
-// ...
+// …
 <ReactCSSTransitionGroup
   transitionName={ {
     enter: 'enter',
@@ -166,7 +166,7 @@ It is also possible to use custom class names for each of the steps in your tran
   } }>
   {item2}
 </ReactCSSTransitionGroup>
-// ...
+// …
 ```
 
 ### Animation Group Must Be Mounted To Work {#animation-group-must-be-mounted-to-work}
@@ -249,7 +249,7 @@ var ReactTransitionGroup = require('react-addons-transition-group') // ES5 with 
 
 ```javascript{1}
 <ReactTransitionGroup component="ul">
-  {/* ... */}
+  {/* … */}
 </ReactTransitionGroup>
 ```
 
@@ -257,7 +257,7 @@ Any additional, user-defined, properties will become properties of the rendered 
 
 ```javascript{1}
 <ReactTransitionGroup component="ul" className="animated-list">
-  {/* ... */}
+  {/* … */}
 </ReactTransitionGroup>
 ```
 

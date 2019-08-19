@@ -103,7 +103,7 @@ When [Kent William Innholt](http://http://kentwilliam.com/) who works at [M>Path
 > - **Big win**: Cascading updates and functional thinking
 > - **Jury's still out**: Verbose propagation
 >
-> [Read the article...](http://kentwilliam.com/articles/saving-time-staying-sane-pros-cons-of-react-js)
+> [Read the article…](http://kentwilliam.com/articles/saving-time-staying-sane-pros-cons-of-react-js)
 
 
 ## Weather {#weather}

@@ -19,7 +19,7 @@ Everything is backwards compatible for now, and as always React will provide you
 
 `ReactElement` is the primary API of React. Making it faster has shown to give us several times faster renders on common benchmarks. The API tweaks in this release helps us get there.
 
-Continue reading if you want all the nitty gritty details...
+Continue reading if you want all the nitty gritty details…
 
 
 ## New Terminology {#new-terminology}
@@ -58,7 +58,7 @@ React 0.11 gave you a factory function for free when you called `React.createCla
 var MyComponent = React.createFactory(
   class {
     render() {
-      ...
+      …
     }
   }
 );
@@ -84,7 +84,7 @@ var React = require('react');
 React's JSX will create the `ReactElement` for you. You can continue to use JSX with regular classes:
 
 ```javascript
-var MyComponent = React.createClass(...);
+var MyComponent = React.createClass(…);
 
 var MyOtherComponent = React.createClass({
   render: function() {
@@ -100,7 +100,7 @@ var MyOtherComponent = React.createClass({
 If you don't use JSX and just call components as functions, you will need to explicitly create a factory before calling it:
 
 ```javascript
-var MyComponentClass = React.createClass(...);
+var MyComponentClass = React.createClass(…);
 
 var MyComponent = React.createFactory(MyComponentClass); // New step
 
@@ -118,7 +118,7 @@ Your class creation is done just like before:
 ```javascript
 // MyComponent.js
 var React = require('react');
-var MyComponent = React.createClass(...);
+var MyComponent = React.createClass(…);
 module.exports = MyComponent;
 ```
 
@@ -215,7 +215,7 @@ After 0.12 we'll begin work on moving to ES6 classes. We will still support `Rea
 ```javascript
 export class MyComponent {
   render() {
-    ...
+    …
   }
 };
 ```

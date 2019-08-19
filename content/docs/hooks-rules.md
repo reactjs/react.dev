@@ -35,11 +35,11 @@ npm install eslint-plugin-react-hooks --save-dev
 // Your ESLint configuration
 {
   "plugins": [
-    // ...
+    // …
     "react-hooks"
   ],
   "rules": {
-    // ...
+    // …
     "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
     "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
@@ -72,7 +72,7 @@ function Form() {
     document.title = name + ' ' + surname;
   });
 
-  // ...
+  // …
 }
 ```
 
@@ -95,7 +95,7 @@ useEffect(persistForm)     // 2. Replace the effect for persisting the form
 useState('Poppins')        // 3. Read the surname state variable (argument is ignored)
 useEffect(updateTitle)     // 4. Replace the effect for updating the title
 
-// ...
+// …
 ```
 
 As long as the order of the Hook calls is the same between renders, React can associate some local state with each of them. But what happens if we put a Hook call (for example, the `persistForm` effect) inside a condition?

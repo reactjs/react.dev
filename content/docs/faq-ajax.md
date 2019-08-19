@@ -16,7 +16,7 @@ You should populate data with AJAX calls in the [`componentDidMount`](/docs/reac
 
 ### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state.
 
 The example API returns a JSON object like this:
 
@@ -25,7 +25,7 @@ The example API returns a JSON object like this:
   "items": [
     { "id": 1, "name": "Apples",  "price": "$2" },
     { "id": 2, "name": "Peaches", "price": "$5" }
-  ] 
+  ]
 }
 ```
 
@@ -67,7 +67,7 @@ class MyComponent extends React.Component {
     if (error) {
       return <div>Error: {error.message}</div>;
     } else if (!isLoaded) {
-      return <div>Loading...</div>;
+      return <div>Loading…</div>;
     } else {
       return (
         <ul>

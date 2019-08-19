@@ -160,7 +160,7 @@ export default function User(props) {
   }, [props.id]);
 
   if (!user) {
-    return "loading...";
+    return "loading…";
   }
 
   return (
@@ -577,7 +577,7 @@ it("should render a greeting", () => {
 
   expect(
     pretty(container.innerHTML)
-  ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
+  ).toMatchInlineSnapshot(); /* … gets filled automatically by jest … */
 
   act(() => {
     render(<Hello name="Jenny" />, container);
@@ -585,7 +585,7 @@ it("should render a greeting", () => {
 
   expect(
     pretty(container.innerHTML)
-  ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
+  ).toMatchInlineSnapshot(); /* … gets filled automatically by jest … */
 
   act(() => {
     render(<Hello name="Margaret" />, container);
@@ -593,7 +593,7 @@ it("should render a greeting", () => {
 
   expect(
     pretty(container.innerHTML)
-  ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
+  ).toMatchInlineSnapshot(); /* … gets filled automatically by jest … */
 });
 ```
 
@@ -608,7 +608,7 @@ In rare cases, you may be running a test on a component that uses multiple rende
 ```jsx
 import { act as domAct } from "react-dom/test-utils";
 import { act as testAct, create } from "react-test-renderer";
-// ...
+// …
 let root;
 domAct(() => {
   testAct(() => {

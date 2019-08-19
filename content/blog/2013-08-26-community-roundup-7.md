@@ -44,7 +44,7 @@ It's been three months since we open sourced React and it is going well. Some st
 >
 > Dependencies will be registered for any data accesses performed by getMeteorState so that the component can be automatically re-rendered whenever the data changes.
 >
-> [Read more ...](https://github.com/benjamn/meteor-react)
+> [Read more…](https://github.com/benjamn/meteor-react)
 
 ## React Page {#react-page}
 
@@ -70,4 +70,4 @@ It's been three months since we open sourced React and it is going well. Some st
 > * The browser runs that JavaScript, so that all of the event handlers, interactions and update code will run seamlessly on top of the server generated markup.
 > * From the developer's (and the user's) perspective, it's just as if the rendering occurred on the client, only faster.
 >
-> [Try it out ...](https://github.com/facebook/react-page/)
+> [Try it out…](https://github.com/facebook/react-page/)

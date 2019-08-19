@@ -16,7 +16,7 @@ React got featured on the front-page of Hacker News thanks to the Om library. If
 > A whole lot.
 > <figure><a href="https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/"><img src="../images/blog/om-backbone.png"></a></figure>
 >
-> [Read the full article...](https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/)
+> [Read the full article…](https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/)
 
 
 
@@ -40,7 +40,7 @@ Managing the scroll position when new content is inserted is usually very tricky
 > },
 > ```
 >
-> [Check out the blog article...](http://blog.vjeux.com/2013/javascript/scroll-position-with-react.html)
+> [Check out the blog article…](http://blog.vjeux.com/2013/javascript/scroll-position-with-react.html)
 
 
 ## Lights Out {#lights-out}
@@ -56,14 +56,14 @@ React declarative approach is well suited to write games. [Cheng Lou](https://gi
 [Stoyan Stefanov](http://www.phpied.com/) wrote a bookmarklet to process tables on the internet. It adds a little "pop" button that expands to a full-screen view with sorting, editing and export to csv and json.
 <figure><a href="http://www.phpied.com/reactivetable-bookmarklet/"><img src="../images/blog/reactive-bookmarklet.png"></a></figure>
 
-[Check out the blog post...](http://www.phpied.com/reactivetable-bookmarklet/)
+[Check out the blog post…](http://www.phpied.com/reactivetable-bookmarklet/)
 
 
 ## MontageJS Tutorial in React {#montagejs-tutorial-in-react}
 
 [Ross Allen](https://twitter.com/ssorallen) implemented [MontageJS](http://montagejs.org/)'s [Reddit tutorial](http://montagejs.org/docs/tutorial-reddit-client-with-montagejs.html) in React. This is a good opportunity to compare the philosophies of the two libraries.
 
-[View the source on JSFiddle...](https://jsfiddle.net/ssorallen/fEsYt/)
+[View the source on JSFiddle…](https://jsfiddle.net/ssorallen/fEsYt/)
 
 ## Writing Good React Components {#writing-good-react-components}
 
@@ -75,7 +75,7 @@ React declarative approach is well suited to write games. [Cheng Lou](https://gi
 >
 > You build a model of how you want the DOM end up like. React then inserts this model into the DOM. This is very useful for updates because React simply compares the model or mock DOM against the actual DOM, and then only updates based on the difference between the two states.
 >
-> [Read the full article ...](http://blog.whn.se/post/69621609605/writing-good-react-components)
+> [Read the full article…](http://blog.whn.se/post/69621609605/writing-good-react-components)
 
 
 ## Hoodie React TodoMVC {#hoodie-react-todomvc}
@@ -86,7 +86,7 @@ React declarative approach is well suited to write games. [Cheng Lou](https://gi
 hoodie new todomvc -t "hoodiehq/hoodie-react-todomvc"
 ```
 
-[Check out on GitHub...](https://github.com/hoodiehq/hoodie-react-todomvc)
+[Check out on GitHub…](https://github.com/hoodiehq/hoodie-react-todomvc)
 
 ## JSX Compiler {#jsx-compiler}
 

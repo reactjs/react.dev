@@ -20,7 +20,7 @@ const toSectionList = allMarkdownRemark => [
       }))
       .concat({
         id: '/blog/all.html',
-        title: 'All posts ...',
+        title: 'All posts…',
       }),
   },
 ];

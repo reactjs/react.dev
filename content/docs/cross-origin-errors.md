@@ -19,7 +19,7 @@ You can simplify the development/debugging process by ensuring that errors are t
 When loading React (or other libraries that might throw errors) from a CDN, add the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute to your `<script>` tags:
 
 ```html
-<script crossorigin src="..."></script>
+<script crossorigin src="…"></script>
 ```
 
 Also ensure the CDN responds with the `Access-Control-Allow-Origin: *` HTTP header:

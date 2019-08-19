@@ -278,7 +278,7 @@ static getDerivedStateFromProps(props, state)
 
 This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state.html#when-to-use-derived-state) where the state depends on changes in props over time. For example, it might be handy for implementing a `<Transition>` component that compares its previous and next children to decide which of them to animate in and out.
 
-Deriving state leads to verbose code and makes your components difficult to think about.  
+Deriving state leads to verbose code and makes your components difficult to think about.
 [Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
 
 * If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) lifecycle instead.
@@ -324,7 +324,7 @@ Only use error boundaries for recovering from unexpected exceptions; **don't try
 For more details, see [*Error Handling in React 16*](/blog/2017/07/26/error-handling-in-react-16.html).
 
 > Note
-> 
+>
 > Error boundaries only catch errors in the components **below** them in the tree. An error boundary can’t catch an error within itself.
 
 ### `static getDerivedStateFromError()` {#static-getderivedstatefromerror}
@@ -353,7 +353,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -408,13 +408,13 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
 
 > Note
-> 
+>
 > In the event of an error, you can render a fallback UI with `componentDidCatch()` by calling `setState`, but this will be deprecated in a future release.
 > Use `static getDerivedStateFromError()` to handle fallback rendering instead.
 
@@ -549,7 +549,7 @@ Object.assign(
   previousState,
   {quantity: state.quantity + 1},
   {quantity: state.quantity + 1},
-  ...
+  …
 )
 ```
 
@@ -591,7 +591,7 @@ Normally you should try to avoid all uses of `forceUpdate()` and only read from 
 
 ```js
 class CustomButton extends React.Component {
-  // ...
+  // …
 }
 
 CustomButton.defaultProps = {

@@ -11,11 +11,11 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 
 > [<img style="float: right; margin: 0 0 10px 10px;" src="../images/blog/propeller-logo.png" />](http://usepropeller.com/blog/posts/from-backbone-to-react/)Subviews involve a lot of easy-to-forget boilerplate that Backbone (by design) doesn't automate. Libraries like Backbone.Marionette offer more abstractions to make view nesting easier, but they're all limited by the fact that Backbone delegates how and went view-document attachment occurs to the application code.
 >
-> React, on the other hand, manages the DOM and only exposes real nodes at select points in its API. The "elements" you code in React are actually objects which wrap DOM nodes, not the actual objects which get inserted into the DOM. Internally, React converts those abstractions into actual DOMElements and fills out the document accordingly. [...]
+> React, on the other hand, manages the DOM and only exposes real nodes at select points in its API. The "elements" you code in React are actually objects which wrap DOM nodes, not the actual objects which get inserted into the DOM. Internally, React converts those abstractions into actual DOMElements and fills out the document accordingly. […]
 >
 > We moved about 20 different Backbone view classes to React over the past few weeks, including the live-preview pane that you see in our little iOS demo. Most importantly, it's allowed us to put energy into making each component work great on its own, instead of spending extra cycles to ensure they function in unison. For that reason, we think React is a more scalable way to build view-intensive apps than Backbone alone, and it doesn't require you to drop-everything-and-refactor like a move to Ember or Angular would demand.
 >
-> [Read the full post...](http://usepropeller.com/blog/posts/from-backbone-to-react/)
+> [Read the full post…](http://usepropeller.com/blog/posts/from-backbone-to-react/)
 
 ## Grunt Task for JSX {#grunt-task-for-jsx}
 
@@ -43,7 +43,7 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 >     dest: 'path/to/target/output.js'
 > ```
 >
-> [Check out the project ...](https://github.com/ericclemmons/grunt-react)
+> [Check out the project…](https://github.com/ericclemmons/grunt-react)
 
 ## Backbone/Handlebars Nested Views {#backbonehandlebars-nested-views}
 
@@ -55,7 +55,7 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 >
 > So while our view is conceptually hierarchical, due to the fact that it has to go through a flat textual representation, we need to do a lot of extra work to reassemble that structure after rendering.
 >
-> [Read the full post...](http://joelburget.com/react/)
+> [Read the full post…](http://joelburget.com/react/)
 
 ## JSRomandie Meetup {#jsromandie-meetup}
 
@@ -79,7 +79,7 @@ The highlight of this week is that an interaction-heavy app has been ported to R
 > ])
 > ```
 >
-> [Read the full post...](http://blog.vjeux.com/2013/javascript/react-coffeescript.html)
+> [Read the full post…](http://blog.vjeux.com/2013/javascript/react-coffeescript.html)
 
 ## Tutorial in Plain JavaScript {#tutorial-in-plain-javascript}
 
@@ -87,4 +87,4 @@ We've seen a lot of people comparing React with various frameworks. [Ricardo Tom
 
 > Facebook & Instagram launched the React framework and an accompanying tutorial. Developer Vlad Yazhbin decided to rewrite that using AngularJS. The end result is pretty neat, but if you're like me you will not actually appreciate the HTML speaking for itself and doing all the hard work. So let's see what that looks like in plain javascript.
 >
-> [Read the full post...](http://ricardo.cc/2013/06/07/react-tutorial-rewritten-in-plain-javascript.html)
+> [Read the full post…](http://ricardo.cc/2013/06/07/react-tutorial-rewritten-in-plain-javascript.html)

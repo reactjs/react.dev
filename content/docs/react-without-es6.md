@@ -34,7 +34,7 @@ With functions and ES6 classes `defaultProps` is defined as a property on the co
 
 ```javascript
 class Greeting extends React.Component {
-  // ...
+  // …
 }
 
 Greeting.defaultProps = {
@@ -52,7 +52,7 @@ var Greeting = createReactClass({
     };
   },
 
-  // ...
+  // …
 
 });
 ```
@@ -67,7 +67,7 @@ class Counter extends React.Component {
     super(props);
     this.state = {count: props.initialCount};
   }
-  // ...
+  // …
 }
 ```
 
@@ -78,7 +78,7 @@ var Counter = createReactClass({
   getInitialState: function() {
     return {count: this.props.initialCount};
   },
-  // ...
+  // …
 });
 ```
 

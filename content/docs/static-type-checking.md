@@ -42,12 +42,12 @@ Now, add `flow` to the `"scripts"` section of your `package.json` to be able to 
 
 ```js{4}
 {
-  // ...
+  // …
   "scripts": {
     "flow": "flow",
-    // ...
+    // …
   },
-  // ...
+  // …
 }
 ```
 
@@ -206,12 +206,12 @@ Congrats! You've installed the latest version of TypeScript into your project. I
 
 ```js{4}
 {
-  // ...
+  // …
   "scripts": {
     "build": "tsc",
-    // ...
+    // …
   },
-  // ...
+  // …
 }
 ```
 
@@ -251,10 +251,10 @@ We'll address this in two steps:
 
 {
   "compilerOptions": {
-    // ...
+    // …
     "rootDir": "src",
     "outDir": "build"
-    // ...
+    // …
   },
 }
 ```
@@ -286,7 +286,7 @@ If you see no output, it means that it completed successfully.
 
 
 ### Type Definitions {#type-definitions}
-To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project. 
+To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project.
 
 There are two main ways to get declarations for a library:
 
@@ -326,7 +326,7 @@ Reason is developed at Facebook, and is used in some of its products like Messen
 
 ## Kotlin {#kotlin}
 
-[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html). 
+[Kotlin](https://kotlinlang.org/) is a statically typed language developed by JetBrains. Its target platforms include the JVM, Android, LLVM, and [JavaScript](https://kotlinlang.org/docs/reference/js-overview.html).
 
 JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
 

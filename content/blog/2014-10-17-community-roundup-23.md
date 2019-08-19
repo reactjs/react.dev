@@ -37,9 +37,9 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 
 > I’ve actually said this many times to my team too, I love React. It’s really great for making these complex applications. One thing that really surprised me with it is that React combined with a sane module system like CommonJS, and making sure that you actually modulize your stuff properly has scaled really well to a team of almost 10 developers working on hundreds of files and tens of thousands of lines of code.
 >
-> Really, a fairly large code base... stuff just works. You don’t have to worry about mutating, and the state of the DOM just really makes stuff easy. Just conceptually it’s easier just to think about here’s what I have, here’s my data, here’s how it renders, I don’t care about anything else. For most cases that is really simplifying and makes it really fast to do stuff.
+> Really, a fairly large code base… stuff just works. You don’t have to worry about mutating, and the state of the DOM just really makes stuff easy. Just conceptually it’s easier just to think about here’s what I have, here’s my data, here’s how it renders, I don’t care about anything else. For most cases that is really simplifying and makes it really fast to do stuff.
 >
-> [Read the full interview...](http://ianobermiller.com/blog/2014/09/15/react-and-flux-interview/)
+> [Read the full interview…](http://ianobermiller.com/blog/2014/09/15/react-and-flux-interview/)
 
 
 ## Adobe's Brackets Project Tree {#adobes-brackets-project-tree}
@@ -65,7 +65,7 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 >
 > - Avoiding actions firing other actions makes your app simple. We use the newest Dispatcher implementation from Facebook that does not allow a new dispatch while dispatching. It forces you to do things right.
 >
-> [Read the full article...](http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)
+> [Read the full article…](http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)
 
 
 ## Undo-Redo with Immutable Data Structures {#undo-redo-with-immutable-data-structures}
@@ -95,7 +95,7 @@ undo: function() {
 
 > So, what does it actually mean to write an application in the Flux way? At that moment of inspiration, when faced with an empty text editor, how should you begin? This post follows the process of building a Flux-compliant application from scratch.
 >
-> [Read the full guide...](https://medium.com/@garychambers108/flux-in-practice-ec08daa9041a)
+> [Read the full guide…](https://medium.com/@garychambers108/flux-in-practice-ec08daa9041a)
 
 
 ## Components, React and Flux {#components-react-and-flux}
@@ -113,7 +113,7 @@ undo: function() {
 >
 > Any changes to the application is adding, not moving things around. If you need a new store, just add it and make components dependant of it. If you need more views, create a component and use it inside any other component without affecting their current "parent controller or models".
 >
-> [Read the full article...](https://christianalfoni.github.io/javascript/2014/08/20/react-js-and-flux.html)
+> [Read the full article…](https://christianalfoni.github.io/javascript/2014/08/20/react-js-and-flux.html)
 
 
 

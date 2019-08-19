@@ -14,7 +14,7 @@ You are probably here because you got one of the following error messages:
 *earlier versions of React*
 > Warning:
 >
-> addComponentAsRefTo(...): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded.
+> addComponentAsRefTo(…): Only a ReactOwner can have refs. You might be adding a ref to a component that was not created inside a component's `render` method, or you have multiple copies of React loaded.
 
 This usually means one of three things:
 
@@ -60,4 +60,4 @@ Consider if you [really need a ref](/docs/refs-and-the-dom.html#when-to-use-refs
 
 Bower does a good job of deduplicating dependencies, but npm does not. If you aren't doing anything (fancy) with refs, there is a good chance that the problem is not with your refs, but rather an issue with having multiple copies of React loaded into your project. Sometimes, when you pull in a third-party module via npm, you will get a duplicate copy of the dependency library, and this can create problems.
 
-If you are using npm... `npm ls` or `npm ls react` might help illuminate.
+If you are using npm… `npm ls` or `npm ls react` might help illuminate.

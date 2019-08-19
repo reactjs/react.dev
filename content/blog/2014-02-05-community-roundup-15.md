@@ -12,7 +12,7 @@ To start things off, Eric Normand ([@ericnormand](https://twitter.com/ericnorman
 
 > The Virtual DOM is an indirection mechanism that solves the difficult problem of DOM programming: how to deal with incremental changes to a stateful tree structure. By abstracting away the statefulness, the Virtual DOM turns the real DOM into an immediate mode GUI, which is perfect for functional programming.
 >
-> [Read the full post...](http://www.lispcast.com/react-another-level-of-indirection)
+> [Read the full post…](http://www.lispcast.com/react-another-level-of-indirection)
 
 ## Reagent: Minimalistic React for ClojureScript {#reagent-minimalistic-react-for-clojurescript}
 Dan Holmsand ([@holmsand](https://twitter.com/holmsand)) created [Reagent](https://holmsand.github.io/reagent/), a simplistic ClojureScript API to React.
@@ -21,7 +21,7 @@ Dan Holmsand ([@holmsand](https://twitter.com/holmsand)) created [Reagent](https
 >
 > The goal of Reagent is to make it possible to define arbitrarily complex UIs using just a couple of basic concepts, and to be fast enough by default that you rarely have to care about performance.
 >
-> [Check it out on GitHub...](https://holmsand.github.io/reagent/)
+> [Check it out on GitHub…](https://holmsand.github.io/reagent/)
 
 
 ## Functional DOM programming {#functional-dom-programming}
@@ -30,7 +30,7 @@ React's one-way data-binding naturally lends itself to a functional programming 
 
 > This is React. It’s not about templates, or data binding, or DOM manipulation. It’s about using functional programming with a virtual DOM representation to build ambitious, high-performance apps with JavaScript.
 >
-> [Read the full post...](https://medium.com/p/67d81637d43)
+> [Read the full post…](https://medium.com/p/67d81637d43)
 
 Pete also explains this in detail at his #MeteorDevShop talk (about 30 Minutes):
 
@@ -59,7 +59,7 @@ A basic example from github:
 ```
 
 ```clojure
-...
+…
 
 (defn my-nav-item [[caption func]]
   (kioo/component "main.html" [:.nav-item]
@@ -91,15 +91,15 @@ In an interview with David Nolen, Tom Coupland ([@tcoupland](https://twitter.com
 
 > David [Nolen]: I think people are starting to see the limitations of just JavaScript and jQuery and even more structured solutions like Backbone, Angular, Ember, etc. React is a fresh approach to the DOM problem that seems obvious in hindsight.
 >
-> [Read the full interview...](http://www.infoq.com/news/2014/01/om-react)
+> [Read the full interview…](http://www.infoq.com/news/2014/01/om-react)
 
 ### A slice of React, ClojureScript and Om {#a-slice-of-react-clojurescript-and-om}
 
 Fredrik Dyrkell ([@lexicallyscoped](https://twitter.com/lexicallyscoped)) rewrote part of the [React tutorial in both ClojureScript and Om](http://www.lexicallyscoped.com/2013/12/25/slice-of-reactjs-and-cljs.html), along with short, helpful explanations.
 
-> React has sparked a lot of interest in the Clojure community lately [...]. At the very core, React lets you build up your DOM representation in a functional fashion by composing pure functions and you have a simple building block for everything: React components.
+> React has sparked a lot of interest in the Clojure community lately […]. At the very core, React lets you build up your DOM representation in a functional fashion by composing pure functions and you have a simple building block for everything: React components.
 >
-> [Read the full post...](http://www.lexicallyscoped.com/2013/12/25/slice-of-reactjs-and-cljs.html)
+> [Read the full post…](http://www.lexicallyscoped.com/2013/12/25/slice-of-reactjs-and-cljs.html)
 
 In a separate post, Dyrkell breaks down [how to build a binary clock component](http://www.lexicallyscoped.com/2014/01/23/ClojureScript-react-om-binary-clock.html) in Om.
 

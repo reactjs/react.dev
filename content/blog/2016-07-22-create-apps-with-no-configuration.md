@@ -151,7 +151,7 @@ Having just attended [EmberCamp](http://embercamp.com/) a week ago, I was excite
 
 Providing a cohesive curated experience is valuable by itself, even if the user could in theory assemble those parts themselves. Kathy Sierra [explains it best](http://seriouspony.com/blog/2013/7/24/your-app-makes-me-fat):
 
->If your UX asks the user to make *choices*, for example, even if those choices are both clear and useful, the act of *deciding* is a cognitive drain. And not just *while* they’re deciding... even *after* we choose, an unconscious cognitive background thread is slowly consuming/leaking resources, “Was *that* the right choice?”
+>If your UX asks the user to make *choices*, for example, even if those choices are both clear and useful, the act of *deciding* is a cognitive drain. And not just *while* they’re deciding… even *after* we choose, an unconscious cognitive background thread is slowly consuming/leaking resources, “Was *that* the right choice?”
 
 I never tried to write a command-line tool for React apps, and neither has [Christopher](https://twitter.com/vjeux). We were chatting on Messenger about this idea, and we decided to work together on it for a week as a hackathon project.
 

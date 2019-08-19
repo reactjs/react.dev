@@ -62,7 +62,7 @@ Relay automates the process of fetching data for components by wrapping existing
 
 ```javascript
 // Story.react.js
-class Story extends React.Component { ... }
+class Story extends React.Component { … }
 
 export default Relay.createContainer(Story, {
   fragments: {
@@ -79,7 +79,7 @@ Most props will be passed through from the container to the original component. 
 
 ```javascript
 // Story.react.js
-class Story extends React.Component { ... }
+class Story extends React.Component { … }
 
 export default Relay.createContainer(Story, {
   fragments: {
@@ -161,7 +161,7 @@ Just as React views can be nested, Relay components can compose query fragments 
 
 ```javascript
 // NewsFeed.react.js
-class NewsFeed extends React.Component { ... }
+class NewsFeed extends React.Component { … }
 
 export default Relay.createContainer(NewsFeed, {
   initialVariables: {
@@ -190,7 +190,7 @@ Query variables are available to components as `props.relay.variables` and can b
 ```javascript
 // NewsFeed.react.js
 class NewsFeed extends React.Component {
-  render() { ... }
+  render() { … }
 
   loadMore() {
     // read current params

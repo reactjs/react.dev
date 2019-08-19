@@ -27,7 +27,7 @@ To load a specific version of `react` and `react-dom`, replace `16` with the ver
 If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute set:
 
 ```html
-<script crossorigin src="..."></script>
+<script crossorigin src="…"></script>
 ```
 
 We also recommend to verify that the CDN you are using sets the `Access-Control-Allow-Origin: *` HTTP header:

@@ -34,7 +34,7 @@ class CodepenExample extends Component {
     return (
       <Layout location={location}>
         <Container>
-          <h1>Redirecting to Codepen...</h1>
+          <h1>Redirecting to Codepen…</h1>
           <form
             style={{paddingBottom: '50px'}}
             ref={form => {

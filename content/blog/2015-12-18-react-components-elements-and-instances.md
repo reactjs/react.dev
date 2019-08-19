@@ -317,7 +317,7 @@ ReactDOM.render({
 React will ask the `Form` component what element tree it returns, given those `props`. It will gradually “refine” its understanding of your component tree in terms of simpler primitives:
 
 ```js
-// React: You told me this...
+// React: You told me this…
 {
   type: Form,
   props: {
@@ -326,7 +326,7 @@ React will ask the `Form` component what element tree it returns, given those `p
   }
 }
 
-// React: ...And Form told me this...
+// React:… And Form told me this…
 {
   type: Button,
   props: {
@@ -335,7 +335,7 @@ React will ask the `Form` component what element tree it returns, given those `p
   }
 }
 
-// React: ...and Button told me this! I guess I'm done.
+// React:… and Button told me this! I guess I'm done.
 {
   type: 'button',
   props: {

@@ -158,7 +158,7 @@ class Chosen extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.$el.on('change', this.handleChange);
   }
-  
+
   componentDidUpdate(prevProps) {
     if (prevProps.children !== this.props.children) {
       this.$el.trigger("chosen:updated");
@@ -169,7 +169,7 @@ class Chosen extends React.Component {
     this.$el.off('change', this.handleChange);
     this.$el.chosen('destroy');
   }
-  
+
   handleChange(e) {
     this.props.onChange(e.target.value);
   }
@@ -200,7 +200,7 @@ In fact, this is exactly how React is used at Facebook. This lets us write appli
 
 A common pattern in older web applications is to describe chunks of the DOM as a string and insert it into the DOM like so: `$el.html(htmlString)`. These points in a codebase are perfect for introducing React. Just rewrite the string based rendering as a React component.
 
-So the following jQuery implementation...
+So the following jQuery implementation…
 
 ```js
 $('#container').html('<button id="btn">Say Hello</button>');
@@ -209,7 +209,7 @@ $('#btn').click(function() {
 });
 ```
 
-...could be rewritten using a React component:
+… could be rewritten using a React component:
 
 ```js
 function Button() {

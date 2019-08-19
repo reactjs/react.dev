@@ -11,7 +11,7 @@ To avoid the error message, people often add lines like this:
 
 ```js
 if (this.isMounted()) { // This is bad.
-  this.setState({...});
+  this.setState({…});
 }
 ```
 
@@ -31,7 +31,7 @@ class MyComponent extends React.Component {
     mydatastore.subscribe(this);
   }
   render() {
-    ...
+    …
   }
   componentWillUnmount() {
     mydatastore.unsubscribe(this);
@@ -43,7 +43,7 @@ If you use ES6 promises, you may need to wrap your promise in order to make it c
 
 ```js
 const cancelablePromise = makeCancelable(
-  new Promise(r => component.setState({...}))
+  new Promise(r => component.setState({…}))
 );
 
 cancelablePromise

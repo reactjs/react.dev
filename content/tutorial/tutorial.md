@@ -78,7 +78,7 @@ This setup requires more work but allows you to complete the tutorial using an e
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Delete all files in the `src/` folder of the new project
 
 > Note:
 >
@@ -157,8 +157,8 @@ The `render` method returns a *description* of what you want to see on the scree
 
 ```javascript
 return React.createElement('div', {className: 'shopping-list'},
-  React.createElement('h1', /* ... h1 children ... */),
-  React.createElement('ul', /* ... ul children ... */)
+  React.createElement('h1', /* … h1 children… */),
+  React.createElement('ul', /* … ul children… */)
 );
 ```
 
@@ -294,7 +294,7 @@ class Square extends React.Component {
 Now we'll change the Square's `render` method to display the current state's value when clicked:
 
 * Replace `this.props.value` with `this.state.value` inside the `<button>` tag.
-* Replace the `onClick={...}` event handler with `onClick={() => this.setState({value: 'X'})}`.
+* Replace the `onClick={…}` event handler with `onClick={() => this.setState({value: 'X'})}`.
 * Put the `className` and `onClick` props on separate lines for better readability.
 
 After these changes, the `<button>` tag that is returned by the Square's `render` method looks like this:
@@ -792,7 +792,7 @@ history = [
       null, null, 'O',
     ]
   },
-  // ...
+  // …
 ]
 ```
 

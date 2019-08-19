@@ -27,15 +27,15 @@ While we're talking about tree diffing: Matt Esch ([@MatthewEsch](https://twitte
 
 
 James Padosley wrote a short post on the basics (and merits) of React: [What is React?](http://james.padolsey.com/javascript/what-is-react/)
-> What I like most about React is that it doesn't impose heady design patterns and data-modelling abstractions on me. [...] Its opinions are so minimal and its abstractions so focused on the problem of the DOM, that you can merrily slap your design choices atop.
+> What I like most about React is that it doesn't impose heady design patterns and data-modelling abstractions on me. […] Its opinions are so minimal and its abstractions so focused on the problem of the DOM, that you can merrily slap your design choices atop.
 >
-> [Read the full post...](http://james.padolsey.com/javascript/what-is-react/)
+> [Read the full post…](http://james.padolsey.com/javascript/what-is-react/)
 
 Taylor Lapeyre ([@taylorlapeyre](https://twitter.com/taylorlapeyre)) wrote another nice [introduction to React](http://words.taylorlapeyre.me/an-introduction-to-react).
 
 > React expects you to do the work of getting and pushing data from the server. This makes it very easy to implement React as a front end solution, since it simply expects you to hand it data. React does all the other work.
 >
-> [Read the full post...](http://words.taylorlapeyre.me/an-introduction-to-react)
+> [Read the full post…](http://words.taylorlapeyre.me/an-introduction-to-react)
 
 
 [This "Deep explanation for newbies"](http://www.webdesignporto.com/react-js-in-pure-javascript-facebook-library/?utm_source=echojs&utm_medium=post&utm_campaign=echojs) by [@ProJavaScript](https://twitter.com/ProJavaScript) explains how to get started building a React game without using the optional JSX syntax.
@@ -60,11 +60,11 @@ Joe Maddalone ([@joemaddalone](https://twitter.com/joemaddalone)) of [egghead.io
 
 Eric Florenzano ([@ericflo](https://twitter.com/ericflo)) sheds some light on what makes React perfect for server rendering:
 
-> [...] the ideal solution would fully render the markup on the server, deliver it to the client so that it can be shown to the user instantly. Then it would asynchronously load some JavaScript that would attach to the rendered markup, and invisibly promote the page into a full app that can render its own markup. [...]
+> […] the ideal solution would fully render the markup on the server, deliver it to the client so that it can be shown to the user instantly. Then it would asynchronously load some JavaScript that would attach to the rendered markup, and invisibly promote the page into a full app that can render its own markup. […]
 
 > What I've discovered is that enough of the pieces have come together, that this futuristic-sounding web environment is actually surprisingly easy to do now with React.js.
 
-> [Read the full post...](http://eflorenzano.com/blog/2014/01/23/react-finally-server-client/)
+> [Read the full post…](http://eflorenzano.com/blog/2014/01/23/react-finally-server-client/)
 
 ## Building a complex React component {#building-a-complex-react-component}
 [Matt Harrison](http://matt-harrison.com/) walks through the process of [creating an SVG-based Resistance Calculator](http://matt-harrison.com/building-a-complex-web-component-with-facebooks-react-library/) using React. <figure>[![](../images/blog/resistance-calculator.png)](http://matt-harrison.com/building-a-complex-web-component-with-facebooks-react-library/)</figure>

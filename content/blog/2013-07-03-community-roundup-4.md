@@ -13,7 +13,7 @@ React reconciliation process appears to be very well suited to implement a text 
 >
 > "The library is only a week old. It's a brand new way of thinking about things. We're the first to use it outside of Facebook. Heck, even the React devs were surprised to hear we're using this in production!!!"
 >
-> [Read the full post...](http://bjk5.com/post/53742233351/getting-your-team-to-adopt-new-technology)
+> [Read the full post…](http://bjk5.com/post/53742233351/getting-your-team-to-adopt-new-technology)
 
 The best part is the demo of how React reconciliation process makes live editing more user-friendly.
 

@@ -35,12 +35,12 @@ React has always provided a JavaScript-centric API to the DOM. Since React compo
 This has not changed. However, the way we enforced it in the past forced us to maintain a whitelist of all valid React DOM attributes in the bundle:
 
 ```js
-// ...
+// …
 summary: 'summary',
 tabIndex: 'tabindex'
 target: 'target',
 title: 'title',
-// ...
+// …
 ```
 
 This had two downsides:
@@ -100,11 +100,11 @@ To avoid these problems, we suggest to fix the warnings you see in React 15 befo
 
 We've made a few other changes to make the behavior more predictable and help ensure you're not making mistakes. We don't anticipate that these changes are likely to break real-world applications.
 
-**These changes only affect DOM components like `<div>`, not your own components.**  
+**These changes only affect DOM components like `<div>`, not your own components.**
 
 Below is a detailed list of them.
 
-* **Unknown attributes with string, number, and object values:**  
+* **Unknown attributes with string, number, and object values:**
 
     ```js
     <div mycustomattribute="value" />
@@ -112,39 +112,39 @@ Below is a detailed list of them.
     <div mycustomattribute={myObject} />
     ```
 
-    React 15: Warns and ignores them.  
+    React 15: Warns and ignores them.
     React 16: Converts values to strings and passes them through.
 
     *Note: attributes starting with `on` are not passed through as an exception because this could become a potential security hole.*
 
-* **Known attributes with a different canonical React name:**  
+* **Known attributes with a different canonical React name:**
 
     ```js
     <div tabindex="-1" />
     <div class="hi" />
     ```
 
-    React 15: Warns and ignores them.  
+    React 15: Warns and ignores them.
     React 16: Warns but converts values to strings and passes them through.
 
     *Note: always use the canonical React naming for all supported attributes.*
 
-* **Non-boolean attributes with boolean values:**  
+* **Non-boolean attributes with boolean values:**
 
     ```js
     <div className={false} />
     ```
 
-    React 15: Converts booleans to strings and passes them through.  
+    React 15: Converts booleans to strings and passes them through.
     React 16: Warns and ignores them.
 
-* **Non-event attributes with function values:**  
+* **Non-event attributes with function values:**
 
     ```js
     <div className={function() {}} />
     ```
 
-    React 15: Converts functions to strings and passes them through.  
+    React 15: Converts functions to strings and passes them through.
     React 16: Warns and ignores them.
 
 * **Attributes with Symbol values:**
@@ -153,7 +153,7 @@ Below is a detailed list of them.
     <div className={Symbol('foo')} />
     ```
 
-    React 15: Crashes.  
+    React 15: Crashes.
     React 16: Warns and ignores them.
 
 * **Attributes with `NaN` values:**
@@ -162,14 +162,14 @@ Below is a detailed list of them.
     <div tabIndex={0 / 0} />
     ```
 
-    React 15: Converts `NaN`s to strings and passes them through.  
+    React 15: Converts `NaN`s to strings and passes them through.
     React 16: Converts `NaN`s to strings and passes them through with a warning.
 
 While testing this release, we have also [created an automatically generated table](https://github.com/facebook/react/blob/master/fixtures/attribute-behavior/AttributeTableSnapshot.md) for all known attributes to track potential regressions.
 
 ## Try It! {#try-it}
 
-You can try the change in [this CodePen](https://codepen.io/gaearon/pen/gxNVdP?editors=0010).  
+You can try the change in [this CodePen](https://codepen.io/gaearon/pen/gxNVdP?editors=0010).
 It uses React 16 RC, and you can [help us by testing the RC in your project!](https://github.com/facebook/react/issues/10294)
 
 ## Thanks {#thanks}

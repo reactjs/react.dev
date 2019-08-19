@@ -30,9 +30,9 @@ JSX is often compared to the now defunct E4X, [Vjeux](http://blog.vjeux.com/) we
 >
 > **Historical Context**
 >
-> E4X has been created in 2002 by John Schneider. This was the golden age of XML where it was being used for everything: data, configuration files, code, interfaces (DOM) ... E4X was first implemented inside of Rhino, a JavaScript implementation from Mozilla written in Java.
+> E4X has been created in 2002 by John Schneider. This was the golden age of XML where it was being used for everything: data, configuration files, code, interfaces (DOM)… E4X was first implemented inside of Rhino, a JavaScript implementation from Mozilla written in Java.
 >
-> [Continue reading ...](http://blog.vjeux.com/2013/javascript/jsx-e4x-the-good-parts.html)
+> [Continue reading…](http://blog.vjeux.com/2013/javascript/jsx-e4x-the-good-parts.html)
 
 
 ## React + Socket.io {#react--socketio}
@@ -57,7 +57,7 @@ componentWillUnmount: function () {
 }
 ```
 
-[Check it out on GitHub...](https://github.com/Enome/react.io)
+[Check it out on GitHub…](https://github.com/Enome/react.io)
 
 
 ## cssobjectify {#cssobjectify}
@@ -86,7 +86,7 @@ var MyComponent = React.createClass({
 });
 ```
 
-[Check it out on GitHub...](https://github.com/andreypopp/cssobjectify)
+[Check it out on GitHub…](https://github.com/andreypopp/cssobjectify)
 
 
 ## ngReact {#ngreact}
@@ -96,7 +96,7 @@ var MyComponent = React.createClass({
 > Rendering this takes 803ms for 10 iterations, hovering around 35 and 55ms for each data reload (that's 67% faster). You'll notice that the first load takes a little longer than successive loads, and the second load REALLY struggles - here, it's 433ms, which is more than half of the total time!
 > <figure><a href="http://davidandsuzi.com/ngreact-react-components-in-angular/"><img src="../images/blog/ngreact.png"></a></figure>
 >
-> [Read the full article...](http://davidandsuzi.com/ngreact-react-components-in-angular/)
+> [Read the full article…](http://davidandsuzi.com/ngreact-react-components-in-angular/)
 
 
 ## vim-jsx {#vim-jsx}
@@ -109,7 +109,7 @@ var MyComponent = React.createClass({
 >
 > Vim support for inline XML in JS is remarkably similar to the same for PHP.
 >
-> [View on GitHub...](https://github.com/mxw/vim-jsx)
+> [View on GitHub…](https://github.com/mxw/vim-jsx)
 
 
 ## Random Tweet {#random-tweet}

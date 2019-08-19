@@ -27,7 +27,7 @@ Here is a step-by-step explanation of what happens in the above example:
 
 1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.createRef` and assign it to a `ref` variable.
 1. We pass our `ref` down to `<FancyButton ref={ref}>` by specifying it as a JSX attribute.
-1. React passes the `ref` to the `(props, ref) => ...` function inside `forwardRef` as a second argument.
+1. React passes the `ref` to the `(props, ref) => …` function inside `forwardRef` as a second argument.
 1. We forward this `ref` argument down to `<button ref={ref}>` by specifying it as a JSX attribute.
 1. When the ref is attached, `ref.current` will point to the `<button>` DOM node.
 

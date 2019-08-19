@@ -13,7 +13,7 @@ We launched the [React Facebook Page](https://www.facebook.com/react) along with
 >
 > Both keydown and keypress do fire repeatedly when a key is held down, but both fire immediately before the value changes, so to read the new value you have to defer the handler to the next event loop using `setTimeout(fn, 0)` or similar, which slows down your app. Of course, like keyup, neither keydown nor keypress fires for non-keyboard input events, and all three can fire in cases where the value doesn't change at all (such as when pressing the arrow keys).
 >
-> [Read the full post...](http://sophiebits.com/2013/06/18/a-near-perfect-oninput-shim-for-ie-8-and-9.html)
+> [Read the full post…](http://sophiebits.com/2013/06/18/a-near-perfect-oninput-shim-for-ie-8-and-9.html)
 
 
 ## React Samples {#react-samples}

@@ -14,6 +14,8 @@ import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
 
+import {sectionListHeader} from '../../utils/sectionList';
+
 import logoSvg from 'icons/logo.svg';
 
 const Header = ({location}: {location: Location}) => (
@@ -120,26 +122,13 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
-          <HeaderLink
-            isActive={location.pathname.includes('/docs/')}
-            title="Docs"
-            to="/docs/getting-started.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/tutorial/')}
-            title="Tutorial"
-            to="/tutorial/tutorial.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/blog')}
-            title="Blog"
-            to="/blog/"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/community/')}
-            title="Community"
-            to="/community/support.html"
-          />
+          {sectionListHeader.items.map(link => (
+            <HeaderLink
+              isActive={location.pathname.includes(link.activeSelector)}
+              title={link.title}
+              to={link.to}
+            />
+          ))}
         </nav>
 
         <DocSearch />

@@ -14,6 +14,7 @@ import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
 
+// $FlowFixMe
 import navHeader from '../../../content/headerNav.yml';
 
 import logoSvg from 'icons/logo.svg';

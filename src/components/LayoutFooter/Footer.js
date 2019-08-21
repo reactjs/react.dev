@@ -12,11 +12,9 @@ import MetaTitle from 'templates/components/MetaTitle';
 import SectionLinks from './SectionLinks';
 import React from 'react';
 import {colors, media} from 'theme';
-import {
-  sectionListCommunity,
-  sectionListDocs,
-  sectionListFooter,
-} from 'utils/sectionList';
+import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
+
+import navFooter from '../../../content/footerNav.yml';
 
 import ossLogoPng from 'images/oss_logo.png';
 
@@ -64,7 +62,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             },
           }}>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>{sectionListFooter.docs.title}</MetaTitle>
+            <MetaTitle onDark={true}>{navFooter.docs.title}</MetaTitle>
             {sectionListDocs.map(section => {
               const defaultItem = section.items[0];
               return (
@@ -77,15 +75,11 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             })}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>
-              {sectionListFooter.channels.title}
-            </MetaTitle>
-            <SectionLinks links={sectionListFooter.channels.items} />
+            <MetaTitle onDark={true}>{navFooter.channels.title}</MetaTitle>
+            <SectionLinks links={navFooter.channels.items} />
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>
-              {sectionListFooter.community.title}
-            </MetaTitle>
+            <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             {sectionListCommunity.map(section => (
               <FooterLink
                 to={`/community/${section.items[0].id}.html`}
@@ -95,8 +89,8 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             ))}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>{sectionListFooter.more.title}</MetaTitle>
-            <SectionLinks links={sectionListFooter.more.items} />
+            <MetaTitle onDark={true}>{navFooter.more.title}</MetaTitle>
+            <SectionLinks links={navFooter.more.items} />
           </FooterNav>
         </div>
         <section

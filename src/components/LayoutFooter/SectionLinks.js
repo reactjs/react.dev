@@ -6,13 +6,21 @@ const SectionLinks = ({links}: Props) =>
   links.map(item => {
     if (item.external) {
       return (
-        <ExternalFooterLink href={item.to} target="_blank" rel="noopener">
+        <ExternalFooterLink
+          key={item.title}
+          href={item.to}
+          target="_blank"
+          rel="noopener">
           {item.title}
         </ExternalFooterLink>
       );
     }
 
-    return <FooterLink to={item.to}>{item.title}</FooterLink>;
+    return (
+      <FooterLink key={item.title} to={item.to}>
+        {item.title}
+      </FooterLink>
+    );
   });
 
 export default SectionLinks;

@@ -14,7 +14,7 @@ import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
 
-import {sectionListHeader} from '../../utils/sectionList';
+import navHeader from '../../../content/headerNav.yml';
 
 import logoSvg from 'icons/logo.svg';
 
@@ -122,8 +122,9 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
-          {sectionListHeader.items.map(link => (
+          {navHeader.items.map(link => (
             <HeaderLink
+              key={link.title}
               isActive={location.pathname.includes(link.activeSelector)}
               title={link.title}
               to={link.to}

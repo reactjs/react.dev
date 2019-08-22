@@ -29,7 +29,7 @@ class Foo extends Component {
     this.handleClick = this.handleClick.bind(this);
   }
   handleClick() {
-    console.log('Click happened');
+    console.log(this.props.words);
   }
   render() {
     return <button onClick={this.handleClick}>Click Me</button>;
@@ -43,7 +43,7 @@ class Foo extends Component {
 class Foo extends Component {
   // Note: this syntax is experimental and not standardized yet.
   handleClick = () => {
-    console.log('Click happened');
+    console.log(this.props.words);
   }
   render() {
     return <button onClick={this.handleClick}>Click Me</button>;
@@ -56,7 +56,7 @@ class Foo extends Component {
 ```jsx
 class Foo extends Component {
   handleClick() {
-    console.log('Click happened');
+    console.log(this.props.words);
   }
   render() {
     return <button onClick={this.handleClick.bind(this)}>Click Me</button>;
@@ -73,7 +73,7 @@ class Foo extends Component {
 ```jsx
 class Foo extends Component {
   handleClick() {
-    console.log('Click happened');
+    console.log(this.props.words);
   }
   render() {
     return <button onClick={() => this.handleClick()}>Click Me</button>;

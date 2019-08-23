@@ -49,7 +49,7 @@ Host nodes (e.g. HTML `<div>`, React Native `<View>`) are *hidden by default*, b
 If you are working with React Native version 60 (or older) you can install the previous release of DevTools from NPM:
 
 ```shell
-npm install --dev react-devtools@^3
+npm install --only=dev react-devtools@^3
 ```
 
 For older versions of React DOM (v0.14 or earlier) you will need to build the extension from source:

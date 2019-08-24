@@ -178,7 +178,7 @@
 - name: Vietnamese
   translated_name: Tiếng Việt
   code: vi
-  status: 0
+  status: 1
 - name: Simplified Chinese
   translated_name: 简体中文
   code: zh-hans

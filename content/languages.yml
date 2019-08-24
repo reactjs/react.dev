@@ -59,6 +59,10 @@
   translated_name: हिन्दी
   code: hi
   status: 0
+- name: Hungarian
+  translated_name: magyar
+  code: hu
+  status: 0
 - name: Armenian
   translated_name: Հայերեն
   code: hy

@@ -298,6 +298,11 @@ When a component is defined as a class, it is a little bit more powerful than a 
 
 A function component is less powerful but is simpler, and acts like a class component with just a single `render()` method. Unless you need features available only in a class, we encourage you to use function components instead.
 
+>Note
+>
+>Since React hooks have been introduced in React 16.8, now we can also handle state and custom logic during DOM node is created or destroyed. Check [here](/docs/hooks-intro.html) for more information.
+
+
 **However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.**
 
 ### Top-Down Reconciliation {#top-down-reconciliation}

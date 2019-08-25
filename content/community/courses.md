@@ -8,6 +8,8 @@ permalink: community/courses.html
 
 ## Free Courses {#free-courses}
 
+- [Glitch: React Starter Kit](https://glitch.com/culture/react-starter-kit/) - A free, 5-part video course with interactive code examples that will help you learn React.
+
 - [Codecademy: React 101](https://www.codecademy.com/learn/react-101) - Codecademy's introductory course for React.
 
 - [Egghead.io: Start Learning React](https://egghead.io/courses/start-learning-react) - This series will explore the basic fundamentals of React to get you started.

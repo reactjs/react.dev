@@ -11,7 +11,10 @@ You can test React components similar to testing other JavaScript code.
 
 There are a few ways to test React components. Broadly, they divide into two categories:
 
-* **Rendering component trees** in a simplified test environment and asserting on their output.
+* **Rendering component trees** in a simplified test environment and asserting on their output. Rendering component trees can be further 
+divided between shallow and mount. 
+  - **Shallow** is isolated rendering of the component tree, where child components are not rendered. Usuallly used for unit tests. 
+  - **Mount** is full rendering of the component tree with child components. Usually used for integration tests. 
 * **Running a complete app** in a realistic browser environment (also known as “end-to-end” tests).
 
 This documentation section focuses on testing strategies for the first case. While full end-to-end tests can be very useful to prevent regressions to important workflows, such tests are not concerned with React components in particular, and are out of scope of this section.

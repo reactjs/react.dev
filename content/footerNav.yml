@@ -1,0 +1,43 @@
+community:
+  title: Community
+
+docs:
+  title: Docs
+
+more:
+  title: More
+  items:
+    - title: Tutorial
+      to: /tutorial/tutorial.html
+    - title: Blog
+      to: /blog
+    - title: Acknowledgements
+      to: /acknowledgements.html
+    - title: React Native
+      to: https://facebook.github.io/react-native/
+      external: true
+
+channels:
+  title: Channels
+  items:
+    - title: Github
+      to: https://github.com/facebook/react
+      external: true
+    - title: Stack Overflow
+      to: https://stackoverflow.com/questions/tagged/reactjs
+      external: true
+    - title: Discussion Forums
+      to: https://reactjs.org/community/support.html#popular-discussion-forums
+      external: true
+    - title: Reactiflux Chat
+      to: https://discord.gg/0ZcbPKXt5bZjGY5n
+      external: true
+    - title: DEV Community
+      to: https://dev.to/t/react
+      external: true
+    - title: Facebook
+      to: https://www.facebook.com/react
+      external: true
+    - title: Twitter
+      to: https://twitter.com/reactjs
+      external: true

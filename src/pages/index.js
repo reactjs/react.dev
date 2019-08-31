@@ -8,6 +8,7 @@ import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import CodeExample from 'components/CodeExample';
+import Translatable, {translate} from 'components/Translatable';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {graphql} from 'gatsby';
@@ -50,7 +51,9 @@ class Home extends Component {
     return (
       <Layout location={location}>
         <TitleAndMetaTags
-          title="React &ndash; A JavaScript library for building user interfaces"
+          title={`React – ${translate(
+            'A JavaScript library for building user interfaces',
+          )}`}
           canonicalUrl={createCanonicalUrl('/')}
         />
         <div css={{width: '100%'}}>
@@ -133,7 +136,9 @@ class Home extends Component {
                         fontSize: 30,
                       },
                     }}>
-                    A JavaScript library for building user interfaces
+                    <Translatable>
+                      A JavaScript library for building user interfaces
+                    </Translatable>
                   </p>
                   <Flex
                     valign="center"
@@ -151,12 +156,12 @@ class Home extends Component {
                       <ButtonLink
                         to="/docs/getting-started.html"
                         type="primary">
-                        Get Started
+                        <Translatable>Get Started</Translatable>
                       </ButtonLink>
                     </CtaItem>
                     <CtaItem>
                       <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                        Take the Tutorial
+                        <Translatable>Take the Tutorial</Translatable>
                       </ButtonLink>
                     </CtaItem>
                   </Flex>
@@ -294,12 +299,12 @@ class Home extends Component {
                 }}>
                 <CtaItem>
                   <ButtonLink to="/docs/getting-started.html" type="primary">
-                    Get Started
+                    <Translatable>Get Started</Translatable>
                   </ButtonLink>
                 </CtaItem>
                 <CtaItem>
                   <ButtonLink to="/tutorial/tutorial.html" type="secondary">
-                    Take the Tutorial
+                    <Translatable>Take the Tutorial</Translatable>
                   </ButtonLink>
                 </CtaItem>
               </Flex>

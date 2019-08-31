@@ -8,10 +8,13 @@
 import Helmet from 'react-helmet';
 import React from 'react';
 import {urlRoot} from 'site-constants';
+import {translate} from '../Translatable';
 // $FlowFixMe This is a valid path
 import languages from '../../../content/languages.yml';
 
-const defaultDescription = 'A JavaScript library for building user interfaces';
+const defaultDescription = translate(
+  'A JavaScript library for building user interfaces',
+);
 
 type Props = {
   title: string,

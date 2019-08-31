@@ -8,7 +8,7 @@
 // $FlowFixMe
 import strings from '../../../content/strings.yml';
 
-export const translate = text => {
+export const translate = (text: string) => {
   if (text in strings && strings[text] !== '') {
     return strings[text];
   }

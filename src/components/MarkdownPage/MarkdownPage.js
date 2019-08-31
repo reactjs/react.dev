@@ -18,6 +18,7 @@ import {sharedStyles} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
 
 import type {Node} from 'types';
+import Translatable from '../Translatable';
 
 type Props = {
   authors: Array<string>,
@@ -115,7 +116,7 @@ const MarkdownPage = ({
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${
                         markdownRemark.fields.path
                       }`}>
-                      Edit this page
+                      <Translatable>Edit this page</Translatable>
                     </a>
                   </div>
                 )}

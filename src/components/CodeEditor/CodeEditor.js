@@ -10,6 +10,7 @@ import Remarkable from 'remarkable';
 import {LiveEditor, LiveProvider} from 'react-live';
 import {colors, media} from 'theme';
 import MetaTitle from 'templates/components/MetaTitle';
+import Translatable from '../Translatable';
 
 // Replace unicode to text for other languages
 const unicodeToText = text =>
@@ -62,12 +63,14 @@ class CodeEditor extends Component {
     if (showBabelErrorMessage) {
       errorMessage = (
         <span>
-          Babel could not be loaded.
+          <Translatable>Babel could not be loaded.</Translatable>
           <br />
           <br />
-          This can be caused by an ad blocker. If you're using one, consider
-          adding reactjs.org to the whitelist so the live code examples will
-          work.
+          <Translatable>
+            This can be caused by an ad blocker. If you're using one, consider
+            adding reactjs.org to the whitelist so the live code examples will
+            work.
+          </Translatable>
         </span>
       );
     } else if (error != null) {

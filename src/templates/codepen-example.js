@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Container from 'components/Container';
 import Layout from 'components/Layout';
+import Translatable from 'components/Translatable';
 import {colors} from 'theme';
 
 // Copied over styles from ButtonLink for the submit btn
@@ -34,7 +35,9 @@ class CodepenExample extends Component {
     return (
       <Layout location={location}>
         <Container>
-          <h1>Redirecting to Codepen...</h1>
+          <h1>
+            <Translatable>Redirecting to Codepen...</Translatable>
+          </h1>
           <form
             style={{paddingBottom: '50px'}}
             ref={form => {
@@ -45,7 +48,7 @@ class CodepenExample extends Component {
             <input type="hidden" name="data" value={payload} />
 
             <p>
-              Not automatically redirecting?
+              <Translatable>Not automatically redirecting?</Translatable>
               <br />
               <br />
               <input style={primaryStyle} type="submit" value="Click here" />

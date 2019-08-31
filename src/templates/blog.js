@@ -8,11 +8,12 @@ import React from 'react';
 import {graphql} from 'gatsby';
 import Layout from 'components/Layout';
 import MarkdownPage from 'components/MarkdownPage';
+import {translate} from 'components/Translatable';
 import {createLinkBlog} from 'utils/createLink';
 
 const toSectionList = allMarkdownRemark => [
   {
-    title: 'Recent Posts',
+    title: translate('Recent Posts'),
     items: allMarkdownRemark.edges
       .map(({node}) => ({
         id: node.fields.slug,
@@ -20,7 +21,7 @@ const toSectionList = allMarkdownRemark => [
       }))
       .concat({
         id: '/blog/all.html',
-        title: 'All posts ...',
+        title: translate('All posts ...'),
       }),
   },
 ];

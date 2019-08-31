@@ -6,6 +6,7 @@
 
 import Container from 'components/Container';
 import Flex from 'components/Flex';
+import Translatable from 'components/Translatable';
 import {Link} from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -40,7 +41,9 @@ const NavigationFooter = ({next, prev, location}) => {
           <Flex basis="50%" type="li">
             {prev && (
               <div>
-                <SecondaryLabel>Previous article</SecondaryLabel>
+                <SecondaryLabel>
+                  <Translatable>Previous article</Translatable>
+                </SecondaryLabel>
                 <div
                   css={{
                     paddingTop: 10,
@@ -61,7 +64,9 @@ const NavigationFooter = ({next, prev, location}) => {
                 textAlign: 'right',
               }}>
               <div>
-                <SecondaryLabel>Next article</SecondaryLabel>
+                <SecondaryLabel>
+                  <Translatable>Next article</Translatable>
+                </SecondaryLabel>
                 <div
                   css={{
                     paddingTop: 10,

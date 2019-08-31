@@ -1,0 +1,16 @@
+/**
+ * Copyright (c) 2013-present, Facebook, Inc.
+ *
+ * @emails react-core
+ * @flow
+ */
+
+// $FlowFixMe
+import strings from '../../../content/strings.yml';
+
+export const translate = text => {
+  if (text in strings && strings[text] !== '') {
+    return strings[text];
+  }
+  return text;
+};

@@ -5,14 +5,10 @@
  * @flow
  */
 
-// $FlowFixMe
-import strings from '../../../content/strings.yml';
+import {translate} from './translate';
 
 const Translatable = ({children}: {children: string}) => {
-  if (children in strings && strings[children] !== '') {
-    return strings[children];
-  }
-  return children;
+  return translate(children);
 };
 
 export default Translatable;

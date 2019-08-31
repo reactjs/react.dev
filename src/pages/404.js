@@ -11,6 +11,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import Layout from 'components/Layout';
 import React from 'react';
 import {sharedStyles} from 'theme';
+import Translatable, {translate} from '../components/Translatable';
 
 type Props = {
   location: Location,
@@ -21,13 +22,21 @@ const PageNotFound = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>Page Not Found</Header>
-          <TitleAndMetaTags title="React - Page Not Found" />
+          <Header>
+            <Translatable>Page Not Found</Translatable>
+          </Header>
+          <TitleAndMetaTags title={`React - ${translate('Page Not Found')}`} />
           <div css={sharedStyles.markdown}>
-            <p>We couldn't find what you were looking for.</p>
             <p>
-              Please contact the owner of the site that linked you to the
-              original URL and let them know their link is broken.
+              <Translatable>
+                We couldn't find what you were looking for.
+              </Translatable>
+            </p>
+            <p>
+              <Translatable>
+                Please contact the owner of the site that linked you to the
+                original URL and let them know their link is broken.
+              </Translatable>
             </p>
           </div>
         </div>

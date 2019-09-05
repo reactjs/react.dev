@@ -19,18 +19,20 @@ const translateArray = childArray => {
   });
 
   const cleanedStr = cleaned.join('');
-  const translatedText = translate(cleanedStr).split(
+  const translatedArray = translate(cleanedStr).split(
     /(<[0-9]+>.*?<\/[0-9]>)/gm,
   );
 
   const validElements = childArray.filter(isValidElement);
-  return translatedText.map(tt => {
+  return translatedArray.map(tt => {
     const matches = tt.match(/<([0-9]+)>(.*?)<\/[0-9]>/m);
-    if (matches === null) {
+    if (matches !== null || !Array.isArray(matches)) {
       return tt;
     }
 
-    const el = validElements[matches[1]];
+    const index: number = matches[1];
+
+    const el = validElements[index];
     return {...el, props: {...el.props, children: matches[2]}};
   });
 };
@@ -39,7 +41,7 @@ const Translatable = ({children}: {children: Node}) => {
   if (Array.isArray(children)) {
     return translateArray(Children.toArray(children));
   }
-  return translate(children);
+  return translate(children : string);
 };
 
 export default Translatable;

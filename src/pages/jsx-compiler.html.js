@@ -11,6 +11,8 @@ import Header from 'components/Header';
 import React from 'react';
 import {sharedStyles} from 'theme';
 
+import Translatable from 'components/Translatable';
+
 type Props = {
   location: Location,
 };
@@ -20,17 +22,23 @@ const JsxCompiler = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>JSX Compiler Service</Header>
+          <Header>
+            <Translatable>JSX Compiler Service</Translatable>
+          </Header>
           <div css={sharedStyles.markdown}>
             <p>
               <strong>
-                This tool has been removed as JSXTransformer has been
-                deprecated.
+                <Translatable>
+                  This tool has been removed as JSXTransformer has been
+                  deprecated.
+                </Translatable>
               </strong>
             </p>
             <p>
-              We recommend using another tool such as{' '}
-              <a href="https://babeljs.io/repl/">the Babel REPL</a>.
+              <Translatable>
+                We recommend using another tool such as{' '}
+                <a href="https://babeljs.io/repl/">the Babel REPL</a>.
+              </Translatable>
             </p>
           </div>
         </div>

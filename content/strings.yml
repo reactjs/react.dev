@@ -39,3 +39,6 @@
 "See our FAQ for information about <0>our versioning policy and commitment to stability</0>.": ""
 "Changelog": ""
 "Documentation": ""
+"JSX Compiler Service": ""
+"This tool has been removed as JSXTransformer has been deprecated.": ""
+"We recommend using another tool such as <0>the Babel REPL</0>.": ""

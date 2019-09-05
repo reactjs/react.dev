@@ -26,11 +26,11 @@ const translateArray = childArray => {
   const validElements = childArray.filter(isValidElement);
   return translatedArray.map(tt => {
     const matches = tt.match(/<([0-9]+)>(.*?)<\/[0-9]>/m);
-    if (matches !== null || !Array.isArray(matches)) {
+    if (matches === null || !Array.isArray(matches)) {
       return tt;
     }
 
-    const index: number = matches[1];
+    const index: number = parseInt(matches[1], 10);
 
     const el = validElements[index];
     return {...el, props: {...el.props, children: matches[2]}};

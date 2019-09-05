@@ -19,6 +19,7 @@ import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
 import navFooter from '../../../content/footerNav.yml';
 
 import ossLogoPng from 'images/oss_logo.png';
+import Translatable from 'components/Translatable';
 
 const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
   <footer
@@ -84,7 +85,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
             <ExternalFooterLink
               href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
-              Code of Conduct
+              <Translatable>Code of Conduct</Translatable>
             </ExternalFooterLink>
             {sectionListCommunity.map(section => (
               <FooterLink

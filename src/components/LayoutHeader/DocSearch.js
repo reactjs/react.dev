@@ -6,6 +6,7 @@
  */
 
 import React, {Component} from 'react';
+import {translate} from 'components/Translatable';
 import {colors, media} from 'theme';
 
 type State = {
@@ -97,8 +98,8 @@ class DocSearch extends Component<{}, State> {
           }}
           id="algolia-doc-search"
           type="search"
-          placeholder="Search"
-          aria-label="Search docs"
+          placeholder={translate('Search')}
+          aria-label={translate('Search docs')}
         />
       </form>
     ) : null;

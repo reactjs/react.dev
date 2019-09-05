@@ -9,13 +9,13 @@ import Layout from 'components/Layout';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import Translatable, {translate} from 'components/Translatable';
 import React from 'react';
 import {urlRoot} from 'site-constants';
 import {sharedStyles} from 'theme';
 
 // $FlowFixMe This is a valid path
 import versions from '../../content/versions.yml';
-import Translatable, {translate} from '../components/Translatable';
 
 type Props = {
   location: Location,

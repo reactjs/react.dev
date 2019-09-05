@@ -8,12 +8,12 @@ import Layout from 'components/Layout';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import Translatable, {translate} from 'components/Translatable';
 import React from 'react';
 import {urlRoot} from 'site-constants';
 import {sharedStyles} from 'theme';
 
 import names from '../../content/acknowledgements.yml';
-import Translatable, {translate} from '../components/Translatable';
 
 const Acknowlegements = ({data, location}) => (
   <Layout location={location}>

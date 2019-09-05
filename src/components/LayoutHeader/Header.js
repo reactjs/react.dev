@@ -6,6 +6,7 @@
  */
 
 import Container from 'components/Container';
+import Translatable from 'components/Translatable';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
 import React from 'react';
@@ -200,7 +201,7 @@ const Header = ({location}: {location: Location}) => (
                   display: 'none',
                 },
               }}>
-              Languages
+              <Translatable>Languages</Translatable>
             </span>
           </Link>
           <a

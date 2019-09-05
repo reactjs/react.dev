@@ -14,8 +14,9 @@ Common testing patterns for React components.
 
 On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
-- [Setup/Teardown ](#setup--teardown)
+- [Setup/Teardown](#setup--teardown)
 - [`act()`](#act)
+- [Rendering](#rendering)
 - [Data Fetching](#data-fetching)
 - [Mocking Modules](#mocking-modules)
 - [Events](#events)

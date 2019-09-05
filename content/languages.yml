@@ -59,6 +59,10 @@
   translated_name: हिन्दी
   code: hi
   status: 0
+- name: Hungarian
+  translated_name: magyar
+  code: hu
+  status: 0
 - name: Armenian
   translated_name: Հայերեն
   code: hy
@@ -174,7 +178,7 @@
 - name: Vietnamese
   translated_name: Tiếng Việt
   code: vi
-  status: 0
+  status: 1
 - name: Simplified Chinese
   translated_name: 简体中文
   code: zh-hans

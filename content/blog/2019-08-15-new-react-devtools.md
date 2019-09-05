@@ -60,6 +60,9 @@ git clone https://github.com/facebook/react-devtools
 
 cd react-devtools
 
+# Checkout the previous release branch
+git checkout v3
+
 # Install dependencies and build the unpacked extension
 yarn install
 yarn build:extension

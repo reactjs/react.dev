@@ -40,8 +40,11 @@ const translateArray = childArray => {
 const Translatable = ({children}: {children: Node}) => {
   if (Array.isArray(children)) {
     return translateArray(Children.toArray(children));
+  } else if (typeof children === 'string') {
+    return translate((children: string));
   }
-  return translate(children : string);
+
+  return children;
 };
 
 export default Translatable;

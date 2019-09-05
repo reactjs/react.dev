@@ -15,6 +15,7 @@ import {sharedStyles} from 'theme';
 
 // $FlowFixMe This is a valid path
 import versions from '../../content/versions.yml';
+import Translatable, {translate} from '../components/Translatable';
 
 type Props = {
   location: Location,
@@ -25,29 +26,38 @@ const Versions = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>React Versions</Header>
+          <Header>
+            <Translatable>React Versions</Translatable>
+          </Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/versions/`}
-            title="React - Versions"
+            title={translate('React - Versions')}
           />
           <div css={sharedStyles.markdown}>
             <p>
-              A complete release history for React is available{' '}
-              <a
-                href="https://github.com/facebook/react/releases"
-                target="_blank"
-                rel="noopener">
-                on GitHub
-              </a>
-              .<br />
-              Documentation for recent releases can also be found below.
+              <Translatable>
+                A complete release history for React is available{' '}
+                <a
+                  href="https://github.com/facebook/react/releases"
+                  target="_blank"
+                  rel="noopener">
+                  on GitHub
+                </a>
+                .
+              </Translatable>
+              <br />
+              <Translatable>
+                Documentation for recent releases can also be found below.
+              </Translatable>
             </p>
             <p>
-              See our FAQ for information about{' '}
-              <a href="/docs/faq-versioning.html">
-                our versioning policy and commitment to stability
-              </a>
-              .
+              <Translatable>
+                See our FAQ for information about{' '}
+                <a href="/docs/faq-versioning.html">
+                  our versioning policy and commitment to stability
+                </a>
+                .
+              </Translatable>
             </p>
             {versions.map(version => (
               <div key={version.title}>
@@ -55,13 +65,13 @@ const Versions = ({location}: Props) => (
                 <ul>
                   <li>
                     <a href={version.changelog} target="_blank" rel="noopener">
-                      Changelog
+                      <Translatable>Changelog</Translatable>
                     </a>
                   </li>
                   {version.path && (
                     <li>
                       <a href={version.path} rel="nofollow">
-                        Documentation
+                        <Translatable>Documentation</Translatable>
                       </a>
                     </li>
                   )}

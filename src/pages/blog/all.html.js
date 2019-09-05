@@ -17,6 +17,7 @@ import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import MetaTitle from 'templates/components/MetaTitle';
 
 import type {allMarkdownRemarkData} from 'types';
+import Translatable, {translate} from '../../components/Translatable';
 
 type Props = {
   data: allMarkdownRemarkData,
@@ -28,10 +29,12 @@ const AllBlogPosts = ({data, location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>All Posts</Header>
+          <Header>
+            <Translatable>All Posts</Translatable>
+          </Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/blog/all.html`}
-            title="React - All Posts"
+            title={translate('React - All Posts')}
           />
           <ul
             css={{

@@ -25,7 +25,7 @@ const PageNotFound = ({location}: Props) => (
           <Header>
             <Translatable>Page Not Found</Translatable>
           </Header>
-          <TitleAndMetaTags title={`React - ${translate('Page Not Found')}`} />
+          <TitleAndMetaTags title={translate('Page Not Found')} />
           <div css={sharedStyles.markdown}>
             <p>
               <Translatable>

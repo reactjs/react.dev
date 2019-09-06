@@ -31,7 +31,7 @@ const Versions = ({location}: Props) => (
           </Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/versions/`}
-            title={translate('React - Versions')}
+            title={translate('Versions')}
           />
           <div css={sharedStyles.markdown}>
             <p>

@@ -34,7 +34,7 @@ const AllBlogPosts = ({data, location}: Props) => (
           </Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/blog/all.html`}
-            title={translate('React - All Posts')}
+            title={translate('All Posts')}
           />
           <ul
             css={{

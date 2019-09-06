@@ -18,7 +18,6 @@ const Community = ({data, location}) => (
       location={location}
       markdownRemark={data.markdownRemark}
       sectionList={sectionListCommunity}
-      titlePostfix=" &ndash; React"
     />
   </Layout>
 );

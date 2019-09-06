@@ -36,7 +36,7 @@ const Blog = ({data, location}) => (
       ogDescription={data.markdownRemark.excerpt}
       markdownRemark={data.markdownRemark}
       sectionList={toSectionList(data.allMarkdownRemark)}
-      titlePostfix=" &ndash; React Blog"
+      titleTemplate={translate('blogTitleTemplate', '%s - React Blog')}
     />
   </Layout>
 );

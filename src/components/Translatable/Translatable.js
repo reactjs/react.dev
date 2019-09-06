@@ -19,7 +19,7 @@ const translateArray = childArray => {
   });
 
   const cleanedStr = cleaned.join('');
-  const translatedArray = translate(cleanedStr).split(
+  const translatedArray = translate(cleanedStr, cleanedStr).split(
     /(<[0-9]+>.*?<\/[0-9]>)/gm,
   );
 
@@ -41,7 +41,7 @@ const Translatable = ({children}: {children: Node}) => {
   if (Array.isArray(children)) {
     return translateArray(Children.toArray(children));
   } else if (typeof children === 'string') {
-    return translate((children: string));
+    return translate((children: string), (children: string));
   }
 
   return children;

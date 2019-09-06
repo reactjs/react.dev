@@ -8,7 +8,7 @@ import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
 import CodeExample from 'components/CodeExample';
-import Translatable, {translate} from 'components/Translatable';
+import Translatable from 'components/Translatable';
 import PropTypes from 'prop-types';
 import React, {Component} from 'react';
 import {graphql} from 'gatsby';
@@ -50,12 +50,7 @@ class Home extends Component {
 
     return (
       <Layout location={location}>
-        <TitleAndMetaTags
-          title={`React – ${translate(
-            'A JavaScript library for building user interfaces',
-          )}`}
-          canonicalUrl={createCanonicalUrl('/')}
-        />
+        <TitleAndMetaTags canonicalUrl={createCanonicalUrl('/')} />
         <div css={{width: '100%'}}>
           <header
             css={{

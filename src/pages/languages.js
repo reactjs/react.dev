@@ -9,7 +9,7 @@ import Layout from 'components/Layout';
 import Container from 'components/Container';
 import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
-import Translatable from 'components/Translatable';
+import Translatable, {translate} from 'components/Translatable';
 import React from 'react';
 import {urlRoot} from 'site-constants';
 import {media, sharedStyles} from 'theme';
@@ -48,10 +48,12 @@ const Languages = ({location}: Props) => (
     <Container>
       <div css={sharedStyles.articleLayout.container}>
         <div css={sharedStyles.articleLayout.content}>
-          <Header>Languages</Header>
+          <Header>
+            <Translatable>Languages</Translatable>
+          </Header>
           <TitleAndMetaTags
             canonicalUrl={`${urlRoot}/languages/`}
-            title="React - Languages"
+            title={translate('Languages')}
           />
 
           <div css={sharedStyles.markdown}>

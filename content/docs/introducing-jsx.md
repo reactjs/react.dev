@@ -33,7 +33,7 @@ With that out of the way, let's get started!
 In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
 
 ```js{1,2}
-const name = 'Josh Perez';
+const name = 'Guryash';
 const element = <h1>Hello, {name}</h1>;
 
 ReactDOM.render(

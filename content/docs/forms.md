@@ -182,7 +182,7 @@ class FlavorForm extends React.Component {
 
 Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 
-*** select multiple ***
+### The select multiple Tag
 Just like in HTML, select elements can become multi-select elements through the addition of the *multiple* attribute to the select tag. But handling of the value attribute in react is more complex due to having an array of values. 
 
 Here's our example select element with multi-select support:

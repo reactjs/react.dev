@@ -144,6 +144,10 @@ function areEqual(prevProps, nextProps) {
 export default React.memo(MyComponent, areEqual);
 ```
 
+> Note
+>
+> [`useContext`](/docs/hooks-reference.html#usecontext) will tigger a render of the memoized component. This render will also cause the `React.memo` [higher order component](/docs/higher-order-components.html) to re-cache the result.
+
 This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a render, as this can lead to bugs.
 
 > Note

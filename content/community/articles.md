@@ -14,3 +14,4 @@ permalink: community/articles.html
 - [Simple React Development in 2017](https://hackernoon.com/simple-react-development-in-2017-113bd563691f) - Joshua Comeau's guide to showcase how easy it can be to start modern React development.
 - [Visual Guide to State in React](https://daveceddia.com/visual-guide-to-state-in-react/) - Dave Ceddia's visual guide to React state.
 - [The Hands-On Guide to Learning React Hooks](https://www.telerik.com/kendo-react-ui/react-hooks-guide/) - Eric Bishard's step-by-step guide to learning React Hooks.
+- [How to Use the React Profiler Component to Measure Render Performance](https://medium.com/@adamhenson/how-to-use-the-react-profiler-component-to-measure-performance-improvements-from-hooks-d43b7092d7a8) - Adam Henson's article exemplifying a use case for `<React.Profiler />`.

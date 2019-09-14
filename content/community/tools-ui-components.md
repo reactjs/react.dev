@@ -20,8 +20,8 @@ permalink: community/ui-components.html
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
 * **[PrimeReact](https://www.primefaces.org/primereact/):** A rich UI component suite for React featuring 70+ open source components.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
-* **[React Mdl](https://github.com/tleunen/react-mdl)** React Components for Material Design Lite.
-* **[React Web](https://github.com/taobaofed/react-web)** A framework for building web apps with React.
+* **[Material Components for React](https://github.com/material-components/material-components-web-react)** MDC React is the official implementation of Google's Material Design Components.
+* **[React Native for Web](https://github.com/necolas/react-native-web)** Makes it possible to run React Native components and APIs on the web using React DOM.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
@@ -50,7 +50,7 @@ permalink: community/ui-components.html
 * **[react-slick](https://github.com/akiran/react-slick):** Carousel component built with React
 * **[react-sparklines](https://borisyankov.github.io/react-sparklines/):** Beautiful and expressive sparklines component
 * **[react-spreadsheet](https://github.com/felixrieseberg/React-Spreadsheet-Component):** React Spreadsheets / Editable tables with Excel-Style keyboard input and navigation
-* **[react-switch-button](https://github.com/gfazioli/react-switch-button):** Beautiful React Switch button component
+* **[react-toggle](https://github.com/gfazioli/react-toggle):** A React UI component to display a toggle button control
 * **[react-tappable](https://github.com/JedWatson/react-tappable)** A Tappable React Component that provides native-feeling onTap events for mobile React apps
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize):** Like `<textarea />` but resizes automatically to fit all its content.
 * **[react-toastify](https://github.com/fkhadra/react-toastify):** React notification made easy
@@ -72,6 +72,7 @@ permalink: community/ui-components.html
 ## Fee Based Components {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
+* **[DevExtreme Reactive](https://devexpress.github.io/devextreme-reactive/react/)** High-performance plugin-based Data Grid, Scheduler and Chart components for Bootstrap and Material Design.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.

@@ -23,7 +23,7 @@ In the past, React community members have created unofficial translations for [C
 
 If you would like to help out on a current translation, check out the [Languages](/languages) page and click on the "Contribute" link for your language.
 
-Can't find your language? If you'd like to maintain your langauge's translation fork, follow the instructions in the [translation repo](https://github.com/reactjs/reactjs.org-translation#starting-a-new-translation)!
+Can't find your language? If you'd like to maintain your language's translation fork, follow the instructions in the [translation repo](https://github.com/reactjs/reactjs.org-translation#starting-a-new-translation)!
 
 ## Backstory {#backstory}
 
@@ -39,7 +39,7 @@ This approach appealed to us for several reasons:
 * It encouraged active maintainers for each repo to ensure quality.
 * Contributors already understand GitHub as a platform and are motivated to contribute directly to the React organization.
 
-We started of with an initial trial period of three languages: Spanish, Japanese, and Simplified Chinese. This allowed us to work out any kinks in our process and make sure future translations are set up for success. I wanted to give the translation teams freedom to choose whatever tools they felt comfortable with. The only requirement is a [checklist](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) that outlines the order of importance for translating pages. 
+We started off with an initial trial period of three languages: Spanish, Japanese, and Simplified Chinese. This allowed us to work out any kinks in our process and make sure future translations are set up for success. I wanted to give the translation teams freedom to choose whatever tools they felt comfortable with. The only requirement is a [checklist](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) that outlines the order of importance for translating pages. 
 
 After the trial period, we were ready to accept more languages. I created [a script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) to automate the creation of the new language repo, and a site, [Is React Translated Yet?](https://isreacttranslatedyet.com), to track progress on the different translations. We started *10* new translations on our first day alone!
 

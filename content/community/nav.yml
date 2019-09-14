@@ -34,8 +34,6 @@
       title: Model Management
     - id: data-fetching
       title: Data Fetching
-    - id: testing
-      title: Testing
     - id: ui-components
       title: UI Components
     - id: misc

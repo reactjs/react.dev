@@ -11,9 +11,9 @@ redirect_from:
 
 React is one of Facebook's first open source projects that is both under very active development and is also being used to ship code to everybody on [facebook.com](https://www.facebook.com). We're still working out the kinks to make contributing to this project as easy and transparent as possible, but we're not quite there yet. Hopefully this document makes the process for contributing clear and answers some questions that you may have.
 
-### [Code of Conduct](https://code.facebook.com/codeofconduct) {#code-of-conduct}
+### [Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) {#code-of-conduct}
 
-Facebook has adopted a Code of Conduct that we expect project participants to adhere to. Please read [the full text](https://code.facebook.com/codeofconduct) so that you can understand what actions will and will not be tolerated.
+Facebook has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) as its Code of Conduct, and we expect project participants to adhere to it. Please read [the full text](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md) so that you can understand what actions will and will not be tolerated.
 
 ### Open Development {#open-development}
 
@@ -21,7 +21,7 @@ All work on React happens directly on [GitHub](https://github.com/facebook/react
 
 ### Branch Organization {#branch-organization}
 
-We will do our best to keep the [`master` branch](https://github.com/facebook/react/tree/master) in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. We recommend that you use [the latest stable version of React](/downloads.html).
+We will do our best to keep the [`master` branch](https://github.com/facebook/react/tree/master) in good shape, with tests passing at all times. But in order to move fast, we will make API changes that your application might not be compatible with. We recommend that you use [the latest stable version of React](/versions.html).
 
 If you send a pull request, please do it against the `master` branch. We maintain stable branches for major versions separately but we don't accept pull requests to them directly. Instead, we cherry-pick non-breaking changes from master to the latest stable major version.
 
@@ -50,7 +50,7 @@ Facebook has a [bounty program](https://www.facebook.com/whitehat/) for the safe
 ### How to Get in Touch {#how-to-get-in-touch}
 
 * IRC: [#reactjs on freenode](https://webchat.freenode.net/?channels=reactjs)
-* Discussion forum: [discuss.reactjs.org](https://discuss.reactjs.org/)
+* [Discussion forums](https://reactjs.org/community/support.html#popular-discussion-forums)
 
 There is also [an active community of React users on the Discord chat platform](https://www.reactiflux.com/) in case you need help with React.
 

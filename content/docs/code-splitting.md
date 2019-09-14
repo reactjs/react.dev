@@ -7,7 +7,8 @@ permalink: docs/code-splitting.html
 ## Bundling {#bundling}
 
 Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/) or [Browserify](http://browserify.org/).
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or 
+[Browserify](http://browserify.org/).
 Bundling is the process of following imported files and merging them into a
 single file: a "bundle". This bundle can then be included on a webpage to load
 an entire app at once.
@@ -115,7 +116,7 @@ parse the dynamic import syntax but is not transforming it. For that you will ne
 
 > Note:
 >
-> `React.lazy` and Suspense is not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
+> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://github.com/smooth-code/loadable-components/blob/master/packages/server/README.md).
 
 The `React.lazy` function lets you render a dynamic import as a regular component.
 
@@ -123,37 +124,19 @@ The `React.lazy` function lets you render a dynamic import as a regular componen
 
 ```js
 import OtherComponent from './OtherComponent';
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
 **After:**
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
+This will automatically load the bundle containing the `OtherComponent` when this component is first rendered.
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
 
-### Suspense {#suspense}
-
-If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.
+The lazy component should then be rendered inside a `Suspense` component, which allows us to show some fallback content (such as a loading indicator) while we're waiting for the lazy component to load.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
@@ -247,7 +230,7 @@ const App = () => (
 
 ## Named Exports {#named-exports}
 
-`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that treeshaking keeps working and that you don't pull in unused components.
+`React.lazy` currently only supports default exports. If the module you want to import uses named exports, you can create an intermediate module that reexports it as the default. This ensures that tree shaking keeps working and that you don't pull in unused components.
 
 ```js
 // ManyComponents.js

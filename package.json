@@ -47,8 +47,8 @@
     "normalize.css": "^8.0.0",
     "prettier": "^1.7.4",
     "prismjs": "^1.15.0",
-    "react": "16.8.6",
-    "react-dom": "16.8.6",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
     "react-helmet": "^5.2.0",
     "react-live": "1.8.0-0",
     "remarkable": "^1.7.1",
@@ -86,7 +86,8 @@
     "nit:examples": "prettier --config examples/.prettierrc --list-different \"examples/**/*.js\"",
     "prettier": "yarn format:source && yarn format:examples",
     "prettier:diff": "yarn nit:source && yarn nit:examples",
-    "reset": "rimraf ./.cache"
+    "reset": "rimraf ./.cache",
+    "start": "yarn dev"
   },
   "devDependencies": {
     "@babel/preset-flow": "^7.0.0",

@@ -5502,6 +5502,7 @@ gatsby-remark-embed-snippet@^3.0.0:
 gatsby-remark-external-links@^0.0.4:
   version "0.0.4"
   resolved "https://registry.yarnpkg.com/gatsby-remark-external-links/-/gatsby-remark-external-links-0.0.4.tgz#85b98c1e9dacfaa58085319648c904ff3cab42f0"
+  integrity sha512-JIKZguAGoGlzsJusfCb4JKM5E6JUEDbtlBkbErt7CdMnfBP+AldZeMQEQWK5xsJ5uXCyc4qqcBWR8vp0afFpOw==
   dependencies:
     babel-runtime "^6.26.0"
     is-relative-url "^2.0.0"
@@ -7901,6 +7902,7 @@ lodash.isstring@^4.0.1:
 lodash.iteratee@^4.5.0:
   version "4.7.0"
   resolved "https://registry.yarnpkg.com/lodash.iteratee/-/lodash.iteratee-4.7.0.tgz#be4177db289a8ccc3c0990f1db26b5b22fc1554c"
+  integrity sha1-vkF32yiajMw8CZDx2ya1si/BVUw=
 
 lodash.kebabcase@^4.1.1:
   version "4.1.1"
@@ -8000,6 +8002,7 @@ loglevel@^1.4.1:
 longest-streak@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/longest-streak/-/longest-streak-1.0.0.tgz#d06597c4d4c31b52ccb1f5d8f8fe7148eafd6965"
+  integrity sha1-0GWXxNTDG1LMsfXY+P5xSOr9aWU=
 
 longest-streak@^2.0.1:
   version "2.0.2"
@@ -8125,6 +8128,7 @@ markdown-escapes@^1.0.0:
 markdown-table@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/markdown-table/-/markdown-table-0.4.0.tgz#890c2c1b3bfe83fb00e4129b8e4cfe645270f9d1"
+  integrity sha1-iQwsGzv+g/sA5BKbjkz+ZFJw+dE=
 
 markdown-table@^1.1.0:
   version "1.1.2"
@@ -10611,6 +10615,7 @@ relay-runtime@1.5.0:
 remark-parse@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npmjs.org/remark-parse/-/remark-parse-1.1.0.tgz#c3ca10f9a8da04615c28f09aa4e304510526ec21"
+  integrity sha1-w8oQ+ajaBGFcKPCapOMEUQUm7CE=
   dependencies:
     collapse-white-space "^1.0.0"
     extend "^3.0.0"
@@ -10653,6 +10658,7 @@ remark-retext@^3.1.0:
 remark-stringify@^1.1.0:
   version "1.1.0"
   resolved "http://registry.npmjs.org/remark-stringify/-/remark-stringify-1.1.0.tgz#a7105e25b9ee2bf9a49b75d2c423f11b06ae2092"
+  integrity sha1-pxBeJbnuK/mkm3XSxCPxGwauIJI=
   dependencies:
     ccount "^1.0.0"
     extend "^3.0.0"
@@ -10686,6 +10692,7 @@ remark-stringify@^5.0.0:
 remark@^5.0.1:
   version "5.1.0"
   resolved "http://registry.npmjs.org/remark/-/remark-5.1.0.tgz#cb463bd3dbcb4b99794935eee1cf71d7a8e3068c"
+  integrity sha1-y0Y709vLS5l5STXu4c9x16jjBow=
   dependencies:
     remark-parse "^1.1.0"
     remark-stringify "^1.1.0"
@@ -12386,6 +12393,7 @@ unicode-property-aliases-ecmascript@^1.0.4:
 unified@^4.1.1:
   version "4.2.1"
   resolved "http://registry.npmjs.org/unified/-/unified-4.2.1.tgz#76ff43aa8da430f6e7e4a55c84ebac2ad2cfcd2e"
+  integrity sha1-dv9Dqo2kMPbn5KVchOusKtLPzS4=
   dependencies:
     bail "^1.0.0"
     extend "^3.0.0"
@@ -12465,6 +12473,7 @@ unist-builder@^1.0.1:
 unist-util-find@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/unist-util-find/-/unist-util-find-1.0.1.tgz#1062bbb6928c7a97c6adc89b53745d4c46c222a2"
+  integrity sha1-EGK7tpKMepfGrcibU3RdTEbCIqI=
   dependencies:
     lodash.iteratee "^4.5.0"
     remark "^5.0.1"
@@ -12763,6 +12772,7 @@ vfile-message@^1.0.0:
 vfile@^1.0.0:
   version "1.4.0"
   resolved "http://registry.npmjs.org/vfile/-/vfile-1.4.0.tgz#c0fd6fa484f8debdb771f68c31ed75d88da97fe7"
+  integrity sha1-wP1vpIT43r23cfaMMe112I2pf+c=
 
 vfile@^2.0.0:
   version "2.3.0"

@@ -40,7 +40,9 @@ const SIZES = {
   sidebarFixed: {min: 2000, max: Infinity},
 
   // Topbar related tweakpoints
-  expandedSearch: {min: 1180, max: Infinity},
+  smallSearch: {min: 1100, max: 1199},
+  mediumSearch: {min: 1200, max: 1299},
+  largeSearch: {min: 1300, max: 1400},
 };
 
 type Size = $Keys<typeof SIZES>;

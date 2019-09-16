@@ -60,6 +60,7 @@ permalink: community/ui-components.html
 * **[react-uwp](https://www.react-uwp.com)** A set of React Components that Implement Microsoft's UWP Design & Fluent Design..
 * **[react-validate-framework](https://github.com/MinJieLiu/react-validate-framework)**: A lightweight and extensible React validation component.
 * **[reactstrap](https://reactstrap.github.io/):** Simple Bootstrap 4 components built with [tether](http://tether.io/)
+* **[Reakit](https://reakit.io/):** Toolkit for building accessible rich web apps with React.
 * **[recharts](https://github.com/recharts/recharts)**: A composable charting library built on React components.
 * **[Selectivity](https://arendjr.github.io/selectivity/):** Modular and light-weight selection library.
 * **[Semantic-ui](https://react.semantic-ui.com/)**: The official Semantic-UI-React integration, Advanced components and declarative UI.

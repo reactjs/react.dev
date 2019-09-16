@@ -14,7 +14,7 @@
 - name: Azerbaijani
   translated_name: Azərbaycanca
   code: az
-  status: 1
+  status: 2
 - name: Bulgarian
   translated_name: Български
   code: bg
@@ -186,4 +186,4 @@
 - name: Traditional Chinese
   translated_name: 繁體中文
   code: zh-hant
-  status: 1
+  status: 2

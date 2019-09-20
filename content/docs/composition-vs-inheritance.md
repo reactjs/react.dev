@@ -52,13 +52,13 @@ Anything inside the `<FancyBorder>` JSX tag gets passed into the `FancyBorder` c
 While this is less common, sometimes you might need multiple "holes" in a component. In such cases you may come up with your own convention instead of using `children`:
 
 ```js{5,8,18,21}
-function SplitPane(props) {
+function SplitPanel(props) {
   return (
-    <div className="SplitPane">
-      <div className="SplitPane-left">
+    <div className="SplitPanel">
+      <div className="SplitPanel-left">
         {props.left}
       </div>
-      <div className="SplitPane-right">
+      <div className="SplitPanel-right">
         {props.right}
       </div>
     </div>
@@ -67,7 +67,7 @@ function SplitPane(props) {
 
 function App() {
   return (
-    <SplitPane
+    <SplitPanel
       left={
         <Contacts />
       }

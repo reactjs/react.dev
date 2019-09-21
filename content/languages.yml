@@ -110,7 +110,7 @@
 - name: Mongolian
   translated_name: Монгол хэл
   code: mn
-  status: 1
+  status: 2
 - name: Nepali
   translated_name: नेपाली
   code: ne

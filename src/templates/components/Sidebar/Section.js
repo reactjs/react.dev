@@ -63,6 +63,7 @@ class Section extends React.Component {
         <ul
           id={uid}
           css={{
+            fontFeatureSettings: "'tnum'",
             marginBottom: 10,
 
             [media.greaterThan('small')]: {
@@ -80,10 +81,7 @@ class Section extends React.Component {
                   ? activeItemId === item.id
                   : isItemActive(location, item),
                 item: section.isOrdered
-                  ? {
-                      ...item,
-                      title: `${index + 1}. ${item.title}`,
-                    }
+                  ? {...item, title: `${index + 1}. ${item.title}`}
                   : item,
                 location,
                 onLinkClick,

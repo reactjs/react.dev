@@ -5,7 +5,7 @@
  * @flow
  */
 
-import Link from 'gatsby-link';
+import {Link} from 'gatsby';
 import React from 'react';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import slugify from 'utils/slugify';

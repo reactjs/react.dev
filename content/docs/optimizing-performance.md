@@ -8,7 +8,7 @@ redirect_from:
 
 Internally, React uses several clever techniques to minimize the number of costly DOM operations required to update the UI. For many applications, using React will lead to a fast user interface without doing much work to specifically optimize for performance. Nevertheless, there are several ways you can speed up your React application.
 
-## Use the Production Build
+## Use the Production Build {#use-the-production-build}
 
 If you're benchmarking or experiencing performance problems in your React apps, make sure you're testing with the minified production build.
 
@@ -26,7 +26,7 @@ It is expected that you use the development mode when working on your app, and t
 
 You can find instructions for building your app for production below.
 
-### Create React App
+### Create React App {#create-react-app}
 
 If your project is built with [Create React App](https://github.com/facebookincubator/create-react-app), run:
 
@@ -38,7 +38,7 @@ This will create a production build of your app in the `build/` folder of your p
 
 Remember that this is only necessary before deploying to production. For normal development, use `npm start`.
 
-### Single-File Builds
+### Single-File Builds {#single-file-builds}
 
 We offer production-ready versions of React and React DOM as single files:
 
@@ -49,16 +49,16 @@ We offer production-ready versions of React and React DOM as single files:
 
 Remember that only React files ending with `.production.min.js` are suitable for production.
 
-### Brunch
+### Brunch {#brunch}
 
-For the most efficient Brunch production build, install the [`uglify-js-brunch`](https://github.com/brunch/uglify-js-brunch) plugin:
+For the most efficient Brunch production build, install the [`terser-brunch`](https://github.com/brunch/terser-brunch) plugin:
 
 ```
 # If you use npm
-npm install --save-dev uglify-js-brunch
+npm install --save-dev terser-brunch
 
 # If you use Yarn
-yarn add --dev uglify-js-brunch
+yarn add --dev terser-brunch
 ```
 
 Then, to create a production build, add the `-p` flag to the `build` command:
@@ -69,23 +69,23 @@ brunch build -p
 
 Remember that you only need to do this for production builds. You shouldn't pass the `-p` flag or apply this plugin in development, because it will hide useful React warnings and make the builds much slower.
 
-### Browserify
+### Browserify {#browserify}
 
 For the most efficient Browserify production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify uglify-js uglifyify 
+npm install --save-dev envify terser uglifyify 
 
 # If you use Yarn
-yarn add --dev envify uglify-js uglifyify 
+yarn add --dev envify terser uglifyify 
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
 
 * The [`envify`](https://github.com/hughsk/envify) transform ensures the right build environment is set. Make it global (`-g`).
 * The [`uglifyify`](https://github.com/hughsk/uglifyify) transform removes development imports. Make it global too (`-g`).
-* Finally, the resulting bundle is piped to [`uglify-js`](https://github.com/mishoo/UglifyJS2) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
+* Finally, the resulting bundle is piped to [`terser`](https://github.com/terser-js/terser) for mangling ([read why](https://github.com/hughsk/uglifyify#motivationusage)).
 
 For example:
 
@@ -93,33 +93,28 @@ For example:
 browserify ./index.js \
   -g [ envify --NODE_ENV production ] \
   -g uglifyify \
-  | uglifyjs --compress --mangle > ./bundle.js
+  | terser --compress --mangle > ./bundle.js
 ```
-
->**Note:**
->
->The package name is `uglify-js`, but the binary it provides is called `uglifyjs`.<br>
->This is not a typo.
 
 Remember that you only need to do this for production builds. You shouldn't apply these plugins in development because they will hide useful React warnings, and make the builds much slower.
 
-### Rollup
+### Rollup {#rollup}
 
 For the most efficient Rollup production build, install a few plugins:
 
-```
+```bash
 # If you use npm
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 
 # If you use Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-uglify 
+yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
 ```
 
 To create a production build, make sure that you add these plugins **(the order matters)**:
 
 * The [`replace`](https://github.com/rollup/rollup-plugin-replace) plugin ensures the right build environment is set.
 * The [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) plugin provides support for CommonJS in Rollup.
-* The [`uglify`](https://github.com/TrySound/rollup-plugin-uglify) plugin compresses and mangles the final bundle.
+* The [`terser`](https://github.com/TrySound/rollup-plugin-terser) plugin compresses and mangles the final bundle.
 
 ```js
 plugins: [
@@ -128,36 +123,40 @@ plugins: [
     'process.env.NODE_ENV': JSON.stringify('production')
   }),
   require('rollup-plugin-commonjs')(),
-  require('rollup-plugin-uglify')(),
+  require('rollup-plugin-terser')(),
   // ...
 ]
 ```
 
 For a complete setup example [see this gist](https://gist.github.com/Rich-Harris/cb14f4bc0670c47d00d191565be36bf0).
 
-Remember that you only need to do this for production builds. You shouldn't apply the `uglify` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't apply the `terser` plugin or the `replace` plugin with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
 
-### webpack
+### webpack {#webpack}
 
 >**Note:**
 >
 >If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
 >This section is only relevant if you configure webpack directly.
 
-For the most efficient webpack production build, make sure to include these plugins in your production configuration:
+Webpack v4+ will minify your code by default in production mode.
 
 ```js
-new webpack.DefinePlugin({
-  'process.env.NODE_ENV': JSON.stringify('production')
-}),
-new webpack.optimize.UglifyJsPlugin()
+const TerserPlugin = require('terser-webpack-plugin');
+
+module.exports = {
+  mode: 'production',
+  optimization: {
+    minimizer: [new TerserPlugin({ /* additional options here */ })],
+  },
+};
 ```
 
-You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production-build/).
+You can learn more about this in [webpack documentation](https://webpack.js.org/guides/production/).
 
-Remember that you only need to do this for production builds. You shouldn't apply `UglifyJsPlugin` or `DefinePlugin` with `'production'` value in development because they will hide useful React warnings, and make the builds much slower.
+Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because it will hide useful React warnings, and make the builds much slower.
 
-## Profiling Components with the Chrome Performance Tab
+## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
 
 In the **development** mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:
 
@@ -177,41 +176,40 @@ To do this in Chrome:
 
 6. React events will be grouped under the **User Timing** label.
 
-For a more detailed walkthrough, check out [this article by Ben Schwarz](https://building.calibreapp.com/debugging-react-performance-with-react-16-and-chrome-devtools-c90698a522ad).
+For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/2017-11-28-debugging-react/).
 
 Note that **the numbers are relative so components will render faster in production**. Still, this should help you realize when unrelated UI gets updated by mistake, and how deep and how often your UI updates occur.
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
-## Virtualize Long Lists
+## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
 
-If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+`react-dom` 16.5+ and `react-native` 0.57+ provide enhanced profiling capabilities in DEV mode with the React DevTools Profiler.
+An overview of the Profiler can be found in the blog post ["Introducing the React Profiler"](/blog/2018/09/10/introducing-the-react-profiler.html).
+A video walkthrough of the profiler is also [available on YouTube](https://www.youtube.com/watch?v=nySib7ipZdk).
 
-[React Virtualized](https://bvaughn.github.io/react-virtualized/) is one popular windowing library. It provides several reusable components for displaying lists, grids, and tabular data. You can also create your own windowing component, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), if you want something more tailored to your application's specific use case.
-
-## Avoid Reconciliation
-
-React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a "virtual DOM", but it works the same way on React Native.
-
-When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM.
-
-You can now visualize these re-renders of the virtual DOM with React DevTools:
+If you haven't yet installed the React DevTools, you can find them here:
 
 - [Chrome Browser Extension](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en)
 - [Firefox Browser Extension](https://addons.mozilla.org/en-GB/firefox/addon/react-devtools/)
 - [Standalone Node Package](https://www.npmjs.com/package/react-devtools)
 
-In the developer console select the **Highlight Updates** option in the **React** tab:
+> Note
+>
+> A production profiling bundle of `react-dom` is also available as `react-dom/profiling`.
+> Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling)
 
-<center><img src="../images/blog/devtools-highlight-updates.png" style="max-width:100%; margin-top:10px;" alt="How to enable highlight updates" /></center>
+## Virtualize Long Lists {#virtualize-long-lists}
 
-Interact with your page and you should see colored borders momentarily appear around any components that have re-rendered. This lets you spot re-renders that were not necessary. You can learn more about this React DevTools feature from this [blog post](https://blog.logrocket.com/make-react-fast-again-part-3-highlighting-component-updates-6119e45e6833) from [Ben Edelstein](https://blog.logrocket.com/@edelstein).
+If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
 
-Consider this example:
+[react-window](https://react-window.now.sh/) and [react-virtualized](https://bvaughn.github.io/react-virtualized/) are popular windowing libraries. They provide several reusable components for displaying lists, grids, and tabular data. You can also create your own windowing component, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), if you want something more tailored to your application's specific use case.
 
-<center><img src="../images/blog/highlight-updates-example.gif" style="max-width:100%; margin-top:20px;" alt="React DevTools Highlight Updates example" /></center>
+## Avoid Reconciliation {#avoid-reconciliation}
 
-Note that when we're entering a second todo, the first todo also flashes on the screen on every keystroke. This means it is being re-rendered by React together with the input. This is sometimes called a "wasted" render. We know it is unnecessary because the first todo content has not changed, but React doesn't know this.
+React builds and maintains an internal representation of the rendered UI. It includes the React elements you return from your components. This representation lets React avoid creating DOM nodes and accessing existing ones beyond necessity, as that can be slower than operations on JavaScript objects. Sometimes it is referred to as a "virtual DOM", but it works the same way on React Native.
+
+When a component's props or state change, React decides whether an actual DOM update is necessary by comparing the newly returned element with the previously rendered one. When they are not equal, React will update the DOM.
 
 Even though React only updates the changed DOM nodes, re-rendering still takes some time. In many cases it's not a problem, but if the slowdown is noticeable, you can speed all of this up by overriding the lifecycle function `shouldComponentUpdate`, which is triggered before the re-rendering process starts. The default implementation of this function returns `true`, leaving React to perform the update:
 
@@ -225,7 +223,7 @@ If you know that in some situations your component doesn't need to update, you c
 
 In most cases, instead of writing `shouldComponentUpdate()` by hand, you can inherit from [`React.PureComponent`](/docs/react-api.html#reactpurecomponent). It is equivalent to implementing `shouldComponentUpdate()` with a shallow comparison of current and previous props and state.
 
-## shouldComponentUpdate In Action
+## shouldComponentUpdate In Action {#shouldcomponentupdate-in-action}
 
 Here's a subtree of components. For each one, `SCU` indicates what `shouldComponentUpdate` returned, and `vDOMEq` indicates whether the rendered React elements were equivalent. Finally, the circle's color indicates whether the component had to be reconciled or not.
 
@@ -239,7 +237,7 @@ The last interesting case is C8. React had to render this component, but since t
 
 Note that React only had to do DOM mutations for C6, which was inevitable. For C8, it bailed out by comparing the rendered React elements, and for C2's subtree and C7, it didn't even have to compare the elements as we bailed out on `shouldComponentUpdate`, and `render` was not called.
 
-## Examples
+## Examples {#examples}
 
 If the only way your component ever changes is when the `props.color` or the `state.count` variable changes, you could have `shouldComponentUpdate` check that:
 
@@ -333,14 +331,14 @@ class WordAdder extends React.Component {
 
 The problem is that `PureComponent` will do a simple comparison between the old and new values of `this.props.words`. Since this code mutates the `words` array in the `handleClick` method of `WordAdder`, the old and new values of `this.props.words` will compare as equal, even though the actual words in the array have changed. The `ListOfWords` will thus not update even though it has new words that should be rendered.
 
-## The Power Of Not Mutating Data
+## The Power Of Not Mutating Data {#the-power-of-not-mutating-data}
 
 The simplest way to avoid this problem is to avoid mutating values that you are using as props or state. For example, the `handleClick` method above could be rewritten using `concat` as:
 
 ```javascript
 handleClick() {
-  this.setState(prevState => ({
-    words: prevState.words.concat(['marklar'])
+  this.setState(state => ({
+    words: state.words.concat(['marklar'])
   }));
 }
 ```
@@ -349,8 +347,8 @@ ES6 supports a [spread syntax](https://developer.mozilla.org/en-US/docs/Web/Java
 
 ```js
 handleClick() {
-  this.setState(prevState => ({
-    words: [...prevState.words, 'marklar'],
+  this.setState(state => ({
+    words: [...state.words, 'marklar'],
   }));
 };
 ```
@@ -383,36 +381,4 @@ function updateColorMap(colormap) {
 
 If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
 
-## Using Immutable Data Structures
-
-[Immutable.js](https://github.com/facebook/immutable-js) is another way to solve this problem. It provides immutable, persistent collections that work via structural sharing:
-
-* *Immutable*: once created, a collection cannot be altered at another point in time.
-* *Persistent*: new collections can be created from a previous collection and a mutation such as set. The original collection is still valid after the new collection is created.
-* *Structural Sharing*: new collections are created using as much of the same structure as the original collection as possible, reducing copying to a minimum to improve performance.
-
-Immutability makes tracking changes cheap. A change will always result in a new object so we only need to check if the reference to the object has changed. For example, in this regular JavaScript code:
-
-```javascript
-const x = { foo: 'bar' };
-const y = x;
-y.foo = 'baz';
-x === y; // true
-```
-
-Although `y` was edited, since it's a reference to the same object as `x`, this comparison returns `true`. You can write similar code with immutable.js:
-
-```javascript
-const SomeRecord = Immutable.Record({ foo: null });
-const x = new SomeRecord({ foo: 'bar' });
-const y = x.set('foo', 'baz');
-const z = x.set('foo', 'bar');
-x === y; // false
-x === z; // true
-```
-
-In this case, since a new reference is returned when mutating `x`, we can use a reference equality check `(x === y)` to verify that the new value stored in `y` is different than the original value stored in `x`.
-
-Two other libraries that can help use immutable data are [seamless-immutable](https://github.com/rtfeldman/seamless-immutable) and [immutability-helper](https://github.com/kolodny/immutability-helper).
-
-Immutable data structures provide you with a cheap way to track changes on objects, which is all we need to implement `shouldComponentUpdate`. This can often provide you with a nice performance boost.
+When you deal with deeply nested objects, updating them in an immutable way can feel convoluted. If you run into this problem, check out [Immer](https://github.com/mweststrate/immer) or [immutability-helper](https://github.com/kolodny/immutability-helper). These libraries let you write highly readable code without losing the benefits of immutability.

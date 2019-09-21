@@ -18,9 +18,9 @@ It contains a handful of new features, including:
 * Right-click any props or state value to make it available as `$tmp` from the console
 * Full React Native support
 
-## Installation
+## Installation {#installation}
 
-Download the new devtools from the [Chrome Web Store](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) and on [Mozilla Add-ons](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) for Firefox. If you're developing using React, we highly recommend installing these devtools.
+Download the new devtools from the [Chrome Web Store](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi) and on [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) for Firefox. If you're developing using React, we highly recommend installing these devtools.
 
 If you already have the Chrome extension installed, it should autoupdate within the next week. You can also head to `chrome://extensions` and click "Update extensions now" if you'd like to get the new version today. If you installed the devtools beta, please remove it and switch back to the version from the store to make sure you always get the latest updates and bug fixes.
 

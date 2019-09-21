@@ -12,19 +12,17 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Before You Use Context](#before-you-use-context)
 - [API](#api)
   - [React.createContext](#reactcreatecontext)
-  - [Provider](#provider)
-  - [Consumer](#consumer)
+  - [Context.Provider](#contextprovider)
+  - [Class.contextType](#classcontexttype)
+  - [Context.Consumer](#contextconsumer)
 - [Examples](#examples)
   - [Dynamic Context](#dynamic-context)
   - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
-  - [Accessing Context in Lifecycle Methods](#accessing-context-in-lifecycle-methods)
-  - [Consuming Context with a HOC](#consuming-context-with-a-hoc)
-  - [Forwarding Refs to Context Consumers](#forwarding-refs-to-context-consumers)
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
 
-## When to Use Context
+## When to Use Context {#when-to-use-context}
 
 Context is designed to share data that can be considered "global" for a tree of React components, such as the current authenticated user, theme, or preferred language. For example, in the code below we manually thread through a "theme" prop in order to style the Button component:
 
@@ -34,7 +32,7 @@ Using context, we can avoid passing props through intermediate elements:
 
 `embed:context/motivation-solution.js`
 
-## Before You Use Context
+## Before You Use Context {#before-you-use-context}
 
 Context is primarily used when some data needs to be accessible by *many* components at different nesting levels. Apply it sparingly because it makes component reuse more difficult.
 
@@ -56,7 +54,7 @@ For example, consider a `Page` component that passes a `user` and `avatarSize` p
 
 It might feel redundant to pass down the `user` and `avatarSize` props through many levels if in the end only the `Avatar` component really needs it. It's also annoying that whenever the `Avatar` component needs more props from the top, you have to add them at all the intermediate levels too.
 
-One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` prop:
+One way to solve this issue **without context** is to [pass down the `Avatar` component itself](/docs/composition-vs-inheritance.html#containment) so that the intermediate components don't need to know about the `user` or `avatarSize` props:
 
 ```js
 function Page(props) {
@@ -70,7 +68,7 @@ function Page(props) {
 }
 
 // Now, we have:
-<Page user={user} />
+<Page user={user} avatarSize={avatarSize} />
 // ... which renders ...
 <PageLayout userLink={...} />
 // ... which renders ...
@@ -109,45 +107,29 @@ This pattern is sufficient for many cases when you need to decouple a child from
 
 However, sometimes the same data needs to be accessible by many components in the tree, and at different nesting levels. Context lets you "broadcast" such data, and changes to it, to all components below. Common examples where using context might be simpler than the alternatives include managing the current locale, theme, or a data cache. 
 
-## API
+## API {#api}
 
-### `React.createContext`
-
-```js
-const {Provider, Consumer} = React.createContext(defaultValue);
-```
-
-Creates a `{ Provider, Consumer }` pair. When React renders a context `Consumer`, it will read the current context value from the closest matching `Provider` above it in the tree.
-
-The `defaultValue` argument is **only** used by a Consumer when it does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause Consumers to use `defaultValue`.
-
-### `Provider`
+### `React.createContext` {#reactcreatecontext}
 
 ```js
-<Provider value={/* some value */}>
+const MyContext = React.createContext(defaultValue);
 ```
 
-A React component that allows Consumers to subscribe to context changes.
+Creates a Context object. When React renders a component that subscribes to this Context object it will read the current context value from the closest matching `Provider` above it in the tree.
 
-Accepts a `value` prop to be passed to Consumers that are descendants of this Provider. One Provider can be connected to many Consumers. Providers can be nested to override values deeper within the tree.
+The `defaultValue` argument is **only** used when a component does not have a matching Provider above it in the tree. This can be helpful for testing components in isolation without wrapping them. Note: passing `undefined` as a Provider value does not cause consuming components to use `defaultValue`.
 
-### `Consumer`
+### `Context.Provider` {#contextprovider}
 
 ```js
-<Consumer>
-  {value => /* render something based on the context value */}
-</Consumer>
+<MyContext.Provider value={/* some value */}>
 ```
 
-A React component that subscribes to context changes.
+Every Context object comes with a Provider React component that allows consuming components to subscribe to context changes.
 
-Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
+Accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
 
-> Note
-> 
-> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
-
-All Consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant Consumers is not subject to the `shouldComponentUpdate` method, so the Consumer is updated even when an ancestor component bails out of the update.
+All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component bails out of the update.
 
 Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
 
@@ -155,9 +137,68 @@ Changes are determined by comparing the new and old values using the same algori
 > 
 > The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
 
-## Examples
+### `Class.contextType` {#classcontexttype}
 
-### Dynamic Context
+```js
+class MyClass extends React.Component {
+  componentDidMount() {
+    let value = this.context;
+    /* perform a side-effect at mount using the value of MyContext */
+  }
+  componentDidUpdate() {
+    let value = this.context;
+    /* ... */
+  }
+  componentWillUnmount() {
+    let value = this.context;
+    /* ... */
+  }
+  render() {
+    let value = this.context;
+    /* render something based on the value of MyContext */
+  }
+}
+MyClass.contextType = MyContext;
+```
+
+The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
+
+> Note:
+>
+> You can only subscribe to a single context using this API. If you need to read more than one see [Consuming Multiple Contexts](#consuming-multiple-contexts).
+>
+> If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use a **static** class field to initialize your `contextType`.
+
+
+```js
+class MyClass extends React.Component {
+  static contextType = MyContext;
+  render() {
+    let value = this.context;
+    /* render something based on the value */
+  }
+}
+```
+
+### `Context.Consumer` {#contextconsumer}
+
+```js
+<MyContext.Consumer>
+  {value => /* render something based on the context value */}
+</MyContext.Consumer>
+```
+
+A React component that subscribes to context changes. This lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+
+Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
+
+> Note
+> 
+> For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
+
+## Examples {#examples}
+
+### Dynamic Context {#dynamic-context}
 
 A more complex example with dynamic values for the theme:
 
@@ -170,7 +211,7 @@ A more complex example with dynamic values for the theme:
 **app.js**
 `embed:context/theme-detailed-app.js`
 
-### Updating Context from a Nested Component
+### Updating Context from a Nested Component {#updating-context-from-a-nested-component}
 
 It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
 
@@ -183,7 +224,7 @@ It is often necessary to update the context from a component that is nested some
 **app.js**
 `embed:context/updating-nested-context-app.js`
 
-### Consuming Multiple Contexts
+### Consuming Multiple Contexts {#consuming-multiple-contexts}
 
 To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
 
@@ -191,41 +232,7 @@ To keep context re-rendering fast, React needs to make each context consumer a s
 
 If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
 
-### Accessing Context in Lifecycle Methods
-
-Accessing values from context in lifecycle methods is a relatively common use case. Instead of adding context to every lifecycle method, you just need to pass it as a prop, and then work with it just like you'd normally work with a prop.
-
-`embed:context/lifecycles.js`
-
-### Consuming Context with a HOC
-
-Some types of contexts are consumed by many components (e.g. theme or localization). It can be tedious to explicitly wrap each dependency with a `<Context.Consumer>` element. A [higher-order component](/docs/higher-order-components.html) can help with this.
-
-For example, a button component might consume a theme context like so:
-
-`embed:context/higher-order-component-before.js`
-
-That's alright for a few components, but what if we wanted to use the theme context in a lot of places?
-
-We could create a higher-order component called `withTheme`:
-
-`embed:context/higher-order-component.js`
-
-Now any component that depends on the theme context can easily subscribe to it using the `withTheme` function we've created:
-
-`embed:context/higher-order-component-usage.js`
-
-### Forwarding Refs to Context Consumers
-
-One issue with the render prop API is that refs don't automatically get passed to wrapped elements. To get around this, use `React.forwardRef`:
-
-**fancy-button.js**
-`embed:context/forwarding-refs-fancy-button.js`
-
-**app.js**
-`embed:context/forwarding-refs-app.js`
-
-## Caveats
+## Caveats {#caveats}
 
 Because context uses reference identity to determine when to re-render, there are some gotchas that could trigger unintentional renders in consumers when a provider's parent re-renders. For example, the code below will re-render all consumers every time the Provider re-renders because a new object is always created for `value`:
 
@@ -236,7 +243,7 @@ To get around this, lift the value into the parent's state:
 
 `embed:context/reference-caveats-solution.js`
 
-## Legacy API
+## Legacy API {#legacy-api}
 
 > Note
 > 

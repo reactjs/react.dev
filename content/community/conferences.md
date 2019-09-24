@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### React Tehran 2019 {#react-Tehran-2019}
+october 10, 2019 in Tehran, Iran
+
+[Website](https://evand.com/events/react-conference) - [Linkedin](https://www.linkedin.com/company/upkook-tech/)
+
 ### React Boston 2019 {#react-boston-2019}
 September 21-22, 2019 in Boston, Massachusetts USA
 

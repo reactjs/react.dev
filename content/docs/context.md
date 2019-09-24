@@ -207,8 +207,8 @@ For example, the following component will appear as MyContext in the DevTools:
 const MyContext = React.createContext(/* some value */);
 MyContext.displayName = 'MyDisplayName';
 
-<MyContext.Provider> // "MyContext.Provider" in DevTools
-<MyContext.Consumer> // "MyContext.Consumer" in DevTools
+<MyContext.Provider> // "MyDisplayName.Provider" in DevTools
+<MyContext.Consumer> // "MyDisplayName.Consumer" in DevTools
 ```
 
 ## Examples {#examples}

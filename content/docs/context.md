@@ -203,7 +203,7 @@ Context object accepts a `displayName` string property. React DevTools uses this
 
 For example, the following component will appear as MyContext in the DevTools:
 
-```js
+```js{2}
 const MyContext = React.createContext(/* some value */);
 MyContext.displayName = 'MyDisplayName';
 

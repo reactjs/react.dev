@@ -15,7 +15,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
   - [Context.Provider](#contextprovider)
   - [Class.contextType](#classcontexttype)
   - [Context.Consumer](#contextconsumer)
-  - [Context.displayName](#contextdisplayName)
+  - [Context.displayName](#contextdisplayname)
 - [Examples](#examples)
   - [Dynamic Context](#dynamic-context)
   - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
@@ -197,7 +197,7 @@ Requires a [function as a child](/docs/render-props.html#using-props-other-than-
 > 
 > For more information about the 'function as a child' pattern, see [render props](/docs/render-props.html).
 
-### `Context.displayName` {#contextdisplayName}
+### `Context.displayName` {#contextdisplayname}
 
 Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
 

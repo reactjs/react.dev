@@ -51,15 +51,13 @@ That said, if we expect that a change on this list will cause broad problems in 
 
 ### If a Minor Release Includes No New Features, Why Isn't It a Patch? {#minors-versus-patches}
 
-It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7):
-
-> [A minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes.
+It's possible that a minor release will not include new features. [This is allowed by semver](https://semver.org/#spec-item-7), which states **"[a minor version] MAY be incremented if substantial new functionality or improvements are introduced within the private code. It MAY include patch level changes."**
 
 However, it does raise the question of why these releases aren't versioned as patches instead.
 
 The answer is that any change to React (or other software) carries some risk of breaking in unexpected ways. Imagine a scenario where a patch release that fixes one bug accidentally introduces a different bug. This would not only be disruptive to developers, but also likely harm their confidence in future patch releases. It's especially regrettable if the original fix is for a bug that is rarely encountered in practice.
 
-We have a pretty good track record for keeping all React releases free of bugs, including minor and major versions. But patch releases have an even higher bar for reliability, because most developers assume they can be adopted without adverse consequences — indeed, that's why patch releases exist. If we push out an important patch, we need developers to trust that it can be safely applied.
+We have a pretty good track record for keeping React releases free of bugs, but patch releases have an even higher bar for reliability because most developers assume they can be adopted without adverse consequences.
 
 For these reasons, we reserve patch releases only for the most critical bugs and security vulnerabilities.
 

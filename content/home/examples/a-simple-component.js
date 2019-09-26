@@ -1,14 +1,8 @@
-class HelloMessage extends React.Component {
-  render() {
-    return (
-      <div>
-        Hello {this.props.name}
-      </div>
-    );
-  }
+function HelloMessage(props) {
+  return <div>Hello {props.name}</div>;
 }
 
 ReactDOM.render(
   <HelloMessage name="Taylor" />,
-  document.getElementById('hello-example')
+  document.getElementById('hello-example'),
 );

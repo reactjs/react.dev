@@ -201,7 +201,7 @@ Requires a [function as a child](/docs/render-props.html#using-props-other-than-
 
 Context object accepts a `displayName` string property. React DevTools uses this string to determine what to display for the context.
 
-For example, the following component will appear as MyContext in the DevTools:
+For example, the following component will appear as MyDisplayName in the DevTools:
 
 ```js{2}
 const MyContext = React.createContext(/* some value */);

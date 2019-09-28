@@ -25,6 +25,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Joinville](https://www.meetup.com/pt-BR/React-Joinville/)
 * [Rio de Janeiro](https://www.meetup.com/pt-BR/React-Rio-de-Janeiro/)
 * [São Paulo](https://www.meetup.com/pt-BR/ReactJS-SP/)
+* [Vila Velha](https://www.meetup.com/pt-BR/React-ES/)
 
 ## Bolivia {#bolivia}
 * [Bolivia](https://www.meetup.com/ReactBolivia/)

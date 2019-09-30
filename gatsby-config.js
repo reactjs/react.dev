@@ -169,6 +169,7 @@ module.exports = {
         theme_color: '#20232a',
         display: 'standalone',
         icon: 'src/images/react_logo.png',
+        legacy: true
       },
     },
   ],

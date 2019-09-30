@@ -168,7 +168,7 @@ module.exports = {
         background_color: '#20232a',
         theme_color: '#20232a',
         display: 'standalone',
-        icon: 'src/images/react_logo.png',
+        icon: 'static/logo-512x512.png',
         legacy: true,
       },
     },

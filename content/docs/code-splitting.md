@@ -63,7 +63,7 @@ it so large that your app takes a long time to load.
 To avoid winding up with a large bundle, it's good to get ahead of the problem
 and start "splitting" your bundle.
  [Code-Splitting](https://webpack.js.org/guides/code-splitting/) is a feature
-supported by bundlers like Webpack and Browserify (via
+supported by bundlers like Webpack, [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via
 [factor-bundle](https://github.com/browserify/factor-bundle)) which can create
 multiple bundles that can be dynamically loaded at runtime.
 

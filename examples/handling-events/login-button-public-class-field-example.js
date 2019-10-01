@@ -4,13 +4,11 @@ class LoggingButton extends React.Component {
   // Warning: this is *experimental* syntax.
   handleClick = () => {
     console.log('this is:', this);
-  }
+  };
 
   render() {
     return (
-      <button onClick={this.handleClick}>
-        Click me
-      </button>
+      <button onClick={this.handleClick}>Click me</button>
     );
   }
 }

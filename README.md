@@ -65,6 +65,7 @@ If your language does not have a translation and you would like to create one, p
 ## Troubleshooting
 
 - `yarn reset` to clear the local cache
+- Windows users might want to update the dev server from `"dev": "gatsby develop -H 0.0.0.0",` to `"dev": "gatsby develop -H localhost",` in `package.json. See [Gatsby's note](https://www.gatsbyjs.org/docs/gatsby-cli/#preview-changes-on-other-devices) for more information
 
 ## License
 Content submitted to [reactjs.org](https://reactjs.org/) is CC-BY-4.0 licensed, as found in the [LICENSE-DOCS.md](https://github.com/open-source-explorer/reactjs.org/blob/master/LICENSE-DOCS.md) file.

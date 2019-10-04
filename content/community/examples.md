@@ -21,4 +21,7 @@ There are many example projects created by the React community. Feel free to add
 * **[Bitcoin Price Index](https://github.com/mrkjlchvz/bitcoin-price-index)** Simple bitcoin price index data from CoinDesk API.
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB.
 * **[GFonts Space](https://github.com/pankajladhar/GFontsSpace)** A space which allows user to play with Google fonts. Built with React, Redux and React-Router.
-* **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI 
+* **[Course Learn Page](https://github.com/ulearnpro/ulearn)** Open Source LMS script in Laravel 5.8 and ReactJS 16.9
+* **[Speedy math](https://github.com/pankajladhar/speedy-math)** An application which allows kids to practice basic Mathematics i.e  Addition, Subtraction, Multiply, Comparison. It is a PWA (Progressive web app) with offline support and install as App features.
+* **[Unit Converter](https://github.com/KarthikeyanRanasthala/react-unit-converter)** Minimal Yet Responsive Unit Converter Built With React, Material-UI & Convert-Units.
+* **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI

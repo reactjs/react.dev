@@ -62,8 +62,8 @@ it so large that your app takes a long time to load.
 
 To avoid winding up with a large bundle, it's good to get ahead of the problem
 and start "splitting" your bundle.
- [Code-Splitting](https://webpack.js.org/guides/code-splitting/) is a feature
-supported by bundlers like Webpack and Browserify (via
+Code-Splitting is a feature
+supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via
 [factor-bundle](https://github.com/browserify/factor-bundle)) which can create
 multiple bundles that can be dynamically loaded at runtime.
 
@@ -124,37 +124,19 @@ The `React.lazy` function lets you render a dynamic import as a regular componen
 
 ```js
 import OtherComponent from './OtherComponent';
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
 **After:**
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));
-
-function MyComponent() {
-  return (
-    <div>
-      <OtherComponent />
-    </div>
-  );
-}
 ```
 
-This will automatically load the bundle containing the `OtherComponent` when this component gets rendered.
+This will automatically load the bundle containing the `OtherComponent` when this component is first rendered.
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
 
-### Suspense {#suspense}
-
-If the module containing the `OtherComponent` is not yet loaded by the time `MyComponent` renders, we must show some fallback content while we're waiting for it to load - such as a loading indicator. This is done using the `Suspense` component.
+The lazy component should then be rendered inside a `Suspense` component, which allows us to show some fallback content (such as a loading indicator) while we're waiting for the lazy component to load.
 
 ```js
 const OtherComponent = React.lazy(() => import('./OtherComponent'));

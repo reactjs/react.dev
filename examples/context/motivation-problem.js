@@ -1,7 +1,5 @@
-class App extends React.Component {
-  render() {
-    return <Toolbar theme="dark" />;
-  }
+function App() {
+  return <Toolbar theme="dark" />;
 }
 
 function Toolbar(props) {
@@ -17,8 +15,6 @@ function Toolbar(props) {
   );
 }
 
-class ThemedButton extends React.Component {
-  render() {
-    return <Button theme={this.props.theme} />;
-  }
+function ThemedButton(props) {
+  return <Button theme={props.theme} />;
 }

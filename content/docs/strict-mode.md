@@ -41,6 +41,8 @@ Previously, React provided two ways for managing refs: the legacy string ref API
 React 16.3 added a third option that offers the convenience of a string ref without any of the downsides:
 `embed:16-3-release-blog-post/create-ref-example.js`
 
+React 16.8 adds a similar `useRef` hook.
+
 Since object refs were largely added as a replacement for string refs, strict mode now warns about usage of string refs.
 
 > **Note:**

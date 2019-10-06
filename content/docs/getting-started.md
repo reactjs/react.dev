@@ -103,7 +103,7 @@ Once you're comfortable with the [main concepts](/docs/hello-world.html) and pla
 
 ### API Reference {#api-reference}
 
-This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works, and what different lifecycle methods are useful for.
+This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works, and what different hooks are useful for.
 
 ### Glossary and FAQ {#glossary-and-faq}
 

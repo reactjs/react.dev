@@ -7,15 +7,13 @@ permalink: docs/fragments.html
 A common pattern in React is for a component to return multiple elements. Fragments let you group a list of children without adding extra nodes to the DOM.
 
 ```js
-render() {
-  return (
-    <React.Fragment>
-      <ChildA />
-      <ChildB />
-      <ChildC />
-    </React.Fragment>
-  );
-}
+return (
+  <React.Fragment>
+    <ChildA />
+    <ChildB />
+    <ChildC />
+  </React.Fragment>
+);
 ```
 
 There is also a new [short syntax](#short-syntax) for declaring them.
@@ -25,31 +23,27 @@ There is also a new [short syntax](#short-syntax) for declaring them.
 A common pattern is for a component to return a list of children. Take this example React snippet:
 
 ```jsx
-class Table extends React.Component {
-  render() {
-    return (
-      <table>
-        <tr>
-          <Columns />
-        </tr>
-      </table>
-    );
-  }
+function Table() {
+  return (
+    <table>
+      <tr>
+        <Columns />
+      </tr>
+    </table>
+  );
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside `<Columns />`, then the resulting HTML will be invalid.
 
 ```jsx
-class Columns extends React.Component {
-  render() {
-    return (
-      <div>
-        <td>Hello</td>
-        <td>World</td>
-      </div>
-    );
-  }
+function Columns() {
+  return (
+    <div>
+      <td>Hello</td>
+      <td>World</td>
+    </div>
+  );
 }
 ```
 
@@ -71,15 +65,13 @@ Fragments solve this problem.
 ## Usage {#usage}
 
 ```jsx{4,7}
-class Columns extends React.Component {
-  render() {
-    return (
-      <React.Fragment>
-        <td>Hello</td>
-        <td>World</td>
-      </React.Fragment>
-    );
-  }
+function Columns() {
+  return (
+    <React.Fragment>
+      <td>Hello</td>
+      <td>World</td>
+    </React.Fragment>
+  );
 }
 ```
 
@@ -99,15 +91,13 @@ which results in a correct `<Table />` output of:
 There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
 
 ```jsx{4,7}
-class Columns extends React.Component {
-  render() {
-    return (
-      <>
-        <td>Hello</td>
-        <td>World</td>
-      </>
-    );
-  }
+function Columns() {
+  return (
+    <>
+      <td>Hello</td>
+      <td>World</td>
+    </>
+  );
 }
 ```
 

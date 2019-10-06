@@ -131,7 +131,7 @@ const e = React.createElement;
 // Display a "Like" <button>
 return e(
   'button',
-  { onClick: () => this.setState({ liked: true }) },
+  { onClick: () => setLiked(true) },
   'Like'
 );
 ```
@@ -141,7 +141,7 @@ However, React also offers an option to use [JSX](/docs/introducing-jsx.html) in
 ```js
 // Display a "Like" <button>
 return (
-  <button onClick={() => this.setState({ liked: true })}>
+  <button onClick={() => setLiked(true)}>
     Like
   </button>
 );

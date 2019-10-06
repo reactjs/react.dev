@@ -16,28 +16,24 @@ The first argument (`child`) is any [renderable React child](/docs/react-compone
 
 Normally, when you return an element from a component's render method, it's mounted into the DOM as a child of the nearest parent node:
 
-```js{4,6}
-render() {
-  // React mounts a new div and renders the children into it
-  return (
-    <div>
-      {this.props.children}
-    </div>
-  );
-}
+```js{3,5}
+// React mounts a new div and renders the children into it
+return (
+  <div>
+    {props.children}
+  </div>
+);
 ```
 
 However, sometimes it's useful to insert a child into a different location in the DOM:
 
-```js{6}
-render() {
-  // React does *not* create a new div. It renders the children into `domNode`.
-  // `domNode` is any valid DOM node, regardless of its location in the DOM.
-  return ReactDOM.createPortal(
-    this.props.children,
-    domNode
-  );
-}
+```js{5}
+// React does *not* create a new div. It renders the children into `domNode`.
+// `domNode` is any valid DOM node, regardless of its location in the DOM.
+return ReactDOM.createPortal(
+  props.children,
+  domNode
+);
 ```
 
 A typical use case for portals is when a parent component has an `overflow: hidden` or `z-index` style, but you need the child to visually "break out" of its container. For example, dialogs, hovercards, and tooltips.
@@ -72,13 +68,10 @@ A `Parent` component in `#app-root` would be able to catch an uncaught, bubbling
 const appRoot = document.getElementById('app-root');
 const modalRoot = document.getElementById('modal-root');
 
-class Modal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.el = document.createElement('div');
-  }
+function Modal() {
+  const el = document.createElement('div');
 
-  componentDidMount() {
+  useEffect(() => {
     // The portal element is inserted in the DOM tree after
     // the Modal's children are mounted, meaning that children
     // will be mounted on a detached DOM node. If a child
@@ -87,53 +80,41 @@ class Modal extends React.Component {
     // DOM node, or uses 'autoFocus' in a descendant, add
     // state to Modal and only render the children when Modal
     // is inserted in the DOM tree.
-    modalRoot.appendChild(this.el);
-  }
+    modalRoot.appendChild(el);
 
-  componentWillUnmount() {
-    modalRoot.removeChild(this.el);
-  }
+    return () => modalRoot.removeChild(el);
+  }, []);
 
-  render() {
-    return ReactDOM.createPortal(
-      this.props.children,
-      this.el,
-    );
-  }
+  return ReactDOM.createPortal(
+    props.children,
+    el,
+  );
 }
 
-class Parent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {clicks: 0};
-    this.handleClick = this.handleClick.bind(this);
-  }
+function Parent(props) {
+  const [clicks, setClicks] = useState(0);
 
-  handleClick() {
+  function handleClick() {
     // This will fire when the button in Child is clicked,
     // updating Parent's state, even though button
     // is not direct descendant in the DOM.
-    this.setState(state => ({
-      clicks: state.clicks + 1
-    }));
+    setClicks(clicks => clicks + 1);
   }
 
-  render() {
-    return (
-      <div onClick={this.handleClick}>
-        <p>Number of clicks: {this.state.clicks}</p>
-        <p>
-          Open up the browser DevTools
-          to observe that the button
-          is not a child of the div
-          with the onClick handler.
-        </p>
-        <Modal>
-          <Child />
-        </Modal>
-      </div>
-    );
-  }
+  return (
+    <div onClick={handleClick}>
+      <p>Number of clicks: {clicks}</p>
+      <p>
+        Open up the browser DevTools
+        to observe that the button
+        is not a child of the div
+        with the onClick handler.
+      </p>
+      <Modal>
+        <Child />
+      </Modal>
+    </div>
+  );
 }
 
 function Child() {

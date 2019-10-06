@@ -13,10 +13,8 @@ Most people who use React don't use Web Components, but you may want to, especia
 ## Using Web Components in React {#using-web-components-in-react}
 
 ```javascript
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello <x-search>{this.props.name}</x-search>!</div>;
-  }
+function HelloMessage(props) {
+  return <div>Hello <x-search>{props.name}</x-search>!</div>;
 }
 ```
 

@@ -1,16 +1,17 @@
 ---
-id: composition-vs-inheritance
-title: Composition vs Inheritance
-permalink: docs/composition-vs-inheritance.html
+id: composition
+title: Composition
+permalink: docs/composition.html
 redirect_from:
   - "docs/multiple-components.html"
+  - "docs/composition-vs-inheritence.html"
 prev: lifting-state-up.html
 next: thinking-in-react.html
 ---
 
-React has a powerful composition model, and we recommend using composition instead of inheritance to reuse code between components.
+React has a powerful composition model, and we recommend using it to reuse code between components.
 
-In this section, we will consider a few problems where developers new to React often reach for inheritance, and show how we can solve them with composition.
+In this section, we will consider a few problems and show how we can solve them with composition.
 
 ## Containment {#containment}
 
@@ -113,9 +114,9 @@ function WelcomeDialog() {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/kkEaOZ?editors=0010)
 
-Composition works equally well for components defined as classes:
+Composition works equally well for components with state:
 
-```js{10,27-31}
+```js{10,21-25}
 function Dialog(props) {
   return (
     <FancyBorder color="blue">
@@ -130,43 +131,34 @@ function Dialog(props) {
   );
 }
 
-class SignUpDialog extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSignUp = this.handleSignUp.bind(this);
-    this.state = {login: ''};
-  }
+function SignUpDialog() {
+  const [login, setLogin] = useState('');
 
-  render() {
-    return (
-      <Dialog title="Mars Exploration Program"
-              message="How should we refer to you?">
-        <input value={this.state.login}
-               onChange={this.handleChange} />
-        <button onClick={this.handleSignUp}>
-          Sign Me Up!
-        </button>
-      </Dialog>
-    );
-  }
+  return (
+    <Dialog title="Mars Exploration Program"
+            message="How should we refer to you?">
+      <input value={login}
+              onChange={handleChange} />
+      <button onClick={handleSignUp}>
+        Sign Me Up!
+      </button>
+    </Dialog>
+  );
 
   handleChange(e) {
-    this.setState({login: e.target.value});
+    setLogin(e.target.value);
   }
 
   handleSignUp() {
-    alert(`Welcome aboard, ${this.state.login}!`);
+    alert(`Welcome aboard, ${login}!`);
   }
 }
 ```
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/gwZbYa?editors=0010)
 
-## So What About Inheritance? {#so-what-about-inheritance}
-
-At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.
+## Conclusion {#conclusion}
 
 Props and composition give you all the flexibility you need to customize a component's look and behavior in an explicit and safe way. Remember that components may accept arbitrary props, including primitive values, React elements, or functions.
 
-If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class, without extending it.
+If you want to reuse non-UI functionality between components, we suggest extracting it into a separate JavaScript module. The components may import it and use that function, object, or a class without having to render each other.

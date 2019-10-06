@@ -19,7 +19,7 @@ You are probably here because you got one of the following error messages:
 This usually means one of three things:
 
 - You are trying to add a `ref` to a function component.
-- You are trying to add a `ref` to an element that is being created outside of a component's render() function.
+- You are trying to add a `ref` to an element that is being created outside of a component.
 - You have multiple (conflicting) copies of React loaded (eg. due to a misconfigured npm dependency)
 
 ## Refs on Function Components {#refs-on-function-components}
@@ -31,11 +31,11 @@ If `<Foo>` is a function component, you can't add a ref to it:
 <Foo ref={foo} />
 ```
 
-If you need to add a ref to a component, convert it to a class first, or consider not using refs as they are [rarely necessary](/docs/refs-and-the-dom.html#when-to-use-refs).
+If you need to add a ref to a component, use `React.forwardRef`, or consider not using refs as they are [rarely necessary](/docs/refs-and-the-dom.html#when-to-use-refs).
 
-## Strings Refs Outside the Render Method {#strings-refs-outside-the-render-method}
+## Strings Refs Outside the Component {#strings-refs-outside-the-component}
 
-This usually means that you're trying to add a ref to a component that doesn't have an owner (that is, was not created inside of another component's `render` method). For example, this won't work:
+This usually means that you're trying to add a ref to a component that doesn't have an owner (that is, was not created inside of another component). For example, this won't work:
 
 ```js
 // Doesn't work!

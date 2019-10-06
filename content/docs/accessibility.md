@@ -169,39 +169,35 @@ To set focus in React, we can use [Refs to DOM elements](/docs/refs-and-the-dom.
 
 Using this, we first create a ref to an element in the JSX of a component class:
 
-```javascript{4-5,8-9,13}
-class CustomTextInput extends React.Component {
-  constructor(props) {
-    super(props);
-    // Create a ref to store the textInput DOM element
-    this.textInput = React.createRef();
-  }
-  render() {
+```javascript{2-3,5-6,10}
+function CustomTextInput() {
+  // Create a ref to store the textInput DOM element
+  const textInput = useRef();
+
   // Use the `ref` callback to store a reference to the text input DOM
-  // element in an instance field (for example, this.textInput).
-    return (
-      <input
-        type="text"
-        ref={this.textInput}
-      />
-    );
-  }
+  // element in a ref field (for example, textInput).
+  return (
+    <input
+      type="text"
+      ref={textInput}
+    />
+  );
 }
 ```
 
 Then we can focus it elsewhere in our component when needed:
 
  ```javascript
- focus() {
+function  focus() {
    // Explicitly focus the text input using the raw DOM API
    // Note: we're accessing "current" to get the DOM node
-   this.textInput.current.focus();
+   textInput.current.focus();
  }
  ```
 
 Sometimes a parent component needs to set focus to an element in a child component. We can do this by [exposing DOM refs to parent components](/docs/refs-and-the-dom.html#exposing-dom-refs-to-parent-components) through a special prop on the child component that forwards the parent's ref to the child's DOM node.
 
-```javascript{4,12,16}
+```javascript{4,10,13}
 function CustomTextInput(props) {
   return (
     <div>
@@ -210,20 +206,16 @@ function CustomTextInput(props) {
   );
 }
 
-class Parent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.inputElement = React.createRef();
-  }
-  render() {
-    return (
-      <CustomTextInput inputRef={this.inputElement} />
-    );
-  }
+function Parent() {
+  const inputElement = useRef();
+
+  return (
+    <CustomTextInput inputRef={inputElement} />
+  );
 }
 
 // Now you can set focus when required.
-this.inputElement.current.focus();
+inputElement.current.focus();
 ```
 
 When using a HOC to extend components, it is recommended to [forward the ref](/docs/forwarding-refs.html) to the wrapped component using the `forwardRef` function of React. If a third party HOC does not implement ref forwarding, the above pattern can still be used as a fallback.
@@ -246,52 +238,40 @@ To illustrate this, let's look at a prolific example of broken accessibility cau
 
 This is typically implemented by attaching a `click` event to the `window` object that closes the popover:
 
-```javascript{12-14,26-30}
-class OuterClickExample extends React.Component {
-  constructor(props) {
-    super(props);
+```javascript{4-10,16-20}
+function OuterClickExample() {
+  const [isOpen, setIsOpen] = useState(false);
 
-    this.state = { isOpen: false };
-    this.toggleContainer = React.createRef();
+  useEffect(() => {
+    window.addEventListener('click', onClickOutsideHandler);
 
-    this.onClickHandler = this.onClickHandler.bind(this);
-    this.onClickOutsideHandler = this.onClickOutsideHandler.bind(this);
+    return () => {
+      window.removeEventListener('click', onClickOutsideHandler);
+    };
+  }, []);
+
+  function onClickHandler() {
+    setIsOpen(isOpen => !isOpen);
   }
 
-  componentDidMount() {
-    window.addEventListener('click', this.onClickOutsideHandler);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('click', this.onClickOutsideHandler);
-  }
-
-  onClickHandler() {
-    this.setState(currentState => ({
-      isOpen: !currentState.isOpen
-    }));
-  }
-
-  onClickOutsideHandler(event) {
-    if (this.state.isOpen && !this.toggleContainer.current.contains(event.target)) {
-      this.setState({ isOpen: false });
+  function onClickOutsideHandler(event) {
+    if (!toggleContainer.current.contains(event.target)) {
+      setIsOpen(false);
     }
   }
 
-  render() {
-    return (
-      <div ref={this.toggleContainer}>
-        <button onClick={this.onClickHandler}>Select an option</button>
-        {this.state.isOpen && (
-          <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
-          </ul>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div ref={toggleContainer}>
+      <button onClick={onClickHandler}>Select an option</button>
+      {isOpen && (
+        <ul>
+          <li>Option 1</li>
+          <li>Option 2</li>
+          <li>Option 3</li>
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 
@@ -301,63 +281,49 @@ This may work fine for users with pointer devices, such as a mouse, but operatin
 
 The same functionality can be achieved by using appropriate event handlers instead, such as `onBlur` and `onFocus`:
 
-```javascript{19-29,31-34,37-38,40-41}
-class BlurExample extends React.Component {
-  constructor(props) {
-    super(props);
+```javascript{9-17,19-22,24-25,27-28}
+function BlurExample() {
+  const [isOpen, setIsOpen] = useState(false);
+  const timeOutId = useRef();
 
-    this.state = { isOpen: false };
-    this.timeOutId = null;
-
-    this.onClickHandler = this.onClickHandler.bind(this);
-    this.onBlurHandler = this.onBlurHandler.bind(this);
-    this.onFocusHandler = this.onFocusHandler.bind(this);
-  }
-
-  onClickHandler() {
-    this.setState(currentState => ({
-      isOpen: !currentState.isOpen
-    }));
+  function onClickHandler() {
+    setIsOpen(isOpen => !isOpen);
   }
 
   // We close the popover on the next tick by using setTimeout.
   // This is necessary because we need to first check if
   // another child of the element has received focus as
   // the blur event fires prior to the new focus event.
-  onBlurHandler() {
-    this.timeOutId = setTimeout(() => {
-      this.setState({
-        isOpen: false
-      });
+  function onBlurHandler() {
+    timeOutId.current = setTimeout(() => {
+      setIsOpen(false);
     });
   }
 
   // If a child receives focus, do not close the popover.
-  onFocusHandler() {
-    clearTimeout(this.timeOutId);
+  function onFocusHandler() {
+    clearTimeout(timeOutId.current);
   }
 
-  render() {
-    // React assists us by bubbling the blur and
-    // focus events to the parent.
-    return (
-      <div onBlur={this.onBlurHandler}
-           onFocus={this.onFocusHandler}>
-        <button onClick={this.onClickHandler}
-                aria-haspopup="true"
-                aria-expanded={this.state.isOpen}>
-          Select an option
-        </button>
-        {this.state.isOpen && (
-          <ul>
-            <li>Option 1</li>
-            <li>Option 2</li>
-            <li>Option 3</li>
-          </ul>
-        )}
-      </div>
-    );
-  }
+  // React assists us by bubbling the blur and
+  // focus events to the parent.
+  return (
+    <div onBlur={onBlurHandler}
+          onFocus={onFocusHandler}>
+      <button onClick={onClickHandler}
+              aria-haspopup="true"
+              aria-expanded={isOpen}>
+        Select an option
+      </button>
+      {isOpen && (
+        <ul>
+          <li>Option 1</li>
+          <li>Option 2</li>
+          <li>Option 3</li>
+        </ul>
+      )}
+    </div>
+  );
 }
 ```
 

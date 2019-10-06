@@ -56,32 +56,6 @@ In particular, you should prefer named `function` declarations over `const myFun
 
 #### Don't use features that aren't standardized yet.
 
-For example, **don't** write this:
-
-```js
-class MyComponent extends React.Component {
-  state = {value: ''};
-  handleChange = (e) => {
-    this.setState({value: e.target.value});
-  };
-}
-```
-
-Instead, **do** write this:
-
-```js
-class MyComponent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.state = {value: ''};
-  }
-  handleChange(e) {
-    this.setState({value: e.target.value});
-  }
-}
-```
-
 Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
 
 ### Style

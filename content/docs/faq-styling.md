@@ -11,21 +11,17 @@ category: FAQ
 Pass a string as the `className` prop:
 
 ```jsx
-render() {
-  return <span className="menu navigation-menu">Menu</span>
-}
+return <span className="menu navigation-menu">Menu</span>
 ```
 
 It is common for CSS classes to depend on the component props or state:
 
 ```jsx
-render() {
-  let className = 'menu';
-  if (this.props.isActive) {
-    className += ' menu-active';
-  }
-  return <span className={className}>Menu</span>
+let className = 'menu';
+if (props.isActive) {
+  className += ' menu-active';
 }
+return <span className={className}>Menu</span>
 ```
 
 >Tip

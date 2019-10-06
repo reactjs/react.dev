@@ -10,40 +10,31 @@ function Toolbar(props) {
   );
 }
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      theme: themes.light,
-    };
+function App() {
+  const [theme, setTheme] = useState(themes.light);
 
-    this.toggleTheme = () => {
-      this.setState(state => ({
-        theme:
-          state.theme === themes.dark
-            ? themes.light
-            : themes.dark,
-      }));
-    };
-  }
-
-  render() {
-    //highlight-range{1-3}
-    // The ThemedButton button inside the ThemeProvider
-    // uses the theme from state while the one outside uses
-    // the default dark theme
-    //highlight-range{3-5,7}
-    return (
-      <Page>
-        <ThemeContext.Provider value={this.state.theme}>
-          <Toolbar changeTheme={this.toggleTheme} />
-        </ThemeContext.Provider>
-        <Section>
-          <ThemedButton />
-        </Section>
-      </Page>
+  function toggleTheme() {
+    setTheme(
+      theme =>
+        theme === themes.dark ? themes.light : themes.dark
     );
   }
+
+  //highlight-range{1-3}
+  // The ThemedButton button inside the ThemeProvider
+  // uses the theme from state while the one outside uses
+  // the default dark theme
+  //highlight-range{3-5,7}
+  return (
+    <Page>
+      <ThemeContext.Provider value={theme}>
+        <Toolbar changeTheme={toggleTheme} />
+      </ThemeContext.Provider>
+      <Section>
+        <ThemedButton />
+      </Section>
+    </Page>
+  );
 }
 
 ReactDOM.render(<App />, document.root);

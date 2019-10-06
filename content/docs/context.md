@@ -130,7 +130,7 @@ Every Context object comes with a Provider React component that allows consuming
 
 Accepts a `value` prop to be passed to consuming components that are descendants of this Provider. One Provider can be connected to many consumers. Providers can be nested to override values deeper within the tree.
 
-All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes. The propagation from Provider to its descendant consumers is not subject to the `shouldComponentUpdate` method, so the consumer is updated even when an ancestor component bails out of the update.
+All consumers that are descendants of a Provider will re-render whenever the Provider's `value` prop changes.
 
 Changes are determined by comparing the new and old values using the same algorithm as [`Object.is`](//developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is#Description). 
 
@@ -138,48 +138,29 @@ Changes are determined by comparing the new and old values using the same algori
 > 
 > The way changes are determined can cause some issues when passing objects as `value`: see [Caveats](#caveats).
 
-### `Class.contextType` {#classcontexttype}
+### `React.useContext` {#reactusecontext}
 
 ```js
-class MyClass extends React.Component {
-  componentDidMount() {
-    let value = this.context;
+function MyComponent {
+  const value = React.useContext(MyContext);
+
+  useEffect(() => {
     /* perform a side-effect at mount using the value of MyContext */
-  }
-  componentDidUpdate() {
-    let value = this.context;
+
+    return () => {
+      /* ... */
+    };
+  }, []);
+
+  useEffect(() => {
     /* ... */
-  }
-  componentWillUnmount() {
-    let value = this.context;
-    /* ... */
-  }
-  render() {
-    let value = this.context;
-    /* render something based on the value of MyContext */
-  }
-}
-MyClass.contextType = MyContext;
-```
+  });
 
-The `contextType` property on a class can be assigned a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using `this.context`. You can reference this in any of the lifecycle methods including the render function.
-
-> Note:
->
-> You can only subscribe to a single context using this API. If you need to read more than one see [Consuming Multiple Contexts](#consuming-multiple-contexts).
->
-> If you are using the experimental [public class fields syntax](https://babeljs.io/docs/plugins/transform-class-properties/), you can use a **static** class field to initialize your `contextType`.
-
-
-```js
-class MyClass extends React.Component {
-  static contextType = MyContext;
-  render() {
-    let value = this.context;
-    /* render something based on the value */
-  }
+  /* render something based on the value of MyContext */
 }
 ```
+
+The `useContext` hook can be called with a Context object created by [`React.createContext()`](#reactcreatecontext). This lets you consume the nearest current value of that Context type using its return value.
 
 ### `Context.Consumer` {#contextconsumer}
 
@@ -189,7 +170,7 @@ class MyClass extends React.Component {
 </MyContext.Consumer>
 ```
 
-A React component that subscribes to context changes. This lets you subscribe to a context within a [function component](/docs/components-and-props.html#function-and-class-components).
+A React component that subscribes to context changes. This lets you subscribe to a context within JSX.
 
 Requires a [function as a child](/docs/render-props.html#using-props-other-than-render). The function receives the current context value and returns a React node. The `value` argument passed to the function will be equal to the `value` prop of the closest Provider for this context above in the tree. If there is no Provider for this context above, the `value` argument will be equal to the `defaultValue` that was passed to `createContext()`.
 
@@ -241,11 +222,7 @@ It is often necessary to update the context from a component that is nested some
 
 ### Consuming Multiple Contexts {#consuming-multiple-contexts}
 
-To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree. 
-
 `embed:context/multiple-contexts.js`
-
-If two or more context values are often used together, you might want to consider creating your own render prop component that provides both.
 
 ## Caveats {#caveats}
 

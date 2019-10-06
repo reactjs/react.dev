@@ -1,5 +1,5 @@
 function logProps(Component) {
-  class LogProps extends React.Component {
+  function LogProps(props) {
     // ...
   }
 

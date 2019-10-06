@@ -25,7 +25,7 @@ This way, components using `FancyButton` can get a ref to the underlying `button
 
 Here is a step-by-step explanation of what happens in the above example:
 
-1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.createRef` and assign it to a `ref` variable.
+1. We create a [React ref](/docs/refs-and-the-dom.html) by calling `React.useRef` and assign it to a `ref` variable.
 1. We pass our `ref` down to `<FancyButton ref={ref}>` by specifying it as a JSX attribute.
 1. React passes the `ref` to the `(props, ref) => ...` function inside `forwardRef` as a second argument.
 1. We forward this `ref` argument down to `<button ref={ref}>` by specifying it as a JSX attribute.
@@ -33,7 +33,7 @@ Here is a step-by-step explanation of what happens in the above example:
 
 >Note
 >
->The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular function or class components don't receive the `ref` argument, and ref is not available in props either.
+>The second `ref` argument only exists when you define a component with `React.forwardRef` call. Regular components don't receive the `ref` argument, and ref is not available in props either.
 >
 >Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
 
@@ -42,22 +42,6 @@ Here is a step-by-step explanation of what happens in the above example:
 **When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.
 
 Conditionally applying `React.forwardRef` when it exists is also not recommended for the same reasons: it changes how your library behaves and can break your users' apps when they upgrade React itself.
-
-## Forwarding refs in higher-order components {#forwarding-refs-in-higher-order-components}
-
-This technique can also be particularly useful with [higher-order components](/docs/higher-order-components.html) (also known as HOCs). Let's start with an example HOC that logs component props to the console:
-`embed:forwarding-refs/log-props-before.js`
-
-The "logProps" HOC passes all `props` through to the component it wraps, so the rendered output will be the same. For example, we can use this HOC to log all props that get passed to our "fancy button" component:
-`embed:forwarding-refs/fancy-button.js`
-
-There is one caveat to the above example: refs will not get passed through. That's because `ref` is not a prop. Like `key`, it's handled differently by React. If you add a ref to a HOC, the ref will refer to the outermost container component, not the wrapped component.
-
-This means that refs intended for our `FancyButton` component will actually be attached to the `LogProps` component:
-`embed:forwarding-refs/fancy-button-ref.js`
-
-Fortunately, we can explicitly forward refs to the inner `FancyButton` component using the `React.forwardRef` API. `React.forwardRef` accepts a render function that receives `props` and `ref` parameters and returns a React node. For example:
-`embed:forwarding-refs/log-props-after.js`
 
 ## Displaying a custom name in DevTools {#displaying-a-custom-name-in-devtools}
 

@@ -17,12 +17,10 @@ As your app grows, you can catch a lot of bugs with typechecking. For some appli
 ```javascript
 import PropTypes from 'prop-types';
 
-class Greeting extends React.Component {
-  render() {
-    return (
-      <h1>Hello, {this.props.name}</h1>
-    );
-  }
+function Greeting(props) {
+  return (
+    <h1>Hello, {props.name}</h1>
+  );
 }
 
 Greeting.propTypes = {
@@ -135,16 +133,14 @@ With `PropTypes.element` you can specify that only a single child can be passed 
 ```javascript
 import PropTypes from 'prop-types';
 
-class MyComponent extends React.Component {
-  render() {
-    // This must be exactly one element or it will warn.
-    const children = this.props.children;
-    return (
-      <div>
-        {children}
-      </div>
-    );
-  }
+function MyComponent(props) {
+  // This must be exactly one element or it will warn.
+  const children = props.children;
+  return (
+    <div>
+      {children}
+    </div>
+  );
 }
 
 MyComponent.propTypes = {
@@ -157,12 +153,10 @@ MyComponent.propTypes = {
 You can define default values for your `props` by assigning to the special `defaultProps` property:
 
 ```javascript
-class Greeting extends React.Component {
-  render() {
-    return (
-      <h1>Hello, {this.props.name}</h1>
-    );
-  }
+function Greeting(props) {
+  return (
+    <h1>Hello, {props.name}</h1>
+  );
 }
 
 // Specifies the default values for props:
@@ -177,20 +171,4 @@ ReactDOM.render(
 );
 ```
 
-If you are using a Babel transform like [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
-
-```javascript
-class Greeting extends React.Component {
-  static defaultProps = {
-    name: 'stranger'
-  }
-
-  render() {
-    return (
-      <div>Hello, {this.props.name}</div>
-    )
-  }
-}
-```
-
-The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+The `defaultProps` will be used to ensure that `props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.

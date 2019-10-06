@@ -65,7 +65,7 @@ function FriendListItem(props) {
 
 Instead, we'd like to share this logic between `FriendStatus` and `FriendListItem`.
 
-Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and [higher-order components](/docs/higher-order-components.html). We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
+Traditionally in React, we've had two popular ways to share stateful logic between components: [render props](/docs/render-props.html) and higher-order components. We will now look at how Hooks solve many of the same problems without forcing you to add more components to the tree.
 
 ## Extracting a Custom Hook {#extracting-a-custom-hook}
 

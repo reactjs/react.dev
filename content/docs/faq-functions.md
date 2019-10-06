@@ -11,210 +11,92 @@ category: FAQ
 Pass event handlers and other functions as props to child components:
 
 ```jsx
-<button onClick={this.handleClick}>
+<button onClick={handleClick}>
 ```
 
-If you need to have access to the parent component in the handler, you also need to bind the function to the component instance (see below).
-
-### How do I bind a function to a component instance? {#how-do-i-bind-a-function-to-a-component-instance}
-
-There are several ways to make sure functions have access to component attributes like `this.props` and `this.state`, depending on which syntax and build steps you are using.
-
-#### Bind in Constructor (ES2015) {#bind-in-constructor-es2015}
-
-```jsx
-class Foo extends Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-  }
-  handleClick() {
-    console.log('Click happened');
-  }
-  render() {
-    return <button onClick={this.handleClick}>Click Me</button>;
-  }
-}
-```
-
-#### Class Properties (Stage 3 Proposal) {#class-properties-stage-3-proposal}
-
-```jsx
-class Foo extends Component {
-  // Note: this syntax is experimental and not standardized yet.
-  handleClick = () => {
-    console.log('Click happened');
-  }
-  render() {
-    return <button onClick={this.handleClick}>Click Me</button>;
-  }
-}
-```
-
-#### Bind in Render {#bind-in-render}
-
-```jsx
-class Foo extends Component {
-  handleClick() {
-    console.log('Click happened');
-  }
-  render() {
-    return <button onClick={this.handleClick.bind(this)}>Click Me</button>;
-  }
-}
-```
-
->**Note:**
->
->Using `Function.prototype.bind` in render creates a new function each time the component renders, which may have performance implications (see below).
-
-#### Arrow Function in Render {#arrow-function-in-render}
-
-```jsx
-class Foo extends Component {
-  handleClick() {
-    console.log('Click happened');
-  }
-  render() {
-    return <button onClick={() => this.handleClick()}>Click Me</button>;
-  }
-}
-```
-
->**Note:**
->
->Using an arrow function in render creates a new function each time the component renders, which may break optimizations based on strict identity comparison.
-
-### Is it OK to use arrow functions in render methods? {#is-it-ok-to-use-arrow-functions-in-render-methods}
+### Is it OK to use functions in render methods? {#is-it-ok-to-use-functions-in-render-methods}
 
 Generally speaking, yes, it is OK, and it is often the easiest way to pass parameters to callback functions.
 
 If you do have performance issues, by all means, optimize!
-
-### Why is binding necessary at all? {#why-is-binding-necessary-at-all}
-
-In JavaScript, these two code snippets are **not** equivalent:
-
-```js
-obj.method();
-```
-
-```js
-var method = obj.method;
-method();
-```
-
-Binding methods helps ensure that the second snippet works the same way as the first one.
-
-With React, typically you only need to bind the methods you *pass* to other components. For example, `<button onClick={this.handleClick}>` passes `this.handleClick` so you want to bind it. However, it is unnecessary to bind the `render` method or the lifecycle methods: we don't pass them to other components.
-
-[This post by Yehuda Katz](https://yehudakatz.com/2011/08/11/understanding-javascript-function-invocation-and-this/) explains what binding is, and how functions work in JavaScript, in detail.
 
 ### Why is my function being called every time the component renders? {#why-is-my-function-being-called-every-time-the-component-renders}
 
 Make sure you aren't _calling the function_ when you pass it to the component:
 
 ```jsx
-render() {
-  // Wrong: handleClick is called instead of passed as a reference!
-  return <button onClick={this.handleClick()}>Click Me</button>
-}
+// Wrong: handleClick is called instead of passed as a reference!
+return <button onClick={handleClick()}>Click Me</button>
 ```
 
 Instead, *pass the function itself* (without parens):
 
 ```jsx
-render() {
-  // Correct: handleClick is passed as a reference!
-  return <button onClick={this.handleClick}>Click Me</button>
-}
+// Correct: handleClick is passed as a reference!
+return <button onClick={handleClick}>Click Me</button>
 ```
 
 ### How do I pass a parameter to an event handler or callback? {#how-do-i-pass-a-parameter-to-an-event-handler-or-callback}
 
-You can use an arrow function to wrap around an event handler and pass parameters:
+You can use a function to wrap around an event handler and pass parameters:
 
 ```jsx
-<button onClick={() => this.handleClick(id)} />
+<button onClick={() => handleClick(id)} />
 ```
 
 This is equivalent to calling `.bind`:
 
 ```jsx
-<button onClick={this.handleClick.bind(this, id)} />
+<button onClick={handleClick.bind(this, id)} />
 ```
 
-#### Example: Passing params using arrow functions {#example-passing-params-using-arrow-functions}
+#### Example: Passing params using functions {#example-passing-params-using-functions}
 
 ```jsx
 const A = 65 // ASCII character code
 
-class Alphabet extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      justClicked: null,
-      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
-    };
-  }
-  handleClick(letter) {
-    this.setState({ justClicked: letter });
-  }
-  render() {
-    return (
-      <div>
-        Just clicked: {this.state.justClicked}
-        <ul>
-          {this.state.letters.map(letter =>
-            <li key={letter} onClick={() => this.handleClick(letter)}>
-              {letter}
-            </li>
-          )}
-        </ul>
-      </div>
-    )
-  }
+function Alphabet() {
+  const [justClicked, setJustClicked] = useState(null);
+  const [letters, setLetters] = useState(Array.from({length: 26}, (_, i) => String.fromCharCode(A + i)));
+
+  return (
+    <div>
+      Just clicked: {justClicked}
+      <ul>
+        {letters.map(letter =>
+          <li key={letter} onClick={() => setJustClicked(letter)}>
+            {letter}
+          </li>
+        )}
+      </ul>
+    </div>
+  );
 }
 ```
 
 #### Example: Passing params using data-attributes {#example-passing-params-using-data-attributes}
 
-Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.PureComponent equality checks.
+Alternately, you can use DOM APIs to store data needed for event handlers. Consider this approach if you need to optimize a large number of elements or have a render tree that relies on React.memo equality checks.
 
 ```jsx
 const A = 65 // ASCII character code
 
-class Alphabet extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.state = {
-      justClicked: null,
-      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
-    };
-  }
+function Alphabet() {
+  const [justClicked, setJustClicked] = useState(null);
+  const [letters, setLetters] = useState(Array.from({length: 26}, (_, i) => String.fromCharCode(A + i)));
 
-  handleClick(e) {
-    this.setState({
-      justClicked: e.target.dataset.letter
-    });
-  }
-
-  render() {
-    return (
-      <div>
-        Just clicked: {this.state.justClicked}
-        <ul>
-          {this.state.letters.map(letter =>
-            <li key={letter} data-letter={letter} onClick={this.handleClick}>
-              {letter}
-            </li>
-          )}
-        </ul>
-      </div>
-    )
-  }
+  return (
+    <div>
+      Just clicked: {justClicked}
+      <ul>
+        {letters.map(letter =>
+          <li key={letter} data-letter={letter} onClick={e => setJustClicked(e.target.dataset.letter)}>
+            {letter}
+          </li>
+        )}
+      </ul>
+    </div>
+  );
 }
 ```
 
@@ -239,23 +121,17 @@ Throttling prevents a function from being called more than once in a given windo
 ```jsx
 import throttle from 'lodash.throttle';
 
-class LoadMoreButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleClick = this.handleClick.bind(this);
-    this.handleClickThrottled = throttle(this.handleClick, 1000);
-  }
+function LoadMoreButton(props) {
+  const handleClickThrottled = useCallback(throttle(handleClick, 1000), []);
 
-  componentWillUnmount() {
-    this.handleClickThrottled.cancel();
-  }
+  useEffect(() => {
+    return () => handleClickThrottled.cancel();
+  });
 
-  render() {
-    return <button onClick={this.handleClickThrottled}>Load More</button>;
-  }
+  return <button onClick={handleClickThrottled}>Load More</button>;
 
-  handleClick() {
-    this.props.loadMore();
+  function handleClick() {
+    props.loadMore();
   }
 }
 ```
@@ -267,37 +143,31 @@ Debouncing ensures that a function will not be executed until after a certain am
 ```jsx
 import debounce from 'lodash.debounce';
 
-class Searchbox extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleChange = this.handleChange.bind(this);
-    this.emitChangeDebounced = debounce(this.emitChange, 250);
-  }
+function Searchbox(props) {
+  const emitChangeDebounced = useCallback(debounce(emitChange, 250), []);
 
-  componentWillUnmount() {
-    this.emitChangeDebounced.cancel();
-  }
+  useEffect(() => {
+    return () => emitChangeDebounced.cancel();
+  });
 
-  render() {
-    return (
-      <input
-        type="text"
-        onChange={this.handleChange}
-        placeholder="Search..."
-        defaultValue={this.props.value}
-      />
-    );
-  }
+  return (
+    <input
+      type="text"
+      onChange={handleChange}
+      placeholder="Search..."
+      defaultValue={props.value}
+    />
+  );
 
-  handleChange(e) {
+  function handleChange(e) {
     // React pools events, so we read the value before debounce.
     // Alternately we could call `event.persist()` and pass the entire event.
     // For more info see reactjs.org/docs/events.html#event-pooling
-    this.emitChangeDebounced(e.target.value);
+    emitChangeDebounced(e.target.value);
   }
 
-  emitChange(value) {
-    this.props.onChange(value);
+  function emitChange(value) {
+    props.onChange(value);
   }
 }
 ```
@@ -313,39 +183,31 @@ class Searchbox extends React.Component {
 ```jsx
 import rafSchedule from 'raf-schd';
 
-class ScrollListener extends React.Component {
-  constructor(props) {
-    super(props);
+function ScrollListener(props) {
+  // Create a new function to schedule updates.
+  const scheduleUpdate = useCallback(rafSchedule(
+    point => props.onScroll(point)
+  ), []);
 
-    this.handleScroll = this.handleScroll.bind(this);
-
-    // Create a new function to schedule updates.
-    this.scheduleUpdate = rafSchedule(
-      point => this.props.onScroll(point)
-    );
-  }
-
-  handleScroll(e) {
+  function handleScroll(e) {
     // When we receive a scroll event, schedule an update.
     // If we receive many updates within a frame, we'll only publish the latest value.
-    this.scheduleUpdate({ x: e.clientX, y: e.clientY });
+    scheduleUpdate({ x: e.clientX, y: e.clientY });
   }
 
-  componentWillUnmount() {
+  function componentWillUnmount() {
     // Cancel any pending updates since we're unmounting.
-    this.scheduleUpdate.cancel();
+    scheduleUpdate.cancel();
   }
 
-  render() {
-    return (
-      <div
-        style={{ overflow: 'scroll' }}
-        onScroll={this.handleScroll}
-      >
-        <img src="/my-huge-image.jpg" />
-      </div>
-    );
-  }
+  return (
+    <div
+      style={{ overflow: 'scroll' }}
+      onScroll={handleScroll}
+    >
+      <img src="/my-huge-image.jpg" />
+    </div>
+  );
 }
 ```
 

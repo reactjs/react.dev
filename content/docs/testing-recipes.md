@@ -12,8 +12,6 @@ Common testing patterns for React components.
 >
 > This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/docs/testing-environments.html) page.
 
-On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
-
 - [Setup/Teardown](#setup--teardown)
 - [`act()`](#act)
 - [Rendering](#rendering)

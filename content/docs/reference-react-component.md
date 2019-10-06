@@ -15,7 +15,7 @@ redirect_from:
   - "tips/use-react-with-other-libraries.html"
 ---
 
-This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state-and-lifecycle.html). If you're not, read them first.
+This page contains a detailed API reference for the React component class definition. It assumes you're familiar with fundamental React concepts, such as [Components and Props](/docs/components-and-props.html), as well as [State and Lifecycle](/docs/state.html). If you're not, read them first.
 
 ## Overview {#overview}
 
@@ -35,7 +35,7 @@ The only method you *must* define in a `React.Component` subclass is called [`re
 
 >Note:
 >
->React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead. Take a look at [Using React without ES6](/docs/react-without-es6.html) to learn more.
+>React doesn't force you to use the ES6 class syntax. If you prefer to avoid it, you may use the `create-react-class` module or a similar custom abstraction instead.
 
 ### The Component Lifecycle {#the-component-lifecycle}
 
@@ -149,7 +149,7 @@ The constructor for a React component is called before it is mounted. When imple
 
 Typically, in React constructors are only used for two purposes:
 
-* Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
+* Initializing [local state](/docs/state.html) by assigning an object to `this.state`.
 * Binding [event handler](/docs/handling-events.html) methods to an instance.
 
 You **should not call `setState()`** in the `constructor()`. Instead, if your component needs to use local state, **assign the initial state to `this.state`** directly in the constructor:
@@ -563,7 +563,7 @@ this.setState((state) => {
 
 For more detail, see:
 
-* [State and Lifecycle guide](/docs/state-and-lifecycle.html)
+* [State and Lifecycle guide](/docs/state.html)
 * [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
 * [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
@@ -619,7 +619,7 @@ If `props.color` is set to null, it will remain null:
 
 ### `displayName` {#displayname}
 
-The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
+The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes.
 
 * * *
 
@@ -637,6 +637,6 @@ The state contains data specific to this component that may change over time. Th
 
 If some value isn't used for rendering or data flow (for example, a timer ID), you don't have to put it in the state. Such values can be defined as fields on the component instance.
 
-See [State and Lifecycle](/docs/state-and-lifecycle.html) for more information about the state.
+See [State and Lifecycle](/docs/state.html) for more information about the state.
 
 Never mutate `this.state` directly, as calling `setState()` afterwards may replace the mutation you made. Treat `this.state` as if it were immutable.

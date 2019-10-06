@@ -118,7 +118,7 @@ class Welcome extends React.Component {
 }
 ```
 
-### [`state`](/docs/state-and-lifecycle.html#adding-local-state-to-a-class) {#state}
+### [`state`](/docs/state.html#adding-local-state-to-a-class) {#state}
 
 A component needs `state` when some data associated with it changes over time. For example, a `Checkbox` component might need `isChecked` in its state, and a `NewsFeed` component might want to keep track of `fetchedPosts` in its state.
 
@@ -126,7 +126,7 @@ The most important difference between `state` and `props` is that `props` are pa
 
 For each particular piece of changing data, there should be just one component that "owns" it in its state. Don't try to synchronize states of two different components. Instead, [lift it up](/docs/lifting-state-up.html) to their closest shared ancestor, and pass it down as props to both of them.
 
-## [Lifecycle Methods](/docs/state-and-lifecycle.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
+## [Lifecycle Methods](/docs/state.html#adding-lifecycle-methods-to-a-class) {#lifecycle-methods}
 
 Lifecycle methods are custom functionality that gets executed during the different phases of a component. There are methods available when the component gets created and inserted into the DOM ([mounting](/docs/react-component.html#mounting)), when the component updates, and when the component gets unmounted or removed from the DOM.
 

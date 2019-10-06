@@ -10,30 +10,24 @@ To write an uncontrolled component, instead of writing an event handler for ever
 
 For example, this code accepts a single name in an uncontrolled component:
 
-```javascript{5,9,18}
-class NameForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.input = React.createRef();
-  }
+```javascript{2,5,13}
+function NameForm() {
+  const input = React.useRef();
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.input.current.value);
+    alert('A name was submitted: ' + input.current.value);
     event.preventDefault();
   }
 
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" ref={this.input} />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" ref={input} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
 }
 ```
 
@@ -47,20 +41,18 @@ If it's still not clear which type of component you should use for a particular 
 
 In the React rendering lifecycle, the `value` attribute on form elements will override the value in the DOM. With an uncontrolled component, you often want React to specify the initial value, but leave subsequent updates uncontrolled. To handle this case, you can specify a `defaultValue` attribute instead of `value`.
 
-```javascript{7}
-render() {
-  return (
-    <form onSubmit={this.handleSubmit}>
-      <label>
-        Name:
-        <input
-          defaultValue="Bob"
-          type="text"
-          ref={this.input} />
-      </label>
-      <input type="submit" value="Submit" />
-    </form>
-  );
+```javascript{6}
+return (
+  <form onSubmit={handleSubmit}>
+    <label>
+      Name:
+      <input
+        defaultValue="Bob"
+        type="text"
+        ref={input} />
+    </label>
+    <input type="submit" value="Submit" />
+  </form>
 }
 ```
 

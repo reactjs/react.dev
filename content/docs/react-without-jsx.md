@@ -11,10 +11,8 @@ Each JSX element is just syntactic sugar for calling `React.createElement(compon
 For example, this code written with JSX:
 
 ```js
-class Hello extends React.Component {
-  render() {
-    return <div>Hello {this.props.toWhat}</div>;
-  }
+function Hello(props) {
+  return <div>Hello {props.toWhat}</div>;
 }
 
 ReactDOM.render(
@@ -26,10 +24,8 @@ ReactDOM.render(
 can be compiled to this code that does not use JSX:
 
 ```js
-class Hello extends React.Component {
-  render() {
-    return React.createElement('div', null, `Hello ${this.props.toWhat}`);
-  }
+function Hello(props) {
+  return React.createElement('div', null, `Hello ${props.toWhat}`);
 }
 
 ReactDOM.render(
@@ -40,7 +36,7 @@ ReactDOM.render(
 
 If you're curious to see more examples of how JSX is converted to JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
 
-The component can either be provided as a string, or as a subclass of `React.Component`, or a plain function for stateless components.
+The component can either be provided as a string or function.
 
 If you get tired of typing `React.createElement` so much, one common pattern is to assign a shorthand:
 

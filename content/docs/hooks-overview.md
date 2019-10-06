@@ -174,7 +174,7 @@ We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-h
 
 ## 💡 Building Your Own Hooks {#building-your-own-hooks}
 
-Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: [higher-order components](/docs/higher-order-components.html) and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
+Sometimes, we want to reuse some stateful logic between components. Traditionally, there were two popular solutions to this problem: higher-order components and [render props](/docs/render-props.html). Custom Hooks let you do this, but without adding more components to your tree.
 
 Earlier on this page, we introduced a `FriendStatus` component that calls the `useState` and `useEffect` Hooks to subscribe to a friend's online status. Let's say we also want to reuse this subscription logic in another component.
 

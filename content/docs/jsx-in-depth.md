@@ -334,15 +334,13 @@ You can mix together different types of children, so you can use string literals
 A React component can also return an array of elements:
 
 ```js
-render() {
-  // No need to wrap list items in an extra element!
-  return [
-    // Don't forget the keys :)
-    <li key="A">First item</li>,
-    <li key="B">Second item</li>,
-    <li key="C">Third item</li>,
-  ];
-}
+// No need to wrap list items in an extra element!
+return [
+  // Don't forget the keys :)
+  <li key="A">First item</li>,
+  <li key="B">Second item</li>,
+  <li key="C">Third item</li>,
+];
 ```
 
 ### JavaScript Expressions as Children {#javascript-expressions-as-children}

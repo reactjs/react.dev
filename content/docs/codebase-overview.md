@@ -4,7 +4,7 @@ title: Codebase Overview
 layout: contributing
 permalink: docs/codebase-overview.html
 prev: how-to-contribute.html
-next: implementation-notes.html
+next: design-principles.html
 redirect_from:
   - "contributing/codebase-overview.html"
 ---
@@ -189,15 +189,11 @@ The only other officially supported renderer is [`react-art`](https://github.com
 
 ### Reconcilers {#reconcilers}
 
-Even vastly different renderers like React DOM and React Native need to share a lot of logic. In particular, the [reconciliation](/docs/reconciliation.html) algorithm should be as similar as possible so that declarative rendering, custom components, state, lifecycle methods, and refs work consistently across platforms.
+Even vastly different renderers like React DOM and React Native need to share a lot of logic. In particular, the [reconciliation](/docs/reconciliation.html) algorithm should be as similar as possible so that declarative rendering, custom components, state, hooks, and refs work consistently across platforms.
 
-To solve this, different renderers share some code between them. We call this part of React a "reconciler". When an update such as `setState()` is scheduled, the reconciler calls `render()` on components in the tree and mounts, updates, or unmounts them.
+To solve this, different renderers share some code between them. We call this part of React a "reconciler". When an update such as `setState()` is scheduled, the reconciler calls components in the tree and mounts, updates, or unmounts them.
 
 Reconcilers are not packaged separately because they currently have no public API. Instead, they are exclusively used by renderers such as React DOM and React Native.
-
-### Stack Reconciler {#stack-reconciler}
-
-The "stack" reconciler is the implementation powering React 15 and earlier. We have since stopped using it, but it is documented in detail in the [next section](/docs/implementation-notes.html).
 
 ### Fiber Reconciler {#fiber-reconciler}
 
@@ -208,7 +204,7 @@ Its main goals are:
 * Ability to split interruptible work in chunks.
 * Ability to prioritize, rebase and reuse work in progress.
 * Ability to yield back and forth between parents and children to support layout in React.
-* Ability to return multiple elements from `render()`.
+* Ability to return multiple elements from components.
 * Better support for error boundaries.
 
 You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
@@ -221,6 +217,6 @@ React implements a synthetic event system which is agnostic of the renderers and
 
 There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
 
-### What Next? {#what-next}
+### Next Steps {#next-steps}
 
-Read the [next section](/docs/implementation-notes.html) to learn about the pre-React 16 implementation of reconciler in more detail. We haven't documented the internals of the new reconciler yet.
+Read the [next section](/docs/design-principles.html) to learn about the guiding principles we use for React development.

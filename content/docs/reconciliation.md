@@ -8,7 +8,7 @@ React provides a declarative API so that you don't have to worry about exactly w
 
 ## Motivation {#motivation}
 
-When you use React, at a single point in time you can think of the `render()` function as creating a tree of React elements. On the next state or props update, that `render()` function will return a different tree of React elements. React then needs to figure out how to efficiently update the UI to match the most recent tree.
+When you use React, at a single point in time you can think of the function component as creating a tree of React elements. On the next state or props update, that function component will return a different tree of React elements. React then needs to figure out how to efficiently update the UI to match the most recent tree.
 
 There are some generic solutions to this algorithmic problem of generating the minimum number of operations to transform one tree into another. However, the [state of the art algorithms](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf) have a complexity in the order of O(n<sup>3</sup>) where n is the number of elements in the tree.
 
@@ -27,7 +27,7 @@ When diffing two trees, React first compares the two root elements. The behavior
 
 Whenever the root elements have different types, React will tear down the old tree and build the new tree from scratch. Going from `<a>` to `<img>`, or from `<Article>` to `<Comment>`, or from `<Button>` to `<div>` - any of those will lead to a full rebuild.
 
-When tearing down a tree, old DOM nodes are destroyed. Component instances receive `componentWillUnmount()`. When building up a new tree, new DOM nodes are inserted into the DOM. Component instances receive `componentWillMount()` and then `componentDidMount()`. Any state associated with the old tree is lost.
+When tearing down a tree, old DOM nodes are destroyed. Any state associated with the old tree is lost.
 
 Any components below the root will also get unmounted and have their state destroyed. For example, when diffing:
 
@@ -69,9 +69,9 @@ After handling the DOM node, React then recurses on the children.
 
 ### Component Elements Of The Same Type {#component-elements-of-the-same-type}
 
-When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `componentWillReceiveProps()` and `componentWillUpdate()` on the underlying instance.
+When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls the `useEffect` hook on the underlying instance.
 
-Next, the `render()` method is called and the diff algorithm recurses on the previous result and the new result.
+Next, the function component is called and the diff algorithm recurses on the previous result and the new result.
 
 ### Recursing On Children {#recursing-on-children}
 

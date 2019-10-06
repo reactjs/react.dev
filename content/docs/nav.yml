@@ -19,8 +19,8 @@
       title: Rendering Elements
     - id: components-and-props
       title: Components and Props
-    - id: state-and-lifecycle
-      title: State and Lifecycle
+    - id: state
+      title: State
     - id: handling-events
       title: Handling Events
     - id: conditional-rendering
@@ -31,8 +31,8 @@
       title: Forms
     - id: lifting-state-up
       title: Lifting State Up
-    - id: composition-vs-inheritance
-      title: Composition vs Inheritance
+    - id: composition
+      title: Composition
     - id: thinking-in-react
       title: Thinking In React
 - title: Advanced Guides
@@ -43,14 +43,10 @@
       title: Code-Splitting
     - id: context
       title: Context
-    - id: error-boundaries
-      title: Error Boundaries
     - id: forwarding-refs
       title: Forwarding Refs
     - id: fragments
       title: Fragments
-    - id: higher-order-components
-      title: Higher-Order Components
     - id: integrating-with-other-libraries
       title: Integrating with Other Libraries
     - id: jsx-in-depth
@@ -61,8 +57,6 @@
       title: Portals
     - id: profiler
       title: Profiler
-    - id: react-without-es6
-      title: React Without ES6
     - id: react-without-jsx
       title: React Without JSX
     - id: reconciliation
@@ -139,8 +133,6 @@
     title: How to Contribute
   - id: codebase-overview
     title: Codebase Overview
-  - id: implementation-notes
-    title: Implementation Notes
   - id: design-principles
     title: Design Principles
 - title: FAQ

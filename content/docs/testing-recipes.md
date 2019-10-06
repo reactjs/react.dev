@@ -356,7 +356,7 @@ export default function Toggle(props) {
       }}
       data-testid="toggle"
     >
-      {state === true ? "Turn off" : "Turn on"}
+      {state === true ? "Turn on" : "Turn off"}
     </button>
   );
 }
@@ -412,7 +412,7 @@ it("changes value when clicked", () => {
   });
 
   expect(onChange).toHaveBeenCalledTimes(6);
-  expect(button.innerHTML).toBe("Turn on");
+  expect(button.innerHTML).toBe("Turn off");
 });
 ```
 

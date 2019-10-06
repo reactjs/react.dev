@@ -11,10 +11,13 @@ function App() {
   });
 
   function toggleTheme() {
-    setState(state => ({...state, theme: state.theme === themes.dark
+    setState(state => ({
+      ...state,
+      theme:
+        state.theme === themes.dark
           ? themes.light
           : themes.dark,
-    )}));
+    }));
   }
 
   // highlight-range{1,3}

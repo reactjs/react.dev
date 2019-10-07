@@ -110,6 +110,10 @@ function useFriendStatus(friendID) {
 }
 ```
 
+>Tip
+>
+>We recommend to not use a dependency array for your custom hook because the ESLint rule will not pick up custom hooks. We recommend making use of `useCallback` or `useMemo` instead.
+
 Now let's see how we can use our custom Hook.
 
 ## Using a Custom Hook {#using-a-custom-hook}

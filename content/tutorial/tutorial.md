@@ -999,7 +999,7 @@ const doubled = numbers.map(x => x * 2); // [2, 4, 6]
 
 Using the `map` method, we can map our history of moves to React elements representing buttons on the screen, and display a list of buttons to "jump" to past moves.
 
-Let's `map` over the `history` in the Game's `render` method:
+Let's `map` over the `history` in the Game's `render` method (we will not use the first argument for `map()`):
 
 ```javascript{6-15,34}
   render() {
@@ -1007,13 +1007,13 @@ Let's `map` over the `history` in the Game's `render` method:
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
 
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
+    const moves = history.map((_, step) => {
+      const desc = step ?
+        'Go to move #' + step :
         'Go to game start';
       return (
         <li>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(step)}>{desc}</button>
         </li>
       );
     });
@@ -1091,16 +1091,16 @@ Keys do not need to be globally unique; they only need to be unique between comp
 
 In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. The moves are never re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
 
-In the Game component's `render` method, we can add the key as `<li key={move}>` and React's warning about keys should disappear:
+In the Game component's `render` method, we can add the key as `<li key={step}>` and React's warning about keys should disappear:
 
 ```js{6}
-    const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
+    const moves = history.map((_, step) => {
+      const desc = step ?
+        'Go to move #' + step :
         'Go to game start';
       return (
         <li key={move}>
-          <button onClick={() => this.jumpTo(move)}>{desc}</button>
+          <button onClick={() => this.jumpTo(step)}>{desc}</button>
         </li>
       );
     });

@@ -25,3 +25,4 @@ There are many example projects created by the React community. Feel free to add
 * **[Speedy math](https://github.com/pankajladhar/speedy-math)** An application which allows kids to practice basic Mathematics i.e  Addition, Subtraction, Multiply, Comparison. It is a PWA (Progressive web app) with offline support and install as App features.
 * **[Unit Converter](https://github.com/KarthikeyanRanasthala/react-unit-converter)** Minimal Yet Responsive Unit Converter Built With React, Material-UI & Convert-Units.
 * **[Open Source Birthday](https://github.com/KarthikeyanRanasthala/opensource-birthday)** Find your Open Source birthday by checking when you joined Github. Built with React, Semantic-UI, React-Redux, Redux-Thunk & Axios.
+* **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI

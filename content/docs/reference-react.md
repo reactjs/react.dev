@@ -333,7 +333,7 @@ Note that rendering `lazy` components requires that there's a `<React.Suspense>`
 
 ### `React.Suspense` {#reactsuspense}
 
-`React.Suspense` let you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
+`React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
 
 ```js
 // This component is loaded dynamically

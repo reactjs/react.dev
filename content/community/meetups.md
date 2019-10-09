@@ -102,6 +102,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Philippines {#philippines}
 * [Manila](https://www.meetup.com/reactjs-developers-manila/)
+* [Manila - ReactJS PH](https://www.meetup.com/ReactJS-Philippines/)
 
 ## Poland {#poland}
 * [Warsaw](https://www.meetup.com/React-js-Warsaw/)

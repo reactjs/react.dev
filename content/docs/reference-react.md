@@ -157,7 +157,7 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 ```javascript
 React.createElement(
   type,
-  [props],
+  {...props},
   [...children]
 )
 ```
@@ -173,7 +173,7 @@ Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `Re
 ```
 React.cloneElement(
   element,
-  [props],
+  {...props},
   [...children]
 )
 ```

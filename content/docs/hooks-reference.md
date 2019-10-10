@@ -197,7 +197,7 @@ A component calling `useContext` will always re-render when the context value ch
 >`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
 
 **Putting it together with Context.Provider**
-```js{31-37}
+```js{31-36}
 const themes = {
   light: {
     foreground: "#000000",
@@ -230,7 +230,6 @@ function Toolbar(props) {
 function ThemedButton() {
   const theme = useContext(ThemeContext);
 
-  // Button is a component that is styled based on a 'theme'
   return (
     <button style={{ background: theme.background, color: theme.foreground }}>
       I am styled by theme context!

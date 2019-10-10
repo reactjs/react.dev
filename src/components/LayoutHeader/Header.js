@@ -29,6 +29,9 @@ const Header = ({location}: {location: Location}) => (
       width: '100%',
       top: 0,
       left: 0,
+      '@media print': {
+        display: 'none',
+      },
     }}>
     <Container>
       <div

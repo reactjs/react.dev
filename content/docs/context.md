@@ -142,6 +142,10 @@ Changes are determined by comparing the new and old values using the same algori
 
 ```js
 class MyClass extends React.Component {
+  constructor(props, context) {
+    super(props, context)
+    let value = this.context;
+  }
   componentDidMount() {
     let value = this.context;
     /* perform a side-effect at mount using the value of MyContext */

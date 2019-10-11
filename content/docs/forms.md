@@ -35,11 +35,11 @@ For example, if we want to make the previous example log the name when it is sub
 function NameForm() {
   const [value, setValue] = useState('');
 
-  handleChange(event) {
+  function handleChange(event) {
     setValue(event.target.value);
   }
 
-  handleSubmit(event) {
+  function handleSubmit(event) {
     alert('A name was submitted: ' + value);
     event.preventDefault();
   }
@@ -82,7 +82,7 @@ In React, a `<textarea>` uses a `value` attribute instead. This way, a form usin
 
 ```javascript{2,4-6,17}
 function EssayForm() {
-  const [value, setValue] = useState('Please write an essay about your favorite DOM element.);
+  const [value, setValue] = useState('Please write an essay about your favorite DOM element.');
 
   function handleChange(event) {
     setValue(event.target.value);
@@ -130,7 +130,7 @@ function FlavorForm() {
     setValue(event.target.value);
   }
 
-  handleSubmit(event) {
+  function handleSubmit(event) {
     alert('Your favorite flavor is: ' + value);
     event.preventDefault();
   }
@@ -181,21 +181,21 @@ When you need to handle multiple controlled `input` elements, you can add a `nam
 For example:
 
 ```javascript{10,14,23,32}
-function Reservation {
+function Reservation() {
   const [state, setState] = useState({
     isGoing: true,
     numberOfGuests: 2
   });
 
-  handleInputChange(event) {
+  function handleInputChange(event) {
     const target = event.target;
     const value = target.type === 'checkbox' ? target.checked : target.value;
     const name = target.name;
 
-    setState(state => {
+    setState(state => ({
       ...state, 
       [name]: value
-    });
+    }));
   }
 
   return (
@@ -227,10 +227,10 @@ function Reservation {
 Note how we used the ES6 [computed property name](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Object_initializer#Computed_property_names) syntax to update the state key corresponding to the given input name:
 
 ```js{3}
-setState(state => {
+setState(state => ({
   ...state,
   [name]: value
-});
+}));
 ```
 
 It is equivalent to this ES5 code:

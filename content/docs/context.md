@@ -145,6 +145,7 @@ class MyClass extends React.Component {
   constructor(props, context) {
     super(props, context)
     let value = this.context;
+    /* ... */
   }
   componentDidMount() {
     let value = this.context;

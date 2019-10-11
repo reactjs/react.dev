@@ -32,16 +32,14 @@ class App extends React.Component {
     // The ThemedButton button inside the ThemeProvider
     // uses the theme from state while the one outside uses
     // the default dark theme
-    //highlight-range{3-5,7}
+    //highlight-range{3-5,6}
     return (
-      <Page>
+      <>
         <ThemeContext.Provider value={this.state.theme}>
           <Toolbar changeTheme={this.toggleTheme} />
         </ThemeContext.Provider>
-        <Section>
-          <ThemedButton />
-        </Section>
-      </Page>
+        <ThemedButton>Default Theme</ThemedButton>
+      </>
     );
   }
 }

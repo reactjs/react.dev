@@ -37,3 +37,5 @@ Ready to grow boilerplate with react-router, redux, saga, webpack 3, jest w/ cov
  * **[bae](https://github.com/siddharthkp/bae)** Zero config toolkit. SSR (with data fetching) + routing + streaming + styling (with styled-components) + HMR out of the box.
  * **[breko-hub](https://github.com/tomatau/breko-hub)** A production ready boilerplate for universal react applications. Complete with code splitting, server render (using koa), redux, sagas, debugging, hot-reloading (live updates on the server), css-modules, scss, super fast integration tests and unit tests. There's also a big focus on clean code and smaller files.
  * **[appseed](https://github.com/rosoftdeveloper/appseed)** A production ready boilerplate for UI-Ready react applications. The frontend can be bundled with various backends: Flask, Laravel, Express. 
+ * **[react-jump-start](https://github.com/kmhigashioka/react-jump-start)** Based on Create React App with Typescript, bootstrapped with the latest packages of react, react-router-dom, react-helmet-async, react-intl, styled-components, and @testing-library/react. A redux-less boilerplate inspired by @kentcdodds and @ryanflorence. 
+ 

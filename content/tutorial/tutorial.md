@@ -529,20 +529,20 @@ There are generally two approaches to changing data. The first approach is to *m
 
 #### Data Change with Mutation {#data-change-with-mutation}
 ```javascript
-var player = {score: 1, name: 'Jeff'};
+const player = {score: 1, name: 'Jeff'};
 player.score = 2;
 // Now player is {score: 2, name: 'Jeff'}
 ```
 
 #### Data Change without Mutation {#data-change-without-mutation}
 ```javascript
-var player = {score: 1, name: 'Jeff'};
+const player = {score: 1, name: 'Jeff'};
 
-var newPlayer = Object.assign({}, player, {score: 2});
+const newPlayer = Object.assign({}, player, {score: 2});
 // Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
 
 // Or if you are using object spread syntax proposal, you can write:
-// var newPlayer = {...player, score: 2};
+// const newPlayer = {...player, score: 2};
 ```
 
 The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
@@ -706,13 +706,12 @@ function calculateWinner(squares) {
     [0, 4, 8],
     [2, 4, 6],
   ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
+  const winLine = lines.find((item) => {
+    const [a, b, c] = item;
+    return squares[a] && squares[a] === squares[b] && squares[a] === squares[c];
+  });
+
+  return winLine ? squares[winLine[0]] : null;
 }
 ```
 
@@ -723,12 +722,8 @@ We will call `calculateWinner(squares)` in the Board's `render` function to chec
 ```javascript{2-8}
   render() {
     const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    const nextPlayer = this.state.xIsNext ? 'X' : 'O';
+    const status = winner ? `Winner: ${winner}` : `Next player: ${nextPlayer}`;
 
     return (
       // the rest has not changed
@@ -867,12 +862,8 @@ class Board extends React.Component {
 
   render() {
     const winner = calculateWinner(this.state.squares);
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    const nextPlayer = this.state.xIsNext ? 'X' : 'O';
+    const status = winner ? `Winner: ${winner}` : `Next player: ${nextPlayer}`;
 
     return (
       <div>
@@ -905,13 +896,8 @@ We'll update the Game component's `render` function to use the most recent histo
     const history = this.state.history;
     const current = history[history.length - 1];
     const winner = calculateWinner(current.squares);
-
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    const nextPlayer = this.state.xIsNext ? 'X' : 'O';
+    const status = winner ? `Winner: ${winner}` : `Next player: ${nextPlayer}`;
 
     return (
       <div className="game">
@@ -1018,12 +1004,8 @@ Let's `map` over the `history` in the Game's `render` method:
       );
     });
 
-    let status;
-    if (winner) {
-      status = 'Winner: ' + winner;
-    } else {
-      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
-    }
+    const nextPlayer = this.state.xIsNext ? 'X' : 'O';
+    const status = winner ? `Winner: ${winner}` : `Next player: ${nextPlayer}`;
 
     return (
       <div className="game">
@@ -1095,9 +1077,9 @@ In the Game component's `render` method, we can add the key as `<li key={move}>`
 
 ```js{6}
     const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move :
-        'Go to game start';
+      const desc = move 
+        ? 'Go to move #' + move
+        : 'Go to game start';
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>

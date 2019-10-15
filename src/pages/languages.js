@@ -39,7 +39,7 @@ const {complete, incomplete, partial} = languages.reduce(
 );
 
 type Props = {
-  location: Location,
+  location: Object,
 };
 
 const Languages = ({location}: Props) => (

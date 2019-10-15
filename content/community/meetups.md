@@ -131,6 +131,8 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Austin, TX - ReactJS](https://www.meetup.com/ReactJS-Austin-Meetup/)
 * [Boston, MA - ReactJS](https://www.meetup.com/ReactJS-Boston/)
 * [Boston, MA - React Native](https://www.meetup.com/Boston-React-Native-Meetup/)
+* [Charlotte, NC - ReactJS](https://www.meetup.com/ReactJS-Charlotte/)
+* [Charlotte, NC - React Native](https://www.meetup.com/cltreactnative/)
 * [Chicago, IL - ReactJS](https://www.meetup.com/React-Chicago/)
 * [Columbus, OH - ReactJS](https://www.meetup.com/ReactJS-Columbus-meetup/)
 * [Dallas, TX - ReactJS](https://www.meetup.com/ReactDallas/)

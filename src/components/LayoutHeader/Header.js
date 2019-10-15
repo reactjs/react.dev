@@ -190,7 +190,10 @@ const Header = ({location}: {location: Location}) => (
                 borderRadius: 15,
               },
             }}
-            to="/languages">
+            to="/languages"
+            state={{
+              redirectPath: window.location.pathname,
+            }}>
             <LanguagesIcon />{' '}
             <span
               css={{

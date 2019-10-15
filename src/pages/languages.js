@@ -58,13 +58,22 @@ const Languages = ({location}: Props) => (
               The React documentation is available in the following languages:
             </p>
 
-            <LanguagesGrid languages={complete} />
+            <LanguagesGrid
+              languages={complete}
+              redirectPath={location.state.redirectPath}
+            />
 
             <h2>In Progress</h2>
-            <LanguagesGrid languages={partial} />
+            <LanguagesGrid
+              languages={partial}
+              redirectPath={location.state.redirectPath}
+            />
 
             <h2>Needs Contributors</h2>
-            <LanguagesGrid languages={incomplete} />
+            <LanguagesGrid
+              languages={incomplete}
+              redirectPath={location.state.redirectPath}
+            />
 
             <p>
               Don't see your language above?{' '}
@@ -83,7 +92,7 @@ const Languages = ({location}: Props) => (
   </Layout>
 );
 
-const LanguagesGrid = ({languages}) => (
+const LanguagesGrid = ({languages, redirectPath}) => (
   <ul
     css={{
       display: 'flex',
@@ -99,12 +108,13 @@ const LanguagesGrid = ({languages}) => (
           name={name}
           status={status}
           translatedName={translated_name}
+          redirectPath={redirectPath}
         />
       ))}
   </ul>
 );
 
-const Language = ({code, name, status, translatedName}) => {
+const Language = ({code, name, status, translatedName, redirectPath}) => {
   const prefix = code === 'en' ? '' : `${code}.`;
 
   return (
@@ -141,7 +151,7 @@ const Language = ({code, name, status, translatedName}) => {
         {status === 0 && translatedName}
         {status > 0 && (
           <a
-            href={`https://${prefix}reactjs.org/`}
+            href={`https://${prefix}reactjs.org${redirectPath}`}
             rel="nofollow"
             lang={code}
             hrefLang={code}>

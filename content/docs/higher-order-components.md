@@ -201,7 +201,7 @@ function logProps(WrappedComponent) {
   return class extends React.Component {
     componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Next props: ', prevProps);
+      console.log('Prev props: ', prevProps);
     }
     render() {
       // Wraps the input component in a container, without mutating it. Good!

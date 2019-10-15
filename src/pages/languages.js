@@ -39,7 +39,7 @@ const {complete, incomplete, partial} = languages.reduce(
 );
 
 type Props = {
-  location: Location,
+  location: Object,
 };
 
 const Languages = ({location}: Props) => (
@@ -58,13 +58,22 @@ const Languages = ({location}: Props) => (
               The React documentation is available in the following languages:
             </p>
 
-            <LanguagesGrid languages={complete} />
+            <LanguagesGrid
+              languages={complete}
+              previousPath={location.state.previousPath}
+            />
 
             <h2>In Progress</h2>
-            <LanguagesGrid languages={partial} />
+            <LanguagesGrid
+              languages={partial}
+              previousPath={location.state.previousPath}
+            />
 
             <h2>Needs Contributors</h2>
-            <LanguagesGrid languages={incomplete} />
+            <LanguagesGrid
+              languages={incomplete}
+              previousPath={location.state.previousPath}
+            />
 
             <p>
               Don't see your language above?{' '}
@@ -83,7 +92,7 @@ const Languages = ({location}: Props) => (
   </Layout>
 );
 
-const LanguagesGrid = ({languages}) => (
+const LanguagesGrid = ({languages, previousPath}) => (
   <ul
     css={{
       display: 'flex',
@@ -99,12 +108,13 @@ const LanguagesGrid = ({languages}) => (
           name={name}
           status={status}
           translatedName={translated_name}
+          previousPath={previousPath}
         />
       ))}
   </ul>
 );
 
-const Language = ({code, name, status, translatedName}) => {
+const Language = ({code, name, status, translatedName, previousPath}) => {
   const prefix = code === 'en' ? '' : `${code}.`;
 
   return (
@@ -141,7 +151,7 @@ const Language = ({code, name, status, translatedName}) => {
         {status === 0 && translatedName}
         {status > 0 && (
           <a
-            href={`https://${prefix}reactjs.org/`}
+            href={`https://${prefix}reactjs.org${previousPath}`}
             rel="nofollow"
             lang={code}
             hrefLang={code}>

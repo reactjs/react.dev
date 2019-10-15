@@ -45,7 +45,7 @@ class DocSearch extends Component<{}, State> {
           paddingLeft: '0.25rem',
           paddingRight: '0.25rem',
 
-          [media.lessThan('expandedSearch')]: {
+          [media.lessThan('smallSearch')]: {
             justifyContent: 'flex-end',
             marginRight: 10,
           },
@@ -54,9 +54,6 @@ class DocSearch extends Component<{}, State> {
           // [media.between('mediumSearch', 'largerSearch')]: {
           //   width: 'calc(100% / 8)',
           // },
-          [media.greaterThan('expandedSearch')]: {
-            minWidth: 100,
-          },
         }}>
         <input
           css={{
@@ -82,7 +79,7 @@ class DocSearch extends Component<{}, State> {
               borderRadius: '0.25rem',
             },
 
-            [media.lessThan('expandedSearch')]: {
+            [media.lessThan('smallSearch')]: {
               fontSize: 16,
               width: '16px',
               transition: 'width 0.2s ease, padding 0.2s ease',
@@ -93,6 +90,15 @@ class DocSearch extends Component<{}, State> {
                 width: '8rem',
                 outline: 'none',
               },
+            },
+            [media.size('smallSearch')]: {
+              width: '150px',
+            },
+            [media.size('mediumSearch')]: {
+              width: '200px',
+            },
+            [media.size('largeSearch')]: {
+              width: '220px',
             },
           }}
           id="algolia-doc-search"

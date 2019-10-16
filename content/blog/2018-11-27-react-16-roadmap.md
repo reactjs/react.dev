@@ -82,13 +82,13 @@ function Example() {
   const [randomNumber, setRandomNumber] = useState(0);
 
   return (
-    <div>
-      <p>Random number: {randomNumber}</p>
-      <button onClick={() => setRandomNumber(Math.random())}>
-        Randomize
-      </button>
-    </div>
-  );
+   <div>
+     <p>Random number: {randomNumber}</p>
+     <button onClick={() => setRandomNumber(Math.random())}>
+       Randomize
+     </button>
+   </div>
+ );
 }
 ```
 

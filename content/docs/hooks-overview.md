@@ -18,7 +18,7 @@ Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). Th
 
 ## 📌 State Hook {#state-hook}
 
-This example renders a random number generator. When you click the button, it generates a random number:
+This example renders a random number. When you click the button, it generates a random number:
 
 ```js{1,4,5}
 import React, { useState } from 'react';
@@ -84,7 +84,7 @@ function Example() {
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API    
+    // Update the document title using the browser API
     document.title = `Random number: ${randomNumber}`;
   });
 

@@ -56,7 +56,7 @@ class Example extends React.Component {
 }
 ```
 
-The state starts as `{ randomNumber: 0 }`, and we generate a new random number `state.randomNumber` when the user clicks a button by calling `this.setState()`. We'll use snippets from this class throughout the page.
+The state starts as `{ randomNumber: 0 }`, and we generate a new random number when the user clicks a button by calling `this.setState()`. We'll use snippets from this class throughout the page.
 
 >Note
 >
@@ -213,7 +213,7 @@ Let's now **recap what we learned line by line** and check our understanding.
 ```
 
 * **Line 1:** We import the `useState` Hook from React. It lets us keep local state in a function component.
-* **Line 4:** Inside the `Example` component, we declare a new state variable by calling the `useState` Hook. It returns a pair of values, to which we give names. We're calling our variable `randomNumber` because it holds the generated random number. We initialize it to zero by passing `0` as the only `useState` argument. The second returned item is itself a function. It lets us update the `randomNumber` so we'll name it `setRandomNumber`.
+* **Line 4:** Inside the `Example` component, we declare a new state variable by calling the `useState` Hook. It returns a pair of values, to which we give names. We're calling our variable `randomNumber` because it holds a generated random number. We initialize it to zero by passing `0` as the only `useState` argument. The second returned item is itself a function. It lets us update the `randomNumber` so we'll name it `setRandomNumber`.
 * **Line 9:** When the user clicks, we call `setRandomNumber` with a new value. React will then re-render the `Example` component, passing the new `randomNumber` value to it.
 
 This might seem like a lot to take in at first. Don't rush it! If you're lost in the explanation, look at the code above again and try to read it from top to bottom. We promise that once you try to "forget" how state works in classes, and look at this code with fresh eyes, it will make sense.
@@ -279,7 +279,7 @@ React may batch multiple state update calls into a single update for performance
 const [count, setCount] = useState(0);
 ```
 
-Because the current state, in our case `count`, may be updated asynchronously or too fast, you should not rely on their values for calculating the next state.
+Because the current state, in our case `count`, may be updated asynchronously, you should not rely on this value for calculating the next state.
 
 For example, this code may fail to update the counter:
 

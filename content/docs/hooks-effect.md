@@ -315,7 +315,6 @@ So, how can Hooks solve this problem? Just like [you can use the *State* Hook mo
 ```js{3,8}
 function FriendStatusWithRandomNumbers(props) {
   const [randomNumber, setRandomNumber] = useState(0);
-  
   useEffect(() => {
     document.title = `Random number: ${randomNumber}`;
   });
@@ -452,7 +451,7 @@ useEffect(() => {
 
 In the example above, we pass `[randomNumber]` as the second argument. What does this mean? If the `randomNumber` is `1`, and then our component re-renders with `randomNumber` still equal to `1`, React will compare `[1]` from the previous render and `[1]` from the next render. Because all items in the array are the same (`1 === 1`), React would skip the effect. That's our optimization.
 
-When we render with `randomNumber` updated to `0.5`, React will compare the items in the `[1]` array from the previous render to items in the `[0.5]` array from the next render. This time, React will re-apply the effect because `0.5 !== 1`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
+When we render with `randomNumber` updated to `0.5`, React will compare the items in the `[1]` array from the previous render to items in the `[0.5]` array from the next render. This time, React will re-apply the effect because `1 !== 0.5`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
 
 This also works for effects that have a cleanup phase:
 

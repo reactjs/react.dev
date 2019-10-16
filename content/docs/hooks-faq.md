@@ -138,7 +138,7 @@ function Example() {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>
         Click me
       </button>
     </div>
@@ -399,7 +399,7 @@ function Example() {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>
         Click me
       </button>
       <button onClick={handleAlertClick}>
@@ -696,7 +696,7 @@ function Counter() {
 
   useEffect(() => {
     const id = setInterval(() => {
-      setCount(c => c + 1); // ✅ This doesn't depend on `count` variable outside
+      setCount(prevCount => prevCount + 1); // ✅ This doesn't depend on `count` variable outside
     }, 1000);
     return () => clearInterval(id);
   }, []); // ✅ Our effect doesn't use any variables in the component scope

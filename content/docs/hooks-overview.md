@@ -18,20 +18,20 @@ Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). Th
 
 ## 📌 State Hook {#state-hook}
 
-This example renders a counter. When you click the button, it increments the value:
+This example renders a random number generator. When you click the button, it generates a random number:
 
 ```js{1,4,5}
 import React, { useState } from 'react';
 
 function Example() {
-  // Declare a new state variable, which we'll call "count"
-  const [count, setCount] = useState(0);
+  // Declare a new state variable, which we'll call "randomNumber"
+  const [randomNumber, setRandomNumber] = useState(0);
 
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
+      <p>Random number: {randomNumber}</p>
+      <button onClick={() => setRandomNumber(Math.random())}>
+        Randomize
       </button>
     </div>
   );
@@ -40,7 +40,7 @@ function Example() {
 
 Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We call it inside a function component to add some local state to it. React will preserve this state between re-renders. `useState` returns a pair: the *current* state value and a function that lets you update it. You can call this function from an event handler or somewhere else. It's similar to `this.setState` in a class, except it doesn't merge the old and new state together. (We'll show an example comparing `useState` to `this.state` in [Using the State Hook](/docs/hooks-state.html).)
 
-The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
+The only argument to `useState` is the initial state. In the example above, it is `0` because we didn't generate a random number yet. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
 
 #### Declaring multiple state variables {#declaring-multiple-state-variables}
 
@@ -80,19 +80,19 @@ For example, this component sets the document title after React updates the DOM:
 import React, { useState, useEffect } from 'react';
 
 function Example() {
-  const [count, setCount] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(0);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
-    // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
+    // Update the document title using the browser API    
+    document.title = `Random number: ${randomNumber}`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
+      <p>Random number: {randomNumber}</p>
+      <button onClick={() => setRandomNumber(Math.random())}>
+        Randomize
       </button>
     </div>
   );
@@ -133,10 +133,10 @@ In this example, React would unsubscribe from our `ChatAPI` when the component u
 Just like with `useState`, you can use more than a single effect in a component:
 
 ```js{3,8}
-function FriendStatusWithCounter(props) {
-  const [count, setCount] = useState(0);
+function FriendStatusWithRandomNumbers(props) {
+  const [randomNumber, setRandomNumber] = useState(0);
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Random number: ${randomNumber}`;
   });
 
   const [isOnline, setIsOnline] = useState(null);

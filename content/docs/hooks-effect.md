@@ -14,26 +14,26 @@ The *Effect Hook* lets you perform side effects in function components:
 import React, { useState, useEffect } from 'react';
 
 function Example() {
-  const [count, setCount] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(0);
 
   // Similar to componentDidMount and componentDidUpdate:
   useEffect(() => {
     // Update the document title using the browser API
-    document.title = `You clicked ${count} times`;
+    document.title = `Random number: ${randomNumber}`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
+      <p>Random number: {randomNumber}</p>
+      <button onClick={() => setRandomNumber(Math.random())}>
+        Randomize
       </button>
     </div>
   );
 }
 ```
 
-This snippet is based on the [counter example from the previous page](/docs/hooks-state.html), but we added a new feature to it: we set the document title to a custom message including the number of clicks.
+This snippet is based on the [random numbers example from the previous page](/docs/hooks-state.html), but we added a new feature to it: we set the document title to a custom message including the randomized number.
 
 Data fetching, setting up a subscription, and manually changing the DOM in React components are all examples of side effects. Whether or not you're used to calling these operations "side effects" (or just "effects"), you've likely performed them in your components before.
 
@@ -51,31 +51,31 @@ Sometimes, we want to **run some additional code after React has updated the DOM
 
 In React class components, the `render` method itself shouldn't cause side effects. It would be too early -- we typically want to perform our effects *after* React has updated the DOM.
 
-This is why in React classes, we put side effects into `componentDidMount` and `componentDidUpdate`. Coming back to our example, here is a React counter class component that updates the document title right after React makes changes to the DOM:
+This is why in React classes, we put side effects into `componentDidMount` and `componentDidUpdate`. Coming back to our example, here is a React random number generator class component that updates the document title right after React makes changes to the DOM:
 
 ```js{9-15}
 class Example extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      count: 0
+      randomNumber: 0
     };
   }
 
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Random number: ${this.state.randomNumber}`;
   }
 
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Random number: ${this.state.randomNumber}`;
   }
 
   render() {
     return (
       <div>
-        <p>You clicked {this.state.count} times</p>
-        <button onClick={() => this.setState({ count: this.state.count + 1 })}>
-          Click me
+        <p>Random number: {randomNumber}</p>
+        <button onClick={() => setRandomNumber(Math.random())}>
+          Randomize
         </button>
       </div>
     );
@@ -97,17 +97,17 @@ We've already seen this example at the top of this page, but let's take a closer
 import React, { useState, useEffect } from 'react';
 
 function Example() {
-  const [count, setCount] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(0);
 
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Random number: ${randomNumber}`;
   });
 
   return (
     <div>
-      <p>You clicked {count} times</p>
-      <button onClick={() => setCount(count + 1)}>
-        Click me
+      <p>Random number: {randomNumber}</p>
+      <button onClick={() => setRandomNumber(Math.random())}>
+        Randomize
       </button>
     </div>
   );
@@ -116,7 +116,7 @@ function Example() {
 
 **What does `useEffect` do?** By using this Hook, you tell React that your component needs to do something after render. React will remember the function you passed (we'll refer to it as our "effect"), and call it later after performing the DOM updates. In this effect, we set the document title, but we could also perform data fetching or call some other imperative API.
 
-**Why is `useEffect` called inside a component?** Placing `useEffect` inside the component lets us access the `count` state variable (or any props) right from the effect. We don't need a special API to read it -- it's already in the function scope. Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
+**Why is `useEffect` called inside a component?** Placing `useEffect` inside the component lets us access the `randomNumber` state variable (or any props) right from the effect. We don't need a special API to read it -- it's already in the function scope. Hooks embrace JavaScript closures and avoid introducing React-specific APIs where JavaScript already provides a solution.
 
 **Does `useEffect` run after every render?** Yes! By default, it runs both after the first render *and* after every update. (We will later talk about [how to customize this](#tip-optimizing-performance-by-skipping-effects).) Instead of thinking in terms of "mounting" and "updating", you might find it easier to think that effects happen "after render". React guarantees the DOM has been updated by the time it runs the effects.
 
@@ -126,17 +126,17 @@ Now that we know more about effects, these lines should make sense:
 
 ```js
 function Example() {
-  const [count, setCount] = useState(0);
+  const [randomNumber, setRandomNumber] = useState(0);
 
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Random number: ${randomNumber}`;
   });
 }
 ```
 
-We declare the `count` state variable, and then we tell React we need to use an effect. We pass a function to the `useEffect` Hook. This function we pass *is* our effect. Inside our effect, we set the document title using the `document.title` browser API. We can read the latest `count` inside the effect because it's in the scope of our function. When React renders our component, it will remember the effect we used, and then run our effect after updating the DOM. This happens for every render, including the first one.
+We declare the `randomNumber` state variable, and then we tell React we need to use an effect. We pass a function to the `useEffect` Hook. This function we pass *is* our effect. Inside our effect, we set the document title using the `document.title` browser API. We can read the latest `randomNumber` inside the effect because it's in the scope of our function. When React renders our component, it will remember the effect we used, and then run our effect after updating the DOM. This happens for every render, including the first one.
 
-Experienced JavaScript developers might notice that the function passed to `useEffect` is going to be different on every render. This is intentional. In fact, this is what lets us read the `count` value from inside the effect without worrying about it getting stale. Every time we re-render, we schedule a _different_ effect, replacing the previous one. In a way, this makes the effects behave more like a part of the render result -- each effect "belongs" to a particular render. We will see more clearly why this is useful [later on this page](#explanation-why-effects-run-on-each-update).
+Experienced JavaScript developers might notice that the function passed to `useEffect` is going to be different on every render. This is intentional. In fact, this is what lets us read the `randomNumber` value from inside the effect without worrying about it getting stale. Every time we re-render, we schedule a _different_ effect, replacing the previous one. In a way, this makes the effects behave more like a part of the render result -- each effect "belongs" to a particular render. We will see more clearly why this is useful [later on this page](#explanation-why-effects-run-on-each-update).
 
 >Tip
 >
@@ -253,7 +253,7 @@ Other effects might not have a cleanup phase, and don't return anything.
 
 ```js
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Random number: ${randomNumber}`;
   });
 ```
 
@@ -271,18 +271,18 @@ We'll continue this page with an in-depth look at some aspects of `useEffect` th
 
 ### Tip: Use Multiple Effects to Separate Concerns {#tip-use-multiple-effects-to-separate-concerns}
 
-One of the problems we outlined in the [Motivation](/docs/hooks-intro.html#complex-components-become-hard-to-understand) for Hooks is that class lifecycle methods often contain unrelated logic, but related logic gets broken up into several methods. Here is a component that combines the counter and the friend status indicator logic from the previous examples:
+One of the problems we outlined in the [Motivation](/docs/hooks-intro.html#complex-components-become-hard-to-understand) for Hooks is that class lifecycle methods often contain unrelated logic, but related logic gets broken up into several methods. Here is a component that combines the random number generator and the friend status indicator logic from the previous examples:
 
 ```js
-class FriendStatusWithCounter extends React.Component {
+class FriendStatusWithRandomNumbers extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { count: 0, isOnline: null };
+    this.state = { randomNumber: 0, isOnline: null };
     this.handleStatusChange = this.handleStatusChange.bind(this);
   }
 
   componentDidMount() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Random number: ${this.state.randomNumber}`;
     ChatAPI.subscribeToFriendStatus(
       this.props.friend.id,
       this.handleStatusChange
@@ -290,7 +290,7 @@ class FriendStatusWithCounter extends React.Component {
   }
 
   componentDidUpdate() {
-    document.title = `You clicked ${this.state.count} times`;
+    document.title = `Random number: ${this.state.randomNumber}`;
   }
 
   componentWillUnmount() {
@@ -313,10 +313,11 @@ Note how the logic that sets `document.title` is split between `componentDidMoun
 So, how can Hooks solve this problem? Just like [you can use the *State* Hook more than once](/docs/hooks-state.html#tip-using-multiple-state-variables), you can also use several effects. This lets us separate unrelated logic into different effects:
 
 ```js{3,8}
-function FriendStatusWithCounter(props) {
-  const [count, setCount] = useState(0);
+function FriendStatusWithRandomNumbers(props) {
+  const [randomNumber, setRandomNumber] = useState(0);
+  
   useEffect(() => {
-    document.title = `You clicked ${count} times`;
+    document.title = `Random number: ${randomNumber}`;
   });
 
   const [isOnline, setIsOnline] = useState(null);
@@ -435,8 +436,8 @@ In some cases, cleaning up or applying the effect after every render might creat
 
 ```js
 componentDidUpdate(prevProps, prevState) {
-  if (prevState.count !== this.state.count) {
-    document.title = `You clicked ${this.state.count} times`;
+  if (prevState.randomNumber !== this.state.randomNumber) {
+    document.title = `Random number: ${randomNumber}`;
   }
 }
 ```
@@ -445,13 +446,13 @@ This requirement is common enough that it is built into the `useEffect` Hook API
 
 ```js{3}
 useEffect(() => {
-  document.title = `You clicked ${count} times`;
-}, [count]); // Only re-run the effect if count changes
+  document.title = `Random number: ${randomNumber}`;
+}, [randomNumber]); // Only re-run the effect if randomNumber changes
 ```
 
-In the example above, we pass `[count]` as the second argument. What does this mean? If the `count` is `5`, and then our component re-renders with `count` still equal to `5`, React will compare `[5]` from the previous render and `[5]` from the next render. Because all items in the array are the same (`5 === 5`), React would skip the effect. That's our optimization.
+In the example above, we pass `[randomNumber]` as the second argument. What does this mean? If the `randomNumber` is `1`, and then our component re-renders with `randomNumber` still equal to `1`, React will compare `[1]` from the previous render and `[1]` from the next render. Because all items in the array are the same (`1 === 1`), React would skip the effect. That's our optimization.
 
-When we render with `count` updated to `6`, React will compare the items in the `[5]` array from the previous render to items in the `[6]` array from the next render. This time, React will re-apply the effect because `5 !== 6`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
+When we render with `randomNumber` updated to `0.5`, React will compare the items in the `[1]` array from the previous render to items in the `[0.5]` array from the next render. This time, React will re-apply the effect because `0.5 !== 1`. If there are multiple items in the array, React will re-run the effect even if just one of them is different.
 
 This also works for effects that have a cleanup phase:
 

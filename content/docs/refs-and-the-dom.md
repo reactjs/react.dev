@@ -161,7 +161,7 @@ class Parent extends React.Component {
 }
 ```
 
-You should convert the component to a class if you need a ref to it, just like you do when you need lifecycle methods or state.
+You should convert the component to a class if you need a ref to it.
 
 You can, however, **use the `ref` attribute inside a function component** as long as you refer to a DOM element or a class component:
 

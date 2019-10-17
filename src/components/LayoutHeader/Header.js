@@ -195,7 +195,8 @@ const Header = ({location}: {location: Location}) => (
             }}
             to="/languages"
             state={{
-              previousPath: window.location.pathname,
+              previousPath:
+                typeof window !== 'undefined' ? window.location.pathname : '/',
             }}>
             <LanguagesIcon />{' '}
             <span

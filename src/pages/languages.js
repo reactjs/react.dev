@@ -60,19 +60,31 @@ const Languages = ({location}: Props) => (
 
             <LanguagesGrid
               languages={complete}
-              previousPath={location.state.previousPath}
+              previousPath={
+                typeof location.state.previousPath !== 'undefined'
+                  ? location.state.previousPath
+                  : '/'
+              }
             />
 
             <h2>In Progress</h2>
             <LanguagesGrid
               languages={partial}
-              previousPath={location.state.previousPath}
+              previousPath={
+                typeof location.state.previousPath !== 'undefined'
+                  ? location.state.previousPath
+                  : '/'
+              }
             />
 
             <h2>Needs Contributors</h2>
             <LanguagesGrid
               languages={incomplete}
-              previousPath={location.state.previousPath}
+              previousPath={
+                typeof location.state.previousPath !== 'undefined'
+                  ? location.state.previousPath
+                  : '/'
+              }
             />
 
             <p>

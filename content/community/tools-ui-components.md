@@ -82,3 +82,4 @@ permalink: community/ui-components.html
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)**: UI for React Developers.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.
 * **[React UI Toolkit](https://react-ui-tools.com/)**: 115+ professionally maintainted UI components ranging from a robust grid to charts and more. Try for FREE and build React apps faster.
+* **[Flatlogic React Admin Templates](https://flatlogic.com/templates/react)** 5+ Paid and Free React Admin templates with a lot of components to speed up web development. No jQuery.

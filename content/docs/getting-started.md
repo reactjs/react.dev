@@ -65,7 +65,7 @@ The [React homepage](/) contains a few small React examples with a live editor. 
 
 ### React for Beginners {#react-for-beginners}
 
-If you feel that the React documentation goes at a faster pace than you're comfortable with, check out [this overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
+If you feel that the React documentation goes at a faster pace than you're comfortable with, check out this [overview of React by Tania Rascia](https://www.taniarascia.com/getting-started-with-react/). It introduces the most important React concepts in a detailed, beginner-friendly way. Once you're done, give the documentation another try!
 
 ### React for Designers {#react-for-designers}
 

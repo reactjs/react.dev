@@ -119,7 +119,7 @@ If you already minify the application scripts, **your site will be production-re
 <script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
-If you don't have a minification step for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
+If you don't have a minification step for your scripts, here's [one way](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3) to set it up.
 
 ## Optional: Try React with JSX {#optional-try-react-with-jsx}
 

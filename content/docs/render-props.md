@@ -225,7 +225,7 @@ function withMouse(Component) {
     render() {
       return (
         <Mouse render={mouse => (
-          <Component {...this.props} mouse={mouse} />
+          <Component mouse={mouse} {...this.props} />
         )}/>
       );
     }

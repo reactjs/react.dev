@@ -89,7 +89,7 @@ Experimental features are ones that are not ready to be released to the wider pu
 
 For example, if the Experimental channel had existed when we announced Hooks, we would have released Hooks to the Experimental channel weeks before they were available in Latest.
 
-You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less unstable than Next. **We do not guarantee any stability between Experimental releases.**
+You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Next. **We do not guarantee any stability between Experimental releases.**
 
 #### How Can I Learn More About Experimental Features?
 

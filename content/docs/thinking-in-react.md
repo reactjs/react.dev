@@ -91,15 +91,15 @@ Think of all of the pieces of data in our example application. We have:
   * The value of the checkbox
   * The filtered list of products
 
-Let's go through each one and figure out which one is state. Ask three questions about each piece of data:
+Let's go through each one and figure out which one is state. Ask three questions about each piece of data. If you can answer "yes" to all three, then it probably isn't state:
 
   1. Is it passed in from a parent via props? If so, it probably isn't state.
   2. Does it remain unchanged over time? If so, it probably isn't state.
   3. Can you compute it based on any other state or props in your component? If so, it isn't state.
 
-The original list of products is passed in as props, so that's not state. The search text and the checkbox seem to be state since they change over time and can't be computed from anything. And finally, the filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox.
+The original list of products is passed in as props, so that's not state. The filtered list of products isn't state because it can be computed by combining the original list of products with the search text and value of the checkbox. And finally, the search text and the checkbox, since they change over time and can't be computed from anything, seem to be state. 
 
-So finally, our state is:
+So our state is:
 
   * The search text the user has entered
   * The value of the checkbox

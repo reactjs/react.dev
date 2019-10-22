@@ -8,6 +8,8 @@
       title: Create a New React App
     - id: cdn-links
       title: CDN Links
+    - id: release-channels
+      title: Release Channels
 - title: Main Concepts
   isOrdered: true
   items:
@@ -109,25 +111,25 @@
 - title: Hooks (New)
   isOrdered: true
   items:
-      - id: hooks-intro
-        title: Introducing Hooks
-      - id: hooks-overview
-        title: Hooks at a Glance
-      - id: hooks-state
-        title: Using the State Hook
-      - id: hooks-effect
-        title: Using the Effect Hook
-      - id: hooks-rules
-        title: Rules of Hooks
-      - id: hooks-custom
-        title: Building Your Own Hooks
-      - id: hooks-reference
-        title: Hooks API Reference
-      - id: hooks-faq
-        title: Hooks FAQ
+    - id: hooks-intro
+      title: Introducing Hooks
+    - id: hooks-overview
+      title: Hooks at a Glance
+    - id: hooks-state
+      title: Using the State Hook
+    - id: hooks-effect
+      title: Using the Effect Hook
+    - id: hooks-rules
+      title: Rules of Hooks
+    - id: hooks-custom
+      title: Building Your Own Hooks
+    - id: hooks-reference
+      title: Hooks API Reference
+    - id: hooks-faq
+      title: Hooks FAQ
 - title: Testing
   items:
-    - id: testing 
+    - id: testing
       title: Testing Overview
     - id: testing-recipes
       title: Testing Recipes
@@ -135,14 +137,14 @@
       title: Testing Environments
 - title: Contributing
   items:
-  - id: how-to-contribute
-    title: How to Contribute
-  - id: codebase-overview
-    title: Codebase Overview
-  - id: implementation-notes
-    title: Implementation Notes
-  - id: design-principles
-    title: Design Principles
+    - id: how-to-contribute
+      title: How to Contribute
+    - id: codebase-overview
+      title: Codebase Overview
+    - id: implementation-notes
+      title: Implementation Notes
+    - id: design-principles
+      title: Design Principles
 - title: FAQ
   items:
     - id: faq-ajax

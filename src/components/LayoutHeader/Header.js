@@ -50,7 +50,6 @@ const Header = ({location}: {location: Location}) => (
         <Link
           css={{
             display: 'flex',
-            marginRight: 10,
             height: '100%',
             alignItems: 'center',
             color: colors.brand,

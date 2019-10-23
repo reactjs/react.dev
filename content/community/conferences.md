@@ -13,7 +13,7 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ## Upcoming Conferences {#upcoming-conferences}
 
 ### App.js Conf 2020 {#appjsonf2020}
-April 23 - 24, 2020 in Cracow, Poland
+April 23 - 24, 2020 in Kraków, Poland
 
 [Website](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
 

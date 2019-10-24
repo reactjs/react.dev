@@ -846,7 +846,7 @@ Even though there is an improvement in responsiveness, this example isn't as com
 
 ### SuspenseList {#suspenselist}
 
-`<SuspenseList>` is the last pattern that's related to orchestracting loading states.
+`<SuspenseList>` is the last pattern that's related to orchestrating loading states.
 
 Consider this example:
 

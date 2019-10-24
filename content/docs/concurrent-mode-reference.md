@@ -61,7 +61,7 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 
 `Suspense` lets your components "wait" for something before they can render, showing a fallback while waiting.
 
-In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` has loaded, we will continue to show the fallback.
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
 
 `Suspense` takes two props:
 * **fallback** takes an loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.
@@ -91,7 +91,7 @@ When multiple components need to fetch data, this data may arrive in an unpredic
 `SuspenseList` takes two props:
 * **revealOrder (fowards, backwards, together)** defines the order in which the `SuspenseList` children should be revealed.
   * `together` reveals *all* of them when they're ready instead of one by one.
-* **tail (collapsed, hidden)** dictates how unloaded items in a `SuspenseList` is shown. 
+* **tail (collapsed, hidden)** dictates how unloaded items in a `SuspenseList` are shown. 
     * By default, `SuspenseList` will show all fallbacks in the list.
     * `collapsed` shows only the next fallback in the list.
     * `hidden` doesn't show any unloaded items.
@@ -133,7 +133,7 @@ function App() {
       >
         Next
       </button>
-      {isPending ? " Loading..." : null}
+      {isPending ? "Loading..." : null}
       <Suspense fallback={<Spinner />}>
         <ProfilePage resource={resource} />
       </Suspense>
@@ -200,4 +200,4 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 `useDeferredValue` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long the deferred value is allowed to lag behind.
 
-React will always try to use a shorter lag when network and device allows it.
+React will always try to use a shorter lag when network and device allow it.

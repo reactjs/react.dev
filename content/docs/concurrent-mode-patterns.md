@@ -138,7 +138,7 @@ return (
     >
       Next
     </button>
-    {isPending ? " Loading..." : null}
+    {isPending ? "Loading..." : null}
     <ProfilePage resource={resource} />
   </>
 );
@@ -171,7 +171,7 @@ function App() {
       >
         Next
       </button>
-      {isPending ? " Loading..." : null}
+      {isPending ? "Loading..." : null}
       <ProfilePage resource={resource} />
     </>
   );
@@ -199,7 +199,7 @@ Clearly, both "versions" of `<ProfilePage>` exist at the same time. We know the 
 
 This gets at the root of what Concurrent Mode is. We've [previously said](/docs/concurrent-mode-intro.html#intentional-loading-sequences) it's a bit like React working on state update on a "branch". Another way we can conceptualize is that wrapping a state update in `startTransition` begins rendering it *"in a different universe"*, much like in science fiction movies. We don't "see" that universe directly -- but we can get a signal from it that tells us something is happening (`isPending`). When the update is ready, our "universes" merge back together, and we see the result on the screen!
 
-Play a bit more with the [demo](https://codesandbox.io/s/jovial-lalande-26yep), and try to imagine it happening.
+Play a bit more with the [demo](https://codesandbox.io/s/jovial-lalande-26yep), and try to imagine it's happening.
 
 Of course, two versions of the tree rendering *at the same time* is an illusion, just like the idea that all programs run on your computer at the same time is an illusion. An operating system switches between different applications very fast. Similarly, React can switch between the version of the tree you see on the screen and the version that it's "preparing" to show next.
 
@@ -454,7 +454,7 @@ You can compare these two examples to feel the difference:
 * Default: [Receded → Skeleton → Complete](https://codesandbox.io/s/prod-grass-g1lh5)
 * **Preferred: [Pending → Skeleton → Complete](https://codesandbox.io/s/focused-snow-xbkvl)**
 
-The only difference between these two examples is that the first uses regular `<button>`s, but the second one uses our custom `<Button>` component with `useTransition`.
+The only difference between these two examples is that the first uses regular `<button>`, but the second one uses our custom `<Button>` component with `useTransition`.
 
 ### Wrap Lazy Features in `<Suspense>` {#wrap-lazy-features-in-suspense}
 
@@ -682,7 +682,7 @@ function App() {
 
 **[Try it on CodeSandbox](https://codesandbox.io/s/zen-keldysh-rifos)**
 
-Try typing into the input now. Something's wrong! The input is updating very slowly.
+Try typing into the input now. Something is wrong! The input is updating very slowly.
 
 We've fixed the first problem (suspending outside of a transition). But now because of the transition, our state doesn't update immediately, and it can't "drive" a controlled input!
 
@@ -723,7 +723,7 @@ By default, React always renders a consistent UI. Consider code like this:
 
 React guarantees that whenever we look at these components on the screen, they will reflect data from the same `user`. If a different `user` is passed down because of a state update, you would see them changing together. You can't ever record a screen and find a frame where they would show values from different `user`s. (If you ever run into a case like this, file a bug!)
 
-This makes sense in the vast majority of situations. Inconsistent UI is confusing and can mislead users. (For example, it would be terrible if a messager's Send button and the conversation picker pane "disagreed" about which thread is currently selected.)
+This makes sense in the vast majority of situations. Inconsistent UI is confusing and can mislead users. (For example, it would be terrible if a messenger's Send button and the conversation picker pane "disagreed" about which thread is currently selected.)
 
 However, sometimes it might be helpful to intentionally introduce an inconsistency. We could do it manually by "splitting" the state like above, but React also offers a built-in Hook for this:
 

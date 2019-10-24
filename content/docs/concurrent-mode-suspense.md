@@ -96,7 +96,7 @@ Suspense is significantly different from existing approaches to these problems, 
 
  * **It is not a data fetching implementation.** It does not assume that you use GraphQL, REST, or any other particular data format, library, transport, or protocol.
 
- * **It is not a ready-to-use client.** You can't "replace" `fetch` or Relay with Suspense. But you can use a library that's integrated with Suspense (for example, [new Relay APIs](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay#loading-states-with-suspense)).
+ * **It is not a ready-to-use client.** You can't "replace" `fetch` or Relay with Suspense. But you can use a library that's integrated with Suspense (for example, [new Relay APIs](https://relay.dev/docs/en/experimental/api-reference)).
 
  * **It does not couple data fetching to the view layer.** It helps orchestrate displaying the loading states in your UI, but it doesn't tie your network logic to React components.
 
@@ -112,7 +112,7 @@ So what's the point of Suspense? There's a few ways we can answer this:
 
 ## Using Suspense in Practice {#using-suspense-in-practice}
 
-At Facebook, so far we have only used the Relay integration with Suspense in production. **If you're looking for a practical guide to get started today, [check out the Relay Guide](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay#loading-states-with-suspense)!** It demonstrates patterns that have already worked well for us in production.
+At Facebook, so far we have only used the Relay integration with Suspense in production. **If you're looking for a practical guide to get started today, [check out the Relay Guide](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay)!** It demonstrates patterns that have already worked well for us in production.
 
 **The code demos on this page use a "fake" API implementation rather than Relay.** This makes them easier to understand if you're not familiar with GraphQL, but they won't tell you the "right way" to build an app with Suspense. This page is more conceptual and is intended to help you see *why* Suspense works in a certain way, and which problems it solves.
 

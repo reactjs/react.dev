@@ -390,6 +390,7 @@ After the click, React started rendering the next screen:
     <ProfileDetails />
     <Suspense fallback={...}>
       <ProfileTimeline />
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -403,6 +404,7 @@ Both `<ProfileDetails>` and `<ProfileTimeline>` need data to render, so they sus
     <ProfileDetails /> {/* suspends! */}
     <Suspense fallback={<h2>Loading posts...</h2>}>
       <ProfileTimeline /> {/* suspends! */}
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -419,6 +421,7 @@ When a component suspends, React needs to show the closest fallback. But the clo
     <ProfileDetails /> {/* suspends! */}
     <Suspense fallback={...}>
       <ProfileTimeline />
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -437,6 +440,7 @@ As we load more data, React will retry rendering, and `<ProfileDetails>` can ren
       <h2>Loading posts...</h2>
     }>
       <ProfileTimeline /> {/* suspends! */}
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```

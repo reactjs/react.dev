@@ -64,7 +64,7 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` has loaded, we will continue to show the fallback.
 
 `Suspense` takes two props:
-* **fallback** takes an loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.
+* **fallback** takes a loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.
 * **unstable_avoidThisFallback** takes a boolean. It tells React whether to "skip" revealing this boundary during the initial load. This API will likely be removed in a future release.
 
 ### `<SuspenseList>` {#suspenselist}

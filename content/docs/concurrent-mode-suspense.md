@@ -88,7 +88,7 @@ This demo is a teaser. Don't worry if it doesn't quite make sense yet. We'll tal
 
 Suspense is not a data fetching library. It's a **mechanism for data fetching libraries** to communicate to React that *the data a component is reading is not ready yet*. React can then wait for it to be ready and update the UI. At Facebook, we use Relay and its [new Suspense integration](https://relay.dev/docs/en/experimental/a-guided-tour-of-relay#loading-states-with-suspense). We expect that other libraries like Apollo can provide similar integrations.
 
-In long term, we intend Suspense to become the primary way to read asynchronous data from components -- no matter where that data is coming from.
+In the long term, we intend Suspense to become the primary way to read asynchronous data from components -- no matter where that data is coming from.
 
 ### What Suspense Is Not {#what-suspense-is-not}
 

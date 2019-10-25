@@ -152,7 +152,7 @@ Now, this feels a lot better! When we click Next, it gets disabled because click
 
 Let's take another look at all the changes we've made since the [original example](https://codesandbox.io/s/infallible-feather-xjtbu):
 
-```js{3-5,11,14,19}
+```js{3-5,9,11,14,19}
 function App() {
   const [resource, setResource] = useState(initialResource);
   const [startTransition, isPending] = useTransition({
@@ -185,7 +185,7 @@ It took us only seven lines of code to add this transition:
 * We've imported the `useTransition` Hook and used it the component that updates the state.
 * We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
 * We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
-* We're using `isPending` to communicate the state transition progress to the user.
+* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
 
 As a result, clicking "Next" doesn't perform an immediate state transition to an "undesirable" loading state, but instead stays on the previous screen and communicates progress there.
 

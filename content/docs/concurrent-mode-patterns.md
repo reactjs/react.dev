@@ -360,7 +360,7 @@ At the very end, we have the **Complete** state. That's where we want to eventua
 
 But before our screen can be Complete, we might need to load some data or code. When we're on the next screen, but some parts of it are still loading, we call that a **Skeleton** state.
 
-Finally, there two primary ways that lead us to the Skeleton state. We will illustrate the difference between them with a concrete example.
+Finally, there are two primary ways that lead us to the Skeleton state. We will illustrate the difference between them with a concrete example.
 
 ### Default: Receded → Skeleton → Complete {#default-receded-skeleton-complete}
 

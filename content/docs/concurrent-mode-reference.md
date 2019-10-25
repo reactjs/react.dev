@@ -17,7 +17,7 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 
 - [Enabling Concurrent Mode](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createsyncroot)
+    - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)

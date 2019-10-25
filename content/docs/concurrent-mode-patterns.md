@@ -183,7 +183,7 @@ function App() {
 It took us only seven lines of code to add this transition:
 
 * We've imported the `useTransition` Hook and used it the component that updates the state.
-* We've passed `{timeoutMs: 3000}` to stay on the previous screeen for at most 3 seconds.
+* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
 * We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
 * We're using `isPending` to communicate the state transition progress to the user.
 
@@ -390,6 +390,7 @@ After the click, React started rendering the next screen:
     <ProfileDetails />
     <Suspense fallback={...}>
       <ProfileTimeline />
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -403,6 +404,7 @@ Both `<ProfileDetails>` and `<ProfileTimeline>` need data to render, so they sus
     <ProfileDetails /> {/* suspends! */}
     <Suspense fallback={<h2>Loading posts...</h2>}>
       <ProfileTimeline /> {/* suspends! */}
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -419,6 +421,7 @@ When a component suspends, React needs to show the closest fallback. But the clo
     <ProfileDetails /> {/* suspends! */}
     <Suspense fallback={...}>
       <ProfileTimeline />
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -437,6 +440,7 @@ As we load more data, React will retry rendering, and `<ProfileDetails>` can ren
       <h2>Loading posts...</h2>
     }>
       <ProfileTimeline /> {/* suspends! */}
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -842,7 +846,7 @@ Even though there is an improvement in responsiveness, this example isn't as com
 
 ### SuspenseList {#suspenselist}
 
-`<SuspenseList>` is the last pattern that's related to orchestracting loading states.
+`<SuspenseList>` is the last pattern that's related to orchestrating loading states.
 
 Consider this example:
 

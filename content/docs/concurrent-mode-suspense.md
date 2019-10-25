@@ -130,7 +130,7 @@ We expect to see a lot of experimentation in the community with other libraries.
 
 Although it's technically doable, Suspense is **not** currently intended as a way to start fetching data when a component renders. Rather, it lets components express that they're "waiting" for data that is *already being fetched*. Unless you have an idea for a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. The current documentation for [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) doesn't yet dive deep into preloading, but we plan to publish more about these techniques in the near future.
 
-Our messaging about this hasn't been very consistent about this in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
+Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
 
 ## Traditional Approaches vs Suspense {#traditional-approaches-vs-suspense}
 

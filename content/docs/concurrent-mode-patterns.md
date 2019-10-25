@@ -249,7 +249,7 @@ However, the experience feels really jarring. We were browsing a page, but it go
 function ProfilePage() {
   const [startTransition, isPending] = useTransition({
     // Wait 10 seconds before fallback
-    timeout: 10000
+    timeoutMs: 10000
   });
   const [resource, setResource] = useState(initialResource);
 
@@ -289,7 +289,7 @@ This can lead to a lot of repetitive code across components. This is why **we ge
 ```js{7-9,20,24}
 function Button({ children, onClick }) {
   const [startTransition, isPending] = useTransition({
-    timeout: 10000
+    timeoutMs: 10000
   });
 
   function handleClick() {

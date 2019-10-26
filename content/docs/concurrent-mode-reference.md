@@ -53,10 +53,10 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 ### `Suspense` {#suspensecomponent}
 
 ```js
-    <Suspense fallback={<h1>Loading...</h1>}>
-      <ProfilePhoto />
-      <ProfileDetails />
-    </Suspense>
+<Suspense fallback={<h1>Loading...</h1>}>
+  <ProfilePhoto />
+  <ProfileDetails />
+</Suspense>
 ```
 
 `Suspense` lets your components "wait" for something before they can render, showing a fallback while waiting.

@@ -89,7 +89,7 @@ In this example, `ProfileDetails` is waiting for an asynchronous API call to fet
 When multiple components need to fetch data, this data may arrive in an unpredictable order. However, if you wrap these items in a `SuspenseList`, React will not show an item in the list until previous items have been displayed (this behavior is adjustable).
 
 `SuspenseList` takes two props:
-* **revealOrder (fowards, backwards, together)** defines the order in which the `SuspenseList` children should be revealed.
+* **revealOrder (forwards, backwards, together)** defines the order in which the `SuspenseList` children should be revealed.
   * `together` reveals *all* of them when they're ready instead of one by one.
 * **tail (collapsed, hidden)** dictates how unloaded items in a `SuspenseList` is shown. 
     * By default, `SuspenseList` will show all fallbacks in the list.

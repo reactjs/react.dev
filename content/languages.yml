@@ -14,7 +14,7 @@
 - name: Azerbaijani
   translated_name: Azərbaycanca
   code: az
-  status: 1
+  status: 2
 - name: Bulgarian
   translated_name: Български
   code: bg
@@ -22,11 +22,11 @@
 - name: Bengali
   translated_name: বাংলা
   code: bn
-  status: 0
+  status: 1
 - name: Catalan
   translated_name: Català
   code: ca
-  status: 0
+  status: 1
 - name: German
   translated_name: Deutsch
   code: de
@@ -110,7 +110,7 @@
 - name: Mongolian
   translated_name: Монгол хэл
   code: mn
-  status: 1
+  status: 2
 - name: Nepali
   translated_name: नेपाली
   code: ne
@@ -186,4 +186,4 @@
 - name: Traditional Chinese
   translated_name: 繁體中文
   code: zh-hant
-  status: 1
+  status: 2

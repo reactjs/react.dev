@@ -60,8 +60,8 @@ function Counter({initialCount}) {
     <>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
+      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
     </>
   );
 }
@@ -111,7 +111,7 @@ Mutations, subscriptions, timers, logging, and other side effects are not allowe
 
 Instead, use `useEffect`. The function passed to `useEffect` will run after the render is committed to the screen. Think of effects as an escape hatch from React's purely functional world into the imperative world.
 
-By default, effects run after every completed render, but you can choose to fire it [only when certain values have changed](#conditionally-firing-an-effect).
+By default, effects run after every completed render, but you can choose to fire them [only when certain values have changed](#conditionally-firing-an-effect).
 
 #### Cleaning up an effect {#cleaning-up-an-effect}
 
@@ -165,7 +165,7 @@ Now the subscription will only be recreated when `props.source` changes.
 >
 >If you want to run an effect and clean it up only once (on mount and unmount), you can pass an empty array (`[]`) as a second argument. This tells React that your effect doesn't depend on *any* values from props or state, so it never needs to re-run. This isn't handled as a special case -- it follows directly from how the dependencies array always works.
 >
->If you pass an empty array (`[]`), the props and state as inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
+>If you pass an empty array (`[]`), the props and state inside the effect will always have their initial values. While passing `[]` as the second argument is closer to the familiar `componentDidMount` and `componentWillUnmount` mental model, there are usually [better](/docs/hooks-faq.html#is-it-safe-to-omit-functions-from-the-list-of-dependencies) [solutions](/docs/hooks-faq.html#what-can-i-do-if-my-effect-dependencies-change-too-often) to avoid re-running effects too often. Also, don't forget that React defers running `useEffect` until after the browser has painted, so doing extra work is less of a problem.
 >
 >
 >We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
@@ -195,6 +195,50 @@ A component calling `useContext` will always re-render when the context value ch
 >If you're familiar with the context API before Hooks, `useContext(MyContext)` is equivalent to `static contextType = MyContext` in a class, or to `<MyContext.Consumer>`.
 >
 >`useContext(MyContext)` only lets you *read* the context and subscribe to its changes. You still need a `<MyContext.Provider>` above in the tree to *provide* the value for this context.
+
+**Putting it together with Context.Provider**
+```js{31-36}
+const themes = {
+  light: {
+    foreground: "#000000",
+    background: "#eeeeee"
+  },
+  dark: {
+    foreground: "#ffffff",
+    background: "#222222"
+  }
+};
+
+const ThemeContext = React.createContext(themes.light);
+
+function App() {
+  return (
+    <ThemeContext.Provider value={themes.dark}>
+      <Toolbar />
+    </ThemeContext.Provider>
+  );
+}
+
+function Toolbar(props) {
+  return (
+    <div>
+      <ThemedButton />
+    </div>
+  );
+}
+
+function ThemedButton() {
+  const theme = useContext(ThemeContext);
+
+  return (
+    <button style={{ background: theme.background, color: theme.foreground }}>
+      I am styled by theme context!
+    </button>
+  );
+}
+```
+This example is modified for hooks from a previous example in the [Context Advanced Guide](/docs/context.html), where you can find more information about when and how to use Context.
+
 
 ## Additional Hooks {#additional-hooks}
 
@@ -231,8 +275,8 @@ function Counter() {
   return (
     <>
       Count: {state.count}
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }
@@ -290,8 +334,8 @@ function Counter({initialCount}) {
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
         Reset
       </button>
-      <button onClick={() => dispatch({type: 'increment'})}>+</button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
+      <button onClick={() => dispatch({type: 'increment'})}>+</button>
     </>
   );
 }

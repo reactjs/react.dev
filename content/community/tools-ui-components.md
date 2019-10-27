@@ -71,6 +71,8 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
+* **[MTCaptcha React UX Component](https://github.com/mtcaptcha-public/MTCaptcha-ReactJS-Component)** Paid and Free React UX Component to embed [MTCaptcha](https://www.mtcaptcha.com), a GDPR and Accessibility compliant Captcha service. 
+
 
 ## Fee Based Components {#fee-based-components}
 
@@ -83,3 +85,5 @@ permalink: community/ui-components.html
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.
 * **[React UI Toolkit](https://react-ui-tools.com/)**: 115+ professionally maintainted UI components ranging from a robust grid to charts and more. Try for FREE and build React apps faster.
 * **[Flatlogic React Admin Templates](https://flatlogic.com/templates/react)** 5+ Paid and Free React Admin templates with a lot of components to speed up web development. No jQuery.
+
+

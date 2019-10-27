@@ -72,6 +72,7 @@ permalink: community/ui-components.html
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
 * **[wix-style-react](https://github.com/wix/wix-style-react):** Common React UI components for all Wix verticals developing in React
+* **[MTCaptcha React UX Component](https://github.com/mtcaptcha-public/MTCaptcha-ReactJS-Component)** Free React UX Component to embed [MTCaptcha](https://www.mtcaptcha.com), a GDPR and Accessibility compliant Captcha service.
 
 ## Fee Based Components {#fee-based-components}
 

@@ -12,30 +12,10 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### App.js Conf 2020 {#appjsonf2020}
-April 23 - 24, 2020 in Kraków, Poland
-
-[Website](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
-
 ### React Summit 2019 {#reactsummit2019}
 November 30, 2019 in Lagos, Nigeria
 
 [Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
-
-### React Conf 2019 {#react-conf-2019}
-October 24-25, 2019 in Henderson, Nevada USA
-
-[Website](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
-
-### React Advanced 2019 {#react-advanced-2019}
-October 25, 2019 in London, UK
-
-[Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
-
-### React Conf Brasil 2019 {#react-conf-2019}
-October 19, 2019 in São Paulo, BR
-
-[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 December 6, 2019 in Berlin, Germany
@@ -52,7 +32,12 @@ April 15-17, 2020 in Amsterdam, The Netherlands
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactamsterdam) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
-### Render-Atlanta 2020 {#render-atlanta-2020}
+### App.js Conf 2020 {#appjsonf2020}
+April 23 - 24, 2020 in Kraków, Poland
+
+[Website](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
+
+### render(ATL) 2020 {#render-atlanta-2020}
 May 4-6, 2020. Atlanta, GA, USA.
 
 [Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) 
@@ -456,4 +441,19 @@ September 26-28, 2019 in Goa, India
 September 26-28, 2019 in Alicante, Spain
 
 [Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante)
+
+### React Conf 2019 {#react-conf-2019}
+October 24-25, 2019 in Henderson, Nevada USA
+
+[Website](https://conf.reactjs.org/) - [Twitter](https://twitter.com/reactjs)
+
+### React Advanced 2019 {#react-advanced-2019}
+October 25, 2019 in London, UK
+
+[Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
+
+### React Conf Brasil 2019 {#react-conf-2019}
+October 19, 2019 in São Paulo, BR
+
+[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Slack](https://react.now.sh/)
 

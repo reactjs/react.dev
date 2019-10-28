@@ -183,7 +183,8 @@ Clone and return a new React element using `element` as the starting point. The 
 `React.cloneElement()` is almost equivalent to:
 
 ```js
-<element.type {...element.props} {...props}>{children}</element.type>
+let Ctor = element.type
+<Ctor {...element.props} {...props}>{children}</Ctor>
 ```
 
 However, it also preserves `ref`s. This means that if you get a child with a `ref` on it, you won't accidentally steal it from your ancestor. You will get the same `ref` attached to your new element.

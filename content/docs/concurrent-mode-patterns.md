@@ -808,7 +808,7 @@ function App() {
 
 **[Try it on CodeSandbox](https://codesandbox.io/s/pensive-shirley-wkp46)**
 
-In this example, **every item in `<MyShowList>` has an artificial slowdown -- each of them blocks the thread for a few milliseconds**. We'd never do this in a real app, but this helps us simulate what can happen in a deep component tree with no single obvious place to optimize.
+In this example, **every item in `<MySlowList>` has an artificial slowdown -- each of them blocks the thread for a few milliseconds**. We'd never do this in a real app, but this helps us simulate what can happen in a deep component tree with no single obvious place to optimize.
 
 We can see how typing in the input causes stutter. Now let's add `useDeferredValue`:
 

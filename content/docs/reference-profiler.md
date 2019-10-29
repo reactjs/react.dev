@@ -16,7 +16,7 @@ Its purpose is to help identify parts of an application that are slow and may be
 > To opt into production profiling, React provides a special production build with profiling enabled.
 > Read more about how to use this build at [fb.me/react-profiling](https://fb.me/react-profiling)
 
-## Usage
+## Usage {#usage}
 
 A `Profiler` can be added anywhere in a React tree to measure the cost of rendering that part of the tree.
 It requires two props: an `id` (string) and an `onRender` callback (function) which React calls any time a component within the tree "commits" an update.
@@ -70,7 +70,7 @@ render(
 >
 > Although `Profiler` is a light-weight component, it should be used only when necessary; each use adds some CPU and memory overhead to an application.
 
-## `onRender` Callback
+## `onRender` Callback {#onrender-callback}
 
 The `Profiler` requires an `onRender` function as a prop.
 React calls this function any time a component within the profiled tree "commits" an update.

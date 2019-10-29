@@ -25,6 +25,15 @@ These lifecycle methods have often been misunderstood and subtly misused; furthe
 
 We maintain over 50,000 React components at Facebook, and we don't plan to rewrite them all immediately. We understand that migrations take time. We will take the gradual migration path along with everyone in the React community.
 
+If you don't have the time to migrate or test these components, we recommend running a ["codemod"](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) script that renames them automatically:
+
+```bash
+cd your_project
+npx react-codemod rename-unsafe-lifecycles
+```
+
+Learn more about this codemod on the [16.9.0 release post.](https://reactjs.org/blog/2019/08/08/react-v16.9.0.html#renaming-unsafe-lifecycle-methods) 
+
 ---
 
 ## Migrating from Legacy Lifecycles {#migrating-from-legacy-lifecycles}
@@ -134,7 +143,7 @@ Here is an example of a component that uses the legacy `componentWillReceiveProp
 
 Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method will be deprecated.
 
-As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. (That lifecycle is called when a component is created and each time it receives new props):
+As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. It is called when a component is created and each time it re-renders due to changes to props or state:
 `embed:update-on-async-rendering/updating-state-from-props-after.js`
 
 You may notice in the example above that `props.currentRow` is mirrored in state (as `state.lastRow`). This enables `getDerivedStateFromProps` to access the previous props value in the same way as is done in `componentWillReceiveProps`.

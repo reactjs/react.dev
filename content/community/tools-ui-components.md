@@ -8,7 +8,9 @@ permalink: community/ui-components.html
 ## Free Components {#free-components}
 * **[Amaze UI React](https://github.com/amazeui/amazeui-react) (in Chinese):** [Amaze UI](https://github.com/allmobilize/amazeui) components built with React.
 * **[Ant Design of React](https://github.com/ant-design/ant-design)** An enterprise-class UI design language and React-based implementation.
+* **[Base Web](http://baseweb.design):** A foundation for initiating, evolving, and unifying web products.
 * **[Belle](https://github.com/nikgraf/belle/):** Configurable React Components with great UX.
+* **[Chakra UI](https://chakra-ui.com/)**: Simple, modular and accessible component library.
 * **[chartify](https://github.com/kirillstepkin/chartify)**: Ultra lightweight and customizable React.js chart component.
 * **[Elemental UI](http://elemental-ui.com):** A UI toolkit for React websites and apps, themeable and composed of individually packaged components
 * **[Grommet](https://grommet.io/)** The most advanced open source UX framework for enterprise applications.
@@ -20,8 +22,8 @@ permalink: community/ui-components.html
 * **[Onsen UI React Components](https://onsen.io/v2/react.html):** UI components for hybrid mobile apps with both Material Design for Android and flat design for iOS.
 * **[PrimeReact](https://www.primefaces.org/primereact/):** A rich UI component suite for React featuring 70+ open source components.
 * **[React Amazing Grid](https://github.com/Amazing-Space-Invader/react-amazing-grid)** Flex grid with inline styles.
-* **[React Mdl](https://github.com/tleunen/react-mdl)** React Components for Material Design Lite.
-* **[React Web](https://github.com/taobaofed/react-web)** A framework for building web apps with React.
+* **[Material Components for React](https://github.com/material-components/material-components-web-react)** MDC React is the official implementation of Google's Material Design Components.
+* **[React Native for Web](https://github.com/necolas/react-native-web)** Makes it possible to run React Native components and APIs on the web using React DOM.
 * **[react-amiga-guru-meditation](https://github.com/gfazioli/react-amiga-guru-meditation):** React JS Class to display a Amiga Guru Meditation Tribute
 * **[react-autosuggest](https://github.com/moroshko/react-autosuggest)** WAI-ARIA compliant React autosuggest component
 * **[react-beautiful-dnd](https://github.com/atlassian/react-beautiful-dnd):** Beautiful, accessible drag and drop for lists with React.js
@@ -50,7 +52,7 @@ permalink: community/ui-components.html
 * **[react-slick](https://github.com/akiran/react-slick):** Carousel component built with React
 * **[react-sparklines](https://borisyankov.github.io/react-sparklines/):** Beautiful and expressive sparklines component
 * **[react-spreadsheet](https://github.com/felixrieseberg/React-Spreadsheet-Component):** React Spreadsheets / Editable tables with Excel-Style keyboard input and navigation
-* **[react-switch-button](https://github.com/gfazioli/react-switch-button):** Beautiful React Switch button component
+* **[react-toggle](https://github.com/gfazioli/react-toggle):** A React UI component to display a toggle button control
 * **[react-tappable](https://github.com/JedWatson/react-tappable)** A Tappable React Component that provides native-feeling onTap events for mobile React apps
 * **[react-textarea-autosize](https://github.com/andreypopp/react-textarea-autosize):** Like `<textarea />` but resizes automatically to fit all its content.
 * **[react-toastify](https://github.com/fkhadra/react-toastify):** React notification made easy
@@ -60,6 +62,7 @@ permalink: community/ui-components.html
 * **[react-uwp](https://www.react-uwp.com)** A set of React Components that Implement Microsoft's UWP Design & Fluent Design..
 * **[react-validate-framework](https://github.com/MinJieLiu/react-validate-framework)**: A lightweight and extensible React validation component.
 * **[reactstrap](https://reactstrap.github.io/):** Simple Bootstrap 4 components built with [tether](http://tether.io/)
+* **[Reakit](https://reakit.io/):** Toolkit for building accessible rich web apps with React.
 * **[recharts](https://github.com/recharts/recharts)**: A composable charting library built on React components.
 * **[Selectivity](https://arendjr.github.io/selectivity/):** Modular and light-weight selection library.
 * **[Semantic-ui](https://react.semantic-ui.com/)**: The official Semantic-UI-React integration, Advanced components and declarative UI.
@@ -68,12 +71,16 @@ permalink: community/ui-components.html
 * **[valuelink](https://github.com/Volicon/valuelink):** Full-featured two-way data binding and forms validation with extended React links.
 * **[video-react](https://github.com/video-react/video-react)**: A web video player built for the HTML5 world using React library.
 * **[Winterfell](https://github.com/andrewhathaway/Winterfell):** Generate complex, validated and extendable JSON-based forms in React
+* **[wix-style-react](https://github.com/wix/wix-style-react):** Common React UI components for all Wix verticals developing in React
 
 ## Fee Based Components {#fee-based-components}
 
 * **[ag-Grid](https://www.ag-grid.com)** Advanced data grid / data table for React.
+* **[DevExtreme Reactive](https://devexpress.github.io/devextreme-reactive/react/)** High-performance plugin-based Data Grid, Scheduler and Chart components for Bootstrap and Material Design.
 * **[ExtReact components](https://www.sencha.com/products/extreact//)**: 115+ Ready-to-Use UI Components.
 * **[Grapecity Wijmo UI Components for React](https://www.grapecity.com/en/react/)**: Expand your React UI options with Wijmo’s complete collection of JavaScript components.
 * **[jQWidgets React components](https://www.jqwidgets.com/react/)**: Enterprise Ready 70+ UI Components.
 * **[KendoReact](https://www.telerik.com/kendo-react-ui/)**: UI for React Developers.
 * **[Mobiscroll React UI Components](https://mobiscroll.com/react)** Mobile UI Controls for the Productive React Developer.
+* **[React UI Toolkit](https://react-ui-tools.com/)**: 115+ professionally maintainted UI components ranging from a robust grid to charts and more. Try for FREE and build React apps faster.
+* **[Flatlogic React Admin Templates](https://flatlogic.com/templates/react)** 5+ Paid and Free React Admin templates with a lot of components to speed up web development. No jQuery.

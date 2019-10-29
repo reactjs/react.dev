@@ -9,7 +9,7 @@ permalink: community/misc.html
 
 * **[react-inspector](https://github.com/xyc/react-inspector):** Use DevTools-like object inspectors inside your React app.
 * **[jreact](https://github.com/KnisterPeter/jreact):** Rendering react server-side within a JVM (Java 7 or Java 8)
-* **[react-jss](https://github.com/jsstyles/react-jss):** Inject and mount jss styles in React components.
+* **[react-jss](https://github.com/cssinjs/jss/tree/master/packages/react-jss):** Inject and mount jss styles in React components.
 * **[django-react](https://github.com/markfinger/django-react):** Server-side rendering of React components for django apps.
 * **[react-engine](https://github.com/paypal/react-engine):** Composite render engine for isomorphic express apps to render both plain react views and react-router views.
 * **[react-render-visualizer](https://github.com/redsunsoft/react-render-visualizer):** A visual way to see what is (re)rendering and why.

@@ -217,7 +217,7 @@ Its source code is located in [`packages/react-reconciler`](https://github.com/f
 
 ### Event System {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/events`](https://github.com/facebook/react/tree/master/packages/events).
+React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
 
 There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
 

@@ -104,8 +104,8 @@ Strict mode can't automatically detect side effects for you, but it can help you
 * state updater functions (the first argument for the `setState` class component method or the argument for the `setState` return value of [`useState`](hooks-reference.html#usestate))
 * The static `getDerivedStateFromProps` lifecycle
 * the function passed as the initial state to [`useState`](hooks-reference.html#lazy-initial-state)
-* the `init` function passed to [`useReducer`](/hooks-reference.html#usereducer)
-* "create" functions passed to [`useMemo`](https://reactjs.org/docs/hooks-reference.html#usememo)
+* the `init` function passed to [`useReducer`](hooks-reference.html#usereducer)
+* "create" functions passed to [`useMemo`](hooks-reference.html#usememo)
 
 > Note:
 >

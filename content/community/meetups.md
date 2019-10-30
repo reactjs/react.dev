@@ -23,7 +23,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Belo Horizonte](https://www.meetup.com/reactbh/)
 * [Curitiba](https://www.meetup.com/pt-br/ReactJS-CWB/)
 * [Florianópolis](https://www.meetup.com/pt-br/ReactJS-Floripa/)
-* [Goiânia](https://www.meetup.com/pt-br/ReactJS-Goiania/)
+* [Goiânia](https://www.meetup.com/pt-br/React-Goiania/)
 * [Joinville](https://www.meetup.com/pt-BR/React-Joinville/)
 * [Juiz de Fora](https://www.meetup.com/pt-br/ReactJS-Juiz-de-Fora/)
 * [Maringá](https://www.meetup.com/pt-BR/React-Maringa/)

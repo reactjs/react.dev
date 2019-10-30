@@ -22,7 +22,7 @@ This page provides a theoretical overview of Concurrent Mode. **For a more pract
 
 Concurrent Mode is a set of new features that help React apps stay responsive and gracefully adjust to the user's device capabilities and network speed.
 
-These features are still experimental and are subject to change. They are not yet a part of a stable React release, but you can try them in an [experimental](/docs/release-channels.html#experimental-channel) build.
+These features are still experimental and are subject to change. They are not yet a part of a stable React release, but you can try them in an [experimental](/docs/concurrent-mode-adoption.html) build.
 
 ## Blocking vs Interruptible Rendering {#blocking-vs-interruptible-rendering}
 

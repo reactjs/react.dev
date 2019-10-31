@@ -364,6 +364,8 @@ Pass an inline callback and an array of dependencies. `useCallback` will return 
 
 `useCallback(fn, deps)` is equivalent to `useMemo(() => fn, deps)`.
 
+**You may rely on `useCallback` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useCallback` — and then add it to optimize performance.
+
 > Note
 >
 > The array of dependencies is not passed as arguments to the callback. Conceptually, though, that's what they represent: every value referenced inside the callback should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.

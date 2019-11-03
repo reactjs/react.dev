@@ -31,6 +31,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
       [media.size('sidebarFixed')]: {
         paddingTop: 40,
       },
+      '@media print': {
+        display: 'none',
+      },
     }}>
     <Container>
       <div

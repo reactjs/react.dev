@@ -36,4 +36,6 @@ Ready to grow boilerplate with react-router, redux, saga, webpack 3, jest w/ cov
  * **[EDGE Platform](https://github.com/sebastian-software/edge)** Universal React/SSR + Apollo GraphQL + JS/CSS Code Splitting + Fine-Tuned Webpack + Localization/Internationalization. Most things are external dependencies. Boilerplate available.
  * **[bae](https://github.com/siddharthkp/bae)** Zero config toolkit. SSR (with data fetching) + routing + streaming + styling (with styled-components) + HMR out of the box.
  * **[breko-hub](https://github.com/tomatau/breko-hub)** A production ready boilerplate for universal react applications. Complete with code splitting, server render (using koa), redux, sagas, debugging, hot-reloading (live updates on the server), css-modules, scss, super fast integration tests and unit tests. There's also a big focus on clean code and smaller files.
- * **[appseed](https://github.com/rosoftdeveloper/appseed)** A production ready boilerplate for UI-Ready react applications. The frontend can be bundled with various backends: Flask, Laravel, Express. 
+ * **[appseed](https://github.com/rosoftdeveloper/appseed)** A production ready boilerplate for UI-Ready react applications. The frontend can be bundled with various backends: Flask, Laravel, Express.
+ * **[Crisp React](https://github.com/winwiz1/crisp-react)** A boilerplate for React + Express integration in TypeScript. Written for performance and debugging convenience. Supports multiple SPAs. Production ready.
+ 

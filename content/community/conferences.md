@@ -37,6 +37,11 @@ April 23 - 24, 2020 in Kraków, Poland
 
 [Website](http://appjs.co/react) - [Twitter](https://twitter.com/appjsconf)
 
+### React Day Bangalore 2020 {#react-day-bangalore-2020}
+April 25, 2020 in Bangalore, India
+
+[Website](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn)
+
 ### render(ATL) 2020 {#render-atlanta-2020}
 May 4-6, 2020. Atlanta, GA, USA.
 

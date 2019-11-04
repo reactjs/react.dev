@@ -668,7 +668,7 @@ Suspense answers some questions, but it also poses new questions of its own:
 
 * If some component "suspends", does the app freeze? How to avoid this?
 * What if we want to show a spinner in a different place than "above" the component in a tree?
-* If we intentionally *want* to show an inconsistent UI for a small period time, can we do that?
+* If we intentionally *want* to show an inconsistent UI for a small period of time, can we do that?
 * Instead of showing a spinner, can we add a visual effect like "greying out" the current screen?
 * Why does our [last Suspense example](https://codesandbox.io/s/infallible-feather-xjtbu) log a warning when clicking the "Next" button?
 

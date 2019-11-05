@@ -96,10 +96,8 @@ import("./math").then(math => {
 
 > Note:
 >
-> The dynamic `import()` syntax is a ECMAScript (JavaScript)
-> [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted in the
-> near future.
+> The dynamic `import()` syntax is part of the ECMAScript (JavaScript) 2020 
+> language [specification](https://tc39.es/ecma262/).
 
 When Webpack comes across this syntax, it automatically starts code-splitting
 your app. If you're using Create React App, this is already configured for you

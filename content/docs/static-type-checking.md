@@ -25,7 +25,7 @@ First, navigate to your project directory in the terminal. You will need to run 
 If you use [Yarn](https://yarnpkg.com/), run:
 
 ```bash
-yarn add --dev flow-bin
+yarn add flow-bin --dev
 ```
 
 If you use [npm](https://www.npmjs.com/), run:

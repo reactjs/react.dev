@@ -133,7 +133,7 @@ export default PostRoute;
 Given such a definition, a router can:
 
 * Match a URL to a route definition.
-* Call the `prepare()` function to start loading that route's data. Note that `prepare()` is synchronous -- *we don't wait for the data to be ready*, since we want to start rendering more important parts of the view (like the post body) as quickly as possible.
+* Call the `prepare()` function to start loading that route's data. Note that `prepare()` is asynchronous -- *we don't wait for the data to be ready*, since we want to start rendering more important parts of the view (like the post body) as quickly as possible.
 * Pass the preloaded data to the component. If the component is ready -- the `React.lazy` dynamic import has completed -- the component will render and try to access its data. If not, `React.lazy` will suspend until the code is ready.
 
 This approach can be generalized to other data-fetching solutions. An app that uses REST might define a route like this:
@@ -194,7 +194,7 @@ function Post(props) {
     <div>
       <h1>{postData.title}</h1>
       <h2>by {postData.author}</h2>
-      {/* @defer pairs naturally w <Suspense> to make the UI non-blocking too */}
+      {/* @defer pairs naturally w/ <Suspense> to make the UI non-blocking too */}
       <Suspense fallback={<Spinner/>}>
         <CommentList post={post} />
       </Suspense>

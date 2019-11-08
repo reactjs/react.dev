@@ -196,7 +196,7 @@ function Post(props) {
       <h2>by {postData.author}</h2>
       {/* @defer pairs naturally w <Suspense> to make the UI non-blocking too */}
       <Suspense fallback={<Spinner/>}>
-        <CommentList post={post} />
+        <CommentList post={postData} />
       </Suspense>
     </div>
   );

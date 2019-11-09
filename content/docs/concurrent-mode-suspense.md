@@ -129,9 +129,9 @@ You can also write your own integration for a data fetching library, if you'd li
 
 We expect to see a lot of experimentation in the community with other libraries. There is one important thing to note for data fetching library authors.
 
-Although it's technically doable, Suspense is **not** currently intended as a way to start fetching data when a component renders. Rather, it lets components express that they're "waiting" for data that is *already being fetched*. Unless you have an idea for a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. The current documentation for [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) doesn't yet dive deep into preloading, but we plan to publish more about these techniques in the near future.
+Although it's technically doable, Suspense is **not** currently intended as a way to start fetching data when a component renders. Rather, it lets components express that they're "waiting" for data that is *already being fetched*. **[Building Great User Experiences with Concurrent Mode and Suspense](/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.html) describes why this matters and how to implement this pattern in practice.**
 
-Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
+Unless you have a solution that helps prevent waterfalls, we suggest to prefer APIs that favor or enforce fetching before render. For a concrete example, you can look at how [Relay Suspense API](https://relay.dev/docs/en/experimental/api-reference#usepreloadedquery) enforces preloading. Our messaging about this hasn't been very consistent in the past. Suspense for Data Fetching is still experimental, so you can expect our recommendations to change over time as we learn more from production usage and understand the problem space better.
 
 ## Traditional Approaches vs Suspense {#traditional-approaches-vs-suspense}
 

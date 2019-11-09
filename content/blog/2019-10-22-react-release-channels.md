@@ -13,7 +13,7 @@ Because the source of truth for React is our [public GitHub repository](https://
 
 We would like to make it even easier for developers to test prerelease builds of React, so we're formalizing our process with three separate release channels.
 
-## Release Channels
+## Release Channels {#release-channels}
 
 > The information in this post is also available on our [Release Channels](/docs/release-channels.html) page. We will update that document whenever there are changes to our release process.
 
@@ -29,7 +29,7 @@ All releases are published to npm, but only Latest uses [semantic versioning](/d
 
 By publishing prereleases to the same registry that we use for stable releases, we are able to take advantage of the many tools that support the npm workflow, like [unpkg](https://unpkg.com) and [CodeSandbox](https://codesandbox.io).
 
-### Latest Channel
+### Latest Channel {#latest-channel}
 
 Latest is the channel used for stable React releases. It corresponds to the `latest` tag on npm. It is the recommended channel for all React apps that are shipped to real users.
 
@@ -37,7 +37,7 @@ Latest is the channel used for stable React releases. It corresponds to the `lat
 
 You can expect updates to Latest to be extremely stable. Versions follow the semantic versioning scheme. Learn more about our commitment to stability and incremental migration in our [versioning policy](/docs/faq-versioning.html).
 
-### Next Channel
+### Next Channel {#next-channel}
 
 The Next channel is a prerelease channel that tracks the master branch of the React repository. We use prereleases in the Next channel as release candidates for the Latest channel. You can think of Next as a superset of Latest that is updated more frequently.
 
@@ -47,7 +47,7 @@ The degree of change between the most recent Next release and the most recent La
 
 Releases in Next are published with the `next` tag on npm. Versions are generated from a hash of the build's contents, e.g. `0.0.0-1022ee0ec`.
 
-#### Using the Next Channel for Integration Testing
+#### Using the Next Channel for Integration Testing {#using-the-next-channel-for-integration-testing}
 
 The Next channel is designed to support integration testing between React and other projects.
 
@@ -73,7 +73,7 @@ If you're the author of a third party React framework, library, developer tool, 
 
 A project that uses this workflow is Next.js. (No pun intended! Seriously!) You can refer to their [CircleCI configuration](https://github.com/zeit/next.js/blob/c0a1c0f93966fe33edd93fb53e5fafb0dcd80a9e/.circleci/config.yml) as an example.
 
-### Experimental Channel
+### Experimental Channel {#experimental-channel}
 
 Like Next, the Experimental channel is a prerelease channel that tracks the master branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
 
@@ -83,7 +83,7 @@ Experimental releases may be significantly different than releases to Next and L
 
 Releases in Experimental are published with the `experimental` tag on npm. Versions are generated from a hash of the build's contents, e.g. `0.0.0-experimental-1022ee0ec`.
 
-#### What Goes Into an Experimental Release?
+#### What Goes Into an Experimental Release? {#what-goes-into-an-experimental-release}
 
 Experimental features are ones that are not ready to be released to the wider public, and may change drastically before they are finalized. Some experiments may never be finalized -- the reason we have experiments is to test the viability of proposed changes.
 
@@ -91,7 +91,7 @@ For example, if the Experimental channel had existed when we announced Hooks, we
 
 You may find it valuable to run integration tests against Experimental. This is up to you. However, be advised that Experimental is even less stable than Next. **We do not guarantee any stability between Experimental releases.**
 
-#### How Can I Learn More About Experimental Features?
+#### How Can I Learn More About Experimental Features? {#how-can-i-learn-more-about-experimental-features}
 
 Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Stable.
 

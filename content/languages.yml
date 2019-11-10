@@ -59,6 +59,10 @@
   translated_name: हिन्दी
   code: hi
   status: 0
+- name: Haitian Creole
+  translated_name: Kreyòl ayisyen
+  code: ht
+  status: 0
 - name: Hungarian
   translated_name: magyar
   code: hu
@@ -158,6 +162,10 @@
 - name: Thai
   translated_name: ไทย
   code: th
+  status: 0
+- name: Tagalog
+  translated_name: Wikang Tagalog
+  code: tl
   status: 0
 - name: Turkish
   translated_name: Türkçe

@@ -174,7 +174,7 @@ A good example of this is a text input.
 ```js
 function App() {
   const [text, setText] = useState("hello");
-  const deferredText = useDeferredValue(text, {timeoutMs: 2000 }); 
+  const deferredText = useDeferredValue(text, { timeoutMs: 2000 }); 
 
   return (
     <div className="App">

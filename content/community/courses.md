@@ -32,6 +32,8 @@ permalink: community/courses.html
 
 - [Frontend Masters](https://frontendmasters.com/courses/) - Video courses on React and other frontend frameworks.
 
+- [Pluralsight](https://app.pluralsight.com/search/?q=react) - Video courses on React and many other technologies.
+
 - [Fullstack React](https://www.fullstackreact.com/) - The up-to-date, in-depth, complete guide to React and friends.
 
 - [Pure React](https://daveceddia.com/pure-react/) - A step-by-step guide to mastering React.

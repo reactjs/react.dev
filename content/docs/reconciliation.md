@@ -69,7 +69,7 @@ After handling the DOM node, React then recurses on the children.
 
 ### Component Elements Of The Same Type {#component-elements-of-the-same-type}
 
-When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `componentWillReceiveProps()` and `componentWillUpdate()` on the underlying instance.
+When a component updates, the instance stays the same, so that state is maintained across renders. React updates the props of the underlying component instance to match the new element, and calls `getDerivedStateFromProps()` and `componentDidUpdate()` on the underlying instance.
 
 Next, the `render()` method is called and the diff algorithm recurses on the previous result and the new result.
 

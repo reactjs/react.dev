@@ -47,33 +47,41 @@ const cancelablePromise = makeCancelable(
 );
 
 cancelablePromise
-  .promise
   .then(() => console.log('resolved'))
   .catch((reason) => console.log('isCanceled', reason.isCanceled));
 
 cancelablePromise.cancel(); // Cancel the promise
 ```
 
-Where `makeCancelable` was originally [defined by @istarkov](https://github.com/facebook/react/issues/5465#issuecomment-157888325) as:
+Where `makeCancelable` was originally [defined by @hjylewis](https://github.com/facebook/react/issues/5465#issuecomment-339544623) as:
 
 ```js
 const makeCancelable = (promise) => {
-  let hasCanceled_ = false;
+    let cancel = () => {};
 
-  const wrappedPromise = new Promise((resolve, reject) => {
-    promise.then(
-      val => hasCanceled_ ? reject({isCanceled: true}) : resolve(val),
-      error => hasCanceled_ ? reject({isCanceled: true}) : reject(error)
-    );
-  });
+    const wrappedPromise: any = new Promise((resolve, reject) => {
+        cancel = () => {
+            resolve = null;
+            reject = null;
+        };
 
-  return {
-    promise: wrappedPromise,
-    cancel() {
-      hasCanceled_ = true;
-    },
-  };
+        promise.then(
+            val => {
+                if (resolve) resolve(val);
+            },
+            error => {
+                if (reject) reject(error);
+            }
+        );
+    });
+
+    wrappedPromise.cancel = cancel;
+
+    return wrappedPromise;
 };
 ```
 
+If you prefer, this solution is also available as the npm [trashable](https://github.com/hjylewis/trashable) package.
+
 As an added bonus for getting your code cleaned up early, getting rid of `isMounted()` makes it one step easier for you to upgrade to ES6 classes, where using `isMounted()` is already prohibited.  Happy coding!
+

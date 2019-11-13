@@ -94,13 +94,6 @@ import("./math").then(math => {
 });
 ```
 
-> Note:
->
-> The dynamic `import()` syntax is a ECMAScript (JavaScript)
-> [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted in the
-> near future.
-
 When Webpack comes across this syntax, it automatically starts code-splitting
 your app. If you're using Create React App, this is already configured for you
 and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported

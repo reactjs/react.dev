@@ -140,6 +140,25 @@ class LoggingButton extends React.Component {
 
 The problem with this syntax is that a different callback is created each time the `LoggingButton` renders. In most cases, this is fine. However, if this callback is passed as a prop to lower components, those components might do an extra re-rendering. We generally recommend binding in the constructor or using the class fields syntax, to avoid this sort of performance problem.
 
+And the fourth approach is that you can use [.bind] in callback:
+
+```js{9}
+class LoggingButton extends React.Component {
+  handleClick() {
+    console.log('this is:', this);
+  }
+
+  render() {
+    // This syntax ensures `this` is bound within handleClick
+    return (
+      <button onClick={this.handleClick.bind(this)}>
+        Click me
+      </button>
+    );
+  }
+}
+```
+
 ## Passing Arguments to Event Handlers {#passing-arguments-to-event-handlers}
 
 Inside a loop it is common to want to pass an extra parameter to an event handler. For example, if `id` is the row ID, either of the following would work:

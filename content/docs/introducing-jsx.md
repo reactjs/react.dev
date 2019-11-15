@@ -72,6 +72,18 @@ ReactDOM.render(
 
 We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
 
+### Embedding JSX element in JSX   {#embedding-JSX-element-in-jsx}
+You can even put  any valid JSX element inside the curly braces in JSX. For example:
+
+```js
+const element_child = <a href="https://reactjs.org/">React</a>;
+element = <h1>Welcom to {element_child} !</h1>
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+```
+
 ### JSX is an Expression Too {#jsx-is-an-expression-too}
 
 After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.

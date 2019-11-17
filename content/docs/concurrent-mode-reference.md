@@ -5,11 +5,22 @@ permalink: docs/concurrent-mode-reference.html
 prev: concurrent-mode-adoption.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 >Caution:
 >
 >This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+
+</div>
 
 This page is an API reference for the React [Concurrent Mode](/docs/concurrent-mode-intro.html). If you're looking for a guided introduction instead, check out [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).
 

@@ -6,12 +6,22 @@ prev: concurrent-mode-intro.html
 next: concurrent-mode-patterns.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 >Caution:
 >
 >This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now. For example, if you're looking for a data fetching tutorial that works today, read [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) instead.
 
+</div>
 
 React 16.6 added a `<Suspense>` component that lets you "wait" for some code to load and declaratively specify a loading state (like a spinner) while we're waiting:
 

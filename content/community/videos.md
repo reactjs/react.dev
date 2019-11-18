@@ -10,6 +10,12 @@ redirect_from:
 
 Videos dedicated to the discussion of React and the React ecosystem.
 
+
+### ReactjSMeetup.com {#react-js-meetup}
+
+A playlist of videos from ReactJsMeetup.com. A monthly react-specific talks every month in the comfort of your own home.
+<iframe title="ReactMeetup.com" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PL-G5r6j4GptGILuj893ljqj2nqAdSg3pZ" frameborder="0" allowfullscreen></iframe>
+
 ### React.js Conf 2017 {#reactjs-conf-2017}
 
 A playlist of videos from React.js Conf 2017.

@@ -74,40 +74,33 @@ In the example below, we will create a [stateful component](/docs/state-and-life
 
 It will render either `<LoginButton />` or `<LogoutButton />` depending on its current state. It will also render a `<Greeting />` from the previous example:
 
-```javascript{20-25,29,30}
+```javascript{4-6,9-32}
 class LoginControl extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLoginClick = this.handleLoginClick.bind(this);
-    this.handleLogoutClick = this.handleLogoutClick.bind(this);
     this.state = {isLoggedIn: false};
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleLoginClick() {
-    this.setState({isLoggedIn: true});
-  }
-
-  handleLogoutClick() {
-    this.setState({isLoggedIn: false});
+  handleClick() {
+    this.setState({isLoggedIn: !this.state.isLoggedIn})
   }
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
-    let button;
-
     if (isLoggedIn) {
-      button = <LogoutButton onClick={this.handleLogoutClick} />;
+     return 
+        <div>
+          <h1>Welcome back!</h1>
+          <button onClick={this.handleClick}>Logout</button>
+        </div>;
     } else {
-      button = <LoginButton onClick={this.handleLoginClick} />;
-    }
-
-    return (
-      <div>
-        <Greeting isLoggedIn={isLoggedIn} />
-        {button}
-      </div>
-    );
-  }
+      return 
+        <div>
+          <h1>Please sign up.</h1>
+          <button onClick={this.handleClick} >Login</button>
+        </div>;
+   }
 }
 
 ReactDOM.render(

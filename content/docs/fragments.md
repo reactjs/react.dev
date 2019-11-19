@@ -38,7 +38,7 @@ class Table extends React.Component {
 }
 ```
 
-`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />`, then the resulting HTML will be invalid.
+`<Columns />` would need to return multiple `<td>` elements in order for the rendered HTML to be valid. If a parent div was used inside the `render()` of `<Columns />` (note that we add `<div>` because JSX needs us have a parent element, otherwise it will throw SyntaxError), then the resulting HTML will be invalid.
 
 ```jsx
 class Columns extends React.Component {

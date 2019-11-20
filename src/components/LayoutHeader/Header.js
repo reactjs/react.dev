@@ -98,6 +98,7 @@ const Header = ({location}: {location: Location}) => (
 
         <nav
           css={{
+            display: 'contents',
             flex: '1',
             display: 'flex',
             flexDirection: 'row',

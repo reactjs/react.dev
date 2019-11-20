@@ -100,7 +100,6 @@ const Header = ({location}: {location: Location}) => (
           css={{
             display: 'contents',
             flex: '1',
-            display: 'flex',
             flexDirection: 'row',
             alignItems: 'stretch',
             overflowX: 'auto',

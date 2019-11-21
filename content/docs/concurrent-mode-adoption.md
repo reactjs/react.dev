@@ -118,8 +118,8 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 
 |   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
 |---  |---  |---  |---  |
-|[String Refs](/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)  |✅  |🚫**  |🚫**  |
-|[Legacy Context](/docs/context.html#legacy-api) |✅  |🚫**  |🚫**  |
+|[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
+|[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
 |[findDOMNode](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)  |✅  |🚫**  |🚫**  |
 |[Suspense](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly) |✅  |✅  |✅  |
 |[SuspenseList](/docs/concurrent-mode-patterns.html#suspenselist) |🚫  |✅  |✅  |

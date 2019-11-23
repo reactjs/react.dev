@@ -342,7 +342,7 @@ function Counter() {
   const prevCountRef = useRef();
   useEffect(() => {
     prevCountRef.current = count;
-  });
+  }, [count]);
   const prevCount = prevCountRef.current;
 
   return <h1>Now: {count}, before: {prevCount}</h1>;
@@ -362,7 +362,7 @@ function usePrevious(value) {
   const ref = useRef();
   useEffect(() => {
     ref.current = value;
-  });
+  }, [value]);
   return ref.current;
 }
 ```

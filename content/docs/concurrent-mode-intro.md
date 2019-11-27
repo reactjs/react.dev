@@ -39,7 +39,7 @@ These features are still experimental and are subject to change. They are not ye
 
 **To explain Concurrent Mode, we'll use version control as a metaphor.** If you work on a team, you probably use a version control system like Git and work on branches. When a branch is ready, you can merge your work into master so that other people can pull it.
 
-Before version control existed, the development workflow was very different. There was no concept of branches. If you wanted to edit some files, you had to tell everyone not to touch those files until you've finished your work. You couldn't even start working on them concurrently with that person — you were literally *blocked* by them.
+Before version control existed, the development workflow was very different. There was no concept of branches. If a developer wanted to edit some files, they had to tell everyone not to touch those files until they would have finished their work. You couldn't even start working on those files concurrently with that person — you were literally *blocked* by them.
 
 This illustrates how UI libraries, including React, typically work today. Once they start rendering an update, including creating new DOM nodes and running the code inside components, they can't interrupt this work. We'll call this approach "blocking rendering".
 

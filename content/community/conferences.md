@@ -23,7 +23,7 @@ December 6, 2019 in Berlin, Germany
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
 
 ### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
-February 1 - 2, 2020 in Cologne, Germany
+February 1-2, 2020 in Cologne, Germany
 
 [Website](https://react-barcamp.de/) - [Twitter](https://twitter.com/ReactBarcamp) - [Facebook](https://www.facebook.com/reactbarcamp)
 

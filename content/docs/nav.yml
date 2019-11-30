@@ -61,7 +61,7 @@
       title: Optimizing Performance
     - id: portals
       title: Portals
-    - id: profiler
+    - id: reference-profiler
       title: Profiler
     - id: react-without-es6
       title: React Without ES6
@@ -85,28 +85,28 @@
       title: Web Components
 - title: API Reference
   items:
-    - id: react-api
+    - id: reference-react
       title: React
       subitems:
-        - id: react-component
+        - id: reference-react-component
           title: React.Component
-    - id: react-dom
+    - id: reference-react-dom
       title: ReactDOM
-    - id: react-dom-server
+    - id: reference-react-dom-server
       title: ReactDOMServer
-    - id: dom-elements
+    - id: reference-dom-elements
       title: DOM Elements
-    - id: events
+    - id: reference-events
       title: SyntheticEvent
-    - id: test-utils
+    - id: addons-test-utils
       title: Test Utilities
-    - id: shallow-renderer
+    - id: addons-shallow-renderer
       title: Shallow Renderer
-    - id: test-renderer
+    - id: reference-test-renderer
       title: Test Renderer
-    - id: javascript-environment-requirements
+    - id: reference-javascript-environment-requirements
       title: JS Environment Requirements
-    - id: glossary
+    - id: reference-glossary
       title: Glossary
 - title: Hooks
   isOrdered: true

@@ -60,7 +60,7 @@ However, elements can also represent user-defined components:
 const element = <Welcome name="Sara" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
 
 For example, this code renders "Hello, Sara" on the page:
 

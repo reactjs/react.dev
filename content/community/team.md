@@ -126,6 +126,7 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Sophie Alpert](https://github.com/sophiebits)
 * [Sasha Aickin](https://github.com/aickin)
 * [Tim Yung](https://github.com/yungsters)
+* [Tom Occhino](https://github.com/tomocchino)
 
 This list is not exhaustive.
 

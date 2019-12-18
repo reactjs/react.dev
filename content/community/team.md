@@ -8,13 +8,13 @@ permalink: community/team.html
 
 React development is led by a small dedicated team working full time at Facebook. It also receives contributions from people all over the world.
 
-## Meet the React Team
+## Meet the React Team {#meet-the-react-team}
 
 The React team members work full time on the core component APIs, the engine that powers React DOM and React Native, React DevTools, and the React documentation website.
 
 Current members of the React team are listed in alphabetical order below.
 
-### Andrew Clark
+### Andrew Clark {#andrew-clark}
 
 ![Andrew Clark](../images/team/acdlite.jpg)
 
@@ -22,7 +22,7 @@ Current members of the React team are listed in alphabetical order below.
 
 Andrew got started with web development by making sites with WordPress, and eventually tricked himself into doing JavaScript. His favorite pastime is karaoke. Andrew is either a Disney villain or a Disney princess, depending on the day.
 
-### Brian Vaughn
+### Brian Vaughn {#brian-vaughn}
 
 ![Brian Vaughn](../images/team/bvaughn.jpg)
 
@@ -30,15 +30,15 @@ Andrew got started with web development by making sites with WordPress, and even
 
 Brian studied art in the college, and did programming on the side to pay for his education. Eventually, he realized that he enjoys working on open source. Brian has one [one-person band](https://soundcloud.com/brianvaughn/) and two [two-person](https://soundcloud.com/pilotlessdrone) [bands](https://soundcloud.com/pinwurm). He also takes care of the cutest cat in the world.
 
-### Dan Abramov
+### Dan Abramov {#dan-abramov}
 
 ![Dan Abramov](../images/team/gaearon.jpg)
 
 [@gaearon on GitHub](https://github.com/gaearon) &middot; [@dan_abramov on Twitter](https://twitter.com/dan_abramov)
 
-Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbåge)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
+Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbage)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
 
-### Dominic Gannaway
+### Dominic Gannaway {#dominic-gannaway}
 
 ![Dominic](../images/team/trueadm.jpg)
 
@@ -46,7 +46,7 @@ Dan got into programming after he accidentally discovered Visual Basic inside Mi
 
 Dominic is interested in travelling, drum and bass, stand-up comedy and spending time with the family. He most enjoys hacking on new unexplored ideas around UIs and accessibility and has a passion for tweaking and optimizing code to get the most performance out of things.
 
-### Luna Ruan
+### Luna Ruan {#luna-ruan}
 
 ![Luna](../images/team/lunaruan.jpg)
 
@@ -54,7 +54,7 @@ Dominic is interested in travelling, drum and bass, stand-up comedy and spending
 
 Luna learned programming because she thought it meant creating video games. Instead, she ended up working on the Pinterest web app, and now on React itself. Luna doesn't want to make video games anymore, but she plans to do creative writing if she ever gets bored.
 
-### Nicolas Gallagher
+### Nicolas Gallagher {#nicolas-gallagher}
 
 ![Nicolas](../images/team/necolas.jpg)
 
@@ -62,7 +62,7 @@ Luna learned programming because she thought it meant creating video games. Inst
 
 Nicolas has majored in anthropology. He started in web development by building a website for a friend, and eventually found himself rebuilding the Twitter website with React. Nicolas describes himself as boring on paper, not much better in real life.
 
-### Rachel Nabors
+### Rachel Nabors {#rachel-nabors}
 
 ![Rachel](../images/team/rnabors.jpg)
 
@@ -70,7 +70,7 @@ Nicolas has majored in anthropology. He started in web development by building a
 
 Rachel wrote a [book about UI animation](https://abookapart.com/products/animation-at-work) once and worked with MDN and the W3C on the web animations API. Now she is busy with education materials and community engineering on the React team. Secretly, she is an award-winning cartoonist for teenage girls. Catch her making fancy tea with lukewarm water in the microkitchen.
 
-### Sebastian Markbåge
+### Sebastian Markbåge {#sebastian-markbage}
 
 ![Sebastian](../images/team/sebmarkbage.jpg)
 
@@ -78,7 +78,7 @@ Rachel wrote a [book about UI animation](https://abookapart.com/products/animati
 
 Sebastian majored in psychology. He's usually quiet. Even when he says something, it often doesn't make sense to the rest of us until a few months later. The correct way to pronounce his surname is "mark-boa-geh" but he settled for "mark-beige" out of pragmatism -- and that's how he approaches React.
 
-### Sunil Pai
+### Sunil Pai {#sunil-pai}
 
 ![Sunil](../images/team/threepointone.jpg)
 
@@ -86,7 +86,7 @@ Sebastian majored in psychology. He's usually quiet. Even when he says something
 
 Sunil started writing JavaScript for IE6 and still has some regrets about it. He worked in consulting, design, and product firms, before joining the React team to help others do the same. Sunil plays a blue Les Paul guitar, loves London, and would appreciate a response to his last ping, please and thank you!
 
-### Yuzhi Zheng
+### Yuzhi Zheng {#yuzhi-zheng}
 
 ![Yuzhi](../images/team/yuzhi.jpg)
 
@@ -94,7 +94,7 @@ Sunil started writing JavaScript for IE6 and still has some regrets about it. He
 
 Yuzhi studied Computer Science in school. She liked the instant gratification of seeing code come to life without having to physically be in a laboratory. Now she manages the React team. Before management, she used to work on the Relay data fetching framework. In her spare time, Yuzhi enjoys optimizing her life via gardening and home improvement projects.
 
-## Acknowledgements
+## Acknowledgements {#acknowledgements}
 
 React was originally created by [Jordan Walke](https://github.com/jordwalke). Today, React has over a thousand open source contributors. We'd like to recognize a few people who have made significant contributions to React and its documentation in the past and have helped maintain them over the years:
 

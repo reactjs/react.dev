@@ -2,6 +2,8 @@
   items:
     - id: support
       title: Support
+    - id: team
+      title: Team
     - id: courses
       title: Courses
     - id: examples

@@ -47,6 +47,10 @@ expect(result.props.children).toEqual([
 ]);
 ```
 
+> Note:
+>
+> If you receive warnings or compiler errors about `ShallowRender` not being a constructable expression, the `ShallowRenderer.createRenderer();` function can be called instead of using the the new keyword.
+
 Shallow testing currently has some limitations, namely not supporting refs.
 
 > Note:

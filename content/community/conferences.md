@@ -82,6 +82,11 @@ July 17, 2020. New York City, USA.
 
 [Website](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
 
+### ComponentsConf 2020 {#components20}
+September 1, 2020 in Melbourne, Australia
+
+[Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/ComponentsConf) - [Facebook](https://www.facebook.com/ComponentsConf/) - [LinkedIn](https://www.linkedin.com/company/componentsconf/) - [YouTube](https://www.youtube.com/ComponentsConf)
+
 
 ## Past Conferences {#past-conferences}
 

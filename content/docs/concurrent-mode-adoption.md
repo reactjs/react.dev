@@ -6,11 +6,22 @@ prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 >Caution:
 >
 >This page describes **experimental features that are not yet available in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+
+</div>
 
 - [Installation](#installation)
   - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
@@ -107,21 +118,21 @@ You can think of the Blocking Mode as a "gracefully degraded" version of the Con
 
 |   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
 |---  |---  |---  |---  |
-|String Refs  |✅  |🚫**  |🚫**  |
-|Legacy Context |✅  |🚫**  |🚫**  |
-|findDOMNode  |✅  |🚫**  |🚫**  |
-|Suspense |✅  |✅  |✅  |
-|SuspenseList |🚫  |✅  |✅  |
+|[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
+|[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
+|[findDOMNode](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)  |✅  |🚫**  |🚫**  |
+|[Suspense](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly) |✅  |✅  |✅  |
+|[SuspenseList](/docs/concurrent-mode-patterns.html#suspenselist) |🚫  |✅  |✅  |
 |Suspense SSR + Hydration |🚫  |✅  |✅  |
 |Progressive Hydration  |🚫  |✅  |✅  |
 |Selective Hydration  |🚫  |🚫  |✅  |
 |Cooperative Multitasking |🚫  |🚫  |✅  |
 |Automatic batching of multiple setStates     |🚫* |✅  |✅  |
-|Priority-based Rendering |🚫  |🚫  |✅  |
-|Interruptible Prerendering |🚫  |🚫  |✅  |
-|useTransition  |🚫  |🚫  |✅  |
-|useDeferredValue |🚫  |🚫  |✅  |
-|Suspense Reveal "Train"  |🚫  |🚫  |✅  |
+|[Priority-based Rendering](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) |🚫  |🚫  |✅  |
+|[Interruptible Prerendering](/docs/concurrent-mode-intro.html#interruptible-rendering) |🚫  |🚫  |✅  |
+|[useTransition](/docs/concurrent-mode-patterns.html#transitions)  |🚫  |🚫  |✅  |
+|[useDeferredValue](/docs/concurrent-mode-patterns.html#deferring-a-value) |🚫  |🚫  |✅  |
+|[Suspense Reveal "Train"](/docs/concurrent-mode-patterns.html#suspense-reveal-train)  |🚫  |🚫  |✅  |
 
 </div>
 

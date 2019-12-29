@@ -34,10 +34,14 @@ function Dropdown({ label, option, options, onChange }) {
   const ref = React.useRef();
   
   React.useLayoutEffect(() => {
-    ref.current.addEventListener('onChange', customEvent =>
-      onChange(customEvent.detail)
-    );
-  }, []);
+    const { current } = ref;
+
+    const handleChange = customEvent => onChange(customEvent.detail);
+
+    current.addEventListener('onChange', handleChange);
+
+    return () => current.removeEventListener('onChange', handleChange);
+  }, [onChange]);
   
   return (
     <my-dropdown

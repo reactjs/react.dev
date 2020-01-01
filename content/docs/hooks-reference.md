@@ -69,6 +69,8 @@ function Counter({initialCount}) {
 
 The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
 
+If your update function returns the exact same value, the subsequent rerender will be skipped completely.
+
 > Note
 >
 > Unlike the `setState` method found in class components, `useState` does not automatically merge update objects. You can replicate this behavior by combining the function updater form with object spread syntax:

@@ -110,10 +110,10 @@ Timestamp when React began rendering the current update.
 Timestamp when React committed the current update.
 This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
 * **`interactions: Set`** -
-Set of ["interactions"](http://fb.me/react-interaction-tracing) that were being traced the update was scheduled (e.g. when `render` or `setState` were called).
+Set of ["interactions"](https://fb.me/react-interaction-tracing) that were being traced the update was scheduled (e.g. when `render` or `setState` were called).
 
 > Note
 >
 > Interactions can be used to identify the cause of an update, although the API for tracing them is still experimental.
 >
-> Learn more about it at [fb.me/react-interaction-tracing](http://fb.me/react-interaction-tracing)
+> Learn more about it at [fb.me/react-interaction-tracing](https://fb.me/react-interaction-tracing)

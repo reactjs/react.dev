@@ -28,4 +28,4 @@ There are many example projects created by the React community. Feel free to add
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
 * **[ReactJS Hangman Game](https://github.com/vetrivelcsamy/reactjs-hangman)** ReactJS Hangman Game Find a Programming Language.
 * **[Radix Converter](https://github.com/kumom/radix-converter)** A small tool that converts numbers in radix 2 to 36 with arbitrary precision.
-* **[Material-UI Icons] (https://toolhub.dev/icons/)** A tool to search Google Material icons and how to use them in ReactJS source code.
+* **[Material-UI Icons](https://toolhub.dev/icons/)** A tool to search Google Material icons and how to use them in ReactJS source code.

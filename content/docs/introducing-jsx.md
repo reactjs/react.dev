@@ -180,6 +180,4 @@ These objects are called "React elements". You can think of them as descriptions
 We will explore rendering React elements to the DOM in the next section.
 
 >**Tip:**
->
-
 >We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.

@@ -47,11 +47,11 @@ During subsequent re-renders, the first value returned by `useState` will always
 
 >Note
 >
->React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React guarantees that `useState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
 #### Functional updates {#functional-updates}
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+If the new state is computed using the previous state, you can pass a function to `useState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `useState`:
 
 ```js
 function Counter({initialCount}) {

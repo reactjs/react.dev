@@ -28,4 +28,5 @@ There are many example projects created by the React community. Feel free to add
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
 * **[ReactJS Hangman Game](https://github.com/vetrivelcsamy/reactjs-hangman)** ReactJS Hangman Game Find a Programming Language.
 * **[Radix Converter](https://github.com/kumom/radix-converter)** A small tool that converts numbers in radix 2 to 36 with arbitrary precision.
+
 * **[Summarize: The News App](https://github.com/Souravdey777/News-Bucket)** A Progressive Web Application for News. It allows the user to filter and search among top news headlines and also stores Data for offline use. Built with Reactjs and data from Newsapi.org

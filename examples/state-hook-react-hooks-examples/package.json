@@ -1,0 +1,29 @@
+{
+  "name": "state-hook-react-hooks-examples",
+  "version": "1.0.0",
+  "description": "This example renders a counter. When you click the button, it increments the value.",
+  "keywords": [
+    "react",
+    "hooks"
+  ],
+  "main": "src/index.js",
+  "dependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "typescript": "^3.3.3"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not ie <= 11",
+    "not op_mini all"
+  ]
+}

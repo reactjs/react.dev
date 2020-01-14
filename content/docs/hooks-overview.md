@@ -38,6 +38,8 @@ function Example() {
 }
 ```
 
+**[Try it on CodeSandbox](https://codesandbox.io/s/github/reactjs/reactjs.org/tree/master/examples/state-hook-react-hooks-examples)**
+
 Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We call it inside a function component to add some local state to it. React will preserve this state between re-renders. `useState` returns a pair: the *current* state value and a function that lets you update it. You can call this function from an event handler or somewhere else. It's similar to `this.setState` in a class, except it doesn't merge the old and new state together. (We'll show an example comparing `useState` to `this.state` in [Using the State Hook](/docs/hooks-state.html).)
 
 The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
@@ -98,6 +100,8 @@ function Example() {
   );
 }
 ```
+
+**[Try it on CodeSandbox](https://codesandbox.io/s/github/reactjs/reactjs.org/tree/master/examples/effect-hook-react-hooks-examples)**
 
 When you call `useEffect`, you're telling React to run your "effect" function after flushing changes to the DOM. Effects are declared inside the component so they have access to its props and state. By default, React runs the effects after every render -- *including* the first render. (We'll talk more about how this compares to class lifecycles in [Using the Effect Hook](/docs/hooks-effect.html).)
 

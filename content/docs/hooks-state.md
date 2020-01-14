@@ -28,6 +28,8 @@ function Example() {
 }
 ```
 
+**[Try it on CodeSandbox](https://codesandbox.io/s/github/reactjs/reactjs.org/tree/master/examples/state-hook-react-hooks-examples)**
+
 We'll start learning about Hooks by comparing this code to an equivalent class example.
 
 ## Equivalent Class Example {#equivalent-class-example}

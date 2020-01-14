@@ -25,6 +25,8 @@ function Example() {
 }
 ```
 
+**[Try it on CodeSandbox](https://codesandbox.io/s/github/reactjs/reactjs.org/tree/master/examples/state-hook-react-hooks-examples)**
+
 This new function `useState` is the first "Hook" we'll learn about, but this example is just a teaser. Don't worry if it doesn't make sense yet!
 
 **You can start learning Hooks [on the next page](/docs/hooks-overview.html).** On this page, we'll continue by explaining why we're adding Hooks to React and how they can help you write great applications.

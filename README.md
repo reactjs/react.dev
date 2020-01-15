@@ -2,6 +2,8 @@
 
 This repo contains the source code and documentation powering [reactjs.org](https://reactjs.org/).
 
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/netlify/netlify-statuskit)
+
 ## Getting started
 
 ### Prerequisites

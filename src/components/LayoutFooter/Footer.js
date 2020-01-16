@@ -134,6 +134,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               src={ossLogoPng}
             />
           </a>
+          <a href="https://www.netlify.com" target="_blank" rel="noopener">
+            <img
+              src="https://www.netlify.com/img/global/badges/netlify-color-accent.svg"
+              alt="deploys by Netlify"
+            />
+          </a>
           <p
             css={{
               color: colors.subtleOnDark,

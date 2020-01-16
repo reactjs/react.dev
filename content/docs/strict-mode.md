@@ -87,9 +87,9 @@ The commit phase is usually very fast, but rendering can be slow. For this reaso
 
 Render phase lifecycles include the following class component methods:
 * `constructor`
-* `UNSAFE_componentWillMount`
-* `UNSAFE_componentWillReceiveProps`
-* `UNSAFE_componentWillUpdate`
+* `componentWillMount` (or `UNSAFE_componentWillMount`)
+* `componentWillReceiveProps` (or `UNSAFE_componentWillReceiveProps`)
+* `componentWillUpdate` (or `UNSAFE_componentWillUpdate`)
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`

@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### React Day Bangalore 2020 {#react-day-bangalore-2020}
+April 25, 2020 in Bengaluru, India
+
+[Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [LinkedIn](https://www.linkedin.com/company/react-day/)
+
 ### React Barcamp Cologne 2020 {#react-barcamp-cologne-2020}
 February 1-2, 2020 in Cologne, Germany
 

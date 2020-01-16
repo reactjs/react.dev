@@ -77,6 +77,11 @@ July 17, 2020. New York City, USA.
 
 [Website](https://reactweek.nyc/) - [Twitter](https://twitter.com/reactweek) - [Facebook](https://www.facebook.com/reactweek)
 
+### React La Conferencia 2020 {#react-la-conferencia-2020}
+July 18, 2020. Medellín, Colombia.
+
+[Website](https://reactlaconf.co/) - [Twitter](https://twitter.com/reactlaconf)
+
 ### ComponentsConf 2020 {#components20}
 September 1, 2020 in Melbourne, Australia
 

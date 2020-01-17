@@ -134,6 +134,8 @@ return e(
   { onClick: () => this.setState({ liked: true }) },
   'Like'
 );
+
+ReactDOM.render(e(LikeButton), domContainer);
 ```
 
 However, React also offers an option to use [JSX](/docs/introducing-jsx.html) instead:
@@ -145,6 +147,8 @@ return (
     Like
   </button>
 );
+
+ReactDOM.render(<LikeButton />, domContainer);
 ```
 
 These two code snippets are equivalent. While **JSX is [completely optional](/docs/react-without-jsx.html)**, many people find it helpful for writing UI code -- both with React and with other libraries.

@@ -95,6 +95,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
 
 ## Malaysia {#malaysia}
+* [Kuala Lumpur](https://www.kl-react.com/)
 * [Penang](https://www.facebook.com/groups/reactpenang/)
 
 ## Netherlands {#netherlands}

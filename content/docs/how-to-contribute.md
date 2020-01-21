@@ -104,6 +104,7 @@ In order to accept your pull request, we need you to submit a CLA. You only need
 ### Contribution Prerequisites {#contribution-prerequisites}
 
 * You have [Node](https://nodejs.org) installed at v8.0.0+ and [Yarn](https://yarnpkg.com/en/) at v1.2.0+.
+* You have [JDK](https://www.oracle.com/technetwork/java/javase/downloads/index.html) installed.
 * You have `gcc` installed or are comfortable installing a compiler if needed. Some of our dependencies may require a compilation step. On OS X, the Xcode Command Line Tools will cover this. On Ubuntu, `apt-get install build-essential` will install the required packages. Similar commands should work on other Linux distros. Windows will require some additional steps, see the [`node-gyp` installation instructions](https://github.com/nodejs/node-gyp#installation) for details.
 * You are familiar with Git.
 
@@ -153,19 +154,6 @@ Then, our linter will catch most issues that may exist in your code.
 You can check the status of your code styling by simply running `yarn linc`.
 
 However, there are still some styles that the linter cannot pick up. If you are unsure about something, looking at [Airbnb's Style Guide](https://github.com/airbnb/javascript) will guide you in the right direction.
-
-### Introductory Video {#introductory-video}
-
-You may be interested in watching [this short video](https://www.youtube.com/watch?v=wUpPsEcGsg8) (26 mins) which gives an introduction on how to contribute to React.
-
-#### Video highlights: {#video-highlights}
-- [4:12](https://youtu.be/wUpPsEcGsg8?t=4m12s) - Building and testing React locally
-- [6:07](https://youtu.be/wUpPsEcGsg8?t=6m7s) - Creating and sending pull requests
-- [8:25](https://youtu.be/wUpPsEcGsg8?t=8m25s) - Organizing code
-- [14:43](https://youtu.be/wUpPsEcGsg8?t=14m43s) - React npm registry
-- [19:15](https://youtu.be/wUpPsEcGsg8?t=19m15s) - Adding new React features
-
-For a realistic overview of what it _feels_ like to contribute to React for the first time, check out [this entertaining ReactNYC talk](https://www.youtube.com/watch?v=GWCcZ6fnpn4).
 
 ### Request for Comments (RFC) {#request-for-comments-rfc}
 

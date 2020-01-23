@@ -218,6 +218,58 @@ class Alphabet extends React.Component {
 }
 ```
 
+#### Example: Passing params via props (using intermediate Component) {#example-passing-params-using-props}
+
+Another alternative is to use an intermediate component, which manage passing params to the event handler.
+
+```jsx
+const A = 65 // ASCII character code
+
+class ListItem extends React.Component {
+
+  onClick = (ev) => {
+    this.props.handleClick(ev, this.props.letter);
+  }
+
+  render() {
+    return (
+      <li onClick={this.onClick}>{this.props.children}</li>
+    )
+  }
+}
+
+class Alphabet extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      justClicked: null,
+      letters: Array.from({length: 26}, (_, i) => String.fromCharCode(A + i))
+    };
+  }
+  // here we have both the event and "letter"
+  handleClick = (ev, letter) => {
+    this.setState({
+      justClicked: letter
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        Just clicked: {this.state.justClicked}
+        <ul>
+          {this.state.letters.map(letter =>
+            <ListItem key={letter} letter={letter} handleClick={this.handleClick}>
+              <b>{letter}</b>
+            </ListItem>
+          )}
+        </ul>
+      </div>
+    )
+  }
+}
+```
+
 ### How can I prevent a function from being called too quickly or too many times in a row? {#how-can-i-prevent-a-function-from-being-called-too-quickly-or-too-many-times-in-a-row}
 
 If you have an event handler such as `onClick` or `onScroll` and want to prevent the callback from being fired too quickly, then you can limit the rate at which callback is executed. This can be done by using:

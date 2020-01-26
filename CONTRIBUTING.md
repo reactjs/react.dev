@@ -10,7 +10,7 @@ so that you can understand what actions will and will not be tolerated.
 
 ## Technical Writing Tips
 
-This is a [good summary](https://medium.com/@kvosswinkel/coding-like-a-journalist-ee52360a16bc) for things to keep in mind when writing technical docs.
+This is a [good summary](https://medium.com/@kvosswinkel/coding-like-a-journalist-ee52360a16bc) of things to keep in mind when writing technical docs.
 
 ## Guidelines for Text
 

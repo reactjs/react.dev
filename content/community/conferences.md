@@ -274,7 +274,7 @@ March 20-22 in San Francisco, USA
 ### React Native Camp UA 2018 {#react-native-camp-ua-2018}
 March 31 in Kiev, Ukraine
 
-[Website](http://eu.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
+[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
 
 ### React Amsterdam 2018 {#react-amsterdam-2018}
 April 13 in Amsterdam, The Netherlands

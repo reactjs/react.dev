@@ -87,6 +87,11 @@ September 1, 2020 in Melbourne, Australia
 
 [Website](https://www.componentsconf.com.au/) - [Twitter](https://twitter.com/ComponentsConf) - [Facebook](https://www.facebook.com/ComponentsConf/) - [LinkedIn](https://www.linkedin.com/company/componentsconf/) - [YouTube](https://www.youtube.com/ComponentsConf)
 
+### React Native EU 2020 {#react-native-eu-2020}
+September 5-6 in Wrocław, Poland
+
+[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/)
+
 ### React India 2020 {#react-india-2020}
 November 6, 2020 in Mumbai, India
 
@@ -269,7 +274,7 @@ March 20-22 in San Francisco, USA
 ### React Native Camp UA 2018 {#react-native-camp-ua-2018}
 March 31 in Kiev, Ukraine
 
-[Website](http://reactnative.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
+[Website](http://eu.com.ua/) - [Twitter](https://twitter.com/reactnativecamp) - [Facebook](https://www.facebook.com/reactnativecamp/)
 
 ### React Amsterdam 2018 {#react-amsterdam-2018}
 April 13 in Amsterdam, The Netherlands

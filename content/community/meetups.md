@@ -112,6 +112,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Karachi](https://www.facebook.com/groups/902678696597634/)
 * [Lahore](https://www.facebook.com/groups/ReactjsLahore/)
 
+## Panama {#panama}
+* [Panama](https://www.meetup.com/React-Panama/)
+
 ## Peru {#peru}
 * [Lima](https://www.meetup.com/ReactJS-Peru/)
 

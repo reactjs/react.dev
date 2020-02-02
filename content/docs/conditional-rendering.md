@@ -150,7 +150,7 @@ ReactDOM.render(
 
 It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
 
-Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
+Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it. It's possible because React doesn't render booleans(`true`, `false`), `null` and `undefined`.
 
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 

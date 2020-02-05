@@ -47,6 +47,11 @@ April 25, 2020 in Bangalore, India
 
 [Website](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn) - [LinkedIn](https://www.linkedin.com/company/react-day/)
 
+### Frontend United 2020 {#frontendunited-2020}
+May 1-2, 2020 in Minsk, Belarus
+
+[Website](https://www.frontendunited.org/) - [Twitter](https://twitter.com/frontendunited) - [Facebook](https://www.facebook.com/frontendunited) - [Instagram](https://www.instagram.com/frontendunited/) - [Videos](https://www.youtube.com/channel/UC6Q3-JjgMpb4Uy6YgHdJSMw)
+
 ### render(ATL) 2020 {#render-atlanta-2020}
 May 4-6, 2020. Atlanta, GA, USA.
 

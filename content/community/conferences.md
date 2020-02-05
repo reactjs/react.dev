@@ -82,6 +82,11 @@ July 18, 2020. Medellín, Colombia.
 
 [Website](https://reactlaconf.co/) - [Twitter](https://twitter.com/reactlaconf)
 
+### Chain React 2020 {#chain-react-2020}
+July 29-30, 2020. Portland, Oregon, USA.
+
+[Website](https://infinite.red/ChainReactConf) - [Twitter](https://twitter.com/ChainReactConf)
+
 ### ComponentsConf 2020 {#components20}
 September 1, 2020 in Melbourne, Australia
 

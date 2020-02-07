@@ -3,7 +3,7 @@ title: "(A => B) !=> (B => A)"
 author: [jimfb]
 ---
 
-The documentation for `componentWillReceiveProps` states that `componentWillReceiveProps` will be invoked when the props change as the result of a rerender. Some people assume this means "if `componentWillReceiveProps` is called, then the props must have changed", but that conclusion is logically incorrect.
+The documentation for `componentWillReceiveProps` states that `componentWillReceiveProps` will be invoked when the props change as the result of a re-render. Some people assume this means "if `componentWillReceiveProps` is called, then the props must have changed", but that conclusion is logically incorrect.
 
 The guiding principle is one of my favorites from formal logic/mathematics:
  > A implies B does not imply B implies A

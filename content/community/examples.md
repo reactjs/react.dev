@@ -27,6 +27,3 @@ There are many example projects created by the React community. Feel free to add
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
 * **[ReactJS Hangman Game](https://github.com/vetrivelcsamy/reactjs-hangman)** ReactJS Hangman Game Find a Programming Language.
 * **[Radix Converter](https://github.com/kumom/radix-converter)** A small tool that converts numbers in radix 2 to 36 with arbitrary precision.
-* **[Github - Finder](https://github.com/krishna7860/github-finder-react)** A Small Github Database Project to Fetch User Profiles and Repos and Filter Them Using Languages and Names
-
-

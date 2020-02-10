@@ -47,6 +47,11 @@ April 25, 2020 in Bangalore, India
 
 [Website](https://reactday.in) - [Twitter](https://twitter.com/ReactDayIn) - [LinkedIn](https://www.linkedin.com/company/react-day/)
 
+### Byteconf React 2020 {#byteconf-react-2020}
+May 1, 2020. Streamed online on YouTube.
+
+[Website](https://www.bytesized.xyz) - [Twitter](https://twitter.com/bytesizedcode) - [YouTube](https://www.youtube.com/channel/UC046lFvJZhiwSRWsoH8SFjg)
+
 ### render(ATL) 2020 {#render-atlanta-2020}
 May 4-6, 2020. Atlanta, GA, USA.
 

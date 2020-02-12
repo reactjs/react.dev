@@ -6,6 +6,7 @@ sectionid: community
 permalink: community/articles.html
 ---
 
+- [Best practices for building a large scale react application](https://buttercms.com/blog/best-practices-for-building-a-large-scale-react-application) - Aman Khalid's steps to building a large scale React application from wireframe planning to implementing a dynamic UI at scale.
 - [React How-to](https://github.com/petehunt/react-howto) - Pete Hunt's guide to the React ecosystem.
 - [9 things every React.js beginner should know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know) - Cam Jackson's guide for beginners.
 - [React "Aha" Moments](https://tylermcginnis.com/react-aha-moments/) - Tyler McGinnis' article on his collection of "Aha" moments with React.

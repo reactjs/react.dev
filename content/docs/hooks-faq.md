@@ -237,7 +237,7 @@ function Timer() {
   useEffect(() => {
     const id = setInterval(() => {
       // ...
-    });
+    }, []);
     intervalRef.current = id;
     return () => {
       clearInterval(intervalRef.current);

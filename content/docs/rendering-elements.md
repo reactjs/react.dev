@@ -70,6 +70,6 @@ You can verify by inspecting the [last example](codepen://rendering-elements/upd
 
 ![DOM inspector showing granular updates](../images/docs/granular-dom-updates.gif)
 
-Even though we create an element describing the whole UI tree on every tick, only the text node whose contents has changed gets updated by React DOM.
+Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
 
 In our experience, thinking about how the UI should look at any given moment rather than how to change it over time eliminates a whole class of bugs.

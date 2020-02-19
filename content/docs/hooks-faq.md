@@ -242,7 +242,7 @@ function Timer() {
     return () => {
       clearInterval(intervalRef.current);
     };
-  });
+  }, []);
 
   // ...
 }

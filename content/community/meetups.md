@@ -93,6 +93,8 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Israel {#israel}
 * [Tel Aviv](https://www.meetup.com/ReactJS-Israel/)
+* [Tel Aviv - The Big Web Theory](https://www.meetup.com/The-Big-Web-Theory/)
+
 
 ## Malaysia {#malaysia}
 * [Kuala Lumpur](https://www.kl-react.com/)

@@ -27,3 +27,4 @@ There are many example projects created by the React community. Feel free to add
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
 * **[ReactJS Hangman Game](https://github.com/vetrivelcsamy/reactjs-hangman)** ReactJS Hangman Game Find a Programming Language.
 * **[Radix Converter](https://github.com/kumom/radix-converter)** A small tool that converts numbers in radix 2 to 36 with arbitrary precision.
+* **[Tabata - Fitness App](https://github.com/KaterinaLupacheva/tabata-app)** A Fitness Progressive Web App (PWA) based on Tabata - a version of High Intensity Interval Training (HIIT).

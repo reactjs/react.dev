@@ -78,7 +78,7 @@ Let's assign a `key` to our list items inside `numbers.map()` and fix the missin
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    <li key={number.toString()}>
+    <li key={number}>
       {number}
     </li>
   );
@@ -103,7 +103,7 @@ Keys help React identify which items have changed, are added, or are removed. Ke
 ```js{3}
 const numbers = [1, 2, 3, 4, 5];
 const listItems = numbers.map((number) =>
-  <li key={number.toString()}>
+  <li key={number}>
     {number}
   </li>
 );
@@ -147,7 +147,7 @@ function ListItem(props) {
   const value = props.value;
   return (
     // Wrong! There is no need to specify the key here:
-    <li key={value.toString()}>
+    <li key={value}>
       {value}
     </li>
   );
@@ -185,7 +185,7 @@ function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
     // Correct! Key should be specified inside the array.
-    <ListItem key={number.toString()}
+    <ListItem key={number}
               value={number} />
   );
   return (
@@ -269,7 +269,7 @@ In the examples above we declared a separate `listItems` variable and included i
 function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
-    <ListItem key={number.toString()}
+    <ListItem key={number}
               value={number} />
   );
   return (
@@ -288,7 +288,7 @@ function NumberList(props) {
   return (
     <ul>
       {numbers.map((number) =>
-        <ListItem key={number.toString()}
+        <ListItem key={number}
                   value={number} />
       )}
     </ul>

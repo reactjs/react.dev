@@ -377,7 +377,7 @@ These are toolboxes filled with HTML attributes that are fully supported in JSX 
 Each type of widget has a specific design pattern and is expected to function in a certain way by users and user agents alike:
 
 - [WAI-ARIA Authoring Practices - Design Patterns and Widgets](https://www.w3.org/TR/wai-aria-practices/#aria_ex)
-- [Heydon Pickering - ARIA Examples](https://heydonworks.com/practical_aria_examples/)
+- [Heydon Pickering - ARIA Examples](https://heydonworks.com/article/practical-aria-examples/)
 - [Inclusive Components](https://inclusive-components.design/)
 
 ## Other Points for Consideration {#other-points-for-consideration}

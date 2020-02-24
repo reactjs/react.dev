@@ -30,7 +30,7 @@ With that out of the way, let's get started!
 
 ### Embedding Expressions in JSX {#embedding-expressions-in-jsx}
 
-In the example below, we declare a variable called `name` and then use it inside JSX by wrapping it in curly braces:
+In the example below, we declare a constant called `name` and then use it inside JSX by wrapping it in curly braces:
 
 ```js{1,2}
 const name = 'Josh Perez';

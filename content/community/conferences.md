@@ -504,7 +504,7 @@ October 19, 2019 in São Paulo, BR
 ### React Summit 2019 {#reactsummit2019}
 November 30, 2019 in Lagos, Nigeria
 
-[Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit)
+[Website](https://reactsummit2019.splashthat.com) -[Twitter](https://twitter.com/react_summit) -[project](https://www.ionicfirebaseapp.com/category/react-native)
 
 ### React Day Berlin 2019 {#react-day-berlin-2019}
 December 6, 2019 in Berlin, Germany

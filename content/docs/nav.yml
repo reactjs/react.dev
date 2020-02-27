@@ -100,8 +100,6 @@
       title: SyntheticEvent
     - id: test-utils
       title: Test Utilities
-    - id: shallow-renderer
-      title: Shallow Renderer
     - id: test-renderer
       title: Test Renderer
     - id: javascript-environment-requirements

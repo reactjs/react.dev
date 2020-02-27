@@ -47,7 +47,7 @@ class ErrorBoundary extends React.Component {
       return <h1>Something went wrong.</h1>;
     }
 
-    return this.props.children; 
+    return this.props.children;
   }
 }
 ```
@@ -152,7 +152,7 @@ class MyComponent extends React.Component {
     if (this.state.error) {
       return <h1>Caught an error.</h1>
     }
-    return <button onClick={this.handleClick}>Click Me</button>
+    return <button type='button' onClick={this.handleClick}>Click Me</button>
   }
 }
 ```

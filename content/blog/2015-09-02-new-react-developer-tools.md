@@ -24,4 +24,4 @@ Download the new devtools from the [Chrome Web Store](https://chrome.google.com/
 
 If you already have the Chrome extension installed, it should autoupdate within the next week. You can also head to `chrome://extensions` and click "Update extensions now" if you'd like to get the new version today. If you installed the devtools beta, please remove it and switch back to the version from the store to make sure you always get the latest updates and bug fixes.
 
-If you run into any issues, please post them on the [React GitHub repo](https://github.com/facebook/react-devtools).
+If you run into any issues, please post them on the [React GitHub repo](https://github.com/facebook/react).

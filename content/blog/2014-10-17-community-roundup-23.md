@@ -102,7 +102,7 @@ undo: function() {
 
 [Dan Abramov](https://twitter.com/dan_abramov) working at Stampsy made a talk about React and Flux. It's a very good overview of the concepts at play.
 
-<iframe src="//slides.com/danabramov/components-react-flux-wip/embed"  width="100%" height="315" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+https://slides.com/danabramov/components-react-flux-wip
 
 
 ## React and Flux {#react-and-flux}

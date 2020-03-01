@@ -114,4 +114,4 @@ var MyComponent = React.createClass({
 
 ## Random Tweet {#random-tweet}
 
-<center><blockquote class="twitter-tweet" lang="en"><p>I may be starting to get annoying with this, but ReactJS is really exciting. I truly feel the virtual DOM is a game changer.</p>&mdash; Eric Florenzano (@ericflo) <a href="https://twitter.com/ericflo/statuses/413842834974732288">December 20, 2013</a></blockquote></center>
+https://twitter.com/ericflo/statuses/413842834974732288

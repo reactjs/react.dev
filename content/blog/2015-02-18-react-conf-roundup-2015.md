@@ -251,15 +251,24 @@ And, in case you missed a session, you can borrow **Michael Chan’s** [drawings
 
 <div class="skinny-row">
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p>Notes from <a href="https://twitter.com/dlschafer">@dlschafer</a> and <a href="https://twitter.com/jingc">@jingc</a>&#39;s <a href="https://twitter.com/hashtag/reactjsconf?src=hash">#reactjsconf</a> talk &quot;Data fetching for React applications at Facebook&quot; <a href="http://t.co/IUZUbDCDMQ">pic.twitter.com/IUZUbDCDMQ</a></p>&mdash; Michael Chan (@chantastic) <a href="https://twitter.com/chantastic/status/560538533161472000">January 28, 2015</a></blockquote>
-    <blockquote class="twitter-tweet" lang="en"><p>This is just magical (in the good way)… GraphQL + Relay is amazing. <a href="https://twitter.com/hashtag/reactjsconf?src=hash">#reactjsconf</a></p>&mdash; Chris Williams (@voodootikigod) <a href="https://twitter.com/voodootikigod/status/560533225395589120">January 28, 2015</a></blockquote>
-    <blockquote class="twitter-tweet" lang="en"><p>These… these are my people. :) <a href="https://twitter.com/hashtag/reactjsconf?src=hash">#reactjsconf</a></p>&mdash; Thomas Beirne (@Beirnet) <a href="https://twitter.com/Beirnet/status/560317879501848576">January 28, 2015</a></blockquote>
+    
+    https://twitter.com/chantastic/status/560538533161472000
+    
+    https://twitter.com/voodootikigod/status/560533225395589120
+    
+    https://twitter.com/Beirnet/status/560317879501848576
+    
   </div>
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p>Humbled by the React team and community. Found <a href="https://twitter.com/hashtag/reactjsconf?src=hash">#reactjsconf</a> very mindful, practical and just real.</p>&mdash; xnoɹǝʃ uɐıɹq (@brianleroux) <a href="https://twitter.com/brianleroux/status/560972130112655360">January 30, 2015</a></blockquote>
-    <blockquote class="twitter-tweet" lang="en"><p>I say with confidence as a former UIKit author: [React&#39;s model for the UI layer is vastly better than UIKit&#39;s. React Native is a *huge* deal.</p>&mdash; Andy Matuschak (@andy_matuschak) <a href="https://twitter.com/andy_matuschak/status/560511204867575808">January 28, 2015</a></blockquote>]
-    <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/reactjsconf?src=hash">#reactjsconf</a> was incredible. Amazing project stewardship and community. Boring prediction, React Native sends adoption vertical in 2015.</p>&mdash; David Nolen (@swannodette) <a href="https://twitter.com/swannodette/status/561232290273980416">January 30, 2015</a></blockquote>
-    <blockquote class="twitter-tweet" lang="en"><p>I really love the community shout outs by <a href="https://twitter.com/Vjeux">@vjeux</a> between talks at <a href="https://twitter.com/hashtag/reactjsconf?src=hash">#reactjsconf</a>!</p>&mdash; Andrew Rota (@AndrewRota) <a href="https://twitter.com/AndrewRota/status/560927339522297856">January 29, 2015</a></blockquote>
+    
+    https://twitter.com/brianleroux/status/560972130112655360
+    
+    https://twitter.com/andy_matuschak/status/560511204867575808
+    
+    https://twitter.com/swannodette/status/561232290273980416
+    
+    https://twitter.com/AndrewRota/status/560927339522297856
+        
   </div>
 </div>
 

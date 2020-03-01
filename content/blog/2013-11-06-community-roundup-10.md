@@ -121,4 +121,4 @@ Even though we weren't inspired by FruitMachine (React has been used in producti
 
 I'm going to start adding a tweet at the end of each round-up. We'll start with this one:
 
-<blockquote class="twitter-tweet"><p>This weekend <a href="https://twitter.com/search?q=%23angular&amp;src=hash">#angular</a> died for me. Meet new king <a href="https://twitter.com/search?q=%23reactjs&amp;src=hash">#reactjs</a></p>&mdash; Eldar Djafarov &#x30C3; (@edjafarov) <a href="https://twitter.com/edjafarov/statuses/397033796710961152">November 3, 2013</a></blockquote>
+https://twitter.com/edjafarov/statuses/397033796710961152

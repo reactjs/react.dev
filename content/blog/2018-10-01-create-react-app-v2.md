@@ -53,7 +53,7 @@ Then change its version to `2.0.3`:
 
 Run `npm install` (or `yarn`, if you use it). **For many projects, this one-line change is sufficient to upgrade!**
 
-<blockquote class="twitter-tweet" data-conversation="none" data-dnt="true"><p lang="en" dir="ltr">working here... thanks for all the new functionality 👍</p>&mdash; Stephen Haney (@sdothaney) <a href="https://twitter.com/sdothaney/status/1046822703116607490?ref_src=twsrc%5Etfw">October 1, 2018</a></blockquote>
+https://twitter.com/sdothaney/status/1046822703116607490
 
 Here are a few more tips to get you started.
 

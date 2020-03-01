@@ -64,17 +64,21 @@ Chen Hung-Tu ([transedward](https://github.com/transedward)) built a chat app at
 
 <div class="skinny-row">
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Relay making good on its promise to be the &quot;React.js of data fetching&quot;. Rebuilding small app with it. Spectacular how fast/easy building is.</p>&mdash; Kyle Mathews (@kylemathews) <a href="https://twitter.com/kylemathews/status/640289107122368513">September 5, 2015</a></blockquote>
+    
+    https://twitter.com/kylemathews/status/640289107122368513
 
-    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/RainySundayHackathon?src=hash">#RainySundayHackathon</a> exploring <a href="https://twitter.com/hashtag/GraphQL?src=hash">#GraphQL</a> <a href="https://twitter.com/hashtag/RelayJS?src=hash">#RelayJS</a> <a href="http://t.co/Mm3HlqMejJ">pic.twitter.com/Mm3HlqMejJ</a></p>&mdash; Bastian Kistner (@passionkind) <a href="https://twitter.com/passionkind/status/632846601447411712">August 16, 2015</a></blockquote>
+    https://twitter.com/passionkind/status/632846601447411712
 
-    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Friday. Time to GraphQL a MySQL database. <a href="https://twitter.com/hashtag/graphql?src=hash">#graphql</a> <a href="https://twitter.com/hashtag/relayjs?src=hash">#relayjs</a> <a href="https://twitter.com/hashtag/reactjs?src=hash">#reactjs</a> <a href="https://twitter.com/hashtag/webapp?src=hash">#webapp</a></p>&mdash; xador (@xadorfr) <a href="https://twitter.com/xadorfr/status/632108552765751296">August 14, 2015</a></blockquote>
+    https://twitter.com/xadorfr/status/632108552765751296
+  
   </div>
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">Started a new <a href="https://twitter.com/hashtag/RelayJS?src=hash">#RelayJS</a> and <a href="https://twitter.com/hashtag/GraphQL?src=hash">#GraphQL</a> meet up group! <a href="http://t.co/Vt6Cv4nNH4">http://t.co/Vt6Cv4nNH4</a> If you&#39;re in the Bay Area, I&#39;d love to have you join! <a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a></p>&mdash; Gerald Monaco (@devknoll) <a href="https://twitter.com/devknoll/status/636723716123000832">August 27, 2015</a></blockquote>
+   
+    https://twitter.com/devknoll/status/636723716123000832
 
-    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">.<a href="https://twitter.com/reactjs">@reactjs</a> <a href="https://twitter.com/laneykuenzel">@laneykuenzel</a> <a href="https://twitter.com/BhuwanKhattar">@BhuwanKhattar</a> these <a href="https://twitter.com/hashtag/relayjs?src=hash">#relayjs</a> mutations. they&#39;re mind-blowingly awesome. they make so much damn sense. thank you!</p>&mdash; Jimmy Jia (@jimmy_jia) <a href="https://twitter.com/jimmy_jia/status/634204563709526016">August 20, 2015</a></blockquote>
+    https://twitter.com/jimmy_jia/status/634204563709526016
 
-    <blockquote class="twitter-tweet" lang="en"><p lang="en" dir="ltr">REST is dead, long live REST! <a href="https://twitter.com/hashtag/graphql?src=hash">#graphql</a> <a href="https://twitter.com/hashtag/relayjs?src=hash">#relayjs</a></p>&mdash; Syrus Akbary (@syrusakbary) <a href="https://twitter.com/syrusakbary/status/631531666113060864">August 12, 2015</a></blockquote>
+    https://twitter.com/syrusakbary/status/631531666113060864
+  
   </div>
 </div>

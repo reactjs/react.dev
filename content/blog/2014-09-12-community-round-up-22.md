@@ -7,13 +7,21 @@ author: [LoukaN]
 This has been an exciting summer as four big companies: Yahoo, Mozilla, Airbnb and Reddit announced that they were using React!
 
 <table><tr><td>
-<blockquote width="300" class="twitter-tweet" data-cards="hidden" lang="en"><p>Our friends at <a href="https://twitter.com/Yahoo">@yahoo</a> talk about migrating Yahoo! Mail from YUI to ReactJS at the next <a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> meetup! <a href="http://t.co/Cu2AaE0sVE">http://t.co/Cu2AaE0sVE</a></p>&mdash; Facebook Open Source (@fbOpenSource) <a href="https://twitter.com/fbOpenSource/status/510258065900572672">September 12, 2014</a></blockquote>
+
+https://twitter.com/fbOpenSource/status/510258065900572672
+
 </td><td valign="top">
-<blockquote width="300" class="twitter-tweet" lang="en"><p>I guess <a href="https://twitter.com/reactjs">@reactjs</a> is getting into Firefox :-) Thanks <a href="https://twitter.com/n1k0">@n1k0</a> ! <a href="https://t.co/kipfUS0hu4">https://t.co/kipfUS0hu4</a></p>&mdash; David Bruant (@DavidBruant) <a href="https://twitter.com/DavidBruant/status/484956929933213696">July 4, 2014</a></blockquote>
+
+https://twitter.com/DavidBruant/status/484956929933213696
+
 </td></tr><tr><td>
-<blockquote width="300" class="twitter-tweet" lang="en"><p>.<a href="https://twitter.com/AirbnbNerds">@AirbnbNerds</a> just launched our first user-facing React.js feature to production! We love it so far. <a href="https://t.co/KtyudemcIW">https://t.co/KtyudemcIW</a> /<a href="https://twitter.com/floydophone">@floydophone</a></p>&mdash; spikebrehm (@spikebrehm) <a href="https://twitter.com/spikebrehm/statuses/491645223643013121">July 22, 2014</a></blockquote>
+
+https://twitter.com/spikebrehm/statuses/491645223643013121
+
 </td><td>
-<blockquote width="300" class="twitter-tweet" lang="en"><p>We shipped reddit&#39;s first production <a href="https://twitter.com/reactjs">@reactjs</a> code last week, our checkout process.&#10;&#10;<a href="https://t.co/KUInwsCmAF">https://t.co/KUInwsCmAF</a></p>&mdash; Brian Holt (@holtbt) <a href="https://twitter.com/holtbt/statuses/493852312604254208">July 28, 2014</a></blockquote>
+
+https://twitter.com/holtbt/statuses/493852312604254208
+
 </td></tr></table>
 
 ## React's Architecture {#reacts-architecture}

@@ -91,4 +91,4 @@ Similarly, Alan deLevie ([@adelevie](https://twitter.com/adelevie)) created [rea
 
 ## Random Tweet {#random-tweet}
 
-<div><blockquote class="twitter-tweet" lang="en"><p>Recent changes: web ui is being upgraded to [#reactjs](https://twitter.com/search?q=%23reactjs&src=hash), HEAD~4 at [https://camlistore.googlesource.com/camlistore/](https://camlistore.googlesource.com/camlistore/)</p>&mdash; Camlistore (@Camlistore) <a href="https://twitter.com/Camlistore/status/423925795820539904">January 16, 2014</a></blockquote></div>
+https://twitter.com/Camlistore/status/423925795820539904

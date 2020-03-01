@@ -51,4 +51,4 @@ Give us a shoutout on IRC or [React Google Groups](https://groups.google.com/for
 
 ## Random Tweets {#random-tweets}
 
-<blockquote class="twitter-tweet" lang="en"><p>Spent 12 hours so far with <a href="https://twitter.com/hashtag/reactjs?src=hash">#reactjs</a>. Spent another 2 wondering why we&#39;ve been doing JS frameworks wrong until now. React makes me happy.</p>&mdash; Paul Irwin (@paulirwin) <a href="https://twitter.com/paulirwin/statuses/481263947589242882">June 24, 2014</a></blockquote>
+https://twitter.com/paulirwin/statuses/481263947589242882

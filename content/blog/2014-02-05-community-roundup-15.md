@@ -121,5 +121,4 @@ Adam Solove ([@asolove](https://twitter.com/asolove/)) [dives a little deeper in
 
 ## Not-so-random Tweet {#not-so-random-tweet}
 
-
-<div><blockquote class="twitter-tweet" lang="en"><p>[@swannodette](https://twitter.com/swannodette) No thank you! It's honestly a bit weird because Om is exactly what I didn't know I wanted for doing functional UI work.</p>&mdash; Adam Solove (@asolove) <a href="https://twitter.com/asolove/status/420294067637858304">January 6, 2014</a></blockquote></div>
+https://twitter.com/asolove/status/420294067637858304

@@ -76,22 +76,30 @@ We're counting down the days until [React.js Conf](http://conf.reactjs.com) at F
 
 ## React Meetups Around the World {#react-meetups-around-the-world}
 
-<blockquote class="twitter-tweet" lang="en"><p>React JS meetup having pretty good turn up rate today <a href="https://twitter.com/hashtag/londonreact?src=hash">#londonreact</a> <a href="http://t.co/c360dlVVAe">pic.twitter.com/c360dlVVAe</a></p>&mdash; Alexander Savin (@karismafilms) <a href="https://twitter.com/karismafilms/status/535152580377468928">November 19, 2014</a></blockquote>
+https://twitter.com/karismafilms/status/535152580377468928
 
 <div class="skinny-row">
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p>60+ attendees at the second React.js Utah meetup. <a href="https://twitter.com/ryanflorence">@ryanflorence</a> doing a great job, even without the internet. <a href="http://t.co/fV59AQTOyu">pic.twitter.com/fV59AQTOyu</a></p>&mdash; ReactJS Utah (@reactjsutah) <a href="https://twitter.com/reactjsutah/status/527259410020573184">October 29, 2014</a></blockquote>
+  
+    https://twitter.com/reactjsutah/status/527259410020573184
+  
   </div>
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> meetup at <a href="https://twitter.com/Yahoo">@Yahoo</a> ! History of <a href="https://twitter.com/yahoomail">@yahoomail</a> and why we chose react and NodeJS <a href="http://t.co/Nm4EdTv45G">pic.twitter.com/Nm4EdTv45G</a></p>&mdash; rmsguhan (@rmsguhan) <a href="https://twitter.com/rmsguhan/status/515370950427029504">September 26, 2014</a></blockquote>
+  
+    https://twitter.com/rmsguhan/status/515370950427029504
+  
   </div>
 </div>
 
 <div class="skinny-row">
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" data-cards="hidden" lang="en"><p>The very first ReactJS meetup in NYC tonight, I&#39;ll be speaking about the big ideas behind Om <a href="http://t.co/dvPrFqE9eP">http://t.co/dvPrFqE9eP</a></p>&mdash; David Nolen (@swannodette) <a href="https://twitter.com/swannodette/status/532190993463128064">November 11, 2014</a></blockquote>
+  
+    https://twitter.com/swannodette/status/532190993463128064
+  
   </div>
   <div class="skinny-col">
-    <blockquote class="twitter-tweet" lang="en"><p>If anyone in Sydney is curious about <a href="https://twitter.com/reactjs">@reactjs</a>, I&#39;m presenting at <a href="https://twitter.com/sydjs">@sydjs</a> tonight on how to use it and why it is the future. <a href="https://twitter.com/hashtag/javascript?src=hash">#javascript</a></p>&mdash; Jed Watson (@JedWatson) <a href="https://twitter.com/JedWatson/status/534943557568565248">November 19, 2014</a></blockquote>
+  
+    https://twitter.com/JedWatson/status/534943557568565248
+  
   </div>
 </div>

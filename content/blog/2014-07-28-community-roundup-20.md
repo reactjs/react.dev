@@ -111,4 +111,4 @@ var Foo = React.createClass({
 
 ## Random Tweet {#random-tweet}
 
-<blockquote class="twitter-tweet" data-conversation="none" lang="en"><p>“<a href="https://twitter.com/apphacker">@apphacker</a>: I take back the mean things I said about <a href="https://twitter.com/reactjs">@reactjs</a> I actually like it.” Summarizing the life of ReactJS in a single tweet.</p>&mdash; Jordan (@jordwalke) <a href="https://twitter.com/jordwalke/statuses/490747339607265280">July 20, 2014</a></blockquote>
+https://twitter.com/jordwalke/statuses/490747339607265280

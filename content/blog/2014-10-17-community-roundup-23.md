@@ -148,4 +148,4 @@ Last but not least, Flux and React ideas are not limited to JavaScript inside of
 
 ## Random Tweet {#random-tweet}
 
-<blockquote class="twitter-tweet" lang="en"><p>If you build your app with flux, you can swap out React for a canvas or svg view layer and keep 85% of your code. (or the thing after React)</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/status/507309645372076034">September 3, 2014</a></blockquote>
+https://twitter.com/ryanflorence/status/507309645372076034

@@ -99,4 +99,4 @@ Ever wanted to have a quick way to see what a JSX tag would be converted to? [Ti
 
 ## Random Tweet {#random-tweet}
 
-<center><blockquote class="twitter-tweet" lang="en"><p>.<a href="https://twitter.com/jordwalke">@jordwalke</a> lays down some truth <a href="http://t.co/AXAn0UlUe3">http://t.co/AXAn0UlUe3</a>, optimizing your JS application shouldn&#39;t force you to rewrite so much code <a href="https://twitter.com/search?q=%23reactjs&amp;src=hash">#reactjs</a></p>&mdash; David Nolen (@swannodette) <a href="https://twitter.com/swannodette/statuses/413780079249215488">December 19, 2013</a></blockquote></center>
+https://twitter.com/swannodette/statuses/413780079249215488

@@ -6,7 +6,7 @@ author: [vjeux]
 
 We open sourced React Native last week and the community reception blew away all our expectations! So many of you tried it, made cool stuff with it, raised many issues and even submitted pull requests to fix them! The entire team wants to say thank you!
 
-<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/hashtag/reactnative?src=hash">#reactnative</a> is like when you get a new expansion pack, and everybody is running around clueless about which NPC to talk to for the quests</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/status/581810423554543616">March 28, 2015</a></blockquote>
+https://twitter.com/ryanflorence/status/581810423554543616
 
 
 ## When is React Native Android coming? {#when-is-react-native-android-coming}
@@ -81,4 +81,4 @@ Clay Allsopp wrote a post about [all the crazy things you could do with a JavaSc
 
 We've spent a lot of efforts getting the onboarding as easy as possible and we're really happy that people noticed. We still have a lot of work to do on documentation, stay tuned!
 
-<blockquote class="twitter-tweet" lang="en"><p>Wow. Getting started with React Native might have been the smoothest experience I’ve ever had with a new developer product.</p>&mdash; Andreas Eldh (@eldh) <a href="https://twitter.com/eldh/status/581186172094980096">March 26, 2015</a></blockquote>
+https://twitter.com/eldh/status/581186172094980096

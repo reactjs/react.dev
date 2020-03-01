@@ -53,11 +53,19 @@ F8 2015 is just around the corner, and you can [sign up for the video streams](h
 ## Meetups {#meetups}
 
 <table><tr><td width="50%" valign="top">
-<blockquote class="twitter-tweet" lang="en"><p>Our <a href="https://twitter.com/reactjs">@reactjs</a> meetup is in full effect <a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> &#10;&#10;btw bathroom code is 6012 lol <a href="http://t.co/7iUpvmm3zz">pic.twitter.com/7iUpvmm3zz</a></p>&mdash; littleBits (@littleBits) <a href="https://twitter.com/littleBits/status/570373833028472832">February 25, 2015</a></blockquote>
+
+https://twitter.com/littleBits/status/570373833028472832
+
 </td><td width="50%" valign="top">
-<blockquote class="twitter-tweet" lang="en"><p><a href="https://twitter.com/yrezgui">@yrezgui</a> captivating us with <a href="https://twitter.com/reactjs">@reactjs</a> at <a href="https://twitter.com/DevRocketUK">@DevRocketUK</a>. Thanks to the amazing sponsors <a href="https://twitter.com/makersacademy">@makersacademy</a> and <a href="https://twitter.com/couchbase">@couchbase</a>. <a href="http://t.co/xwA773omky">pic.twitter.com/xwA773omky</a></p>&mdash; James Nocentini (@jamiltz) <a href="https://twitter.com/jamiltz/status/570306188577001473">February 24, 2015</a></blockquote>
+
+https://twitter.com/jamiltz/status/570306188577001473
+
 </td></tr><tr><td width="50%" valign="top">
-<blockquote class="twitter-tweet" lang="en"><p>Listening to a bunch of very clever geekoids at the <a href="https://twitter.com/reactjs">@reactjs</a> seminar. Nice! <a href="http://t.co/0TeTOJOerO">pic.twitter.com/0TeTOJOerO</a></p>&mdash; Nick Middleweek (@nmiddleweek) <a href="https://twitter.com/nmiddleweek/status/568183658395394049">February 18, 2015</a></blockquote>
+
+https://twitter.com/nmiddleweek/status/568183658395394049
+
 </td><td width="50%" valign="top">
-<blockquote class="twitter-tweet" lang="en"><p>Watching the <a href="https://twitter.com/FrontendMasters">@FrontendMasters</a> ReactJS workshop! <a href="http://t.co/YraYIK97Lu">pic.twitter.com/YraYIK97Lu</a></p>&mdash; ReactJS News (@ReactJSNews) <a href="https://twitter.com/ReactJSNews/status/566269552112041985">February 13, 2015</a></blockquote>
+
+https://twitter.com/ReactJSNews/status/566269552112041985
+
 </td></tr></table>

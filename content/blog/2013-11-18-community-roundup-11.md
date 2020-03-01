@@ -88,4 +88,5 @@ This round-up is the proof that React has taken off from its Facebook's root: it
 ## Random Tweet {#random-tweet}
 
 <img src="../images/blog/steve_reverse.gif" style="float: right;" />
-<div style="width: 320px;"><blockquote class="twitter-tweet"><p>I think this reversed gif of Steve Urkel best describes my changing emotions towards the React Lib <a href="http://t.co/JoX0XqSXX3">http://t.co/JoX0XqSXX3</a></p>&mdash; Ryan Seddon (@ryanseddon) <a href="https://twitter.com/ryanseddon/statuses/398572848802852864">November 7, 2013</a></blockquote></div>
+
+https://twitter.com/ryanseddon/statuses/398572848802852864

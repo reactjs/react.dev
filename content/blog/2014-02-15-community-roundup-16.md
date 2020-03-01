@@ -73,13 +73,12 @@ Eric Florenzano ([@ericflo](https://twitter.com/ericflo)) sheds some light on wh
 
 ## Random Tweets {#random-tweets}
 
-<div><blockquote class="twitter-tweet" lang="en"><p>[#reactjs](https://twitter.com/search?q=%23reactjs&src=hash) has very simple API, but it's amazing how much work has been done under the hood to make it blazing fast.</p>&mdash; Anton Astashov (@anton_astashov) <a href="https://twitter.com/anton_astashov/status/417556491646693378">December 30, 2013</a></blockquote></div>
+https://twitter.com/anton_astashov/status/417556491646693378
 
-<div><blockquote class="twitter-tweet" lang="en"><p>[#reactjs]((https://twitter.com/search?q=%23reactjs&src=hash) makes refactoring your HTML as easy & natural as refactoring your javascript [@react_js](https://twitter.com/react_js)</p>&mdash; Jared Forsyth (@jaredforsyth) <a href="https://twitter.com/jaredforsyth/status/420304083010854912">January 6, 2014</a></blockquote></div>
+https://twitter.com/jaredforsyth/status/420304083010854912
 
-<div><blockquote class="twitter-tweet" lang="en"><p>Played with react.js for an hour, so many things suddenly became stupidly simple.</p>&mdash; andrewingram (@andrewingram) <a href="https://twitter.com/andrewingram/status/422810480701620225">January 13, 2014</a></blockquote></div>
+https://twitter.com/andrewingram/status/422810480701620225
 
-<div><blockquote class="twitter-tweet" lang="en"><p>[@okonetchnikov](https://twitter.com/okonetchnikov) HOLY CRAP react is nice</p>&mdash; julik (@julikt) <a href="https://twitter.com/julikt/status/422843478792765440">January 13, 2014</a></blockquote></div>
+https://twitter.com/julikt/status/422843478792765440
 
-<div><blockquote class="twitter-tweet" lang="en"><p>brb rewriting everything with react
-</p>&mdash; Ben Smithett (@bensmithett) <a href="https://twitter.com/bensmithett/status/430671242186592256">February 4, 2014</a></blockquote></div>
+https://twitter.com/bensmithett/status/430671242186592256

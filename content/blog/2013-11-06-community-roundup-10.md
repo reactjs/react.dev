@@ -26,8 +26,7 @@ The best part is that no drastic changes have been required to support all those
 
 [Pete Hunt](http://www.petehunt.net/)'s talk at JSConf EU 2013 is now available in video.
 
-<figure><iframe width="650" height="370" src="//www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe></figure>
-
+https://youtu.be/x7cQ3mrcKaY
 
 ## Server-side React with PHP {#server-side-react-with-php}
 

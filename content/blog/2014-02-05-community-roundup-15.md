@@ -34,9 +34,7 @@ React's one-way data-binding naturally lends itself to a functional programming 
 
 Pete also explains this in detail at his #MeteorDevShop talk (about 30 Minutes):
 
-<iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/Lqcs6hPOcFw?start=2963" frameborder="0" allowfullscreen></iframe>
-
-
+https://youtu.be/Lqcs6hPOcFw?start=2963
 
 ## Kioo: Separating markup and logic {#kioo-separating-markup-and-logic}
 [Creighton Kirkendall](https://github.com/ckirkendall) created [Kioo](https://github.com/ckirkendall/kioo), which adds Enlive-style templating to React. HTML templates are separated from the application logic. Kioo comes with separate examples for both Om and Reagent.

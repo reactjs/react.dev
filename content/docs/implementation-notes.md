@@ -19,7 +19,7 @@ The stack reconciler was used in React 15 and earlier. It is located at [src/ren
 
 ### Video: Building React from Scratch {#video-building-react-from-scratch}
 
-[Paul O'Shannessy](https://twitter.com/zpao) gave a talk about [building React from scratch](https://www.youtube.com/watch?v=_MAD4Oly9yg) that largely inspired this document.
+[Paul O'Shannessy](https://twitter.com/zpao) gave a talk about [building React from scratch](https://youtu.be/_MAD4Oly9yg) that largely inspired this document.
 
 Both this document and his talk are simplifications of the real codebase so you might get a better understanding by getting familiar with both of them.
 

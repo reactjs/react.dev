@@ -15,9 +15,9 @@ This post is **aimed at library authors**. If you're primarily an application de
 
 If you prefer to watch videos, some of the ideas from this blog post have been referenced in several React Conf 2019 presentations:
 
-* [Data Fetching with Suspense in Relay](https://www.youtube.com/watch?v=Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15&t=0s) by [Joe Savona](https://twitter.com/en_JS)
-* [Building the New Facebook with React and Relay](https://www.youtube.com/watch?v=KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4) by [Ashley Watkins](https://twitter.com/catchingash)
-* [React Conf Keynote](https://www.youtube.com/watch?v=uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2) by [Yuzhi Zheng](https://twitter.com/yuzhiz)
+* [Data Fetching with Suspense in Relay](https://youtu.be/Tl0S7QkxFE4&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=15&t=0s) by [Joe Savona](https://twitter.com/en_JS)
+* [Building the New Facebook with React and Relay](https://youtu.be/KT3XKDBZW7M&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=4) by [Ashley Watkins](https://twitter.com/catchingash)
+* [React Conf Keynote](https://youtu.be/uXEEL9mrkAQ&list=PLPxbbTqCLbGHPxZpw4xj_Wwg8-fdNxJRh&index=2) by [Yuzhi Zheng](https://twitter.com/yuzhiz)
 
 This post presents a deeper dive on implementing a data fetching library with Suspense.
 

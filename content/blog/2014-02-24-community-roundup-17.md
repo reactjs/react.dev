@@ -55,12 +55,9 @@ Rafał Cieślak ([@Ravicious](https://twitter.com/Ravicious)) wrote a [React ver
 
 Emanuele shared this awesome demo video with us:
 
-<iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/jYcpaemt90M" frameborder="0" allowfullscreen></iframe>
-
-
+https://youtu.be/jYcpaemt90M
 
 ## React Components {#react-components}
-
 
 ### Table Sorter {#table-sorter}
 [Table Sorter](https://bgerm.github.io/react-table-sorter-demo/) by [bgerm](https://github.com/bgerm) [[source](https://github.com/bgerm/react-table-sorter-demo)] is another helpful React component.

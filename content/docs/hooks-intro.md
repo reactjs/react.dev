@@ -40,7 +40,7 @@ At React Conf 2018, Sophie Alpert and Dan Abramov introduced Hooks, followed by 
 
 <br>
 
-<iframe width="650" height="366" src="//www.youtube.com/embed/dpw9EHDh2bM" frameborder="0" allowfullscreen></iframe>
+https://youtu.be/dpw9EHDh2bM
 
 ## No Breaking Changes {#no-breaking-changes}
 

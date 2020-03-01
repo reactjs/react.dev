@@ -19,8 +19,7 @@ Happy holidays! This blog post is a little-late Christmas present for all the Re
 
 [Stoyan Stefanov](http://www.phpied.com/) talked at Joe Dev On Tech about React. He goes over all the features of the library and ends with a concrete example.
 
-<figure><iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/SMMRJif5QW0" frameborder="0" allowfullscreen></iframe></figure>
-
+https://youtu.be/SMMRJif5QW0
 
 ## JSX: E4X The Good Parts {#jsx-e4x-the-good-parts}
 

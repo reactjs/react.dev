@@ -18,7 +18,7 @@
     "eslint-plugin-react": "^7.4.0",
     "eslint-plugin-relay": "^0.0.19",
     "flow-bin": "^0.56.0",
-    "gatsby": "^2.0.0",
+    "gatsby": "^2.20.3",
     "gatsby-plugin-catch-links": "^2.0.0",
     "gatsby-plugin-feed": "^2.0.0",
     "gatsby-plugin-glamor": "^2.0.0",

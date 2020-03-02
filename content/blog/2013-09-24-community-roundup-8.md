@@ -28,8 +28,6 @@ We've also reached a point where there are too many questions for us to handle d
 
 While this is not going to work for all the attributes since they are camelCased in React, this is a pretty cool trick.
 
-https://twitter.com/ssorallen/statuses/377105575441489920
-
 ## Remarkable React {#remarkable-react}
 
 [Stoyan Stefanov](http://www.phpied.com/) gave a talk at [BrazilJS](http://braziljs.com.br/) about React and wrote an article with the content of the presentation. He goes through the difficulties of writing _active apps_ using the DOM API and shows how React handles it.

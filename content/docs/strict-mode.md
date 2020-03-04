@@ -103,6 +103,7 @@ Strict mode can't automatically detect side effects for you, but it can help you
 * The `render` method
 * `setState` updater functions (the first argument)
 * The static `getDerivedStateFromProps` lifecycle
+* The `shouldComponentUpdate` method
 
 > Note:
 >

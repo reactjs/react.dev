@@ -27,24 +27,9 @@ function render() {
 }
 ```
 
-## Without JSX {#without-jsx}
-
-If you don't want to, or can't use JSX, then you'll need to wrap your component in a factory before calling it:
-
-```javascript
-var React = require('react');
-var MyComponent = React.createFactory(require('MyComponent'));
-
-function render() {
-  return MyComponent({ foo: 'bar' });
-}
-```
-
-This is an easy upgrade path if you have a lot of existing function calls.
-
 ## Dynamic components without JSX {#dynamic-components-without-jsx}
 
-If you get a component class from a dynamic source, then it might be unnecessary to create a factory that you immediately invoke. Instead you can just create your element inline:
+If you get a component class from a dynamic source, you can also create your element inline:
 
 ```javascript
 var React = require('react');

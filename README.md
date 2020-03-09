@@ -36,7 +36,7 @@ The documentation is divided into several sections with a different tone and pur
 
 ### Make the change
 
-1. Follow the "Running locally" instructions
+1. Follow the ["Running locally"](#running-locally) instructions
 1. Save the files and check in the browser
   1. Changes to React components in `src` will hot-reload
   1. Changes to markdown files in `content` will hot-reload

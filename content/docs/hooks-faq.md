@@ -289,7 +289,7 @@ Now let's say we want to write some logic that changes `left` and `top` when the
 
 This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
 
-If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
+If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
 
 For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
 

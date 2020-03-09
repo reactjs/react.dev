@@ -54,7 +54,7 @@ We're using this code in production (and it works for us) but there are still so
 
 ### Enabling Concurrent Mode {#enabling-concurrent-mode}
 
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use in new code without making any changes to the existing code.
+Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
 
 Concurrent Mode is different. It introduces semantic changes to how React works. Otherwise, the [new features](/docs/concurrent-mode-patterns.html) enabled by it *wouldn't be possible*. This is why they're grouped into a new "mode" rather than released one by one in isolation.
 

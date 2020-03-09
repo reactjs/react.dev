@@ -40,7 +40,7 @@ Problems arise when any of these constraints are changed. This typically comes i
 
 A common misconception is that `getDerivedStateFromProps` and `componentWillReceiveProps` are only called when props "change". These lifecycles are called any time a parent component rerenders, regardless of whether the props are "different" from before. Because of this, it has always been unsafe to _unconditionally_ override state using either of these lifecycles. **Doing so will cause state updates to be lost.**
 
-Let’s consider an example to demonstrate the problem. Here is a `EmailInput` component that "mirrors" an email prop in state:
+Let’s consider an example to demonstrate the problem. Here is an `EmailInput` component that "mirrors" an email prop in state:
 ```js
 class EmailInput extends Component {
   state = { email: this.props.email };

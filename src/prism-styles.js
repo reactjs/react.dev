@@ -10,14 +10,14 @@ import {colors} from 'theme';
 
 const prismColors = {
   char: '#D8DEE9',
-  comment: '#999999',
+  comment: '#B2B2B2',
   keyword: '#c5a5c5',
-  lineHighlight: '#14161a',
+  lineHighlight: '#353b45', // colors.dark + extra lightness
   primitive: '#5a9bcf',
   string: '#8dc891',
   variable: '#d7deea',
   boolean: '#ff8b50',
-  punctuation: '#5FB3B3',
+  punctuation: '#88C6BE',
   tag: '#fc929e',
   function: '#79b6f2',
   className: '#FAC863',
@@ -31,6 +31,7 @@ css.global('.gatsby-highlight', {
   borderRadius: 10,
   overflow: 'auto',
   tabSize: '1.5em',
+  WebkitOverflowScrolling: 'touch',
 });
 
 css.global(

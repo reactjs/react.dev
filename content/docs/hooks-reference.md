@@ -437,7 +437,7 @@ Keep in mind that `useRef` *doesn't* notify you when its content changes. Mutati
 useImperativeHandle(ref, createHandle, [deps])
 ```
 
-`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with `forwardRef`:
+`useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with [`forwardRef`](/docs/react-api.html#reactforwardref):
 
 ```js
 function FancyInput(props, ref) {

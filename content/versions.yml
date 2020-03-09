@@ -1,3 +1,9 @@
+- title: '16.13.0'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16130-february-26-2020
+- title: '16.12.0'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16120-november-14-2019
+- title: '16.11'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16110-october-22-2019
 - title: '16.10.2'
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16102-october-3-2019
 - title: '16.10.1'

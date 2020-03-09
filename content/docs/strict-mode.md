@@ -32,7 +32,7 @@ When strict mode is enabled, React compiles a list of all class components using
 
 ![](../images/blog/strict-mode-unsafe-lifecycles-warning.png)
 
-Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of async rendering in future releases of React.
+Addressing the issues identified by strict mode _now_ will make it easier for you to take advantage of concurrent rendering in future releases of React.
 
 ### Warning about legacy string ref API usage {#warning-about-legacy-string-ref-api-usage}
 
@@ -83,13 +83,13 @@ Conceptually, React does work in two phases:
 * The **render** phase determines what changes need to be made to e.g. the DOM. During this phase, React calls `render` and then compares the result to the previous render.
 * The **commit** phase is when React applies any changes. (In the case of React DOM, this is when React inserts, updates, and removes DOM nodes.) React also calls lifecycles like `componentDidMount` and `componentDidUpdate` during this phase.
 
-The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming async mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
+The commit phase is usually very fast, but rendering can be slow. For this reason, the upcoming concurrent mode (which is not enabled by default yet) breaks the rendering work into pieces, pausing and resuming the work to avoid blocking the browser. This means that React may invoke render phase lifecycles more than once before committing, or it may invoke them without committing at all (because of an error or a higher priority interruption).
 
 Render phase lifecycles include the following class component methods:
 * `constructor`
-* `componentWillMount`
-* `componentWillReceiveProps`
-* `componentWillUpdate`
+* `componentWillMount` (or `UNSAFE_componentWillMount`)
+* `componentWillReceiveProps` (or `UNSAFE_componentWillReceiveProps`)
+* `componentWillUpdate` (or `UNSAFE_componentWillUpdate`)
 * `getDerivedStateFromProps`
 * `shouldComponentUpdate`
 * `render`
@@ -103,6 +103,7 @@ Strict mode can't automatically detect side effects for you, but it can help you
 * The `render` method
 * `setState` updater functions (the first argument)
 * The static `getDerivedStateFromProps` lifecycle
+* The `shouldComponentUpdate` method
 
 > Note:
 >

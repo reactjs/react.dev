@@ -25,7 +25,7 @@ Both this document and his talk are simplifications of the real codebase so you 
 
 ### Overview {#overview}
 
-The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#stack-renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
+The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-overview.html#renderers) like React DOM and React Native use it to efficiently update the user interface according to the React components written by the user.
 
 ### Mounting as a Recursive Process {#mounting-as-a-recursive-process}
 

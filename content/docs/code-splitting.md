@@ -94,13 +94,6 @@ import("./math").then(math => {
 });
 ```
 
-> Note:
->
-> The dynamic `import()` syntax is a ECMAScript (JavaScript)
-> [proposal](https://github.com/tc39/proposal-dynamic-import) not currently
-> part of the language standard. It is expected to be accepted in the
-> near future.
-
 When Webpack comes across this syntax, it automatically starts code-splitting
 your app. If you're using Create React App, this is already configured for you
 and you can [start using it](https://facebook.github.io/create-react-app/docs/code-splitting) immediately. It's also supported
@@ -116,7 +109,7 @@ parse the dynamic import syntax but is not transforming it. For that you will ne
 
 > Note:
 >
-> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/smooth-code/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://www.smooth-code.com/open-source/loadable-components/docs/server-side-rendering/).
+> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/gregberge/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://loadable-components.com/docs/server-side-rendering/).
 
 The `React.lazy` function lets you render a dynamic import as a regular component.
 

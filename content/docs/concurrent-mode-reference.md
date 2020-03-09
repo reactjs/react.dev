@@ -5,11 +5,22 @@ permalink: docs/concurrent-mode-reference.html
 prev: concurrent-mode-adoption.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 >Caution:
 >
 >This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+
+</div>
 
 This page is an API reference for the React [Concurrent Mode](/docs/concurrent-mode-intro.html). If you're looking for a guided introduction instead, check out [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).
 
@@ -17,7 +28,7 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 
 - [Enabling Concurrent Mode](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createsyncroot)
+    - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -53,10 +64,10 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 ### `Suspense` {#suspensecomponent}
 
 ```js
-    <Suspense fallback={<h1>Loading...</h1>}>
-      <ProfilePhoto />
-      <ProfileDetails />
-    </Suspense>
+<Suspense fallback={<h1>Loading...</h1>}>
+  <ProfilePhoto />
+  <ProfileDetails />
+</Suspense>
 ```
 
 `Suspense` lets your components "wait" for something before they can render, showing a fallback while waiting.
@@ -64,7 +75,7 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` has loaded, we will continue to show the fallback.
 
 `Suspense` takes two props:
-* **fallback** takes an loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.
+* **fallback** takes a loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.
 * **unstable_avoidThisFallback** takes a boolean. It tells React whether to "skip" revealing this boundary during the initial load. This API will likely be removed in a future release.
 
 ### `<SuspenseList>` {#suspenselist}
@@ -89,7 +100,7 @@ In this example, `ProfileDetails` is waiting for an asynchronous API call to fet
 When multiple components need to fetch data, this data may arrive in an unpredictable order. However, if you wrap these items in a `SuspenseList`, React will not show an item in the list until previous items have been displayed (this behavior is adjustable).
 
 `SuspenseList` takes two props:
-* **revealOrder (fowards, backwards, together)** defines the order in which the `SuspenseList` children should be revealed.
+* **revealOrder (forwards, backwards, together)** defines the order in which the `SuspenseList` children should be revealed.
   * `together` reveals *all* of them when they're ready instead of one by one.
 * **tail (collapsed, hidden)** dictates how unloaded items in a `SuspenseList` is shown. 
     * By default, `SuspenseList` will show all fallbacks in the list.
@@ -115,7 +126,7 @@ The `useTransition` hook returns two values in an array.
 **If some state update causes a component to suspend, that state update should be wrapped in a transition.**
 
 ```js
-const SUSPENSE_CONFIG = {timeoutMs: 2000 };
+const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 function App() {
   const [resource, setResource] = useState(initialResource);
@@ -174,7 +185,7 @@ A good example of this is a text input.
 ```js
 function App() {
   const [text, setText] = useState("hello");
-  const deferredText = useDeferredValue(text, {timeoutMs: 2000 }); 
+  const deferredText = useDeferredValue(text, { timeoutMs: 2000 }); 
 
   return (
     <div className="App">
@@ -188,7 +199,7 @@ function App() {
  }
 ```
 
-This allows us to start showing the new text for the `input` immediately, which allows the webpage to feel responsive. Meanwhile, `MySlowList` "lag behind" for up to 2 seconds according to the `timeoutMs` before updating, allowing it to render with the current text in the background.
+This allows us to start showing the new text for the `input` immediately, which allows the webpage to feel responsive. Meanwhile, `MySlowList` "lags behind" for up to 2 seconds according to the `timeoutMs` before updating, allowing it to render with the current text in the background.
 
 **For an in-depth look at deferring values, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#deferring-a-value).**
 

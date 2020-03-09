@@ -1,16 +1,27 @@
 ---
 id: concurrent-mode-adoption
-title: Adopting Concurrent More (Experimental)
+title: Adopting Concurrent Mode (Experimental)
 permalink: docs/concurrent-mode-adoption.html
 prev: concurrent-mode-patterns.html
 next: concurrent-mode-reference.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 >Caution:
 >
 >This page describes **experimental features that are not yet available in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+
+</div>
 
 - [Installation](#installation)
   - [Who Is This Experimental Release For?](#who-is-this-experimental-release-for)
@@ -43,7 +54,7 @@ We're using this code in production (and it works for us) but there are still so
 
 ### Enabling Concurrent Mode {#enabling-concurrent-mode}
 
-Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use in new code without making any changes to the existing code.
+Normally, when we add features to React, you can start using them immediately. Fragments, Context, and even Hooks are examples of such features. You can use them in new code without making any changes to the existing code.
 
 Concurrent Mode is different. It introduces semantic changes to how React works. Otherwise, the [new features](/docs/concurrent-mode-patterns.html) enabled by it *wouldn't be possible*. This is why they're grouped into a new "mode" rather than released one by one in isolation.
 
@@ -69,7 +80,7 @@ ReactDOM.createRoot(
 >
 >Concurrent Mode APIs such as `createRoot` only exist in the experimental builds of React.
 
-In Concurrent Mode, the lifecycle methods [previously marked](https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](https://reactjs.org/docs/strict-mode.html)-compatible.
+In Concurrent Mode, the lifecycle methods [previously marked](/blog/2018/03/27/update-on-async-rendering.html) as "unsafe" actually *are* unsafe, and lead to bugs even more than in today's React. We don't recommend trying Concurrent Mode until your app is [Strict Mode](/docs/strict-mode.html)-compatible.
 
 ## What to Expect {#what-to-expect}
 
@@ -93,7 +104,7 @@ We think it is better to offer a [gradual migration strategy](/docs/faq-versioni
 
 In practice, we expect that most apps using Legacy Mode today should be able to migrate at least to the Blocking Mode (if not Concurrent Mode). This fragmentation can be annoying for libraries that aim to support all Modes in the short term. However, gradually moving the ecosystem away from the Legacy Mode will also *solve* problems that affect major libraries in the React ecosystem, such as [confusing Suspense behavior when reading layout](https://github.com/facebook/react/issues/14536) and [lack of consistent batching guarantees](https://github.com/facebook/react/issues/15080). There's a number of bugs that can't be fixed in Legacy Mode without changing semantics, but don't exist in Blocking and Concurrent Modes.
 
-You can think of the Blocking Mode as of a "gracefully degraded" version of the Concurrent Mode. **As a result, in longer term we should be able to converge and stop thinking about different Modes altogether.** But for now, Modes are an important migration strategy. They let everyone decide when a migration is worth it, and upgrade at their own pace.
+You can think of the Blocking Mode as a "gracefully degraded" version of the Concurrent Mode. **As a result, in longer term we should be able to converge and stop thinking about different Modes altogether.** But for now, Modes are an important migration strategy. They let everyone decide when a migration is worth it, and upgrade at their own pace.
 
 ### Feature Comparison {#feature-comparison}
 
@@ -107,21 +118,21 @@ You can think of the Blocking Mode as of a "gracefully degraded" version of the 
 
 |   |Legacy Mode  |Blocking Mode  |Concurrent Mode  |
 |---  |---  |---  |---  |
-|String Refs  |✅  |🚫**  |🚫**  |
-|Legacy Context |✅  |🚫**  |🚫**  |
-|findDOMNode  |✅  |🚫**  |🚫**  |
-|Suspense |✅  |✅  |✅  |
-|SuspenseList |🚫  |✅  |✅  |
+|[String Refs](/docs/refs-and-the-dom.html#legacy-api-string-refs)  |✅  |🚫**  |🚫**  |
+|[Legacy Context](/docs/legacy-context.html) |✅  |🚫**  |🚫**  |
+|[findDOMNode](/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)  |✅  |🚫**  |🚫**  |
+|[Suspense](/docs/concurrent-mode-suspense.html#what-is-suspense-exactly) |✅  |✅  |✅  |
+|[SuspenseList](/docs/concurrent-mode-patterns.html#suspenselist) |🚫  |✅  |✅  |
 |Suspense SSR + Hydration |🚫  |✅  |✅  |
 |Progressive Hydration  |🚫  |✅  |✅  |
 |Selective Hydration  |🚫  |🚫  |✅  |
 |Cooperative Multitasking |🚫  |🚫  |✅  |
 |Automatic batching of multiple setStates     |🚫* |✅  |✅  |
-|Priority-based Rendering |🚫  |🚫  |✅  |
-|Interruptible Prerendering |🚫  |🚫  |✅  |
-|useTransition  |🚫  |🚫  |✅  |
-|useDeferredValue |🚫  |🚫  |✅  |
-|Suspense Reveal "Train"  |🚫  |🚫  |✅  |
+|[Priority-based Rendering](/docs/concurrent-mode-patterns.html#splitting-high-and-low-priority-state) |🚫  |🚫  |✅  |
+|[Interruptible Prerendering](/docs/concurrent-mode-intro.html#interruptible-rendering) |🚫  |🚫  |✅  |
+|[useTransition](/docs/concurrent-mode-patterns.html#transitions)  |🚫  |🚫  |✅  |
+|[useDeferredValue](/docs/concurrent-mode-patterns.html#deferring-a-value) |🚫  |🚫  |✅  |
+|[Suspense Reveal "Train"](/docs/concurrent-mode-patterns.html#suspense-reveal-train)  |🚫  |🚫  |✅  |
 
 </div>
 

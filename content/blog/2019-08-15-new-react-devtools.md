@@ -4,7 +4,7 @@ author: [bvaughn]
 ---
 We are excited to announce a new release of the React Developer Tools, available today in Chrome, Firefox, and (Chromium) Edge!
 
-## What's changed?
+## What's changed? {#whats-changed}
 
 A lot has changed in version 4!
 At a high level, this new version should offer significant performance gains and an improved navigation experience.
@@ -14,7 +14,7 @@ It also offers full support for React Hooks, including inspecting nested objects
 
 [Visit the interactive tutorial](https://react-devtools-tutorial.now.sh/) to try out the new version or [see the changelog](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-august-15-2019) for demo videos and more details.
 
-## Which versions of React are supported?
+## Which versions of React are supported? {#which-versions-of-react-are-supported}
 
 **`react-dom`**
 
@@ -26,7 +26,7 @@ It also offers full support for React Hooks, including inspecting nested objects
 * `0`-`0.61`: Not supported
 * `0.62`: Will be supported (when 0.62 is released)
 
-## How do I get the new DevTools?
+## How do I get the new DevTools? {#how-do-i-get-the-new-devtools}
 
 React DevTools is available as an extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/).
 If you have already installed the extension, it should update automatically within the next couple of hours.
@@ -37,14 +37,14 @@ If you use the standalone shell (e.g. in React Native or Safari), you can instal
 npm install -g react-devtools@^4
 ```
 
-## Where did all of the DOM elements go?
+## Where did all of the DOM elements go? {#where-did-all-of-the-dom-elements-go}
 
 The new DevTools provides a way to filter components from the tree to make it easier to navigate deeply nested hierarchies.
 Host nodes (e.g. HTML `<div>`, React Native `<View>`) are *hidden by default*, but this filter can be disabled:
 
 ![DevTools component filters](../images/blog/devtools-component-filters.gif)
 
-## How do I get the old version back?
+## How do I get the old version back? {#how-do-i-get-the-old-version-back}
 
 If you are working with React Native version 60 (or older) you can install the previous release of DevTools from NPM:
 
@@ -70,7 +70,7 @@ yarn build:extension
 # Follow the on-screen instructions to complete installation
 ```
 
-## Thank you!
+## Thank you! {#thank-you}
 
 We'd like to thank everyone who tested the early release of DevTools version 4.
 Your feedback helped improve this initial release significantly.

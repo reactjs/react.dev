@@ -6,11 +6,22 @@ prev: concurrent-mode-suspense.html
 next: concurrent-mode-adoption.html
 ---
 
+<style>
+.scary > blockquote {
+  background-color: rgba(237, 51, 21, 0.2);
+  border-left-color: #ed3315;
+}
+</style>
+
+<div class="scary">
+
 >Caution:
 >
 >This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
 >
->This documentation is aimed at early adopters and people who are curious. If you're new to React, don't worry about these features -- you don't need to learn them right now.
+>This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now. For example, if you're looking for a data fetching tutorial that works today, read [this article](https://www.robinwieruch.de/react-hooks-fetch-data/) instead.
+
+</div>
 
 Usually, when we update the state, we expect to see changes on the screen immediately. This makes sense because we want to keep our app responsive to user input. However, there are cases where we might prefer to **defer an update from appearing on the screen**.
 
@@ -152,7 +163,7 @@ Now, this feels a lot better! When we click Next, it gets disabled because click
 
 Let's take another look at all the changes we've made since the [original example](https://codesandbox.io/s/infallible-feather-xjtbu):
 
-```js{3-5,11,14,19}
+```js{3-5,9,11,14,19}
 function App() {
   const [resource, setResource] = useState(initialResource);
   const [startTransition, isPending] = useTransition({
@@ -183,9 +194,9 @@ function App() {
 It took us only seven lines of code to add this transition:
 
 * We've imported the `useTransition` Hook and used it the component that updates the state.
-* We've passed `{timeoutMs: 3000}` to stay on the previous screeen for at most 3 seconds.
+* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
 * We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
-* We're using `isPending` to communicate the state transition progress to the user.
+* We're using `isPending` to communicate the state transition progress to the user and to disable the button.
 
 As a result, clicking "Next" doesn't perform an immediate state transition to an "undesirable" loading state, but instead stays on the previous screen and communicates progress there.
 
@@ -249,7 +260,7 @@ However, the experience feels really jarring. We were browsing a page, but it go
 function ProfilePage() {
   const [startTransition, isPending] = useTransition({
     // Wait 10 seconds before fallback
-    timeout: 10000
+    timeoutMs: 10000
   });
   const [resource, setResource] = useState(initialResource);
 
@@ -289,7 +300,7 @@ This can lead to a lot of repetitive code across components. This is why **we ge
 ```js{7-9,20,24}
 function Button({ children, onClick }) {
   const [startTransition, isPending] = useTransition({
-    timeout: 10000
+    timeoutMs: 10000
   });
 
   function handleClick() {
@@ -360,7 +371,7 @@ At the very end, we have the **Complete** state. That's where we want to eventua
 
 But before our screen can be Complete, we might need to load some data or code. When we're on the next screen, but some parts of it are still loading, we call that a **Skeleton** state.
 
-Finally, there two primary ways that lead us to the Skeleton state. We will illustrate the difference between them with a concrete example.
+Finally, there are two primary ways that lead us to the Skeleton state. We will illustrate the difference between them with a concrete example.
 
 ### Default: Receded → Skeleton → Complete {#default-receded-skeleton-complete}
 
@@ -390,6 +401,7 @@ After the click, React started rendering the next screen:
     <ProfileDetails />
     <Suspense fallback={...}>
       <ProfileTimeline />
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -403,6 +415,7 @@ Both `<ProfileDetails>` and `<ProfileTimeline>` need data to render, so they sus
     <ProfileDetails /> {/* suspends! */}
     <Suspense fallback={<h2>Loading posts...</h2>}>
       <ProfileTimeline /> {/* suspends! */}
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -419,6 +432,7 @@ When a component suspends, React needs to show the closest fallback. But the clo
     <ProfileDetails /> {/* suspends! */}
     <Suspense fallback={...}>
       <ProfileTimeline />
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -437,6 +451,7 @@ As we load more data, React will retry rendering, and `<ProfileDetails>` can ren
       <h2>Loading posts...</h2>
     }>
       <ProfileTimeline /> {/* suspends! */}
+    </Suspense>
   </ProfilePage>
 </Suspense>
 ```
@@ -492,7 +507,7 @@ function ProfileTrivia({ resource }) {
 
 **[Try it on CodeSandbox](https://codesandbox.io/s/focused-mountain-uhkzg)**
 
-If you press "Open Profile" now, you can tell something is wrong. It takes whole seven seconds to make the transition now! This is because our trivia API is too slow. Let's say we can't make the API faster. How can we improve the user experience with this constraint?
+If you press "Open Profile" now, you can tell something is wrong. It takes a whole seven seconds to make the transition now! This is because our trivia API is too slow. Let's say we can't make the API faster. How can we improve the user experience with this constraint?
 
 If we don't want to stay in the Pending state for too long, our first instinct might be to set `timeoutMs` in `useTransition` to something smaller, like `3000`. You can try this [here](https://codesandbox.io/s/practical-kowalevski-kpjg4). This lets us escape the prolonged Pending state, but we still don't have anything useful to show!
 
@@ -723,7 +738,7 @@ By default, React always renders a consistent UI. Consider code like this:
 
 React guarantees that whenever we look at these components on the screen, they will reflect data from the same `user`. If a different `user` is passed down because of a state update, you would see them changing together. You can't ever record a screen and find a frame where they would show values from different `user`s. (If you ever run into a case like this, file a bug!)
 
-This makes sense in the vast majority of situations. Inconsistent UI is confusing and can mislead users. (For example, it would be terrible if a messager's Send button and the conversation picker pane "disagreed" about which thread is currently selected.)
+This makes sense in the vast majority of situations. Inconsistent UI is confusing and can mislead users. (For example, it would be terrible if a messenger's Send button and the conversation picker pane "disagreed" about which thread is currently selected.)
 
 However, sometimes it might be helpful to intentionally introduce an inconsistency. We could do it manually by "splitting" the state like above, but React also offers a built-in Hook for this:
 
@@ -775,7 +790,7 @@ function ProfileTimeline({ isStale, resource }) {
 
 The tradeoff we're making here is that `<ProfileTimeline>` will be inconsistent with other components and potentially show an older item. Click "Next" a few times, and you'll notice it. But thanks to that, we were able to cut down the transition time from 1000ms to 300ms.
 
-Whether or not it's an appropriate tradeoff depends on the situation. But it's a handy tool, especially when the content doesn't change very visible between items, and the user might not even realize they were looking at a stale version for a second.
+Whether or not it's an appropriate tradeoff depends on the situation. But it's a handy tool, especially when the content doesn't change noticeably between items, and the user might not even realize they were looking at a stale version for a second.
 
 It's worth noting that `useDeferredValue` is not *only* useful for data fetching. It also helps when an expensive component tree causes an interaction (e.g. typing in an input) to be sluggish. Just like we can "defer" a value that takes too long to fetch (and show its old value despite others components updating), we can do this with trees that take too long to render.
 
@@ -804,7 +819,7 @@ function App() {
 
 **[Try it on CodeSandbox](https://codesandbox.io/s/pensive-shirley-wkp46)**
 
-In this example, **every item in `<MyShowList>` has an artificial slowdown -- each of them blocks the thread for a few milliseconds**. We'd never do this in a real app, but this helps us simulate what can happen in a deep component tree with no single obvious place to optimize.
+In this example, **every item in `<MySlowList>` has an artificial slowdown -- each of them blocks the thread for a few milliseconds**. We'd never do this in a real app, but this helps us simulate what can happen in a deep component tree with no single obvious place to optimize.
 
 We can see how typing in the input causes stutter. Now let's add `useDeferredValue`:
 
@@ -842,7 +857,7 @@ Even though there is an improvement in responsiveness, this example isn't as com
 
 ### SuspenseList {#suspenselist}
 
-`<SuspenseList>` is the last pattern that's related to orchestracting loading states.
+`<SuspenseList>` is the last pattern that's related to orchestrating loading states.
 
 Consider this example:
 

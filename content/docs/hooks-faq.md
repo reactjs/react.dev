@@ -589,7 +589,7 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // Uses productId prop
+    const response = await fetch('http://myapi/product/' + productId); // Uses productId prop
     const json = await response.json();
     setProduct(json);
   }
@@ -610,7 +610,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // By moving this function inside the effect, we can clearly see the values it uses.
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }

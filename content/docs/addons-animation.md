@@ -23,8 +23,8 @@ The [`ReactTransitionGroup`](#low-level-api-reacttransitiongroup) add-on compone
 **Importing**
 
 ```javascript
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'; // ES6
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group'); // ES5 with npm
+import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
+var ReactCSSTransitionGroup = require('react-transition-group'); // ES5 with npm
 ```
 
 ```javascript{31-36}
@@ -199,7 +199,7 @@ render() {
 In the example above, we rendered a list of items into `ReactCSSTransitionGroup`. However, the children of `ReactCSSTransitionGroup` can also be one or zero items. This makes it possible to animate a single element entering or leaving. Similarly, you can animate a new element replacing the current element. For example, we can implement a simple image carousel like this:
 
 ```javascript{10}
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-transition-group';
 
 function ImageCarousel(props) {
   return (

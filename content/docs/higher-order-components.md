@@ -179,7 +179,7 @@ Resist the temptation to modify a component's prototype (or otherwise mutate it)
 function logProps(InputComponent) {
   InputComponent.prototype.componentDidUpdate = function(prevProps) {
     console.log('Current props: ', this.props);
-    console.log('Prev props: ', prevProps);
+    console.log('Previous props: ', prevProps);
   };
   // The fact that we're returning the original input is a hint that it has
   // been mutated.
@@ -201,7 +201,7 @@ function logProps(WrappedComponent) {
   return class extends React.Component {
     componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
-      console.log('Prev props: ', prevProps);
+      console.log('Previous props: ', prevProps);
     }
     render() {
       // Wraps the input component in a container, without mutating it. Good!

@@ -15,10 +15,6 @@ If you want to [contribute to React](/docs/how-to-contribute.html) we hope that 
 
 We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
 
-### External Dependencies {#external-dependencies}
-
-React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
-
 ### Top-Level Folders {#top-level-folders}
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:

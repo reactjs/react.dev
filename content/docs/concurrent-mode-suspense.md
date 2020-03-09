@@ -119,7 +119,7 @@ So what's the point of Suspense? There are a few ways we can answer this:
 
 * **It lets you orchestrate intentionally designed loading states.** It doesn't say _how_ the data is fetched, but it lets you closely control the visual loading sequence of your app.
 
-* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it was already loaded.
+* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it were already loaded.
 
 ## Using Suspense in Practice {#using-suspense-in-practice}
 

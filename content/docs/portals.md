@@ -48,7 +48,7 @@ A typical use case for portals is when a parent component has an `overflow: hidd
 >
 > For modal dialogs, ensure that everyone can interact with them by following the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/TR/wai-aria-practices-1.1/#dialog_modal).
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/yzMaBd)
+**Try it on CodePen**: [class version](https://codepen.io/gaearon/pen/yzMaBd), [hooks version](https://codepen.io/tjcrowder/pen/LYVeqyq)
 
 ## Event Bubbling Through Portals {#event-bubbling-through-portals}
 

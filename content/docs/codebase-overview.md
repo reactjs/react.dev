@@ -165,7 +165,7 @@ The code for React core is located in [`packages/react`](https://github.com/face
 
 ### Renderers {#renderers}
 
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
+React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://reactnative.dev/). This introduced the concept of "renderers" to React internals.
 
 **Renderers manage how a React tree turns into the underlying platform calls.**
 

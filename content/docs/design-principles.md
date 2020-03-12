@@ -126,7 +126,7 @@ We do, however, provide some global configuration on the build level. For exampl
 
 ### Beyond the DOM {#beyond-the-dom}
 
-We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://facebook.github.io/react-native/) is just as important both to Facebook and the community.
+We see the value of React in the way it allows us to write components that have fewer bugs and compose together well. DOM is the original rendering target for React but [React Native](https://reactnative.dev/) is just as important both to Facebook and the community.
 
 Being renderer-agnostic is an important design constraint of React. It adds some overhead in the internal representations. On the other hand, any improvements to the core translate across platforms.
 

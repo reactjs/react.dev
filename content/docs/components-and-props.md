@@ -164,8 +164,8 @@ First, we will extract `Avatar`:
 function Avatar(props) {
   return (
     <img className="Avatar"
-      src={props.user.avatarUrl}
-      alt={props.user.name}
+      src={props.avatarUrl}
+      alt={props.name}
     />
   );
 }

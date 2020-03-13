@@ -9,9 +9,7 @@ class FileInput extends React.Component {
     // highlight-range{4}
     event.preventDefault();
     alert(
-      `Selected file - ${
-        this.fileInput.current.files[0].name
-      }`
+      `Selected file - ${this.fileInput.current.files[0].name}`
     );
   }
 

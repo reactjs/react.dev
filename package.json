@@ -27,7 +27,7 @@
     "gatsby-plugin-netlify": "^2.0.0",
     "gatsby-plugin-nprogress": "^2.0.0",
     "gatsby-plugin-react-helmet": "^3.0.0",
-    "gatsby-plugin-sharp": "^2.0.0",
+    "gatsby-plugin-sharp": "^2.4.12",
     "gatsby-plugin-twitter": "^2.0.0",
     "gatsby-remark-code-repls": "^2.0.0",
     "gatsby-remark-copy-linked-files": "^2.0.0",
@@ -39,7 +39,7 @@
     "gatsby-remark-smartypants": "^2.0.0",
     "gatsby-source-filesystem": "^2.0.0",
     "gatsby-transformer-remark": "^2.0.0",
-    "gatsby-transformer-sharp": "^2.0.0",
+    "gatsby-transformer-sharp": "^2.3.18",
     "github-slugger": "^1.2.1",
     "glamor": "^2.20.40",
     "hex2rgba": "^0.0.1",
@@ -58,7 +58,7 @@
     "unist-util-visit": "^1.1.3"
   },
   "engines": {
-    "node": ">8.4.0",
+    "node": "12.x.x",
     "yarn": "^1.3.2"
   },
   "homepage": "https://reactjs.org/",

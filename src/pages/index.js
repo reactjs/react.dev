@@ -22,7 +22,7 @@ import logoWhiteSvg from 'icons/logo-white.svg';
 class Home extends Component {
   state = {
     babelLoaded: false,
-    hooks: false,
+    hooks: true,
   };
 
   componentDidMount() {
@@ -38,10 +38,12 @@ class Home extends Component {
     );
   }
 
-  toggleHooks = () => {
-    this.setState(state => ({
-      hooks: !state.hooks,
-    }));
+  useHooks = () => {
+    this.setState({hooks: true});
+  };
+
+  useClasses = () => {
+    this.setState({hooks: false});
   };
 
   render() {
@@ -266,17 +268,33 @@ class Home extends Component {
                 </div>
               </section>
 
-              <button onClick={this.toggleHooks}>
-                {hooks ? 'Hooks' : 'Classes'}
-              </button>
-              <hr
-                css={{
-                  height: 1,
-                  marginBottom: -1,
-                  border: 'none',
-                  borderBottom: `1 solid ${colors.divider}`,
-                }}
-              />
+              <div css={{display: 'flex', marginBottom: '20px'}}>
+                <button
+                  css={[
+                    examplesTabStyles,
+                    {
+                      ...(hooks
+                        ? examplesTabSelectedStyles
+                        : examplesTabNotSelectedStyles),
+                    },
+                  ]}
+                  onClick={this.useHooks}>
+                  Hooks
+                </button>
+                <button
+                  css={[
+                    examplesTabStyles,
+                    {
+                      ...(hooks
+                        ? examplesTabNotSelectedStyles
+                        : examplesTabSelectedStyles),
+                    },
+                  ]}
+                  onClick={this.useClasses}>
+                  Classes
+                </button>
+              </div>
+
               <section css={sectionStyles}>
                 <div id="examples">
                   {computedExamples.map(({node}, index) => {
@@ -437,4 +455,22 @@ const headingStyles = {
   '&&': {
     marginBottom: 20,
   },
+};
+
+const examplesTabStyles = {
+  width: '100%',
+  textAlign: 'center',
+  padding: '12px',
+  cursor: 'pointer',
+  border: '1px solid #ececec',
+  outline: 'none',
+};
+
+const examplesTabSelectedStyles = {
+  borderBottomColor: '#ffffff',
+};
+const examplesTabNotSelectedStyles = {
+  borderTopColor: '#ffffff',
+  borderLeftColor: '#ffffff',
+  borderRightColor: '#ffffff',
 };

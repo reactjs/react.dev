@@ -2,7 +2,7 @@
 title: A Simple Component
 order: 0
 domid: hello-example
-hooks: false
+hooks: true
 ---
 
 React components implement a `render()` method that takes input data and returns what to display. This example uses an XML-like syntax called JSX. Input data that is passed into the component can be accessed by `render()` via `this.props`.

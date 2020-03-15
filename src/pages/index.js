@@ -22,6 +22,7 @@ import logoWhiteSvg from 'icons/logo-white.svg';
 class Home extends Component {
   state = {
     babelLoaded: false,
+    hooks: false,
   };
 
   componentDidMount() {
@@ -37,15 +38,31 @@ class Home extends Component {
     );
   }
 
+  toggleHooks = () => {
+    this.setState(state => ({
+      hooks: !state.hooks,
+    }));
+  };
+
   render() {
-    const {babelLoaded} = this.state;
+    const {babelLoaded, hooks} = this.state;
     const {data, location} = this.props;
     const {codeExamples, examples, marketing} = data;
 
-    const code = codeExamples.edges.reduce((lookup, {node}) => {
-      lookup[node.mdAbsolutePath] = node;
-      return lookup;
-    }, {});
+    const computedExamples = examples.edges.filter(
+      ({node}) => node.frontmatter.hooks === hooks,
+    );
+
+    const code = codeExamples.edges
+      .filter(({node}) =>
+        computedExamples.find(
+          example => example.node.fileAbsolutePath === node.mdAbsolutePath,
+        ),
+      )
+      .reduce((lookup, {node}) => {
+        lookup[node.mdAbsolutePath] = node;
+        return lookup;
+      }, {});
 
     return (
       <Layout location={location}>
@@ -248,6 +265,10 @@ class Home extends Component {
                   ))}
                 </div>
               </section>
+
+              <button onClick={this.toggleHooks}>
+                {hooks ? 'Hooks' : 'Classes'}
+              </button>
               <hr
                 css={{
                   height: 1,
@@ -258,7 +279,7 @@ class Home extends Component {
               />
               <section css={sectionStyles}>
                 <div id="examples">
-                  {examples.edges.map(({node}, index) => {
+                  {computedExamples.map(({node}, index) => {
                     const snippet = code[node.fileAbsolutePath];
                     return (
                       <CodeExample
@@ -378,6 +399,7 @@ export const pageQuery = graphql`
           frontmatter {
             title
             domid
+            hooks
           }
           html
         }

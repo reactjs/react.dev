@@ -25,7 +25,7 @@ compiles into:
 
 ```js
 React.createElement(
-  MyButton,
+  'MyButton',
   {color: 'blue', shadowSize: 2},
   'Click Me'
 )

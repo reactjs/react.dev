@@ -81,6 +81,20 @@ function Example(props) {
   return <div />;
 }
 ```
+**Basic Example of useStae hook in functional component**
+
+```js
+import react,{useState} from "react"
+function App(){
+  const [answer]=useState("yes lovely") //useState hooks used here
+    return(
+      <div>
+        <h1>Are you coming{answer}</h1>
+      </div>
+         )
+    }
+export default App
+```
 
 You might have previously known these as "stateless components". We're now introducing the ability to use React state from these, so we prefer the name "function components".
 
@@ -105,6 +119,7 @@ function Example() {
 >Note:
 >
 >There are some special rules about where you can and can't use Hooks within a component. We'll learn them in [Rules of Hooks](/docs/hooks-rules.html).
+
 
 ## Declaring a State Variable {#declaring-a-state-variable}
 

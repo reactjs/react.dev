@@ -182,3 +182,73 @@ We will explore rendering React elements to the DOM in the [next section](/docs/
 >**Tip:**
 >
 >We recommend using the ["Babel" language definition](https://babeljs.io/docs/editors) for your editor of choice so that both ES6 and JSX code is properly highlighted.
+
+### JSX - Whole Example
+
+Let me summarize what we discussed about JSX in one example:
+
+```js
+
+const job = 'Frontend developr !';
+
+//Embedding Expressions in JSX
+function formatTopic(topics) {
+  return topics.firstTopic;
+}
+const topics = {
+  firstTopic: 'JSX',
+};
+
+//JSX is an Expression Too
+function formatUserName(user) {
+  return user;
+}
+const user = "React Developer";
+//const user = "";
+function getGreeting(user) {
+  if (user) {
+    return <h1>Hello, <mark>{formatUserName(user)}!</mark></h1>;
+  }
+  return <h1>Hello, <mark>Stranger.</mark></h1>;
+}
+
+//Specifying Attributes with JSX
+function formatName(avatarData) {
+  return avatarData.firstName + ' ' + avatarData.lastName;
+}
+function ourTopic() {
+  return <h2 className="topic"> First, Let me introduce myself </h2>;
+}
+const avatarData = {
+  firstName: 'John',
+  lastName: 'Doe',
+  avatarUrl: 'https://i.imgur.com/1o1zEDM.png',
+};
+
+//JSX Prevents Injection Attacks
+const potentiallyMaliciousInput = {
+  dangerouslySetInnerHTML: {
+    "__html": "<img onerror='alert(\"Hacked! LOL\");' src='invalid-image' width='50px' height='50px'/>"
+  }
+};
+
+const element = <div>
+        <h1>Hello World ! </h1>
+        <h2>I am <mark>{job}</mark></h2>
+        <h2>We will talk about: <mark>{formatTopic(topics)}</mark>  in  details</h2>
+        <h2>{getGreeting(user)}</h2>
+        <h2>{ourTopic()}</h2>
+        <div className="avatar">
+          <h3>I am <mark>{formatName(avatarData)}</mark></h3>        
+          <img src={avatarData.avatarUrl} />
+        </div>
+        <div {...potentiallyMaliciousInput} />
+        
+      </div>
+
+ReactDOM.render(
+  element,
+  document.getElementById('root')
+);
+
+```

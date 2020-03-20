@@ -1171,11 +1171,15 @@ We will also replace reading `this.state.history` with `this.state.history.slice
   }
 ```
 
-Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
+Finally, we will modify the Game component's `render` method.
 
-```javascript{3}
+We'll have to perform similar replacement of the `this.state.history` usage as we did in the `handleClick` function. This is necessary because the list of the past moves is rendered based on history. And after we perform a "jump" with the help of the `jumpTo` function we need to make sure we are ignoring all invalid "future" moves.
+
+In the end, we need to make sure that always rendering the last move to rendering the currently selected move according to `stepNumber`:
+
+```javascript{1,3}
   render() {
-    const history = this.state.history;
+    const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 

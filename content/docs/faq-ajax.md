@@ -91,6 +91,9 @@ function MyComponent() {
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
 
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
   useEffect(() => {
     fetch("https://api.example.com/items")
       .then(res => res.json())

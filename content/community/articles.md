@@ -8,7 +8,6 @@ permalink: community/articles.html
 
 - [React How-to](https://github.com/petehunt/react-howto) - Pete Hunt's guide to the React ecosystem.
 - [9 things every React.js beginner should know](https://camjackson.net/post/9-things-every-reactjs-beginner-should-know) - Cam Jackson's guide for beginners.
-
 - [Basic Understanding of DOM — React Virtual-DOM](https://medium.com/@Aqsaumar48/basic-understanding-of-dom-react-virtual-dom-c2b5905fb7d1) - Aqsa Umar's article on Virtual DOM.
 
 - [React "Aha" Moments](https://tylermcginnis.com/react-aha-moments/) - Tyler McGinnis' article on his collection of "Aha" moments with React.

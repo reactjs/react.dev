@@ -100,7 +100,7 @@ Because the above methods might be called more than once, it's important that th
 Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
 
 * Class component `constructor` method
-* The `render` method of class components or the function component itself 
+* The `render` method of class components or the function component itself **only if** it uses [Hooks](hooks-intro.html)
 * state updater functions (the first argument for the `setState` class component method or the argument for the `setState` return value of [`useState`](hooks-reference.html#usestate))
 * The static `getDerivedStateFromProps` lifecycle
 * The `shouldComponentUpdate` method

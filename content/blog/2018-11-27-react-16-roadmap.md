@@ -108,7 +108,7 @@ Hooks represent our vision for the future of React. They solve both problems tha
 
 ### React 16.x (~Q2 2019): The One with Concurrent Mode {#react-16x-q2-2019-the-one-with-concurrent-mode}
 
-*Concurrent Mode* lets React apps be more responsive by rendering component trees without blocking the main thread. It is opt-in and allows React to interrupt a long-running render (for example, rendering a new feed story) to handle a high-priority event (for example, text input or hover). Concurrent Mode also improves the user experience of Suspense by skipping unnecessary loading states on fast connections.
+*Concurrent Mode* lets React apps be more responsive by rendering component trees without blocking the main thread. It is opt-in and allows React to interrupt a long-running render (for example, rendering a news feed story) to handle a high-priority event (for example, text input or hover). Concurrent Mode also improves the user experience of Suspense by skipping unnecessary loading states on fast connections.
 
 >Note
 >

@@ -7,7 +7,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ### Prerequisites
 
 1. Git
-1. Node: any 8.x version starting with 8.4.0 or greater
+1. Node: any 12.x version starting with v12.0.0 or greater
 1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)
 1. A fork of the repo (for any contributions)
 1. A clone of the [reactjs.org repo](https://github.com/reactjs/reactjs.org) on your local machine
@@ -36,7 +36,7 @@ The documentation is divided into several sections with a different tone and pur
 
 ### Make the change
 
-1. Follow the "Running locally" instructions
+1. Follow the ["Running locally"](#running-locally) instructions
 1. Save the files and check in the browser
   1. Changes to React components in `src` will hot-reload
   1. Changes to markdown files in `content` will hot-reload

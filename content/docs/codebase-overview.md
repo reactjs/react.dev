@@ -15,12 +15,6 @@ If you want to [contribute to React](/docs/how-to-contribute.html) we hope that 
 
 We don't necessarily recommend any of these conventions in React apps. Many of them exist for historical reasons and might change with time.
 
-### External Dependencies {#external-dependencies}
-
-React has almost no external dependencies. Usually, a `require()` points to a file in React's own codebase. However, there are a few relatively rare exceptions.
-
-The [fbjs repository](https://github.com/facebook/fbjs) exists because React shares some small utilities with libraries like [Relay](https://github.com/facebook/relay), and we keep them in sync. We don't depend on equivalent small modules in the Node ecosystem because we want Facebook engineers to be able to make changes to them whenever necessary. None of the utilities inside fbjs are considered to be public API, and they are only intended for use by Facebook projects such as React.
-
 ### Top-Level Folders {#top-level-folders}
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
@@ -171,7 +165,7 @@ The code for React core is located in [`packages/react`](https://github.com/face
 
 ### Renderers {#renderers}
 
-React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://facebook.github.io/react-native/). This introduced the concept of "renderers" to React internals.
+React was originally created for the DOM but it was later adapted to also support native platforms with [React Native](https://reactnative.dev/). This introduced the concept of "renderers" to React internals.
 
 **Renderers manage how a React tree turns into the underlying platform calls.**
 
@@ -217,7 +211,7 @@ Its source code is located in [`packages/react-reconciler`](https://github.com/f
 
 ### Event System {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/react-events`](https://github.com/facebook/react/tree/master/packages/react-events).
+React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
 
 There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
 

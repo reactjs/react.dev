@@ -97,16 +97,13 @@ Render phase lifecycles include the following class component methods:
 
 Because the above methods might be called more than once, it's important that they do not contain side-effects. Ignoring this rule can lead to a variety of problems, including memory leaks and invalid application state. Unfortunately, it can be difficult to detect these problems as they can often be [non-deterministic](https://en.wikipedia.org/wiki/Deterministic_algorithm).
 
-Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following methods:
+Strict mode can't automatically detect side effects for you, but it can help you spot them by making them a little more deterministic. This is done by intentionally double-invoking the following functions:
 
-* Class component `constructor` method
-* The `render` method of class components or the function component itself
-* state updater functions (the first argument for the `setState` class component method or the argument for the `setState` return value of [`useState`](hooks-reference.html#usestate))
-* The static `getDerivedStateFromProps` lifecycle
-* The `shouldComponentUpdate` method
-* the function passed as the initial state to [`useState`](hooks-reference.html#lazy-initial-state)
-* the `init` function passed to [`useReducer`](hooks-reference.html#usereducer)
-* "create" functions passed to [`useMemo`](hooks-reference.html#usememo)
+* Class component `constructor`, `render`, and `shouldComponent` methods
+* Class component static `getDerivedStateFromProps` method
+* Function component bodies
+* State updater functions (the first argument to `setState`)
+* Functions passed to `useState`, `useMemo`, or `useReducer`
 
 > Note:
 >

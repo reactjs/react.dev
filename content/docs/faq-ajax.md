@@ -83,7 +83,7 @@ class MyComponent extends React.Component {
 }
 ```
 
-Has the following equivalent with [Hooks](https://reactjs.org/docs/hooks-intro.html):
+Here is the equivalent with [Hooks](https://reactjs.org/docs/hooks-intro.html): 
 
 ```js
 function MyComponent() {

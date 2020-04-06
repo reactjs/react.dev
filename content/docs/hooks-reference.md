@@ -388,6 +388,10 @@ If no array is provided, a new value will be computed on every render.
 
 **You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
 
+> Warning
+>
+> When React is not running in production mode, React will run all `useMemo` callbacks _at least twice_, irrespective of whether one of the dependencies has changed. This is in order to help surface any bugs that may occur should React "forget" your memoized value.
+
 > Note
 >
 > The array of dependencies is not passed as arguments to the function. Conceptually, though, that's what they represent: every value referenced inside the function should also appear in the dependencies array. In the future, a sufficiently advanced compiler could create this array automatically.

@@ -23,8 +23,8 @@ The [`ReactTransitionGroup`](#low-level-api-reacttransitiongroup) add-on compone
 **Importing**
 
 ```javascript
-import ReactCSSTransitionGroup from 'react-transition-group'; // ES6
-var ReactCSSTransitionGroup = require('react-transition-group'); // ES5 with npm
+import { CSSTransitionGroup } from 'react-transition-group'; // ES6
+var CSSTransitionGroup = require('react-transition-group/CSSTransitionGroup') // ES5 with npm
 ```
 
 ```javascript{31-36}

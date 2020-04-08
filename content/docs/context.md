@@ -19,6 +19,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Examples](#examples)
   - [Dynamic Context](#dynamic-context)
   - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
+  - [Usage with useContext](#usage-with-usecontext)
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
@@ -238,6 +239,10 @@ It is often necessary to update the context from a component that is nested some
 
 **app.js**
 `embed:context/updating-nested-context-app.js`
+
+### Usage with useContext
+
+https://reactjs.org/docs/hooks-reference.html#usecontext
 
 ### Consuming Multiple Contexts {#consuming-multiple-contexts}
 

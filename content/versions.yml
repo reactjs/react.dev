@@ -1,5 +1,23 @@
+- title: '16.13.1'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16131-march-19-2020
+- title: '16.13.0'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16130-february-26-2020
+- title: '16.12.0'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16120-november-14-2019
+- title: '16.11'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16110-october-22-2019
+- title: '16.10.2'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16102-october-3-2019
+- title: '16.10.1'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16101-september-28-2019
+- title: '16.10'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16100-september-27-2019
+- title: '16.9'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1690-august-8-2019
 - title: '16.8'
+  path: /version/16.8
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1680-february-6-2019
+  url: https://5d4b5feba32acd0008d0df98--reactjs.netlify.com/
 - title: '16.7'
   path: /version/16.7
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1670-december-19-2018

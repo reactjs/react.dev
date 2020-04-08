@@ -14,7 +14,7 @@ more:
     - title: Acknowledgements
       to: /acknowledgements.html
     - title: React Native
-      to: https://facebook.github.io/react-native/
+      to: https://reactnative.dev/
       external: true
 
 channels:

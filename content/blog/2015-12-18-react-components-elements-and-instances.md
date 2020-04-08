@@ -350,7 +350,7 @@ React will ask the `Form` component what element tree it returns, given those `p
 }
 ```
 
-This is a part of the process that React calls [reconciliation](/docs/reconciliation.html) which starts when you call [`ReactDOM.render()`](/docs/top-level-api.html#reactdom.render) or [`setState()`](/docs/component-api.html#setstate). By the end of the reconciliation, React knows the result DOM tree, and a renderer like `react-dom` or `react-native` applies the minimal set of changes necessary to update the DOM nodes (or the platform-specific views in case of React Native).
+This is a part of the process that React calls [reconciliation](/docs/reconciliation.html) which starts when you call [`ReactDOM.render()`](/docs/top-level-api.html#reactdom.render) or [`setState()`](/docs/component-api.html#setstate). By the end of the reconciliation, React knows the resulting DOM tree, and a renderer like `react-dom` or `react-native` applies the minimal set of changes necessary to update the DOM nodes (or the platform-specific views in case of React Native).
 
 This gradual refining process is also the reason React apps are easy to optimize. If some parts of your component tree become too large for React to visit efficiently, you can tell it to [skip this “refining” and diffing certain parts of the tree if the relevant props have not changed](/docs/advanced-performance.html). It is very fast to calculate whether the props have changed if they are immutable, so React and immutability work great together, and can provide great optimizations with the minimal effort.
 

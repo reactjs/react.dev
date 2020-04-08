@@ -71,7 +71,7 @@ Starting with 16.8.0, React includes a stable implementation of React Hooks for:
 
 Note that **to enable Hooks, all React packages need to be 16.8.0 or higher**. Hooks won't work if you forget to update, for example, React DOM.
 
-[React Native 0.59](https://facebook.github.io/react-native/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
+[React Native 0.59](https://reactnative.dev/blog/2019/03/12/releasing-react-native-059) and above support Hooks.
 
 ### Do I need to rewrite all my class components? {#do-i-need-to-rewrite-all-my-class-components}
 
@@ -91,11 +91,11 @@ Hooks do have a learning curve of their own. If there's something missing in thi
 
 When you're ready, we'd encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don't recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs).
 
-You can't use Hooks *inside* of a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
+You can't use Hooks *inside* a class component, but you can definitely mix classes and function components with Hooks in a single tree. Whether a component is a class or a function that uses Hooks is an implementation detail of that component. In the longer term, we expect Hooks to be the primary way people write React components.
 
 ### Do Hooks cover all use cases for classes? {#do-hooks-cover-all-use-cases-for-classes}
 
-Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
+Our goal is for Hooks to cover all use cases for classes as soon as possible. There are no Hook equivalents to the uncommon `getSnapshotBeforeUpdate`, `getDerivedStateFromError` and `componentDidCatch` lifecycles yet, but we plan to add them soon.
 
 It is an early time for Hooks, and some third-party libraries might not be compatible with Hooks at the moment.
 
@@ -218,7 +218,7 @@ There are a few more heuristics, and they might change over time as we fine-tune
 
 * `componentDidMount`, `componentDidUpdate`, `componentWillUnmount`: The [`useEffect` Hook](/docs/hooks-reference.html#useeffect) can express all combinations of these (including [less](#can-i-skip-an-effect-on-updates) [common](#can-i-run-an-effect-only-on-updates) cases).
 
-* `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
+* `getSnapshotBeforeUpdate`, `componentDidCatch` and `getDerivedStateFromError`: There are no Hook equivalents for these methods yet, but they will be added soon.
 
 ### How can I do data fetching with Hooks? {#how-can-i-do-data-fetching-with-hooks}
 
@@ -289,7 +289,7 @@ Now let's say we want to write some logic that changes `left` and `top` when the
 
 This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
 
-If you miss automatic merging, you can write a custom `useLegacyState` Hook that merges object state updates. However, instead **we recommend to split state into multiple state variables based on which values tend to change together.**
+If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
 
 For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
 
@@ -428,8 +428,8 @@ Here, we store the previous value of the `row` prop in a state variable so that 
 
 ```js
 function ScrollView({row}) {
-  let [isScrollingDown, setIsScrollingDown] = useState(false);
-  let [prevRow, setPrevRow] = useState(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const [prevRow, setPrevRow] = useState(null);
 
   if (row !== prevRow) {
     // Row changed since last render. Update isScrollingDown.
@@ -465,7 +465,7 @@ While you shouldn't need this often, you may expose some imperative methods to a
 
 ### How can I measure a DOM node? {#how-can-i-measure-a-dom-node}
 
-In order to measure the position or size of a DOM node, you can use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
+One rudimentary way to measure the position or size of a DOM node is to use a [callback ref](/docs/refs-and-the-dom.html#callback-refs). React will call that callback whenever the ref gets attached to a different node. Here is a [small demo](https://codesandbox.io/s/l7m0v5x4v9):
 
 ```js{4-8,12}
 function MeasureExample() {
@@ -489,6 +489,8 @@ function MeasureExample() {
 We didn't choose `useRef` in this example because an object ref doesn't notify us about *changes* to the current ref value. Using a callback ref ensures that [even if a child component displays the measured node later](https://codesandbox.io/s/818zzk8m78) (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
 
 Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
+
+In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
 
 If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
 
@@ -578,7 +580,7 @@ Depending on your use case, there are a few more options described below.
 
 Let's see why this matters.
 
-If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values used inside that participate in the React data flow. That includes props, state, and anything derived from them.
+If you specify a [list of dependencies](/docs/hooks-reference.html#conditionally-firing-an-effect) as the last argument to `useEffect`, `useMemo`, `useCallback`, or `useImperativeHandle`, it must include all values that are used inside the callback and participate in the React data flow. That includes props, state, and anything derived from them.
 
 It is **only** safe to omit a function from the dependency list if nothing in it (or the functions called by it) references props, state, or values derived from them. This example has a bug:
 
@@ -587,7 +589,7 @@ function ProductPage({ productId }) {
   const [product, setProduct] = useState(null);
 
   async function fetchProduct() {
-    const response = await fetch('http://myapi/product' + productId); // Uses productId prop
+    const response = await fetch('http://myapi/product/' + productId); // Uses productId prop
     const json = await response.json();
     setProduct(json);
   }
@@ -608,7 +610,7 @@ function ProductPage({ productId }) {
   useEffect(() => {
     // By moving this function inside the effect, we can clearly see the values it uses.
     async function fetchProduct() {
-      const response = await fetch('http://myapi/product' + productId);
+      const response = await fetch('http://myapi/product/' + productId);
       const json = await response.json();
       setProduct(json);
     }
@@ -716,7 +718,7 @@ As a last resort, if you want something like `this` in a class, you can [use a r
 ```js{2-6,10-11,16}
 function Example(props) {
   // Keep latest props in a ref.
-  let latestProps = useRef(props);
+  const latestProps = useRef(props);
   useEffect(() => {
     latestProps.current = props;
   });

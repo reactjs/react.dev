@@ -44,7 +44,7 @@ class Welcome extends React.Component {
 
 The above two components are equivalent from React's point of view.
 
-Classes have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html). Until then, we will use function components for their conciseness.
+Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
 
 ## Rendering a Component {#rendering-a-component}
 
@@ -60,7 +60,7 @@ However, elements can also represent user-defined components:
 const element = <Welcome name="Sara" />;
 ```
 
-When React sees an element representing a user-defined component, it passes JSX attributes to this component as a single object. We call this object "props".
+When React sees an element representing a user-defined component, it passes JSX attributes and children to this component as a single object. We call this object "props".
 
 For example, this code renders "Hello, Sara" on the page:
 

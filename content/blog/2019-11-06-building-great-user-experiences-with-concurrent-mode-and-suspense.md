@@ -194,7 +194,7 @@ function Post(props) {
     <div>
       <h1>{postData.title}</h1>
       <h2>by {postData.author}</h2>
-      {/* @defer pairs naturally w <Suspense> to make the UI non-blocking too */}
+      {/* @defer pairs naturally with <Suspense> to make the UI non-blocking too */}
       <Suspense fallback={<Spinner/>}>
         <CommentList post={postData} />
       </Suspense>

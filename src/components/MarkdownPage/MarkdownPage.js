@@ -15,7 +15,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
-import createOgUrl from 'utils/createOgUrl';
+import createCanonicalUrl from 'utils/createCanonicalUrl';
 
 import type {Node} from 'types';
 
@@ -29,6 +29,18 @@ type Props = {
   markdownRemark: Node,
   sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
   titlePostfix: string,
+};
+
+const getPageById = (sectionList: Array<Object>, templateFile: ?string) => {
+  if (!templateFile) {
+    return null;
+  }
+
+  const sectionItems = sectionList.map(section => section.items);
+  const flattenedSectionItems = [].concat.apply([], sectionItems);
+  const linkId = templateFile.replace('.html', '');
+
+  return flattenedSectionItems.find(item => item.id === linkId);
 };
 
 const MarkdownPage = ({
@@ -45,6 +57,9 @@ const MarkdownPage = ({
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
+  const prev = getPageById(sectionList, markdownRemark.frontmatter.prev);
+  const next = getPageById(sectionList, markdownRemark.frontmatter.next);
+
   return (
     <Flex
       direction="column"
@@ -59,7 +74,7 @@ const MarkdownPage = ({
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
-        ogUrl={createOgUrl(markdownRemark.fields.slug)}
+        canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
       <div css={{flex: '1 0 auto'}}>
@@ -97,9 +112,7 @@ const MarkdownPage = ({
                   <div css={{marginTop: 80}}>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/reactjs.org/tree/master/content/${
-                        markdownRemark.fields.path
-                      }`}>
+                      href={`https://github.com/reactjs/reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Edit this page
                     </a>
                   </div>
@@ -123,13 +136,8 @@ const MarkdownPage = ({
         </Container>
       </div>
 
-      {/* TODO Read prev/next from index map, not this way */}
-      {(markdownRemark.frontmatter.next || markdownRemark.frontmatter.prev) && (
-        <NavigationFooter
-          location={location}
-          next={markdownRemark.frontmatter.next}
-          prev={markdownRemark.frontmatter.prev}
-        />
+      {(next || prev) && (
+        <NavigationFooter location={location} next={next} prev={prev} />
       )}
     </Flex>
   );

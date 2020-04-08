@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Container from 'components/Container';
+import Layout from 'components/Layout';
 import {colors} from 'theme';
 
 // Copied over styles from ButtonLink for the submit btn
@@ -27,28 +28,31 @@ class CodepenExample extends Component {
   }
 
   render() {
-    const {action, payload} = this.props.pathContext;
+    const {location, pageContext} = this.props;
+    const {action, payload} = pageContext;
 
     return (
-      <Container>
-        <h1>Redirecting to Codepen...</h1>
-        <form
-          style={{paddingBottom: '50px'}}
-          ref={form => {
-            this.codepenForm = form;
-          }}
-          action={action}
-          method="POST">
-          <input type="hidden" name="data" value={payload} />
+      <Layout location={location}>
+        <Container>
+          <h1>Redirecting to Codepen...</h1>
+          <form
+            style={{paddingBottom: '50px'}}
+            ref={form => {
+              this.codepenForm = form;
+            }}
+            action={action}
+            method="POST">
+            <input type="hidden" name="data" value={payload} />
 
-          <p>
-            Not automatically redirecting?
-            <br />
-            <br />
-            <input style={primaryStyle} type="submit" value="Click here" />
-          </p>
-        </form>
-      </Container>
+            <p>
+              Not automatically redirecting?
+              <br />
+              <br />
+              <input style={primaryStyle} type="submit" value="Click here" />
+            </p>
+          </form>
+        </Container>
+      </Layout>
     );
   }
 }

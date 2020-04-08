@@ -20,9 +20,9 @@ module.exports = {
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
     'gatsby-transformer-home-example-code',
+    'gatsby-transformer-versions-yaml',
     'gatsby-plugin-netlify',
     'gatsby-plugin-glamor',
-    'gatsby-plugin-react-next',
     'gatsby-plugin-twitter',
     {
       resolve: 'gatsby-plugin-nprogress',
@@ -33,14 +33,14 @@ module.exports = {
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        path: `${__dirname}/src/pages`,
         name: 'pages',
+        path: `${__dirname}/src/pages`,
       },
     },
     {
       resolve: 'gatsby-source-filesystem',
       options: {
-        name: 'packages',
+        name: 'content',
         path: `${__dirname}/content/`,
       },
     },
@@ -55,16 +55,18 @@ module.exports = {
               maxWidth: 840,
             },
           },
-          'gatsby-remark-autolink-headers',
+          'gatsby-remark-external-links',
+          'gatsby-remark-header-custom-ids',
           {
             resolve: 'gatsby-remark-code-repls',
             options: {
-              defaultText: 'Try it on CodePen',
+              defaultText: '<b>Try it on CodePen</b>',
               directory: `${__dirname}/examples/`,
               externals: [
                 `//unpkg.com/react/umd/react.development.js`,
                 `//unpkg.com/react-dom/umd/react-dom.development.js`,
               ],
+              dependencies: [`react`, `react-dom`],
               redirectTemplate: `${__dirname}/src/templates/codepen-example.js`,
               target: '_blank',
             },
@@ -132,7 +134,7 @@ module.exports = {
               {
                   allMarkdownRemark
                   (limit: 10,
-                  filter: {id: {regex: "/blog/"}},
+                  filter: {fileAbsolutePath: {regex: "/blog/"}},
                   sort: {fields: [fields___date],
                   order: DESC}) {
                     edges {
@@ -157,5 +159,20 @@ module.exports = {
     },
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-catch-links',
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: 'React Docs',
+        short_name: 'React', // eg. React [%LANG_CODE%]
+        // Translators: please change this and two above options (see https://www.gatsbyjs.org/packages/gatsby-plugin-manifest/#feature-configuration---optional)
+        lang: 'en',
+        start_url: '/',
+        background_color: '#20232a',
+        theme_color: '#20232a',
+        display: 'standalone',
+        icon: 'static/logo-512x512.png',
+        legacy: true,
+      },
+    },
   ],
 };

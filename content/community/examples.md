@@ -15,8 +15,9 @@ If you add a project, please commit to keeping it up to date with the latest ver
 * **[Calculator](https://github.com/ahfarmer/calculator)** Implementation of the iOS calculator built in React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** React app for searching emoji
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
-* **[React Image Compressor](https://github.com/RaulB-masai/react-image-compressor)** An offline image compressor built with React and browser-image-compression
-* **[React Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
+* **[Image Compressor](https://github.com/RaulB-masai/react-image-compressor)** An offline image compressor built with React and browser-image-compression
+* **[Counter App](https://github.com/arnab-datta/counter-app)** A small shopping cart example
+* **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
 
 ## Complete Apps
 

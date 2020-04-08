@@ -5,7 +5,7 @@
       href: /tutorial/tutorial.html#before-we-start-the-tutorial
       forceInternal: true
       subitems:
-        - id: what-were-building
+        - id: what-are-we-building
           title: What Are We Building?
           href: /tutorial/tutorial.html#what-are-we-building
           forceInternal: true

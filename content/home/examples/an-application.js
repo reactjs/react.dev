@@ -34,7 +34,7 @@ class TodoApp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (!this.state.text.length) {
+    if (this.state.text.length === 0) {
       return;
     }
     const newItem = {
@@ -60,4 +60,7 @@ class TodoList extends React.Component {
   }
 }
 
-ReactDOM.render(<TodoApp />, mountNode);
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('todos-example')
+);

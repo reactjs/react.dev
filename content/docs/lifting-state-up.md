@@ -58,7 +58,7 @@ class Calculator extends React.Component {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ZXeOBm?editors=0010)
 
-## Adding a Second Input
+## Adding a Second Input {#adding-a-second-input}
 
 Our new requirement is that, in addition to a Celsius input, we provide a Fahrenheit input, and they are kept in sync.
 
@@ -116,7 +116,7 @@ We have two inputs now, but when you enter the temperature in one of them, the o
 
 We also can't display the `BoilingVerdict` from `Calculator`. The `Calculator` doesn't know the current temperature because it is hidden inside the `TemperatureInput`.
 
-## Writing Conversion Functions
+## Writing Conversion Functions {#writing-conversion-functions}
 
 First, we will write two functions to convert from Celsius to Fahrenheit and back:
 
@@ -148,7 +148,7 @@ function tryConvert(temperature, convert) {
 
 For example, `tryConvert('abc', toCelsius)` returns an empty string, and `tryConvert('10.22', toFahrenheit)` returns `'50.396'`.
 
-## Lifting State Up
+## Lifting State Up {#lifting-state-up}
 
 Currently, both `TemperatureInput` components independently keep their values in the local state:
 
@@ -307,7 +307,7 @@ Let's recap what happens when you edit an input:
 
 * React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component.
 * The `handleChange` method in the `TemperatureInput` component calls `this.props.onTemperatureChange()` with the new desired value. Its props, including `onTemperatureChange`, were provided by its parent component, the `Calculator`.
-* When it previously rendered, the `Calculator` has specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
+* When it previously rendered, the `Calculator` had specified that `onTemperatureChange` of the Celsius `TemperatureInput` is the `Calculator`'s `handleCelsiusChange` method, and `onTemperatureChange` of the Fahrenheit `TemperatureInput` is the `Calculator`'s `handleFahrenheitChange` method. So either of these two `Calculator` methods gets called depending on which input we edited.
 * Inside these methods, the `Calculator` component asks React to re-render itself by calling `this.setState()` with the new input value and the current scale of the input we just edited.
 * React calls the `Calculator` component's `render` method to learn what the UI should look like. The values of both inputs are recomputed based on the current temperature and the active scale. The temperature conversion is performed here.
 * React calls the `render` methods of the individual `TemperatureInput` components with their new props specified by the `Calculator`. It learns what their UI should look like.
@@ -316,7 +316,7 @@ Let's recap what happens when you edit an input:
 
 Every update goes through the same steps so the inputs stay in sync.
 
-## Lessons Learned
+## Lessons Learned {#lessons-learned}
 
 There should be a single "source of truth" for any data that changes in a React application. Usually, the state is first added to the component that needs it for rendering. Then, if other components also need it, you can lift it up to their closest common ancestor. Instead of trying to sync the state between different components, you should rely on the [top-down data flow](/docs/state-and-lifecycle.html#the-data-flows-down).
 
@@ -324,7 +324,7 @@ Lifting state involves writing more "boilerplate" code than two-way binding appr
 
 If something can be derived from either props or state, it probably shouldn't be in the state. For example, instead of storing both `celsiusValue` and `fahrenheitValue`, we store just the last edited `temperature` and its `scale`. The value of the other input can always be calculated from them in the `render()` method. This lets us clear or apply rounding to the other field without losing any precision in the user input.
 
-When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
+When you see something wrong in the UI, you can use [React Developer Tools](https://github.com/facebook/react/tree/master/packages/react-devtools) to inspect the props and move up the tree until you find the component responsible for updating the state. This lets you trace the bugs to their source:
 
 <img src="../images/docs/react-devtools-state.gif" alt="Monitoring State in React DevTools" max-width="100%" height="100%">
 

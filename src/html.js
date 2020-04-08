@@ -19,6 +19,11 @@ export default class HTML extends React.Component {
             content="width=device-width, initial-scale=1.0"
           />
           <link rel="icon" href="/favicon.ico" />
+
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <link rel="apple-touch-icon" href="/logo-180x180.png" />
+          <meta name="apple-mobile-web-app-title" content="React" />
+
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>

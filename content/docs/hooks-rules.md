@@ -6,15 +6,15 @@ next: hooks-custom.html
 prev: hooks-effect.html
 ---
 
-*Hooks* are a new feature proposal that lets you use state and other React features without writing a class. They're currently in React v16.7.0-alpha and being discussed in [an open RFC](https://github.com/reactjs/rfcs/pull/68).
+*Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
 Hooks are JavaScript functions, but you need to follow two rules when using them. We provide a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) to enforce these rules automatically:
 
-### Only Call Hooks at the Top Level
+### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
 
 **Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
 
-### Only Call Hooks from React Functions
+### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
 
 **Don't call Hooks from regular JavaScript functions.** Instead, you can:
 
@@ -23,12 +23,14 @@ Hooks are JavaScript functions, but you need to follow two rules when using them
 
 By following this rule, you ensure that all stateful logic in a component is clearly visible from its source code.
 
-## ESLint Plugin
+## ESLint Plugin {#eslint-plugin}
 
 We released an ESLint plugin called [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) that enforces these two rules. You can add this plugin to your project if you'd like to try it:
 
+This plugin is included by default in [Create React App](/docs/create-a-new-react-app.html#create-react-app).
+
 ```bash
-npm install eslint-plugin-react-hooks@next
+npm install eslint-plugin-react-hooks --save-dev
 ```
 
 ```js
@@ -40,16 +42,15 @@ npm install eslint-plugin-react-hooks@next
   ],
   "rules": {
     // ...
-    "react-hooks/rules-of-hooks": "error"
+    "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
+    "react-hooks/exhaustive-deps": "warn" // Checks effect dependencies
   }
 }
 ```
 
-In the future, we intend to include this plugin by default into Create React App and similar toolkits.
-
 **You can skip to the next page explaining how to write [your own Hooks](/docs/hooks-custom.html) now.** On this page, we'll continue by explaining the reasoning behind these rules.
 
-## Explanation
+## Explanation {#explanation}
 
 As we [learned earlier](/docs/hooks-state.html#tip-using-multiple-state-variables), we can use multiple State or Effect Hooks in a single component:
 
@@ -132,6 +133,6 @@ React wouldn't know what to return for the second `useState` Hook call. React ex
 
 **Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
 
-## Next Steps
+## Next Steps {#next-steps}
 
 Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.

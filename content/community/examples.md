@@ -16,17 +16,12 @@ If you add a project, please commit to keeping it up to date with the latest ver
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** React app for searching emoji
 * **[Snap Shot](https://github.com/Yog9/SnapShot)** A photo gallery with search
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
-<<<<<<< HEAD
-* **[ReactJS Hangman Game](https://github.com/vetrivelcsamy/reactjs-hangman)** ReactJS Hangman Game Find a Programming Language.
-* **[Radix Converter](https://github.com/kumom/radix-converter)** A small tool that converts numbers in radix 2 to 36 with arbitrary precision.
-* **[3D Cube Generator](https://github.com/albseb511/react-cubes)** A React App which uses three.js to create coloured cubes in different directions.
-=======
 * **[Image Compressor](https://github.com/RaulB-masai/react-image-compressor)** An offline image compressor built with React and browser-image-compression
 * **[Counter App](https://github.com/arnab-datta/counter-app)** A small shopping cart example
 * **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
+* **[Debouncing Example](https://github.com/albseb511/debounce-example)** Use of debounce on a searchbar with Hooks in Typescript.
 
 ## Complete Apps
 
 * **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open-source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB
->>>>>>> upstream/master

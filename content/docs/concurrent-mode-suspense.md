@@ -113,13 +113,13 @@ Suspense is significantly different from existing approaches to these problems, 
 
 ### What Suspense Lets You Do {#what-suspense-lets-you-do}
 
-So what's the point of Suspense? There's a few ways we can answer this:
+So what's the point of Suspense? There are a few ways we can answer this:
 
 * **It lets data fetching libraries deeply integrate with React.** If a data fetching library implements Suspense support, using it from React components feels very natural.
 
 * **It lets you orchestrate intentionally designed loading states.** It doesn't say _how_ the data is fetched, but it lets you closely control the visual loading sequence of your app.
 
-* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it was already loaded.
+* **It helps you avoid race conditions.** Even with `await`, asynchronous code is often error-prone. Suspense feels more like reading data *synchronously* — as if it were already loaded.
 
 ## Using Suspense in Practice {#using-suspense-in-practice}
 
@@ -231,7 +231,7 @@ If you run this code and watch the console logs, you'll notice the sequence is:
 
 If fetching user details takes three seconds, we'll only *start* fetching the posts after three seconds! That's a "waterfall": an unintentional *sequence* that should have been parallelized.
 
-Waterfalls are common in code that fetches data on render. They're possible to solve, but as the product  grows, many people prefer to use a solution that guards against this problem.
+Waterfalls are common in code that fetches data on render. They're possible to solve, but as the product grows, many people prefer to use a solution that guards against this problem.
 
 ### Approach 2: Fetch-Then-Render (not using Suspense) {#approach-2-fetch-then-render-not-using-suspense}
 
@@ -250,7 +250,7 @@ function fetchProfileData() {
 }
 ```
 
-In this example,  `<ProfilePage>` waits for both requests but starts them in parallel:
+In this example, `<ProfilePage>` waits for both requests but starts them in parallel:
 
 ```js{1,2,8-13}
 // Kick off fetching as early as possible

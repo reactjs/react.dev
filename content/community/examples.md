@@ -17,7 +17,7 @@ If you add a project, please commit to keeping it up to date with the latest ver
 * **[Snap Shot](https://github.com/Yog9/SnapShot)** A photo gallery with search
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
 * **[Image Compressor](https://github.com/RaulB-masai/react-image-compressor)** An offline image compressor built with React and browser-image-compression
-* **[Counter App](https://github.com/arnab-datta/counter-app)** A small shopping cart example
+* **[Counter App](https://github.com/arnab-datta/counter-app)** A simple counter example
 * **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
 
 ## Complete Apps

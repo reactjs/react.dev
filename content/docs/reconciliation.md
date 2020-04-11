@@ -113,7 +113,7 @@ React will mutate every child instead of realizing it can keep the `<li>Duke</li
 
 ### Keys {#keys}
 
-In order to solve this issue, React supports a `key` attribute. When children have keys, React uses the key to match children in the original tree with children in the subsequent tree. For example, adding a `key` to our inefficient example above can make the tree conversion efficient:
+In order to solve this issue, React supports a [`key`](/docs/lists-and-keys#component-instance-identity-with-keys) attribute. When children have keys, React uses the key to match children in the original tree with children in the subsequent tree. For example, adding a `key` to our inefficient example above can make the tree conversion efficient:
 
 ```xml
 <ul>

@@ -6,7 +6,9 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
-First, let's review how you transform lists in JavaScript.
+The [purpose of React keys](#component-instance-identity-with-keys) is to establish component instance identity. When an element's identity changes, it unmounts the component and mounts a fresh component, as well as the underlying DOM nodes.
+
+First, this article will walkthrough how lists of data are transformed into React elements, and how keys can help manage rendering these lists.
 
 Given the code below, we use the [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function to take an array of `numbers` and double their values. We assign the new array returned by `map()` to the variable `doubled` and log it:
 
@@ -299,3 +301,43 @@ function NumberList(props) {
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/BLvYrB?editors=0010)
 
 Sometimes this results in clearer code, but this style can also be abused. Like in JavaScript, it is up to you to decide whether it is worth extracting a variable for readability. Keep in mind that if the `map()` body is too nested, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+
+## Component Instance Identity with Keys {#component-instance-identity-with-keys}
+
+Using keys is helpful beyond improving list render performance. The core purpose of keys is to establish [component instance](/blog/2015/12/18/react-components-elements-and-instances.html) identity, which helps React know which parts of the tree can stay the same and which parts to re-create. This is used manage which changes in the React tree result in DOM updates and can help manage state and lifecycle.
+
+Identity is important whenever an instance of a component should be tied to a particular identifier, often for a piece of data.
+
+For example, given a `UserProfile` component that renders information about a user, one approach is to have the instance of `UserProfile` be tied to that user. When the user changes, the old component should unmount, and then remount the component for the new user.
+
+This is particularly helpful when user data is fetched when the component mounts.
+
+```jsx
+class UserProfile extends Component {
+  componentDidMount() {
+    // Fetch data for the user from an API based on `this.props.userId`.
+  }
+
+  render() {
+    return <div><{/* render data */}</div>;
+  }
+}
+
+function Layout({ userId }) {
+  return (
+    <>
+      <UserList />
+      <UserProfile key={userId} userId={userId} />
+    </>
+  );
+}
+
+```
+
+Without the key, when the `userId` prop changes, the same `UserProfile` component will stay in the React tree and data won't be fetched for the new user. However when a key is used, a change in the key tells React to tear down the old component and create a new component with fresh state and trigger `componentDidMount`.
+
+> Note:
+>
+> Another approach for fetching fresh data when the props change is to use other component lifecycle methods (`componentDidUpdate`) to re-perform operations when props change, which becomes very easy to do when using the [useEffect](/docs/hooks-effect.html) hook.
+>
+> Both approaches are valid and may be more beneficial in different use cases. Sometimes it won't be possible to change the data-fetching implementation of a component from `componentDidMount` to `componentDidUpdate` or `useEffect`, such as when using opensource components, so keys must be used to provide component identity and re-trigger the data fetch.

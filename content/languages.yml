@@ -42,7 +42,7 @@
 - name: Persian
   translated_name: فارسی
   code: fa
-  status: 0
+  status: 1
 - name: French
   translated_name: Français
   code: fr

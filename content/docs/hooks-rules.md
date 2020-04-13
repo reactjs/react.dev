@@ -12,7 +12,7 @@ Hooks are JavaScript functions, but you need to follow two rules when using them
 
 ### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**Don't call Hooks inside loops, conditions, nested functions or after early return statements.** Instead, always use Hooks at the top level of your React function and before any return statement. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
 
 ### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
 
@@ -131,6 +131,14 @@ React wouldn't know what to return for the second `useState` Hook call. React ex
   });
 ```
 
+Calling a hook after early return statement counts as changing the order of the hooks as the number of hook calls will not be the same between renders:
+```js
+useState('Mary');
+if (condition) {
+  return;
+}
+useState('Poppins'); // 🔴 We're breaking the first rule by using a Hook after early return
+```
 **Note that you don't need to worry about this problem if you use the [provided lint rule](https://www.npmjs.com/package/eslint-plugin-react-hooks).** But now you also know *why* Hooks work this way, and which issues the rule is preventing.
 
 ## Next Steps {#next-steps}

@@ -586,10 +586,6 @@ We have changed `this.props` to `props` both times it appears.
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/QvvJOv?editors=0010)**
 
->Note
->
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
-
 ### Taking Turns {#taking-turns}
 
 We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.

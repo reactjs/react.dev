@@ -55,7 +55,7 @@ class DocSearch extends Component<{}, State> {
           //   width: 'calc(100% / 8)',
           // },
           [media.greaterThan('expandedSearch')]: {
-            minWidth: 100,
+            width: 225,
           },
         }}>
         <input

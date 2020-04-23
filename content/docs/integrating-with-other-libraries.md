@@ -18,14 +18,18 @@ The easiest way to avoid conflicts is to prevent the React component from updati
 
 To demonstrate this, let's sketch out a wrapper for a generic jQuery plugin.
 
-We will attach a [ref](/docs/refs-and-the-dom.html) to the root DOM element. Inside `componentDidMount`, we will get a reference to it so we can pass it to the jQuery plugin.
+We will attach a [ref](/docs/refs-and-the-dom.html) to the root DOM element. Inside the `constructor`, we will create a reference so in `componentDidMount` we can pass it to the jQuery plugin.
 
 To prevent React from touching the DOM after mounting, we will return an empty `<div />` from the `render()` method. The `<div />` element has no properties or children, so React has no reason to update it, leaving the jQuery plugin free to manage that part of the DOM:
 
 ```js{3,4,8,12}
 class SomePlugin extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = React.createRef();
+  }
   componentDidMount() {
-    this.$el = $(this.el);
+    this.$el = $(this.el.current);
     this.$el.somePlugin();
   }
 
@@ -34,7 +38,7 @@ class SomePlugin extends React.Component {
   }
 
   render() {
-    return <div ref={el => this.el = el} />;
+    return <div ref={this.el} />;
   }
 }
 ```
@@ -69,14 +73,18 @@ function Example() {
 
 We will implement it as an [uncontrolled component](/docs/uncontrolled-components.html) for simplicity.
 
-First, we will create an empty component with a `render()` method where we return `<select>` wrapped in a `<div>`:
+First, we will create an empty component with a `constructor` method that creates a ref, and a `render()` method where we return `<select>` wrapped in a `<div>`:
 
 ```js{4,5}
 class Chosen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = React.createRef();
+  }
   render() {
     return (
       <div>
-        <select className="Chosen-select" ref={el => this.el = el}>
+        <select className="Chosen-select" ref={this.el}>
           {this.props.children}
         </select>
       </div>
@@ -91,7 +99,7 @@ Next, we will implement the lifecycle methods. We need to initialize Chosen with
 
 ```js{2,3,7}
 componentDidMount() {
-  this.$el = $(this.el);
+  this.$el = $(this.el.current);
   this.$el.chosen();
 }
 
@@ -102,10 +110,14 @@ componentWillUnmount() {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/qmqeQx?editors=0010)
 
-Note that React assigns no special meaning to the `this.el` field. It only works because we have previously assigned this field from a `ref` in the `render()` method:
+Note that React assigns no special meaning to the `this.el` field, specifically its property `this.el.current`. It only works because we have previously assigned this field to a `ref` in the `constructor` method, and passed as a `ref` prop to the `select` component in the `render()` method:
 
 ```js
-<select className="Chosen-select" ref={el => this.el = el}>
+constructor(props) { ...
+    this.el = React.createRef();
+  ...
+render(){ ...
+<select className="Chosen-select" ref={this.el}>
 ```
 
 This is enough to get our component to render, but we also want to be notified about the value changes. To do this, we will subscribe to the jQuery `change` event on the `<select>` managed by Chosen.
@@ -114,7 +126,7 @@ We won't pass `this.props.onChange` directly to Chosen because component's props
 
 ```js{5,6,10,14-16}
 componentDidMount() {
-  this.$el = $(this.el);
+  this.$el = $(this.el.current);
   this.$el.chosen();
 
   this.handleChange = this.handleChange.bind(this);
@@ -151,8 +163,13 @@ The complete implementation of the `Chosen` component looks like this:
 
 ```js
 class Chosen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.el = React.createRef();
+  }
+  
   componentDidMount() {
-    this.$el = $(this.el);
+    this.$el = $(this.el.current);
     this.$el.chosen();
 
     this.handleChange = this.handleChange.bind(this);
@@ -177,7 +194,7 @@ class Chosen extends React.Component {
   render() {
     return (
       <div>
-        <select className="Chosen-select" ref={el => this.el = el}>
+        <select className="Chosen-select" ref={this.el}>
           {this.props.children}
         </select>
       </div>

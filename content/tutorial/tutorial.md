@@ -78,7 +78,7 @@ This setup requires more work but allows you to complete the tutorial using an e
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project 
+3. Delete all files in the `src/` folder of the new project
 
 > Note:
 >
@@ -588,7 +588,11 @@ We have changed `this.props` to `props` both times it appears.
 
 >Note
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
+>When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}`.
+>
+>We can simplify this because we are passing the `handleClick` function down from the Board component via the `onClick` prop.  Using the arrow function syntax is no longer necessary, as we would just be wrapping a function with another function.
+>
+>Note the lack of parenthesis after `props.onClick`, we would run into a similar situation as before where the method is invoked on render if we left the parenthesis e.g. `{props.onClick()}`.
 
 ### Taking Turns {#taking-turns}
 

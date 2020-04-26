@@ -568,7 +568,7 @@ You can learn more about `shouldComponentUpdate()` and how you can build *pure c
 
 We'll now change the Square to be a **function component**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+In React, **function components** are a simpler way to write components. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and most components can be expressed this way.
 
 Replace the Square class with this function:
 

@@ -288,6 +288,10 @@ function Counter() {
 >
 >React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
+>Note
+>
+>The reducer function must be `pure`. In strict mode the `dispatch` function is called twice to highlight poptential side effects. See  [<React.StrictMode> detecting unexpected side effects](/docs/strict-mode.md#detecting-unexpected-side-effects)
+
 #### Specifying the initial state {#specifying-the-initial-state}
 
 There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:

@@ -239,7 +239,7 @@ Now we could use it in our component, and let the reducer drive its state manage
 
 ```js{2}
 function Todos() {
-  const [todos, dispatch] = useReducer(todosReducer, []);
+  const [todos, dispatch] = useReducer(todosReducer, {});
 
   function handleAddClick(text) {
     dispatch({ type: 'add', text });

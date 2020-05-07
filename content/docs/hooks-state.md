@@ -15,11 +15,13 @@ import React, { useState } from 'react';
 
 function Example() {
   // Declare a new state variable, which we'll call "count"
+  // and a function "setCount" which we will call to update "count
   const [count, setCount] = useState(0);
 
   return (
     <div>
       <p>You clicked {count} times</p>
+      //Over here we are calling the function setCount and passing it the value we want it to assign to "count"
       <button onClick={() => setCount(count + 1)}>
         Click me
       </button>

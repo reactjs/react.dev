@@ -57,12 +57,12 @@ React offers a new built-in `useTransition()` Hook to help with this.
 
 We can use it in three steps.
 
-First, we'll make sure that we're actually using Concurrent Mode. We'll talk more about [adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) later, but for now it's sufficient to know that we need to use `ReactDOM.createRoot()` rather than `ReactDOM.render()` for this feature to work:
+First, we'll make sure that we're actually using Concurrent Mode. We'll talk more about [adopting Concurrent Mode](/docs/concurrent-mode-adoption.html) later, but for now it's sufficient to know that we need to use `ReactDOM.unstable_createRoot()` rather than `ReactDOM.render()` for this feature to work:
 
 ```js
 const rootElement = document.getElementById("root");
 // Opt into Concurrent Mode
-ReactDOM.createRoot(rootElement).render(<App />);
+ReactDOM.unstable_createRoot(rootElement).render(<App />);
 ```
 
 Next, we'll add an import for the `useTransition` Hook from React:

@@ -27,8 +27,8 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 **Note: This is a Community Preview and not the final stable version. There will likely be future changes to these APIs. Use at your own risk!**
 
 - [Enabling Concurrent Mode](#concurrent-mode)
-    - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createblockingroot)
+    - [`unstable_createRoot`](#unstable_createroot)
+    - [`unstable_createBlockingRoot`](#unstable_createBlockingRoot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -37,20 +37,20 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 
 ## Enabling Concurrent Mode {#concurrent-mode}
 
-### `createRoot` {#createroot}
+### `unstable_createRoot` {#unstable_createRoot}
 
 ```js
-ReactDOM.createRoot(rootNode).render(<App />);
+ReactDOM.unstable_createRoot(rootNode).render(<App />);
 ```
 
 Replaces `ReactDOM.render(<App />, rootNode)` and enables Concurrent Mode.
 
 For more information on Concurrent Mode, check out the [Concurrent Mode documentation.](/docs/concurrent-mode-intro.html)
 
-### `createBlockingRoot` {#createblockingroot}
+### `unstable_createBlockingRoot` {#unstable_createBlockingRoot}
 
 ```js
-ReactDOM.createBlockingRoot(rootNode).render(<App />)
+ReactDOM.unstable_createBlockingRoot(rootNode).render(<App />)
 ```
 
 Replaces `ReactDOM.render(<App />, rootNode)` and enables [Blocking Mode](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode).

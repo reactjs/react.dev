@@ -27,17 +27,25 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 **Note: This is a Community Preview and not the final stable version. There will likely be future changes to these APIs. Use at your own risk!**
 
 - [Enabling Concurrent Mode](#concurrent-mode)
-    - [`unstable_createRoot`](#unstable_createroot)
-    - [`unstable_createBlockingRoot`](#unstable_createBlockingRoot)
+    - [`createRoot`](#createroot)
+    - [`createBlockingRoot`](#createBlockingRoot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
     - [`useTransition`](#usetransition)
     - [`useDeferredValue`](#usedeferredvalue)
 
+**Note: All the Apis from concurrent mode are exported with unstable_ prefix as they are still experimental and may change drastically in near future.**
+  - createRoot as unstable_createRoot
+  - createBlockingRoot as unstable_createBlockingRoot'
+  - useTransition as unstable_useTransition
+  - useDeferredValue as unstable_useDeferredValue
+  - SuspenseList as unstable_SuspenseList
+
+
 ## Enabling Concurrent Mode {#concurrent-mode}
 
-### `unstable_createRoot` {#unstable_createRoot}
+### `createRoot` {#createRoot}
 
 ```js
 ReactDOM.unstable_createRoot(rootNode).render(<App />);
@@ -47,7 +55,7 @@ Replaces `ReactDOM.render(<App />, rootNode)` and enables Concurrent Mode.
 
 For more information on Concurrent Mode, check out the [Concurrent Mode documentation.](/docs/concurrent-mode-intro.html)
 
-### `unstable_createBlockingRoot` {#unstable_createBlockingRoot}
+### `createBlockingRoot` {#createBlockingRoot}
 
 ```js
 ReactDOM.unstable_createBlockingRoot(rootNode).render(<App />)
@@ -81,7 +89,7 @@ In this example, `ProfileDetails` is waiting for an asynchronous API call to fet
 ### `<SuspenseList>` {#suspenselist}
 
 ```js
-<SuspenseList revealOrder="forwards">
+<unstable_SuspenseList revealOrder="forwards">
   <Suspense fallback={'Loading...'}>
     <ProfilePicture id={1} />
   </Suspense>
@@ -92,7 +100,7 @@ In this example, `ProfileDetails` is waiting for an asynchronous API call to fet
     <ProfilePicture id={3} />
   </Suspense>
   ...
-</SuspenseList>
+</unstable_SuspenseList>
 ```
 
 `SuspenseList` helps coordinate many components that can suspend by orchestrating the order in which these components are revealed to the user.
@@ -114,7 +122,7 @@ Note that `SuspenseList` only operates on the closest `Suspense` and `SuspenseLi
 ```js
 const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
-const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+const [startTransition, isPending] = unstable_useTransition(SUSPENSE_CONFIG);
 ```
 
 `useTransition` allows components to avoid undesirable loading states by waiting for content to load before **transitioning to the next screen**. It also allows components to defer slower, data fetching updates until subsequent renders so that more crucial updates can be rendered immediately.
@@ -130,7 +138,7 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+  const [startTransition, isPending] = unstable_useTransition(SUSPENSE_CONFIG);
   return (
     <>
       <button
@@ -173,7 +181,7 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 ### `useDeferredValue` {#usedeferredvalue}
 
 ```js
-const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
+const deferredValue = unstable_useDeferredValue(value, { timeoutMs: 2000 });
 ```
 
 Returns a deferred version of the value that may "lag behind" it for at most `timeoutMs`.
@@ -185,7 +193,7 @@ A good example of this is a text input.
 ```js
 function App() {
   const [text, setText] = useState("hello");
-  const deferredText = useDeferredValue(text, { timeoutMs: 2000 }); 
+  const deferredText = unstable_useDeferredValue(text, { timeoutMs: 2000 }); 
 
   return (
     <div className="App">

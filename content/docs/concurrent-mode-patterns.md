@@ -68,7 +68,7 @@ ReactDOM.unstable_createRoot(rootElement).render(<App />);
 Next, we'll add an import for the `useTransition` Hook from React:
 
 ```js
-import React, { useState, useTransition, Suspense } from "react";
+import React, { useState, unstable_useTransition, Suspense } from "react";
 ```
 
 Finally, we'll use it inside the `App` component:
@@ -76,7 +76,7 @@ Finally, we'll use it inside the `App` component:
 ```js{3-5}
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
+  const [startTransition, isPending] = unstable_useTransition({
     timeoutMs: 3000
   });
   // ...
@@ -130,7 +130,7 @@ There's still something that feels broken about [our last example](https://codes
 Our `useTransition()` call returns two values: `startTransition` and `isPending`.
 
 ```js
-  const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
+  const [startTransition, isPending] = unstable_useTransition({ timeoutMs: 3000 });
 ```
 
 We've already used `startTransition` to wrap the state update. Now we're going to use `isPending` too. React gives this boolean to us so we can tell whether **we're currently waiting for this transition to finish**. We'll use it to indicate that something is happening:
@@ -166,7 +166,7 @@ Let's take another look at all the changes we've made since the [original exampl
 ```js{3-5,9,11,14,19}
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
+  const [startTransition, isPending] = unstable_useTransition({
     timeoutMs: 3000
   });
   return (
@@ -193,7 +193,7 @@ function App() {
 
 It took us only seven lines of code to add this transition:
 
-* We've imported the `useTransition` Hook and used it the component that updates the state.
+* We've imported the `unstable_useTransition` Hook and used it the component that updates the state.
 * We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
 * We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
 * We're using `isPending` to communicate the state transition progress to the user and to disable the button.
@@ -258,7 +258,7 @@ However, the experience feels really jarring. We were browsing a page, but it go
 
 ```js{2-5,9-11,21}
 function ProfilePage() {
-  const [startTransition, isPending] = useTransition({
+  const [startTransition, isPending] = unstable_useTransition({
     // Wait 10 seconds before fallback
     timeoutMs: 10000
   });
@@ -299,7 +299,7 @@ This can lead to a lot of repetitive code across components. This is why **we ge
 
 ```js{7-9,20,24}
 function Button({ children, onClick }) {
-  const [startTransition, isPending] = useTransition({
+  const [startTransition, isPending] = unstable_useTransition({
     timeoutMs: 10000
   });
 
@@ -678,7 +678,7 @@ As we mentioned earlier, if some state update causes a component to suspend, tha
 function App() {
   const [query, setQuery] = useState(initialQuery);
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
+  const [startTransition, isPending] = unstable_useTransition({
     timeoutMs: 5000
   });
 
@@ -743,9 +743,9 @@ This makes sense in the vast majority of situations. Inconsistent UI is confusin
 However, sometimes it might be helpful to intentionally introduce an inconsistency. We could do it manually by "splitting" the state like above, but React also offers a built-in Hook for this:
 
 ```js
-import { useDeferredValue } from 'react';
+import { unstable_useDeferredValue } from 'react';
 
-const deferredValue = useDeferredValue(value, {
+const deferredValue = unstable_useDeferredValue(value, {
   timeoutMs: 5000
 });
 ```
@@ -758,7 +758,7 @@ If we're willing to sacrifice consistency, we could **pass potentially stale dat
 
 ```js{2-4,10,11,21}
 function ProfilePage({ resource }) {
-  const deferredResource = useDeferredValue(resource, {
+  const deferredResource = unstable_useDeferredValue(resource, {
     timeoutMs: 1000
   });
   return (
@@ -826,7 +826,7 @@ We can see how typing in the input causes stutter. Now let's add `useDeferredVal
 ```js{3-5,18}
 function App() {
   const [text, setText] = useState("hello");
-  const deferredText = useDeferredValue(text, {
+  const deferredText = unstable_useDeferredValue(text, {
     timeoutMs: 5000
   });
 

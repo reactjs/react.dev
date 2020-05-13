@@ -48,4 +48,4 @@ permalink: community/courses.html
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
 
-- [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) - Build a real world application in plain React without complicated tooling.
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.

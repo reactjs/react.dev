@@ -9,6 +9,64 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
+React dataflow is unidirectional so data is passed from parent component to child component with props,
+but also a parent component can receive data from a child component by simply setting a callback method as a prop and call it back from inside the child  see this simple example below
+
+```js{3,5}
+class Child extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {data: 'HELLO'};
+    this.senddata = this.senddata.bind(this);
+  }
+
+senddata() {
+     this.props.callback(this.state.data);
+  }
+
+  render() {
+    const data = this.state.data;
+    return (
+        <div>
+<p>My data is {data} </p>
+<button onClick={this.senddata}>Send to Parent </button>
+</div>
+    );
+  }
+}
+        
+class Parent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.getdata = this.getdata.bind(this);
+    this.state = {data: 'Not Changed'};
+  }
+
+getdata(data) {
+this.setState({data: data});
+}
+   render() {
+     const datareceived = this.state.data
+    return (
+      <div>
+ <p>This is the child displaying it data .</p>
+<Child callback={this.getdata} />
+<p>This is the Parent displaying the received data .</p>
+        {datareceived}
+      </div>
+    );
+  }
+}
+        
+ReactDOM.render(
+  <Parent />,
+  document.getElementById('root')
+);
+```
+
+if you didn't understand how it works , andFor a more detailed example read the next example 
+and then go back to the first simple one ,
+
 Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
 
 In this section, we will create a temperature calculator that calculates whether the water would boil at a given temperature.

@@ -288,8 +288,7 @@ function NumberList(props) {
   return (
     <ul>
       {numbers.map((number) =>
-        <ListItem key={number.toString()}
-                  value={number} />
+        <ListItem key={number.toString()} value={number} />
       )}
     </ul>
   );

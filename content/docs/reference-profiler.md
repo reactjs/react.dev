@@ -26,9 +26,9 @@ For example, to profile a `Navigation` component and its descendants:
 ```js{3}
 render(
   <App>
-    <Profiler id="Navigation" onRender={callback}>
+    <React.Profiler id="Navigation" onRender={callback}>
       <Navigation {...props} />
-    </Profiler>
+    </React.Profiler>
     <Main {...props} />
   </App>
 );
@@ -38,12 +38,12 @@ Multiple `Profiler` components can be used to measure different parts of an appl
 ```js{3,6}
 render(
   <App>
-    <Profiler id="Navigation" onRender={callback}>
+    <React.Profiler id="Navigation" onRender={callback}>
       <Navigation {...props} />
-    </Profiler>
-    <Profiler id="Main" onRender={callback}>
+    </React.Profiler>
+    <React.Profiler id="Main" onRender={callback}>
       <Main {...props} />
-    </Profiler>
+    </React.Profiler>
   </App>
 );
 ```
@@ -52,16 +52,16 @@ render(
 ```js{2,6,8}
 render(
   <App>
-    <Profiler id="Panel" onRender={callback}>
+    <React.Profiler id="Panel" onRender={callback}>
       <Panel {...props}>
-        <Profiler id="Content" onRender={callback}>
+        <React.Profiler id="Content" onRender={callback}>
           <Content {...props} />
-        </Profiler>
-        <Profiler id="PreviewPane" onRender={callback}>
+        </React.Profiler>
+        <React.Profiler id="PreviewPane" onRender={callback}>
           <PreviewPane {...props} />
-        </Profiler>
+        </React.Profiler>
       </Panel>
-    </Profiler>
+    </React.Profiler>
   </App>
 );
 ```

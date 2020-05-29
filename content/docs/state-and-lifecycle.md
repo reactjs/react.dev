@@ -415,7 +415,7 @@ Neither parent nor child components can know if a certain component is stateful 
 
 This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
 
-A user-defined component may choose to pass its state down as props to its child components:
+A component may choose to pass its state down as props to its child components:
 
 ```js
 <FormattedDate date={this.state.date} />

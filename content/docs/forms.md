@@ -29,7 +29,34 @@ In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically
 
 We can combine the two by making the React state be the "single source of truth". Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a "controlled component".
 
-For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:
+For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component, and as of React version 16.8 and above we can write it as a functional component with hooks.
+
+
+```javascript{4,15,24}
+function NameForm() {
+  const [value, setValue] = React.useState("")
+  
+  const handleSubmit = (event) => {
+    alert('A name was submitted: ' + value);
+    event.preventDefault();
+  }
+  
+  return (
+     <form onSubmit={handleSubmit}>
+      <label>
+        Name:
+        <input type="text" value={value} onChange={event => setValue(event.target.value)} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  ); 
+}
+```
+
+[**Try it on CodePen**](https://codepen.io/Ugglr/pen/GRpbBoo)
+
+or as a class based component:
+### Equivalent Class Example
 
 ```javascript{4,10-12,24}
 class NameForm extends React.Component {
@@ -82,6 +109,32 @@ In HTML, a `<textarea>` element defines its text by its children:
 
 In React, a `<textarea>` uses a `value` attribute instead. This way, a form using a `<textarea>` can be written very similarly to a form that uses a single-line input:
 
+```javascript{2,14}
+function EssayForm() {
+  const [value, setValue] = React.useState('Please write an essay about your favorite DOM element.')
+
+  const handleSubmit = (event) => {
+    alert('An essay was submitted: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Essay:
+        <textarea value={value} onChange={event => setValue(event.target.value)} />
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+```
+
+Notice that `value` initialized with a value in the `useState` declaration, so that the text area starts off with some text in it.
+
+or as a class based component:
+### Equivalent Class Example
+
 ```javascript{4-6,12-14,26}
 class EssayForm extends React.Component {
   constructor(props) {
@@ -133,6 +186,37 @@ In HTML, `<select>` creates a drop-down list. For example, this HTML creates a d
 ```
 
 Note that the Coconut option is initially selected, because of the `selected` attribute. React, instead of using this `selected` attribute, uses a `value` attribute on the root `select` tag. This is more convenient in a controlled component because you only need to update it in one place. For example:
+
+```javascript{}
+function FlavorForm() {
+  const [value, setValue] = React.useState('coconut')
+
+  const handleSubmit = (event) => {
+    alert('Your favorite flavor is: ' + value);
+    event.preventDefault();
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Pick your favorite flavor:
+        <select value={value} onChange={event => setValue(event.target.value)}>
+          <option value="grapefruit">Grapefruit</option>
+          <option value="lime">Lime</option>
+          <option value="coconut">Coconut</option>
+          <option value="mango">Mango</option>
+        </select>
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
+}
+```
+
+[**Try it on CodePen**](https://codepen.io/Ugglr/pen/ZEbdjMV)
+
+or as a class based component:
+### Equivalent Class Example
 
 ```javascript{4,10-12,24}
 class FlavorForm extends React.Component {
@@ -196,9 +280,46 @@ Because its value is read-only, it is an **uncontrolled** component in React. It
 
 ## Handling Multiple Inputs {#handling-multiple-inputs}
 
-When you need to handle multiple controlled `input` elements, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.
+When you need to handle multiple controlled `input` elements and using hooks you can add more state fields using the `useState` hook.
 
 For example:
+
+```javascript{3,4}
+function Reservation() {
+  const [isGoing, setIsGoing] = React.useState(true)
+  const [numberOfGuests, setNumberOfGuests] = React.useState(2)
+
+  return (
+      <form>
+        <label>
+          Is going:
+          <input
+            name="isGoing"
+            type="checkbox"
+            checked={isGoing}
+            onChange={() => setIsGoing(!isGoing)} />
+        </label>
+        <br />
+        <label>
+          Number of guests:
+          <input
+            name="numberOfGuests"
+            type="number"
+            value={numberOfGuests}
+            onChange={event => setNumberOfGuests(event.target.value)} />
+        </label>
+      </form>
+  );
+}
+```
+
+[**Try it on CodePen**](https://codepen.io/Ugglr/pen/WNQqgNg?editors=0010)
+
+or as a class based component:
+
+When you need to handle multiple controlled `input` elements in a class based component, you can add a `name` attribute to each element and let the handler function choose what to do based on the value of `event.target.name`.
+
+### Equivalent Class Example
 
 ```javascript{15,18,28,37}
 class Reservation extends React.Component {

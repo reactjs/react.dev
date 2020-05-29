@@ -18,8 +18,6 @@ permalink: community/courses.html
 
 - [React Armory: Learn React by Itself](https://reactarmory.com/guides/learn-react-by-itself) - With React Armory, you can learn React without the buzzwords.
 
-- [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) - Build a real world application in plain React without complicated tooling.
-
 - [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
 
 - [Free React Bootcamp](https://tylermcginnis.com/free-react-bootcamp/) - Recordings from three days of a free online React bootcamp.
@@ -49,3 +47,5 @@ permalink: community/courses.html
 - [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
+
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.

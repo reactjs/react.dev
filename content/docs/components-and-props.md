@@ -30,7 +30,7 @@ function Welcome(props) {
 }
 ```
 
-This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions.
+This function is a valid React component because it accepts a single "props" (which stands for properties) object argument with data and returns a React element. We call such components "function components" because they are literally JavaScript functions. However a funciton componant is limited to only one component in a single function, so you have to write a different functions to change the way how your component works.
 
 You can also use an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes) to define a component:
 
@@ -42,7 +42,7 @@ class Welcome extends React.Component {
 }
 ```
 
-The above two components are equivalent from React's point of view.
+The above two components are equivalent from React's point of view. Using class to write a react web page is not necessary.
 
 Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
 

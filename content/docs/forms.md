@@ -32,7 +32,7 @@ We can combine the two by making the React state be the "single source of truth"
 For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component, and as of React version 16.8 and above we can write it as a functional component with hooks.
 
 
-```javascript{4,15,24}
+```javascript{2,13}
 function NameForm() {
   const [value, setValue] = React.useState("")
   
@@ -284,7 +284,7 @@ When you need to handle multiple controlled `input` elements and using hooks you
 
 For example:
 
-```javascript{3,4}
+```javascript{2,3,13,22}
 function Reservation() {
   const [isGoing, setIsGoing] = React.useState(true)
   const [numberOfGuests, setNumberOfGuests] = React.useState(2)

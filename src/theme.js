@@ -132,6 +132,8 @@ const sharedStyles = {
       },
     },
     content: {
+      filter: 'grayscale(100%)', // BLM
+
       marginTop: 40,
       marginBottom: 120,
 
@@ -186,6 +188,7 @@ const sharedStyles = {
   },
 
   markdown: {
+    filter: 'grayscale(100%)', // BLM
     lineHeight: '25px',
 
     '& .gatsby-highlight': {

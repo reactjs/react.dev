@@ -15,14 +15,20 @@ import type {Node} from 'react';
  * This component wraps page content sections (eg header, footer, main).
  * It provides consistent margin and max width behavior.
  */
-const Container = ({children}: {children: Node}) => (
+const Container = ({
+  children,
+  grayscale,
+}: {
+  children: Node,
+  grayscale: boolean,
+}) => (
   <div
     css={{
       paddingLeft: 20,
       paddingRight: 20,
       marginLeft: 'auto',
       marginRight: 'auto',
-
+      filter: grayscale ? 'grayscale(100%)' : '',
       [media.greaterThan('medium')]: {
         width: '90%',
       },

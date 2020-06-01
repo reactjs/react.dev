@@ -13,7 +13,6 @@ html {
 body {
   overflow-x: hidden;
   position: relative;
-  filter: grayscale(100%);
 }
 
 * {

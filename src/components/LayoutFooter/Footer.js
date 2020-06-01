@@ -23,6 +23,7 @@ import ossLogoPng from 'images/oss_logo.png';
 const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
   <footer
     css={{
+      filter: 'grayscale(100%)', // BLM
       backgroundColor: colors.darker,
       color: colors.white,
       paddingTop: 10,

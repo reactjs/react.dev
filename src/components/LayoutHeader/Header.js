@@ -36,6 +36,31 @@ const Header = ({location}: {location: Location}) => (
     <Container>
       <div
         css={{
+          height: 60,
+          fontSize: 20,
+          padding: 20,
+          textAlign: 'center',
+          [media.between('small', 'large')]: {
+            height: 60,
+          },
+          [media.lessThan('small')]: {
+            height: 80,
+          },
+        }}>
+        Black Lives Matter.{' '}
+        <a
+          style={{color: colors.brand}}
+          target="_blank"
+          rel="noopener"
+          rel="noreferrer"
+          href="https://support.eji.org/give/153413/#!/donation/checkout">
+          Support&nbsp;the&nbsp;Equal&nbsp;Justice&nbsp;Initiative.
+        </a>
+      </div>
+    </Container>
+    <Container grayscale={true}>
+      <div
+        css={{
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',

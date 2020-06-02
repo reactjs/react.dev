@@ -19,6 +19,7 @@ If you add a project, please commit to keeping it up to date with the latest ver
 * **[Image Compressor](https://github.com/RaulB-masai/react-image-compressor)** An offline image compressor built with React and browser-image-compression
 * **[Counter App](https://github.com/arnab-datta/counter-app)** A small shopping cart example
 * **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
+* **[Toggle Theme](https://github.com/chinmaykude/react-hooks-toggle-theme-example)** A simple example to toggle themes using React-Hooks and Context
 
 ## Complete Apps
 

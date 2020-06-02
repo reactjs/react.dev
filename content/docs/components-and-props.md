@@ -182,7 +182,7 @@ function Comment(props) {
   return (
     <div className="Comment">
       <div className="UserInfo">
-        <Avatar user={props.author} />
+        <Avatar user={props.user} />
         <div className="UserInfo-name">
           {props.author.name}
         </div>

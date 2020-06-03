@@ -56,7 +56,6 @@ const Header = ({location}: {location: Location}) => (
           style={{color: colors.brand}}
           target="_blank"
           rel="noopener"
-          rel="noreferrer"
           href="https://support.eji.org/give/153413/#!/donation/checkout">
           Support&nbsp;the&nbsp;Equal&nbsp;Justice&nbsp;Initiative.
         </a>

@@ -188,7 +188,6 @@ const sharedStyles = {
   },
 
   markdown: {
-    filter: 'grayscale(100%)', // BLM
     lineHeight: '25px',
 
     '& .gatsby-highlight': {

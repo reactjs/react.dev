@@ -34,6 +34,7 @@ const FooterNav = ({children, title, layoutHasSidebar = false}: Props) => (
       css={{
         display: 'inline-flex',
         flexDirection: 'column',
+        filter: 'grayscale(100%)',
       }}>
       {children}
     </div>

@@ -41,10 +41,14 @@ const Header = ({location}: {location: Location}) => (
           padding: 20,
           textAlign: 'center',
           [media.between('small', 'large')]: {
+            fontSize: 22,
             height: 60,
           },
           [media.lessThan('small')]: {
             height: 80,
+          },
+          [media.greaterThan('medium')]: {
+            fontSize: 25,
           },
         }}>
         Black Lives Matter.{' '}

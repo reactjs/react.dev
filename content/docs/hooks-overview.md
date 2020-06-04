@@ -8,13 +8,13 @@ prev: hooks-intro.html
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
-Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users. This is a fast-paced overview. If you get confused, look for a yellow box like this:
+Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). This page provides an overview of Hooks for experienced React users. This is a fast-paced overview. If you get confused, look for a gray box like this:
 
 >Detailed Explanation
 >
 >Read the [Motivation](/docs/hooks-intro.html#motivation) to learn why we're introducing Hooks to React.
 
-**↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
+**↑↑↑ Each section ends with a gray box like this.** They link to detailed explanations.
 
 ## 📌 State Hook {#state-hook}
 

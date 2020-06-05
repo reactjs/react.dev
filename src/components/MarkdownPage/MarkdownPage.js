@@ -87,7 +87,6 @@ const MarkdownPage = ({
                 <div
                   css={{
                     marginTop: 15,
-                    filter: 'grayscale(100%)', // BLM
                   }}>
                   {date}{' '}
                   {hasAuthors && (

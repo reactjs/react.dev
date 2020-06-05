@@ -37,8 +37,6 @@ class Sidebar extends Component {
         direction="column"
         halign="stretch"
         css={{
-          filter: 'grayscale(100%)', // BLM
-
           width: '100%',
           paddingLeft: 20,
           position: 'relative',

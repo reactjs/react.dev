@@ -15,8 +15,6 @@ const NavigationFooter = ({next, prev, location}) => {
   return (
     <div
       css={{
-        filter: 'grayscale(100%)', // BLM
-
         background: colors.dark,
         color: colors.white,
         paddingTop: 50,

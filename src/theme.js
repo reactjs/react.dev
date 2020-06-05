@@ -132,8 +132,6 @@ const sharedStyles = {
       },
     },
     content: {
-      filter: 'grayscale(100%)', // BLM
-
       marginTop: 40,
       marginBottom: 120,
 

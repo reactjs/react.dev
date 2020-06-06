@@ -61,7 +61,7 @@ const Header = ({location}: {location: Location}) => (
         </a>
       </div>
     </Container>
-    <Container grayscale={true}>
+    <Container>
       <div
         css={{
           display: 'flex',

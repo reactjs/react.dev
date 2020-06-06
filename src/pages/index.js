@@ -57,7 +57,6 @@ class Home extends Component {
           css={{
             width: '100%',
             marginTop: 60, // BLM
-            filter: 'grayscale(100%)', // BLM
           }}>
           <header
             css={{

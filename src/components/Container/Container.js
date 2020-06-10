@@ -22,7 +22,6 @@ const Container = ({children}: {children: Node}) => (
       paddingRight: 20,
       marginLeft: 'auto',
       marginRight: 'auto',
-
       [media.greaterThan('medium')]: {
         width: '90%',
       },

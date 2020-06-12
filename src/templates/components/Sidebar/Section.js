@@ -34,6 +34,7 @@ class Section extends React.Component {
             backgroundColor: 'transparent',
             border: 0,
             marginTop: 10,
+            padding: '0 5px',
           }}
           onClick={onSectionTitleClick}>
           <MetaTitle

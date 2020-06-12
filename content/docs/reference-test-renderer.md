@@ -118,21 +118,21 @@ import {create, act} from 'react-test-renderer';
 import App from './app.js'; // The component being tested
 
 // render the component
-let root; 
+let testRenderer;
 act(() => {
-  root = create(<App value={1}/>)
+  testRenderer = create(<App value={1}/>)
 });
 
-// make assertions on root 
-expect(root.toJSON()).toMatchSnapshot();
+// make assertions on rendered tree
+expect(testRenderer.toJSON()).toMatchSnapshot();
 
 // update with some different props
 act(() => {
-  root.update(<App value={2}/>);
+  testRenderer.update(<App value={2}/>);
 })
 
-// make assertions on root 
-expect(root.toJSON()).toMatchSnapshot();
+// make assertions on rendered tree
+expect(testRenderer.toJSON()).toMatchSnapshot();
 ```
 
 ### `testRenderer.toJSON()` {#testrenderertojson}

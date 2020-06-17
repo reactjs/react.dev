@@ -6,32 +6,33 @@ prev: create-a-new-react-app.html
 next: release-channels.html
 ---
 
-Both React and ReactDOM are available over a CDN.
+هر دوی  React  و ReactDom برروی CDN در دسترس می باشند.
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
 ```
 
-The versions above are only meant for development, and are not suitable for production. Minified and optimized production versions of React are available at:
+نسخه های بالا تنهای برای توسعه هستند و برای نسخه production نیاز به نسخه کم حجم شده و بهینه شده react داریم : 
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
 ```
 
-To load a specific version of `react` and `react-dom`, replace `16` with the version number.
+بی بارگزاری نسخه خاصی از `react` و `react-dom`،  نسخه مورد نظر را با شماره نسخه جایگزین کنید.
 
-### Why the `crossorigin` Attribute? {#why-the-crossorigin-attribute}
+### چرا استفاده از خصوصیت ؟  `crossorigin` ? {#why-the-crossorigin-attribute}
 
-If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute set:
+اگر ریکت را از CDN استفاده میکنید توصیه می کنیم این خصوصیت را فعال نگه دارید.
+[`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes)
 
 ```html
 <script crossorigin src="..."></script>
 ```
 
-We also recommend to verify that the CDN you are using sets the `Access-Control-Allow-Origin: *` HTTP header:
+همچنین توصیه میکنیم تا جهت تایید CDN  که استفاده میکنید این خصوصیت رو هم فعال کنید.  `Access-Control-Allow-Origin: *` HTTP header:
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)
 
-This enables a better [error handling experience](/blog/2017/07/26/error-handling-in-react-16.html) in React 16 and later.
+این خصوصیت خطایابی بهتری در ریکت 16 و به بعد انجام میدهد. [error handling experience](/blog/2017/07/26/error-handling-in-react-16.html) 

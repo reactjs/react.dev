@@ -165,6 +165,14 @@ onFocus onBlur
 
 These focus events work on all elements in the React DOM, not just form elements.
 
+#### onFocus
+
+The `onFocus` prop is initiated when focus is on the element. For example, when the user clicks on a text input element, the function defined with the `onFocus` prop is called.
+
+#### onBlur
+
+`onBlur` prop is initiated when focus has left on the element. For example, when the user clicks into and then clicks outside of on a text input element, the function defined with the `onFocus` prop is called.
+
 Properties:
 
 ```javascript

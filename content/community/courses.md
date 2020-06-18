@@ -49,3 +49,7 @@ permalink: community/courses.html
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
 
 - [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+
+- [React for Beginners](https://reactforbeginners.com/) - Premium step-by-step course to get you building real world React.js apps and components.
+
+- [Fullstack Advanced React & GraphQL](https://advancedreact.com/) - Start-to-finish way to learn Full Stack Advanced React by building an online store with React and GraphQL.

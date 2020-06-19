@@ -101,7 +101,7 @@ Strict mode can't automatically detect side effects for you, but it can help you
 
 * Class component `constructor`, `render`, and `shouldComponentUpdate` methods
 * Class component static `getDerivedStateFromProps` method
-* Function component bodies
+* Function component bodies with hooks (for example: `useEffect`, `useState`)
 * State updater functions (the first argument to `setState`)
 * Functions passed to `useState`, `useMemo`, or `useReducer`
 

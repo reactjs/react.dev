@@ -63,7 +63,7 @@ The value of the ref differs depending on the type of the node:
 
 - When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
 - When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
-- **You may only use the `ref` attribute on function components with `React.forwardRef` in conjunction with the `useImperativeHandle` hook.**
+- **You may only use the `ref` attribute on function components with `React.forwardRef`, optionally in conjunction with the `useImperativeHandle` hook.**
 
 The examples below demonstrate the differences.
 

@@ -119,8 +119,8 @@ In the beginning, our stated goal was to remove the duplicated logic from the `F
 Now that we've extracted this logic to a `useFriendStatus` hook, we can *just use it:*
 
 ```js{2}
-function FriendStatus(props) {
-  const isOnline = useFriendStatus(props.friend.id);
+function FriendStatus(id) {
+  const isOnline = useFriendStatus(id);
 
   if (isOnline === null) {
     return 'Loading...';

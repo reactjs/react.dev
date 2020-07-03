@@ -588,7 +588,7 @@ We have changed `this.props` to `props` both times it appears.
 
 >Note
 >
->When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
+>When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
 
 ### Taking Turns {#taking-turns}
 

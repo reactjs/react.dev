@@ -4,6 +4,8 @@ title: Release Channels
 permalink: docs/release-channels.html
 layout: docs
 category: installation
+prev: cdn-links.html
+next: hello-world.html
 ---
 
 React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback we sometimes share special builds of React that include unreleased features.

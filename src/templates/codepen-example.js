@@ -9,6 +9,14 @@ import Container from 'components/Container';
 import Layout from 'components/Layout';
 import {colors} from 'theme';
 
+type Props = {
+  location: Location,
+  pageContext: {|
+    action: string,
+    payload: string,
+  |},
+};
+
 // Copied over styles from ButtonLink for the submit btn
 const primaryStyle = {
   backgroundColor: colors.brand,
@@ -28,9 +36,11 @@ const primaryStyle = {
   fontSize: 16,
 };
 
-class CodepenExample extends Component {
+class CodepenExample extends Component<Props> {
+  _form: HTMLFormElement | null = null;
+
   componentDidMount() {
-    this.codepenForm.submit();
+    ((this._form: any): HTMLFormElement).submit();
   }
 
   render() {
@@ -44,7 +54,7 @@ class CodepenExample extends Component {
           <form
             style={{paddingBottom: '50px'}}
             ref={form => {
-              this.codepenForm = form;
+              this._form = form;
             }}
             action={action}
             method="POST">

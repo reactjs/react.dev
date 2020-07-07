@@ -8,6 +8,15 @@ import React from 'react';
 import ExternalFooterLink from './ExternalFooterLink';
 import FooterLink from './FooterLink';
 
+type Link = {|
+  title: string,
+  to: string,
+|};
+
+type Props = {|
+  links: Array<Link>,
+|};
+
 const SectionLinks = ({links}: Props) =>
   links.map(item => {
     if (item.external) {

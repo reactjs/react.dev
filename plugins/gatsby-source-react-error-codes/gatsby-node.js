@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const request = require('request-promise');
 
 const errorCodesUrl =

@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * @flow
+ */
+
 import React from 'react';
 
 const JS_NPM_URLS = [

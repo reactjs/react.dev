@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const readFileSync = require('fs').readFileSync;
 const resolve = require('path').resolve;
 const safeLoad = require('js-yaml').safeLoad;

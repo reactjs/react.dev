@@ -1,3 +1,9 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * @flow
+ */
+
 import React, {Component} from 'react';
 import Container from 'components/Container';
 import Layout from 'components/Layout';

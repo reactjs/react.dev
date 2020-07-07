@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const fs = require('fs');
 const GithubSlugger = require('github-slugger');
 

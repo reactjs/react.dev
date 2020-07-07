@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const visit = require('unist-util-visit');
 
 // Always treat JS blocks as JSX.

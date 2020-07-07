@@ -22,7 +22,7 @@ Here are some good resources for further reading on when to use `props` vs `stat
 
 In React, both `this.props` and `this.state` represent the *rendered* values, i.e. what's currently on the screen.
 
-Calls to `setState` are asynchronous - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need to compute values based on the current state (see below for details).
+Calls to `setState` are queued/delayed/deferred - don't rely on `this.state` to reflect the new value immediately after calling `setState`. Pass an updater function instead of an object if you need to compute values based on the current state (see below for details).
 
 Example of code that will *not* behave as expected:
 
@@ -78,9 +78,9 @@ handleSomething() {
 
 [Learn more about setState](/docs/react-component.html#setstate)
 
-### When is `setState` asynchronous? {#when-is-setstate-asynchronous}
+### When is `setState` queued/delayed/deferred? {#when-is-setstate-asynchronous}
 
-Currently, `setState` is asynchronous inside event handlers.
+Currently, `setState` is queued/delayed/deferred inside event handlers.
 
 This ensures, for example, that if both `Parent` and `Child` call `setState` during a click event, `Child` isn't re-rendered twice. Instead, React "flushes" the state updates at the end of the browser event. This results in significant performance improvements in larger apps.
 

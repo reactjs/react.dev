@@ -34,15 +34,14 @@ class Section extends React.Component {
             backgroundColor: 'transparent',
             border: 0,
             marginTop: 10,
-            paddingRight: 7,
-            paddingLeft: 7,
           }}
           onClick={onSectionTitleClick}>
           <MetaTitle
             cssProps={{
               [media.greaterThan('small')]: {
                 color: isActive ? colors.text : colors.subtle,
-
+                paddingRight: 7,
+                paddingLeft: 7,
                 ':hover': {
                   color: colors.text,
                 },

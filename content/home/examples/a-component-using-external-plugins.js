@@ -1,39 +1,34 @@
-class MarkdownEditor extends React.Component {
-  constructor(props) {
-    super(props);
-    this.md = new Remarkable();
-    this.handleChange = this.handleChange.bind(this);
-    this.state = { value: 'Hello, **world**!' };
+function MarkdownEditor() {
+
+  const md = new Remarkable();
+  const [value, setValue] = useState('Hello, **world**!');
+
+  function handleChange(e) {
+    setValue(e.target.value);
   }
 
-  handleChange(e) {
-    this.setState({ value: e.target.value });
+  function getRawMarkup() {
+    return { __html: md.render(value) };
   }
 
-  getRawMarkup() {
-    return { __html: this.md.render(this.state.value) };
-  }
-
-  render() {
-    return (
-      <div className="MarkdownEditor">
-        <h3>Input</h3>
-        <label htmlFor="markdown-content">
-          Enter some markdown
-        </label>
-        <textarea
-          id="markdown-content"
-          onChange={this.handleChange}
-          defaultValue={this.state.value}
-        />
-        <h3>Output</h3>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={this.getRawMarkup()}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="MarkdownEditor">
+      <h3>Input</h3>
+      <label htmlFor="markdown-content">
+        Enter some markdown
+      </label>
+      <textarea
+        id="markdown-content"
+        onChange={handleChange}
+        defaultValue={value}
+      />
+      <h3>Output</h3>
+      <div
+        className="content"
+        dangerouslySetInnerHTML={getRawMarkup()}
+      />
+    </div>
+  );
 }
 
 ReactDOM.render(

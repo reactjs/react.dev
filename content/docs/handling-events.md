@@ -60,8 +60,10 @@ When using React, you generally don't need to call `addEventListener` to add lis
 
 When you define a component using an [ES6 class](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes), a common pattern is for an event handler to be a method on the class. For example, this `Toggle` component renders a button that lets the user toggle between "ON" and "OFF" states:
 
-```js{6,7,10-14,18}
-class Toggle extends React.Component {
+```js codesandbox=cra?highlights=8,9,12,13,14,15,16,20&height=400
+import React from 'react';
+
+export default class Toggle extends React.Component {
   constructor(props) {
     super(props);
     this.state = {isToggleOn: true};
@@ -84,14 +86,7 @@ class Toggle extends React.Component {
     );
   }
 }
-
-ReactDOM.render(
-  <Toggle />,
-  document.getElementById('root')
-);
 ```
-
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/xEmzGg?editors=0010)
 
 You have to be careful about the meaning of `this` in JSX callbacks. In JavaScript, class methods are not [bound](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_objects/Function/bind) by default. If you forget to bind `this.handleClick` and pass it to `onClick`, `this` will be `undefined` when the function is actually called.
 

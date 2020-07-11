@@ -8,7 +8,7 @@ next: introducing-jsx.html
 
 The smallest React example looks like this:
 
-```js
+```js codesandbox=umd
 ReactDOM.render(
   <h1>Hello, world!</h1>,
   document.getElementById('root')
@@ -16,8 +16,6 @@ ReactDOM.render(
 ```
 
 It displays a heading saying "Hello, world!" on the page.
-
-[](codepen://hello-world)
 
 Click the link above to open an online editor. Feel free to make some changes, and see how they affect the output. Most pages in this guide will have editable examples like this one.
 

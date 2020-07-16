@@ -62,6 +62,14 @@ Luna learned programming because she thought it meant creating video games. Inst
 
 Rachel wrote a [book about UI animation](https://abookapart.com/products/animation-at-work) once and worked with MDN and the W3C on the web animations API. Now she is busy with education materials and community engineering on the React team. Secretly, she is an award-winning cartoonist for teenage girls. Catch her making fancy tea with lukewarm water in the microkitchen.
 
+### Rick Hanlon {#rick-hanlon}
+
+![Ricky](../images/team/rickhanlonii.jpg)
+
+[@rickhanlonii on GitHub](https://github.com/rickhanlonii) &middot; [@rickhanlonii on Twitter](https://twitter.com/rickhanlonii)
+
+Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
+
 ### Sebastian Markbåge {#sebastian-markbage}
 
 ![Sebastian](../images/team/sebmarkbage.jpg)

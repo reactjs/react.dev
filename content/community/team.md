@@ -38,14 +38,6 @@ Brian studied art in college and did programming on the side to pay for his educ
 
 Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbage)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
 
-### Dominic Gannaway {#dominic-gannaway}
-
-![Dominic](../images/team/trueadm.jpg)
-
-[@trueadm on GitHub](https://github.com/trueadm) &middot; [@trueadm on Twitter](https://twitter.com/trueadm)
-
-Dominic is interested in travelling, drum and bass, stand-up comedy and spending time with the family. He most enjoys hacking on new unexplored ideas around UIs and accessibility and has a passion for tweaking and optimizing code to get the most performance out of things.
-
 ### Luna Ruan {#luna-ruan}
 
 ![Luna](../images/team/lunaruan.jpg)
@@ -84,14 +76,6 @@ Sebastian majored in psychology. He's usually quiet. Even when he says something
 
 Seth started programming as a kid growing up in Tucson, AZ. After school, he was bitten by the music bug and was a touring musician for about 10 years before returning to *work*, starting with Intuit. In his spare time, he loves [taking pictures](https://www.sethwebster.com) and flying for animal rescues in the northeastern United States.
 
-### Yuzhi Zheng {#yuzhi-zheng}
-
-![Yuzhi](../images/team/yuzhi.jpg)
-
-[@yuzhi on GitHub](https://github.com/yuzhi) &middot; [@yuzhiz on Twitter](https://twitter.com/yuzhiz)
-
-Yuzhi studied Computer Science in school. She liked the instant gratification of seeing code come to life without having to physically be in a laboratory. Now she manages the React team. Before management, she used to work on the Relay data fetching framework. In her spare time, Yuzhi enjoys optimizing her life via gardening and home improvement projects.
-
 ## Acknowledgements {#acknowledgements}
 
 React was originally created by [Jordan Walke](https://github.com/jordwalke). Today, React has over a thousand open source contributors. We'd like to recognize a few people who have made significant contributions to React and its documentation in the past and have helped maintain them over the years:
@@ -107,6 +91,7 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Christoph Nakazawa](https://github.com/cpojer)
 * [Christopher Chedeau](https://github.com/vjeux)
 * [Clement Hoang](https://github.com/clemmy)
+* [Dominic Gannaway](https://github.com/trueadm)
 * [Flarnie Marchan](https://github.com/flarnie)
 * [Jason Quense](https://github.com/jquense)
 * [Jesse Beach](https://github.com/jessebeach)
@@ -128,6 +113,7 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Sophie Alpert](https://github.com/sophiebits)
 * [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
+* [Yuzhi Zheng](https://github.com/yuzhi)
 
 This list is not exhaustive.
 

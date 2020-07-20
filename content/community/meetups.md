@@ -48,7 +48,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Beijing](https://www.meetup.com/Beijing-ReactJS-Meetup/)
 
 ## Colombia {#colombia}
+* [Bogotá](https://www.meetup.com/meetup-group-iHIeHykY/)
 * [Medellin](https://www.meetup.com/React-Medellin/)
+* [Cali](https://www.meetup.com/reactcali/)
 
 ## Denmark {#denmark}
 * [Aalborg](https://www.meetup.com/Aalborg-React-React-Native-Meetup/)

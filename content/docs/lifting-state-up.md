@@ -303,6 +303,59 @@ class Calculator extends React.Component {
 
 Now, no matter which input you edit, `this.state.temperature` and `this.state.scale` in the `Calculator` get updated. One of the inputs gets the value as is, so any user input is preserved, and the other input value is always recalculated based on it.
 
+Now that we have the working UI, we can refactor the more complicated components by using hooks.
+
+```js
+import React, { useState } from "react"
+
+function TemperatureInput({ temperature, scale, onTemperatureChange }) {
+  return (
+    <fieldset>
+      <legend>Enter temperature in {scaleNames[scale]}:</legend>
+      <input
+        value={temperature}
+        onChange={(e) => onTemperatureChange(e.target.value)}
+      />
+    </fieldset>
+  );
+}
+
+function Calculator() {
+  const [temperature, setTemperature] = useState("");
+  const [scale, setScale] = useState("c");
+
+  const celsius =
+    scale === "f" ? tryConvert(temperature, toCelsius) : temperature;
+  const fahrenheit =
+    scale === "c" ? tryConvert(temperature, toFahrenheit) : temperature;
+
+  function handleCelsiusChange(temperature) {
+    setScale("c");
+    setTemperature(temperature);
+  }
+  function handleFahrenheitChange(temperature) {
+    setScale("f");
+    setTemperature(temperature);
+  }
+
+  return (
+    <div>
+      <TemperatureInput
+        scale="c"
+        temperature={celsius}
+        onTemperatureChange={handleCelsiusChange}
+      />
+      <TemperatureInput
+        scale="f"
+        temperature={fahrenheit}
+        onTemperatureChange={handleFahrenheitChange}
+      />
+      <BoilingVerdict celsius={parseFloat(celsius)} />
+    </div>
+  );
+}
+```
+
 Let's recap what happens when you edit an input:
 
 * React calls the function specified as `onChange` on the DOM `<input>`. In our case, this is the `handleChange` method in the `TemperatureInput` component.

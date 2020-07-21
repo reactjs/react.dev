@@ -13,6 +13,7 @@ There are three common reasons you might be seeing it:
 1. You might have **mismatching versions** of React and React DOM.
 2. You might be **breaking the [Rules of Hooks](/docs/hooks-rules.html)**.
 3. You might have **more than one copy of React** in the same app.
+4. You might be calling the component as `function` but not `component`.
 
 Let's look at each of these cases.
 
@@ -116,6 +117,11 @@ This problem can also come up when you use `npm link` or an equivalent. In that 
 >Note
 >
 >In general, React supports using multiple independent copies on one page (for example, if an app and a third-party widget both use it). It only breaks if `require('react')` resolves differently between the component and the `react-dom` copy it was rendered with.
+
+## Calling the component as `function` but not `component`
+Calling a functional component as `function` (for example, calling `ComponentWithHook()` instead of `<ComponentWithHook />`) will **not** mount the component, and eliminate the whole react lifecycle. This will block Hook from working.
+
+In this case, the solution is straightforward: just call `<ComponentWithHook />`, but not `ComponentWithHook()`.
 
 ## Other Causes {#other-causes}
 

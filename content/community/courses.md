@@ -49,3 +49,5 @@ permalink: community/courses.html
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
 
 - [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+
+- [Become a React Developer](https://www.alterclass.io/courses/react) - Master React and build real-world applications. Go beyond the fundamentals.

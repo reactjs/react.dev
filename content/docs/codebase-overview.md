@@ -211,7 +211,7 @@ Its source code is located in [`packages/react-reconciler`](https://github.com/f
 
 ### Event System {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. As of [#19228](https://github.com/facebook/react/pull/19228), legacy-events source code was forked into [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events) and [`packages/react-native-renderer/src/legacy-events`](https://github.com/facebook/react/tree/master/packages/react-native-renderer/src/legacy-events).
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
 
 There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
 

@@ -287,7 +287,7 @@ const sharedStyles = {
         content: ' ',
         display: 'block',
         borderBottom: `1px solid ${colors.divider}`,
-        paddingTop: 44,
+        paddingTop: 85,
         marginBottom: 40,
       },
 
@@ -320,7 +320,7 @@ const sharedStyles = {
       '::before': {
         content: ' ',
         display: 'block',
-        paddingTop: 120,
+        paddingTop: 125,
         marginTop: -45,
       },
 

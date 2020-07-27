@@ -320,7 +320,7 @@ const sharedStyles = {
       '::before': {
         content: ' ',
         display: 'block',
-        paddingTop: 90,
+        paddingTop: 120,
         marginTop: -45,
       },
 

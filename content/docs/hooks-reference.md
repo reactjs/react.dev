@@ -27,6 +27,8 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
 
 ## Basic Hooks {#basic-hooks}
 
+Hooks are functions that let you “hook into” React state and lifecycle features from function components. Here are 3 of the most basic and most often used Hooks in React.
+
 ### `useState` {#usestate}
 
 ```js

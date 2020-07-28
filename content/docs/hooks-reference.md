@@ -47,7 +47,7 @@ During subsequent re-renders, the first value returned by `useState` will always
 
 >Note
 >
->React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React guarantees that `setState` function identity is stable and won't change on re-renders. This is why it is safe to omit it from the `useEffect` or `useCallback` dependency list.
 
 #### Functional updates {#functional-updates}
 
@@ -286,7 +286,7 @@ function Counter() {
 
 >Note
 >
->React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
+>React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it is safe to omit it from the `useEffect` or `useCallback` dependency list.
 
 #### Specifying the initial state {#specifying-the-initial-state}
 

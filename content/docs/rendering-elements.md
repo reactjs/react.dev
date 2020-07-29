@@ -58,7 +58,7 @@ It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a 
 
 >**Note:**
 >
->In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
+>In practice, most React apps only call [`ReactDOM.render()`](/docs/react-dom.html#render) once. In the next sections, we will learn how such code gets encapsulated into [stateful components](/docs/state-and-lifecycle.html).
 >
 >We recommend that you don't skip topics because they build on each other.
 

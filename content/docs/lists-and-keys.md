@@ -48,7 +48,7 @@ This code displays a bullet list of numbers between 1 and 5.
 
 ### Basic List Component {#basic-list-component}
 
-Usually you would render lists inside a [component](/docs/components-and-props.html).
+Usually, you would render lists inside a [component](/docs/components-and-props.html).
 
 We can refactor the previous example into a component that accepts an array of `numbers` and outputs a list of elements.
 
@@ -130,7 +130,7 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with the component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
 
 Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
 
@@ -207,7 +207,7 @@ A good rule of thumb is that elements inside the `map()` call need keys.
 
 ### Keys Must Only Be Unique Among Siblings {#keys-must-only-be-unique-among-siblings}
 
-Keys used within arrays should be unique among their siblings. However they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {

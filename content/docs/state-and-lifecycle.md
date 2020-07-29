@@ -59,7 +59,7 @@ setInterval(tick, 1000);
 
 However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
 
-Ideally we want to write this once and have the `Clock` update itself:
+Ideally, we want to write this once and have the `Clock` update itself:
 
 ```js{2}
 ReactDOM.render(
@@ -342,7 +342,7 @@ The only place where you can assign `this.state` is the constructor.
 
 React may batch multiple `setState()` calls into a single update for performance.
 
-Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+Because `this.props` and `this.state` maybe updated asynchronously, you should not rely on their values for calculating the next state.
 
 For example, this code may fail to update the counter:
 
@@ -413,7 +413,7 @@ The merging is shallow, so `this.setState({comments})` leaves `this.state.posts`
 
 Neither parent nor child components can know if a certain component is stateful or stateless, and they shouldn't care whether it is defined as a function or a class.
 
-This is why state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
+This is why the state is often called local or encapsulated. It is not accessible to any component other than the one that owns and sets it.
 
 A component may choose to pass its state down as props to its child components:
 

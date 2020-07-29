@@ -49,7 +49,7 @@ function WelcomeDialog() {
 
 Anything inside the `<FancyBorder>` JSX tag gets passed into the `FancyBorder` component as a `children` prop. Since `FancyBorder` renders `{props.children}` inside a `<div>`, the passed elements appear in the final output.
 
-While this is less common, sometimes you might need multiple "holes" in a component. In such cases you may come up with your own convention instead of using `children`:
+While this is less common, sometimes you might need multiple "holes" in a component. In such cases, you may come up with your own convention instead of using `children`:
 
 ```js{5,8,18,21}
 function SplitPane(props) {

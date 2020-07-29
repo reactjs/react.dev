@@ -12,7 +12,7 @@ Hooks are JavaScript functions, but you need to follow two rules when using them
 
 ### Only Call Hooks at the Top Level {#only-call-hooks-at-the-top-level}
 
-**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in depth [below](#explanation).)
+**Don't call Hooks inside loops, conditions, or nested functions.** Instead, always use Hooks at the top level of your React function. By following this rule, you ensure that Hooks are called in the same order each time a component renders. That's what allows React to correctly preserve the state of Hooks between multiple `useState` and `useEffect` calls. (If you're curious, we'll explain this in-depth [below](#explanation).)
 
 ### Only Call Hooks from React Functions {#only-call-hooks-from-react-functions}
 
@@ -109,7 +109,7 @@ As long as the order of the Hook calls is the same between renders, React can as
   }
 ```
 
-The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
+The `name !== ''` condition is `true` on the first render, so we run this Hook. However, on the next render, the user might clear the form, making the condition `false`. Now that we skip this Hook during rendering, the order of the Hook calls becomes different:
 
 ```js
 useState('Mary')           // 1. Read the name state variable (argument is ignored)
@@ -135,4 +135,4 @@ React wouldn't know what to return for the second `useState` Hook call. React ex
 
 ## Next Steps {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions and reuse common stateful logic between different components.

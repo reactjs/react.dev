@@ -14,7 +14,7 @@ Hooks are [backwards-compatible](/docs/hooks-intro.html#no-breaking-changes). Th
 >
 >Read the [Motivation](/docs/hooks-intro.html#motivation) to learn why we're introducing Hooks to React.
 
-**↑↑↑ Each section ends with a yellow box like this.** They link to detailed explanations.
+**↑↑↑ Each section ends with a yellow box like this.** The link to detailed explanations.
 
 ## 📌 State Hook {#state-hook}
 
@@ -229,7 +229,7 @@ function FriendListItem(props) {
 }
 ```
 
-The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
+The state of each component is completely independent. Hooks are a way to reuse *stateful logic*, not the state itself. In fact, each *call* to a Hook has a completely isolated state -- so you can even use the same custom Hook twice in one component.
 
 Custom Hooks are more of a convention than a feature. If a function's name starts with "`use`" and it calls other Hooks, we say it is a custom Hook. The `useSomething` naming convention is how our linter plugin is able to find bugs in the code using Hooks.
 
@@ -251,7 +251,7 @@ function Example() {
 }
 ```
 
-And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage local state of complex components with a reducer:
+And [`useReducer`](/docs/hooks-reference.html#usereducer) lets you manage the local state of complex components with a reducer:
 
 ```js{2}
 function Todos() {

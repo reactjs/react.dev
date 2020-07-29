@@ -46,9 +46,9 @@ Releases in Next are published with the `next` tag on npm. Versions are generate
 
 The Next channel is designed to support integration testing between React and other projects.
 
-All changes to React go through extensive internal testing before they are released to the public. However, there are a myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
+All changes to React go through extensive internal testing before they are released to the public. However, there are myriad of environments and configurations used throughout the React ecosystem, and it's not possible for us to test against every single one.
 
-If you're the author of a third party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
+If you're the author of a third-party React framework, library, developer tool, or similar infrastructure-type project, you can help us keep React stable for your users and the entire React community by periodically running your test suite against the most recent changes. If you're interested, follow these steps:
 
 - Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
 - In the cron job, update your React packages to the most recent React release in the Next channel, using `next` tag on npm. Using the npm cli:
@@ -72,7 +72,7 @@ A project that uses this workflow is Next.js. (No pun intended! Seriously!) You 
 
 Like Next, the Experimental channel is a prerelease channel that tracks the master branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
 
-Usually, an update to Next is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
+Usually, an update to Next is accompanied by a corresponding update to Experimental. They are based on the same source revision but are built using a different set of feature flags.
 
 Experimental releases may be significantly different than releases to Next and Latest. **Do not use Experimental releases in user-facing applications.** You should expect frequent breaking changes between releases in the Experimental channel.
 

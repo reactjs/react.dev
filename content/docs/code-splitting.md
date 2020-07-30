@@ -7,7 +7,7 @@ permalink: docs/code-splitting.html
 ## Bundling {#bundling}
 
 Most React apps will have their files "bundled" using tools like
-[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/) or 
+[Webpack](https://webpack.js.org/), [Rollup](https://rollupjs.org/), or 
 [Browserify](http://browserify.org/).
 Bundling is the process of following imported files and merging them into a
 single file: a "bundle". This bundle can then be included on a webpage to load
@@ -63,7 +63,7 @@ it so large that your app takes a long time to load.
 To avoid winding up with a large bundle, it's good to get ahead of the problem
 and start "splitting" your bundle.
 Code-Splitting is a feature
-supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting) and Browserify (via
+supported by bundlers like [Webpack](https://webpack.js.org/guides/code-splitting/), [Rollup](https://rollupjs.org/guide/en/#code-splitting), and Browserify (via
 [factor-bundle](https://github.com/browserify/factor-bundle)) which can create
 multiple bundles that can be dynamically loaded at runtime.
 
@@ -103,13 +103,13 @@ If you're setting up Webpack yourself, you'll probably want to read Webpack's
 [guide on code splitting](https://webpack.js.org/guides/code-splitting/). Your Webpack config should look vaguely [like this](https://gist.github.com/gaearon/ca6e803f5c604d37468b0091d9959269).
 
 When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
-parse the dynamic import syntax but is not transforming it. For that you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
+parse the dynamic import syntax but is not transforming it. For that, you will need [babel-plugin-syntax-dynamic-import](https://yarnpkg.com/en/package/babel-plugin-syntax-dynamic-import).
 
 ## `React.lazy` {#reactlazy}
 
 > Note:
 >
-> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/gregberge/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://loadable-components.com/docs/server-side-rendering/).
+> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server-rendered app, we recommend [Loadable Components](https://github.com/gregberge/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://loadable-components.com/docs/server-side-rendering/).
 
 The `React.lazy` function lets you render a dynamic import as a regular component.
 
@@ -197,7 +197,7 @@ const MyComponent = () => (
 ## Route-based code splitting {#route-based-code-splitting}
 
 Deciding where in your app to introduce code splitting can be a bit tricky. You
-want to make sure you choose places that will split bundles evenly, but won't
+want to make sure you choose places that will split bundles evenly but won't
 disrupt the user experience.
 
 A good place to start is with routes. Most people on the web are used to

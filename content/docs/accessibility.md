@@ -14,7 +14,7 @@ React fully supports building accessible websites, often by using standard HTML 
 
 ### WCAG {#wcag}
 
-The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provides guidelines for creating accessible web sites.
+The [Web Content Accessibility Guidelines](https://www.w3.org/WAI/intro/wcag) provide guidelines for creating accessible web sites.
 
 The following WCAG checklists provide an overview:
 
@@ -46,7 +46,7 @@ in our websites will often give us accessibility for free.
 - [MDN HTML elements reference](https://developer.mozilla.org/en-US/docs/Web/HTML/Element)
 
 Sometimes we break HTML semantics when we add `<div>` elements to our JSX to make our React code work, especially when working with lists (`<ol>`, `<ul>` and `<dl>`) and the HTML `<table>`.
-In these cases we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
+In these cases, we should rather use [React Fragments](/docs/fragments.html) to group together multiple elements.
 
 For example,
 
@@ -361,7 +361,7 @@ class BlurExample extends React.Component {
 }
 ```
 
-This code exposes the functionality to both pointer device and keyboard users. Also note the added `aria-*` props to support screen-reader users. For simplicity's sake the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
+This code exposes the functionality to both pointer device and keyboard users. Also, note the added `aria-*` props to support screen-reader users. For simplicity's sake, the keyboard events to enable `arrow key` interaction of the popover options have not been implemented.
 
 <img src="../images/docs/blur-popover-close.gif" alt="A popover list correctly closing for both mouse and keyboard users." />
 
@@ -369,7 +369,7 @@ This is one example of many cases where depending on only pointer and mouse even
 
 ## More Complex Widgets {#more-complex-widgets}
 
-A more complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible, even the most complex widget can be coded accessibly.
+More complex user experience should not mean a less accessible one. Whereas accessibility is most easily achieved by coding as close to HTML as possible, even the most complex widget can be coded accessibly.
 
 Here we require knowledge of [ARIA Roles](https://www.w3.org/TR/wai-aria/#roles) as well as [ARIA States and Properties](https://www.w3.org/TR/wai-aria/#states_and_properties).
 These are toolboxes filled with HTML attributes that are fully supported in JSX and enable us to construct fully accessible, highly functional React components.
@@ -428,7 +428,7 @@ By far the easiest and also one of the most important checks is to test if your 
 
 ### Development assistance {#development-assistance}
 
-We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states and properties. We also have access to the following tool:
+We can check some accessibility features directly in our JSX code. Often intellisense checks are already provided in JSX aware IDE's for the ARIA roles, states, and properties. We also have access to the following tool:
 
 #### eslint-plugin-jsx-a11y {#eslint-plugin-jsx-a11y}
 
@@ -475,13 +475,13 @@ In some browsers we can easily view the accessibility information for each eleme
 
 Testing with a screen reader should form part of your accessibility tests.
 
-Please note that browser / screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
+Please note that browser/screen reader combinations matter. It is recommended that you test your application in the browser best suited to your screen reader of choice.
 
 ### Commonly Used Screen Readers {#commonly-used-screen-readers}
 
 #### NVDA in Firefox {#nvda-in-firefox}
 
-[NonVisual Desktop Access](https://www.nvaccess.org/) or NVDA is an open source Windows screen reader that is widely used.
+[NonVisual Desktop Access](https://www.nvaccess.org/) or NVDA is an open-source Windows screen reader that is widely used.
 
 Refer to the following guides on how to best use NVDA:
 

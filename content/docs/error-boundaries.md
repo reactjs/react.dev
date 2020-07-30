@@ -4,7 +4,7 @@ title: Error Boundaries
 permalink: docs/error-boundaries.html
 ---
 
-In the past, JavaScript errors inside components used to corrupt React’s internal state and cause it to [emit](https://github.com/facebook/react/issues/4026) [cryptic](https://github.com/facebook/react/issues/6895) [errors](https://github.com/facebook/react/issues/8579) on next renders. These errors were always caused by an earlier error in the application code, but React did not provide a way to handle them gracefully in components, and could not recover from them.
+In the past, JavaScript errors inside components used to corrupt React’s internal state and cause it to [emit](https://github.com/facebook/react/issues/4026) [cryptic](https://github.com/facebook/react/issues/6895) [errors](https://github.com/facebook/react/issues/8579) on the next renders. These errors were always caused by an earlier error in the application code, but React did not provide a way to handle them gracefully in components, and could not recover from them.
 
 
 ## Introducing Error Boundaries {#introducing-error-boundaries}
@@ -19,8 +19,8 @@ Error boundaries are React components that **catch JavaScript errors anywhere in
 >
 > * Event handlers ([learn more](#how-about-event-handlers))
 > * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
-> * Server side rendering
-> * Errors thrown in the error boundary itself (rather than its children)
+> * Server-side rendering
+> * Errors are thrown in the error boundary itself (rather than its children)
 
 A class component becomes an error boundary if it defines either (or both) of the lifecycle methods [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) or [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information.
 
@@ -76,13 +76,13 @@ The granularity of error boundaries is up to you. You may wrap top-level route c
 
 ## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
 
-This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.**
+This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in the unmounting of the whole React component tree.**
 
-We debated this decision, but in our experience it is worse to leave corrupted UI in place than to completely remove it. For example, in a product like Messenger leaving the broken UI visible could lead to somebody sending a message to the wrong person. Similarly, it is worse for a payments app to display a wrong amount than to render nothing.
+We debated this decision, but in our experience, it is worse to leave corrupted UI in place than to completely remove it. For example, in a product like Messenger leaving the broken UI visible could lead to somebody sending a message to the wrong person. Similarly, it is worse for a payments app to display the wrong amount than to render nothing.
 
-This change means that as you migrate to React 16, you will likely uncover existing crashes in your application that have been unnoticed before. Adding error boundaries lets you provide better user experience when something goes wrong.
+This change means that as you migrate to React 16, you will likely uncover existing crashes in your application that have been unnoticed before. Adding error boundaries lets you provide a better user experience when something goes wrong.
 
-For example, Facebook Messenger wraps content of the sidebar, the info panel, the conversation log, and the message input into separate error boundaries. If some component in one of these UI areas crashes, the rest of them remain interactive.
+For example, Facebook Messenger wraps the content of the sidebar, the info panel, the conversation log, and the message input into separate error boundaries. If some component in one of these UI areas crashes, the rest of them remain interactive.
 
 We also encourage you to use JS error reporting services (or build your own) so that you can learn about unhandled exceptions as they happen in production, and fix them.
 
@@ -130,7 +130,7 @@ Error boundaries **do not** catch errors inside event handlers.
 
 React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
 
-If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
+If you need to catch an error inside the event handler, use the regular JavaScript `try` / `catch` statement:
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {
@@ -161,6 +161,6 @@ Note that the above example is demonstrating regular JavaScript behavior and doe
 
 ## Naming Changes from React 15 {#naming-changes-from-react-15}
 
-React 15 included a very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.
+React 15 included very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.
 
 For this change, we’ve provided a [codemod](https://github.com/reactjs/react-codemod#error-boundaries) to automatically migrate your code.

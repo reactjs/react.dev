@@ -100,14 +100,14 @@ Identifies whether the tree has just been mounted for the first time or re-rende
 * **`actualDuration: number`** -
 Time spent rendering the `Profiler` and its descendants for the current update.
 This indicates how well the subtree makes use of memoization (e.g. [`React.memo`](/docs/react-api.html#reactmemo), [`useMemo`](/docs/hooks-reference.html#usememo), [`shouldComponentUpdate`](/docs/hooks-faq.html#how-do-i-implement-shouldcomponentupdate)).
-Ideally this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
+Ideally, this value should decrease significantly after the initial mount as many of the descendants will only need to re-render if their specific props change.
 * **`baseDuration: number`** -
 Duration of the most recent `render` time for each individual component within the `Profiler` tree.
 This value estimates a worst-case cost of rendering (e.g. the initial mount or a tree with no memoization).
 * **`startTime: number`** -
 Timestamp when React began rendering the current update.
 * **`commitTime: number`** -
-Timestamp when React committed the current update.
+Timestamp when React committed to the current update.
 This value is shared between all profilers in a commit, enabling them to be grouped if desirable.
 * **`interactions: Set`** -
 Set of ["interactions"](https://fb.me/react-interaction-tracing) that were being traced when the update was scheduled (e.g. when `render` or `setState` were called).

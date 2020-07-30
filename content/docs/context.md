@@ -80,7 +80,7 @@ function Page(props) {
 
 With this change, only the top-most Page component needs to know about the `Link` and `Avatar` components' use of `user` and `avatarSize`.
 
-This *inversion of control* can make your code cleaner in many cases by reducing the amount of props you need to pass through your application and giving more control to the root components. However, this isn't the right choice in every case: moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
+This *inversion of control* can make your code cleaner in many cases by reducing the number of props you need to pass through your application and giving more control to the root components. However, this isn't the right choice in every case: moving more complexity higher in the tree makes those higher-level components more complicated and forces the lower-level components to be more flexible than you may want.
 
 You're not limited to a single child for a component. You may pass multiple children, or even have multiple separate "slots" for children, [as documented here](/docs/composition-vs-inheritance.html#containment):
 
@@ -228,7 +228,7 @@ A more complex example with dynamic values for the theme:
 
 ### Updating Context from a Nested Component {#updating-context-from-a-nested-component}
 
-It is often necessary to update the context from a component that is nested somewhere deeply in the component tree. In this case you can pass a function down through the context to allow consumers to update the context:
+It is often necessary to update the context from a component that is nested somewhere deep in the component tree. In this case, you can pass a function down through the context to allow consumers to update the context:
 
 **theme-context.js**
 `embed:context/updating-nested-context-context.js`

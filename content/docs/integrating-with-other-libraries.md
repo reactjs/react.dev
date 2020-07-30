@@ -133,7 +133,7 @@ handleChange(e) {
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/bWgbeE?editors=0010)
 
-Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen>` component can get different children if parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates, since we no longer let React manage the DOM for us.
+Finally, there is one more thing left to do. In React, props can change over time. For example, the `<Chosen>` component can get different children if the parent component's state changes. This means that at integration points it is important that we manually update the DOM in response to prop updates since we no longer let React manage the DOM for us.
 
 Chosen's documentation suggests that we can use jQuery `trigger()` API to notify it about changes to the original DOM element. We will let React take care of updating `this.props.children` inside `<select>`, but we will also add a `componentDidUpdate()` lifecycle method that notifies Chosen about changes in the children list:
 
@@ -227,7 +227,7 @@ ReactDOM.render(
 );
 ```
 
-From here you could start moving more logic into the component and begin adopting more common React practices. For example, in components it is best not to rely on IDs because the same component can be rendered multiple times. Instead, we will use the [React event system](/docs/handling-events.html) and register the click handler directly on the React `<button>` element:
+From here you could start moving more logic into the component and begin adopting more common React practices. For example, in components, it is best not to rely on IDs because the same component can be rendered multiple times. Instead, we will use the [React event system](/docs/handling-events.html) and register the click handler directly on the React `<button>` element:
 
 ```js{2,6,9}
 function Button(props) {
@@ -289,7 +289,7 @@ While it is generally recommended to use unidirectional data flow such as [React
 
 The simplest way to consume [Backbone](https://backbonejs.org/) models and collections from a React component is to listen to the various change events and manually force an update.
 
-Components responsible for rendering models would listen to `'change'` events, while components responsible for rendering collections would listen for `'add'` and `'remove'` events. In both cases, call [`this.forceUpdate()`](/docs/react-component.html#forceupdate) to rerender the component with the new data.
+Components responsible for rendering models would listen to `'change'` events, while components responsible for rendering collections would listen for `'add'` and `'remove'` events. In both cases, call [`this.forceUpdate()`](/docs/react-component.html#forceupdate) to re-render the component with the new data.
 
 In the example below, the `List` component renders a Backbone collection, using the `Item` component to render individual items.
 
@@ -353,7 +353,7 @@ class List extends React.Component {
 
 The approach above requires your React components to be aware of the Backbone models and collections. If you later plan to migrate to another data management solution, you might want to concentrate the knowledge about Backbone in as few parts of the code as possible.
 
-One solution to this is to extract the model's attributes as plain data whenever it changes, and keep this logic in a single place. The following is [a higher-order component](/docs/higher-order-components.html) that extracts all attributes of a Backbone model into state, passing the data to the wrapped component.
+One solution to this is to extract the model's attributes as plain data whenever it changes, and keep this logic in a single place. The following is [a higher-order component](/docs/higher-order-components.html) that extracts all attributes of a Backbone model into the state, passing the data to the wrapped component.
 
 This way, only the higher-order component needs to know about Backbone model internals, and most components in the app can stay agnostic of Backbone.
 

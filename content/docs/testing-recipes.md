@@ -416,7 +416,7 @@ it("changes value when clicked", () => {
 });
 ```
 
-Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event you create for it to reach the React listener because React automatically delegates events to the document.
+Different DOM events and their properties are described in [MDN](https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent). Note that you need to pass `{ bubbles: true }` in each event, you create for it to reach the React listener because React automatically delegates events to the document.
 
 > Note:
 >
@@ -426,7 +426,7 @@ Different DOM events and their properties are described in [MDN](https://develop
 
 ### Timers {#timers}
 
-Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
+Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple-choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
 
 ```jsx
 // card.js

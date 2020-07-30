@@ -5,7 +5,7 @@
  * @flow
  */
 
-import React, {useState, useRef, useCallback} from 'react';
+import React, {Fragment, useState, useRef, useCallback} from 'react';
 import {createPortal} from 'react-dom';
 import Helmet from 'react-helmet';
 import {Link, navigate} from 'gatsby';
@@ -67,7 +67,7 @@ function DocSearch(props) {
   });
 
   return (
-    <>
+    <Fragment>
       <Helmet>
         {/* This hints the browser that the website will load data from Algolia,
         and allows it to preconnect to the DocSearch cluster. It makes the first
@@ -157,7 +157,7 @@ function DocSearch(props) {
           />,
           document.body,
         )}
-    </>
+    </Fragment>
   );
 }
 

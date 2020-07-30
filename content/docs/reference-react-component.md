@@ -19,7 +19,7 @@ This page contains a detailed API reference for the React component class defini
 
 ## Overview {#overview}
 
-React lets you define components as classes or functions. Components defined as classes currently provide more features which are described in detail on this page. To define a React component class, you need to extend `React.Component`:
+React lets you define components as classes or functions. Components defined as classes currently provide more features that are described in detail on this page. To define a React component class, you need to extend `React.Component`:
 
 ```js
 class Welcome extends React.Component {
@@ -169,7 +169,7 @@ Avoid introducing any side-effects or subscriptions in the constructor. For thos
 
 >Note
 >
->**Avoid copying props into state! This is a common mistake:**
+>**Avoid copying props into the state! This is a common mistake:**
 >
 >```js
 >constructor(props) {
@@ -223,7 +223,7 @@ componentDidUpdate(prevProps) {
 
 You **may call `setState()` immediately** in `componentDidUpdate()` but note that **it must be wrapped in a condition** like in the example above, or you'll cause an infinite loop. It would also cause an extra re-rendering which, while not visible to the user, can affect the component performance. If you're trying to "mirror" some state to a prop coming from above, consider using the prop directly instead. Read more about [why copying props into state causes bugs](/blog/2018/06/07/you-probably-dont-need-derived-state.html).
 
-If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise this parameter will be undefined.
+If your component implements the `getSnapshotBeforeUpdate()` lifecycle (which is rare), the value it returns will be passed as a third "snapshot" parameter to `componentDidUpdate()`. Otherwise, this parameter will be undefined.
 
 > Note
 >
@@ -254,9 +254,9 @@ The methods in this section correspond to uncommon use cases. They're handy once
 shouldComponentUpdate(nextProps, nextState)
 ```
 
-Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.
+Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases, you should rely on the default behavior.
 
-`shouldComponentUpdate()` is invoked before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
+`shouldComponentUpdate()` is invoked before rendering when new props or states are being received. Defaults to `true`. This method is not called for the initial render or when `forceUpdate()` is used.
 
 This method only exists as a **[performance optimization](/docs/optimizing-performance.html).** Do not rely on it to "prevent" a rendering, as this can lead to bugs. **Consider using the built-in [`PureComponent`](/docs/react-api.html#reactpurecomponent)** instead of writing `shouldComponentUpdate()` by hand. `PureComponent` performs a shallow comparison of props and state, and reduces the chance that you'll skip a necessary update.
 
@@ -264,7 +264,7 @@ If you are confident you want to write it by hand, you may compare `this.props` 
 
 We do not recommend doing deep equality checks or using `JSON.stringify()` in `shouldComponentUpdate()`. It is very inefficient and will harm performance.
 
-Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
+Currently, if `shouldComponentUpdate()` returns `false`, then [`UNSAFE_componentWillUpdate()`](#unsafe_componentwillupdate), [`render()`](#render), and [`componentDidUpdate()`](#componentdidupdate) will not be invoked. In the future, React may treat `shouldComponentUpdate()` as a hint rather than a strict directive, and returning `false` may still result in a re-rendering of the component.
 
 * * *
 
@@ -466,7 +466,7 @@ UNSAFE_componentWillReceiveProps(nextProps)
 
 Note that if a parent component causes your component to re-render, this method will be called even if props have not changed. Make sure to compare the current and next values if you only want to handle changes.
 
-React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
+React doesn't call `UNSAFE_componentWillReceiveProps()` with initial props during [mounting](#mounting). It only calls this method if some of the component's props may update. Calling `this.setState()` generally doesn't trigger `UNSAFE_componentWillReceiveProps()`.
 
 * * *
 
@@ -506,7 +506,7 @@ setState(updater, [callback])
 
 `setState()` enqueues changes to the component state and tells React that this component and its children need to be re-rendered with the updated state. This is the primary method you use to update the user interface in response to event handlers and server responses.
 
-Think of `setState()` as a *request* rather than an immediate command to update the component. For better perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
+Think of `setState()` as a *request* rather than an immediate command to update the component. For better-perceived performance, React may delay it, and then update several components in a single pass. React does not guarantee that the state changes are applied immediately.
 
 `setState()` does not always immediately update the component. It may batch or defer the update until later. This makes reading `this.state` right after calling `setState()` a potential pitfall. Instead, use `componentDidUpdate` or a `setState` callback (`setState(updater, callback)`), either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, read about the `updater` argument below.
 
@@ -518,7 +518,7 @@ The first argument is an `updater` function with the signature:
 (state, props) => stateChange
 ```
 
-`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in state by `props.step`:
+`state` is a reference to the component state at the time the change is being applied. It should not be directly mutated. Instead, changes should be represented by building a new object based on the input from `state` and `props`. For instance, suppose we wanted to increment a value in the state by `props.step`:
 
 ```javascript
 this.setState((state, props) => {
@@ -528,7 +528,7 @@ this.setState((state, props) => {
 
 Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally, we recommend using `componentDidUpdate()` for such logic instead.
 
 You may optionally pass an object as the first argument to `setState()` instead of a function:
 
@@ -564,8 +564,8 @@ this.setState((state) => {
 For more detail, see:
 
 * [State and Lifecycle guide](/docs/state-and-lifecycle.html)
-* [In depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
-* [In depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
+* [In-depth: When and why are `setState()` calls batched?](https://stackoverflow.com/a/48610973/458193)
+* [In-depth: Why isn't `this.state` updated immediately?](https://github.com/facebook/react/issues/11527#issuecomment-360199710)
 
 * * *
 

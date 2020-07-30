@@ -128,9 +128,9 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 If your function component renders the same result given the same props, you can wrap it in a call to `React.memo` for a performance boost in some cases by memoizing the result. This means that React will skip rendering the component, and reuse the last rendered result.
 
-`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still rerender when state or context change.
+`React.memo` only checks for prop changes. If your function component wrapped in `React.memo` has a [`useState`](/docs/hooks-state.html) or [`useContext`](/docs/hooks-reference.html#usecontext) Hook in its implementation, it will still re-render when state or context changes.
 
-By default it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
+By default, it will only shallowly compare complex objects in the props object. If you want control over the comparison, you can also provide a custom comparison function as the second argument.
 
 ```javascript
 function MyComponent(props) {
@@ -228,7 +228,7 @@ Verifies the object is a React element. Returns `true` or `false`.
 React.Children.map(children, function[(thisArg)])
 ```
 
-Invokes a function on every immediate child contained within `children` with `this` set to `thisArg`. If `children` is an array it will be traversed and the function will be called for each child in the array. If children is `null` or `undefined`, this method will return `null` or `undefined` rather than an array.
+Invokes a function on every immediate child contained within `children` with `this` set to `thisArg`. If `children` is an array it will be traversed and the function will be called for each child in the array. If children are `null` or `undefined`, this method will return `null` or `undefined` rather than an array.
 
 > Note
 >
@@ -256,7 +256,7 @@ Returns the total number of components in `children`, equal to the number of tim
 React.Children.only(children)
 ```
 
-Verifies that `children` has only one child (a React element) and returns it. Otherwise this method throws an error.
+Verifies that `children` has only one child (a React element) and returns it. Otherwise, this method throws an error.
 
 > Note:
 >
@@ -327,7 +327,7 @@ You can learn how to use it from our [code splitting documentation](/docs/code-s
 const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
-Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
+Note that rendering `lazy` components require that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
 
 > **Note**
 >

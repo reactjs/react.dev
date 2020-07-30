@@ -15,11 +15,11 @@ Though you may build a single-page application in React, it is not a requirement
 
 ## ES6, ES2015, ES2016, etc {#es6-es2015-es2016-etc}
 
-These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. The ES6 version (also known as ES2015) includes many additions to the previous versions such as: arrow functions, classes, template literals, `let` and `const` statements. You can learn more about specific versions [here](https://en.wikipedia.org/wiki/ECMAScript#Versions).
+These acronyms all refer to the most recent versions of the ECMAScript Language Specification standard, which the JavaScript language is an implementation of. The ES6 version (also known as ES2015) includes many additions to the previous versions such as arrow functions, classes, template literals, `let` and `const` statements. You can learn more about specific versions [here](https://en.wikipedia.org/wiki/ECMAScript#Versions).
 
 ## Compilers {#compilers}
 
-A JavaScript compiler takes JavaScript code, transforms it and returns JavaScript code in a different format. The most common use case is to take ES6 syntax and transform it into syntax that older browsers are capable of interpreting. [Babel](https://babeljs.io/) is the compiler most commonly used with React.
+A JavaScript compiler takes JavaScript code, transforms it, and returns JavaScript code in a different format. The most common use case is to take ES6 syntax and transform it into syntax that older browsers are capable of interpreting. [Babel](https://babeljs.io/) is the compiler most commonly used with React.
 
 ## Bundlers {#bundlers}
 
@@ -35,9 +35,9 @@ CDN stands for Content Delivery Network. CDNs deliver cached, static content fro
 
 ## JSX {#jsx}
 
-JSX is a syntax extension to JavaScript. It is similar to a template language, but it has full power of JavaScript. JSX gets compiled to `React.createElement()` calls which return plain JavaScript objects called "React elements". To get a basic introduction to JSX [see the docs here](/docs/introducing-jsx.html) and find a more in-depth tutorial on JSX [here](/docs/jsx-in-depth.html).
+JSX is a syntax extension to JavaScript. It is similar to a template language, but it has the full power of JavaScript. JSX gets compiled to `React.createElement()` calls which return plain JavaScript objects called "React elements". To get a basic introduction to JSX [see the docs here](/docs/introducing-jsx.html) and find a more in-depth tutorial on JSX [here](/docs/jsx-in-depth.html).
 
-React DOM uses camelCase property naming convention instead of HTML attribute names. For example, `tabindex` becomes `tabIndex` in JSX. The attribute `class` is also written as `className` since `class` is a reserved word in JavaScript:
+React DOM uses the camelCase property naming convention instead of HTML attribute names. For example, `tabindex` becomes `tabIndex` in JSX. The attribute `class` is also written as `className` since `class` is a reserved word in JavaScript:
 
 ```js
 const name = 'Clementine';
@@ -55,7 +55,7 @@ React elements are the building blocks of React applications. One might confuse 
 const element = <h1>Hello, world</h1>;
 ```
 
-Typically, elements are not used directly, but get returned from components.
+Typically, elements are not used directly but get returned from components.
 
 ## [Components](/docs/components-and-props.html) {#components}
 
@@ -77,13 +77,13 @@ class Welcome extends React.Component {
 }
 ```
 
-Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components. 
+Components can be broken down into distinct pieces of functionality and used within other components. Components can return other components, arrays, strings, and numbers. A good rule of thumb is that if a part of your UI is used several times (Button, Panel, Avatar), or is complex enough on its own (App, FeedStory, Comment), it is a good candidate to be a reusable component. Component names should also always start with a capital letter (`<Wrapper/>` **not** `<wrapper/>`). See [this documentation](/docs/components-and-props.html#rendering-a-component) for more information on rendering components. 
 
 ### [`props`](/docs/components-and-props.html) {#props}
 
 `props` are inputs to a React component. They are data passed down from a parent component to a child component.
 
-Remember that `props` are readonly. They should not be modified in any way:
+Remember that `props` are read-only. They should not be modified in any way:
 
 ```js
 // Wrong!
@@ -136,9 +136,9 @@ React has two different approaches to dealing with form inputs.
 
 An input form element whose value is controlled by React is called a *controlled component*. When a user enters data into a controlled component a change event handler is triggered and your code decides whether the input is valid (by re-rendering with the updated value). If you do not re-render then the form element will remain unchanged.
 
-An *uncontrolled component* works like form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
+An *uncontrolled component* works as form elements do outside of React. When a user inputs data into a form field (an input box, dropdown, etc) the updated information is reflected without React needing to do anything. However, this also means that you can't force the field to have a certain value.
 
-In most cases you should use controlled components.
+In most cases, you should use controlled components.
 
 ## [Keys](/docs/lists-and-keys.html) {#keys}
 
@@ -152,7 +152,7 @@ Don't pass something like `Math.random()` to keys. It is important that keys hav
 
 React supports a special attribute that you can attach to any component. The `ref` attribute can be an object created by [`React.createRef()` function](/docs/react-api.html#reactcreateref) or a callback function, or a string (in legacy API). When the `ref` attribute is a callback function, the function receives the underlying DOM element or class instance (depending on the type of element) as its argument. This allows you to have direct access to the DOM element or component instance.
 
-Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with [top-down data flow](/docs/lifting-state-up.html).
+Use refs sparingly. If you find yourself often using refs to "make things happen" in your app, consider getting more familiar with the [top-down data flow](/docs/lifting-state-up.html).
 
 ## [Events](/docs/handling-events.html) {#events}
 

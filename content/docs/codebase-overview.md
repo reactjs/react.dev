@@ -64,7 +64,7 @@ It is important to keep development and production behavior similar, so `invaria
 
 You can use `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
 
-It is inlined during the compile step, and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
+It is inlined during the compile step and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
 
 For standalone builds, it becomes `true` in the unminified build, and gets completely stripped out with the `if` blocks it guards in the minified build.
 
@@ -89,7 +89,7 @@ ReactRef.detachRefs = function(
 }
 ```
 
-When possible, new code should use Flow annotations.
+When possible, a new code should use Flow annotations.
 You can run `yarn flow` locally to check your code with Flow.
 
 ### Multiple Packages {#multiple-packages}
@@ -116,7 +116,7 @@ React was originally created for the DOM but it was later adapted to also suppor
 
 Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/master/packages/):
 
-* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
+* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as a standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
 * [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
 * [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
 
@@ -145,7 +145,7 @@ The "fiber" reconciler is a new effort aiming to resolve the problems inherent i
 Its main goals are:
 
 * Ability to split interruptible work in chunks.
-* Ability to prioritize, rebase and reuse work in progress.
+* Ability to prioritize, rebase, and reuse work in progress.
 * Ability to yield back and forth between parents and children to support layout in React.
 * Ability to return multiple elements from `render()`.
 * Better support for error boundaries.

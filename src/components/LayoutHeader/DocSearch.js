@@ -11,13 +11,11 @@ import Helmet from 'react-helmet';
 import {Link, navigate} from 'gatsby';
 import hex2rgba from 'hex2rgba';
 import {colors} from 'theme';
-import {
-  DocSearchButton,
-  DocSearchModal,
-  useDocSearchKeyboardEvents,
-} from '@docsearch/react';
+import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
 
 import '@docsearch/react/style';
+
+let DocSearchModal = null;
 
 function Hit({hit, children}) {
   return <Link to={hit.url}>{children}</Link>;

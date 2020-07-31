@@ -13,8 +13,6 @@ import hex2rgba from 'hex2rgba';
 import {colors} from 'theme';
 import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
 
-import '@docsearch/react/style';
-
 let DocSearchModal = null;
 
 function Hit({hit, children}) {
@@ -31,11 +29,12 @@ function DocSearch(props) {
       return Promise.resolve();
     }
 
-    return Promise.all([import('@docsearch/react/modal')]).then(
-      ([{DocSearchModal: Modal}]) => {
-        DocSearchModal = Modal;
-      },
-    );
+    return Promise.all([
+      import('@docsearch/react/modal'),
+      import('@docsearch/react/style/modal'),
+    ]).then(([{DocSearchModal: Modal}]) => {
+      DocSearchModal = Modal;
+    });
   }, []);
 
   const onOpen = useCallback(() => {

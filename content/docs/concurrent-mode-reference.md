@@ -24,7 +24,7 @@ prev: concurrent-mode-adoption.html
 
 This page is an API reference for the React [Concurrent Mode](/docs/concurrent-mode-intro.html). If you're looking for a guided introduction instead, check out [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).
 
-**Note: This is a Community Preview and not the final stable version. There will likely be future changes to these APIs. Use at your own risk!**
+**Note: This is a Community Preview and not the final stable version. There will likely be future changes to these APIs. Use it at your own risk!**
 
 - [Enabling Concurrent Mode](#concurrent-mode)
     - [`createRoot`](#createroot)
@@ -55,7 +55,7 @@ ReactDOM.createBlockingRoot(rootNode).render(<App />)
 
 Replaces `ReactDOM.render(<App />, rootNode)` and enables [Blocking Mode](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode).
 
-Opting into Concurrent Mode introduces semantic changes to how React works. This means that you can't use Concurrent Mode in just a few components. Because of this, some apps may not be able to migrate directly to Concurrent Mode. 
+Opting in to Concurrent Mode introduces semantic changes to how React works. This means that you can't use Concurrent Mode in just a few components. Because of this, some apps may not be able to migrate directly to Concurrent Mode. 
 
 Blocking Mode only contains a small subset of Concurrent Mode features and is intended as an intermediary migration step for apps that are unable to migrate directly.
 
@@ -104,7 +104,7 @@ When multiple components need to fetch data, this data may arrive in an unpredic
   * `together` reveals *all* of them when they're ready instead of one by one.
 * **tail (collapsed, hidden)** dictates how unloaded items in a `SuspenseList` is shown. 
     * By default, `SuspenseList` will show all fallbacks in the list.
-    * `collapsed` shows only the next fallback in the list.
+    * `collapsed` shows only the next fallback on the list.
     * `hidden` doesn't show any unloaded items.
 
 Note that `SuspenseList` only operates on the closest `Suspense` and `SuspenseList` components below it. It does not search for boundaries deeper than one level. However, it is possible to nest multiple `SuspenseList` components in each other to build grids.
@@ -155,7 +155,7 @@ function App() {
 
 In this code, we've wrapped our data fetching with `startTransition`. This allows us to start fetching the profile data right away, while deferring the render of the next profile page and its associated `Spinner` for 2 seconds (the time shown in `timeoutMs`).
 
-The `isPending` boolean lets React know that our component is transitioning, so we are able to let the user know this by showing some loading text on the previous profile page.
+The `isPending` boolean let's React know that our component is transitioning, so we are able to let the user know this by showing some loading text on the previous profile page.
 
 **For an in-depth look at transitions, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#transitions).**
 
@@ -180,7 +180,7 @@ Returns a deferred version of the value that may "lag behind" it for at most `ti
 
 This is commonly used to keep the interface responsive when you have something that renders immediately based on user input and something that needs to wait for a data fetch.
 
-A good example of this is a text input.
+A good example of this is text input.
 
 ```js
 function App() {
@@ -211,4 +211,4 @@ const SUSPENSE_CONFIG = { timeoutMs: 2000 };
 
 `useDeferredValue` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long the deferred value is allowed to lag behind.
 
-React will always try to use a shorter lag when network and device allows it.
+React will always try to use a shorter lag when the network and device allows it.

@@ -972,7 +972,7 @@ function useEventCallback(fn, dependencies) {
   return useCallback(() => {
     const fn = ref.current;
     return fn();
-  }, [ref]);
+  }, [ref.current]);
 }
 ```
 

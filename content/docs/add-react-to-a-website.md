@@ -77,7 +77,8 @@ Open **[this starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4
 
 After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4c7f570ea4a8/raw/b9157ce933c79a4559d2aa9ff3372668cce48de7/LikeButton.js)**, add two lines to the bottom of `like_button.js`:
 
-```js{3,4}
+```js
+const e = React.createElement;
 // ... the starter code you pasted ...
 
 const domContainer = document.querySelector('#like_button_container');

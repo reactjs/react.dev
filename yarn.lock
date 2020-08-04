@@ -1045,30 +1045,30 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@docsearch/css@^1.0.0-alpha.25":
-  version "1.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-1.0.0-alpha.25.tgz#08eb99fc8364c71427e0885cb09892c607e0617a"
-  integrity sha512-Mq2rFnq/SyQhDah/YjvE0dLnz8JozncOCKPqjbfyt/Q5sJwJhNfUlrZhvk2OgOirKX4izYrFq4PZgGKDokiEgQ==
+"@docsearch/css@^1.0.0-alpha.26":
+  version "1.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/@docsearch/css/-/css-1.0.0-alpha.26.tgz#a2f9b61168d527600b0e3f31c0f04998002f3aa2"
+  integrity sha512-YAa7R6O2MMdRtxTaMB3TTfeelhpf01J1xtnGZEQa7LNA64QO8BErceQIMQq5/ZMXnGViK/eUjqSVyCu7uzYE5w==
 
-"@docsearch/react@^1.0.0-alpha.25":
-  version "1.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-1.0.0-alpha.25.tgz#e3bf76e888b28c1b37c6412fd99939b83a10eca6"
-  integrity sha512-s2hwj47lcpNBZVYojhbMZZ+grzm1AFFcbkgJYAl97rgzvG5X7lr8sGvzEIgjlE64t4T6FWtrM/B8XxZq1K9SxA==
+"@docsearch/react@^1.0.0-alpha.26":
+  version "1.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/@docsearch/react/-/react-1.0.0-alpha.26.tgz#98b736d7de951bfa55cf3d0eb3639f93c9dd1db2"
+  integrity sha512-2eKIcUXuWbGgz6/xF+p7kYyd1IVGcnB8r+oIkTD6Tqtq0VGzZmf9ZPCOX37G38pVIJXAAxmtAb7oPO311xGWNQ==
   dependencies:
-    "@docsearch/css" "^1.0.0-alpha.25"
-    "@francoischalifour/autocomplete-core" "^1.0.0-alpha.25"
-    "@francoischalifour/autocomplete-preset-algolia" "^1.0.0-alpha.25"
+    "@docsearch/css" "^1.0.0-alpha.26"
+    "@francoischalifour/autocomplete-core" "^1.0.0-alpha.26"
+    "@francoischalifour/autocomplete-preset-algolia" "^1.0.0-alpha.26"
     algoliasearch "^4.0.0"
 
-"@francoischalifour/autocomplete-core@^1.0.0-alpha.25":
-  version "1.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/@francoischalifour/autocomplete-core/-/autocomplete-core-1.0.0-alpha.25.tgz#16a2a88ec0919b90fa3378f1f3652ff8f9df2a05"
-  integrity sha512-wQjL1NjgGGlbeTa+fg1+HNoUiJ0+a32xEE+8wKKHu1FX4dH/FRMkn8sEulsq6QHZyg41YMeJkOUHUwBnNtyWeA==
+"@francoischalifour/autocomplete-core@^1.0.0-alpha.26":
+  version "1.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/@francoischalifour/autocomplete-core/-/autocomplete-core-1.0.0-alpha.26.tgz#fc9ec90a62f0665c7092d19a649c751fe3794de3"
+  integrity sha512-XUXAGVx0My9isShokR1QB/oPFQiaPYDCouoTZTN+DISQw5AK6kGZUCFFXJSRNHTxBq1/0e70DYEiQa8E+rT/Og==
 
-"@francoischalifour/autocomplete-preset-algolia@^1.0.0-alpha.25":
-  version "1.0.0-alpha.25"
-  resolved "https://registry.yarnpkg.com/@francoischalifour/autocomplete-preset-algolia/-/autocomplete-preset-algolia-1.0.0-alpha.25.tgz#703eb85d4f55eab66fd9cf5f18749ee830093f78"
-  integrity sha512-tXrNYJ5my5LzphHfVLzSkuH2XMOn8CnLkG/FkaoiNeFQ97NpYrI0LOQxOPloalz2/dulgvvSqIg85XGzjAKfEg==
+"@francoischalifour/autocomplete-preset-algolia@^1.0.0-alpha.26":
+  version "1.0.0-alpha.26"
+  resolved "https://registry.yarnpkg.com/@francoischalifour/autocomplete-preset-algolia/-/autocomplete-preset-algolia-1.0.0-alpha.26.tgz#3e20315d43dfef6c676cab4267974de70c2f6ec2"
+  integrity sha512-RrayxZgvTzpwq+RqEIpVn2UOEFLwa+HADCr2I3UI05o/OGU7Wc6LltpQy54scR+FlAIk6qTJwp5Nw/ecJn6xXg==
 
 "@hapi/address@2.x.x":
   version "2.1.4"

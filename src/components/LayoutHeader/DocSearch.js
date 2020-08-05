@@ -94,7 +94,7 @@ function DocSearch(props) {
 
             --docsearch-searchbox-background: ${colors.dark};
             --docsearch-searchbox-focus-background: ${colors.black};
-            --docsearch-searchbox-shadow: inset 0 0 0 2px ${colors.brand};
+            --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
 
             --docsearch-key-shadow:
               inset 0 -2px 0 0 #222e45,

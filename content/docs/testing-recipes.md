@@ -281,7 +281,6 @@ import { render, unmountComponentAtNode } from "react-dom";
 import { act } from "react-dom/test-utils";
 
 import Contact from "./contact";
-import MockedMap from "./map";
 
 jest.mock("./map", () => {
   return function DummyMap(props) {

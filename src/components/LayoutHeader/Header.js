@@ -164,8 +164,6 @@ const Header = ({location}: {location: Location}) => (
           ))}
         </nav>
 
-        <DocSearch />
-
         <div
           css={{
             display: 'flex',
@@ -268,6 +266,12 @@ const Header = ({location}: {location: Location}) => (
             />
           </a>
         </div>
+
+        <DocSearch
+          indexName="react"
+          apiKey="36221914cce388c46d0420343e0bb32e"
+          appId="BH4D9OD16A"
+        />
       </div>
     </Container>
   </header>

@@ -13,7 +13,8 @@ const ReactDOM = require('react-dom');
 require('normalize.css');
 require('./src/css/reset.css');
 require('./src/prism-styles');
-require('./src/css/algolia.css');
+require('@docsearch/react/style/variables');
+require('@docsearch/react/style/button');
 
 // Expose React and ReactDOM as globals for console playground
 window.React = React;

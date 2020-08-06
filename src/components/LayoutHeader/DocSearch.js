@@ -5,104 +5,159 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {colors, media} from 'theme';
+import React, {Fragment, useState, useRef, useCallback} from 'react';
+import {createPortal} from 'react-dom';
+import Helmet from 'react-helmet';
+import {Link, navigate} from 'gatsby';
+import hex2rgba from 'hex2rgba';
+import {colors} from 'theme';
+import {DocSearchButton, useDocSearchKeyboardEvents} from '@docsearch/react';
 
-type State = {
-  enabled: boolean,
-};
+let DocSearchModal = null;
 
-class DocSearch extends Component<{}, State> {
-  state = {
-    enabled: true,
-  };
-  componentDidMount() {
-    // Initialize Algolia search.
-    // TODO Is this expensive? Should it be deferred until a user is about to search?
-    // eslint-disable-next-line no-undef
-    if (window.docsearch) {
-      window.docsearch({
-        apiKey: '36221914cce388c46d0420343e0bb32e',
-        indexName: 'react',
-        inputSelector: '#algolia-doc-search',
-      });
-    } else {
-      console.warn('Search has failed to load and now is being disabled');
-      this.setState({enabled: false});
+function Hit({hit, children}) {
+  return <Link to={hit.url}>{children}</Link>;
+}
+
+function DocSearch(props) {
+  const searchButtonRef = useRef(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [initialQuery, setInitialQuery] = useState(null);
+
+  const importDocSearchModalIfNeeded = useCallback(() => {
+    if (DocSearchModal) {
+      return Promise.resolve();
     }
-  }
 
-  render() {
-    const {enabled} = this.state;
+    return Promise.all([
+      import('@docsearch/react/modal'),
+      import('@docsearch/react/style/modal'),
+    ]).then(([{DocSearchModal: Modal}]) => {
+      DocSearchModal = Modal;
+    });
+  }, []);
 
-    return enabled ? (
-      <form
-        css={{
-          display: 'flex',
-          flex: '0 0 auto',
-          flexDirection: 'row',
-          alignItems: 'center',
-          paddingLeft: '0.25rem',
-          paddingRight: '0.25rem',
-          [media.lessThan('expandedSearch')]: {
-            justifyContent: 'flex-end',
-            marginRight: 10,
-          },
-          // TODO: Something like this could show the full search box in more cases
-          // but it currently breaks its expanding animation.
-          // [media.between('mediumSearch', 'largerSearch')]: {
-          //   width: 'calc(100% / 8)',
-          // },
-          [media.greaterThan('expandedSearch')]: {
-            minWidth: 100,
-            width: 'calc(100% / 5)',
-          },
-        }}>
-        <input
-          css={{
-            width: '100%',
-            appearance: 'none',
-            background: 'transparent',
-            border: 0,
-            color: colors.white,
-            fontSize: 18,
-            fontWeight: 300,
-            fontFamily: 'inherit',
-            position: 'relative',
-            padding: '4px 4px 4px 29px',
-            backgroundImage: 'url(/search.svg)',
-            backgroundSize: '16px 16px',
-            backgroundRepeat: 'no-repeat',
-            backgroundPositionY: 'center',
-            backgroundPositionX: '4px',
+  const onOpen = useCallback(() => {
+    importDocSearchModalIfNeeded().then(() => {
+      setIsOpen(true);
+    });
+  }, [importDocSearchModalIfNeeded, setIsOpen]);
 
-            ':focus': {
-              outline: 0,
-              backgroundColor: colors.lighter,
-              borderRadius: '0.25rem',
-            },
+  const onClose = useCallback(() => {
+    setIsOpen(false);
+  }, [setIsOpen]);
 
-            [media.lessThan('expandedSearch')]: {
-              fontSize: 16,
-              width: '16px',
-              transition: 'width 0.2s ease, padding 0.2s ease',
-              paddingLeft: '16px',
+  const onInput = useCallback(
+    event => {
+      importDocSearchModalIfNeeded().then(() => {
+        setIsOpen(true);
+        setInitialQuery(event.key);
+      });
+    },
+    [importDocSearchModalIfNeeded, setIsOpen, setInitialQuery],
+  );
 
-              ':focus': {
-                paddingLeft: '29px',
-                width: '8rem',
-                outline: 'none',
-              },
-            },
-          }}
-          id="algolia-doc-search"
-          type="search"
-          placeholder="Search"
-          aria-label="Search docs"
+  useDocSearchKeyboardEvents({
+    isOpen,
+    onOpen,
+    onClose,
+    onInput,
+    searchButtonRef,
+  });
+
+  return (
+    <Fragment>
+      <Helmet>
+        {/* This hints the browser that the website will load data from Algolia,
+        and allows it to preconnect to the DocSearch cluster. It makes the first
+        query faster, especially on mobile. */}
+        <link
+          rel="preconnect"
+          href={`https://${props.appId}-dsn.algolia.net`}
+          crossOrigin
         />
-      </form>
-    ) : null;
-  }
+
+        <style type="text/css">{`
+          .DocSearch {
+            --docsearch-primary-color: ${colors.brand};
+            --docsearch-text-color: ${colors.brandLight};
+            --docsearch-highlight-color: ${colors.brand};
+            --docsearch-muted-color: ${colors.subtleOnDark};
+            --docsearch-container-background: ${hex2rgba(colors.darker, 0.7)};
+            --docsearch-logo-color: #fff;
+            --docsearch-icon-color: ${colors.subtleOnDark};
+
+            --docsearch-modal-background: ${colors.dark};
+            --docsearch-modal-shadow:
+              inset 1px 1px 0 0 ${hex2rgba(colors.divider, 0.1)},
+              0 3px 8px 0 ${colors.darker};
+
+            --docsearch-searchbox-background: ${colors.dark};
+            --docsearch-searchbox-focus-background: ${colors.black};
+            --docsearch-searchbox-shadow: inset 0 0 0 2px var(--docsearch-primary-color);
+
+            --docsearch-key-shadow:
+              inset 0 -2px 0 0 #222e45,
+              inset 0 0 1px 1px ${hex2rgba(colors.brand, 0.2)},
+              0 2px 2px 0 rgba(3, 4, 9, 0.3);
+            --docsearch-key-gradient: linear-gradient(
+              -26.5deg,
+              #444952 0%,
+              ${colors.darker} 100%
+            );
+
+            --docsearch-hit-color: #bec3c9;
+            --docsearch-hit-active-color: ${colors.dark};
+            --docsearch-hit-background: ${colors.darker};
+            --docsearch-hit-shadow: none;
+            
+            --docsearch-footer-background: ${colors.dark};
+            --docsearch-footer-shadow:
+              inset 0 1px 0 0 ${hex2rgba(colors.divider, 0.1)},
+              0 -4px 8px 0 ${hex2rgba(colors.darker, 1)};
+          }
+        `}</style>
+      </Helmet>
+
+      <DocSearchButton
+        onTouchStart={importDocSearchModalIfNeeded}
+        onFocus={importDocSearchModalIfNeeded}
+        onMouseOver={importDocSearchModalIfNeeded}
+        onClick={onOpen}
+        ref={searchButtonRef}
+      />
+
+      {isOpen &&
+        createPortal(
+          <DocSearchModal
+            initialScrollY={window.scrollY}
+            initialQuery={initialQuery}
+            onClose={onClose}
+            navigator={{
+              navigate({suggestionUrl}) {
+                navigate(suggestionUrl);
+              },
+            }}
+            hitComponent={Hit}
+            transformItems={items => {
+              return items.map(item => {
+                // We transform the absolute URL into a relative URL to
+                // leverage Gatsby's preloading.
+                const a = document.createElement('a');
+                a.href = item.url;
+
+                return {
+                  ...item,
+                  url: `${a.pathname}${a.hash}`,
+                };
+              });
+            }}
+            {...props}
+          />,
+          document.body,
+        )}
+    </Fragment>
+  );
 }
 
 export default DocSearch;

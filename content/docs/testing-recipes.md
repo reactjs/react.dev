@@ -549,6 +549,9 @@ Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapsho
 
 In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
 
+> Note:
+>
+> [`pretty`](https://www.npmjs.com/package/pretty) & [`prettier`](https://www.npmjs.com/package/prettier) needs to be installed as a dependency as ***pretty*** package is used in this example & ***prettier*** is required by 'setup_jest_globals.js' internally.
 ```jsx{29-31}
 // hello.test.js, again
 

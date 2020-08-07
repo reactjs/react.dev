@@ -48,6 +48,35 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
+          {
+            resolve: 'gatsby-remark-inline-codesandbox',
+            options: {
+              mode: 'iframe',
+              // Whether we generate the sandboxes during build-time
+              autoDeploy: process.env.NODE_ENV === 'production',
+              query: {
+                codemirror: 1,
+                fontsize: 14,
+                hidenavigation: 1,
+                editorsize: 70,
+                hidedevtools: 1,
+              },
+              customTemplates: {
+                umd: {
+                  extends: 'file:./codesandbox/examples/umd',
+                  entry: 'src/index.js',
+                },
+                simple: {
+                  extends: 'file:./codesandbox/examples/simple',
+                  entry: 'src/index.js',
+                },
+                cra: {
+                  extends: 'file:./codesandbox/examples/cra',
+                  entry: 'src/App.js',
+                },
+              },
+            },
+          },
           'gatsby-remark-responsive-iframe',
           {
             resolve: 'gatsby-remark-images',

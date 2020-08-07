@@ -7,10 +7,10 @@ next: hooks-overview.html
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
-```js{4,5}
+```js codesandbox=cra?highlights=4
 import React, { useState } from 'react';
 
-function Example() {
+export default function App() {
   // Declare a new state variable, which we'll call "count"
   const [count, setCount] = useState(0);
 

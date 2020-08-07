@@ -57,12 +57,12 @@ If the new state is computed using the previous state, you can pass a function t
 function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
   return (
-    <>
+    <div>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
       <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
       <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
-    </>
+    </div>
   );
 }
 ```
@@ -275,11 +275,11 @@ function reducer(state, action) {
 function Counter() {
   const [state, dispatch] = useReducer(reducer, initialState);
   return (
-    <>
+    <div>
       Count: {state.count}
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
-    </>
+    </div>
   );
 }
 ```
@@ -330,7 +330,7 @@ function reducer(state, action) {
 function Counter({initialCount}) {
   const [state, dispatch] = useReducer(reducer, initialCount, init);
   return (
-    <>
+    <div>
       Count: {state.count}
       <button
         onClick={() => dispatch({type: 'reset', payload: initialCount})}>
@@ -338,7 +338,7 @@ function Counter({initialCount}) {
       </button>
       <button onClick={() => dispatch({type: 'decrement'})}>-</button>
       <button onClick={() => dispatch({type: 'increment'})}>+</button>
-    </>
+    </div>
   );
 }
 ```
@@ -412,10 +412,10 @@ function TextInputWithFocusButton() {
     inputEl.current.focus();
   };
   return (
-    <>
+    <div>
       <input ref={inputEl} type="text" />
       <button onClick={onButtonClick}>Focus the input</button>
-    </>
+    </div>
   );
 }
 ```

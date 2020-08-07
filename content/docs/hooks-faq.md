@@ -289,7 +289,7 @@ Now let's say we want to write some logic that changes `left` and `top` when the
 
 This is because when we update a state variable, we *replace* its value. This is different from `this.setState` in a class, which *merges* the updated fields into the object.
 
-If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend to split state into multiple state variables based on which values tend to change together.**
+If you miss automatic merging, you could write a custom `useLegacyState` Hook that merges object state updates. However, **we recommend that you split state into multiple state variables based on which values tend to change together.**
 
 For example, we could split our component state into `position` and `size` objects, and always replace the `position` with no need for merging:
 
@@ -913,7 +913,7 @@ Note that you can still choose whether to pass the application *state* down as p
 
 >Note
 >
->We recommend to [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
+>We recommend that you [pass `dispatch` down in context](#how-to-avoid-passing-callbacks-down) rather than individual callbacks in props. The approach below is only mentioned here for completeness and as an escape hatch.
 >
 >Also note that this pattern might cause problems in the [concurrent mode](/blog/2018/03/27/update-on-async-rendering.html). We plan to provide more ergonomic alternatives in the future, but the safest solution right now is to always invalidate the callback if some value it depends on changes.
 

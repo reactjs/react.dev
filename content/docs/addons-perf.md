@@ -27,8 +27,8 @@ In addition to giving you an overview of your app's overall performance, `Perf` 
 See these articles for an introduction to React performance tooling:
 
  - ["How to Benchmark React Components"](https://medium.com/code-life/how-to-benchmark-react-components-the-quick-and-dirty-guide-f595baf1014c)
- - ["Performance Engineering with React"](https://benchling.engineering/performance-engineering-with-react/)
- - ["A Deep Dive into React Perf Debugging"](https://benchling.engineering/deep-dive-react-perf-debugging/) 
+ - ["Performance Engineering with React"](https://benchling.engineering/performance-engineering-with-react-e03013e53285)
+ - ["A Deep Dive into React Perf Debugging"](https://benchling.engineering/a-deep-dive-into-react-perf-debugging-fd2063f5a667) 
 
 ### Development vs. Production Builds {#development-vs-production-builds}
 

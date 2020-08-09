@@ -147,7 +147,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Zurich](https://www.meetup.com/Zurich-ReactJS-Meetup/)
 
 ## Turkey {#turkey}
-* [Istanbul](https://www.meetup.com/ReactJS-Istanbul/)
+* [Istanbul](https://kommunity.com/reactjs-istanbul)
 
 ## Ukraine {#ukraine}
 * [Kyiv](https://www.meetup.com/Kyiv-ReactJS-Meetup)

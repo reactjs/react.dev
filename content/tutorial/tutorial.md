@@ -12,7 +12,7 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-This tutorial doesn't assume any existing React knowledge.
+This tutorial doesn't assume any prior React knowledge.
 
 ## Before We Start the Tutorial {#before-we-start-the-tutorial}
 
@@ -29,7 +29,7 @@ The tutorial is divided into several sections:
 * [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
 * [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+You don't have to complete all of the sections at once to get the gist out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
 
 ### What Are We Building? {#what-are-we-building}
 
@@ -37,13 +37,13 @@ In this tutorial, we'll show how to build an interactive tic-tac-toe game with R
 
 You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is, there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it keeps getting updated as the game proceeds.
 
-You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
+You can end the tic-tac-toe game once you're familiar with it. We'll be starting with a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
 
 ### Prerequisites {#prerequisites}
 
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
+We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you know a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
 
 If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
 
@@ -149,7 +149,7 @@ class ShoppingList extends React.Component {
 // Example usage: <ShoppingList name="Mark" />
 ```
 
-We'll get to the funny XML-like tags soon. We use components to tell React what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
+We'll get to the funny XML-like tags soon. We use components to interact with React to inform what we want to see on the screen. When our data changes, React will efficiently update and re-render our components.
 
 Here, ShoppingList is a **React component class**, or **React component type**. A component takes in parameters, called `props` (short for "properties"), and returns a hierarchy of views to display via the `render` method.
 

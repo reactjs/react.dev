@@ -26,10 +26,15 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
 ```
+
+> Note:
+>
+> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer pooled.
 
 > Note:
 >

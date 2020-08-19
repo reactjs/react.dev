@@ -253,7 +253,7 @@ export default function Map(props) {
 import React from "react";
 import Map from "./map";
 
-function Contact(props) {
+export default function Contact(props) {
   return (
     <div>
       <address>

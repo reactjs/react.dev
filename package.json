@@ -29,7 +29,7 @@
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.4.12",
     "gatsby-plugin-twitter": "^2.0.0",
-    "gatsby-remark-code-repls": "^2.0.0",
+    "gatsby-remark-code-repls": "^3.0.0",
     "gatsby-remark-copy-linked-files": "^2.0.0",
     "gatsby-remark-embed-snippet": "^3.0.0",
     "gatsby-remark-external-links": "^0.0.4",

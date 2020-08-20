@@ -38,14 +38,6 @@ Brian studied art in college and did programming on the side to pay for his educ
 
 Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbage)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
 
-### Dominic Gannaway {#dominic-gannaway}
-
-![Dominic](../images/team/trueadm.jpg)
-
-[@trueadm on GitHub](https://github.com/trueadm) &middot; [@trueadm on Twitter](https://twitter.com/trueadm)
-
-Dominic is interested in travelling, drum and bass, stand-up comedy and spending time with the family. He most enjoys hacking on new unexplored ideas around UIs and accessibility and has a passion for tweaking and optimizing code to get the most performance out of things.
-
 ### Luna Ruan {#luna-ruan}
 
 ![Luna](../images/team/lunaruan.jpg)
@@ -53,14 +45,6 @@ Dominic is interested in travelling, drum and bass, stand-up comedy and spending
 [@lunaruan on GitHub](https://github.com/lunaruan) &middot; [@lunaruan on Twitter](https://twitter.com/lunaruan)
 
 Luna learned programming because she thought it meant creating video games. Instead, she ended up working on the Pinterest web app, and now on React itself. Luna doesn't want to make video games anymore, but she plans to do creative writing if she ever gets bored.
-
-### Nicolas Gallagher {#nicolas-gallagher}
-
-![Nicolas](../images/team/necolas.jpg)
-
-[@necolas on GitHub](https://github.com/necolas) &middot; [@necolas on Twitter](https://twitter.com/necolas)
-
-Nicolas has majored in anthropology. He started in web development by building a website for a friend, and eventually found himself rebuilding the Twitter website with React. Nicolas describes himself as boring on paper, not much better in real life.
 
 ### Rachel Nabors {#rachel-nabors}
 
@@ -70,6 +54,14 @@ Nicolas has majored in anthropology. He started in web development by building a
 
 Rachel wrote a [book about UI animation](https://abookapart.com/products/animation-at-work) once and worked with MDN and the W3C on the web animations API. Now she is busy with education materials and community engineering on the React team. Secretly, she is an award-winning cartoonist for teenage girls. Catch her making fancy tea with lukewarm water in the microkitchen.
 
+### Rick Hanlon {#rick-hanlon}
+
+![Ricky](../images/team/rickhanlonii.jpg)
+
+[@rickhanlonii on GitHub](https://github.com/rickhanlonii) &middot; [@rickhanlonii on Twitter](https://twitter.com/rickhanlonii)
+
+Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
+
 ### Sebastian Markbåge {#sebastian-markbage}
 
 ![Sebastian](../images/team/sebmarkbage.jpg)
@@ -78,13 +70,11 @@ Rachel wrote a [book about UI animation](https://abookapart.com/products/animati
 
 Sebastian majored in psychology. He's usually quiet. Even when he says something, it often doesn't make sense to the rest of us until a few months later. The correct way to pronounce his surname is "mark-boa-geh" but he settled for "mark-beige" out of pragmatism -- and that's how he approaches React.
 
-### Yuzhi Zheng {#yuzhi-zheng}
+### Seth Webster {#seth-webster}
 
-![Yuzhi](../images/team/yuzhi.jpg)
+![Seth](../images/team/sethwebster.jpg)
 
-[@yuzhi on GitHub](https://github.com/yuzhi) &middot; [@yuzhiz on Twitter](https://twitter.com/yuzhiz)
-
-Yuzhi studied Computer Science in school. She liked the instant gratification of seeing code come to life without having to physically be in a laboratory. Now she manages the React team. Before management, she used to work on the Relay data fetching framework. In her spare time, Yuzhi enjoys optimizing her life via gardening and home improvement projects.
+Seth started programming as a kid growing up in Tucson, AZ. After school, he was bitten by the music bug and was a touring musician for about 10 years before returning to *work*, starting with Intuit. In his spare time, he loves [taking pictures](https://www.sethwebster.com) and flying for animal rescues in the northeastern United States.
 
 ## Acknowledgements {#acknowledgements}
 
@@ -101,6 +91,7 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Christoph Nakazawa](https://github.com/cpojer)
 * [Christopher Chedeau](https://github.com/vjeux)
 * [Clement Hoang](https://github.com/clemmy)
+* [Dominic Gannaway](https://github.com/trueadm)
 * [Flarnie Marchan](https://github.com/flarnie)
 * [Jason Quense](https://github.com/jquense)
 * [Jesse Beach](https://github.com/jessebeach)
@@ -112,6 +103,7 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Keyan Zhang](https://github.com/keyz)
 * [Nat Alison](https://github.com/tesseralis)
 * [Nathan Hunzaker](https://github.com/nhunzaker)
+* [Nicolas Gallagher](https://github.com/necolas)
 * [Paul O'Shannessy](https://github.com/zpao)
 * [Pete Hunt](https://github.com/petehunt)
 * [Philipp Spiess](https://github.com/philipp-spiess)
@@ -121,6 +113,7 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Sophie Alpert](https://github.com/sophiebits)
 * [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
+* [Yuzhi Zheng](https://github.com/yuzhi)
 
 This list is not exhaustive.
 

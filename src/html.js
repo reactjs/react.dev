@@ -1,10 +1,24 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * @flow
+ */
+
 import React from 'react';
 
 const JS_NPM_URLS = [
   'https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
 ];
 
-export default class HTML extends React.Component {
+type Props = {|
+  htmlAttributes: any,
+  headComponents: React$Node,
+  bodyAttributes: any,
+  body: string,
+  postBodyComponents: React$Node,
+|};
+
+export default class HTML extends React.Component<Props> {
   render() {
     return (
       <html lang="en" {...this.props.htmlAttributes}>

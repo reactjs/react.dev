@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -15,15 +15,15 @@ const MarkdownHeader = ({title}: {title: string}) => (
       css={{
         color: colors.dark,
         marginBottom: 0,
-        marginTop: 40,
+        marginTop: 100, // BLM
         ...fonts.header,
 
         [media.size('medium')]: {
-          marginTop: 60,
+          marginTop: 100, // BLM
         },
 
         [media.greaterThan('large')]: {
-          marginTop: 80,
+          marginTop: 100, // BLM
         },
       }}>
       {title}

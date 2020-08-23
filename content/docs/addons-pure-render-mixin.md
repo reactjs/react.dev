@@ -17,7 +17,7 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'; // ES6
 var PureRenderMixin = require('react-addons-pure-render-mixin'); // ES5 with npm
 ```
 
-## Overview
+## Overview {#overview}
 
 If your React component's render function renders the same result given the same props and state, you can use this mixin for a performance boost in some cases.
 

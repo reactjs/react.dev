@@ -1,20 +1,21 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
  */
 
-'use strict';
-
 import Container from 'components/Container';
 import HeaderLink from './HeaderLink';
-import Link from 'gatsby-link';
+import {Link} from 'gatsby';
 import React from 'react';
 import {colors, fonts, media} from 'theme';
 import {version} from 'site-constants';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import DocSearch from './DocSearch';
+
+// $FlowFixMe
+import navHeader from '../../../content/headerNav.yml';
 
 import logoSvg from 'icons/logo.svg';
 
@@ -28,7 +29,38 @@ const Header = ({location}: {location: Location}) => (
       width: '100%',
       top: 0,
       left: 0,
+      '@media print': {
+        display: 'none',
+      },
     }}>
+    <Container>
+      <div
+        css={{
+          height: 60,
+          fontSize: 20,
+          padding: 20,
+          textAlign: 'center',
+          [media.between('small', 'large')]: {
+            fontSize: 22,
+            height: 60,
+          },
+          [media.lessThan('small')]: {
+            height: 80,
+          },
+          [media.greaterThan('medium')]: {
+            fontSize: 25,
+          },
+        }}>
+        Black Lives Matter.{' '}
+        <a
+          style={{color: colors.brand}}
+          target="_blank"
+          rel="noopener"
+          href="https://support.eji.org/give/153413/#!/donation/checkout">
+          Support&nbsp;the&nbsp;Equal&nbsp;Justice&nbsp;Initiative.
+        </a>
+      </div>
+    </Container>
     <Container>
       <div
         css={{
@@ -94,6 +126,7 @@ const Header = ({location}: {location: Location}) => (
 
         <nav
           css={{
+            flex: '1',
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'stretch',
@@ -101,7 +134,13 @@ const Header = ({location}: {location: Location}) => (
             overflowY: 'hidden',
             WebkitOverflowScrolling: 'touch',
             height: '100%',
-            width: '60%',
+
+            // Hide horizontal scrollbar
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            '::-webkit-scrollbar': {
+              display: 'none',
+            },
 
             [media.size('xsmall')]: {
               flexGrow: '1',
@@ -115,40 +154,33 @@ const Header = ({location}: {location: Location}) => (
                 'linear-gradient(to right, transparent, black 20px, black 90%, transparent)',
             },
           }}>
-          <HeaderLink
-            isActive={location.pathname.includes('/docs/')}
-            title="Docs"
-            to="/docs/hello-world.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/tutorial/')}
-            title="Tutorial"
-            to="/tutorial/tutorial.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/community/')}
-            title="Community"
-            to="/community/support.html"
-          />
-          <HeaderLink
-            isActive={location.pathname.includes('/blog')}
-            title="Blog"
-            to="/blog/"
-          />
+          {navHeader.items.map(link => (
+            <HeaderLink
+              key={link.title}
+              isActive={location.pathname.includes(link.activeSelector)}
+              title={link.title}
+              to={link.to}
+            />
+          ))}
         </nav>
 
         <DocSearch />
 
         <div
           css={{
-            [media.lessThan('medium')]: {
-              display: 'none',
-            },
-            [media.greaterThan('large')]: {
-              width: 'calc(100% / 6)',
-            },
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            width: 'auto',
+
+            //[media.lessThan('medium')]: {
+            //width: 'auto',
+            //},
+            //[media.greaterThan('large')]: {
+            //width: 'calc(100% / 4)',
+            //},
           }}>
-          <a
+          <Link
             css={{
               padding: '5px 10px',
               whiteSpace: 'nowrap',
@@ -163,12 +195,45 @@ const Header = ({location}: {location: Location}) => (
                 backgroundColor: colors.lighter,
                 borderRadius: 15,
               },
+
+              [media.lessThan('medium')]: {
+                display: 'none',
+              },
             }}
-            href="https://github.com/facebook/react/releases"
-            target="_blank"
-            rel="noopener">
+            to="/versions">
             v{version}
-          </a>
+          </Link>
+          <Link
+            css={{
+              display: 'flex',
+              alignItems: 'center',
+              padding: '5px 10px',
+              whiteSpace: 'nowrap',
+              ...fonts.small,
+
+              ':hover': {
+                color: colors.brand,
+              },
+
+              ':focus': {
+                outline: 0,
+                backgroundColor: colors.lighter,
+                borderRadius: 15,
+              },
+            }}
+            to="/languages">
+            <LanguagesIcon />{' '}
+            <span
+              css={{
+                marginLeft: '0.5rem',
+
+                [media.lessThan('medium')]: {
+                  display: 'none',
+                },
+              }}>
+              Languages
+            </span>
+          </Link>
           <a
             css={{
               padding: '5px 10px',
@@ -184,6 +249,10 @@ const Header = ({location}: {location: Location}) => (
                 outline: 0,
                 backgroundColor: colors.lighter,
                 borderRadius: 15,
+              },
+
+              [media.lessThan('large')]: {
+                display: 'none',
               },
             }}
             href="https://github.com/facebook/react/"
@@ -202,6 +271,25 @@ const Header = ({location}: {location: Location}) => (
       </div>
     </Container>
   </header>
+);
+
+const LanguagesIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" />
+    <path
+      css={{fill: 'currentColor'}}
+      d="
+        M12.87 15.07l-2.54-2.51.03-.03c1.74-1.94 2.98-4.17 3.71-6.53H17V4h-7V2H8v2H1v1.99h11.17C11.5
+        7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09
+        5.02L4 19l5-5 3.11 3.11.76-2.04zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12zm-2.62
+        7l1.62-4.33L19.12 17h-3.24z
+      "
+    />
+  </svg>
 );
 
 export default Header;

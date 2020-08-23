@@ -1,11 +1,9 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
  */
-
-'use strict';
 
 import React from 'react';
 
@@ -24,7 +22,6 @@ const Container = ({children}: {children: Node}) => (
       paddingRight: 20,
       marginLeft: 'auto',
       marginRight: 'auto',
-
       [media.greaterThan('medium')]: {
         width: '90%',
       },

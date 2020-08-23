@@ -1,43 +1,31 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
- * @emails react-core
+ * @flow
  */
 
-'use strict';
-
-import React, {Component} from 'react';
-
-let stylesStr;
-if (process.env.NODE_ENV === `production`) {
-  try {
-    stylesStr = require(`!raw-loader!../public/styles.css`);
-  } catch (e) {
-    console.error(e);
-  }
-}
+import React from 'react';
 
 const JS_NPM_URLS = [
-  '//unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
+  'https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js',
 ];
 
-export default class HTML extends Component {
+type Props = {|
+  htmlAttributes: any,
+  headComponents: React$Node,
+  bodyAttributes: any,
+  body: string,
+  postBodyComponents: React$Node,
+|};
+
+export default class HTML extends React.Component<Props> {
   render() {
-    let css;
-    if (process.env.NODE_ENV === 'production') {
-      css = (
-        <style
-          id="gatsby-inlined-css"
-          dangerouslySetInnerHTML={{__html: stylesStr}}
-        />
-      );
-    }
-
-    const js = JS_NPM_URLS.map(url => <script key={url} src={url} />);
-
     return (
-      <html lang="en">
+      <html lang="en" {...this.props.htmlAttributes}>
         <head>
+          {JS_NPM_URLS.map(url => (
+            <link key={url} rel="preload" href={url} as="script" />
+          ))}
           <meta charSet="utf-8" />
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta
@@ -45,16 +33,22 @@ export default class HTML extends Component {
             content="width=device-width, initial-scale=1.0"
           />
           <link rel="icon" href="/favicon.ico" />
+
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <link rel="apple-touch-icon" href="/logo-180x180.png" />
+          <meta name="apple-mobile-web-app-title" content="React" />
+
           {this.props.headComponents}
-          {js}
-          {css}
         </head>
-        <body>
+        <body {...this.props.bodyAttributes}>
           <div
             id="___gatsby"
             dangerouslySetInnerHTML={{__html: this.props.body}}
           />
           {this.props.postBodyComponents}
+          {JS_NPM_URLS.map(url => (
+            <script key={url} src={url} />
+          ))}
         </body>
       </html>
     );

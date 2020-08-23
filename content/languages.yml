@@ -1,0 +1,197 @@
+# Status enums indicate what percentage of "core" content has been translated:
+# 0: Incomplete (0-49%)
+# 1: Partially complete (50-99%)
+# 2: Complete (100%)
+
+- name: English
+  translated_name: English
+  code: en
+  status: 2
+- name: Arabic
+  translated_name: العربية
+  code: ar
+  status: 2
+- name: Azerbaijani
+  translated_name: Azərbaycanca
+  code: az
+  status: 2
+- name: Bulgarian
+  translated_name: Български
+  code: bg
+  status: 1
+- name: Bengali
+  translated_name: বাংলা
+  code: bn
+  status: 1
+- name: Catalan
+  translated_name: Català
+  code: ca
+  status: 1
+- name: German
+  translated_name: Deutsch
+  code: de
+  status: 1
+- name: Greek
+  translated_name: Ελληνικά
+  code: el
+  status: 1
+- name: Spanish
+  translated_name: Español
+  code: es
+  status: 2
+- name: Persian
+  translated_name: فارسی
+  code: fa
+  status: 1
+- name: French
+  translated_name: Français
+  code: fr
+  status: 2
+- name: Gujarati
+  translated_name: ગુજરાતી
+  code: gu
+  status: 0
+- name: Hebrew
+  translated_name: עברית
+  code: he
+  status: 1
+- name: Hindi
+  translated_name: हिन्दी
+  code: hi
+  status: 0
+- name: Haitian Creole
+  translated_name: Kreyòl ayisyen
+  code: ht
+  status: 0
+- name: Hungarian
+  translated_name: magyar
+  code: hu
+  status: 2
+- name: Armenian
+  translated_name: Հայերեն
+  code: hy
+  status: 0
+- name: Indonesian
+  translated_name: Bahasa Indonesia
+  code: id
+  status: 1
+- name: Italian
+  translated_name: Italiano
+  code: it
+  status: 2
+- name: Japanese
+  translated_name: 日本語
+  code: ja
+  status: 2
+- name: Georgian
+  translated_name: ქართული
+  code: ka
+  status: 0
+- name: Central Khmer
+  translated_name: ភាសាខ្មែរ
+  code: km
+  status: 0
+- name: Kannada
+  translated_name: ಕನ್ನಡ
+  code: kn
+  status: 0
+- name: Korean
+  translated_name: 한국어
+  code: ko
+  status: 2
+- name: Kurdish
+  translated_name: کوردی‎
+  code: ku
+  status: 0
+- name: Lithuanian
+  translated_name: Lietuvių kalba
+  code: lt
+  status: 0
+- name: Malayalam
+  translated_name: മലയാളം
+  code: ml
+  status: 0
+- name: Mongolian
+  translated_name: Монгол хэл
+  code: mn
+  status: 2
+- name: Nepali
+  translated_name: नेपाली
+  code: ne
+  status: 0
+- name: Dutch
+  translated_name: Nederlands
+  code: nl
+  status: 0
+- name: Polish
+  translated_name: Polski
+  code: pl
+  status: 2
+- name: Portuguese (Brazil)
+  translated_name: Português do Brasil
+  code: pt-br
+  status: 2
+- name: Portuguese (Portugal)
+  translated_name: Português europeu
+  code: pt-pt
+  status: 0
+- name: Romanian
+  translated_name: Română
+  code: ro
+  status: 0
+- name: Russian
+  translated_name: Русский
+  code: ru
+  status: 2
+- name: Sinhala
+  translated_name: සිංහල
+  code: si
+  status: 0
+- name: Swedish
+  translated_name: Svenska
+  code: sv
+  status: 0
+- name: Tamil
+  translated_name: தமிழ்
+  code: ta
+  status: 0
+- name: Telugu
+  translated_name: తెలుగు
+  code: te
+  status: 0
+- name: Thai
+  translated_name: ไทย
+  code: th
+  status: 0
+- name: Tagalog
+  translated_name: Wikang Tagalog
+  code: tl
+  status: 0
+- name: Turkish
+  translated_name: Türkçe
+  code: tr
+  status: 2
+- name: Ukrainian
+  translated_name: Українська
+  code: uk
+  status: 2
+- name: Urdu
+  translated_name: اردو
+  code: ur
+  status: 0
+- name: Uzbek
+  translated_name: Oʻzbekcha
+  code: uz
+  status: 0
+- name: Vietnamese
+  translated_name: Tiếng Việt
+  code: vi
+  status: 1
+- name: Simplified Chinese
+  translated_name: 简体中文
+  code: zh-hans
+  status: 2
+- name: Traditional Chinese
+  translated_name: 繁體中文
+  code: zh-hant
+  status: 2

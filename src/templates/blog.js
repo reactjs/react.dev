@@ -1,13 +1,12 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
 
-'use strict';
-
-import PropTypes from 'prop-types';
 import React from 'react';
+import {graphql} from 'gatsby';
+import Layout from 'components/Layout';
 import MarkdownPage from 'components/MarkdownPage';
 import {createLinkBlog} from 'utils/createLink';
 
@@ -27,23 +26,20 @@ const toSectionList = allMarkdownRemark => [
 ];
 
 const Blog = ({data, location}) => (
-  <MarkdownPage
-    authors={data.markdownRemark.frontmatter.author}
-    createLink={createLinkBlog}
-    date={data.markdownRemark.fields.date}
-    location={location}
-    ogDescription={data.markdownRemark.excerpt}
-    markdownRemark={data.markdownRemark}
-    sectionList={toSectionList(data.allMarkdownRemark)}
-    titlePostfix=" - React Blog"
-  />
+  <Layout location={location}>
+    <MarkdownPage
+      authors={data.markdownRemark.frontmatter.author}
+      createLink={createLinkBlog}
+      date={data.markdownRemark.fields.date}
+      location={location}
+      ogDescription={data.markdownRemark.excerpt}
+      markdownRemark={data.markdownRemark}
+      sectionList={toSectionList(data.allMarkdownRemark)}
+      titlePostfix=" &ndash; React Blog"
+    />
+  </Layout>
 );
 
-Blog.propTypes = {
-  data: PropTypes.object.isRequired,
-};
-
-// eslint-disable-next-line no-undef
 export const pageQuery = graphql`
   query TemplateBlogMarkdown($slug: String!) {
     markdownRemark(fields: {slug: {eq: $slug}}) {
@@ -68,7 +64,7 @@ export const pageQuery = graphql`
     }
     allMarkdownRemark(
       limit: 10
-      filter: {id: {regex: "/blog/"}}
+      filter: {fileAbsolutePath: {regex: "/blog/"}}
       sort: {fields: [fields___date], order: DESC}
     ) {
       edges {

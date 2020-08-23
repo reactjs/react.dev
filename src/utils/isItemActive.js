@@ -1,11 +1,9 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
  */
-
-'use strict';
 
 import slugify from 'utils/slugify';
 

@@ -1,13 +1,11 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
  */
 
-'use strict';
-
-import Link from 'gatsby-link';
+import {Link} from 'gatsby';
 import React from 'react';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import slugify from 'utils/slugify';

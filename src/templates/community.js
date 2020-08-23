@@ -1,32 +1,28 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
 
-'use strict';
-
 import MarkdownPage from 'components/MarkdownPage';
-import PropTypes from 'prop-types';
 import React from 'react';
+import {graphql} from 'gatsby';
+import Layout from 'components/Layout';
 import {createLinkCommunity} from 'utils/createLink';
 import {sectionListCommunity} from 'utils/sectionList';
 
 const Community = ({data, location}) => (
-  <MarkdownPage
-    createLink={createLinkCommunity}
-    location={location}
-    markdownRemark={data.markdownRemark}
-    sectionList={sectionListCommunity}
-    titlePostfix=" - React"
-  />
+  <Layout location={location}>
+    <MarkdownPage
+      createLink={createLinkCommunity}
+      location={location}
+      markdownRemark={data.markdownRemark}
+      sectionList={sectionListCommunity}
+      titlePostfix=" &ndash; React"
+    />
+  </Layout>
 );
 
-Community.propTypes = {
-  data: PropTypes.object.isRequired,
-};
-
-// eslint-disable-next-line no-undef
 export const pageQuery = graphql`
   query TemplateCommunityMarkdown($slug: String!) {
     markdownRemark(fields: {slug: {eq: $slug}}) {

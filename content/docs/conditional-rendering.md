@@ -93,7 +93,7 @@ class LoginControl extends React.Component {
 
   render() {
     const isLoggedIn = this.state.isLoggedIn;
-    let button;
+    let button; // element variable
 
     if (isLoggedIn) {
       button = <LogoutButton onClick={this.handleLogoutClick} />;
@@ -115,6 +115,8 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+Here, `button` is the `element variable` which will either store the element `<LoginButton />` or `<LogoutButton />` based on the state of `isLoggedIn`.
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/QKzAgB?editors=0010)
 

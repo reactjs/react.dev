@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -95,7 +95,7 @@ function ErrorDecoder(props: {|
   let msg = '';
 
   const errorCodes = JSON.parse(props.errorCodesString);
-  const parseResult = parseQueryString(props.location.search);
+  const parseResult = parseQueryString(props.location.search || '');
   if (parseResult != null) {
     code = parseResult.code;
     msg = replaceArgs(errorCodes[code], parseResult.args);

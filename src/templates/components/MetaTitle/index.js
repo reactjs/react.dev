@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
@@ -15,6 +15,7 @@ const MetaTitle = ({children, title, cssProps = {}, onDark = false}) => (
       fontWeight: 700,
       lineHeight: 3,
       textTransform: 'uppercase',
+      textAlign: 'start',
       letterSpacing: '0.08em',
       ...cssProps,
     }}>

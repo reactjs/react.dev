@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
@@ -40,7 +40,8 @@ class Section extends React.Component {
             cssProps={{
               [media.greaterThan('small')]: {
                 color: isActive ? colors.text : colors.subtle,
-
+                paddingRight: 7,
+                paddingLeft: 7,
                 ':hover': {
                   color: colors.text,
                 },
@@ -63,13 +64,14 @@ class Section extends React.Component {
         <ul
           id={uid}
           css={{
+            fontFeatureSettings: "'tnum'",
             marginBottom: 10,
 
             [media.greaterThan('small')]: {
               display: isActive ? 'block' : 'none',
             },
           }}>
-          {section.items.map(item => (
+          {section.items.map((item, index) => (
             <li
               key={item.id}
               css={{
@@ -79,7 +81,9 @@ class Section extends React.Component {
                 isActive: isScrollSync
                   ? activeItemId === item.id
                   : isItemActive(location, item),
-                item,
+                item: section.isOrdered
+                  ? {...item, title: `${index + 1}. ${item.title}`}
+                  : item,
                 location,
                 onLinkClick,
                 section,

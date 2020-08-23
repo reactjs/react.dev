@@ -8,13 +8,12 @@ class ExampleComponent extends React.Component {
     lastRow: null,
   };
 
-  // highlight-range{1-8}
-  static getDerivedStateFromProps(nextProps, prevState) {
-    if (nextProps.currentRow !== prevState.lastRow) {
+  // highlight-range{1-7}
+  static getDerivedStateFromProps(props, state) {
+    if (props.currentRow !== state.lastRow) {
       return {
-        isScrollingDown:
-          nextProps.currentRow > prevState.lastRow,
-        lastRow: nextProps.currentRow,
+        isScrollingDown: props.currentRow > state.lastRow,
+        lastRow: props.currentRow,
       };
     }
 

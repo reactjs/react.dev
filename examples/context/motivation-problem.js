@@ -17,6 +17,8 @@ function Toolbar(props) {
   );
 }
 
-function ThemedButton(props) {
-  return <Button theme={props.theme} />;
+class ThemedButton extends React.Component {
+  render() {
+    return <Button theme={this.props.theme} />;
+  }
 }

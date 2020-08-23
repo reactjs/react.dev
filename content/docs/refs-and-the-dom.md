@@ -1,6 +1,8 @@
 ---
 id: refs-and-the-dom
 title: Refs and the DOM
+prev: static-type-checking.html
+next: uncontrolled-components.html
 redirect_from:
   - "docs/working-with-the-browser.html"
   - "docs/more-about-refs.html"

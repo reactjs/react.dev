@@ -43,7 +43,7 @@ If you use ES6 promises, you may need to wrap your promise in order to make it c
 
 ```js
 const cancelablePromise = makeCancelable(
-  new Promise(r => component.setState({...}}))
+  new Promise(r => component.setState({...}))
 );
 
 cancelablePromise

@@ -1,10 +1,10 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
 
-import Link from 'gatsby-link';
+import {Link} from 'gatsby';
 import React from 'react';
 import {colors, media} from 'theme';
 

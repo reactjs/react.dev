@@ -30,7 +30,7 @@ var Greeting = createReactClass({
 
 The API of ES6 classes is similar to `createReactClass()` with a few exceptions.
 
-## Declaring Default Props
+## Declaring Default Props {#declaring-default-props}
 
 With functions and ES6 classes `defaultProps` is defined as a property on the component itself:
 
@@ -59,7 +59,7 @@ var Greeting = createReactClass({
 });
 ```
 
-## Setting the Initial State
+## Setting the Initial State {#setting-the-initial-state}
 
 In ES6 classes, you can define the initial state by assigning `this.state` in the constructor:
 
@@ -84,7 +84,7 @@ var Counter = createReactClass({
 });
 ```
 
-## Autobinding
+## Autobinding {#autobinding}
 
 In React components declared as ES6 classes, methods follow the same semantics as regular ES6 classes. This means that they don't automatically bind `this` to the instance. You'll have to explicitly use `.bind(this)` in the constructor:
 
@@ -169,7 +169,7 @@ If you'd rather play it safe, you have a few options:
 * Use arrow functions, e.g. `onClick={(e) => this.handleClick(e)}`.
 * Keep using `createReactClass`.
 
-## Mixins
+## Mixins {#mixins}
 
 >**Note:**
 >

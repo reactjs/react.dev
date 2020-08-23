@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -77,8 +77,12 @@ function ErrorResult(props: {|code: ?string, msg: string|}) {
 
   return (
     <div>
-      <p>The full text of the error you just encountered is:</p>
-      <code>{urlify(errorMsg)}</code>
+      <p>
+        <b>The full text of the error you just encountered is:</b>
+      </p>
+      <code>
+        <b>{urlify(errorMsg)}</b>
+      </code>
     </div>
   );
 }
@@ -91,7 +95,7 @@ function ErrorDecoder(props: {|
   let msg = '';
 
   const errorCodes = JSON.parse(props.errorCodesString);
-  const parseResult = parseQueryString(props.location.search);
+  const parseResult = parseQueryString(props.location.search || '');
   if (parseResult != null) {
     code = parseResult.code;
     msg = replaceArgs(errorCodes[code], parseResult.args);

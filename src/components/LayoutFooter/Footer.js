@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -10,9 +10,13 @@ import ExternalFooterLink from './ExternalFooterLink';
 import FooterLink from './FooterLink';
 import FooterNav from './FooterNav';
 import MetaTitle from 'templates/components/MetaTitle';
+import SectionLinks from './SectionLinks';
 import React from 'react';
 import {colors, media} from 'theme';
 import {sectionListCommunity, sectionListDocs} from 'utils/sectionList';
+
+// $FlowFixMe
+import navFooter from '../../../content/footerNav.yml';
 
 import ossLogoPng from 'images/oss_logo.png';
 
@@ -26,6 +30,9 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
 
       [media.size('sidebarFixed')]: {
         paddingTop: 40,
+      },
+      '@media print': {
+        display: 'none',
       },
     }}>
     <Container>
@@ -60,75 +67,44 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             },
           }}>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Docs</MetaTitle>
+            <MetaTitle onDark={true}>{navFooter.docs.title}</MetaTitle>
             {sectionListDocs.map(section => {
               const defaultItem = section.items[0];
               return (
-                <FooterLink to={`/docs/${defaultItem.id}.html`}>
+                <FooterLink
+                  to={`/docs/${defaultItem.id}.html`}
+                  key={section.title}>
                   {section.title}
                 </FooterLink>
               );
             })}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Channels</MetaTitle>
-            <ExternalFooterLink
-              href="https://github.com/facebook/react"
-              target="_blank"
-              rel="noopener">
-              GitHub
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="http://stackoverflow.com/questions/tagged/reactjs"
-              target="_blank"
-              rel="noopener">
-              Stack Overflow
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://discuss.reactjs.org"
-              target="_blank"
-              rel="noopener">
-              Discussion Forum
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://discord.gg/0ZcbPKXt5bZjGY5n"
-              target="_blank"
-              rel="noopener">
-              Reactiflux Chat
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://www.facebook.com/react"
-              target="_blank"
-              rel="noopener">
-              Facebook
-            </ExternalFooterLink>
-            <ExternalFooterLink
-              href="https://twitter.com/reactjs"
-              target="_blank"
-              rel="noopener">
-              Twitter
-            </ExternalFooterLink>
+            <MetaTitle onDark={true}>{navFooter.channels.title}</MetaTitle>
+            <SectionLinks links={navFooter.channels.items} />
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>Community</MetaTitle>
+            <MetaTitle onDark={true}>{navFooter.community.title}</MetaTitle>
+            <ExternalFooterLink
+              href={`https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md`}>
+              Code of Conduct
+            </ExternalFooterLink>
             {sectionListCommunity.map(section => (
-              <FooterLink to={`/community/${section.items[0].id}.html`}>
+              <FooterLink
+                to={`/community/${section.items[0].id}.html`}
+                key={section.title}>
                 {section.title}
               </FooterLink>
             ))}
           </FooterNav>
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
-            <MetaTitle onDark={true}>More</MetaTitle>
-            <FooterLink to="/tutorial/tutorial.html">Tutorial</FooterLink>
-            <FooterLink to="/blog/">Blog</FooterLink>
-            <FooterLink to="/acknowledgements.html">
-              Acknowledgements
-            </FooterLink>
-            <ExternalFooterLink
-              href="http://facebook.github.io/react-native/"
-              target="_blank"
-              rel="noopener">
-              React Native
+            <MetaTitle onDark={true}>{navFooter.more.title}</MetaTitle>
+            <SectionLinks links={navFooter.more.items} />
+            <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
+              Privacy
+            </ExternalFooterLink>
+            <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
+              Terms
             </ExternalFooterLink>
           </FooterNav>
         </div>
@@ -152,7 +128,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
             },
           }}>
           <a
-            href="https://code.facebook.com/projects/"
+            href="https://opensource.facebook.com/projects/"
             target="_blank"
             rel="noopener">
             <img
@@ -169,7 +145,7 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
               color: colors.subtleOnDark,
               paddingTop: 15,
             }}>
-            Copyright © 2018 Facebook Inc.
+            {`Copyright © ${new Date().getFullYear()} Facebook Inc.`}
           </p>
         </section>
       </div>

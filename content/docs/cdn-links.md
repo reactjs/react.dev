@@ -2,11 +2,11 @@
 id: cdn-links
 title: CDN Links
 permalink: docs/cdn-links.html
-prev: add-react-to-an-existing-app.html
-next: hello-world.html
+prev: create-a-new-react-app.html
+next: release-channels.html
 ---
 
-The UMD builds of React and ReactDOM are available over a CDN.
+Both React and ReactDOM are available over a CDN.
 
 ```html
 <script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
@@ -22,7 +22,7 @@ The versions above are only meant for development, and are not suitable for prod
 
 To load a specific version of `react` and `react-dom`, replace `16` with the version number.
 
-### Why the `crossorigin` Attribute?
+### Why the `crossorigin` Attribute? {#why-the-crossorigin-attribute}
 
 If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://developer.mozilla.org/en-US/docs/Web/HTML/CORS_settings_attributes) attribute set:
 

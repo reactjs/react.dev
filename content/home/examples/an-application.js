@@ -12,7 +12,11 @@ class TodoApp extends React.Component {
         <h3>TODO</h3>
         <TodoList items={this.state.items} />
         <form onSubmit={this.handleSubmit}>
+          <label htmlFor="new-todo">
+            What needs to be done?
+          </label>
           <input
+            id="new-todo"
             onChange={this.handleChange}
             value={this.state.text}
           />
@@ -30,15 +34,15 @@ class TodoApp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    if (!this.state.text.length) {
+    if (this.state.text.length === 0) {
       return;
     }
     const newItem = {
       text: this.state.text,
       id: Date.now()
     };
-    this.setState(prevState => ({
-      items: prevState.items.concat(newItem),
+    this.setState(state => ({
+      items: state.items.concat(newItem),
       text: ''
     }));
   }
@@ -56,4 +60,7 @@ class TodoList extends React.Component {
   }
 }
 
-ReactDOM.render(<TodoApp />, mountNode);
+ReactDOM.render(
+  <TodoApp />,
+  document.getElementById('todos-example')
+);

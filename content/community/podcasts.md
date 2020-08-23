@@ -8,17 +8,19 @@ permalink: community/podcasts.html
 
 Podcasts dedicated to React and individual podcast episodes with React discussions.
 
-## Podcasts
+## Podcasts {#podcasts}
 
-- [JavaScript Air](https://javascriptair.com/) - All about JavaScript (currently not producing new episodes).
+- [The React Podcast](https://reactpodcast.simplecast.fm/) - The podcast about everything React.js, hosted by [React Training](https://reacttraining.com)
 
-- [React 30](https://react30.com/) - A weekly 30-minute podcast all about React (currently not producing new episodes).
+- [JavaScript Air](https://javascriptair.com/) - All about JavaScript (currently not producing new episodes)
 
-- [React Podcast](https://itunes.apple.com/us/podcast/react-podcast/id995869265?mt=2) - A podcast covering the ReactJS ecosystem (currently not producing new episodes).
+- [React 30](https://react30.com/) - A 30-minute podcast all about React (moved to [The React Podcast](https://reactpodcast.simplecast.fm/)).
 
-## Episodes
+- [React Native Radio](https://devchat.tv/react-native-radio)
 
-- [CodeWinds Episode 4](http://codewinds.com/podcast/004.html) - Pete Hunt talks with Jeff Barczewski about React.
+## Episodes {#episodes}
+
+- [CodeWinds Episode 4](https://codewinds.com/podcast/004.html) - Pete Hunt talks with Jeff Barczewski about React.
 
 
 - [JavaScript Jabber 73](https://devchat.tv/js-jabber/073-jsj-react-with-pete-hunt-and-jordan-walke) - Pete Hunt and Jordan Walke talk about React.

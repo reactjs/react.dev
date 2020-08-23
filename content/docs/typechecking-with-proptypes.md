@@ -12,7 +12,7 @@ redirect_from:
 >
 >We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
 
-As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flowtype.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
+As your app grows, you can catch a lot of bugs with typechecking. For some applications, you can use JavaScript extensions like [Flow](https://flow.org/) or [TypeScript](https://www.typescriptlang.org/) to typecheck your whole application. But even if you don't use those, React has some built-in typechecking abilities. To run typechecking on the props for a component, you can assign the special `propTypes` property:
 
 ```javascript
 import PropTypes from 'prop-types';
@@ -32,7 +32,7 @@ Greeting.propTypes = {
 
 `PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
 
-### PropTypes
+### PropTypes {#proptypes}
 
 Here is an example documenting the different validators provided:
 
@@ -40,7 +40,7 @@ Here is an example documenting the different validators provided:
 import PropTypes from 'prop-types';
 
 MyComponent.propTypes = {
-  // You can declare that a prop is a specific JS primitive. By default, these
+  // You can declare that a prop is a specific JS type. By default, these
   // are all optional.
   optionalArray: PropTypes.array,
   optionalBool: PropTypes.bool,
@@ -57,6 +57,9 @@ MyComponent.propTypes = {
   // A React element.
   optionalElement: PropTypes.element,
 
+  // A React element type (ie. MyComponent).
+  optionalElementType: PropTypes.elementType,
+  
   // You can also declare that a prop is an instance of a class. This uses
   // JS's instanceof operator.
   optionalMessage: PropTypes.instanceOf(Message),
@@ -83,6 +86,12 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
+  
+  // An object with warnings on extra properties
+  optionalObjectWithStrictShape: PropTypes.exact({
+    name: PropTypes.string,
+    quantity: PropTypes.number
+  }),   
 
   // You can chain any of the above with `isRequired` to make sure a warning
   // is shown if the prop isn't provided.
@@ -119,7 +128,7 @@ MyComponent.propTypes = {
 };
 ```
 
-### Requiring Single Child
+### Requiring Single Child {#requiring-single-child}
 
 With `PropTypes.element` you can specify that only a single child can be passed to a component as children.
 
@@ -143,7 +152,7 @@ MyComponent.propTypes = {
 };
 ```
 
-### Default Prop Values
+### Default Prop Values {#default-prop-values}
 
 You can define default values for your `props` by assigning to the special `defaultProps` property:
 

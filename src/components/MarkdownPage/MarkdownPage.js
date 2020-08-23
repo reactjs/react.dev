@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -12,10 +12,12 @@ import NavigationFooter from 'templates/components/NavigationFooter';
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import FeedbackForm from 'components/FeedbackForm';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
-import createOgUrl from 'utils/createOgUrl';
+import createCanonicalUrl from 'utils/createCanonicalUrl';
+import {colors} from 'theme';
 
 import type {Node} from 'types';
 
@@ -29,6 +31,18 @@ type Props = {
   markdownRemark: Node,
   sectionList: Array<Object>, // TODO: Add better flow type once we have the Section component
   titlePostfix: string,
+};
+
+const getPageById = (sectionList: Array<Object>, templateFile: ?string) => {
+  if (!templateFile) {
+    return null;
+  }
+
+  const sectionItems = sectionList.map(section => section.items);
+  const flattenedSectionItems = [].concat.apply([], sectionItems);
+  const linkId = templateFile.replace('.html', '');
+
+  return flattenedSectionItems.find(item => item.id === linkId);
 };
 
 const MarkdownPage = ({
@@ -45,6 +59,9 @@ const MarkdownPage = ({
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
+  const prev = getPageById(sectionList, markdownRemark.frontmatter.prev);
+  const next = getPageById(sectionList, markdownRemark.frontmatter.next);
+
   return (
     <Flex
       direction="column"
@@ -59,7 +76,8 @@ const MarkdownPage = ({
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
-        ogUrl={createOgUrl(markdownRemark.fields.slug)}
+        ogType="article"
+        canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
       <div css={{flex: '1 0 auto'}}>
@@ -69,7 +87,10 @@ const MarkdownPage = ({
               <MarkdownHeader title={titlePrefix} />
 
               {(date || hasAuthors) && (
-                <div css={{marginTop: 15}}>
+                <div
+                  css={{
+                    marginTop: 15,
+                  }}>
                   {date}{' '}
                   {hasAuthors && (
                     <span>
@@ -95,10 +116,19 @@ const MarkdownPage = ({
 
                 {markdownRemark.fields.path && (
                   <div css={{marginTop: 80}}>
+                    <span
+                      css={{
+                        whiteSpace: 'nowrap',
+                        paddingBottom: '1em',
+                        marginRight: '36px',
+                        display: 'inline-block',
+                        color: colors.subtle,
+                      }}>
+                      <FeedbackForm />
+                    </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
-                      href={`https://github.com/reactjs/reactjs.org/tree/master/content/${markdownRemark
-                        .fields.path}`}>
+                      href={`https://github.com/reactjs/reactjs.org/tree/master/${markdownRemark.fields.path}`}>
                       Edit this page
                     </a>
                   </div>
@@ -122,13 +152,8 @@ const MarkdownPage = ({
         </Container>
       </div>
 
-      {/* TODO Read prev/next from index map, not this way */}
-      {(markdownRemark.frontmatter.next || markdownRemark.frontmatter.prev) && (
-        <NavigationFooter
-          location={location}
-          next={markdownRemark.frontmatter.next}
-          prev={markdownRemark.frontmatter.prev}
-        />
+      {(next || prev) && (
+        <NavigationFooter location={location} next={next} prev={prev} />
       )}
     </Flex>
   );

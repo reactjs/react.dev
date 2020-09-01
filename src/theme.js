@@ -168,17 +168,43 @@ const sharedStyles = {
         zIndex: 2,
       },
     },
-
+    feedbackButton: {
+      border: 0,
+      background: 'none',
+      cursor: 'pointer',
+      ':focus': {
+        color: colors.text,
+        borderColor: colors.text,
+        '& svg': {
+          fill: colors.text,
+        },
+      },
+      ':hover': {
+        color: colors.text,
+        borderColor: colors.text,
+        '& svg': {
+          fill: colors.text,
+        },
+      },
+      '& svg': {
+        height: '1.5em',
+        width: '1.5em',
+        fill: colors.subtle,
+        transition: 'fill 0.2s ease',
+      },
+    },
     editLink: {
-      color: colors.subtle,
+      color: colors.lighter,
       borderColor: colors.divider,
-      transition: 'all 0.2s ease',
-      transitionPropery: 'color, border-color',
+      transition: 'color 0.2s ease, border-color 0.2s ease',
       whiteSpace: 'nowrap',
       borderBottomWidth: 1,
       borderBottomStyle: 'solid',
-
       ':hover': {
+        color: colors.text,
+        borderColor: colors.text,
+      },
+      ':focus': {
         color: colors.text,
         borderColor: colors.text,
       },

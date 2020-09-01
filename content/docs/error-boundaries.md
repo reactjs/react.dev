@@ -2,6 +2,8 @@
 id: error-boundaries
 title: Error Boundaries
 permalink: docs/error-boundaries.html
+prev: portals.html
+next: web-components.html
 ---
 
 In the past, JavaScript errors inside components used to corrupt React’s internal state and cause it to [emit](https://github.com/facebook/react/issues/4026) [cryptic](https://github.com/facebook/react/issues/6895) [errors](https://github.com/facebook/react/issues/8579) on next renders. These errors were always caused by an earlier error in the application code, but React did not provide a way to handle them gracefully in components, and could not recover from them.
@@ -97,7 +99,7 @@ You can also see the filenames and line numbers in the component stack trace. Th
 
 <img src="../images/docs/error-boundaries-stack-trace-line-numbers.png" style="max-width:100%" alt="Error caught by Error Boundary component with line numbers">
 
-If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/babel-plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
+If you don’t use Create React App, you can add [this plugin](https://www.npmjs.com/package/@babel/plugin-transform-react-jsx-source) manually to your Babel configuration. Note that it’s intended only for development and **must be disabled in production**.
 
 > Note
 >

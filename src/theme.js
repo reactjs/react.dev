@@ -330,9 +330,11 @@ const sharedStyles = {
       },
 
       [media.lessThan('large')]: {
+        scrollMarginTop: 120,
         fontSize: 20,
       },
       [media.greaterThan('xlarge')]: {
+        scrollMarginTop: 120,
         fontSize: 35,
       },
     },

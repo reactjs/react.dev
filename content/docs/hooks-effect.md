@@ -480,6 +480,19 @@ In the future, the second argument might get added automatically by a build-time
 >
 >We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
 
+### Tip: useEffect With Async-Await {#tip-useeffect-with-async-await}
+If you want to fetch data with async/await, you don't set async directly to a useEffect callback. Instead you define an async function inside useEffect and invoke it right away.
+
+```js
+useEffect(() => {
+  const fetchData = async () => {
+    //fetching operation with await
+  };
+
+  fetchData(); //invoking async function 
+}, []);
+```
+
 ## Next Steps {#next-steps}
 
 Congratulations! This was a long page, but hopefully by the end most of your questions about effects were answered. You've learned both the State Hook and the Effect Hook, and there is a *lot* you can do with both of them combined. They cover most of the use cases for classes -- and where they don't, you might find the [additional Hooks](/docs/hooks-reference.html) helpful.

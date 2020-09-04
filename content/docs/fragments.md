@@ -20,7 +20,7 @@ render() {
 }
 ```
 
-There is also a new [short syntax](#short-syntax) for declaring them.
+There is also a [short syntax](#short-syntax) for declaring them.
 
 ## Motivation {#motivation}
 
@@ -98,7 +98,7 @@ which results in a correct `<Table />` output of:
 
 ### Short Syntax {#short-syntax}
 
-There is a new, shorter syntax you can use for declaring fragments. It looks like empty tags:
+There is a shorter syntax you can use for declaring fragments. It looks like empty tags:
 
 ```jsx{4,7}
 class Columns extends React.Component {
@@ -139,4 +139,4 @@ function Glossary(props) {
 
 ### Live Demo {#live-demo}
 
-You can try out the new JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
+You can try out the short JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).

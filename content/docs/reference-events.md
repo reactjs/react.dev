@@ -8,11 +8,11 @@ category: Reference
 
 This reference guide documents the `SyntheticEvent` wrapper that forms part of React's Event System. See the [Handling Events](/docs/handling-events.html) guide to learn more.
 
-## Overview
+## Overview {#overview}
 
-Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers.
+Your event handlers will be passed instances of `SyntheticEvent`, a cross-browser wrapper around the browser's native event. It has the same interface as the browser's native event, including `stopPropagation()` and `preventDefault()`, except the events work identically across all browsers. 
 
-If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. Every `SyntheticEvent` object has the following attributes:
+If you find that you need the underlying browser event for some reason, simply use the `nativeEvent` attribute to get it. The synthetic events are different from, and do not map directly to, the browser's native events. For example in `onMouseLeave` `event.nativeEvent` will point to a `mouseout` event. The specific mapping is not part of the public API and may change at any time. Every `SyntheticEvent` object has the following attributes:
 
 ```javascript
 boolean bubbles
@@ -26,6 +26,7 @@ void preventDefault()
 boolean isDefaultPrevented()
 void stopPropagation()
 boolean isPropagationStopped()
+void persist()
 DOMEventTarget target
 number timeStamp
 string type
@@ -35,7 +36,7 @@ string type
 >
 > As of v0.14, returning `false` from an event handler will no longer stop event propagation. Instead, `e.stopPropagation()` or `e.preventDefault()` should be triggered manually, as appropriate.
 
-### Event Pooling
+### Event Pooling {#event-pooling}
 
 The `SyntheticEvent` is pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
 This is for performance reasons.
@@ -64,7 +65,7 @@ function onClick(event) {
 >
 > If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
 
-## Supported Events
+## Supported Events {#supported-events}
 
 React normalizes events so that they have consistent properties across different browsers.
 
@@ -75,6 +76,7 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 - [Keyboard Events](#keyboard-events)
 - [Focus Events](#focus-events)
 - [Form Events](#form-events)
+- [Generic Events](#generic-events)
 - [Mouse Events](#mouse-events)
 - [Pointer Events](#pointer-events)
 - [Selection Events](#selection-events)
@@ -89,9 +91,9 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 
 * * *
 
-## Reference
+## Reference {#reference}
 
-### Clipboard Events
+### Clipboard Events {#clipboard-events}
 
 Event names:
 
@@ -107,7 +109,7 @@ DOMDataTransfer clipboardData
 
 * * *
 
-### Composition Events
+### Composition Events {#composition-events}
 
 Event names:
 
@@ -124,7 +126,7 @@ string data
 
 * * *
 
-### Keyboard Events
+### Keyboard Events {#keyboard-events}
 
 Event names:
 
@@ -153,7 +155,7 @@ The `key` property can take any of the values documented in the [DOM Level 3 Eve
 
 * * *
 
-### Focus Events
+### Focus Events {#focus-events}
 
 Event names:
 
@@ -171,19 +173,29 @@ DOMEventTarget relatedTarget
 
 * * *
 
-### Form Events
+### Form Events {#form-events}
 
 Event names:
 
 ```
-onChange onInput onInvalid onSubmit
+onChange onInput onInvalid onReset onSubmit 
 ```
 
 For more information about the onChange event, see [Forms](/docs/forms.html).
 
 * * *
 
-### Mouse Events
+### Generic Events {#generic-events}
+
+Event names:
+
+```
+onError onLoad
+```
+
+* * *
+
+### Mouse Events {#mouse-events}
 
 Event names:
 
@@ -216,7 +228,7 @@ boolean shiftKey
 
 * * *
 
-### Pointer Events
+### Pointer Events {#pointer-events}
 
 Event names:
 
@@ -236,8 +248,10 @@ number pointerId
 number width
 number height
 number pressure
+number tangentialPressure
 number tiltX
 number tiltY
+number twist
 string pointerType
 boolean isPrimary
 ```
@@ -250,7 +264,7 @@ If your application requires pointer events, we recommend adding a third party p
 
 * * *
 
-### Selection Events
+### Selection Events {#selection-events}
 
 Event names:
 
@@ -260,7 +274,7 @@ onSelect
 
 * * *
 
-### Touch Events
+### Touch Events {#touch-events}
 
 Event names:
 
@@ -283,7 +297,7 @@ DOMTouchList touches
 
 * * *
 
-### UI Events
+### UI Events {#ui-events}
 
 Event names:
 
@@ -300,7 +314,7 @@ DOMAbstractView view
 
 * * *
 
-### Wheel Events
+### Wheel Events {#wheel-events}
 
 Event names:
 
@@ -319,7 +333,7 @@ number deltaZ
 
 * * *
 
-### Media Events
+### Media Events {#media-events}
 
 Event names:
 
@@ -332,7 +346,7 @@ onTimeUpdate onVolumeChange onWaiting
 
 * * *
 
-### Image Events
+### Image Events {#image-events}
 
 Event names:
 
@@ -342,7 +356,7 @@ onLoad onError
 
 * * *
 
-### Animation Events
+### Animation Events {#animation-events}
 
 Event names:
 
@@ -360,7 +374,7 @@ float elapsedTime
 
 * * *
 
-### Transition Events
+### Transition Events {#transition-events}
 
 Event names:
 
@@ -378,7 +392,7 @@ float elapsedTime
 
 * * *
 
-### Other Events
+### Other Events {#other-events}
 
 Event names:
 

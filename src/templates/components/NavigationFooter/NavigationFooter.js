@@ -1,12 +1,12 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  */
 
 import Container from 'components/Container';
 import Flex from 'components/Flex';
-import Link from 'gatsby-link';
+import {Link} from 'gatsby';
 import PropTypes from 'prop-types';
 import React from 'react';
 import {colors, fonts, media} from 'theme';

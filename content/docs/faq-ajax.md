@@ -6,15 +6,15 @@ layout: docs
 category: FAQ
 ---
 
-### How can I make an AJAX call?
+### How can I make an AJAX call? {#how-can-i-make-an-ajax-call}
 
 You can use any AJAX library you like with React. Some popular ones are [Axios](https://github.com/axios/axios), [jQuery AJAX](https://api.jquery.com/jQuery.ajax/), and the browser built-in [window.fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API).
 
-### Where in the component lifecycle should I make an AJAX call?
+### Where in the component lifecycle should I make an AJAX call? {#where-in-the-component-lifecycle-should-i-make-an-ajax-call}
 
 You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
 
-### Example: Using AJAX results to set local state
+### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
 
 The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
 
@@ -22,9 +22,9 @@ The example API returns a JSON object like this:
 
 ```
 {
-  items: [
-    { id: 1, name: 'Apples', price: '$2' },
-    { id: 2, name: 'Peaches', price: '$5' }
+  "items": [
+    { "id": 1, "name": "Apples",  "price": "$2" },
+    { "id": 2, "name": "Peaches", "price": "$5" }
   ] 
 }
 ```
@@ -83,6 +83,49 @@ class MyComponent extends React.Component {
 }
 ```
 
-### Cancellation
+Here is the equivalent with [Hooks](https://reactjs.org/docs/hooks-intro.html): 
 
-Note that if the component unmounts before an AJAX call is complete, you may see a warning like `cannot read property 'setState' of undefined`. If this is an issue you may want to keep track of inflight AJAX requests and cancel them in the `componentWillUnmount` lifecycle method.
+```js
+function MyComponent() {
+  const [error, setError] = useState(null);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [items, setItems] = useState([]);
+
+  // Note: the empty deps array [] means
+  // this useEffect will run once
+  // similar to componentDidMount()
+  useEffect(() => {
+    fetch("https://api.example.com/items")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setItems(result.items);
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <ul>
+        {items.map(item => (
+          <li key={item.name}>
+            {item.name} {item.price}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+}
+```

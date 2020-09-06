@@ -21,7 +21,7 @@ class App extends React.Component {
 // highlight-range{1,2}
 // A component in the middle doesn't have to
 // pass the theme down explicitly anymore.
-function Toolbar(props) {
+function Toolbar() {
   return (
     <div>
       <ThemedButton />
@@ -29,14 +29,13 @@ function Toolbar(props) {
   );
 }
 
-function ThemedButton(props) {
+class ThemedButton extends React.Component {
   // highlight-range{1-3,6}
-  // Use a Consumer to read the current theme context.
+  // Assign a contextType to read the current theme context.
   // React will find the closest theme Provider above and use its value.
   // In this example, the current theme is "dark".
-  return (
-    <ThemeContext.Consumer>
-      {theme => <Button {...props} theme={theme} />}
-    </ThemeContext.Consumer>
-  );
+  static contextType = ThemeContext;
+  render() {
+    return <Button theme={this.context} />;
+  }
 }

@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 declare module 'glamor' {
   declare module.exports: {
     css: {
@@ -14,8 +18,4 @@ declare module 'glamor/react' {
     makeTheme: any,
     propMerge: Function,
   };
-}
-
-declare module 'glamor/reset' {
-  declare module.exports: any;
 }

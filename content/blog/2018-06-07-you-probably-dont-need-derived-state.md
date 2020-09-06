@@ -19,7 +19,7 @@ For a long time, the lifecycle `componentWillReceiveProps` was the only way to u
 * [Preferred solutions](#preferred-solutions)
 * [What about memoization?](#what-about-memoization)
 
-## When to Use Derived State
+## When to Use Derived State {#when-to-use-derived-state}
 
 `getDerivedStateFromProps` exists for only one purpose. It enables a component to update its internal state as the result of **changes in props**. Our previous blog post provided some examples, like [recording the current scroll direction based on a changing offset prop](/blog/2018/03/27/update-on-async-rendering.html#updating-state-based-on-props) or [loading external data specified by a source prop](/blog/2018/03/27/update-on-async-rendering.html#fetching-external-data-when-props-change).
 
@@ -28,7 +28,7 @@ We did not provide many examples, because as a general rule, **derived state sho
 * If you're using derived state to memoize some computation based only on the current props, you don't need derived state. See [What about memoization?](#what-about-memoization) below.
 * If you're updating derived state unconditionally or updating it whenever props and state don't match, your component likely resets its state too frequently. Read on for more details.
 
-## Common Bugs When Using Derived State
+## Common Bugs When Using Derived State {#common-bugs-when-using-derived-state}
 
 The terms ["controlled"](/docs/forms.html#controlled-components) and ["uncontrolled"](/docs/uncontrolled-components.html) usually refer to form inputs, but they can also describe where any component's data lives. Data passed in as props can be thought of as **controlled** (because the parent component _controls_ that data). Data that exists only in internal state can be thought of as **uncontrolled** (because the parent can't directly change it).
 
@@ -36,11 +36,11 @@ The most common mistake with derived state is mixing these two; when a derived s
 
 Problems arise when any of these constraints are changed. This typically comes in two forms. Let's take a look at both.
 
-### Anti-pattern: Unconditionally copying props to state
+### Anti-pattern: Unconditionally copying props to state {#anti-pattern-unconditionally-copying-props-to-state}
 
 A common misconception is that `getDerivedStateFromProps` and `componentWillReceiveProps` are only called when props "change". These lifecycles are called any time a parent component rerenders, regardless of whether the props are "different" from before. Because of this, it has always been unsafe to _unconditionally_ override state using either of these lifecycles. **Doing so will cause state updates to be lost.**
 
-Let’s consider an example to demonstrate the problem. Here is a `EmailInput` component that "mirrors" an email prop in state:
+Let’s consider an example to demonstrate the problem. Here is an `EmailInput` component that "mirrors" an email prop in state:
 ```js
 class EmailInput extends Component {
   state = { email: this.props.email };
@@ -67,7 +67,7 @@ In this simple example, adding `shouldComponentUpdate` to rerender only when the
 
 Hopefully it's clear by now why **it is a bad idea to unconditionally copy props to state**. Before reviewing possible solutions, let's look at a related problematic pattern: what if we were to only update the state when the email prop changes?
 
-### Anti-pattern: Erasing state when props change
+### Anti-pattern: Erasing state when props change {#anti-pattern-erasing-state-when-props-change}
 
 Continuing the example above, we could avoid accidentally erasing state by only updating it when `props.email` changes:
 
@@ -100,11 +100,11 @@ There is still a subtle problem. Imagine a password manager app using the above 
 
 This design is fundamentally flawed, but it's also an easy mistake to make. ([I've made it myself!](https://twitter.com/brian_d_vaughn/status/959600888242307072)) Fortunately there are two alternatives that work better. The key to both is that **for any piece of data, you need to pick a single component that owns it as the source of truth, and avoid duplicating it in other components.** Let's take a look at each of the alternatives.
 
-## Preferred Solutions
+## Preferred Solutions {#preferred-solutions}
 
-### Recommendation: Fully controlled component
+### Recommendation: Fully controlled component {#recommendation-fully-controlled-component}
 
-One way to avoid the problems mentioned above is to remove state from our component entirely. If the email address only exists as a prop, then we don't have to worry about conflicts with state. We could even convert `EmailInput` to a lighter-weight functional component:
+One way to avoid the problems mentioned above is to remove state from our component entirely. If the email address only exists as a prop, then we don't have to worry about conflicts with state. We could even convert `EmailInput` to a lighter-weight function component:
 ```js
 function EmailInput(props) {
   return <input onChange={props.onChange} value={props.email} />;
@@ -113,7 +113,7 @@ function EmailInput(props) {
 
 This approach simplifies the implementation of our component, but if we still want to store a draft value, the parent form component will now need to do that manually. ([Click here to see a demo of this pattern.](https://codesandbox.io/s/7154w1l551))
 
-### Recommendation: Fully uncontrolled component with a `key`
+### Recommendation: Fully uncontrolled component with a `key` {#recommendation-fully-uncontrolled-component-with-a-key}
 
 Another alternative would be for our component to fully own the "draft" email state. In that case, our component could still accept a prop for the _initial_ value, but it would ignore subsequent changes to that prop:
 
@@ -148,7 +148,7 @@ In most cases, this is the best way to handle state that needs to be reset.
 >
 > While this may sound slow, the performance difference is usually insignificant. Using a key can even be faster if the components have heavy logic that runs on updates since diffing gets bypassed for that subtree.
 
-#### Alternative 1: Reset uncontrolled component with an ID prop
+#### Alternative 1: Reset uncontrolled component with an ID prop {#alternative-1-reset-uncontrolled-component-with-an-id-prop}
 
 If `key` doesn't work for some reason (perhaps the component is very expensive to initialize), a workable but cumbersome solution would be to watch for changes to "userID" in `getDerivedStateFromProps`:
 
@@ -182,7 +182,7 @@ This also provides the flexibility to only reset parts of our component's intern
 >
 > Even though the example above shows `getDerivedStateFromProps`, the same technique can be used with `componentWillReceiveProps`.
 
-#### Alternative 2: Reset uncontrolled component with an instance method
+#### Alternative 2: Reset uncontrolled component with an instance method {#alternative-2-reset-uncontrolled-component-with-an-instance-method}
 
 More rarely, you may need to reset state even if there's no appropriate ID to use as `key`. One solution is to reset the key to a random value or autoincrementing number each time you want to reset. One other viable alternative is to expose an instance method to imperatively reset the internal state:
 
@@ -206,18 +206,18 @@ Refs can be useful in certain cases like this one, but generally we recommend yo
 
 -----
 
-### Recap
+### Recap {#recap}
 
 To recap, when designing a component, it is important to decide whether its data will be controlled or uncontrolled.
 
 Instead of trying to **"mirror" a prop value in state**, make the component **controlled**, and consolidate the two diverging values in the state of some parent component. For example, rather than a child accepting a "committed" `props.value` and tracking a "draft" `state.value`, have the parent manage both `state.draftValue` and `state.committedValue` and control the child's value directly. This makes the data flow more explicit and predictable.
 
 For **uncontrolled** components, if you're trying to reset state when a particular prop (usually an ID) changes, you have a few options:
-* **Recomendation: To reset _all internal state_, use the `key` attribute.**
+* **Recommendation: To reset _all internal state_, use the `key` attribute.**
 * Alternative 1: To reset _only certain state fields_, watch for changes in a special property (e.g. `props.userID`).
 * Alternative 2: You can also consider fall back to an imperative instance method using refs.
 
-## What about memoization?
+## What about memoization? {#what-about-memoization}
 
 We've also seen derived state used to ensure an expensive value used in `render` is recomputed only when the inputs change. This technique is known as [memoization](https://en.wikipedia.org/wiki/Memoization).
 
@@ -230,6 +230,11 @@ class Example extends Component {
   state = {
     filterText: "",
   };
+
+  // *******************************************************
+  // NOTE: this example is NOT the recommended approach.
+  // See the examples below for our recommendations instead.
+  // *******************************************************
 
   static getDerivedStateFromProps(props, state) {
     // Re-run the filter whenever the list array or filter text change.
@@ -332,11 +337,11 @@ This is much simpler and performs just as well as the derived state version!
 When using memoization, remember a couple of constraints:
 
 1. In most cases, you'll want to **attach the memoized function to a component instance**. This prevents multiple instances of a component from resetting each other's memoized keys.
-1. Typically you'll want to use a memoization helper with a **limited cache size** in order to prevent memory leaks over time. (In the example above, we used `memoize-one` because it only caches the most recent argument and result.)
-1. None of the implementations shown in this section will work if `props.items` is recreated each time the parent component renders. But in most cases, this setup is appropriate.
+1. Typically you'll want to use a memoization helper with a **limited cache size** in order to prevent memory leaks over time. (In the example above, we used `memoize-one` because it only caches the most recent arguments and result.)
+1. None of the implementations shown in this section will work if `props.list` is recreated each time the parent component renders. But in most cases, this setup is appropriate.
 
-## In closing
+## In closing {#in-closing}
 
 In real world applications, components often contain a mix of controlled and uncontrolled behaviors. This is okay! If each value has a clear source of truth, you can avoid the anti-patterns mentioned above.
 
-It is also worth re-iterating that `getDerivedStateFromProps` (and derived state in general) is an advanced feature and should be used sparingly because of this complexity. If your use case falls outside of these patterns, please share it with us on [GitHub](https://github.com/reactjs/reactjs.org/issues/new) or Twitter!
+It is also worth re-iterating that `getDerivedStateFromProps` (and derived state in general) is an advanced feature and should be used sparingly because of this complexity. If your use case falls outside of these patterns, please share it with us on [GitHub](https://github.com/reactjs/reactjs.org/issues/new) or [Twitter](https://twitter.com/reactjs)!

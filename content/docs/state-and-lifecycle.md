@@ -70,7 +70,7 @@ ReactDOM.render(
 
 To implement this, we need to add "state" to the `Clock` component.
 
-State is similar to props, but it is private and fully controlled by the component.
+State is similar to props, but it is private and fully controlled by the component. It is not necessary to convert the functional component to a ES6 class in order to set and access state. State Hooks can be used to use state without writing a class component.
 
 ## Converting a Function to a Class {#converting-a-function-to-a-class}
 

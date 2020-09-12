@@ -74,6 +74,8 @@ Sebastian majored in psychology. He's usually quiet. Even when he says something
 
 ![Seth](../images/team/sethwebster.jpg)
 
+[@sethwebster on GitHub](https://github.com/sethwebster) &middot; [@sethwebster on Twitter](https://twitter.com/sethwebster)
+
 Seth started programming as a kid growing up in Tucson, AZ. After school, he was bitten by the music bug and was a touring musician for about 10 years before returning to *work*, starting with Intuit. In his spare time, he loves [taking pictures](https://www.sethwebster.com) and flying for animal rescues in the northeastern United States.
 
 ## Acknowledgements {#acknowledgements}

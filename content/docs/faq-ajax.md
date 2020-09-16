@@ -16,7 +16,7 @@ You should populate data with AJAX calls in the [`componentDidMount`](/docs/reac
 
 ### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
 
-The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
+The component below demonstrates how to make an AJAX call in `componentDidMount` to populate the local component state. 
 
 The example API returns a JSON object like this:
 

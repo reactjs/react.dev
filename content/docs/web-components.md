@@ -2,8 +2,7 @@
 id: web-components
 title: Web Components
 permalink: docs/web-components.html
-prev: error-boundaries.html
-next: higher-order-components.html
+prev: uncontrolled-components.html
 redirect_from:
   - "docs/webcomponents.html"
 ---

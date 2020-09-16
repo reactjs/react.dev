@@ -2,7 +2,8 @@
 id: jsx-in-depth
 title: JSX In Depth
 permalink: docs/jsx-in-depth.html
-next: typechecking-with-proptypes.html
+prev: integrating-with-other-libraries.html
+next: optimizing-performance.html
 redirect_from:
   - "docs/jsx-spread.html"
   - "docs/jsx-gotchas.html"

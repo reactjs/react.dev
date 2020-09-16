@@ -4,6 +4,8 @@ title: Profiler API
 layout: docs
 category: Reference
 permalink: docs/profiler.html
+prev: portals.html
+next: react-without-es6.html
 ---
 
 The `Profiler` measures how often a React application renders and what the "cost" of rendering is.

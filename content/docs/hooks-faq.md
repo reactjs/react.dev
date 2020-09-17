@@ -490,9 +490,7 @@ We didn't choose `useRef` in this example because an object ref doesn't notify u
 
 Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
 
-Note that you may need to leverage the `onLoad` event, when working with certain type of content, as images. 
-
-In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
+In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. Take into acccount that may need to leverage the `onLoad` event when working with certain type of content, as images. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
 
 If you want, you can [extract this logic](https://codesandbox.io/s/m5o42082xy) into a reusable Hook:
 

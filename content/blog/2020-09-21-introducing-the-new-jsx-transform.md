@@ -184,7 +184,7 @@ Flow supports the new JSX transform in [v0.126.0](https://github.com/facebook/fl
 
 ## Removing Unused React Imports
 
-Because the new JSX transform will automatically import the necessary `react/jsx-runtime` functions, React will no longer need to be in scope when you use JSX. This might lead to unused React imports in your code. It doesn't harm to keep them, but if you'd like to remove them, we recommend running a [“codemod”](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) script to remove them automatically:
+Because the new JSX transform will automatically import the necessary `react/jsx-runtime` functions, React will no longer need to be in scope when you use JSX. This might lead to unused React imports in your code. It doesn't hurt to keep them, but if you'd like to remove them, we recommend running a [“codemod”](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) script to remove them automatically:
 
 ```bash
 cd your_project
@@ -242,4 +242,4 @@ In addition to cleaning up unused imports, this will also help you prepare for a
 
 ## Thanks
 
-We'd like to thank Babel, TypeScript, Create React App, Next.js, and Gatsby maintainers for their help implementing and integrating the new JSX transform. We also want to thank the React community for their feedback and discussion on the related [technical RFC](https://github.com/reactjs/rfcs/pull/107).
+We'd like to thank Babel, TypeScript, Create React App, Next.js, Gatsby, ESLint, and Flow maintainers for their help implementing and integrating the new JSX transform. We also want to thank the React community for their feedback and discussion on the related [technical RFC](https://github.com/reactjs/rfcs/pull/107).

@@ -68,7 +68,7 @@ will now be transformed to
 import {jsx as _jsx} from 'react/jsx-runtime';
 
 function App() {
-   return _jsx('h1', ...);
+  return _jsx('h1', { children: 'Hello world' });
 }
 ```
 

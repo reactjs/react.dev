@@ -7,6 +7,8 @@
 'use strict';
 
 const {resolve} = require('path');
+const readFileSync = require('fs').readFileSync;
+const safeLoad = require('js-yaml').safeLoad;
 
 module.exports = async ({graphql, actions}) => {
   const {createPage, createRedirect} = actions;
@@ -18,6 +20,9 @@ module.exports = async ({graphql, actions}) => {
   const communityTemplate = resolve(__dirname, '../src/templates/community.js');
   const docsTemplate = resolve(__dirname, '../src/templates/docs.js');
   const tutorialTemplate = resolve(__dirname, '../src/templates/tutorial.js');
+  const versionsFile = resolve(__dirname, '../content/versions.yml');
+  const file = readFileSync(versionsFile, 'utf8');
+  const versions = safeLoad(file);
 
   // Redirect /index.html to root.
   createRedirect({
@@ -153,5 +158,18 @@ module.exports = async ({graphql, actions}) => {
       redirectInBrowser: true,
       toPath: newestBlogNode.fields.slug,
     });
+  });
+
+  // Each previous version page has been permanently moved
+  versions.forEach(version => {
+    if (version.path && version.url) {
+      createRedirect({
+        fromPath: version.path,
+        redirectInBrowser: true,
+        toPath: version.url,
+        isPermanent: true,
+        statusCode: 301,
+      });
+    }
   });
 };

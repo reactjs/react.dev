@@ -2,8 +2,6 @@
 id: react-without-es6
 title: React Without ES6
 permalink: docs/react-without-es6.html
-prev: optimizing-performance.html
-next: react-without-jsx.html
 ---
 
 Normally you would define a React component as a plain JavaScript class:

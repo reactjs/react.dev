@@ -167,16 +167,20 @@ Starting from Babel 8, `"automatic"` will be the default runtime for both plugin
 
 If you are using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react), the `react/jsx-uses-react` and `react/react-in-jsx-scope` rules are no longer necessary and can be turned off or removed.
 
-```json
-"rules": {
-     "react/jsx-uses-react": "off",
-     "react/react-in-jsx-scope": "off"
+```js
+{
+  // ...
+  "rules": {
+    // ...
+    "react/jsx-uses-react": "off",
+    "react/react-in-jsx-scope": "off"
+  }
 }
 ```
 
 ### TypeScript
 
-TypeScript support for the JSX transform is currently in progress and will be available soon! You can track the progress [here](https://github.com/microsoft/TypeScript/issues/34547).
+TypeScript supports the JSX transform in [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories).
 
 ### Flow
 

@@ -195,6 +195,13 @@ cd your_project
 npx react-codemod update-react-imports
 ```
 
+>Note
+>
+>If you're getting errors when running the codemod, try specifying a different JavaScript dialect when `npx react-codemod update-react-imports` asks you to choose one. In particular, at this moment the "JavaScript with Flow" setting supports newer syntax than the "JavaScript" setting even if you don't use Flow. [File an issue](https://github.com/reactjs/react-codemod/issues) if you run into problems.
+>
+>Keep in mind that the codemod output will not always match your project's coding style, so you might want to run [Prettier](https://prettier.io/) after the codemod finishes for consistent formatting.
+
+
 Running this codemod will:
 
 * Remove all unused React imports as a result of upgrading to the new JSX transform.

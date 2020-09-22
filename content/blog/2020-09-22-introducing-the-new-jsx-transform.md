@@ -241,7 +241,7 @@ For example,
 import React from 'react';
 
 function App() {
-  const [text, useText] = React.useState('Hello World');
+  const [text, setText] = React.useState('Hello World');
   return <h1>{text}</h1>;
 }
 ```
@@ -252,7 +252,7 @@ will be replaced with
 import { useState } from 'react';
 
 function App() {
-  const [text, useText] = useState('Hello World');
+  const [text, setText] = useState('Hello World');
   return <h1>{text}</h1>;
 }
 ```

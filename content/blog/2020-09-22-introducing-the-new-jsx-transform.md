@@ -28,17 +28,17 @@ Now let's take a closer look at the differences between the old and the new tran
 
 When you use JSX, the compiler transforms it into React function calls that the browser can understand. **The old JSX transform** turned JSX into `React.createElement(...)` calls.
 
-For example,
+For example, let's say your source code looks like this:
 
 ```js
 import React from 'react';
 
 function App() {
-   return <h1>Hello World</h1>;
+  return <h1>Hello World</h1>;
 }
 ```
 
-gets transformed to
+Under the hood, the old JSX transform turns it into regular JavaScript:
 
 ```js
 import React from 'react';
@@ -47,6 +47,10 @@ function App() {
   return React.createElement('h1', null, 'Hello world');
 }
 ```
+
+>Note
+>
+>**Your source code doesn't need to change in any way.** We're describing how the JSX transform turns your JSX source code into the JavaScript code a browser can understand.
 
 However, this is not perfect:
 

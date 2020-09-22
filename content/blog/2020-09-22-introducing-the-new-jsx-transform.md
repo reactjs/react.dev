@@ -103,6 +103,10 @@ Next.js [v9.5.3](https://github.com/vercel/next.js/releases/tag/v9.5.3)+ uses th
 
 Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/CHANGELOG.md#22452-2020-08-28)+ uses the new transform for compatible React versions.
 
+>Note
+>
+>If you get [this Gatsby error](https://github.com/gatsbyjs/gatsby/issues/26979) after upgrading to React `17.0.0-rc.2`, run `npm update` to fix it.
+
 ### Manual Babel Setup
 
 Support for the new JSX transform is available in Babel [v7.9.0](https://babeljs.io/blog/2020/03/16/7.9.0) and above.

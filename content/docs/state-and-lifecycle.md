@@ -105,6 +105,9 @@ class Clock extends React.Component {
 
 The `render` method will be called each time an update happens, but as long as we render `<Clock />` into the same DOM node, only a single instance of the `Clock` class will be used. This lets us use additional features such as local state and lifecycle methods.
 
+Alternatively, we can simulate lifecycle methods and add local state to functional components
+with the help of React's [Effect](https://reactjs.org/docs/hooks-effect.html) and [State](https://reactjs.org/docs/hooks-state.html) hooks.
+
 ## Adding Local State to a Class {#adding-local-state-to-a-class}
 
 We will move the `date` from props to state in three steps:

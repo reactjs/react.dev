@@ -26,7 +26,7 @@ function addTimes(date, days) {
 //   smallHeight: 80,
 //   campaign_start_date: '4 Sep 2020',
 //   campaign_end_date: '28 Oct 2020',
-//   snooze_duration: 0,
+//   snooze_duration: 7,
 //   content: dismiss => (
 //     <div>
 //       <a href="test">Test</a> <button onClick={dismiss}>close</button>
@@ -38,7 +38,7 @@ if (activeBanner) {
   try {
     if (localStorage[activeBanner.storageId]) {
       snooze_start_date = new Date(
-        parseInt(localStorage.getItem(activeBanner.storageId)),
+        parseInt(localStorage.getItem(activeBanner.storageId), 10),
       );
     }
   } catch (err) {
@@ -56,7 +56,7 @@ if (activeBanner) {
     } else if (
       snooze_start_date &&
       addTimes(snooze_start_date, activeBanner.snooze_duration) >=
-        Date.parse(today)
+        Date.parse(today.toString())
     ) {
       activeBanner = null;
     }
@@ -83,7 +83,7 @@ export default function BannerContextManager({children}: Props) {
         banner,
         dismiss: () => {
           try {
-            localStorage.setItem(banner.storageId, Date.now());
+            localStorage.setItem(banner.storageId, Date.now().toString());
           } catch (err) {
             // Ignore.
           }

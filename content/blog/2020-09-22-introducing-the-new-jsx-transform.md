@@ -5,7 +5,7 @@ author: [lunaruan]
 
 Although React 17 [doesn't contain new features](/blog/2020/08/10/react-v17-rc.html), it will provide support for a new version of the JSX transform. In this post, we will describe what it is and how to try it.
 
-## What's a JSX Transform?
+## What's a JSX Transform? {#whats-a-jsx-transform}
 
 Browsers don't understand JSX out of the box, so most React users rely on a compiler like Babel or TypeScript to **transform JSX code into regular JavaScript**. Many preconfigured toolkits like Create React App or Next.js also include a JSX transform under the hood.
 
@@ -24,7 +24,7 @@ Upgrading to the new transform is completely optional, but it has a few benefits
 
 Now let's take a closer look at the differences between the old and the new transform.
 
-## What’s Different in the New Transform?
+## What’s Different in the New Transform? {#whats-different-in-the-new-transform}
 
 When you use JSX, the compiler transforms it into React function calls that the browser can understand. **The old JSX transform** turned JSX into `React.createElement(...)` calls.
 
@@ -86,7 +86,7 @@ Note how our original code **did not need to import React** to use JSX anymore! 
 >
 > The functions inside `react/jsx-runtime` and `react/jsx-dev-runtime` must only be used by the compiler transform. If you need to manually create elements in your code, you should keep using `React.createElement`. It will continue to work and is not going away.
 
-## How to Upgrade to the New JSX Transform
+## How to Upgrade to the New JSX Transform {#how-to-upgrade-to-the-new-jsx-transform}
 
 If you aren't ready to upgrade to the new JSX transform or if you are using JSX for another library, don't worry. The old transform will not be removed and will continue to be supported.
 
@@ -97,15 +97,15 @@ If you want to upgrade, you will need two things:
 
 Since the new JSX transform doesn't require React to be in scope, [we've also prepared an automated script](#removing-unused-react-imports) that will remove the unnecessary imports from your codebase.
 
-### Create React App
+### Create React App {#create-react-app}
 
 Create React App support [has been added](https://github.com/facebook/create-react-app/pull/9645) and will be available in the [upcoming v4.0 release](https://gist.github.com/iansu/4fab7a9bfa5fa6ebc87a908c62f5340b) which is currently in beta testing.
 
-### Next.js
+### Next.js {#nextjs}
 
 Next.js [v9.5.3](https://github.com/vercel/next.js/releases/tag/v9.5.3)+ uses the new transform for compatible React versions.
 
-### Gatsby
+### Gatsby {#gatsby}
 
 Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/CHANGELOG.md#22452-2020-08-28)+ uses the new transform for compatible React versions.
 
@@ -113,7 +113,7 @@ Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/
 >
 >If you get [this Gatsby error](https://github.com/gatsbyjs/gatsby/issues/26979) after upgrading to React `17.0.0-rc.2`, run `npm update` to fix it.
 
-### Manual Babel Setup
+### Manual Babel Setup {#manual-babel-setup}
 
 Support for the new JSX transform is available in Babel [v7.9.0](https://babeljs.io/blog/2020/03/16/7.9.0) and above.
 
@@ -173,7 +173,7 @@ Starting from Babel 8, `"automatic"` will be the default runtime for both plugin
 >
 > If you use JSX with a library other than React, you can use [the `importSource` option](https://babeljs.io/docs/en/babel-preset-react#importsource) to import from that library instead -- as long as it provides the necessary entry points. Alternatively, you can keep using the classic transform which will continue to be supported.
 
-### ESLint
+### ESLint {#eslint}
 
 If you are using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react), the `react/jsx-uses-react` and `react/react-in-jsx-scope` rules are no longer necessary and can be turned off or removed.
 
@@ -188,15 +188,15 @@ If you are using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugi
 }
 ```
 
-### TypeScript
+### TypeScript {#typescript}
 
 TypeScript supports the JSX transform in [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories).
 
-### Flow
+### Flow {#flow}
 
 Flow supports the new JSX transform in [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) and up.
 
-## Removing Unused React Imports
+## Removing Unused React Imports {#removing-unused-react-imports}
 
 Because the new JSX transform will automatically import the necessary `react/jsx-runtime` functions, React will no longer need to be in scope when you use JSX. This might lead to unused React imports in your code. It doesn't hurt to keep them, but if you'd like to remove them, we recommend running a [“codemod”](https://medium.com/@cpojer/effective-javascript-codemods-5a6686bb46fb) script to remove them automatically:
 
@@ -261,6 +261,6 @@ function App() {
 
 In addition to cleaning up unused imports, this will also help you prepare for a future major version of React (not React 17) which will support ES Modules and not have a default export.
 
-## Thanks
+## Thanks {#thanks}
 
 We'd like to thank Babel, TypeScript, Create React App, Next.js, Gatsby, ESLint, and Flow maintainers for their help implementing and integrating the new JSX transform. We also want to thank the React community for their feedback and discussion on the related [technical RFC](https://github.com/reactjs/rfcs/pull/107).

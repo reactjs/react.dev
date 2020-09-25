@@ -11,22 +11,22 @@ import BannerContext from './BannerContext';
 
 let activeBanner = null;
 let snooze_start_date = null;
-
 const today = new Date();
+
 function addTimes(date, days) {
   const time = new Date(date);
-  const newTime = time.setDate(time.getDate() + days);
-  return newTime;
+  time.setDate(time.getDate() + days);
+  return time;
 }
 
 // Example usage:
 // activeBanner = {
-//   storageId: 'react_banner_blm',
+//   storageId: 'react_banner',
 //   normalHeight: 60,
 //   smallHeight: 80,
 //   campaign_start_date: '4 Sep 2020',
 //   campaign_end_date: '28 Oct 2020',
-//   snooze_duration: 7,
+//   snooze_for_days: 7,
 //   content: dismiss => (
 //     <div>
 //       <a href="test">Test</a> <button onClick={dismiss}>close</button>
@@ -55,8 +55,7 @@ if (activeBanner) {
       // If we're in the campaign window, but the snooze has been set and it hasn't expired:
     } else if (
       snooze_start_date &&
-      addTimes(snooze_start_date, activeBanner.snooze_duration) >=
-        Date.parse(today.toString())
+      addTimes(snooze_start_date, activeBanner.snooze_for_days) >= today
     ) {
       activeBanner = null;
     }

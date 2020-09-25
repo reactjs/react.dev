@@ -169,15 +169,81 @@ These focus events work on all elements in the React DOM, not just form elements
 
 The `onFocus` prop is initiated when focus is on the element. For example, when the user clicks on a text input element, the function defined with the `onFocus` prop is called.
 
+```
+  function onFocusExample() {
+     return (
+      <input
+        onFocus={(e) => {
+          console.log('Focused on input');
+        }}
+        placeholder="onFocus is triggered when you click this input."
+      />
+     )
+  }
+```
+
 #### onBlur
 
 `onBlur` prop is initiated when focus has left on the element. For example, when the user clicks into and then clicks outside of on a text input element, the function defined with the `onBlur` prop is called.
+
+```
+  function onBlurExample() {
+     return (
+      <input
+        onBlur={(e) => {
+          console.log('Triggered because this input lost focus');
+        }}
+        placeholder="onBlur is triggered when you click this input and then you click outside of it."
+      />
+     )
+  }
+```
 
 Properties:
 
 ```javascript
 DOMEventTarget relatedTarget
 ```
+`relatedTarget` is useful for detecting _child_ focus events as well as bubbling vs encapsulating events.
+
+* _bubbling_: If the focus/blur event fires on a descendant node, this handler gets called.
+* _encapsulation_: If focus passes between two descendant nodes, this handler does not get called.
+
+You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element:
+
+```
+export default function App() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        console.log("focused on", e.target);
+        if (e.currentTarget === e.target) {
+          console.log("focused on (self)");
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          console.log(
+            "Now focused on parent <div>, not triggered when swapping between children."
+          );
+        }
+      }}
+      onBlur={(e) => {
+        console.log("left focus of", e.target);
+        if (e.currentTarget === e.target) {
+          console.log("left focus of (self)");
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          console.log("left focus of <div>, not triggered when swapping focus between children inputs");
+        }
+      }}
+    >
+      <input id="1" />
+      <input id="2" />
+    </div>
+  );
+}
+```
+
 
 * * *
 

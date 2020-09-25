@@ -206,9 +206,6 @@ DOMEventTarget relatedTarget
 ```
 `relatedTarget` is useful for detecting _child_ focus events as well as bubbling vs encapsulating events.
 
-* _bubbling_: If the focus/blur event fires on a descendant node, this handler gets called.
-* _encapsulation_: If focus passes between two descendant nodes, this handler does not get called.
-
 You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element:
 
 ```

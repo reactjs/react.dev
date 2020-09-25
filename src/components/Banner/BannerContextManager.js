@@ -55,7 +55,7 @@ if (activeBanner) {
       // If we're in the campaign window, but the snooze has been set and it hasn't expired:
     } else if (
       snooze_start_date &&
-      addTimes(snooze_start_date, activeBanner.snooze_for_days) >= today
+      addTimes(snooze_start_date, activeBanner.snooze_duration) >= today
     ) {
       activeBanner = null;
     }

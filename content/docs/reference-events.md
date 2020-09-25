@@ -226,7 +226,7 @@ export default function App() {
       }}
       onBlur={(e) => {
         console.log("left focus of", e.target);
-        if (e.currentTarget === e.target) {
+        if (e.currentTarget !== e.target) {
           console.log("left focus of (self)");
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {

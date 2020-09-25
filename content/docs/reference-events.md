@@ -171,7 +171,7 @@ The `onFocus` prop is initiated when focus is on the element. For example, when 
 
 #### onBlur
 
-`onBlur` prop is initiated when focus has left on the element. For example, when the user clicks into and then clicks outside of on a text input element, the function defined with the `onFocus` prop is called.
+`onBlur` prop is initiated when focus has left on the element. For example, when the user clicks into and then clicks outside of on a text input element, the function defined with the `onBlur` prop is called.
 
 Properties:
 

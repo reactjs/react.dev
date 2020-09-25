@@ -10,12 +10,23 @@ import React, {useState, useLayoutEffect} from 'react';
 import BannerContext from './BannerContext';
 
 let activeBanner = null;
+let snooze_start_date = null;
+
+const today = new Date();
+function addTimes(date, days) {
+  const time = new Date(date);
+  const newTime = time.setDate(time.getDate() + days);
+  return newTime;
+}
 
 // Example usage:
 // activeBanner = {
-//   storageId: 'dismiss_banner_blm',
+//   storageId: 'react_banner_blm',
 //   normalHeight: 60,
 //   smallHeight: 80,
+//   campaign_start_date: '4 Sep 2020',
+//   campaign_end_date: '28 Oct 2020',
+//   snooze_duration: 0,
 //   content: dismiss => (
 //     <div>
 //       <a href="test">Test</a> <button onClick={dismiss}>close</button>
@@ -25,7 +36,28 @@ let activeBanner = null;
 
 if (activeBanner) {
   try {
-    if (localStorage.getItem(activeBanner.storageId)) {
+    if (localStorage[activeBanner.storageId]) {
+      snooze_start_date = new Date(
+        parseInt(localStorage.getItem(activeBanner.storageId)),
+      );
+    }
+  } catch (err) {
+    // Ignore.
+  }
+
+  try {
+    // If it's too early or long past the campaign, don't show the banner:
+    if (
+      today < new Date(activeBanner.campaign_start_date) ||
+      today > new Date(activeBanner.campaign_end_date)
+    ) {
+      activeBanner = null;
+      // If we're in the campaign window, but the snooze has been set and it hasn't expired:
+    } else if (
+      snooze_start_date &&
+      addTimes(snooze_start_date, activeBanner.snooze_duration) >=
+        Date.parse(today)
+    ) {
       activeBanner = null;
     }
   } catch (err) {
@@ -51,7 +83,7 @@ export default function BannerContextManager({children}: Props) {
         banner,
         dismiss: () => {
           try {
-            localStorage.setItem(banner.storageId, 'true');
+            localStorage.setItem(banner.storageId, Date.now());
           } catch (err) {
             // Ignore.
           }

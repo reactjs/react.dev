@@ -9,7 +9,9 @@ import Container from 'components/Container';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
-import React from 'react';
+// $FlowFixMe Update Flow
+import React, {useContext} from 'react';
+import {BannerContext} from 'components/Banner';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import FeedbackForm from 'components/FeedbackForm';
@@ -56,6 +58,7 @@ const MarkdownPage = ({
   sectionList,
   titlePostfix = '',
 }: Props) => {
+  const {banner} = useContext(BannerContext);
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
@@ -73,6 +76,9 @@ const MarkdownPage = ({
         flex: '1 0 auto',
         position: 'relative',
         zIndex: 0,
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          scrollMarginTop: banner ? banner.normalHeight : 0,
+        },
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}

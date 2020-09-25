@@ -4,6 +4,7 @@
  * @emails react-core
  */
 
+import {BannerContext} from 'components/Banner';
 import ButtonLink from 'components/ButtonLink';
 import Container from 'components/Container';
 import Flex from 'components/Flex';
@@ -20,6 +21,8 @@ import {babelURL} from 'site-constants';
 import logoWhiteSvg from 'icons/logo-white.svg';
 
 class Home extends Component {
+  static contextType = BannerContext;
+
   state = {
     babelLoaded: false,
   };
@@ -40,6 +43,7 @@ class Home extends Component {
   render() {
     const {babelLoaded} = this.state;
     const {data, location} = this.props;
+    const {banner} = this.context;
     const {codeExamples, examples, marketing} = data;
 
     const code = codeExamples.edges.reduce((lookup, {node}) => {
@@ -53,7 +57,11 @@ class Home extends Component {
           title="React &ndash; A JavaScript library for building user interfaces"
           canonicalUrl={createCanonicalUrl('/')}
         />
-        <div css={{width: '100%'}}>
+        <div
+          css={{
+            width: '100%',
+            marginTop: banner ? banner.normalHeight : 0,
+          }}>
           <header
             css={{
               backgroundColor: colors.dark,

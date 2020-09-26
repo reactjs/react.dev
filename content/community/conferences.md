@@ -12,15 +12,15 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### render(ATL) 2020 {#render-atlanta-2020} 
+August 20-23, 2020. Atlanta, GA, USA.
+
+[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
+
 ### React Native EU 2020 {#react-native-eu-2020}
 September 3-4, 2020 - remote event
 
 [Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/)
-
-### render(ATL) 2020 {#render-atlanta-2020} 
-September 13-15, 2020. Atlanta, GA, USA.
-
-[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
 ### React Summit 2020 {#react-summit-2020}
 7am PST / 1pm EST / 4pm CEST October 15-16, 2020 - remote event
@@ -36,6 +36,11 @@ November 25-27, 2020 in Berlin, Germany
 December 1, 2020. Tel Aviv, Israel.
 
 [Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
+
+### render(ATL) 2021 {#render-atlanta-2021} 
+September 13-15, 2021. Atlanta, GA, USA.
+
+[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
 ## Past Conferences {#past-conferences}
 

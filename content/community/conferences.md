@@ -27,6 +27,11 @@ September 13-15, 2020. Atlanta, GA, USA.
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
+### React Conf Brasil 2020 {#react-conf-2020}
+November 21, 2020 - remote event
+
+[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh/)
+
 ### React Day Berlin 2020 {#react-day-berlin-2020}
 November 25-27, 2020 in Berlin, Germany
 

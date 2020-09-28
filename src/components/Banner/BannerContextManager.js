@@ -8,6 +8,10 @@
 // $FlowFixMe Update Flow
 import React, {useState, useLayoutEffect} from 'react';
 import BannerContext from './BannerContext';
+import {colors} from 'theme';
+import ButtonLink from 'components/ButtonLink';
+import iSurveyGraphic2x from 'images/i_survey@2x.png';
+import iSurveyGraphic from 'images/i_survey.png';
 
 let activeBanner = null;
 let snoozeStartDate = null;
@@ -20,19 +24,82 @@ function addTimes(date, days) {
 }
 
 // Example usage:
-// activeBanner = {
-//   storageId: 'react_banner_XX',
-//   normalHeight: 60,
-//   smallHeight: 80,
-//   campaignStartDate: '2020-09-20Z', // the Z is for UTC
-//   campaignEndDate: '2020-10-31Z', // the Z is for UTC
-//   snoozeForDays: 7,
-//   content: dismiss => (
-//     <div>
-//       <a href="test">Test</a> <button onClick={dismiss}>close</button>
-//     </div>
-//   ),
-// };
+activeBanner = {
+  storageId: 'react_banner_2020survey',
+  normalHeight: 100,
+  smallHeight: 180,
+  campaignStartDate: '2020-09-28Z', // the Z is for UTC
+  campaignEndDate: '2020-10-13Z', // the Z is for UTC
+  snoozeForDays: 7,
+  content: dismiss => (
+    <div
+      css={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+      }}>
+      <a
+        href="https://www.surveymonkey.co.uk/r/673TZ7T"
+        css={{
+          alignItems: 'center',
+          flexBasis: 'auto',
+          flexGrow: 1,
+          display: 'flex',
+          justifyContent: 'center',
+        }}>
+        <span
+          css={{
+            flexBasis: 134,
+            justifyContent: 'flex-end',
+            flexGrow: 2,
+            textAlign: 'right',
+          }}>
+          <img
+            src={iSurveyGraphic}
+            srcSet={`${iSurveyGraphic2x} 2x`}
+            width="134"
+            height="58"
+            alt=" "
+          />
+        </span>
+        <span
+          css={{
+            flexBasis: 'auto',
+            flexGrow: 1,
+            justifyContent: 'center',
+            alignItems: 'center',
+            padding: '0 10px',
+            textAlign: 'left',
+          }}>
+          We want to hear from you! Participate in React's 2020 Community
+          Survey! <ButtonLink type="secondary">Take our survey </ButtonLink>
+        </span>
+      </a>{' '}
+      <svg
+        css={{
+          color: colors.subtle,
+          flexBasis: '.5em',
+          flexShrink: 0,
+          flexGrow: 0,
+          alignSelf: 'start',
+          cursor: 'pointer',
+          transition: 'color 200ms ease-out',
+          ':hover': {
+            color: colors.white,
+          },
+        }}
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 5.8 5.8"
+        alt="close"
+        onClick={dismiss}>
+        <path
+          d="M5.8 5.16L3.54 2.9 5.8.65 5.16 0 2.9 2.26.65 0 0 .65 2.26 2.9 0 5.16l.65.64L2.9 3.54 5.16 5.8l.64-.64z"
+          fill="currentColor"
+        />
+      </svg>{' '}
+    </div>
+  ),
+};
 
 if (activeBanner) {
   try {

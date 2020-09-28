@@ -169,16 +169,16 @@ These focus events work on all elements in the React DOM, not just form elements
 
 The `onFocus` prop is initiated when focus is on the element. For example, when the user clicks on a text input element, the function defined with the `onFocus` prop is called.
 
-```
+```javascript
   function onFocusExample() {
-     return (
+    return (
       <input
         onFocus={(e) => {
           console.log('Focused on input');
         }}
         placeholder="onFocus is triggered when you click this input."
       />
-     )
+    )
   }
 ```
 
@@ -186,17 +186,17 @@ The `onFocus` prop is initiated when focus is on the element. For example, when 
 
 `onBlur` prop is initiated when focus has left on the element. For example, when the user clicks into and then clicks outside of on a text input element, the function defined with the `onBlur` prop is called.
 
-```
-  function onBlurExample() {
-     return (
-      <input
-        onBlur={(e) => {
-          console.log('Triggered because this input lost focus');
-        }}
-        placeholder="onBlur is triggered when you click this input and then you click outside of it."
-      />
-     )
-  }
+```javascript
+function onBlurExample() {
+  return (
+    <input
+      onBlur={(e) => {
+        console.log('Triggered because this input lost focus');
+      }}
+      placeholder="onBlur is triggered when you click this input and then you click outside of it."
+    />
+  )
+}
 ```
 
 Properties:
@@ -208,7 +208,7 @@ DOMEventTarget relatedTarget
 
 You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element:
 
-```
+```javascript
 export default function App() {
   return (
     <div

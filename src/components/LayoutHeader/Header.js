@@ -244,7 +244,9 @@ const Header = ({location}: {location: Location}) => (
       </div>
     </Container>
     <Container>
-      <Banner />
+      <div style={{ position: 'relative' }}>
+        <Banner />
+      </div>
     </Container>
   </header>
 );

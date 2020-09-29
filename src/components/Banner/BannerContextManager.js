@@ -37,7 +37,6 @@ activeBanner = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
-        position: 'relative',
       }}>
       <span
         css={{
@@ -97,17 +96,19 @@ activeBanner = {
         </span>
       </span>{' '}
       <span
+        onClick={dismiss}
         css={{
           background: colors.darker,
           color: colors.subtle,
           fontSize: 12,
           alignSelf: 'start',
-          borderRadius: '0 .25em .25em 0',
+          borderRadius: '0 .25em 0 .25em',
           cursor: 'pointer',
           padding: '.25em',
           position: 'absolute',
-          bottom: '-1.5em',
           right: 0,
+          bottom: '.25em', // Account for border-radius
+          transform: 'translateY(100%)',
           transition: 'color 200ms ease-out',
           [media.lessThan('small')]: {
             fontSize: 20,
@@ -127,8 +128,7 @@ activeBanner = {
           }}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 5.8 5.8"
-          alt=" "
-          onClick={dismiss}>
+          alt=" ">
           <path
             d="M5.8 5.16L3.54 2.9 5.8.65 5.16 0 2.9 2.26.65 0 0 .65 2.26 2.9 0 5.16l.65.64L2.9 3.54 5.16 5.8l.64-.64z"
             fill="currentColor"

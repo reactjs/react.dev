@@ -25,9 +25,9 @@ function addTimes(date, days) {
 
 // Example usage:
 activeBanner = {
-  storageId: 'react_banner_2020survey',
+  storageId: 'reactjs_banner_2020survey',
   normalHeight: 100,
-  smallHeight: 180,
+  smallHeight: 140,
   campaignStartDate: '2020-09-28Z', // the Z is for UTC
   campaignEndDate: '2020-10-13Z', // the Z is for UTC
   snoozeForDays: 7,

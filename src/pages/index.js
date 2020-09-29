@@ -61,6 +61,10 @@ class Home extends Component {
           css={{
             width: '100%',
             marginTop: banner ? banner.normalHeight : 0,
+
+            [media.lessThan('small')]: {
+              marginTop: banner ? banner.smallHeight : 0,
+            },
           }}>
           <header
             css={{

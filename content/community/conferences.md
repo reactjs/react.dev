@@ -38,7 +38,7 @@ December 1, 2020. Tel Aviv, Israel.
 [Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
 
 ### React India 2021 {#react-india-2021}
-November 6, 2020 in Mumbai, India	November 12-13, 2021 in Mumbai, India
+November 12-13, 2021 in Mumbai, India
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)	[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 

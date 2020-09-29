@@ -49,7 +49,7 @@ render(
 ```
 
 `Profiler` components can also be nested to measure different components within the same subtree:
-```js{2,6,8}
+```js{3,5,8}
 render(
   <App>
     <Profiler id="Panel" onRender={callback}>

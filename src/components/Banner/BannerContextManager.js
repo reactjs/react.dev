@@ -37,6 +37,7 @@ activeBanner = {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'flex-start',
+        position: 'relative',
       }}>
       <span
         css={{
@@ -79,7 +80,10 @@ activeBanner = {
           }}>
           <span
             css={{
-              fontSize: 16,
+              fontSize: 20,
+              [media.lessThan('small')]: {
+                fontSize: 16,
+              },
               paddingRight: '.5em',
             }}>
             {' '}
@@ -92,28 +96,45 @@ activeBanner = {
           </ButtonLink>
         </span>
       </span>{' '}
-      <svg
+      <span
         css={{
+          background: colors.darker,
           color: colors.subtle,
-          flexBasis: '.5em',
-          flexShrink: 0,
-          flexGrow: 0,
+          fontSize: 12,
           alignSelf: 'start',
+          borderRadius: '0 .25em .25em 0',
           cursor: 'pointer',
+          padding: '.25em',
+          position: 'absolute',
+          bottom: '-1.5em',
+          right: 0,
           transition: 'color 200ms ease-out',
+          [media.lessThan('small')]: {
+            fontSize: 20,
+          },
           ':hover': {
             color: colors.white,
           },
-        }}
-        xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 5.8 5.8"
-        alt="close"
-        onClick={dismiss}>
-        <path
-          d="M5.8 5.16L3.54 2.9 5.8.65 5.16 0 2.9 2.26.65 0 0 .65 2.26 2.9 0 5.16l.65.64L2.9 3.54 5.16 5.8l.64-.64z"
-          fill="currentColor"
-        />
-      </svg>{' '}
+        }}>
+        {' '}
+        Close
+        <svg
+          css={{
+            color: 'inherit',
+            marginLeft: '.5em',
+            display: 'inline-block',
+            width: '.5em',
+          }}
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 5.8 5.8"
+          alt=" "
+          onClick={dismiss}>
+          <path
+            d="M5.8 5.16L3.54 2.9 5.8.65 5.16 0 2.9 2.26.65 0 0 .65 2.26 2.9 0 5.16l.65.64L2.9 3.54 5.16 5.8l.64-.64z"
+            fill="currentColor"
+          />
+        </svg>
+      </span>
     </div>
   ),
 };

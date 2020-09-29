@@ -22,11 +22,6 @@ November 21, 2020 - remote event
 
 [Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh/)
 
-### React Day Berlin 2020 {#react-day-berlin-2020}
-November 25-27, 2020 in Berlin, Germany
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/reactdayberlin)
-
 ### React Next 2020 {#react-next-2020}
 December 1-2, 2020 - remote event
 

@@ -32,7 +32,6 @@ const ButtonLink = ({children, type, ...rest}) => {
       typeStyle = primaryStyle;
       break;
     case 'secondary':
-    case 'secondaryNoArrow':
       typeStyle = secondaryStyle;
       break;
   }

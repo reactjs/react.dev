@@ -50,7 +50,7 @@ activeBanner = {
           css={{
             flexBasis: 100,
             justifyContent: 'flex-end',
-            flexGrow: 2,
+            flexGrow: 1,
             textAlign: 'right',
             [media.lessThan('small')]: {
               display: 'none',
@@ -61,6 +61,7 @@ activeBanner = {
               src={iSurveyGraphic}
               srcSet={`${iSurveyGraphic2x} 2x`}
               width="100"
+              height="43"
               alt=" "
             />
           </a>
@@ -88,11 +89,41 @@ activeBanner = {
             {' '}
             We want to hear from you!
           </span>
-          <ButtonLink
-            to="https://www.surveymonkey.co.uk/r/673TZ7T"
-            type="secondary">
+          <a
+            href="https://www.surveymonkey.co.uk/r/673TZ7T"
+            target="_blank"
+            css={{
+              display: 'inline-block',
+              fontSize: 16,
+              color: colors.brand,
+              transition: 'color 200ms ease-out, transform 200ms ease-out',
+
+              ':hover': {
+                color: colors.white,
+              },
+              ':hover svg': {
+                transform: 'translateX(2px)',
+              },
+              [media.greaterThan('xlarge')]: {
+                fontSize: 20,
+              },
+            }}>
             Take our 2020 Community Survey!{' '}
-          </ButtonLink>
+            <svg
+              css={{}}
+              height="12"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 4.53657 8.69699">
+              <path
+                d={`
+        M.18254,8.697a.18149.18149,0,0,1-.12886-.31034L4.09723,4.34126.05369.29954a.18149.18149,
+        0,0,1,.2559-.2559L4.4838,4.21785a.18149.18149,0,0,1,0,.2559L.30958,8.648A.18149.18149,
+        0,0,1,.18254,8.697Z
+      `}
+                fill="currentColor"
+              />
+            </svg>
+          </a>
         </span>
       </span>{' '}
       <span

@@ -17,6 +17,11 @@ October 15-16, 2020, 7am PST / 10am EST / 4pm CEST - remote event
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
+### React Conf Brasil 2020 {#react-conf-brasil-2020}
+November 21, 2020 - remote event
+
+[Website](https://reactconf.com.br/) - [Twitter](https://twitter.com/reactconfbr) - [Slack](https://react.now.sh/)
+
 ### React Next 2020 {#react-next-2020}
 December 1-2, 2020 - remote event
 

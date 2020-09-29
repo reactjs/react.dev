@@ -28,8 +28,8 @@ activeBanner = {
   storageId: 'reactjs_banner_2020survey',
   normalHeight: 100,
   smallHeight: 140,
-  campaignStartDate: '2020-09-28Z', // the Z is for UTC
-  campaignEndDate: '2020-10-13Z', // the Z is for UTC
+  campaignStartDate: '2020-09-30Z', // the Z is for UTC
+  campaignEndDate: '2020-12-13Z', // the Z is for UTC
   snoozeForDays: 7,
   content: dismiss => (
     <div

@@ -91,7 +91,7 @@ activeBanner = {
           <ButtonLink
             to="https://www.surveymonkey.co.uk/r/673TZ7T"
             type="secondary">
-            Take our 2020 Community Survey!{' '}
+            Take our 2020 Community Survey!
           </ButtonLink>
         </span>
       </span>{' '}

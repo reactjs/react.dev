@@ -103,7 +103,7 @@ activeBanner = {
           color: colors.subtle,
           fontSize: 12,
           alignSelf: 'start',
-          borderRadius: '0 .25em 0 .25em',
+          borderRadius: '0 0 .5em .5em',
           cursor: 'pointer',
           padding: '.25em',
           position: 'absolute',

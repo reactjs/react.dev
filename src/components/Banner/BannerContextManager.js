@@ -96,16 +96,17 @@ activeBanner = {
           </ButtonLink>
         </span>
       </span>{' '}
-      <span
+      <button
         onClick={dismiss}
         css={{
           background: colors.darker,
+          border: 0,
           color: colors.subtle,
           fontSize: 12,
           alignSelf: 'start',
           borderRadius: '0 0 .5em .5em',
           cursor: 'pointer',
-          padding: '.25em',
+          padding: '.5em',
           position: 'absolute',
           right: 0,
           bottom: '.25em', // Account for border-radius
@@ -118,7 +119,6 @@ activeBanner = {
             color: colors.white,
           },
         }}>
-        {' '}
         Close
         <svg
           css={{
@@ -135,7 +135,7 @@ activeBanner = {
             fill="currentColor"
           />
         </svg>
-      </span>
+      </button>
     </div>
   ),
 };

@@ -60,7 +60,7 @@ activeBanner = {
             <img
               src={iSurveyGraphic}
               srcSet={`${iSurveyGraphic2x} 2x`}
-              width="100"
+              height="40"
               alt=" "
             />
           </a>
@@ -99,8 +99,8 @@ activeBanner = {
         onClick={dismiss}
         css={{
           background: colors.darker,
-          color: colors.subtle,
-          fontSize: 12,
+          color: colors.subtleOnDark,
+          fontSize: 14,
           alignSelf: 'start',
           borderRadius: '0 .25em 0 .25em',
           cursor: 'pointer',
@@ -111,7 +111,7 @@ activeBanner = {
           transform: 'translateY(100%)',
           transition: 'color 200ms ease-out',
           [media.lessThan('small')]: {
-            fontSize: 20,
+            fontSize: 18,
           },
           ':hover': {
             color: colors.white,

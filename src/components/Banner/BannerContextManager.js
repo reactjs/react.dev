@@ -8,7 +8,7 @@
 // $FlowFixMe Update Flow
 import React, {useState, useLayoutEffect} from 'react';
 import BannerContext from './BannerContext';
-import {colors} from 'theme';
+import {colors, media} from 'theme';
 import ButtonLink from 'components/ButtonLink';
 import iSurveyGraphic2x from 'images/i_survey@2x.png';
 import iSurveyGraphic from 'images/i_survey.png';
@@ -26,9 +26,9 @@ function addTimes(date, days) {
 // Example usage:
 activeBanner = {
   storageId: 'reactjs_banner_2020survey',
-  normalHeight: 100,
-  smallHeight: 140,
-  campaignStartDate: '2020-09-30Z', // the Z is for UTC
+  normalHeight: 80,
+  smallHeight: 100,
+  campaignStartDate: '2020-09-27Z', // the Z is for UTC
   campaignEndDate: '2020-12-13Z', // the Z is for UTC
   snoozeForDays: 7,
   content: dismiss => (
@@ -38,8 +38,7 @@ activeBanner = {
         justifyContent: 'center',
         alignItems: 'flex-start',
       }}>
-      <a
-        href="https://www.surveymonkey.co.uk/r/673TZ7T"
+      <span
         css={{
           alignItems: 'center',
           flexBasis: 'auto',
@@ -49,18 +48,22 @@ activeBanner = {
         }}>
         <span
           css={{
-            flexBasis: 134,
+            flexBasis: 100,
             justifyContent: 'flex-end',
             flexGrow: 2,
             textAlign: 'right',
+            [media.lessThan('small')]: {
+              display: 'none',
+            },
           }}>
-          <img
-            src={iSurveyGraphic}
-            srcSet={`${iSurveyGraphic2x} 2x`}
-            width="134"
-            height="58"
-            alt=" "
-          />
+          <a href="https://www.surveymonkey.co.uk/r/673TZ7T">
+            <img
+              src={iSurveyGraphic}
+              srcSet={`${iSurveyGraphic2x} 2x`}
+              width="100"
+              alt=" "
+            />
+          </a>
         </span>
         <span
           css={{
@@ -70,11 +73,25 @@ activeBanner = {
             alignItems: 'center',
             padding: '0 10px',
             textAlign: 'left',
+            [media.lessThan('small')]: {
+              textAlign: 'center',
+            },
           }}>
-          We want to hear from you! Participate in React's 2020 Community
-          Survey! <ButtonLink type="secondary">Take our survey </ButtonLink>
+          <span
+            css={{
+              fontSize: 16,
+              paddingRight: '.5em',
+            }}>
+            {' '}
+            We want to hear from you!
+          </span>
+          <ButtonLink
+            to="https://www.surveymonkey.co.uk/r/673TZ7T"
+            type="secondary">
+            Take our 2020 Community Survey!{' '}
+          </ButtonLink>
         </span>
-      </a>{' '}
+      </span>{' '}
       <svg
         css={{
           color: colors.subtle,

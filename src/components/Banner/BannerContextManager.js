@@ -50,7 +50,7 @@ activeBanner = {
           css={{
             flexBasis: 100,
             justifyContent: 'flex-end',
-            flexGrow: 2,
+            flexGrow: 1,
             textAlign: 'right',
             [media.lessThan('small')]: {
               display: 'none',

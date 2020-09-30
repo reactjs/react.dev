@@ -19,12 +19,13 @@ export default function Banner() {
     <div
       css={{
         height: banner.normalHeight,
-        fontSize: 20,
-        padding: 20,
-        textAlign: 'center',
-
+        fontSize: 18,
+        [media.lessThan('large')]: {
+          fontSize: 16,
+        },
         [media.lessThan('small')]: {
           height: banner.smallHeight,
+          fontSize: 14,
         },
       }}>
       {banner.content(dismiss)}

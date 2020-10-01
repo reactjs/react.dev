@@ -1,15 +1,8 @@
 Note to Hacktoberfest 🎃 participants:
 
-While we appreciate the enthusiasm, we are experiencing a high volume
-of drive-by pull requests (one-line changes, README tweaks, etc.).
-Please remember that hundreds of people are subscribed to this repo and
-will receive notifications for these PRs.
-Spam submissions will be closed and won't count towards your Hacktoberfest goals.
+While we appreciate the enthusiasm, we are experiencing a high volume of drive-by pull requests (one-line changes, README tweaks, etc.). Please remember that hundreds of people are subscribed to this repo and will receive notifications for these PRs. Spam submissions will be closed and won't count towards your Hacktoberfest goals.
 
-Please search for issues tagged
-[`good first issue`][gfi]
-or [`hacktoberfest`][hacktoberfest]
-to find things to work on.
+Please search for issues tagged [`good first issue`][gfi] or [`hacktoberfest`][hacktoberfest] to find things to work on.
 
 You can also search [all of GitHub][all].
 

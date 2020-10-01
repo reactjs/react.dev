@@ -26,7 +26,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 
 ### Guidelines
 
-The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
+The documentation is divided into several sections with the different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
 
 ### Create a branch
 
@@ -38,13 +38,13 @@ The documentation is divided into several sections with a different tone and pur
 
 1. Follow the ["Running locally"](#running-locally) instructions
 1. Save the files and check in the browser
-  1. Changes to React components in `src` will hot-reload
-  1. Changes to markdown files in `content` will hot-reload
-  1. If working with plugins, you may need to remove the `.cache` directory and restart the server
+  1. Changes to React components in `src` will hot-reload.
+  1. Changes to markdown files in `content` will hot-reload.
+  1. If working with plugins, you may need to remove the `.cache` directory and restart the server.
 
 ### Test the change
 
-1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
+1. If possible, test any visual changes in all the latest versions of common browsers, on both desktop and mobile.
 1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
 
 ### Push it

@@ -17,7 +17,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 1. `cd reactjs.org` to go into the project root
 1. `yarn` to install the website's npm dependencies
 
-### Running locally
+### Running locally here
 
 1. `yarn dev` to start the hot-reloading development server (powered by [Gatsby](https://www.gatsbyjs.org))
 1. `open http://localhost:8000` to open the site in your favorite browser
@@ -28,13 +28,13 @@ This repo contains the source code and documentation powering [reactjs.org](http
 
 The documentation is divided into several sections with a different tone and purpose. If you plan to write more than a few sentences, you might find it helpful to get familiar with the [contributing guidelines](https://github.com/reactjs/reactjs.org/blob/master/CONTRIBUTING.md#guidelines-for-text) for the appropriate sections.
 
-### Create a branch
+### Create a branch here
 
 1. `git checkout master` from any folder in your local `reactjs.org` repository
 1. `git pull origin master` to ensure you have the latest main code
 1. `git checkout -b the-name-of-my-branch` (replacing `the-name-of-my-branch` with a suitable name) to create a branch
 
-### Make the change
+### Make changes here
 
 1. Follow the ["Running locally"](#running-locally) instructions
 1. Save the files and check in the browser
@@ -47,7 +47,7 @@ The documentation is divided into several sections with a different tone and pur
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
 1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
 
-### Push it
+### Push it here
 
 1. `git add -A && git commit -m "My message"` (replacing `My message` with a commit message, such as `Fix header logo on Android`) to stage and commit your changes
 1. `git push my-fork-name the-name-of-my-branch`

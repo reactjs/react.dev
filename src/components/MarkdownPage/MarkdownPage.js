@@ -10,8 +10,7 @@ import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
 // $FlowFixMe Update Flow
-import React, {useContext} from 'react';
-import {BannerContext} from 'components/Banner';
+import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import FeedbackForm from 'components/FeedbackForm';
@@ -19,7 +18,7 @@ import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
-import {colors} from 'theme';
+import {colors, media} from 'theme';
 
 import type {Node} from 'types';
 
@@ -58,7 +57,6 @@ const MarkdownPage = ({
   sectionList,
   titlePostfix = '',
 }: Props) => {
-  const {banner} = useContext(BannerContext);
   const hasAuthors = authors.length > 0;
   const titlePrefix = markdownRemark.frontmatter.title || '';
 
@@ -77,7 +75,10 @@ const MarkdownPage = ({
         position: 'relative',
         zIndex: 0,
         '& h1, & h2, & h3, & h4, & h5, & h6': {
-          scrollMarginTop: banner ? banner.normalHeight : 0,
+          scrollMarginTop: 'var(--banner-height-normal)',
+          [media.lessThan('small')]: {
+            scrollMarginTop: 'var(--banner-height-small)',
+          },
         },
       }}>
       <TitleAndMetaTags

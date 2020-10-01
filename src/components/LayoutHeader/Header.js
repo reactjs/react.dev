@@ -20,6 +20,15 @@ import navHeader from '../../../content/headerNav.yml';
 
 import logoSvg from 'icons/logo.svg';
 
+const ContainerWrapper = ({children}) => (
+  <div
+    css={{
+      backgroundColor: 'hsl(222, 14%, 10%)',
+    }}>
+    {children}
+  </div>
+);
+
 const Header = ({location}: {location: Location}) => (
   <header
     css={{
@@ -34,6 +43,13 @@ const Header = ({location}: {location: Location}) => (
         display: 'none',
       },
     }}>
+    <ContainerWrapper>
+      <Container>
+        <div style={{position: 'relative'}}>
+          <Banner />
+        </div>
+      </Container>
+    </ContainerWrapper>
     <Container>
       <div
         css={{
@@ -242,9 +258,6 @@ const Header = ({location}: {location: Location}) => (
           </a>
         </div>
       </div>
-    </Container>
-    <Container>
-      <Banner />
     </Container>
   </header>
 );

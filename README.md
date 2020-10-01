@@ -5,7 +5,7 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ## Getting started
 
 ### Prerequisites
-
+it will be really helpful if you add link of video of output.
 1. Git
 1. Node: any 12.x version starting with v12.0.0 or greater
 1. Yarn: See [Yarn website for installation instructions](https://yarnpkg.com/lang/en/docs/install/)

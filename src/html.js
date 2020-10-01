@@ -41,6 +41,94 @@ export default class HTML extends React.Component<Props> {
           {this.props.headComponents}
         </head>
         <body {...this.props.bodyAttributes}>
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+                (function() {
+                  /*
+                    BE CAREFUL!
+                    This code is not compiled by our transforms
+                    so it needs to stay compatible with older browsers.
+                  */
+
+                  var activeBanner = null;
+                  var snoozeStartDate = null;
+                  var today = new Date();
+
+                  function addTimes(date, days) {
+                    var time = new Date(date);
+                    time.setDate(time.getDate() + days);
+                    return time;
+                  }
+
+                  activeBanner = {
+                    storageId: 'reactjs_banner_2020survey',
+                    normalHeight: 50,
+                    smallHeight: 75,
+                    campaignStartDate: '2020-09-27Z', // the Z is for UTC
+                    campaignEndDate: '2020-12-13Z', // the Z is for UTC
+                    snoozeForDays: 7,
+                  };
+
+                  if (activeBanner) {
+                    try {
+                      if (localStorage[activeBanner.storageId]) {
+                        snoozeStartDate = new Date(
+                          parseInt(localStorage.getItem(activeBanner.storageId), 10),
+                        );
+                      }
+                    } catch (err) {
+                      // Ignore.
+                    }
+
+                    try {
+                      // If it's too early or long past the campaign, don't show the banner:
+                      if (
+                        today < new Date(activeBanner.campaignStartDate) ||
+                        today > new Date(activeBanner.campaignEndDate)
+                      ) {
+                        activeBanner = null;
+                        // If we're in the campaign window, but the snooze has been set and it hasn't expired:
+                      } else if (
+                        snoozeStartDate &&
+                        addTimes(snoozeStartDate, activeBanner.snoozeForDays) >= today
+                      ) {
+                        activeBanner = null;
+                      }
+                    } catch (err) {
+                      // Ignore.
+                    }
+                  }
+
+                  function updateStyles() {
+                    if (activeBanner) {
+                      document.documentElement.style.setProperty('--banner-display', 'block');
+                      document.documentElement.style.setProperty('--banner-height-normal', activeBanner.normalHeight + 'px');
+                      document.documentElement.style.setProperty('--banner-height-small', activeBanner.smallHeight + 'px');
+                    } else {
+                      document.documentElement.style.setProperty('--banner-display', 'none');
+                      document.documentElement.style.setProperty('--banner-height-normal', '0px');
+                      document.documentElement.style.setProperty('--banner-height-small', '0px');
+                    }
+                  }
+
+                  updateStyles();
+                  window.__dismissBanner = function() {
+                    if (activeBanner) {
+                      try {
+                        localStorage.setItem(activeBanner.storageId, Date.now().toString());
+                      } catch (err) {
+                        // Ignore.
+                      }
+                      // Don't show for next navigations within the session.
+                      activeBanner = null;
+                      updateStyles();
+                    }
+                  };
+                })();
+              `,
+            }}
+          />
           <div
             id="___gatsby"
             dangerouslySetInnerHTML={{__html: this.props.body}}

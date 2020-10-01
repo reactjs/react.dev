@@ -6,8 +6,7 @@
  */
 
 // $FlowFixMe Update Flow
-import React, {useContext} from 'react';
-import BannerContext from './BannerContext';
+import React from 'react';
 import {colors, fonts, media} from 'theme';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 
@@ -18,20 +17,17 @@ const linkProps = {
 };
 
 export default function Banner() {
-  const {banner, dismiss} = useContext(BannerContext);
-  if (banner === null) {
-    return null;
-  }
   return (
     <div
       css={{
-        height: banner.normalHeight,
+        display: 'var(--banner-display)',
+        height: 'var(--banner-height-normal)',
         fontSize: 18,
         [media.lessThan('large')]: {
           fontSize: 16,
         },
         [media.lessThan('small')]: {
-          height: banner.smallHeight,
+          height: 'var(--banner-height-small)',
           fontSize: 14,
         },
       }}>
@@ -169,7 +165,10 @@ export default function Banner() {
               marginLeft: '2rem',
               fontSize: fonts.small.fontSize,
             }}
-            onClick={dismiss}>
+            onClick={() => {
+              // See html.js
+              window.__dismissBanner();
+            }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               css={{
@@ -177,8 +176,7 @@ export default function Banner() {
                 height: 10,
               }}
               viewBox="0 0 5.8 5.8"
-              alt="close"
-              class="css-1lj2i1">
+              alt="close">
               <path
                 d="M5.8 5.16L3.54 2.9 5.8.65 5.16 0 2.9 2.26.65 0 0 .65 2.26 2.9 0 5.16l.65.64L2.9 3.54 5.16 5.8l.64-.64z"
                 fill="currentColor"></path>

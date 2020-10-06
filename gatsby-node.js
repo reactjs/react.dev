@@ -3,6 +3,7 @@
  *
  * @emails react-core
  */
+// this is open source project created and maintained by facebook
 
 'use strict';
 

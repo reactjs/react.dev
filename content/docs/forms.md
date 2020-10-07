@@ -135,44 +135,36 @@ In HTML, `<select>` creates a drop-down list. For example, this HTML creates a d
 Note that the Coconut option is initially selected, because of the `selected` attribute. React, instead of using this `selected` attribute, uses a `value` attribute on the root `select` tag. This is more convenient in a controlled component because you only need to update it in one place. For example:
 
 ```javascript{4,10-12,24}
-class FlavorForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {value: 'coconut'};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
+function FlavourForm() {
+  const [flavour, setFlavour] = useState("");
+  const handleSubmit = (event) => {
+    alert(`Your favorite flavor is ${flavour}`);
     event.preventDefault();
-  }
-
-  render() {
-    return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Pick your favorite flavor:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value="grapefruit">Grapefruit</option>
-            <option value="lime">Lime</option>
-            <option value="coconut">Coconut</option>
-            <option value="mango">Mango</option>
-          </select>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-    );
-  }
+  };
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>
+        Pick your favorite flavor:
+        <select
+          value={flavour}
+          onChange={(event) => setFlavour(event.target.value)}
+        >
+          <option value="grapefruit">Grapefruit</option>
+          <option value="lime">Lime</option>
+          <option value="coconut">Coconut</option>
+          <option value="mango">Mango</option>
+        </select>
+      </label>
+      <input type="submit" value="Submit" />
+    </form>
+  );
 }
+const rootElement = document.getElementById("root");
+
+ReactDOM.render(<FlavourForm />, rootElement);
 ```
 
-[**Try it on CodePen**](https://codepen.io/gaearon/pen/JbbEzX?editors=0010)
+[**Try it on CodeSandBox**](https://codesandbox.io/s/controlled-select-example-fls8j)
 
 Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 

@@ -24,6 +24,8 @@ permalink: community/courses.html
 
 - [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 hands-on video tutorials building react apps.
 
+- [React Tutorials](https://codedamn.com/learn/reactjs) - A beginner friendly course to explain what react is and how to use it.
+
 ## Paid Courses {#paid-courses}
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) - Short instructional videos on React and many other topics.

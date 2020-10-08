@@ -1,3 +1,5 @@
+{
+  "github": { "silent": true },
   "redirects": [
     { "source": "/tips/controlled-input-null-value.html", "destination": "/docs/forms.html#controlled-input-null-value", "permanent": false },
     { "source": "/concurrent", "destination": "/docs/concurrent-mode-intro.html", "permanent": false },

@@ -39,3 +39,4 @@
     { "source": "/link/react-devtools-faq", "destination": "https://github.com/facebook/react/tree/master/packages/react-devtools#faq", "permanent": false },
     { "source": "/link/setstate-in-render", "destination": "https://github.com/facebook/react/issues/18178#issuecomment-595846312", "permanent": false }
   ]
+}

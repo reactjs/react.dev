@@ -54,7 +54,7 @@ function App() {
 
 However, this is not perfect:
 
-* Because JSX compiled into `React.createElement`, `React` needed to be in scope if you use JSX.
+* Because JSX was compiled into `React.createElement`, `React` needed to be in scope if you used JSX.
 * There are some [performance improvements and simplifications](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#motivation) that `React.createElement` does not allow.
 
 To solve these issues, React 17 introduces two new entry points to the React package that are intended to only be used by compilers like Babel and TypeScript. Instead of transforming JSX to `React.createElement`, **the new JSX transform** automatically imports special functions from those new entry points in the React package and calls them.

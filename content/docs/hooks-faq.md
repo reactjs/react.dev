@@ -921,7 +921,7 @@ In some rare cases you might need to memoize a callback with [`useCallback`](/do
 
 ```js{6,10}
 function Form() {
-  const [text, updateText] = useState('');
+  const [text, setText] = useState('');
   const textRef = useRef();
 
   useEffect(() => {
@@ -935,7 +935,7 @@ function Form() {
 
   return (
     <>
-      <input value={text} onChange={e => updateText(e.target.value)} />
+      <input value={text} onChange={e => setText(e.target.value)} />
       <ExpensiveTree onSubmit={handleSubmit} />
     </>
   );
@@ -946,7 +946,7 @@ This is a rather convoluted pattern but it shows that you can do this escape hat
 
 ```js{4,16}
 function Form() {
-  const [text, updateText] = useState('');
+  const [text, setText] = useState('');
   // Will be memoized even if `text` changes:
   const handleSubmit = useEventCallback(() => {
     alert(text);
@@ -954,7 +954,7 @@ function Form() {
 
   return (
     <>
-      <input value={text} onChange={e => updateText(e.target.value)} />
+      <input value={text} onChange={e => setText(e.target.value)} />
       <ExpensiveTree onSubmit={handleSubmit} />
     </>
   );

@@ -1,7 +1,5 @@
-function FancyButton(props) {
-  return (
-    <button className="FancyButton">
-      {props.children}
-    </button>
-  );
-}
+const FancyButton = (props, ref) => (
+  <button className="FancyButton">
+    {props.children}
+  </button>
+);

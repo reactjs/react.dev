@@ -20,7 +20,7 @@ Upgrading to the new transform is completely optional, but it has a few benefits
 **This upgrade will not change the JSX syntax and is not required.** The old JSX transform will keep working as usual, and there are no plans to remove the support for it.
 
 
-[React 17 RC](/blog/2020/08/10/react-v17-rc.html) already includes support for the new transform, so go give it a try! To make it easier to adopt, after React 17 is released, we also plan to backport its support to React 16.x, React 15.x, and React 0.14.x. You can find the upgrade instructions for different tools [below](#how-to-upgrade-to-the-new-jsx-transform).
+[React 17 RC](/blog/2020/08/10/react-v17-rc.html) already includes support for the new transform, so go give it a try! To make it easier to adopt, **we've also backported its support** to React 16.14.10, React 15.7.0, and React 0.14.10. You can find the upgrade instructions for different tools [below](#how-to-upgrade-to-the-new-jsx-transform).
 
 Now let's take a closer look at the differences between the old and the new transform.
 
@@ -92,7 +92,7 @@ If you aren't ready to upgrade to the new JSX transform or if you are using JSX 
 
 If you want to upgrade, you will need two things:
 
-* **A version of React that supports the new transform** (currently, only [React 17 RC](/blog/2020/08/10/react-v17-rc.html) supports it, but after React 17.0 has been released, we plan to make additional compatible releases for 0.14.x, 15.x, and 16.x).
+* **A version of React that supports the new transform** ([React 17 RC](/blog/2020/08/10/react-v17-rc.html) and higher supports it, but we've also released React 16.14.0, React 15.7.0, and React 0.14.10 for people who are still on the older major versions).
 * **A compatible compiler** (see instructions for different tools below).
 
 Since the new JSX transform doesn't require React to be in scope, [we've also prepared an automated script](#removing-unused-react-imports) that will remove the unnecessary imports from your codebase.
@@ -111,7 +111,7 @@ Gatsby [v2.24.5](https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby/
 
 >Note
 >
->If you get [this Gatsby error](https://github.com/gatsbyjs/gatsby/issues/26979) after upgrading to React `17.0.0-rc.2`, run `npm update` to fix it.
+>If you get [this Gatsby error](https://github.com/gatsbyjs/gatsby/issues/26979) after upgrading to React 17 RC, run `npm update` to fix it.
 
 ### Manual Babel Setup {#manual-babel-setup}
 

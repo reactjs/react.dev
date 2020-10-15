@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const {appendFile, exists, readFile, writeFile} = require('fs-extra');
 
 const HEADER_COMMENT = `## Created with gatsby-transformer-versions-yaml`;

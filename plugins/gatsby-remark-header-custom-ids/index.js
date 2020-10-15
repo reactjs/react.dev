@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 /*!
  * Based on 'gatsby-remark-autolink-headers'
  * Original Author: Kyle Mathews <mathews.kyle@gmail.com>

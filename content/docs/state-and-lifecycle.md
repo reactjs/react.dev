@@ -418,12 +418,6 @@ This is why state is often called local or encapsulated. It is not accessible to
 A component may choose to pass its state down as props to its child components:
 
 ```js
-<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
-```
-
-This also works for user-defined components:
-
-```js
 <FormattedDate date={this.state.date} />
 ```
 

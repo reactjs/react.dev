@@ -172,6 +172,8 @@ Starting from Babel 8, `"automatic"` will be the default runtime for both plugin
 > Note
 >
 > If you use JSX with a library other than React, you can use [the `importSource` option](https://babeljs.io/docs/en/babel-preset-react#importsource) to import from that library instead -- as long as it provides the necessary entry points. Alternatively, you can keep using the classic transform which will continue to be supported.
+>
+> If you're a library author and you are implementing the `/jsx-runtime` entry point for your library, keep in mind that [there is a case](https://github.com/facebook/react/issues/20031#issuecomment-710346866) in which even the new transform has to fall back to `createElement` for backwards compatibility. In that case, it will auto-import `createElement` directly from the *root* entry point specified by `importSource`.
 
 ### ESLint {#eslint}
 

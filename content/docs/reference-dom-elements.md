@@ -45,6 +45,13 @@ function MyComponent() {
   return <div dangerouslySetInnerHTML={createMarkup()} />;
 }
 ```
+And there is new a way using React's [Fragments](docs/fragments.html)
+
+```js
+function MyComponent() {
+  return <>First &middot; Second</>;
+}
+```
 
 ### htmlFor {#htmlfor}
 

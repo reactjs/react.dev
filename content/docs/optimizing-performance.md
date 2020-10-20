@@ -43,8 +43,8 @@ Remember that this is only necessary before deploying to production. For normal 
 We offer production-ready versions of React and React DOM as single files:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Remember that only React files ending with `.production.min.js` are suitable for production.
@@ -75,10 +75,10 @@ For the most efficient Browserify production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify terser uglifyify 
+npm install --save-dev envify terser uglifyify
 
 # If you use Yarn
-yarn add --dev envify terser uglifyify 
+yarn add --dev envify terser uglifyify
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
@@ -379,7 +379,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-This feature was added to JavaScript in ES2018. 
+This feature was added to JavaScript in ES2018.
 
 If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
 

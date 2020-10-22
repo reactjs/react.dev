@@ -4,7 +4,7 @@ title: Legacy Event Pooling
 permalink: docs/legacy-event-pooling.html
 ---
 
-The [`SyntheticEvent`](/docs/events.html) has been pooled until React 17. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
+In React 16 and earlier, the [`SyntheticEvent`](/docs/events.html) was pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
 This is for performance reasons.
 As such, you cannot access the event in an asynchronous way.
 

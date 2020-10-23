@@ -4,26 +4,34 @@ title: Legacy Event Pooling
 permalink: docs/legacy-event-pooling.html
 ---
 
-In React 16 and earlier, the [`SyntheticEvent`](/docs/events.html) was pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event callback has been invoked.
-This is for performance reasons.
-As such, you cannot access the event in an asynchronous way.
+>Note
+>
+>This page is only relevant for React 16 and earlier, and for React Native.
+>
+>React 17 on the web **does not** use event pooling.
+>
+>[Read more](/blog/2020/08/10/react-v17-rc.html#no-event-pooling) about this change in React 17.
+
+The [`SyntheticEvent`](/docs/events.html) objects are pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event event handler has been called. For example, this won't work:
 
 ```javascript
-function onClick(event) {
-  console.log(event); // => nullified object.
-  console.log(event.type); // => "click"
-  const eventType = event.type; // => "click"
-  setTimeout(function() {
-    console.log(event.type); // => null
-    console.log(eventType); // => "click"
-  }, 0);
-  // Won't work. this.state.clickEvent will only contain null values.
-  this.setState({clickEvent: event});
-  // You can still export event properties.
-  this.setState({eventType: event.type});
+function handleChange(e) {
+  // This won't work because the event object gets reused.
+  setTimeout(() => {
+    console.log(e.target.value); // Too late!
+  }, 100);
 }
 ```
 
-> Note:
->
-> If you want to access the event properties in an asynchronous way, you should call `event.persist()` on the event, which will remove the synthetic event from the pool and allow references to the event to be retained by user code.
+If you need to access event object's properties after the event handler has run, you need to call `e.persist()`:
+
+```javascript
+function handleChange(e) {
+  // Prevents React from resetting its properties:
+  e.persist();
+
+  setTimeout(() => {
+    console.log(e.target.value); // Works
+  }, 100);
+}
+```

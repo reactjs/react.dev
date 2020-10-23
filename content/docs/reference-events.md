@@ -34,7 +34,7 @@ string type
 
 > Note:
 >
-> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer pooled.
+> As of v17, `e.persist()` doesn't do anything because the `SyntheticEvent` is no longer [pooled](/docs/legacy-event-pooling.html).
 
 > Note:
 >

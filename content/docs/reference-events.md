@@ -165,6 +165,12 @@ onFocus onBlur
 
 These focus events work on all elements in the React DOM, not just form elements.
 
+Properties:
+
+```js
+DOMEventTarget relatedTarget
+```
+
 #### onFocus
 
 The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.

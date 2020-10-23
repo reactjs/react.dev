@@ -1,6 +1,6 @@
 ---
 id: legacy-event-pooling
-title: Legacy Event Pooling
+title: Event Pooling
 permalink: docs/legacy-event-pooling.html
 ---
 

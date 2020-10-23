@@ -15,7 +15,7 @@
     { "source": "/link/dangerously-set-inner-html", "destination": "/docs/dom-elements.html#dangerouslysetinnerhtml", "permanent": false },
     { "source": "/link/derived-state", "destination": "/blog/2018/06/07/you-probably-dont-need-derived-state.html", "permanent": false },
     { "source": "/link/error-boundaries", "destination": "/docs/error-boundaries.html", "permanent": false },
-    { "source": "/link/event-pooling", "destination": "/docs/events.html#event-pooling", "permanent": false },
+    { "source": "/link/event-pooling", "destination": "/docs/legacy-event-pooling.html", "permanent": false },
     { "source": "/link/hooks-data-fetching", "destination": "/docs/hooks-faq.html#how-can-i-do-data-fetching-with-hooks", "permanent": false },
     { "source": "/link/invalid-aria-props", "destination": "/warnings/invalid-aria-prop.html", "permanent": false },
     { "source": "/link/invalid-hook-call", "destination": "/warnings/invalid-hook-call-warning.html", "permanent": false },

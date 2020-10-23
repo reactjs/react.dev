@@ -167,7 +167,7 @@ These focus events work on all elements in the React DOM, not just form elements
 
 #### onFocus
 
-The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, when the user clicks on a text input element, the function defined with the `onFocus` prop is called.
+The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
 
 ```javascript
 function Example() {
@@ -184,7 +184,7 @@ function Example() {
 
 #### onBlur
 
-The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, when the user clicks into and then clicks outside of on a text input element, the function defined with the `onBlur` prop is called.
+The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, it's called when the user clicks outside of a focused text input.
 
 ```javascript
 function Example() {
@@ -212,7 +212,7 @@ function Example() {
         if (e.currentTarget === e.target) {
           console.log('focused self');
         } else {
-          console.log('focused child", e.target);
+          console.log('focused child', e.target);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
           // Not triggered when swapping focus between children
@@ -223,7 +223,7 @@ function Example() {
         if (e.currentTarget === e.target) {
           console.log('unfocused self');
         } else {
-          console.log('unfocused child", e.target);
+          console.log('unfocused child', e.target);
         }
         if (!e.currentTarget.contains(e.relatedTarget)) {
           // Not triggered when swapping focus between children

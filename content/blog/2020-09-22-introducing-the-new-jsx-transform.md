@@ -196,7 +196,7 @@ TypeScript supports the JSX transform in [v4.1 beta](https://devblogs.microsoft.
 
 ### Flow {#flow}
 
-Flow supports the new JSX transform in [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) and up.
+Flow supports the new JSX transform in [v0.126.0](https://github.com/facebook/flow/releases/tag/v0.126.0) and up, by adding `react.runtime=automatic` to your Flow configuration options. 
 
 ## Removing Unused React Imports {#removing-unused-react-imports}
 

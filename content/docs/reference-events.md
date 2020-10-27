@@ -146,7 +146,7 @@ Properties:
 DOMEventTarget relatedTarget
 ```
 
-#### onFocus
+#### onFocus {#onfocus}
 
 The `onFocus` event is called when the element (or some element inside of it) receives focus. For example, it's called when the user clicks on a text input.
 
@@ -163,7 +163,7 @@ function Example() {
 }
 ```
 
-#### onBlur
+#### onBlur {#onblur}
 
 The `onBlur` event handler is called when focus has left the element (or left some element inside of it). For example, it's called when the user clicks outside of a focused text input.
 
@@ -180,7 +180,7 @@ function Example() {
 }
 ```
 
-#### Detecting Focus Entering and Leaving
+#### Detecting Focus Entering and Leaving {#detecting-focus-entering-and-leaving}
 
 You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from _outside_ of the parent element. Here is a demo you can copy and paste that shows how to detect focusing a child, focusing the element itself, and focus entering or leaving the whole subtree.
 
@@ -218,7 +218,6 @@ function Example() {
   );
 }
 ```
-
 
 * * *
 

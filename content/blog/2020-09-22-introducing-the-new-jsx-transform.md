@@ -143,7 +143,7 @@ npm update @babel/core @babel/preset-react
 yarn upgrade @babel/core @babel/preset-react
 ```
 
-Currently, the old transform (`"runtime": "classic"`) is the default option. To enable the new transform, you can pass `{"runtime": "automatic"}` as an option to `@babel/plugin-transform-react-jsx` or `@babel/preset-react`:
+Currently, the old transform `{"runtime": "classic"}` is the default option. To enable the new transform, you can pass `{"runtime": "automatic"}` as an option to `@babel/plugin-transform-react-jsx` or `@babel/preset-react`:
 
 ```js
 // If you are using @babel/preset-react
@@ -192,7 +192,7 @@ If you are using [eslint-plugin-react](https://github.com/yannickcr/eslint-plugi
 
 ### TypeScript {#typescript}
 
-TypeScript supports the JSX transform in [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories).
+TypeScript supports the new JSX transform in [v4.1 beta](https://devblogs.microsoft.com/typescript/announcing-typescript-4-1-beta/#jsx-factories).
 
 ### Flow {#flow}
 
@@ -212,7 +212,6 @@ npx react-codemod update-react-imports
 >If you're getting errors when running the codemod, try specifying a different JavaScript dialect when `npx react-codemod update-react-imports` asks you to choose one. In particular, at this moment the "JavaScript with Flow" setting supports newer syntax than the "JavaScript" setting even if you don't use Flow. [File an issue](https://github.com/reactjs/react-codemod/issues) if you run into problems.
 >
 >Keep in mind that the codemod output will not always match your project's coding style, so you might want to run [Prettier](https://prettier.io/) after the codemod finishes for consistent formatting.
-
 
 Running this codemod will:
 

@@ -99,7 +99,7 @@ Since the new JSX transform doesn't require React to be in scope, [we've also pr
 
 ### Create React App {#create-react-app}
 
-Create React App support [has been added](https://github.com/facebook/create-react-app/pull/9645) and will be available in the [upcoming v4.0 release](https://gist.github.com/iansu/4fab7a9bfa5fa6ebc87a908c62f5340b) which is currently in beta testing.
+Create React App [4.0.0](https://github.com/facebook/create-react-app/releases/tag/v4.0.0)+ uses the new transform for compatible React versions.
 
 ### Next.js {#nextjs}
 

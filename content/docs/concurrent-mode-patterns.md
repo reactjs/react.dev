@@ -193,7 +193,7 @@ function App() {
 
 It took us only seven lines of code to add this transition:
 
-* We've imported the `useTransition` Hook and used it the component that updates the state.
+* We've imported the `useTransition` Hook and used it in the component that updates the state.
 * We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
 * We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
 * We're using `isPending` to communicate the state transition progress to the user and to disable the button.

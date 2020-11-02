@@ -138,7 +138,7 @@ class Parent extends React.Component {
 
 function Child() {
   // The click event on this button will bubble up to parent,
-  // because there is no 'onClick' attribute defined
+  // because there is no 'onClick' attribute defined(even if there is one, until propogaton is stopped explicitly[event.stopPropogation()], the event will keep bubbling up!)
   return (
     <div className="modal">
       <button>Click</button>

@@ -112,12 +112,12 @@ We can write a function that creates components, like `CommentList` and `BlogPos
 
 ```js
 const CommentListWithSubscription = withSubscription(
-  CommentList,
+  Comment,
   (DataSource) => DataSource.getComments()
 );
 
 const BlogPostWithSubscription = withSubscription(
-  BlogPost,
+  TextBlock,
   (DataSource, props) => DataSource.getBlogPost(props.id)
 );
 ```

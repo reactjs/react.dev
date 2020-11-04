@@ -465,7 +465,7 @@ useEffect(() => {
   return () => {
     ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
   };
-}, [props.friend.id]); // Only re-subscribe if props.friend.id changes
+}, [props.friend.id,status.isOnline]); // re-subscribe if props.friend.id changes and set new isOnline state variable if changes
 ```
 
 In the future, the second argument might get added automatically by a build-time transformation.

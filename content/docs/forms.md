@@ -290,3 +290,5 @@ It can sometimes be tedious to use controlled components, because you need to wr
 ## Fully-Fledged Solutions {#fully-fledged-solutions}
 
 If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+Another option is [React-hook-form](https://react-hook-form.com/), both Formik and React Hook Form are solving the same problem, but React Hook Form’s way of building a form with uncontrolled components and hooks enable it to score a better performance result than Formik. I recommend you to use React Hook Form. It’s better than Formik.
+

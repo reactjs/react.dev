@@ -12,7 +12,7 @@ permalink: docs/legacy-event-pooling.html
 >
 >[Read more](/blog/2020/08/10/react-v17-rc.html#no-event-pooling) about this change in React 17.
 
-The [`SyntheticEvent`](/docs/events.html) objects are pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event event handler has been called. For example, this won't work:
+The [`SyntheticEvent`](/docs/events.html) objects are pooled. This means that the `SyntheticEvent` object will be reused and all properties will be nullified after the event handler has been called. For example, this won't work:
 
 ```javascript
 function handleChange(e) {

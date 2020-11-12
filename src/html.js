@@ -65,8 +65,8 @@ export default class HTML extends React.Component<Props> {
                     storageId: 'reactjs_banner_2020survey',
                     normalHeight: 50,
                     smallHeight: 75,
-                    campaignStartDate: '2020-10-05Z', // the Z is for UTC
-                    campaignEndDate: '2020-10-19Z', // the Z is for UTC
+                    campaignStartDate: '2020-10-05T00:00:00Z', // the Z is for UTC
+                    campaignEndDate: '2020-10-19T00:00:00Z', // the Z is for UTC
                     snoozeForDays: 7,
                   };
 

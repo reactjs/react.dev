@@ -119,7 +119,7 @@ For each piece of state in your application:
   * Either the common owner or another component higher up in the hierarchy should own the state.
   * If you can't find a component where it makes sense to own the state, create a new component solely for holding the state and add it somewhere in the hierarchy above the common owner component.
 
-Let's run through this strategy for our application:
+Let's run through this strategy for our applications:
 
   * `ProductTable` needs to filter the product list based on state and `SearchBar` needs to display the search text and checked state.
   * The common owner component is `FilterableProductTable`.

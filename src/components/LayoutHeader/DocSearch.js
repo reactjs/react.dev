@@ -25,6 +25,10 @@ class DocSearch extends Component<{}, State> {
         apiKey: '36221914cce388c46d0420343e0bb32e',
         indexName: 'react',
         inputSelector: '#algolia-doc-search',
+        handleSelected: function(input, event, suggestion, datasetNumber, context) {
+          const suggestionUrl = new URL(suggestion.url)
+          window.location = `${window.origin}${suggestionUrl.pathname}`
+        },
       });
     } else {
       console.warn('Search has failed to load and now is being disabled');

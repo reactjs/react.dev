@@ -7,6 +7,7 @@
 
 import React, {Component} from 'react';
 import {colors, media} from 'theme';
+import Url from 'core-js/stable/url'
 
 type State = {
   enabled: boolean,
@@ -32,7 +33,7 @@ class DocSearch extends Component<{}, State> {
           datasetNumber,
           context,
         ) {
-          const suggestionUrl = new URL(suggestion.url);
+          const suggestionUrl = new Url(suggestion.url);
           window.location = `${window.origin}${suggestionUrl.pathname}`;
         },
       });

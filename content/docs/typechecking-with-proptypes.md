@@ -223,7 +223,7 @@ const HelloWorldComponent = function ({ name }) {
 export default HelloWorldComponent
 ```
 
-Then, adding PropTypes should be easy:
+Then, you can add PropTypes directly to the `HelloWorldComponent`:
 
 ```javascript
 import PropTypes from 'prop-types'

@@ -5,7 +5,6 @@ author: [gaearon]
 
 As React 16 release is getting closer, we would like to announce a few changes to how React handles JavaScript errors inside components. These changes are included in React 16 beta versions, and will be a part of React 16.
 
-**By the way, [we just released the first beta of React 16 for you to try!](https://github.com/facebook/react/issues/10294)**
 
 ## Behavior in React 15 and Earlier {#behavior-in-react-15-and-earlier}
 

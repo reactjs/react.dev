@@ -201,7 +201,7 @@ The `defaultProps` will be used to ensure that `this.props.name` will have a val
 
 If you are using Functional Components in your regular development, you may want to make some small changes to allow PropTypes to be proper applied.
 
-Let's say you have a simple component like this:
+Let's say you have a component like this:
 
 ```javascript
 export default function ({ name }) {

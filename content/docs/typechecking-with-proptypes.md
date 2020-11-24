@@ -228,7 +228,7 @@ Then, you can add PropTypes directly to the `HelloWorldComponent`:
 ```javascript
 import PropTypes from 'prop-types'
 
-const HelloWorldComponent = function ({ name }) {
+function HelloWorldComponent({ name }) {
   return (
     <div>Hello, {name}</div>
   )

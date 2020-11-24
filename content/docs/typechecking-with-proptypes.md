@@ -211,7 +211,7 @@ export default function ({ name }) {
 }
 ```
 
-To add PropTypes, you may want to isolate component in a constant before exporting, like this:
+To add PropTypes, you may want to isolate the component in a constant before exporting, like this:
 
 ```javascript
 const HelloWorldComponent = function ({ name }) {

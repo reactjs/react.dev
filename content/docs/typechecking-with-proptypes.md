@@ -204,14 +204,14 @@ If you are using function components in your regular development, you may want t
 Let's say you have a component like this:
 
 ```javascript
-export default function ({ name }) {
+export default function HelloWorldComponent({ name }) {
   return (
     <div>Hello, {name}</div>
   )
 }
 ```
 
-To add PropTypes, you may want to isolate the component in a constant before exporting, like this:
+To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
 
 ```javascript
 function HelloWorldComponent({ name }) {

@@ -29,7 +29,7 @@ In React 16, we are making a change. Now, any unknown attributes will end up in 
 React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, it makes sense for React to use the `camelCase` convention just like the DOM APIs:
 
 ```js
-<div tabIndex="-1" />
+<div tabIndex={-1} />
 ```
 
 This has not changed. However, the way we enforced it in the past forced us to maintain a whitelist of all valid React DOM attributes in the bundle:
@@ -55,10 +55,10 @@ With the new approach, both of these problems are solved. With React 16, you can
 
 ```js
 // Yes, please
-<div tabIndex="-1" />
+<div tabIndex={-1} />
 
 // Warning: Invalid DOM property `tabindex`. Did you mean `tabIndex`?
-<div tabindex="-1" />
+<div tabindex={-1} />
 ```
 
 In other words, the way you use DOM components in React hasn't changed, but now you have some new capabilities.
@@ -120,7 +120,7 @@ Below is a detailed list of them.
 * **Known attributes with a different canonical React name:**  
 
     ```js
-    <div tabindex="-1" />
+    <div tabindex={-1} />
     <div class="hi" />
     ```
 

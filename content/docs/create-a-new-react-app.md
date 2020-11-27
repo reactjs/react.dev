@@ -31,7 +31,7 @@ This is also **the easiest way to integrate React into an existing website.** Yo
 The React team primarily recommends these solutions:
 
 - If you're **learning React** or **creating a new [single-page](/docs/glossary.html#single-page-application) app,** use [Create React App](#create-react-app).
-- If you're building a **server-rendered website with Node.js,** try [Next.js](#nextjs).
+- If you're building a **static content-oriented website,** or **server-rendered website with Node.js,** try [Next.js](#nextjs).
 - If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
 - If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
 

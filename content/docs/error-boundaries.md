@@ -22,8 +22,7 @@ Error boundaries are React components that **catch JavaScript errors anywhere in
 > * Server side rendering
 > * Errors thrown in the error boundary itself (rather than its children)
 
-> Note
-> In development an error overlay will be shown on top of the screen reguardless if you're using error boundaries or not, you can close the overlay and press esc
+> In development an error overlay will be shown on top of the screen reguardless if you're using error boundaries or not, you can close the overlay by pressing esc
 
 A class component becomes an error boundary if it defines either (or both) of the lifecycle methods [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) or [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information.
 

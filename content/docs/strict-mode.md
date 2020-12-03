@@ -118,7 +118,7 @@ By intentionally double-invoking methods like the component constructor, strict 
 
 > Note:
 >
-> Currently, React automatically [modifies](https://github.com/facebook/react/pull/18547) the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases, where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+> Currently, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
 
 ### Detecting legacy context API {#detecting-legacy-context-api}
 

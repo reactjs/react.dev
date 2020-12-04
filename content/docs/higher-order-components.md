@@ -12,6 +12,12 @@ Concretely, **a higher-order component is a function that takes a component and 
 const EnhancedComponent = higherOrderComponent(WrappedComponent);
 ```
 
+From a non-technical point of view
+
+```js
+const IronMan = withSuit(TonyStark) 
+```
+
 Whereas a component transforms props into UI, a higher-order component transforms a component into another component.
 
 HOCs are common in third-party React libraries, such as Redux's [`connect`](https://github.com/reduxjs/react-redux/blob/master/docs/api/connect.md#connect) and Relay's [`createFragmentContainer`](http://facebook.github.io/relay/docs/en/fragment-container.html).

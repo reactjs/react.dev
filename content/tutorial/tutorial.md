@@ -16,6 +16,8 @@ This tutorial doesn't assume any existing React knowledge.
 
 ## Before We Start the Tutorial {#before-we-start-the-tutorial}
 
+**Note**: We're currently working on a rewrite of the React docs and this tutorial to teach functional components with hooks as the default approach. In the meantime, all of the tutorials found in these docs can be found at https://reactwithhooks.netlify.app/ using functional components and hooks.
+
 We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and mastering it will give you a deep understanding of React.
 
 >Tip

@@ -20,6 +20,8 @@ Components let you split the UI into independent, reusable pieces, and think abo
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.
 
+**Note**: We're currently working on a rewrite of the React docs to teach functional components with hooks as the default approach. In the meantime, all of the tutorials found in these docs can be found at https://reactwithhooks.netlify.app/ using functional components and hooks.
+
 ## Function and Class Components {#function-and-class-components}
 
 The simplest way to define a component is to write a JavaScript function:

@@ -8,7 +8,7 @@ redirect_from:
 
 > Note:
 >
-> `React.PropTypes` has moved into a different package since React v15.5. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
+> `React.PropTypes` has moved into a different package since React v16. Please use [the `prop-types` library instead](https://www.npmjs.com/package/prop-types).
 >
 >We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-reactproptypes) to automate the conversion.
 

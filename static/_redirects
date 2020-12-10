@@ -1,3 +1,7 @@
+# Ensure English site redirects to Apex. While not used directly by us, may be linked elsewhere.
+http://en.reactjs.org/* https://reactjs.org/:splat 301!
+https://en.reactjs.org/* https://reactjs.org/:splat 301!
+
 /tips/controlled-input-null-value.html  /docs/forms.html#controlled-input-null-value
 /concurrent     /docs/concurrent-mode-intro.html
 /hooks          /docs/hooks-intro.html

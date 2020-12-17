@@ -124,7 +124,7 @@ Then, you can run several commands:
 * `yarn build` creates a `build` folder with all the packages.
 * `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
 
-We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
 
 First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
 

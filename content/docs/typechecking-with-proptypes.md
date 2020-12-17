@@ -197,7 +197,7 @@ class Greeting extends React.Component {
 
 The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
 
-### Function Components
+### Function Components {#function-components}
 
 If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be proper applied.
 

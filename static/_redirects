@@ -3,12 +3,13 @@ http://en.reactjs.org/* https://reactjs.org/:splat 301!
 https://en.reactjs.org/* https://reactjs.org/:splat 301!
 
 /tips/controlled-input-null-value.html  /docs/forms.html#controlled-input-null-value
-/concurrent     /docs/concurrent-mode-intro.html
-/hooks          /docs/hooks-intro.html
-/tutorial       /tutorial/tutorial.html
-/your-story     https://www.surveymonkey.co.uk/r/MVQV2R9    301
-/stories        https://medium.com/react-community-stories  301
-/html-jsx.html  https://magic.reactjs.net/htmltojsx.htm     301
+/concurrent           /docs/concurrent-mode-intro.html
+/hooks                /docs/hooks-intro.html
+/server-components    /blog/2020/12/21/data-fetching-with-react-server-components.html
+/tutorial             /tutorial/tutorial.html
+/your-story           https://www.surveymonkey.co.uk/r/MVQV2R9    301
+/stories              https://medium.com/react-community-stories  301
+/html-jsx.html        https://magic.reactjs.net/htmltojsx.htm     301
 
 /link/attribute-behavior            /blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail
 /link/controlled-components         /docs/forms.html#controlled-components
@@ -22,7 +23,7 @@ https://en.reactjs.org/* https://reactjs.org/:splat 301!
 /link/invalid-hook-call             /warnings/invalid-hook-call-warning.html
 /link/legacy-context                /docs/legacy-context.html
 /link/legacy-factories              /warnings/legacy-factories.html
-/link/mock-scheduler                /docs/testing-environments.html#mocking-a-rendering-surface 
+/link/mock-scheduler                /docs/testing-environments.html#mocking-a-rendering-surface
 /link/perf-use-production-build     /docs/optimizing-performance.html#use-the-production-build
 /link/react-devtools                /blog/2015/09/02/new-react-developer-tools.html#installation
 /link/react-polyfills                /docs/javascript-environment-requirements.html

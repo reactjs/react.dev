@@ -17,6 +17,11 @@ December 1-2, 2020 - remote event
 
 [Website](https://react-next.com/) - [Twitter](https://twitter.com/reactnext) - [Facebook](https://www.facebook.com/ReactNext2016/)
 
+### React Summit - Remote Edition 2021 {#react-summit-remote-2021}
+April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
+
+[Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+
 ### render(ATL) 2021 {#render-atlanta-2021} 
 September 13-15, 2021. Atlanta, GA, USA
 

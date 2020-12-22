@@ -5,7 +5,7 @@
  * @flow
  */
 
-// $FlowExpectedError 
+// $FlowExpectedError
 import React, {useState} from 'react';
 import {trackCustomEvent} from 'gatsby-plugin-google-analytics';
 import {sharedStyles} from 'theme';
@@ -15,7 +15,7 @@ const FeedbackForm = () => {
 
   if (feedbackGiven) {
     return 'Thanks for letting us know!';
-  }else {
+  } else {
     return (
       <span>
         Is this page useful?
@@ -53,7 +53,7 @@ const FeedbackForm = () => {
               label: window.location.pathname,
               value: 0,
             });
-            setFeedbackGiven(true);            
+            setFeedbackGiven(true);
           }}>
           <svg
             css={{

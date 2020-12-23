@@ -37,10 +37,10 @@ class App extends React.Component {
       <Page>
         <ThemeContext.Provider value={this.state.theme}>
           <Toolbar changeTheme={this.toggleTheme} />
+          <Section>
+            <ThemedButton />
+          </Section>      
         </ThemeContext.Provider>
-        <Section>
-          <ThemedButton />
-        </Section>
       </Page>
     );
   }

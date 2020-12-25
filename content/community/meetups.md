@@ -22,6 +22,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## Austria {#austria}
 * [Vienna](https://www.meetup.com/Vienna-ReactJS-Meetup/)
 
+## Bangladesh {#bangladesh}
+* [Dhaka](https://www.instagram.com/tawkiralif)
+
 ## Belgium {#belgium}
 * [Belgium](https://www.meetup.com/ReactJS-Belgium/)
 

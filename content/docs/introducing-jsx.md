@@ -95,7 +95,7 @@ You may use quotes to specify string literals as attributes:
 const element = <div tabIndex="0"></div>;
 ```
 
-You may also use curly braces to embed a JavaScript expression in an attribute:
+You may also use curly braces to embed a JavaScript expression as an attribute:
 
 ```js
 const element = <img src={user.avatarUrl}></img>;

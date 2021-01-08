@@ -187,7 +187,7 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
-For more details how you can update the state have a look at the [Hooks API Reference: `useState`](/docs/hooks-reference.html#functional-updates)
+For more details about how you can update the state, have a look at the [API Reference of `useState`](/docs/hooks-reference.html#functional-updates).
 
 ## Recap {#recap}
 

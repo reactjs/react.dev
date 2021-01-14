@@ -23,7 +23,7 @@ This is critically useful for us, and will make Reactiflux even more open and ac
 
 ### Great apps {#great-apps}
 
-Out of all of the services we’ve tried, Discord’s apps are by far the most polished. They are well designed, easy to use, and surprisingly fast. In addition to the web app, they have mobile apps on both iOS and Android as well as desktop apps for OS X and Windows, with Linux support coming soon.
+Out of all of the services we’ve tried, Discord’s apps are by far the most polished. They are well designed, easy to use, and surprisingly fast. In addition to the web app, they have mobile apps on both iOS and Android as well as desktop apps for OS X, Windows, and Linux.
 
 Their desktop apps are built with React and Electron, and their iOS app is built with React Native.
 

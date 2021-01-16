@@ -151,4 +151,38 @@ ReactDOM.render(<Parent />, appRoot);
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/jGBWpE)
 
+Or, equivalently, with hooks:
+
+```js
+function Modal(props) {
+  // if you don't useMemo for this element, then it will create a new one on each click
+  let el = React.useMemo(() => document.createElement("div"), []);
+  React.useEffect(() => {
+    modalRoot.appendChild(el);
+    return () => modalRoot.removeChild(el);
+  }, []);
+  return ReactDOM.createPortal(props.children, el);
+}
+
+function Parent(props) {
+  const [clicks, setClicks] = React.useState(0);
+  return (
+    <div onClick={() => setClicks((x) => x + 1)}>
+      <p>Number of clicks: {clicks}</p>
+      <Modal>
+        <Child />
+      </Modal>
+    </div>
+  );
+}
+
+function Child() {
+  return (
+    <div className="modal">
+      <button>Click</button>
+    </div>
+  );
+}
+```
+
 Catching an event bubbling up from a portal in a parent component allows the development of more flexible abstractions that are not inherently reliant on portals. For example, if you render a `<Modal />` component, the parent can capture its events regardless of whether it's implemented using portals.

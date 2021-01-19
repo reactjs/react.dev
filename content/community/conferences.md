@@ -30,7 +30,7 @@ September 13-15, 2021. Atlanta, GA, USA
 ### React India 2021 {#react-india-2021}
 November 12-13, 2021 in Mumbai, India
 
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)	[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
+[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
 ## Past Conferences {#past-conferences}
 
@@ -47,7 +47,7 @@ October 15-16, 2020, 7am PST / 10am EST / 4pm CEST - remote event
 ### React Native EU 2020 {#react-native-eu-2020}
 September 3-4, 2020 - remote event
 
-[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/
+[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [YouTube](https://www.youtube.com/watch?v=m0GfmlGFh3E&list=PLZ3MwD-soTTHy9_88QPLF8DEJkvoB5Tl-) - [Instagram](https://www.instagram.com/reactnative_eu/)
 
 ### ReactEurope 2020 {#reacteurope-2020}
 May 14-15, 2020 in Paris, France
@@ -436,9 +436,9 @@ October 26-28 in Bratislava, Slovakia
 [Website](https://reactiveconf.com/)
 
 ### ReactNL 2016 {#reactnl-2016}
-October 13 in Amsterdam, The Netherlands - [Schedule](http://reactnl.org/#program)
+October 13 in Amsterdam, The Netherlands
 
-[Website](http://reactnl.org/)
+[Website](http://reactnl.org/) - [Schedule](http://reactnl.org/#program)
 
 ### ReactNext 2016 {#reactnext-2016}
 September 15 in Tel Aviv, Israel
@@ -479,5 +479,3 @@ July 2 & 3 in Paris, France
 January 28 & 29 in Facebook HQ, CA
 
 [Website](http://conf2015.reactjs.org/) - [Schedule](http://conf2015.reactjs.org/schedule.html) - [Videos](https://www.youtube.com/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr)
-
-<iframe title="React.js Conf 2015 Keynote" width="650" height="315" src="//www.youtube-nocookie.com/embed/KVZ-P-ZI6W4?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>

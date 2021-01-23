@@ -52,7 +52,7 @@ If you want to test out how some specific JSX is converted into JavaScript, you 
 
 The first part of a JSX tag determines the type of the React element.
 
-Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
+Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `React` must be in scope.
 
 ### React Must Be in Scope {#react-must-be-in-scope}
 

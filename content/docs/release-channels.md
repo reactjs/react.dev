@@ -4,6 +4,8 @@ title: Release Channels
 permalink: docs/release-channels.html
 layout: docs
 category: installation
+prev: cdn-links.html
+next: hello-world.html
 ---
 
 React relies on a thriving open source community to file bug reports, open pull requests, and [submit RFCs](https://github.com/reactjs/rfcs). To encourage feedback we sometimes share special builds of React that include unreleased features.
@@ -86,7 +88,7 @@ You may find it valuable to run integration tests against Experimental. This is 
 
 #### How Can I Learn More About Experimental Features? {#how-can-i-learn-more-about-experimental-features}
 
-Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Stable.
+Experimental features may or may not be documented. Usually, experiments aren't documented until they are close to shipping in Next or Latest.
 
 If a feature is not documented, they may be accompanied by an [RFC](https://github.com/reactjs/rfcs).
 

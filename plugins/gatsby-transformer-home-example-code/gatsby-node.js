@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const crypto = require('crypto');
 const path = require('path');
 
@@ -15,7 +19,7 @@ exports.onCreateNode = async ({actions, node, loadNodeContent}) => {
 
   if (
     sourceInstanceName === 'content' &&
-    relativeDirectory === path.join('home', 'examples') &&
+    relativeDirectory === 'home/examples' &&
     ext === '.js'
   ) {
     const code = await loadNodeContent(node);

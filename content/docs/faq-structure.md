@@ -12,7 +12,7 @@ React doesn't have opinions on how you put files into folders. That said there a
 
 #### Grouping by features or routes {#grouping-by-features-or-routes}
 
-One common way to structure projects is locate CSS, JS, and tests together inside folders grouped by feature or route.
+One common way to structure projects is to locate CSS, JS, and tests together inside folders grouped by feature or route.
 
 ```
 common/

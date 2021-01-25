@@ -10,7 +10,7 @@ There are many example projects created by the React community. We're keeping th
 
 If you add a project, please commit to keeping it up to date with the latest versions of React.
 
-## Small Examples
+## Small Examples {#small-examples}
 
 * **[Calculator](https://github.com/ahfarmer/calculator)** Implementation of the iOS calculator built in React
 * **[Emoji Search](https://github.com/ahfarmer/emoji-search)** React app for searching emoji
@@ -20,7 +20,6 @@ If you add a project, please commit to keeping it up to date with the latest ver
 * **[Counter App](https://github.com/arnab-datta/counter-app)** A small shopping cart example
 * **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
 
-## Complete Apps
+## Complete Apps {#complete-apps}
 
-* **[Hacker News Clone React/GraphQL](https://github.com/clintonwoo/hackernews-react-graphql)** Hacker News clone rewritten with universal JavaScript, using React and GraphQL
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open-source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB

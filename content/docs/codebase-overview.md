@@ -35,33 +35,11 @@ For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/bl
 
 ### Warnings and Invariants {#warnings-and-invariants}
 
-The React codebase uses the `warning` module to display warnings:
+The React codebase uses `console.error` to display warnings:
 
 ```js
-var warning = require('warning');
-
-warning(
-  2 + 2 === 4,
-  'Math is not working today.'
-);
-```
-
-**The warning is shown when the `warning` condition is `false`.**
-
-One way to think about it is that the condition should reflect the normal situation rather than the exceptional one.
-
-It is a good idea to avoid spamming the console with duplicate warnings:
-
-```js
-var warning = require('warning');
-
-var didWarnAboutMath = false;
-if (!didWarnAboutMath) {
-  warning(
-    2 + 2 === 4,
-    'Math is not working today.'
-  );
-  didWarnAboutMath = true;
+if (__DEV__) {
+  console.error('Something is wrong.');
 }
 ```
 
@@ -113,39 +91,6 @@ ReactRef.detachRefs = function(
 
 When possible, new code should use Flow annotations.
 You can run `yarn flow` locally to check your code with Flow.
-
-### Dynamic Injection {#dynamic-injection}
-
-React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.
-
-You may see modules declaring their dynamic dependencies like this:
-
-```js
-// Dynamically injected
-var textComponentClass = null;
-
-// Relies on dynamically injected value
-function createInstanceForText(text) {
-  return new textComponentClass(text);
-}
-
-var ReactHostComponent = {
-  createInstanceForText,
-
-  // Provides an opportunity for dynamic injection
-  injection: {
-    injectTextComponentClass: function(componentClass) {
-      textComponentClass = componentClass;
-    },
-  },
-};
-
-module.exports = ReactHostComponent;
-```
-
-The `injection` field is not handled specially in any way. But by convention, it means that this module wants to have some (presumably platform-specific) dependencies injected into it at runtime.
-
-There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.
 
 ### Multiple Packages {#multiple-packages}
 
@@ -211,9 +156,7 @@ Its source code is located in [`packages/react-reconciler`](https://github.com/f
 
 ### Event System {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
-
-There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/master/packages/react-dom/src/events).
 
 ### What Next? {#what-next}
 

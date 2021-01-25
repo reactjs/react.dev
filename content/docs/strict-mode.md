@@ -116,6 +116,10 @@ At first glance, this code might not seem problematic. But if `SharedApplication
 
 By intentionally double-invoking methods like the component constructor, strict mode makes patterns like this easier to spot.
 
+> Note:
+>
+> Starting with React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+
 ### Detecting legacy context API {#detecting-legacy-context-api}
 
 The legacy context API is error-prone, and will be removed in a future major version. It still works for all 16.x releases but will show this warning message in strict mode:

@@ -1,7 +1,43 @@
-/html-jsx.html  https://magic.reactjs.net/htmltojsx.htm  301
+# Ensure English site redirects to Apex. While not used directly by us, may be linked elsewhere.
+http://en.reactjs.org/* https://reactjs.org/:splat 301!
+https://en.reactjs.org/* https://reactjs.org/:splat 301!
+
 /tips/controlled-input-null-value.html  /docs/forms.html#controlled-input-null-value
-/concurrent /docs/concurrent-mode-intro.html
-/hooks /docs/hooks-intro.html
-/tutorial /tutorial/tutorial.html
-/your-story https://www.surveymonkey.co.uk/r/MVQV2R9 301
-/stories https://medium.com/react-community-stories 301
+/concurrent           /docs/concurrent-mode-intro.html
+/hooks                /docs/hooks-intro.html
+/server-components    /blog/2020/12/21/data-fetching-with-react-server-components.html
+/tutorial             /tutorial/tutorial.html
+/your-story           https://www.surveymonkey.co.uk/r/MVQV2R9    301
+/stories              https://medium.com/react-community-stories  301
+/html-jsx.html        https://magic.reactjs.net/htmltojsx.htm     301
+
+/link/attribute-behavior            /blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail
+/link/controlled-components         /docs/forms.html#controlled-components
+/link/crossorigin-error             /docs/cross-origin-errors.html
+/link/dangerously-set-inner-html    /docs/dom-elements.html#dangerouslysetinnerhtml
+/link/derived-state                 /blog/2018/06/07/you-probably-dont-need-derived-state.html
+/link/error-boundaries              /docs/error-boundaries.html
+/link/event-pooling                 /docs/legacy-event-pooling.html
+/link/hooks-data-fetching           /docs/hooks-faq.html#how-can-i-do-data-fetching-with-hooks
+/link/invalid-aria-props            /warnings/invalid-aria-prop.html
+/link/invalid-hook-call             /warnings/invalid-hook-call-warning.html
+/link/legacy-context                /docs/legacy-context.html
+/link/legacy-factories              /warnings/legacy-factories.html
+/link/mock-scheduler                /docs/testing-environments.html#mocking-a-rendering-surface
+/link/perf-use-production-build     /docs/optimizing-performance.html#use-the-production-build
+/link/react-devtools                /blog/2015/09/02/new-react-developer-tools.html#installation
+/link/react-polyfills                /docs/javascript-environment-requirements.html
+/link/refs-must-have-owner          /warnings/refs-must-have-owner.html
+/link/rules-of-hooks                /docs/hooks-rules.html
+/link/special-props                 /warnings/special-props.html
+/link/strict-mode-find-node          /docs/strict-mode.html#warning-about-deprecated-finddomnode-usage
+/link/strict-mode-string-ref        /docs/refs-and-the-dom.html#legacy-api-string-refs
+/link/unsafe-component-lifecycles   /blog/2018/03/27/update-on-async-rendering.html
+/link/warning-keys                  /docs/lists-and-keys.html#keys
+/link/wrap-tests-with-act           /docs/test-utils.html#act
+/link/interaction-tracing           https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16  301
+/link/profiling                      https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977  301
+/link/test-utils-mock-component     https://gist.github.com/bvaughn/fbf41b3f895bf2d297935faa5525eee9  301
+/link/uselayouteffect-ssr           https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85  301
+/link/react-devtools-faq            https://github.com/facebook/react/tree/master/packages/react-devtools#faq 301
+/link/setstate-in-render            https://github.com/facebook/react/issues/18178#issuecomment-595846312 301

@@ -23,8 +23,8 @@ It also offers full support for React Hooks, including inspecting nested objects
 * `16.x`: Supported
 
 **`react-native`**
-* `0`-`0.61`: Not supported
-* `0.62`: Will be supported (when 0.62 is released)
+* `0`-`0.61.x`: Not supported
+* `0.62`: Supported
 
 ## How do I get the new DevTools? {#how-do-i-get-the-new-devtools}
 

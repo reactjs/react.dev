@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -100,6 +100,12 @@ const Footer = ({layoutHasSidebar = false}: {layoutHasSidebar: boolean}) => (
           <FooterNav layoutHasSidebar={layoutHasSidebar}>
             <MetaTitle onDark={true}>{navFooter.more.title}</MetaTitle>
             <SectionLinks links={navFooter.more.items} />
+            <ExternalFooterLink href="https://opensource.facebook.com/legal/privacy">
+              Privacy
+            </ExternalFooterLink>
+            <ExternalFooterLink href="https://opensource.facebook.com/legal/terms">
+              Terms
+            </ExternalFooterLink>
           </FooterNav>
         </div>
         <section

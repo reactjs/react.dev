@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013-present, Facebook, Inc.
+ * Copyright (c) Facebook, Inc. and its affiliates.
  *
  * @emails react-core
  * @flow
@@ -9,13 +9,16 @@ import Container from 'components/Container';
 import Flex from 'components/Flex';
 import MarkdownHeader from 'components/MarkdownHeader';
 import NavigationFooter from 'templates/components/NavigationFooter';
+// $FlowFixMe Update Flow
 import React from 'react';
 import StickyResponsiveSidebar from 'components/StickyResponsiveSidebar';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
+import FeedbackForm from 'components/FeedbackForm';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import {sharedStyles} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
+import {colors, media} from 'theme';
 
 import type {Node} from 'types';
 
@@ -71,9 +74,16 @@ const MarkdownPage = ({
         flex: '1 0 auto',
         position: 'relative',
         zIndex: 0,
+        '& h1, & h2, & h3, & h4, & h5, & h6': {
+          scrollMarginTop: 'var(--banner-height-normal)',
+          [media.lessThan('small')]: {
+            scrollMarginTop: 'var(--banner-height-small)',
+          },
+        },
       }}>
       <TitleAndMetaTags
         ogDescription={ogDescription}
+        ogType="article"
         canonicalUrl={createCanonicalUrl(markdownRemark.fields.slug)}
         title={`${titlePrefix}${titlePostfix}`}
       />
@@ -110,6 +120,16 @@ const MarkdownPage = ({
 
                 {markdownRemark.fields.path && (
                   <div css={{marginTop: 80}}>
+                    <span
+                      css={{
+                        whiteSpace: 'nowrap',
+                        paddingBottom: '1em',
+                        marginRight: '36px',
+                        display: 'inline-block',
+                        color: colors.subtle,
+                      }}>
+                      <FeedbackForm />
+                    </span>
                     <a
                       css={sharedStyles.articleLayout.editLink}
                       href={`https://github.com/reactjs/reactjs.org/tree/master/${markdownRemark.fields.path}`}>

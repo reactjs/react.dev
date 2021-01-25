@@ -1,4 +1,8 @@
-/* Styles forked from Algolia */
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ *
+ * Customized Algolia search result styles.
+ */
 
 .searchbox {
   display: inline-block;

@@ -1,3 +1,9 @@
+- title: '17.0.1'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1701-october-22-2020
+- title: '17.0.0'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#1700-october-20-2020
+- title: '16.14.0'
+  changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16140-october-14-2020
 - title: '16.13.1'
   changelog: https://github.com/facebook/react/blob/master/CHANGELOG.md#16131-march-19-2020
 - title: '16.13.0'

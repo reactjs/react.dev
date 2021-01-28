@@ -37,7 +37,7 @@ Another difference is that you cannot return `false` to prevent default behavior
 </a>
 ```
 
-In React, this could instead be:
+In React, this should instead be:
 
 ```js{2-5,8}
 function ActionLink() {

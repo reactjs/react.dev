@@ -222,7 +222,7 @@ class Parent extends React.Component {
   }
 }
 
-// Now you can set focus when required.
+// Now you can set focus whenever required inside the parent.
 this.inputElement.current.focus();
 ```
 

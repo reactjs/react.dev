@@ -136,7 +136,7 @@ If your project uses React from npm, you may delete `react` and `react-dom` in i
 
 ```sh
 cd ~/path_to_your_react_clone/
-yarn build react/index,react-dom/index,scheduler --type=NODE
+yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
 
 cd build/node_modules/react
 yarn link

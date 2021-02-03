@@ -12,6 +12,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Tirana](https://www.meetup.com/React-User-Group-Albania/)
 
 ## Argentina {#argentina}
+* [Buenos Aires](https://www.meetup.com/es/React-en-Buenos-Aires)
 * [Rosario](https://www.meetup.com/es/reactrosario)
 
 ## Australia {#australia}

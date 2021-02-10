@@ -23,7 +23,7 @@ exports.onPostBuild = async ({store}) => {
   );
 
   // versions.yml structure is [{path: string, url: string, ...}, ...]
-  createRedirects(
+  await createRedirects(
     versions
       .filter(version => version.path && version.url)
       .map(version => ({

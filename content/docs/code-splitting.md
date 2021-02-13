@@ -222,3 +222,4 @@ Instead of creating an additional file to export MyComponent as default in MyCom
 // MyApp.js
 import React, { lazy } from 'react';
 const MyComponent = lazy(() => import('./ManyComponents.js').then(module => ({default: module.MyComponent})))
+```

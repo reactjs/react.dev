@@ -480,7 +480,7 @@ In the future, the second argument might get added automatically by a build-time
 >
 >We recommend using the [`exhaustive-deps`](https://github.com/facebook/react/issues/14920) rule as part of our [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks#installation) package. It warns when dependencies are specified incorrectly and suggests a fix.
 >
->Also note that if you compose the dependencies array dynamically its length will not be checked, but the two arrays will be compared up to the length of the old one. When you pass variable-length arrays in second argument, always prepend the length of the array like so: `[myArray.length, ...myArray]`
+>Also note that if you compose the dependencies array dynamically its length will not be checked, but the two arrays will be compared up to the shorter of the two lengths. When you pass variable-length arrays in second argument, always prepend the length of the array like so: `[myArray.length, ...myArray]`
 
 ## Next Steps {#next-steps}
 

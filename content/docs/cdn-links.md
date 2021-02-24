@@ -5,7 +5,7 @@ permalink: docs/cdn-links.html
 prev: create-a-new-react-app.html
 next: release-channels.html
 ---
-
+ddmmdmdmkdkddmdmkkdmemmkooeodmmdmdmslalaia
 Both React and ReactDOM are available over a CDN.
 
 ```html

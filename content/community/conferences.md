@@ -25,7 +25,7 @@ April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
 ### React Case Study Festival 2021 {#react-case-study-festival-2021}
 April 27-28, 2021 - remote event
 
-[Website](https://react.geekle.us/) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203) 
+[Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203) 
 
 ### render(ATL) 2021 {#render-atlanta-2021} 
 September 13-15, 2021. Atlanta, GA, USA

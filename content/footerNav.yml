@@ -41,3 +41,7 @@ channels:
     - title: Twitter
       to: https://twitter.com/reactjs
       external: true
+    - title: Hashnode
+      to: https://hashnode.com/n/reactjs
+      external: true
+

@@ -314,7 +314,7 @@ function init(initialCount) {
   return {count: initialCount};
 }
 
-function reducer(state, action) {
+function reducer(state, action, init) {
   switch (action.type) {
     case 'increment':
       return {count: state.count + 1};

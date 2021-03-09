@@ -110,7 +110,7 @@ class Parent extends React.Component {
   }
 
   handleClick() {
-    // This will fire when the button in Child is clicked,
+    // This will fire when the button (practically anywhere) in Child is clicked,
     // updating Parent's state, even though button
     // is not direct descendant in the DOM.
     this.setState(state => ({

@@ -709,7 +709,7 @@ function Counter() {
 
 (The identity of the `setCount` function is guaranteed to be stable so it's safe to omit.)
 
-Now, the `setInterval` callback executes once a second, but each time the inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback here.)
+Now, the `setInterval` callback executes once a second, but each inner call to `setCount` can use an up-to-date value for `count` (called `c` in the callback here.)
 
 In more complex cases (such as if one state depends on another state), try moving the state update logic outside the effect with the [`useReducer` Hook](/docs/hooks-reference.html#usereducer). [This article](https://adamrackis.dev/state-and-use-reducer/) offers an example of how you can do this. **The identity of the `dispatch` function from `useReducer` is always stable** — even if the reducer function is declared inside the component and reads its props.
 

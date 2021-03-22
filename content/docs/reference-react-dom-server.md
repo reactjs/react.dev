@@ -27,8 +27,6 @@ These additional methods depend on a package (`stream`) that is **only available
 - [`renderToNodeStream()`](#rendertonodestream)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
 
-* * *
-
 ## Reference {#reference}
 
 ### `renderToString()` {#rendertostring}

@@ -82,8 +82,6 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
   - [`useLayoutEffect`](/docs/hooks-reference.html#uselayouteffect)
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
 
-* * *
-
 ## Reference {#reference}
 
 ### `React.Component` {#reactcomponent}

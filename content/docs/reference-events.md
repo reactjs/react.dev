@@ -64,8 +64,6 @@ The event handlers below are triggered by an event in the bubbling phase. To reg
 - [Transition Events](#transition-events)
 - [Other Events](#other-events)
 
-* * *
-
 ## Reference {#reference}
 
 ### Clipboard Events {#clipboard-events}

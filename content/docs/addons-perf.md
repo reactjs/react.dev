@@ -56,8 +56,6 @@ The following methods use the measurements returned by [`Perf.getLastMeasurement
  - [`printOperations()`](#printoperations)
  - [`printDOM()`](#printdom)
 
-* * *
-
 ## Reference {#reference}
 
 ### `start()` {#start}

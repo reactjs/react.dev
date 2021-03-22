@@ -103,8 +103,6 @@ Each component also provides some other APIs:
   - [`props`](#props)
   - [`state`](#state)
 
-* * *
-
 ## Reference {#reference}
 
 ### Commonly Used Lifecycle Methods {#commonly-used-lifecycle-methods}
@@ -496,8 +494,6 @@ Typically, this method can be replaced by `componentDidUpdate()`. If you were re
 >
 > `UNSAFE_componentWillUpdate()` will not be invoked if [`shouldComponentUpdate()`](#shouldcomponentupdate) returns false.
 
-* * *
-
 ## Other APIs {#other-apis-1}
 
 Unlike the lifecycle methods above (which React calls for you), the methods below are the methods *you* can call from your components.
@@ -587,8 +583,6 @@ Calling `forceUpdate()` will cause `render()` to be called on the component, ski
 
 Normally you should try to avoid all uses of `forceUpdate()` and only read from `this.props` and `this.state` in `render()`.
 
-* * *
-
 ## Class Properties {#class-properties-1}
 
 ### `defaultProps` {#defaultprops}
@@ -626,8 +620,6 @@ If `props.color` is set to `null`, it will remain `null`:
 ### `displayName` {#displayname}
 
 The `displayName` string is used in debugging messages. Usually, you don't need to set it explicitly because it's inferred from the name of the function or class that defines the component. You might want to set it explicitly if you want to display a different name for debugging purposes or when you create a higher-order component, see [Wrap the Display Name for Easy Debugging](/docs/higher-order-components.html#convention-wrap-the-display-name-for-easy-debugging) for details.
-
-* * *
 
 ## Instance Properties {#instance-properties-1}
 

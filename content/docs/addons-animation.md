@@ -223,8 +223,6 @@ You can disable animating `enter` or `leave` animations if you want. For example
 >
 > When using `ReactCSSTransitionGroup`, there's no way for your components to be notified when a transition has ended or to perform any more complex logic around animation. If you want more fine-grained control, you can use the lower-level `ReactTransitionGroup` API which provides the hooks you need to do custom transitions.
 
-* * *
-
 ## Low-level API: ReactTransitionGroup {#low-level-api-reacttransitiongroup}
 
 **Importing**
@@ -285,8 +283,6 @@ Now you can specify `FirstChild` as the `component` prop in `<ReactTransitionGro
 ```
 
 This only works when you are animating a single child in and out, such as a collapsible panel. This approach wouldn't work when animating multiple children or replacing the single child with another child, such as an image carousel. For an image carousel, while the current image is animating out, another image will animate in, so `<ReactTransitionGroup>` needs to give them a common DOM parent. You can't avoid the wrapper for multiple children, but you can customize the wrapper with the `component` prop as described above.
-
-* * *
 
 ## Reference {#reference}
 

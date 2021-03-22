@@ -309,8 +309,6 @@ ReactDOM.render(element, domContainer);
 >
 > You will need to have `window`, `window.document` and `window.document.createElement` globally available **before** you import `React`. Otherwise React will think it can't access the DOM and methods like `setState` won't work.
 
-* * *
-
 ## Other Utilities {#other-utilities}
 
 ### `Simulate` {#simulate}

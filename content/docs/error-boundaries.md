@@ -71,7 +71,7 @@ Check out [this example of declaring and using an error boundary](https://codepe
 
 ## Where to Place Error Boundaries {#where-to-place-error-boundaries}
 
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
 
 
 ## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
@@ -130,7 +130,7 @@ Error boundaries **do not** catch errors inside event handlers.
 
 React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
 
-If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {

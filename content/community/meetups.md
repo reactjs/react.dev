@@ -50,6 +50,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Ottawa, ON](https://www.meetup.com/Ottawa-ReactJS-Meetup/)
 * [Toronto, ON](https://www.meetup.com/Toronto-React-Native/events/)
 
+## Chile {#chile}
+* [Santiago](https://www.meetup.com/es-ES/react-santiago/)
+
 ## China {#china}
 * [Beijing](https://www.meetup.com/Beijing-ReactJS-Meetup/)
 

@@ -119,7 +119,7 @@ This process would be useless if we didn't render something to the screen as a r
 
 In addition to user-defined ("composite") components, React elements may also represent platform-specific ("host") components. For example, `Button` might return a `<div />` from its render method.
 
-If element's `type` property is a string, we are dealing with a host element:
+If an element's `type` property is a string, we are dealing with a host element:
 
 ```js
 console.log(<div />);
@@ -243,7 +243,7 @@ ReactDOM.render(<App />, rootEl);
 
 However, our implementation above only knows how to mount the initial tree. It can't perform updates on it because it doesn't store all the necessary information, such as all the `publicInstance`s, or which DOM `node`s correspond to which components.
 
-The stack reconciler codebase solves this by making the `mount()` function a method and putting it on a class. There are drawbacks to this approach, and we are going in the opposite direction in the [ongoing rewrite of the reconciler](/docs/codebase-overview.html#fiber-reconciler). Nevertheless this is how it works now.
+The stack reconciler codebase solves this by making the `mount()` function a method and putting it on a class. There are drawbacks to this approach, and we are going in the opposite direction in the [ongoing rewrite of the reconciler](/docs/codebase-overview.html#fiber-reconciler). Nevertheless, this is how it works now.
 
 Instead of separate `mountHost` and `mountComposite` functions, we will create two classes: `DOMComponent` and `CompositeComponent`.
 
@@ -394,12 +394,12 @@ As a result, each internal instance, composite or host, now points to its child 
 }
 ```
 
-In the DOM you would only see the `<div>`. However the internal instance tree contains both composite and host internal instances.
+In the DOM you would only see the `<div>`. However, the internal instance tree contains both composite and host internal instances.
 
 The composite internal instances need to store:
 
 * The current element.
-* The public instance if element type is a class.
+* The public instance if the element type is a class.
 * The single rendered internal instance. It can be either a `DOMComponent` or a `CompositeComponent`.
 
 The host internal instances need to store:
@@ -472,7 +472,7 @@ class DOMComponent {
 }
 ```
 
-In practice, unmounting DOM components also removes the event listeners and clears some caches, but we will skip those details.
+In practice, unmounting DOM components also remove the event listeners and clears some caches, but we will skip those details.
 
 We can now add a new top-level function called `unmountTree(containerNode)` that is similar to `ReactDOM.unmountComponentAtNode()`:
 
@@ -518,7 +518,7 @@ Now, running `unmountTree()`, or running `mountTree()` repeatedly, removes the o
 
 ### Updating {#updating}
 
-In the previous section, we implemented unmounting. However React wouldn't be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:
+In the previous section, we implemented unmounting. However, React wouldn't be very useful if each prop change unmounted and mounted the whole tree. The goal of the reconciler is to reuse existing instances where possible to preserve the DOM and the state:
 
 ```js
 var rootEl = document.getElementById('root');
@@ -856,7 +856,7 @@ This document is simplified compared to the real codebase. There are a few impor
 
 * Components can render `null`, and the reconciler can handle "empty slots" in arrays and rendered output.
 
-* The reconciler also reads `key` from the elements, and uses it to establish which internal instance corresponds to which element in an array. A bulk of complexity in the actual React implementation is related to that.
+* The reconciler also reads `key` from the elements, and uses it to establish which internal instance corresponds to which element in an array. A bulk of the complexity in the actual React implementation is related to that.
 
 * In addition to composite and host internal instance classes, there are also classes for "text" and "empty" components. They represent text nodes and the "empty slots" you get by rendering `null`.
 
@@ -891,7 +891,7 @@ This document is simplified compared to the real codebase. There are a few impor
 
 ### Future Directions {#future-directions}
 
-Stack reconciler has inherent limitations such as being synchronous and unable to interrupt the work or split it in chunks. There is a work in progress on the [new Fiber reconciler](/docs/codebase-overview.html#fiber-reconciler) with a [completely different architecture](https://github.com/acdlite/react-fiber-architecture). In the future, we intend to replace stack reconciler with it, but at the moment it is far from feature parity.
+Stack reconciler has inherent limitations such as being synchronous and unable to interrupt the work or split it in chunks. There is a work in progress on the [new Fiber reconciler](/docs/codebase-overview.html#fiber-reconciler) with a [completely different architecture](https://github.com/acdlite/react-fiber-architecture). In the future, we intend to replace the stack reconciler with it, but at the moment it is far from feature parity.
 
 ### Next Steps {#next-steps}
 

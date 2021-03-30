@@ -534,7 +534,14 @@ this.setState((state, props) => {
 
 Both `state` and `props` received by the updater function are guaranteed to be up-to-date. The output of the updater is shallowly merged with `state`.
 
-The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead.
+The second parameter to `setState()` is an optional callback function that will be executed once `setState` is completed and the component is re-rendered. Generally we recommend using `componentDidUpdate()` for such logic instead. If your callback is asynchronous you will need to return `void` instead of the async function's value:
+
+```javascript
+this.setState((state, props) => {
+  {counter: state.counter + props.step};
+  () => {void this.asyncFunction();}
+});
+```
 
 You may optionally pass an object as the first argument to `setState()` instead of a function:
 

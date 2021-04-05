@@ -38,52 +38,59 @@ const {complete, incomplete, partial} = languages.reduce(
   {complete: [], incomplete: [], partial: []},
 );
 
-type Props = {
-  location: Location,
+type LocationWithState = Location & {
+  state: any | null,
 };
 
-const Languages = ({location}: Props) => (
-  <Layout location={location}>
-    <Container>
-      <div css={sharedStyles.articleLayout.container}>
-        <div css={sharedStyles.articleLayout.content}>
-          <Header>Languages</Header>
-          <TitleAndMetaTags
-            canonicalUrl={`${urlRoot}/languages/`}
-            title="React - Languages"
-          />
+type Props = {
+  location: LocationWithState,
+};
 
-          <div css={sharedStyles.markdown}>
-            <p>
-              The React documentation is available in the following languages:
-            </p>
+const Languages = ({location}: Props) => {
+  const redirectPage = location.state ? location.state.prevPath : '/';
+  return (
+    <Layout location={location}>
+      <Container>
+        <div css={sharedStyles.articleLayout.container}>
+          <div css={sharedStyles.articleLayout.content}>
+            <Header>Languages</Header>
+            <TitleAndMetaTags
+              canonicalUrl={`${urlRoot}/languages/`}
+              title="React - Languages"
+            />
 
-            <LanguagesGrid languages={complete} />
+            <div css={sharedStyles.markdown}>
+              <p>
+                The React documentation is available in the following languages:
+              </p>
 
-            <h2>In Progress</h2>
-            <LanguagesGrid languages={partial} />
+              <LanguagesGrid languages={complete} redirect={redirectPage} />
 
-            <h2>Needs Contributors</h2>
-            <LanguagesGrid languages={incomplete} />
+              <h2>In Progress</h2>
+              <LanguagesGrid languages={partial} redirect={redirectPage} />
 
-            <p>
-              Don't see your language above?{' '}
-              <a
-                href="https://github.com/reactjs/reactjs.org-translation#reactjsorg-translation"
-                target="_blank"
-                rel="noopener">
-                Let us know
-              </a>
-              .
-            </p>
+              <h2>Needs Contributors</h2>
+              <LanguagesGrid languages={incomplete} redirect={redirectPage} />
+
+              <p>
+                Don't see your language above?{' '}
+                <a
+                  href="https://github.com/reactjs/reactjs.org-translation#reactjsorg-translation"
+                  target="_blank"
+                  rel="noopener">
+                  Let us know
+                </a>
+                .
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </Container>
-  </Layout>
-);
+      </Container>
+    </Layout>
+  );
+};
 
-const LanguagesGrid = ({languages}) => (
+const LanguagesGrid = ({languages, redirect}) => (
   <ul
     css={{
       display: 'flex',
@@ -99,12 +106,13 @@ const LanguagesGrid = ({languages}) => (
           name={name}
           status={status}
           translatedName={translated_name}
+          redirect={redirect}
         />
       ))}
   </ul>
 );
 
-const Language = ({code, name, status, translatedName}) => {
+const Language = ({code, name, status, translatedName, redirect}) => {
   const prefix = code === 'en' ? '' : `${code}.`;
 
   return (
@@ -141,7 +149,7 @@ const Language = ({code, name, status, translatedName}) => {
         {status === 0 && translatedName}
         {status > 0 && (
           <a
-            href={`https://${prefix}reactjs.org/`}
+            href={`https://${prefix}reactjs.org${redirect}`}
             rel="nofollow"
             lang={code}
             hrefLang={code}>
@@ -154,7 +162,7 @@ const Language = ({code, name, status, translatedName}) => {
           css={{
             fontSize: 12,
           }}
-          href={`https://github.com/reactjs/${prefix}reactjs.org/`}
+          href={`https://github.com/reactjs/${prefix}reactjs.org${redirect}`}
           target="_blank"
           rel="noopener">
           Contribute

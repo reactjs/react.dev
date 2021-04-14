@@ -30,6 +30,8 @@ If you serve React from a CDN, we recommend to keep the [`crossorigin`](https://
 <script crossorigin src="..."></script>
 ```
 
+This is because this provides support for CORS (Cross-Origin Resource Sharing) which allows you to fetch data from other websites.
+
 We also recommend to verify that the CDN you are using sets the `Access-Control-Allow-Origin: *` HTTP header:
 
 ![Access-Control-Allow-Origin: *](../images/docs/cdn-cors-header.png)

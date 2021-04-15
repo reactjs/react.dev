@@ -59,7 +59,7 @@ When comparing two React DOM elements of the same type, React looks at the attri
 <div className="after" title="stuff" />
 ```
 
-By comparing these two elements, React knows to only modify the `className` on the underlying DOM node.
+By comparing these two elements, React knows to only modify the `class` attribute on the underlying DOM node.
 
 When updating `style`, React also knows to update only the properties that changed. For example:
 

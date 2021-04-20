@@ -54,11 +54,15 @@ The first part of a JSX tag determines the type of the React element.
 
 Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
 
-### React Must Be in Scope {#react-must-be-in-scope}
+### New JSX Transform {#new-jsx-transform}
 
-Since JSX compiles into calls to `React.createElement`, the `React` library must also always be in scope from your JSX code.
+Since JSX compiles into calls to `React.createElement`, the `React` library had to be in scope from your JSX code. 
 
-For example, both of the imports are necessary in this code, even though `React` and `CustomButton` are not directly referenced from JavaScript:
+With the [new JSX transform](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html) introduced in React 17 RC, you can now use JSX without importing `React`. This upgrade does not change the JSX syntax and is not required. The old JSX transform will keep working as usual. 
+
+We’ve also backported support for new JSX transform to React 16.14.0, React 15.7.0, and React 0.14.10. You can find the upgrade instructions for different tools [here](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#how-to-upgrade-to-the-new-jsx-transform).
+
+For example, the `React` import in this code is not necessary with the new JSX transform, even though we are using JSX:
 
 ```js{1,2,5}
 import React from 'react';
@@ -69,8 +73,7 @@ function WarningButton() {
   return <CustomButton color="red" />;
 }
 ```
-
-If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
+If you are using the old JSX transform, the `React` import is necessary. If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
 
 ### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
 

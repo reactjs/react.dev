@@ -79,6 +79,8 @@ The following toolchains offer more flexibility and choice. We recommend them to
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 
+- **[Vite](https://vitejs.dev)** is a next generation front end tooling that leverage the use of [ESM](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules)
+
 ## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
 
 A JavaScript build toolchain typically consists of:

@@ -32,6 +32,11 @@ September 13-15, 2021. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
+## React Advanced London 2021 {#react-advanced-2021} 
+October 20-22, 2021. London, UK & remote
+
+[Website](https://reactadvanced.com) - [Twitter](https://twitter.com/reactadvanced)
+
 ### React India 2021 {#react-india-2021}
 November 12-13, 2021 in Mumbai, India
 

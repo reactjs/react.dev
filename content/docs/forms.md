@@ -290,3 +290,5 @@ It can sometimes be tedious to use controlled components, because you need to wr
 ## Fully-Fledged Solutions {#fully-fledged-solutions}
 
 If you're looking for a complete solution including validation, keeping track of the visited fields, and handling form submission, [Formik](https://jaredpalmer.com/formik) is one of the popular choices. However, it is built on the same principles of controlled components and managing state — so don't neglect to learn them.
+
+[React Hook Form] (https://react-hook-form.com/) is another popular library for creating forms. It mainly makes use of uncontrolled components to reduce the amounts of re-rendering caused by user inputs.

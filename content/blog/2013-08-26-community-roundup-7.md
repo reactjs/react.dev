@@ -16,13 +16,13 @@ It's been three months since we open sourced React and it is going well. Some st
 
 ## Wolfenstein Rendering Engine Ported to React {#wolfenstein-rendering-engine-ported-to-react}
 
-[Pete Hunt](http://www.petehunt.net/) ported the render code of the web version of Wolfenstein 3D to React. Check out [the demo](http://www.petehunt.net/wolfenstein3D-react/wolf3d.html) and [render.js](https://github.com/petehunt/wolfenstein3D-react/blob/master/js/renderer.js#L183) file for the implementation.
+[Pete Hunt](http://www.petehunt.net/) ported the render code of the web version of Wolfenstein 3D to React. Check out [the demo](http://www.petehunt.net/wolfenstein3D-react/wolf3d.html) and [render.js](https://github.com/petehunt/wolfenstein3D-react/blob/main/js/renderer.js#L183) file for the implementation.
 <figure><a href="http://www.petehunt.net/wolfenstein3D-react/wolf3d.html"><img src="../images/blog/wolfenstein_react.png"></a></figure>
 
 
 ## React & Meteor {#react--meteor}
 
-[Ben Newman](https://twitter.com/benjamn) made a [13-lines wrapper](https://github.com/benjamn/meteor-react/blob/master/lib/mixin.js) to use React and Meteor together. [Meteor](http://www.meteor.com/) handles the real-time data synchronization between client and server. React provides the declarative way to write the interface and only updates the parts of the UI that changed.
+[Ben Newman](https://twitter.com/benjamn) made a [13-lines wrapper](https://github.com/benjamn/meteor-react/blob/main/lib/mixin.js) to use React and Meteor together. [Meteor](http://www.meteor.com/) handles the real-time data synchronization between client and server. React provides the declarative way to write the interface and only updates the parts of the UI that changed.
 
 > This repository defines a Meteor package that automatically integrates the React rendering framework on both the client and the server, to complement or replace the default Handlebars templating system.
 >

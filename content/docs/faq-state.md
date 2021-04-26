@@ -15,7 +15,7 @@ category: FAQ
 [`props`](/docs/components-and-props.html) (short for "properties") and [`state`](/docs/state-and-lifecycle.html) are both plain JavaScript objects. While both hold information that influences the output of render, they are different in one important way: `props` get passed *to* the component (similar to function parameters) whereas `state` is managed *within* the component (similar to variables declared within a function).
 
 Here are some good resources for further reading on when to use `props` vs `state`:
-* [Props vs State](https://github.com/uberVU/react-guide/blob/master/props-vs-state.md)
+* [Props vs State](https://github.com/uberVU/react-guide/blob/main/props-vs-state.md)
 * [ReactJS: Props vs. State](https://lucybain.com/blog/2016/react-state-vs-pros/)
 
 ### Why is `setState` giving me the wrong value? {#why-is-setstate-giving-me-the-wrong-value}

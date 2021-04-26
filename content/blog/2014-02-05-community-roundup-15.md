@@ -103,7 +103,7 @@ Fredrik Dyrkell ([@lexicallyscoped](https://twitter.com/lexicallyscoped)) rewrot
 
 In a separate post, Dyrkell breaks down [how to build a binary clock component](http://www.lexicallyscoped.com/2014/01/23/ClojureScript-react-om-binary-clock.html) in Om.
 
-[[Demo](http://www.lexicallyscoped.com/demo/binclock/)] [[Code](https://github.com/fredyr/binclock/blob/master/src/binclock/core.cljs)]
+[[Demo](http://www.lexicallyscoped.com/demo/binclock/)] [[Code](https://github.com/fredyr/binclock/blob/main/src/binclock/core.cljs)]
 
 ### Time Travel: Implementing undo in Om {#time-travel-implementing-undo-in-om}
 David Nolen shows how to leverage immutable data structures to [add global undo](https://swannodette.github.io/2013/12/31/time-travel/) functionality to an app – using just 13 lines of ClojureScript.

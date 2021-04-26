@@ -39,11 +39,11 @@ This approach appealed to us for several reasons:
 * It encouraged active maintainers for each repo to ensure quality.
 * Contributors already understand GitHub as a platform and are motivated to contribute directly to the React organization.
 
-We started off with an initial trial period of three languages: Spanish, Japanese, and Simplified Chinese. This allowed us to work out any kinks in our process and make sure future translations are set up for success. I wanted to give the translation teams freedom to choose whatever tools they felt comfortable with. The only requirement is a [checklist](https://github.com/reactjs/reactjs.org-translation/blob/master/PROGRESS.template.md) that outlines the order of importance for translating pages. 
+We started off with an initial trial period of three languages: Spanish, Japanese, and Simplified Chinese. This allowed us to work out any kinks in our process and make sure future translations are set up for success. I wanted to give the translation teams freedom to choose whatever tools they felt comfortable with. The only requirement is a [checklist](https://github.com/reactjs/reactjs.org-translation/blob/main/PROGRESS.template.md) that outlines the order of importance for translating pages. 
 
-After the trial period, we were ready to accept more languages. I created [a script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/create.js) to automate the creation of the new language repo, and a site, [Is React Translated Yet?](https://isreacttranslatedyet.com), to track progress on the different translations. We started *10* new translations on our first day alone!
+After the trial period, we were ready to accept more languages. I created [a script](https://github.com/reactjs/reactjs.org-translation/blob/main/scripts/create.js) to automate the creation of the new language repo, and a site, [Is React Translated Yet?](https://isreacttranslatedyet.com), to track progress on the different translations. We started *10* new translations on our first day alone!
 
-Because of the automation, the rest of the maintenance went mostly smoothly. We eventually created a [Slack channel](https://rt-slack-invite.herokuapp.com) to make it easier for translators to share information, and I released a guide solidifying the [responsibilities of maintainers](https://github.com/reactjs/reactjs.org-translation/blob/master/maintainer-guide.md). Allowing translators to talk with each other was a great boon -- for example, the Arabic, Persian, and Hebrew translations were able to talk to each other in order to get [right-to-left text](https://en.wikipedia.org/wiki/Right-to-left) working!
+Because of the automation, the rest of the maintenance went mostly smoothly. We eventually created a [Slack channel](https://rt-slack-invite.herokuapp.com) to make it easier for translators to share information, and I released a guide solidifying the [responsibilities of maintainers](https://github.com/reactjs/reactjs.org-translation/blob/main/maintainer-guide.md). Allowing translators to talk with each other was a great boon -- for example, the Arabic, Persian, and Hebrew translations were able to talk to each other in order to get [right-to-left text](https://en.wikipedia.org/wiki/Right-to-left) working!
 
 ## The Bot {#the-bot}
 
@@ -51,7 +51,7 @@ The most challenging part was getting the bot to sync changes from the English v
 
 In the end, we decided that instead of cherry picking each commit, it made more sense to merge all new commits and create a pull request around once a day. Conflicts are merged as-is and listed in the [pull request](https://github.com/reactjs/pt-BR.reactjs.org/pull/114), leaving a checklist for maintainers to fix.
 
-Creating the [sync script](https://github.com/reactjs/reactjs.org-translation/blob/master/scripts/sync.js) was easy enough: it downloads the translated repo, adds the original as a remote, pulls from it, merges the conflicts, and creates a pull request.
+Creating the [sync script](https://github.com/reactjs/reactjs.org-translation/blob/main/scripts/sync.js) was easy enough: it downloads the translated repo, adds the original as a remote, pulls from it, merges the conflicts, and creates a pull request.
 
 The problem was finding a place for the bot to run. I'm a frontend developer for a reason -- Heroku and its ilk are alien to me and *endlessly* frustrating. In fact, until this past Tuesday, I was running the script by hand on my local machine!
 

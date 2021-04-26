@@ -13,7 +13,7 @@ Inspired by [Yarn](https://github.com/yarnpkg/rfcs), [Ember](https://github.com/
 - After discussion, the core team may or may not accept the RFC.
 - If the RFC is accepted, the PR is merged.
 
-RFCs are accepted when they are approved for implementation in React. A more thorough description of the process is available in the repository's [README](https://github.com/reactjs/rfcs/blob/master/README.md). The exact details may be refined in the future.
+RFCs are accepted when they are approved for implementation in React. A more thorough description of the process is available in the repository's [README](https://github.com/reactjs/rfcs/blob/main/README.md). The exact details may be refined in the future.
 
 ## Who Can Submit RFCs? {#who-can-submit-rfcs}
 

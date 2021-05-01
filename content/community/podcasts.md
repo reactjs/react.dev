@@ -10,7 +10,7 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 ## Podcasts {#podcasts}
 
-- [The React Podcast](https://reactpodcast.simplecast.fm/) - The podcast about everything React.js, hosted by [React Training](https://reacttraining.com)
+- [The React Podcast](https://reactpodcast.simplecast.com/) - The podcast about everything React.js, hosted by [Michael Chan](https://twitter.com/chantastic)
 
 - [JavaScript Air](https://javascriptair.com/) - All about JavaScript (currently not producing new episodes)
 

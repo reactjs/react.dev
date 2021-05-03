@@ -205,7 +205,7 @@ So the following jQuery implementation...
 ```js
 $('#container').html('<button id="btn">Say Hello</button>');
 $('#btn').click(function() {
-  alert('Hello!');
+  console.log('Hello!');
 });
 ```
 
@@ -221,7 +221,7 @@ ReactDOM.render(
   document.getElementById('container'),
   function() {
     $('#btn').click(function() {
-      alert('Hello!');
+      console.log('Hello!');
     });
   }
 );
@@ -236,7 +236,7 @@ function Button(props) {
 
 function HelloButton() {
   function handleClick() {
-    alert('Hello!');
+    console.log('Hello!');
   }
   return <Button onClick={handleClick} />;
 }

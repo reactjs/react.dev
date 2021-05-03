@@ -392,7 +392,7 @@ function Example() {
 
   function handleAlertClick() {
     setTimeout(() => {
-      alert('You clicked on: ' + count);
+      console.log('You clicked on: ' + count);
     }, 3000);
   }
 
@@ -930,7 +930,7 @@ function Form() {
 
   const handleSubmit = useCallback(() => {
     const currentText = textRef.current; // Read it from the ref
-    alert(currentText);
+    console.log(currentText);
   }, [textRef]); // Don't recreate handleSubmit like [text] would do
 
   return (
@@ -949,7 +949,7 @@ function Form() {
   const [text, updateText] = useState('');
   // Will be memoized even if `text` changes:
   const handleSubmit = useEventCallback(() => {
-    alert(text);
+    console.log(text);
   }, [text]);
 
   return (

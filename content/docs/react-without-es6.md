@@ -96,7 +96,7 @@ class SayHello extends React.Component {
   }
 
   handleClick() {
-    alert(this.state.message);
+    console.log(this.state.message);
   }
 
   render() {
@@ -119,7 +119,7 @@ var SayHello = createReactClass({
   },
 
   handleClick: function() {
-    alert(this.state.message);
+    console.log(this.state.message);
   },
 
   render: function() {
@@ -146,7 +146,7 @@ class SayHello extends React.Component {
   // WARNING: this syntax is experimental!
   // Using an arrow here binds the method:
   handleClick = () => {
-    alert(this.state.message);
+    console.log(this.state.message);
   }
 
   render() {

@@ -156,7 +156,7 @@ class SignUpDialog extends React.Component {
   }
 
   handleSignUp() {
-    alert(`Welcome aboard, ${this.state.login}!`);
+    console.log(`Welcome aboard, ${this.state.login}!`);
   }
 }
 ```

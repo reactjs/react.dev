@@ -71,6 +71,8 @@ Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [ga
 
 The following toolchains offer more flexibility and choice. We recommend them to more experienced users:
 
+- **[Bit](https://bit.dev)** is a scalable and collaborative way to build and reuse components, with built-in support for React, React Native, and more.
+
 - **[Neutrino](https://neutrinojs.org/)** combines the power of [webpack](https://webpack.js.org/) with the simplicity of presets, and includes a preset for [React apps](https://neutrinojs.org/packages/react/) and [React components](https://neutrinojs.org/packages/react-components/).
 
 - **[Nx](https://nx.dev/react)** is a toolkit for full-stack monorepo development, with built-in support for React, Next.js, [Express](https://expressjs.com/), and more.

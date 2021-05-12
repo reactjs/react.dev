@@ -178,7 +178,7 @@ ReactDOM.render(
 ```javascript{2,3,9,10}
 function ListItem(props) {
   // Correct! There is no need to specify the key here:
-  return <li>{props.value}</li>;
+  return <li key={props.key}>{props.value}</li>;
 }
 
 function NumberList(props) {

@@ -12,25 +12,15 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### React fwdays’21 {#react-fwdays-2021}
-March 27, 2021 - remote event
-
-[Website](https://fwdays.com/en/event/react-fwdays-2021) - [Twitter](https://twitter.com/fwdays) - [Facebook](https://www.facebook.com/events/1133828147054286) - [LinkedIn](https://www.linkedin.com/events/reactfwdays-21onlineconference6758046347334582273) - [Meetup](https://www.meetup.com/ru-RU/Fwdays/events/275764431/)
-
-### React Summit - Remote Edition 2021 {#react-summit-remote-2021}
-April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
-
-[Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
-
-### React Case Study Festival 2021 {#react-case-study-festival-2021}
-April 27-28, 2021 - remote event
-
-[Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203) 
-
 ### render(ATL) 2021 {#render-atlanta-2021} 
 September 13-15, 2021. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
+
+### React Advanced 2021 {#react-advanced-2021}
+October 22-23, 2021. In-person in London, UK + remote (hybrid event)
+
+[Website](https://reactadvanced.com) - [Twitter](http://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
 
 ### React India 2021 {#react-india-2021}
 November 12-13, 2021 in Mumbai, India
@@ -38,6 +28,21 @@ November 12-13, 2021 in Mumbai, India
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
 ## Past Conferences {#past-conferences}
+
+### React Case Study Festival 2021 {#react-case-study-festival-2021}
+April 27-28, 2021 - remote event
+
+[Website](https://link.geekle.us/react/offsite) - [LinkedIn](https://www.linkedin.com/events/reactcasestudyfestival6721300943411015680/) - [Facebook](https://www.facebook.com/events/255715435820203) 
+
+### React Summit - Remote Edition 2021 {#react-summit-remote-2021}
+April 14-16, 2021, 7am PST / 10am EST / 4pm CEST - remote event
+
+[Website](https://remote.reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+
+### React fwdays’21 {#react-fwdays-2021}
+March 27, 2021 - remote event
+
+[Website](https://fwdays.com/en/event/react-fwdays-2021) - [Twitter](https://twitter.com/fwdays) - [Facebook](https://www.facebook.com/events/1133828147054286) - [LinkedIn](https://www.linkedin.com/events/reactfwdays-21onlineconference6758046347334582273) - [Meetup](https://www.meetup.com/ru-RU/Fwdays/events/275764431/)
 
 ### React Next 2020 {#react-next-2020}
 December 1-2, 2020 - remote event

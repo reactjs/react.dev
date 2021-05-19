@@ -32,7 +32,7 @@ React has always provided a JavaScript-centric API to the DOM. Since React compo
 <div tabIndex={-1} />
 ```
 
-This has not changed. However, the way we enforced it in the past forced us to maintain a allowlist of all valid React DOM attributes in the bundle:
+This has not changed. However, the way we enforced it in the past forced us to maintain an allowlist of all valid React DOM attributes in the bundle:
 
 ```js
 // ...

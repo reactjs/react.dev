@@ -64,7 +64,7 @@ It calls [`ReactDOM.render()`](/docs/react-dom.html#render) every second from a 
 
 ## React Only Updates What's Necessary {#react-only-updates-whats-necessary}
 
-React DOM compares the element and its children to the previous one, and only applies the DOM updates necessary to bring the DOM to the desired state.
+React DOM compares the element and its children to the previous state of element, and only applies the DOM updates necessary to bring the DOM to the desired state.
 
 You can verify by inspecting the [last example](codepen://rendering-elements/update-rendered-element) with the browser tools:
 

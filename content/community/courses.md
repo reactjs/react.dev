@@ -16,6 +16,8 @@ permalink: community/courses.html
 
 - [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) - A beginner-friendly crash course through the most important React topics.
 
+- [Full React Course 10hrs Course 2020](https://www.youtube.com/watch?v=4UZrsTqkcW4&t=9s) - Learn Fundamentals, Hooks, Context API, React Router, Custom Hooks.
+
 - [Frontend Armory: React Fundamentals](https://frontarm.com/courses/react-fundamentals/) - Learn React without the buzzwords.
 
 - [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-react) - Free course for React newbies and those looking to get a better understanding of React fundamentals.

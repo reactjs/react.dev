@@ -139,7 +139,7 @@ Remember that you only need to do this for production builds. You shouldn't appl
 >If you're using Create React App, please follow [the instructions above](#create-react-app).<br>
 >This section is only relevant if you configure webpack directly.
 
-Webpack v4+ will minify your code by default in production mode.
+If you are using Webpack v4, you have to install `terser-webpack-plugin` v4 optimize build files, if you are using webpack v5+ you do not need to install `terser-webpack-plugin` plugin, Webpack v5 comes with the latest `terser-webpack-plugin` out of box.
 
 ```js
 const TerserPlugin = require('terser-webpack-plugin');

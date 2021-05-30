@@ -4,7 +4,6 @@
  * @emails react-core
  */
 
-import Container from 'components/Container';
 import Flex from 'components/Flex';
 import {Link} from 'gatsby';
 import PropTypes from 'prop-types';
@@ -15,66 +14,46 @@ const NavigationFooter = ({next, prev, location}) => {
   return (
     <div
       css={{
-        background: colors.dark,
-        color: colors.white,
         paddingTop: 50,
-        paddingBottom: 50,
       }}>
-      <Container>
-        <Flex
-          type="ul"
-          halign="space-between"
-          css={{
-            [media.between('small', 'medium')]: {
-              paddingRight: 240,
-            },
-
-            [media.between('large', 'largerSidebar')]: {
-              paddingRight: 280,
-            },
-
-            [media.between('largerSidebar', 'sidebarFixed', true)]: {
-              paddingRight: 380,
-            },
-          }}>
-          <Flex basis="50%" type="li">
-            {prev && (
-              <div>
-                <SecondaryLabel>Previous article</SecondaryLabel>
-                <div
-                  css={{
-                    paddingTop: 10,
-                  }}>
-                  <PrimaryLink location={location} to={`${prev.id}.html`}>
-                    {prev.title}
-                  </PrimaryLink>
-                </div>
+      <Flex type="ul" halign="space-between">
+        <Flex basis="50%" type="li">
+          {prev && (
+            <div>
+              <SecondaryLabel>Previous article</SecondaryLabel>
+              <div
+                css={{
+                  paddingTop: 10,
+                }}>
+                <PrimaryLink location={location} to={`${prev.id}.html`}>
+                  {prev.title}
+                </PrimaryLink>
               </div>
-            )}
-          </Flex>
-          {next && (
-            <Flex
-              halign="flex-end"
-              basis="50%"
-              type="li"
-              css={{
-                textAlign: 'right',
-              }}>
-              <div>
-                <SecondaryLabel>Next article</SecondaryLabel>
-                <div
-                  css={{
-                    paddingTop: 10,
-                  }}>
-                  <PrimaryLink location={location} to={`${next.id}.html`}>
-                    {next.title}
-                  </PrimaryLink>
-                </div>
-              </div>
-            </Flex>
+            </div>
           )}
         </Flex>
-      </Container>
+        {next && (
+          <Flex
+            halign="flex-end"
+            basis="50%"
+            type="li"
+            css={{
+              textAlign: 'right',
+            }}>
+            <div>
+              <SecondaryLabel>Next article</SecondaryLabel>
+              <div
+                css={{
+                  paddingTop: 10,
+                }}>
+                <PrimaryLink location={location} to={`${next.id}.html`}>
+                  {next.title}
+                </PrimaryLink>
+              </div>
+            </div>
+          </Flex>
+        )}
+      </Flex>
     </div>
   );
 };
@@ -101,7 +80,7 @@ const PrimaryLink = ({children, to, location}) => {
     <Link
       css={{
         display: 'inline',
-        borderColor: colors.subtle,
+        borderColor: colors.brandLight,
         transition: 'border-color 0.2s ease',
         fontSize: 30,
         borderBottomWidth: 1,
@@ -114,7 +93,7 @@ const PrimaryLink = ({children, to, location}) => {
           fontSize: 16,
         },
         ':hover': {
-          borderColor: colors.white,
+          borderColor: colors.subtle,
         },
       }}
       to={updatedUrl}>

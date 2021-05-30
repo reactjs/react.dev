@@ -137,6 +137,14 @@ const MarkdownPage = ({
                     </a>
                   </div>
                 )}
+
+                {(next || prev) && (
+                  <NavigationFooter
+                    location={location}
+                    next={next}
+                    prev={prev}
+                  />
+                )}
               </div>
             </Flex>
 
@@ -155,10 +163,6 @@ const MarkdownPage = ({
           </div>
         </Container>
       </div>
-
-      {(next || prev) && (
-        <NavigationFooter location={location} next={next} prev={prev} />
-      )}
     </Flex>
   );
 };

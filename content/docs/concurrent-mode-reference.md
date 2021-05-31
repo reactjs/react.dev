@@ -59,7 +59,7 @@ For more information on Concurrent Mode, check out the [Concurrent Mode document
 
 `Suspense` lets your components "wait" for something before they can render, showing a fallback while waiting.
 
-In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` has loaded, we will continue to show the fallback.
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
 
 `Suspense` takes two props:
 * **fallback** takes a loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.

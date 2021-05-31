@@ -508,3 +508,6 @@ For example a custom Hook that returned a `Date` value could avoid calling the `
 ```js
 useDebugValue(date, date => date.toDateString());
 ```
+
+You can find much more example here:
+https://bit.ly/3fzPwoV

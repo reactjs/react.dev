@@ -33,6 +33,7 @@ profile/
   ProfileHeader.js
   ProfileHeader.css
   ProfileAPI.js
+  ProfileHook.js
 ```
 
 The definition of a "feature" is not universal, and it is up to you to choose the granularity. If you can't come up with a list of top-level folders, you can ask the users of your product what major parts it consists of, and use their mental model as a blueprint.
@@ -57,6 +58,8 @@ components/
   Profile.js
   ProfileHeader.js
   ProfileHeader.css
+  Toaster.js
+  Toaster.hook.js
 ```
 
 Some people also prefer to go further, and separate components into different folders depending on their role in the application. For example, [Atomic Design](http://bradfrost.com/blog/post/atomic-web-design/) is a design methodology built on this principle. Remember that it's often more productive to treat such methodologies as helpful examples rather than strict rules to follow.

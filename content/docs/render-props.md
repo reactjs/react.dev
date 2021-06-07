@@ -99,7 +99,7 @@ Now the `<Mouse>` component encapsulates all behavior associated with listening 
 
 For example, let's say we have a `<Cat>` component that renders the image of a cat chasing the mouse around the screen. We might use a `<Cat mouse={{ x, y }}>` prop to tell the component the coordinates of the mouse so it knows where to position the image on the screen.
 
-As a first pass, you might try rendering the `<Cat>` *inside `<Mouse>`'s `render` method*, like this:
+As a first pass, you might try rendering the `<Cat>` *inside `<Mouse>`'s `render` method*. However, doing so means that `<Mouse>` will *always* render a `<Cat>`. This forces us to create a new component that is a duplicate of `<Mouse>`:
 
 ```js
 class Cat extends React.Component {
@@ -130,11 +130,13 @@ class MouseWithCat extends React.Component {
       <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove}>
 
         {/*
-          We could just swap out the <p> for a <Cat> here ... but then
-          we would need to create a separate <MouseWithSomethingElse>
-          component every time we need to use it, so <MouseWithCat>
-          isn't really reusable yet.
+          We have swapped out the <p> for a <Cat> here ... but
+          <MouseWithCat> will always render a <Cat>. If we
+          want to render something else, we would need to
+          create a separate <MouseWithSomethingElse> component
+          every time.
         */}
+
         <Cat mouse={this.state} />
       </div>
     );
@@ -153,7 +155,7 @@ class MouseTracker extends React.Component {
 }
 ```
 
-This approach will work for our specific use case, but we haven't achieved the objective of truly encapsulating the behavior in a reusable way. Now, every time we want the mouse position for a different use case, we have to create a new component (i.e. essentially another `<MouseWithCat>`) that renders something specifically for that use case.
+We haven't achieved the objective of truly encapsulating the behavior of `<Mouse>` in a reusable way. Now, every time we want the mouse position for a different use case, we have to create a new component (i.e. essentially another `<MouseWithCat>`) that renders something specifically for that use case.
 
 Here's where the render prop comes in: Instead of hard-coding a `<Cat>` inside a `<Mouse>` component, and effectively changing its rendered output, we can provide `<Mouse>` with a function prop that it uses to dynamically determine what to render–a render prop.
 

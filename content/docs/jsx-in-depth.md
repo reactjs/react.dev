@@ -404,9 +404,9 @@ function ListOfTenThings() {
 
 Children passed to a custom component can be anything, as long as that component transforms them into something React can understand before rendering. This usage is not common, but it works if you want to stretch what JSX is capable of.
 
-### Booleans, Null, and Undefined Are Ignored {#booleans-null-and-undefined-are-ignored}
+### Booleans, Null, Undefined and Empty Lists Are Ignored {#booleans-null-and-empty-lists-undefined-are-ignored}
 
-`false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
+`false`, `null`, `undefined`, `true` and `[]` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
 
 ```js
 <div />
@@ -415,6 +415,8 @@ Children passed to a custom component can be anything, as long as that component
 
 <div>{false}</div>
 
+<div>{[]}</div>
+
 <div>{null}</div>
 
 <div>{undefined}</div>
@@ -422,7 +424,7 @@ Children passed to a custom component can be anything, as long as that component
 <div>{true}</div>
 ```
 
-This can be useful to conditionally render React elements. This JSX renders the `<Header />` component only if `showHeader` is `true`:
+This can be useful to conditionally render React elements. This JSX renders the `<Header />` component only if `showHeader` is `true` or contains an item inside of an array:
 
 ```js{2}
 <div>

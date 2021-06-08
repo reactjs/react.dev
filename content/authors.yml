@@ -1,6 +1,9 @@
 # Map of short name to more information. `name` will be used but if you don't
 # want to use your real name, just use whatever. If url is included, your name
 # will be a link to the provided url.
+abernathyca:
+  name: Christine Abernathy
+  url: https://twitter.com/abernathyca
 acdlite:
   name: Andrew Clark
   url: https://twitter.com/acdlite
@@ -70,12 +73,18 @@ petehunt:
 rachelnabors:
   name: Rachel Nabors
   url: https://twitter.com/rachelnabors
+rickhanlonii:
+  name: Rick Hanlon
+  url: https://twitter.com/rickhanlonii
 schrockn:
   name: Nick Schrock
   url: https://twitter.com/schrockn
 sebmarkbage:
   name: Sebastian Markbåge
   url: https://twitter.com/sebmarkbage
+sethwebster:
+  name: Seth Webster
+  url: https://twitter.com/sethwebster
 sophiebits:
   name: Sophie Alpert
   url: https://sophiebits.com/

@@ -97,7 +97,7 @@ const MarkdownPage = ({
                 <div css={{marginTop: 15}}>
                   {date}{' '}
                   {hasAuthors && (
-                    <span>
+                    <span css={{lineHeight: 1.75}}>
                       by{' '}
                       {toCommaSeparatedList(authors, author => (
                         <a

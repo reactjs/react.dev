@@ -133,19 +133,6 @@
       title: Testing Recipes
     - id: testing-environments
       title: Testing Environments
-- title: Concurrent Mode (Experimental)
-  isOrdered: true
-  items:
-    - id: concurrent-mode-intro
-      title: Introducing Concurrent Mode
-    - id: concurrent-mode-suspense
-      title: Suspense for Data Fetching
-    - id: concurrent-mode-patterns
-      title: Concurrent UI Patterns
-    - id: concurrent-mode-adoption
-      title: Adopting Concurrent Mode
-    - id: concurrent-mode-reference
-      title: Concurrent Mode API Reference
 - title: Contributing
   items:
     - id: how-to-contribute

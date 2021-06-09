@@ -41,3 +41,4 @@ https://en.reactjs.org/* https://reactjs.org/:splat 301!
 /link/uselayouteffect-ssr           https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85  301
 /link/react-devtools-faq            https://github.com/facebook/react/tree/master/packages/react-devtools#faq 301
 /link/setstate-in-render            https://github.com/facebook/react/issues/18178#issuecomment-595846312 301
+/link/switch-to-createroot          https://github.com/reactwg/react-18/discussions/5

@@ -49,6 +49,8 @@ If you need to review JavaScript, we recommend reading [this guide](https://deve
 
 We've recently updated this tutorial to use function-based components instead of class-based ones, and React hooks for state management instead lifecycle methods. The specific hook used for state management is the `useState` hook. You can find an in-depth explanation on how to use the useState hook [here](https://reactjs.org/docs/hooks-state.html#hooks-and-function-components).
 
+We've recently updated this tutorial to use React's hook-based solution for state management - the useState hook. You can find an in-depth explanation of how to use the useState hook [here](https://reactjs.org/docs/hooks-state.html).
+
 ## Setup for the Tutorial {#setup-for-the-tutorial}
 
 There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
@@ -107,7 +109,7 @@ cd ..
 6. Add these three lines to the top of `index.js` in the `src/` folder:
 
 ```js
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 ```

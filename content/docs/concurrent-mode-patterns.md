@@ -79,7 +79,7 @@ Finally, we'll use it inside the `App` component:
 ```js{3-5}
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
+  const [isPending, startTransition] = useTransition({
     timeoutMs: 3000
   });
   // ...
@@ -133,7 +133,7 @@ There's still something that feels broken about [our last example](https://codes
 Our `useTransition()` call returns two values: `startTransition` and `isPending`.
 
 ```js
-  const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
+  const [isPending, startTransition] = useTransition({ timeoutMs: 3000 });
 ```
 
 We've already used `startTransition` to wrap the state update. Now we're going to use `isPending` too. React gives this boolean to us so we can tell whether **we're currently waiting for this transition to finish**. We'll use it to indicate that something is happening:
@@ -169,7 +169,7 @@ Let's take another look at all the changes we've made since the [original exampl
 ```js{3-5,9,11,14,19}
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
+  const [isPending, startTransition] = useTransition({
     timeoutMs: 3000
   });
   return (
@@ -261,7 +261,7 @@ However, the experience feels really jarring. We were browsing a page, but it go
 
 ```js{2-5,9-11,21}
 function ProfilePage() {
-  const [startTransition, isPending] = useTransition({
+  const [isPending, startTransition] = useTransition({
     // Wait 10 seconds before fallback
     timeoutMs: 10000
   });
@@ -302,7 +302,7 @@ This can lead to a lot of repetitive code across components. This is why **we ge
 
 ```js{7-9,20,24}
 function Button({ children, onClick }) {
-  const [startTransition, isPending] = useTransition({
+  const [isPending, startTransition] = useTransition({
     timeoutMs: 10000
   });
 
@@ -550,7 +550,7 @@ Our `Button` component will immediately show the Pending state indicator on clic
 
 ```js{2,13}
 function Button({ children, onClick }) {
-  const [startTransition, isPending] = useTransition({
+  const [isPending, startTransition] = useTransition({
     timeoutMs: 10000
   });
 
@@ -681,7 +681,7 @@ As we mentioned earlier, if some state update causes a component to suspend, tha
 function App() {
   const [query, setQuery] = useState(initialQuery);
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
+  const [isPending, startTransition] = useTransition({
     timeoutMs: 5000
   });
 

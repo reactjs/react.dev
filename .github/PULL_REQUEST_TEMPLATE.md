@@ -1,5 +1,3 @@
-
-
 <!--
 
 Thank you for the PR! Contributors like you keep React awesome!

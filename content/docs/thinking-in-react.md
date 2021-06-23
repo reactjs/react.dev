@@ -84,7 +84,7 @@ To make your UI interactive, you need to be able to trigger changes to your unde
 
 To build your app correctly, you first need to think of the minimal set of mutable state that your app needs. The key here is [DRY: *Don't Repeat Yourself*](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself). Figure out the absolute minimal representation of the state your application needs and compute everything else you need on-demand. For example, if you're building a TODO list, keep an array of the TODO items around; don't keep a separate state variable for the count. Instead, when you want to render the TODO count, take the length of the TODO items array.
 
-Think of all of the pieces of data in our example application. We have:
+Think of all the pieces of data in our example application. We have:
 
   * The original list of products
   * The search text the user has entered

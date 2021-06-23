@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 let offsetY = 0;
 
 const getTargetOffset = hash => {

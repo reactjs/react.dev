@@ -56,7 +56,8 @@ The `onChange` event behaves as you would expect it to: whenever a form field is
 
 ### selected {#selected}
 
-The `selected` attribute is supported by `<option>` components. You can use it to set whether the component is selected. This is useful for building controlled components.
+If you want to mark an `<option>` as selected, reference the value of that option in the `value` of its `<select>` instead.
+Check out ["The select Tag"](/docs/forms.html#the-select-tag) for detailed instructions.
 
 ### style {#style}
 
@@ -120,7 +121,7 @@ If you set `suppressHydrationWarning` to `true`, React will not warn you about m
 
 ### value {#value}
 
-The `value` attribute is supported by `<input>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` components. You can use it to set the value of the component. This is useful for building controlled components. `defaultValue` is the uncontrolled equivalent, which sets the value of the component when it is first mounted.
 
 ## All Supported HTML Attributes {#all-supported-html-attributes}
 
@@ -129,7 +130,7 @@ As of React 16, any standard [or custom](/blog/2017/09/08/dom-attributes-in-reac
 React has always provided a JavaScript-centric API to the DOM. Since React components often take both custom and DOM-related props, React uses the `camelCase` convention just like the DOM APIs:
 
 ```js
-<div tabIndex="-1" />      // Just like node.tabIndex DOM API
+<div tabIndex={-1} />      // Just like node.tabIndex DOM API
 <div className="Button" /> // Just like node.className DOM API
 <input readOnly={true} />  // Just like node.readOnly DOM API
 ```

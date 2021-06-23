@@ -43,8 +43,8 @@ Remember that this is only necessary before deploying to production. For normal 
 We offer production-ready versions of React and React DOM as single files:
 
 ```html
-<script src="https://unpkg.com/react@16/umd/react.production.min.js"></script>
-<script src="https://unpkg.com/react-dom@16/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
 ```
 
 Remember that only React files ending with `.production.min.js` are suitable for production.
@@ -75,10 +75,10 @@ For the most efficient Browserify production build, install a few plugins:
 
 ```
 # If you use npm
-npm install --save-dev envify terser uglifyify 
+npm install --save-dev envify terser uglifyify
 
 # If you use Yarn
-yarn add --dev envify terser uglifyify 
+yarn add --dev envify terser uglifyify
 ```
 
 To create a production build, make sure that you add these transforms **(the order matters)**:
@@ -156,32 +156,6 @@ You can learn more about this in [webpack documentation](https://webpack.js.org/
 
 Remember that you only need to do this for production builds. You shouldn't apply `TerserPlugin` in development because it will hide useful React warnings, and make the builds much slower.
 
-## Profiling Components with the Chrome Performance Tab {#profiling-components-with-the-chrome-performance-tab}
-
-In the **development** mode, you can visualize how components mount, update, and unmount, using the performance tools in supported browsers. For example:
-
-<center><img src="../images/blog/react-perf-chrome-timeline.png" style="max-width:100%" alt="React components in Chrome timeline" /></center>
-
-To do this in Chrome:
-
-1. Temporarily **disable all Chrome extensions, especially React DevTools**. They can significantly skew the results!
-
-2. Make sure you're running the application in the development mode.
-
-3. Open the Chrome DevTools **[Performance](https://developers.google.com/web/tools/chrome-devtools/evaluate-performance/timeline-tool)** tab and press **Record**.
-
-4. Perform the actions you want to profile. Don't record more than 20 seconds or Chrome might hang.
-
-5. Stop recording.
-
-6. React events will be grouped under the **User Timing** label.
-
-For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
-
-Note that **the numbers are relative so components will render faster in production**. Still, this should help you realize when unrelated UI gets updated by mistake, and how deep and how often your UI updates occur.
-
-Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
-
 ## Profiling Components with the DevTools Profiler {#profiling-components-with-the-devtools-profiler}
 
 `react-dom` 16.5+ and `react-native` 0.57+ provide enhanced profiling capabilities in DEV mode with the React DevTools Profiler.
@@ -199,9 +173,14 @@ If you haven't yet installed the React DevTools, you can find them here:
 > A production profiling bundle of `react-dom` is also available as `react-dom/profiling`.
 > Read more about how to use this bundle at [fb.me/react-profiling](https://fb.me/react-profiling)
 
+> Note
+>
+> Before React 17, we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) to profile components with the chrome performance tab. 
+> For a more detailed walkthrough, check out [this article by Ben Schwarz](https://calibreapp.com/blog/react-performance-profiling-optimization).
+
 ## Virtualize Long Lists {#virtualize-long-lists}
 
-If your application renders long lists of data (hundreds or thousands of rows), we recommended using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
+If your application renders long lists of data (hundreds or thousands of rows), we recommend using a technique known as "windowing". This technique only renders a small subset of your rows at any given time, and can dramatically reduce the time it takes to re-render the components as well as the number of DOM nodes created.
 
 [react-window](https://react-window.now.sh/) and [react-virtualized](https://bvaughn.github.io/react-virtualized/) are popular windowing libraries. They provide several reusable components for displaying lists, grids, and tabular data. You can also create your own windowing component, like [Twitter did](https://medium.com/@paularmstrong/twitter-lite-and-high-performance-react-progressive-web-apps-at-scale-d28a00e780a3), if you want something more tailored to your application's specific use case.
 
@@ -379,7 +358,7 @@ function updateColorMap(colormap) {
 }
 ```
 
-This feature was added to JavaScript in ES2018. 
+This feature was added to JavaScript in ES2018.
 
 If you're using Create React App, both `Object.assign` and the object spread syntax are available by default.
 

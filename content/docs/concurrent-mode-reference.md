@@ -16,9 +16,12 @@ prev: concurrent-mode-adoption.html
 
 >Caution:
 >
->This page describes **experimental features that are [not yet available](/docs/concurrent-mode-adoption.html) in a stable release**. Don't rely on experimental builds of React in production apps. These features may change significantly and without a warning before they become a part of React.
+>This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
 >
->This documentation is aimed at early adopters and people who are curious. **If you're new to React, don't worry about these features** -- you don't need to learn them right now.
+>Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
+) for the up-to-date information.**
+>
+>Before React 18 is released, we will replace this page with stable documentation.
 
 </div>
 
@@ -28,7 +31,6 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 
 - [Enabling Concurrent Mode](#concurrent-mode)
     - [`createRoot`](#createroot)
-    - [`createBlockingRoot`](#createblockingroot)
 - [Suspense](#suspense)
     - [`Suspense`](#suspensecomponent)
     - [`SuspenseList`](#suspenselist)
@@ -47,18 +49,6 @@ Replaces `ReactDOM.render(<App />, rootNode)` and enables Concurrent Mode.
 
 For more information on Concurrent Mode, check out the [Concurrent Mode documentation.](/docs/concurrent-mode-intro.html)
 
-### `createBlockingRoot` {#createblockingroot}
-
-```js
-ReactDOM.createBlockingRoot(rootNode).render(<App />)
-```
-
-Replaces `ReactDOM.render(<App />, rootNode)` and enables [Blocking Mode](/docs/concurrent-mode-adoption.html#migration-step-blocking-mode).
-
-Opting into Concurrent Mode introduces semantic changes to how React works. This means that you can't use Concurrent Mode in just a few components. Because of this, some apps may not be able to migrate directly to Concurrent Mode. 
-
-Blocking Mode only contains a small subset of Concurrent Mode features and is intended as an intermediary migration step for apps that are unable to migrate directly.
-
 ## Suspense API {#suspense}
 
 ### `Suspense` {#suspensecomponent}
@@ -72,7 +62,7 @@ Blocking Mode only contains a small subset of Concurrent Mode features and is in
 
 `Suspense` lets your components "wait" for something before they can render, showing a fallback while waiting.
 
-In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` has loaded, we will continue to show the fallback.
+In this example, `ProfileDetails` is waiting for an asynchronous API call to fetch some data. While we wait for `ProfileDetails` and `ProfilePhoto`, we will show the `Loading...` fallback instead. It is important to note that until all children inside `<Suspense>` have loaded, we will continue to show the fallback.
 
 `Suspense` takes two props:
 * **fallback** takes a loading indicator. The fallback is shown until all of the children of the `Suspense` component have finished rendering.

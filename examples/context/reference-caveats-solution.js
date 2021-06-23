@@ -10,9 +10,9 @@ class App extends React.Component {
   render() {
     // highlight-range{2}
     return (
-      <Provider value={this.state.value}>
+      <MyContext.Provider value={this.state.value}>
         <Toolbar />
-      </Provider>
+      </MyContext.Provider>
     );
   }
 }

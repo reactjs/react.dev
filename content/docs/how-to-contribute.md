@@ -70,7 +70,7 @@ If you're only fixing a bug, it's fine to submit a pull request right away but w
 
 Working on your first Pull Request? You can learn how from this free video series:
 
-**[How to Contribute to an Open Source Project on GitHub](https://egghead.io/series/how-to-contribute-to-an-open-source-project-on-github)**
+**[How to Contribute to an Open Source Project on GitHub](https://app.egghead.io/courses/how-to-contribute-to-an-open-source-project-on-github)**
 
 To help you get your feet wet and get you familiar with our contribution process, we have a list of **[good first issues](https://github.com/facebook/react/issues?q=is:open+is:issue+label:"good+first+issue")** that contain bugs that have a relatively limited scope. This is a great place to get started.
 
@@ -88,7 +88,7 @@ The core team is monitoring for pull requests. We will review your pull request 
 2. Run `yarn` in the repository root.
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
-5. Run `yarn test-prod` to test in the production environment. It supports the same options as `yarn test`.
+5. Run `yarn test --prod` to test in the production environment.
 6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
 7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
 8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
@@ -117,26 +117,26 @@ Then, you can run several commands:
 * `yarn linc` is like `yarn lint` but faster because it only checks files that differ in your branch.
 * `yarn test` runs the complete test suite.
 * `yarn test --watch` runs an interactive test watcher.
+* `yarn test --prod` runs tests in the production environment.
 * `yarn test <pattern>` runs tests with matching filenames.
-* `yarn test-prod` runs tests in the production environment. It supports all the same options as `yarn test`.
 * `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
 * `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
 * `yarn build` creates a `build` folder with all the packages.
 * `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.
 
-We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However it can be handy to try your build of React in a real project.
+We recommend running `yarn test` (or its variations above) to make sure you don't introduce any regressions as you work on your change. However, it can be handy to try your build of React in a real project.
 
 First, run `yarn build`. This will produce pre-built bundles in `build` folder, as well as prepare npm packages inside `build/packages`.
 
 The easiest way to try your changes is to run `yarn build react/index,react-dom/index --type=UMD` and then open `fixtures/packaging/babel-standalone/dev.html`. This file already uses `react.development.js` from the `build` folder so it will pick up your changes.
 
-If you want to try your changes in your existing React project, you may copy `build/dist/react.development.js`, `build/dist/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
+If you want to try your changes in your existing React project, you may copy `build/node_modules/react/umd/react.development.js`, `build/node_modules/react-dom/umd/react-dom.development.js`, or any other build products into your app and use them instead of the stable version. 
 
 If your project uses React from npm, you may delete `react` and `react-dom` in its dependencies and use `yarn link` to point them to your local `build` folder. Note that **instead of `--type=UMD` you'll want to pass `--type=NODE` when building**. You'll also need to build the `scheduler` package:
 
 ```sh
 cd ~/path_to_your_react_clone/
-yarn build react/index,react-dom/index,scheduler --type=NODE
+yarn build react/index,react/jsx,react-dom/index,scheduler --type=NODE
 
 cd build/node_modules/react
 yarn link

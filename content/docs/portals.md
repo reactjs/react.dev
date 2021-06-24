@@ -4,7 +4,7 @@ title: Portals
 permalink: docs/portals.html
 ---
 
-Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
+Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.  They _must_ be returned from a component. The `createPortal` function is not a normal funciton that can be called from just anywhere.
 
 ```js
 ReactDOM.createPortal(child, container)

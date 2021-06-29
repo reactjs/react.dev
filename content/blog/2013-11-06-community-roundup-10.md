@@ -52,7 +52,7 @@ The best part is that no drastic changes have been required to support all those
 
 ## TodoMVC Benchmarks {#todomvc-benchmarks}
 
-Webkit has a [TodoMVC Benchmark](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) that compares different frameworks. They recently included React and here are the results (average of 10 runs in Chrome 30):
+Webkit has a [TodoMVC Benchmark](https://github.com/WebKit/webkit/tree/main/PerformanceTests/DoYouEvenBench) that compares different frameworks. They recently included React and here are the results (average of 10 runs in Chrome 30):
 
 - **AngularJS:** 4043ms
 - **AngularJSPerf:** 3227ms

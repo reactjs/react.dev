@@ -54,7 +54,7 @@ Newly created projects are built as [Progressive Web Apps](https://developers.go
 
 New apps automatically have these features, but you can easily convert an existing project to a Progressive Web App  by following [our migration guide](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.0).
 
-We will be adding [more documentation](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) on this topic in the coming weeks. Please feel free to [ask any questions](https://github.com/facebookincubator/create-react-app/issues/new) on the issue tracker!
+We will be adding [more documentation](https://github.com/facebookincubator/create-react-app/blob/main/packages/react-scripts/template/README.md#making-a-progressive-web-app) on this topic in the coming weeks. Please feel free to [ask any questions](https://github.com/facebookincubator/create-react-app/issues/new) on the issue tracker!
 
 
 ### Jest 20 {#jest-20}

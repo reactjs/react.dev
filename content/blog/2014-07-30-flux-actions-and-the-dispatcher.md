@@ -3,7 +3,7 @@ title: "Flux: Actions and the Dispatcher"
 author: [fisherwebdev]
 ---
 
-Flux is the application architecture Facebook uses to build JavaScript applications. It's based on a unidirectional data flow.  We've built everything from small widgets to huge applications with Flux, and it's handled everything we've thrown at it. Because we've found it to be a great way to structure our code, we're excited to share it with the open source community. [Jing Chen presented Flux](http://youtu.be/nYkdrAPrdcw?t=10m20s) at the F8 conference, and since that time we've seen a lot of interest in it. We've also published an [overview of Flux](https://facebook.github.io/flux/docs/overview.html) and a [TodoMVC example](https://github.com/facebook/flux/tree/master/examples/flux-todomvc/), with an accompanying [tutorial](https://facebook.github.io/flux/docs/todo-list.html).
+Flux is the application architecture Facebook uses to build JavaScript applications. It's based on a unidirectional data flow.  We've built everything from small widgets to huge applications with Flux, and it's handled everything we've thrown at it. Because we've found it to be a great way to structure our code, we're excited to share it with the open source community. [Jing Chen presented Flux](http://youtu.be/nYkdrAPrdcw?t=10m20s) at the F8 conference, and since that time we've seen a lot of interest in it. We've also published an [overview of Flux](https://facebook.github.io/flux/docs/overview.html) and a [TodoMVC example](https://github.com/facebook/flux/tree/main/examples/flux-todomvc/), with an accompanying [tutorial](https://facebook.github.io/flux/docs/todo-list.html).
 
 Flux is more of a pattern than a full-blown framework, and you can start using it without a lot of new code beyond React. Up until recently, however, we haven't released one crucial piece of our Flux software: the dispatcher. But along with the creation of the new [Flux code repository](https://github.com/facebook/flux) and [Flux website](https://facebook.github.io/flux/), we've now open sourced the same [dispatcher](https://facebook.github.io/flux/docs/dispatcher.html) we use in our production applications.
 
@@ -41,6 +41,6 @@ Problems arise, however, if we have circular dependencies. That is, if Store A n
 Example Chat App
 ----------------
 
-Along with the same dispatcher that Facebook uses in its production applications, we've also published a new example [chat app](https://github.com/facebook/flux/tree/master/examples/flux-chat), slightly more complicated than the simplistic TodoMVC, so that engineers can better understand how Flux solves problems like dependencies between stores and calls to a web API.
+Along with the same dispatcher that Facebook uses in its production applications, we've also published a new example [chat app](https://github.com/facebook/flux/tree/main/examples/flux-chat), slightly more complicated than the simplistic TodoMVC, so that engineers can better understand how Flux solves problems like dependencies between stores and calls to a web API.
 
 We're hopeful that the new Flux repository will grow with time to include additional tools, boilerplate code and further examples. And we hope that Flux will prove as useful to you as it has to us. Enjoy!

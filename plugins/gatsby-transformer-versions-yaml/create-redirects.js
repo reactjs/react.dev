@@ -7,7 +7,7 @@ const {appendFile, exists, readFile, writeFile} = require('fs-extra');
 const HEADER_COMMENT = `## Created with gatsby-transformer-versions-yaml`;
 
 // Patterned after the 'gatsby-plugin-netlify' plug-in:
-// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-netlify/src/create-redirects.js
+// https://github.com/gatsbyjs/gatsby/blob/main/packages/gatsby-plugin-netlify/src/create-redirects.js
 module.exports = async function writeRedirectsFile(
   redirects,
   redirectsFilePath,

@@ -54,5 +54,5 @@ Over the past several weeks, members of our team, [Pete Hunt](http://www.petehun
 
 [Tom Occhino](http://tomocchino.com/) implemented Snake in 150 lines with React.
 
-> [Check the source on GitHub](https://github.com/tomocchino/react-snake/blob/master/src/snake.js)
+> [Check the source on GitHub](https://github.com/tomocchino/react-snake/blob/main/src/snake.js)
 > <figure><a href="https://tomocchino.github.io/react-snake/"><img src="../images/blog/snake.png"></a></figure>

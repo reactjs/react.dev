@@ -52,4 +52,4 @@ Alternatively, add it into your `requirements` file:
 
 **Dependencies**: PyReact uses [PyExecJS](https://github.com/doloopwhile/PyExecJS) to execute the bundled React code, which requires that a JS runtime environment is installed on your machine. We don't explicitly set a dependency on a runtime environment; Mac OS X comes bundled with one. If you're on a different platform, we recommend [PyV8](https://code.google.com/p/pyv8/).
 
-For the initial release, we've only tested on Python 2.7. Look out for support for Python 3 in the future, and if you see anything that can be improved, we welcome your [contributions](https://github.com/facebook/react-python/blob/master/CONTRIBUTING.md)!
+For the initial release, we've only tested on Python 2.7. Look out for support for Python 3 in the future, and if you see anything that can be improved, we welcome your [contributions](https://github.com/facebook/react-python/blob/main/CONTRIBUTING.md)!

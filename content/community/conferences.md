@@ -22,6 +22,12 @@ October 7-8, 2021. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl) - [LinkedIn](https://www.linkedin.com/company/frontendlove/)
 
+
+### React Brussels 2021 {#react-brussels-2021} 
+October 15, 2021 - remote event
+
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/)
+
 ### React Advanced 2021 {#react-advanced-2021}
 October 22-23, 2021. In-person in London, UK + remote (hybrid event)
 

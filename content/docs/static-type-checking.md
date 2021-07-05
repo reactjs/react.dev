@@ -318,7 +318,9 @@ You are now ready to code! We recommend to check out the following resources to 
 
 ## ReScript {#rescript}
 
-[ReScript](https://rescript-lang.org/) is a robustly typed language that compiles to efficient and human-readable JavaScript. It comes with a lightning fast compiler toolchain that scales to any codebase size. Some of its core features are a guaranteed 100% type coverage, first-class JSX support and [dedicated React bindings](https://rescript-lang.org/docs/react/latest/introduction) to allow seamless integration in existing JS / TS React codebases.
+[ReScript](https://rescript-lang.org/) is a typed language that compiles to JavaScript. Some of its core features are  guaranteed 100% type coverage, first-class JSX support and [dedicated React bindings](https://rescript-lang.org/docs/react/latest/introduction) to allow integration in existing JS / TS React codebases.
+
+You can find more infos on integrating ReScript in your existing JS / React codebase [here](https://rescript-lang.org/docs/manual/latest/installation#integrate-into-an-existing-js-project).
 
 ## Kotlin {#kotlin}
 

@@ -27,13 +27,13 @@ Every significant change is documented in the [changelog file](https://github.co
 
 ### Branch Organization {#branch-organization}
 
-Submit all changes directly to the [`main branch`](https://github.com/facebook/react/tree/main). We don't use separate branches for development or for upcoming releases. We do our best to keep `master` in good shape, with all tests passing.
+Submit all changes directly to the [`main branch`](https://github.com/facebook/react/tree/main). We don't use separate branches for development or for upcoming releases. We do our best to keep `main` in good shape, with all tests passing.
 
-Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
+Code that lands in `main` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `main` at any time.
 
 ### Feature Flags {#feature-flags}
 
-To keep the `master` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+To keep the `main` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
 
 Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/main/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/main/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
 
@@ -84,7 +84,7 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 **Before submitting a pull request,** please make sure the following is done:
 
-1. Fork [the repository](https://github.com/facebook/react) and create your branch from `master`.
+1. Fork [the repository](https://github.com/facebook/react) and create your branch from `main`.
 2. Run `yarn` in the repository root.
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.

@@ -37,7 +37,7 @@
     { "source": "/link/profiling", "destination": "https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977", "permanent": false },
     { "source": "/link/test-utils-mock-component", "destination": "https://gist.github.com/bvaughn/fbf41b3f895bf2d297935faa5525eee9", "permanent": false },
     { "source": "/link/uselayouteffect-ssr", "destination": "https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85", "permanent": false },
-    { "source": "/link/react-devtools-faq", "destination": "https://github.com/facebook/react/tree/master/packages/react-devtools#faq", "permanent": false },
+    { "source": "/link/react-devtools-faq", "destination": "https://github.com/facebook/react/tree/main/packages/react-devtools#faq", "permanent": false },
     { "source": "/link/setstate-in-render", "destination": "https://github.com/facebook/react/issues/18178#issuecomment-595846312", "permanent": false },
     { "source": "/version/15.6", "destination": "https://react-legacy.netlify.app", "permanent": false }
   ]

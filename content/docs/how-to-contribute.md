@@ -27,7 +27,7 @@ Every significant change is documented in the [changelog file](https://github.co
 
 ### Branch Organization {#branch-organization}
 
-Submit all changes directly to the [`master branch`](https://github.com/facebook/react/tree/main). We don't use separate branches for development or for upcoming releases. We do our best to keep `master` in good shape, with all tests passing.
+Submit all changes directly to the [`main branch`](https://github.com/facebook/react/tree/main). We don't use separate branches for development or for upcoming releases. We do our best to keep `master` in good shape, with all tests passing.
 
 Code that lands in `master` must be compatible with the latest stable release. It may contain additional features, but no breaking changes. We should be able to release a new minor version from the tip of `master` at any time.
 

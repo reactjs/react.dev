@@ -78,6 +78,38 @@ handleSomething() {
 
 [Learn more about setState](/docs/react-component.html#setstate)
 
+### How do I update nested state properties ?
+
+If you want to update one of the properties of user while keeping other properties the same, you should create an other object using the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) and change the properties you want.
+
+For exemple if your state is like this:
+
+```jsx
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      someState: true,
+      user: {
+        firstname: 'John',
+        lastname: 'Doe',
+        age: 25
+      }
+    }
+  }
+}
+```
+
+You should update it that way:
+
+```jsx
+updateUserFirstName(newFirstname) {
+  this.setState((state) => {
+    return { ...state, user: { ...state.user, firstname: newFirstname } }
+  })
+}
+```
+
 ### When is `setState` asynchronous? {#when-is-setstate-asynchronous}
 
 Currently, `setState` is asynchronous inside event handlers.

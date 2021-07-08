@@ -49,7 +49,7 @@ If you need to review JavaScript, we recommend reading [this guide](https://deve
 
 ## Setup for the Tutorial {#setup-for-the-tutorial}
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+There are three ways to complete this tutorial: you can either write the code in your browser, set up a local development environment on your computer, or follow along with an interactive tutorial.
 
 ### Setup Option 1: Write Code in the Browser {#setup-option-1-write-code-in-the-browser}
 
@@ -115,6 +115,10 @@ Now if you run `npm start` in the project folder and open `http://localhost:3000
 We recommend following [these instructions](https://babeljs.io/docs/editors/) to configure syntax highlighting for your editor.
 
 </details>
+
+### Setup Option 3: Interactive Tutorial {#setup-option-3-interactive-tutorial}
+
+Navigate to [codeamigo.dev](https://codeamigo.dev/lessons/start/54), signup, and complete the tutorial.
 
 ### Help, I'm Stuck! {#help-im-stuck}
 

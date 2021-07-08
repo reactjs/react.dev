@@ -18,6 +18,7 @@ If you add a project, please commit to keeping it up to date with the latest ver
 * **[BMI Calculator](https://github.com/GermaVinsmoke/bmi-calculator)** A React Hooks app for calculating BMI
 * **[Image Compressor](https://github.com/RaulB-masai/react-image-compressor)** An offline image compressor built with React and browser-image-compression
 * **[Counter App](https://github.com/arnab-datta/counter-app)** A small shopping cart example
+* **[PortFolio](https://github.com/dpatel-8112/portfolio)** Portfolio with Pure ReactJS
 * **[Tutorial Solutions](https://github.com/harman052/react-tutorial-solutions)** Solutions to challenges mentioned at the end of React tutorial
 
 ## Complete Apps {#complete-apps}

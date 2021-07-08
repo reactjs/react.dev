@@ -8,6 +8,8 @@ permalink: community/courses.html
 
 ## Free Courses {#free-courses}
 
+- [Full React Course 2021](https://www.youtube.com/watch?v=RgxyPMJmlRA&list=PLG-Mk4wQm9_KpnKa5_oPKEgg1V5j9vGFC) - The complete React Course learning you how to use React.
+
 - [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - A free, 5-part video course with interactive code examples that will help you learn React.
 
 - [Codecademy: React 101](https://www.codecademy.com/learn/react-101) - Codecademy's introductory course for React.

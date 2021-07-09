@@ -239,7 +239,7 @@ Consider a `Contact` component that embeds a third-party `GoogleMap` component:
 
 import React from "react";
 
-import { LoadScript, GoogleMap } from "react-google-maps";
+import { LoadScript, GoogleMap } from "@react-google-maps/api";
 export default function Map(props) {
   return (
     <LoadScript id="script-loader" googleMapsApiKey="YOUR_API_KEY">

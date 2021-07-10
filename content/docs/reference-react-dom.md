@@ -33,7 +33,7 @@ React supports all popular browsers, including Internet Explorer 9 and above, al
 ### `render()` {#render}
 
 ```javascript
-ReactDOM.render(element, container[, callback])
+ReactDOM.render(element, container,[callback])
 ```
 
 Render a React element into the DOM in the supplied `container` and return a [reference](/docs/more-about-refs.html) to the component (or returns `null` for [stateless components](/docs/components-and-props.html#function-and-class-components)).

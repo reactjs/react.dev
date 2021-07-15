@@ -1188,7 +1188,7 @@ If we click on any step in the game's history, the tic-tac-toe board should imme
 
 ### Wrapping Up {#wrapping-up}
 
-Congratulations! You've created a tic-tac-toe game that:
+Congratulations! You've created a tic-tac-toe game that:   
 
 * Lets you play tic-tac-toe,
 * Indicates when a player has won the game,

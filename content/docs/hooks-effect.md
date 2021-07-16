@@ -215,7 +215,7 @@ function FriendStatus(props) {
     return function cleanup() {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
-  });
+  }, []);
 
   if (isOnline === null) {
     return 'Loading...';
@@ -246,7 +246,7 @@ We've learned that `useEffect` lets us express different kinds of side effects a
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
-  });
+  }, []);
 ```
 
 Other effects might not have a cleanup phase, and don't return anything.
@@ -329,7 +329,7 @@ function FriendStatusWithCounter(props) {
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
-  });
+  }, []);
   // ...
 }
 ```
@@ -404,7 +404,7 @@ function FriendStatus(props) {
     return () => {
       ChatAPI.unsubscribeFromFriendStatus(props.friend.id, handleStatusChange);
     };
-  });
+  }, []);
 ```
 
 It doesn't suffer from this bug. (But we also didn't make any changes to it.)

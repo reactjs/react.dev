@@ -8,6 +8,8 @@ permalink: docs/strict-mode.html
 
 > Note:
 >
+> Strict mode may "_render_" your application twice, but only one will be visible to the DOM. The second render is necessary to carry out its checks.
+>
 > Strict mode checks are run in development mode only; _they do not impact the production build_.
 
 You can enable strict mode for any part of your application. For example:

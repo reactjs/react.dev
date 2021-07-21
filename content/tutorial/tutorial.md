@@ -590,6 +590,12 @@ We have changed `this.props` to `props` both times it appears.
 >
 >When we modified the Square to be a function component, we also changed `onClick={() => this.props.onClick()}` to a shorter `onClick={props.onClick}` (note the lack of parentheses on *both* sides).
 
+`()=>this.props.onClick` is a statement representing a function, and `props.onClick` is a variable representing a function.
+`()=>this.props.onClick` has two invocations, first a lambda function `()=>{...}`, which then calls your props.onClick function.
+`props.onClick` directly invokes the props.callback through reference.
+>If we add `()` to `props.onClick`, then `props.onClick` is called immediately without clicking on the element. 
+
+
 ### Taking Turns {#taking-turns}
 
 We now need to fix an obvious defect in our tic-tac-toe game: the "O"s cannot be marked on the board.

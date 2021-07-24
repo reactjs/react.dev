@@ -34,7 +34,7 @@ demonstrates adding child DOM elements ot text nodes inside the tag.
 
 > However:
 >
-> React's ability to set property values of a Web Component or native HTML element requires use of a ref, just as a ref is required for all method API's. Since React's binding support is mostly centered around setting property values, most third-party Web Components that are marketed to be used within React provide a React component that behaves as a wrapper for the Web Component.  If you are working with a web component library which provides no such wrapper, you might want to create such a wrapper yourself.
+> React's ability to set property values of a Web Component or native HTML element requires use of a ref, just as a ref is required for all method API's. Since React's binding support is mostly centered around setting property values of React components, but cannot do so with Web Components, most third-party Web Components that are marketed to be used within React provide a React component that behaves as a wrapper for the Web Component.  If you are working with a web component library which provides no such wrapper, you might want to create such a wrapper yourself.
 
 Without such a wrapper, you can set property values in React as shown below:
 

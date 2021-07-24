@@ -12,7 +12,7 @@ Most people who use React don't need to use Web Components, but you may want to,
 
 ## Using Web Components in React {#using-web-components-in-react}
 
-Custom Element, just like DOM elements built into the browser, support five main ways of being manipulated.
+Custom Elements, just like DOM elements built into the browser, support five main ways of being manipulated.
 
 1.  By setting attribute values.  For example "aria-label" is an attribute that can help make a DOM element more accessible.  Custom Elements can define their own attributes, in addition to supporting the global attributes all built-in elements support.
 2.  By adding child DOM elements inside the tag. 

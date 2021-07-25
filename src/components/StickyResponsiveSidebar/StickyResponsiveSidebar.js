@@ -8,7 +8,7 @@
 import Container from 'components/Container';
 import React, {Component} from 'react';
 import Sidebar from 'templates/components/Sidebar';
-import {colors, media} from 'theme';
+import {colors, media, darkModeColors} from 'theme';
 import ChevronSvg from 'templates/components/ChevronSvg';
 
 type State = {
@@ -73,6 +73,9 @@ class StickyResponsiveSidebar extends Component<Props, State> {
             transition: 'opacity 0.5s ease',
           }}
           css={{
+            '.dark &': {
+              backgroundColor: darkModeColors.sideBarBg,
+            },
             [media.lessThan('small')]: smallScreenSidebarStyles,
 
             [media.greaterThan('medium')]: {

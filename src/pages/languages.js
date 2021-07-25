@@ -116,7 +116,9 @@ const Language = ({code, name, status, translatedName}) => {
         paddingBottom: 20,
         width: '100%',
         listStyle: 'none',
-
+        '.dark &': {
+          borderTop: '1px solid black',
+        },
         [media.size('small')]: {
           width: '50%',
         },

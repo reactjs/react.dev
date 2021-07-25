@@ -27,6 +27,13 @@ const colors = {
   black: '#000000',
 };
 
+const darkModeColors = {
+  text: '#ffffff9d',
+  bg: '#191b21',
+  sideBarBg: '#131419',
+  heading: '#ffffffd3',
+};
+
 const SIZES = {
   xsmall: {min: 0, max: 599},
   small: {min: 600, max: 779},
@@ -114,12 +121,25 @@ const linkStyle = {
     backgroundColor: colors.brandLight,
     borderBottomColor: colors.text,
   },
+  '.dark &': {
+    backgroundColor: hex2rgba(colors.brand, 0.2),
+    borderBottom: `1px solid ${hex2rgba(colors.brand, 0.4)}`,
+    color: darkModeColors.heading,
+  },
+  '.dark &:hover': {
+    backgroundColor: hex2rgba(colors.brand, 0.4),
+    borderBottom: `1px solid ${hex2rgba(colors.brand, 0.4)}`,
+  },
 };
 const sharedStyles = {
   link: linkStyle,
 
   articleLayout: {
     container: {
+      '.dark &': {
+        backgroundColor: darkModeColors.bg,
+        color: darkModeColors.text,
+      },
       display: 'flex',
       minHeight: 'calc(100vh - 60px)',
       [media.greaterThan('sidebarFixed')]: {
@@ -134,7 +154,6 @@ const sharedStyles = {
     content: {
       marginTop: 40,
       marginBottom: 120,
-
       [media.greaterThan('medium')]: {
         marginTop: 50,
       },
@@ -142,10 +161,12 @@ const sharedStyles = {
     sidebar: {
       display: 'flex',
       flexDirection: 'column',
-
       [media.between('small', 'sidebarFixed')]: {
         borderLeft: '1px solid #ececec',
         marginLeft: 80,
+        '.dark &': {
+          borderLeft: 'none',
+        },
       },
 
       [media.between('small', 'largerSidebar')]: {
@@ -192,6 +213,14 @@ const sharedStyles = {
         fill: colors.subtle,
         transition: 'fill 0.2s ease',
       },
+      '.dark &': {
+        '& svg:hover': {
+          fill: darkModeColors.text,
+        },
+        '& svg:focus': {
+          fill: darkModeColors.text,
+        },
+      },
     },
     editLink: {
       color: colors.lighter,
@@ -208,12 +237,20 @@ const sharedStyles = {
         color: colors.text,
         borderColor: colors.text,
       },
+      '.dark &': {
+        color: darkModeColors.text,
+        // color: 'red',
+      },
+      '.dark &:hover': {
+        color: darkModeColors.text,
+        borderColor: darkModeColors.text,
+        // color: 'red',
+      },
     },
   },
 
   markdown: {
     lineHeight: '25px',
-
     '& .gatsby-highlight': {
       marginTop: 25,
       marginLeft: -30,
@@ -235,7 +272,9 @@ const sharedStyles = {
       fontSize: 18,
       fontWeight: 300,
       color: colors.subtle,
-
+      '.dark &': {
+        color: darkModeColors.text,
+      },
       [media.greaterThan('xlarge')]: {
         fontSize: 24,
       },
@@ -246,11 +285,13 @@ const sharedStyles = {
     },
 
     '& p': {
+      '.dark &': {
+        color: darkModeColors.text,
+      },
       marginTop: 30,
       fontSize: 17,
       lineHeight: 1.7,
       maxWidth: '42em',
-
       '&:first-of-type': {
         marginTop: 15,
       },
@@ -272,6 +313,10 @@ const sharedStyles = {
     '& p > code, & li > code': {
       background: hex2rgba(colors.note, 0.2),
       color: colors.text,
+      '.dark &': {
+        background: hex2rgba(colors.note, 0.7),
+        color: colors.black,
+      },
     },
 
     '& p > code, & li > code, & p > a > code, & li > a > code': {
@@ -294,7 +339,9 @@ const sharedStyles = {
 
     '& h1': {
       lineHeight: 1.2,
-
+      '.dark & a': {
+        fill: darkModeColors.text,
+      },
       [media.size('xsmall')]: {
         fontSize: 30,
       },
@@ -309,6 +356,12 @@ const sharedStyles = {
     },
 
     '& h2': {
+      '.dark &': {
+        color: darkModeColors.heading,
+      },
+      '.dark & a': {
+        fill: darkModeColors.text,
+      },
       '::before': {
         content: ' ',
         display: 'block',
@@ -343,6 +396,12 @@ const sharedStyles = {
     },
 
     '& h3': {
+      '.dark &': {
+        color: darkModeColors.heading,
+      },
+      '.dark & a': {
+        fill: darkModeColors.text,
+      },
       '::before': {
         content: ' ',
         display: 'block',
@@ -371,6 +430,12 @@ const sharedStyles = {
     },
 
     '& h4': {
+      '.dark &': {
+        color: darkModeColors.heading,
+      },
+      '.dark & a': {
+        fill: darkModeColors.text,
+      },
       '::before': {
         content: ' ',
         display: 'block',
@@ -393,7 +458,9 @@ const sharedStyles = {
       fontSize: 16,
       color: colors.text,
       paddingLeft: 20,
-
+      '.dark &': {
+        color: darkModeColors.text,
+      },
       '& p, & p:first-of-type': {
         fontSize: 16,
         marginTop: 0,
@@ -436,13 +503,15 @@ const sharedStyles = {
       marginTop: 20,
       marginLeft: -30,
       marginRight: -30,
-
       [media.lessThan('small')]: {
         marginLeft: -20,
         marginRight: -20,
       },
 
       '& p': {
+        '.dark &': {
+          color: darkModeColors.heading,
+        },
         marginTop: 15,
 
         '&:first-of-type': {
@@ -475,4 +544,4 @@ const sharedStyles = {
   },
 };
 
-export {colors, fonts, media, sharedStyles};
+export {colors, fonts, media, sharedStyles, darkModeColors};

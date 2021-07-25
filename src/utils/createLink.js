@@ -9,7 +9,7 @@ import {Link} from 'gatsby';
 import React from 'react';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 import slugify from 'utils/slugify';
-import {colors, media} from 'theme';
+import {colors, media, darkModeColors} from 'theme';
 
 import type {Node} from 'react';
 
@@ -122,6 +122,13 @@ const linkCss = {
 
   '&:hover': {
     color: colors.subtle,
+  },
+
+  '.dark &': {
+    color: darkModeColors.text,
+    ':hover': {
+      color: darkModeColors.heading,
+    },
   },
 };
 

@@ -8,7 +8,7 @@
 import Flex from 'components/Flex';
 // $FlowFixMe Update Flow
 import React from 'react';
-import {colors, fonts, media} from 'theme';
+import {colors, fonts, media, darkModeColors} from 'theme';
 
 const MarkdownHeader = ({title}: {title: string}) => {
   return (
@@ -19,7 +19,9 @@ const MarkdownHeader = ({title}: {title: string}) => {
           marginBottom: 0,
           marginTop: 'calc(40px + var(--banner-height-normal))',
           ...fonts.header,
-
+          '.dark &': {
+            color: darkModeColors.heading,
+          },
           [media.lessThan('small')]: {
             marginTop: 'calc(40px + var(--banner-height-small))',
           },

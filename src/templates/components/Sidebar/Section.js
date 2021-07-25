@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import {colors, media} from 'theme';
+import {colors, media, darkModeColors} from 'theme';
 import isItemActive from 'utils/isItemActive';
 import MetaTitle from '../MetaTitle';
 import ChevronSvg from '../ChevronSvg';
@@ -44,6 +44,12 @@ class Section extends React.Component {
                 paddingLeft: 7,
                 ':hover': {
                   color: colors.text,
+                },
+              },
+              '.dark &': {
+                color: isActive ? darkModeColors.heading : darkModeColors.text,
+                ':hover': {
+                  color: darkModeColors.heading,
                 },
               },
             }}>

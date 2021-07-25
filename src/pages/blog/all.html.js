@@ -12,7 +12,7 @@ import Header from 'components/Header';
 import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import React from 'react';
 import {urlRoot} from 'site-constants';
-import {colors, media, sharedStyles} from 'theme';
+import {colors, media, sharedStyles, darkModeColors} from 'theme';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 import MetaTitle from 'templates/components/MetaTitle';
 
@@ -47,7 +47,9 @@ const AllBlogPosts = ({data, location}: Props) => (
                   borderTop: '1px dotted #ececec',
                   paddingBottom: 40,
                   width: '100%',
-
+                  '.dark &': {
+                    borderTop: '1px solid black',
+                  },
                   [media.size('medium')]: {
                     width: '50%',
                   },
@@ -63,12 +65,18 @@ const AllBlogPosts = ({data, location}: Props) => (
                     color: colors.dark,
                     lineHeight: 1.3,
                     fontWeight: 700,
+                    '.dark &': {
+                      color: darkModeColors.text,
+                    },
                   }}>
                   <Link
                     css={{
                       borderBottom: '1px solid #ececec',
                       ':hover': {
                         borderBottomColor: colors.black,
+                      },
+                      '.dark &': {
+                        borderBottom: 'none',
                       },
                     }}
                     key={node.fields.slug}

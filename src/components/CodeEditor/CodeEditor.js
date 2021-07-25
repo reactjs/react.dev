@@ -195,8 +195,9 @@ class CodeEditor extends Component {
                 flex: '0 0 30%',
                 overflow: 'hidden',
                 border: `1px solid ${colors.divider}`,
+                backgroundColor: colors.white,
                 borderRadius: '0 10px 10px 0',
-
+                color: `${colors.black} !important`,
                 [media.lessThan('medium')]: {
                   borderRadius: '0 0 10px 10px',
                 },
@@ -214,7 +215,9 @@ class CodeEditor extends Component {
                   padding: 10,
                   maxHeight: '340px !important',
                   overflow: 'auto',
-
+                  '.dark & h1,.dark & h2, .dark & h3,.dark & h4, .dark & p, .dark & ol,.dark & ul': {
+                    color: colors.black,
+                  },
                   '& input': {
                     width: '100%',
                     display: 'block',

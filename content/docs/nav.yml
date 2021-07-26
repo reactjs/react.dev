@@ -11,7 +11,6 @@
     - id: release-channels
       title: Release Channels
 - title: Main Concepts
-  isOrdered: true
   items:
     - id: hello-world
       title: Hello World
@@ -107,7 +106,6 @@
     - id: glossary
       title: Glossary
 - title: Hooks
-  isOrdered: true
   items:
     - id: hooks-intro
       title: Introducing Hooks

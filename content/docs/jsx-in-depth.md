@@ -72,6 +72,8 @@ function WarningButton() {
 
 If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
 
+> Note: With React 17, you no longer need to import the React library in your scope. Babel will take care of this via your JSX preset.
+
 ### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
 
 You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:

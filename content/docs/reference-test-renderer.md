@@ -105,6 +105,8 @@ TestRenderer.create(element, options);
 
 Create a `TestRenderer` instance with the passed React element. It doesn't use the real DOM, but it still fully renders the component tree into memory so you can make assertions about it. Returns a [TestRenderer instance](#testrenderer-instance).
 
+`TestRenderer.create` accepts an options object which can include a `createNodeMock` function for custom mock refs. This is useful for testing components dependent on refs. See [Ideas](#ideas) for examples.
+
 ### `TestRenderer.act()` {#testrendereract}
 
 ```javascript

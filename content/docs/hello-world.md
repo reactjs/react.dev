@@ -28,7 +28,7 @@ In this guide, we will examine the building blocks of React apps: elements and c
 
 >Tip
 >
->This guide is designed for people who prefer **learning concepts step by step**. If you prefer to learn by doing, check out our [practical tutorial](/tutorial/tutorial.html). You might find this guide and the tutorial complementary to each other.
+>This guide is designed for people who prefer **learning concepts step by step**. If you prefer to learn by doing, check out our [practical tutorial](https://reactjs.org/tutorial/tutorial.html). You might find this guide and the tutorial complementary to each other.
 
 This is the first chapter in a step-by-step guide about main React concepts. You can find a list of all its chapters in the navigation sidebar. If you're reading this from a mobile device, you can access the navigation by pressing the button in the bottom right corner of your screen.
 

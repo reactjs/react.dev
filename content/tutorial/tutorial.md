@@ -78,7 +78,7 @@ This setup requires more work but allows you to complete the tutorial using an e
 npx create-react-app my-app
 ```
 
-3. Delete all files in the `src/` folder of the new project
+3. Delete all files in the `src/` folder of the new project 
 
 > Note:
 >

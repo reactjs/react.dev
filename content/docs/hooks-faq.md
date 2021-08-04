@@ -390,9 +390,9 @@ Any function inside a component, including event handlers and effects, "sees" th
 function Example() {
   const [count, setCount] = useState(0);
 
-  function handleAlertClick() {
+  function handleMessageClick() {
     setTimeout(() => {
-      alert('You clicked on: ' + count);
+      console.log('You clicked on: ' + count);
     }, 3000);
   }
 
@@ -402,15 +402,15 @@ function Example() {
       <button onClick={() => setCount(count + 1)}>
         Click me
       </button>
-      <button onClick={handleAlertClick}>
-        Show alert
+      <button onClick={handleMessageClick}>
+        Show message
       </button>
     </div>
   );
 }
 ```
 
-If you first click "Show alert" and then increment the counter, the alert will show the `count` variable **at the time you clicked the "Show alert" button**. This prevents bugs caused by the code assuming props and state don't change.
+If you first click "Show message" and then increment the counter, the message will show the `count` variable **at the time you clicked the "Show message" button**. This prevents bugs caused by the code assuming props and state don't change.
 
 If you intentionally want to read the *latest* state from some asynchronous callback, you could keep it in [a ref](/docs/hooks-faq.html#is-there-something-like-instance-variables), mutate it, and read from it.
 
@@ -930,7 +930,7 @@ function Form() {
 
   const handleSubmit = useCallback(() => {
     const currentText = textRef.current; // Read it from the ref
-    alert(currentText);
+    console.log(currentText);
   }, [textRef]); // Don't recreate handleSubmit like [text] would do
 
   return (
@@ -949,7 +949,7 @@ function Form() {
   const [text, updateText] = useState('');
   // Will be memoized even if `text` changes:
   const handleSubmit = useEventCallback(() => {
-    alert(text);
+    console.log(text);
   }, [text]);
 
   return (

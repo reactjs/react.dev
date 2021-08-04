@@ -46,7 +46,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    console.log('A name was submitted: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -99,7 +99,7 @@ class EssayForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
+    console.log('An essay was submitted: ' + this.state.value);
     event.preventDefault();
   }
 
@@ -149,7 +149,7 @@ class FlavorForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('Your favorite flavor is: ' + this.state.value);
+    console.log('Your favorite flavor is: ' + this.state.value);
     event.preventDefault();
   }
 

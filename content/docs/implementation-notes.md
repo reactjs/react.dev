@@ -52,7 +52,7 @@ Either way, the reconciler will learn the element `App` "rendered to".
 
 This process is recursive. `App` may render to a `<Greeting />`, `Greeting` may render to a `<Button />`, and so on. The reconciler will "drill down" through user-defined components recursively as it learns what each component renders to.
 
-You can imagine this process as a pseudocode:
+You can imagine this process as pseudocode:
 
 ```js
 function isClass(type) {
@@ -105,7 +105,7 @@ rootEl.appendChild(node);
 
 >**Note:**
 >
->This really *is* a pseudo-code. It isn't similar to the real implementation. It will also cause a stack overflow because we haven't discussed when to stop the recursion.
+>This really *is* pseudocode. It isn't similar to the real implementation. It will also cause a stack overflow because we haven't discussed when to stop the recursion.
 
 Let's recap a few key ideas in the example above:
 

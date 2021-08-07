@@ -429,7 +429,7 @@ Instead, we'll pass down a function from the Board to the Square, and we'll have
 Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. We'll make the following changes to Square:
 
 * Replace `this.state.value` with `this.props.value` in Square's `render` method
-* Replace `this.setState()` with `this.props.onClick()` in Square's `render` method
+* Replace `this.setState()` with `this.props.onClick` in Square's `render` method
 * Delete the `constructor` from Square because Square no longer keeps track of the game's state
 
 After these changes, the Square component looks like this:
@@ -440,7 +440,7 @@ class Square extends React.Component {
     return (
       <button
         className="square"
-        onClick={() => this.props.onClick()}
+        onClick={() => this.props.onClick}
       >
         {this.props.value}
       </button>

@@ -1134,10 +1134,10 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
     // this method has not changed
   }
 
-  jumpTo(step) {
+  jumpTo(move) {
     this.setState({
-      stepNumber: step,
-      xIsNext: (step % 2) === 0,
+      stepNumber: move,
+      xIsNext: (move % 2) === 0,
     });
   }
 

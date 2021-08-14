@@ -12,7 +12,7 @@ Use an integrated toolchain for the best user and developer experience.
 
 This page describes a few popular React toolchains which help with tasks like:
 
-* Scaling to many files and components.
+* Scaling too many files and components.
 * Using third-party libraries from npm.
 * Detecting common mistakes early.
 * Live-editing CSS and JS in development.

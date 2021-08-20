@@ -159,7 +159,7 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 ```javascript
 React.createElement(
   type,
-  [props],
+  {props},
   [...children]
 )
 ```

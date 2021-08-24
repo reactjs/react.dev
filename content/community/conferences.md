@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### React Native EU 2021 {#react-native-eu-2021}
+September 1-2, 2021 - remote event
+
+[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [Instagram](https://www.instagram.com/reactnative_eu/)
+
 ### render(ATL) 2021 {#render-atlanta-2021} 
 September 13-15, 2021. Atlanta, GA, USA
 

@@ -44,6 +44,7 @@ const Header = ({location}: {location: Location}) => (
       },
     }}>
     <ContainerWrapper>
+    {window.location.pathname != "/languages" ? localStorage.setItem('last_visited_path' , window.location.pathname) : ""}
       <Container>
         <div style={{position: 'relative'}}>
           <Banner />

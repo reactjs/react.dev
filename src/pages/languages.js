@@ -141,7 +141,16 @@ const Language = ({code, name, status, translatedName}) => {
         {status === 0 && translatedName}
         {status > 0 && (
           <a
-            href={`https://${prefix}reactjs.org/`}
+            href={
+              'https://' +
+              prefix +
+              'reactjs.org' +
+              (typeof localStorage === undefined
+                ? ''
+                : typeof localStorage === 'undefined'
+                ? ''
+                : String(localStorage.getItem('last_visited_path')))
+            }
             rel="nofollow"
             lang={code}
             hrefLang={code}>

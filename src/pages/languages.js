@@ -147,8 +147,8 @@ const Language = ({code, name, status, translatedName}) => {
               prefix +
               'reactjs.org' +
               (typeof localStorage === undefined
-                ? '' : 
-                typeof localStorage === 'undefined'
+                ? ''
+                : typeof localStorage === 'undefined'
                 ? ''
                 : String(localStorage.getItem('last_visited_path')))
             }

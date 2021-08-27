@@ -44,9 +44,9 @@ const Header = ({location}: {location: Location}) => (
       },
     }}>
     <ContainerWrapper>
-      {typeof window === undefined
+      {typeof window === 'undefined'
         ? ''
-        : typeof localStorage === undefined
+        : typeof localStorage === 'undefined'
         ? ''
         : window.location.pathname != '/languages'
         ? localStorage.setItem(

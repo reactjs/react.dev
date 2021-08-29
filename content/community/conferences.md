@@ -14,7 +14,7 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ### React Finland 2021 {#react-finland-2021} 
 
-October 30 - September 3, 2021 - remote event
+August 30 - September 3, 2021 - remote event
 
 [Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [LinkedIn](https://www.linkedin.com/company/react-finland/)
 

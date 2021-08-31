@@ -39,9 +39,9 @@ But how do you know what should be its own component? Use the same techniques fo
 
 Since you're often displaying a JSON data model to a user, you'll find that if your model was built correctly, your UI (and therefore your component structure) will map nicely. That's because UI and data models tend to adhere to the same *information architecture*. Separate your UI into components, where each component matches one piece of your data model.
 
-![Component diagram](../images/blog/thinking-in-react-components.png)
+![Diagram showing nesting of components](../images/blog/thinking-in-react-components.png)
 
-You'll see here that we have five components in our app. We've italicized the data each component represents.
+You'll see here that we have five components in our app. We've italicized the data each component represents. The numbers in the image correspond to the numbers below.
 
   1. **`FilterableProductTable` (orange):** contains the entirety of the example
   2. **`SearchBar` (blue):** receives all *user input*

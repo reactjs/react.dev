@@ -29,7 +29,7 @@ Each community consists of many thousands of React users.
 * [Reactiflux online chat](https://discord.gg/reactiflux)
 * [Reddit's React community](https://www.reddit.com/r/reactjs/)
 * [Spectrum's React community](https://spectrum.chat/react)
-
+* [Discords react community](https://discord.com/invite/reactiflux)
 ## News {#news}
 
 For the latest news about React, [follow **@reactjs** on Twitter](https://twitter.com/reactjs) and the [official React blog](/blog/) on this website.

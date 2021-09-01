@@ -205,6 +205,8 @@ export const MyComponent = /* ... */;
 export const MyUnusedComponent = /* ... */;
 ```
 
+Here we create the intermediate module
+
 ```js
 // MyComponent.js
 export { MyComponent as default } from "./ManyComponents.js";

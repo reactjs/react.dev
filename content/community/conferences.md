@@ -39,6 +39,11 @@ October 22-23, 2021. In-person in London, UK + remote (hybrid event)
 
 [Website](https://reactadvanced.com) - [Twitter](https://twitter.com/reactadvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://youtube.com/c/ReactConferences)
 
+### < React Global > by Geekle {#react-global-2021}
+November 3-4, 2021 - remote event
+
+[Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) 
+
 ### React India 2021 {#react-india-2021}
 November 12-14, 2021 - remote event
 

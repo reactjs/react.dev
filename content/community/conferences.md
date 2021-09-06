@@ -55,6 +55,11 @@ November 12-14, 2021 - remote event
 
 ## Past Conferences {#past-conferences}
 
+### React Native EU 2021 {#react-native-eu-2021}
+September 1-2, 2021 - remote event
+
+[Website](https://www.react-native.eu/) - [Twitter](https://twitter.com/react_native_eu) - [Facebook](https://www.facebook.com/reactnativeeu/) - [Instagram](https://www.instagram.com/reactnative_eu/)
+
 ### React Finland 2021 {#react-finland-2021} 
 August 30 - September 3, 2021 - remote event
 

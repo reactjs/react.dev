@@ -22,7 +22,6 @@ October 7-8, 2021. In-person in Amsterdam, Netherlands + remote (hybrid event)
 
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl) - [LinkedIn](https://www.linkedin.com/company/frontendlove/)
 
-
 ### React Brussels 2021 {#react-brussels-2021} 
 October 15, 2021 - remote event
 
@@ -50,6 +49,11 @@ November 12-14, 2021 - remote event
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
 ## Past Conferences {#past-conferences}
+
+### React Finland 2021 {#react-finland-2021} 
+August 30 - September 3, 2021 - remote event
+
+[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [LinkedIn](https://www.linkedin.com/company/react-finland/)
 
 ### React Case Study Festival 2021 {#react-case-study-festival-2021}
 April 27-28, 2021 - remote event

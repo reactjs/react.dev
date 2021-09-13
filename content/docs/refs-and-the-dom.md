@@ -265,7 +265,7 @@ function CustomTextInput(props) {
 }
 
 class Parent extends React.Component {
-  this.inputElement = null
+  inputElement = null
   render() {
     return (
       <CustomTextInput

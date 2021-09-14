@@ -35,7 +35,7 @@ Using context, we can avoid passing props through intermediate elements:
 
 ## Before You Use Context {#before-you-use-context}
 
-Context rerenders every component inside on data change and makes component reuse more difficult. It is primarily used when some *rarely changing* data needs to be accessible by *many* components at different nesting levels.
+Context rerenders every component inside on data change and makes component reuse more difficult. It is primarily used when some *rarely changing* data needs to be accessible by *many* components at different nesting levels. Do not use it for keeping form state, API queries state or UI state apart from theme.
 
 **If you only want to avoid passing some props through many levels, [component composition](/docs/composition-vs-inheritance.html) is often a simpler solution than context.**
 

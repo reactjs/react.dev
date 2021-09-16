@@ -408,6 +408,7 @@ Then you can update them independently with separate `setState()` calls:
 ```
 
 The merging is shallow, so `this.setState({comments})` leaves `this.state.posts` intact, but completely replaces `this.state.comments`.
+React detects which attributes has object passed to the `this.setState`, and update only them. 
 
 ## The Data Flows Down {#the-data-flows-down}
 

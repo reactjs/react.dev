@@ -91,7 +91,7 @@ function Glossary(props) {
 }
 ```
 
-When you don't need any props on the Fragment tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
+When you don't need any props on the `Fragment` tag you can use the [short syntax](/docs/fragments.html#short-syntax), if your tooling supports it:
 
 ```javascript{3,6}
 function ListItem({ item }) {

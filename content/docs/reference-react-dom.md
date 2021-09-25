@@ -59,7 +59,7 @@ If the optional callback is provided, it will be executed after the component is
 ### `hydrate()` {#hydrate}
 
 ```javascript
-ReactDOM.hydrate(element, container[, callback])
+ReactDOM.hydrate(element, container, [callback])
 ```
 
 Same as [`render()`](#render), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.

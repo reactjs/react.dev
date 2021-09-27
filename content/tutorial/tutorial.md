@@ -454,7 +454,7 @@ When a Square is clicked, the `onClick` function provided by the Board is called
 1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
 2. When the button is clicked, React will call the `onClick` event handler that is defined in Square's `render()` method.
 3. This event handler calls `this.props.onClick()`. The Square's `onClick` prop was specified by the Board.
-4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls `this.handleClick(i)` when clicked.
+4. Since the Board passed `onClick={() => this.handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
 5. We have not defined the `handleClick()` method yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "this.handleClick is not a function".
 
 >Note

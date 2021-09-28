@@ -39,6 +39,7 @@
     { "source": "/link/uselayouteffect-ssr", "destination": "https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85", "permanent": false },
     { "source": "/link/react-devtools-faq", "destination": "https://github.com/facebook/react/tree/main/packages/react-devtools#faq", "permanent": false },
     { "source": "/link/setstate-in-render", "destination": "https://github.com/facebook/react/issues/18178#issuecomment-595846312", "permanent": false },
+    { "source": "/link/switch-to-createroot", "destination": "https://github.com/reactwg/react-18/discussions/5", "permanent": false },
     { "source": "/version/15.6", "destination": "https://react-legacy.netlify.app", "permanent": false }
   ]
 }

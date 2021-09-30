@@ -17,7 +17,6 @@ October 15, 2021 - remote event
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/)
 
-
 ### React Conf Brasil 2021 {#react-conf-brasil-2021}
 October 16, 2021 - remote event
 
@@ -39,9 +38,14 @@ October 20-22, 2021. London, UK & remote
 [Website](https://reactadvanced.com) - [Twitter](https://twitter.com/reactadvanced)
 
 ### React India 2021 {#react-india-2021}
-November 12-14, 2021 - remote event
+November 12-13, 2021 - remote event
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
+
+### ReactNext 2021 {#react-next-2021}
+December 15, 2021. Tel-Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ## Past Conferences {#past-conferences}
 

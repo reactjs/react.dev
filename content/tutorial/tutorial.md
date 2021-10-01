@@ -526,7 +526,7 @@ Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` 
 
 In the previous code example, we suggested that you create a copy of the `squares` array using the `slice()` method instead of modifying the existing array. We'll now discuss immutability and why immutability is important to learn.
 
-There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes.
+There are generally two approaches to changing data. The first approach is to *mutate* the data by directly changing the data's values. The second approach is to replace the data with a new copy that has the desired changes.
 
 #### Data Change with Mutation {#data-change-with-mutation}
 ```javascript
@@ -568,7 +568,7 @@ You can learn more about `shouldComponentUpdate()` and how you can build *pure c
 
 We'll now change the Square to be a **function component**.
 
-In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class which extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
+In React, **function components** are a simpler way to write components that only contain a `render` method and don't have their own state. Instead of defining a class that extends `React.Component`, we can write a function that takes `props` as input and returns what should be rendered. Function components are less tedious to write than classes, and many components can be expressed this way.
 
 Replace the Square class with this function:
 
@@ -1045,7 +1045,7 @@ Let's `map` over the `history` in the Game's `render` method:
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
+For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has an `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
 
 >  Warning:
 >  Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".

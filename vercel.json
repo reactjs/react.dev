@@ -3,6 +3,8 @@
   "trailingSlash": false,
   "redirects": [
     { "source": "/tips/controlled-input-null-value.html", "destination": "/docs/forms.html#controlled-input-null-value", "permanent": false },
+    { "source": "/link/switch-to-createroot", "destination": "https://github.com/reactwg/react-18/discussions/5", "permanent": false },
+    { "source": "/server-components", "destination": "/blog/2020/12/21/data-fetching-with-react-server-components.html", "permanent": false },
     { "source": "/concurrent", "destination": "/docs/concurrent-mode-intro.html", "permanent": false },
     { "source": "/hooks", "destination": "/docs/hooks-intro.html", "permanent": false },
     { "source": "/tutorial", "destination": "/tutorial/tutorial.html", "permanent": false },

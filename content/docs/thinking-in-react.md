@@ -72,7 +72,7 @@ You can build top-down or bottom-up. That is, you can either start with building
 
 At the end of this step, you'll have a library of reusable components that render your data model. The components will only have `render()` methods since this is a static version of your app. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. If you make a change to your underlying data model and call `ReactDOM.render()` again, the UI will be updated. You can see how your UI is updated and where to make changes. React's **one-way data flow** (also called *one-way binding*) keeps everything modular and fast.
 
-Refer to the [React docs](/docs/) if you need help executing this step.
+Refer to the [React docs](/docs/getting-started.html) if you need help executing this step.
 
 ### A Brief Interlude: Props vs State {#a-brief-interlude-props-vs-state}
 

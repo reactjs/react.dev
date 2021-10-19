@@ -37,6 +37,7 @@ class Calculator extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({temperature: e.target.value});
   }
 
@@ -78,6 +79,7 @@ class TemperatureInput extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({temperature: e.target.value});
   }
 
@@ -161,6 +163,7 @@ class TemperatureInput extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.setState({temperature: e.target.value});
   }
 
@@ -215,6 +218,7 @@ class TemperatureInput extends React.Component {
   }
 
   handleChange(e) {
+    e.preventDefault();
     this.props.onTemperatureChange(e.target.value);
   }
 

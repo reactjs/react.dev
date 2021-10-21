@@ -1,18 +1,18 @@
 {
-  "extends": [
-    "fbjs"
+  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
+  "plugins": ["jsx-a11y"],
+  "overrides": [
+    {
+      "files": ["**/*.ts?(x)"],
+      "rules": {
+        "jsx-a11y/anchor-is-valid": 0
+      }
+    }
   ],
-  "plugins": [
-    "prettier",
-    "react"
-  ],
-  "parser": "babel-eslint",
-  "rules": {
-    "relay/graphql-naming": 0,
-    "max-len": 0
-  },
   "env": {
     "node": true,
-    "browser": true
+    "commonjs": true,
+    "browser": true,
+    "es6": true
   }
 }

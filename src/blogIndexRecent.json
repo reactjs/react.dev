@@ -1,0 +1,207 @@
+{
+  "title": "Recent Posts",
+  "heading": true,
+  "path": "/blog",
+  "routes": [
+    {
+      "path": "/blog/2020/08/10/react-v17-rc.md",
+      "date": "2020-08-10",
+      "title": "React v17.0 Release Candidate: No New Features",
+      "author": ["gaearon", "rachelnabors"],
+      "excerpt": "<p>Today, we are publishing the first Release Candidate for React 17. It has been two and a half years since <a href=\"/blog/2017/09/26/react-v16.0.html\">the previous major release of React</a>, which is a long time even by our standards! In this blog post, we will describe the role of this major release, what changes you can expect in it, and how you can try this release.</p>\n",
+      "readingTime": "20 min read"
+    },
+    {
+      "path": "/blog/2020/02/26/react-v16.13.0.md",
+      "date": "2020-02-26",
+      "title": "React v16.13.0",
+      "author": ["threepointone"],
+      "excerpt": "<p>Today we are releasing React 16.13.0. It contains bugfixes and new deprecation warnings to help prepare for a future major release.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.md",
+      "date": "2019-11-06",
+      "title": "Building Great User Experiences with Concurrent Mode and Suspense",
+      "author": ["josephsavona"],
+      "excerpt": "<p>At React Conf 2019 we announced an <a href=\"/docs/concurrent-mode-adoption#installation\">experimental release</a> of React that supports Concurrent Mode and Suspense. In this post we’ll introduce best practices for using them that we’ve identified through the process of building <a href=\"https://twitter.com/facebook/status/1123322299418124289\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">the new facebook.com</a>.</p>\n",
+      "readingTime": "17 min read"
+    },
+    {
+      "path": "/blog/2019/10/22/react-release-channels.md",
+      "date": "2019-10-22",
+      "title": "Preparing for the Future with React Prereleases",
+      "author": ["acdlite"],
+      "excerpt": "<p>To share upcoming changes with our partners in the React ecosystem, we’re establishing official prerelease channels. We hope this process will help us make changes to React with confidence, and give developers the opportunity to try out experimental features.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2019/08/15/new-react-devtools.md",
+      "date": "2019-08-15",
+      "title": "Introducing the New React DevTools",
+      "author": ["bvaughn"],
+      "excerpt": "<p>We are excited to announce a new release of the React Developer Tools, available today in Chrome, Firefox, and (Chromium) Edge!</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2019/08/08/react-v16.9.0.md",
+      "date": "2019-08-08",
+      "title": "React v16.9.0 and the Roadmap Update",
+      "author": ["gaearon", "bvaughn"],
+      "excerpt": "<p>Today we are releasing React 16.9. It contains several new features, bugfixes, and new deprecation warnings to help prepare for a future major release.</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2019/02/23/is-react-translated-yet.md",
+      "date": "2019-02-23",
+      "title": "Is React Translated Yet? ¡Sí! Sim! はい！",
+      "author": ["tesseralis"],
+      "excerpt": "<p>We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into <em>over 30</em> languages! You can find them on the new <a href=\"/languages\">Languages</a> page.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2019/02/06/react-v16.8.0.md",
+      "date": "2019-02-06",
+      "title": "React v16.8: The One With Hooks",
+      "author": ["gaearon"],
+      "excerpt": "<p>With React 16.8, <a href=\"/docs/hooks-intro.html\">React Hooks</a> are available in a stable release!</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2018/12/19/react-v-16-7.md",
+      "date": "2018-12-19",
+      "title": "React v16.7: No, This Is Not the One With Hooks",
+      "author": ["acdlite"],
+      "excerpt": "<p>Our latest release includes an important performance bugfix for <code>React.lazy</code>. Although there are no API changes, we’re releasing it as a minor instead of a patch.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2018/11/27/react-16-roadmap.md",
+      "date": "2018-11-27",
+      "title": "React 16.x Roadmap",
+      "author": ["gaearon"],
+      "excerpt": "<p>You might have heard about features like “Hooks”, “Suspense”, and “Concurrent Rendering” in the previous blog posts and talks. In this post, we’ll look at how they fit together and the expected timeline for their availability in a stable release of React.</p>\n",
+      "readingTime": "14 min read"
+    },
+    {
+      "path": "/blog/2018/11/13/react-conf-recap.md",
+      "date": "2018-11-13",
+      "title": "React Conf recap: Hooks, Suspense, and Concurrent Rendering",
+      "author": ["tomocchino"],
+      "excerpt": "<p>This year’s <a href=\"https://conf.reactjs.org/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">React Conf</a> took place on October 25 and 26 in Henderson, Nevada, where more than 600 attendees gathered to discuss the latest in UI engineering.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2018/10/23/react-v-16-6.md",
+      "date": "2018-10-23",
+      "title": "React v16.6.0: lazy, memo and contextType",
+      "author": ["sebmarkbage"],
+      "excerpt": "<p>Today we’re releasing React 16.6 with a few new convenient features. A form of PureComponent/shouldComponentUpdate for function components, a way to do code splitting using Suspense and an easier way to consume Context from class components.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2018/10/01/create-react-app-v2.md",
+      "date": "2018-10-01",
+      "title": "Create React App 2.0: Babel 7, Sass, and More",
+      "author": ["timer", "gaearon"],
+      "excerpt": "<p>Create React App 2.0 has been released today, and it brings a year’s worth of improvements in a single dependency update.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2018/09/10/introducing-the-react-profiler.md",
+      "date": "2018-09-10",
+      "title": "Introducing the React Profiler",
+      "author": ["bvaughn"],
+      "excerpt": "<p>React 16.5 adds support for a new DevTools profiler plugin.</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2018/08/01/react-v-16-4-2.md",
+      "date": "2018-08-01",
+      "title": "React v16.4.2: Server-side vulnerability fix",
+      "author": ["gaearon"],
+      "excerpt": "<p>We discovered a minor vulnerability that might affect some apps using ReactDOMServer. We are releasing a patch version for every affected React minor release so that you can upgrade with no friction. Read on for more details.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2018/06/07/you-probably-dont-need-derived-state.md",
+      "date": "2018-06-07",
+      "title": "You Probably Don't Need Derived State",
+      "author": ["bvaughn"],
+      "excerpt": "<p>React 16.4 included a <a href=\"/blog/2018/05/23/react-v-16-4#bugfix-for-getderivedstatefromprops\">bugfix for getDerivedStateFromProps</a> which caused some existing bugs in React components to reproduce more consistently. If this release exposed a case where your application was using an anti-pattern and didn’t work properly after the fix, we’re sorry for the churn. In this post, we will explain some common anti-patterns with derived state and our preferred alternatives.</p>\n",
+      "readingTime": "14 min read"
+    },
+    {
+      "path": "/blog/2018/05/23/react-v-16-4.md",
+      "date": "2018-05-23",
+      "title": "React v16.4.0: Pointer Events",
+      "author": ["acdlite"],
+      "excerpt": "<p>The latest minor release adds support for an oft-requested feature: pointer events!</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2018/03/29/react-v-16-3.md",
+      "date": "2018-03-29",
+      "title": "React v16.3.0: New lifecycles and context API",
+      "author": ["bvaughn"],
+      "excerpt": "<p>A few days ago, we <a href=\"/blog/2018/03/27/update-on-async-rendering\">wrote a post about upcoming changes to our legacy lifecycle methods</a>, including gradual migration strategies. In React 16.3.0, we are adding a few new lifecycle methods to assist with that migration. We are also introducing new APIs for long requested features: an official context API, a ref forwarding API, and an ergonomic ref API.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2018/03/27/update-on-async-rendering.md",
+      "date": "2018-03-27",
+      "title": "Update on Async Rendering",
+      "author": ["bvaughn"],
+      "excerpt": "<p>For over a year, the React team has been working to implement asynchronous rendering. Last month during his talk at JSConf Iceland, <a href=\"/blog/2018/03/01/sneak-peek-beyond-react-16\">Dan unveiled some of the exciting new possibilities async rendering unlocks</a>. Now we’d like to share with you some of the lessons we’ve learned while working on these features, and some recipes to help prepare your components for async rendering when it launches.</p>\n",
+      "readingTime": "12 min read"
+    },
+    {
+      "path": "/blog/2018/03/01/sneak-peek-beyond-react-16.md",
+      "date": "2018-03-01",
+      "title": "Sneak Peek: Beyond React 16",
+      "author": ["sophiebits"],
+      "excerpt": "<p><a href=\"https://twitter.com/dan_abramov\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Dan Abramov</a> from our team just spoke at <a href=\"https://2018.jsconf.is/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">JSConf Iceland 2018</a> with a preview of some new features we’ve been working on in React. The talk opens with a question: “With vast differences in computing power and network speed, how do we deliver the best user experience for everyone?”</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2017/12/15/improving-the-repository-infrastructure.md",
+      "date": "2017-12-15",
+      "title": "Behind the Scenes: Improving the Repository Infrastructure",
+      "author": ["gaearon", "bvaughn"],
+      "excerpt": "<p>As we worked on <a href=\"/blog/2017/09/26/react-v16.0\">React 16</a>, we revamped the folder structure and much of the build tooling in the React repository. Among other things, we introduced projects such as <a href=\"https://rollupjs.org/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Rollup</a>, <a href=\"https://prettier.io/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Prettier</a>, and <a href=\"https://developers.google.com/closure/compiler/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Google Closure Compiler</a> into our workflow. People often ask us questions about how we use those tools. In this post, we would like to share some of the changes that we’ve made to our build and test infrastructure in 2017, and what motivated them.</p>\n",
+      "readingTime": "30 min read"
+    },
+    {
+      "path": "/blog/2017/12/07/introducing-the-react-rfc-process.md",
+      "date": "2017-12-07",
+      "title": "Introducing the React RFC Process",
+      "author": ["acdlite"],
+      "excerpt": "<p>We’re adopting an RFC (“request for comments”) process for contributing ideas to React.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2017/11/28/react-v16.2.0-fragment-support.md",
+      "date": "2017-11-28",
+      "title": "React v16.2.0: Improved Support for Fragments",
+      "author": ["clemmy"],
+      "excerpt": "<p>React 16.2 is now available! The biggest addition is improved support for returning multiple children from a component’s render method. We call this feature <em>fragments</em>:</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2017/09/26/react-v16.0.md",
+      "date": "2017-09-26",
+      "title": "React v16.0",
+      "author": ["acdlite"],
+      "excerpt": "<p>We’re excited to announce the release of React v16.0! Among the changes are some long-standing feature requests, including <a href=\"#new-render-return-types-fragments-and-strings\"><strong>fragments</strong></a>, <a href=\"#better-error-handling\"><strong>error boundaries</strong></a>, <a href=\"#portals\"><strong>portals</strong></a>, support for <a href=\"#support-for-custom-dom-attributes\"><strong>custom DOM attributes</strong></a>, improved <a href=\"#better-server-side-rendering\"><strong>server-side rendering</strong></a>, and <a href=\"#reduced-file-size\"><strong>reduced file size</strong></a>.</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2017/09/25/react-v15.6.2.md",
+      "date": "2017-09-25",
+      "title": "React v15.6.2",
+      "author": ["nhunzaker"],
+      "excerpt": "<p>Today we’re sending out React 15.6.2. In 15.6.1, we shipped a few fixes for change events and inputs that had some unintended consequences. Those regressions have been ironed out, and we’ve also included a few more fixes to improve the stability of React across all browsers.</p>\n",
+      "readingTime": "3 min read"
+    }
+  ]
+}

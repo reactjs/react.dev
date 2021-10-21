@@ -8,7 +8,7 @@ const GithubSlugger = require('github-slugger');
 function walk(dir) {
   let results = [];
   const list = fs.readdirSync(dir);
-  list.forEach(function(file) {
+  list.forEach(function (file) {
     file = dir + '/' + file;
     const stat = fs.statSync(file);
     if (stat && stat.isDirectory()) {
@@ -38,7 +38,7 @@ function addHeaderID(line, slugger) {
   const headingText = line.slice(line.indexOf(' ')).trim();
   const headingLevel = line.slice(0, line.indexOf(' '));
   return `${headingLevel} ${headingText} {#${slugger.slug(
-    stripLinks(headingText),
+    stripLinks(headingText)
   )}}`;
 }
 
@@ -47,7 +47,7 @@ function addHeaderIDs(lines) {
   const slugger = new GithubSlugger();
   let inCode = false;
   const results = [];
-  lines.forEach(line => {
+  lines.forEach((line) => {
     // Ignore code blocks
     if (line.startsWith('```')) {
       inCode = !inCode;
@@ -67,8 +67,8 @@ function addHeaderIDs(lines) {
 const [path] = process.argv.slice(2);
 
 const files = walk(path);
-files.forEach(file => {
-  if (!file.endsWith('.md')) {
+files.forEach((file) => {
+  if (!(file.endsWith('.md') || file.endsWith('.mdx'))) {
     return;
   }
 

@@ -86,6 +86,7 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
       </nav>
       <div className="px-5 py-3 sticky bottom-0 lg:px-5 w-full hidden md:flex items-center bg-gradient-to-t from-wash dark:from-wash-dark">
         <Button
+          label="Feedback"
           className="w-full text-center justify-center"
           onClick={handleFeedback}>
           {feedbackIcon} Feedback

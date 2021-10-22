@@ -42,16 +42,19 @@ export function MobileNav() {
     <>
       <div className="sticky top-0 px-5 mb-2 bg-wash dark:bg-wash-dark flex justify-end border-b border-border dark:border-border-dark items-center self-center w-full z-10">
         <TabButton
+          label="Home Tab"
           isActive={section === 'home'}
           onClick={() => setSection('home')}>
           Home
         </TabButton>
         <TabButton
+           label="Learn Tab"
           isActive={section === 'learn'}
           onClick={() => setSection('learn')}>
           Learn
         </TabButton>
         <TabButton
+           label="API Tab"
           isActive={section === 'reference'}
           onClick={() => setSection('reference')}>
           API
@@ -63,10 +66,12 @@ export function MobileNav() {
 }
 
 function TabButton({
+  label,
   children,
   onClick,
   isActive,
 }: {
+  label: string;
   children: any;
   onClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isActive: boolean;
@@ -76,10 +81,10 @@ function TabButton({
     {
       'text-link dark:text-link-dark dark:border-link-dark border-link font-bold': isActive,
       'border-transparent': !isActive,
-    }
+    },
   );
   return (
-    <button className={classes} onClick={onClick}>
+    <button aria-label={label} className={classes} onClick={onClick}>
       {children}
     </button>
   );

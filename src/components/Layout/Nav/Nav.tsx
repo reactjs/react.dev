@@ -167,6 +167,7 @@ export default function Nav() {
       <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end slg:max-w-sm">
         <Search />
         <button
+          aria-label="Feedback"
           type="button"
           className="inline-flex lg:hidden items-center p-1 ml-4 lg:ml-6 relative top-px"
           onClick={handleFeedback}>

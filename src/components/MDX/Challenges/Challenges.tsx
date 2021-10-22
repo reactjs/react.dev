@@ -141,11 +141,12 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
           <div className="flex justify-between items-center mt-4">
             {currentChallenge?.hint ? (
               <div>
-                <Button className="mr-2" onClick={toggleHint} active={showHint}>
+                <Button label="Show/Hide Hint" className="mr-2" onClick={toggleHint} active={showHint}>
                   <IconHint className="mr-1.5" />{' '}
                   {showHint ? 'Hide hint' : 'Show hint'}
                 </Button>
                 <Button
+                  label="Show/Hide solution"
                   className="mr-2"
                   onClick={toggleSolution}
                   active={showSolution}>
@@ -156,6 +157,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
             ) : (
               !isRecipes && (
                 <Button
+                  label="Show/Hide solution"
                   className="mr-2"
                   onClick={toggleSolution}
                   active={showSolution}>
@@ -167,6 +169,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
 
             {nextChallenge && (
               <Button
+                label="Next Button"
                 className={cn(
                   isRecipes
                     ? 'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
@@ -194,11 +197,12 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
               </h3>
               {currentChallenge?.solution}
               <div className="flex justify-between items-center mt-4">
-                <Button onClick={() => setShowSolution(false)}>
+                <Button label="Close Solution" onClick={() => setShowSolution(false)}>
                   Close solution
                 </Button>
                 {nextChallenge && (
                   <Button
+                  label="Next Button"
                     className={cn(
                       isRecipes ? 'bg-purple-50' : 'bg-link dark:bg-link-dark'
                     )}

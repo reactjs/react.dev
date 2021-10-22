@@ -91,6 +91,7 @@ export function Navigation({
           className="flex relative transition-transform content-box overflow-x-auto">
           {challenges.map(({name, id, order}, index) => (
             <button
+              aria-label="Challenge Name"
               className={cn(
                 'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap overflow-ellipsis',
                 isRecipes &&
@@ -110,6 +111,7 @@ export function Navigation({
       </div>
       <div className="flex z-10 pb-2 pl-2">
         <button
+          aria-label="Left Arrow"
           onClick={handleScrollLeft}
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r',
@@ -121,6 +123,7 @@ export function Navigation({
           <IconChevron displayDirection="left" />
         </button>
         <button
+          aria-label="Right Arrow"
           onClick={handleScrollRight}
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r-lg',

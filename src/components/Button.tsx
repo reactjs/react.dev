@@ -6,6 +6,7 @@ import * as React from 'react';
 import cn from 'classnames';
 
 interface ButtonProps {
+  label: string;
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   active: boolean;
@@ -14,6 +15,7 @@ interface ButtonProps {
 }
 
 export function Button({
+  label,
   children,
   onClick,
   active,
@@ -22,6 +24,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
+      aria-label={label}
       style={style}
       onMouseDown={(evt) => {
         evt.preventDefault();

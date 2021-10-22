@@ -168,7 +168,6 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
 
             {nextChallenge && (
               <Button
-                label="Next Challenge"
                 className={cn(
                   isRecipes
                     ? 'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
@@ -196,12 +195,11 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
               </h3>
               {currentChallenge?.solution}
               <div className="flex justify-between items-center mt-4">
-                <Button label="Close Solution Content" onClick={() => setShowSolution(false)}>
+                <Button onClick={() => setShowSolution(false)}>
                   Close solution
                 </Button>
                 {nextChallenge && (
                   <Button
-                  label="Next Challenge"
                     className={cn(
                       isRecipes ? 'bg-purple-50' : 'bg-link dark:bg-link-dark'
                     )}

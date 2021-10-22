@@ -91,7 +91,6 @@ export function Navigation({
           className="flex relative transition-transform content-box overflow-x-auto">
           {challenges.map(({name, id, order}, index) => (
             <button
-              aria-label="Challenge Name"
               className={cn(
                 'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap overflow-ellipsis',
                 isRecipes &&

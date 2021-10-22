@@ -4,6 +4,7 @@
 
 import * as React from 'react';
 import {IconTerminal} from '../Icon/IconTerminal';
+import CopyButton from './CopyButton';
 
 type LogLevel = 'info' | 'warning' | 'error';
 
@@ -41,9 +42,10 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
           <IconTerminal className="inline-flex mr-2 self-center" /> Terminal
         </div>
       </div>
-      <div className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code">
+      <div className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code flex justify-between">
         <LevelText type={level} />
         {message}
+        {message && <CopyButton message={message} />}
       </div>
     </div>
   );

@@ -42,7 +42,7 @@ export const Seo = withRouter(
       <meta
         property="og:url"
         key="og:url"
-        content={`https://reactjs.org${router.pathname}`}
+        content={`https://beta.reactjs.org${router.pathname}`}
       />
       {title != null && (
         <meta property="og:title" content={title} key="og:title" />
@@ -58,7 +58,7 @@ export const Seo = withRouter(
       <meta
         property="og:image"
         key="og:image"
-        content={`https://reactjs.org${image}`}
+        content={`https://beta.reactjs.org${image}`}
       />
 
       {/* TWITTER */}
@@ -83,7 +83,7 @@ export const Seo = withRouter(
       <meta
         name="twitter:image"
         key="twitter:image"
-        content={`https://reactjs.org${image}`}
+        content={`https://beta.reactjs.org${image}`}
       />
 
       {children}

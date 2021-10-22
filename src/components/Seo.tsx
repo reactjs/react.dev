@@ -18,7 +18,7 @@ export const Seo = withRouter(
   ({
     title,
     description = 'A JavaScript library for building user interfaces',
-    image = 'logo-og.png',
+    image = '/logo-og.png',
     router,
     children,
   }: SeoProps & {router: Router}) => (

@@ -9,6 +9,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';
 import * as React from 'react';
+import {isMacOs} from 'react-device-detect';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
 
@@ -31,8 +32,8 @@ function Hit({hit, children}: any) {
 function Kbd(props: {children?: React.ReactNode}) {
   return (
     <kbd
-      className="border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded"
-      style={{width: '2.25em', height: '2.25em'}}
+      className="border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded"
+      style={{minWidth: '2.25em', height: '2.25em'}}
       {...props}
     />
   );
@@ -112,7 +113,7 @@ export const Search: React.FC<SearchProps> = ({
         <IconSearch className="mr-3 align-middle text-gray-30 flex-shrink-0 group-betterhover:hover:text-gray-70" />
         Search
         <span className="ml-auto hidden sm:flex item-center">
-          <Kbd>⌘</Kbd>
+          {isMacOs ? <Kbd>⌘</Kbd> : <Kbd>Ctrl</Kbd>}
           <Kbd>K</Kbd>
         </span>
       </button>

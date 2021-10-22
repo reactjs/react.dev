@@ -119,7 +119,7 @@ export default function Nav() {
       <div className="xl:w-full xl:max-w-xs flex items-center">
         <button
           type="button"
-          aria-label={`${!isOpen ? 'Hamburger Menu' : 'Close Menu'}`}
+          aria-label={`${!isOpen ? 'Open Navigation Menu' : 'Close Navigation Menu'}`}
           onClick={toggleOpen}
           className={cn('flex lg:hidden items-center h-full px-4', {
             'text-link dark:text-link-dark mr-0': isOpen,

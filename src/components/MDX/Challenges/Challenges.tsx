@@ -157,7 +157,6 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
             ) : (
               !isRecipes && (
                 <Button
-                label={`${showSolution ? 'Collapse Solution Content' : 'Expand Solution Content'}`}
                   className="mr-2"
                   onClick={toggleSolution}
                   active={showSolution}>

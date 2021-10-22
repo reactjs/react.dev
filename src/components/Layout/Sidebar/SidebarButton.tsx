@@ -30,7 +30,6 @@ export function SidebarButton({
         'my-3': level > 1,
       })}>
       <button
-        aria-label="Sidebar Button"
         className={cn(
           'p-2 pr-2 pl-5 w-full rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
           {

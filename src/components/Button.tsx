@@ -6,7 +6,7 @@ import * as React from 'react';
 import cn from 'classnames';
 
 interface ButtonProps {
-  label: string;
+  label?: string;
   children: React.ReactNode;
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   active: boolean;

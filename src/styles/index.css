@@ -51,12 +51,30 @@
   }
 
   a > code {
-    color: #087EA4 !important; /* blue-50 */
+    color: #087ea4 !important; /* blue-50 */
     text-decoration: none !important;
   }
 
   html.dark a > code {
-    color: #149ECA !important; /* blue-40 */
+    color: #149eca !important; /* blue-40 */
+  }
+
+  html.dark ::-webkit-scrollbar {
+    width: auto;
+    height: auto;
+  }
+
+  html.dark ::-webkit-scrollbar-track {
+    @apply bg-wash-dark;
+  }
+
+  html.dark ::-webkit-scrollbar-thumb {
+    @apply bg-card-dark;
+  }
+
+  html.dark ::-webkit-scrollbar-corner,
+  html.dark ::-webkit-resizer {
+    @apply bg-card-dark;
   }
 
   .text-code {
@@ -102,16 +120,20 @@
   }
 
   @keyframes nav-fadein {
-    from { opacity: 0.5; }
-    to   { opacity: 1; }
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
   }
 }
 
-#_hj_feedback_container > div > button:not([aria-label="Close"]) {
+#_hj_feedback_container > div > button:not([aria-label='Close']) {
   display: none;
 }
 
-#_hj_feedback_container > div  {
+#_hj_feedback_container > div {
   --hjFeedbackAccentColor: rgb(230, 247, 255) !important;
   --hjFeedbackAccentTextColor: rgb(73, 119, 171) !important;
 }

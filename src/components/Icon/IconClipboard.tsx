@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+import cn from 'classnames';
 
 // Icon SVG provided by https://heroicons.com/
 export const IconClipboard = React.memo<JSX.IntrinsicElements['svg']>(
@@ -10,7 +11,7 @@ export const IconClipboard = React.memo<JSX.IntrinsicElements['svg']>(
     return (
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="h-6 w-6"
+        className={cn('h-6 w-6', className)}
         fill="none"
         viewBox="0 0 24 24"
         aria-label="Copy to clipboard"

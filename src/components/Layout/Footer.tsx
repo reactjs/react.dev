@@ -129,11 +129,13 @@ export function Footer() {
                   href="https://www.facebook.com/react"
                   className={socialLinkClasses}>
                   <IconFacebookCircle />
+                  <span className="sr-only">Facebook Link</span>
                 </ExternalLink>
                 <ExternalLink
                   href="https://twitter.com/reactjs"
                   className={socialLinkClasses}>
                   <IconTwitter />
+                  <span className="sr-only">Twitter Link</span>
                 </ExternalLink>
               </div>
             </div>
@@ -160,14 +162,14 @@ function FooterLink({
   });
 
   if (!href) {
-    return <div className={classes}>{children}</div>;
+    return <div className={classes}> {children}</div>;
   }
 
   if (href.startsWith('https://')) {
     return (
       <div>
         <ExternalLink href={href} className={classes}>
-          {children}
+         {children}
         </ExternalLink>
       </div>
     );

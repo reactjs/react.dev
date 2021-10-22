@@ -58,7 +58,7 @@ function ExpandableExample({
           {excerpt && <div>{excerpt}</div>}
         </div>
         <Button
-          label="Show/Hide Details"
+          label={`${isExpanded ? 'Collapse Content' : 'Expand Content'}`}
           active={true}
           className={cn({
             'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50': isDeepDive,

@@ -99,7 +99,7 @@ export const Search: React.FC<SearchProps> = ({
       </Head>
 
       <button
-        aria-label="Search Icon"
+        aria-label="Search Icon to toggle Algolia Search Bar"
         type="button"
         className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
         onClick={onOpen}>
@@ -107,7 +107,7 @@ export const Search: React.FC<SearchProps> = ({
       </button>
 
       <button
-        aria-label="Search Box"
+        aria-label="Search Box to Toggle Algolia Search Bar"
         type="button"
         className="hidden md:flex relative pl-4 pr-0.5 py-1 h-10 bg-secondary-button dark:bg-gray-80 outline-none focus:ring focus:outline-none betterhover:hover:bg-opacity-80 pointer items-center shadow-inner text-left w-full text-gray-30 rounded-lg align-middle text-sm"
         onClick={onOpen}>

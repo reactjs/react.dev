@@ -73,7 +73,7 @@ export function CustomPreset({
             />
             {isExpandable && (
               <button
-                aria-label="Show Less/More"
+              aria-label={`${isExpanded ? 'Collapse Content' : 'Expand Content'}`}
                 className="flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
                 onClick={() => setIsExpanded((prevExpanded) => !prevExpanded)}>
                 <span className="flex p-2 focus:outline-none text-primary dark:text-primary-dark">

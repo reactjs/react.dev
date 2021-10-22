@@ -72,10 +72,9 @@ ${css}
 
   return (
     <button
-      aria-label="Download"
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
       onClick={downloadHTML}
-      title="Refresh Sandpack"
+      title="Download"
       type="button">
       <IconArrowSmall
         displayDirection="down"

@@ -111,7 +111,7 @@ export function Navigation({
       </div>
       <div className="flex z-10 pb-2 pl-2">
         <button
-          aria-label="Left Arrow"
+          aria-label="Scroll Left"
           onClick={handleScrollLeft}
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r',
@@ -123,7 +123,7 @@ export function Navigation({
           <IconChevron displayDirection="left" />
         </button>
         <button
-          aria-label="Right Arrow"
+          aria-label="Scroll Right"
           onClick={handleScrollRight}
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r-lg',

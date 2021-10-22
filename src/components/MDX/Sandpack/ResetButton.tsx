@@ -15,7 +15,7 @@ export const ResetButton: React.FC<ResetButtonProps> = ({
 }) => {
   return (
     <button
-      aria-label="Reset"
+      aria-label="Reset Sandbox"
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
       onClick={onReset}
       title="Reset Sandbox"

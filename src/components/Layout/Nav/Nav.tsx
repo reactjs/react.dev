@@ -119,7 +119,7 @@ export default function Nav() {
       <div className="xl:w-full xl:max-w-xs flex items-center">
         <button
           type="button"
-          aria-label="Menu"
+          aria-label={`${!isOpen ? 'Hamburger Menu' : 'Close Menu'}`}
           onClick={toggleOpen}
           className={cn('flex lg:hidden items-center h-full px-4', {
             'text-link dark:text-link-dark mr-0': isOpen,
@@ -167,7 +167,7 @@ export default function Nav() {
       <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end slg:max-w-sm">
         <Search />
         <button
-          aria-label="Feedback"
+          aria-label="Give Feedback"
           type="button"
           className="inline-flex lg:hidden items-center p-1 ml-4 lg:ml-6 relative top-px"
           onClick={handleFeedback}>

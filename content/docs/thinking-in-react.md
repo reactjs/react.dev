@@ -20,7 +20,7 @@ Imagine that we already have a JSON API and a mock from our designer. The mock l
 
 Our JSON API returns some data that looks like this:
 
-```
+```json
 [
     {"category": "Sporting Goods", "price": "$49.99", "stocked": true, "name": "Football"},
     {"category": "Sporting Goods", "price": "$9.99", "stocked": true, "name": "Baseball"},

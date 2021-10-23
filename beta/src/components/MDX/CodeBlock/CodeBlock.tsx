@@ -79,6 +79,7 @@ const CodeBlock = React.forwardRef(
     const decorators = getDecoratedLineInfo();
     return (
       <div
+        translate="no"
         className={cn(
           'rounded-lg h-full w-full overflow-x-auto flex items-center bg-white shadow-lg',
           !noMargin && 'my-8'

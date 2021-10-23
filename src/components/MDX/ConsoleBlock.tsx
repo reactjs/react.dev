@@ -43,7 +43,7 @@ function ConsoleBlock({level = 'info', children}: ConsoleBlockProps) {
   }
 
   return (
-    <div className="mb-4">
+    <div className="mb-4" translate="no">
       <div
         className="flex w-full rounded-t-lg"
         style={{backgroundColor: '#DADEE0'}}>

@@ -133,7 +133,7 @@ function Sandpack(props: SandpackProps) {
   }
 
   return (
-    <div className="my-8">
+    <div className="my-8" translate="no">
       <SandpackProvider
         key={key}
         template="react"

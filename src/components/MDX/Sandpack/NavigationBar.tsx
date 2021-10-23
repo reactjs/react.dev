@@ -46,7 +46,9 @@ export function NavigationBar({
       <div className="px-4 lg:px-6">
         {dropdownActive ? <FilesDropdown /> : <FileTabs />}
       </div>
-      <div className="px-3 flex items-center justify-end flex-grow text-right">
+      <div
+        className="px-3 flex items-center justify-end flex-grow text-right"
+        translate="yes">
         {showDownload && <DownloadButton />}
         <ResetButton onReset={onReset} />
         <OpenInCodeSandboxButton className="ml-2 md:ml-4" />

@@ -70,8 +70,7 @@ export function SidebarLink({
             'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark': selected,
           }
         )}
-        onClick = {() => { isExpanded ? onClick(true) : onClick(false)  }}
-				>
+        onClick = {() => { isExpanded ? onClick(true) : onClick(false)  }} >
         {title}
         {isExpanded != null && !heading && !hideArrow && (
           <span

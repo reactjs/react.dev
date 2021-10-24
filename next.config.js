@@ -8,6 +8,7 @@ const redirects = require('./src/redirects.json');
 
 module.exports = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
+  productionBrowserSourceMaps: true,
   experimental: {
     plugins: true,
     reactMode: 'concurrent',

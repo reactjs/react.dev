@@ -12,6 +12,11 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
+### AgentConf 2022 {#agent-conf-2022} 
+January 27th - 30th, 2022. In-person in Dornbirn and Lech Austria
+
+[Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
+
 ### React Brussels 2021 {#react-brussels-2021} 
 October 15, 2021 - remote event
 

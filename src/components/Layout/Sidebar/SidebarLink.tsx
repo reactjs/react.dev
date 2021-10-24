@@ -19,7 +19,7 @@ interface SidebarLinkProps {
   icon?: React.ReactNode;
   heading?: boolean;
   isExpanded?: boolean;
-  handleOnClick: (href: string) => void,
+  handleOnClick: (href: string) => void;
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
 }

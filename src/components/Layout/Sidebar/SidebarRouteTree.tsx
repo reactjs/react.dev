@@ -96,12 +96,12 @@ export function SidebarRouteTree({
   );
 
   const handleOnClick = (href: string) => {
-    if(togglePath === href){
+    if (togglePath === href) {
       setTogglePath('');
-    } else if (!togglePath){
+    } else if (!togglePath) {
       setTogglePath(href);
     }
-  }
+  };
 
   const expanded = expandedPath;
   return (
@@ -123,7 +123,8 @@ export function SidebarRouteTree({
 
         // if route has a path and child routes, treat it as an expandable sidebar item
         if (routes) {
-          const isExpanded = isMobile || (expanded === path && togglePath !== path);
+          const isExpanded =
+            isMobile || (expanded === path && togglePath !== path);
           return (
             <li key={`${title}-${path}-${level}-heading`}>
               <SidebarLink

@@ -35,7 +35,9 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
   }
 
   return (
-    <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full">
+    <div
+      className="rounded-lg bg-secondary dark:bg-gray-50 h-full"
+      translate="no">
       <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
         <div className="text-primary-dark dark:text-primary-dark flex text-sm px-4 py-0.5 relative">
           <IconTerminal className="inline-flex mr-2 self-center" /> Terminal

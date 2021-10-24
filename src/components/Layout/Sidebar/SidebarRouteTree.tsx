@@ -76,6 +76,7 @@ export function SidebarRouteTree({
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
   const {pathname} = useRouter();
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
   const slug = pathname;
 
   const currentRoutes = routeTree.routes as RouteItem[];
@@ -123,11 +124,12 @@ export function SidebarRouteTree({
                 selected={selected}
                 level={level}
                 title={title}
-                isExpanded={isExpanded}
+                isExpanded={isExpanded && !isCollapsed}
                 isBreadcrumb={expandedPath === path}
                 hideArrow={isMobile}
+                setIsCollapsed={setIsCollapsed}
               />
-              <CollapseWrapper duration={250} isExpanded={isExpanded}>
+              <CollapseWrapper duration={250} isExpanded={isExpanded && !isCollapsed}>
                 <SidebarRouteTree
                   isMobile={isMobile}
                   routeTree={{title, routes}}
@@ -137,13 +139,14 @@ export function SidebarRouteTree({
             </li>
           );
         }
-
+				
         // if route has a path and no child routes, treat it as a sidebar link
         return (
           <li key={`${title}-${path}-${level}-link`}>
             <SidebarLink
               href={pagePath}
               selected={selected}
+              setIsCollapsed={setIsCollapsed}
               level={level}
               title={title}
             />

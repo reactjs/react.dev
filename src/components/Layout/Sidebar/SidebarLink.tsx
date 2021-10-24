@@ -21,6 +21,7 @@ interface SidebarLinkProps {
   isExpanded?: boolean;
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
+  setIsCollapsed: (isCollapsed: boolean) => void;
 }
 
 export function SidebarLink({
@@ -32,6 +33,7 @@ export function SidebarLink({
   isExpanded,
   isBreadcrumb,
   hideArrow,
+  setIsCollapsed,
 }: SidebarLinkProps) {
   const ref = React.useRef<HTMLAnchorElement>(null);
   const isMobile = useIsMobile();
@@ -52,6 +54,9 @@ export function SidebarLink({
         ref={ref}
         title={title}
         aria-current={selected ? 'page' : undefined}
+        onClick={() => {
+          isExpanded ? setIsCollapsed(true) : setIsCollapsed(false);
+        }}
         className={cn(
           'p-2 pr-2 w-full rounded-none lg:rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
           {
@@ -65,7 +70,8 @@ export function SidebarLink({
             'dark:text-primary-dark text-primary': heading,
             'text-base text-secondary dark:text-secondary-dark':
               !selected && !heading,
-            'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark': selected,
+            'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
+              selected,
           }
         )}>
         {title}

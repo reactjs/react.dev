@@ -76,6 +76,7 @@ export function SidebarRouteTree({
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
   const {pathname} = useRouter();
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
   const slug = pathname;
 
   const currentRoutes = routeTree.routes as RouteItem[];
@@ -123,11 +124,13 @@ export function SidebarRouteTree({
                 selected={selected}
                 level={level}
                 title={title}
-                isExpanded={isExpanded}
+                isExpanded={isExpanded && !isCollapsed}
                 isBreadcrumb={expandedPath === path}
                 hideArrow={isMobile}
+                onClick={setIsCollapsed}
               />
-              <CollapseWrapper duration={250} isExpanded={isExpanded}>
+              <CollapseWrapper
+                duration={250} isExpanded={isExpanded && !isCollapsed}>
                 <SidebarRouteTree
                   isMobile={isMobile}
                   routeTree={{title, routes}}
@@ -146,6 +149,7 @@ export function SidebarRouteTree({
               selected={selected}
               level={level}
               title={title}
+              onClick={setIsCollapsed}
             />
           </li>
         );

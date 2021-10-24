@@ -127,7 +127,7 @@ export function SidebarRouteTree({
                 isExpanded={isExpanded && !isCollapsed}
                 isBreadcrumb={expandedPath === path}
                 hideArrow={isMobile}
-								onClick={setIsCollapsed}
+		onClick={setIsCollapsed}
               />
               <CollapseWrapper duration={250} isExpanded={isExpanded && !isCollapsed}>
                 <SidebarRouteTree

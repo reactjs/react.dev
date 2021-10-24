@@ -74,6 +74,7 @@ export function SidebarRouteTree({
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
+  const [togglePath, setTogglePath] = React.useState('');
   const {breadcrumbs} = useRouteMeta(routeTree);
   const {pathname} = useRouter();
   const slug = pathname;
@@ -93,6 +94,14 @@ export function SidebarRouteTree({
     },
     undefined
   );
+
+  const handleOnClick = (href: string) => {
+    if(togglePath === href){
+      setTogglePath('');
+    } else if (!togglePath){
+      setTogglePath(href);
+    }
+  }
 
   const expanded = expandedPath;
   return (
@@ -114,7 +123,7 @@ export function SidebarRouteTree({
 
         // if route has a path and child routes, treat it as an expandable sidebar item
         if (routes) {
-          const isExpanded = isMobile || expanded === path;
+          const isExpanded = isMobile || (expanded === path && togglePath !== path);
           return (
             <li key={`${title}-${path}-${level}-heading`}>
               <SidebarLink
@@ -126,6 +135,7 @@ export function SidebarRouteTree({
                 isExpanded={isExpanded}
                 isBreadcrumb={expandedPath === path}
                 hideArrow={isMobile}
+                handleOnClick={handleOnClick}
               />
               <CollapseWrapper duration={250} isExpanded={isExpanded}>
                 <SidebarRouteTree
@@ -146,6 +156,7 @@ export function SidebarRouteTree({
               selected={selected}
               level={level}
               title={title}
+              handleOnClick={handleOnClick}
             />
           </li>
         );

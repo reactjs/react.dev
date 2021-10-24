@@ -19,6 +19,7 @@ interface SidebarLinkProps {
   icon?: React.ReactNode;
   heading?: boolean;
   isExpanded?: boolean;
+  handleOnClick: (href: string) => void,
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
 }
@@ -30,6 +31,7 @@ export function SidebarLink({
   level,
   heading = false,
   isExpanded,
+  handleOnClick,
   isBreadcrumb,
   hideArrow,
 }: SidebarLinkProps) {
@@ -50,6 +52,7 @@ export function SidebarLink({
     <Link href={href}>
       <a
         ref={ref}
+        onClick={() => handleOnClick(href)}
         title={title}
         aria-current={selected ? 'page' : undefined}
         className={cn(

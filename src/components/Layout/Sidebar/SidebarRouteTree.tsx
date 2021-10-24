@@ -76,7 +76,7 @@ export function SidebarRouteTree({
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
   const {pathname} = useRouter();
-	const [isCollapsed, setIsCollapsed] = React.useState(false);
+  const [isCollapsed, setIsCollapsed] = React.useState(false);
   const slug = pathname;
 
   const currentRoutes = routeTree.routes as RouteItem[];
@@ -148,7 +148,7 @@ export function SidebarRouteTree({
               selected={selected}
               level={level}
               title={title}
-							onClick={setIsCollapsed}
+	      onClick={setIsCollapsed}
             />
           </li>
         );

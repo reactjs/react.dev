@@ -1147,7 +1147,8 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
     // this method has not changed
   }
 ```
-Notice in `jumpTo` method, we haven't updated history property of the state. That is because state updates are merged or in more simple words react will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-are-merged)**
+
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
 
 We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
 

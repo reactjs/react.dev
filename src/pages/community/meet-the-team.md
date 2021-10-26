@@ -1,5 +1,6 @@
 ---
 layout: Home
+description: "The current React Core team."
 ---
 
 <Intro>

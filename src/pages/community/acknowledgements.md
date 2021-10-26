@@ -1,6 +1,7 @@
 ---
 title: Acknowledgements
 layout: Home
+description: "Shout outs to all the people who built React and its documentation."
 ---
 
 ## React

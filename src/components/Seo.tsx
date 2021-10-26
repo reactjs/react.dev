@@ -30,7 +30,8 @@ export const Seo = withRouter(
         content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"
       />
 
-      {title != null && <title key="title">{title}</title>}
+      {title != null && <title key="title">{title} — React.js</title>}
+
       {description != null && (
         <meta name="description" key="description" content={description} />
       )}

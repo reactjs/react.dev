@@ -25,9 +25,7 @@ const Box = ({
   className?: string;
   customStyles?: Record<string, string>;
 }) => (
-  <div
-    className={className}
-    style={{width, height, backgroundColor: '#C4C4C4', ...customStyles}}></div>
+  <div className={className} style={{width, height, ...customStyles}}></div>
 );
 Box.displayName = 'Box';
 
@@ -44,20 +42,18 @@ function ConsoleBlock({level = 'info', children}: ConsoleBlockProps) {
 
   return (
     <div className="mb-4" translate="no">
-      <div
-        className="flex w-full rounded-t-lg"
-        style={{backgroundColor: '#DADEE0'}}>
-        <div className="px-4 py-2" style={{borderRight: '1px solid #C4C4C4'}}>
-          <Box width="15px" />
+      <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
+        <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
+          <Box className="bg-gray-300 dark:bg-gray-90" width="15px" />
         </div>
         <div className="flex text-sm px-4">
-          <div className="border-b-2" style={{borderColor: '#C4C4C4'}}>
+          <div className="border-b-2 border-gray-300 dark:border-gray-90">
             Console
           </div>
           <div className="px-4 py-2 flex">
-            <Box className="mr-2" />
-            <Box className="mr-2 hidden md:block" />
-            <Box className="hidden md:block" />
+            <Box className="mr-2 bg-gray-300 dark:bg-gray-90" />
+            <Box className="mr-2 hidden md:block bg-gray-300 dark:bg-gray-90" />
+            <Box className="hidden md:block bg-gray-300 dark:bg-gray-90" />
           </div>
         </div>
       </div>

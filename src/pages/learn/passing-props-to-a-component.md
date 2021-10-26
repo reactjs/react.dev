@@ -1,5 +1,6 @@
 ---
 title: Passing Props to a Component
+description: "Parent components pass information to child components by giving them props."
 ---
 
 <Intro>

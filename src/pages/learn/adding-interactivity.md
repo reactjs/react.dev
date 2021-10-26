@@ -1,5 +1,6 @@
 ---
 title: Adding Interactivity
+description: "How to use React's useState() Hook to make interfaces interactive."
 ---
 
 <Intro>

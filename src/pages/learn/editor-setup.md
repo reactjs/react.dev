@@ -1,5 +1,6 @@
 ---
 title: Editor Setup
+description: "How to install and configure a code editor for writing React code."
 ---
 
 <Intro>

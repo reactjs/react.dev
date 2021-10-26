@@ -1,5 +1,6 @@
 ---
 title: Add React to a Website
+description: "How to add interactive React components to an HTML page with just a few lines of code—and no build tooling!"
 ---
 
 <Intro>

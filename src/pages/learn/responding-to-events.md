@@ -1,5 +1,6 @@
 ---
 title: Responding to Events
+description: "Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on."
 ---
 
 <Intro>

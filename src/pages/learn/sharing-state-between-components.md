@@ -1,5 +1,6 @@
 ---
 title: Sharing State Between Components
+description: "When multiple components need access to state, "lift the state up" by moving the it to the nearest common parent."
 ---
 
 <Intro>

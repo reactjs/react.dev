@@ -1,5 +1,6 @@
 ---
 title: JavaScript in JSX with Curly Braces
+description: "Use curly braces inside your JSX to 'open a window' to JavaScript."
 ---
 
 <Intro>

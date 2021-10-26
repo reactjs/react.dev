@@ -1,5 +1,6 @@
 ---
 title: Reacting to Input with State
+description: "Use state to describe the different states your component can be in according to different user inputs."
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: Scaling Up with Reducer and Context
+description:  "Combine reducers and context together to manage state of a complex screen."
 ---
 
 <Intro>

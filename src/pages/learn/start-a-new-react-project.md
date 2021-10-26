@@ -1,5 +1,6 @@
 ---
 title: Start a New React Project
+description: "Get started with a new React project using a framework or a toolchain."
 ---
 
 <Intro>

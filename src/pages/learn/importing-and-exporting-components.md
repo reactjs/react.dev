@@ -1,5 +1,6 @@
 ---
 title: Importing and Exporting Components
+description: "Modular React components often get spread across multiple files. To nest them, you'll need to import and export your components."
 ---
 
 <Intro>

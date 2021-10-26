@@ -1,5 +1,6 @@
 ---
 title: Passing Data Deeply with Context
+description: "Rather than passing props down the component tree, you can make data available to any component in a parent's component tree."
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: Render and Commit
+description: "Understanding React's render and commit cycle is key to understanding how your component goes from JSX to the screen."
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: Extracting State Logic into a Reducer
+description: "A reducer function lets you consolidate many state updates from many event handlers into one place."
 ---
 
 <Intro>

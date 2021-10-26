@@ -1,5 +1,6 @@
 ---
 title: Your First Component
+description: "Write your first React component."
 ---
 
 <Intro>

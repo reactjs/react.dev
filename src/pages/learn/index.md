@@ -1,5 +1,6 @@
 ---
 title: Quick Start
+description: "A succinct overview of React to get an idea of how the library works."
 ---
 
 <Intro>

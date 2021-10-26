@@ -1,5 +1,6 @@
 ---
 title: Rendering Lists
+description: "Use JavaScript to render lists and collections of React components from arrays of data."
 ---
 
 <Intro>

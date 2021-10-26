@@ -1,5 +1,6 @@
 ---
 title: Installation
+description: "Get started setting up React and your developer environment."
 ---
 
 <Intro>

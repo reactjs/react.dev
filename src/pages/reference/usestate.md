@@ -1,6 +1,7 @@
 ---
 title: useState()
 layout: API
+description: "useState is a Hook for 'remembering' information between renders and triggering renders."
 ---
 
 <Intro>

@@ -1,6 +1,7 @@
 ---
 title: React APIs
 layout: API
+description: "Hooks, ReactDOM, and more APIs."
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: Thinking in React
+description: "This quick overview shows you how React will change how you think about developing user interfaces."
 ---
 
 <Intro>

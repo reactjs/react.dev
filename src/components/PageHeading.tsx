@@ -29,11 +29,6 @@ function PageHeading({
           {title}
           {status ? <em>—{status}</em> : ''}
         </H1>
-        {description && (
-          <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl text-gray-90 leading-large">
-            {description}
-          </p>
-        )}
         {tags?.length > 0 && (
           <div className="mt-4">
             {tags.map((tag) => (

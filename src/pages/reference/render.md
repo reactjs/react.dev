@@ -1,6 +1,7 @@
 ---
 title: render()
 layout: API
+description: "Renders a piece of JSX into a browser DOM container node."
 ---
 
 <Intro>

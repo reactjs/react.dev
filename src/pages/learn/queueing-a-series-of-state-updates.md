@@ -1,5 +1,6 @@
 ---
 title: Queueing a Series of State Updates
+description: "Because React batches state updates, you can pass a function to your state setting function to perform multiple operations on a state value before queuing the next render."
 ---
 
 <Intro>

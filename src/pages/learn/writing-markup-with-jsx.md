@@ -1,5 +1,6 @@
 ---
 title: Writing Markup with JSX
+description: "JSX is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file."
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: React Developer Tools
+description: "Install React DevTools in your browser to inspect and debug React components."
 ---
 
 <Intro>

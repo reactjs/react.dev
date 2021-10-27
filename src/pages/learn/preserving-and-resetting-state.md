@@ -1,5 +1,6 @@
 ---
 title: Preserving and Resetting State
+description: "Understand how React keeps track of what state belongs with which components so you can deliberately preserve and reset state between renders."
 ---
 
 <Intro>

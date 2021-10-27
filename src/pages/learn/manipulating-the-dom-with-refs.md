@@ -1,5 +1,6 @@
 ---
 title: 'Manipulating the DOM with Refs'
+description: "Sometimes you need to access DOM elements managed by React. Refs can help you access a DOM node outside React."
 ---
 
 <Intro>

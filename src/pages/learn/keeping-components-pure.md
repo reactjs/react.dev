@@ -1,5 +1,6 @@
 ---
 title: Keeping Components Pure
+description: "Pure functions perform calculations without mutating any data. Keeping components pure will eliminate a class of bugs and behaviors from your React app."
 ---
 
 <Intro>

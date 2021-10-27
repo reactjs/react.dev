@@ -1,5 +1,6 @@
 ---
 title: Updating Objects in State
+description: "How to keep components pure by handling state objects as though they were immutable."
 ---
 
 <Intro>

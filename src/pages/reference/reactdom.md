@@ -1,6 +1,7 @@
 ---
 title: ReactDOM API
 layout: API
+description: "ReactDOM lets you render React components on a webpage."
 ---
 
 <Intro>

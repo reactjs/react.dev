@@ -1,5 +1,6 @@
 ---
 title: Managing State
+description: "Learn how to structure and share state between components."
 ---
 
 <Intro>

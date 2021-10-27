@@ -1,5 +1,6 @@
 ---
 title: Updating Arrays in State
+description: "How to keep components pure by handling arrays used for state as though they are immutable."
 ---
 
 <Intro>

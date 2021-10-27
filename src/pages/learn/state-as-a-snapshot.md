@@ -1,5 +1,6 @@
 ---
 title: State as a Snapshot
+description: "State variables are like a snapshot in time. Setting them triggers React to re-render the component."
 ---
 
 <Intro>

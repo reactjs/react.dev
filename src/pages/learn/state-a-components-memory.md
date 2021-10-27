@@ -1,5 +1,6 @@
 ---
 title: "State: A Component's Memory"
+description: "State is a piece of information a component 'remembers' between renders."
 ---
 
 <Intro>

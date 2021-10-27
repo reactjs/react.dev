@@ -1,5 +1,6 @@
 ---
 title: Describing the UI
+description: "React describes user interfaces from web sites to phone apps with reusable, nestable components."
 ---
 
 <Intro>

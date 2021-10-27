@@ -1,5 +1,6 @@
 ---
 title: Conditional Rendering
+description: "You can use plain JavaScript to conditionally render JSX inside React components."
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: Choosing the State Structure
+description: "Some guidelines for structuring your state among components."
 ---
 
 <Intro>

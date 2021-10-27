@@ -1,5 +1,6 @@
 ---
 title: 'Referencing Values with Refs'
+description: "Use refs to store data between renders without triggering a render."
 ---
 
 <Intro>

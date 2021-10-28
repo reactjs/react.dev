@@ -71,7 +71,6 @@
   },
   "scripts": {
     "build": "gatsby clean && gatsby build",
-    "build-ci": "gatsby clean && gatsby build",
     "check-all": "npm-run-all prettier generate-ids --parallel lint flow",
     "ci-check": "npm-run-all prettier:diff --parallel lint flow",
     "dev": "gatsby develop -H 0.0.0.0",

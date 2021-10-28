@@ -6,7 +6,6 @@
   "scripts": {
     "dev": "next",
     "build": "next build && node ./scripts/generateRSS.js",
-    "build-ci": "git clean -df && next build && next export && node ./scripts/generateRSS.js && rm -rf public/* && cp -r out/* public/",
     "lint": "eslint 'src/**/*.{js,ts,tsx}'",
     "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
     "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",

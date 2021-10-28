@@ -5,15 +5,15 @@
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
-import {IconClose} from 'components/Icon/IconClose';
-import {IconHamburger} from 'components/Icon/IconHamburger';
-import {Search} from 'components/Search';
-import {MenuContext} from 'components/useMenu';
-
-import {Logo} from '../../Logo';
+import { IconClose } from 'components/Icon/IconClose';
+import { IconHamburger } from 'components/Icon/IconHamburger';
+import { Search } from 'components/Search';
+import { MenuContext } from 'components/useMenu';
+import { Logo } from '../../Logo';
 import NavLink from './NavLink';
+import { ColorMode, ThemeContext } from 'modules/ThemeProvider';
 
 const feedbackIcon = (
   <svg
@@ -90,17 +90,18 @@ function inferSection(pathname: string): 'learn' | 'reference' | 'home' {
 }
 
 export default function Nav() {
-  const {pathname} = useRouter();
-  const {isOpen, toggleOpen} = React.useContext(MenuContext);
-  // TODO: persist
+  const { pathname } = useRouter();
+  const { isOpen, toggleOpen } = React.useContext(MenuContext);
   // TODO: respect system pref
-  const [isDark, setIsDark] = React.useState(() => {
-    if (typeof document === 'undefined') {
-      return false;
-    }
-    return document.documentElement.classList.contains('dark');
-  });
+
+  // get the current colorMode
+  const { colorMode, setColorMode } = React.useContext(ThemeContext);
+
   const section = inferSection(pathname);
+
+  const toggleColorMode = React.useCallback(() => {
+    setColorMode(colorMode === ColorMode.dark ? ColorMode.light : ColorMode.dark)
+  }, [colorMode])
 
   function handleFeedback() {
     const nodes: any = document.querySelectorAll(
@@ -115,7 +116,7 @@ export default function Nav() {
   }
 
   return (
-    <nav className="sticky top-0 items-center w-full flex lg:block justify-between bg-wash dark:bg-wash-dark pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
+    <nav className="sticky top-0 items-center w-full flex lg:block justify-between bg-transparent pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
       <div className="xl:w-full xl:max-w-xs flex items-center">
         <button
           type="button"
@@ -139,18 +140,10 @@ export default function Nav() {
         </div>
         <button
           type="button"
-          aria-label={isDark ? 'Use Light Mode' : 'Use Dark Mode'}
-          onClick={() => {
-            if (isDark) {
-              document.documentElement.classList.remove('dark');
-              setIsDark(false);
-            } else {
-              document.documentElement.classList.add('dark');
-              setIsDark(true);
-            }
-          }}
+          aria-label={colorMode === ColorMode.dark ? 'Use Light Mode' : 'Use Dark Mode'}
+          onClick={toggleColorMode}
           className="hidden lg:flex items-center h-full pr-2">
-          {isDark ? lightIcon : darkIcon}
+          {colorMode === ColorMode.dark ? lightIcon : darkIcon}
         </button>
       </div>
       <div className="px-0 pt-2 w-full 2xl:max-w-xs hidden lg:flex items-center self-center border-b-0 lg:border-b border-border dark:border-border-dark">
@@ -174,18 +167,10 @@ export default function Nav() {
         </button>
         <button
           type="button"
-          aria-label={isDark ? 'Use Light Mode' : 'Use Dark Mode'}
-          onClick={() => {
-            if (isDark) {
-              document.documentElement.classList.remove('dark');
-              setIsDark(false);
-            } else {
-              document.documentElement.classList.add('dark');
-              setIsDark(true);
-            }
-          }}
+          aria-label={colorMode === ColorMode.dark ? 'Use Light Mode' : 'Use Dark Mode'}
+          onClick={toggleColorMode}
           className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6">
-          {isDark ? lightIcon : darkIcon}
+          {colorMode === ColorMode.dark ? lightIcon : darkIcon}
         </button>
       </div>
     </nav>

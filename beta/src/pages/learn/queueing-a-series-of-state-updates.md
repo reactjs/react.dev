@@ -55,7 +55,7 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at work here to discuss. **React waits until *all* code in the the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+But there is one other factor at work here to discuss. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
 
 This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
 

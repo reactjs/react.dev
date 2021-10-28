@@ -11,9 +11,11 @@ import {
 } from '@codesandbox/sandpack-react';
 
 import {IconChevron} from 'components/Icon/IconChevron';
+import {MenuContext} from 'components/useMenu';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {GithubLightTheme} from './Themes';
+import {NightOwlTheme} from './Themes';
 
 export function CustomPreset({
   isSingleFile,
@@ -26,6 +28,7 @@ export function CustomPreset({
   const {sandpack} = useSandpack();
   const {code} = useActiveCode();
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const {isDark} = React.useContext(MenuContext);
 
   const {activePath} = sandpack;
   if (!lineCountRef.current[activePath]) {
@@ -45,7 +48,8 @@ export function CustomPreset({
     <>
       <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
         <NavigationBar showDownload={isSingleFile} onReset={onReset} />
-        <SandpackThemeProvider theme={GithubLightTheme}>
+        <SandpackThemeProvider
+          theme={isDark ? NightOwlTheme : GithubLightTheme}>
           <div
             ref={sandpack.lazyAnchorRef}
             className="sp-layout rounded-t-none"

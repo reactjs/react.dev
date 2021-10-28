@@ -91,15 +91,7 @@ function inferSection(pathname: string): 'learn' | 'reference' | 'home' {
 
 export default function Nav() {
   const {pathname} = useRouter();
-  const {isOpen, toggleOpen} = React.useContext(MenuContext);
-  // TODO: persist
-  // TODO: respect system pref
-  const [isDark, setIsDark] = React.useState(() => {
-    if (typeof document === 'undefined') {
-      return false;
-    }
-    return document.documentElement.classList.contains('dark');
-  });
+  const {isOpen, toggleOpen, isDark, setIsDark} = React.useContext(MenuContext);
   const section = inferSection(pathname);
 
   function handleFeedback() {

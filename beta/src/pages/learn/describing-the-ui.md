@@ -11,7 +11,7 @@ React is a JavaScript library for rendering user interfaces (UI). UI is built fr
 <YouWillLearn>
 
 * [How to write your first React component](/learn/your-first-component)
-* [When and how to create multi-file components](/learn/importing-and-exporting-components)
+* [When and how to create multi-component files](/learn/importing-and-exporting-components)
 * [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
 * [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
 * [How to configure components with props](/learn/passing-props-to-a-component)

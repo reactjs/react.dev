@@ -4,11 +4,11 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
-import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
+import { useSandpack, LoadingOverlay } from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 
-import {Error} from './Error';
-import {computeViewportSize, generateRandomId} from './utils';
+import { Error } from './Error';
+import { computeViewportSize, generateRandomId } from './utils';
 
 type CustomPreviewProps = {
   className?: string;
@@ -33,7 +33,7 @@ export function Preview({
   isExpanded,
   className,
 }: CustomPreviewProps) {
-  const {sandpack, listen} = useSandpack();
+  const { sandpack, listen } = useSandpack();
   const [isReady, setIsReady] = React.useState(false);
   const [iframeComputedHeight, setComputedAutoHeight] = React.useState<
     number | null
@@ -94,9 +94,9 @@ export function Preview({
   const viewportStyle = computeViewportSize('auto', 'portrait');
   const overrideStyle = error
     ? {
-        // Don't collapse errors
-        maxHeight: undefined,
-      }
+      // Don't collapse errors
+      maxHeight: undefined,
+    }
     : null;
   const hideContent = !isReady || error;
 
@@ -136,17 +136,17 @@ export function Preview({
       }}>
       <div
         className={cn(
-          'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none'
+          'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-transparent h-full relative rounded-b-lg lg:rounded-b-none'
         )}
-        style={{overflow}}>
+        style={{ overflow }}>
         <div
           style={{
             padding: 'initial',
             position: hideContent
               ? 'relative'
               : isExpanded
-              ? 'sticky'
-              : undefined,
+                ? 'sticky'
+                : undefined,
             top: isExpanded ? '2rem' : undefined,
           }}>
           <iframe

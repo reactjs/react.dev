@@ -2,22 +2,22 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {MenuProvider} from 'components/useMenu';
+import { MenuProvider } from 'components/useMenu';
 import * as React from 'react';
-import {Nav} from './Nav';
-import {RouteItem, SidebarContext} from './useRouteMeta';
-import {Sidebar} from './Sidebar';
-import {Footer} from './Footer';
+import { Nav } from './Nav';
+import { RouteItem, SidebarContext } from './useRouteMeta';
+import { Sidebar } from './Sidebar';
+import { Footer } from './Footer';
 interface PageProps {
   children: React.ReactNode;
   routeTree: RouteItem;
 }
 
-export function Page({routeTree, children}: PageProps) {
+export function Page({ routeTree, children }: PageProps) {
   return (
     <MenuProvider>
       <SidebarContext.Provider value={routeTree}>
-        <div className="h-auto lg:h-screen flex flex-row">
+        <div className=" bg-wash dark:bg-wash-dark transition-colors duration-500">
           <div className="h-auto lg:h-full overflow-y-scroll fixed flex flex-row lg:flex-col py-0 top-0 left-0 right-0 lg:max-w-xs w-full shadow lg:shadow-none z-50">
             <Nav />
             <Sidebar />
@@ -27,7 +27,7 @@ export function Page({routeTree, children}: PageProps) {
             <div className="w-full min-w-0">
               <main
                 className="flex flex-1 self-stretch flex-col items-end"
-                style={{justifyContent: 'space-around'}}>
+                style={{ justifyContent: 'space-around' }}>
                 {children}
                 <Footer />
               </main>

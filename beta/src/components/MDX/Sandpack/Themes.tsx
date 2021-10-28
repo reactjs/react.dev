@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {githubLightTheme, SandpackTheme} from '@codesandbox/sandpack-react';
+import { githubLightTheme, codesandboxDarkTheme, SandpackTheme } from '@codesandbox/sandpack-react';
 import tailwindConfig from '../../../../tailwind.config';
 
 export const GithubLightTheme: SandpackTheme = {
@@ -10,6 +10,18 @@ export const GithubLightTheme: SandpackTheme = {
 
   typography: {
     ...githubLightTheme.typography,
+    bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
+    monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
+    fontSize: tailwindConfig.theme.extend.fontSize.code,
+    lineHeight: '24px',
+  },
+};
+
+export const CodesandboxDarkTheme: SandpackTheme = {
+  ...codesandboxDarkTheme,
+
+  typography: {
+    ...codesandboxDarkTheme.typography,
     bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
     monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
     fontSize: tailwindConfig.theme.extend.fontSize.code,
@@ -25,6 +37,21 @@ export const CodeBlockLightTheme: SandpackTheme = {
   },
   typography: {
     ...githubLightTheme.typography,
+    bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
+    monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
+    fontSize: tailwindConfig.theme.extend.fontSize.code,
+    lineHeight: '24px',
+  },
+};
+
+export const CodeBlockDarkTheme: SandpackTheme = {
+  ...codesandboxDarkTheme,
+  palette: {
+    ...codesandboxDarkTheme.palette,
+    defaultBackground: 'transparent',
+  },
+  typography: {
+    ...codesandboxDarkTheme.typography,
     bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
     monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
     fontSize: tailwindConfig.theme.extend.fontSize.code,

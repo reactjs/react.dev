@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   useSandpack,
   useActiveCode,
@@ -10,10 +10,11 @@ import {
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 
-import {IconChevron} from 'components/Icon/IconChevron';
-import {NavigationBar} from './NavigationBar';
-import {Preview} from './Preview';
-import {GithubLightTheme} from './Themes';
+import { IconChevron } from 'components/Icon/IconChevron';
+import { NavigationBar } from './NavigationBar';
+import { Preview } from './Preview';
+import { CodesandboxDarkTheme, GithubLightTheme } from './Themes';
+import { ColorMode, ThemeContext } from 'modules/ThemeProvider';
 
 export function CustomPreset({
   isSingleFile,
@@ -22,12 +23,12 @@ export function CustomPreset({
   isSingleFile: boolean;
   onReset: () => void;
 }) {
-  const lineCountRef = React.useRef<{[key: string]: number}>({});
-  const {sandpack} = useSandpack();
-  const {code} = useActiveCode();
+  const lineCountRef = React.useRef<{ [key: string]: number }>({});
+  const { sandpack } = useSandpack();
+  const { code } = useActiveCode();
   const [isExpanded, setIsExpanded] = React.useState(false);
 
-  const {activePath} = sandpack;
+  const { activePath } = sandpack;
   if (!lineCountRef.current[activePath]) {
     lineCountRef.current[activePath] = code.split('\n').length;
   }
@@ -41,11 +42,14 @@ export function CustomPreset({
     return isExpanded ? editorHeight : 406;
   };
 
+  // get the current colorMode
+  const { colorMode } = useContext(ThemeContext);
+
   return (
     <>
       <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
         <NavigationBar showDownload={isSingleFile} onReset={onReset} />
-        <SandpackThemeProvider theme={GithubLightTheme}>
+        <SandpackThemeProvider theme={colorMode === ColorMode.dark ? CodesandboxDarkTheme : GithubLightTheme}>
           <div
             ref={sandpack.lazyAnchorRef}
             className="sp-layout rounded-t-none"
@@ -55,6 +59,7 @@ export function CustomPreset({
               minHeight: 216,
             }}>
             <SandpackCodeEditor
+
               customStyle={{
                 height: getHeight(),
                 maxHeight: isExpanded ? '' : 406,

@@ -1,0 +1,117 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+  }
+
+  /* Write your own custom base styles here */
+  html {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html,
+  body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  body,
+  html,
+  #__next {
+    height: 100%;
+  }
+
+  /* Start purging... */
+  /* Force GPU Accelerated scrolling, credit: Twitter Lite */
+  .scrolling-gpu {
+    transform: translateZ(0);
+  }
+
+  @responsive {
+    .text-7xl {
+      font-size: 5rem;
+    }
+
+    .text-8xl {
+      font-size: 6rem;
+    }
+  }
+
+  a > code {
+    color: #087EA4 !important; /* blue-50 */
+    text-decoration: none !important;
+  }
+
+  html.dark a > code {
+    color: #149ECA !important; /* blue-40 */
+  }
+
+  .text-code {
+    font-size: calc(1em - 10%) !important;
+  }
+
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    box-decoration-break: clone;
+    background-repeat: no-repeat;
+    color: transparent;
+  }
+
+  .text-gradient-electric-blue {
+    background-image: linear-gradient(45deg, #61dafb, #0072ff);
+  }
+  /* Stop purging. */
+  /* Your own custom utilities */
+
+  details {
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: block;
+    overflow-x: auto;
+  }
+
+  table td,
+  table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border: 1px solid #dee2e6;
+    overflow: auto;
+  }
+
+  img {
+    max-width: calc(min(700px, 100%));
+  }
+
+  @keyframes nav-fadein {
+    from { opacity: 0.5; }
+    to   { opacity: 1; }
+  }
+}
+
+#_hj_feedback_container > div > button:not([aria-label="Close"]) {
+  display: none;
+}
+
+#_hj_feedback_container > div  {
+  --hjFeedbackAccentColor: rgb(230, 247, 255) !important;
+  --hjFeedbackAccentTextColor: rgb(73, 119, 171) !important;
+}

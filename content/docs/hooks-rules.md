@@ -135,4 +135,4 @@ React wouldn't know what to return for the second `useState` Hook call. React ex
 
 ## Next Steps {#next-steps}
 
-Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.
+We initially learn about the basics of Hooks and adding conditions to it. Finally, we're ready to learn about [writing your own Hooks](/docs/hooks-custom.html)! Custom Hooks let you combine Hooks provided by React into your own abstractions, and reuse common stateful logic between different components.

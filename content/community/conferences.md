@@ -18,9 +18,14 @@ November 3-4, 2021 - remote event
 [Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) 
 
 ### React India 2021 {#react-india-2021}
-November 12-14, 2021 - remote event
+November 12-13, 2021 - remote event
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
+
+### ReactNext 2021 {#react-next-2021}
+December 15, 2021. Tel-Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### AgentConf 2022 {#agent-conf-2022} 
 January 27th - 30th, 2022. In-person in Dornbirn and Lech Austria

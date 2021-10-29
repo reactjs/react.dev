@@ -8,7 +8,7 @@ import {
   disableBodyScroll,
   enableBodyScroll,
 } from 'body-scroll-lock';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
 type SidebarNav = 'root' | 'docs' | 'reference';
 /**
@@ -19,9 +19,6 @@ type SidebarNav = 'root' | 'docs' | 'reference';
  */
 export const useMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  // TODO: persist
-  // TODO: respect system pref
-  const [isDark, setIsDark] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -60,8 +57,6 @@ export const useMenu = () => {
     toggleOpen,
     menuRef,
     isOpen,
-    isDark,
-    setIsDark,
   };
 };
 
@@ -69,6 +64,6 @@ export const MenuContext = React.createContext<ReturnType<typeof useMenu>>(
   {} as ReturnType<typeof useMenu>
 );
 
-export function MenuProvider(props: {children: React.ReactNode}) {
+export function MenuProvider(props: { children: React.ReactNode }) {
   return <MenuContext.Provider value={useMenu()} {...props} />;
 }

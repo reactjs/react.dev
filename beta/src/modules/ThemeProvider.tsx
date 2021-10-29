@@ -20,13 +20,7 @@ export const ThemeProvider: FC = ({ children }) => {
 
     useEffect(() => {
         const savedColorMode = localStorage.getItem(colorModeKey);
-        if (savedColorMode) {
-            setColorMode(savedColorMode as ColorMode);
-        } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setColorMode(ColorMode.dark);
-        } else {
-            setColorMode(ColorMode.light)
-        }
+        if (savedColorMode) setColorMode(savedColorMode as ColorMode);
     }, [])
 
 

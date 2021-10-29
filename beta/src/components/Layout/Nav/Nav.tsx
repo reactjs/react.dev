@@ -93,13 +93,23 @@ export default function Nav() {
   const {pathname} = useRouter();
   const {isOpen, toggleOpen} = React.useContext(MenuContext);
   // TODO: persist
-  // TODO: respect system pref
+
   const [isDark, setIsDark] = React.useState(() => {
     if (typeof document === 'undefined') {
       return false;
     }
     return document.documentElement.classList.contains('dark');
   });
+
+  React.useEffect(() => {
+    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.documentElement.classList.add('dark');
+      setIsDark(true);
+    } else {
+      setIsDark(false);
+    }
+  },[]);
+
   const section = inferSection(pathname);
 
   function handleFeedback() {

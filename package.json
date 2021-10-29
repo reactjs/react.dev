@@ -62,9 +62,7 @@
     "yarn": "^1.3.2"
   },
   "homepage": "https://reactjs.org/",
-  "keywords": [
-    "gatsby"
-  ],
+  "keywords": [],
   "license": "CC",
   "main": "n/a",
   "repository": {

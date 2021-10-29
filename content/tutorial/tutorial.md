@@ -1045,6 +1045,8 @@ Let's `map` over the `history` in the Game's `render` method:
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
+As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We only interested in `move` here, hence `step` is not getting assigned to anything.
+
 For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
 
 >  Warning:
@@ -1145,6 +1147,8 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
     // this method has not changed
   }
 ```
+
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as that is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
 
 We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
 

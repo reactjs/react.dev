@@ -44,7 +44,7 @@ npm start
 
 </TerminalBlock>
 
-For more information, [check out the the official guide](https://create-react-app.dev/docs/getting-started).
+For more information, [check out the official guide](https://create-react-app.dev/docs/getting-started).
 
 > Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline. This means you can use it with any backend you want. But if you're looking for more features like routing and server-side logic, read on!
 

@@ -22,6 +22,11 @@ November 12-13, 2021 - remote event
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia/) - [LinkedIn](https://www.linkedin.com/showcase/14545585) - [YouTube](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w/videos)
 
+### React Conf 2021 {#react-conf-2021}
+December 8, 2021 - remote event (replay event on December 9)
+
+[Website](https://conf.reactjs.org/)
+
 ### ReactNext 2021 {#react-next-2021}
 December 15, 2021. Tel-Aviv, Israel
 

@@ -56,7 +56,8 @@ export default function TaskBoard() {
   }
 
   return (
-    <>  
+    <>
+      <h1>Day off in Kyoto</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -98,9 +99,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
@@ -228,15 +229,19 @@ And `TaskList` passes the event handlers to `Task`:
 />
 ```
 
-In a small example like this, this works well, but if you have tens or hundreds of components in the middle, passing down all state and functions to change through every can be quite frustrating!
+In a small example like this, this works well, but if you have tens or hundreds of components in the middle, passing down all state and functions can be quite frustrating!
 
 <!--(TODO: illustration of prop drilling)-->
 
-This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context](/learn/passing-data-deeply-with-context). **This way, any components below `TaskBoard` in the tree can read the tasks and dispatch actions anywhere in the tree without the repetitive "prop drilling".**
+This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context](/learn/passing-data-deeply-with-context). **This way, any component below `TaskBoard` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
 
 <!--(TODO: illustration of context)-->
 
-Here is how you can combine a reducer with context.
+Here is how you can combine a reducer with context:
+
+1. **Create** the context.
+2. **Put** state and dispatch into context.
+3. **Use** context anywhere in the tree.
 
 ### Step 1: Create the context
 
@@ -289,7 +294,8 @@ export default function TaskBoard() {
   }
 
   return (
-    <>  
+    <>
+      <h1>Day off in Kyoto</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -331,17 +337,16 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
-```js TaskBoardContext.js active
+```js TasksContext.js active
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
-
 export const TasksDispatchContext = createContext(null);
 ```
 
@@ -453,11 +458,8 @@ Here, you're passing `null` as the default value to both contexts. The actual va
 
 Now you can import both contexts in your `TaskBoard` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
 
-```js {7,10-11}
-import {
-  TasksContext,
-  TasksDispatchContext
-} from './TaskBoardContext.js';
+```js {4,7-8}
+import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskBoard() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
@@ -480,10 +482,7 @@ For now, you pass the information both via props and in context:
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
-import {
-  TasksContext,
-  TasksDispatchContext
-} from './TaskBoardContext.js';
+import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskBoard() {
   const [tasks, dispatch] = useReducer(
@@ -515,9 +514,8 @@ export default function TaskBoard() {
 
   return (
     <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider
-        value={dispatch}
-      >
+      <TasksDispatchContext.Provider value={dispatch}>
+        <h1>Day off in Kyoto</h1>
         <AddTask
           onAddTask={handleAddTask}
         />
@@ -560,17 +558,16 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
-```js TaskBoardContext.js
+```js TasksContext.js
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
-
 export const TasksDispatchContext = createContext(null);
 ```
 
@@ -682,9 +679,10 @@ In the next step, you will remove prop passing.
 
 Now you don't need to pass the list of tasks or the event handlers down the tree:
 
-```js {3-4}
+```js {4-5}
 <TasksContext.Provider value={tasks}>
   <TasksDispatchContext.Provider value={dispatch}>
+    <h1>Day off in Kyoto</h1>
     <AddTask />
     <TaskList />
   </TasksDispatchContext.Provider>
@@ -727,10 +725,7 @@ export default function AddTask({ onAddTask }) {
 import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
-import {
-  TasksContext,
-  TasksDispatchContext
-} from './TaskBoardContext.js';
+import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskBoard() {
   const [tasks, dispatch] = useReducer(
@@ -740,9 +735,8 @@ export default function TaskBoard() {
 
   return (
     <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider
-        value={dispatch}
-      >
+      <TasksDispatchContext.Provider value={dispatch}>
+        <h1>Day off in Kyoto</h1>
         <AddTask />
         <TaskList />
       </TasksDispatchContext.Provider>
@@ -778,23 +772,22 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
-```js TaskBoardContext.js
+```js TasksContext.js
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
-
 export const TasksDispatchContext = createContext(null);
 ```
 
 ```js AddTask.js
 import { useState, useContext } from 'react';
-import { TasksDispatchContext } from './TaskBoardContext.js';
+import { TasksDispatchContext } from './TasksContext.js';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
@@ -823,10 +816,7 @@ let nextId = 3;
 
 ```js TaskList.js active
 import { useState, useContext } from 'react';
-import {
-  TasksContext,
-  TasksDispatchContext
-} from './TaskBoardContext.js';
+import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useContext(TasksContext);
@@ -915,13 +905,12 @@ ul, li { margin: 0; padding: 0; }
 
 ## Moving all wiring into a single file
 
-You don't have to do this, but you could further declutter the components by moving both reducer and context into a single file. Currently, `TaskBoardContext.js` contains only two context declarations:
+You don't have to do this, but you could further declutter the components by moving both reducer and context into a single file. Currently, `TasksContext.js` contains only two context declarations:
 
 ```js
 import { createContext } from 'react';
 
 export const TasksContext = createContext(null);
-
 export const TasksDispatchContext = createContext(null);
 ```
 
@@ -933,10 +922,7 @@ This file is about to get crowded! You'll move the reducer into that same file. 
 
 ```js
 export function TasksProvider({ children }) {
-  const [tasks, dispatch] = useReducer(
-    tasksReducer,
-    initialTasks
-  );
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
     <TasksContext.Provider value={tasks}>
@@ -955,11 +941,12 @@ export function TasksProvider({ children }) {
 ```js App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
-import { TasksProvider } from './TaskBoardContext.js';
+import { TasksProvider } from './TasksContext.js';
 
 export default function TaskBoard() {
   return (
     <TasksProvider>
+      <h1>Day off in Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -967,11 +954,10 @@ export default function TaskBoard() {
 }
 ```
 
-```js TaskBoardContext.js
+```js TasksContext.js
 import { createContext, useReducer } from 'react';
 
 export const TasksContext = createContext(null);
-
 export const TasksDispatchContext = createContext(null);
 
 export function TasksProvider({ children }) {
@@ -982,9 +968,7 @@ export function TasksProvider({ children }) {
 
   return (
     <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider
-        value={dispatch}
-      >
+      <TasksDispatchContext.Provider value={dispatch}>
         {children}
       </TasksDispatchContext.Provider>
     </TasksContext.Provider>
@@ -1019,15 +1003,15 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
 ```js AddTask.js
 import { useState, useContext } from 'react';
-import { TasksDispatchContext } from './TaskBoardContext.js';
+import { TasksDispatchContext } from './TasksContext.js';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
@@ -1056,10 +1040,7 @@ let nextId = 3;
 
 ```js TaskList.js
 import { useState, useContext } from 'react';
-import {
-  TasksContext,
-  TasksDispatchContext
-} from './TaskBoardContext.js';
+import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useContext(TasksContext);
@@ -1144,7 +1125,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also export functions that _use_ the context from `TaskBoardContext.js`:
+You can also export functions that _use_ the context from `TasksContext.js`:
 
 ```js
 export function useTasks() {
@@ -1163,18 +1144,19 @@ const tasks = useTasks();
 const dispatch = useTasksDispatch();
 ```
 
-This doesn't change the behavior in any way, but it lets you later split these contexts further or add some logic to these functions. **Now all of the context and reducer wiring is in `TaskBoardContext.js`. This keeps the components clean and uncluttered, focused on what they display rather than where they get the data:**
+This doesn't change the behavior in any way, but it lets you later split these contexts further or add some logic to these functions. **Now all of the context and reducer wiring is in `TasksContext.js`. This keeps the components clean and uncluttered, focused on what they display rather than where they get the data:**
 
 <Sandpack>
 
 ```js App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
-import { TasksProvider } from './TaskBoardContext.js';
+import { TasksProvider } from './TasksContext.js';
 
 export default function TaskBoard() {
   return (
     <TasksProvider>
+      <h1>Day off in Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -1182,12 +1164,8 @@ export default function TaskBoard() {
 }
 ```
 
-```js TaskBoardContext.js
-import {
-  createContext,
-  useContext,
-  useReducer
-} from 'react';
+```js TasksContext.js
+import { createContext, useContext, useReducer } from 'react';
 
 const TasksContext = createContext(null);
 
@@ -1201,9 +1179,7 @@ export function TasksProvider({ children }) {
 
   return (
     <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider
-        value={dispatch}
-      >
+      <TasksDispatchContext.Provider value={dispatch}>
         {children}
       </TasksDispatchContext.Provider>
     </TasksContext.Provider>
@@ -1246,15 +1222,15 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
 ```js AddTask.js
 import { useState, useContext } from 'react';
-import { useTasksDispatch } from './TaskBoardContext.js';
+import { useTasksDispatch } from './TasksContext.js';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
@@ -1283,7 +1259,7 @@ let nextId = 3;
 
 ```js TaskList.js active
 import { useState, useContext } from 'react';
-import { useTasks, useTasksDispatch } from './TaskBoardContext.js';
+import { useTasks, useTasksDispatch } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useTasks();
@@ -1368,11 +1344,11 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can think of `TasksProvider` as a part of the screen that knows how to deal with tasks, `useTasks` as a way to read them, and `useTasksDispatch` as a way to update them from any components below in the tree.
+You can think of `TasksProvider` as a part of the screen that knows how to deal with tasks, `useTasks` as a way to read them, and `useTasksDispatch` as a way to update them from any component below in the tree.
 
 > Functions like `useTasks` and `useTasksDispatch` are called **[Custom Hooks](/learn/reusing-logic-with-custom-hooks).** Your function is considered a custom Hook if its name starts with `use`. This lets you use other Hooks, like `useContext`, inside it.
 
-As your app grows, you may have many context-reducer pairs like this. This is a powerful way to scale your app and [lift state up](/learn/sharing-state-between-components) without too much ceremony whenever you want to access the data deep in the tree.
+As your app grows, you may have many context-reducer pairs like this. This is a powerful way to scale your app and [lift state up](/learn/sharing-state-between-components) without too much work whenever you want to access the data deep in the tree.
 
 <Recap>
 

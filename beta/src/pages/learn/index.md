@@ -532,7 +532,7 @@ Read **[Adding Interactivity](/learn/adding-interactivity)** to learn how to upd
 
 You'll often face a choice of _what exactly_ to put into state. Should you use one state variable or many? An object or an array? How should you [structure your state](/learn/choosing-the-state-structure)? The most important principle is to **avoid redundant state**. If some information never changes, it shouldn't be in state. If some information is received from parent by props, it shouldn't be in state. And if you can compute something from other props or state, it shouldn't be in state either!
 
-For example, this form has a redundant `fullName` state variable:
+For example, this form has a **redundant** `fullName` state variable:
 
 <Sandpack>
 
@@ -556,6 +556,7 @@ export default function Form() {
 
   return (
     <>
+      <h2>Let’s check you in</h2>
       <label>
         First name:{' '}
         <input
@@ -570,9 +571,9 @@ export default function Form() {
           onChange={handleLastNameChange}
         />
       </label>
-      <h3>
-        Your full name is: {fullName}
-      </h3>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
     </>
   );
 }
@@ -607,6 +608,7 @@ export default function Form() {
 
   return (
     <>
+      <h2>Let’s check you in</h2>
       <label>
         First name:{' '}
         <input
@@ -621,9 +623,9 @@ export default function Form() {
           onChange={handleLastNameChange}
         />
       </label>
-      <h3>
-        Your full name is: {fullName}
-      </h3>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
     </>
   );
 }
@@ -634,6 +636,8 @@ label { display: block; margin-bottom: 5px; }
 ```
 
 </Sandpack>
+
+This might seem like a small change, but many bugs in React apps are fixed this way!
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as ["lifting state up"](/learn/sharing-state-between-components), and it's one of the most common things you will do writing React code. For example, in an accordion like below, only one panel should be active at a time. Instead of keeping the active state inside each individual panel, the parent component holds the state and specifies the props for its children.
 
@@ -646,20 +650,20 @@ export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
+      <h2>Almaty, Kazakhstan</h2>
       <Panel
-        title="Ingredients"
+        title="About"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        Milk, tea bags, and a cinnamon stick.
+        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
       </Panel>
       <Panel
-        title="Recipe"
+        title="Etymology"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        Heat the milk and put tea bags into the pan.
-        Add the cinnamon stick.
+        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
       </Panel>
     </>
   );

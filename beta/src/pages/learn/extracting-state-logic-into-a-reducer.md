@@ -29,9 +29,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
 export default function TaskBoard() {
-  const [tasks, setTasks] = useState(
-    initialTasks
-  );
+  const [tasks, setTasks] = useState(initialTasks);
 
   function handleAddTask(text) {
     setTasks([...tasks, {
@@ -58,7 +56,8 @@ export default function TaskBoard() {
   }
 
   return (
-    <>  
+    <>
+      <h1>Prague itinerary</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -73,9 +72,9 @@ export default function TaskBoard() {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Visit Kafka Museum', done: true },
+  { id: 1, text: 'Watch a puppet show', done: false },
+  { id: 2, text: 'Lennon Wall pic', done: false },
 ];
 ```
 
@@ -181,7 +180,13 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Each of its event handlers calls `setTasks` in order to update the state. As this component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component. **This function is called a "reducer."** Reducers are a different way to handle state, and you can migrate from `useState` to `useReducer` in three steps.
+Each of its event handlers calls `setTasks` in order to update the state. As this component grows, so does the amount of state logic sprinkled throughout it. To reduce this complexity and keep all your logic in one easy-to-access place, you can move that state logic into a single function outside your component, **called a "reducer."**
+
+Reducers are a different way to handle state. You can migrate from `useState` to `useReducer` in three steps:
+
+1. **Move** from setting state to dispatching actions.
+2. **Write** a reducer function.
+3. **Use** the reducer from your component.
 
 ### Step 1: Move from setting state to dispatching actions
 
@@ -374,7 +379,7 @@ const sum = arr.reduce(
 ); // 1 + 2 + 3 + 4 + 5
 ```
 
-The function you pass to `reduce` is known as a "reducer". It takes the _result so far_ and the _current item,_ then it returns the _next result._ React reducers are an example of the same idea: they take the _state so far_ and the _action_ then return the _next state._ In this way, they accumulate actions over time into state.
+The function you pass to `reduce` is known as a "reducer". It takes the _result so far_ and the _current item,_ then it returns the _next result._ React reducers are an example of the same idea: they take the _state so far_ and the _action_, and return the _next state._ In this way, they accumulate actions over time into state.
 
 You could even use the `reduce()` method with an `initialState` and an array of `actions` to calculate the final state by passing your reducer function to it:
 
@@ -385,10 +390,10 @@ import tasksReducer from './tasksReducer.js';
 
 let initialState = [];
 let actions = [
-  { type: 'added', id: 1, text: 'Buy milk' },
-  { type: 'added', id: 2, text: 'Brew tea' },
+  { type: 'added', id: 1, text: 'Visit Kafka Museum' },
+  { type: 'added', id: 2, text: 'Watch a puppet show' },
   { type: 'deleted', id: 1 },
-  { type: 'added', id: 3, text: 'Eat tacos' },
+  { type: 'added', id: 3, text: 'Lennon Wall pic' },
 ];
 
 let finalState = actions.reduce(
@@ -475,7 +480,7 @@ The `useReducer` Hook takes two arguments:
 
 And it returns:
 
-1. A stateful value 
+1. A stateful value
 2. A dispatch function (to "dispatch" user actions to the reducer)
 
 Now it's fully wired up! Here, the reducer is declared at the bottom of the component file:
@@ -516,7 +521,8 @@ export default function TaskBoard() {
   }
 
   return (
-    <>  
+    <>
+      <h1>Prague itinerary</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -558,9 +564,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Visit Kafka Museum', done: true },
+  { id: 1, text: 'Watch a puppet show', done: false },
+  { id: 2, text: 'Lennon Wall pic', done: false }
 ];
 ```
 
@@ -706,6 +712,7 @@ export default function TaskBoard() {
 
   return (
     <>  
+      <h1>Prague itinerary</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -720,9 +727,9 @@ export default function TaskBoard() {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Visit Kafka Museum', done: true },
+  { id: 1, text: 'Watch a puppet show', done: false },
+  { id: 2, text: 'Lennon Wall pic', done: false },
 ];
 ```
 
@@ -947,7 +954,8 @@ export default function TaskBoard() {
   }
 
   return (
-    <>  
+    <>
+      <h1>Prague itinerary</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -962,9 +970,9 @@ export default function TaskBoard() {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Visit Kafka Museum', done: true },
+  { id: 1, text: 'Watch a puppet show', done: false },
+  { id: 2, text: 'Lennon Wall pic', done: false },
 ];
 ```
 
@@ -1623,7 +1631,7 @@ textarea {
 
 <Solution>
 
-There are a couple of ways you could do in the "Send" button event handler. One approach is to show an alert and then dispatch an `edited_message` action with an empty `message`:
+There are a couple of ways you could do it in the "Send" button event handler. One approach is to show an alert and then dispatch an `edited_message` action with an empty `message`:
 
 <Sandpack>
 
@@ -2373,7 +2381,7 @@ textarea {
 
 </Sandpack>
 
-Notably, you didn't need to change any of the event handlers to implement this different behavior. If you did not use a reducer, you would have to change every event handler that updates the state.
+Notably, you didn't need to change any of the event handlers to implement this different behavior. Without a reducer, you would have to change every event handler that updates the state.
 
 </Solution>
 

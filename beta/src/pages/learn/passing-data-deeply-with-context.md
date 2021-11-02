@@ -4,7 +4,7 @@ title: Passing Data Deeply with Context
 
 <Intro>
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become cumbersome if you need to pass a prop deeply through the tree, or if many components in the UI tree need the same prop. Context lets the parent component make some information available to _any_ component in the tree below it--no matter how deep--without passing it explicitly through props.
+Usually, you will pass information from a parent component to a child component via props. But passing props can become verbose and inconvenient if you have to pass them through many components in the middle, or if many components in your app need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep—without passing it explicitly through props.
 
 </Intro>
 
@@ -19,7 +19,7 @@ Usually, you will pass information from a parent component to a child component 
 
 ## The problem with passing props
 
-[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it. But it can become cumbersome when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and lifting state up that high can lead to a situation sometimes called "prop drilling."
+[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it. But it can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation sometimes called "prop drilling."
 
 <img alt="Lifting state up vs prop drilling" src="/images/docs/sketches/s_prop-drilling.png" />
 
@@ -668,7 +668,7 @@ export const LevelContext = createContext(0);
 
 Now both `Heading` and `Section` read the `LevelContext` to figure out how "deep" they are. And the `Section` wraps its children into the `LevelContext` to specify that anything inside of it is at a "deeper" level.
 
->This example uses heading levels because they demonstrate visually how nested components can override context. But context is useful for many other use cases too. You can use it to pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
+>This example uses heading levels because they show visually how nested components can override context. But context is useful for many other use cases too. You can use it to pass down any information needed by the entire subtree: the current color theme, the currently logged in user, and so on.
 
 ## Context passes through intermediate components
 
@@ -687,8 +687,8 @@ export default function ProfilePage() {
     <Section>
       <Heading>My Profile</Heading>
       <Post
-        title="Hey stranger"
-        body="Welcome to my page!"
+        title="Hello traveller!"
+        body="Read about my adventures."
       />
       <AllPosts />
     </Section>
@@ -709,12 +709,12 @@ function RecentPosts() {
     <Section>
       <Heading>Recent Posts</Heading>
       <Post
-        title="Recent trip"
-        body="This was a nice journey."
+        title="Flavors of Lisbon"
+        body="...those pastéis de nata!"
       />
       <Post
-        title="My first post"
-        body="Hello there!"
+        title="Buenos Aires in the rhythm of tango"
+        body="I loved it!"
       />
     </Section>
   );
@@ -805,15 +805,15 @@ You didn't do anything special for this to work. A `Section` specifies the conte
 
 How context works might remind you of [CSS property inheritance](https://developer.mozilla.org/en-US/docs/Web/CSS/inheritance). In CSS, you can specify `color: blue` for a `<div>`, and any DOM node inside of it, no matter how deep, will inherit that color unless some other DOM node in the middle overrides it with `color: green`. Similarly, in React, the only way to override some context coming from above is to wrap children into a context provider with a different value.
 
-In CSS, different properties like `color` and `background-color` don't override each other. You can set all  `<div>`'s `color` to red without impacting `background-color`. Similarly, **different React contexts don't override each other**. Each context that you make with `createContext()` is completely separate from each other, and ties together components using and providing *that particular* context. One component may use or provide many different contexts without a problem.
+In CSS, different properties like `color` and `background-color` don't override each other. You can set all  `<div>`'s `color` to red without impacting `background-color`. Similarly, **different React contexts don't override each other**. Each context that you make with `createContext()` is completely separate from other ones, and ties together components using and providing *that particular* context. One component may use or provide many different contexts without a problem.
 
 ## Before you use context
 
-Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep, doesn't mean you need to put that information into context.**
+Context is very tempting to use! However, this also means it's too easy to overuse it. **Just because you need to pass some props several levels deep doesn't mean you should put that information into context.**
 
 Here's a few alternatives you should consider before using context:
 
-1. **Start by [passing props](/learn/passing-props-to-a-component).** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen of components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
+1. **Start by [passing props](/learn/passing-props-to-a-component).** If your components are not trivial, it's not unusual to pass a dozen props down through a dozen components. It may feel like a slog, but it makes it very clear which components use which data! The person maintaining your code will be glad you've made the data flow explicit with props.
 2. **Extract components and [pass JSX as `children`](/learn/passing-props-to-a-component#passing-jsx-as-children) to them.** If you pass some data through many layers of intermediate components that don't use that data (and only pass it further down), this often means that you forgot to extract some components along the way. For example, maybe you pass data props like `posts` to visual components that don't use them directly, like `<Layout posts={posts} />`. Instead, make `Layout` take `children` as a prop, and render `<Layout><Posts posts={posts} /></Layout>`. This reduces the number of layers between the component specifying the data and the one that needs it.
 
 If neither of these approaches works well for you, consider context.
@@ -844,15 +844,13 @@ In general, if some information is needed by distant components in different par
 
 </Recap>
 
-
-
 <Challenges>
 
 ### Replace prop drilling with context
 
-In this example, toggling the checkbox changes the `thumbnailSize` prop passed to each `<Avatar>`. The checkbox state is held in the top-level `App` component, but each `<Avatar>` needs to be aware of it.
+In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
 
-Currently, `App` passes `thumbnailSize` to `List`, which passes it to each `Profile`, which passes it to the `Avatar`. Remove the `thumbnailSize` prop, and instead pass it from the `App` component directly to `Avatar`.
+Currently, `App` passes `imageSize` to `List`, which passes it to each `Place`, which passes it to the `PlaceImage`. Remove the `imageSize` prop, and instead pass it from the `App` component directly to `PlaceImage`.
 
 You can declare context in `Context.js`.
 
@@ -860,69 +858,64 @@ You can declare context in `Context.js`.
 
 ```js App.js
 import { useState } from 'react';
-import { people } from './data.js';
+import { places } from './data.js';
 import { getImageUrl } from './utils.js';
 
 export default function App() {
-  const [
-    largeThumbnails,
-    setLargeThumbnails
-  ] = useState(false);
-  const thumbnailSize = largeThumbnails ? 100 : 50;
+  const [isLarge, setIsLarge] = useState(false);
+  const imageSize = isLarge ? 150 : 100;
   return (
     <>
       <label>
         <input
           type="checkbox"
-          checked={largeThumbnails}
+          checked={isLarge}
           onChange={e => {
-            setLargeThumbnails(e.target.checked);
+            setIsLarge(e.target.checked);
           }}
         />
-        Use large thumbnails
+        Use large images
       </label>
       <hr />
-      <List thumbnailSize={thumbnailSize} />
+      <List imageSize={imageSize} />
     </>
   )
 }
 
-function List({ thumbnailSize }) {
-  const listItems = people.map(person =>
-    <li key={person.id}>
-      <Profile
-        person={person}
-        thumbnailSize={thumbnailSize}
+function List({ imageSize }) {
+  const listItems = places.map(place =>
+    <li key={place.id}>
+      <Place
+        place={place}
+        imageSize={imageSize}
       />
     </li>
   );
   return <ul>{listItems}</ul>;
 }
 
-function Profile({ person, thumbnailSize }) {
+function Place({ place, imageSize }) {
   return (
     <>
-      <Avatar
-        person={person}
-        thumbnailSize={thumbnailSize}
+      <PlaceImage
+        place={place}
+        imageSize={imageSize}
       />
       <p>
-        <b>{person.name}</b>
-          {' ' + person.profession + ' '}
-          known for {person.accomplishment}
+        <b>{place.name}</b>
+        {': ' + place.description}
       </p>
     </>
   );
 }
 
-function Avatar({ person, thumbnailSize }) {
+function PlaceImage({ place, imageSize }) {
   return (
     <img
-      className="avatar"
-      src={getImageUrl(person)}
-      alt={person.name}
-      width={thumbnailSize}
-      height={thumbnailSize}
+      src={getImageUrl(place)}
+      alt={place.name}
+      width={imageSize}
+      height={imageSize}
     />
   );
 }
@@ -933,45 +926,50 @@ function Avatar({ person, thumbnailSize }) {
 ```
 
 ```js data.js
-export const people = [{
-  id: 0, // Used in JSX as a key
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+export const places = [{
+  id: 0,
+  name: 'Bo-Kaap in Cape Town, South Africa',
+  description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
+  imageId: 'K9HVAGH'
 }, {
-  id: 1, // Used in JSX as a key
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  id: 1, 
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
 }, {
-  id: 2, // Used in JSX as a key
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  id: 2, 
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
 }, {
-  id: 3, // Used in JSX as a key
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  id: 3, 
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  imageId: 'aeO3rpI'
 }, {
-  id: 4, // Used in JSX as a key
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  id: 4, 
+  name: 'Burano, Italy',
+  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  imageId: 'kxsph5C'
+}, {
+  id: 5, 
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repells mosquitos or that it symbolizes sky and heaven.',
+  imageId: 'rTqKo46'
+}, {
+  id: 6,
+  name: 'Gamcheon Culture Village in Busan, South Korea',
+  description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
+  imageId: 'ZfQOOzf'
 }];
 ```
 
 ```js utils.js
-export function getImageUrl(person) {
+export function getImageUrl(place) {
   return (
     'https://i.imgur.com/' +
-    person.imageId +
-    's.jpg'
+    place.imageId +
+    'l.jpg'
   );
 }
 ```
@@ -985,82 +983,76 @@ li {
   gap: 20px;
   align-items: center;
 }
-img { border-radius: 50%; }
 ```
 
 </Sandpack>
 
 <Solution>
 
-Remove `thumbnailSize` prop from all the components.
+Remove `imageSize` prop from all the components.
 
-Create and export `ThumbnailSizeContext` from `Context.js`. Then wrap the List into `<ThumbnailSizeContext.Provider value={thumbnailSize}>` to pass the value down, and `useContext(ThumbnailSizeContext)` to read it in the `Avatar`:
+Create and export `ImageSizeContext` from `Context.js`. Then wrap the List into `<ImageSizeContext.Provider value={imageSize}>` to pass the value down, and `useContext(ImageSizeContext)` to read it in the `PlaceImage`:
 
 <Sandpack>
 
 ```js App.js
 import { useState, useContext } from 'react';
-import { people } from './data.js';
+import { places } from './data.js';
 import { getImageUrl } from './utils.js';
-import { ThumbnailSizeContext } from './Context.js';
+import { ImageSizeContext } from './Context.js';
 
 export default function App() {
-  const [
-    largeThumbnails,
-    setLargeThumbnails
-  ] = useState(false);
-  const thumbnailSize = largeThumbnails ? 100 : 50;
+  const [isLarge, setIsLarge] = useState(false);
+  const imageSize = isLarge ? 150 : 100;
   return (
-    <ThumbnailSizeContext.Provider
-      value={thumbnailSize}
+    <ImageSizeContext.Provider
+      value={imageSize}
     >
       <label>
         <input
           type="checkbox"
-          checked={largeThumbnails}
+          checked={isLarge}
           onChange={e => {
-            setLargeThumbnails(e.target.checked);
+            setIsLarge(e.target.checked);
           }}
         />
-        Use large thumbnails
+        Use large images
       </label>
       <hr />
       <List />
-    </ThumbnailSizeContext.Provider>
+    </ImageSizeContext.Provider>
   )
 }
 
-function List({ thumbnailSize }) {
-  const listItems = people.map(person =>
-    <li key={person.id}>
-      <Profile person={person} />
+function List({ imageSize }) {
+  const listItems = places.map(place =>
+    <li key={place.id}>
+      <Place place={place} />
     </li>
   );
   return <ul>{listItems}</ul>;
 }
 
-function Profile({ person }) {
+function Place({ place }) {
   return (
     <>
-      <Avatar person={person} />
+      <PlaceImage place={place} />
       <p>
-        <b>{person.name}</b>
-          {' ' + person.profession + ' '}
-          known for {person.accomplishment}
+        <b>{place.name}</b>
+        {': ' + place.description}
       </p>
     </>
   );
 }
 
-function Avatar({ person }) {
-  const thumbnailSize = useContext(ThumbnailSizeContext);
+function PlaceImage({ place }) {
+  const imageSize = useContext(ImageSizeContext);
   return (
     <img
-      className="avatar"
-      src={getImageUrl(person)}
-      alt={person.name}
-      width={thumbnailSize}
-      height={thumbnailSize}
+      src={getImageUrl(place)}
+      alt={place.name}
+      width={imageSize}
+      height={imageSize}
     />
   );
 }
@@ -1069,49 +1061,54 @@ function Avatar({ person }) {
 ```js Context.js
 import { createContext } from 'react';
 
-export const ThumbnailSizeContext = createContext(500);
+export const ImageSizeContext = createContext(500);
 ```
 
 ```js data.js
-export const people = [{
-  id: 0, // Used in JSX as a key
-  name: 'Creola Katherine Johnson',
-  profession: 'mathematician',
-  accomplishment: 'spaceflight calculations',
-  imageId: 'MK3eW3A'
+export const places = [{
+  id: 0,
+  name: 'Bo-Kaap in Cape Town, South Africa',
+  description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
+  imageId: 'K9HVAGH'
 }, {
-  id: 1, // Used in JSX as a key
-  name: 'Mario José Molina-Pasquel Henríquez',
-  profession: 'chemist',
-  accomplishment: 'discovery of Arctic ozone hole',
-  imageId: 'mynHUSa'
+  id: 1, 
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
 }, {
-  id: 2, // Used in JSX as a key
-  name: 'Mohammad Abdus Salam',
-  profession: 'physicist',
-  accomplishment: 'electromagnetism theory',
-  imageId: 'bE7W1ji'
+  id: 2, 
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
 }, {
-  id: 3, // Used in JSX as a key
-  name: 'Percy Lavon Julian',
-  profession: 'chemist',
-  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
-  imageId: 'IOjWm71'
+  id: 3, 
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  imageId: 'aeO3rpI'
 }, {
-  id: 4, // Used in JSX as a key
-  name: 'Subrahmanyan Chandrasekhar',
-  profession: 'astrophysicist',
-  accomplishment: 'white dwarf star mass calculations',
-  imageId: 'lrWQx8l'
+  id: 4, 
+  name: 'Burano, Italy',
+  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  imageId: 'kxsph5C'
+}, {
+  id: 5, 
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repells mosquitos or that it symbolizes sky and heaven.',
+  imageId: 'rTqKo46'
+}, {
+  id: 6,
+  name: 'Gamcheon Culture Village in Busan, South Korea',
+  description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
+  imageId: 'ZfQOOzf'
 }];
 ```
 
 ```js utils.js
-export function getImageUrl(person) {
+export function getImageUrl(place) {
   return (
     'https://i.imgur.com/' +
-    person.imageId +
-    's.jpg'
+    place.imageId +
+    'l.jpg'
   );
 }
 ```
@@ -1125,12 +1122,11 @@ li {
   gap: 20px;
   align-items: center;
 }
-img { border-radius: 50%; }
 ```
 
 </Sandpack>
 
-Note how components in the middle don't need to pass `thumbnailSize` anymore.
+Note how components in the middle don't need to pass `imageSize` anymore.
 
 </Solution>
 

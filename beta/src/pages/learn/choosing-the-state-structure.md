@@ -26,7 +26,7 @@ When you write a component that holds some state, you'll have to make choices ab
 4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
 5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that different pieces of it don't get out of sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
 
 Now let's see how these principles apply in action.
 
@@ -47,7 +47,7 @@ Or this?
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable**. Then you won't forget to always keep them in sync, like in this example where hovering updates both of the red dot's coordinates:
+Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable**. Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
 
 <Sandpack>
 
@@ -96,20 +96,20 @@ Another case where you'll group data into an object or an array is when you don'
 
 <Gotcha>
 
-If your state variable is an object, remember that you can't update only one field in it without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })` or you would need to split them into two state variables, and do `setX(100)`.
+If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
 
 </Gotcha>
 
 ## Avoid contradictions in state
 
-Here is a form with `isSending` and `isSent` state variables:
+Here is a hotel feedback form with `isSending` and `isSent` state variables:
 
 <Sandpack>
 
 ```js
 import { useState } from 'react';
 
-export default function Chat() {
+export default function FeedbackForm() {
   const [text, setText] = useState('');
   const [isSending, setIsSending] = useState(false);
   const [isSent, setIsSent] = useState(false);
@@ -123,16 +123,18 @@ export default function Chat() {
   }
 
   if (isSent) {
-    return <h1>Sent!</h1>
+    return <h1>Thanks for feedback!</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <p>How was your stay at The Prancing Pony?</p>
+      <textarea
         disabled={isSending}
         value={text}
         onChange={e => setText(e.target.value)}
       />
+      <br />
       <button
         disabled={isSending}
         type="submit"
@@ -152,10 +154,6 @@ function sendMessage(text) {
 }
 ```
 
-```css
-button { margin-left: 5px; }
-```
-
 </Sandpack>
 
 While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it will be to understand what happened.
@@ -167,7 +165,7 @@ While this code works, it leaves the door open for "impossible" states. For exam
 ```js
 import { useState } from 'react';
 
-export default function Chat() {
+export default function FeedbackForm() {
   const [text, setText] = useState('');
   const [status, setStatus] = useState('typing');
 
@@ -182,16 +180,18 @@ export default function Chat() {
   const isSent = status === 'sent';
 
   if (isSent) {
-    return <h1>Sent!</h1>
+    return <h1>Thanks for feedback!</h1>
   }
 
   return (
     <form onSubmit={handleSubmit}>
-      <input
+      <p>How was your stay at The Prancing Pony?</p>
+      <textarea
         disabled={isSending}
         value={text}
         onChange={e => setText(e.target.value)}
       />
+      <br />
       <button
         disabled={isSending}
         type="submit"
@@ -211,10 +211,6 @@ function sendMessage(text) {
 }
 ```
 
-```css
-button { margin-left: 5px; }
-```
-
 </Sandpack>
 
 You can still declare some constants for readability:
@@ -225,7 +221,6 @@ const isSent = status === 'sent';
 ```
 
 But they're not state variables, so you don't need to worry about them getting out of sync with each other.
-
 
 ## Avoid redundant state
 
@@ -255,6 +250,7 @@ export default function Form() {
 
   return (
     <>
+      <h2>Let’s check you in</h2>
       <label>
         First name:{' '}
         <input
@@ -269,9 +265,9 @@ export default function Form() {
           onChange={handleLastNameChange}
         />
       </label>
-      <h3>
-        Your full name is: {fullName}
-      </h3>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
     </>
   );
 }
@@ -308,6 +304,7 @@ export default function Form() {
 
   return (
     <>
+      <h2>Let’s check you in</h2>
       <label>
         First name:{' '}
         <input
@@ -322,9 +319,9 @@ export default function Form() {
           onChange={handleLastNameChange}
         />
       </label>
-      <h3>
-        Your full name is: {fullName}
-      </h3>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
     </>
   );
 }
@@ -353,9 +350,9 @@ function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem with this code is that **if the parent component passes a different value of `messageColor` later (for example, changing it from `'blue'` to `'red'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
 
-This is why "mirroring" some prop in a state variable like this can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name inside your component, use a regular constant:
+This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
 
 ```js
 function Message({ messageColor }) {
@@ -364,7 +361,7 @@ function Message({ messageColor }) {
 
 This way it won't get out of sync with the prop passed from the parent component.
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that this prop's new values are ignored:
+"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
 
 ```js
 function Message({ initialColor }) {
@@ -375,9 +372,9 @@ function Message({ initialColor }) {
 
 </DeepDive>
 
-## Avoid duplication in state 
+## Avoid duplication in state
 
-This menu list component lets you choose a single dish out of several:
+This menu list component lets you choose a single travel snack out of several:
 
 <Sandpack>
 
@@ -385,12 +382,12 @@ This menu list component lets you choose a single dish out of several:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'Raddish', id: 0 },
-  { title: 'Celery', id: 1 },
-  { title: 'Carrot', id: 2 },
-]
+  { title: 'pretzels', id: 0 },
+  { title: 'crispy seaweed', id: 1 },
+  { title: 'granola bar', id: 2 },
+];
 
-export default function CafeMenu() {
+export default function Menu() {
   const [items, setItems] = useState(initialItems);
   const [selectedItem, setSelectedItem] = useState(
     items[0]
@@ -398,6 +395,7 @@ export default function CafeMenu() {
 
   return (
     <>
+      <h2>What's your travel snack?</h2>
       <ul>
         {items.map(item => (
           <li key={item.id}>
@@ -409,10 +407,14 @@ export default function CafeMenu() {
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}</p>
+      <p>You picked {selectedItem.title}.</p>
     </>
   );
 }
+```
+
+```css
+button { margin-top: 10px; }
 ```
 
 </Sandpack>
@@ -427,12 +429,12 @@ Why is this a problem? Let's make each item editable:
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'Raddish', id: 0 },
-  { title: 'Celery', id: 1 },
-  { title: 'Carrot', id: 2 },
-]
+  { title: 'pretzels', id: 0 },
+  { title: 'crispy seaweed', id: 1 },
+  { title: 'granola bar', id: 2 },
+];
 
-export default function CafeMenu() {
+export default function Menu() {
   const [items, setItems] = useState(initialItems);
   const [selectedItem, setSelectedItem] = useState(
     items[0]
@@ -453,6 +455,7 @@ export default function CafeMenu() {
 
   return (
     <>
+      <h2>What's your travel snack?</h2> 
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -469,10 +472,14 @@ export default function CafeMenu() {
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}</p>
+      <p>You picked {selectedItem.title}.</p>
     </>
   );
 }
+```
+
+```css
+button { margin-top: 10px; }
 ```
 
 </Sandpack>
@@ -487,12 +494,12 @@ Although you could update `selectedItem` too, an easier fix is to remove duplica
 import { useState } from 'react';
 
 const initialItems = [
-  { title: 'Raddish', id: 0 },
-  { title: 'Celery', id: 1 },
-  { title: 'Carrot', id: 2 },
-]
+  { title: 'pretzels', id: 0 },
+  { title: 'crispy seaweed', id: 1 },
+  { title: 'granola bar', id: 2 },
+];
 
-export default function CafeMenu() {
+export default function Menu() {
   const [items, setItems] = useState(initialItems);
   const [selectedId, setSelectedId] = useState(0);
 
@@ -515,6 +522,7 @@ export default function CafeMenu() {
 
   return (
     <>
+      <h2>What's your travel snack?</h2>
       <ul>
         {items.map((item, index) => (
           <li key={item.id}>
@@ -531,10 +539,14 @@ export default function CafeMenu() {
           </li>
         ))}
       </ul>
-      <p>You picked {selectedItem.title}</p>
+      <p>You picked {selectedItem.title}.</p>
     </>
   );
 }
+```
+
+```css
+button { margin-top: 10px; }
 ```
 
 </Sandpack>
@@ -543,62 +555,37 @@ export default function CafeMenu() {
 
 The state used to be duplicated like this:
 
-* `items = [{ id: 0, text: 'Raddish'}, ...]`
-* `selectedItem = {id: 0, text: 'Raddish}`
+* `items = [{ id: 0, title: 'pretzels'}, ...]`
+* `selectedItem = {id: 0, title: 'pretzels'}`
 
 But after the change it's like this:
 
-* `items = [{ id: 0, text: 'Raddish'}, ...]`
+* `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
 The duplication is gone, and you only keep the essential state!
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated text. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
 
 ## Avoid deeply nested state
 
-Imagine a todo list where tasks can be arbitrarily nested. You might be tempted to structure its state using nested objects and arrays, like in this example:
+Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
 
 <Sandpack>
 
 ```js
 import { useState } from 'react';
+import { initialTravelPlan } from './places.js';
 
-const initialRootTask = {
-  id: 1,
-  text: 'Root task',
-  childTasks: [{
-    id: 2,
-    text: 'First subtask',
-    childTasks: [{
-      id: 3,
-      text: 'First subtask of first subtask',
-      childTasks: []
-    }]
-  }, {
-    id: 4,
-    text: 'Second subtask',
-    childTasks: [{
-      id: 5,
-      text: 'First subtask of second subtask',
-      childTasks: [],
-    }, {
-      id: 6,
-      text: 'Second subtask of second subtask',
-      childTasks: [],
-    }]
-  }]
-};
-
-function Task({ task }) {
-  const childTasks = task.childTasks;
+function PlaceTree({ place }) {
+  const childPlaces = place.childPlaces;
   return (
     <>
-      <li>{task.text}</li>
-      {childTasks.length > 0 && (
+      <li>{place.title}</li>
+      {childPlaces.length > 0 && (
         <ol>
-          {childTasks.map(task => (
-            <Task key={task.id} task={task} />
+          {childPlaces.map(place => (
+            <PlaceTree key={place.id} place={place} />
           ))}
         </ol>
       )}
@@ -606,71 +593,253 @@ function Task({ task }) {
   );
 }
 
-export default function TaskManager() {
-  const [root, setRoot] = useState(initialRootTask);
-  return <ol><Task task={root} /></ol>;
+export default function TravelPlan() {
+  const [plan, setPlan] = useState(initialTravelPlan);
+  const planets = plan.childPlaces;
+  return (
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {planets.map(place => (
+          <PlaceTree key={place.id} place={place} />
+        ))}
+      </ol>
+    </>
+  );
 }
+```
+
+```js places.js active
+export const initialTravelPlan = {
+  id: 0,
+  title: '(Root)',
+  childPlaces: [{
+    id: 1,
+    title: 'Earth',
+    childPlaces: [{
+      id: 2,
+      title: 'Africa',
+      childPlaces: [{
+        id: 3,
+        title: 'Botswana',
+        childPlaces: []
+      }, {
+        id: 4,
+        title: 'Egypt',
+        childPlaces: []
+      }, {
+        id: 5,
+        title: 'Kenya',
+        childPlaces: []
+      }, {
+        id: 6,
+        title: 'Madagascar',
+        childPlaces: []
+      }, {
+        id: 7,
+        title: 'Morocco',
+        childPlaces: []
+      }, {
+        id: 8,
+        title: 'Nigeria',
+        childPlaces: []
+      }, {
+        id: 9,
+        title: 'South Africa',
+        childPlaces: []
+      }]
+    }, {
+      id: 10,
+      title: 'Americas',
+      childPlaces: [{
+        id: 11,
+        title: 'Argentina',
+        childPlaces: []
+      }, {
+        id: 12,
+        title: 'Brazil',
+        childPlaces: []
+      }, {
+        id: 13,
+        title: 'Barbados',
+        childPlaces: []
+      }, {
+        id: 14,
+        title: 'Canada',
+        childPlaces: []
+      }, {
+        id: 15,
+        title: 'Jamaica',
+        childPlaces: []
+      }, {
+        id: 16,
+        title: 'Mexico',
+        childPlaces: []
+      }, {
+        id: 17,
+        title: 'Trinidad and Tobago',
+        childPlaces: []
+      }, {
+        id: 18,
+        title: 'Venezuela',
+        childPlaces: []
+      }]
+    }, {
+      id: 19,
+      title: 'Asia',
+      childPlaces: [{
+        id: 20,
+        title: 'China',
+        childPlaces: []
+      }, {
+        id: 21,
+        title: 'Hong Kong',
+        childPlaces: []
+      }, {
+        id: 22,
+        title: 'India',
+        childPlaces: []
+      }, {
+        id: 23,
+        title: 'Singapore',
+        childPlaces: []
+      }, {
+        id: 24,
+        title: 'South Korea',
+        childPlaces: []
+      }, {
+        id: 25,
+        title: 'Thailand',
+        childPlaces: []
+      }, {
+        id: 26,
+        title: 'Vietnam',
+        childPlaces: []
+      }]
+    }, {
+      id: 27,
+      title: 'Europe',
+      childPlaces: [{
+        id: 28,
+        title: 'Croatia',
+        childPlaces: [],
+      }, {
+        id: 29,
+        title: 'France',
+        childPlaces: [],
+      }, {
+        id: 30,
+        title: 'Germany',
+        childPlaces: [],
+      }, {
+        id: 31,
+        title: 'Italy',
+        childPlaces: [],
+      }, {
+        id: 32,
+        title: 'Portugal',
+        childPlaces: [],
+      }, {
+        id: 33,
+        title: 'Spain',
+        childPlaces: [],
+      }, {
+        id: 34,
+        title: 'Turkey',
+        childPlaces: [],
+      }]
+    }, {
+      id: 35,
+      title: 'Oceania',
+      childPlaces: [{
+        id: 36,
+        title: 'Australia',
+        childPlaces: [],
+      }, {
+        id: 37,
+        title: 'Bora Bora (French Polynesia)',
+        childPlaces: [],
+      }, {
+        id: 38,
+        title: 'Easter Island (Chile)',
+        childPlaces: [],
+      }, {
+        id: 39,
+        title: 'Fiji',
+        childPlaces: [],
+      }, {
+        id: 40,
+        title: 'Hawaii (the USA)',
+        childPlaces: [],
+      }, {
+        id: 41,
+        title: 'New Zeland',
+        childPlaces: [],
+      }, {
+        id: 42,
+        title: 'Vanuatu',
+        childPlaces: [],
+      }]
+    }]
+  }, {
+    id: 43,
+    title: 'Moon',
+    childPlaces: [{
+      id: 44,
+      title: 'Rheita',
+      childPlaces: []
+    }, {
+      id: 45,
+      title: 'Piccolomini',
+      childPlaces: []
+    }, {
+      id: 46,
+      title: 'Tycho',
+      childPlaces: []
+    }]
+  }, {
+    id: 47,
+    title: 'Mars',
+    childPlaces: [{
+      id: 48,
+      title: 'Corn Town',
+      childPlaces: []
+    }, {
+      id: 49,
+      title: 'Green Hill',
+      childPlaces: []      
+    }]
+  }]
+};
 ```
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a task. How would you go about it? [Updating nested state](/learn/updating-objects-and-arrays-in-state#updating-nested-objects-and-arrays) involves making copies of objects all the way up from the part that changed. For example, deleting a deeply nested task would involve copying all its entire parent task chain. For deeply nested state, this can be very cumbersome.
+Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-and-arrays-in-state#updating-nested-objects-and-arrays) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `task` has an array of *its child tasks*, you can have each task hold an array of *its child task IDs*. Then you can store a mapping from each task ID to the corresponding task.
+**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then you can store a mapping from each place ID to the corresponding place.
 
-This restructuring of the data might remind you of seeing a database table:
+This data restructuring might remind you of seeing a database table:
 
 <Sandpack>
 
 ```js
 import { useState } from 'react';
+import { initialTravelPlan } from './places.js';
 
-const initialTasksById = {
-  1: {
-    id: 1,
-    text: 'Root task',
-    childIds: [2, 4]
-  },
-  2: {
-    id: 2,
-    text: 'First subtask',
-    childIds: [3]
-  }, 
-  3: {
-    id: 3,
-    text: 'First subtask of first subtask',
-    childIds: []
-  },
-  4: {
-    id: 4,
-    text: 'Second subtask',
-    childIds: [5, 6],   
-  },
-  5: {
-    id: 5,
-    text: 'First subtask of second subtask',
-    childIds: [],   
-  },
-  6: {
-    id: 6,
-    text: 'Second subtask of second subtask',
-    childIds: [],   
-  },
-};
-
-function Task({ id, tasksById }) {
-  const task = tasksById[id];
-  const childIds = task.childIds;
+function PlaceTree({ id, placesById }) {
+  const place = placesById[id];
+  const childIds = place.childIds;
   return (
     <>
-      <li>{task.text}</li>
+      <li>{place.title}</li>
       {childIds.length > 0 && (
         <ol>
           {childIds.map(childId => (
-            <Task
+            <PlaceTree
               key={childId}
               id={childId}
-              tasksById={tasksById}
+              placesById={placesById}
             />
           ))}
         </ol>
@@ -679,30 +848,290 @@ function Task({ id, tasksById }) {
   );
 }
 
-export default function TaskManager() {
-  const [
-    tasksById,
-    setTasksById
-  ] = useState(initialTasksById);
+export default function TravelPlan() {
+  const [plan, setPlan] = useState(initialTravelPlan);
+  const root = plan[0];
+  const planetIds = root.childIds;
   return (
-    <ol>
-      <Task
-        id={1}
-        tasksById={tasksById}
-      />
-    </ol>
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {planetIds.map(id => (
+          <PlaceTree
+            key={id}
+            id={id}
+            placesById={plan}
+          />
+        ))}
+      </ol>
+    </>
   );
 }
+```
+
+```js places.js active
+export const initialTravelPlan = {
+  0: {
+    id: 0,
+    title: '(Root)',
+    childIds: [1, 43, 47],
+  },
+  1: {
+    id: 1,
+    title: 'Earth',
+    childIds: [2, 10, 19, 27, 35]
+  },
+  2: {
+    id: 2,
+    title: 'Africa',
+    childIds: [3, 4, 5, 6 , 7, 8, 9]
+  }, 
+  3: {
+    id: 3,
+    title: 'Botswana',
+    childIds: []
+  },
+  4: {
+    id: 4,
+    title: 'Egypt',
+    childIds: []
+  },
+  5: {
+    id: 5,
+    title: 'Kenya',
+    childIds: []
+  },
+  6: {
+    id: 6,
+    title: 'Madagascar',
+    childIds: []
+  }, 
+  7: {
+    id: 7,
+    title: 'Morocco',
+    childIds: []
+  },
+  8: {
+    id: 8,
+    title: 'Nigeria',
+    childIds: []
+  },
+  9: {
+    id: 9,
+    title: 'South Africa',
+    childIds: []
+  },
+  10: {
+    id: 10,
+    title: 'Americas',
+    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
+  },
+  11: {
+    id: 11,
+    title: 'Argentina',
+    childIds: []
+  },
+  12: {
+    id: 12,
+    title: 'Brazil',
+    childIds: []
+  },
+  13: {
+    id: 13,
+    title: 'Barbados',
+    childIds: []
+  }, 
+  14: {
+    id: 14,
+    title: 'Canada',
+    childIds: []
+  },
+  15: {
+    id: 15,
+    title: 'Jamaica',
+    childIds: []
+  },
+  16: {
+    id: 16,
+    title: 'Mexico',
+    childIds: []
+  },
+  17: {
+    id: 17,
+    title: 'Trinidad and Tobago',
+    childIds: []
+  },
+  18: {
+    id: 18,
+    title: 'Venezuela',
+    childIds: []
+  },
+  19: {
+    id: 19,
+    title: 'Asia',
+    childIds: [20, 21, 22, 23, 24, 25, 26],   
+  },
+  20: {
+    id: 20,
+    title: 'China',
+    childIds: []
+  },
+  21: {
+    id: 21,
+    title: 'Hong Kong',
+    childIds: []
+  },
+  22: {
+    id: 22,
+    title: 'India',
+    childIds: []
+  },
+  23: {
+    id: 23,
+    title: 'Singapore',
+    childIds: []
+  },
+  24: {
+    id: 24,
+    title: 'South Korea',
+    childIds: []
+  },
+  25: {
+    id: 25,
+    title: 'Thailand',
+    childIds: []
+  },
+  26: {
+    id: 26,
+    title: 'Vietnam',
+    childIds: []
+  },
+  27: {
+    id: 27,
+    title: 'Europe',
+    childIds: [28, 29, 30, 31, 32, 33, 34],   
+  },
+  28: {
+    id: 28,
+    title: 'Croatia',
+    childIds: []
+  },
+  29: {
+    id: 29,
+    title: 'France',
+    childIds: []
+  },
+  30: {
+    id: 30,
+    title: 'Germany',
+    childIds: []
+  },
+  31: {
+    id: 31,
+    title: 'Italy',
+    childIds: []
+  },
+  32: {
+    id: 32,
+    title: 'Portugal',
+    childIds: []
+  },
+  33: {
+    id: 33,
+    title: 'Spain',
+    childIds: []
+  },
+  34: {
+    id: 34,
+    title: 'Turkey',
+    childIds: []
+  },
+  35: {
+    id: 35,
+    title: 'Oceania',
+    childIds: [36, 37, 38, 39, 40, 41,, 42],   
+  },
+  36: {
+    id: 36,
+    title: 'Australia',
+    childIds: []
+  },
+  37: {
+    id: 37,
+    title: 'Bora Bora (French Polynesia)',
+    childIds: []
+  },
+  38: {
+    id: 38,
+    title: 'Easter Island (Chile)',
+    childIds: []
+  },
+  39: {
+    id: 39,
+    title: 'Fiji',
+    childIds: []
+  },
+  40: {
+    id: 40,
+    title: 'Hawaii (the USA)',
+    childIds: []
+  },
+  41: {
+    id: 41,
+    title: 'New Zeland',
+    childIds: []
+  },
+  42: {
+    id: 42,
+    title: 'Vanuatu',
+    childIds: []
+  },
+  43: {
+    id: 43,
+    title: 'Moon',
+    childIds: [44, 45, 46]
+  },
+  44: {
+    id: 44,
+    title: 'Rheita',
+    childIds: []
+  },
+  45: {
+    id: 45,
+    title: 'Piccolomini',
+    childIds: []
+  },
+  46: {
+    id: 46,
+    title: 'Tycho',
+    childIds: []
+  },
+  47: {
+    id: 47,
+    title: 'Mars',
+    childIds: [48, 49]
+  },
+  48: {
+    id: 48,
+    title: 'Corn Town',
+    childIds: []
+  },
+  49: {
+    id: 49,
+    title: 'Green Hill',
+    childIds: []
+  }
+};
 ```
 
 </Sandpack>
 
 **Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
 
-In order to remove a task now, you only need to update two levels of state:
+In order to remove a place now, you only need to update two levels of state:
 
-- The next version of its *parent* task should not have the deleted child's ID in its `childIds` array.
-- The next version of the root `tasksById` object should include the new version of the parent task.
+- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
+- The updated version of the root "table" object should include the updated version of the parent place.
 
 Here is an example of how you could go about it:
 
@@ -710,99 +1139,70 @@ Here is an example of how you could go about it:
 
 ```js
 import { useState } from 'react';
+import { initialTravelPlan } from './places.js';
 
-const initialTasksById = {
-  1: {
-    id: 1,
-    text: 'Root task',
-    childIds: [2, 4]
-  },
-  2: {
-    id: 2,
-    text: 'First subtask',
-    childIds: [3]
-  }, 
-  3: {
-    id: 3,
-    text: 'First subtask of first subtask',
-    childIds: []
-  },
-  4: {
-    id: 4,
-    text: 'Second subtask',
-    childIds: [5, 6],   
-  },
-  5: {
-    id: 5,
-    text: 'First subtask of second subtask',
-    childIds: [],   
-  },
-  6: {
-    id: 6,
-    text: 'Second subtask of second subtask',
-    childIds: [],   
-  },
-};
+export default function TravelPlan() {
+  const [plan, setPlan] = useState(initialTravelPlan);
 
-export default function TaskManager() {
-  const [
-    tasksById,
-    setTasksById
-  ] = useState(initialTasksById);
-
-  function handleRemove(parentId, childId) {
-    const parent = tasksById[parentId];
-    // Create a new version of the parent task
+  function handleComplete(parentId, childId) {
+    const parent = plan[parentId];
+    // Create a new version of the parent place
     // that doesn't include this child ID.
     const nextParent = {
       ...parent,
       childIds: parent.childIds
         .filter(id => id !== childId)
-    }
+    };
     // Update the root state object...
-    setTasksById({
-      ...tasksById,
+    setPlan({
+      ...plan,
       // ...so that it has the updated parent.
-      [parentId]: nextParent,
+      [parentId]: nextParent
     });
   }
 
+  const root = plan[0];
+  const planetIds = root.childIds;
   return (
-    <ol>
-      <Task
-        id={1}
-        parentId={0}
-        tasksById={tasksById}
-        onRemove={handleRemove}
-      />
-    </ol>
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {planetIds.map(id => (
+          <PlaceTree
+            key={id}
+            id={id}
+            parentId={0}
+            placesById={plan}
+            onComplete={handleComplete}
+          />
+        ))}
+      </ol>
+    </>
   );
 }
 
-function Task({ id, parentId, tasksById, onRemove }) {
-  const task = tasksById[id];
-  const childIds = task.childIds;
+function PlaceTree({ id, parentId, placesById, onComplete }) {
+  const place = placesById[id];
+  const childIds = place.childIds;
   return (
     <>
       <li>
-        {task.text}
-        {parentId !== 0 &&
-          <button onClick={() => {
-            onRemove(parentId, id);
-          }}>
-            Remove
-          </button>
-        }
+        {place.title}
+        <button onClick={() => {
+          onComplete(parentId, id);
+        }}>
+          Complete
+        </button>
       </li>
       {childIds.length > 0 &&
         <ol>
           {childIds.map(childId => (
-            <Task
+            <PlaceTree
               key={childId}
               id={childId}
               parentId={id}
-              tasksById={tasksById}
-              onRemove={onRemove}
+              placesById={placesById}
+              onComplete={onComplete}
             />
           ))}
         </ol>
@@ -810,7 +1210,261 @@ function Task({ id, parentId, tasksById, onRemove }) {
     </>
   );
 }
+```
 
+```js places.js
+export const initialTravelPlan = {
+  0: {
+    id: 0,
+    title: '(Root)',
+    childIds: [1, 43, 47],
+  },
+  1: {
+    id: 1,
+    title: 'Earth',
+    childIds: [2, 10, 19, 27, 35]
+  },
+  2: {
+    id: 2,
+    title: 'Africa',
+    childIds: [3, 4, 5, 6 , 7, 8, 9]
+  }, 
+  3: {
+    id: 3,
+    title: 'Botswana',
+    childIds: []
+  },
+  4: {
+    id: 4,
+    title: 'Egypt',
+    childIds: []
+  },
+  5: {
+    id: 5,
+    title: 'Kenya',
+    childIds: []
+  },
+  6: {
+    id: 6,
+    title: 'Madagascar',
+    childIds: []
+  }, 
+  7: {
+    id: 7,
+    title: 'Morocco',
+    childIds: []
+  },
+  8: {
+    id: 8,
+    title: 'Nigeria',
+    childIds: []
+  },
+  9: {
+    id: 9,
+    title: 'South Africa',
+    childIds: []
+  },
+  10: {
+    id: 10,
+    title: 'Americas',
+    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
+  },
+  11: {
+    id: 11,
+    title: 'Argentina',
+    childIds: []
+  },
+  12: {
+    id: 12,
+    title: 'Brazil',
+    childIds: []
+  },
+  13: {
+    id: 13,
+    title: 'Barbados',
+    childIds: []
+  }, 
+  14: {
+    id: 14,
+    title: 'Canada',
+    childIds: []
+  },
+  15: {
+    id: 15,
+    title: 'Jamaica',
+    childIds: []
+  },
+  16: {
+    id: 16,
+    title: 'Mexico',
+    childIds: []
+  },
+  17: {
+    id: 17,
+    title: 'Trinidad and Tobago',
+    childIds: []
+  },
+  18: {
+    id: 18,
+    title: 'Venezuela',
+    childIds: []
+  },
+  19: {
+    id: 19,
+    title: 'Asia',
+    childIds: [20, 21, 22, 23, 24, 25, 26],   
+  },
+  20: {
+    id: 20,
+    title: 'China',
+    childIds: []
+  },
+  21: {
+    id: 21,
+    title: 'Hong Kong',
+    childIds: []
+  },
+  22: {
+    id: 22,
+    title: 'India',
+    childIds: []
+  },
+  23: {
+    id: 23,
+    title: 'Singapore',
+    childIds: []
+  },
+  24: {
+    id: 24,
+    title: 'South Korea',
+    childIds: []
+  },
+  25: {
+    id: 25,
+    title: 'Thailand',
+    childIds: []
+  },
+  26: {
+    id: 26,
+    title: 'Vietnam',
+    childIds: []
+  },
+  27: {
+    id: 27,
+    title: 'Europe',
+    childIds: [28, 29, 30, 31, 32, 33, 34],   
+  },
+  28: {
+    id: 28,
+    title: 'Croatia',
+    childIds: []
+  },
+  29: {
+    id: 29,
+    title: 'France',
+    childIds: []
+  },
+  30: {
+    id: 30,
+    title: 'Germany',
+    childIds: []
+  },
+  31: {
+    id: 31,
+    title: 'Italy',
+    childIds: []
+  },
+  32: {
+    id: 32,
+    title: 'Portugal',
+    childIds: []
+  },
+  33: {
+    id: 33,
+    title: 'Spain',
+    childIds: []
+  },
+  34: {
+    id: 34,
+    title: 'Turkey',
+    childIds: []
+  },
+  35: {
+    id: 35,
+    title: 'Oceania',
+    childIds: [36, 37, 38, 39, 40, 41,, 42],   
+  },
+  36: {
+    id: 36,
+    title: 'Australia',
+    childIds: []
+  },
+  37: {
+    id: 37,
+    title: 'Bora Bora (French Polynesia)',
+    childIds: []
+  },
+  38: {
+    id: 38,
+    title: 'Easter Island (Chile)',
+    childIds: []
+  },
+  39: {
+    id: 39,
+    title: 'Fiji',
+    childIds: []
+  },
+  40: {
+    id: 40,
+    title: 'Hawaii (the USA)',
+    childIds: []
+  },
+  41: {
+    id: 41,
+    title: 'New Zeland',
+    childIds: []
+  },
+  42: {
+    id: 42,
+    title: 'Vanuatu',
+    childIds: []
+  },
+  43: {
+    id: 43,
+    title: 'Moon',
+    childIds: [44, 45, 46]
+  },
+  44: {
+    id: 44,
+    title: 'Rheita',
+    childIds: []
+  },
+  45: {
+    id: 45,
+    title: 'Piccolomini',
+    childIds: []
+  },
+  46: {
+    id: 46,
+    title: 'Tycho',
+    childIds: []
+  },
+  47: {
+    id: 47,
+    title: 'Mars',
+    childIds: [48, 49]
+  },
+  48: {
+    id: 48,
+    title: 'Corn Town',
+    childIds: []
+  },
+  49: {
+    id: 49,
+    title: 'Green Hill',
+    childIds: []
+  }
+};
 ```
 
 ```css
@@ -823,107 +1477,76 @@ You can nest state as much as you like, but making it "flat" can solve numerous 
 
 <DeepDive title="Improving memory usage">
 
-Ideally, you would also add some logic to remove the deleted items (and their children!) from the `itemsById` object to improve memory usage.
-
-This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
 
 <Sandpack>
 
 ```js
 import { useImmer } from 'use-immer';
+import { initialTravelPlan } from './places.js';
 
-const initialTasksById = {
-  1: {
-    id: 1,
-    text: 'Root task',
-    childIds: [2, 4]
-  },
-  2: {
-    id: 2,
-    text: 'First subtask',
-    childIds: [3]
-  }, 
-  3: {
-    id: 3,
-    text: 'First subtask of first subtask',
-    childIds: []
-  },
-  4: {
-    id: 4,
-    text: 'Second subtask',
-    childIds: [5, 6],   
-  },
-  5: {
-    id: 5,
-    text: 'First subtask of second subtask',
-    childIds: [],   
-  },
-  6: {
-    id: 6,
-    text: 'Second subtask of second subtask',
-    childIds: [],   
-  },
-};
+export default function TravelPlan() {
+  const [plan, updatePlan] = useImmer(initialTravelPlan);
 
-export default function TaskManager() {
-  const [
-    tasksById,
-    updateTasksById
-  ] = useImmer(initialTasksById);
-
-  function handleRemove(parentId, childId) {
-    updateTasksById(draft => {
-      // Remove from the parent task's child IDs.
+  function handleComplete(parentId, childId) {
+    updatePlan(draft => {
+      // Remove from the parent place's child IDs.
       const parent = draft[parentId];
       parent.childIds = parent.childIds
         .filter(id => id !== childId);
 
-      // Forget this task and all its subtree.
+      // Forget this place and all its subtree.
       deleteAllChildren(childId);
       function deleteAllChildren(id) {
-        const task = draft[id];
-        task.childIds.forEach(deleteAllChildren);
+        const place = draft[id];
+        place.childIds.forEach(deleteAllChildren);
         delete draft[id];
       }
     });
   }
 
+  const root = plan[0];
+  const planetIds = root.childIds;
   return (
-    <ol>
-      <Task
-        id={1}
-        parentId={0}
-        tasksById={tasksById}
-        onRemove={handleRemove}
-      />
-    </ol>
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {planetIds.map(id => (
+          <PlaceTree
+            key={id}
+            id={id}
+            parentId={0}
+            placesById={plan}
+            onComplete={handleComplete}
+          />
+        ))}
+      </ol>
+    </>
   );
 }
 
-function Task({ id, parentId, tasksById, onRemove }) {
-  const task = tasksById[id];
-  const childIds = task.childIds;
+function PlaceTree({ id, parentId, placesById, onComplete }) {
+  const place = placesById[id];
+  const childIds = place.childIds;
   return (
     <>
       <li>
-        {task.text}
-        {parentId !== 0 &&
-          <button onClick={() => {
-            onRemove(parentId, id);
-          }}>
-            Remove
-          </button>
-        }
+        {place.title}
+        <button onClick={() => {
+          onComplete(parentId, id);
+        }}>
+          Complete
+        </button>
       </li>
       {childIds.length > 0 &&
         <ol>
           {childIds.map(childId => (
-            <Task
+            <PlaceTree
               key={childId}
               id={childId}
               parentId={id}
-              tasksById={tasksById}
-              onRemove={onRemove}
+              placesById={placesById}
+              onComplete={onComplete}
             />
           ))}
         </ol>
@@ -931,7 +1554,261 @@ function Task({ id, parentId, tasksById, onRemove }) {
     </>
   );
 }
+```
 
+```js places.js
+export const initialTravelPlan = {
+  0: {
+    id: 0,
+    title: '(Root)',
+    childIds: [1, 43, 47],
+  },
+  1: {
+    id: 1,
+    title: 'Earth',
+    childIds: [2, 10, 19, 27, 35]
+  },
+  2: {
+    id: 2,
+    title: 'Africa',
+    childIds: [3, 4, 5, 6 , 7, 8, 9]
+  }, 
+  3: {
+    id: 3,
+    title: 'Botswana',
+    childIds: []
+  },
+  4: {
+    id: 4,
+    title: 'Egypt',
+    childIds: []
+  },
+  5: {
+    id: 5,
+    title: 'Kenya',
+    childIds: []
+  },
+  6: {
+    id: 6,
+    title: 'Madagascar',
+    childIds: []
+  }, 
+  7: {
+    id: 7,
+    title: 'Morocco',
+    childIds: []
+  },
+  8: {
+    id: 8,
+    title: 'Nigeria',
+    childIds: []
+  },
+  9: {
+    id: 9,
+    title: 'South Africa',
+    childIds: []
+  },
+  10: {
+    id: 10,
+    title: 'Americas',
+    childIds: [11, 12, 13, 14, 15, 16, 17, 18],   
+  },
+  11: {
+    id: 11,
+    title: 'Argentina',
+    childIds: []
+  },
+  12: {
+    id: 12,
+    title: 'Brazil',
+    childIds: []
+  },
+  13: {
+    id: 13,
+    title: 'Barbados',
+    childIds: []
+  }, 
+  14: {
+    id: 14,
+    title: 'Canada',
+    childIds: []
+  },
+  15: {
+    id: 15,
+    title: 'Jamaica',
+    childIds: []
+  },
+  16: {
+    id: 16,
+    title: 'Mexico',
+    childIds: []
+  },
+  17: {
+    id: 17,
+    title: 'Trinidad and Tobago',
+    childIds: []
+  },
+  18: {
+    id: 18,
+    title: 'Venezuela',
+    childIds: []
+  },
+  19: {
+    id: 19,
+    title: 'Asia',
+    childIds: [20, 21, 22, 23, 24, 25, 26],   
+  },
+  20: {
+    id: 20,
+    title: 'China',
+    childIds: []
+  },
+  21: {
+    id: 21,
+    title: 'Hong Kong',
+    childIds: []
+  },
+  22: {
+    id: 22,
+    title: 'India',
+    childIds: []
+  },
+  23: {
+    id: 23,
+    title: 'Singapore',
+    childIds: []
+  },
+  24: {
+    id: 24,
+    title: 'South Korea',
+    childIds: []
+  },
+  25: {
+    id: 25,
+    title: 'Thailand',
+    childIds: []
+  },
+  26: {
+    id: 26,
+    title: 'Vietnam',
+    childIds: []
+  },
+  27: {
+    id: 27,
+    title: 'Europe',
+    childIds: [28, 29, 30, 31, 32, 33, 34],   
+  },
+  28: {
+    id: 28,
+    title: 'Croatia',
+    childIds: []
+  },
+  29: {
+    id: 29,
+    title: 'France',
+    childIds: []
+  },
+  30: {
+    id: 30,
+    title: 'Germany',
+    childIds: []
+  },
+  31: {
+    id: 31,
+    title: 'Italy',
+    childIds: []
+  },
+  32: {
+    id: 32,
+    title: 'Portugal',
+    childIds: []
+  },
+  33: {
+    id: 33,
+    title: 'Spain',
+    childIds: []
+  },
+  34: {
+    id: 34,
+    title: 'Turkey',
+    childIds: []
+  },
+  35: {
+    id: 35,
+    title: 'Oceania',
+    childIds: [36, 37, 38, 39, 40, 41,, 42],   
+  },
+  36: {
+    id: 36,
+    title: 'Australia',
+    childIds: []
+  },
+  37: {
+    id: 37,
+    title: 'Bora Bora (French Polynesia)',
+    childIds: []
+  },
+  38: {
+    id: 38,
+    title: 'Easter Island (Chile)',
+    childIds: []
+  },
+  39: {
+    id: 39,
+    title: 'Fiji',
+    childIds: []
+  },
+  40: {
+    id: 40,
+    title: 'Hawaii (the USA)',
+    childIds: []
+  },
+  41: {
+    id: 41,
+    title: 'New Zeland',
+    childIds: []
+  },
+  42: {
+    id: 42,
+    title: 'Vanuatu',
+    childIds: []
+  },
+  43: {
+    id: 43,
+    title: 'Moon',
+    childIds: [44, 45, 46]
+  },
+  44: {
+    id: 44,
+    title: 'Rheita',
+    childIds: []
+  },
+  45: {
+    id: 45,
+    title: 'Piccolomini',
+    childIds: []
+  },
+  46: {
+    id: 46,
+    title: 'Tycho',
+    childIds: []
+  },
+  47: {
+    id: 47,
+    title: 'Mars',
+    childIds: [48, 49]
+  },
+  48: {
+    id: 48,
+    title: 'Corn Town',
+    childIds: []
+  },
+  49: {
+    id: 49,
+    title: 'Green Hill',
+    childIds: []
+  }
+};
 ```
 
 ```css
@@ -970,11 +1847,9 @@ Sometimes, you can also reduce state nesting by moving some of the nested state 
 * Avoid redundant and duplicate state so that you don't need to keep it in sync.
 * Don't put props *into* state unless you specifically want to prevent updates.
 * For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is cumbersome, try flattening it.
+* If updating deeply nested state is complicated, try flattening it.
 
 </Recap>
-
-
 
 <Challenges>
 
@@ -1141,9 +2016,9 @@ export default function App() {
 
 </Solution>
 
-### Fix a broken task counter
+### Fix a broken packing list
 
-This todo list has a footer that shows how many tasks are completed, and how many tasks there are overall. It seems to work at first, but it is buggy. For example, if you mark a task as completed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark a place as completed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
 
 <Hint>
 
@@ -1155,123 +2030,121 @@ Is any state in this example redundant?
 
 ```js App.js
 import { useState } from 'react';
-import AddTodo from './AddTodo.js';
-import TaskList from './TaskList.js';
+import AddItem from './AddItem.js';
+import PackingList from './PackingList.js';
 
 let nextId = 3;
-const initialTodos = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+const initialItems = [
+  { id: 0, title: 'Warm socks', packed: true },
+  { id: 1, title: 'Travel journal', packed: false },
+  { id: 2, title: 'Watercolors', packed: false },
 ];
 
-export default function TaskBoard() {
-  const [text, setText] = useState('');
-  const [todos, setTodos] = useState(
-    initialTodos
-  );
+export default function TravelPlan() {
+  const [title, setTitle] = useState('');
+  const [items, setItems] = useState(initialItems);
   const [total, setTotal] = useState(3);
-  const [done, setDone] = useState(1);
+  const [packed, setPacked] = useState(1);
 
-  function handleAddTodo(text) {
+  function handleAddItem(title) {
     setTotal(total + 1);
-    setTodos([
-      ...todos,
+    setItems([
+      ...items,
       {
         id: nextId++,
-        text: text,
-        done: false
+        title: title,
+        packed: false
       }
     ]);
   }
 
-  function handleChangeTodo(nextTodo) {
-    if (nextTodo.done) {
-      setDone(done + 1);
+  function handleChangeItem(nextItem) {
+    if (nextItem.packed) {
+      setPacked(packed + 1);
     } else {
-      setDone(done - 1);
+      setPacked(packed - 1);
     }
-    setTodos(todos.map(t => {
-      if (t.id === nextTodo.id) {
-        return nextTodo;
+    setItems(items.map(item => {
+      if (item.id === nextItem.id) {
+        return nextItem;
       } else {
-        return t;
+        return item;
       }
     }));
   }
 
-  function handleDeleteTodo(todoId) {
+  function handleDeleteItem(itemId) {
     setTotal(total - 1);
-    setTodos(
-      todos.filter(t => t.id !== todoId)
+    setItems(
+      items.filter(item => item.id !== itemId)
     );
   }
 
   return (
     <>  
-      <AddTodo
-        onAddTodo={handleAddTodo}
+      <AddItem
+        onAddItem={handleAddItem}
       />
-      <TaskList
-        todos={todos}
-        onChangeTodo={handleChangeTodo}
-        onDeleteTodo={handleDeleteTodo}
+      <PackingList
+        items={items}
+        onChangeItem={handleChangeItem}
+        onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{done} out of {total} done!</b>
+      <b>{packed} out of {total} packed!</b>
     </>
   );
 }
 ```
 
-```js AddTodo.js hidden
+```js AddItem.js hidden
 import { useState } from 'react';
 
-export default function AddTodo({ onAddTodo }) {
-  const [text, setText] = useState('');
+export default function AddItem({ onAddItem }) {
+  const [title, setTitle] = useState('');
   return (
     <>
       <input
-        placeholder="Add todo"
-        value={text}
-        onChange={e => setText(e.target.value)}
+        placeholder="Add item"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
-        setText('');
-        onAddTodo(text);
+        setTitle('');
+        onAddItem(title);
       }}>Add</button>
     </>
   )
 }
 ```
 
-```js TaskList.js hidden
+```js PackingList.js hidden
 import { useState } from 'react';
 
-export default function TaskList({
-  todos,
-  onChangeTodo,
-  onDeleteTodo
+export default function PackingList({
+  items,
+  onChangeItem,
+  onDeleteItem
 }) {
   return (
     <ul>
-      {todos.map(todo => (
-        <li key={todo.id}>
+      {items.map(item => (
+        <li key={item.id}>
           <label>
             <input
               type="checkbox"
-              checked={todo.done}
+              checked={item.packed}
               onChange={e => {
-                onChangeTodo({
-                  ...todo,
-                  done: e.target.checked
+                onChangeItem({
+                  ...item,
+                  packed: e.target.checked
                 });
               }}
             />
             {' '}
-            {todo.text}
+            {item.title}
           </label>
-          <button onClick={() => onDeleteTodo(todo.id)}>
+          <button onClick={() => onDeleteItem(item.id)}>
             Delete
           </button>
         </li>
@@ -1291,125 +2164,123 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `done` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of tasks (done or total) from the `todos` array itself. Remove the redundant state to fix the bug:
+Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
 
 <Sandpack>
 
 ```js App.js
 import { useState } from 'react';
-import AddTodo from './AddTodo.js';
-import TaskList from './TaskList.js';
+import AddItem from './AddItem.js';
+import PackingList from './PackingList.js';
 
 let nextId = 3;
-const initialTodos = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+const initialItems = [
+  { id: 0, title: 'Warm socks', packed: true },
+  { id: 1, title: 'Travel journal', packed: false },
+  { id: 2, title: 'Watercolors', packed: false },
 ];
 
-export default function TaskBoard() {
-  const [text, setText] = useState('');
-  const [todos, setTodos] = useState(
-    initialTodos
-  );
+export default function TravelPlan() {
+  const [title, setTitle] = useState('');
+  const [items, setItems] = useState(initialItems);
 
-  const total = todos.length;
-  const done = todos
-    .filter(t => t.done)
+  const total = items.length;
+  const packed = items
+    .filter(item => item.packed)
     .length;
 
-  function handleAddTodo(text) {
-    setTodos([
-      ...todos,
+  function handleAddItem(title) {
+    setItems([
+      ...items,
       {
         id: nextId++,
-        text: text,
-        done: false
+        title: title,
+        packed: false
       }
     ]);
   }
 
-  function handleChangeTodo(nextTodo) {
-    setTodos(todos.map(t => {
-      if (t.id === nextTodo.id) {
-        return nextTodo;
+  function handleChangeItem(nextItem) {
+    setItems(items.map(item => {
+      if (item.id === nextItem.id) {
+        return nextItem;
       } else {
-        return t;
+        return item;
       }
     }));
   }
 
-  function handleDeleteTodo(todoId) {
-    setTodos(
-      todos.filter(t => t.id !== todoId)
+  function handleDeleteItem(itemId) {
+    setItems(
+      items.filter(item => item.id !== itemId)
     );
   }
 
   return (
     <>  
-      <AddTodo
-        onAddTodo={handleAddTodo}
+      <AddItem
+        onAddItem={handleAddItem}
       />
-      <TaskList
-        todos={todos}
-        onChangeTodo={handleChangeTodo}
-        onDeleteTodo={handleDeleteTodo}
+      <PackingList
+        items={items}
+        onChangeItem={handleChangeItem}
+        onDeleteItem={handleDeleteItem}
       />
       <hr />
-      <b>{done} out of {total} done!</b>
+      <b>{packed} out of {total} packed!</b>
     </>
   );
 }
 ```
 
-```js AddTodo.js hidden
+```js AddItem.js hidden
 import { useState } from 'react';
 
-export default function AddTodo({ onAddTodo }) {
-  const [text, setText] = useState('');
+export default function AddItem({ onAddItem }) {
+  const [title, setTitle] = useState('');
   return (
     <>
       <input
-        placeholder="Add todo"
-        value={text}
-        onChange={e => setText(e.target.value)}
+        placeholder="Add item"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
       />
       <button onClick={() => {
-        setText('');
-        onAddTodo(text);
+        setTitle('');
+        onAddItem(title);
       }}>Add</button>
     </>
   )
 }
 ```
 
-```js TaskList.js hidden
+```js PackingList.js hidden
 import { useState } from 'react';
 
-export default function TaskList({
-  todos,
-  onChangeTodo,
-  onDeleteTodo
+export default function PackingList({
+  items,
+  onChangeItem,
+  onDeleteItem
 }) {
   return (
     <ul>
-      {todos.map(todo => (
-        <li key={todo.id}>
+      {items.map(item => (
+        <li key={item.id}>
           <label>
             <input
               type="checkbox"
-              checked={todo.done}
+              checked={item.packed}
               onChange={e => {
-                onChangeTodo({
-                  ...todo,
-                  done: e.target.checked
+                onChangeItem({
+                  ...item,
+                  packed: e.target.checked
                 });
               }}
             />
             {' '}
-            {todo.text}
+            {item.title}
           </label>
-          <button onClick={() => onDeleteTodo(todo.id)}>
+          <button onClick={() => onDeleteItem(item.id)}>
             Delete
           </button>
         </li>
@@ -1427,7 +2298,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setTodos` after this change. The todo counts are now calculated during the next render from `todos`, so they are always up-to-date.
+Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
 
 </Solution>
 
@@ -1445,14 +2316,8 @@ import { initialLetters } from './data.js';
 import Letter from './Letter.js';
 
 export default function MailClient() {
-  const [
-    letters,
-    setLetters
-  ] = useState(initialLetters);
-  const [
-    highlightedLetter,
-    setHighlightedLetter
-  ] = useState(null);
+  const [letters, setLetters] = useState(initialLetters);
+  const [highlightedLetter, setHighlightedLetter] = useState(null);
 
   function handleHover(letter) {
     setHighlightedLetter(letter);
@@ -1472,19 +2337,22 @@ export default function MailClient() {
   }
 
   return (
-    <ul>
-      {letters.map(letter => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          isHighlighted={
-            letter === highlightedLetter
-          }
-          onHover={handleHover}
-          onToggleStar={handleStar}
-        />
-      ))}
-    </ul>
+    <>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map(letter => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isHighlighted={
+              letter === highlightedLetter
+            }
+            onHover={handleHover}
+            onToggleStar={handleStar}
+          />
+        ))}
+      </ul>
+    </>
   );
 }
 ```
@@ -1522,15 +2390,15 @@ export default function Letter({
 ```js data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'How are you?',
+  subject: 'Ready for adventure?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Your taxes are due',
+  subject: 'Time to check in!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Reminder: dentist',
+  subject: 'Festival Begins in Just SEVEN Days!',
   isStarred: false,
 }];
 ```
@@ -1545,7 +2413,7 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the information for it in the `letters` array itself. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
 
 To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
 
@@ -1557,14 +2425,8 @@ import { initialLetters } from './data.js';
 import Letter from './Letter.js';
 
 export default function MailClient() {
-  const [
-    letters,
-    setLetters
-  ] = useState(initialLetters);
-  const [
-    highlightedId,
-    setHighlightedId
-  ] = useState(null);
+  const [letters, setLetters] = useState(initialLetters);
+  const [highlightedId, setHighlightedId ] = useState(null);
 
   function handleHover(letterId) {
     setHighlightedId(letterId);
@@ -1584,19 +2446,22 @@ export default function MailClient() {
   }
 
   return (
-    <ul>
-      {letters.map(letter => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          isHighlighted={
-            letter.id === highlightedId
-          }
-          onHover={handleHover}
-          onToggleStar={handleStar}
-        />
-      ))}
-    </ul>
+    <>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map(letter => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isHighlighted={
+              letter.id === highlightedId
+            }
+            onHover={handleHover}
+            onToggleStar={handleStar}
+          />
+        ))}
+      </ul>
+    </>
   );
 }
 ```
@@ -1634,15 +2499,15 @@ export default function Letter({
 ```js data.js
 export const initialLetters = [{
   id: 0,
-  subject: 'How are you?',
+  subject: 'Ready for adventure?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Your taxes are due',
+  subject: 'Time to check in!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Reminder: dentist',
+  subject: 'Festival Begins in Just SEVEN Days!',
   isStarred: false,
 }];
 ```
@@ -1677,10 +2542,7 @@ import { letters } from './data.js';
 import Letter from './Letter.js';
 
 export default function MailClient() {
-  const [
-    selectedId,
-    setSelectedId
-  ] = useState(null);
+  const [selectedId, setSelectedId] = useState(null);
 
   // TODO: allow multiple selection
   const selectedCount = 1;
@@ -1691,25 +2553,28 @@ export default function MailClient() {
   }
 
   return (
-    <ul>
-      {letters.map(letter => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          isSelected={
-            // TODO: allow multiple selection
-            letter.id === selectedId
-          }
-          onToggle={handleToggle}
-        />
-      ))}
-      <hr />
-      <p>
-        <b>
-          You selected {selectedCount} letters
-        </b>
-      </p>
-    </ul>
+    <>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map(letter => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isSelected={
+              // TODO: allow multiple selection
+              letter.id === selectedId
+            }
+            onToggle={handleToggle}
+          />
+        ))}
+        <hr />
+        <p>
+          <b>
+            You selected {selectedCount} letters
+          </b>
+        </p>
+      </ul>
+    </>
   );
 }
 ```
@@ -1742,15 +2607,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'How are you?',
+  subject: 'Ready for adventure?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Your taxes are due',
+  subject: 'Time to check in!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Reminder: dentist',
+  subject: 'Festival Begins in Just SEVEN Days!',
   isStarred: false,
 }];
 ```
@@ -1776,10 +2641,7 @@ import { letters } from './data.js';
 import Letter from './Letter.js';
 
 export default function MailClient() {
-  const [
-    selectedIds,
-    setSelectedIds
-  ] = useState([]);
+  const [selectedIds, setSelectedIds] = useState([]);
 
   const selectedCount = selectedIds.length;
 
@@ -1800,24 +2662,27 @@ export default function MailClient() {
   }
 
   return (
-    <ul>
-      {letters.map(letter => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          isSelected={
-            selectedIds.includes(letter.id)
-          }
-          onToggle={handleToggle}
-        />
-      ))}
-      <hr />
-      <p>
-        <b>
-          You selected {selectedCount} letters
-        </b>
-      </p>
-    </ul>
+    <>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map(letter => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isSelected={
+              selectedIds.includes(letter.id)
+            }
+            onToggle={handleToggle}
+          />
+        ))}
+        <hr />
+        <p>
+          <b>
+            You selected {selectedCount} letters
+          </b>
+        </p>
+      </ul>
+    </>
   );
 }
 ```
@@ -1850,15 +2715,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'How are you?',
+  subject: 'Ready for adventure?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Your taxes are due',
+  subject: 'Time to check in!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Reminder: dentist',
+  subject: 'Festival Begins in Just SEVEN Days!',
   isStarred: false,
 }];
 ```
@@ -1884,10 +2749,9 @@ import { letters } from './data.js';
 import Letter from './Letter.js';
 
 export default function MailClient() {
-  const [
-    selectedIds,
-    setSelectedIds
-  ] = useState(new Set());
+  const [selectedIds, setSelectedIds] = useState(
+    new Set()
+  );
 
   const selectedCount = selectedIds.size;
 
@@ -1903,24 +2767,27 @@ export default function MailClient() {
   }
 
   return (
-    <ul>
-      {letters.map(letter => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          isSelected={
-            selectedIds.has(letter.id)
-          }
-          onToggle={handleToggle}
-        />
-      ))}
-      <hr />
-      <p>
-        <b>
-          You selected {selectedCount} letters
-        </b>
-      </p>
-    </ul>
+    <>
+      <h2>Inbox</h2>
+      <ul>
+        {letters.map(letter => (
+          <Letter
+            key={letter.id}
+            letter={letter}
+            isSelected={
+              selectedIds.has(letter.id)
+            }
+            onToggle={handleToggle}
+          />
+        ))}
+        <hr />
+        <p>
+          <b>
+            You selected {selectedCount} letters
+          </b>
+        </p>
+      </ul>
+    </>
   );
 }
 ```
@@ -1953,15 +2820,15 @@ export default function Letter({
 ```js data.js
 export const letters = [{
   id: 0,
-  subject: 'How are you?',
+  subject: 'Ready for adventure?',
   isStarred: true,
 }, {
   id: 1,
-  subject: 'Your taxes are due',
+  subject: 'Time to check in!',
   isStarred: false,
 }, {
   id: 2,
-  subject: 'Reminder: dentist',
+  subject: 'Festival Begins in Just SEVEN Days!',
   isStarred: false,
 }];
 ```

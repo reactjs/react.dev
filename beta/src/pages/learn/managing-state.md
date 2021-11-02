@@ -24,27 +24,27 @@ As your application grows, it helps to be more intentional about how your state 
 
 With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
 
-Here is a feedback form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
+Here is a quiz form built using React. Note how it uses the `status` state variable to determine whether to enable or disable the submit button, and whether to show the success message instead.
 
 <Sandpack>
 
 ```js
 import { useState } from 'react';
 
-export default function FeedbackForm() {
-  const [message, setMessage] = useState('');
+export default function Form() {
+  const [answer, setAnswer] = useState('');
   const [error, setError] = useState(null);
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>Thank you!</h1>
+    return <h1>That's right!</h1>
   }
 
   async function handleSubmit(e) {
     e.preventDefault();
     setStatus('submitting');
     try {
-      await submitForm();
+      await submitForm(answer);
       setStatus('success');
     } catch (err) {
       setStatus('typing');
@@ -53,39 +53,45 @@ export default function FeedbackForm() {
   }
 
   function handleTextareaChange(e) {
-    setMessage(e.target.value);
+    setAnswer(e.target.value);
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <textarea
-        value={message}
-        onChange={handleTextareaChange}
-        disabled={status === 'submitting'}
-      />
-      <br />
-      <button disabled={
-        message.length === 0 ||
-        status === 'submitting'
-      }>
-        Submit
-      </button>
-      {error !== null &&
-        <p className="Error">
-          {error.message}
-        </p>
-      }
-    </form>
+    <>
+      <h2>City quiz</h2>
+      <p>
+        In which city is there a billboard that turns air into drinkable water?
+      </p>
+      <form onSubmit={handleSubmit}>
+        <textarea
+          value={answer}
+          onChange={handleTextareaChange}
+          disabled={status === 'submitting'}
+        />
+        <br />
+        <button disabled={
+          answer.length === 0 ||
+          status === 'submitting'
+        }>
+          Submit
+        </button>
+        {error !== null &&
+          <p className="Error">
+            {error.message}
+          </p>
+        }
+      </form>
+    </>
   );
 }
 
-function submitForm() {
+function submitForm(answer) {
   // Pretend it's hitting the network.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let shouldError = Math.random() > 0.5;
+      let shouldError = answer.toLowerCase() !== 'lima'
       if (shouldError) {
-        reject(new Error('Something went wrong'));
+        reject(new Error('Good guess but a wrong answer. Try again!'));
       } else {
         resolve();
       }
@@ -110,7 +116,7 @@ Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to 
 
 Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's some unnecessary state, it's easy to forget to update it, and introduce bugs!
 
-For example, this form has a redundant `fullName` state variable:
+For example, this form has a **redundant** `fullName` state variable:
 
 <Sandpack>
 
@@ -134,6 +140,7 @@ export default function Form() {
 
   return (
     <>
+      <h2>Let’s check you in</h2>
       <label>
         First name:{' '}
         <input
@@ -148,9 +155,9 @@ export default function Form() {
           onChange={handleLastNameChange}
         />
       </label>
-      <h3>
-        Your full name is: {fullName}
-      </h3>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
     </>
   );
 }
@@ -185,6 +192,7 @@ export default function Form() {
 
   return (
     <>
+      <h2>Let’s check you in</h2>
       <label>
         First name:{' '}
         <input
@@ -199,9 +207,9 @@ export default function Form() {
           onChange={handleLastNameChange}
         />
       </label>
-      <h3>
-        Your full name is: {fullName}
-      </h3>
+      <p>
+        Your ticket will be issued to: <b>{fullName}</b>
+      </p>
     </>
   );
 }
@@ -213,9 +221,11 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
+This might seem like a small change, but many bugs in React apps are fixed this way.
+
 <LearnMore path="/learn/choosing-the-state-structure">
 
-Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to make state updates easier and avoid common pitfalls.
+Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to learn how to design the state shape to avoid bugs.
 
 </LearnMore>
 
@@ -234,20 +244,20 @@ export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
   return (
     <>
+      <h2>Almaty, Kazakhstan</h2>
       <Panel
-        title="Ingredients"
+        title="About"
         isActive={activeIndex === 0}
         onShow={() => setActiveIndex(0)}
       >
-        Milk, tea bags, and a cinnamon stick.
+        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
       </Panel>
       <Panel
-        title="Recipe"
+        title="Etymology"
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
       >
-        Heat the milk and put tea bags into the pan.
-        Add the cinnamon stick.
+        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
       </Panel>
     </>
   );
@@ -294,7 +304,7 @@ Read **[Sharing State Between Components](/learn/sharing-state-between-component
 
 When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
 
-However, sometimes this is not what you want. For example, in this app, typing a message and then switching the recipient does not reset the input. This can cause the user to accidentally send a message to the wrong person:
+However, sometimes this is not what you want. For example, in this app, typing a message and then switching the recipient does not reset the input. This can make the user accidentally send a message to the wrong person:
 
 <Sandpack>
 
@@ -389,7 +399,7 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component, and it needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients always resets the input field--even though you render the same component.
+React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients always resets the input field--even though you render the same component.
 
 <Sandpack>
 
@@ -492,7 +502,7 @@ Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)**
 
 ## Extracting state logic into a reducer
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called a "reducer." Your event handlers become concise because they only specify the user "actions." At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer." Your event handlers become concise because they only specify the user "actions." At the bottom of the file, the reducer function specifies how the state should update in response to each action!
 
 <Sandpack>
 
@@ -531,6 +541,7 @@ export default function TaskBoard() {
 
   return (
     <>
+      <h1>Prague itinerary</h1>
       <AddTask
         onAddTask={handleAddTask}
       />
@@ -572,9 +583,9 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Visit Kafka Museum', done: true },
+  { id: 1, text: 'Watch a puppet show', done: false },
+  { id: 2, text: 'Lennon Wall pic', done: false }
 ];
 ```
 
@@ -688,7 +699,7 @@ Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-int
 
 ## Passing data deeply with context
 
-Usually, you will pass information from a parent component to a child component via props. But passing props can become cumbersome if you need to pass some prop deeply through the tree, or if many components in the UI tree need the same prop. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
+Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
 
 Here, the `Heading` component determines its heading level by "asking" the closest `Section` for its level. Each `Section` tracks its own level by asking the parent `Section` and adding one to it. Every `Section` provides information to all components below it without passing props--it does that through context.
 
@@ -799,11 +810,12 @@ With this approach, a parent component with complex state manages it with a redu
 ```js App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
-import { TasksProvider } from './TaskBoardContext.js';
+import { TasksProvider } from './TasksContext.js';
 
 export default function TaskBoard() {
   return (
     <TasksProvider>
+      <h1>Day off in Kyoto</h1>
       <AddTask />
       <TaskList />
     </TasksProvider>
@@ -811,15 +823,10 @@ export default function TaskBoard() {
 }
 ```
 
-```js TaskBoardContext.js
-import {
-  createContext,
-  useContext,
-  useReducer
-} from 'react';
+```js TasksContext.js
+import { createContext, useContext, useReducer } from 'react';
 
-const TaskBoardContext = createContext(null);
-
+const TasksContext = createContext(null);
 const TasksDispatchContext = createContext(null);
 
 export function TasksProvider({ children }) {
@@ -829,18 +836,18 @@ export function TasksProvider({ children }) {
   );
 
   return (
-    <TaskBoardContext.Provider value={tasks}>
+    <TasksContext.Provider value={tasks}>
       <TasksDispatchContext.Provider
         value={dispatch}
       >
         {children}
       </TasksDispatchContext.Provider>
-    </TaskBoardContext.Provider>
+    </TasksContext.Provider>
   );
 }
 
 export function useTasks() {
-  return useContext(TaskBoardContext);
+  return useContext(TasksContext);
 }
 
 export function useTasksDispatch() {
@@ -875,15 +882,15 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Buy milk', done: true },
-  { id: 1, text: 'Eat tacos', done: false },
-  { id: 2, text: 'Brew tea', done: false },
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
 ];
 ```
 
 ```js AddTask.js
 import { useState, useContext } from 'react';
-import { useTasksDispatch } from './TaskBoardContext.js';
+import { useTasksDispatch } from './TasksContext.js';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
@@ -912,7 +919,7 @@ let nextId = 3;
 
 ```js TaskList.js
 import { useState, useContext } from 'react';
-import { useTasks, useTasksDispatch } from './TaskBoardContext.js';
+import { useTasks, useTasksDispatch } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useTasks();
@@ -996,7 +1003,6 @@ ul, li { margin: 0; padding: 0; }
 ```
 
 </Sandpack>
-
 
 <LearnMore path="/learn/scaling-up-with-reducer-and-context">
 

@@ -4,7 +4,7 @@ title: Preserving and Resetting State
 
 <Intro>
 
-State is isolated between components. React keeps track of which state belongs to which component based on their place in the tree. You can control when to preserve state and when to reset it between re-renders.
+State is isolated between components. React keeps track of which state belongs to which component based on their place in the UI tree. You can control when to preserve state and when to reset it between re-renders.
 
 </Intro>
 
@@ -234,7 +234,7 @@ label {
 
 </Sandpack>
 
-Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys state.
+Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
 
 <img alt="React removes a component from the tree, it destroys its state as well" src="/images/docs/sketches/s_remove-ui.png" />
 
@@ -342,9 +342,7 @@ It's the same component at the same position, so from React's perspective, it's 
 
 <Gotcha>
 
-Remember that **it's the position in the UI tree--not in the JSX markup--that matters to React!**
-
-This component has two `return` clauses with different `<Counter />` JSX tags inside and outside the `if`:
+Remember that **it's the position in the UI tree--not in the JSX markup--that matters to React!** This component has two `return` clauses with different `<Counter />` JSX tags inside and outside the `if`:
 
 <Sandpack>
 
@@ -442,7 +440,7 @@ label {
 
 </Sandpack>
 
-You might expect the state to be reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return. In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. This is why React considers them to represent _the same_ `<Counter />`.
+You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return. In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. This is why React considers them as _the same_ `<Counter />`.
 
 You can think of them as having the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
 
@@ -620,7 +618,7 @@ label {
 
 </Sandpack>
 
-The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `div` to a `section`. When `div` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
+The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `div` to a `section`. When the child `div` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
 
 <img alt="If the first child isn't the same, forget about it!" src="/images/docs/sketches/s_ui-components-swap.png" />
 
@@ -921,7 +919,7 @@ Switching between Taylor and Sarah does not preserve the state. This is because 
 )}
 ```
 
-Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, from React's perspective, these are two different counters. As a result, they will never share state. Every time a counter appears on screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
+Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, from React's perspective, these are two different counters. As a result, they will never share state. Every time a counter appears on the screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
 
 <Illustration src="/images/docs/illustrations/i_keys-in-trees.png" alt="React distinguishes between components with different keys, even if they are of the same type." />
 
@@ -1170,7 +1168,7 @@ export default function App() {
   if (showHint) {
     return (
       <div>
-        <p><i>Hint: Your favorite movie?</i></p>
+        <p><i>Hint: Your favorite city?</i></p>
         <Form />
         <button onClick={() => {
           setShowHint(false);
@@ -1221,7 +1219,7 @@ export default function App() {
   return (
     <div>
       {showHint &&
-        <p><i>Hint: Your favorite movie?</i></p>
+        <p><i>Hint: Your favorite city?</i></p>
       }
       <Form />
       {showHint ? (
@@ -1267,7 +1265,7 @@ export default function App() {
   if (showHint) {
     return (
       <div>
-        <p><i>Hint: Your favorite movie?</i></p>
+        <p><i>Hint: Your favorite city?</i></p>
         <Form />
         <button onClick={() => {
           setShowHint(false);
@@ -1752,7 +1750,7 @@ button {
 
 ### Clear an image while it's loading
 
-When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default the browser will keep showing the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next," the previous image immediately clears.
+When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next," the previous image immediately clears.
 
 <Hint>
 
@@ -1765,7 +1763,7 @@ Is there a way to tell React to re-create the DOM instead of reusing it?
 ```js
 import { useState } from 'react';
 
-export default function ReviewTool() {
+export default function Gallery() {
   const [index, setIndex] = useState(0);
   const hasNext = index < images.length - 1;
 
@@ -1777,7 +1775,7 @@ export default function ReviewTool() {
     }
   }
 
-  let src = images[index];
+  let image = images[index];
   return (
     <>
       <button onClick={handleClick}>
@@ -1786,21 +1784,40 @@ export default function ReviewTool() {
       <h3>
         Image {index + 1} of {images.length}
       </h3>
-      <img src={src} />
+      <img src={image.src} />
+      <p>
+        {image.place}
+      </p>
     </>
   );
 }
 
-let images = [
-  'https://placekitten.com/100?image=1',
-  'https://placekitten.com/100?image=2',
-  'https://placekitten.com/100?image=3',
-  'https://placekitten.com/100?image=4',
-  'https://placekitten.com/100?image=5',
-  'https://placekitten.com/100?image=6',
-  'https://placekitten.com/100?image=7',
-  'https://placekitten.com/100?image=8',
-];
+let images = [{
+  place: 'Penang, Malaysia',
+  src: 'https://i.imgur.com/FJeJR8M.jpg'
+}, {
+  place: 'Lisbon, Portugal',
+  src: 'https://i.imgur.com/dB2LRbj.jpg'
+}, {
+  place: 'Bilbao, Spain',
+  src: 'https://i.imgur.com/z08o2TS.jpg'
+}, {
+  place: 'Valparaíso, Chile',
+  src: 'https://i.imgur.com/Y3utgTi.jpg'
+}, {
+  place: 'Schwyz, Switzerland',
+  src: 'https://i.imgur.com/JBbMpWY.jpg'
+}, {
+  place: 'Prague, Czechia',
+  src: 'https://i.imgur.com/QwUKKmF.jpg'
+}, {
+  place: 'Ljubljana, Slovenia',
+  src: 'https://i.imgur.com/3aIiwfm.jpg'
+}];
+```
+
+```css
+img { width: 150px; height: 150px; }
 ```
 
 </Sandpack>
@@ -1814,7 +1831,7 @@ You can provide a `key` to the `<img>` tag. When that `key` changes, React will 
 ```js
 import { useState } from 'react';
 
-export default function ReviewTool() {
+export default function Gallery() {
   const [index, setIndex] = useState(0);
   const hasNext = index < images.length - 1;
 
@@ -1826,7 +1843,7 @@ export default function ReviewTool() {
     }
   }
 
-  let src = images[index];
+  let image = images[index];
   return (
     <>
       <button onClick={handleClick}>
@@ -1835,21 +1852,40 @@ export default function ReviewTool() {
       <h3>
         Image {index + 1} of {images.length}
       </h3>
-      <img key={src} src={src} />
+      <img key={image.src} src={image.src} />
+      <p>
+        {image.place}
+      </p>
     </>
   );
 }
 
-let images = [
-  'https://placekitten.com/100?image=1',
-  'https://placekitten.com/100?image=2',
-  'https://placekitten.com/100?image=3',
-  'https://placekitten.com/100?image=4',
-  'https://placekitten.com/100?image=5',
-  'https://placekitten.com/100?image=6',
-  'https://placekitten.com/100?image=7',
-  'https://placekitten.com/100?image=8',
-];
+let images = [{
+  place: 'Penang, Malaysia',
+  src: 'https://i.imgur.com/FJeJR8M.jpg'
+}, {
+  place: 'Lisbon, Portugal',
+  src: 'https://i.imgur.com/dB2LRbj.jpg'
+}, {
+  place: 'Bilbao, Spain',
+  src: 'https://i.imgur.com/z08o2TS.jpg'
+}, {
+  place: 'Valparaíso, Chile',
+  src: 'https://i.imgur.com/Y3utgTi.jpg'
+}, {
+  place: 'Schwyz, Switzerland',
+  src: 'https://i.imgur.com/JBbMpWY.jpg'
+}, {
+  place: 'Prague, Czechia',
+  src: 'https://i.imgur.com/QwUKKmF.jpg'
+}, {
+  place: 'Ljubljana, Slovenia',
+  src: 'https://i.imgur.com/3aIiwfm.jpg'
+}];
+```
+
+```css
+img { width: 150px; height: 150px; }
 ```
 
 </Sandpack>

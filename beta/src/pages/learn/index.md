@@ -178,7 +178,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 You might wonder why `className="avatar"` uses quotes but `src={imageUrl}` uses curly braces. In JSX, curly braces are like a ["window into JavaScript"](/learn/javascript-in-jsx-with-curly-braces). They let you run a bit of JavaScript right in your markup! So `src={imageUrl}` reads the `imageUrl` prop declared on the first line and passed from the parent `Gallery` component.
 
-In the above example, all the data was written directly in markup. However, you'll often want to keep it separately. Here, the data is kept in an array. In React, you use JavaScript functions like [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to [renders lists](/learn/rendering-lists) of things.
+In the above example, all the data was written directly in markup. However, you'll often want to keep it separately. Here, the data is kept in an array. In React, you use JavaScript functions like [`map`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to [render lists](/learn/rendering-lists) of things.
 
 <Sandpack>
 

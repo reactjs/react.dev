@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React, {useContext} from 'react';
+import React, { useContext } from 'react';
 import {
   useSandpack,
   useActiveCode,
@@ -10,12 +10,13 @@ import {
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 
-import {IconChevron} from 'components/Icon/IconChevron';
-import {NavigationBar} from './NavigationBar';
-import {Preview} from './Preview';
-import {GithubLightTheme} from './Themes';
-import {NightOwlTheme} from './Themes';
-import {ColorMode, ThemeContext} from 'modules/ThemeProvider';
+import { IconChevron } from 'components/Icon/IconChevron';
+import { MenuContext } from 'components/useMenu';
+import { NavigationBar } from './NavigationBar';
+import { Preview } from './Preview';
+import { GithubLightTheme } from './Themes';
+import { NightOwlTheme } from './Themes';
+import { ColorMode, ThemeContext } from 'modules/ThemeProvider';
 
 export function CustomPreset({
   isSingleFile,
@@ -24,13 +25,13 @@ export function CustomPreset({
   isSingleFile: boolean;
   onReset: () => void;
 }) {
-  const lineCountRef = React.useRef<{[key: string]: number}>({});
-  const {sandpack} = useSandpack();
-  const {code} = useActiveCode();
+  const lineCountRef = React.useRef<{ [key: string]: number }>({});
+  const { sandpack } = useSandpack();
+  const { code } = useActiveCode();
   const [isExpanded, setIsExpanded] = React.useState(false);
-  const {colorMode} = useContext(ThemeContext);
+  const { colorMode } = useContext(ThemeContext);
 
-  const {activePath} = sandpack;
+  const { activePath } = sandpack;
   if (!lineCountRef.current[activePath]) {
     lineCountRef.current[activePath] = code.split('\n').length;
   }

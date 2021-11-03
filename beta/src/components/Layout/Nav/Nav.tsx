@@ -5,16 +5,16 @@
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
-import {IconClose} from 'components/Icon/IconClose';
-import {IconHamburger} from 'components/Icon/IconHamburger';
-import {Search} from 'components/Search';
-import {MenuContext} from 'components/useMenu';
+import { IconClose } from 'components/Icon/IconClose';
+import { IconHamburger } from 'components/Icon/IconHamburger';
+import { Search } from 'components/Search';
+import { MenuContext } from 'components/useMenu';
 
-import {Logo} from '../../Logo';
+import { Logo } from '../../Logo';
 import NavLink from './NavLink';
-import {ColorMode, ThemeContext} from 'modules/ThemeProvider';
+import { ColorMode, ThemeContext } from 'modules/ThemeProvider';
 
 const feedbackIcon = (
   <svg
@@ -91,9 +91,9 @@ function inferSection(pathname: string): 'learn' | 'reference' | 'home' {
 }
 
 export default function Nav() {
-  const {pathname} = useRouter();
-  const {isOpen, toggleOpen} = React.useContext(MenuContext);
-  const {colorMode, setColorMode} = React.useContext(ThemeContext);
+  const { pathname } = useRouter();
+  const { isOpen, toggleOpen } = React.useContext(MenuContext);
+  const { colorMode, setColorMode } = React.useContext(ThemeContext);
   const section = inferSection(pathname);
 
   function handleFeedback() {

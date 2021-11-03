@@ -19,6 +19,9 @@ type SidebarNav = 'root' | 'docs' | 'reference';
  */
 export const useMenu = () => {
   const [isOpen, setIsOpen] = React.useState(false);
+  // TODO: persist
+  // TODO: respect system pref
+  const [isDark, setIsDark] = React.useState(false);
   const menuRef = React.useRef<HTMLDivElement>(null);
   const router = useRouter();
 
@@ -57,6 +60,8 @@ export const useMenu = () => {
     toggleOpen,
     menuRef,
     isOpen,
+    isDark,
+    setIsDark,
   };
 };
 

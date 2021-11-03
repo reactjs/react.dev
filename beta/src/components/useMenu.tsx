@@ -8,7 +8,7 @@ import {
   disableBodyScroll,
   enableBodyScroll,
 } from 'body-scroll-lock';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
 type SidebarNav = 'root' | 'docs' | 'reference';
 /**
@@ -64,6 +64,6 @@ export const MenuContext = React.createContext<ReturnType<typeof useMenu>>(
   {} as ReturnType<typeof useMenu>
 );
 
-export function MenuProvider(props: { children: React.ReactNode }) {
+export function MenuProvider(props: {children: React.ReactNode}) {
   return <MenuContext.Provider value={useMenu()} {...props} />;
 }

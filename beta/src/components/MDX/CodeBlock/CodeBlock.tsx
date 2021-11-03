@@ -11,11 +11,11 @@ import {
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 import rangeParser from 'parse-numeric-range';
-import { MenuContext } from 'components/useMenu';
-import { GithubLightTheme } from '../Sandpack/Themes';
-import { NightOwlTheme } from '../Sandpack/Themes';
+import {MenuContext} from 'components/useMenu';
+import {GithubLightTheme} from '../Sandpack/Themes';
+import {NightOwlTheme} from '../Sandpack/Themes';
 import styles from './CodeBlock.module.css';
-import { ColorMode, ThemeContext } from 'modules/ThemeProvider';
+import {ColorMode, ThemeContext} from 'modules/ThemeProvider';
 
 interface InlineHiglight {
   step: number;
@@ -58,7 +58,7 @@ const CodeBlock = React.forwardRef(
       const inlineHighlightConfig = inlineHighlightLines.map(
         (line: InlineHiglight) => ({
           ...line,
-          elementAttributes: { 'data-step': `${line.step}` },
+          elementAttributes: {'data-step': `${line.step}`},
           className: cn(
             'code-step bg-opacity-10 relative rounded-md p-1 ml-2',
             {
@@ -79,7 +79,7 @@ const CodeBlock = React.forwardRef(
     const language = className.substring(9);
     const filename = '/index.' + language;
     const decorators = getDecoratedLineInfo();
-    const { colorMode } = React.useContext(ThemeContext);
+    const {colorMode} = React.useContext(ThemeContext);
     return (
       <div
         translate="no"
@@ -97,7 +97,9 @@ const CodeBlock = React.forwardRef(
             },
           }}>
           <SandpackThemeProvider
-            theme={colorMode === ColorMode.dark ? NightOwlTheme : GithubLightTheme}>
+            theme={
+              colorMode === ColorMode.dark ? NightOwlTheme : GithubLightTheme
+            }>
             <ClasserProvider
               classes={{
                 'sp-cm': styles.codeViewer,
@@ -165,8 +167,8 @@ function getInlineHighlights(metastring: string, code: string) {
       if (fromIndex === undefined) {
         throw Error(
           "Found '" +
-          substr +
-          "' twice. Specify fromIndex as the fourth value in the tuple."
+            substr +
+            "' twice. Specify fromIndex as the fourth value in the tuple."
         );
       }
       index = line.indexOf(substr, fromIndex);

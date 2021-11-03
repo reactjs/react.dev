@@ -3,22 +3,22 @@
  */
 
 import * as React from 'react';
-import { AppProps } from 'next/app';
+import {AppProps} from 'next/app';
 import '@docsearch/css';
 import '../styles/fonts.css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 import '@codesandbox/sandpack-react/dist/index.css';
-import { hotjar } from 'utils/hotjar';
-import { ThemeProvider } from 'modules/ThemeProvider';
+import {hotjar} from 'utils/hotjar';
+import {ThemeProvider} from 'modules/ThemeProvider';
 if (typeof window !== 'undefined') {
   hotjar(process.env.NEXT_PUBLIC_HJ_SITE_ID, process.env.NEXT_PUBLIC_HJ_SITE_V);
 }
 
-const EmptyAppShell: React.FC = ({ children }) => <>{children}</>;
+const EmptyAppShell: React.FC = ({children}) => <>{children}</>;
 
-export default function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({Component, pageProps}: AppProps) {
   let AppShell = (Component as any).appShell || EmptyAppShell;
   // In order to make sidebar scrolling between pages work as expected
   // we need to access the underlying MDX component.

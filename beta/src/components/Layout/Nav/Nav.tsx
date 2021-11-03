@@ -5,16 +5,16 @@
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
-import { useRouter } from 'next/router';
+import {useRouter} from 'next/router';
 
-import { IconClose } from 'components/Icon/IconClose';
-import { IconHamburger } from 'components/Icon/IconHamburger';
-import { Search } from 'components/Search';
-import { MenuContext } from 'components/useMenu';
+import {IconClose} from 'components/Icon/IconClose';
+import {IconHamburger} from 'components/Icon/IconHamburger';
+import {Search} from 'components/Search';
+import {MenuContext} from 'components/useMenu';
 
-import { Logo } from '../../Logo';
+import {Logo} from '../../Logo';
 import NavLink from './NavLink';
-import { ColorMode, ThemeContext } from 'modules/ThemeProvider';
+import {ColorMode, ThemeContext} from 'modules/ThemeProvider';
 
 const feedbackIcon = (
   <svg
@@ -91,9 +91,9 @@ function inferSection(pathname: string): 'learn' | 'reference' | 'home' {
 }
 
 export default function Nav() {
-  const { pathname } = useRouter();
-  const { isOpen, toggleOpen } = React.useContext(MenuContext);
-  const { colorMode, setColorMode } = React.useContext(ThemeContext);
+  const {pathname} = useRouter();
+  const {isOpen, toggleOpen} = React.useContext(MenuContext);
+  const {colorMode, setColorMode} = React.useContext(ThemeContext);
   const section = inferSection(pathname);
 
   function handleFeedback() {
@@ -109,8 +109,10 @@ export default function Nav() {
   }
 
   const toggleColorMode = React.useCallback(() => {
-    setColorMode(colorMode === ColorMode.dark ? ColorMode.light : ColorMode.dark)
-  }, [colorMode])
+    setColorMode(
+      colorMode === ColorMode.dark ? ColorMode.light : ColorMode.dark
+    );
+  }, [colorMode]);
 
   return (
     <nav className="sticky top-0 items-center w-full flex lg:block justify-between bg-transparent pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
@@ -137,7 +139,9 @@ export default function Nav() {
         </div>
         <button
           type="button"
-          aria-label={colorMode === ColorMode.dark ? 'Use Light Mode' : 'Use Dark Mode'}
+          aria-label={
+            colorMode === ColorMode.dark ? 'Use Light Mode' : 'Use Dark Mode'
+          }
           onClick={toggleColorMode}
           className="hidden lg:flex items-center h-full pr-2">
           {colorMode === ColorMode.dark ? lightIcon : darkIcon}
@@ -164,7 +168,9 @@ export default function Nav() {
         </button>
         <button
           type="button"
-          aria-label={colorMode === ColorMode.dark ? 'Use Light Mode' : 'Use Dark Mode'}
+          aria-label={
+            colorMode === ColorMode.dark ? 'Use Light Mode' : 'Use Dark Mode'
+          }
           onClick={toggleColorMode}
           className="hidden lg:flex items-center h-full pr-2">
           {colorMode === ColorMode.dark ? lightIcon : darkIcon}

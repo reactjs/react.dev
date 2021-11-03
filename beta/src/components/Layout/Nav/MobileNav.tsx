@@ -4,9 +4,9 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import { RouteItem } from 'components/Layout/useRouteMeta';
-import { useRouter } from 'next/router';
-import { SidebarRouteTree } from '../Sidebar';
+import {RouteItem} from 'components/Layout/useRouteMeta';
+import {useRouter} from 'next/router';
+import {SidebarRouteTree} from '../Sidebar';
 import sidebarHome from '../../../sidebarHome.json';
 import sidebarLearn from '../../../sidebarLearn.json';
 import sidebarReference from '../../../sidebarReference.json';
@@ -22,7 +22,7 @@ function inferSection(pathname: string): 'learn' | 'reference' | 'home' {
 }
 
 export function MobileNav() {
-  const { pathname } = useRouter();
+  const {pathname} = useRouter();
   const [section, setSection] = React.useState(() => inferSection(pathname));
 
   let tree = null;

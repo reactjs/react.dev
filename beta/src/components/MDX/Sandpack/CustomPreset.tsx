@@ -13,7 +13,7 @@ import {
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
-import {GithubLightTheme} from './Themes';
+import {CustomTheme} from './Themes';
 
 export function CustomPreset({
   isSingleFile,
@@ -45,7 +45,7 @@ export function CustomPreset({
     <>
       <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
         <NavigationBar showDownload={isSingleFile} onReset={onReset} />
-        <SandpackThemeProvider theme={GithubLightTheme}>
+        <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}
             className="sp-layout rounded-t-none"

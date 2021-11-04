@@ -23,6 +23,7 @@ module.exports = {
   'secondary-button-dark': '#404756', // gray-70
 
   // Gray
+  'gray-95': '#16181D',
   'gray-90': '#23272F',
   'gray-80': '#343A46',
   'gray-70': '#404756',

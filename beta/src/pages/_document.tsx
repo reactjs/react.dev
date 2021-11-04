@@ -21,7 +21,7 @@ class MyDocument extends Document {
                   preferredTheme = newTheme;
               
                   document.documentElement.className = newTheme;
-                  window.__onThemeChange(newTheme);
+                  window.__onThemeChange();
                 }
               
                 var preferredTheme;

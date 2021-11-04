@@ -15,6 +15,14 @@ import {MenuContext} from 'components/useMenu';
 import {Logo} from '../../Logo';
 import NavLink from './NavLink';
 
+declare global {
+  interface Window {
+    __onThemeChange: () => void,
+    __theme :string,
+    __setPreferredTheme: (theme: string) => void
+  }
+}
+
 const feedbackIcon = (
   <svg
     xmlns="http://www.w3.org/2000/svg"

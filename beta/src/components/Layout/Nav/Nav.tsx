@@ -102,13 +102,10 @@ export default function Nav() {
   });
 
   React.useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      document.documentElement.classList.add('dark');
-      setIsDark(true);
-    } else {
-      setIsDark(false);
-    }
-  },[]);
+    window.__onThemeChange = () => {
+      setIsDark(window.__theme === 'dark' ? true : false);
+    };
+  }, []);
 
   const section = inferSection(pathname);
 
@@ -151,13 +148,9 @@ export default function Nav() {
           type="button"
           aria-label={isDark ? 'Use Light Mode' : 'Use Dark Mode'}
           onClick={() => {
-            if (isDark) {
-              document.documentElement.classList.remove('dark');
-              setIsDark(false);
-            } else {
-              document.documentElement.classList.add('dark');
-              setIsDark(true);
-            }
+            window.__setPreferredTheme(
+              window.__theme === 'light' ? 'dark' : 'light'
+            );
           }}
           className="hidden lg:flex items-center h-full pr-2">
           {isDark ? lightIcon : darkIcon}
@@ -186,13 +179,9 @@ export default function Nav() {
           type="button"
           aria-label={isDark ? 'Use Light Mode' : 'Use Dark Mode'}
           onClick={() => {
-            if (isDark) {
-              document.documentElement.classList.remove('dark');
-              setIsDark(false);
-            } else {
-              document.documentElement.classList.add('dark');
-              setIsDark(true);
-            }
+            window.__setPreferredTheme(
+              window.__theme === 'light' ? 'dark' : 'light'
+            );
           }}
           className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6">
           {isDark ? lightIcon : darkIcon}

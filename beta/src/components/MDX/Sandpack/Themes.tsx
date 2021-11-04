@@ -6,15 +6,15 @@ import tailwindConfig from '../../../../tailwind.config';
 
 export const CustomTheme = {
   palette: {
-    activeText: 'var(--theme-activeText)',
-    defaultText: 'var(--theme-defaultText)',
-    inactiveText: 'var(--theme-inactiveText)',
-    activeBackground: 'var(--theme-activeBackground)',
-    defaultBackground: 'var(--theme-defaultBackground)',
-    inputBackground: 'var(--theme-inputBackground)',
-    accent: 'var(--theme-accent)',
-    errorBackground: 'var(--theme-errorBackground)',
-    errorForeground: 'var(--theme-errorForeground)',
+    activeText: 'inherit',
+    defaultText: 'inherit',
+    inactiveText: 'inherit',
+    activeBackground: 'inherit',
+    defaultBackground: 'inherit',
+    inputBackground: 'inherit',
+    accent: 'inherit',
+    errorBackground: 'inherit',
+    errorForeground: 'inherit',
   },
   syntax: {
     plain: 'var(--theme-plain)',

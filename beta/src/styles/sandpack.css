@@ -2,17 +2,18 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-html {
+html .sp-wrapper {
   /* palette */
-  --theme-activeText: #24292e;
-  --theme-defaultText: #959da5;
-  --theme-inactiveText: #e4e7eb;
-  --theme-activeBackground: #e4e7eb;
-  --theme-defaultBackground: #ffffff;
-  --theme-inputBackground: #ffffff;
-  --theme-accent: #c8c8fa;
-  --theme-errorBackground: #ffcdca;
-  --theme-errorForeground: #811e18;
+  --sp-colors-fg-active: #24292e !important;
+  --sp-colors-fg-default: #959da5 !important;
+  --sp-colors-fg-inactive: #e4e7eb !important;
+  --sp-colors-bg-active: #e4e7eb !important;
+  --sp-colors-bg-default: #ffffff !important;
+  --sp-colors-bg-default-overlay: #ffffff !important;
+  --sp-colors-bg-input: #ffffff !important;
+  --sp-colors-accent: #c8c8fa !important;
+  --sp-colors-bg-error: #ffcdca !important;
+  --sp-colors-fg-error: #811e18 !important;
   /* syntax */
   --theme-plain: #24292e;
   --theme-comment: #6a737d;
@@ -24,16 +25,17 @@ html {
   --theme-static: #032f62;
   --theme-string: #032f62;
 }
-html.dark {
-  --theme-activeText: #FFFFFF;
-  --theme-defaultText: #999999;
-  --theme-inactiveText: #343434;
-  --theme-activeBackground: #343434;
-  --theme-defaultBackground: #16181D;
-  --theme-inputBackground: #242424;
-  --theme-accent: #6caedd;
-  --theme-errorBackground: #ffcdca;
-  --theme-errorForeground: #811e18;
+html.dark .sp-wrapper {
+  --sp-colors-fg-active: #FFFFFF !important;
+  --sp-colors-fg-default: #999999 !important;
+  --sp-colors-fg-inactive: #343434 !important;
+  --sp-colors-bg-active: #343434 !important;
+  --sp-colors-bg-default: #16181D !important;
+  --sp-colors-bg-default-overlay: #16181D !important;
+  --sp-colors-bg-input: #242424 !important;
+  --sp-colors-accent: #6caedd !important;
+  --sp-colors-bg-error: #ffcdca !important;
+  --sp-colors-fg-error: #811e18 !important;
   /* syntax */
   --theme-plain: #FFFFFF;
   --theme-comment: #757575;
@@ -44,6 +46,10 @@ html.dark {
   --theme-property: #77B7D7;
   --theme-static: #C64640;
   --theme-string: #977CDC;
+}
+
+.sp-tabs, .sp-tab-button:hover {
+  background: none !important;
 }
 
 .sp-tabs .sp-tab-button {
@@ -123,9 +129,12 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   display: block !important;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+  padding: 18px var(--sp-space-3) !important;
   @apply font-mono !important;
   font-size: 13.6px !important;
   line-height: 24px !important;
+  height: 100%;
+  overflow: scroll;
 }
 .text-xl .sp-pre-placeholder {
   font-size: 16px !important;

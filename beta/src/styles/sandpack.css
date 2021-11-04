@@ -85,7 +85,7 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 }
 
 .sp-code-editor .cm-errorLine {
-  background-color: #fff0f0;
+  background-color: rgba(255, 107, 99, 0.10);
   position: relative;
 }
 

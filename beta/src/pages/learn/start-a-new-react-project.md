@@ -39,7 +39,7 @@ Now you can run your app with:
 
 <TerminalBlock>
 
-cd my-app
+cd my-app  
 npm start
 
 </TerminalBlock>

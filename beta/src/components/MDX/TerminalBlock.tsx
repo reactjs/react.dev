@@ -28,8 +28,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
   if (typeof children === 'string') {
     message = children;
   } else if (
-    React.isValidElement(children) &&
-    typeof children.props.children === 'string'
+    React.isValidElement(children) 
   ) {
     message = children.props.children;
   }

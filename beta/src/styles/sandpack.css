@@ -116,8 +116,7 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   -webkit-text-size-adjust: none !important;
   padding: 0 !important;
 }
-.cm-wrap,
-.cm-wrap .cm-gutters {
+.cm-wrap {
   background: transparent !important;
 }
 .sp-pre-placeholder {

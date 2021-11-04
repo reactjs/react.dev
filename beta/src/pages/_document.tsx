@@ -14,40 +14,44 @@ class MyDocument extends Document {
         <body className="font-sans antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
           <script
             dangerouslySetInnerHTML={{
-              __html: `(function () {
-                window.__onThemeChange = function () {};
-                function setTheme(newTheme) {
-                  window.__theme = newTheme;
-                  preferredTheme = newTheme;
-              
-                  document.documentElement.className = newTheme;
-                  window.__onThemeChange();
-                }
-              
-                var preferredTheme;
-                try {
-                  preferredTheme = localStorage.getItem("theme");
-                } catch (err) {
-                  console.error("Couldn't fetch theme from local storage")
-
-                }
-              
-                window.__setPreferredTheme = function (newTheme) {
-                  setTheme(newTheme);
-                  try {
-                    localStorage.setItem("theme", newTheme);
-                  } catch (err) {
-                    console.error("Couldn't set theme in local storage")
+              __html: `
+                (function () {
+                  function setTheme(newTheme) {
+                    window.__theme = newTheme;
+                    if (newTheme === 'dark') {
+                      document.documentElement.classList.add('dark');
+                    } else if (newTheme === 'light') {
+                      document.documentElement.classList.remove('dark');
+                    }
                   }
-                };
-              
-                var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-                darkQuery.addListener(function (e) {
-                  window.__setPreferredTheme(e.matches ? "dark" : "light");
-                });
-              
-                setTheme(preferredTheme || (darkQuery.matches ? "dark" : "light"));
-              })();
+
+                  var preferredTheme;
+                  try {
+                    preferredTheme = localStorage.getItem('theme');
+                  } catch (err) { }
+
+                  window.__setPreferredTheme = function(newTheme) {
+                    preferredTheme = newTheme;
+                    setTheme(newTheme);
+                    try {
+                      localStorage.setItem('theme', newTheme);
+                    } catch (err) { }
+                  };
+
+                  var initialTheme = preferredTheme;
+                  var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+
+                  if (!initialTheme) {
+                    initialTheme = darkQuery.matches ? 'dark' : 'light';
+                  }
+                  setTheme(initialTheme);
+
+                  darkQuery.addListener(function (e) {
+                    if (!preferredTheme) {
+                      setTheme(e.matches ? 'dark' : 'light');
+                    }
+                  });
+                })();
               `,
             }}
           />

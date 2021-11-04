@@ -23,7 +23,7 @@ export function Page({routeTree, children}: PageProps) {
             <Sidebar />
           </div>
 
-          <div className="flex flex-1 h-full self-stretch">
+          <div className="flex flex-1 w-full h-full self-stretch">
             <div className="w-full min-w-0">
               <main
                 className="flex flex-1 self-stretch flex-col items-end"

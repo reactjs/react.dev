@@ -2,29 +2,32 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {githubLightTheme, SandpackTheme} from '@codesandbox/sandpack-react';
 import tailwindConfig from '../../../../tailwind.config';
 
-export const GithubLightTheme: SandpackTheme = {
-  ...githubLightTheme,
-
-  typography: {
-    ...githubLightTheme.typography,
-    bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
-    monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
-    fontSize: tailwindConfig.theme.extend.fontSize.code,
-    lineHeight: '24px',
-  },
-};
-
-export const CodeBlockLightTheme: SandpackTheme = {
-  ...githubLightTheme,
+export const CustomTheme = {
   palette: {
-    ...githubLightTheme.palette,
-    defaultBackground: 'transparent',
+    activeText: 'inherit',
+    defaultText: 'inherit',
+    inactiveText: 'inherit',
+    activeBackground: 'inherit',
+    defaultBackground: 'inherit',
+    inputBackground: 'inherit',
+    accent: 'inherit',
+    errorBackground: 'inherit',
+    errorForeground: 'inherit',
+  },
+  syntax: {
+    plain: 'var(--theme-plain)',
+    comment: 'var(--theme-comment)',
+    keyword: 'var(--theme-keyword)',
+    tag: 'var(--theme-tag)',
+    punctuation: 'var(--theme-punctuation)',
+    definition: 'var(--theme-definition)',
+    property: 'var(--theme-property)',
+    static: 'var(--theme-static)',
+    string: 'var(--theme-string)',
   },
   typography: {
-    ...githubLightTheme.typography,
     bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
     monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
     fontSize: tailwindConfig.theme.extend.fontSize.code,

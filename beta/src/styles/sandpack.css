@@ -2,31 +2,81 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+html .sp-wrapper {
+  /* palette */
+  --sp-colors-fg-active: #24292e !important;
+  --sp-colors-fg-default: #959da5 !important;
+  --sp-colors-fg-inactive: #e4e7eb !important;
+  --sp-colors-bg-active: #e4e7eb !important;
+  --sp-colors-bg-default: #ffffff !important;
+  --sp-colors-bg-default-overlay: #ffffff !important;
+  --sp-colors-bg-input: #ffffff !important;
+  --sp-colors-accent: #c8c8fa !important;
+  --sp-colors-bg-error: #ffcdca !important;
+  --sp-colors-fg-error: #811e18 !important;
+  /* syntax */
+  --theme-plain: #24292e;
+  --theme-comment: #6a737d;
+  --theme-keyword: #d73a49;
+  --theme-tag: #22863a;
+  --theme-punctuation: #24292e;
+  --theme-definition: #6f42c1;
+  --theme-property: #005cc5;
+  --theme-static: #032f62;
+  --theme-string: #032f62;
+}
+html.dark .sp-wrapper {
+  --sp-colors-fg-active: #FFFFFF !important;
+  --sp-colors-fg-default: #999999 !important;
+  --sp-colors-fg-inactive: #343434 !important;
+  --sp-colors-bg-active: #343434 !important;
+  --sp-colors-bg-default: #16181D !important;
+  --sp-colors-bg-default-overlay: #16181D !important;
+  --sp-colors-bg-input: #242424 !important;
+  --sp-colors-accent: #6caedd !important;
+  --sp-colors-bg-error: #ffcdca !important;
+  --sp-colors-fg-error: #811e18 !important;
+  /* syntax */
+  --theme-plain: #FFFFFF;
+  --theme-comment: #757575;
+  --theme-keyword: #77B7D7;
+  --theme-tag: #DFAB5C;
+  --theme-punctuation: #ffffff;
+  --theme-definition: #86D9CA;
+  --theme-property: #77B7D7;
+  --theme-static: #C64640;
+  --theme-string: #977CDC;
+}
+
+.sp-tabs, .sp-tab-button:hover {
+  background: none !important;
+}
+
 .sp-tabs .sp-tab-button {
-  color: #087EA4;
+  color: #087ea4;
   padding: 0 4px;
 }
 
 html.dark .sp-tabs .sp-tab-button {
-  color: #149ECA;
+  color: #149eca;
 }
 
 .sp-tabs .sp-tab-button:hover {
-  color: #087EA4;
+  color: #087ea4;
 }
 
 html.dark .sp-tabs .sp-tab-button:hover {
-  color: #149ECA;
+  color: #149eca;
 }
 
 .sp-tabs .sp-tab-button[data-active='true'] {
-  color: #087EA4;
-  border-bottom: 2px solid #087EA4;
+  color: #087ea4;
+  border-bottom: 2px solid #087ea4;
 }
 
 html.dark .sp-tabs .sp-tab-button[data-active='true'] {
-  color: #149ECA;
-  border-bottom: 2px solid #149ECA;
+  color: #149eca;
+  border-bottom: 2px solid #149eca;
 }
 
 .sp-stack .sp-code-editor,
@@ -60,16 +110,9 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  *
  * If you know a better way to keep them from diverging, send a PR.
  */
- .sp-layout {
+.sp-layout {
   border-bottom-left-radius: 0.5rem !important;
   border-bottom-right-radius: 0.5rem !important;
-}
-
-.cm-activeLine {
-  background: rgba(245, 247, 250, var(--tw-bg-opacity)) !important;
-}
-.sp-code-editor {
-  background: white !important;
 }
 .sp-stack {
   height: initial !important;
@@ -77,18 +120,21 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 }
 .sp-cm {
   -webkit-text-size-adjust: none !important;
+  padding: 0 !important;
 }
-.cm-wrap,
-.cm-wrap .cm-gutters {
+.cm-wrap {
   background: transparent !important;
 }
 .sp-pre-placeholder {
   display: block !important;
   margin-top: 0px !important;
   margin-bottom: 0px !important;
+  padding: 18px var(--sp-space-3) !important;
   @apply font-mono !important;
   font-size: 13.6px !important;
   line-height: 24px !important;
+  height: 100%;
+  overflow: scroll;
 }
 .text-xl .sp-pre-placeholder {
   font-size: 16px !important;
@@ -96,21 +142,22 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 }
 .sp-cm.sp-pristine .cm-scroller {
   overflow: auto !important;
+  padding: 18px 0 !important;
 }
 .sp-layout {
   overflow: initial !important;
-  border:0px solid transparent !important;
+  border: 0px solid transparent !important;
   border-top-left-radius: 0px !important;
   border-top-right-radius: 0px !important;
 }
-html.dark .sp-layout>:not(:first-child) {
-  border-color: #343A46;
+html.dark .sp-layout > :not(:first-child) {
+  border-color: #343a46;
 }
 html.dark .sp-layout {
-  background-color: #343A46;
+  background-color: #343a46;
 }
 html.dark .sp-loading {
-  background-color: #23272F;
+  background-color: #23272f;
 }
 
 @media (min-width: 768px) {

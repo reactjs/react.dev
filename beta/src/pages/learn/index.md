@@ -59,7 +59,7 @@ If you're curious which products you use everyday are built with React, you can 
 
 ### React uses JavaScript
 
-With React, you will describe visual your logic in JavaScript. This takes some practice. If you're learning JavaScript and React at the same time, you're not alone--but at times, it will be a little bit more challenging! On the upside, **much of learning React is really learning JavaScript,** which means you will take your learnings far beyond React.
+With React, you will describe your visual logic in JavaScript. This takes some practice. If you're learning JavaScript and React at the same time, you're not alone--but at times, it will be a little bit more challenging! On the upside, **much of learning React is really learning JavaScript,** which means you will take your learnings far beyond React.
 
 Check your knowledge level with [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). It will take you between 30 minutes and an hour but you will feel more confident learning React. [MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript) and [javascript.info](https://javascript.info/) are two great resources to use as a reference.
 

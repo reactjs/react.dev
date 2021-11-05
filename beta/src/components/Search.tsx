@@ -93,7 +93,6 @@ export const Search: React.FC<SearchProps> = ({
         <link
           rel="preconnect"
           href={`https://${options.appId}-dsn.algolia.net`}
-          crossOrigin="true"
         />
       </Head>
 

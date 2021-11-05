@@ -136,7 +136,7 @@
   html .no-bg-scrollbar:focus-within::-webkit-scrollbar-thumb,
   html .no-bg-scrollbar:active::-webkit-scrollbar-thumb {
     background-color: rgba(0, 0, 0, 0.2);
-    border: 3px solid transparent;
+    border: 4px solid transparent;
     background-clip: content-box;
     border-radius: 10px;
   }

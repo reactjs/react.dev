@@ -119,12 +119,14 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
             )}>
             {isRecipes ? 'Try out some recipes' : 'Try out some challenges'}
           </H2>
-          <Navigation
-            activeChallenge={activeChallenge}
-            challenges={challenges}
-            handleChange={handleChallengeChange}
-            isRecipes={isRecipes}
-          />
+          {challenges.length > 1 && (
+            <Navigation
+              activeChallenge={activeChallenge}
+              challenges={challenges}
+              handleChange={handleChallengeChange}
+              isRecipes={isRecipes}
+            />
+          )}
         </div>
         <div className="p-5 sm:py-8 sm:px-8">
           <div key={activeChallenge}>

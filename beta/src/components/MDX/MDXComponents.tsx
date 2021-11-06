@@ -12,7 +12,6 @@ import Convention from './Convention';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
-import HomepageHero from './HomepageHero';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
 import Link from './Link';
@@ -340,7 +339,6 @@ export const MDXComponents = {
     excerpt: string;
   }) => <ExpandableExample {...props} type="DeepDive" />,
   Gotcha,
-  HomepageHero,
   Illustration,
   IllustrationBlock,
   Intro,

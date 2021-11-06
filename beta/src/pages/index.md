@@ -5,6 +5,8 @@ title: React Docs Beta
 permalink: index.html
 ---
 
+import HomepageHero from '../components/MDX/HomepageHero';
+
 <HomepageHero />
 
 ## What is this site?

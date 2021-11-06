@@ -7,7 +7,7 @@ on:
       - completed
 
 jobs:
-  upload:
+  comment:
     runs-on: ubuntu-latest
     if: >
       ${{ github.event.workflow_run.event == 'pull_request' &&
@@ -17,6 +17,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: analyze.yml
+          run_id: ${{ github.event.workflow_run.id }}
           name: analysis_comment.txt
           path: analysis_comment.txt
 
@@ -24,6 +25,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         with:
           workflow: analyze.yml
+          run_id: ${{ github.event.workflow_run.id }}
           name: pr_number
           path: pr_number
 

@@ -26,7 +26,7 @@ export function CustomPreset({
   onReset: () => void;
 }) {
   const lineCountRef = React.useRef<{[key: string]: number}>({});
-  const showMoreRef = React.useRef<HTMLButtonElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
   const {code} = useActiveCode();
   const [isExpanded, setIsExpanded] = React.useState(false);
@@ -47,7 +47,9 @@ export function CustomPreset({
 
   return (
     <>
-      <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
+      <div
+        className="shadow-lg dark:shadow-lg-dark rounded-lg"
+        ref={containerRef}>
         <NavigationBar showDownload={isSingleFile} onReset={onReset} />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
@@ -77,7 +79,6 @@ export function CustomPreset({
             />
             {isExpandable && (
               <button
-                ref={showMoreRef}
                 translate="yes"
                 className="flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
                 onClick={() => {
@@ -85,10 +86,10 @@ export function CustomPreset({
                   flushSync(() => {
                     setIsExpanded(nextIsExpanded);
                   });
-                  if (!nextIsExpanded && showMoreRef.current !== null) {
-                    scrollIntoView(showMoreRef.current, {
+                  if (!nextIsExpanded && containerRef.current !== null) {
+                    scrollIntoView(containerRef.current, {
                       scrollMode: 'if-needed',
-                      block: 'center',
+                      block: 'nearest',
                       inline: 'nearest',
                     });
                   }

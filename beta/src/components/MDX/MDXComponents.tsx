@@ -5,7 +5,7 @@
 import * as React from 'react';
 
 import {APIAnatomy, AnatomyStep} from './APIAnatomy';
-import CodeBlock from './CodeBlock';
+// import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
 import ConsoleBlock from './ConsoleBlock';
 import Convention from './Convention';
@@ -325,7 +325,7 @@ export const MDXComponents = {
   inlineCode: InlineCode,
   hr: Divider,
   a: Link,
-  code: CodeBlock,
+  // code: CodeBlock,
   // The code block renders <pre> so we just want a div here.
   pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,
   // Scary: dynamic(() => import('./Scary')),

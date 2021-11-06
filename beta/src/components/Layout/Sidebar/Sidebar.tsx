@@ -77,14 +77,14 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
         role="navigation"
         ref={menuRef}
         style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-        className="w-full h-screen lg:h-auto flex-grow pr-0 lg:pr-5 pt-6 pb-16 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
+        className="w-full h-screen lg:h-auto flex-grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
         {isMobileSidebar ? (
           <MobileNav />
         ) : (
           <SidebarRouteTree routeTree={routeTree} />
         )}
       </nav>
-      <div className="px-5 py-3 sticky bottom-0 lg:px-5 w-full hidden md:flex items-center bg-gradient-to-t from-wash dark:from-wash-dark">
+      <div className="px-5 py-3 sticky bottom-0 lg:px-5 w-full hidden lg:flex items-center bg-gradient-to-t from-wash dark:from-wash-dark">
         <Button
           className="w-full text-center justify-center"
           onClick={handleFeedback}>

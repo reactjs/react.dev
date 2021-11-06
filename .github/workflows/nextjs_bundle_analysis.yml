@@ -73,17 +73,19 @@ jobs:
       # entry in your package.json file.
       - name: Compare with base branch bundle
         if: success() && github.event.number
-        run: ls -laR beta/.next/analyze/base && npx -p nextjs-bundle-analysis compare
+        run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
+        working-directory: beta
 
       - name: Get comment body
         id: get-comment-body
         if: success() && github.event.number
         run: |
-          body=$(cat beta/.next/analyze/__bundle_analysis_comment.txt)
+          body=$(cat .next/analyze/__bundle_analysis_comment.txt)
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"
           body="${body//$'\r'/'%0D'}"
           echo ::set-output name=body::$body
+        working-directory: beta
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1

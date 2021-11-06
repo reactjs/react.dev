@@ -81,7 +81,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: analysis_comment.txt
-          path: .next/analyze/__bundle_analysis_comment.txt
+          path: beta/.next/analyze/__bundle_analysis_comment.txt
 
       # The actual commenting happens in the other action, matching the guidance in
       # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/

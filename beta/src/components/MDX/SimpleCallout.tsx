@@ -8,10 +8,9 @@ import {H3} from './Heading';
 
 interface SimpleCalloutProps {
   title: string;
-  children: React.ReactNode;
   className?: string;
 }
-function SimpleCallout({title, children, className}: SimpleCalloutProps) {
+function SimpleCallout({title, children, className}: React.FC<SimpleCalloutProps>) {
   return (
     <div
       className={cn(

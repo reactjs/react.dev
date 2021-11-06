@@ -44,14 +44,14 @@ const UL = (p: JSX.IntrinsicElements['ul']) => (
   <ul className="ml-6 my-3 list-disc" {...p} />
 );
 
-const Divider = () => (
+const Divider = (): React.FC => (
   <hr className="my-6 block border-b border-border dark:border-border-dark" />
 );
 
-const Gotcha = ({children}: {children: React.ReactNode}) => (
+const Gotcha = ({children}: React.FC) => (
   <ExpandableCallout type="gotcha">{children}</ExpandableCallout>
 );
-const Note = ({children}: {children: React.ReactNode}) => (
+const Note = ({children}: React.FC) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
 );
 
@@ -81,11 +81,10 @@ const Blockquote = ({
 function LearnMore({
   children,
   path,
-}: {
+}: React.FC<{
   title: string;
   path?: string;
-  children: any;
-}) {
+}>) {
   return (
     <>
       <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner justify-between items-center bg-card dark:bg-card-dark rounded-lg">
@@ -94,7 +93,7 @@ function LearnMore({
             Ready to learn this topic?
           </h2>
           {children}
-          {path ? (
+          {path && (
             <ButtonLink
               className="mt-1"
               label="Read More"
@@ -103,7 +102,7 @@ function LearnMore({
               Read More
               <IconNavArrow displayDirection="right" className="inline ml-1" />
             </ButtonLink>
-          ) : null}
+          )}
         </div>
       </section>
       <hr className="border-border dark:border-border-dark mb-14" />
@@ -111,7 +110,7 @@ function LearnMore({
   );
 }
 
-function Math({children}: {children: any}) {
+function Math({children}: React.FC) {
   return (
     <span
       style={{
@@ -123,7 +122,7 @@ function Math({children}: {children: any}) {
   );
 }
 
-function MathI({children}: {children: any}) {
+function MathI({children}: React.FC) {
   return (
     <span
       style={{
@@ -135,7 +134,7 @@ function MathI({children}: {children: any}) {
   );
 }
 
-function YouWillLearn({children}: {children: any}) {
+function YouWillLearn({children}: React.FC) {
   return <SimpleCallout title="You will learn">{children}</SimpleCallout>;
 }
 
@@ -173,15 +172,14 @@ function Illustration({
   alt,
   author,
   authorLink,
-  children,
-}: {
+}: React.FC<{
   caption: string;
   src: string;
   alt: string;
   author: string;
   authorLink: string;
   children: any;
-}) {
+}>) {
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
@@ -197,32 +195,39 @@ function Illustration({
   );
 }
 
+interface ImageInfo {
+  title:string; 
+  caption: string; 
+  alt:string; 
+  src:string; 
+  height: string
+}
+
 function IllustrationBlock({
   title,
   sequential,
   author,
   authorLink,
   children,
-}: {
+}: React.FC<{
   title: string;
   author: string;
   authorLink: string;
   sequential: boolean;
-  children: any;
-}) {
-  const imageInfos = React.Children.toArray(children).map(
-    (child: any) => child.props
+}>) {
+  const imageInfos: ImageInfo[] = React.Children.toArray(children).map(
+    (child: React.ReactNode) => child.props
   );
-  const images = imageInfos.map((info, index) => (
+  const images = imageInfos.map(({src, alt, height, caption}, index: number) => (
     <figure key={index}>
       <div className="flex-1 flex p-0 xl:px-6 justify-center items-center my-4">
-        <img src={info.src} alt={info.alt} height={info.height} />
+        <img src={src} alt={alt} height={height} />
       </div>
-      {info.caption ? (
+      {caption && (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
-          {info.caption}
+          {caption}
         </figcaption>
-      ) : null}
+      )}
     </figure>
   ));
   return (
@@ -241,7 +246,7 @@ function IllustrationBlock({
       ) : (
         <div className="mdx-illustration-block">{images}</div>
       )}
-      {author ? <AuthorCredit author={author} authorLink={authorLink} /> : null}
+      {author && <AuthorCredit author={author} authorLink={authorLink} />}
       <style jsx global>{`
         .mdx-illustration-block {
           display: flex;

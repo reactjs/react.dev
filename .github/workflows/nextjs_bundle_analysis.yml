@@ -23,6 +23,16 @@ jobs:
         with:
           working-directory: 'beta'
 
+      - name: Restore next build
+        uses: actions/cache@v2
+        id: restore-build-cache
+        env:
+          cache-name: cache-next-build
+        with:
+          path: beta/.next/cache
+          # change this if you prefer a more strict cache
+          key: ${{ runner.os }}-build-${{ env.cache-name }}
+
       - name: Build next.js app
         # change this if your site requires a custom build command
         run: ./node_modules/.bin/next build

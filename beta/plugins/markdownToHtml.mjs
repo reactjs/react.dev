@@ -1,3 +1,11 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
+import remarkGfm from 'remark-gfm';
+import { createRequire } from 'module';
+
+const require = createRequire(import.meta.url);
 const remark = require('remark');
 const externalLinks = require('remark-external-links'); // Add _target and rel to external links
 const customHeaders = require('./remark-header-custom-ids'); // Custom header id's for i18n
@@ -6,18 +14,16 @@ const unrwapImages = require('remark-unwrap-images'); // Removes <p> wrapper aro
 const smartyPants = require('./remark-smartypants'); // Cleans up typography
 const html = require('remark-html');
 
-module.exports = {
-  remarkPlugins: [
-    externalLinks,
-    customHeaders,
-    images,
-    unrwapImages,
-    smartyPants,
-  ],
-  markdownToHtml,
-};
+export const remarkPlugins = [
+  remarkGfm,
+  externalLinks,
+  customHeaders,
+  images,
+  unrwapImages,
+  smartyPants,
+];
 
-async function markdownToHtml(markdown) {
+export async function markdownToHtml(markdown) {
   const result = await remark()
     .use(externalLinks)
     .use(customHeaders)

@@ -2,11 +2,15 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-const path = require('path');
-const {remarkPlugins} = require('./plugins/markdownToHtml');
+import path from 'path';
+import {remarkPlugins} from './plugins/markdownToHtml.mjs';
+import { createRequire } from 'module';
+import {fileURLToPath} from 'node:url';
+
+const require = createRequire(import.meta.url);
 const redirects = require('./src/redirects.json');
 
-module.exports = {
+export default {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   experimental: {
     plugins: true,
@@ -55,7 +59,7 @@ module.exports = {
             remarkPlugins,
           },
         },
-        path.join(__dirname, './plugins/md-layout-loader'),
+        fileURLToPath(new URL('./plugins/md-layout-loader', import.meta.url))
       ],
     });
 

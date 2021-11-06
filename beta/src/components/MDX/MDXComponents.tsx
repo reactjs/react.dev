@@ -26,32 +26,32 @@ import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
 
-const P = (p: JSX.IntrinsicElements['p']) => (
+const P: React.FC<{p: JSX.IntrinsicElements['p']}> = (p) => (
   <p className="whitespace-pre-wrap my-4" {...p} />
 );
 
-const Strong = (strong: JSX.IntrinsicElements['strong']) => (
+const Strong: React.FC<{strong: JSX.IntrinsicElements['strong']}> = (strong) => (
   <strong className="font-bold" {...strong} />
 );
 
-const OL = (p: JSX.IntrinsicElements['ol']) => (
-  <ol className="ml-6 my-3 list-decimal" {...p} />
+const OL: React.FC<{ol: JSX.IntrinsicElements['ol']}> = (ol) => (
+  <ol className="ml-6 my-3 list-decimal" {...ol} />
 );
-const LI = (p: JSX.IntrinsicElements['li']) => (
-  <li className="leading-relaxed mb-1" {...p} />
+const LI: React.FC<{li: JSX.IntrinsicElements['li']}> = (li) => (
+  <li className="leading-relaxed mb-1" {...li} />
 );
-const UL = (p: JSX.IntrinsicElements['ul']) => (
-  <ul className="ml-6 my-3 list-disc" {...p} />
+const UL: React.FC<{ul: JSX.IntrinsicElements['ul']}> = (ul) => (
+  <ul className="ml-6 my-3 list-disc" {...ul} />
 );
 
-const Divider = (): React.FC => (
+const Divider: React.FC = () => (
   <hr className="my-6 block border-b border-border dark:border-border-dark" />
 );
 
-const Gotcha = ({children}: React.FC) => (
+const Gotcha: React.FC = ({children}) => (
   <ExpandableCallout type="gotcha">{children}</ExpandableCallout>
 );
-const Note = ({children}: React.FC) => (
+const Note: React.FC = ({children}) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
 );
 
@@ -78,13 +78,13 @@ const Blockquote = ({
   );
 };
 
-function LearnMore({
-  children,
-  path,
-}: React.FC<{
+const LearnMore: React.FC<{
   title: string;
   path?: string;
-}>) {
+}> = ({
+  children,
+  path,
+}) => {
   return (
     <>
       <section className="p-8 mt-16 mb-16 flex flex-row shadow-inner justify-between items-center bg-card dark:bg-card-dark rounded-lg">
@@ -110,7 +110,7 @@ function LearnMore({
   );
 }
 
-function Math({children}: React.FC) {
+const Math: React.FC = ({children}) => {
   return (
     <span
       style={{
@@ -122,7 +122,7 @@ function Math({children}: React.FC) {
   );
 }
 
-function MathI({children}: React.FC) {
+const MathI: React.FC = ({children}) => {
   return (
     <span
       style={{
@@ -134,7 +134,7 @@ function MathI({children}: React.FC) {
   );
 }
 
-function YouWillLearn({children}: React.FC) {
+const YouWillLearn: React.FC = ({children}) => {
   return <SimpleCallout title="You will learn">{children}</SimpleCallout>;
 }
 
@@ -166,20 +166,20 @@ function AuthorCredit({
   );
 }
 
-function Illustration({
-  caption,
-  src,
-  alt,
-  author,
-  authorLink,
-}: React.FC<{
+const Illustration: React.FC<{
   caption: string;
   src: string;
   alt: string;
   author: string;
   authorLink: string;
   children: any;
-}>) {
+}> = ({
+  caption,
+  src,
+  alt,
+  author,
+  authorLink,
+}) => {
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
@@ -203,20 +203,20 @@ interface ImageInfo {
   height: string
 }
 
-function IllustrationBlock({
+const IllustrationBlock: React.FC<{
+  title: string;
+  author: string;
+  authorLink: string;
+  sequential: boolean;
+}> = ({
   title,
   sequential,
   author,
   authorLink,
   children,
-}: React.FC<{
-  title: string;
-  author: string;
-  authorLink: string;
-  sequential: boolean;
-}>) {
+}) => {
   const imageInfos: ImageInfo[] = React.Children.toArray(children).map(
-    (child: React.ReactNode) => child.props
+    (child: any) => child.props
   );
   const images = imageInfos.map(({src, alt, height, caption}, index: number) => (
     <figure key={index}>
@@ -239,7 +239,7 @@ function IllustrationBlock({
       ) : null}
       {sequential ? (
         <ol className="mdx-illustration-block flex">
-          {images.map((x: any) => (
+          {images.map((x: React.ReactNode) => (
             <li className="flex-1">{x}</li>
           ))}
         </ol>

@@ -10,7 +10,7 @@ interface SimpleCalloutProps {
   title: string;
   className?: string;
 }
-function SimpleCallout({title, children, className}: React.FC<SimpleCalloutProps>) {
+const SimpleCallout: React.FC<SimpleCalloutProps> = ({title, children, className}) => {
   return (
     <div
       className={cn(

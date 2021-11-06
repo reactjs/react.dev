@@ -1,4 +1,4 @@
-name: "Next.js Bundle Analysis"
+name: "Bundle Analysis Upload"
 
 on:
   pull_request:
@@ -47,15 +47,16 @@ jobs:
       - name: Upload bundle
         uses: actions/upload-artifact@v2
         with:
-          name: bundle
           path: beta/.next/analyze/__bundle_analysis.json
+          name: bundle_analysis.json
 
       - name: Download base branch bundle stats
         uses: dawidd6/action-download-artifact@v2
         if: success() && github.event.number
         with:
-          workflow: nextjs_bundle_analysis.yml
+          workflow: bundle_analysis_upload.yml
           branch: ${{ github.event.pull_request.base.ref }}
+          name: bundle_analysis.json
           path: beta/.next/analyze/base
 
       # And here's the second place - this runs after we have both the current and
@@ -76,43 +77,11 @@ jobs:
         run: ls -laR .next/analyze/base && npx -p nextjs-bundle-analysis compare
         working-directory: beta
 
-      - name: Get comment body
-        id: get-comment-body
-        if: success() && github.event.number
-        run: |
-          body=$(cat .next/analyze/__bundle_analysis_comment.txt)
-          body="## Size Changes
-          <details>
-
-          ${body}
-          
-          </details>"
-          body="${body//'%'/'%25'}"
-          body="${body//$'\n'/'%0A'}"
-          body="${body//$'\r'/'%0D'}"
-          echo ::set-output name=body::$body
-        working-directory: beta
-
-      - name: Find Comment
-        uses: peter-evans/find-comment@v1
-        if: success() && github.event.number
-        id: fc
+      - name: Upload analysis comment
+        uses: actions/upload-artifact@v2
         with:
-          issue-number: ${{ github.event.number }}
-          body-includes: "<!-- __NEXTJS_BUNDLE -->"
+          name: analysis_comment.txt
+          path: .next/analyze/__bundle_analysis_comment.txt
 
-      - name: Create Comment
-        uses: peter-evans/create-or-update-comment@v1.4.4
-        if: success() && github.event.number && steps.fc.outputs.comment-id == 0
-        with:
-          issue-number: ${{ github.event.number }}
-          body: ${{ steps.get-comment-body.outputs.body }}
-
-      - name: Update Comment
-        uses: peter-evans/create-or-update-comment@v1.4.4
-        if: success() && github.event.number && steps.fc.outputs.comment-id != 0
-        with:
-          issue-number: ${{ github.event.number }}
-          body: ${{ steps.get-comment-body.outputs.body }}
-          comment-id: ${{ steps.fc.outputs.comment-id }}
-          edit-mode: replace
+      # The actual commenting happens in the other action, matching the guidance in
+      # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/

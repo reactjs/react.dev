@@ -1,4 +1,4 @@
-name: "Bundle Analysis Comment"
+name: Bundle Analysis Comment
 
 on:
   workflow_run:

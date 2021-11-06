@@ -1,4 +1,4 @@
-name: "Bundle Analysis Upload"
+name: Bundle Analysis Upload
 
 on:
   pull_request:

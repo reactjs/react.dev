@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {Button} from 'components/Button';
 import {H2} from 'components/MDX/Heading';
 import {Navigation} from './Navigation';
@@ -107,16 +107,16 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
   return (
     <div className="max-w-7xl mx-auto py-4 md:py-12">
       <div
-        className={cn(
+        className={
           'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-lg'
-        )}>
+        }>
         <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
           <H2
             id={isRecipes ? 'recipes' : 'challenges'}
-            className={cn(
-              'text-3xl mb-2 leading-10 relative',
-              isRecipes ? 'text-purple-50 dark:text-purple-30' : 'text-link'
-            )}>
+            className={cn('text-3xl mb-2 leading-10 relative', {
+              'text-purple-50 dark:text-purple-30': isRecipes,
+              'text-link': !isRecipes,
+            })}>
             {isRecipes ? 'Try out some recipes' : 'Try out some challenges'}
           </H2>
           {challenges.length > 1 && (
@@ -169,11 +169,10 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
 
             {nextChallenge && (
               <Button
-                className={cn(
-                  isRecipes
-                    ? 'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
-                    : 'bg-link dark:bg-link-dark'
-                )}
+                className={cn({
+                  'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50': isRecipes,
+                  'bg-link dark:bg-link-dark': !isRecipes,
+                })}
                 onClick={() => {
                   setActiveChallenge(nextChallenge.id);
                   setShowSolution(false);
@@ -201,9 +200,10 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
                 </Button>
                 {nextChallenge && (
                   <Button
-                    className={cn(
-                      isRecipes ? 'bg-purple-50' : 'bg-link dark:bg-link-dark'
-                    )}
+                    className={cn({
+                      'bg-purple-50': isRecipes,
+                      'bg-link dark:bg-link-dark': !isRecipes,
+                    })}
                     onClick={() => {
                       setActiveChallenge(nextChallenge.id);
                       setShowSolution(false);

@@ -4,7 +4,7 @@
 
 import NextLink from 'next/link';
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {removeFromLast} from 'utils/removeFromLast';
 import {IconNavArrow} from './Icon/IconNavArrow';
 import {RouteMeta} from './Layout/useRouteMeta';

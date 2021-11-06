@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {
   ClasserProvider,
   SandpackCodeViewer,
@@ -81,7 +81,9 @@ const CodeBlock = React.forwardRef(
         translate="no"
         className={cn(
           'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
-          !noMargin && 'my-8'
+          {
+            'my-8': !noMargin,
+          }
         )}>
         <SandpackProvider
           customSetup={{

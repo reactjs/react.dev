@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import cx from 'classnames';
+import cn from 'clsx';
 import * as React from 'react';
 import {useTocHighlight} from './useTocHighlight';
 
@@ -40,22 +40,20 @@ export function Toc({
               return (
                 <li
                   key={`heading-${h.url}-${i}`}
-                  className={cx(
-                    'text-sm px-2 py-1 rounded-l-lg',
-                    selectedIndex === i
-                      ? 'bg-highlight dark:bg-highlight-dark'
-                      : null,
-                    {
-                      'pl-4': h?.depth === 3,
-                      hidden: h.depth && h.depth > 3,
-                    }
-                  )}>
+                  className={cn('text-sm px-2 py-1 rounded-l-lg', {
+                    'bg-highlight dark:bg-highlight-dark': selectedIndex === i,
+                    'pl-4': h?.depth === 3,
+                    hidden: h.depth && h.depth > 3,
+                  })}>
                   <a
-                    className={cx(
-                      selectedIndex === i
-                        ? 'text-link dark:text-link-dark font-bold'
-                        : 'text-secondary dark:text-secondary-dark',
-                      'block hover:text-link dark:hover:text-link-dark'
+                    className={cn(
+                      'block hover:text-link dark:hover:text-link-dark',
+                      {
+                        'text-link dark:text-link-dark font-bold':
+                          selectedIndex === i,
+                        'text-secondary dark:text-secondary-dark':
+                          selectedIndex !== i,
+                      }
                     )}
                     href={h.url}>
                     {h.text}

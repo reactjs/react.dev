@@ -3,7 +3,7 @@
  */
 
 import React, {createRef} from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {ChallengeContents} from './Challenges';
 const debounce = require('debounce');
@@ -93,12 +93,12 @@ export function Navigation({
             <button
               className={cn(
                 'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap overflow-ellipsis',
-                isRecipes &&
-                  activeChallenge === id &&
-                  'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30',
-                !isRecipes &&
-                  activeChallenge === id &&
-                  'text-link border-link hover:text-link dark:text-link-dark dark:border-link-dark dark:hover:text-link-dark'
+                {
+                  'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30':
+                    isRecipes && activeChallenge === id,
+                  'text-link border-link hover:text-link dark:text-link-dark dark:border-link-dark dark:hover:text-link-dark':
+                    !isRecipes && activeChallenge === id,
+                }
               )}
               onClick={() => handleSelectNav(id)}
               key={`button-${id}`}

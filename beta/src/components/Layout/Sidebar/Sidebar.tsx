@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {MenuContext} from 'components/useMenu';
 import {useMediaQuery} from '../useMediaQuery';
@@ -63,7 +63,10 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
     <aside
       className={cn(
         `lg:flex-grow lg:flex flex-col w-full pt-4 pb-8 lg:pb-0 lg:max-w-xs fixed lg:sticky bg-wash dark:bg-wash-dark z-10`,
-        isOpen ? 'block z-40' : 'hidden lg:block'
+        {
+          'block z-40': isOpen,
+          'hidden lg:block': !isOpen,
+        }
       )}
       aria-hidden={isHidden ? 'true' : 'false'}
       style={{

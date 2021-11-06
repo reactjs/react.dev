@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import {useCodeSandboxLink} from '@codesandbox/sandpack-react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {IconNewPage} from '../../Icon/IconNewPage';
 
 export const OpenInCodeSandboxButton = ({className}: {className?: string}) => {

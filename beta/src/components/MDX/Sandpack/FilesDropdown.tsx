@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {IconChevron} from '../../Icon/IconChevron';
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {Listbox} from '@headlessui/react';
@@ -21,9 +21,9 @@ export function FilesDropdown() {
       <Listbox.Button>
         {({open}) => (
           <span
-            className={cn(
+            className={
               'h-full py-2 px-1 mt-px -mb-px flex border-b-2 text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate'
-            )}
+            }
             style={{maxWidth: '160px'}}>
             {getFileName(activePath)}
             <span className="ml-2">
@@ -37,10 +37,9 @@ export function FilesDropdown() {
           <Listbox.Option
             key={filePath}
             value={filePath}
-            className={cn(
-              'text-md mx-2 my-4 cursor-pointer',
-              filePath === activePath && 'text-link dark:text-link-dark'
-            )}>
+            className={cn('text-md mx-2 my-4 cursor-pointer', {
+              'text-link dark:text-link-dark': filePath === activePath,
+            })}>
             {getFileName(filePath)}
           </Listbox.Option>
         ))}

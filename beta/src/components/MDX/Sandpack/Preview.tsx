@@ -5,7 +5,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
-import cn from 'classnames';
+import cn from 'clsx';
 
 import {Error} from './Error';
 import {computeViewportSize, generateRandomId} from './utils';
@@ -135,9 +135,9 @@ export function Preview({
         ...overrideStyle,
       }}>
       <div
-        className={cn(
+        className={
           'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none'
-        )}
+        }
         style={{overflow}}>
         <div
           style={{

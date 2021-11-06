@@ -84,13 +84,13 @@ jobs:
           path: beta/.next/analyze/__bundle_analysis_comment.txt
 
       - name: Save PR number
-        run: echo ${{ github.event.number }} > ./pr-number
+        run: echo ${{ github.event.number }} > ./pr_number
 
       - name: Upload PR number
         uses: actions/upload-artifact@v2
         with:
-          name: pr-number
-          path: ./pr-number
+          name: pr_number
+          path: ./pr_number
 
       # The actual commenting happens in the other action, matching the guidance in
       # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/

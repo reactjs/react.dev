@@ -63,11 +63,11 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
     <aside
       className={cn(
         `lg:flex-grow lg:flex flex-col w-full pt-4 pb-8 lg:pb-0 lg:max-w-xs fixed lg:sticky bg-wash dark:bg-wash-dark z-10`,
-        isOpen ? 'block z-40' : 'hidden lg:block'
+        isOpen ? 'block z-40' : 'hidden lg:block top-0'
       )}
       aria-hidden={isHidden ? 'true' : 'false'}
+      // seems like isHidden is undefined always
       style={{
-        top: 0,
         visibility: isHidden ? 'hidden' : undefined,
       }}>
       <div className="px-5">

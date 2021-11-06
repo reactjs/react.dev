@@ -31,8 +31,7 @@ function Hit({hit, children}: any) {
 function Kbd(props: {children?: React.ReactNode}) {
   return (
     <kbd
-      className="border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded"
-      style={{width: '2.25em', height: '2.25em'}}
+      className="h-6 w-6 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded"
       {...props}
     />
   );

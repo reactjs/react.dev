@@ -185,7 +185,7 @@ function Illustration({
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img src={src} alt={alt} style={{maxHeight: 300}} />
+        <img src={src} alt={alt} className='max-h-illustration'/>
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
             {caption}

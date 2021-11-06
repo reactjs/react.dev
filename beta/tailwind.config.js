@@ -32,8 +32,16 @@ module.exports = {
       none: 'none',
     },
     extend: {
+      width:{
+        inherit : 'inherit'
+      },
+      maxHeight:{
+        illustration : '300px'
+      },
       maxWidth: {
-        xs: '21rem'
+        xs: '21rem',
+        inherit : 'inherit',
+        file : '160px'
       },
       outline: {
         blue: ['1px auto ' + colors.link, '3px'],

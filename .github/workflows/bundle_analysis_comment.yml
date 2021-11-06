@@ -1,0 +1,63 @@
+name: "Bundle Analysis Comment"
+
+on:
+  workflow_run:
+    workflows: ["Bundle Analysis Upload"]
+    types:
+      - completed
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Download base branch bundle stats
+        uses: dawidd6/action-download-artifact@v2
+        if: success() && github.event.number
+        with:
+          workflow: bundle_analysis_upload.yml
+          name: analysis_comment.txt
+          path: analysis_comment.txt
+
+      - name: Get comment body
+        id: get-comment-body
+        if: success() && github.event.number
+        run: |
+          body=$(cat analysis_comment.txt)
+          body="## Size Changes
+          <details>
+
+          ${body}
+          
+          </details>"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo ::set-output name=body::$body
+        working-directory: beta
+
+      - name: Find Comment
+        uses: peter-evans/find-comment@v1
+        if: success() && github.event.number
+        id: fc
+        with:
+          issue-number: ${{ github.event.number }}
+          body-includes: "<!-- __NEXTJS_BUNDLE -->"
+
+      - name: Create Comment
+        uses: peter-evans/create-or-update-comment@v1.4.4
+        if: success() && github.event.number && steps.fc.outputs.comment-id == 0
+        with:
+          issue-number: ${{ github.event.number }}
+          body: ${{ steps.get-comment-body.outputs.body }}
+
+      - name: Update Comment
+        uses: peter-evans/create-or-update-comment@v1.4.4
+        if: success() && github.event.number && steps.fc.outputs.comment-id != 0
+        with:
+          issue-number: ${{ github.event.number }}
+          body: ${{ steps.get-comment-body.outputs.body }}
+          comment-id: ${{ steps.fc.outputs.comment-id }}
+          edit-mode: replace

@@ -144,6 +144,10 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   overflow: auto !important;
   padding: 18px 0 !important;
 }
+.sp-cm.sp-pristine .cm-gutters {
+  background-color: var(--sp-colors-bg-default);
+  z-index: 1;
+}
 .sp-layout {
   overflow: initial !important;
   border: 0px solid transparent !important;

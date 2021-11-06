@@ -10,7 +10,7 @@ export const CustomTheme = {
     defaultText: 'inherit',
     inactiveText: 'inherit',
     activeBackground: 'inherit',
-    defaultBackground: 'var(--sp-colors-bg-default)',
+    defaultBackground: 'inherit',
     inputBackground: 'inherit',
     accent: 'inherit',
     errorBackground: 'inherit',

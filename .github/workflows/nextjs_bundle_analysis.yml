@@ -7,11 +7,6 @@ on:
       - main # change this if your default branch is named differently
   workflow_dispatch:
 
-defaults:
-  run:
-    # change this if your nextjs app does not live at the root of the repo
-    working-directory: beta
-
 jobs:
   analyze:
     runs-on: ubuntu-latest
@@ -25,10 +20,11 @@ jobs:
         with:
           node-version: "14.x"
 
+      - name: Use beta
+        run: cd beta
+
       - name: Install dependencies
         uses: bahmutov/npm-install@v1.6.0
-        with:
-          working-directory: beta
 
       - name: Restore next build
         uses: actions/cache@v2
@@ -36,7 +32,7 @@ jobs:
         env:
           cache-name: cache-next-build
         with:
-          path: beta/.next/cache
+          path: .next/cache
           # change this if you prefer a more strict cache
           key: ${{ runner.os }}-build-${{ env.cache-name }}
 
@@ -53,7 +49,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: bundle
-          path: beta/.next/analyze/__bundle_analysis.json
+          path: .next/analyze/__bundle_analysis.json
 
       - name: Download base branch bundle stats
         uses: dawidd6/action-download-artifact@v2
@@ -61,7 +57,7 @@ jobs:
         with:
           workflow: nextjs_bundle_analysis.yml
           branch: ${{ github.event.pull_request.base.ref }}
-          path: beta/.next/analyze/base
+          path: .next/analyze/base
 
       # And here's the second place - this runs after we have both the current and
       # base branch bundle stats, and will compare them to determine what changed.

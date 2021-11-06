@@ -7,8 +7,11 @@ on:
       - completed
 
 jobs:
-  comment:
+  upload:
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: Download base branch bundle stats
         uses: dawidd6/action-download-artifact@v2

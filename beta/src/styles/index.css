@@ -105,6 +105,55 @@
     from { opacity: 0.5; }
     to   { opacity: 1; }
   }
+
+  /*
+   * Hopefully when scrollbar-color lands everywhere,
+   * (and not just in FF), we'll be able to keep just this.
+   */
+  html .no-bg-scrollbar {
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+  html.dark .no-bg-scrollbar {
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  /*
+   * Until then, we have ... this.
+   * If you're changing this, make sure you've tested:
+   * - Different browsers (Chrome, Safari, FF)
+   * - Dark and light modes
+   * - System scrollbar settings ("always on" vs "when scrolling")
+   * - Switching between modes should never jump width
+   * - When you interact with a sidebar, it should always be visible
+   * - For each combination, test overflowing and non-overflowing sidebar
+   * I've spent hours picking these so I expect no less diligence from you.
+   */
+  html .no-bg-scrollbar::-webkit-scrollbar,
+  html .no-bg-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  html .no-bg-scrollbar:hover::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:focus::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:focus-within::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:active::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 4px solid transparent;
+    background-clip: content-box;
+    border-radius: 10px;
+  }
+  html .no-bg-scrollbar::-webkit-scrollbar-thumb:hover,
+  html .no-bg-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+  }
+  html.dark .no-bg-scrollbar:hover::-webkit-scrollbar-thumb,
+  html.dark .no-bg-scrollbar:focus::-webkit-scrollbar-thumb,
+  html.dark .no-bg-scrollbar:focus-within::-webkit-scrollbar-thumb,
+  html.dark .no-bg-scrollbar:active::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  html.dark .no-bg-scrollbar::-webkit-scrollbar-thumb:hover,
+  html.dark .no-bg-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+  }
 }
 
 #_hj_feedback_container > div > button:not([aria-label="Close"]) {

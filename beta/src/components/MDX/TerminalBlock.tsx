@@ -43,7 +43,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
           <IconTerminal className="inline-flex mr-2 self-center" /> Terminal
         </div>
       </div>
-      <div className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code">
+      <div className="px-8 pt-4 pb-6 text-primary-dark dark:text-primary-dark font-mono text-code whitespace-pre">
         <LevelText type={level} />
         {message}
       </div>

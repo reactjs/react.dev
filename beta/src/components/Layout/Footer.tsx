@@ -102,8 +102,8 @@ export function Footer() {
               <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
                 Code of Conduct
               </FooterLink>
-              <FooterLink href="/community/acknowledgements">
-                Acknowledgements
+              <FooterLink href="/community/acknowledgments">
+                Acknowledgments
               </FooterLink>
               <FooterLink href="/community/meet-the-team">
                 Meet the Team
@@ -114,7 +114,7 @@ export function Footer() {
               <FooterLink isHeader={true}>More</FooterLink>
               {/* <FooterLink href="/">Tutorial</FooterLink> */}
               {/* <FooterLink href="/">Blog</FooterLink> */}
-              {/* <FooterLink href="/">Acknowledgements</FooterLink> */}
+              {/* <FooterLink href="/">Acknowledgments</FooterLink> */}
               <FooterLink href="https://reactnative.dev/">
                 React Native
               </FooterLink>

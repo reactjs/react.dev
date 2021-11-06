@@ -147,7 +147,7 @@ import {createRenderer} from 'react-test-renderer/shallow';
 
 ---
 
-## Acknowledgements {#acknowledgements}
+## Acknowledgments {#acknowledgments}
 
 A special thank you to these folks for transferring ownership of npm package names:
 

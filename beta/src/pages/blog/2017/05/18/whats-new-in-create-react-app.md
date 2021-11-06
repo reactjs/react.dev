@@ -96,7 +96,7 @@ You can only fit so much in a blog post, but there are other long-requested feat
 
 You can read the full changelog and the migration guide in the [v1.0.0 release notes](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.0).
 
-### Acknowledgements {#acknowledgements}
+### Acknowledgments {#acknowledgments}
 
 This release is a result of months of work from many people in the React community. It is focused on improving both developer and end user experience, as we believe they are complementary and go hand in hand.
 

@@ -379,7 +379,7 @@ Did this post inspire you to try some of these ideas in your own projects? We ce
 
 You can find the related issues by the [build infrastructure label](https://github.com/facebook/react/labels/Component%3A%20Build%20Infrastructure). These are often great first contribution opportunities!
 
-## Acknowledgements {#acknowledgements}
+## Acknowledgments {#acknowledgments}
 
 We would like to thank:
 

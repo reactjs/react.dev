@@ -88,5 +88,4 @@ Seth started programming as a kid growing up in Tucson, AZ. After school, he was
 
 ## Past contributors
 
-You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/community/acknowledgements) page.
-
+You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgments](/community/acknowledgments) page.

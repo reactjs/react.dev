@@ -83,7 +83,9 @@ jobs:
           body=$(cat .next/analyze/__bundle_analysis_comment.txt)
           body="## Size Changes
           <details>
+
           ${body}
+          
           </details>"
           body="${body//'%'/'%25'}"
           body="${body//$'\n'/'%0A'}"

@@ -18,7 +18,7 @@ jobs:
           node-version: 12.x
 
       - name: Install deps and build (with cache)
-        uses: bahmutov/npm-install@v1
+        uses: bahmutov/npm-install@v1.6.0
 
       - name: Lint codebase
         run: yarn ci-check

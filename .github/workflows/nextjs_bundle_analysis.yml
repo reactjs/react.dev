@@ -12,29 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          path: 'beta'
 
       - name: Set up node
         uses: actions/setup-node@v1
         with:
           node-version: "14.x"
 
-      - name: Use beta
-        run: cd beta
-
       - name: Install dependencies
         uses: bahmutov/npm-install@v1.6.0
-
-      - name: Restore next build
-        uses: actions/cache@v2
-        id: restore-build-cache
-        env:
-          cache-name: cache-next-build
         with:
-          path: .next/cache
-          # change this if you prefer a more strict cache
-          key: ${{ runner.os }}-build-${{ env.cache-name }}
+          working-directory: 'beta'
 
       - name: Build next.js app
         # change this if your site requires a custom build command

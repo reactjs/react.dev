@@ -33,8 +33,8 @@ jobs:
         id: get-comment-body
         if: success()
         run: |
-          pr_number=$(cat pr_number/pr_number)
-          body=$(cat analysis_comment.txt/__bundle_analysis_comment.txt)
+          pr_number=$(cat pr_number)
+          body=$(cat analysis_comment.txt)
           body="## Size Changes
           <details>
 
@@ -46,7 +46,6 @@ jobs:
           body="${body//$'\r'/'%0D'}"
           echo ::set-output name=body::$body
           echo ::set-output name=pr-number::$pr_number
-        working-directory: beta
 
       - name: Find Comment
         uses: peter-evans/find-comment@v1

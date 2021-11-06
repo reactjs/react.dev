@@ -57,7 +57,7 @@ jobs:
           workflow: bundle_analysis_upload.yml
           branch: ${{ github.event.pull_request.base.ref }}
           name: bundle_analysis.json
-          path: beta/.next/analyze/base
+          path: beta/.next/analyze/base/bundle
 
       # And here's the second place - this runs after we have both the current and
       # base branch bundle stats, and will compare them to determine what changed.

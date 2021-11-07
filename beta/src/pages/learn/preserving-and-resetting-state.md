@@ -1,5 +1,6 @@
 ---
 title: Preserving and Resetting State
+layout: Learn
 ---
 
 <Intro>

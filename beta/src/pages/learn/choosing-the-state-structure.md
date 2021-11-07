@@ -1,5 +1,6 @@
 ---
 title: Choosing the State Structure
+layout: Learn
 ---
 
 <Intro>

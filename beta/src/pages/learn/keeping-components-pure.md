@@ -1,5 +1,6 @@
 ---
 title: Keeping Components Pure
+layout: Learn
 ---
 
 <Intro>

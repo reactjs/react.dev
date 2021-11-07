@@ -1,5 +1,6 @@
 ---
 title: Editor Setup
+layout: Learn
 ---
 
 <Intro>

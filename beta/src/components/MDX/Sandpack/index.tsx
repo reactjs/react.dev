@@ -64,6 +64,7 @@ ul {
 `.trim();
 
 function Sandpack(props: SandpackProps) {
+  return <pre>lol</pre>
   let {children, setup, autorun = true} = props;
   let [resetKey, setResetKey] = React.useState(0);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];

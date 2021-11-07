@@ -76,7 +76,7 @@ export function Navigation({
   }, [containerRef, challengesNavRef, scrollPos]);
 
   React.useEffect(() => {
-    handleResize();
+    //handleResize();
     window.addEventListener('resize', debounce(handleResize, 200));
     return () => {
       window.removeEventListener('resize', handleResize);

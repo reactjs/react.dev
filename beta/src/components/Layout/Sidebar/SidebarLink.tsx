@@ -38,11 +38,11 @@ export function SidebarLink({
 
   React.useEffect(() => {
     if (ref && ref.current && !!selected && !isMobile) {
-      scrollIntoView(ref.current, {
-        scrollMode: 'if-needed',
-        block: 'center',
-        inline: 'nearest',
-      });
+      // scrollIntoView(ref.current, {
+      //   scrollMode: 'if-needed',
+      //   block: 'center',
+      //   inline: 'nearest',
+      // });
     }
   }, [ref, selected, isMobile]);
 

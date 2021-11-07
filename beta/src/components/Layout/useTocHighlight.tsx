@@ -28,6 +28,7 @@ export function useTocHighlight() {
   const timeoutRef = React.useRef<number | null>(null);
 
   React.useEffect(() => {
+    return;
     function updateActiveLink() {
       const pageHeight = document.body.scrollHeight;
       const scrollPosition = window.scrollY + window.innerHeight;

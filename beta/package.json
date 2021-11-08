@@ -89,5 +89,10 @@
   },
   "engines": {
     "node": ">=12.x"
+  },
+  "nextBundleAnalysis": {
+    "budget": null,
+    "budgetPercentIncreaseRed": 10,
+    "showDetails": true
   }
 }

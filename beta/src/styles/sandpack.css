@@ -140,11 +140,11 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   font-size: 16px !important;
   line-height: 24px !important;
 }
-.sp-cm.sp-pristine .cm-scroller, .sp-cm.sp-dirty .cm-scroller {
+.sp-cm .cm-scroller {
   overflow: auto !important;
   padding: 18px 0 !important;
 }
-.sp-cm.sp-pristine .cm-gutters, .sp-cm.sp-dirty .cm-gutters {
+.sp-cm .cm-gutters {
   background-color: var(--sp-colors-bg-default);
   z-index: 1;
 }

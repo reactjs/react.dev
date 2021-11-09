@@ -185,7 +185,7 @@ function Illustration({
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img src={src} alt={alt} style={{maxHeight: 300}} />
+        <img src={src} alt={alt} style={{maxHeight: 300}} className="bg-white rounded-lg" />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
             {caption}
@@ -215,7 +215,7 @@ function IllustrationBlock({
   );
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
-      <div className="flex-1 flex p-0 xl:px-6 justify-center items-center my-4">
+      <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
         <img src={info.src} alt={info.alt} height={info.height} />
       </div>
       {info.caption ? (

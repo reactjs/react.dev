@@ -298,6 +298,7 @@ function IllustrationBlock({
           }
           .mdx-illustration-block img {
             max-height: 200px;
+            width: auto;
           }
           .mdx-illustration-block li:after {
             top: 0;

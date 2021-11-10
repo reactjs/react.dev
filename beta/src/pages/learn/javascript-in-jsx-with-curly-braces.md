@@ -481,7 +481,7 @@ To check that your fix worked, try changing the value of `imageSize` to `'b'`. T
 You can write it as `src={baseUrl + person.imageId + person.imageSize + '.jpg'}`.
 
 1. `{` opens the JavaScript expression
-2. `baseUrl + person.imageId + person.pictureSize + '.jpg'` produces the correct URL string
+2. `baseUrl + person.imageId + person.imageSize + '.jpg'` produces the correct URL string
 3. `}` closes the JavaScript expression
 
 <Sandpack>

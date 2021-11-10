@@ -12,11 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### < React Global > by Geekle {#react-global-2021}
-November 3-4, 2021 - remote event
-
-[Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) 
-
 ### React India 2021 {#react-india-2021}
 November 12-13, 2021 - remote event
 
@@ -26,6 +21,11 @@ November 12-13, 2021 - remote event
 December 8, 2021 - remote event (replay event on December 9)
 
 [Website](https://conf.reactjs.org/)
+
+### ReactEurope 2021 {#reacteurope-2021}
+December 9-10, 2021 - remote event
+
+[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### ReactNext 2021 {#react-next-2021}
 December 15, 2021. Tel-Aviv, Israel
@@ -48,6 +48,11 @@ June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interacti
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ## Past Conferences {#past-conferences}
+
+### < React Global > by Geekle {#react-global-2021}
+November 3-4, 2021 - remote event
+
+[Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) 
 
 ### React Advanced 2021 {#react-advanced-2021}
 October 22-23, 2021. In-person in London, UK + remote (hybrid event)

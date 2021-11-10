@@ -12,7 +12,7 @@ As your application grows, it helps to be more intentional about how your state 
 
 * [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
 * [How to structure state well](/learn/choosing-the-state-structure)
-* [How "lift state up" to share it between components](/learn/sharing-state-between-components)
+* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
 * [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
 * [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
 * [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)

@@ -23,14 +23,14 @@ As usual, you can get install the `react` package via npm or download a browser 
   Dev build with warnings: <https://fb.me/react-dom-15.0.1.js>  
   Minified build for production: <https://fb.me/react-dom-15.0.1.min.js>
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Restore `React.__spread` API to unbreak code compiled with some tools making use of this undocumented API. It is now officially deprecated.  
   <small>[@zpao](https://github.com/zpao) in [#6444](https://github.com/facebook/react/pull/6444)</small>
 
-### ReactDOM {#reactdom}
+### ReactDOM {/*reactdom*/}
 
 - Fixed issue resulting in loss of cursor position in controlled inputs.  
   <small>[@sophiebits](https://github.com/sophiebits) in [#6449](https://github.com/facebook/react/pull/6449)</small>

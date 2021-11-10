@@ -8,7 +8,7 @@ React v0.13 is right around the corner and so we wanted to discuss some upcoming
 
 If you use React in an idiomatic way, chances are, you’ll never see any of these warnings. In that case, you can skip this blog post. You can just enjoy the benefits! These changes will unlock simplified semantics, better error messages, stack traces and compiler optimizations!
 
-## Immutable Props {#immutable-props}
+## Immutable Props {/*immutable-props*/}
 
 In React 0.12, the props object was mutable. It allows you to do patterns like this:
 
@@ -22,7 +22,7 @@ if (shouldUseFoo) {
 
 The problem is that we don’t have a convenient way to tell when you’re done mutating.
 
-### Problem: Mutating Props You Don’t Own {#problem-mutating-props-you-dont-own}
+### Problem: Mutating Props You Don’t Own {/*problem-mutating-props-you-dont-own*/}
 
 If you mutate something, you destroy the original value. Therefore, there is nothing to diff against. Imagine something like this:
 
@@ -40,13 +40,13 @@ Additionally, if this element is reused in other places or used to switch back a
 
 It has always been broken to mutate the props of something passed into you. The problem is that we can’t warn you about this special case if you accidentally do this.
 
-### Problem: Too Late Validation {#problem-too-late-validation}
+### Problem: Too Late Validation {/*problem-too-late-validation*/}
 
 In React 0.12, we do PropType validation very deep inside React during mounting. This means that by the time you get an error, the debugger stack is long gone. This makes it difficult to find complex issues during debugging. We have to do this since it is fairly common for extra props to be added between the call to React.createElement and the mount time. So the type is incomplete until then.
 
 The static analysis in Flow is also impaired by this. There is no convenient place in the code where Flow can determine that the props are finalized.
 
-### Solution: Immutable Props {#solution-immutable-props}
+### Solution: Immutable Props {/*solution-immutable-props*/}
 
 Therefore, we would like to be able to freeze the element.props object so that it is immediately immutable at the JSX callsite (or createElement). In React 0.13 we will start warning you if you mutate `element.props` after this point.
 
@@ -79,7 +79,7 @@ return <Foo nestedObject={this.state.myModel} />;
 
 In this case it's still ok to mutate the myModel object in state. We recommend that you use fully immutable models. E.g. by using immutable-js. However, we realize that mutable models are still convenient in many cases. Therefore we're only considering shallow freezing the props object that belongs to the ReactElement itself. Not nested objects.
 
-### Solution: Early PropType Warnings {#solution-early-proptype-warnings}
+### Solution: Early PropType Warnings {/*solution-early-proptype-warnings*/}
 
 We will also start warning you for PropTypes at the JSX or createElement callsite. This will help debugging as you’ll have the stack trace right there. Similarly, Flow also validates PropTypes at this callsite.
 
@@ -90,7 +90,7 @@ var element1 = <Foo />; // extra prop is optional
 var element2 = React.addons.cloneWithProps(element1, {extra: 'prop'});
 ```
 
-## Owner {#owner}
+## Owner {/*owner*/}
 
 In React each child has both a "parent" and an “owner”. The owner is the component that created a ReactElement. I.e. the render method which contains the JSX or createElement callsite.
 
@@ -110,7 +110,7 @@ In this example, the owner of the `span` is `Foo` but the parent is the `div`.
 
 There is also an undocumented feature called "context" that also relies on the concept of an “owner” to pass hidden props down the tree.
 
-### Problem: The Semantics are Opaque and Confusing {#problem-the-semantics-are-opaque-and-confusing}
+### Problem: The Semantics are Opaque and Confusing {/*problem-the-semantics-are-opaque-and-confusing*/}
 
 The problem is that these are hidden artifacts attached to the ReactElement. In fact, you probably didn’t even know about it. It silently changes semantics. Take this for example:
 
@@ -125,7 +125,7 @@ class Component {
 
 These two inputs have different owners, therefore React will not keep its state when the conditional switches. There is nothing in the code to indicate that. Similarly, if you use `React.addons.cloneWithProps`, the owner changes.
 
-### Problem: Timing Matters {#problem-timing-matters}
+### Problem: Timing Matters {/*problem-timing-matters*/}
 
 The owner is tracked by the currently executing stack. This means that the semantics of a ReactElement varies depending on when it is executed. Take this example:
 
@@ -144,25 +144,25 @@ class B {
 
 The owner of the `span` is actually `B`, not `A` because of the timing of the callback. This all adds complexity and suffers from similar problems as mutation.
 
-### Problem: It Couples JSX to React {#problem-it-couples-jsx-to-react}
+### Problem: It Couples JSX to React {/*problem-it-couples-jsx-to-react*/}
 
 Have you wondered why JSX depends on React? Couldn’t the transpiler have that built-in to its runtime? The reason you need to have `React.createElement` in scope is because we depend on internal state of React to capture the current "owner". Without this, you wouldn’t need to have React in scope.
 
-### Solution: Make Context Parent-Based Instead of Owner-Based {#solution-make-context-parent-based-instead-of-owner-based}
+### Solution: Make Context Parent-Based Instead of Owner-Based {/*solution-make-context-parent-based-instead-of-owner-based*/}
 
 The first thing we’re doing is warning you if you’re using the "owner" feature in a way that relies on it propagating through owners. Instead, we’re planning on propagating it through parents to its children. In almost all cases, this shouldn’t matter. In fact, parent-based contexts is simply a superset.
 
-### Solution: Remove the Semantic Implications of Owner {#solution-remove-the-semantic-implications-of-owner}
+### Solution: Remove the Semantic Implications of Owner {/*solution-remove-the-semantic-implications-of-owner*/}
 
 It turns out that there are very few cases where owners are actually important part of state-semantics. As a precaution, we’ll warn you if it turns out that the owner is important to determine state. In almost every case this shouldn’t matter. Unless you’re doing some weird optimizations, you shouldn’t see this warning.
 
-### Pending: Change the refs Semantics {#pending-change-the-refs-semantics}
+### Pending: Change the refs Semantics {/*pending-change-the-refs-semantics*/}
 
 Refs are still based on "owner". We haven’t fully solved this special case just yet.
 
 In 0.13 we introduced a new callback-refs API that doesn’t suffer from these problems but we’ll keep on a nice declarative alternative to the current semantics for refs. As always, we won’t deprecate something until we’re sure that you’ll have a nice upgrade path.
 
-## Keyed Objects as Maps {#keyed-objects-as-maps}
+## Keyed Objects as Maps {/*keyed-objects-as-maps*/}
 
 In React 0.12, and earlier, you could use keyed objects to provide an external key to an element or a set. This pattern isn’t actually widely used. It shouldn’t be an issue for most of you.
 
@@ -170,11 +170,11 @@ In React 0.12, and earlier, you could use keyed objects to provide an external k
 <div>{{a: <span />, b: <span />}}</div>
 ```
 
-### Problem: Relies on Enumeration Order {#problem-relies-on-enumeration-order}
+### Problem: Relies on Enumeration Order {/*problem-relies-on-enumeration-order*/}
 
 The problem with this pattern is that it relies on enumeration order of objects. This is technically unspecified, even though implementations now agree to use insertion order. Except for the special case when numeric keys are used.
 
-### Problem: Using Objects as Maps is Bad {#problem-using-objects-as-maps-is-bad}
+### Problem: Using Objects as Maps is Bad {/*problem-using-objects-as-maps-is-bad*/}
 
 It is generally accepted that using objects as maps screw up type systems, VM optimizations, compilers etc. It is much better to use a dedicated data structure like ES6 Maps.
 
@@ -188,13 +188,13 @@ return <div>{children}</div>;
 
 Imagine if `item.title === '__proto__'` for example.
 
-### Problem: Can’t be Differentiated from Arbitrary Objects {#problem-cant-be-differentiated-from-arbitrary-objects}
+### Problem: Can’t be Differentiated from Arbitrary Objects {/*problem-cant-be-differentiated-from-arbitrary-objects*/}
 
 Since these objects can have any keys with almost any value, we can’t differentiate them from a mistake. If you put some random object, we will try our best to traverse it and render it, instead of failing with a helpful warning. In fact, this is one of the few places where you can accidentally get an infinite loop in React.
 
 To differentiate ReactElements from one of these objects, we have to tag them with `_isReactElement`. This is another issue preventing us from inlining ReactElements as simple object literals.
 
-### Solution: Just use an Array and key={…} {#solution-just-use-an-array-and-key}
+### Solution: Just use an Array and key={…} {/*solution-just-use-an-array-and-key*/}
 
 Most of the time you can just use an array with keyed ReactElements.
 
@@ -203,7 +203,7 @@ var children = items.map((item) => <span key={item.title} />);
 <div>{children}</div>;
 ```
 
-### Solution: React.addons.createFragment {#solution-reactaddonscreatefragment}
+### Solution: React.addons.createFragment {/*solution-reactaddonscreatefragment*/}
 
 However, this is not always possible if you’re trying to add a prefix key to an unknown set (e.g. this.props.children). It is also not always the easiest upgrade path. Therefore, we are adding a helper to `React.addons` called `createFragment()`. This accepts a keyed object and returns an opaque type.
 
@@ -215,7 +215,7 @@ The exact signature of this kind of fragment will be determined later. It will l
 
 Note: This will still not be valid as the direct return value of `render()`. Unfortunately, they still need to be wrapped in a `<div />` or some other element.
 
-## Compiler Optimizations: Unlocked! {#compiler-optimizations-unlocked}
+## Compiler Optimizations: Unlocked! {/*compiler-optimizations-unlocked*/}
 
 These changes also unlock several possible compiler optimizations for static content in React 0.14. These optimizations were previously only available to template-based frameworks. They will now also be possible for React code! Both for JSX and `React.createElement/Factory`\*!
 
@@ -227,7 +227,7 @@ See these GitHub Issues for a deep dive into compiler optimizations:
 
 \* If you use the recommended pattern of explicit React.createFactory calls on the consumer side - since they are easily statically analyzed.
 
-## Rationale {#rationale}
+## Rationale {/*rationale*/}
 
 I thought that these changes were particularly important because the mere existence of these patterns means that even components that DON’T use these patterns have to pay the price. There are other problematic patterns such as mutating state, but they’re at least localized to a component subtree so they don’t harm the ecosystem.
 

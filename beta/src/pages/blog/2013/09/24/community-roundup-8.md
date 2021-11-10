@@ -9,7 +9,7 @@ First, we are organizing a [React Hackathon](http://reactjshack-a-thon.splashtha
 
 We've also reached a point where there are too many questions for us to handle directly. We're encouraging people to ask questions on [StackOverflow](http://stackoverflow.com/questions/tagged/reactjs) using the tag [[reactjs]](http://stackoverflow.com/questions/tagged/reactjs). Many members of the team and community have subscribed to the tag, so feel free to ask questions there. We think these will be more discoverable than Google Groups archives or IRC logs.
 
-## JavaScript Jabber {#javascript-jabber}
+## JavaScript Jabber {/*javascript-jabber*/}
 
 [Pete Hunt](http://www.petehunt.net/) and [Jordan Walke](https://github.com/jordwalke) were interviewed on [JavaScript Jabber](http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/) for an hour. They go over many aspects of React such as 60 FPS, Data binding, Performance, Diffing Algorithm, DOM Manipulation, Node.js support, server-side rendering, JSX, requestAnimationFrame and the community. This is a gold mine of information about React.
 
@@ -23,13 +23,13 @@ We've also reached a point where there are too many questions for us to handle d
 >
 > [Read the full conversation ...](http://javascriptjabber.com/073-jsj-react-with-pete-hunt-and-jordan-walke/)
 
-## JSXTransformer Trick {#jsxtransformer-trick}
+## JSXTransformer Trick {/*jsxtransformer-trick*/}
 
 While this is not going to work for all the attributes since they are camelCased in React, this is a pretty cool trick.
 
 <div style={{marginLeft: 74}}><blockquote className="twitter-tweet"><p>Turn any DOM element into a React.js function: JSXTransformer.transform("/** <a href="https://twitter.com/jsx">@jsx</a> React.DOM */" + element.innerHTML).code</p>— Ross Allen (@ssorallen) <a href="https://twitter.com/ssorallen/statuses/377105575441489920">September 9, 2013</a></blockquote></div>
 
-## Remarkable React {#remarkable-react}
+## Remarkable React {/*remarkable-react*/}
 
 [Stoyan Stefanov](http://www.phpied.com/) gave a talk at [BrazilJS](http://braziljs.com.br/) about React and wrote an article with the content of the presentation. He goes through the difficulties of writing _active apps_ using the DOM API and shows how React handles it.
 
@@ -47,19 +47,19 @@ While this is not going to work for all the attributes since they are camelCased
 >
 > [Read More ...](http://www.phpied.com/remarkable-react/)
 
-## Markdown in React {#markdown-in-react}
+## Markdown in React {/*markdown-in-react*/}
 
 [Sophie Alpert](http://sophiebits.com/) converted [marked](https://github.com/chjj/marked), a Markdown JavaScript implementation, in React: [marked-react](https://github.com/sophiebits/marked-react). Even without using JSX, the HTML generation is now a lot cleaner. It is also safer as forgetting a call to `escape` will not introduce an XSS vulnerability.
 
 <figure><a href="https://github.com/sophiebits/marked-react/commit/cb70c9df6542c7c34ede9efe16f9b6580692a457"><img src="/images/blog/markdown_refactor.png"/></a></figure>
 
-## Unite from BugBusters {#unite-from-bugbusters}
+## Unite from BugBusters {/*unite-from-bugbusters*/}
 
 [Renault John Lecoultre](https://twitter.com/renajohn) wrote [Unite](https://www.bugbuster.com/), an interactive tool for analyzing code dynamically using React. It integrates with CodeMirror.
 
 <figure><a href="https://unite.bugbuster.com/"><img src="/images/blog/unite.png"/></a></figure>
 
-## #reactjs IRC Logs {#reactjs-irc-logs}
+## #reactjs IRC Logs {/*reactjs-irc-logs*/}
 
 [Vjeux](http://blog.vjeux.com/) re-implemented the display part of the IRC logger in React. Just 130 lines are needed for a performant infinite scroll with timestamps and color-coded author names.
 

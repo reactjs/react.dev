@@ -7,9 +7,9 @@ redirect_from:
 
 Today we are releasing React 16.13.0. It contains bugfixes and new deprecation warnings to help prepare for a future major release.
 
-## New Warnings {#new-warnings}
+## New Warnings {/*new-warnings*/}
 
-### Warnings for some updates during render {#warnings-for-some-updates-during-render}
+### Warnings for some updates during render {/*warnings-for-some-updates-during-render*/}
 
 A React component should not cause side effects in other components during rendering.
 
@@ -21,7 +21,7 @@ Warning: Cannot update a component from inside the function body of a different 
 
 **This warning will help you find application bugs caused by unintentional state changes.** In the rare case that you intentionally want to change the state of another component as a result of rendering, you can wrap the `setState` call into `useEffect`.
 
-### Warnings for conflicting style rules {#warnings-for-conflicting-style-rules}
+### Warnings for conflicting style rules {/*warnings-for-conflicting-style-rules*/}
 
 When dynamically applying a `style` that contains longhand and shorthand versions of CSS properties, particular combinations of updates can cause inconsistent styling. For example:
 
@@ -40,7 +40,7 @@ You might expect this `<div>` to always have a red background, no matter the val
 
 **React now detects conflicting style rules and logs a warning.** To fix the issue, don't mix shorthand and longhand versions of the same CSS property in the `style` prop.
 
-### Warnings for some deprecated string refs {#warnings-for-some-deprecated-string-refs}
+### Warnings for some deprecated string refs {/*warnings-for-some-deprecated-string-refs*/}
 
 [String Refs is an old legacy API](/docs/refs-and-the-dom#legacy-api-string-refs) which is discouraged and is going to be deprecated in the future:
 
@@ -105,7 +105,7 @@ class ClassParent extends React.Component {
 >
 > If you use Create React App or have the "react" preset with Babel 7+, you already have this plugin installed by default.
 
-### Deprecating `React.createFactory` {#deprecating-reactcreatefactory}
+### Deprecating `React.createFactory` {/*deprecating-reactcreatefactory*/}
 
 [`React.createFactory`](/docs/react-api#createfactory) is a legacy helper for creating React elements. This release adds a deprecation warning to the method. It will be removed in a future major version.
 
@@ -117,15 +117,15 @@ let createFactory = (type) => React.createElement.bind(null, type);
 
 It does exactly the same thing.
 
-### Deprecating `ReactDOM.unstable_createPortal` in favor of `ReactDOM.createPortal` {#deprecating-reactdomunstable_createportal-in-favor-of-reactdomcreateportal}
+### Deprecating `ReactDOM.unstable_createPortal` in favor of `ReactDOM.createPortal` {/*deprecating-reactdomunstable_createportal-in-favor-of-reactdomcreateportal*/}
 
 When React 16 was released, `createPortal` became an officially supported API.
 
 However, we kept `unstable_createPortal` as a supported alias to keep the few libraries that adopted it working. We are now deprecating the unstable alias. Use `createPortal` directly instead of `unstable_createPortal`. It has exactly the same signature.
 
-## Other Improvements {#other-improvements}
+## Other Improvements {/*other-improvements*/}
 
-### Component stacks in hydration warnings {#component-stacks-in-hydration-warnings}
+### Component stacks in hydration warnings {/*component-stacks-in-hydration-warnings*/}
 
 React adds component stacks to its development warnings, enabling developers to isolate bugs and debug their programs. This release adds component stacks to a number of development warnings that didn't previously have them. As an example, consider this hydration warning from the previous versions:
 
@@ -137,7 +137,7 @@ While it's pointing out an error with the code, it's not clear where the error e
 
 This makes it clear where the problem is, and lets you locate and fix the bug faster.
 
-### Notable bugfixes {#notable-bugfixes}
+### Notable bugfixes {/*notable-bugfixes*/}
 
 This release contains a few other notable improvements:
 
@@ -151,9 +151,9 @@ This release contains a few other notable improvements:
 
 We’re thankful to all the contributors who helped surface and fix these and other issues. You can find the full changelog [below](#changelog).
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
-### React {#react}
+### React {/*react*/}
 
 React v16.13.0 is available on the npm registry.
 
@@ -184,14 +184,14 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation).
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Warn when a string ref is used in a manner that's not amenable to a future codemod ([@lunaruan](https://github.com/lunaruan) in [#17864](https://github.com/facebook/react/pull/17864))
 - Deprecate `React.createFactory()` ([@trueadm](https://github.com/trueadm) in [#17878](https://github.com/facebook/react/pull/17878))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Warn when changes in `style` may cause an unexpected collision ([@sophiebits](https://github.com/sophiebits) in [#14181](https://github.com/facebook/react/pull/14181), [#18002](https://github.com/facebook/react/pull/18002))
 - Warn when a function component is updated during another component's render phase ([@acdlite](<(https://github.com/acdlite)>) in [#17099](https://github.com/facebook/react/pull/17099))
@@ -202,7 +202,7 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 - Don't call `toString()` of `dangerouslySetInnerHTML` ([@sebmarkbage](https://github.com/sebmarkbage) in [#17773](https://github.com/facebook/react/pull/17773))
 - Show component stacks in more warnings ([@gaearon](https://github.com/gaearon) in [#17922](https://github.com/facebook/react/pull/17922), [#17586](https://github.com/facebook/react/pull/17586))
 
-### Concurrent Mode (Experimental) {#concurrent-mode-experimental}
+### Concurrent Mode (Experimental) {/*concurrent-mode-experimental*/}
 
 - Warn for problematic usages of `ReactDOM.createRoot()` ([@trueadm](https://github.com/trueadm) in [#17937](https://github.com/facebook/react/pull/17937))
 - Remove `ReactDOM.createRoot()` callback params and added warnings on usage ([@bvaughn](https://github.com/bvaughn) in [#17916](https://github.com/facebook/react/pull/17916))

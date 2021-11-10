@@ -5,7 +5,7 @@ author: [zpao]
 
 React v0.4.1 is a small update, mostly containing correctness fixes. Some code has been restructured internally but those changes do not impact any of our public APIs.
 
-## React {#react}
+## React {/*react*/}
 
 - `setState` callbacks are now executed in the scope of your component.
 - `click` events now work on Mobile Safari.
@@ -14,7 +14,7 @@ React v0.4.1 is a small update, mostly containing correctness fixes. Some code h
 - Improved support for `<iframe>` attributes.
 - Added checksums to detect and correct cases where server-side rendering markup mismatches what React expects client-side.
 
-## JSXTransformer {#jsxtransformer}
+## JSXTransformer {/*jsxtransformer*/}
 
 - Improved environment detection so it can be run in a non-browser environment.
 

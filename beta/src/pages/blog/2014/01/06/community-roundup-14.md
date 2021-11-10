@@ -5,7 +5,7 @@ author: [vjeux]
 
 The theme of this first round-up of 2014 is integration. I've tried to assemble a list of articles and projects that use React in various environments.
 
-## React Baseline {#react-baseline}
+## React Baseline {/*react-baseline*/}
 
 React is only one-piece of your web application stack. [Mark Lussier](https://github.com/intabulas) shared his baseline stack that uses React along with Grunt, Browserify, Bower, Zepto, Director and Sass. This should help you get started using React for a new project.
 
@@ -17,14 +17,14 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 >
 > [Check it out on GitHub...](https://github.com/intabulas/reactjs-baseline)
 
-## Animal Sounds {#animal-sounds}
+## Animal Sounds {/*animal-sounds*/}
 
 [Josh Duck](http://joshduck.com/) used React in order to build a Windows 8 tablet app. This is a good example of a touch app written in React.
 [![](/images/blog/animal-sounds.jpg)](http://apps.microsoft.com/windows/en-us/app/baby-play-animal-sounds/9280825c-2ed9-41c0-ba38-aa9a5b890bb9)
 
 [Download the app...](http://apps.microsoft.com/windows/en-us/app/baby-play-animal-sounds/9280825c-2ed9-41c0-ba38-aa9a5b890bb9)
 
-## React Rails Tutorial {#react-rails-tutorial}
+## React Rails Tutorial {/*react-rails-tutorial*/}
 
 [Selem Delul](http://selem.im) bundled the [React Tutorial](/tutorial/tutorial.html) into a rails app. This is a good example on how to get started with a rails project.
 
@@ -40,7 +40,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 >
 > [View on GitHub...](https://github.com/necrodome/react-rails-tutorial)
 
-## Mixing with Backbone {#mixing-with-backbone}
+## Mixing with Backbone {/*mixing-with-backbone*/}
 
 [Eldar Djafarov](http://eldar.djafarov.com/) implemented a mixin to link Backbone models to React state and a small abstraction to write two-way binding on-top.
 
@@ -48,7 +48,7 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 
 [Check out the blog post...](http://eldar.djafarov.com/2013/11/reactjs-mixing-with-backbone/)
 
-## React Infinite Scroll {#react-infinite-scroll}
+## React Infinite Scroll {/*react-infinite-scroll*/}
 
 [Guillaume Rivals](https://twitter.com/guillaumervls) implemented an InfiniteScroll component. This is a good example of a React component that has a simple yet powerful API.
 
@@ -64,13 +64,13 @@ React is only one-piece of your web application stack. [Mark Lussier](https://gi
 
 [Try it out on GitHub!](https://github.com/guillaumervls/react-infinite-scroll)
 
-## Web Components Style {#web-components-style}
+## Web Components Style {/*web-components-style*/}
 
 [Thomas Aylott](http://subtlegradient.com/) implemented an API that looks like Web Components but using React underneath.
 
 [View the source on JSFiddle...](http://jsfiddle.net/SubtleGradient/ue2Aa)
 
-## React vs Angular {#react-vs-angular}
+## React vs Angular {/*react-vs-angular*/}
 
 React is often compared with Angular. [Pete Hunt](http://skulbuny.com/2013/10/31/react-vs-angular/) wrote an opinionated post on the subject.
 
@@ -80,6 +80,6 @@ React is often compared with Angular. [Pete Hunt](http://skulbuny.com/2013/10/31
 >
 > [Read the full post...](http://skulbuny.com/2013/10/31/react-vs-angular/)
 
-## Random Tweet {#random-tweet}
+## Random Tweet {/*random-tweet*/}
 
 <div><blockquote class="twitter-tweet" lang="en"><p>Really intrigued by React.js. I&#39;ve looked at all JS frameworks, and excepting <a href="https://twitter.com/serenadejs">@serenadejs</a> this is the first one which makes sense to me.</p>&mdash; Jonas Nicklas (@jonicklas) <a href="https://twitter.com/jonicklas/statuses/412640708755869696">December 16, 2013</a></blockquote></div>

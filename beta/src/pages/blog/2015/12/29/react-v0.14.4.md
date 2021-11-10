@@ -24,17 +24,17 @@ We've also published version `0.14.4` of the `react`, `react-dom`, and addons pa
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Minor internal changes for better compatibility with React Native
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - The `autoCapitalize` and `autoCorrect` props are now set as attributes in the DOM instead of properties to improve cross-browser compatibility
 - Fixed bug with controlled `<select>` elements not handling updates properly
 
-### React Perf Add-on {#react-perf-add-on}
+### React Perf Add-on {/*react-perf-add-on*/}
 
 - Some DOM operation names have been updated for clarity in the output of `.printDOM()`

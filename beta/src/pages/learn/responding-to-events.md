@@ -16,7 +16,7 @@ React lets you add event handlers to your JSX. Event handlers are your own funct
 
 </YouWillLearn>
 
-## Adding event handlers {#adding-event-handlers}
+## Adding event handlers {/*adding-event-handlers*/}
 
 To add an event handler, you will first define a function and then [pass it as a prop](/learn/passing-props-to-a-component) to the appropriate JSX tag. For example, here is a button that doesn't do anything yet:
 
@@ -130,7 +130,7 @@ In both cases, what you want to pass is a function:
 
 </Gotcha>
 
-### Reading props in event handlers {#reading-props-in-event-handlers}
+### Reading props in event handlers {/*reading-props-in-event-handlers*/}
 
 Because event handlers are declared inside of a component, they have access to the component's props. Here is a button that, when clicked, shows an alert with its `message` prop:
 
@@ -167,7 +167,7 @@ button { margin-right: 10px; }
 
 This lets these two buttons show different messages. Try changing the messages passed to them.
 
-### Passing event handlers as props {#passing-event-handlers-as-props}
+### Passing event handlers as props {/*passing-event-handlers-as-props*/}
 
 Often you'll want the parent component to specify a child's event handler. Consider buttons: depending on where you're using a `Button` component, you might want to execute a different function—perhaps one plays a movie and another uploads an image. 
 
@@ -229,7 +229,7 @@ Finally, your `Button` component accepts a prop called `onClick`. It passes that
 
 If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969), it's common for components like buttons to contain styling but not specify behavior. Instead, components like `PlayButton` and `UploadButton` will pass event handlers down.
 
-### Naming event handler props {#naming-event-handler-props}
+### Naming event handler props {/*naming-event-handler-props*/}
 
 Built-in components like `<button>` and `<div>` only support [browser event names](/reference/reactdom-api) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
 
@@ -314,7 +314,7 @@ button { margin-right: 10px; }
 
 Notice how the `App` component does not need to know *what* `Toolbar` will do with `onPlayMovie` or `onUploadImage`. That's an implementation detail of the `Toolbar`. Here, `Toolbar` passes them down as `onClick` handlers to its `Button`s, but it could later also trigger them on a keyboard shortcut. Naming props after app-specific interactions like `onPlayMovie` gives you the flexibility to change how they're used later.
 
-## Event propagation {#event-propagation}
+## Event propagation {/*event-propagation*/}
 
 <!--
 // TODO illo
@@ -361,7 +361,7 @@ All events propagate in React except `onScroll`, which only works on the JSX tag
 
 </Gotcha>
 
-### Stopping propagation {#stopping-propagation}
+### Stopping propagation {/*stopping-propagation*/}
 
 Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event." You can use this object to read information about the event.
 
@@ -443,7 +443,7 @@ Capture events are useful for code like routers or analytics, but you probably w
 
 </DeepDive>
 
-### Passing handlers as alternative to propagation {#passing-handlers-as-alternative-to-propagation}
+### Passing handlers as alternative to propagation {/*passing-handlers-as-alternative-to-propagation*/}
 
 Notice how this click handler runs a line of code _and then_ calls the `onClick` prop passed by the parent:
 
@@ -464,7 +464,7 @@ You could add more code to this handler before calling the parent `onClick` even
 
 If you rely on propagation and it's difficult to trace which handlers execute and why, try this approach instead.
 
-### Preventing default behavior {#preventing-default-behavior}
+### Preventing default behavior {/*preventing-default-behavior*/}
 
 Some browser events have default behavior associated with them. For example, a `<form>` submit event, which happens when a button inside of it is clicked, will reload the whole page by default:
 
@@ -516,7 +516,7 @@ Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both usef
 * [`e.stopPropagation()`](https://developer.mozilla.org/docs/Web/API/Event/stopPropagation) stops the event handlers attached to the tags above from firing.
 * [`e.preventDefault()` ](https://developer.mozilla.org/docs/Web/API/Event/preventDefault) prevents the default browser behavior for the few events that have it.
 
-## Can event handlers have side effects? {#can-event-handlers-have-side-effects}
+## Can event handlers have side effects? {/*can-event-handlers-have-side-effects*/}
 
 Absolutely! Event handlers are the best place for side effects.
 
@@ -540,7 +540,7 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-### Fix an event handler {#fix-an-event-handler}
+### Fix an event handler {/*fix-an-event-handler*/}
 
 Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
 
@@ -621,7 +621,7 @@ export default function LightSwitch() {
 
 </Solution>
 
-### Wire up the events {#wire-up-the-events}
+### Wire up the events {/*wire-up-the-events*/}
 
 This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
 

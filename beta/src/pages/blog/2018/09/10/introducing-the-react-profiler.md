@@ -22,7 +22,7 @@ This blog post covers the following topics:
   - [No timing data to display for the selected commit](#no-timing-data-to-display-for-the-selected-commit)
 - [Deep dive video](#deep-dive-video)
 
-## Profiling an application {#profiling-an-application}
+## Profiling an application {/*profiling-an-application*/}
 
 DevTools will show a "Profiler" tab for applications that support the new profiling API:
 
@@ -47,9 +47,9 @@ When you are finished profiling, click the "Stop" button.
 Assuming your application rendered at least once while profiling, DevTools will show several ways to view the performance data.
 We'll [take a look at each of these below](#reading-performance-data).
 
-## Reading performance data {#reading-performance-data}
+## Reading performance data {/*reading-performance-data*/}
 
-### Browsing commits {#browsing-commits}
+### Browsing commits {/*browsing-commits*/}
 
 Conceptually, React does work in two phases:
 
@@ -67,7 +67,7 @@ You can click on a bar (or the left/right arrow buttons) to select a different 
 The color and height of each bar corresponds to how long that commit took to render.
 (Taller, yellow bars took longer than shorter, blue bars.)
 
-### Filtering commits {#filtering-commits}
+### Filtering commits {/*filtering-commits*/}
 
 The longer you profile, the more times your application will render.
 In some cases you may end up with _too many commits_ to easily process.
@@ -76,7 +76,7 @@ Use it to specify a threshold and the profiler will hide all commits that were _
 
 ![Filtering commits by time](/images/blog/introducing-the-react-profiler/filtering-commits.gif)
 
-### Flame chart {#flame-chart}
+### Flame chart {/*flame-chart*/}
 
 The flame chart view represents the state of your application for a particular commit.
 Each bar in the chart represents a React component (e.g. `App`, `Nav`).
@@ -114,7 +114,7 @@ In some cases, selecting a component and stepping between commits may also provi
 The above image shows that `state.scrollOffset` changed between commits.
 This is likely what caused the `List` component to re-render.
 
-### Ranked chart {#ranked-chart}
+### Ranked chart {/*ranked-chart*/}
 
 The ranked chart view represents a single commit.
 Each bar in the chart represents a React component (e.g. `App`, `Nav`).
@@ -129,7 +129,7 @@ The chart is ordered so that the components which took the longest to render are
 
 As with the flame chart, you can zoom in or out on a ranked chart by clicking on components.
 
-### Component chart {#component-chart}
+### Component chart {/*component-chart*/}
 
 Sometimes it's useful to see how many times a particular component rendered while you were profiling.
 The component chart provides this information in the form of a bar chart.
@@ -151,7 +151,7 @@ If the selected component did not render at all during the profiling session, th
 
 ![No render times for the selected component](/images/blog/introducing-the-react-profiler/no-render-times-for-selected-component.png)
 
-### Interactions {#interactions}
+### Interactions {/*interactions*/}
 
 React recently added another [experimental API](https://fb.me/react-interaction-tracing) for tracing the _cause_ of an update.
 "Interactions" traced with this API will also be shown in the profiler:
@@ -172,9 +172,9 @@ You can navigate between interactions and commits by clicking on them:
 
 The tracing API is still new and we will cover it in more detail in a future blog post.
 
-## Troubleshooting {#troubleshooting}
+## Troubleshooting {/*troubleshooting*/}
 
-### No profiling data has been recorded for the selected root {#no-profiling-data-has-been-recorded-for-the-selected-root}
+### No profiling data has been recorded for the selected root {/*no-profiling-data-has-been-recorded-for-the-selected-root*/}
 
 If your application has multiple "roots", you may see the following message after profiling:
 ![No profiling data has been recorded for the selected root](/images/blog/introducing-the-react-profiler/no-profiler-data-multi-root.png)
@@ -184,14 +184,14 @@ In this case, try selecting a different root in that panel to view profiling inf
 
 ![Select a root in the "Elements" panel to view its performance data](/images/blog/introducing-the-react-profiler/select-a-root-to-view-profiling-data.gif)
 
-### No timing data to display for the selected commit {#no-timing-data-to-display-for-the-selected-commit}
+### No timing data to display for the selected commit {/*no-timing-data-to-display-for-the-selected-commit*/}
 
 Sometimes a commit may be so fast that `performance.now()` doesn't give DevTools any meaningful timing information.
 In this case, the following message will be shown:
 
 ![No timing data to display for the selected commit](/images/blog/introducing-the-react-profiler/no-timing-data-for-commit.png)
 
-## Deep dive video {#deep-dive-video}
+## Deep dive video {/*deep-dive-video*/}
 
 The following video demonstrates how the React profiler can be used to detect and improve performance bottlenecks in an actual React application.
 

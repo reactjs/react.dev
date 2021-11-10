@@ -7,7 +7,7 @@ We’re happy to announce our first release candidate for React 0.14! We gave yo
 
 Let us know if you run into any problems by filing issues on our [GitHub repo](https://github.com/facebook/react).
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using React from `npm` and using a tool like browserify or webpack to build your code into a single package:
 
@@ -30,9 +30,9 @@ If you can’t use `npm` yet, we also provide pre-built browser builds for your 
 
 These builds are also available in the `react` package on bower.
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### Major changes {#major-changes}
+### Major changes {/*major-changes*/}
 
 - #### Two Packages: React and React DOM
 
@@ -117,7 +117,7 @@ These builds are also available in the `react` package on bower.
 
   **Constant hoisting for React elements:** The `optimisation.react.constantElements` transform hoists element creation to the top level for subtrees that are fully static, which reduces calls to `React.createElement` and the resulting allocations. More importantly, it tells React that the subtree hasn’t changed so React can completely skip it when reconciling.
 
-### Breaking changes {#breaking-changes}
+### Breaking changes {/*breaking-changes*/}
 
 As always, we have a few breaking changes in this release. Whenever we make large changes, we warn for at least one release so you have time to update your code. The Facebook codebase has over 15,000 React components, so on the React team, we always try to minimize the pain of breaking changes.
 
@@ -132,7 +132,7 @@ And these two changes did not warn in 0.13 but should be easy to find and clean 
 - `React.initializeTouchEvents` is no longer necessary and has been removed completely. Touch events now work automatically.
 - Add-Ons: Due to the DOM node refs change mentioned above, `TestUtils.findAllInRenderedTree` and related helpers are no longer able to take a DOM component, only a custom component.
 
-### New deprecations, introduced with a warning {#new-deprecations-introduced-with-a-warning}
+### New deprecations, introduced with a warning {/*new-deprecations-introduced-with-a-warning*/}
 
 - Due to the DOM node refs change mentioned above, `this.getDOMNode()` is now deprecated and `ReactDOM.findDOMNode(this)` can be used instead. Note that in most cases, calling `findDOMNode` is now unnecessary – see the example above in the “DOM node refs” section.
 
@@ -144,7 +144,7 @@ And these two changes did not warn in 0.13 but should be easy to find and clean 
 - Add-Ons: `cloneWithProps` is now deprecated. Use [`React.cloneElement`](/docs/top-level-api.html#react.cloneelement) instead (unlike `cloneWithProps`, `cloneElement` does not merge `className` or `style` automatically; you can merge them manually if needed).
 - Add-Ons: To improve reliability, `CSSTransitionGroup` will no longer listen to transition events. Instead, you should specify transition durations manually using props such as `transitionEnterTimeout={500}`.
 
-### Notable enhancements {#notable-enhancements}
+### Notable enhancements {/*notable-enhancements*/}
 
 - Added `React.Children.toArray` which takes a nested children object and returns a flat array with keys assigned to each child. This helper makes it easier to manipulate collections of children in your `render` methods, especially if you want to reorder or slice `this.props.children` before passing it down. In addition, `React.Children.map` now returns plain arrays too.
 - React uses `console.error` instead of `console.warn` for warnings so that browsers show a full stack trace in the console. (Our warnings appear when you use patterns that will break in future releases and for code that is likely to behave unexpectedly, so we do consider our warnings to be “must-fix” errors.)
@@ -160,13 +160,13 @@ And these two changes did not warn in 0.13 but should be easy to find and clean 
 - Add-Ons: A [`shallowCompare`](https://github.com/facebook/react/pull/3355) add-on has been added as a migration path for `PureRenderMixin` in ES6 classes.
 - Add-Ons: `CSSTransitionGroup` can now use [custom class names](https://github.com/facebook/react/blob/48942b85/docs/docs/10.1-animation.md#custom-classes) instead of appending `-enter-active` or similar to the transition name.
 
-### New helpful warnings {#new-helpful-warnings}
+### New helpful warnings {/*new-helpful-warnings*/}
 
 - React DOM now warns you when nesting HTML elements invalidly, which helps you avoid surprising errors during updates.
 - Passing `document.body` directly as the container to `ReactDOM.render` now gives a warning as doing so can cause problems with browser extensions that modify the DOM.
 - Using multiple instances of React together is not supported, so we now warn when we detect this case to help you avoid running into the resulting problems.
 
-### Notable bug fixes {#notable-bug-fixes}
+### Notable bug fixes {/*notable-bug-fixes*/}
 
 - Click events are handled by React DOM more reliably in mobile browsers, particularly in Mobile Safari.
 - SVG elements are created with the correct namespace in more cases.

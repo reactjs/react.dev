@@ -5,7 +5,7 @@ author: [acdlite]
 
 We're excited to announce the release of React v16.0! Among the changes are some long-standing feature requests, including [**fragments**](#new-render-return-types-fragments-and-strings), [**error boundaries**](#better-error-handling), [**portals**](#portals), support for [**custom DOM attributes**](#support-for-custom-dom-attributes), improved [**server-side rendering**](#better-server-side-rendering), and [**reduced file size**](#reduced-file-size).
 
-### New render return types: fragments and strings {#new-render-return-types-fragments-and-strings}
+### New render return types: fragments and strings {/*new-render-return-types-fragments-and-strings*/}
 
 You can now return an array of elements from a component's `render` method. Like with other arrays, you'll need to add a key to each element to avoid the key warning:
 
@@ -33,7 +33,7 @@ render() {
 
 [See the full list of supported return types](/docs/react-component#render).
 
-### Better error handling {#better-error-handling}
+### Better error handling {/*better-error-handling*/}
 
 Previously, runtime errors during rendering could put React in a broken state, producing cryptic error messages and requiring a page refresh to recover. To address this problem, React 16 uses a more resilient error-handling strategy. By default, if an error is thrown inside a component's render or lifecycle methods, the whole component tree is unmounted from the root. This prevents the display of corrupted data. However, it's probably not the ideal user experience.
 
@@ -41,7 +41,7 @@ Instead of unmounting the whole app every time there's an error, you can use err
 
 For more details, check out our [previous post on error handling in React 16](/blog/2017/07/26/error-handling-in-react-16).
 
-### Portals {#portals}
+### Portals {/*portals*/}
 
 Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
 
@@ -58,7 +58,7 @@ render() {
 
 See a full example in the [documentation for portals](/docs/portals).
 
-### Better server-side rendering {#better-server-side-rendering}
+### Better server-side rendering {/*better-server-side-rendering*/}
 
 React 16 includes a completely rewritten server renderer. It's really fast. It supports **streaming**, so you can start sending bytes to the client faster. And thanks to a [new packaging strategy](#reduced-file-size) that compiles away `process.env` checks (Believe it or not, reading `process.env` in Node is really slow!), you no longer need to bundle React to get good server-rendering performance.
 
@@ -68,11 +68,11 @@ In addition, React 16 is better at hydrating server-rendered HTML once it reache
 
 See the [documentation for `ReactDOMServer`](/docs/react-dom-server) for more details.
 
-### Support for custom DOM attributes {#support-for-custom-dom-attributes}
+### Support for custom DOM attributes {/*support-for-custom-dom-attributes*/}
 
 Instead of ignoring unrecognized HTML and SVG attributes, React will now [pass them through to the DOM](/blog/2017/09/08/dom-attributes-in-react-16). This has the added benefit of allowing us to get rid of most of React's attribute whitelist, resulting in reduced file sizes.
 
-### Reduced file size {#reduced-file-size}
+### Reduced file size {/*reduced-file-size*/}
 
 Despite all these additions, React 16 is actually **smaller** compared to 15.6.1!
 
@@ -84,11 +84,11 @@ That amounts to a combined **32% size decrease compared to the previous version 
 
 The size difference is partly attributable to a change in packaging. React now uses [Rollup](https://rollupjs.org/) to create flat bundles for each of its different target formats, resulting in both size and runtime performance wins. The flat bundle format also means that React's impact on bundle size is roughly consistent regardless of how you ship your app, whether it's with Webpack, Browserify, the pre-built UMD bundles, or any other system.
 
-### MIT licensed {#mit-licensed}
+### MIT licensed {/*mit-licensed*/}
 
 [In case you missed it](https://code.facebook.com/posts/300798627056246/relicensing-react-jest-flow-and-immutable-js/), React 16 is available under the MIT license. We've also published React 15.6.2 under MIT, for those who are unable to upgrade immediately.
 
-### New core architecture {#new-core-architecture}
+### New core architecture {/*new-core-architecture*/}
 
 React 16 is the first version of React built on top of a new core architecture, codenamed "Fiber." You can read all about this project over on [Facebook's engineering blog](https://code.facebook.com/posts/1716776591680069/react-16-a-look-inside-an-api-compatible-rewrite-of-our-frontend-ui-library/). (Spoiler: we rewrote React!)
 
@@ -104,7 +104,7 @@ _Tip: Pay attention to the spinning black square._
 
 We think async rendering is a big deal, and represents the future of React. To make migration to v16.0 as smooth as possible, we're not enabling any async features yet, but we're excited to start rolling them out in the coming months. Stay tuned!
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 React v16.0.0 is available on the npm registry.
 
@@ -135,18 +135,18 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation).
 
-## Upgrading {#upgrading}
+## Upgrading {/*upgrading*/}
 
 Although React 16 includes significant internal changes, in terms of upgrading, you can think of this like any other major React release. We've been serving React 16 to Facebook and Messenger.com users since earlier this year, and we released several beta and release candidate versions to flush out additional issues. With minor exceptions, **if your app runs in 15.6 without any warnings, it should work in 16.**
 
 For deprecations listed in [packaging](#packaging) below, codemods are provided to automatically transform your deprecated code.
 See the [15.5.0](/blog/2017/04/07/react-v15.5.0) blog post for more information, or browse the codemods in the [react-codemod](https://github.com/reactjs/react-codemod) project.
 
-### New deprecations {#new-deprecations}
+### New deprecations {/*new-deprecations*/}
 
 Hydrating a server-rendered container now has an explicit API. If you're reviving server-rendered HTML, use [`ReactDOM.hydrate`](/docs/react-dom#hydrate) instead of `ReactDOM.render`. Keep using `ReactDOM.render` if you're just doing client-side rendering.
 
-### React Addons {#react-addons}
+### React Addons {/*react-addons*/}
 
 As previously announced, we've [discontinued support for React Addons](/blog/2017/04/07/react-v15.5.0#discontinuing-support-for-react-addons). We expect the latest version of each addon (except `react-addons-perf`; see below) to work for the foreseeable future, but we won't publish additional updates.
 
@@ -154,7 +154,7 @@ Refer to the previous announcement for [suggestions on how to migrate](/blog/201
 
 `react-addons-perf` no longer works at all in React 16. It's likely that we'll release a new version of this tool in the future. In the meantime, you can [use your browser's performance tools to profile React components](/docs/optimizing-performance#profiling-components-with-the-chrome-performance-tab).
 
-### Breaking changes {#breaking-changes}
+### Breaking changes {/*breaking-changes*/}
 
 React 16 includes a number of small breaking changes. These only affect uncommon use cases and we don't expect them to break most apps.
 
@@ -172,7 +172,7 @@ React 16 includes a number of small breaking changes. These only affect uncommon
 - Shallow renderer does not implement `unstable_batchedUpdates` anymore.
 - `ReactDOM.unstable_batchedUpdates` now only takes one extra argument after the callback.
 
-### Packaging {#packaging}
+### Packaging {/*packaging*/}
 
 - There is no `react/lib/*` and `react-dom/lib/*` anymore. Even in CommonJS environments, React and ReactDOM are precompiled to single files (“flat bundles”). If you previously relied on undocumented React internals, and they don’t work anymore, let us know about your specific case in a new issue, and we’ll try to figure out a migration strategy for you.
 - There is no `react-with-addons.js` build anymore. All compatible addons are published separately on npm, and have single-file browser versions if you need them.
@@ -183,7 +183,7 @@ React 16 includes a number of small breaking changes. These only affect uncommon
   - `react-dom/dist/react-dom.js` → `react-dom/umd/react-dom.development.js`
   - `react-dom/dist/react-dom.min`.js → `react-dom/umd/react-dom.production.min.js`
 
-## JavaScript Environment Requirements {#javascript-environment-requirements}
+## JavaScript Environment Requirements {/*javascript-environment-requirements*/}
 
 React 16 depends on the collection types [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set). If you support older browsers and devices which may not yet provide these natively (e.g. IE < 11), consider including a global polyfill in your bundled application, such as [core-js](https://github.com/zloirock/core-js) or [babel-polyfill](https://babeljs.io/docs/usage/polyfill/).
 
@@ -206,7 +206,7 @@ You can use the [raf](https://www.npmjs.com/package/raf) package to shim `reques
 import 'raf/polyfill';
 ```
 
-## Acknowledgments {#acknowledgments}
+## Acknowledgments {/*acknowledgments*/}
 
 As always, this release would not have been possible without our open source contributors. Thanks to everyone who filed bugs, opened PRs, responded to issues, wrote documentation, and more!
 

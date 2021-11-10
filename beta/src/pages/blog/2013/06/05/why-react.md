@@ -6,13 +6,13 @@ author: [petehunt]
 There are a lot of JavaScript MVC frameworks out there. Why did we build React
 and why would you want to use it?
 
-## React isn't an MVC framework. {#react-isnt-an-mvc-framework}
+## React isn't an MVC framework. {/*react-isnt-an-mvc-framework*/}
 
 React is a library for building composable user interfaces. It encourages
 the creation of reusable UI components which present data that changes over
 time.
 
-## React doesn't use templates. {#react-doesnt-use-templates}
+## React doesn't use templates. {/*react-doesnt-use-templates*/}
 
 Traditionally, web application UIs are built using templates or HTML directives.
 These templates dictate the full set of abstractions that you are allowed to use
@@ -33,7 +33,7 @@ to render views, which we see as an advantage over templates for a few reasons:
 We've also created [JSX](/docs/jsx-in-depth.html), an optional syntax
 extension, in case you prefer the readability of HTML to raw JavaScript.
 
-## Reactive updates are dead simple. {#reactive-updates-are-dead-simple}
+## Reactive updates are dead simple. {/*reactive-updates-are-dead-simple*/}
 
 React really shines when your data changes over time.
 
@@ -63,7 +63,7 @@ Because this re-render is so fast (around 1ms for TodoMVC), the developer
 doesn't need to explicitly specify data bindings. We've found this approach
 makes it easier to build apps.
 
-## HTML is just the beginning. {#html-is-just-the-beginning}
+## HTML is just the beginning. {/*html-is-just-the-beginning*/}
 
 Because React has its own lightweight representation of the document, we can do
 some pretty cool things with it:

@@ -11,7 +11,7 @@ GraphQL was not invented to enable Relay. In fact, GraphQL predates Relay by nea
 
 We plan to open-source a reference implementation of a GraphQL server and publish a language specification in the coming months. Our goal is to evolve GraphQL to adapt to a wide range of backends, so that projects and companies can use this technology to access their own data. We believe that this is a compelling way to structure servers and to provide powerful abstractions, frameworks and tools – including, but not exclusively, Relay – for product developers.
 
-## What is GraphQL? {#what-is-graphql}
+## What is GraphQL? {/*what-is-graphql*/}
 
 A GraphQL query is a string interpreted by a server that returns data in a specified format. Here is an example query:
 
@@ -60,11 +60,11 @@ We will dig into the syntax and semantics of GraphQL in a later post, but even a
 - **Strongly-typed:** GraphQL is strongly-typed. Given a query, tooling can ensure that the query is both syntactically correct and valid within the GraphQL type system before execution, i.e. at development time, and the server can make certain guarantees about the shape and nature of the response. This makes it easier to build high quality client tools.
 - **Introspective:** GraphQL is introspective. Clients and tools can query the type system using the GraphQL syntax itself. This is a powerful platform for building tools and client software, such as automatic parsing of incoming data into strongly-typed interfaces. It is especially useful in statically typed languages such as Swift, Objective-C and Java, as it obviates the need for repetitive and error-prone code to shuffle raw, untyped JSON into strongly-typed business objects.
 
-## Why invent something new? {#why-invent-something-new}
+## Why invent something new? {/*why-invent-something-new*/}
 
 Obviously GraphQL is not the first system to manage client-server interactions. In today's world there are two dominant architectural styles for client-server interaction: REST and _ad hoc_ endpoints.
 
-### REST {#rest}
+### REST {/*rest*/}
 
 REST, an acronym for Representational State Transfer, is an architectural style rather than a formal protocol. There is actually much debate about what exactly REST is and is not. We wish to avoid such debates. We are interested in the typical attributes of systems that _self-identify_ as REST, rather than systems which are formally REST.
 
@@ -81,7 +81,7 @@ Nearly all externally facing REST APIs we know of trend or end up in these non-i
 
 Because of multiple round-trips and over-fetching, applications built in the REST style inevitably end up building _ad hoc_ endpoints that are superficially in the REST style. These actually couple the data to a particular view which explicitly violates one of REST's major goals. Most REST systems of any complexity end up as a continuum of endpoints that span from “traditional” REST to _ad hoc_ endpoints.
 
-### Ad Hoc Endpoints {#ad-hoc-endpoints}
+### Ad Hoc Endpoints {/*ad-hoc-endpoints*/}
 
 Many applications have no formalized client-server contract. Product developers access server capabilities through _ad hoc_ endpoints and write custom code to fetch the data they need. Servers define procedures, and they return data. This approach has the virtue of simplicity, but can often become untenable as systems age.
 
@@ -96,6 +96,6 @@ This is a liberating platform for product developers. With GraphQL, no more cont
 
 Product developers are free to focus on their client software and requirements while rarely leaving their development environment; they can more confidently support shipped clients as a system evolves; and they are using a protocol designed to operate well within the constraints of mobile applications. Product developers can query for exactly what they want, in the way they think about it, across their entire application's data model.
 
-## What's next? {#whats-next}
+## What's next? {/*whats-next*/}
 
 Over the coming months, we will share more technical details about GraphQL, including additional language features, tools that support it, and how it is built and used at Facebook. These posts will culminate in a formal specification of GraphQL to guide implementors across various languages and platforms. We also plan on releasing a reference implementation in the summer, in order to provide a basis for custom deployments and a platform for experimentation. We're incredibly excited to share this system and work with the open source community to improve it.

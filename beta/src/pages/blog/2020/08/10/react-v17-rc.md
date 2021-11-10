@@ -5,7 +5,7 @@ author: [gaearon,rachelnabors]
 
 Today, we are publishing the first Release Candidate for React 17. It has been two and a half years since [the previous major release of React](/blog/2017/09/26/react-v16.0.html), which is a long time even by our standards! In this blog post, we will describe the role of this major release, what changes you can expect in it, and how you can try this release.
 
-## No New Features {#no-new-features}
+## No New Features {/*no-new-features*/}
 
 The React 17 release is unusual because it doesn't add any new developer-facing features. Instead, this release is primarily focused on **making it easier to upgrade React itself**.
 
@@ -13,7 +13,7 @@ We're actively working on the new React features, but they're not a part of this
 
 In particular, **React 17 is a "stepping stone" release** that makes it safer to embed a tree managed by one version of React inside a tree managed by a different version of React.
 
-## Gradual Upgrades {#gradual-upgrades}
+## Gradual Upgrades {/*gradual-upgrades*/}
 
 For the past seven years, React upgrades have been "all-or-nothing". Either you stay on an old version, or you upgrade your whole app to a new version. There was no in-between.
 
@@ -29,7 +29,7 @@ This doesn't mean you *have to* do gradual upgrades. For most apps, upgrading al
 
 To enable gradual updates, we've needed to make some changes to the React event system. React 17 is a major release because these changes are potentially breaking. In practice, we've only had to change fewer than twenty components out of 100,000+ so **we expect that most apps can upgrade to React 17 without too much trouble**. [Tell us](https://github.com/facebook/react/issues) if you run into problems.
 
-### Demo of Gradual Upgrades {#demo-of-gradual-upgrades}
+### Demo of Gradual Upgrades {/*demo-of-gradual-upgrades*/}
 
 We've prepared an [example repository](https://github.com/reactjs/react-gradual-upgrade-demo/) demonstrating how to lazy-load an older version of React if necessary. This demo uses Create React App, but it should be possible to follow a similar approach with any other tool. We welcome demos using other tooling as pull requests.
 
@@ -37,7 +37,7 @@ We've prepared an [example repository](https://github.com/reactjs/react-gradual-
 >
 >We've **postponed other changes** until after React 17. The goal of this release is to enable gradual upgrades. If upgrading to React 17 were too difficult, it would defeat its purpose.
 
-## Changes to Event Delegation {#changes-to-event-delegation}
+## Changes to Event Delegation {/*changes-to-event-delegation*/}
 
 Technically, it has always been possible to nest apps developed with different versions of React. However, it was rather fragile because of how the React event system worked.
 
@@ -85,7 +85,7 @@ We've confirmed that [numerous](https://github.com/facebook/react/issues/7094) [
 >
 >You might be wondering whether this breaks [Portals](/docs/portals.html) outside of the root container. The answer is that React *also* listens to events on portal containers, so this is not an issue.
 
-#### Fixing Potential Issues {#fixing-potential-issues}
+#### Fixing Potential Issues {/*fixing-potential-issues*/}
 
 As with any breaking change, it is likely some code would need to be adjusted. At Facebook, we had to adjust about 10 modules in total (out of many thousands) to work with this change.
 
@@ -109,11 +109,11 @@ document.addEventListener('click', function() {
 
 Note how this strategy is more resilient overall -- for example, it will probably fix existing bugs in your code that happen when `e.stopPropagation()` is called outside of a React event handler. In other words, **event propagation in React 17 works closer to the regular DOM**.
 
-## Other Breaking Changes {#other-breaking-changes}
+## Other Breaking Changes {/*other-breaking-changes*/}
 
 We've kept the breaking changes in React 17 to the minimum. For example, it doesn't remove any of the methods that have been deprecated in the previous releases. However, it does include a few other breaking changes that have been relatively safe in our experience. In total, we've had to adjust fewer than 20 out of 100,000+ our components because of them.
 
-### Aligning with Browsers {#aligning-with-browsers}
+### Aligning with Browsers {/*aligning-with-browsers*/}
 
 We've made a couple of smaller changes related to the event system:
 
@@ -127,7 +127,7 @@ These changes align React closer with the browser behavior and improve interoper
 >
 >Although React 17 switched from `focus` to `focusin` *under the hood* for the `onFocus` event, note that this has **not** affected the bubbling behavior. In React, `onFocus` event has always bubbled, and it continues to do so in React 17 because generally it is a more useful default. See [this sandbox](https://codesandbox.io/s/strange-albattani-7tqr7?file=/src/App.js) for the different checks you can add for different particular use cases.
 
-### No Event Pooling {#no-event-pooling}
+### No Event Pooling {/*no-event-pooling*/}
 
 React 17 removes the "event pooling" optimization from React. It doesn't improve performance in modern browsers and confuses even experienced React users:
 
@@ -147,7 +147,7 @@ This is because React reused the event objects between different events for perf
 
 This is a behavior change, which is why we're marking it as breaking, but in practice we haven't seen it break anything at Facebook. (Maybe it even fixed a few bugs!) Note that `e.persist()` is still available on the React event object, but now it doesn't do anything.
 
-### Effect Cleanup Timing {#effect-cleanup-timing}
+### Effect Cleanup Timing {/*effect-cleanup-timing*/}
 
 We are making the timing of the `useEffect` cleanup function more consistent.
 
@@ -174,7 +174,7 @@ This mirrors how the effects themselves run more closely. In the  rare cases whe
 
 Additionally, React 17 executes the cleanup functions in the same order as the effects, according to their position in the tree. Previously, this order was occasionally different.
 
-#### Potential Issues {#potential-issues}
+#### Potential Issues {/*potential-issues*/}
 
 We've only seen a couple of components break with this change, although reusable libraries may need to test it more thoroughly. One example of problematic code may look like this:
 
@@ -201,7 +201,7 @@ useEffect(() => {
 
 We don't expect this to be a common problem because [our `eslint-plugin-react-hooks/exhaustive-deps` lint rule](https://github.com/facebook/react/tree/master/packages/eslint-plugin-react-hooks) (make sure you use it!) has always warned about this.
 
-### Consistent Errors for Returning Undefined {#consistent-errors-for-returning-undefined}
+### Consistent Errors for Returning Undefined {/*consistent-errors-for-returning-undefined*/}
 
 In React 16 and earlier, returning `undefined` has always been an error:
 
@@ -241,7 +241,7 @@ let Button = memo(() => {
 
 For the cases where you want to render nothing intentionally, return `null` instead.
 
-### Native Component Stacks {#native-component-stacks}
+### Native Component Stacks {/*native-component-stacks*/}
 
 When you throw an error in the browser, the browser gives you a stack trace with JavaScript function names and their locations. However, JavaScript stacks are often not enough to diagnose a problem because the React tree hierarchy can be just as important. You want to know not just that a `Button` threw an error, but *where in the React tree* that `Button` is.
 
@@ -255,7 +255,7 @@ If you're curious, you can read more details in [this pull request](https://gith
 
 The part that constitutes a breaking change is that for this to work, React re-executes parts of some of the React functions and React class constructors above in the stack after an error is captured. Since render functions and class constructors shouldn't have side effects (which is also important for server rendering), this should not pose any practical problems.
 
-### Removing Private Exports {#removing-private-exports}
+### Removing Private Exports {/*removing-private-exports*/}
 
 Finally, the last notable breaking change is that we've removed some React internals that were previously exposed to other projects. In particular, [React Native for Web](https://github.com/necolas/react-native-web) used to depend on some internals of the event system, but that dependency was fragile and used to break.
 
@@ -265,7 +265,7 @@ This means that the older versions of React Native for Web won't be compatible w
 
 Additionally, we've removed the `ReactTestUtils.SimulateNative` helper methods. They have never been documented, didn't do quite what their names implied, and didn't work with the changes we've made to the event system. If you want a convenient way to fire native browser events in tests, check out the [React Testing Library](https://testing-library.com/docs/dom-testing-library/api-events) instead.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We encourage you to try React 17.0 Release Candidate soon and [raise any issues](https://github.com/facebook/react/issues) for the problems you might encounter in the migration. **Keep in mind that a release candidate is more likely to contain bugs than a stable release, so don't deploy it to production yet.**
 
@@ -290,15 +290,15 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation.html).
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 * Add `react/jsx-runtime` and `react/jsx-dev-runtime` for the [new JSX transform](https://babeljs.io/blog/2020/03/16/7.9.0#a-new-jsx-transform-11154-https-githubcom-babel-babel-pull-11154). ([@lunaruan](https://github.com/lunaruan) in [#18299](https://github.com/facebook/react/pull/18299))
 * Build component stacks from native error frames. ([@sebmarkbage](https://github.com/sebmarkbage) in [#18561](https://github.com/facebook/react/pull/18561))
 * Allow to specify `displayName` on context for improved stacks. ([@eps1lon](https://github.com/eps1lon) in [#18224](https://github.com/facebook/react/pull/18224))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 * Delegate events to roots instead of `document`. ([@trueadm](https://github.com/trueadm) in [#18195](https://github.com/facebook/react/pull/18195) and [others](https://github.com/facebook/react/pulls?q=is%3Apr+author%3Atrueadm+modern+event+is%3Amerged))
 * Clean up all effects before running any next effects. ([@bvaughn](https://github.com/bvaughn) in [#17947](https://github.com/facebook/react/pull/17947))
@@ -332,16 +332,16 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 * Use delegation for `onSubmit` and `onReset` events. ([@gaearon](https://github.com/gaearon) in [#19333](https://github.com/facebook/react/pull/19333))
 * Improve memory usage. ([@trueadm](https://github.com/trueadm) in [#18970](https://github.com/facebook/react/pull/18970))
 
-### React DOM Server {#react-dom-server}
+### React DOM Server {/*react-dom-server*/}
 
 * Make `useCallback` behavior consistent with `useMemo` for the server renderer. ([@alexmckenley](https://github.com/alexmckenley) in [#18783](https://github.com/facebook/react/pull/18783))
 * Fix state leaking when a function component throws. ([@pmaccart](https://github.com/pmaccart) in [#19212](https://github.com/facebook/react/pull/19212))
 
-### React Test Renderer {#react-test-renderer}
+### React Test Renderer {/*react-test-renderer*/}
 
 * Improve `findByType` error message. ([@henryqdineen](https://github.com/henryqdineen) in [#17439](https://github.com/facebook/react/pull/17439))
 
-### Concurrent Mode (Experimental) {#concurrent-mode-experimental}
+### Concurrent Mode (Experimental) {/*concurrent-mode-experimental*/}
 
 * Revamp the priority batching heuristics. ([@acdlite](https://github.com/acdlite) in [#18796](https://github.com/facebook/react/pull/18796))
 * Add the `unstable_` prefix before the experimental APIs. ([@acdlite](https://github.com/acdlite) in [#18825](https://github.com/facebook/react/pull/18825))

@@ -9,7 +9,7 @@ But now we're ready, so without further ado, we're shipping a release candidate 
 
 Please try it out before we publish the final release. Let us know if you run into any problems by filing issues on our [GitHub repo](https://github.com/facebook/react).
 
-## Upgrade Guide {#upgrade-guide}
+## Upgrade Guide {/*upgrade-guide*/}
 
 Like always, we have a few breaking changes in this release. We know changes can be painful (the Facebook codebase has over 15,000 React components), so we always try to make changes gradually in order to minimize the pain.
 
@@ -17,7 +17,7 @@ If your code is free of warnings when running under React 0.14, upgrading should
 
 See the changelog below for more details.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using React from `npm` and using a tool like browserify or webpack to build your code into a single bundle. To install the two packages:
 
@@ -37,9 +37,9 @@ If you can’t use `npm` yet, we provide pre-built browser builds for your conve
   Dev build with warnings: <https://fb.me/react-dom-15.0.0-rc.1.js>  
   Minified build for production: <https://fb.me/react-dom-15.0.0-rc.1.min.js>
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### Major changes {#major-changes}
+### Major changes {/*major-changes*/}
 
 - #### `document.createElement` is in and `data-reactid` is out
 
@@ -57,7 +57,7 @@ If you can’t use `npm` yet, we provide pre-built browser builds for your conve
 
   All SVG tags and attributes are now fully supported. (Uncommon SVG tags are not present on the `React.DOM` element helper, but JSX and `React.createElement` work on all tag names.) All SVG attributes match their original capitalization and hyphenation as defined in the specification (ex: `gradientTransform` must be camel-cased but `clip-path` should be hyphenated).
 
-### Breaking changes {#breaking-changes}
+### Breaking changes {/*breaking-changes*/}
 
 It's worth calling out the DOM structure changes above again, in particular the change from `<span>`s. In the course of updating the Facebook codebase, we found a very small amount of code that was depending on the markup that React generated. Some of these cases were integration tests like WebDriver which were doing very specific XPath queries to target nodes. Others were simply tests using `ReactDOM.renderToStaticMarkup` and comparing markup. Again, there were a very small number of changes that had to be made, but we don't want anybody to be blindsided. We encourage everybody to run their test suites when upgrading and consider alternative approaches when possible. One approach that will work for some cases is to explicitly use `<span>`s in your `render` method.
 
@@ -67,13 +67,13 @@ These deprecations were introduced in v0.14 with a warning and the APIs are now 
 - Deprecated APIs removed from `React.addons`, specifically `batchedUpdates` and `cloneWithProps`.
 - Deprecated APIs removed from component instances, specifically `setProps`, `replaceProps`, and `getDOMNode`.
 
-### New deprecations, introduced with a warning {#new-deprecations-introduced-with-a-warning}
+### New deprecations, introduced with a warning {/*new-deprecations-introduced-with-a-warning*/}
 
 Each of these changes will continue to work as before with a new warning until the release of React 16 so you can upgrade your code gradually.
 
 - `LinkedStateMixin` and `valueLink` are now deprecated due to very low popularity. If you need this, you can use a wrapper component that implements the same behavior: [react-linked-input](https://www.npmjs.com/package/react-linked-input).
 
-### New helpful warnings {#new-helpful-warnings}
+### New helpful warnings {/*new-helpful-warnings*/}
 
 - If you use a minified copy of the _development_ build, React DOM kindly encourages you to use the faster production build instead.
 - React DOM: When specifying a unit-less CSS value as a string, a future version will not add `px` automatically. This version now warns in this case (ex: writing `style={{width: '300'}}`. (Unitless _number_ values like `width: 300` are unchanged.)
@@ -81,7 +81,7 @@ Each of these changes will continue to work as before with a new warning until t
 - Elements will now warn when attempting to read `ref` and `key` from the props.
 - React DOM now attempts to warn for mistyped event handlers on DOM elements (ex: `onclick` which should be `onClick`)
 
-### Notable bug fixes {#notable-bug-fixes}
+### Notable bug fixes {/*notable-bug-fixes*/}
 
 - Fixed multiple small memory leaks
 - Input events are handled more reliably in IE 10 and IE 11; spurious events no longer fire when using a placeholder.

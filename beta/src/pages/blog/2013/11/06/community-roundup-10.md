@@ -7,7 +7,7 @@ This is the 10th round-up already and React has come quite far since it was open
 
 The best part is that no drastic changes have been required to support all those use cases. Most of the efforts were targeted at polishing edge cases, performance improvements, and documentation.
 
-## Khan Academy - Officially moving to React {#khan-academy---officially-moving-to-react}
+## Khan Academy - Officially moving to React {/*khan-academy---officially-moving-to-react*/}
 
 [Joel Burget](http://joelburget.com/) announced at Hack Reactor that new front-end code at Khan Academy should be written in React!
 
@@ -21,13 +21,13 @@ The best part is that no drastic changes have been required to support all those
 >
 > [Read the full article](http://joelburget.com/backbone-to-react/)
 
-## React: Rethinking best practices {#react-rethinking-best-practices}
+## React: Rethinking best practices {/*react-rethinking-best-practices*/}
 
 [Pete Hunt](http://www.petehunt.net/)'s talk at JSConf EU 2013 is now available in video.
 
 <figure><iframe width="650" height="370" src="//www.youtube-nocookie.com/embed/x7cQ3mrcKaY" frameborder="0" allowfullscreen></iframe></figure>
 
-## Server-side React with PHP {#server-side-react-with-php}
+## Server-side React with PHP {/*server-side-react-with-php*/}
 
 [Stoyan Stefanov](http://www.phpied.com/)'s series of articles on React has two new entries on how to execute React on the server to generate the initial page load.
 
@@ -48,7 +48,7 @@ The best part is that no drastic changes have been required to support all those
 >
 > <figure><a href="http://www.phpied.com/server-side-react-with-php-part-2/"><img src="/images/blog/react-php.png"/></a></figure>
 
-## TodoMVC Benchmarks {#todomvc-benchmarks}
+## TodoMVC Benchmarks {/*todomvc-benchmarks*/}
 
 Webkit has a [TodoMVC Benchmark](https://github.com/WebKit/webkit/tree/master/PerformanceTests/DoYouEvenBench) that compares different frameworks. They recently included React and here are the results (average of 10 runs in Chrome 30):
 
@@ -87,13 +87,13 @@ By default, React "re-renders" all the components when anything changes. This is
 
 The fact that you can control when components are rendered is a very important characteristic of React as it gives you control over its performance. We are going to talk more about performance in the future, stay tuned.
 
-## Guess the filter {#guess-the-filter}
+## Guess the filter {/*guess-the-filter*/}
 
 [Connor McSheffrey](http://conr.me) implemented a small game using React. The goal is to guess which filter has been used to create the Instagram photo.
 
 <figure><a href="http://guessthefilter.com/"><img src="/images/blog/guess_filter.jpg"/></a></figure>
 
-## React vs FruitMachine {#react-vs-fruitmachine}
+## React vs FruitMachine {/*react-vs-fruitmachine*/}
 
 [Andrew Betts](http://trib.tv/), director of the [Financial Times Labs](http://labs.ft.com/), posted an article comparing [FruitMachine](https://github.com/ftlabs/fruitmachine) and React.
 
@@ -103,7 +103,7 @@ The fact that you can control when components are rendered is a very important c
 
 Even though we weren't inspired by FruitMachine (React has been used in production since before FruitMachine was open sourced), it's great to see similar technologies emerging and becoming popular.
 
-## React Brunch {#react-brunch}
+## React Brunch {/*react-brunch*/}
 
 [Matthew McCray](http://elucidata.net/) implemented [react-brunch](https://npmjs.org/package/react-brunch), a JSX compilation step for [Brunch](http://brunch.io/).
 
@@ -115,7 +115,7 @@ Even though we weren't inspired by FruitMachine (React has been used in producti
 >
 > [Read more...](https://npmjs.org/package/react-brunch)
 
-## Random Tweet {#random-tweet}
+## Random Tweet {/*random-tweet*/}
 
 I'm going to start adding a tweet at the end of each round-up. We'll start with this one:
 

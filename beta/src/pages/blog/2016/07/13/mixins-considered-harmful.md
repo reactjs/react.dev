@@ -13,7 +13,7 @@ Three years passed since React was released. The landscape has changed. Multiple
 
 In this post, we will consider the problems commonly caused by mixins. Then we will suggest several alternative patterns for the same use cases. We have found those patterns to scale better with the complexity of the codebase than mixins.
 
-## Why Mixins are Broken {#why-mixins-are-broken}
+## Why Mixins are Broken {/*why-mixins-are-broken*/}
 
 At Facebook, React usage has grown from a few components to thousands of them. This gives us a window into how people use React. Thanks to declarative rendering and top-down data flow, many teams were able to fix a bunch of bugs while shipping new features as they adopted React.
 
@@ -21,7 +21,7 @@ However it’s inevitable that some of our code using React gradually became inc
 
 This doesn’t mean that mixins themselves are bad. People successfully employ them in different languages and paradigms, including some functional languages. At Facebook, we extensively use traits in Hack which are fairly similar to mixins. Nevertheless, we think that mixins are unnecessary and problematic in React codebases. Here’s why.
 
-### Mixins introduce implicit dependencies {#mixins-introduce-implicit-dependencies}
+### Mixins introduce implicit dependencies {/*mixins-introduce-implicit-dependencies*/}
 
 Sometimes a component relies on a certain method defined in the mixin, such as `getClassName()`. Sometimes it’s the other way around, and mixin calls a method like `renderHeader()` on the component. JavaScript is a dynamic language so it’s hard to enforce or document these dependencies.
 
@@ -31,7 +31,7 @@ These implicit dependencies make it hard for new team members to contribute to a
 
 Often, mixins come to depend on other mixins, and removing one of them breaks the other. In these situations it is very tricky to tell how the data flows in and out of mixins, and what their dependency graph looks like. Unlike components, mixins don’t form a hierarchy: they are flattened and operate in the same namespace.
 
-### Mixins cause name clashes {#mixins-cause-name-clashes}
+### Mixins cause name clashes {/*mixins-cause-name-clashes*/}
 
 There is no guarantee that two particular mixins can be used together. For example, if `FluxListenerMixin` defines `handleChange()` and `WindowSizeMixin` defines `handleChange()`, you can’t use them together. You also can’t define a method with this name on your own component.
 
@@ -41,7 +41,7 @@ If you have a name conflict with a mixin from a third party package, you can’t
 
 The situation is no better for mixin authors. Even adding a new method to a mixin is always a potentially breaking change because a method with the same name might already exist on some of the components using it, either directly or through another mixin. Once written, mixins are hard to remove or change. Bad ideas don’t get refactored away because refactoring is too risky.
 
-### Mixins cause snowballing complexity {#mixins-cause-snowballing-complexity}
+### Mixins cause snowballing complexity {/*mixins-cause-snowballing-complexity*/}
 
 Even when mixins start out simple, they tend to become complex over time. The example below is based on a real scenario I’ve seen play out in a codebase.
 
@@ -55,7 +55,7 @@ Every new requirement makes the mixins harder to understand. Components using th
 
 These are the same problems we faced building apps before React. We found that they are solved by declarative rendering, top-down data flow, and encapsulated components. At Facebook, we have been migrating our code to use alternative patterns to mixins, and we are generally happy with the results. You can read about those patterns below.
 
-## Migrating from Mixins {#migrating-from-mixins}
+## Migrating from Mixins {/*migrating-from-mixins*/}
 
 Let’s make it clear that mixins are not technically deprecated. If you use `React.createClass()`, you may keep using them. We only say that they didn’t work well for us, and so we won’t recommend using them in the future.
 
@@ -63,7 +63,7 @@ Every section below corresponds to a mixin usage pattern that we found in the Fa
 
 We hope that you find this list helpful. Please let us know if we missed important use cases so we can either amend the list or be proven wrong!
 
-### Performance Optimizations {#performance-optimizations}
+### Performance Optimizations {/*performance-optimizations*/}
 
 One of the most commonly used mixins is [`PureRenderMixin`](/docs/pure-render-mixin.html). You might be using it in some components to [prevent unnecessary re-renders](/docs/advanced-performance.html#shouldcomponentupdate-in-action) when the props and state are shallowly equal to the previous props and state:
 
@@ -77,7 +77,7 @@ var Button = React.createClass({
 });
 ```
 
-#### Solution {#solution}
+#### Solution {/*solution*/}
 
 To express the same without mixins, you can use the [`shallowCompare`](/docs/shallow-compare.html) function directly instead:
 
@@ -97,7 +97,7 @@ If you use a custom mixin implementing a `shouldComponentUpdate` function with d
 
 We understand that more typing can be annoying. For the most common case, we plan to [introduce a new base class](https://github.com/facebook/react/pull/7195) called `React.PureComponent` in the next minor release. It uses the same shallow comparison as `PureRenderMixin` does today.
 
-### Subscriptions and Side Effects {#subscriptions-and-side-effects}
+### Subscriptions and Side Effects {/*subscriptions-and-side-effects*/}
 
 The second most common type of mixins that we encountered are mixins that subscribe a React component to a third-party data source. Whether this data source is a Flux Store, an Rx Observable, or something else, the pattern is very similar: the subscription is created in `componentDidMount`, destroyed in `componentWillUnmount`, and the change handler calls `this.setState()`.
 
@@ -143,13 +143,13 @@ var CommentList = React.createClass({
 module.exports = CommentList;
 ```
 
-#### Solution {#solution-1}
+#### Solution {/*solution-1*/}
 
 If there is just one component subscribed to this data source, it is fine to embed the subscription logic right into the component. Avoid premature abstractions.
 
 If several components used this mixin to subscribe to a data source, a nice way to avoid repetition is to use a pattern called [“higher-order components”](https://medium.com/@dan_abramov/mixins-are-dead-long-live-higher-order-components-94a0d2f9e750). It can sound intimidating so we will take a closer look at how this pattern naturally emerges from the component model.
 
-#### Higher-Order Components Explained {#higher-order-components-explained}
+#### Higher-Order Components Explained {/*higher-order-components-explained*/}
 
 Let’s forget about React for a second. Consider these two functions that add and multiply numbers, logging the results as they do that:
 
@@ -337,7 +337,7 @@ var CommentListWithSubscription = withSubscription(CommentList);
 module.exports = CommentListWithSubscription;
 ```
 
-#### Solution, Revisited {#solution-revisited}
+#### Solution, Revisited {/*solution-revisited*/}
 
 Now that we understand higher-order components better, let’s take another look at the complete solution that doesn’t involve mixins. There are a few minor changes that are annotated with inline comments:
 
@@ -393,7 +393,7 @@ Higher-order components are a powerful pattern. You can pass additional argument
 
 Like any solution, higher-order components have their own pitfalls. For example, if you heavily use [refs](/docs/more-about-refs.html), you might notice that wrapping something into a higher-order component changes the ref to point to the wrapping component. In practice we discourage using refs for component communication so we don’t think it’s a big issue. In the future, we might consider adding [ref forwarding](https://github.com/facebook/react/issues/4213) to React to solve this annoyance.
 
-### Rendering Logic {#rendering-logic}
+### Rendering Logic {/*rendering-logic*/}
 
 The next most common use case for mixins that we discovered in our codebase is sharing rendering logic between components.
 
@@ -432,7 +432,7 @@ var UserRow = React.createClass({
 
 Multiple components may be sharing `RowMixin` to render the header, and each of them would need to define `getHeaderText()`.
 
-#### Solution {#solution-2}
+#### Solution {/*solution-2*/}
 
 If you see rendering logic inside a mixin, it’s time to extract a component!
 
@@ -465,7 +465,7 @@ Props keep component dependencies explicit, easy to replace, and enforceable wit
 >
 > Defining components as functions is not required. There is also nothing wrong with using lifecycle methods and state—they are first-class React features. We use function components in this example because they are easier to read and we didn’t need those extra features, but classes would work just as fine.
 
-### Context {#context}
+### Context {/*context*/}
 
 Another group of mixins we discovered were helpers for providing and consuming [React context](/docs/context.html). Context is an experimental unstable feature, has [certain issues](https://github.com/facebook/react/issues/2517), and will likely change its API in the future. We don’t recommend using it unless you’re confident there is no other way of solving your problem.
 
@@ -502,7 +502,7 @@ var Link = React.createClass({
 module.exports = Link;
 ```
 
-#### Solution {#solution-3}
+#### Solution {/*solution-3*/}
 
 We agree that hiding context usage from consuming components is a good idea until the context API stabilizes. However, we recommend using higher-order components instead of mixins for this.
 
@@ -543,7 +543,7 @@ module.exports = withRouter(Link);
 
 If you’re using a third party library that only provides a mixin, we encourage you to file an issue with them linking to this post so that they can provide a higher-order component instead. In the meantime, you can create a higher-order component around it yourself in exactly the same way.
 
-### Utility Methods {#utility-methods}
+### Utility Methods {/*utility-methods*/}
 
 Sometimes, mixins are used solely to share utility functions between components:
 
@@ -568,7 +568,7 @@ var Button = React.createClass({
 });
 ```
 
-#### Solution {#solution-4}
+#### Solution {/*solution-4*/}
 
 Put utility functions into regular JavaScript modules and import them. This also makes it easier to test them or use them outside of your components:
 
@@ -583,7 +583,7 @@ var Button = React.createClass({
 });
 ```
 
-### Other Use Cases {#other-use-cases}
+### Other Use Cases {/*other-use-cases*/}
 
 Sometimes people use mixins to selectively add logging to lifecycle methods in some components. In the future, we intend to provide an [official DevTools API](https://github.com/facebook/react/issues/5306) that would let you implement something similar without touching the components. However it’s still very much a work in progress. If you heavily depend on logging mixins for debugging, you might want to keep using those mixins for a little longer.
 

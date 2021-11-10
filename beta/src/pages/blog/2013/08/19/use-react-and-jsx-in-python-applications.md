@@ -5,7 +5,7 @@ author: [kmeht]
 
 Today we're happy to announce the initial release of [PyReact](https://github.com/facebook/react-python), which makes it easier to use React and JSX in your Python applications. It's designed to provide an API to transform your JSX files into JavaScript, as well as provide access to the latest React source files.
 
-## Usage {#usage}
+## Usage {/*usage*/}
 
 Transform your JSX files via the provided `jsx` module:
 
@@ -30,7 +30,7 @@ from react import source
 react_js = source.path_for('react.min.js')
 ```
 
-## Django {#django}
+## Django {/*django*/}
 
 PyReact includes a JSX compiler for [django-pipeline](https://github.com/cyberdelia/django-pipeline). Add it to your project's pipeline settings like this:
 
@@ -40,7 +40,7 @@ PIPELINE_COMPILERS = (
 )
 ```
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 PyReact is hosted on PyPI, and can be installed with `pip`:
 

@@ -15,7 +15,7 @@ Setting a state variable will queue another render. But sometimes you might want
 
 </YouWillLearn>
 
-## React batches state updates {#react-batches-state-updates}
+## React batches state updates {/*react-batches-state-updates*/}
 
 You might expect that clicking the "+3" button will increment the counter three times because it calls `setNumber(number + 1)` three times:
 
@@ -65,7 +65,7 @@ This lets you update multiple state variables--even from multiple components--wi
 
 **React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
 
-## Updating the same state variable multiple times before the next render {#updating-the-same-state-variable-multiple-times-before-the-next-render}
+## Updating the same state variable multiple times before the next render {/*updating-the-same-state-variable-multiple-times-before-the-next-render*/}
 
 It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the *next state value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next state based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the state value" instead of just replacing it.
 
@@ -127,7 +127,7 @@ When you call `useState` during the next render, React goes through the queue. T
 React stores `3` as the final result and returns it from `useState`.
 
 This is why clicking "+3" in the above example correctly increments the value by 3.
-### What happens if you update state after replacing it {#what-happens-if-you-update-state-after-replacing-it}
+### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
 
 What about this event handler? What do you think `number` will be in the next render?
 
@@ -181,7 +181,7 @@ React stores `6` as the final result and returns it from `useState`.
 
 > You may have noticed that `setState(x)` actually works like `setState(n => x)`, but `n` is unused!
 
-### What happens if you replace state after updating it {#what-happens-if-you-replace-state-after-updating-it}
+### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
 
 Let's try one more example. What do you think `number` will be in the next render?
 
@@ -244,7 +244,7 @@ To summarize, here's how you can think of what you're passing to the `setNumber`
 
 After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](/learn/keeping-components-pure)** and only *return* the result. Don't try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
 
-### Naming conventions {#naming-conventions}
+### Naming conventions {/*naming-conventions*/}
 
 It's common to name the updater function argument by the first letters of the corresponding state variable:
 
@@ -268,7 +268,7 @@ If you prefer more verbose code, another common convention is to repeat the full
 
 <Challenges>
 
-### Fix a request counter {#fix-a-request-counter}
+### Fix a request counter {/*fix-a-request-counter*/}
 
 You're working on an art marketplace app that lets the user submit multiple orders for an art item at the same time. Each time the user presses the "Buy" button, the "Pending" counter should increase by one. After three seconds, the "Pending" counter should decrease, and the "Completed" counter should increase.
 
@@ -364,7 +364,7 @@ This ensures that when you increment or decrement a counter, you do it in relati
 
 </Solution>
 
-### Implement the state queue yourself {#implement-the-state-queue-yourself}
+### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
 
 In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
 

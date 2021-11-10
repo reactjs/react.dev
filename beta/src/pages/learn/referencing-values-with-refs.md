@@ -17,7 +17,7 @@ When you want a component to "remember" some information, but you don't want tha
 
 </YouWillLearn>
 
-## Adding a ref to your component {#adding-a-ref-to-your-component}
+## Adding a ref to your component {/*adding-a-ref-to-your-component*/}
 
 You can add a ref to your component by importing the `useRef` Hook from React:
 
@@ -73,7 +73,7 @@ The ref points to a number, but, like [state](/learn/state-a-components-memory),
 
 Note that **the component doesn't re-render with every increment.** Like state, refs are retained by React between re-renders. However, setting state re-renders a component. Changing a ref does not!
 
-## Example: building a stopwatch {#example-building-a-stopwatch}
+## Example: building a stopwatch {/*example-building-a-stopwatch*/}
 
 You can combine refs and state in a single component. For example, let's make a stopwatch that the user can start or stop by pressing a button. In order to display how much time has passed since the user pressed "Start," you will need to keep track of when the Start button was pressed and what the current time is. **This information is used for rendering, so you'll keep it in state:**
 
@@ -169,7 +169,7 @@ export default function Stopwatch() {
 
 When a piece of information is used for rendering, keep it in state. When a piece of information is only needed by event handlers and changing it doesn't require a re-render, using a ref may be more efficient.
 
-## Differences between refs and state {#differences-between-refs-and-state}
+## Differences between refs and state {/*differences-between-refs-and-state*/}
 
 Perhaps you're thinking refs seem less "strict" than state—you can mutate them instead of always having to use a state setting function, for instance. But in most cases, you'll want to use state. Refs are an "escape hatch" you won't need often. Here's how state and refs compare:
 
@@ -251,7 +251,7 @@ React provides a built-in version of `useRef` because it is common enough in pra
 
 </DeepDive>
 
-## When to use refs {#when-to-use-refs}
+## When to use refs {/*when-to-use-refs*/}
 
 Typically, you will use a ref when your component needs to "step outside" React and communicate with external APIs—often a browser API that won't impact the appearance of the component. Here are a few of these rare situations:
 
@@ -261,7 +261,7 @@ Typically, you will use a ref when your component needs to "step outside" React 
 
 If your component needs to store some value, but it doesn't impact the rendering logic, choose refs.
 
-## Best practices for refs {#best-practices-for-refs}
+## Best practices for refs {/*best-practices-for-refs*/}
 
 Following these principles will make your components more predictable:
 
@@ -279,7 +279,7 @@ This is because **the ref itself is a regular JavaScript object,** and so it beh
 
 You also don't need to worry about [avoiding mutation](/learn/updating-objects-in-state) when you work with a ref. As long as the object you're mutating isn't used for rendering, React doesn't care what you do with the ref or its contents.
 
-## Refs and the DOM {#refs-and-the-dom}
+## Refs and the DOM {/*refs-and-the-dom*/}
 
 You can point a ref to any value. However, the most common use case for a ref is to access a DOM element. For example, this is handy if you want to focus an input programmatically. When you pass a ref to a `ref` attribute in JSX, like `<div ref={myRef}>`, React will put the corresponding DOM element into `myRef.current`. You can read more about this in [Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs).
 
@@ -298,7 +298,7 @@ You can point a ref to any value. However, the most common use case for a ref is
 
 <Challenges>
 
-### Fix a broken chat input {#fix-a-broken-chat-input}
+### Fix a broken chat input {/*fix-a-broken-chat-input*/}
 
 Type a message and click "Send". You will notice there is a three second delay before you see the "Sent!" alert. During this delay, you can see an "Undo" button. Click it. This "Undo" button is supposed to stop the "Sent!" message from appearing. It does this by calling [`clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout) for the timeout ID saved during `handleSend`. However, even after "Undo" is clicked, the "Sent!" message still appears. Find why it doesn't work, and fix it.
 
@@ -409,7 +409,7 @@ export default function Chat() {
 </Solution>
 
 
-### Fix a component failing to re-render {#fix-a-component-failing-to-re-render}
+### Fix a component failing to re-render {/*fix-a-component-failing-to-re-render*/}
 
 This button is supposed to toggle between showing "On" and "Off". However, it always shows "Off". What is wrong with this code? Fix it.
 
@@ -459,7 +459,7 @@ export default function Toggle() {
 
 </Solution>
 
-### Fix debouncing {#fix-debouncing}
+### Fix debouncing {/*fix-debouncing*/}
 
 In this example, all button click handlers are ["debounced"](https://redd.one/blog/debounce-vs-throttle). To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
 
@@ -576,7 +576,7 @@ button { display: block; margin: 10px; }
 
 </Solution>
 
-### Read the latest state {#read-the-latest-state}
+### Read the latest state {/*read-the-latest-state*/}
 
 In this example, after you press "Send", there is a small delay before the message is shown. Type "hello", press Send, and then quickly edit the input again. Despite your edits, the alert would still show "hello" (which was the value of state [at the time](/learn/state-as-a-snapshot#state-over-time) the button was clicked).
 

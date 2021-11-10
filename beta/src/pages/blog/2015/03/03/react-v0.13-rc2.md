@@ -25,7 +25,7 @@ We've also published version `0.13.0-rc2` of the `react` and `react-tools` packa
 
 ---
 
-## React.cloneElement {#reactcloneelement}
+## React.cloneElement {/*reactcloneelement*/}
 
 In React v0.13 RC2 we will introduce a new API, similar to `React.addons.cloneWithProps`, with this signature:
 

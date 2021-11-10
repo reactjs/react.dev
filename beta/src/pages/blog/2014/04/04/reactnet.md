@@ -25,7 +25,7 @@ Web Forms applications as well as non-web applications (for example, in build
 scripts). ReactJS.NET currently only works on Microsoft .NET but we are working
 on support for Linux and Mac OS X via Mono as well.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 ReactJS.NET is packaged in NuGet. Simply run `Install-Package React.Mvc4` in the
 package manager console or search NuGet for "React" to install it.

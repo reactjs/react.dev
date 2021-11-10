@@ -11,7 +11,7 @@ We just published a beta version of React v0.13.0 to [npm](https://www.npmjs.com
 
 So what is that one feature I'm so excited about that I just couldn't wait to share?
 
-## Plain JavaScript Classes!! {#plain-javascript-classes}
+## Plain JavaScript Classes!! {/*plain-javascript-classes*/}
 
 JavaScript originally didn't have a built-in class system. Every popular framework built their own, and so did we. This means that you have a learn slightly different semantics for each framework.
 
@@ -19,7 +19,7 @@ We figured that we're not in the business of designing a class system. We just w
 
 In React 0.13.0 you no longer need to use `React.createClass` to create React components. If you have a transpiler you can use ES6 classes today. You can use the transpiler we ship with `react-tools` by making use of the harmony option: `jsx --harmony`.
 
-### ES6 Classes {#es6-classes}
+### ES6 Classes {/*es6-classes*/}
 
 ```javascript
 class HelloMessage extends React.Component {
@@ -50,7 +50,7 @@ Counter.propTypes = {initialCount: React.PropTypes.number};
 Counter.defaultProps = {initialCount: 0};
 ```
 
-### ES7+ Property Initializers {#es7-property-initializers}
+### ES7+ Property Initializers {/*es7-property-initializers*/}
 
 Wait, assigning to properties seems like a very imperative way of defining classes! You're right, however, we designed it this way because it's idiomatic. We fully expect a more declarative syntax for property initialization to arrive in future version of JavaScript. It might look something like this:
 
@@ -71,7 +71,7 @@ export class Counter extends React.Component {
 
 This was inspired by TypeScript's property initializers.
 
-### Autobinding {#autobinding}
+### Autobinding {/*autobinding*/}
 
 `React.createClass` has a built-in magic feature that bound all methods to `this` automatically for you. This can be a little confusing for JavaScript developers that are not used to this feature in other classes, or it can be confusing when they move from React to other classes.
 
@@ -101,7 +101,7 @@ class Counter extends React.Component {
 }
 ```
 
-### Mixins {#mixins}
+### Mixins {/*mixins*/}
 
 Unfortunately, we will not launch any mixin support for ES6 classes in React. That would defeat the purpose of only using idiomatic JavaScript concepts.
 
@@ -115,7 +115,7 @@ Luckily, if you want to keep using mixins, you can just keep using `React.create
 >
 > The classic `React.createClass` style of creating classes will continue to work just fine.
 
-## Other Languages! {#other-languages}
+## Other Languages! {/*other-languages*/}
 
 Since these classes are just plain old JavaScript classes, you can use other languages that compile to JavaScript classes, such as TypeScript.
 

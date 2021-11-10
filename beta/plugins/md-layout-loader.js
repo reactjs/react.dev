@@ -15,7 +15,7 @@ const fm = require('gray-matter');
 module.exports = async function (src) {
   const callback = this.async();
   const {content, data} = fm(src);
-  const layout = data.layout || 'Learn';
+  const layout = data.layout || 'Home';
   const code =
     `import withLayout from 'components/Layout/Layout${layout}';
 

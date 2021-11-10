@@ -41,7 +41,6 @@ const options = {
   appId: siteConfig.algolia.appId,
   apiKey: siteConfig.algolia.apiKey,
   indexName: siteConfig.algolia.indexName,
-  rednerModal: true,
 };
 let DocSearchModal: any = null;
 export const Search: React.FC<SearchProps> = ({
@@ -119,6 +118,7 @@ export const Search: React.FC<SearchProps> = ({
         createPortal(
           <DocSearchModal
             {...options}
+            initialScrollY={window.scrollY}
             searchParameters={searchParameters}
             onClose={onClose}
             navigator={{

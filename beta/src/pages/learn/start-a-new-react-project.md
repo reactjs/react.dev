@@ -1,5 +1,6 @@
 ---
 title: Start a New React Project
+layout: Learn
 ---
 
 <Intro>

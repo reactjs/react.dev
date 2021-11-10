@@ -1,5 +1,6 @@
 ---
 title: Updating Objects in State
+layout: Learn
 ---
 
 <Intro>

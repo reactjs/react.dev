@@ -1,5 +1,6 @@
 ---
 title: Writing Markup with JSX
+layout: Learn
 ---
 
 <Intro>

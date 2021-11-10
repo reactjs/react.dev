@@ -1,5 +1,6 @@
 ---
 title: Updating Arrays in State
+layout: Learn
 ---
 
 <Intro>
@@ -152,7 +153,7 @@ setArtists([
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the beginning of an array and `unshift()` by adding to the end of an array. Try it in the sandbox above!
+In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
 
 ### Removing from an array
 

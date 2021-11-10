@@ -1,5 +1,6 @@
 ---
 title: Extracting State Logic into a Reducer
+layout: Learn
 ---
 
 <Intro>

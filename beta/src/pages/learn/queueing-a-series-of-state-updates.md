@@ -1,5 +1,6 @@
 ---
 title: Queueing a Series of State Updates
+layout: Learn
 ---
 
 <Intro>

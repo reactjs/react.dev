@@ -19,7 +19,7 @@ React components use **props** to communicate with each other. Every parent comp
 
 </YouWillLearn>
 
-## Familiar props
+## Familiar props {#familiar-props}
 
 Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
 
@@ -54,7 +54,7 @@ body { min-height: 120px; }
 
 The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
 
-## Passing props to a component
+## Passing props to a component {#passing-props-to-a-component}
 
 In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
 
@@ -68,7 +68,7 @@ export default function Profile() {
 
 You can give `Avatar` some props in two steps.
 
-### Step 1: Pass props to the child component
+### Step 1: Pass props to the child component {#step-1-pass-props-to-the-child-component}
 
 First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
 
@@ -87,7 +87,7 @@ export default function Profile() {
 
 Now you can read these props inside the `Avatar` component.
 
-### Step 2: Read props inside the child component
+### Step 2: Read props inside the child component {#step-2-read-props-inside-the-child-component}
 
 You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
 
@@ -201,7 +201,7 @@ function Avatar(props) {
 
 </Gotcha>
 
-## Specifying a default value for a prop
+## Specifying a default value for a prop {#specifying-a-default-value-for-a-prop}
 
 If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
 
@@ -215,7 +215,7 @@ Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` wi
 
 The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
 
-## Forwarding props with the JSX spread syntax
+## Forwarding props with the JSX spread syntax {#forwarding-props-with-the-jsx-spread-syntax}
 
 Sometimes, passing props gets very repetitive:
 
@@ -250,7 +250,7 @@ This forwards all of `Profile`'s props to the `Avatar` without listing each of t
 
 **Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
 
-## Passing JSX as children
+## Passing JSX as children {#passing-jsx-as-children}
 
 It is common to nest built-in browser tags:
 
@@ -350,7 +350,7 @@ You can think of a component with a `children` prop as having a "hole" that can 
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time
+## How props change over time {#how-props-change-over-time}
 
 The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
 
@@ -426,7 +426,7 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)â€
 
 <Challenges>
 
-### Extract a component
+### Extract a component {#extract-a-component}
 
 This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
 
@@ -728,7 +728,7 @@ Although the syntax looks slightly different because you're describing propertie
 
 </Solution>
 
-### Adjust the image size based on a prop
+### Adjust the image size based on a prop {#adjust-the-image-size-based-on-a-prop}
 
 In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
 
@@ -920,7 +920,7 @@ Props let you encapsulate logic like this inside the `Avatar` component (and cha
 
 </Solution>
 
-### Passing JSX in a `children` prop
+### Passing JSX in a `children` prop {#passing-jsx-in-a-children-prop}
 
 Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
 

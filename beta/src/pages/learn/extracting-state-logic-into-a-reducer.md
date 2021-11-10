@@ -18,7 +18,7 @@ Components with many state updates spread across many event handlers can get ove
 
 </YouWillLearn>
 
-## Consolidate state logic with a reducer
+## Consolidate state logic with a reducer {#consolidate-state-logic-with-a-reducer}
 
 As your components grow in complexity, it can get harder to see all the different ways that a component's state gets updated at a glance. For example, the `TaskBoard` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
 
@@ -189,7 +189,7 @@ Reducers are a different way to handle state. You can migrate from `useState` to
 2. **Write** a reducer function.
 3. **Use** the reducer from your component.
 
-### Step 1: Move from setting state to dispatching actions
+### Step 1: Move from setting state to dispatching actions {#step-1-move-from-setting-state-to-dispatching-actions}
 
 Your event handlers currently specify *what to do* by setting state:
 
@@ -281,7 +281,7 @@ dispatch({
 
 </Convention>
 
-### Step 2: Write a reducer function
+### Step 2: Write a reducer function {#step-2-write-a-reducer-function}
 
 A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state:
 
@@ -452,7 +452,7 @@ You probably won't need to do this yourself, but this is similar to what React d
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component
+### Step 3: Use the reducer from your component {#step-3-use-the-reducer-from-your-component}
 
 Finally, you need to hook up the `tasksReducer` to your component. Make sure to import the `useReducer` Hook from React:
 
@@ -870,7 +870,7 @@ ul, li { margin: 0; padding: 0; }
 
 Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify *what happened* by dispatching actions, and the reducer function determines *how the state updates* in response to them.
 
-## Comparing `useState` and `useReducer`
+## Comparing `useState` and `useReducer` {#comparing-usestate-and-usereducer}
 
 Reducers are not without downsides! Here's a few ways you can compare them:
 
@@ -882,14 +882,14 @@ Reducers are not without downsides! Here's a few ways you can compare them:
 
 We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
 
-## Writing reducers well
+## Writing reducers well {#writing-reducers-well}
 
 Keep these two tips in mind when writing reducers:
 
 * **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.
 * **Actions describe "what happened," not "what to do."** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!
 
-## Writing concise reducers with Immer
+## Writing concise reducers with Immer {#writing-concise-reducers-with-immer}
 
 Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
 
@@ -1116,7 +1116,7 @@ Reducers must be pure, so they shouldn't mutate state. But Immer provides you wi
 
 <Challenges>
 
-### Dispatch actions from event handlers
+### Dispatch actions from event handlers {#dispatch-actions-from-event-handlers}
 
 Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
 
@@ -1468,7 +1468,7 @@ textarea {
 
 </Solution>
 
-### Clear the input on sending a message
+### Clear the input on sending a message {#clear-the-input-on-sending-a-message}
 
 Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
 
@@ -1971,7 +1971,7 @@ With either solution, it's important that you **don't** place the `alert` inside
 
 </Solution>
 
-### Restore input values when switching between tabs
+### Restore input values when switching between tabs {#restore-input-values-when-switching-between-tabs}
 
 In this example, switching between different recipients always clears the text input:
 
@@ -2386,7 +2386,7 @@ Notably, you didn't need to change any of the event handlers to implement this d
 
 </Solution>
 
-### Implement `useReducer` from scratch
+### Implement `useReducer` from scratch {#implement-usereducer-from-scratch}
 
 In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement *the `useReducer` Hook itself!* Here is a stub to get your started. It shouldn't take more than 10 lines of code.
 

@@ -30,14 +30,14 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
   <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## Step 1: Trigger a render
+## Step 1: Trigger a render {#step-1-trigger-a-render}
 
 There are two reasons for a component to render:
 
 1. It's the component's **initial render.**
 2. The component's **state has been updated.**
 
-### Initial render
+### Initial render {#initial-render}
 
 When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling `ReactDOM.render` with your root component and the target DOM node:
 
@@ -68,7 +68,7 @@ export default function Image() {
 
 Try commenting out the `ReactDOM.render` call and see the component disappear!
 
-### Re-renders when state updates
+### Re-renders when state updates {#re-renders-when-state-updates}
 
 Once the component has been initially rendered, you can trigger further renders by updating its state with [`setState`](reference/setstate). Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
 
@@ -78,7 +78,7 @@ Once the component has been initially rendered, you can trigger further renders 
   <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components
+## Step 2: React renders your components {#step-2-react-renders-your-components}
 
 After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
 
@@ -149,7 +149,7 @@ The default behavior of rendering all components nested within the updated compo
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM
+## Step 3: React commits changes to the DOM {#step-3-react-commits-changes-to-the-dom}
 
 After rendering (calling) your components, React will modify the DOM. 
 
@@ -197,7 +197,7 @@ export default function App() {
 </Sandpack>
 
 This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint
+## Epilogue: Browser paint {#epilogue-browser-paint}
 
 After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion in the rest of these docs.
 

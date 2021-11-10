@@ -21,7 +21,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 </YouWillLearn>
 
-## Responding to events
+## Responding to events {#responding-to-events}
 
 React lets you add event handlers to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
 
@@ -73,7 +73,7 @@ Read **[Responding to Events](/learn/responding-to-events)** to learn how to add
 
 </LearnMore>
 
-## State: a component's memory
+## State: a component's memory {#state-a-components-memory}
 
 Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called state.
 
@@ -229,7 +229,7 @@ Read **[State: A Component's Memory](/learn/state-a-components-memory)** to lear
 
 </LearnMore>
 
-## Render and commit
+## Render and commit {#render-and-commit}
 
 Before your components are displayed on the screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
 
@@ -251,7 +251,7 @@ Read **[Render and Commit](/learn/render-and-commit)** to learn the lifecycle of
 
 </LearnMore>
 
-## State as a snapshot
+## State as a snapshot {#state-as-a-snapshot}
 
 Unlike regular JavaScript variables, React state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render. This can be surprising at first!
 
@@ -314,7 +314,7 @@ Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state ap
 
 </LearnMore>
 
-## Queueing a series of state changes
+## Queueing a series of state changes {#queueing-a-series-of-state-changes}
 
 This component is buggy: clicking "+3" increments the score only once.
 
@@ -402,7 +402,7 @@ Read **[Queueing a Series of State Changes](/learn/queueing-a-series-of-state-ch
 
 </LearnMore>
 
-## Updating objects in state
+## Updating objects in state {#updating-objects-in-state}
 
 State can hold any kind of JavaScript value, including objects. But you shouldn't change objects and arrays that you hold in the React state directly. Instead, when you want to update an object and array, you need to create a new one (or make a copy of an existing one), and then update the state to use that copy.
 
@@ -633,7 +633,7 @@ Read **[Updating Objects in State](/learn/updating-objects-in-state)** to learn 
 
 </LearnMore>
 
-## Updating arrays in state
+## Updating arrays in state {#updating-arrays-in-state}
 
 Arrays are another type of mutable JavaScript objects you can store in state and should treat as read-only. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array:
 
@@ -793,7 +793,7 @@ Read **[Updating Arrays in State](/learn/updating-arrays-in-state)** to learn ho
 
 </LearnMore>
 
-## What's next?
+## What's next? {#whats-next}
 
 Head over to [Responding to Events](/learn/responding-to-events) to start reading this chapter page by page!
 

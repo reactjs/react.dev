@@ -9,7 +9,7 @@ Use React Developer Tools to inspect React [components](/learn/your-first-compon
 
 </Intro>
 
-## Browser extension
+## Browser extension {#browser-extension}
 
 The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:
 
@@ -21,7 +21,7 @@ Now, if you visit a website **built with React**, you will see the _Components_ 
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 
-### Safari and other browsers
+### Safari and other browsers {#safari-and-other-browsers}
 For other browsers (for example, Safari), install the [`react-devtools`](https://www.npmjs.com/package/react-devtools) npm package:
 ```bash
 # Yarn
@@ -47,7 +47,7 @@ Reload your website in the browser now to view it in developer tools.
 
 ![React Developer Tools standalone](/images/docs/react-devtools-standalone.png)
 
-## Mobile (React Native)
+## Mobile (React Native) {#mobile-react-native}
 React Developer Tools can be used to inspect apps built with [React Native](https://reactnative.dev/) as well.
 
 The easiest way to use React Developer Tools is to install it globally:

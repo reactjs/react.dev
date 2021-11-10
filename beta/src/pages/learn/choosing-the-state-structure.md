@@ -17,7 +17,7 @@ Structuring state well can make a difference between a component that is pleasan
 
 </YouWillLearn>
 
-## Principles for structuring state
+## Principles for structuring state {#principles-for-structuring-state}
 
 When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
 
@@ -31,7 +31,7 @@ The goal behind these principles is to *make state easy to update without introd
 
 Now let's see how these principles apply in action.
 
-## Group related state
+## Group related state {#group-related-state}
 
 You might sometimes be unsure between using a single or multiple state variables.
 
@@ -101,7 +101,7 @@ If your state variable is an object, remember that [you can't update only one fi
 
 </Gotcha>
 
-## Avoid contradictions in state
+## Avoid contradictions in state {#avoid-contradictions-in-state}
 
 Here is a hotel feedback form with `isSending` and `isSent` state variables:
 
@@ -223,7 +223,7 @@ const isSent = status === 'sent';
 
 But they're not state variables, so you don't need to worry about them getting out of sync with each other.
 
-## Avoid redundant state
+## Avoid redundant state {#avoid-redundant-state}
 
 If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
 
@@ -373,7 +373,7 @@ function Message({ initialColor }) {
 
 </DeepDive>
 
-## Avoid duplication in state
+## Avoid duplication in state {#avoid-duplication-in-state}
 
 This menu list component lets you choose a single travel snack out of several:
 
@@ -568,7 +568,7 @@ The duplication is gone, and you only keep the essential state!
 
 Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
 
-## Avoid deeply nested state
+## Avoid deeply nested state {#avoid-deeply-nested-state}
 
 Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
 
@@ -1854,7 +1854,7 @@ Sometimes, you can also reduce state nesting by moving some of the nested state 
 
 <Challenges>
 
-### Fix a component that's not updating
+### Fix a component that's not updating {#fix-a-component-thats-not-updating}
 
 This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
 
@@ -2017,7 +2017,7 @@ export default function App() {
 
 </Solution>
 
-### Fix a broken packing list
+### Fix a broken packing list {#fix-a-broken-packing-list}
 
 This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark a place as completed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
 
@@ -2303,7 +2303,7 @@ Notice how the event handlers are only concerned with calling `setItems` after t
 
 </Solution>
 
-### Fix the disappearing selection
+### Fix the disappearing selection {#fix-the-disappearing-selection}
 
 There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" invidual letters, which updates the `letters` array in state.
 
@@ -2523,7 +2523,7 @@ li { border-radius: 5px; }
 
 </Solution>
 
-### Implement multiple selection
+### Implement multiple selection {#implement-multiple-selection}
 
 In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
 

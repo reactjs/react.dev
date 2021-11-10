@@ -20,7 +20,7 @@ Welcome to the React documentation! Here is an overview of what you can find on 
 
 </YouWillLearn>
 
-## Introduction
+## Introduction {#introduction}
 
 This is a tiny React app. To get your first taste of React, **edit the code below** and make it display your name:
 
@@ -44,7 +44,7 @@ export default function App() {
 
 </Sandpack>
 
-### What is React?
+### What is React? {#what-is-react}
 
 React is a JavaScript library for building user interfaces.
 
@@ -52,13 +52,13 @@ React stands at the intersection of design and programming. **It lets you take a
 
 React does not prescribe how you build your entire application. It helps you define and compose components, but stays out of your way in other questions. This means that you will either pick one of the ecosystem solutions for problems like routing, styling, and data fetching, or [use a framework](/learn/start-a-new-react-project#building-with-react-and-a-framework) that provides great defaults.
 
-### What can you do with React?
+### What can you do with React? {#what-can-you-do-with-react}
 
 Quite a lot, really! People use React to create all kinds of user interfaces--from small controls like buttons and dropdowns to entire apps. **These docs will teach you to use React on the web.** However, most of what you'll learn here applies equally for [React Native](https://reactnative.dev/) which lets you build apps for Android, iOS, and even [Windows and macOS](https://microsoft.github.io/react-native-windows/).
 
 If you're curious which products you use everyday are built with React, you can install the [React Developer Tools](/learn/react-developer-tools). Whenever you visit an app or a website built with React (like this one!), its icon will light up in the toolbar.
 
-### React uses JavaScript
+### React uses JavaScript {#react-uses-javascript}
 
 With React, you will describe your visual logic in JavaScript. This takes some practice. If you're learning JavaScript and React at the same time, you're not alone--but at times, it will be a little bit more challenging! On the upside, **much of learning React is really learning JavaScript,** which means you will take your learnings far beyond React.
 
@@ -86,7 +86,7 @@ When you're ready to start a project, there are several options. You can write R
 
 </DeepDive>
 
-## Learn React
+## Learn React {#learn-react}
 
 There are a few ways to get started:
 
@@ -96,7 +96,7 @@ There are a few ways to get started:
 
 To save you time, we provide **a brief overview of each chapter** below.
 
-### Chapter 1 overview: Describing the UI
+### Chapter 1 overview: Describing the UI {#chapter-1-overview-describing-the-ui}
 
 React applications are built from isolated pieces of UI called ["components"](/learn/your-first-component). A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here, a *parent* `Gallery` component renders three *child* `Profile` components:
 
@@ -257,7 +257,7 @@ Read **[Describing the UI](/learn/describing-the-ui)** to learn how to make thin
 
 </LearnMore>
 
-### Chapter 2 overview: Adding interactivity
+### Chapter 2 overview: Adding interactivity {#chapter-2-overview-adding-interactivity}
 
 Components often need to change what’s on the screen as a result of an interaction. Typing into the form should update the input field, clicking “next” on an image carousel should change which image is displayed, clicking “buy” puts a product in the shopping cart. Components need to “remember” things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called [*state*](/learn/state-a-components-memory).
 
@@ -529,7 +529,7 @@ Read **[Adding Interactivity](/learn/adding-interactivity)** to learn how to upd
 
 </LearnMore>
 
-### Chapter 3 overview: Managing state
+### Chapter 3 overview: Managing state {#chapter-3-overview-managing-state}
 
 You'll often face a choice of _what exactly_ to put into state. Should you use one state variable or many? An object or an array? How should you [structure your state](/learn/choosing-the-state-structure)? The most important principle is to **avoid redundant state**. If some information never changes, it shouldn't be in state. If some information is received from parent by props, it shouldn't be in state. And if you can compute something from other props or state, it shouldn't be in state either!
 
@@ -707,7 +707,7 @@ Read **[Managing State](/learn/managing-state)** to learn how to keep your compo
 
 </LearnMore>
 
-## Next steps
+## Next steps {#next-steps}
 
 This page was fast-paced! If you've read this far, you have already seen 80% of React you will use on daily basis.
 

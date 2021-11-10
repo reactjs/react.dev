@@ -18,7 +18,7 @@ State is isolated between components. React keeps track of which state belongs t
 
 </YouWillLearn>
 
-## The UI tree
+## The UI tree {#the-ui-tree}
 
 Browsers use many tree structures to model UI. The [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model/Introduction) represents HTML elements, the [CSSOM](https://developer.mozilla.org/docs/Web/API/CSS_Object_Model) does the same for CSS. There's even an [Accessibility tree](https://developer.mozilla.org/docs/Glossary/Accessibility_tree)!
 
@@ -26,7 +26,7 @@ React also uses tree structures to manage and model the UI you make. React makes
 
 <img alt="React takes components, turns them into UI tree structures, and ReactDOM turns them into HTML in your browser using the DOM." src="/images/docs/sketches/s_react-dom-tree.png" />
 
-## State is tied to a position in the tree
+## State is tied to a position in the tree {#state-is-tied-to-a-position-in-the-tree}
 
 When you give a component state, you might think the state "lives" inside the component. But the state is actually held inside React. React associates each piece of state it's holding with the correct component by where that component sits in the UI tree.
 
@@ -245,7 +245,7 @@ When you tick "Render the second counter," a second `Counter` and its state are 
 
 **React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
 
-## Same component at the same position preserves state
+## Same component at the same position preserves state {#same-component-at-the-same-position-preserves-state}
 
 In this example, there are two different `<Counter />` tags:
 
@@ -447,7 +447,7 @@ You can think of them as having the same "address": the first child of the first
 
 </Gotcha>
 
-## Different components at the same position reset state
+## Different components at the same position reset state {#different-components-at-the-same-position-reset-state}
 
 In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
 
@@ -668,7 +668,7 @@ Every time you click the button, the input state disappears! This is because a *
 
 </Gotcha>
 
-## Resetting state at the same position
+## Resetting state at the same position {#resetting-state-at-the-same-position}
 
 By default, React preserves state of a component while it stays at the same position. Usually, this is exactly what you want, so it makes sense as the default behavior. But sometimes, you may want to reset a component's state. Consider this app that lets two players keep track of their scores during each turn:
 
@@ -752,7 +752,7 @@ There are two ways to reset state when switching between them:
 2. Give each component an explicit identity with `key`
 
 
-### Option 1: Rendering a component in different positions
+### Option 1: Rendering a component in different positions {#option-1-rendering-a-component-in-different-positions}
 
 If you want these two `Counter`s to be independent, you can render them in two different positions:
 
@@ -834,7 +834,7 @@ h1 {
 
 This solution is convenient when you only have a few independent components rendered in the same place. In this example, you only have two, so it's not a hassle to render both separately in the JSX.
 
-### Option 2: Resetting state with a key
+### Option 2: Resetting state with a key {#option-2-resetting-state-with-a-key}
 
 There is also another, more generic, way to reset a component's state.
 
@@ -926,7 +926,7 @@ Specifying a `key` tells React to use the `key` itself as part of the position, 
 
 > Remember that keys are not globally unique. They only specify the position *within the parent*.
 
-### Resetting a form with a key
+### Resetting a form with a key {#resetting-a-form-with-a-key}
 
 Resetting state with a key is particularly useful when dealing with forms.
 
@@ -1155,7 +1155,7 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Challenges>
 
-### Fix disappearing input text
+### Fix disappearing input text {#fix-disappearing-input-text}
 
 This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
 
@@ -1306,7 +1306,7 @@ This way, `Form` is always the second child, so it stays in the same position an
 
 </Solution>
 
-### Swap two form fields
+### Swap two form fields {#swap-two-form-fields}
 
 This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
 
@@ -1440,7 +1440,7 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-### Reset a detail form
+### Reset a detail form {#reset-a-detail-form}
 
 This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
 
@@ -1749,7 +1749,7 @@ button {
 
 </Solution>
 
-### Clear an image while it's loading
+### Clear an image while it's loading {#clear-an-image-while-its-loading}
 
 When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next," the previous image immediately clears.
 
@@ -1893,7 +1893,7 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-### Fix misplaced state in the list
+### Fix misplaced state in the list {#fix-misplaced-state-in-the-list}
 
 In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
 

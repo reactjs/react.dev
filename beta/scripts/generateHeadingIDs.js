@@ -87,7 +87,7 @@ main()
 
 async function main() {
   const [unifiedMod, remarkParseMod, remarkSlugMod] = await Promise.all([import('unified'), import('remark-parse'), import('remark-slug')])
-  const unified = unifiedMod.default
+  const unified = unifiedMod.unified
   const remarkParse = remarkParseMod.default
   const remarkSlug = remarkSlugMod.default
   modules = {unified, remarkParse, remarkSlug}

@@ -2,11 +2,15 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-const path = require('path');
-const {remarkPlugins} = require('./plugins/markdownToHtml');
+import path from 'node:path';
+import {createRequire} from 'node:module';
+import {fileURLToPath} from 'node:url';
+import {remarkPlugins, rehypePlugins} from './plugins/markdownToHtml.mjs';
+
+const require = createRequire(import.meta.url);
 const redirects = require('./src/redirects.json');
 
-module.exports = {
+export default {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   experimental: {
     plugins: true,
@@ -46,17 +50,27 @@ module.exports = {
     // Add our custom markdown loader in order to support frontmatter
     // and layout
     config.module.rules.push({
-      test: /.mdx?$/, // load both .md and .mdx files
+      test: /\.mdx?$/, // load both .md and .mdx files
       use: [
+        // The default `babel-loader` used by Next:
         options.defaultLoaders.babel,
         {
-          loader: '@mdx-js/loader',
-          options: {
+          // To do: figure out why `@mdx-js/loader`, which is almost the same,
+          // fails.
+          // loader: '@mdx-js/loader',
+          loader: 'xdm/webpack.cjs',
+          options: /** @type {import('@mdx-js/loader').Options} */ ({
             remarkPlugins,
-          },
-        },
-        path.join(__dirname, './plugins/md-layout-loader'),
-      ],
+            rehypePlugins,
+            // To do: use `.mdx` as an extension for files that contain MDX (JSX, expressions, ESM).
+            // `.md` is normally parsed as “normal” markdown.
+            // Good to be explicit.
+            format: 'mdx',
+            // To do: perhaps we don’t need this?
+            providerImportSource: '@mdx-js/react'
+          })
+        }
+      ]
     });
 
     return config;

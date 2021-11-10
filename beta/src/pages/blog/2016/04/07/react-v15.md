@@ -235,7 +235,7 @@ Each of these changes will continue to work as before with a new warning until t
 - Add-Ons: ReactPerf no longer instruments adding or removing an event listener because they don’t really touch the DOM due to event delegation.  
   <small>[@antoaravinth](https://github.com/antoaravinth) in [#5209](https://github.com/facebook/react/pull/5209)</small>
 
-### Other improvements {#improvements}
+### Other improvements {#improvements}
 
 - React now uses `loose-envify` instead of `envify` so it installs fewer transitive dependencies.  
   <small>[@qerub](https://github.com/qerub) in [#6303](https://github.com/facebook/react/pull/6303)</small>

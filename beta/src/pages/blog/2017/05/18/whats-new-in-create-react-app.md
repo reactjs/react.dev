@@ -27,7 +27,7 @@ The biggest notable webpack 2 feature is the ability to write and import [ES6 mo
 
 In the future, as the ecosystem around ES6 modules matures, you can expect more improvements to your app's bundle size thanks to [tree shaking](https://webpack.js.org/guides/tree-shaking/).
 
-### Runtime Error Overlay {#error-overlay}
+### Runtime Error Overlay {#error-overlay}
 
 > _This change was contributed by [@Timer](https://github.com/Timer) and [@nicinabox](https://github.com/nicinabox) in [#1101](https://github.com/facebookincubator/create-react-app/pull/1101), [@bvaughn](https://github.com/bvaughn) in [#2201](https://github.com/facebookincubator/create-react-app/pull/2201)._
 

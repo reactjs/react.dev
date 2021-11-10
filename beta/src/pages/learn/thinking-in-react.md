@@ -9,7 +9,7 @@ React can change how you think about the designs you look at and the apps you bu
 
 </Intro>
 
-## Start with the mockup
+## Start with the mockup {#start-with-the-mockup}
 
 Imagine that you already have a JSON API and a mockup from a designer.
 
@@ -32,7 +32,7 @@ The mockup looks like this:
 
 To implement a UI in React, you will usually follow the same five steps.
 
-## Step 1: Break the UI into a component hierarchy
+## Step 1: Break the UI into a component hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}
 
 Start by drawing boxes around every component and subcomponent in the mockup and naming them. If you work with a designer, they may have already named these components in their design tool. Check in with them!
 
@@ -72,7 +72,7 @@ Now that you've identified the components in the mockup, arrange them into a hie
         * `ProductCategoryRow`
         * `ProductRow`
 
-## Step 2: Build a static version in React
+## Step 2: Build a static version in React {#step-2-build-a-static-version-in-react}
 
 Now that you have your component hierarchy, it's time to implement your app. The most straightforward approach is to build a version that renders the UI from your data model without adding any interactivity... yet! It's often easier to build the static version first and then add interactivity separately. Building a static version requires a lot of typing and no thinking, but adding interactivity requires a lot of thinking and not a lot of typing.
 
@@ -206,7 +206,7 @@ At this point, you should not be using any state values. That’s for the next s
 
 </Gotcha>
 
-## Step 3: Find the minimal but complete representation of UI state 
+## Step 3: Find the minimal but complete representation of UI state {#step-3-find-the-minimal-but-complete-representation-of-ui-state}
 
 To make the UI interactive, you need to let users change your underlying data model. You will use *state* for this.
 
@@ -247,7 +247,7 @@ Props and state are different, but they work together. A parent component will o
 
 </DeepDive>
 
-## Step 4: Identify where your state should live
+## Step 4: Identify where your state should live {#step-4-identify-where-your-state-should-live}
 
 After identifying your app’s minimal state data, you need to identify which component is responsible for changing this state, or *owns* the state. Remember: React uses one-way data flow, passing data down the component hierarchy from parent to child component. It may not be immediately clear which component should own what state. This can be challenging if you’re new to this concept, but you can figure it out by following these steps!
 
@@ -451,7 +451,7 @@ function SearchBar({ filterText, inStockOnly }) {
 
 Refer to the [Managing State](/learn/managing-state) to dive deeper into how React uses state and how you can organize your app with it.
 
-## Step 5: Add inverse data flow
+## Step 5: Add inverse data flow {#step-5-add-inverse-data-flow}
 
 Currently your app renders correctly with props and state flowing down the hierarchy. But to change the state according to user input, you will need to support data flowing the other way: the form components deep in the hierarchy need to update the state in `FilterableProductTable`. 
 
@@ -635,6 +635,6 @@ td {
 
 You can learn all about handling events and updating state in the [Adding Interactivity](/learn/adding-interactivity) section.
 
-## Where to go from here
+## Where to go from here {#where-to-go-from-here}
 
 This was a very brief introduction to how to think about building components and applications with React. You can [start a React project](/learn/installation) right now or [dive deeper on all the syntax](/learn/describing-the-ui) used in this tutorial.

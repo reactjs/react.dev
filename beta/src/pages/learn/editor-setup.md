@@ -9,7 +9,7 @@ A properly configured editor can make code clearer to read and faster to write. 
 
 </Intro>
 
-## Your editor
+## Your editor {#your-editor}
 
 [VS Code](https://code.visualstudio.com/) is one of the most popular editors in use today. It has a large marketplace of extensions and integrates well with popular services like GitHub. Most of the features listed below can be added to VS Code as extensions as well, making it highly configurable!
 
@@ -19,18 +19,18 @@ Other popular text editors used in the React community include:
 * [Sublime Text](https://www.sublimetext.com/)—has support for JSX and TypeScript, syntax highlighting and autocomplete built in.
 * [Vim](https://www.vim.org/)—a highly configurable text editor built to make creating and changing any kind of text very efficient. It is included as "vi" with most UNIX systems and with Apple OS X.
 
-## Recommended text editor features
+## Recommended text editor features {#recommended-text-editor-features}
 
 Some editors come with these features built in, but others might require adding an extension. Check to see what support your editor of choice provides to be sure!
 
-### Linting
+### Linting {#linting}
 
 Code linters find problems in your code as you write, helping you fix them early. [ESLint](https://eslint.org/) is a popular, open source linter for JavaScript. 
 
 * [Install ESLint with the recommended configuration for React](https://www.npmjs.com/package/eslint-config-react-app) (be sure you have [Node installed!](https://nodejs.org/en/download/current/))
 * [Integrate ESLint in VSCode with the official extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
 
-### Formatting
+### Formatting {#formatting}
 
 The last thing you want to do when sharing your code with another contributor is get into an discussion about [tabs vs spaces](https://www.google.com/search?q=tabs+vs+spaces)! Fortunately, [Prettier](https://prettier.io/) will clean up your code by reformatting it to conform to preset, configurable rules. Run Prettier, and all your tabs will be converted to spaces—and your indentation, quotes, etc will also all be changed to conform to the configuration. In the ideal setup, Prettier will run when you save your file, quickly making these edits for you.
 
@@ -41,7 +41,7 @@ You can install the [Prettier extension in VSCode](https://marketplace.visualstu
 3. Paste in `ext install esbenp.prettier-vscode`
 4. Press enter
 
-#### Formatting on save
+#### Formatting on save {#formatting-on-save}
 
 Ideally, you should format your code on every save. VS Code has settings for this!
 

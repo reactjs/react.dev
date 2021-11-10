@@ -18,7 +18,7 @@ Because React handles updating the [DOM](https://developer.mozilla.org/docs/Web/
 
 </YouWillLearn>
 
-## Getting a ref to the node
+## Getting a ref to the node {#getting-a-ref-to-the-node}
 
 To access a DOM node managed by React, first, import the `useRef` Hook:
 
@@ -45,7 +45,7 @@ The `useRef` Hook returns an object with a single property called `current`. Ini
 myRef.current.scrollIntoView();
 ```
 
-### Example: Focusing a text input
+### Example: Focusing a text input {#example-focusing-a-text-input}
 
 In this example, clicking the button will focus the input:
 
@@ -83,7 +83,7 @@ To implement this:
 
 While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. You can even think of refs as state variables that don't trigger re-renders when you set them! You can learn more about refs in [Referencing Values with Refs](/learn/referencing-values-with-refs).
 
-### Example: Scrolling to an element
+### Example: Scrolling to an element {#example-scrolling-to-an-element}
 
 You can have more than a single ref in a component. In this example, there is a carousel of three images and three buttons to center them in the view port by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method the corresponding DOM node:
 
@@ -337,7 +337,7 @@ This lets you read individual DOM nodes from the Map later.
 
 </DeepDive>
 
-## Accessing another component's DOM nodes
+## Accessing another component's DOM nodes {#accessing-another-components-dom-nodes}
 
 When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
 
@@ -473,7 +473,7 @@ Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, 
 
 </DeepDive>
 
-## When React attaches the refs
+## When React attaches the refs {#when-react-attaches-the-refs}
 
 In React, every update is split in [two phases](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom):
 
@@ -619,7 +619,7 @@ for (let i = 0; i < 20; i++) {
 
 </DeepDive>
 
-## Best practices for DOM manipulation with refs
+## Best practices for DOM manipulation with refs {#best-practices-for-dom-manipulation-with-refs}
 
 Refs are an escape hatch. You should only use them when you have to "step outside React." Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
 
@@ -689,7 +689,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 
 <Challenges>
 
-### Play and pause the video
+### Play and pause the video {#play-and-pause-the-video}
 
 In this example, the button toggles a state variable to switch between a playing and a paused state. However, in order to actually play or pause the video, toggling state is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
 
@@ -776,7 +776,7 @@ button { display: block }
 
 </Solution>
 
-### Focus the search field
+### Focus the search field {#focus-the-search-field}
 
 Make it so that clicking the "Search" button puts focus into the field.
 
@@ -840,7 +840,7 @@ button { display: block; margin-bottom: 10px; }
 
 </Solution>
 
-### Scrolling an image carousel
+### Scrolling an image carousel {#scrolling-an-image-carousel}
 
 This image carousel has a "Next" button that switches the active image. Make the gallery scroll horizontally to the active image on click. You will want to call [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) on the DOM node of the active image:
 
@@ -1066,7 +1066,7 @@ img {
 
 </Solution>
 
-### Focus the search field with separate components
+### Focus the search field with separate components {#focus-the-search-field-with-separate-components}
 
 Make it so that clicking the "Search" button puts focus into the field. Note that each component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
 

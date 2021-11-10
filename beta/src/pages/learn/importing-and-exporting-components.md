@@ -19,7 +19,7 @@ The magic of components lies in their reusability: you can create components tha
 
 </YouWillLearn>
 
-## The root component file
+## The root component file {#the-root-component-file}
 
 In [Your First Component](/learn/your-first-component), you made a `Profile` component and a `Gallery` component that renders it:
 
@@ -55,7 +55,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 These currently live in a **root component file,** named `App.js` in this example. In [Create React App](https://create-react-app.dev/), your app lives in `src/App.js`. Depending on your setup, your root component could be in another file, though. If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
 
-## Exporting and importing a component
+## Exporting and importing a component {#exporting-and-importing-a-component}
 
 What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
 
@@ -146,7 +146,7 @@ When you write a _default_ import, you can put any name you want after `import`.
 
 </DeepDive>
 
-## Exporting and importing multiple components from the same file
+## Exporting and importing multiple components from the same file {#exporting-and-importing-multiple-components-from-the-same-file}
 
 What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
 
@@ -242,7 +242,7 @@ On this page you learned:
 
 <Challenges>
 
-### Split the components further
+### Split the components further {#split-the-components-further}
 
 Currently, `Gallery.js` exports both `Profile` and `Gallery`, which is a bit confusing.
 

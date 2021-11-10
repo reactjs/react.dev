@@ -17,7 +17,7 @@ Your components will often need to display different things depending on differe
 
 </YouWillLearn>
 
-## Conditionally returning JSX
+## Conditionally returning JSX {#conditionally-returning-jsx}
 
 Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
 
@@ -105,7 +105,7 @@ Try editing what gets returned in either case, and see how the result changes!
 
 Notice how you're creating branching logic with JavaScript's `if` and `return` statements. In React, control flow (like conditions) is handled by JavaScript.
 
-### Conditionally returning nothing with `null`
+### Conditionally returning nothing with `null` {#conditionally-returning-nothing-with-null}
 
 In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
 
@@ -155,7 +155,7 @@ export default function PackingList() {
 
 In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
 
-## Conditionally including JSX
+## Conditionally including JSX {#conditionally-including-jsx}
 
 In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
 
@@ -180,7 +180,7 @@ return <li className="item">{name}</li>;
 
 While this duplication isn't harmful, it could make your code harder to maintain. What if you want to change the `className`? You'd have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
 
-### Conditional (ternary) operator (`? :`)
+### Conditional (ternary) operator (`? :`) {#conditional-ternary-operator--}
 
 JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator."
 
@@ -257,7 +257,7 @@ export default function PackingList() {
 
 This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
 
-### Logical AND operator (`&&`)
+### Logical AND operator (`&&`) {#logical-and-operator-}
 
 Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.). Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
 
@@ -324,7 +324,7 @@ To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p
 
 </Gotcha>
 
-### Conditionally assigning JSX to a variable
+### Conditionally assigning JSX to a variable {#conditionally-assigning-jsx-to-a-variable}
 
 When the shortcuts get in the way of writing plain code, try using an `if` statement and a variable. You can reassign variables defined with [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), so start by providing the default content you want to display, the name:
 
@@ -453,7 +453,7 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-### Show an icon for incomplete items with `? :`
+### Show an icon for incomplete items with `? :` {#show-an-icon-for-incomplete-items-with--}
 
 Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
 
@@ -533,7 +533,7 @@ export default function PackingList() {
 
 </Solution>
 
-### Show the item importance with `&&`
+### Show the item importance with `&&` {#show-the-item-importance-with-}
 
 In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero difficulty. Your item list should end up looking like this:
 
@@ -629,7 +629,7 @@ In this solution, two separate conditions are used to insert a space between the
 
 </Solution>
 
-### Refactor a series of `? :` to `if` and variables
+### Refactor a series of `? :` to `if` and variables {#refactor-a-series-of---to-if-and-variables}
 
 This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
 

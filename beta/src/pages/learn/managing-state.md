@@ -21,7 +21,7 @@ As your application grows, it helps to be more intentional about how your state 
 
 </YouWillLearn>
 
-## Reacting to input with state
+## Reacting to input with state {#reacting-to-input-with-state}
 
 With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
 
@@ -113,7 +113,7 @@ Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to 
 
 </LearnMore>
 
-## Choosing the state structure
+## Choosing the state structure {#choosing-the-state-structure}
 
 Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's some unnecessary state, it's easy to forget to update it, and introduce bugs!
 
@@ -230,7 +230,7 @@ Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to 
 
 </LearnMore>
 
-## Sharing state between components
+## Sharing state between components {#sharing-state-between-components}
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
 
@@ -301,7 +301,7 @@ Read **[Sharing State Between Components](/learn/sharing-state-between-component
 
 </LearnMore>
 
-## Preserving and resetting state
+## Preserving and resetting state {#preserving-and-resetting-state}
 
 When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
 
@@ -501,7 +501,7 @@ Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)**
 
 </LearnMore>
 
-## Extracting state logic into a reducer
+## Extracting state logic into a reducer {#extracting-state-logic-into-a-reducer}
 
 Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer." Your event handlers become concise because they only specify the user "actions." At the bottom of the file, the reducer function specifies how the state should update in response to each action!
 
@@ -698,7 +698,7 @@ Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-int
 
 </LearnMore>
 
-## Passing data deeply with context
+## Passing data deeply with context {#passing-data-deeply-with-context}
 
 Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
 
@@ -800,7 +800,7 @@ Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-contex
 
 </LearnMore>
 
-## Scaling up with reducer and context
+## Scaling up with reducer and context {#scaling-up-with-reducer-and-context}
 
 Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
 
@@ -1011,7 +1011,7 @@ Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-
 
 </LearnMore>
 
-## What's next?
+## What's next? {#whats-next}
 
 Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
 

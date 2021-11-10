@@ -9,7 +9,7 @@ The React package contains all the APIs necessary to define and use [components]
 
 </Intro>
 
-## Installation
+## Installation {#installation}
 
 It is available as [`react`](https://www.npmjs.com/package/react) on npm. You can also [add React to the page as a `<script>` tag](/learn/add-react-to-a-website).
 
@@ -33,7 +33,7 @@ import * as React from 'react';
 
 If you use React on the web, you'll also need the same version of [ReactDOM](/api/reactdom).
 
-## Exports
+## Exports {#exports}
 
 <YouWillLearnCard title="useState" path="/reference/usestate">
 

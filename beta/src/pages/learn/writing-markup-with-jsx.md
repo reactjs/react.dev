@@ -17,7 +17,7 @@ JSX is a syntax extension for JavaScript that lets you write HTML-like markup in
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript
+## JSX: Putting markup into JavaScript {#jsx-putting-markup-into-javascript}
 
 The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
 
@@ -37,7 +37,7 @@ Each React component is a JavaScript function that may contain some markup that 
 
 </Note>
 
-## Converting HTML to JSX
+## Converting HTML to JSX {#converting-html-to-jsx}
 
 Suppose that you have some (perfectly valid) HTML:
 
@@ -103,9 +103,9 @@ Most of the times, React's on-screen error messages will help you find where the
 
 </Note>
 
-## The Rules of JSX
+## The Rules of JSX {#the-rules-of-jsx}
 
-### 1. Return a single root element
+### 1. Return a single root element {#1-return-a-single-root-element}
 
 To return multiple elements from a component, **wrap them with a single parent tag**.
 
@@ -150,7 +150,7 @@ JSX looks like HTML, but under the hood it is transformed into plain JavaScript 
 
 </DeepDive>
 
-### 2. Close all the tags
+### 2. Close all the tags {#2-close-all-the-tags}
 
 JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
 
@@ -171,7 +171,7 @@ This is how Hedy Lamarr's image and list items look closed:
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things!
+### 3. camelCase <s>all</s> most of the things! {#3-camelcase-salls-most-of-the-things}
 
 JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
 
@@ -193,7 +193,7 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 </Gotcha>
 
-### Pro-tip: Use a JSX Converter
+### Pro-tip: Use a JSX Converter {#pro-tip-use-a-jsx-converter}
 
 Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
 
@@ -241,7 +241,7 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-### Convert some HTML to JSX
+### Convert some HTML to JSX {#convert-some-html-to-jsx}
 
 This HTML was pasted into a component, but it's not valid JSX. Fix it:
 

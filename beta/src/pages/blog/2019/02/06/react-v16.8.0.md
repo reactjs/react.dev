@@ -1,6 +1,5 @@
 ---
 title: "React v16.8: The One With Hooks"
-layout: Post
 author: [gaearon]
 ---
 

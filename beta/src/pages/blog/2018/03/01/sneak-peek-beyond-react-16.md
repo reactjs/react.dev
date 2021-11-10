@@ -1,6 +1,5 @@
 ---
 title: 'Sneak Peek: Beyond React 16'
-layout: Post
 author: [sophiebits]
 ---
 

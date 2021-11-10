@@ -1,6 +1,5 @@
 ---
 title: State as a Snapshot
-layout: Learn
 ---
 
 <Intro>

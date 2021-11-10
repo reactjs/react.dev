@@ -1,6 +1,5 @@
 ---
 title: Conditional Rendering
-layout: Learn
 ---
 
 <Intro>

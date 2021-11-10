@@ -1,6 +1,5 @@
 ---
 title: "New in React v0.4: Autobind by Default"
-layout: Post
 author: [zpao]
 ---
 

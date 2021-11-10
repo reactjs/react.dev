@@ -1,4 +1,5 @@
 const fm = require('gray-matter');
+const path = require('path');
 
 // Makes mdx in next.js suck less by injecting necessary exports so that
 // the docs are still readable on github.
@@ -15,7 +16,16 @@ const fm = require('gray-matter');
 module.exports = async function (src) {
   const callback = this.async();
   const {content, data} = fm(src);
-  const layout = data.layout || 'Home';
+  const pageParentDir = path
+    .dirname(path.relative('./src/pages', this.resourcePath))
+    .split(path.sep)
+    .shift();
+  const layoutMap = {
+    blog: 'Post',
+    learn: 'Learn',
+    reference: 'API',
+  };
+  const layout = layoutMap[pageParentDir] || 'Home';
   const code =
     `import withLayout from 'components/Layout/Layout${layout}';
 

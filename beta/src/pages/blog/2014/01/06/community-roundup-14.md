@@ -1,6 +1,5 @@
 ---
 title: 'Community Round-up #14'
-layout: Post
 author: [vjeux]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'React v16.13.0'
-layout: Post
 author: [threepointone]
 redirect_from:
   - 'blog/2020/03/02/react-v16.13.0'

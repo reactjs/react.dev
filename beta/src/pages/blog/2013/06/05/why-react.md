@@ -1,6 +1,5 @@
 ---
 title: Why did we build React?
-layout: Post
 author: [petehunt]
 ---
 

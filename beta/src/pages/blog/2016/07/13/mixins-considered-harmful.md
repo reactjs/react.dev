@@ -1,6 +1,5 @@
 ---
 title: 'Mixins Considered Harmful'
-layout: Post
 author: [gaearon]
 ---
 

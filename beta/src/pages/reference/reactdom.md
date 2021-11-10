@@ -1,6 +1,5 @@
 ---
 title: ReactDOM API
-layout: API
 ---
 
 <Intro>

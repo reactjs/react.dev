@@ -1,6 +1,5 @@
 ---
 title: Acknowledgements
-layout: Home
 ---
 
 ## React {#react}

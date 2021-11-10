@@ -1,6 +1,5 @@
 ---
 title: 'New Versioning Scheme'
-layout: Post
 author: [sebmarkbage]
 ---
 

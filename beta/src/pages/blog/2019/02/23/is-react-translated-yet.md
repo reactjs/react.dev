@@ -1,6 +1,5 @@
 ---
 title: 'Is React Translated Yet? ¡Sí! Sim! はい！'
-layout: Post
 author: [tesseralis]
 ---
 

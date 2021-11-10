@@ -1,6 +1,5 @@
 ---
 title: 'One Year of Open-Source React'
-layout: Post
 author: [chenglou]
 ---
 

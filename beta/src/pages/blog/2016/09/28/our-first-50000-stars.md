@@ -1,6 +1,5 @@
 ---
 title: 'Our First 50,000 Stars'
-layout: Post
 author: [vjeux]
 ---
 

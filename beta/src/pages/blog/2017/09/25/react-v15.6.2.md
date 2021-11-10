@@ -1,6 +1,5 @@
 ---
 title: 'React v15.6.2'
-layout: Post
 author: [nhunzaker]
 ---
 

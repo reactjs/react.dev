@@ -1,6 +1,5 @@
 ---
 title: 'React Conf recap: Hooks, Suspense, and Concurrent Rendering'
-layout: Post
 author: [tomocchino]
 ---
 

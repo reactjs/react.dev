@@ -1,6 +1,5 @@
 ---
 title: render()
-layout: API
 ---
 
 <Intro>

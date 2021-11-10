@@ -1,6 +1,5 @@
 ---
 title: 'Manipulating the DOM with Refs'
-layout: Learn
 ---
 
 <Intro>

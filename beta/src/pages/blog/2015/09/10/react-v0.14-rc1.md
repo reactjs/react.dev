@@ -1,6 +1,5 @@
 ---
 title: 'React v0.14 Release Candidate'
-layout: Post
 author: [sophiebits]
 ---
 

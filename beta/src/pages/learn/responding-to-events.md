@@ -1,6 +1,5 @@
 ---
 title: Responding to Events
-layout: Learn
 ---
 
 <Intro>

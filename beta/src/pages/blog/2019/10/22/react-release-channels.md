@@ -1,6 +1,5 @@
 ---
 title: 'Preparing for the Future with React Prereleases'
-layout: Post
 author: [acdlite]
 ---
 

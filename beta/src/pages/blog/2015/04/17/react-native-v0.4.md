@@ -1,6 +1,5 @@
 ---
 title: 'React Native v0.4'
-layout: Post
 author: [vjeux]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'Use React and JSX in ASP.NET MVC'
-layout: Post
 author: [Daniel15]
 ---
 

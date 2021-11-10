@@ -1,6 +1,5 @@
 ---
 title: React Developer Tools
-layout: Learn
 ---
 
 <Intro>

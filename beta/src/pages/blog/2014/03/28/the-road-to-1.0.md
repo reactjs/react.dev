@@ -1,6 +1,5 @@
 ---
 title: The Road to 1.0
-layout: Post
 author: [zpao]
 ---
 

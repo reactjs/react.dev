@@ -1,6 +1,5 @@
 ---
 title: React v0.13.0 Beta 1
-layout: Post
 author: [sebmarkbage]
 ---
 

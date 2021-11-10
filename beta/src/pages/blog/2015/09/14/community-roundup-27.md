@@ -1,6 +1,5 @@
 ---
 title: 'Community Round-up #27 – Relay Edition'
-layout: Post
 author: [steveluscher]
 ---
 

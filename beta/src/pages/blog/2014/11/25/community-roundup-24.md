@@ -1,6 +1,5 @@
 ---
 title: 'Community Round-up #24'
-layout: Post
 author: [steveluscher]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: "What's New in Create React App"
-layout: Post
 author: [gaearon]
 ---
 

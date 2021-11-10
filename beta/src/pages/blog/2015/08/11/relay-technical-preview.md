@@ -1,6 +1,5 @@
 ---
 title: 'Relay Technical Preview'
-layout: Post
 author: [josephsavona]
 ---
 

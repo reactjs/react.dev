@@ -1,6 +1,5 @@
 ---
 title: "Create React App 2.0: Babel 7, Sass, and More"
-layout: Post
 author: [timer, gaearon]
 ---
 

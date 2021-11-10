@@ -1,6 +1,5 @@
 ---
 title: 'Testing Flux Applications'
-layout: Post
 author: [fisherwebdev]
 ---
 

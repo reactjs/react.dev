@@ -1,6 +1,5 @@
 ---
 title: Managing State
-layout: Learn
 ---
 
 <Intro>

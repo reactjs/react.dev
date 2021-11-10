@@ -1,6 +1,5 @@
 ---
 title: Render and Commit
-layout: Learn
 ---
 
 <Intro>

@@ -1,6 +1,5 @@
 ---
 title: 'Flux: Actions and the Dispatcher'
-layout: Post
 author: [fisherwebdev]
 ---
 

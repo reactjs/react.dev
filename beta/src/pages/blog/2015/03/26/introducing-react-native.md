@@ -1,6 +1,5 @@
 ---
 title: 'Introducing React Native'
-layout: Post
 author: [sophiebits]
 ---
 

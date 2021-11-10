@@ -1,6 +1,5 @@
 ---
 title: React APIs
-layout: API
 ---
 
 <Intro>

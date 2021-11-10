@@ -1,6 +1,5 @@
 ---
 title: 'React v16.7: No, This Is Not the One With Hooks'
-layout: Post
 author: [acdlite]
 ---
 

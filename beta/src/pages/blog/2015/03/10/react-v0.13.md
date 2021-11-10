@@ -1,6 +1,5 @@
 ---
 title: 'React v0.13'
-layout: Post
 author: [sophiebits]
 ---
 

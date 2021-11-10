@@ -1,6 +1,5 @@
 ---
 title: 'React v0.12 RC'
-layout: Post
 author: [sebmarkbage]
 ---
 

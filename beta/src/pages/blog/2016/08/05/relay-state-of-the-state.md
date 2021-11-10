@@ -1,6 +1,5 @@
 ---
 title: 'Relay: State of the State'
-layout: Post
 author: [josephsavona]
 ---
 

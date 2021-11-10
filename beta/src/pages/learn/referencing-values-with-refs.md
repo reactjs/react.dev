@@ -1,5 +1,6 @@
 ---
 title: 'Referencing Values with Refs'
+layout: Learn
 ---
 
 <Intro>

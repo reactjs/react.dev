@@ -1,5 +1,6 @@
 ---
 title: Importing and Exporting Components
+layout: Learn
 ---
 
 <Intro>

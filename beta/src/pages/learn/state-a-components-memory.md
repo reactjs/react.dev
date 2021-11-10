@@ -1,5 +1,6 @@
 ---
 title: "State: A Component's Memory"
+layout: Learn
 ---
 
 <Intro>

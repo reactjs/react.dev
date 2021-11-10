@@ -1,5 +1,6 @@
 ---
 title: Add React to a Website
+layout: Learn
 ---
 
 <Intro>

@@ -1,5 +1,6 @@
 ---
 title: Describing the UI
+layout: Learn
 ---
 
 <Intro>

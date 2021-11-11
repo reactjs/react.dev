@@ -4,3 +4,4 @@
 cd beta
 yarn generate-ids
 git add -u src/pages/**/*.md
+yarn lint:fix

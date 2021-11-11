@@ -1,9 +1,6 @@
 {
   "root": true,
   "extends": "next",
-  "rules": {
-    "jsx-a11y/anchor-is-valid": "error"
-  },
   "env": {
     "node": true,
     "commonjs": true,

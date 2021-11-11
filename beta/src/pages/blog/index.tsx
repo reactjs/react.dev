@@ -42,7 +42,6 @@ export default function RecentPosts() {
               <div key={post.path}>
                 <h3 className="font-bold leading-8 text-primary dark:text-primary-dark text-2xl mb-2 hover:underline">
                   <Link href={removeFromLast(post.path, '.')}>
-                    {/* eslint-disable jsx-a11y/anchor-is-valid */}
                     <a>{post.title}</a>
                   </Link>
                 </h3>
@@ -75,7 +74,6 @@ export default function RecentPosts() {
             ))}
             <div className="text-center">
               <Link href="/blog/all">
-                {/* eslint-disable jsx-a11y/anchor-is-valid */}
                 <a className="p-2 text-center bg-card dark:bg-card-dark font-bold betterhover:hover:bg-secondary-button dark:bg-secondary-button-dark transition duration-150 ease-in-out rounded-lg inline-flex items-center">
                   View all articles
                 </a>

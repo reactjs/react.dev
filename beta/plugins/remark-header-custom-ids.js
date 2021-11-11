@@ -32,7 +32,7 @@ module.exports = ({
     visit(tree, 'heading', (node) => {
       // Support custom-id syntax.
       const rawHeader = toString(node);
-      const match = /^.+(\s*\{#([a-z0-9\-_]+?)\}\s*)$/.exec(rawHeader);
+      const match = /^.+(\s*\{#([\p{L}0-9\-_]+?)\}\s*)$/u.exec(rawHeader);
       const id = match ? match[2] : slugs.slug(rawHeader, maintainCase);
       if (match) {
         // Remove the custom ID part from the text node.

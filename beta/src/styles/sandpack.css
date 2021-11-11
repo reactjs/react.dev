@@ -3,6 +3,8 @@
  */
 
 html .sp-wrapper {
+  color-scheme: inherit;
+  
   /* palette */
   --sp-colors-fg-active: #24292e !important;
   --sp-colors-fg-default: #959da5 !important;

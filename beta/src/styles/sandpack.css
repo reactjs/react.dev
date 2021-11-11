@@ -191,3 +191,12 @@ html.dark .sp-loading {
   padding-left: var(--sp-space-1) !important;
   padding-right: var(--sp-space-1) !important;
 }
+
+/* For iOS: prevent browser zoom when clicking on sandbox. */
+@media screen and (max-width: 768px) {
+  @supports (-webkit-overflow-scrolling: touch) {
+    .cm-content {
+      font-size: initial;
+    }
+  } 
+}

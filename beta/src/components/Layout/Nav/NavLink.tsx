@@ -32,7 +32,7 @@ export default function NavLink({href, children, isActive}: NavLinkProps) {
 
   return (
     <NextLink href={href}>
-      <a className={classes}>{children}</a>
+      <button className={classes}>{children}</button>
     </NextLink>
   );
 }

@@ -23,6 +23,7 @@ export interface SearchProps {
 function Hit({hit, children}: any) {
   return (
     <Link href={hit.url.replace()}>
+      {/* eslint-disable jsx-a11y/anchor-is-valid */}
       <a>{children}</a>
     </Link>
   );

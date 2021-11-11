@@ -1,14 +1,9 @@
 {
-  "extends": ["react-app", "plugin:jsx-a11y/recommended"],
-  "plugins": ["jsx-a11y"],
-  "overrides": [
-    {
-      "files": ["**/*.ts?(x)"],
-      "rules": {
-        "jsx-a11y/anchor-is-valid": 0
-      }
-    }
-  ],
+  "root": true,
+  "extends": "next",
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "error"
+  },
   "env": {
     "node": true,
     "commonjs": true,

@@ -33,7 +33,7 @@ export function SidebarLink({
   isBreadcrumb,
   hideArrow,
 }: SidebarLinkProps) {
-  const ref = React.useRef<HTMLAnchorElement>(null);
+  const ref = React.useRef<HTMLButtonElement>(null);
   const isMobile = useIsMobile();
 
   React.useEffect(() => {
@@ -48,7 +48,7 @@ export function SidebarLink({
 
   return (
     <Link href={href}>
-      <a
+      <button
         ref={ref}
         title={title}
         aria-current={selected ? 'page' : undefined}
@@ -78,7 +78,7 @@ export function SidebarLink({
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
           </span>
         )}
-      </a>
+      </button>
     </Link>
   );
 }

@@ -109,7 +109,7 @@ const CodeBlock = React.forwardRef(
     );
   }
 );
-
+CodeBlock.displayName = 'CodeBlock'
 export default CodeBlock;
 
 /**

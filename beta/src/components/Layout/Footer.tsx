@@ -176,7 +176,7 @@ function FooterLink({
   return (
     <div>
       <NextLink href={href}>
-        <a className={classes}>{children}</a>
+        <button className={classes}>{children}</button>
       </NextLink>
     </div>
   );

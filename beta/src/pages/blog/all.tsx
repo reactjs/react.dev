@@ -33,6 +33,7 @@ export default function Archive() {
           <div key={post.path}>
             <h3 className="font-bold text-xl ">
               <Link href={removeFromLast(post.path, '.')}>
+                {/* eslint-disable jsx-a11y/anchor-is-valid */}
                 <a>{post.title}</a>
               </Link>
             </h3>

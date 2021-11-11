@@ -1,7 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-
+// Why do we have this component ? seems like this is not being used anywhere
 import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
@@ -33,6 +33,7 @@ export default function NavButtonLink({
   return (
     <NextLink href={href}>
       {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
+      {/* eslint-disable jsx-a11y/anchor-is-valid */}
       <a className={classes}>{children}</a>
     </NextLink>
   );

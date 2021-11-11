@@ -1,6 +1,5 @@
 ---
 title: Scaling Up with Reducer and Context
-layout: Learn
 ---
 
 <Intro>

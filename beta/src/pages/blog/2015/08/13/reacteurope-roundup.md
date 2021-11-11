@@ -1,6 +1,5 @@
 ---
 title: 'ReactEurope Round-up'
-layout: Post
 author: [matthewjohnston4]
 ---
 

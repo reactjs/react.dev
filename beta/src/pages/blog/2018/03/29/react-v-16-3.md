@@ -1,6 +1,5 @@
 ---
 title: 'React v16.3.0: New lifecycles and context API'
-layout: Post
 author: [bvaughn]
 ---
 

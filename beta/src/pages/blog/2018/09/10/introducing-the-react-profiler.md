@@ -1,6 +1,5 @@
 ---
 title: 'Introducing the React Profiler'
-layout: Post
 author: [bvaughn]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Reacting to Input with State
-layout: Learn
 ---
 
 <Intro>

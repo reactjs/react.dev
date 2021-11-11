@@ -1,6 +1,5 @@
 ---
 title: 'React v15.6.0'
-layout: Post
 author: [flarnie]
 ---
 

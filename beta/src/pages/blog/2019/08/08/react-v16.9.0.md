@@ -1,6 +1,5 @@
 ---
 title: 'React v16.9.0 and the Roadmap Update'
-layout: Post
 author: [gaearon, bvaughn]
 ---
 

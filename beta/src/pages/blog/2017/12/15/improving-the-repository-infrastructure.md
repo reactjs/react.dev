@@ -1,6 +1,5 @@
 ---
 title: 'Behind the Scenes: Improving the Repository Infrastructure'
-layout: Post
 author: [gaearon, bvaughn]
 ---
 

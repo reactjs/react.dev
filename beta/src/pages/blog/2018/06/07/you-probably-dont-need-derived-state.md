@@ -1,6 +1,5 @@
 ---
 title: "You Probably Don't Need Derived State"
-layout: Post
 author: [bvaughn]
 ---
 

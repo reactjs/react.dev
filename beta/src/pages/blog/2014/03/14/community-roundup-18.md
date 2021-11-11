@@ -1,6 +1,5 @@
 ---
 title: 'Community Round-up #18'
-layout: Post
 author: [jgebhardt]
 ---
 

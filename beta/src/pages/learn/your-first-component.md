@@ -1,6 +1,5 @@
 ---
 title: Your First Component
-layout: Learn
 ---
 
 <Intro>

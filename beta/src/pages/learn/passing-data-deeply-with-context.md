@@ -1,6 +1,5 @@
 ---
 title: Passing Data Deeply with Context
-layout: Learn
 ---
 
 <Intro>

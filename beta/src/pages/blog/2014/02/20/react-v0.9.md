@@ -1,6 +1,5 @@
 ---
 title: React v0.9
-layout: Post
 author: [sophiebits]
 ---
 

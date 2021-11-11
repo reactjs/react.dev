@@ -1,6 +1,5 @@
 ---
 title: 'Community Round-up #25'
-layout: Post
 author: [matthewjohnston4]
 ---
 

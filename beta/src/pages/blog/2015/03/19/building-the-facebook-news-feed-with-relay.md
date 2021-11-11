@@ -1,6 +1,5 @@
 ---
 title: 'Building The Facebook News Feed With Relay'
-layout: Post
 author: [josephsavona]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: Quick Start
-layout: Learn
 ---
 
 <Intro>

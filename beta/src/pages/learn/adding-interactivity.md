@@ -1,6 +1,5 @@
 ---
 title: Adding Interactivity
-layout: Learn
 ---
 
 <Intro>

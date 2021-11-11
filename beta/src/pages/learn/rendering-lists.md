@@ -1,6 +1,5 @@
 ---
 title: Rendering Lists
-layout: Learn
 ---
 
 <Intro>

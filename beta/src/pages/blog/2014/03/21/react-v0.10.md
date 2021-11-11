@@ -1,6 +1,5 @@
 ---
 title: React v0.10
-layout: Post
 author: [zpao]
 ---
 

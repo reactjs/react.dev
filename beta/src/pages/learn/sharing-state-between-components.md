@@ -1,6 +1,5 @@
 ---
 title: Sharing State Between Components
-layout: Learn
 ---
 
 <Intro>

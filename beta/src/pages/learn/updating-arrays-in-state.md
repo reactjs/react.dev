@@ -1,6 +1,5 @@
 ---
 title: Updating Arrays in State
-layout: Learn
 ---
 
 <Intro>

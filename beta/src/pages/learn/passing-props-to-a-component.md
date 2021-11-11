@@ -1,6 +1,5 @@
 ---
 title: Passing Props to a Component
-layout: Learn
 ---
 
 <Intro>

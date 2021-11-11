@@ -1,6 +1,5 @@
 ---
 title: 'Use React and JSX in Python Applications'
-layout: Post
 author: [kmeht]
 ---
 

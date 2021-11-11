@@ -1,6 +1,5 @@
 ---
 title: React.js Conf Round-up 2015
-layout: Post
 author: [steveluscher]
 ---
 

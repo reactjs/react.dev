@@ -1,6 +1,5 @@
 ---
 title: useState()
-layout: API
 ---
 
 <Intro>

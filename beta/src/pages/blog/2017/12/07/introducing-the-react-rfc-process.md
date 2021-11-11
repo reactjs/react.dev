@@ -1,6 +1,5 @@
 ---
 title: 'Introducing the React RFC Process'
-layout: Post
 author: [acdlite]
 ---
 

@@ -1,6 +1,5 @@
 ---
 id: home
-layout: Home
 title: React Docs Beta
 permalink: index.html
 ---

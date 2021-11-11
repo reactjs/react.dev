@@ -1,6 +1,5 @@
 ---
 title: React v0.12.2
-layout: Post
 author: [zpao]
 ---
 

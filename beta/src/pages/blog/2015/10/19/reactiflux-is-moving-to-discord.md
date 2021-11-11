@@ -1,6 +1,5 @@
 ---
 title: 'Reactiflux is moving to Discord'
-layout: Post
 author: [benigeri]
 ---
 

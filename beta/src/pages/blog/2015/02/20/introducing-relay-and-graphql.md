@@ -1,6 +1,5 @@
 ---
 title: 'Introducing Relay and GraphQL'
-layout: Post
 author: [wincent]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'Building Great User Experiences with Concurrent Mode and Suspense'
-layout: Post
 author: [josephsavona]
 ---
 

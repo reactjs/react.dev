@@ -1,6 +1,5 @@
 ---
 title: JavaScript in JSX with Curly Braces
-layout: Learn
 ---
 
 <Intro>

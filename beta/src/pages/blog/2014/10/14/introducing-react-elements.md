@@ -1,6 +1,5 @@
 ---
 title: 'Introducing React Elements'
-layout: Post
 author: [sebmarkbage]
 redirect_from:
   - 'blog/2014/10/14/introducting-react-elements.html'

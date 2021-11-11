@@ -1,6 +1,5 @@
 ---
 title: 'DOM Attributes in React 16'
-layout: Post
 author: [gaearon]
 ---
 

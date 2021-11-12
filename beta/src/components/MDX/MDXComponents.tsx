@@ -234,7 +234,7 @@ function IllustrationBlock({
       ) : null}
       {sequential ? (
         <ol className="mdx-illustration-block flex">
-          {images.map((x: any, i :number) => (
+          {images.map((x: any, i: number) => (
             <li className="flex-1" key={i}>{x}</li>
           ))}
         </ol>

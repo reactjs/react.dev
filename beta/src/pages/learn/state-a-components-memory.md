@@ -1443,7 +1443,7 @@ In general, these types of mistakes are caught by the [`eslint-plugin-react-hook
 
 ### Remove unnecessary state {#remove-unnecessary-state}
 
-When the button is clicked, this example should ask for the user's name and then display an alert gretting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
 
 To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/troubleshooting-state-updates#setting-state-does-not-update-variables) later.)
 

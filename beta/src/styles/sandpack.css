@@ -200,5 +200,8 @@ html.dark .sp-loading {
     .cm-content {
       font-size: initial;
     }
+    .DocSearch-Input {
+      font-size: initial;
+    }
   } 
 }

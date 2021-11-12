@@ -74,8 +74,7 @@ function FooterLink({
         {
           'flex-row-reverse justify-self-end text-right': type === 'Next',
         }
-      )}
-       >
+      )}>
         <IconNavArrow
           className="text-gray-30 dark:text-gray-50 inline group-focus:text-link dark:group-focus:text-link-dark"
           displayDirection={type === 'Previous' ? 'left' : 'right'}

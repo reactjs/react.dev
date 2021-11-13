@@ -205,7 +205,7 @@ As a result, clicking "Next" doesn't perform an immediate state transition to an
 
 ### Where Does the Update Happen? {#where-does-the-update-happen}
 
-This wasn't very difficult to implement. However, if you start thinking about how this could possibly work, it might become a little mindbending. If we set the state, how come we don't see the result right away? *Where* is the next `<ProfilePage>` rendering?
+This wasn't very difficult to implement. However, if you start thinking about how this could possibly work, it might become a little mind-bending. If we set the state, how come we don't see the result right away? *Where* is the next `<ProfilePage>` rendering?
 
 Clearly, both "versions" of `<ProfilePage>` exist at the same time. We know the old one exists because we see it on the screen and even display a progress indicator on it. And we know the new version also exists *somewhere*, because it's the one that we're waiting for!
 

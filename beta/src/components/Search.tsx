@@ -93,8 +93,10 @@ export const Search: React.FC<SearchProps> = ({
   useDocSearchKeyboardEvents({isOpen: isShowing, onOpen, onClose});
 
   React.useEffect(() => {
-    setShowKeyboardShortcuts(!isMobileOnly);
-    setShowMacosShortcut(isMacOs || isIOS);
+    if (typeof navigator !== 'undefined') {
+      setShowMacosShortcut(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform));
+      setShowKeyboardShortcuts(true)
+    }
   }, []);
 
   return (

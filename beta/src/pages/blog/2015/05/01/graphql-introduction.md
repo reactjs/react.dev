@@ -1,6 +1,5 @@
 ---
 title: 'GraphQL Introduction'
-layout: Post
 author: [schrockn]
 ---
 

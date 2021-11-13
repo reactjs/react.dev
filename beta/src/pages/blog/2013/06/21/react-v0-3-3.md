@@ -1,6 +1,5 @@
 ---
 title: 'React v0.3.3'
-layout: Post
 author: [zpao]
 ---
 

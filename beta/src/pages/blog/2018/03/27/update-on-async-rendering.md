@@ -1,6 +1,5 @@
 ---
 title: Update on Async Rendering
-layout: Post
 author: [bvaughn]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'Streamlining React Elements'
-layout: Post
 author: [sebmarkbage]
 date: 2015-02-24 11:00
 ---

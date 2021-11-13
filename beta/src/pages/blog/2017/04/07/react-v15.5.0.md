@@ -1,6 +1,5 @@
 ---
 title: 'React v15.5.0'
-layout: Post
 author: [acdlite]
 ---
 

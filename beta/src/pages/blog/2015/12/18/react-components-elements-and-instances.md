@@ -1,6 +1,5 @@
 ---
 title: 'React Components, Elements, and Instances'
-layout: Post
 author: [gaearon]
 ---
 

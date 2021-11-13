@@ -1,6 +1,5 @@
 ---
 title: 'React v0.14.8'
-layout: Post
 author: [gaearon]
 ---
 

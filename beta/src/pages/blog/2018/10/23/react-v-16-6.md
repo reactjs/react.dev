@@ -1,6 +1,5 @@
 ---
 title: 'React v16.6.0: lazy, memo and contextType'
-layout: Post
 author: [sebmarkbage]
 ---
 

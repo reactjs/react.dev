@@ -1,6 +1,5 @@
 ---
 title: "React v16.4.2: Server-side vulnerability fix"
-layout: Post
 author: [gaearon]
 ---
 

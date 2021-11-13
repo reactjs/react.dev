@@ -1,6 +1,5 @@
 ---
 title: 'Community Round-up #20'
-layout: Post
 author: [LoukaN]
 ---
 

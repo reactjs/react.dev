@@ -1,6 +1,5 @@
 ---
 title: 'React Chrome Developer Tools'
-layout: Post
 author: [sebmarkbage]
 ---
 

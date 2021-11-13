@@ -1,6 +1,5 @@
 ---
 title: 'ReactDOM.render and the Top Level React API'
-layout: Post
 author: ['jimfb', 'sebmarkbage']
 ---
 

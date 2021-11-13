@@ -1,6 +1,5 @@
 ---
 title: 'React Native Release Process'
-layout: Post
 author: [vjeux]
 ---
 

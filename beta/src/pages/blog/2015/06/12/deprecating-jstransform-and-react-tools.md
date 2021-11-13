@@ -1,6 +1,5 @@
 ---
 title: 'Deprecating JSTransform and react-tools'
-layout: Post
 author: [zpao]
 ---
 

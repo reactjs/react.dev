@@ -56,6 +56,11 @@ export function useRouteMeta(rootRoute?: RouteItem) {
   const routeTree = rootRoute || sidebarContext;
   const router = useRouter();
   const cleanedPath = router.pathname;
+  if (cleanedPath === '/404') {
+    return {
+      breadcrumbs: [],
+    };
+  }
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
   return {
     ...getRouteMeta(cleanedPath, routeTree),

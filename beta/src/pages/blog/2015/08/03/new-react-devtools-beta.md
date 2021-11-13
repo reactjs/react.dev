@@ -1,6 +1,5 @@
 ---
 title: 'New React Devtools Beta'
-layout: Post
 author: [jaredly]
 ---
 

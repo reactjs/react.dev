@@ -1,6 +1,5 @@
 ---
 title: 'Create Apps with No Configuration'
-layout: Post
 author: [gaearon]
 ---
 

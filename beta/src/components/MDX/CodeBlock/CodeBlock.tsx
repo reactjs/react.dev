@@ -11,8 +11,7 @@ import {
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 import rangeParser from 'parse-numeric-range';
-
-import {CodeBlockLightTheme} from '../Sandpack/Themes';
+import {CustomTheme} from '../Sandpack/Themes';
 import styles from './CodeBlock.module.css';
 
 interface InlineHiglight {
@@ -47,7 +46,7 @@ const CodeBlock = React.forwardRef(
       const linesToHighlight = getHighlightLines(metastring);
       const highlightedLineConfig = linesToHighlight.map((line) => {
         return {
-          className: 'bg-github-highlight',
+          className: 'bg-github-highlight dark:bg-opacity-10',
           line,
         };
       });
@@ -81,7 +80,7 @@ const CodeBlock = React.forwardRef(
       <div
         translate="no"
         className={cn(
-          'rounded-lg h-full w-full overflow-x-auto flex items-center bg-white shadow-lg',
+          'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
           !noMargin && 'my-8'
         )}>
         <SandpackProvider
@@ -93,7 +92,7 @@ const CodeBlock = React.forwardRef(
               },
             },
           }}>
-          <SandpackThemeProvider theme={CodeBlockLightTheme}>
+          <SandpackThemeProvider theme={CustomTheme}>
             <ClasserProvider
               classes={{
                 'sp-cm': styles.codeViewer,

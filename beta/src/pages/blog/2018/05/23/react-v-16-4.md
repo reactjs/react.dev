@@ -1,6 +1,5 @@
 ---
 title: 'React v16.4.0: Pointer Events'
-layout: Post
 author: [acdlite]
 ---
 

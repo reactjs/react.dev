@@ -1,6 +1,5 @@
 ---
 title: 'isMounted is an Antipattern'
-layout: Post
 author: [jimfb]
 ---
 

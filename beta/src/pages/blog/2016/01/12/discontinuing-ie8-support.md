@@ -1,6 +1,5 @@
 ---
 title: 'Discontinuing IE 8 Support in React DOM'
-layout: Post
 author: [sophiebits]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'New React Developer Tools'
-layout: Post
 author: [sophiebits]
 ---
 

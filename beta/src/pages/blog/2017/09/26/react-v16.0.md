@@ -1,6 +1,5 @@
 ---
 title: 'React v16.0'
-layout: Post
 author: [acdlite]
 ---
 

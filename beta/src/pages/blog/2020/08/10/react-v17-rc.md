@@ -1,6 +1,5 @@
 ---
 title: "React v17.0 Release Candidate: No New Features"
-layout: Post
 author: [gaearon,rachelnabors]
 ---
 

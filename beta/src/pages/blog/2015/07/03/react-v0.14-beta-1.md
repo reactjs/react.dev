@@ -1,6 +1,5 @@
 ---
 title: React v0.14 Beta 1
-layout: Post
 author: [sophiebits]
 ---
 

@@ -1,6 +1,5 @@
 ---
 title: 'React v15.0 Release Candidate'
-layout: Post
 author: [zpao]
 ---
 

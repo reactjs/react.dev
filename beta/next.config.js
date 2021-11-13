@@ -10,7 +10,8 @@ module.exports = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   experimental: {
     plugins: true,
-    reactMode: 'concurrent',
+    // TODO: this doesn't work because https://github.com/vercel/next.js/issues/30714
+    // concurrentFeatures: true,
     scrollRestoration: true,
   },
   async redirects() {
@@ -30,6 +31,18 @@ module.exports = {
     ];
   },
   webpack: (config, {dev, isServer, ...options}) => {
+    if (process.env.ANALYZE) {
+      const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
+      config.plugins.push(
+        new BundleAnalyzerPlugin({
+          analyzerMode: 'static',
+          reportFilename: options.isServer
+            ? '../analyze/server.html'
+            : './analyze/client.html',
+        })
+      );
+    }
+
     // Add our custom markdown loader in order to support frontmatter
     // and layout
     config.module.rules.push({

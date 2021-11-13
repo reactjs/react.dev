@@ -1,6 +1,5 @@
 ---
 title: React.js Conf Diversity Scholarship
-layout: Post
 author: [zpao]
 ---
 

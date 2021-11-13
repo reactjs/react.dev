@@ -1,6 +1,5 @@
 ---
 title: 'React 16.x Roadmap'
-layout: Post
 author: [gaearon]
 ---
 

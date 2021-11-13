@@ -1,6 +1,5 @@
 ---
 title: "Error Handling in React 16"
-layout: Post
 author: [gaearon]
 ---
 

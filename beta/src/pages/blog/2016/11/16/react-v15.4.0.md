@@ -1,6 +1,5 @@
 ---
 title: "React v15.4.0"
-layout: Post
 author: [gaearon]
 ---
 

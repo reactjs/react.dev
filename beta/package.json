@@ -37,7 +37,6 @@
     "parse-numeric-range": "^1.2.0",
     "react": "18.0.0-alpha-930c9e7ee-20211015",
     "react-collapsed": "3.1.0",
-    "react-device-detect": "^2.1.2",
     "react-dom": "18.0.0-alpha-930c9e7ee-20211015",
     "scroll-into-view-if-needed": "^2.2.25"
   },

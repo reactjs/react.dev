@@ -11,7 +11,6 @@ import Router from 'next/router';
 import * as React from 'react';
 import {createPortal} from 'react-dom';
 import {siteConfig} from 'siteConfig';
-import {isMobileOnly, isIOS, isMacOs} from 'react-device-detect';
 
 export interface SearchProps {
   appId?: string;
@@ -94,8 +93,8 @@ export const Search: React.FC<SearchProps> = ({
 
   React.useEffect(() => {
     if (typeof navigator !== 'undefined') {
-      setShowMacosShortcut(/(Mac|iPhone|iPod|iPad)/i.test(navigator.platform));
-      setShowKeyboardShortcuts(true)
+      setShowMacosShortcut(/(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent));
+      setShowKeyboardShortcuts(true);
     }
   }, []);
 

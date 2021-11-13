@@ -4,3 +4,5 @@
 cd beta
 yarn generate-ids
 git add -u src/pages/**/*.md
+# we run prettier to format the files before commit and will have a github PR check as well
+yarn prettier

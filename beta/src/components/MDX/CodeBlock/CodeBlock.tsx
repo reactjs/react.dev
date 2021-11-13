@@ -59,7 +59,8 @@ const CodeBlock = React.forwardRef(
           className: cn(
             'code-step bg-opacity-10 relative rounded-md p-1 ml-2',
             {
-              'pl-3 before:content-[attr(data-step)] before:block before:w-4 before:h-4 before:absolute before:top-1 before:-left-2 before:rounded-full before:text-white before:text-center before:text-xs before:leading-4': !noMarkers,
+              'pl-3 before:content-[attr(data-step)] before:block before:w-4 before:h-4 before:absolute before:top-1 before:-left-2 before:rounded-full before:text-white before:text-center before:text-xs before:leading-4':
+                !noMarkers,
               'bg-blue-40 before:bg-blue-40': line.step === 1,
               'bg-yellow-40 before:bg-yellow-40': line.step === 2,
               'bg-green-40 before:bg-green-40': line.step === 3,
@@ -82,7 +83,8 @@ const CodeBlock = React.forwardRef(
         className={cn(
           'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
           !noMargin && 'my-8'
-        )}>
+        )}
+      >
         <SandpackProvider
           customSetup={{
             entry: filename,
@@ -91,12 +93,14 @@ const CodeBlock = React.forwardRef(
                 code: children.trimEnd(),
               },
             },
-          }}>
+          }}
+        >
           <SandpackThemeProvider theme={CustomTheme}>
             <ClasserProvider
               classes={{
                 'sp-cm': styles.codeViewer,
-              }}>
+              }}
+            >
               <SandpackCodeViewer
                 ref={ref}
                 showLineNumbers={false}

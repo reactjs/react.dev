@@ -43,7 +43,8 @@ function Tag({text, variant, className}: TagProps) {
         className={cn(
           'inline font-bold text-sm uppercase py-1 px-2 rounded',
           classes
-        )}>
+        )}
+      >
         {text || name}
       </span>
     </span>

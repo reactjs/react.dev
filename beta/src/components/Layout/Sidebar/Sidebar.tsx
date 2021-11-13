@@ -42,7 +42,8 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
       width="18"
       height="18"
       className="mr-2"
-      viewBox="0 0 24 24">
+      viewBox="0 0 24 24"
+    >
       <g fill="none" fillRule="evenodd" transform="translate(-444 -204)">
         <g fill="currentColor" transform="translate(354.5 205)">
           <path d="M102.75 14C102.75 14.6905 102.1905 15.25 101.5 15.25 100.8095 15.25 100.25 14.6905 100.25 14 100.25 13.3095 100.8095 12.75 101.5 12.75 102.1905 12.75 102.75 13.3095 102.75 14M101 5.25L101.5 11 102 5.25C102 5.25 102 4.75 101.5 4.75 101 4.75 101 5.25 101 5.25" />
@@ -69,7 +70,8 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
       style={{
         top: 0,
         visibility: isHidden ? 'hidden' : undefined,
-      }}>
+      }}
+    >
       <div className="px-5">
         <Search />
       </div>
@@ -77,7 +79,8 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
         role="navigation"
         ref={menuRef}
         style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-        className="w-full h-screen lg:h-auto flex-grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
+        className="w-full h-screen lg:h-auto flex-grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu"
+      >
         {isMobileSidebar ? (
           <MobileNav />
         ) : (
@@ -87,7 +90,8 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
       <div className="px-5 py-3 sticky bottom-0 lg:px-5 w-full hidden lg:flex items-center bg-gradient-to-t from-wash dark:from-wash-dark">
         <Button
           className="w-full text-center justify-center"
-          onClick={handleFeedback}>
+          onClick={handleFeedback}
+        >
           {feedbackIcon} Feedback
         </Button>
       </div>

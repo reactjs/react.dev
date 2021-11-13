@@ -31,13 +31,15 @@ function ExpandableExample({
       className={cn('my-12 rounded-lg shadow-inner relative', {
         'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
         'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,
-      })}>
+      })}
+    >
       <div className="p-8">
         <h5
           className={cn('mb-4 uppercase font-bold flex items-center text-sm', {
             'dark:text-purple-30 text-purple-50': isDeepDive,
             'dark:text-yellow-30 text-yellow-60': isExample,
-          })}>
+          })}
+        >
           {isDeepDive && (
             <>
               <IconDeepDive className="inline mr-2 dark:text-purple-30 text-purple-40" />
@@ -60,10 +62,13 @@ function ExpandableExample({
         <Button
           active={true}
           className={cn({
-            'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50': isDeepDive,
-            'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50': isExample,
+            'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50':
+              isDeepDive,
+            'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
+              isExample,
           })}
-          onClick={() => setIsExpanded((current) => !current)}>
+          onClick={() => setIsExpanded((current) => !current)}
+        >
           <span className="mr-1">
             <IconChevron displayDirection={isExpanded ? 'up' : 'down'} />
           </span>
@@ -75,7 +80,8 @@ function ExpandableExample({
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
           'dark:border-yellow-60 border-yellow-50': isExample,
           hidden: !isExpanded,
-        })}>
+        })}
+      >
         {children}
       </div>
     </div>

@@ -49,7 +49,8 @@ export function CustomPreset({
     <>
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
-        ref={containerRef}>
+        ref={containerRef}
+      >
         <NavigationBar showDownload={isSingleFile} onReset={onReset} />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
@@ -59,7 +60,8 @@ export function CustomPreset({
               // Prevent it from collapsing below the initial (non-loaded) height.
               // There has to be some better way to do this...
               minHeight: 216,
-            }}>
+            }}
+          >
             <SandpackCodeEditor
               customStyle={{
                 height: getHeight(),
@@ -93,7 +95,8 @@ export function CustomPreset({
                       inline: 'nearest',
                     });
                   }
-                }}>
+                }}
+              >
                 <span className="flex p-2 focus:outline-none text-primary dark:text-primary-dark">
                   <IconChevron
                     className="inline mr-1.5 text-xl"

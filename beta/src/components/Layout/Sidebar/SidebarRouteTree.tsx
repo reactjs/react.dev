@@ -63,7 +63,8 @@ function CollapseWrapper({
         opacity: isExpanded ? 1 : 0.5,
         transition: `opacity ${duration}ms ease-in-out`,
         animation: `nav-fadein ${duration}ms ease-in-out`,
-      }}>
+      }}
+    >
       <div {...getCollapseProps()}>{children}</div>
     </div>
   );

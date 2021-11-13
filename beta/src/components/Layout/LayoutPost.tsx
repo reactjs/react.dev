@@ -77,7 +77,8 @@ function LayoutPost({meta, children}: LayoutPostProps) {
             {toCommaSeparatedList(meta.author, (author) => (
               <ExternalLink
                 href={getAuthor(author).url}
-                className="text-link dark:text-link-dark underline font-bold">
+                className="text-link dark:text-link-dark underline font-bold"
+              >
                 {getAuthor(author).name}
               </ExternalLink>
             ))}

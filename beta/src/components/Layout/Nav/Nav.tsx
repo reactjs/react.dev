@@ -27,7 +27,8 @@ const feedbackIcon = (
     xmlns="http://www.w3.org/2000/svg"
     width="18"
     height="18"
-    viewBox="0 0 24 24">
+    viewBox="0 0 24 24"
+  >
     <g fill="none" fillRule="evenodd" transform="translate(-444 -204)">
       <g fill="currentColor" transform="translate(354.5 205)">
         <path d="M102.75 14C102.75 14.6905 102.1905 15.25 101.5 15.25 100.8095 15.25 100.25 14.6905 100.25 14 100.25 13.3095 100.8095 12.75 101.5 12.75 102.1905 12.75 102.75 13.3095 102.75 14M101 5.25L101.5 11 102 5.25C102 5.25 102 4.75 101.5 4.75 101 4.75 101 5.25 101 5.25" />
@@ -50,7 +51,8 @@ const darkIcon = (
     xmlns="http://www.w3.org/2000/svg"
     width="18"
     height="18"
-    viewBox="0 0 24 24">
+    viewBox="0 0 24 24"
+  >
     <g fill="none" fillRule="evenodd" transform="translate(-444 -204)">
       <path
         fill="currentColor"
@@ -68,7 +70,8 @@ const lightIcon = (
     xmlns="http://www.w3.org/2000/svg"
     width="20"
     height="20"
-    viewBox="0 0 24 24">
+    viewBox="0 0 24 24"
+  >
     <g fill="none" fillRule="evenodd" transform="translate(-444 -204)">
       <g fill="currentColor" transform="translate(354 144)">
         <path
@@ -122,7 +125,8 @@ export default function Nav() {
           onClick={toggleOpen}
           className={cn('flex lg:hidden items-center h-full px-4', {
             'text-link dark:text-link-dark mr-0': isOpen,
-          })}>
+          })}
+        >
           {!isOpen ? <IconHamburger /> : <IconClose />}
         </button>
         <NextLink href="/">
@@ -143,7 +147,8 @@ export default function Nav() {
             onClick={() => {
               window.__setPreferredTheme('dark');
             }}
-            className="hidden lg:flex items-center h-full pr-2">
+            className="hidden lg:flex items-center h-full pr-2"
+          >
             {darkIcon}
           </button>
         </div>
@@ -154,7 +159,8 @@ export default function Nav() {
             onClick={() => {
               window.__setPreferredTheme('light');
             }}
-            className="hidden lg:flex items-center h-full pr-2">
+            className="hidden lg:flex items-center h-full pr-2"
+          >
             {lightIcon}
           </button>
         </div>
@@ -175,7 +181,8 @@ export default function Nav() {
         <button
           type="button"
           className="inline-flex lg:hidden items-center p-1 ml-4 lg:ml-6 relative top-px"
-          onClick={handleFeedback}>
+          onClick={handleFeedback}
+        >
           {feedbackIcon}
         </button>
         <div className="block dark:hidden">
@@ -185,7 +192,8 @@ export default function Nav() {
             onClick={() => {
               window.__setPreferredTheme('dark');
             }}
-            className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6">
+            className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6"
+          >
             {darkIcon}
           </button>
         </div>
@@ -196,7 +204,8 @@ export default function Nav() {
             onClick={() => {
               window.__setPreferredTheme('light');
             }}
-            className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6">
+            className="flex lg:hidden items-center p-1 h-full ml-4 lg:ml-6"
+          >
             {lightIcon}
           </button>
         </div>

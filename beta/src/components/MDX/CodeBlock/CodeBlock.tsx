@@ -38,6 +38,7 @@ const CodeBlock = React.forwardRef(
     },
     ref?: React.Ref<HTMLDivElement>
   ) => {
+    return <pre>lol</pre>
     const getDecoratedLineInfo = () => {
       if (!metastring) {
         return [];

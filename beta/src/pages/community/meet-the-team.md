@@ -69,7 +69,7 @@ Rachel wrote a [book about UI animation](https://abookapart.com/products/animati
 
 Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
 
-### Sebastian Markbåge {#sebastian-markbåge} {/*sebastian-markbåge-sebastian-markbåge*/} {/*sebastian-markbåge-sebastian-markbåge-sebastian-markbåge-sebastian-markbåge*/} {/*sebastian-markbåge-sebastian-markbåge-sebastian-markbåge-sebastian-markbåge-sebastian-markbåge-sebastian-markbåge-sebastian-markbåge-sebastian-markbåge*/}
+### Sebastian Markbåge {/*sebastian-markbåge*/}
 
 ![Sebastian](../images/team/sebmarkbage.jpg)
 
@@ -88,4 +88,3 @@ Seth started programming as a kid growing up in Tucson, AZ. After school, he was
 ## Past contributors {/*past-contributors*/}
 
 You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/community/acknowledgements) page.
-

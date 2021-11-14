@@ -39,7 +39,7 @@ function addHeaderID(line, slugger) {
     return line;
   }
 
-  const match = /^(#+\s+)(.+?)(\s*\{(?:\/\*|#)([a-z0-9\-_]+?)(?:\*\/)?\}\s*)?$/.exec(line);
+  const match = /^(#+\s+)(.+?)(\s*\{(?:\/\*|#)([^\}\*\/]+)(?:\*\/)?\}\s*)?$/.exec(line);
   const before = match[1] + match[2]
   const proc = modules.unified().use(modules.remarkParse).use(modules.remarkSlug)
   const tree = proc.runSync(proc.parse(before))

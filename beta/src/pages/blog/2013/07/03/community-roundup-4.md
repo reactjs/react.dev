@@ -5,7 +5,7 @@ author: [vjeux]
 
 React reconciliation process appears to be very well suited to implement a text editor with a live preview as people at Khan Academy show us.
 
-## Khan Academy {#khan-academy}
+## Khan Academy {/*khan-academy*/}
 
 [Ben Kamens](http://bjk5.com/) explains how [Sophie Alpert](http://sophiebits.com/) and [Joel Burget](http://joelburget.com/) are promoting React inside of [Khan Academy](https://www.khanacademy.org/). They now have three projects in the works using React.
 
@@ -21,7 +21,7 @@ The best part is the demo of how React reconciliation process makes live editing
 
 [![](/images/blog/monkeys.gif)](http://bjk5.com/post/53742233351/getting-your-team-to-adopt-new-technology)
 
-## React Snippets {#react-snippets}
+## React Snippets {/*react-snippets*/}
 
 Over the past several weeks, members of our team, [Pete Hunt](http://www.petehunt.net/) and [Paul O'Shannessy](http://zpao.com/), answered many questions that were asked in the [React group](https://groups.google.com/forum/#!forum/reactjs). They give a good overview of how to integrate React with other libraries and APIs through the use of [Mixins](/docs/reusable-components.html) and [Lifecycle Methods](/docs/working-with-the-browser.html).
 
@@ -44,13 +44,13 @@ Over the past several weeks, members of our team, [Pete Hunt](http://www.petehun
 >
 > - [JSFiddle](http://jsfiddle.net/LQxy7/): Your React component simply render empty divs, and then in componentDidMount() you call React.renderComponent() on each of those divs to set up a new root React tree. Be sure to explicitly unmountAndReleaseReactRootNode() for each component in componentWillUnmount().
 
-## Introduction to React Screencast {#introduction-to-react-screencast}
+## Introduction to React Screencast {/*introduction-to-react-screencast*/}
 
 [Pete Hunt](http://www.petehunt.net/) recorded himself implementing a simple `<Blink>` tag in React.
 
 <figure><iframe src="https://player.vimeo.com/video/67248575" width="100%" height="340" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></figure>
 
-## Snake in React {#snake-in-react}
+## Snake in React {/*snake-in-react*/}
 
 [Tom Occhino](http://tomocchino.com/) implemented Snake in 150 lines with React.
 

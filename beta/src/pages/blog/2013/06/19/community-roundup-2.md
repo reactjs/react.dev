@@ -5,7 +5,7 @@ author: [vjeux]
 
 Since the launch we have received a lot of feedback and are actively working on React 0.4. In the meantime, here are the highlights of this week.
 
-## Some quick thoughts on React {#some-quick-thoughts-on-react}
+## Some quick thoughts on React {/*some-quick-thoughts-on-react*/}
 
 [Andrew Greig](http://www.andrewgreig.com/) made a blog post that gives a high level description of what React is.
 
@@ -19,7 +19,7 @@ Since the launch we have received a lot of feedback and are actively working on 
 >
 > [Read the full post...](http://www.andrewgreig.com/637/)
 
-## React and Socket.IO Chat Application {#react-and-socketio-chat-application}
+## React and Socket.IO Chat Application {/*react-and-socketio-chat-application*/}
 
 [Danial Khosravi](https://danialk.github.io/) made a real-time chat application that interacts with the back-end using Socket.IO.
 
@@ -29,7 +29,7 @@ Since the launch we have received a lot of feedback and are actively working on 
 >
 > [Read the full post...](https://danialk.github.io/blog/2013/06/16/reactjs-and-socket-dot-io-chat-application/)
 
-## React and Other Frameworks {#react-and-other-frameworks}
+## React and Other Frameworks {/*react-and-other-frameworks*/}
 
 [Pete Hunt](http://www.petehunt.net/blog/) wrote an answer on Quora comparing React and Angular directives. At the end, he explains how you can make an Angular directive that is in fact being rendered with React.
 
@@ -41,7 +41,7 @@ Since the launch we have received a lot of feedback and are actively working on 
 
 In the same vein, [Markov Twain](https://twitter.com/markov_twain/status/345702941845499906) re-implemented the examples on the front-page [with Ember](http://jsbin.com/azihiw/2/edit) and [Vlad Yazhbin](https://twitter.com/vla) re-implemented the tutorial [with Angular](http://jsfiddle.net/vla/Cdrse/).
 
-## Web Components: React & x-tags {#web-components-react--x-tags}
+## Web Components: React & x-tags {/*web-components-react--x-tags*/}
 
 Mozilla and Google are actively working on Web Components. [Vjeux](http://blog.vjeux.com/) wrote a proof of concept that shows how to implement them using React.
 
@@ -51,7 +51,7 @@ Mozilla and Google are actively working on Web Components. [Vjeux](http://blog.v
 >
 > [Read the full post...](http://blog.vjeux.com/2013/javascript/custom-components-react-x-tags.html)
 
-## React TodoMVC Example {#react-todomvc-example}
+## React TodoMVC Example {/*react-todomvc-example*/}
 
 [TodoMVC.com](http://todomvc.com/) is a website that collects various implementations of the same basic Todo app. [Pete Hunt](http://www.petehunt.net/blog/) wrote an idiomatic React version.
 
@@ -63,7 +63,7 @@ Mozilla and Google are actively working on Web Components. [Vjeux](http://blog.v
 >
 > [Read the source code...](https://github.com/tastejs/todomvc/tree/gh-pages/labs/architecture-examples/react)
 
-## JSX is not HTML {#jsx-is-not-html}
+## JSX is not HTML {/*jsx-is-not-html*/}
 
 Many of you pointed out differences between JSX and HTML. In order to clear up some confusion, we have added some documentation that covers the four main differences:
 

@@ -21,7 +21,7 @@ render() {
 
 This exciting new feature is made possible by additions to both React and JSX.
 
-## What Are Fragments? {#what-are-fragments}
+## What Are Fragments? {/*what-are-fragments*/}
 
 A common pattern is for a component to return a list of children. Take this example HTML:
 
@@ -107,7 +107,7 @@ const Fragment = React.Fragment;
 </React.Fragment>
 ```
 
-## JSX Fragment Syntax {#jsx-fragment-syntax}
+## JSX Fragment Syntax {/*jsx-fragment-syntax*/}
 
 Fragments are a common pattern in our codebases at Facebook. We anticipate they'll be widely adopted by other teams, too. To make the authoring experience as convenient as possible, we're adding syntactical support for fragments to JSX:
 
@@ -129,7 +129,7 @@ In React, this desugars to a `<React.Fragment/>` element, as in the example from
 
 Fragment syntax in JSX was inspired by prior art such as the `XMLList() <></>` constructor in [E4X](https://developer.mozilla.org/en-US/docs/Archive/Web/E4X/E4X_for_templating). Using a pair of empty tags is meant to represent the idea it won't add an actual element to the DOM.
 
-### Keyed Fragments {#keyed-fragments}
+### Keyed Fragments {/*keyed-fragments*/}
 
 Note that the `<></>` syntax does not accept attributes, including keys.
 
@@ -153,19 +153,19 @@ function Glossary(props) {
 
 `key` is the only attribute that can be passed to `Fragment`. In the future, we may add support for additional attributes, such as event handlers.
 
-### Live Demo {#live-demo}
+### Live Demo {/*live-demo*/}
 
 You can experiment with JSX fragment syntax with this [CodePen](https://codepen.io/reactjs/pen/VrEbjE?editors=1000).
 
-## Support for Fragment Syntax {#support-for-fragment-syntax}
+## Support for Fragment Syntax {/*support-for-fragment-syntax*/}
 
 Support for fragment syntax in JSX will vary depending on the tools you use to build your app. Please be patient as the JSX community works to adopt the new syntax. We've been working closely with maintainers of the most popular projects:
 
-### Create React App {#create-react-app}
+### Create React App {/*create-react-app*/}
 
 Experimental support for fragment syntax will be added to Create React App within the next few days. A stable release may take a bit longer as we await adoption by upstream projects.
 
-### Babel {#babel}
+### Babel {/*babel*/}
 
 Support for JSX fragments is available in [Babel v7.0.0-beta.31](https://github.com/babel/babel/releases/tag/v7.0.0-beta.31) and above! If you are already on Babel 7, simply update to the latest Babel and plugin transform:
 
@@ -189,15 +189,15 @@ Note that Babel 7 is technically still in beta, but a [stable release is coming 
 
 Unfortunately, support for Babel 6.x is not available, and there are currently no plans to backport.
 
-#### Babel with Webpack (babel-loader) {#babel-with-webpack-babel-loader}
+#### Babel with Webpack (babel-loader) {/*babel-with-webpack-babel-loader*/}
 
 If you are using Babel with [Webpack](https://webpack.js.org/), no additional steps are needed because [babel-loader](https://github.com/babel/babel-loader) will use your peer-installed version of Babel.
 
-#### Babel with Other Frameworks {#babel-with-other-frameworks}
+#### Babel with Other Frameworks {/*babel-with-other-frameworks*/}
 
 If you use JSX with a non-React framework like Inferno or Preact, there is a [pragma option available in babel-plugin-transform-react-jsx](https://github.com/babel/babel/tree/master/packages/babel-plugin-transform-react-jsx#pragmafrag) that configures the Babel compiler to de-sugar the `<></>` syntax to a custom identifier.
 
-### TypeScript {#typescript}
+### TypeScript {/*typescript*/}
 
 TypeScript has full support for fragment syntax! Please upgrade to [version 2.6.2](https://github.com/Microsoft/TypeScript/releases/tag/v2.6.2). (Note that this is important even if you are already on version 2.6.1, since support was added as patch release in 2.6.2.)
 
@@ -210,7 +210,7 @@ yarn upgrade typescript
 npm update typescript
 ```
 
-### Flow {#flow}
+### Flow {/*flow*/}
 
 [Flow](https://flow.org/) support for JSX fragments is available starting in [version 0.59](https://github.com/facebook/flow/releases/tag/v0.59.0)! Simply run
 
@@ -223,11 +223,11 @@ npm update flow-bin
 
 to update Flow to the latest version.
 
-### Prettier {#prettier}
+### Prettier {/*prettier*/}
 
 [Prettier](https://github.com/prettier/prettier) added support for fragments in their [1.9 release](https://prettier.io/blog/2017/12/05/1.9.0#jsx-fragment-syntax-3237-https-githubcom-prettier-prettier-pull-3237-by-duailibe-https-githubcom-duailibe).
 
-### ESLint {#eslint}
+### ESLint {/*eslint*/}
 
 JSX Fragments are supported by [ESLint](https://eslint.org/) 3.x when it is used together with [babel-eslint](https://github.com/babel/babel-eslint):
 
@@ -257,19 +257,19 @@ That's it!
 
 Note that `babel-eslint` is not officially supported by ESLint. We'll be looking into adding support for fragments to ESLint 4.x itself in the coming weeks (see [issue #9662](https://github.com/eslint/eslint/issues/9662)).
 
-### Editor Support {#editor-support}
+### Editor Support {/*editor-support*/}
 
 It may take a while for fragment syntax to be supported in your text editor. Please be patient as the community works to adopt the latest changes. In the meantime, you may see errors or inconsistent highlighting if your editor does not yet support fragment syntax. Generally, these errors can be safely ignored.
 
-#### TypeScript Editor Support {#typescript-editor-support}
+#### TypeScript Editor Support {/*typescript-editor-support*/}
 
 If you're a TypeScript user -- great news! Editor support for JSX fragments is already available in [Visual Studio 2015](https://www.microsoft.com/en-us/download/details.aspx?id=48593), [Visual Studio 2017](https://www.microsoft.com/en-us/download/details.aspx?id=55258), [Visual Studio Code](https://code.visualstudio.com/updates/v1_19#_jsx-fragment-syntax) and [Sublime Text via Package Control](https://packagecontrol.io/packages/TypeScript).
 
-### Other Tools {#other-tools}
+### Other Tools {/*other-tools*/}
 
 For other tools, please check with the corresponding documentation to check if there is support available. However, if you're blocked by your tooling, you can always start with using the `<Fragment>` component and perform a codemod later to replace it with the shorthand syntax when the appropriate support is available.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 React v16.2.0 is available on the npm registry.
 
@@ -300,31 +300,31 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation).
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Add `Fragment` as named export to React. ([@clemmy](https://github.com/clemmy) in [#10783](https://github.com/facebook/react/pull/10783))
 - Support experimental Call/Return types in `React.Children` utilities. ([@MatteoVH](https://github.com/MatteoVH) in [#11422](https://github.com/facebook/react/pull/11422))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Fix radio buttons not getting checked when using multiple lists of radios. ([@landvibe](https://github.com/landvibe) in [#11227](https://github.com/facebook/react/pull/11227))
 - Fix radio buttons not receiving the `onChange` event in some cases. ([@jquense](https://github.com/jquense) in [#11028](https://github.com/facebook/react/pull/11028))
 
-### React Test Renderer {#react-test-renderer}
+### React Test Renderer {/*react-test-renderer*/}
 
 - Fix `setState()` callback firing too early when called from `componentWillMount`. ([@accordeiro](https://github.com/accordeiro) in [#11507](https://github.com/facebook/react/pull/11507))
 
-### React Reconciler {#react-reconciler}
+### React Reconciler {/*react-reconciler*/}
 
 - Expose `react-reconciler/reflection` with utilities useful to custom renderers. ([@rivenhk](https://github.com/rivenhk) in [#11683](https://github.com/facebook/react/pull/11683))
 
-### Internal Changes {#internal-changes}
+### Internal Changes {/*internal-changes*/}
 
 - Many tests were rewritten against the public API. Big thanks to [everyone who contributed](https://github.com/facebook/react/issues/11299)!
 
-## Acknowledgments {#acknowledgments}
+## Acknowledgments {/*acknowledgments*/}
 
 This release was made possible by our open source contributors. A big thanks to everyone who filed issues, contributed to syntax discussions, reviewed pull requests, added support for JSX fragments in third party libraries, and more!
 

@@ -29,11 +29,11 @@ We've also published version `0.13.0` of the `react` and `react-tools` packages 
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### Breaking Changes {#breaking-changes}
+#### Breaking Changes {/*breaking-changes*/}
 
 - Deprecated patterns that warned in 0.12 no longer work: most prominently, calling component classes without using JSX or React.createElement and using non-component functions with JSX or createElement
 - Mutating `props` after an element is created is deprecated and will cause warnings in development mode; future versions of React will incorporate performance optimizations assuming that props aren't mutated
@@ -43,7 +43,7 @@ We've also published version `0.13.0` of the `react` and `react-tools` packages 
 - `setState` and `forceUpdate` on an unmounted component now warns instead of throwing. That avoids a possible race condition with Promises.
 - Access to most internal properties has been completely removed, including `this._pendingState` and `this._rootNodeID`.
 
-#### New Features {#new-features}
+#### New Features {/*new-features*/}
 
 - Support for using ES6 classes to build React components; see the [v0.13.0 beta 1 notes](/blog/2015/01/27/react-v0.13.0-beta-1.html) for details.
 - Added new top-level API `React.findDOMNode(component)`, which should be used in place of `component.getDOMNode()`. The base class for ES6-based components will not have `getDOMNode`. This change will enable some more patterns moving forward.
@@ -52,37 +52,37 @@ We've also published version `0.13.0` of the `react` and `react-tools` packages 
 - `this.setState()` can now take a function as the first argument for transactional state updates, such as `this.setState((state, props) => ({count: state.count + 1}));` – this means that you no longer need to use `this._pendingState`, which is now gone.
 - Support for iterators and immutable-js sequences as children.
 
-#### Deprecations {#deprecations}
+#### Deprecations {/*deprecations*/}
 
 - `ComponentClass.type` is deprecated. Just use `ComponentClass` (usually as `element.type === ComponentClass`).
 - Some methods that are available on `createClass`-based components are removed or deprecated from ES6 classes (`getDOMNode`, `replaceState`, `isMounted`, `setProps`, `replaceProps`).
 
-### React with Add-Ons {#react-with-add-ons}
+### React with Add-Ons {/*react-with-add-ons*/}
 
-#### New Features {#new-features-1}
+#### New Features {/*new-features-1*/}
 
 - [`React.addons.createFragment` was added](/docs/create-fragment.html) for adding keys to entire sets of children.
 
-#### Deprecations {#deprecations-1}
+#### Deprecations {/*deprecations-1*/}
 
 - `React.addons.classSet` is now deprecated. This functionality can be replaced with several freely available modules. [classnames](https://www.npmjs.com/package/classnames) is one such module.
 - Calls to `React.addons.cloneWithProps` can be migrated to use `React.cloneElement` instead – make sure to merge `style` and `className` manually if desired.
 
-### React Tools {#react-tools}
+### React Tools {/*react-tools*/}
 
-#### Breaking Changes {#breaking-changes-1}
+#### Breaking Changes {/*breaking-changes-1*/}
 
 - When transforming ES6 syntax, `class` methods are no longer enumerable by default, which requires `Object.defineProperty`; if you support browsers such as IE8, you can pass `--target es3` to mirror the old behavior
 
-#### New Features {#new-features-2}
+#### New Features {/*new-features-2*/}
 
 - `--target` option is available on the jsx command, allowing users to specify and ECMAScript version to target.
   - `es5` is the default.
   - `es3` restores the previous default behavior. An additional transform is added here to ensure the use of reserved words as properties is safe (eg `this.static` will become `this['static']` for IE8 compatibility).
 - The transform for the call spread operator has also been enabled.
 
-### JSX {#jsx}
+### JSX {/*jsx*/}
 
-#### Breaking Changes {#breaking-changes-2}
+#### Breaking Changes {/*breaking-changes-2*/}
 
 - A change was made to how some JSX was parsed, specifically around the use of `>` or `}` when inside an element. Previously it would be treated as a string but now it will be treated as a parse error. The [`jsx_orphaned_brackets_transformer`](https://www.npmjs.com/package/jsx_orphaned_brackets_transformer) package on npm can be used to find and fix potential issues in your JSX code.

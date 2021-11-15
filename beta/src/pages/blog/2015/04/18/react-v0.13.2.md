@@ -20,11 +20,11 @@ We've also published version `0.13.2` of the `react` and `react-tools` packages 
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### New Features {#new-features}
+#### New Features {/*new-features*/}
 
 - Added `strokeDashoffset`, `flexPositive`, `flexNegative` to the list of unitless CSS properties
 - Added support for more DOM properties:
@@ -32,19 +32,19 @@ We've also published version `0.13.2` of the `react` and `react-tools` packages 
   - `high`, `low`, `optimum` - for `<meter>` elements
   - `unselectable` - IE-specific property to prevent user selection
 
-#### Bug Fixes {#bug-fixes}
+#### Bug Fixes {/*bug-fixes*/}
 
 - Fixed a case where re-rendering after rendering null didn't properly pass context
 - Fixed a case where re-rendering after rendering with `style={null}` didn't properly update `style`
 - Update `uglify` dependency to prevent a bug in IE8
 - Improved warnings
 
-### React with Add-Ons {#react-with-add-ons}
+### React with Add-Ons {/*react-with-add-ons*/}
 
-#### Bug Fixes {#bug-fixes-1}
+#### Bug Fixes {/*bug-fixes-1*/}
 
 - Immutabilty Helpers: Ensure it supports `hasOwnProperty` as an object key
 
-### React Tools {#react-tools}
+### React Tools {/*react-tools*/}
 
 - Improve documentation for new options

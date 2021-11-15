@@ -5,7 +5,7 @@ author: [steveluscher]
 
 It was a privilege to welcome the React community to Facebook HQ on January 28â€“29 for the first-ever React.js Conf, and a pleasure to be able to unveil three new technologies that we've been using internally at Facebook for some time: GraphQL, Relay, and React Native.
 
-## The talks {#the-talks}
+## The talks {/*the-talks*/}
 
 <div class="skinny-row">
   <div class="skinny-col">
@@ -247,7 +247,7 @@ It was a privilege to welcome the React community to Facebook HQ on January 28â€
   </div>
 </div>
 
-## Reactions {#reactions}
+## Reactions {/*reactions*/}
 
 The conference is over, but the conversation has just begun.
 

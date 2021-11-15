@@ -9,7 +9,7 @@ With React 0.14, we're continuing to let React mature and to make minor changes 
 
 You can install the new beta with `npm install react@0.14.0-beta1` and `npm install react-dom@0.14.0-beta1`. As mentioned in [Deprecating react-tools](/blog/2015/06/12/deprecating-jstransform-and-react-tools.html), we're no longer updating the react-tools package so this release doesn't include a new version of it. Please try the new version out and let us know what you think, and please do file issues on our GitHub repo if you run into any problems.
 
-## Two Packages {#two-packages}
+## Two Packages {/*two-packages*/}
 
 As we look at packages like [react-native](https://github.com/facebook/react-native), [react-art](https://github.com/reactjs/react-art), [react-canvas](https://github.com/Flipboard/react-canvas), and [react-three](https://github.com/Izzimach/react-three), it's become clear that the beauty and essence of React has nothing to do with browsers or the DOM.
 
@@ -42,7 +42,7 @@ The addons have moved to separate packages as well: `react-addons-clone-with-pro
 
 For now, please use the same version of `react` and `react-dom` in your apps to avoid versioning problems -- but we plan to remove this requirement later. (This release includes the old methods in the `react` package with a deprecation warning, but they'll be removed completely in 0.15.)
 
-## DOM node refs {#dom-node-refs}
+## DOM node refs {/*dom-node-refs*/}
 
 The other big change we're making in this release is exposing refs to DOM components as the DOM node itself. That means: we looked at what you can do with a `ref` to a DOM component and realized that the only useful thing you can do with it is call `this.refs.giraffe.getDOMNode()` to get the underlying DOM node. In this release, `this.refs.giraffe` _is_ the actual DOM node.
 

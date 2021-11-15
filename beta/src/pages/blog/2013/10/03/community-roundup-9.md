@@ -7,7 +7,7 @@ We organized a React hackathon last week-end in the Facebook Seattle office. 50 
 
 ![](/images/blog/react-hackathon.jpg)
 
-## React Hackathon Winner {#react-hackathon-winner}
+## React Hackathon Winner {/*react-hackathon-winner*/}
 
 [Alex Swan](http://bold-it.com/) implemented [Qu.izti.me](http://qu.izti.me/), a multi-player quiz game. It is real-time via Web Socket and mobile friendly.
 
@@ -19,7 +19,7 @@ We organized a React hackathon last week-end in the Facebook Seattle office. 50 
 >
 > [Read More...](http://bold-it.com/javascript/facebook-react-example/)
 
-## JSConf EU Talk: Rethinking Best Practices {#jsconf-eu-talk-rethinking-best-practices}
+## JSConf EU Talk: Rethinking Best Practices {/*jsconf-eu-talk-rethinking-best-practices*/}
 
 [Pete Hunt](http://www.petehunt.net/) presented React at JSConf EU. He covers three controversial design decisions of React:
 
@@ -31,7 +31,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 
 <figure><iframe src="https://www.slideshare.net/slideshow/embed_code/26589373" width="100%" height="450" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" allowfullscreen></iframe></figure>
 
-## Pump - Clojure bindings for React {#pump---clojure-bindings-for-react}
+## Pump - Clojure bindings for React {/*pump---clojure-bindings-for-react*/}
 
 [Alexander Solovyov](http://solovyov.net/) has been working on React bindings for ClojureScript. This is really exciting as it is using "native" ClojureScript data structures.
 
@@ -50,7 +50,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 
 [Check it out on GitHub...](https://github.com/piranha/pump)
 
-## JSXHint {#jsxhint}
+## JSXHint {/*jsxhint*/}
 
 [Todd Kennedy](http://blog.selfassembled.org/) working at [Cond&eacute; Nast](http://www.condenast.com/) implemented a wrapper on-top of [JSHint](http://www.jshint.com/) that first converts JSX files to JS.
 
@@ -62,7 +62,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 >
 > [Check it out on GitHub...](https://github.com/CondeNast/JSXHint)
 
-## Turbo React {#turbo-react}
+## Turbo React {/*turbo-react*/}
 
 [Ross Allen](https://twitter.com/ssorallen) working at [Mesosphere](http://mesosphere.io/) combined [Turbolinks](https://github.com/rails/turbolinks/), a library used by Ruby on Rails to speed up page transition, and React.
 
@@ -76,7 +76,7 @@ The video will be available soon on the [JSConf EU website](http://2013.jsconf.e
 >
 > [Check out the demo...](https://turbo-react.herokuapp.com/)
 
-## Reactive Table {#reactive-table}
+## Reactive Table {/*reactive-table*/}
 
 [Stoyan Stefanov](http://www.phpied.com/) continues his series of blog posts about React. This one is an introduction tutorial on rendering a simple table with React.
 

@@ -24,21 +24,21 @@ We've also published version `0.14.3` of the `react`, `react-dom`, and addons pa
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Added support for `nonce` attribute for `<script>` and `<style>` elements
 - Added support for `reversed` attribute for `<ol>` elements
 
-### React TestUtils Add-on {#react-testutils-add-on}
+### React TestUtils Add-on {/*react-testutils-add-on*/}
 
 - Fixed bug with shallow rendering and function refs
 
-### React CSSTransitionGroup Add-on {#react-csstransitiongroup-add-on}
+### React CSSTransitionGroup Add-on {/*react-csstransitiongroup-add-on*/}
 
 - Fixed bug resulting in timeouts firing incorrectly when mounting and unmounting rapidly
 
-### React on Bower {#react-on-bower}
+### React on Bower {/*react-on-bower*/}
 
 - Added `react-dom-server.js` to expose `renderToString` and `renderToStaticMarkup` for usage in the browser

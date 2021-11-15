@@ -7,7 +7,7 @@ Today we are releasing React 15.4.0.
 
 We didn't announce the [previous](https://github.com/facebook/react/blob/master/CHANGELOG.md#1510-may-20-2016) [minor](https://github.com/facebook/react/blob/master/CHANGELOG.md#1520-july-1-2016) [releases](https://github.com/facebook/react/blob/master/CHANGELOG.md#1530-july-29-2016) on the blog because most of the changes were bug fixes. However, 15.4.0 is a special release, and we would like to highlight a few notable changes in it.
 
-### Separating React and React DOM {#separating-react-and-react-dom}
+### Separating React and React DOM {/*separating-react-and-react-dom*/}
 
 [More than a year ago](/blog/2015/09/10/react-v0.14-rc1.html#two-packages-react-and-react-dom), we started separating React and React DOM into separate packages. We deprecated `React.render()` in favor of `ReactDOM.render()` in React 0.14, and removed DOM-specific APIs from `React` completely in React 15. However, the React DOM implementation still [secretly lived inside the React package](https://www.reddit.com/r/javascript/comments/3m6wyu/found_this_line_in_the_react_codebase_made_me/cvcyo4a/).
 
@@ -21,7 +21,7 @@ However, there is a possibility that you imported private APIs from `react/lib/*
 
 Another thing to watch out for is that React DOM Server is now about the same size as React DOM since it contains its own copy of the React reconciler. We don't recommend using React DOM Server on the client in most cases.
 
-### Profiling Components with Chrome Timeline {#profiling-components-with-chrome-timeline}
+### Profiling Components with Chrome Timeline {/*profiling-components-with-chrome-timeline*/}
 
 You can now visualize React components in the Chrome Timeline. This lets you see which components exactly get mounted, updated, and unmounted, how much time they take relative to each other.
 
@@ -43,7 +43,7 @@ Note that the numbers are relative so components will render faster in productio
 
 Currently Chrome, Edge, and IE are the only browsers supporting this feature, but we use the standard [User Timing API](https://developer.mozilla.org/en-US/docs/Web/API/User_Timing_API) so we expect more browsers to add support for it.
 
-### Mocking Refs for Snapshot Testing {#mocking-refs-for-snapshot-testing}
+### Mocking Refs for Snapshot Testing {/*mocking-refs-for-snapshot-testing*/}
 
 If you're using Jest [snapshot testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html), you might have had [issues](https://github.com/facebook/react/issues/7371) with components that rely on refs. With React 15.4.0, we introduce a way to provide mock refs to the test renderer. For example, consider this component using a ref in `componentDidMount`:
 
@@ -94,7 +94,7 @@ You can learn more about snapshot testing in [this Jest blog post](https://faceb
 
 ---
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) for managing front-end dependencies. If you're new to package managers, the [Yarn documentation](https://yarnpkg.com/en/docs/getting-started) is a good place to get started.
 
@@ -133,9 +133,9 @@ We've also published version `15.4.0` of the `react`, `react-dom`, and addons pa
 
 - - -
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 * React package and browser build no longer "secretly" includes React DOM.  
   <small>([@sebmarkbage](https://github.com/sebmarkbage) in [#7164](https://github.com/facebook/react/pull/7164) and [#7168](https://github.com/facebook/react/pull/7168))</small>
 * Required PropTypes now fail with specific messages for null and undefined.  
@@ -143,7 +143,7 @@ We've also published version `15.4.0` of the `react`, `react-dom`, and addons pa
 * Improved development performance by freezing children instead of copying.  
   <small>([@keyanzhang](https://github.com/keyanzhang) in [#7455](https://github.com/facebook/react/pull/7455))</small>
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 * Fixed occasional test failures when React DOM is used together with shallow renderer.  
   <small>([@goatslacker](https://github.com/goatslacker) in [#8097](https://github.com/facebook/react/pull/8097))</small>
 * Added a warning for invalid `aria-` attributes.  
@@ -159,15 +159,15 @@ We've also published version `15.4.0` of the `react`, `react-dom`, and addons pa
 * Fixed a bug with updating text in IE 8.  
   <small>([@mnpenner](https://github.com/mnpenner) in [#7832](https://github.com/facebook/react/pull/7832))</small>
 
-### React Perf {#react-perf}
+### React Perf {/*react-perf*/}
 * When ReactPerf is started, you can now view the relative time spent in components as a chart in Chrome Timeline.  
   <small>([@gaearon](https://github.com/gaearon) in [#7549](https://github.com/facebook/react/pull/7549))</small>
 
-### React Test Utils {#react-test-utils}
+### React Test Utils {/*react-test-utils*/}
 * If you call `Simulate.click()` on a `<input disabled onClick={foo} />` then `foo` will get called whereas it didn't before.  
   <small>([@nhunzaker](https://github.com/nhunzaker) in [#7642](https://github.com/facebook/react/pull/7642))</small>
 
-### React Test Renderer {#react-test-renderer}
+### React Test Renderer {/*react-test-renderer*/}
 * Due to packaging changes, it no longer crashes when imported together with React DOM in the same file.  
   <small>([@sebmarkbage](https://github.com/sebmarkbage) in [#7164](https://github.com/facebook/react/pull/7164) and [#7168](https://github.com/facebook/react/pull/7168))</small>
 * `ReactTestRenderer.create()` now accepts `{createNodeMock: element => mock}` as an optional argument so you can mock refs with snapshot testing.  

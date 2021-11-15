@@ -3,11 +3,11 @@ title: 'Relay Technical Preview'
 author: [josephsavona]
 ---
 
-# Relay {#relay}
+# Relay {/*relay*/}
 
 Today we're excited to share an update on Relay - the technical preview is now open-source and [available on GitHub](http://github.com/facebook/relay).
 
-## Why Relay {#why-relay}
+## Why Relay {/*why-relay*/}
 
 While React simplified the process of developing complex user-interfaces, it left open the question of how to interact with data on the server. It turns out that this was a significant source of friction for our developers; fragile coupling between client and server caused data-related bugs and made iteration harder. Furthermore, developers were forced to constantly re-implement complex async logic instead of focusing on their apps. Relay addresses these concerns by borrowing important lessons from React: it provides _declarative, component-oriented data fetching for React applications_.
 
@@ -17,13 +17,13 @@ Relay is also component-oriented, extending the notion of a React component to i
 
 Relay is in use at Facebook in production apps, and we're using it more and more because _Relay lets developers focus on their products and move fast_. It's working for us and we'd like to share it with the community.
 
-## What's Included {#whats-included}
+## What's Included {/*whats-included*/}
 
 We're open-sourcing a technical preview of Relay - the core framework that we use internally, with some modifications for use outside Facebook. As this is the first release, it's good to keep in mind that there may be some incomplete or missing features. We'll continue to develop Relay and are working closely with the GraphQL community to ensure that Relay tracks updates during GraphQL's RFC period. But we couldn't wait any longer to get this in your hands, and we're looking forward to your feedback and contributions.
 
 Relay is available on [GitHub](http://github.com/facebook/relay) and [npm](https://www.npmjs.com/package/react-relay).
 
-## What's Next {#whats-next}
+## What's Next {/*whats-next*/}
 
 The team is super excited to be releasing Relay - and just as excited about what's next. Here are some of the things we'll be focusing on:
 

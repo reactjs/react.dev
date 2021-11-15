@@ -3,7 +3,7 @@ title: 'Community Round-up #25'
 author: [matthewjohnston4]
 ---
 
-## React 101 {#react-101}
+## React 101 {/*react-101*/}
 
 Interest in React has been exploding recently, so it's a good time to explore some great recent tutorials and videos that cover getting started.
 
@@ -21,7 +21,7 @@ Our own [Sebastian Markbåge](https://github.com/sebmarkbage) was on the [Web Pl
 
 <iframe style={{border: 'none'}} src="//html5-player.libsyn.com/embed/episode/id/3370114/height/75/width/200/theme/standard-mini/direction/no/autoplay/no/autonext/no/thumbnail/yes/preload/no/no_addthis/no/" height={26} width="100%" scrolling="no" allowFullScreen webkitallowfullscreen mozallowfullscreen oallowfullscreen msallowfullscreen />
 
-## Community Additions {#community-additions}
+## Community Additions {/*community-additions*/}
 
 [Formidable Labs](https://github.com/FormidableLabs) have been busy, as they've also[ just launched Radium](http://projects.formidablelabs.com/radium/), a React component that provides you with the ability to use inline styles instead of CSS. They're also [looking for some help](http://projects.formidablelabs.com/radium-bootstrap/) contributing to a Radium Bootstrap implementation.
 
@@ -33,7 +33,7 @@ Our own [Sebastian Markbåge](https://github.com/sebmarkbage) was on the [Web Pl
 
 [react-meteor](https://github.com/reactjs/react-meteor), a package that replaces the default templating system of the Meteor platform with React, recently received a big update.
 
-## Rebuilding with React {#rebuilding-with-react}
+## Rebuilding with React {/*rebuilding-with-react*/}
 
 [Rich Manalang](https://github.com/rmanalan) from Atlassian [explains why](https://developer.atlassian.com/blog/2015/02/rebuilding-hipchat-with-react/) they rebuilt their HipChat web client from scratch using React, and how they're already using it to rebuild their native desktop clients.
 
@@ -45,11 +45,11 @@ A team from New Zealand called [Atomic](https://atomic.io/) is [building web and
 
 <center><a href="http://polarrist.tumblr.com/post/111290422225/polarr-photo-editor-2-0-alpha-is-here"><img src="/images/blog/polarr.jpg"/></a></center>
 
-## It's F8! {#its-f8}
+## It's F8! {/*its-f8*/}
 
 F8 2015 is just around the corner, and you can [sign up for the video streams](https://www.fbf8.com/stream.html) in advance because we're sure to be covering all things React.
 
-## Meetups {#meetups}
+## Meetups {/*meetups*/}
 
 <table><tr><td width="50%" valign="top">
 <blockquote class="twitter-tweet" lang="en"><p>Our <a href="https://twitter.com/reactjs">@reactjs</a> meetup is in full effect <a href="https://twitter.com/hashtag/ReactJS?src=hash">#ReactJS</a> &#10;&#10;btw bathroom code is 6012 lol <a href="http://t.co/7iUpvmm3zz">pic.twitter.com/7iUpvmm3zz</a></p>&mdash; littleBits (@littleBits) <a href="https://twitter.com/littleBits/status/570373833028472832">February 25, 2015</a></blockquote>

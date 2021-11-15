@@ -17,7 +17,7 @@ State variables might look like regular JavaScript variables that you can read a
 
 </YouWillLearn>
 
-## Setting state triggers renders {#setting-state-triggers-renders}
+## Setting state triggers renders {/*setting-state-triggers-renders*/}
 
 You might think of your user interface as changing directly in response to the user input like a click. This may feel intuitive if you've been [storyboarding](https://wikipedia.org/wiki/Storyboard) your designs and interactions:
 
@@ -77,7 +77,7 @@ Let's take a closer look at the relationship between state and rendering.
 
 <Illustration alt="State living in React; React gets a setUpdate; in the re-render, React passes a snapshot of the state value into the component." src="/images/docs/illustrations/i_ui-snapshot.png" />
 
-## Rendering takes a snapshot in time {#rendering-takes-a-snapshot-in-time}
+## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
 
 ["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
 
@@ -180,7 +180,7 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 
 This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
 
-## State over time {#state-over-time}
+## State over time {/*state-over-time*/}
 
 Well, that was fun. Try to guess what clicking this button will alert:
 
@@ -333,7 +333,7 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-### Implement a traffic light {#implement-a-traffic-light}
+### Implement a traffic light {/*implement-a-traffic-light*/}
 
 Here is a crosswalk light component that toggles on when the button is pressed:
 

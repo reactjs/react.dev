@@ -25,18 +25,18 @@ At Facebook, we believe that anyone anywhere can make a positive impact by devel
 
 To apply for the scholarship, please visit the application page: **<http://goo.gl/forms/PEmKj8oUp4>**
 
-## Award Includes {#award-includes}
+## Award Includes {/*award-includes*/}
 
 - Paid registration fee for the React.js Conf February 22 & 23 in downtown San Francisco, CA
 - Paid lodging expenses for February 21, 22, 23
 
-## Important Dates {#important-dates}
+## Important Dates {/*important-dates*/}
 
 - Sunday December 13th 2015 - 11:59 PST: Applications for the React.js Conf Scholarship must be submitted in full
 - Wednesday, December 16th, 2015: Award recipients will be notified by email of their acceptance
 - Monday & Tuesday, February 22 & 23, 2016: React.js Conf
 
-## Eligibility {#eligibility}
+## Eligibility {/*eligibility*/}
 
 - Must currently be studying or working in Computer Science or a related field
 - International applicants are welcome, but you will be responsible for securing your own visa to attend the conference

@@ -15,13 +15,13 @@ Inspired by [Yarn](https://github.com/yarnpkg/rfcs), [Ember](https://github.com/
 
 RFCs are accepted when they are approved for implementation in React. A more thorough description of the process is available in the repository's [README](https://github.com/reactjs/rfcs/blob/master/README.md). The exact details may be refined in the future.
 
-## Who Can Submit RFCs? {#who-can-submit-rfcs}
+## Who Can Submit RFCs? {/*who-can-submit-rfcs*/}
 
 Anyone! No knowledge of React's internals is required, nor are you expected to implement the proposal yourself.
 
 As with our other repositories, we do ask that you complete a [Contributor License Agreement](https://github.com/reactjs/rfcs#contributor-license-agreement-cla) before we can accept your PR.
 
-## What Types of Changes Should Be Submitted As RFCs? {#what-types-of-changes-should-be-submitted-as-rfcs}
+## What Types of Changes Should Be Submitted As RFCs? {/*what-types-of-changes-should-be-submitted-as-rfcs*/}
 
 Generally, any idea that would benefit from additional review or design before being implemented is a good candidate for an RFC. As a rule of thumb, this means any proposal that adds, changes, or removes a React API.
 
@@ -33,7 +33,7 @@ We now have several repositories where you can submit contributions to React:
 - **Website and documentation**: [reactjs/reactjs.org](https://github.com/reactjs/reactjs.org)
 - **Ideas for changes that need additional review before being implemented**: [reactjs/rfcs](https://github.com/reactjs/rfcs)
 
-## RFC for A New Context API {#rfc-for-a-new-context-api}
+## RFC for A New Context API {/*rfc-for-a-new-context-api*/}
 
 Coinciding with the launch of our RFC process, we've submitted a [proposal for a new version of context](https://github.com/reactjs/rfcs/pull/2). The proposal has already received many valuable comments from the community that we will incorporate into the design of the new API.
 

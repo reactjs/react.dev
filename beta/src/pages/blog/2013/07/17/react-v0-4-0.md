@@ -11,7 +11,7 @@ React v0.4 has some big changes. We've also restructured the documentation to be
 
 When you're ready, [go download it](/docs/installation.html)!
 
-### React {#react}
+### React {/*react*/}
 
 - Switch from using `id` attribute to `data-reactid` to track DOM nodes. This allows you to integrate with other JS and CSS libraries more easily.
 - Support for more DOM elements and attributes (e.g., `<canvas>`)
@@ -23,7 +23,7 @@ When you're ready, [go download it](/docs/installation.html)!
 - We've implemented an improved synthetic event system that conforms to the W3C spec.
 - Updates to your component are batched now, which may result in a significantly faster re-render of components. `this.setState` now takes an optional callback as its second parameter. If you were using `onClick={this.setState.bind(this, state)}` previously, you'll want to make sure you add a third parameter so that the event is not treated as the callback.
 
-### JSX {#jsx}
+### JSX {/*jsx*/}
 
 - Support for comment nodes `<div>{/* this is a comment and won't be rendered */}</div>`
 - Children are now transformed directly into arguments instead of being wrapped in an array
@@ -31,7 +31,7 @@ When you're ready, [go download it](/docs/installation.html)!
   Previously this would be transformed into `React.DOM.div(null, [Component1(null), Component2(null)])`.
   If you were using React without JSX previously, your code should still work.
 
-### react-tools {#react-tools}
+### react-tools {/*react-tools*/}
 
 - Fixed a number of bugs when transforming directories
 - No longer re-write `require()`s to be relative unless specified

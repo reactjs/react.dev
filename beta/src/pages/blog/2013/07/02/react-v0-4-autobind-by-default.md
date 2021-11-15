@@ -6,7 +6,7 @@ author: [zpao]
 React v0.4 is very close to completion. As we finish it off, we'd like to share with you some of the major changes we've made since v0.3. This is the first of several posts we'll be making over the next week.
 
 
-## What is React.autoBind? {#what-is-reactautobind}
+## What is React.autoBind? {/*what-is-reactautobind*/}
 
 If you take a look at most of our current examples, you'll see us using `React.autoBind` for event handlers. This is used in place of `Function.prototype.bind`. Remember that in JS, [function calls are late-bound](https://bonsaiden.github.io/JavaScript-Garden/#function.this). That means that if you simply pass a function around, the `this` used inside won't necessarily be the `this` you expect. `Function.prototype.bind` creates a new, properly bound, function so that when called, `this` is exactly what you expect it to be.
 
@@ -33,7 +33,7 @@ React.createClass({
 ```
 
 
-## What's Changing in v0.4? {#whats-changing-in-v04}
+## What's Changing in v0.4? {/*whats-changing-in-v04*/}
 
 After using `React.autoBind` for a few weeks, we realized that there were very few times that we didn't want that behavior. So we made it the default! Now all methods defined within `React.createClass` will already be bound to the correct instance.
 

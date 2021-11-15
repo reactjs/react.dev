@@ -13,19 +13,19 @@ In addition, the following three languages have completed translating most of th
 
 Special congratulations to [Alejandro Ñáñez Ortiz](https://github.com/alejandronanez), [Rainer Martínez Fraga](https://github.com/carburo), [David Morales](https://github.com/dmorales), [Miguel Alejandro Bolivar Portilla](https://github.com/Darking360), and all the contributors to the Spanish translation for being the first to _completely_ translate the core pages of the docs!
 
-## Why Localization Matters {#why-localization-matters}
+## Why Localization Matters {/*why-localization-matters*/}
 
 React already has many meetups and conferences around the world, but many programmers don't use English as their primary language. We’d love to support local communities who use React by making our documentation available in most popular languages.
 
 In the past, React community members have created unofficial translations for [Chinese](https://github.com/discountry/react), [Arabic](https://wiki.hsoub.com/React), and [Korean](https://github.com/reactjs/ko.reactjs.org/issues/4); by making an official channel for these translated docs we're hoping to make them easier to find and help make sure that non-English-speaking users of React aren't left behind.
 
-## Contributing {#contributing}
+## Contributing {/*contributing*/}
 
 If you would like to help out on a current translation, check out the [Languages](/languages) page and click on the "Contribute" link for your language.
 
 Can't find your language? If you'd like to maintain your language's translation fork, follow the instructions in the [translation repo](https://github.com/reactjs/reactjs.org-translation#starting-a-new-translation)!
 
-## Backstory {#backstory}
+## Backstory {/*backstory*/}
 
 Hi everyone! I'm [Nat](https://twitter.com/tesseralis)! You may know me as the [polyhedra lady](https://www.youtube.com/watch?v=Ew-UzGC8RqQ). For the past few weeks, I've been helping the React team coordinate their translation effort. Here's how I did it.
 
@@ -45,7 +45,7 @@ After the trial period, we were ready to accept more languages. I created [a scr
 
 Because of the automation, the rest of the maintenance went mostly smoothly. We eventually created a [Slack channel](https://rt-slack-invite.herokuapp.com) to make it easier for translators to share information, and I released a guide solidifying the [responsibilities of maintainers](https://github.com/reactjs/reactjs.org-translation/blob/master/maintainer-guide.md). Allowing translators to talk with each other was a great boon -- for example, the Arabic, Persian, and Hebrew translations were able to talk to each other in order to get [right-to-left text](https://en.wikipedia.org/wiki/Right-to-left) working!
 
-## The Bot {#the-bot}
+## The Bot {/*the-bot*/}
 
 The most challenging part was getting the bot to sync changes from the English version of the site. Initially we were using the [che-tsumi](https://github.com/vuejs-jp/che-tsumi) bot created by the Japanese Vue translation team, but we soon decided to build our own bot to suit our needs. In particular, the che-tsumi bot works by [cherry picking](https://git-scm.com/docs/git-cherry-pick) new commits. This ended up causing a cavalade of new issues that were interconnected, especially when [Hooks were released](/blog/2019/02/06/react-v16.8.0).
 
@@ -63,7 +63,7 @@ There were other smaller issues that I ran into. I tried using the [Heroku Sched
 
 There are, as always, improvements I want to make to the bot. Right now it doesn't check whether there is an outstanding pull request before pushing another one. It's still hard to tell the exact change that happened in the original source, and it's possible to miss out on a needed translation change. But I trust the maintainers we've chosen to work through these issues, and the bot is [open source](https://github.com/reactjs/reactjs.org-translation) if anyone wants to help me make these improvements!
 
-## Thanks {#thanks}
+## Thanks {/*thanks*/}
 
 Finally, I would like to extend my gratitude to the following people and groups:
 

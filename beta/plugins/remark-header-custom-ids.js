@@ -36,27 +36,27 @@ module.exports = ({
       // A bit weird: this is to support MDX 2 comments in expressions,
       // while we’re still on MDX 1, which doesn’t support them.
       if (!tail || tail.type !== 'text' || tail.value !== '/}') {
-        return
+        return;
       }
 
-      tail = children[children.length - 2]
+      tail = children[children.length - 2];
 
       if (!tail && tail.type !== 'emphasis') {
-        return
+        return;
       }
 
-      const id = toString(tail)
+      const id = toString(tail);
 
-      tail = children[children.length - 3]
+      tail = children[children.length - 3];
 
       if (!tail || tail.type !== 'text' || !tail.value.endsWith('{/')) {
-        return
+        return;
       }
 
       // Remove the emphasis and trailing `/}`
-      children.splice(children.length - 2, 2)
+      children.splice(children.length - 2, 2);
       // Remove the `{/`
-      tail.value = tail.value.replace(/[ \t]*\{\/$/, '')
+      tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
 
       const data = patch(node, 'data', {});
 

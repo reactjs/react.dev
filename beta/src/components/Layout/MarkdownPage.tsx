@@ -25,58 +25,7 @@ export function MarkdownPage<
   const {route, nextRoute, prevRoute} = useRouteMeta();
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
-
-  let anchors: Array<{
-    url: string;
-    text: React.ReactNode;
-    depth: number;
-  }> = React.Children.toArray(children)
-    .filter((child: any) => {
-      if (child.props?.mdxType) {
-        return ['h1', 'h2', 'h3', 'Challenges', 'Recipes', 'Recap'].includes(
-          child.props.mdxType
-        );
-      }
-      return false;
-    })
-    .map((child: any) => {
-      if (child.props.mdxType === 'Challenges') {
-        return {
-          url: '#challenges',
-          depth: 0,
-          text: 'Challenges',
-        };
-      }
-      if (child.props.mdxType === 'Recipes') {
-        return {
-          url: '#recipes',
-          depth: 0,
-          text: 'Recipes',
-        };
-      }
-      if (child.props.mdxType === 'Recap') {
-        return {
-          url: '#recap',
-          depth: 0,
-          text: 'Recap',
-        };
-      }
-      return {
-        url: '#' + child.props.id,
-        depth:
-          (child.props?.mdxType &&
-            parseInt(child.props.mdxType.replace('h', ''), 0)) ??
-          0,
-        text: child.props.children,
-      };
-    });
-  if (anchors.length > 0) {
-    anchors.unshift({
-      depth: 1,
-      text: 'Overview',
-      url: '#',
-    });
-  }
+  const toc = meta.toc.length > 0 ? [{depth: 1, text: 'Overview', url: '#'}, ...meta.toc] : meta.toc
 
   if (!route) {
     console.error('This page was not added to one of the sidebar JSON files.');
@@ -147,7 +96,7 @@ export function MarkdownPage<
         </div>
       </div>
       <div className="w-full lg:max-w-xs hidden 2xl:block">
-        {!isHomePage && anchors.length > 0 && <Toc headings={anchors} />}
+        {!isHomePage && toc.length > 0 && <Toc headings={toc} />}
       </div>
     </article>
   );

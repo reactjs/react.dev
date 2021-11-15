@@ -19,6 +19,7 @@ import {RouteItem, useRouteMeta} from './useRouteMeta';
 import {useTwitter} from './useTwitter';
 
 interface PageFrontmatter {
+  toc: Array<{url: string, depth: 2 | 3, text: string}>;
   id?: string;
   title: string;
   author: string[];
@@ -53,16 +54,6 @@ function LayoutPost({meta, children}: LayoutPostProps) {
   const {pathname} = useRouter();
   const {date, dateTime} = getDateFromPath(pathname);
   const {route, nextRoute, prevRoute} = useRouteMeta();
-  const anchors = React.Children.toArray(children)
-    .filter(
-      (child: any) =>
-        child.props?.mdxType && ['h2', 'h3'].includes(child.props.mdxType)
-    )
-    .map((child: any) => ({
-      url: '#' + child.props.id,
-      depth: parseInt(child.props.mdxType.replace('h', ''), 0),
-      text: child.props.children,
-    }));
   useTwitter();
   return (
     <>
@@ -96,7 +87,7 @@ function LayoutPost({meta, children}: LayoutPostProps) {
         </div>
       </div>
       <div className="w-full lg:max-w-xs h-full hidden 2xl:block">
-        <Toc headings={anchors} />
+        <Toc headings={meta.toc} />
       </div>
     </>
   );

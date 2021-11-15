@@ -75,8 +75,7 @@ ${css}
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
       onClick={downloadHTML}
       title="Refresh Sandpack"
-      type="button"
-    >
+      type="button">
       <IconArrowSmall
         displayDirection="down"
         className="inline mb-0.5 mr-1 mt-1"

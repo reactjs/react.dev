@@ -63,8 +63,7 @@ const Blockquote = ({
     <>
       <blockquote
         className="mdx-blockquote py-4 px-8 my-8 shadow-inner bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-lg leading-6 flex relative"
-        {...props}
-      >
+        {...props}>
         <span className="block relative">{children}</span>
       </blockquote>
       <style jsx global>{`
@@ -100,8 +99,7 @@ function LearnMore({
               className="mt-1"
               label="Read More"
               href={path}
-              type="primary"
-            >
+              type="primary">
               Read More
               <IconNavArrow displayDirection="right" className="inline ml-1" />
             </ButtonLink>
@@ -119,8 +117,7 @@ function Math({children}: {children: any}) {
       style={{
         fontFamily: 'STIXGeneral-Regular, Georgia, serif',
         fontSize: '1.2rem',
-      }}
-    >
+      }}>
       {children}
     </span>
   );
@@ -132,8 +129,7 @@ function MathI({children}: {children: any}) {
       style={{
         fontFamily: 'STIXGeneral-Italic, Georgia, serif',
         fontSize: '1.2rem',
-      }}
-    >
+      }}>
       {children}
     </span>
   );
@@ -244,7 +240,9 @@ function IllustrationBlock({
       {sequential ? (
         <ol className="mdx-illustration-block flex">
           {images.map((x: any, i: number) => (
-            <li className="flex-1" key={i}>{x}</li>
+            <li className="flex-1" key={i}>
+              {x}
+            </li>
           ))}
         </ol>
       ) : (

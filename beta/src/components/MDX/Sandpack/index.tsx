@@ -138,8 +138,7 @@ function Sandpack(props: SandpackProps) {
         key={key}
         template="react"
         customSetup={{...setup, files: files}}
-        autorun={autorun}
-      >
+        autorun={autorun}>
         <CustomPreset
           isSingleFile={isSingleFile}
           onReset={() => {

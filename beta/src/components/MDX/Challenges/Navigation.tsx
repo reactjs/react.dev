@@ -88,8 +88,7 @@ export function Navigation({
       <div className="overflow-hidden">
         <div
           ref={containerRef}
-          className="flex relative transition-transform content-box overflow-x-auto"
-        >
+          className="flex relative transition-transform content-box overflow-x-auto">
           {challenges.map(({name, id, order}, index) => (
             <button
               className={cn(
@@ -103,8 +102,7 @@ export function Navigation({
               )}
               onClick={() => handleSelectNav(id)}
               key={`button-${id}`}
-              ref={challengesNavRef.current[index]}
-            >
+              ref={challengesNavRef.current[index]}>
               {order}. {name}
             </button>
           ))}
@@ -119,8 +117,7 @@ export function Navigation({
               'text-primary dark:text-primary-dark': canScrollLeft,
               'text-gray-30': !canScrollLeft,
             }
-          )}
-        >
+          )}>
           <IconChevron displayDirection="left" />
         </button>
         <button
@@ -131,8 +128,7 @@ export function Navigation({
               'text-primary dark:text-primary-dark': canScrollRight,
               'text-gray-30': !canScrollRight,
             }
-          )}
-        >
+          )}>
           <IconChevron displayDirection="right" />
         </button>
       </div>

@@ -15,8 +15,7 @@ export const IconSearch = React.memo<JSX.IntrinsicElements['svg']>(
           strokeWidth="2"
           fillRule="evenodd"
           strokeLinecap="round"
-          strokeLinejoin="round"
-        ></path>
+          strokeLinejoin="round"></path>
       </svg>
     );
   }

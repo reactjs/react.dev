@@ -28,8 +28,7 @@ export function SidebarButton({
       className={cn({
         'my-1': heading || level === 1,
         'my-3': level > 1,
-      })}
-    >
+      })}>
       <button
         className={cn(
           'p-2 pr-2 pl-5 w-full rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
@@ -45,8 +44,7 @@ export function SidebarButton({
               !heading && isExpanded,
           }
         )}
-        onClick={onClick}
-      >
+        onClick={onClick}>
         {title}
         {typeof isExpanded && !heading && (
           <span className="pr-2 text-gray-30">

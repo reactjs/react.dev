@@ -19,8 +19,7 @@ export default function Archive() {
           <h1 className="text-5xl font-bold">Blog Archive</h1>
           <a
             href="/feed.xml"
-            className="p-2 betterhover:hover:bg-gray-20 transition duration-150 ease-in-out rounded-lg inline-flex items-center"
-          >
+            className="p-2 betterhover:hover:bg-gray-20 transition duration-150 ease-in-out rounded-lg inline-flex items-center">
             <IconRss className="w-5 h-5 mr-2" />
             RSS
           </a>
@@ -44,8 +43,7 @@ export default function Archive() {
                   {toCommaSeparatedList(post.author, (author) => (
                     <ExternalLink
                       href={getAuthor(author).url}
-                      className="font-bold betterhover:hover:underline"
-                    >
+                      className="font-bold betterhover:hover:underline">
                       <span>{getAuthor(author).name}</span>
                     </ExternalLink>
                   ))}

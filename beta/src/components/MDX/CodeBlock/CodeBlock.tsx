@@ -21,7 +21,7 @@ interface InlineHiglight {
   endColumn: number;
 }
 
-const CodeBlock = React.forwardRef(function CodeBlock
+const CodeBlock = React.forwardRef(
   (
     {
       children,
@@ -37,7 +37,7 @@ const CodeBlock = React.forwardRef(function CodeBlock
       noMarkers?: boolean;
     },
     ref?: React.Ref<HTMLDivElement>
-  ) {
+  ) => {
     const getDecoratedLineInfo = () => {
       if (!metastring) {
         return [];

@@ -185,7 +185,12 @@ function Illustration({
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img src={src} alt={alt} style={{maxHeight: 300}} className="bg-white rounded-lg" />
+        <img
+          src={src}
+          alt={alt}
+          style={{maxHeight: 300}}
+          className="bg-white rounded-lg"
+        />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
             {caption}
@@ -235,7 +240,9 @@ function IllustrationBlock({
       {sequential ? (
         <ol className="mdx-illustration-block flex">
           {images.map((x: any, i: number) => (
-            <li className="flex-1" key={i}>{x}</li>
+            <li className="flex-1" key={i}>
+              {x}
+            </li>
           ))}
         </ol>
       ) : (

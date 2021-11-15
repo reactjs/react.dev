@@ -1,12 +1,13 @@
 import path from 'path';
-import {fileURLToPath} from 'url';
-import grayMatter from 'gray-matter';
+import {URL, fileURLToPath} from 'url';
 import {valueToEstree} from 'estree-util-value-to-estree';
+import {toText} from 'hast-util-to-text';
 import {visit} from 'unist-util-visit';
 import {unified} from 'unified';
 import remarkParse from 'remark-parse';
 import remarkGfm from 'remark-gfm';
 import remarkFrontmatter from 'remark-frontmatter';
+import {remarkMdxFrontmatter} from 'remark-mdx-frontmatter';
 import rehypeExternalLinks from 'rehype-external-links';
 import remarkImages from 'remark-images';
 import remarkUnwrapImages from 'remark-unwrap-images';
@@ -14,22 +15,15 @@ import remarkSmartyPants from '@silvenon/remark-smartypants';
 import remarkRehype from 'remark-rehype';
 import rehypeStringify from 'rehype-stringify';
 
-// This plugin adds layouts from frontmatter.
+// This plugin autoregisters layouts from file paths.
+// It assumes `remark-mdx-frontmatter` adds a `export const frontmatter = {…}` already.
+// And generates a table of contents structure from the file.
 // It’s a bit like <https://github.com/remcohaszing/remark-mdx-frontmatter>.
 // To do: TS should be picking this all up, but it doesn’t? Because of `.mjs`?
 /** @type {import('unified').Plugin<void[], import('mdast').Root>} */
-function turnFrontmatterIntoALayout() {
+function addLayout() {
   return (tree, file) => {
-    const head = tree.children[0]
-    let data = {}
-    let index = 0
-
-    if (head && head.type === 'yaml') {
-      const result = grayMatter('---\n' + head.value + '\n---')
-      data = result.data
-      index = 1
-    }
-
+    const data = {toc: []}
     const layoutMap = {
       blog: 'Post',
       learn: 'Learn',
@@ -40,8 +34,16 @@ function turnFrontmatterIntoALayout() {
     const mainFolder = paths.length > 1 ? paths[0] : undefined;
     const layout = mainFolder && mainFolder in layoutMap ? layoutMap[mainFolder] : 'Home';
 
+    visit(tree, 'element', (node) => {
+      if (node.tagName === 'h2' || node.tagName === 'h3') {
+        const id = node.properties?.id
+        const depth = parseInt(node.tagName.charAt(1), 10)
+        data.toc.push({url: '#' + id, depth, text: toText(node)})
+      }
+    })
+
     // Add import/exports for the layout.
-    tree.children.splice(index, 0, {
+    tree.children.push({
       type: 'mdxjsEsm',
       value: '',
       data: {
@@ -55,13 +57,40 @@ function turnFrontmatterIntoALayout() {
               specifiers: [{type: 'ImportDefaultSpecifier', local: {type: 'Identifier', name: 'withLayout'}}],
               source: {type: 'Literal', value: 'components/Layout/Layout' + layout}
             },
-            // export default withLayout(data)'
+            // export default withLayout({...data, ...frontmatter})'
             {
               type: 'ExportDefaultDeclaration',
               declaration: {
                 type: 'CallExpression',
                 callee: {type: 'Identifier', name: 'withLayout'},
-                arguments: [valueToEstree(data)],
+                arguments: [
+                  {
+                    type: 'ObjectExpression',
+                    properties: [
+                      {type: 'SpreadElement', argument: valueToEstree(data)},
+                      {
+                        // To do: fix for <https://github.com/remcohaszing/remark-mdx-frontmatter/issues/5>.
+                        type: 'SpreadElement',
+                        argument: {
+                          type: 'ConditionalExpression',
+                          test: {
+                            type: 'BinaryExpression',
+                            left: {
+                              type: 'UnaryExpression',
+                              operator: 'typeof',
+                              prefix: true,
+                              argument: {type: 'Identifier', name: 'frontmatter'}
+                            },
+                            operator: '===',
+                            right: {type: 'Identifier', name: 'undefined'}
+                          },
+                          consequent: {type: 'Identifier', name: 'undefined'},
+                          alternate: {type: 'Identifier', name: 'frontmatter'}
+                        }
+                      }
+                    ]
+                  }
+                ],
                 optional: false
               }
             }
@@ -109,21 +138,23 @@ export const remarkPlugins = [
   remarkGfm,
   // Enable YAML frontmatter.
   remarkFrontmatter,
-  // Custom plugin to turn YAML frontmatter into a layout.
-  turnFrontmatterIntoALayout,
+  [remarkMdxFrontmatter, {name: 'frontmatter'}],
   // Turn pasted links to images into actual images.
   remarkImages,
   // Remove `<p>` wrapper around images on their own.
   remarkUnwrapImages,
   // Clean up typography. To do: is this still needed?
-  remarkSmartyPants
+  remarkSmartyPants,
 ]
 
 // These plugins work on HTML:
 export const rehypePlugins = [
   // Add `_target` and `rel` to full `http:` links.
   rehypeExternalLinks,
-  addCustomHeadingIds
+  // Find `# heading {/*id*/}`, and use those `id`s as IDs on headings.
+  addCustomHeadingIds,
+  // Custom plugin to auto-register a layout.
+  addLayout
 ]
 
 // .use(customHeaders)

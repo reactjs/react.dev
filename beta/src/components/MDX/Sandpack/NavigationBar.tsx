@@ -48,7 +48,8 @@ export function NavigationBar({
       </div>
       <div
         className="px-3 flex items-center justify-end flex-grow text-right"
-        translate="yes">
+        translate="yes"
+      >
         {showDownload && <DownloadButton />}
         <ResetButton onReset={onReset} />
         <OpenInCodeSandboxButton className="ml-2 md:ml-4" />

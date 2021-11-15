@@ -19,7 +19,8 @@ export const OpenInCodeSandboxButton = ({className}: {className?: string}) => {
       href={url}
       rel="noreferrer noopener"
       target="_blank"
-      title="Open in CodeSandbox">
+      title="Open in CodeSandbox"
+    >
       <span className="hidden md:inline">
         <IconNewPage className="inline mb-0.5 text-base" /> Fork
       </span>

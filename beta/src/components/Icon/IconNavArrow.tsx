@@ -27,7 +27,8 @@ export const IconNavArrow = React.memo<
       height="20"
       viewBox="0 0 20 20"
       className={classes}
-      style={{minWidth: 20, minHeight: 20}}>
+      style={{minWidth: 20, minHeight: 20}}
+    >
       <g fill="none" fillRule="evenodd" transform="translate(-446 -398)">
         <path
           fill="currentColor"

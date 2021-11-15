@@ -37,7 +37,8 @@ export function Button({
           'bg-transparent text-secondary dark:text-secondary-dark bg-secondary-button dark:bg-secondary-button-dark hover:text-link focus:text-link border-transparent':
             !active,
         }
-      )}>
+      )}
+    >
       {children}
     </button>
   );

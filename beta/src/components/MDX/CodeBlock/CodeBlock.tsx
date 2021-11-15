@@ -79,7 +79,8 @@ const CodeBlock = React.forwardRef(function CodeBlock(
       className={cn(
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
         !noMargin && 'my-8'
-      )}>
+      )}
+    >
       <SandpackProvider
         customSetup={{
           entry: filename,
@@ -88,12 +89,14 @@ const CodeBlock = React.forwardRef(function CodeBlock(
               code: children.trimEnd(),
             },
           },
-        }}>
+        }}
+      >
         <SandpackThemeProvider theme={CustomTheme}>
           <ClasserProvider
             classes={{
               'sp-cm': styles.codeViewer,
-            }}>
+            }}
+          >
             <SandpackCodeViewer
               ref={ref}
               showLineNumbers={false}

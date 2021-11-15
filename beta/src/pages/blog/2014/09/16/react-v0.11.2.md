@@ -26,20 +26,20 @@ We've also published version `0.11.2` of the `react` and `react-tools` packages 
 
 Please try these builds out and [file an issue on GitHub](https://github.com/facebook/react/issues/new) if you see anything awry.
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### New Features {#new-features}
+#### New Features {/*new-features*/}
 
 - Added support for `<dialog>` element and associated `open` attribute
 - Added support for `<picture>` element and associated `media` and `sizes` attributes
 - Added `React.createElement` API in preparation for React v0.12
   - `React.createDescriptor` has been deprecated as a result
 
-### JSX {#jsx}
+### JSX {/*jsx*/}
 
 - `<picture>` is now parsed into `React.DOM.picture`
 
-### React Tools {#react-tools}
+### React Tools {/*react-tools*/}
 
 - Update `esprima` and `jstransform` for correctness fixes
 - The `jsx` executable now exposes a `--strip-types` flag which can be used to remove TypeScript-like type annotations

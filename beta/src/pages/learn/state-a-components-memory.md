@@ -17,7 +17,7 @@ Components often need to change what's on the screen as a result of an interacti
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {#when-a-regular-variable-isnt-enough}
+## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
 
 Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
 
@@ -166,7 +166,7 @@ The [`useState`](/reference/usestate) Hook provides those two things:
 1. A **state variable** to retain the data between renders.
 2. A **state setter function** to update the variable and trigger React to render the component again.
 
-## Adding a state variable {#adding-a-state-variable}
+## Adding a state variable {/*adding-a-state-variable*/}
 
 To add a state variable, import `useState` from React at the top of the file:
 
@@ -331,7 +331,7 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {#meet-your-first-hook}
+### Meet your first Hook {/*meet-your-first-hook*/}
 
 In React, `useState`, as well as any other function starting with "`use`," is called a **Hook**.
 
@@ -345,7 +345,7 @@ State is just one of those features, but you will meet the other Hooks later.
 
 </Gotcha>
 
-### Anatomy of `useState` {#anatomy-of-usestate}
+### Anatomy of `useState` {/*anatomy-of-usestate*/}
 
 When you call [`useState`](/reference/usestate), you are telling React that you want this component to remember something:
 
@@ -375,7 +375,7 @@ const [index, setIndex] = useState(0);
 3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
 4. And so on!
 
-## Giving a component multiple state variables {#giving-a-component-multiple-state-variables}
+## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
 
 You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
 
@@ -722,7 +722,7 @@ You don't have to understand it to use React, but you might find this a helpful 
 
 </DeepDive>
 
-## State is isolated and private {#state-is-isolated-and-private}
+## State is isolated and private {/*state-is-isolated-and-private*/}
 
 State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
 
@@ -907,7 +907,7 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 <Challenges>
 
-### Complete the gallery {#complete-the-gallery}
+### Complete the gallery {/*complete-the-gallery*/}
 
 When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
 
@@ -1217,7 +1217,7 @@ Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and insi
 
 </Solution>
 
-### Fix stuck form inputs {#fix-stuck-form-inputs}
+### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
 
 When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
 
@@ -1319,7 +1319,7 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-### Fix a crash {#fix-a-crash}
+### Fix a crash {/*fix-a-crash*/}
 
 Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
 
@@ -1441,7 +1441,7 @@ In general, these types of mistakes are caught by the [`eslint-plugin-react-hook
 
 </Solution>
 
-### Remove unnecessary state {#remove-unnecessary-state}
+### Remove unnecessary state {/*remove-unnecessary-state*/}
 
 When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
 

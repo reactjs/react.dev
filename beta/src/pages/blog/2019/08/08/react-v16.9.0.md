@@ -5,9 +5,9 @@ author: [gaearon, bvaughn]
 
 Today we are releasing React 16.9. It contains several new features, bugfixes, and new deprecation warnings to help prepare for a future major release.
 
-## New Deprecations {#new-deprecations}
+## New Deprecations {/*new-deprecations*/}
 
-### Renaming Unsafe Lifecycle Methods {#renaming-unsafe-lifecycle-methods}
+### Renaming Unsafe Lifecycle Methods {/*renaming-unsafe-lifecycle-methods*/}
 
 [Over a year ago](/blog/2018/03/27/update-on-async-rendering), we announced that unsafe lifecycle methods are getting renamed:
 
@@ -38,7 +38,7 @@ The new names like `UNSAFE_componentWillMount` **will keep working in both React
 >
 > Learn more about our [versioning policy and commitment to stability](/docs/faq-versioning#commitment-to-stability).
 
-### Deprecating `javascript:` URLs {#deprecating-javascript-urls}
+### Deprecating `javascript:` URLs {/*deprecating-javascript-urls*/}
 
 URLs starting with `javascript:` are a dangerous attack surface because it's easy to accidentally include unsanitized output in a tag like `<a href>` and create a security hole:
 
@@ -54,7 +54,7 @@ const userProfile = {
 
 **In a future major release,** React will throw an error if it encounters a `javascript:` URL.
 
-### Deprecating "Factory" Components {#deprecating-factory-components}
+### Deprecating "Factory" Components {/*deprecating-factory-components*/}
 
 Before compiling JavaScript classes with Babel became popular, React had support for a "factory" component that returns an object with a `render` method:
 
@@ -74,9 +74,9 @@ This pattern was almost never used in the wild, and supporting it causes React t
 
 We don't expect most codebases to be affected by this.
 
-## New Features {#new-features}
+## New Features {/*new-features*/}
 
-### Async [`act()`](/docs/test-utils#act) for Testing {#async-act-for-testing}
+### Async [`act()`](/docs/test-utils#act) for Testing {/*async-act-for-testing*/}
 
 [React 16.8](/blog/2019/02/06/react-v16.8.0) introduced a new testing utility called [`act()`](/docs/test-utils#act) to help you write tests that better match the browser behavior. For example, multiple state updates inside a single `act()` get batched. This matches how React already works when handling real browser events, and helps prepare your components for the future in which React will batch updates more often.
 
@@ -100,7 +100,7 @@ We've heard there wasn't enough information about how to write tests with `act()
 
 Please let us know [on the issue tracker](https://github.com/facebook/react/issues) if you bump into any other scenarios where `act()` doesn't work well for you, and we'll try to help.
 
-### Performance Measurements with [`<React.Profiler>`](/docs/profiler) {#performance-measurements-with-reactprofiler}
+### Performance Measurements with [`<React.Profiler>`](/docs/profiler) {/*performance-measurements-with-reactprofiler*/}
 
 In React 16.5, we introduced a new [React Profiler for DevTools](/blog/2018/09/10/introducing-the-react-profiler) that helps find performance bottlenecks in your application. **In React 16.9, we are also adding a _programmatic_ way to gather measurements** called `<React.Profiler>`. We expect that most smaller apps won't use it, but it can be handy to track performance regressions over time in larger apps.
 
@@ -129,7 +129,7 @@ To learn more about the `Profiler` and the parameters passed to the `onRender` c
 > To opt into production profiling, React provides a special production build with profiling enabled.
 > Read more about how to use this build at [fb.me/react-profiling](https://fb.me/react-profiling).
 
-## Notable Bugfixes {#notable-bugfixes}
+## Notable Bugfixes {/*notable-bugfixes*/}
 
 This release contains a few other notable improvements:
 
@@ -141,7 +141,7 @@ This release contains a few other notable improvements:
 
 We're thankful to all the contributors who helped surface and fix these and other issues. You can find the full changelog [below](#changelog).
 
-## An Update to the Roadmap {#an-update-to-the-roadmap}
+## An Update to the Roadmap {/*an-update-to-the-roadmap*/}
 
 In [November 2018](/blog/2018/11/27/react-16-roadmap), we have posted this roadmap for the 16.x releases:
 
@@ -159,7 +159,7 @@ Now that React Hooks are rolled out, the work on Concurrent Mode and Suspense fo
 
 With this new understanding, here's what we plan to do next.
 
-### One Release Instead of Two {#one-release-instead-of-two}
+### One Release Instead of Two {/*one-release-instead-of-two*/}
 
 Concurrent Mode and Suspense [power the new Facebook website](https://developers.facebook.com/videos/2019/building-the-new-facebookcom-with-react-graphql-and-relay/) that's in active development, so we are confident that they're close to a stable state technically. We also now better understand the concrete steps before they are ready for open source adoption.
 
@@ -167,23 +167,23 @@ Originally we thought we would split Concurrent Mode and Suspense for Data Fetch
 
 We don't want to overpromise the release date again. Given that we rely on both of them in production code, we expect to provide a 16.x release with opt-in support for them this year.
 
-### An Update on Data Fetching {#an-update-on-data-fetching}
+### An Update on Data Fetching {/*an-update-on-data-fetching*/}
 
 While React is not opinionated about how you fetch data, the first release of Suspense for Data Fetching will likely focus on integrating with _opinionated data fetching libraries_. For example, at Facebook we are using upcoming Relay APIs that integrate with Suspense. We will document how other opinionated libraries like Apollo can support a similar integration.
 
 In the first release, we _don't_ intend to focus on the ad-hoc "fire an HTTP request" solution we used in earlier demos (also known as "React Cache"). However, we expect that both we and the React community will be exploring that space in the months after the initial release.
 
-### An Update on Server Rendering {#an-update-on-server-rendering}
+### An Update on Server Rendering {/*an-update-on-server-rendering*/}
 
 We have started the work on the [new Suspense-capable server renderer](/blog/2018/11/27/react-16-roadmap#suspense-for-server-rendering), but we _don't_ expect it to be ready for the initial release of Concurrent Mode. This release will, however, provide a temporary solution that lets the existing server renderer emit HTML for Suspense fallbacks immediately, and then render their real content on the client. This is the solution we are currently using at Facebook ourselves until the streaming renderer is ready.
 
-### Why Is It Taking So Long? {#why-is-it-taking-so-long}
+### Why Is It Taking So Long? {/*why-is-it-taking-so-long*/}
 
 We've shipped the individual pieces leading up to Concurrent Mode as they became stable, including [new context API](/blog/2018/03/29/react-v-16-3), [lazy loading with Suspense](/blog/2018/10/23/react-v-16-6), and [Hooks](/blog/2019/02/06/react-v16.8.0). We are also eager to release the other missing parts, but [trying them at scale](/docs/design-principles#dogfooding) is an important part of the process. The honest answer is that it just took more work than we expected when we started. As always, we appreciate your questions and feedback on [Twitter](https://twitter.com/reactjs) and in our [issue tracker](https://github.com/facebook/react/issues).
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
-### React {#react}
+### React {/*react*/}
 
 React v16.9.0 is available on the npm registry.
 
@@ -214,14 +214,14 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation).
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Add `<React.Profiler>` API for gathering performance measurements programmatically. ([@bvaughn](https://github.com/bvaughn) in [#15172](https://github.com/facebook/react/pull/15172))
 - Remove `unstable_ConcurrentMode` in favor of `unstable_createRoot`. ([@acdlite](https://github.com/acdlite) in [#15532](https://github.com/facebook/react/pull/15532))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Deprecate old names for the `UNSAFE_*` lifecycle methods. ([@bvaughn](https://github.com/bvaughn) in [#15186](https://github.com/facebook/react/pull/15186) and [@threepointone](https://github.com/threepointone) in [#16103](https://github.com/facebook/react/pull/16103))
 - Deprecate `javascript:` URLs as a common attack surface. ([@sebmarkbage](https://github.com/sebmarkbage) in [#15047](https://github.com/facebook/react/pull/15047))
@@ -238,11 +238,11 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 - Fix hiding Suspense fallback nodes when there is an `!important` style. ([@acdlite](https://github.com/acdlite) in [#15861](https://github.com/facebook/react/pull/15861) and [#15882](https://github.com/facebook/react/pull/15882))
 - Slightly improve hydration performance. ([@bmeurer](https://github.com/bmeurer) in [#15998](https://github.com/facebook/react/pull/15998))
 
-### React DOM Server {#react-dom-server}
+### React DOM Server {/*react-dom-server*/}
 
 - Fix incorrect output for camelCase custom CSS property names. ([@bedakb](https://github.com/bedakb) in [#16167](https://github.com/facebook/react/pull/16167))
 
-### React Test Utilities and Test Renderer {#react-test-utilities-and-test-renderer}
+### React Test Utilities and Test Renderer {/*react-test-utilities-and-test-renderer*/}
 
 - Add `act(async () => ...)` for testing asynchronous state updates. ([@threepointone](https://github.com/threepointone) in [#14853](https://github.com/facebook/react/pull/14853))
 - Add support for nesting `act` from different renderers. ([@threepointone](https://github.com/threepointone) in [#16039](https://github.com/facebook/react/pull/16039) and [#16042](https://github.com/facebook/react/pull/16042))

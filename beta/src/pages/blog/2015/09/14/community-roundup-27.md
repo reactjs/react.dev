@@ -5,7 +5,7 @@ author: [steveluscher]
 
 In the weeks following the [open-source release](/blog/2015/08/11/relay-technical-preview.html) of the Relay technical preview, the community has been abuzz with activity. We are honored to have been able to enjoy a steady stream of ideas and contributions from such a talented group of individuals. Let's take a look at some of the things we've achieved, together!
 
-## Teaching servers to speak GraphQL {#teaching-servers-to-speak-graphql}
+## Teaching servers to speak GraphQL {/*teaching-servers-to-speak-graphql*/}
 
 Every great Relay app starts by finding a GraphQL server to talk to. The community has spent the past few weeks teaching GraphQL to a few backend systems.
 
@@ -23,7 +23,7 @@ Espen Hovlandsdal ([rexxars](https://github.com/rexxars)) built a [sql-to-graphq
 
 Mick Hansen ([mickhansen](https://github.com/mickhansen)) offers a set of [schema-building helpers](https://github.com/mickhansen/graphql-sequelize) for use with the [Sequelize ORM](http://docs.sequelizejs.com/en/latest/) for MySQL, PostgreSQL, SQLite, and MSSQL.
 
-## GraphQL beyond JavaScript {#graphql-beyond-javascript}
+## GraphQL beyond JavaScript {/*graphql-beyond-javascript*/}
 
 Robert Mosolgo ([rmosolgo](https://github.com/rmosolgo)) brought the full set of schema-building and query execution tools to Ruby, in the form of [graphql-ruby](https://github.com/rmosolgo/graphql-ruby) and [graphql-relay-ruby](https://github.com/rmosolgo/graphql-relay-ruby). Check out his [Rails-based demo](https://github.com/rmosolgo/graphql-ruby-demo).
 
@@ -37,7 +37,7 @@ Oleg Ilyenko ([OlegIlyenko](https://github.com/OlegIlyenko)) made a beautiful an
 
 Joe McBride ([joemcbride](https://github.com/joemcbride)) has an up-and-running example of GraphQL for .NET, [graphql-dotnet](https://github.com/joemcbride/graphql-dotnet).
 
-## Show me, don't tell me {#show-me-dont-tell-me}
+## Show me, don't tell me {/*show-me-dont-tell-me*/}
 
 Interact with this [visual tour of Relay's architecture](http://sgwilym.github.io/relay-visual-learners/) by Sam Gwilym ([sgwilym](https://github.com/sgwilym)).
 
@@ -47,19 +47,19 @@ Interact with this [visual tour of Relay's architecture](http://sgwilym.github.i
 
 Sam has already launched a product that leverages Relay's data-fetching, optimistic responses, pagination, and mutations &ndash; all atop a Ruby GraphQL server: [new.comique.co](http://new.comique.co/)
 
-## Skeletons in the closet {#skeletons-in-the-closet}
+## Skeletons in the closet {/*skeletons-in-the-closet*/}
 
 Joseph Rollins ([fortruce](https://github.com/fortruce)) created a hot-reloading, auto schema-regenerating, [Relay skeleton](https://github.com/fortruce/relay-skeleton) that you can use to get up and running quickly.
 
 Michael Hart ([mhart](https://mhart)) built a [simple-relay-starter](https://github.com/mhart/simple-relay-starter) kit using Browserify.
 
-## Routing around {#routing-around}
+## Routing around {/*routing-around*/}
 
 Jimmy Jia ([taion](@taion)) and Gerald Monaco ([devknoll](@devknoll)) have been helping lost URLs find their way to Relay apps through their work on [react-router-relay](relay-tools/react-router-relay). Check out Christoph Nakazawa's ([cpojer](@cpojer)) [blog post](medium.com/@cpojer/relay-and-routing-36b5439bad9) on the topic. Jimmy completed the Relay TodoMVC example with routing, which you can check out at [taion/relay-todomvc](taion/relay-todomvc).
 
 Chen Hung-Tu ([transedward](https://github.com/transedward)) built a chat app atop the above mentioned router, with threaded conversations and pagination. Check it out at [transedward/relay-chat](https://github.com/transedward/relay-chat).
 
-## In your words {#in-your-words}
+## In your words {/*in-your-words*/}
 
 <div class="skinny-row">
   <div class="skinny-col">

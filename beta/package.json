@@ -76,6 +76,7 @@
     "remark-external-links": "^7.0.0",
     "remark-html": "^12.0.0",
     "remark-images": "^2.0.0",
+    "remark-slug": "^7.0.0",
     "remark-unwrap-images": "^2.0.0",
     "retext": "^7.0.1",
     "retext-smartypants": "^4.0.0",

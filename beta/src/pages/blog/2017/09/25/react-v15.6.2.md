@@ -7,7 +7,7 @@ Today we're sending out React 15.6.2. In 15.6.1, we shipped a few fixes for chan
 
 Additionally, 15.6.2 adds support for the [`controlList`](https://developers.google.com/web/updates/2017/03/chrome-58-media-updates#controlslist) attribute, and CSS columns are no longer appended with a `px` suffix.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) for managing front-end dependencies. If you're new to package managers, the [Yarn documentation](https://yarnpkg.com/en/docs/getting-started) is a good place to get started.
 
@@ -46,15 +46,15 @@ We've also published version `15.6.2` of `react` and `react-dom` on npm, and the
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-## 15.6.2 (September 25, 2017) {#1562-september-25-2017}
+## 15.6.2 (September 25, 2017) {/*1562-september-25-2017*/}
 
-### All Packages {#all-packages}
+### All Packages {/*all-packages*/}
 
 - Switch from BSD + Patents to MIT license
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Fix a bug where modifying `document.documentMode` would trigger IE detection in other browsers, breaking change events. ([@aweary](https://github.com/aweary) in [#10032](https://github.com/facebook/react/pull/10032))
 - CSS Columns are treated as unitless numbers. ([@aweary](https://github.com/aweary) in [#10115](https://github.com/facebook/react/pull/10115))

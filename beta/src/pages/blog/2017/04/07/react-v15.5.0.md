@@ -7,7 +7,7 @@ It's been exactly one year since the last breaking change to React. Our next maj
 
 To that end, today we're releasing React 15.5.0.
 
-### New Deprecation Warnings {#new-deprecation-warnings}
+### New Deprecation Warnings {/*new-deprecation-warnings*/}
 
 The biggest change is that we've extracted `React.PropTypes` and `React.createClass` into their own packages. Both are still accessible via the main `React` object, but using either will log a one-time deprecation warning to the console when in development mode. This will enable future code size optimizations.
 
@@ -19,7 +19,7 @@ So while the warnings may cause frustration in the short-term, we believe **prod
 
 For each of these new deprecations, we've provided a codemod to automatically migrate your code. They are available as part of the [react-codemod](https://github.com/reactjs/react-codemod) project.
 
-### Migrating from React.PropTypes {#migrating-from-reactproptypes}
+### Migrating from React.PropTypes {/*migrating-from-reactproptypes*/}
 
 Prop types are a feature for runtime validation of props during development. We've extracted the built-in prop types to a separate package to reflect the fact that not everybody uses them.
 
@@ -64,7 +64,7 @@ The `propTypes`, `contextTypes`, and `childContextTypes` APIs will work exactly 
 
 You may also consider using [Flow](https://flow.org/) to statically type check your JavaScript code, including [React components](https://flow.org/en/docs/react/components/).
 
-### Migrating from React.createClass {#migrating-from-reactcreateclass}
+### Migrating from React.createClass {/*migrating-from-reactcreateclass*/}
 
 When React was initially released, there was no idiomatic way to create classes in JavaScript, so we provided our own: `React.createClass`.
 
@@ -105,7 +105,7 @@ Basic usage:
 jscodeshift -t react-codemod/transforms/class.js path/to/components
 ```
 
-### Discontinuing support for React Addons {#discontinuing-support-for-react-addons}
+### Discontinuing support for React Addons {/*discontinuing-support-for-react-addons*/}
 
 We're discontinuing active maintenance of React Addons packages. In truth, most of these packages haven't been actively maintained in a long time. They will continue to work indefinitely, but we recommend migrating away as soon as you can to prevent future breakages.
 
@@ -120,7 +120,7 @@ We're discontinuing active maintenance of React Addons packages. In truth, most 
 
 We're also discontinuing support for the `react-with-addons` UMD build. It will be removed in React 16.
 
-### React Test Utils {#react-test-utils}
+### React Test Utils {/*react-test-utils*/}
 
 Currently, the React Test Utils live inside `react-addons-test-utils`. As of 15.5, we're deprecating that package and moving them to `react-dom/test-utils` instead:
 
@@ -146,7 +146,7 @@ import {createRenderer} from 'react-test-renderer/shallow';
 
 ---
 
-## Acknowledgements {#acknowledgements}
+## Acknowledgements {/*acknowledgements*/}
 
 A special thank you to these folks for transferring ownership of npm package names:
 
@@ -156,7 +156,7 @@ A special thank you to these folks for transferring ownership of npm package nam
 
 ---
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) for managing front-end dependencies. If you're new to package managers, the [Yarn documentation](https://yarnpkg.com/en/docs/getting-started) is a good place to get started.
 
@@ -195,11 +195,11 @@ We've also published version `15.5.0` of the `react`, `react-dom`, and addons pa
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-## 15.5.0 (April 7, 2017) {#1550-april-7-2017}
+## 15.5.0 (April 7, 2017) {/*1550-april-7-2017*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Added a deprecation warning for `React.createClass`. Points users to create-react-class instead. ([@acdlite](https://github.com/acdlite) in [d9a4fa4](https://github.com/facebook/react/commit/d9a4fa4f51c6da895e1655f32255cf72c0fe620e))
 - Added a deprecation warning for `React.PropTypes`. Points users to prop-types instead. ([@acdlite](https://github.com/acdlite) in [043845c](https://github.com/facebook/react/commit/043845ce75ea0812286bbbd9d34994bb7e01eb28))
@@ -208,17 +208,17 @@ We've also published version `15.5.0` of the `react`, `react-dom`, and addons pa
 - Another fix for Closure Compiler. ([@Shastel](https://github.com/Shastel) in [#8882](https://github.com/facebook/react/pull/8882))
 - Added component stack info to invalid element type warning. ([@n3tr](https://github.com/n3tr) in [#8495](https://github.com/facebook/react/pull/8495))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Fixed Chrome bug when backspacing in number inputs. ([@nhunzaker](https://github.com/nhunzaker) in [#7359](https://github.com/facebook/react/pull/7359))
 - Added `react-dom/test-utils`, which exports the React Test Utils. ([@bvaughn](https://github.com/bvaughn))
 
-### React Test Renderer {#react-test-renderer}
+### React Test Renderer {/*react-test-renderer*/}
 
 - Fixed bug where `componentWillUnmount` was not called for children. ([@gre](https://github.com/gre) in [#8512](https://github.com/facebook/react/pull/8512))
 - Added `react-test-renderer/shallow`, which exports the shallow renderer. ([@bvaughn](https://github.com/bvaughn))
 
-### React Addons {#react-addons}
+### React Addons {/*react-addons*/}
 
 - Last release for addons; they will no longer be actively maintained.
 - Removed `peerDependencies` so that addons continue to work indefinitely. ([@acdlite](https://github.com/acdlite) and [@bvaughn](https://github.com/bvaughn) in [8a06cd7](https://github.com/facebook/react/commit/8a06cd7a786822fce229197cac8125a551e8abfa) and [67a8db3](https://github.com/facebook/react/commit/67a8db3650d724a51e70be130e9008806402678a))

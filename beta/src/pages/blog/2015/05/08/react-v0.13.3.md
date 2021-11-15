@@ -20,23 +20,23 @@ We've also published version `0.13.3` of the `react` and `react-tools` packages 
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### New Features {#new-features}
+#### New Features {/*new-features*/}
 
 - Added `clipPath` element and attribute for SVG
 - Improved warnings for deprecated methods in plain JS classes
 
-#### Bug Fixes {#bug-fixes}
+#### Bug Fixes {/*bug-fixes*/}
 
 - Loosened `dangerouslySetInnerHTML` restrictions so `{__html: undefined}` will no longer throw
 - Fixed extraneous context warning with non-pure `getChildContext`
 - Ensure `replaceState(obj)` retains prototype of `obj`
 
-### React with Add-ons {#react-with-add-ons}
+### React with Add-ons {/*react-with-add-ons*/}
 
-### Bug Fixes {#bug-fixes-1}
+### Bug Fixes {/*bug-fixes-1*/}
 
 - Test Utils: Ensure that shallow rendering works when components define `contextTypes`

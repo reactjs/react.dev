@@ -20,7 +20,7 @@ As always, the release is available for download from the CDN:
 
 We've also published version `0.9.0` of the `react` and `react-tools` packages on npm and the `react` package on bower.
 
-## What’s New? {#whats-new}
+## What’s New? {/*whats-new*/}
 
 This version includes better support for normalizing event properties across all supported browsers so that you need to worry even less about cross-browser differences. We've also made many improvements to error messages and have refactored the core to never rethrow errors, so stack traces are more accurate and Chrome's purple break-on-error stop sign now works properly.
 
@@ -28,7 +28,7 @@ We've also added to the add-ons build [React.addons.TestUtils](/docs/test-utils.
 
 We've also made several other improvements and a few breaking changes; the full changelog is provided below.
 
-## JSX Whitespace {#jsx-whitespace}
+## JSX Whitespace {/*jsx-whitespace*/}
 
 In addition to the changes to React core listed below, we've made a small change to the way JSX interprets whitespace to make things more consistent. With this release, space between two components on the same line will be preserved, while a newline separating a text node from a tag will be eliminated in the output. Consider the code:
 
@@ -54,11 +54,11 @@ We believe this new behavior is more helpful and eliminates cases where unwanted
 
 In cases where you want to preserve the space adjacent to a newline, you can write `{'Monkeys: '}` or `Monkeys:{' '}` in your JSX source. We've included a script to do an automated codemod of your JSX source tree that preserves the old whitespace behavior by adding and removing spaces appropriately. You can [install jsx_whitespace_transformer from npm](https://github.com/facebook/react/blob/master/npm-jsx_whitespace_transformer/README.md) and run it over your source tree to modify files in place. The transformed JSX files will preserve your code's existing whitespace behavior.
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### Breaking Changes {#breaking-changes}
+#### Breaking Changes {/*breaking-changes*/}
 
 - The lifecycle methods `componentDidMount` and `componentDidUpdate` no longer receive the root node as a parameter; use `this.getDOMNode()` instead
 - Whenever a prop is equal to `undefined`, the default value returned by `getDefaultProps` will now be used instead
@@ -70,7 +70,7 @@ In cases where you want to preserve the space adjacent to a newline, you can wri
 - On `input`, `select`, and `textarea` elements, `.getValue()` is no longer supported; use `.getDOMNode().value` instead
 - `this.context` on components is now reserved for internal use by React
 
-#### New Features {#new-features}
+#### New Features {/*new-features*/}
 
 - React now never rethrows errors, so stack traces are more accurate and Chrome's purple break-on-error stop sign now works properly
 - Added support for SVG tags `defs`, `linearGradient`, `polygon`, `radialGradient`, `stop`
@@ -95,7 +95,7 @@ In cases where you want to preserve the space adjacent to a newline, you can wri
 - Added support for `onReset` on `<form>` elements
 - The `autoFocus` attribute is now polyfilled consistently on `input`, `select`, and `textarea`
 
-#### Bug Fixes {#bug-fixes}
+#### Bug Fixes {/*bug-fixes*/}
 
 - React no longer adds an `__owner__` property to each component's `props` object; passed-in props are now never mutated
 - When nesting top-level components (e.g., calling `React.renderComponent` within `componentDidMount`), events now properly bubble to the parent component
@@ -116,7 +116,7 @@ In cases where you want to preserve the space adjacent to a newline, you can wri
 - `scrollLeft` and `scrollTop` are no longer accessed on document.body, eliminating a warning in Chrome
 - General performance fixes, memory optimizations, improvements to warnings and error messages
 
-### React with Addons {#react-with-addons}
+### React with Addons {/*react-with-addons*/}
 
 - `React.addons.TestUtils` was added to help write unit tests
 - `React.addons.TransitionGroup` was renamed to `React.addons.CSSTransitionGroup`
@@ -127,7 +127,7 @@ In cases where you want to preserve the space adjacent to a newline, you can wri
 - Performance optimizations for CSSTransitionGroup
 - On checkbox `<input>` elements, `checkedLink` is now supported for two-way binding
 
-### JSX Compiler and react-tools Package {#jsx-compiler-and-react-tools-package}
+### JSX Compiler and react-tools Package {/*jsx-compiler-and-react-tools-package*/}
 
 - Whitespace normalization has changed; now space between two tags on the same line will be preserved, while newlines between two tags will be removed
 - The `react-tools` npm package no longer includes the React core libraries; use the `react` package instead.

@@ -19,7 +19,7 @@ While this isn’t directly related to the release, we understand that in order 
 
 We are also experimenting with a new changelog format in this post. Every change now links to the corresponding pull request and mentions the author. Let us know whether you find this useful!
 
-## Upgrade Guide {#upgrade-guide}
+## Upgrade Guide {/*upgrade-guide*/}
 
 As usual with major releases, React 15 will remove support for some of the patterns deprecated nine months ago in React 0.14. We know changes can be painful (the Facebook codebase has over 20,000 React components, and that’s not even counting React Native), so we always try to make changes gradually in order to minimize the pain.
 
@@ -27,7 +27,7 @@ If your code is free of warnings when running under React 0.14, upgrading should
 
 See the changelog below for more details.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using React from `npm` and using a tool like browserify or webpack to build your code into a single bundle. To install the two packages:
 
@@ -47,9 +47,9 @@ If you can’t use `npm` yet, we provide pre-built browser builds for your conve
   Dev build with warnings: <https://fb.me/react-dom-15.0.0.js>  
   Minified build for production: <https://fb.me/react-dom-15.0.0.min.js>
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### Major changes {#major-changes}
+### Major changes {/*major-changes*/}
 
 - #### `document.createElement` is in and `data-reactid` is out
 
@@ -83,7 +83,7 @@ If you can’t use `npm` yet, we provide pre-built browser builds for your conve
 
   <small>[@zpao](https://github.com/zpao) in [#6243](https://github.com/facebook/react/pull/6243)</small>
 
-### Breaking changes {#breaking-changes}
+### Breaking changes {/*breaking-changes*/}
 
 - #### No more extra `<span>`s
 
@@ -125,7 +125,7 @@ If you can’t use `npm` yet, we provide pre-built browser builds for your conve
   - React-specific properties on DOM `refs` (e.g. `this.refs.div.props`) were deprecated, and are removed now.  
     <small>[@jimfb](https://github.com/jimfb) in [#5495](https://github.com/facebook/react/pull/5495)</small>
 
-### New deprecations, introduced with a warning {#new-deprecations-introduced-with-a-warning}
+### New deprecations, introduced with a warning {/*new-deprecations-introduced-with-a-warning*/}
 
 Each of these changes will continue to work as before with a new warning until the release of React 16 so you can upgrade your code gradually.
 
@@ -138,7 +138,7 @@ Each of these changes will continue to work as before with a new warning until t
 - `ReactPerf.printDOM()` was renamed to `ReactPerf.printOperations()`, and `ReactPerf.getMeasurementsSummaryMap()` was renamed to `ReactPerf.getWasted()`.  
   <small>[@gaearon](https://github.com/gaearon) in [#6287](https://github.com/facebook/react/pull/6287)</small>
 
-### New helpful warnings {#new-helpful-warnings}
+### New helpful warnings {/*new-helpful-warnings*/}
 
 - If you use a minified copy of the _development_ build, React DOM kindly encourages you to use the faster production build instead.  
   <small>[@sophiebits](https://github.com/sophiebits) in [#5083](https://github.com/facebook/react/pull/5083)</small>
@@ -182,7 +182,7 @@ Each of these changes will continue to work as before with a new warning until t
 - PropTypes: `arrayOf()` and `objectOf()` provide better error messages for invalid arguments.  
   <small>[@chicoxyzzy](https://github.com/chicoxyzzy) in [#5390](https://github.com/facebook/react/pull/5390)</small>
 
-### Notable bug fixes {#notable-bug-fixes}
+### Notable bug fixes {/*notable-bug-fixes*/}
 
 - Fixed multiple small memory leaks.  
   <small>[@sophiebits](https://github.com/sophiebits) in [#4983](https://github.com/facebook/react/pull/4983) and [@victor-homyakov](https://github.com/victor-homyakov) in [#6309](https://github.com/facebook/react/pull/6309)</small>
@@ -235,7 +235,7 @@ Each of these changes will continue to work as before with a new warning until t
 - Add-Ons: ReactPerf no longer instruments adding or removing an event listener because they don’t really touch the DOM due to event delegation.  
   <small>[@antoaravinth](https://github.com/antoaravinth) in [#5209](https://github.com/facebook/react/pull/5209)</small>
 
-### Other improvements {#improvements}
+### Other improvements {/*improvements*/}
 
 - React now uses `loose-envify` instead of `envify` so it installs fewer transitive dependencies.  
   <small>[@qerub](https://github.com/qerub) in [#6303](https://github.com/facebook/react/pull/6303)</small>

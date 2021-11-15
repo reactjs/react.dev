@@ -15,17 +15,17 @@ This has been an exciting summer as four big companies: Yahoo, Mozilla, Airbnb a
 <blockquote width="300" class="twitter-tweet" lang="en"><p>We shipped reddit&#39;s first production <a href="https://twitter.com/reactjs">@reactjs</a> code last week, our checkout process.&#10;&#10;<a href="https://t.co/KUInwsCmAF">https://t.co/KUInwsCmAF</a></p>&mdash; Brian Holt (@holtbt) <a href="https://twitter.com/holtbt/statuses/493852312604254208">July 28, 2014</a></blockquote>
 </td></tr></table>
 
-## React's Architecture {#reacts-architecture}
+## React's Architecture {/*reacts-architecture*/}
 
 [Vjeux](http://blog.vjeux.com/), from the React team, gave a talk at OSCON on the history of React and the various optimizations strategies that are implemented. You can also check out the [annotated slides](https://speakerdeck.com/vjeux/oscon-react-architecture) or [Chris Dawson](http://thenewstack.io/author/chrisdawson/)'s notes titled [JavaScript’s History and How it Led To React](http://thenewstack.io/javascripts-history-and-how-it-led-to-reactjs/).
 
 <iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/eCf5CquV_Bw" frameborder="0" allowfullscreen></iframe>
 
-## v8 optimizations {#v8-optimizations}
+## v8 optimizations {/*v8-optimizations*/}
 
 Jakob Kummerow landed [two optimizations to V8](http://www.chromium.org/developers/speed-hall-of-fame#TOC-2014-06-18) specifically targeted at optimizing React. That's really exciting to see browser vendors helping out on performance!
 
-## Reusable Components by Khan Academy {#reusable-components-by-khan-academy}
+## Reusable Components by Khan Academy {/*reusable-components-by-khan-academy*/}
 
 [Khan Academy](https://www.khanacademy.org/) released [many high quality standalone components](https://khan.github.io/react-components/) they are using. This is a good opportunity to see what React code used in production look like.
 
@@ -40,13 +40,13 @@ var translated = (
 );
 ```
 
-## React + Browserify + Gulp {#react--browserify--gulp}
+## React + Browserify + Gulp {/*react--browserify--gulp*/}
 
 [Trường](http://truongtx.me/) wrote a little guide to help your [getting started using React, Browserify and Gulp](http://truongtx.me/2014/07/18/using-reactjs-with-browserify-and-gulp/).
 
 <figure><a href="http://truongtx.me/2014/07/18/using-reactjs-with-browserify-and-gulp/"><img src="/images/blog/react-browserify-gulp.jpg" /></a></figure>
 
-## React Style {#react-style}
+## React Style {/*react-style*/}
 
 After React put HTML inside of JavaScript, Sander Spies takes the same approach with CSS: [IntegratedCSS](https://github.com/SanderSpies/react-style). It seems weird at first but this is the direction where React is heading.
 
@@ -70,7 +70,7 @@ var Button = React.createClass({
 });
 ```
 
-## Virtual DOM in Elm {#virtual-dom-in-elm}
+## Virtual DOM in Elm {/*virtual-dom-in-elm*/}
 
 [Evan Czaplicki](http://evan.czaplicki.us) explains how Elm implements the idea of a Virtual DOM and a diffing algorithm. This is great to see React ideas spread to other languages.
 
@@ -78,13 +78,13 @@ var Button = React.createClass({
 >
 > [Read the full article](http://elm-lang.org/blog/Blazing-Fast-Html.elm)
 
-## Components Tutorial {#components-tutorial}
+## Components Tutorial {/*components-tutorial*/}
 
 If you are getting started with React, [Joe Maddalone](http://www.joemaddalone.com/) made a good tutorial on how to build your first component.
 
 <iframe width="650" height="200" src="//www.youtube-nocookie.com/embed/rFvZydtmsxM" frameborder="0" allowfullscreen></iframe>
 
-## Saving time & staying sane? {#saving-time--staying-sane}
+## Saving time & staying sane? {/*saving-time--staying-sane*/}
 
 When [Kent William Innholt](http://http://kentwilliam.com/) who works at [M>Path](http://mpath.com/) summed up his experience using React in an [article](http://kentwilliam.com/articles/saving-time-staying-sane-pros-cons-of-react-js).
 
@@ -97,7 +97,7 @@ When [Kent William Innholt](http://http://kentwilliam.com/) who works at [M>Path
 >
 > [Read the article...](http://kentwilliam.com/articles/saving-time-staying-sane-pros-cons-of-react-js)
 
-## Weather {#weather}
+## Weather {/*weather*/}
 
 To finish this round-up, Andrew Gleave made a page that displays the [Weather](https://github.com/andrewgleave/react-weather). It's great to see that React is also used for small prototypes.
 

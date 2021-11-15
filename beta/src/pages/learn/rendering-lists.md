@@ -16,7 +16,7 @@ You will often want to display multiple similar components from a collection of 
 
 </YouWillLearn>
 
-## Rendering data from arrays {#rendering-data-from-arrays}
+## Rendering data from arrays {/*rendering-data-from-arrays*/}
 
 Say that you have a list of content.
 
@@ -85,7 +85,7 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
-## Filtering arrays of items {#filtering-arrays-of-items}
+## Filtering arrays of items {/*filtering-arrays-of-items*/}
 
 This data can be structured even more.
 
@@ -254,7 +254,7 @@ Arrow functions containing `=> {` are said to have a ["block body"](https://deve
 
 </Gotcha>
 
-## Keeping list items in order with `key` {#keeping-list-items-in-order-with-key}
+## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
 
 If you open any of the sandboxes above in a new tab, you'll see an error in the console:
 
@@ -385,19 +385,19 @@ Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<
 
 </DeepDive>
 
-### Where to get your `key` {#where-to-get-your-key}
+### Where to get your `key` {/*where-to-get-your-key*/}
 
 Different sources of data provide different sources of keys:
 
 * **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
 * **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
 
-### Rules of keys {#rules-of-keys}
+### Rules of keys {/*rules-of-keys*/}
 
 * **Keys must be unique among siblings.** However, it’s okay to use the same keys for JSX nodes in _different_ arrays.
 * **Keys must not change** or that defeats their purpose! Don't generate them while rendering.
 
-### Why does React need keys? {#why-does-react-need-keys}
+### Why does React need keys? {/*why-does-react-need-keys*/}
 
 Imagine that files on your desktop didn't have names. Instead, you'd refer to them by their order -- the first file, the second file, and so on. You could get used to it, but once you delete a file, it would get confusing. The second file would become the first file, the third file would be the second file, and so on.
 
@@ -428,7 +428,7 @@ On this page you learned:
 
 <Challenges>
 
-### Splitting a list in two {#splitting-a-list-in-two}
+### Splitting a list in two {/*splitting-a-list-in-two*/}
 
 This example shows a list of all people.
 
@@ -870,7 +870,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-### Nested lists in one component {#nested-lists-in-one-component}
+### Nested lists in one component {/*nested-lists-in-one-component*/}
 
 Make a list of recipes from this array! For each recipe in the array, display its title as an `<h2>` and list its ingredients in a `<ul>`.
 
@@ -964,7 +964,7 @@ Each of the `recipes` already includes an `id` field, so that's what the outer l
 
 </Solution>
 
-### Extracting a list item component {#extracting-a-list-item-component}
+### Extracting a list item component {/*extracting-a-list-item-component*/}
 
 This `RecipeList` component contains two nested `map` calls. To simplify it, extract a `Recipe` component from it which will accept `id`, `name`, and `ingredients` props. Where do you place the outer `key` and why?
 
@@ -1072,7 +1072,7 @@ Here, `<Recipe {...recipe} key={recipe.id} />` is a syntax shortcut saying "pass
 
 </Solution>
 
-### List with a separator {#list-with-a-separator}
+### List with a separator {/*list-with-a-separator*/}
 
 This example renders a famous haiku by Katsushika Hokusai, with each line wrapped in a `<p>` tag. Your job is to insert an `<hr />` separator between each paragraph. Your resulting structure should look like this:
 

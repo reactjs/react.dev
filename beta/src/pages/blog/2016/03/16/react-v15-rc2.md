@@ -11,7 +11,7 @@ The other change is to our SVG code. In RC1 we had made the decision to pass thr
 
 Thanks again to everybody who has tried the RC1 and reported issues. It has been extremely important and we wouldn't be able to do this without your help!
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using React from `npm` and using a tool like browserify or webpack to build your code into a single bundle. To install the two packages:
 

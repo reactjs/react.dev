@@ -9,7 +9,7 @@ We're working hard to prepare GraphQL and Relay for public release. In the meant
 
 <br/>
 
-## The Relay Architecture {#the-relay-architecture}
+## The Relay Architecture {/*the-relay-architecture*/}
 
 The diagram below shows the main parts of the Relay architecture on the client and the server:
 
@@ -26,7 +26,7 @@ This post will focus on **Relay components** that describe encapsulated units of
 
 <br/>
 
-## A Relay Application {#a-relay-application}
+## A Relay Application {/*a-relay-application*/}
 
 To see how components work and can be composed, let's implement a basic version of the Facebook News Feed in Relay. Our application will have two components: a `<NewsFeed>` that renders a list of `<Story>` items. We'll introduce the plain React version of each component first and then convert it to a Relay component. The goal is something like the following:
 
@@ -34,7 +34,7 @@ To see how components work and can be composed, let's implement a basic version 
 
 <br/>
 
-## The `<Story>` Begins {#the-story-begins}
+## The `<Story>` Begins {/*the-story-begins*/}
 
 The first step is a React `<Story>` component that accepts a `story` prop with the story's text and author information. Note that all examples uses ES6 syntax and elide presentation details to focus on the pattern of data access.
 
@@ -56,7 +56,7 @@ export default class Story extends React.Component {
 
 <br/>
 
-## What's the `<Story>`? {#whats-the-story}
+## What's the `<Story>`? {/*whats-the-story*/}
 
 Relay automates the process of fetching data for components by wrapping existing React components in Relay containers (themselves React components):
 
@@ -102,7 +102,7 @@ Queries use ES6 template literals tagged with the `Relay.QL` function. Similar t
 
 <br/>
 
-## `<Story>`s on Demand {#storys-on-demand}
+## `<Story>`s on Demand {/*storys-on-demand*/}
 
 We can render a Relay component by providing Relay with the component (`<Story>`) and the ID of the data (a story ID). Given this information, Relay will first fetch the results of the query and then `render()` the component. The value of `props.story` will be a plain JavaScript object such as the following:
 
@@ -126,7 +126,7 @@ The diagram below shows how Relay containers make data available to our React co
 
 <br/>
 
-## `<NewsFeed>` Worthy {#newsfeed-worthy}
+## `<NewsFeed>` Worthy {/*newsfeed-worthy*/}
 
 Now that the `<Story>` is over we can continue with the `<NewsFeed>` component. Again, we'll start with a React version:
 
@@ -155,7 +155,7 @@ module.exports = NewsFeed;
 
 <br/>
 
-## All the News Fit to be Relayed {#all-the-news-fit-to-be-relayed}
+## All the News Fit to be Relayed {/*all-the-news-fit-to-be-relayed*/}
 
 `<NewsFeed>` has two new requirements: it composes `<Story>` and requests more data at runtime.
 
@@ -209,7 +209,7 @@ Now when `loadMore()` is called, Relay will send a GraphQL request for the addit
 
 <br/>
 
-## In Conclusion {#in-conclusion}
+## In Conclusion {/*in-conclusion*/}
 
 These two components form a solid core for our application. With the use of Relay containers and GraphQL queries, we've enabled the following benefits:
 

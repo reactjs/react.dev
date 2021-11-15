@@ -5,7 +5,7 @@ author: [vjeux]
 
 We launched the [React Facebook Page](https://www.facebook.com/react) along with the React v0.4 launch. 700 people already liked it to get updated on the project :)
 
-## Cross-browser onChange {#cross-browser-onchange}
+## Cross-browser onChange {/*cross-browser-onchange*/}
 
 [Sophie Alpert](http://sophiebits.com/) from [Khan Academy](https://www.khanacademy.org/) worked on a cross-browser implementation of `onChange` event that landed in v0.4. She wrote a blog post explaining the various browser quirks she had to deal with.
 
@@ -15,7 +15,7 @@ We launched the [React Facebook Page](https://www.facebook.com/react) along with
 >
 > [Read the full post...](http://sophiebits.com/2013/06/18/a-near-perfect-oninput-shim-for-ie-8-and-9.html)
 
-## React Samples {#react-samples}
+## React Samples {/*react-samples*/}
 
 Learning a new library is always easier when you have working examples you can play with. [jwh](https://github.com/jhw) put many of them on his [react-samples GitHub repo](https://github.com/jhw/react-samples).
 
@@ -48,7 +48,7 @@ Learning a new library is always easier when you have working examples you can p
 >   [#4](https://rawgithub.com/jhw/react-samples/master/html/simpletabs4.html)
 > - Toggle [#1](https://rawgithub.com/jhw/react-samples/master/html/toggle.html)
 
-## React Chosen Wrapper {#react-chosen-wrapper}
+## React Chosen Wrapper {/*react-chosen-wrapper*/}
 
 [Cheng Lou](https://github.com/chenglou) wrote a wrapper for the [Chosen](https://harvesthq.github.io/chosen/) input library called [react-chosen](https://github.com/chenglou/react-chosen). It took just 25 lines to be able to use jQuery component as a React one.
 
@@ -62,19 +62,19 @@ React.renderComponent(
 );
 ```
 
-## JSX and ES6 Template Strings {#jsx-and-es6-template-strings}
+## JSX and ES6 Template Strings {/*jsx-and-es6-template-strings*/}
 
 [Domenic Denicola](http://domenicdenicola.com/) wrote a slide deck about the great applications of ES6 features and one slide shows how we could use Template Strings to compile JSX at run-time without the need for a pre-processing phase.
 
 <figure><iframe src="https://www.slideshare.net/slideshow/embed_code/24187146?rel=0&startSlide=36" width="100%" height={356} frameBorder={0} marginWidth={0} marginHeight={0} scrolling="no" style={{border: '1px solid #CCC', borderWidth: '1px 1px 0', marginBottom: 5}} allowFullScreen webkitallowfullscreen mozallowfullscreen> </iframe></figure>
 
-## React Presentation {#react-presentation}
+## React Presentation {/*react-presentation*/}
 
 [Tom Occhino](http://tomocchino.com/) and [Jordan Walke](https://github.com/jordwalke), React developers, did a presentation of React at Facebook Seattle's office. Check out the first 25 minutes for the presentation and the remaining 45 for a Q&A. I highly recommend you watching this video.
 
 <figure><iframe width={650} height={400} src="//www.youtube-nocookie.com/embed/XxVg_s8xAms" frameBorder={0} allowFullScreen /></figure>
 
-## Docs {#docs}
+## Docs {/*docs*/}
 
 [Pete Hunt](http://www.petehunt.net/) rewrote the entirety of the docs for v0.4. The goal was to add more explanation about why we built React and what the best practices are.
 

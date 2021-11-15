@@ -26,8 +26,8 @@ We've also published version `0.14.8` of the `react`, `react-dom`, and addons pa
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Fixed memory leak when rendering on the server

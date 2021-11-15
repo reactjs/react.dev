@@ -15,7 +15,7 @@ Sometimes, you want the state of two components to always change together. To do
 
 </YouWillLearn>
 
-## Lifting state up by example {#lifting-state-up-by-example}
+## Lifting state up by example {/*lifting-state-up-by-example*/}
 
 In this example, a parent `Accordion` component renders two separate `Panel`s:
 
@@ -87,7 +87,7 @@ This will allow the `Accordion` component to coordinate both `Panel`s and only e
 
 <img alt="On the left are two components each owning their own state values. On the right, they are the children of a parent component that owns both their state values." src="/images/docs/sketches/s_lifting-state-up.png" />
 
-### Step 1: Remove state from the child components {#step-1-remove-state-from-the-child-components}
+### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
 
 You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
 
@@ -103,7 +103,7 @@ function Panel({ title, children, isActive }) {
 
 Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop](/learn/passing-props-to-a-component). Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
 
-### Step 2: Pass hardcoded data from the common parent {#step-2-pass-hardcoded-data-from-the-common-parent}
+### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
 To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
 
@@ -160,7 +160,7 @@ h3, p { margin: 5px 0px; }
 
 Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
 
-### Step 3: Add state to the common parent {#step-3-add-state-to-the-common-parent}
+### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
 
 Lifting state up often changes the nature of what you're storing as state.
 
@@ -270,7 +270,7 @@ When writing a component, consider which information in it should be controlled 
 
 </DeepDive>
 
-## A single source of truth for each state {#a-single-source-of-truth-for-each-state}
+## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
 
 In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
 
@@ -291,7 +291,7 @@ To see what this feels like in practice with a few more components, read [Thinki
 
 <Challenges>
 
-### Synced inputs {#synced-inputs}
+### Synced inputs {/*synced-inputs*/}
 
 These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
 
@@ -397,7 +397,7 @@ label { display: block; }
 
 </Solution>
 
-### Filtering a list {#filtering-a-list}
+### Filtering a list {/*filtering-a-list*/}
 
 In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
 

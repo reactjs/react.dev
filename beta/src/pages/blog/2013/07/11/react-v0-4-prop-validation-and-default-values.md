@@ -5,7 +5,7 @@ author: [zpao]
 
 Many of the questions we got following the public launch of React revolved around `props`, specifically that people wanted to do validation and to make sure their components had sensible defaults.
 
-## Validation {#validation}
+## Validation {/*validation*/}
 
 Oftentimes you want to validate your `props` before you use them. Perhaps you want to ensure they are a specific type. Or maybe you want to restrict your prop to specific values. Or maybe you want to make a specific prop required. This was always possible — you could have written validations in your `render` or `componentWillReceiveProps` functions, but that gets clunky fast.
 
@@ -27,7 +27,7 @@ React.createClass({
 });
 ```
 
-## Default Values {#default-values}
+## Default Values {/*default-values*/}
 
 One common pattern we've seen with our React code is to do something like this:
 

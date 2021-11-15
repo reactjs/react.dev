@@ -9,15 +9,15 @@ The biggest change you'll notice as a developer is that we no longer support `cl
 
 The other major change in v0.5 is that we've added an additional build - `react-with-addons` - which adds support for some extras that we've been working on including animations and two-way binding. [Read more about these addons in the docs](/docs/addons.html).
 
-## Thanks to Our Community {#thanks-to-our-community}
+## Thanks to Our Community {/*thanks-to-our-community*/}
 
 We added _22 new people_ to the list of authors since we launched React v0.4.1 nearly 3 months ago. With a total of 48 names in our `AUTHORS` file, that means we've nearly doubled the number of contributors in that time period. We've seen the number of people contributing to discussion on IRC, mailing lists, Stack Overflow, and GitHub continue rising. We've also had people tell us about talks they've given in their local community about React.
 
 It's been awesome to see the things that people are building with React, and we can't wait to see what you come up with next!
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Memory usage improvements - reduced allocations in core which will help with GC pauses
 - Performance improvements - in addition to speeding things up, we made some tweaks to stay out of slow path code in V8 and Nitro.
@@ -38,11 +38,11 @@ It's been awesome to see the things that people are building with React, and we 
 - Better support for server-side rendering - [react-page](https://github.com/facebook/react-page) has helped improve the stability for server-side rendering.
 - Made it possible to use React in environments enforcing a strict [Content Security Policy](https://developer.mozilla.org/en-US/docs/Security/CSP/Introducing_Content_Security_Policy). This also makes it possible to use React to build Chrome extensions.
 
-### React with Addons (New!) {#react-with-addons-new}
+### React with Addons (New!) {/*react-with-addons-new*/}
 
 - Introduced a separate build with several "addons" which we think can help improve the React experience. We plan to deprecate this in the long-term, instead shipping each as standalone pieces. [Read more in the docs](/docs/addons.html).
 
-### JSX {#jsx}
+### JSX {/*jsx*/}
 
 - No longer transform `class` to `className` as part of the transform! This is a breaking change - if you were using `class`, you _must_ change this to `className` or your components will be visually broken.
 - Added warnings to the in-browser transformer to make it clear it is not intended for production use.

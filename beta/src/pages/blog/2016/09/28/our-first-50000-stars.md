@@ -5,7 +5,7 @@ author: [vjeux]
 
 Just three and a half years ago we open sourced a little JavaScript library called React. The journey since that day has been incredibly exciting.
 
-## Commemorative T-Shirt {#commemorative-t-shirt}
+## Commemorative T-Shirt {/*commemorative-t-shirt*/}
 
 In order to celebrate 50,000 GitHub stars, [Maggie Appleton](http://www.maggieappleton.com/) from [egghead.io](http://egghead.io/) has designed us a special T-shirt, which will be available for purchase from Teespring **only for a week** through Thursday, October 6. Maggie also wrote [a blog post](https://www.behance.net/gallery/43269677/Reacts-50000-Stars-Shirt) showing all the different concepts she came up with before settling on the final design.
 
@@ -20,7 +20,7 @@ The T-shirts are super soft using American Apparel's tri-blend fabric; we also h
 
 Proceeds from the shirts will be donated to [CODE2040](http://www.code2040.org/), a nonprofit that creates access, awareness, and opportunities in technology for underrepresented minorities with a specific focus on Black and Latinx talent.
 
-## Archeology {#archeology}
+## Archeology {/*archeology*/}
 
 We've spent a lot of time trying to explain the concepts behind React and the problems it attempts to solve, but we haven't talked much about how React evolved before being open sourced. This milestone seemed like as good a time as any to dig through the earliest commits and share some of the more important moments and fun facts.
 
@@ -81,7 +81,7 @@ TestProject.PersonDisplayer = {
 };
 ```
 
-## FBolt is Born {#fbolt-is-born}
+## FBolt is Born {/*fbolt-is-born*/}
 
 Through his FaxJS experiment, Jordan became convinced that functional APIs — which discouraged mutation — offered a better, more scalable way to build user interfaces. He imported his library into Facebook's codebase in March of 2012 and renamed it “FBolt”, signifying an extension of Bolt where components are written in a functional programming style. Or maybe “FBolt” was a nod to FaxJS – he didn't tell us! ;)
 
@@ -94,7 +94,7 @@ Realizing that FBolt wouldn't be a great name for the library when used on its o
 
 Most of Tom's other commits at the time were on the first version of [GraphiQL](https://github.com/graphql/graphiql), a project which was recently open sourced.
 
-## Adding JSX {#adding-jsx}
+## Adding JSX {/*adding-jsx*/}
 
 Since about 2010 Facebook has been using an extension of PHP called [XHP](https://www.facebook.com/notes/facebook-engineering/xhp-a-new-way-to-write-php/294003943919/), which enables engineers to create UIs using XML literals right inside their PHP code. It was first introduced to help prevent XSS holes but ended up being an excellent way to structure applications with custom components.
 
@@ -176,7 +176,7 @@ Adam made a very insightful comment, which is now the default way we write lists
 
 React didn't end up using Adam's implementation directly. Instead, we created JSX by forking [js-xml-literal](https://github.com/laverdet/js-xml-literal), a side project by XHP creator Marcel Laverdet. JSX took its name from js-xml-literal, which Jordan modified to just be syntactic sugar for deeply nested function calls.
 
-## API Churn {#api-churn}
+## API Churn {/*api-churn*/}
 
 During the first year of React, internal adoption was growing quickly but there was quite a lot of churn in the component APIs and naming conventions:
 
@@ -210,7 +210,7 @@ As the project was about to be open sourced, [Lee Byron](https://twitter.com/lee
   - objectWillAction
   - objectDidAction
 
-## Instagram {#instagram}
+## Instagram {/*instagram*/}
 
 In 2012, Instagram got acquired by Facebook. [Pete Hunt](https://twitter.com/floydophone), who was working on Facebook photos and videos at the time, joined their newly formed web team. He wanted to build their website completely in React, which was in stark contrast with the incremental adoption model that had been used at Facebook.
 

@@ -5,13 +5,13 @@ author: [LoukaN]
 
 This round-up is a special edition on [Flux](https://facebook.github.io/flux/). If you expect to see diagrams showing arrows that all point in the same direction, you won't be disappointed!
 
-## React And Flux at ForwardJS {#react-and-flux-at-forwardjs}
+## React And Flux at ForwardJS {/*react-and-flux-at-forwardjs*/}
 
 Facebook engineers [Jing Chen](https://github.com/jingc) and [Bill Fisher](https://github.com/fisherwebdev) gave a talk about Flux and React at [ForwardJS](http://forwardjs.com/), and how using an application architecture with a unidirectional data flow helped solve recurring bugs.
 
 <iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/i__969noyAM" frameborder="0" allowfullscreen></iframe>
 
-# Yahoo {#yahoo}
+# Yahoo {/*yahoo*/}
 
 Yahoo is converting Yahoo Mail to React and Flux and in the process, they open sourced several components. This will help you get an isomorphic application up and running.
 
@@ -20,7 +20,7 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 - [Fetchr](https://github.com/yahoo/fetchr)
 - [Flux Examples](https://github.com/yahoo/flux-examples)
 
-## Reflux {#reflux}
+## Reflux {/*reflux*/}
 
 [Mikael Brassman](https://spoike.ghost.io/) wrote [Reflux](https://github.com/spoike/refluxjs), a library that implements Flux concepts. Note that it diverges significantly from the way we use Flux at Facebook. He explains [the reasons why in a blog post](https://spoike.ghost.io/deconstructing-reactjss-flux/).
 
@@ -28,7 +28,7 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 <a href="https://spoike.ghost.io/deconstructing-reactjss-flux/"><img src="/images/blog/reflux-flux.png" width="400" /></a>
 </center>
 
-## React and Flux Interview {#react-and-flux-interview}
+## React and Flux Interview {/*react-and-flux-interview*/}
 
 [Ian Obermiller](http://ianobermiller.com/), engineer at Facebook, [made a lengthy interview](http://ianobermiller.com/blog/2014/09/15/react-and-flux-interview/) on the experience of using React and Flux in order to build probably the biggest React application ever written so far.
 
@@ -38,7 +38,7 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 >
 > [Read the full interview...](http://ianobermiller.com/blog/2014/09/15/react-and-flux-interview/)
 
-## Adobe's Brackets Project Tree {#adobes-brackets-project-tree}
+## Adobe's Brackets Project Tree {/*adobes-brackets-project-tree*/}
 
 [Kevin Dangoor](http://www.kevindangoor.com/) is converting the project tree of [Adobe's Bracket text editor](http://brackets.io/) to React and Flux. He wrote about his experience [using Flux](http://www.kevindangoor.com/2014/09/intro-to-the-new-brackets-project-tree/).
 
@@ -46,7 +46,7 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 <a href="http://www.kevindangoor.com/2014/09/intro-to-the-new-brackets-project-tree/"><img src="/images/blog/flux-diagram.png" width="400" /></a>
 </center>
 
-## Async Requests with Flux Revisited {#async-requests-with-flux-revisited}
+## Async Requests with Flux Revisited {/*async-requests-with-flux-revisited*/}
 
 [Reto Schläpfer](http://www.code-experience.com/the-code-experience/) came back to a Flux project he hasn't worked on for a month and [saw many ways to improve the way he implemented Flux](http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/). He summarized his learnings in a blog post.
 
@@ -62,7 +62,7 @@ Yahoo is converting Yahoo Mail to React and Flux and in the process, they open s
 >
 > [Read the full article...](http://www.code-experience.com/async-requests-with-react-js-and-flux-revisited/)
 
-## Undo-Redo with Immutable Data Structures {#undo-redo-with-immutable-data-structures}
+## Undo-Redo with Immutable Data Structures {/*undo-redo-with-immutable-data-structures*/}
 
 [Ameya Karve](https://github.com/ameyakarve) explained how to use [Mori](https://github.com/swannodette/mori), a library that provides immutable data structures, in order to [implement undo-redo](http://ameyakarve.com/jekyll/update/2014/02/06/Undo-React-Flux-Mori.html). This usually very challenging feature only takes a few lines of code with Flux!
 
@@ -82,7 +82,7 @@ undo: function() {
 },
 ```
 
-## Flux in practice {#flux-in-practice}
+## Flux in practice {/*flux-in-practice*/}
 
 [Gary Chambers](https://twitter.com/garychambers108) wrote a [guide to get started with Flux](https://medium.com/@garychambers108/flux-in-practice-ec08daa9041a). This is a very practical introduction to Flux.
 
@@ -90,13 +90,13 @@ undo: function() {
 >
 > [Read the full guide...](https://medium.com/@garychambers108/flux-in-practice-ec08daa9041a)
 
-## Components, React and Flux {#components-react-and-flux}
+## Components, React and Flux {/*components-react-and-flux*/}
 
 [Dan Abramov](https://twitter.com/dan_abramov) working at Stampsy made a talk about React and Flux. It's a very good overview of the concepts at play.
 
 <iframe src="//slides.com/danabramov/components-react-flux-wip/embed"  width="100%" height="315" scrolling="no" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 
-## React and Flux {#react-and-flux}
+## React and Flux {/*react-and-flux*/}
 
 [Christian Alfoni](https://github.com/christianalfoni) wrote an article where [he compares Backbone, Angular and Flux](https://christianalfoni.github.io/javascript/2014/08/20/react-js-and-flux.html) on a simple example that's representative of a real project he worked on.
 
@@ -106,7 +106,7 @@ undo: function() {
 >
 > [Read the full article...](https://christianalfoni.github.io/javascript/2014/08/20/react-js-and-flux.html)
 
-## Flux: Step by Step approach {#flux-step-by-step-approach}
+## Flux: Step by Step approach {/*flux-step-by-step-approach*/}
 
 [Nicola Paolucci](https://github.com/durdn) from Atlassian wrote a great guide to help your getting understand [Flux step by step](https://blogs.atlassian.com/2014/08/flux-architecture-step-by-step/).
 
@@ -114,7 +114,7 @@ undo: function() {
 <a href="https://blogs.atlassian.com/2014/08/flux-architecture-step-by-step/"><img src="/images/blog/flux-chart.png" width="400" /></a>
 </center>
 
-## DeLorean: Back to the future! {#delorean-back-to-the-future}
+## DeLorean: Back to the future! {/*delorean-back-to-the-future*/}
 
 [DeLorean](https://github.com/deloreanjs/delorean) is a tiny Flux pattern implementation developed by [Fatih Kadir Akin](https://github.com/f).
 
@@ -126,12 +126,12 @@ undo: function() {
 > - Built-in React.js integration, easy to use with Flight.js and Ractive.js and probably all others
 > - Improve your UI/data consistency using rollbacks
 
-## Facebook's iOS Infrastructure {#facebooks-ios-infrastructure}
+## Facebook's iOS Infrastructure {/*facebooks-ios-infrastructure*/}
 
 Last but not least, Flux and React ideas are not limited to JavaScript inside of the browser. The iOS team at Facebook re-implemented Newsfeed using very similar patterns.
 
 <iframe width="650" height="315" src="//www.youtube-nocookie.com/embed/XhXC4SKOGfQ" frameborder="0" allowfullscreen></iframe>
 
-## Random Tweet {#random-tweet}
+## Random Tweet {/*random-tweet*/}
 
 <blockquote class="twitter-tweet" lang="en"><p>If you build your app with flux, you can swap out React for a canvas or svg view layer and keep 85% of your code. (or the thing after React)</p>&mdash; Ryan Florence (@ryanflorence) <a href="https://twitter.com/ryanflorence/status/507309645372076034">September 3, 2014</a></blockquote>

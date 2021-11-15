@@ -7,7 +7,7 @@ A few days ago, we [wrote a post about upcoming changes to our legacy lifecycle 
 
 Read on to learn more about the release.
 
-## Official Context API {#official-context-api}
+## Official Context API {/*official-context-api*/}
 
 For many years, React has offered an experimental API for context. Although it was a powerful tool, its use was discouraged because of inherent problems in the API, and because we always intended to replace the experimental API with a better one.
 
@@ -22,7 +22,7 @@ Here is an example illustrating how you might inject a "theme" using the new con
 
 [Learn more about the new context API here.](/docs/context)
 
-## `createRef` API {#createref-api}
+## `createRef` API {/*createref-api*/}
 
 Previously, React provided two ways of managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to use the callback form instead.
 
@@ -37,7 +37,7 @@ Version 16.3 adds a new option for managing refs that offers the convenience of 
 
 [Learn more about the new `createRef` API here.](/docs/refs-and-the-dom)
 
-## `forwardRef` API {#forwardref-api}
+## `forwardRef` API {/*forwardref-api*/}
 
 Generally, React components are declarative, but sometimes imperative access to the component instances and the underlying DOM nodes is necessary. This is common for use cases like managing focus, selection, or animations. React provides [refs](/docs/refs-and-the-dom) as a way to solve this problem. However, component encapsulation poses some challenges with refs.
 
@@ -53,7 +53,7 @@ Ref forwarding is not limited to "leaf" components that render DOM nodes. If you
 
 [Learn more about the forwardRef API here.](/docs/forwarding-refs)
 
-## Component Lifecycle Changes {#component-lifecycle-changes}
+## Component Lifecycle Changes {/*component-lifecycle-changes*/}
 
 React's class component API has been around for years with little change. However, as we add support for more advanced features (such as [error boundaries](/docs/react-component#componentdidcatch) and the upcoming [async rendering mode](/blog/2018/03/01/sneak-peek-beyond-react-16)) we stretch this model in ways that it was not originally intended.
 
@@ -76,7 +76,7 @@ In addition to deprecating unsafe lifecycles, we are also adding a couple of new
 
 [Learn more about these lifecycle changes here.](/blog/2018/03/27/update-on-async-rendering)
 
-## `StrictMode` Component {#strictmode-component}
+## `StrictMode` Component {/*strictmode-component*/}
 
 `StrictMode` is a tool for highlighting potential problems in an application. Like `Fragment`, `StrictMode` does not render any visible UI. It activates additional checks and warnings for its descendants.
 

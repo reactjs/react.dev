@@ -5,7 +5,7 @@ author: [josephsavona]
 
 This month marks a year since we released Relay and we'd like to share an update on the project and what's next.
 
-## A Year In Review {#a-year-in-review}
+## A Year In Review {/*a-year-in-review*/}
 
 A year after launch, we're incredibly excited to see an active community forming around Relay and that companies such as Twitter are [using Relay in production](https://fabric.io/blog/building-fabric-mission-control-with-graphql-and-relay):
 
@@ -28,11 +28,11 @@ We've also seen some great open-source projects spring up around Relay:
 
 This is just a small sampling of the community's contributions. So far we've merged over 300 PRs - about 25% of our commits - from over 80 of you. These PRs have improved everything from the website and docs down the very core of the framework. We're humbled by these outstanding contributions and excited to keep working with each of you!
 
-# Retrospective & Roadmap {#retrospective--roadmap}
+# Retrospective & Roadmap {/*retrospective--roadmap*/}
 
 Earlier this year we paused to reflect on the state of the project. What was working well? What could be improved? What features should we add, and what could we remove? A few themes emerged: performance on mobile, developer experience, and empowering the community.
 
-## Mobile Perf {#mobile-perf}
+## Mobile Perf {/*mobile-perf*/}
 
 First, Relay was built to serve the needs of product developers at Facebook. In 2016, that means helping developers to build apps that work well on [mobile devices connecting on slower networks](https://newsroom.fb.com/news/2015/10/news-feed-fyi-building-for-all-connectivity/). For example, people in developing markets commonly use [2011 year-class phones](https://code.facebook.com/posts/307478339448736/year-class-a-classification-system-for-android/) and connect via [2G class networks](https://code.facebook.com/posts/952628711437136/classes-performance-and-network-segmentation-on-android/). These scenarios present their own challenges.
 
@@ -44,17 +44,17 @@ Ideally, though, we could begin fetching data as soon as the native code had loa
 
 The key is that GraphQL is already static - we just need to fully embrace this fact. More on this later.
 
-## Developer Experience {#developer-experience}
+## Developer Experience {/*developer-experience*/}
 
 Next, we've paid attention to the community's feedback and know that, to put it simply, Relay could be "easier" to use (and "simpler" too). This isn't entirely surprising to us - Relay was originally designed as a routing library and gradually morphed into a data-fetching library. Concepts like Relay "routes", for example, no longer serve as critical a role and are just one more concept that developers have to learn about. Another example is mutations: while writes _are_ inherently more complex than reads, our API doesn't make the simple things simple enough.
 
 Alongside our focus on mobile performance, we've also kept the developer experience in mind as we evolve Relay core.
 
-## Empowering the Community {#empowering-the-community}
+## Empowering the Community {/*empowering-the-community*/}
 
 Finally, we want to make it easier for people in the community to develop useful libraries that work with Relay. By comparison, React's small surface area - components - allows developers to build cool things like routing, higher-order components, or reusable text editors. For Relay, this would mean having the framework provide core primitives that users can build upon. We want it to be possible for the community to integrate Relay with view libraries other than React, or to build real-time subscriptions as a complementary library.
 
-# What's Next {#whats-next}
+# What's Next {/*whats-next*/}
 
 These were big goals, and also a bit scary; we knew that incremental improvements would only allow us to move so fast. So in April we started a project to build a new implementation of Relay core targeting low-end mobile devices from the start.
 
@@ -71,7 +71,7 @@ Stepping back, we recognize that any API changes will require an investment on y
 
 Ultimately, we're making these changes because we believe they make Relay better all around: simpler for developers building apps and faster for the people using them.
 
-# Conclusion {#conclusion}
+# Conclusion {/*conclusion*/}
 
 If you made it this far, congrats and thanks for reading! We'll be sharing more information about these changes in some upcoming talks:
 

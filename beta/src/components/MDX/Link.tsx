@@ -34,28 +34,20 @@ function Link({
   return (
     <>
       {href.startsWith('https://') ? (
-        <ExternalLink
-          href={href}
-          className={cn(classes, className)}
-          {...props}
-          children={modifiedChildren}
-        />
+        <ExternalLink href={href} className={cn(classes, className)} {...props}>
+          {modifiedChildren}
+        </ExternalLink>
       ) : href.startsWith('#') ? (
         // eslint-disable-next-line jsx-a11y/anchor-has-content
-        <a
-          className={cn(classes, className)}
-          href={href}
-          {...props}
-          children={modifiedChildren}
-        />
+        <a className={cn(classes, className)} href={href} {...props}>
+          {modifiedChildren}
+        </a>
       ) : (
         <NextLink href={href.replace('.html', '')}>
           {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
-          <a
-            className={cn(classes, className)}
-            {...props}
-            children={modifiedChildren}
-          />
+          <a className={cn(classes, className)} {...props}>
+            {modifiedChildren}
+          </a>
         </NextLink>
       )}
     </>

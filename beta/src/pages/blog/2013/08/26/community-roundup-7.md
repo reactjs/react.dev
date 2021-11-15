@@ -13,13 +13,13 @@ It's been three months since we open sourced React and it is going well. Some st
 - [15 blog posts](/blog/)
 - 2 early adopters: [Khan Academy](http://sophiebits.com/2013/06/09/using-react-to-speed-up-khan-academy.html) and [Propeller](http://usepropeller.com/blog/posts/from-backbone-to-react/)
 
-## Wolfenstein Rendering Engine Ported to React {#wolfenstein-rendering-engine-ported-to-react}
+## Wolfenstein Rendering Engine Ported to React {/*wolfenstein-rendering-engine-ported-to-react*/}
 
 [Pete Hunt](http://www.petehunt.net/) ported the render code of the web version of Wolfenstein 3D to React. Check out [the demo](http://www.petehunt.net/wolfenstein3D-react/wolf3d.html) and [render.js](https://github.com/petehunt/wolfenstein3D-react/blob/master/js/renderer.js#L183) file for the implementation.
 
 <figure><a href="http://www.petehunt.net/wolfenstein3D-react/wolf3d.html"><img src="/images/blog/wolfenstein_react.png"/></a></figure>
 
-## React & Meteor {#react--meteor}
+## React & Meteor {/*react--meteor*/}
 
 [Ben Newman](https://twitter.com/benjamn) made a [13-lines wrapper](https://github.com/benjamn/meteor-react/blob/master/lib/mixin.js) to use React and Meteor together. [Meteor](http://www.meteor.com/) handles the real-time data synchronization between client and server. React provides the declarative way to write the interface and only updates the parts of the UI that changed.
 
@@ -45,7 +45,7 @@ It's been three months since we open sourced React and it is going well. Some st
 >
 > [Read more ...](https://github.com/benjamn/meteor-react)
 
-## React Page {#react-page}
+## React Page {/*react-page*/}
 
 [Jordan Walke](https://github.com/jordwalke) implemented a complete React project creator called [react-page](https://github.com/facebook/react-page/). It supports both server-side and client-side rendering, source transform and packaging JSX files using CommonJS modules, and instant reload.
 

@@ -16,7 +16,7 @@ Components are one of the core concepts of React. They are the foundation upon w
 
 </YouWillLearn>
 
-## Components: UI building blocks {#components-ui-building-blocks}
+## Components: UI building blocks {/*components-ui-building-blocks*/}
 
 On the Web, HTML lets us create rich structured documents with its built-in set of tags like `<h1>` and `<li>`:
 
@@ -53,7 +53,7 @@ Just like with HTML tags, you can compose, order and nest components to design w
 
 As your project grows, you will notice that many of your designs can be composed by reusing components you already wrote, speeding up your development. Our table of contents above could be added to any screen with `<TableOfContents />`! You can even jumpstart your project with the thousands of components shared by the React open source community like [Chakra UI](https://chakra-ui.com/) and [Material UI](https://material-ui.com/).
 
-## Defining a component {#defining-a-component}
+## Defining a component {/*defining-a-component*/}
 
 Traditionally when creating web pages, web developers marked up their content and then added interaction by sprinkling on some JavaScript. This worked great when interaction was a nice-to-have on the web. Now it is expected for many sites and all apps. React puts interactivity first while still using the same technology: **a React component is a JavaScript function that you can _sprinkle with markup_**. Here's what that looks like (you can edit the example below):
 
@@ -78,11 +78,11 @@ img { height: 200px; }
 
 And here's how to build a component:
 
-### Step 1: Export the component {#step-1-export-the-component}
+### Step 1: Export the component {/*step-1-export-the-component*/}
 
 The `export default` prefix is a [standard JavaScript syntax](https://developer.mozilla.org/docs/web/javascript/reference/statements/export) (not specific to React). It lets you mark the main function in a file so that you can later import it from other files. (More on importing in [Importing and Exporting Components](/learn/importing-and-exporting-components)!)
 
-### Step 2: Define the function {#step-2-define-the-function}
+### Step 2: Define the function {/*step-2-define-the-function*/}
 
 With `function Profile() { }` you define a JavaScript function with the name `Profile`.
 
@@ -92,7 +92,7 @@ React components are regular JavaScript functions, but **their names must start 
 
 </Gotcha>
 
-### Step 3: Add markup {#step-3-add-markup}
+### Step 3: Add markup {/*step-3-add-markup*/}
 
 The component returns an `<img />` tag with `src` and `alt` attributes. `<img />` is written like HTML, but it is actually JavaScript under the hood! This syntax is called [JSX](/learn/writing-markup-with-jsx), and it lets you embed markup inside JavaScript.
 
@@ -118,7 +118,7 @@ Without parentheses, any code on the lines after `return` [will be ignored](http
 
 </Gotcha>
 
-## Using a component {#using-a-component}
+## Using a component {/*using-a-component*/}
 
 Now that you've defined your `Profile` component, you can nest it inside other components. For example, you can export a `Gallery` component that uses multiple `Profile` components:
 
@@ -152,7 +152,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-### What the browser sees {#what-the-browser-sees}
+### What the browser sees {/*what-the-browser-sees*/}
 
 Notice the difference in casing:
 
@@ -170,7 +170,7 @@ And `Profile` contains even more HTML: `<img />`. In the end, this is what the b
 </section>
 ```
 
-### Nesting and organizing components {#nesting-and-organizing-components}
+### Nesting and organizing components {/*nesting-and-organizing-components*/}
 
 Components are regular JavaScript functions, so you can keep multiple components in the same file. This is convenient when components are relatively small or tightly related to each other. If this file gets crowded, you can always move `Profile` to a separate file. You will learn how to do this shortly on the [page about imports](/learn/importing-and-exporting-components).
 
@@ -205,7 +205,7 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 <Challenges>
 
-### Export the component {#export-the-component}
+### Export the component {/*export-the-component*/}
 
 This sandbox doesn't work because the root component is not exported:
 
@@ -257,7 +257,7 @@ You might be wondering why writing `export` alone is not enough to fix this exam
 
 </Solution>
 
-### Fix the return statement {#fix-the-return-statement}
+### Fix the return statement {/*fix-the-return-statement*/}
 
 Something isn't right about this `return` statement. Can you fix it?
 
@@ -324,7 +324,7 @@ img { height: 180px; }
 
 </Solution>
 
-### Spot the mistake {#spot-the-mistake}
+### Spot the mistake {/*spot-the-mistake*/}
 
 Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
 
@@ -396,7 +396,7 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-### Your own component {#your-own-component}
+### Your own component {/*your-own-component*/}
 
 Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component thats shows `<h1>Good job!</h1>`. Don't forget to export it!
 

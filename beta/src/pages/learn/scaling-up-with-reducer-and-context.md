@@ -16,7 +16,7 @@ Reducers let you consolidate a component's state update logic. Context lets you 
 
 </YouWillLearn>
 
-## Combining a reducer with context {#combining-a-reducer-with-context}
+## Combining a reducer with context {/*combining-a-reducer-with-context*/}
 
 In this example from [the introduction to reducers](/learn/extracting-state-logic-into-a-reducer), the state is managed by a reducer. The reducer function contains all of the state update logic and is declared at the bottom of this file:
 
@@ -243,7 +243,7 @@ Here is how you can combine a reducer with context:
 2. **Put** state and dispatch into context.
 3. **Use** context anywhere in the tree.
 
-### Step 1: Create the context {#step-1-create-the-context}
+### Step 1: Create the context {/*step-1-create-the-context*/}
 
 The `useReducer` Hook returns the current `tasks` and the `dispatch` function that lets you update them:
 
@@ -454,7 +454,7 @@ ul, li { margin: 0; padding: 0; }
 
 Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskBoard` component.
 
-### Step 2: Put state and dispatch into context {#step-2-put-state-and-dispatch-into-context}
+### Step 2: Put state and dispatch into context {/*step-2-put-state-and-dispatch-into-context*/}
 
 Now you can import both contexts in your `TaskBoard` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
 
@@ -675,7 +675,7 @@ ul, li { margin: 0; padding: 0; }
 
 In the next step, you will remove prop passing.
 
-### Step 3: Use context anywhere in the tree {#step-3-use-context-anywhere-in-the-tree}
+### Step 3: Use context anywhere in the tree {/*step-3-use-context-anywhere-in-the-tree*/}
 
 Now you don't need to pass the list of tasks or the event handlers down the tree:
 
@@ -903,7 +903,7 @@ ul, li { margin: 0; padding: 0; }
 
 **The state still "lives" in the top-level `TaskBoard` component, managed with `useReducer`.** But its `tasks` and `dispatch` are now available to every component below in the tree by importing and using these contexts.
 
-## Moving all wiring into a single file {#moving-all-wiring-into-a-single-file}
+## Moving all wiring into a single file {/*moving-all-wiring-into-a-single-file*/}
 
 You don't have to do this, but you could further declutter the components by moving both reducer and context into a single file. Currently, `TasksContext.js` contains only two context declarations:
 

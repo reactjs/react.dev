@@ -28,11 +28,11 @@ We've also published version `0.11.1` of the `react` and `react-tools` packages 
 
 Please try these builds out and [file an issue on GitHub](https://github.com/facebook/react/issues/new) if you see anything awry.
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### Bug Fixes {#bug-fixes}
+#### Bug Fixes {/*bug-fixes*/}
 
 - `setState` can be called inside `componentWillMount` in non-DOM environments
 - `SyntheticMouseEvent.getEventModifierState` correctly renamed to `getModifierState`
@@ -40,6 +40,6 @@ Please try these builds out and [file an issue on GitHub](https://github.com/fac
 - `getModifierState` is now correctly case sensitive
 - Empty Text node used in IE8 `innerHTML` workaround is now removed, fixing rerendering in certain cases
 
-### JSXTransformer {#jsxtransformer}
+### JSXTransformer {/*jsxtransformer*/}
 
 - Fix duplicate variable declaration (caused issues in some browsers)

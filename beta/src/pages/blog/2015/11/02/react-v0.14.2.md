@@ -21,9 +21,9 @@ We've also published version `0.14.2` of the `react`, `react-dom`, and addons pa
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Fixed bug with development build preventing events from firing in some versions of Internet Explorer & Edge
 - Fixed bug with development build when using es5-sham in older versions of Internet Explorer

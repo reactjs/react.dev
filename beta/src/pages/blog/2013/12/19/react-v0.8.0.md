@@ -15,9 +15,9 @@ In order to make the transition to 0.8 for our current users as painless as poss
 
 We hope that by releasing `react` on npm, we will enable a new set of uses that have been otherwise difficult. All feedback is welcome!
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Added support for more attributes:
   - `rows` & `cols` for `<textarea>`
@@ -28,16 +28,16 @@ We hope that by releasing `react` on npm, we will enable a new set of uses that 
 - Fixed Selection events in IE11
 - Added `onContextMenu` events
 
-### React with Addons {#react-with-addons}
+### React with Addons {/*react-with-addons*/}
 
 - Fixed bugs with TransitionGroup when children were undefined
 - Added support for `onTransition`
 
-### react-tools {#react-tools}
+### react-tools {/*react-tools*/}
 
 - Upgraded `jstransform` and `esprima-fb`
 
-### JSXTransformer {#jsxtransformer}
+### JSXTransformer {/*jsxtransformer*/}
 
 - Added support for use in IE8
 - Upgraded browserify, which reduced file size by ~65KB (16KB gzipped)

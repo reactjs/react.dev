@@ -12,7 +12,7 @@ const [state, setState] = useState(initialState);
 
 </Intro>
 
-## Using state {#using-state}
+## Using state {/*using-state*/}
 
 You can add state to your component in three steps:
 
@@ -82,7 +82,7 @@ export default function Counter() {
 
 <br />
 
-## Declaring a state variable {#declaring-a-state-variable}
+## Declaring a state variable {/*declaring-a-state-variable*/}
 
 You can declare multiple state variables in a component. You must declare them **at the top level of your component,** outside of any conditions or loops. This component declares state variables called `name` and `age`:
 
@@ -165,14 +165,14 @@ function handleClick() {
 
 <br />
 
-## When not to use it {#when-not-to-use-it}
+## When not to use it {/*when-not-to-use-it*/}
 
 * Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
 * Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
 
 <br />
 
-## Updating objects and arrays in state {#updating-objects-and-arrays-in-state}
+## Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
 
 You can hold objects and arrays in state, too. However, you should always *replace* objects in state rather than modify the existing ones. [Updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) describe common patterns that help avoid bugs.
 
@@ -223,7 +223,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Recipes>
 
-### Image gallery {#image-gallery}
+### Image gallery {/*image-gallery*/}
 
 <Sandpack>
 
@@ -385,7 +385,7 @@ img { width: 120px; height: 120px; }
 
 <Solution />
 
-### Form with multiple fields {#form-with-multiple-fields}
+### Form with multiple fields {/*form-with-multiple-fields*/}
 
 <Sandpack>
 
@@ -451,7 +451,7 @@ input { margin-left: 5px; }
 
 <Solution />
 
-### Todo list {#todo-list}
+### Todo list {/*todo-list*/}
 
 <Sandpack>
 
@@ -618,7 +618,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-### Multiple selection {#multiple-selection}
+### Multiple selection {/*multiple-selection*/}
 
 <Sandpack>
 
@@ -723,9 +723,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Recipes>
 
-## Special cases {#special-cases}
+## Special cases {/*special-cases*/}
 
-### Passing the same value to `setState` {#passing-the-same-value-to-setstate}
+### Passing the same value to `setState` {/*passing-the-same-value-to-setstate*/}
 
 If you pass the current state to `setState`, React **will skip re-rendering the component**:
 
@@ -737,7 +737,7 @@ This is a performance optimization. React uses the [`Object.is()`](https://devel
 
 <br />
 
-### Passing an updater function to `setState` {#passing-an-updater-function-to-setstate}
+### Passing an updater function to `setState` {/*passing-an-updater-function-to-setstate*/}
 
 Instead of passing the next state itself, **you may pass a function to `setState`.** Such a function, like `c => c + 1` in this example, is called an "updater". React will call your updater during the next render to calculate the final state.
 
@@ -884,7 +884,7 @@ setState(() => myFunction);
 
 <br />
 
-### Passing an initializer function to `useState` {#passing-an-initializer-function-to-usestate}
+### Passing an initializer function to `useState` {/*passing-an-initializer-function-to-usestate*/}
 
 The initial state that you pass to `useState` as an argument is only used for the initial render. For next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away many times. **You can pass a function to `useState` to calculate the initial state.** React will only run it during the initialization.
 

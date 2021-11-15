@@ -7,7 +7,7 @@ Today we're releasing React 16.6 with a few new convenient features. A form of P
 
 Check out the full [changelog](#changelog) below.
 
-## [`React.memo`](/docs/react-api#reactmemo) {#reactmemo}
+## [`React.memo`](/docs/react-api#reactmemo) {/*reactmemo*/}
 
 Class components can bail out from rendering when their input props are the same using [`PureComponent`](/docs/react-api#reactpurecomponent) or [`shouldComponentUpdate`](/docs/react-component#shouldcomponentupdate). Now you can do the same with function components by wrapping them in [`React.memo`](/docs/react-api#reactmemo).
 
@@ -17,7 +17,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 });
 ```
 
-## [`React.lazy`](/docs/code-splitting#reactlazy): Code-Splitting with `Suspense` {#reactlazy-code-splitting-with-suspense}
+## [`React.lazy`](/docs/code-splitting#reactlazy): Code-Splitting with `Suspense` {/*reactlazy-code-splitting-with-suspense*/}
 
 You may have seen [Dan's talk about React Suspense at JSConf Iceland](/blog/2018/03/01/sneak-peek-beyond-react-16). Now you can use the Suspense component to do [code-splitting](/docs/code-splitting#reactlazy) by wrapping a dynamic import in a call to `React.lazy()`.
 
@@ -38,7 +38,7 @@ The Suspense component will also allow library authors to start building data fe
 
 > Note: This feature is not yet available for server-side rendering. Suspense support will be added in a later release.
 
-## [`static contextType`](/docs/context#classcontexttype) {#static-contexttype}
+## [`static contextType`](/docs/context#classcontexttype) {/*static-contexttype*/}
 
 In [React 16.3](/blog/2018/03/29/react-v-16-3) we introduced the official Context API as a replacement to the previous [Legacy Context](/docs/legacy-context) API.
 
@@ -70,7 +70,7 @@ class MyClass extends React.Component {
 }
 ```
 
-## [`static getDerivedStateFromError()`](/docs/react-component#static-getderivedstatefromerror) {#static-getderivedstatefromerror}
+## [`static getDerivedStateFromError()`](/docs/react-component#static-getderivedstatefromerror) {/*static-getderivedstatefromerror*/}
 
 React 16 introduced [Error Boundaries](/blog/2017/07/26/error-handling-in-react-16) for handling errors thrown in React renders. We already had the `componentDidCatch` lifecycle method which gets fired after an error has already happened. It's great for logging errors to the server. It also lets you show a different UI to the user by calling `setState`.
 
@@ -80,7 +80,7 @@ We're adding another error method that lets you render the fallback UI before th
 
 > Note: `getDerivedStateFromError()` is not yet available for server-side rendering. It is designed to work with server-side rendering in a future release. We're releasing it early so that you can start preparing to use it.
 
-## Deprecations in StrictMode {#deprecations-in-strictmode}
+## Deprecations in StrictMode {/*deprecations-in-strictmode*/}
 
 In [16.3](/blog/2018/03/29/react-v-16-3#strictmode-component) we introduced the [`StrictMode`](/docs/strict-mode) component. It lets you opt-in to early warnings for patterns that might cause problems in the future.
 
@@ -91,7 +91,7 @@ We've added two more APIs to the list of deprecated APIs in `StrictMode`. If you
 
 If you're having trouble upgrading, we'd like to hear your feedback.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 React v16.6.0 is available on the npm registry.
 
@@ -122,9 +122,9 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation).
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Add `React.memo()` as an alternative to `PureComponent` for functions. ([@acdlite](https://github.com/acdlite) in [#13748](https://github.com/facebook/react/pull/13748))
 - Add `React.lazy()` for code splitting components. ([@acdlite](https://github.com/acdlite) in [#13885](https://github.com/facebook/react/pull/13885))
@@ -133,7 +133,7 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 - Rename `unstable_AsyncMode` to `unstable_ConcurrentMode`. ([@trueadm](https://github.com/trueadm) in [#13732](https://github.com/facebook/react/pull/13732))
 - Rename `unstable_Placeholder` to `Suspense`, and `delayMs` to `maxDuration`. ([@gaearon](https://github.com/gaearon) in [#13799](https://github.com/facebook/react/pull/13799) and [@sebmarkbage](https://github.com/sebmarkbage) in [#13922](https://github.com/facebook/react/pull/13922))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Add `contextType` as a more ergonomic way to subscribe to context from a class. ([@bvaughn](https://github.com/bvaughn) in [#13728](https://github.com/facebook/react/pull/13728))
 - Add `getDerivedStateFromError` lifecycle method for catching errors in a future asynchronous server-side renderer. ([@bvaughn](https://github.com/bvaughn) in [#13746](https://github.com/facebook/react/pull/13746))
@@ -141,12 +141,12 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 - Fix gray overlay on iOS Safari. ([@philipp-spiess](https://github.com/philipp-spiess) in [#13778](https://github.com/facebook/react/pull/13778))
 - Fix a bug caused by overwriting `window.event` in development. ([@sergei-startsev](https://github.com/sergei-startsev) in [#13697](https://github.com/facebook/react/pull/13697))
 
-### React DOM Server {#react-dom-server}
+### React DOM Server {/*react-dom-server*/}
 
 - Add support for `React.memo()`. ([@alexmckenley](https://github.com/alexmckenley) in [#13855](https://github.com/facebook/react/pull/13855))
 - Add support for `contextType`. ([@alexmckenley](https://github.com/alexmckenley) and [@sebmarkbage](https://github.com/sebmarkbage) in [#13889](https://github.com/facebook/react/pull/13889))
 
-### Scheduler (Experimental) {#scheduler-experimental}
+### Scheduler (Experimental) {/*scheduler-experimental*/}
 
 - Rename the package to `scheduler`. ([@gaearon](https://github.com/gaearon) in [#13683](https://github.com/facebook/react/pull/13683))
 - Support priority levels, continuations, and wrapped callbacks. ([@acdlite](https://github.com/acdlite) in [#13720](https://github.com/facebook/react/pull/13720) and [#13842](https://github.com/facebook/react/pull/13842))

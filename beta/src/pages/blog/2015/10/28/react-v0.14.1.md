@@ -21,9 +21,9 @@ We've also published version `0.14.1` of the `react`, `react-dom`, and addons pa
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Fixed bug where events wouldn't fire in old browsers when using React in development mode
 - Fixed bug preventing use of `dangerouslySetInnerHTML` with Closure Compiler Advanced mode
@@ -31,14 +31,14 @@ We've also published version `0.14.1` of the `react`, `react-dom`, and addons pa
 - Added support for `color` attribute
 - Ensured legacy `.props` access on DOM nodes is updated on re-renders
 
-### React TestUtils Add-on {#react-testutils-add-on}
+### React TestUtils Add-on {/*react-testutils-add-on*/}
 
 - Fixed `scryRenderedDOMComponentsWithClass` so it works with SVG
 
-### React CSSTransitionGroup Add-on {#react-csstransitiongroup-add-on}
+### React CSSTransitionGroup Add-on {/*react-csstransitiongroup-add-on*/}
 
 - Fix bug preventing `0` to be used as a timeout value
 
-### React on Bower {#react-on-bower}
+### React on Bower {/*react-on-bower*/}
 
 - Added `react-dom.js` to `main` to improve compatibility with tooling

@@ -30,15 +30,33 @@ module.exports = ({
   slugs.reset();
   return function transformer(tree) {
     visit(tree, 'heading', (node) => {
-      // Support custom-id syntax.
-      const rawHeader = toString(node);
-      const match = /^.+(\s*\{#([\p{L}0-9\-_]+?)\}\s*)$/u.exec(rawHeader);
-      const id = match ? match[2] : slugs.slug(rawHeader, maintainCase);
-      if (match) {
-        // Remove the custom ID part from the text node.
-        const lastNode = node.children[node.children.length - 1];
-        lastNode.value = lastNode.value.replace(match[1], '');
+      const children = node.children;
+      let tail = children[children.length - 1];
+
+      // A bit weird: this is to support MDX 2 comments in expressions,
+      // while we’re still on MDX 1, which doesn’t support them.
+      if (!tail || tail.type !== 'text' || tail.value !== '/}') {
+        return
       }
+
+      tail = children[children.length - 2]
+
+      if (!tail && tail.type !== 'emphasis') {
+        return
+      }
+
+      const id = toString(tail)
+
+      tail = children[children.length - 3]
+
+      if (!tail || tail.type !== 'text' || !tail.value.endsWith('{/')) {
+        return
+      }
+
+      // Remove the emphasis and trailing `/}`
+      children.splice(children.length - 2, 2)
+      // Remove the `{/`
+      tail.value = tail.value.replace(/[ \t]*\{\/$/, '')
 
       const data = patch(node, 'data', {});
 

@@ -3,13 +3,13 @@ title: 'Community Round-up #19'
 author: [chenglou]
 ---
 
-## React Meetups! {#react-meetups}
+## React Meetups! {/*react-meetups*/}
 
 Ever wanted to find developers who also share the same interest in React than you? Recently, there has been a React Meetup in [San Francisco](http://www.meetup.com/ReactJS-San-Francisco/) (courtesy of [Telmate](http://www.telmate.com)), and one in [London](http://www.meetup.com/London-React-User-Group/) (courtesy of [Stuart Harris](http://www.meetup.com/London-React-User-Group/members/105837542/), [Cain Ullah](http://www.meetup.com/London-React-User-Group/members/15509971/) and [Zoe Merchant](http://www.meetup.com/London-React-User-Group/members/137058242/)). These two events have been big successes; a second one in London is [already planned](http://www.meetup.com/London-React-User-Group/events/191406572/).
 
 If you don't live near San Francisco or London, why not start one in your community?
 
-## Complementary Tools {#complementary-tools}
+## Complementary Tools {/*complementary-tools*/}
 
 In case you haven't seen it, we've consolidated the tooling solution around React on [this wiki page](https://github.com/facebook/react/wiki/Complementary-Tools). Some of the notable recent entries include:
 
@@ -21,7 +21,7 @@ In case you haven't seen it, we've consolidated the tooling solution around Reac
 
 These are some of the links that often pop up on the #reactjs IRC channel. If you made something that you think deserves to be shown on the wiki, feel free to add it!
 
-## React in Interesting Places {#react-in-interesting-places}
+## React in Interesting Places {/*react-in-interesting-places*/}
 
 The core concepts React themselves is something very valuable that the community is exploring and pushing further. A year ago, we wouldn't have imagined something like [Bruce Hauman](http://rigsomelight.com)'s [Flappy Bird ClojureScript port](http://rigsomelight.com/2014/05/01/interactive-programming-flappy-bird-clojurescript.html), whose interactive programming has been made possible through React:
 
@@ -33,28 +33,28 @@ And don't forget [Pete Hunt](https://github.com/petehunt)'s Wolfenstein 3D rende
 
 Give us a shoutout on IRC or [React Google Groups](https://groups.google.com/forum/#!forum/reactjs) if you've used React in some Interesting places.
 
-## Even More People Using React {#even-more-people-using-react}
+## Even More People Using React {/*even-more-people-using-react*/}
 
-### Prismatic {#prismatic}
+### Prismatic {/*prismatic*/}
 
 [Prismatic](http://getprismatic.com/home) recently shrank their codebase fivefold with the help of React and its popular ClojureScript wrapper, [Om](https://github.com/swannodette/om). They detailed their very positive experience [here](http://blog.getprismatic.com/om-sweet-om-high-functional-frontend-engineering-with-clojurescript-and-react/).
 
 > Finally, the state is normalized: each piece of information is represented in a single place. Since React ensures consistency between the DOM and the application data, the programmer can focus on ensuring that the state properly stays up to date in response to user input. If the application state is normalized, then this consistency is guaranteed by definition, completely avoiding the possibility of an entire class of common bugs.
 
-### Adobe Brackets {#adobe-brackets}
+### Adobe Brackets {/*adobe-brackets*/}
 
 [Kevin Dangoor](http://www.kevindangoor.com) works on [Brackets](http://brackets.io/?lang=en), the open-source code editor. After writing [his first impression on React](http://www.kevindangoor.com/2014/05/simplifying-code-with-react/), he followed up with another insightful [article](http://www.kevindangoor.com/2014/05/react-in-brackets/) on how to gradually make the code transition, how to preserve the editor's good parts, and how to tune Brackets' tooling around JSX.
 
 > We don’t need to switch to React everywhere, all at once. It’s not a framework that imposes anything on the application structure. [...] Easy, iterative adoption is definitely something in React’s favor for us.
 
-### Storehouse {#storehouse}
+### Storehouse {/*storehouse*/}
 
 [Storehouse](https://www.storehouse.co) (Apple Design Award 2014)'s web presence is build with React. Here's [an example story](https://www.storehouse.co/stories/y2ad-mexico-city-clouds). Congratulations on the award!
 
-### Vim Awesome {#vim-awesome}
+### Vim Awesome {/*vim-awesome*/}
 
 [Vim Awesome](http://vimawesome.com), an open-source Vim plugins directory built on React, was just launched. Be sure to [check out the source code](https://github.com/divad12/vim-awesome) if you're curious to see an example of how to build a small single-page React app.
 
-## Random Tweets {#random-tweets}
+## Random Tweets {/*random-tweets*/}
 
 <blockquote class="twitter-tweet" lang="en"><p>Spent 12 hours so far with <a href="https://twitter.com/hashtag/reactjs?src=hash">#reactjs</a>. Spent another 2 wondering why we&#39;ve been doing JS frameworks wrong until now. React makes me happy.</p>&mdash; Paul Irwin (@paulirwin) <a href="https://twitter.com/paulirwin/statuses/481263947589242882">June 24, 2014</a></blockquote>

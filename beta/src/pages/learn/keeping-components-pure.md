@@ -16,7 +16,7 @@ Some JavaScript functions are "pure." Pure functions only perform a calculation 
 
 </YouWillLearn>
 
-## Purity: Components as formulas {#purity-components-as-formulas}
+## Purity: Components as formulas {/*purity-components-as-formulas*/}
 
 In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
 
@@ -85,7 +85,7 @@ You could think of your components as recipes: if you follow them and don't intr
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add 2x spoons of spices, and x spoons of tea!" />
 
-## Side Effects: (un)intended consequences {#side-effects-unintended-consequences}
+## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
 
 React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
 
@@ -159,7 +159,7 @@ Strict Mode has no effect in production, so it won't slow down the app for your 
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {#local-mutation-your-components-little-secret}
+### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
 
 In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
 
@@ -187,7 +187,7 @@ If the `cups` variable or the `[]` array were created outside the `TeaGathering`
 
 However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
 
-## Where you _can_ cause side effects {#where-you-_can_-cause-side-effects}
+## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
 
 While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects**. They're things that happen _"on the side,"_ not during rendering.
 
@@ -225,7 +225,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-### Fix a broken clock {#fix-a-broken-clock}
+### Fix a broken clock {/*fix-a-broken-clock*/}
 
 This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
 
@@ -362,7 +362,7 @@ In this example, the side effect (modifying the DOM) was not necessary at all. Y
 
 </Solution>
 
-### Fix a broken profile {#fix-a-broken-profile}
+### Fix a broken profile {/*fix-a-broken-profile*/}
 
 Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
 
@@ -571,7 +571,7 @@ Remember that React does not guarantee that component functions will execute in 
 
 </Solution>
 
-### Fix a broken story tray {#fix-a-broken-story-tray}
+### Fix a broken story tray {/*fix-a-broken-story-tray*/}
 
 The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
 

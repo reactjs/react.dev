@@ -18,19 +18,19 @@ Facebook will make determinations on scholarship recipients in its sole discreti
 
 To apply for the scholarship, please visit the Application Page: <https://www.surveymonkey.com/s/XVJGK6R>
 
-## Award Includes {#award-includes}
+## Award Includes {/*award-includes*/}
 
 - Paid registration fee for the React.js Conf January 28 & 29th at Facebook’s Headquarters in Menlo Park, CA
 - Paid travel and lodging expenses
 - Additional \$200 meal stipend
 
-## Important Dates {#important-dates}
+## Important Dates {/*important-dates*/}
 
 - Monday, January 5, 2015: Applications for the React.js Conf Scholarship must be submitted in full
 - Friday, January 9, 2015: Award recipients will be notified by email of their acceptance
 - Wednesday & Thursday, January 28 & 29, 2015: React.js Conf
 
-## Eligibility {#eligibility}
+## Eligibility {/*eligibility*/}
 
 - Must currently be studying or working in Computer Science or a related field
 - International applicants are welcome, but you will be responsible for securing your own visa to attend the conference

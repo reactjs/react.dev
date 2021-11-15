@@ -5,13 +5,13 @@ author: [vjeux]
 
 This is the first Community Round-up where none of the items are from Facebook/Instagram employees. It's great to see the adoption of React growing.
 
-## React Game Tutorial {#react-game-tutorial}
+## React Game Tutorial {/*react-game-tutorial*/}
 
 [Caleb Cassel](https://twitter.com/CalebCassel) wrote a [step-by-step tutorial](https://rawgithub.com/calebcassel/react-demo/master/part1.html) about making a small game. It covers JSX, State and Events, Embedded Components and Integration with Backbone.
 
 <figure><a href="https://rawgithub.com/calebcassel/react-demo/master/part1.html"><img src="/images/blog/dog-tutorial.png"/></a></figure>
 
-## Reactify {#reactify}
+## Reactify {/*reactify*/}
 
 [Andrey Popp](http://andreypopp.com/) created a [Browserify](http://browserify.org/) helper to compile JSX files.
 
@@ -25,7 +25,7 @@ This is the first Community Round-up where none of the items are from Facebook/I
 >
 > [Check it out on GitHub...](https://github.com/andreypopp/reactify)
 
-## React Integration with Este {#react-integration-with-este}
+## React Integration with Este {/*react-integration-with-este*/}
 
 [Daniel Steigerwald](http://daniel.steigerwald.cz/) is now using React within [Este](https://github.com/steida/este), which is a development stack for web apps in CoffeeScript that are statically typed using the Closure Library.
 
@@ -49,7 +49,7 @@ este.demos.react.todoApp = este.react.create (`/** @lends {React.ReactComponent.
 
 [Check it out on GitHub...](https://github.com/steida/este-library/blob/master/este/demos/thirdparty/react/start.coffee)
 
-## React Stylus Boilerplate {#react-stylus-boilerplate}
+## React Stylus Boilerplate {/*react-stylus-boilerplate*/}
 
 [Zaim Bakar](https://zaim.github.io/) shared his boilerplate to get started with Stylus CSS processor.
 
@@ -63,7 +63,7 @@ este.demos.react.todoApp = este.react.create (`/** @lends {React.ReactComponent.
 >
 > [Check it out on GitHub...](https://github.com/zaim/react-stylus-boilerplate)
 
-## WebFUI {#webfui}
+## WebFUI {/*webfui*/}
 
 [Conrad Barski](http://lisperati.com/), author of the popular book [Land of Lisp](http://landoflisp.com/), wants to use React for his ClojureScript library called [WebFUI](https://github.com/drcode/webfui).
 

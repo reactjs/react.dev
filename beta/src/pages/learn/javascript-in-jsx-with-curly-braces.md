@@ -17,7 +17,7 @@ JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering 
 
 </YouWillLearn>
 
-## Passing strings with quotes {#passing-strings-with-quotes}
+## Passing strings with quotes {/*passing-strings-with-quotes*/}
 
 When you want to pass a string attribute to JSX, you put it in single or double quotes:
 
@@ -69,7 +69,7 @@ export default function Avatar() {
 
 Notice the difference between `className="avatar"`, which specifies an `"avatar"` CSS class name that makes the image round, and `src={avatar}` that reads the value of the JavaScript variable called `avatar`. That's because curly braces let you work with JavaScript right there in your markup!
 
-## Using curly braces: A window into the JavaScript world {#using-curly-braces-a-window-into-the-javascript-world}
+## Using curly braces: A window into the JavaScript world {/*using-curly-braces-a-window-into-the-javascript-world*/}
 
 JSX is a special way of writing JavaScript. That means it’s possible to use JavaScript inside it—with curly braces `{ }`. The example below first declares a name for the scientist, `name`, then embeds it with curly braces inside the `<h1>`:
 
@@ -111,14 +111,14 @@ export default function TodoList() {
 
 </Sandpack>
 
-### Where to use curly braces {#where-to-use-curly-braces}
+### Where to use curly braces {/*where-to-use-curly-braces*/}
 
 You can only use curly braces in two ways inside JSX:
 
 1. **As text** directly inside a JSX tag: `<h1>{name}'s To Do List</h1>` works, but `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  will not.
 2. **As attributes** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `{avatar}`.
 
-## Using "double curlies": CSS and other objects in JSX {#using-double-curlies-css-and-other-objects-in-jsx}
+## Using "double curlies": CSS and other objects in JSX {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
 In addition to strings, numbers, and other JavaScript expressions, you can even pass objects in JSX. Objects are also denoted with curly braces, like `{ name: "Hedy Lamarr", inventions: 5 }`. Therefore, to pass a JS object in JSX, you must wrap the object in another pair of curly braces: `person={{ name: "Hedy Lamarr", inventions: 5 }}`.
 
@@ -169,7 +169,7 @@ Inline `style` properties are written in camelCase. For example, HTML `<ul style
 
 </Gotcha>
 
-## More fun with JavaScript objects and curly braces {#more-fun-with-javascript-objects-and-curly-braces}
+## More fun with JavaScript objects and curly braces {/*more-fun-with-javascript-objects-and-curly-braces*/}
 
 You can move several expressions into one object, and reference them in your JSX inside curly braces:
 
@@ -245,7 +245,7 @@ Now you know almost everything about JSX:
 
 <Challenges>
 
-### Fix the mistake {#fix-the-mistake}
+### Fix the mistake {/*fix-the-mistake*/}
 
 This code crashes with an error saying `Objects are not valid as a React child`:
 
@@ -337,7 +337,7 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-### Extract information into an object {#extract-information-into-an-object}
+### Extract information into an object {/*extract-information-into-an-object*/}
 
 Extract the image URL into the `person` object.
 
@@ -424,7 +424,7 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-### Write an expression inside JSX curly braces {#write-an-expression-inside-jsx-curly-braces}
+### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
 
 In the object below, the full image URL is split into four parts: base URL,  `imageId`, `imageSize`, and file extension.
 

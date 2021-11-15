@@ -17,7 +17,7 @@ It contains a handful of new features, including:
 - Right-click any props or state value to make it available as `$tmp` from the console
 - Full React Native support
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 Download the new devtools from the [Chrome Web Store](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi), [Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) for Firefox, and [Microsoft Edge Addons](https://microsoftedge.microsoft.com/addons/detail/gpphkfbcpidddadnkolkpfckpihlkkil) for Edge. If you're developing using React, we highly recommend installing these devtools.
 

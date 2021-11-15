@@ -22,15 +22,15 @@ We've also published version `0.12.2` of the `react` and `react-tools` packages 
 
 Please try these builds out and [file an issue on GitHub](https://github.com/facebook/react/issues/new) if you see anything awry.
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
 - Added support for more HTML attributes: `formAction`, `formEncType`, `formMethod`, `formTarget`, `marginHeight`, `marginWidth`
 - Added `strokeOpacity` to the list of unitless CSS properties
 - Removed trailing commas (allows npm module to be bundled and used in IE8)
 - Fixed bug resulting in error when passing `undefined` to `React.createElement` - now there is a useful warning
 
-### React Tools {#react-tools}
+### React Tools {/*react-tools*/}
 
 - JSX-related transforms now always use double quotes for props and `displayName`

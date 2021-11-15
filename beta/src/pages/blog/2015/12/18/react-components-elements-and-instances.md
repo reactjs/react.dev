@@ -5,7 +5,7 @@ author: [gaearon]
 
 The difference between **components, their instances, and elements** confuses many React beginners. Why are there three different terms to refer to something that is painted on screen?
 
-## Managing the Instances {#managing-the-instances}
+## Managing the Instances {/*managing-the-instances*/}
 
 If you’re new to React, you probably only worked with component classes and instances before. For example, you may declare a `Button` _component_ by creating a class. When the app is running, you may have several _instances_ of this component on screen, each with its own properties and local state. This is the traditional object-oriented UI programming. Why introduce _elements_?
 
@@ -53,13 +53,13 @@ Each component instance has to keep references to its DOM node and to the instan
 
 So how is React different?
 
-## Elements Describe the Tree {#elements-describe-the-tree}
+## Elements Describe the Tree {/*elements-describe-the-tree*/}
 
 In React, this is where the _elements_ come to rescue. **An element is a plain object _describing_ a component instance or DOM node and its desired properties.** It contains only information about the component type (for example, a `Button`), its properties (for example, its `color`), and any child elements inside it.
 
 An element is not an actual instance. Rather, it is a way to tell React what you _want_ to see on the screen. You can’t call any methods on the element. It’s just an immutable description object with two fields: `type: (string | ReactClass)` and `props: Object`[^1].
 
-### DOM Elements {#dom-elements}
+### DOM Elements {/*dom-elements*/}
 
 When an element’s `type` is a string, it represents a DOM node with that tag name, and `props` correspond to its attributes. This is what React will render. For example:
 
@@ -94,7 +94,7 @@ What’s important is that both child and parent elements are _just descriptions
 
 React elements are easy to traverse, don’t need to be parsed, and of course they are much lighter than the actual DOM elements—they’re just objects!
 
-### Component Elements {#component-elements}
+### Component Elements {/*component-elements*/}
 
 However, the `type` of an element can also be a function or a class corresponding to a React component:
 
@@ -168,7 +168,7 @@ This mix and matching helps keep components decoupled from each other, as they c
 - `DangerButton` is a `Button` with specific properties.
 - `DeleteAccount` contains a `Button` and a `DangerButton` inside a `<div>`.
 
-### Components Encapsulate Element Trees {#components-encapsulate-element-trees}
+### Components Encapsulate Element Trees {/*components-encapsulate-element-trees*/}
 
 When React sees an element with a function or class `type`, it knows to ask _that_ component what element it renders to, given the corresponding `props`.
 
@@ -236,7 +236,7 @@ That’s it! For a React component, props are the input, and an element tree is 
 
 We let React create, update, and destroy instances. We _describe_ them with elements we return from the components, and React takes care of managing the instances.
 
-### Components Can Be Classes or Functions {#components-can-be-classes-or-functions}
+### Components Can Be Classes or Functions {/*components-can-be-classes-or-functions*/}
 
 In the code above, `Form`, `Message`, and `Button` are React components. They can either be written as functions, like above, or as classes descending from `React.Component`. These three ways to declare a component are mostly equivalent:
 
@@ -300,7 +300,7 @@ A function component is less powerful but is simpler, and acts like a class comp
 
 **However, whether functions or classes, fundamentally they are all components to React. They take the props as their input, and return the elements as their output.**
 
-### Top-Down Reconciliation {#top-down-reconciliation}
+### Top-Down Reconciliation {/*top-down-reconciliation*/}
 
 When you call:
 
@@ -363,7 +363,7 @@ Only components declared as classes have instances, and you never create them di
 
 React takes care of creating an instance for every class component, so you can write components in an object-oriented way with methods and local state, but other than that, instances are not very important in the React’s programming model and are managed by React itself.
 
-## Summary {#summary}
+## Summary {/*summary*/}
 
 An _element_ is a plain object describing what you want to appear on the screen in terms of the DOM nodes or other components. Elements can contain other elements in their props. Creating a React element is cheap. Once an element is created, it is never mutated.
 
@@ -377,7 +377,7 @@ Function components don’t have instances at all. Class components have instanc
 
 Finally, to create elements, use [`React.createElement()`](/docs/top-level-api.html#react.createelement), [JSX](/docs/jsx-in-depth.html), or an [element factory helper](/docs/top-level-api.html#react.createfactory). Don’t write elements as plain objects in the real code—just know that they are plain objects under the hood.
 
-## Further Reading {#further-reading}
+## Further Reading {/*further-reading*/}
 
 - [Introducing React Elements](/blog/2014/10/14/introducing-react-elements.html)
 - [Streamlining React Elements](/blog/2015/02/24/streamlining-react-elements.html)

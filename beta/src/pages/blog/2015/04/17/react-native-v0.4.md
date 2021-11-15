@@ -7,7 +7,7 @@ It's been three weeks since we open sourced React Native and there's been some i
 
 I'd especially like to thank community members Brent Vatne and James Ide who have both already contributed meaningfully to the project and have been extremely helpful on IRC and with issues and pull requests
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
 The main focus of the past few weeks has been to make React Native the best possible experience for people outside of Facebook. Here's a high level summary of what's happened since we open sourced:
 
@@ -19,6 +19,6 @@ The main focus of the past few weeks has been to make React Native the best poss
 - **Patent Grant**: Many of you had concerns and questions around the PATENTS file. We pushed [a new version of the grant](https://code.facebook.com/posts/1639473982937255/updating-our-open-source-patent-grant/).
 - **Per commit history**: In order to synchronize from Facebook to GitHub, we used to do one giant commit every few days. We improved our tooling and now have per commit history that maintains author information (both internal and external from pull requests), and we retroactively applied this to historical diffs to provide proper attribution.
 
-## Where are we going? {#where-are-we-going}
+## Where are we going? {/*where-are-we-going*/}
 
 In addition to supporting pull requests, issues, and general improvements, we're also working hard on our internal React Native integrations and on React Native for Android.

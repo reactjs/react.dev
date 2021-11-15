@@ -11,7 +11,7 @@ As usual with Create React App, **you can enjoy these improvements in your exist
 
 Newly created apps will get these improvements automatically.
 
-### webpack 2 {#webpack-2}
+### webpack 2 {/*webpack-2*/}
 
 > _This change was contributed by [@Timer](https://github.com/Timer) in [#1291](https://github.com/facebookincubator/create-react-app/pull/1291)._
 
@@ -27,7 +27,7 @@ The biggest notable webpack 2 feature is the ability to write and import [ES6 mo
 
 In the future, as the ecosystem around ES6 modules matures, you can expect more improvements to your app's bundle size thanks to [tree shaking](https://webpack.js.org/guides/tree-shaking/).
 
-### Runtime Error Overlay {#error-overlay}
+### Runtime Error Overlay {/*error-overlay*/}
 
 > _This change was contributed by [@Timer](https://github.com/Timer) and [@nicinabox](https://github.com/nicinabox) in [#1101](https://github.com/facebookincubator/create-react-app/pull/1101), [@bvaughn](https://github.com/bvaughn) in [#2201](https://github.com/facebookincubator/create-react-app/pull/2201)._
 
@@ -43,7 +43,7 @@ A GIF is worth a thousand words:
 
 In the future, we plan to teach the runtime error overlay to understand more about your React app. For example, after React 16 we plan to show React component stacks in addition to the JavaScript stacks when an error is thrown.
 
-### Progressive Web Apps by Default {#progressive-web-apps-by-default}
+### Progressive Web Apps by Default {/*progressive-web-apps-by-default*/}
 
 > _This change was contributed by [@jeffposnick](https://github.com/jeffposnick) in [#1728](https://github.com/facebookincubator/create-react-app/pull/1728)._
 
@@ -55,7 +55,7 @@ New apps automatically have these features, but you can easily convert an existi
 
 We will be adding [more documentation](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#making-a-progressive-web-app) on this topic in the coming weeks. Please feel free to [ask any questions](https://github.com/facebookincubator/create-react-app/issues/new) on the issue tracker!
 
-### Jest 20 {#jest-20}
+### Jest 20 {/*jest-20*/}
 
 > _This change was contributed by [@rogeliog](https://github.com/rogeliog) in [#1614](https://github.com/facebookincubator/create-react-app/pull/1614) and [@gaearon](https://github.com/gaearon) in [#2171](https://github.com/facebookincubator/create-react-app/pull/2171)._
 
@@ -67,7 +67,7 @@ Highlights include a new [immersive watch mode](https://facebook.github.io/jest/
 
 Additionally, Create React App now support configuring a few Jest options related to coverage reporting.
 
-### Code Splitting with Dynamic import() {#code-splitting-with-dynamic-import}
+### Code Splitting with Dynamic import() {/*code-splitting-with-dynamic-import*/}
 
 > _This change was contributed by [@Timer](https://github.com/Timer) in [#1538](https://github.com/facebookincubator/create-react-app/pull/1538) and [@tharakawj](https://github.com/tharakawj) in [#1801](https://github.com/facebookincubator/create-react-app/pull/1801)._
 
@@ -77,7 +77,7 @@ In this release, we are adding support for the [dynamic `import()` proposal](htt
 
 ![Creating chunks with dynamic import](/images/blog/cra-dynamic-import.gif)
 
-### Better Console Output {#better-console-output}
+### Better Console Output {/*better-console-output*/}
 
 > _This change was contributed by [@gaearon](https://github.com/gaearon) in [#2120](https://github.com/facebookincubator/create-react-app/pull/2120), [#2125](https://github.com/facebookincubator/create-react-app/pull/2125), and [#2161](https://github.com/facebookincubator/create-react-app/pull/2161)._
 
@@ -89,13 +89,13 @@ For example, when you start the development server, we now display the LAN addre
 
 When lint errors are reported, we no longer show the warnings so that you can concentrate on more critical issues. Errors and warnings in the production build output are better formatted, and the build error overlay font size now matches the browser font size more closely.
 
-### But Wait... There's More! {#but-wait-theres-more}
+### But Wait... There's More! {/*but-wait-theres-more*/}
 
 You can only fit so much in a blog post, but there are other long-requested features in this release, such as [environment-specific and local `.env` files](https://github.com/facebookincubator/create-react-app/pull/1344), [a lint rule against confusingly named globals](https://github.com/facebookincubator/create-react-app/pull/2130), [support for multiple proxies in development](https://github.com/facebookincubator/create-react-app/pull/1790), [a customizable browser launch script](https://github.com/facebookincubator/create-react-app/pull/1590), and many bugfixes.
 
 You can read the full changelog and the migration guide in the [v1.0.0 release notes](https://github.com/facebookincubator/create-react-app/releases/tag/v1.0.0).
 
-### Acknowledgements {#acknowledgements}
+### Acknowledgements {/*acknowledgements*/}
 
 This release is a result of months of work from many people in the React community. It is focused on improving both developer and end user experience, as we believe they are complementary and go hand in hand.
 

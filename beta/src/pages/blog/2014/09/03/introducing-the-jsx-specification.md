@@ -1,6 +1,5 @@
 ---
 title: 'Introducing the JSX Specification'
-layout: Post
 author: [sebmarkbage]
 ---
 

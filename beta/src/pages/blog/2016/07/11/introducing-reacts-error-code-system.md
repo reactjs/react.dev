@@ -1,6 +1,5 @@
 ---
 title: "Introducing React's Error Code System"
-layout: Post
 author: [keyanzhang]
 ---
 

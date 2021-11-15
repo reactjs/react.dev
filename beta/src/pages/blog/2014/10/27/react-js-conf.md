@@ -1,6 +1,5 @@
 ---
 title: React.js Conf
-layout: Post
 author: [vjeux]
 ---
 

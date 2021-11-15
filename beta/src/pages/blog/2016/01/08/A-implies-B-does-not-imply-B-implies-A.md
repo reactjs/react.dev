@@ -1,6 +1,5 @@
 ---
 title: '(A => B) !=> (B => A)'
-layout: Post
 author: [jimfb]
 ---
 

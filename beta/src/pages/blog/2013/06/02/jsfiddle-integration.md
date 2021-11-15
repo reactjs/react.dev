@@ -1,6 +1,5 @@
 ---
 title: JSFiddle Integration
-layout: Post
 author: [vjeux]
 ---
 

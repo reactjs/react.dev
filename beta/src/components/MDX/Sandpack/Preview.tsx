@@ -133,14 +133,12 @@ export function Preview({
         ...customStyle,
         ...viewportStyle,
         ...overrideStyle,
-      }}
-    >
+      }}>
       <div
         className={cn(
           'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none'
         )}
-        style={{overflow}}
-      >
+        style={{overflow}}>
         <div
           style={{
             padding: 'initial',
@@ -150,8 +148,7 @@ export function Preview({
               ? 'sticky'
               : undefined,
             top: isExpanded ? '2rem' : undefined,
-          }}
-        >
+          }}>
           <iframe
             ref={iframeRef}
             className="rounded-t-none bg-white shadow-md sm:rounded-lg w-full max-w-full"
@@ -178,8 +175,7 @@ export function Preview({
               // the errors can also expand the parent height.
               position: isExpanded ? 'sticky' : undefined,
               top: isExpanded ? '2rem' : '',
-            }}
-          >
+            }}>
             <Error error={error} />
           </div>
         )}

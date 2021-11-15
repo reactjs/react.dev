@@ -24,8 +24,7 @@ export function Toc({
         // This keeps the layout fixed width instead of adjusting for content.
         width: 'inherit',
         maxWidth: 'inherit',
-      }}
-    >
+      }}>
       <h2 className="mb-3 lg:mb-3 uppercase tracking-wide font-bold text-sm text-secondary dark:text-secondary-dark px-4 w-full">
         On this page
       </h2>
@@ -50,8 +49,7 @@ export function Toc({
                       'pl-4': h?.depth === 3,
                       hidden: h.depth && h.depth > 3,
                     }
-                  )}
-                >
+                  )}>
                   <a
                     className={cx(
                       selectedIndex === i
@@ -59,8 +57,7 @@ export function Toc({
                         : 'text-secondary dark:text-secondary-dark',
                       'block hover:text-link dark:hover:text-link-dark'
                     )}
-                    href={h.url}
-                  >
+                    href={h.url}>
                     {h.text}
                   </a>
                 </li>

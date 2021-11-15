@@ -108,15 +108,13 @@ export function AnatomyStep({
         'border-l-4 rounded-lg px-5 pt-8 pb-2 bg-opacity-5 shadow-inner',
         color.border,
         color.background
-      )}
-    >
+      )}>
       <div className="relative flex items-center justify-between">
         <div
           className={cn(
             'inline align-middle text-center rounded-full w-5 h-5 absolute font-bold text-white text-code font-mono leading-tight -left-8',
             color.background
-          )}
-        >
+          )}>
           {stepNumber}
         </div>
         <div className="text-primary dark:text-primary-dark leading-3 font-bold">

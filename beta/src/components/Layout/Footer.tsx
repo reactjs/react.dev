@@ -21,8 +21,7 @@ export function Footer() {
           <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-x-12 gap-y-8 max-w-7xl mx-auto ">
             <ExternalLink
               href="https://opensource.fb.com/"
-              className="col-span-2 sm:col-span-1 justify-items-start w-44 text-left"
-            >
+              className="col-span-2 sm:col-span-1 justify-items-start w-44 text-left">
               <div>
                 <svg
                   className="mt-4 mb-4"
@@ -30,8 +29,7 @@ export function Footer() {
                   height="13"
                   viewBox="0 0 115 13"
                   fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
+                  xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M9.12655 0.414727V2.061C9.1323 2.15436 9.06215 2.23355 8.97245 2.23945C8.96555 2.23945 8.95865 2.23945 8.95175 2.23945H2.07259V5.60409H7.75002C7.84087 5.59818 7.91792 5.67027 7.92367 5.76364C7.92367 5.76955 7.92367 5.77664 7.92367 5.78255V7.43C7.92942 7.52336 7.85927 7.60254 7.76842 7.60845C7.76267 7.60845 7.75577 7.60845 7.75002 7.60845H2.07259V12.5827C2.07949 12.6761 2.01049 12.7565 1.92079 12.7635C1.91389 12.7635 1.90699 12.7635 1.90009 12.7635H0.175126C0.084278 12.7695 0.00607958 12.6974 0.000329697 12.6028C0.000329697 12.5969 0.000329697 12.5898 0.000329697 12.5839V0.411182C-0.00542019 0.317818 0.0647284 0.237454 0.156727 0.231545C0.162476 0.231545 0.169376 0.231545 0.175126 0.231545H8.9506C9.04145 0.225636 9.1208 0.296545 9.12655 0.389909C9.1277 0.398182 9.1277 0.406454 9.12655 0.414727Z"
                     fill="currentColor"
@@ -129,14 +127,12 @@ export function Footer() {
               <div className="flex flex-row mt-8 gap-x-2">
                 <ExternalLink
                   href="https://www.facebook.com/react"
-                  className={socialLinkClasses}
-                >
+                  className={socialLinkClasses}>
                   <IconFacebookCircle />
                 </ExternalLink>
                 <ExternalLink
                   href="https://twitter.com/reactjs"
-                  className={socialLinkClasses}
-                >
+                  className={socialLinkClasses}>
                   <IconTwitter />
                 </ExternalLink>
               </div>

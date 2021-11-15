@@ -68,16 +68,14 @@ export function SidebarLink({
             'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               selected,
           }
-        )}
-      >
+        )}>
         {title}
         {isExpanded != null && !heading && !hideArrow && (
           <span
             className={cn('pr-1', {
               'text-link': isExpanded,
               'text-gray-30': !isExpanded,
-            })}
-          >
+            })}>
             <IconNavArrow displayDirection={isExpanded ? 'down' : 'right'} />
           </span>
         )}

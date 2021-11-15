@@ -24,8 +24,7 @@ export function FilesDropdown() {
             className={cn(
               'h-full py-2 px-1 mt-px -mb-px flex border-b-2 text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate'
             )}
-            style={{maxWidth: '160px'}}
-          >
+            style={{maxWidth: '160px'}}>
             {getFileName(activePath)}
             <span className="ml-2">
               <IconChevron displayDirection={open ? 'up' : 'down'} />
@@ -41,8 +40,7 @@ export function FilesDropdown() {
             className={cn(
               'text-md mx-2 my-4 cursor-pointer',
               filePath === activePath && 'text-link dark:text-link-dark'
-            )}
-          >
+            )}>
             {getFileName(filePath)}
           </Listbox.Option>
         ))}

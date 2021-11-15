@@ -66,8 +66,7 @@ function ConsoleBlock({level = 'info', children}: ConsoleBlockProps) {
             'bg-gray-5 text-secondary dark:text-secondary-dark':
               level === 'info',
           }
-        )}
-      >
+        )}>
         {level === 'error' && <IconError className="self-start mt-1.5" />}
         {level === 'warning' && <IconWarning className="self-start mt-1" />}
         <div className="px-3">{message}</div>

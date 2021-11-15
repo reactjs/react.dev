@@ -109,16 +109,14 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
       <div
         className={cn(
           'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-lg'
-        )}
-      >
+        )}>
         <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
           <H2
             id={isRecipes ? 'recipes' : 'challenges'}
             className={cn(
               'text-3xl mb-2 leading-10 relative',
               isRecipes ? 'text-purple-50 dark:text-purple-30' : 'text-link'
-            )}
-          >
+            )}>
             {isRecipes ? 'Try out some recipes' : 'Try out some challenges'}
           </H2>
           {challenges.length > 1 && (
@@ -152,8 +150,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
                 <Button
                   className="mr-2"
                   onClick={toggleSolution}
-                  active={showSolution}
-                >
+                  active={showSolution}>
                   <IconSolution className="mr-1.5" />{' '}
                   {showSolution ? 'Hide solution' : 'Show solution'}
                 </Button>
@@ -163,8 +160,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
                 <Button
                   className="mr-2"
                   onClick={toggleSolution}
-                  active={showSolution}
-                >
+                  active={showSolution}>
                   <IconSolution className="mr-1.5" />{' '}
                   {showSolution ? 'Hide solution' : 'Show solution'}
                 </Button>
@@ -182,8 +178,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
                   setActiveChallenge(nextChallenge.id);
                   setShowSolution(false);
                 }}
-                active
-              >
+                active>
                 Next {isRecipes ? 'Recipe' : 'Challenge'}
                 <IconArrowSmall
                   displayDirection="right"
@@ -219,8 +214,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
                         });
                       }
                     }}
-                    active
-                  >
+                    active>
                     Next Challenge
                     <IconArrowSmall
                       displayDirection="right"

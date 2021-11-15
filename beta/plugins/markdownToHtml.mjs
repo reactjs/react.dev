@@ -1,3 +1,5 @@
+import path from 'path';
+import {fileURLToPath} from 'url';
 import grayMatter from 'gray-matter';
 import {valueToEstree} from 'estree-util-value-to-estree';
 import {visit} from 'unist-util-visit';
@@ -17,7 +19,7 @@ import rehypeStringify from 'rehype-stringify';
 // To do: TS should be picking this all up, but it doesn’t? Because of `.mjs`?
 /** @type {import('unified').Plugin<void[], import('mdast').Root>} */
 function turnFrontmatterIntoALayout() {
-  return (tree) => {
+  return (tree, file) => {
     const head = tree.children[0]
     let data = {}
     let index = 0
@@ -28,7 +30,15 @@ function turnFrontmatterIntoALayout() {
       index = 1
     }
 
-    const layout = data.layout || 'Learn';
+    const layoutMap = {
+      blog: 'Post',
+      learn: 'Learn',
+      reference: 'API',
+    };
+    const pages = fileURLToPath(new URL('../src/pages', import.meta.url));
+    const paths = path.relative(pages, file.path).split(path.sep);
+    const mainFolder = paths.length > 1 ? paths[0] : undefined;
+    const layout = mainFolder && mainFolder in layoutMap ? layoutMap[mainFolder] : 'Home';
 
     // Add import/exports for the layout.
     tree.children.splice(index, 0, {

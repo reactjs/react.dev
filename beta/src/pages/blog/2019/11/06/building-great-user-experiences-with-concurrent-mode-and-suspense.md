@@ -11,7 +11,7 @@ At React Conf 2019 we announced an [experimental release](/docs/concurrent-mode-
 
 This post is **aimed at library authors**. If you're primarily an application developer, you might still find some interesting ideas here, but don't feel like you have to read it in its entirety.
 
-## Talk Videos {#talk-videos}
+## Talk Videos {/*talk-videos*/}
 
 If you prefer to watch videos, some of the ideas from this blog post have been referenced in several React Conf 2019 presentations:
 
@@ -21,7 +21,7 @@ If you prefer to watch videos, some of the ideas from this blog post have been r
 
 This post presents a deeper dive on implementing a data fetching library with Suspense.
 
-## Putting User Experience First {#putting-user-experience-first}
+## Putting User Experience First {/*putting-user-experience-first*/}
 
 The React team and community has long placed a deserved emphasis on developer experience: ensuring that React has good error messages, focusing on components as a way to reason locally about app behavior, crafting APIs that are predictable and encourage correct usage by design, etc. But we haven't provided enough guidance on the best ways to achieve a great _user_ experience in large apps.
 
@@ -33,7 +33,7 @@ Thanks to this project, we're more confident than ever that Concurrent Mode and 
 
 Relay Hooks -- and GraphQL -- won't be for everyone, and that's ok! Through our work on these APIs we've identified a set of more general patterns for using Suspense. **Even if Relay isn't the right fit for you, we think the key patterns we've introduced with Relay Hooks can be adapted to other frameworks.**
 
-## Best Practices for Suspense {#best-practices-for-suspense}
+## Best Practices for Suspense {/*best-practices-for-suspense*/}
 
 It's tempting to focus only on the total startup time for an app -- but it turns out that users' perception of performance is determined by more than the absolute loading time. For example, when comparing two apps with the same absolute startup time, our research shows that users will generally perceive the one with fewer intermediate loading states and fewer layout changes as having loaded faster. Suspense is a powerful tool for carefully orchestrating an elegant loading sequence with a few, well-defined states that progressively reveal content. But improving perceived performance only goes so far -- our apps still shouldn't take forever to fetch all of their code, data, images, and other assets.
 
@@ -43,7 +43,7 @@ It turns out that this approach has some limitations. Consider a page that shows
 
 There's also another often-overlooked downside to this approach. If `<Post>` eagerly requires (or imports) the `<CommentList>` component, our app will have to wait to show the post _body_ while the code for the _comments_ is downloading. We could lazily load `<CommentList>`, but then that would delay fetching comments data and increase the time to show the full page. How do we resolve this problem without compromising on the user experience?
 
-## Render As You Fetch {#render-as-you-fetch}
+## Render As You Fetch {/*render-as-you-fetch*/}
 
 The fetch-on-render approach is widely used by React apps today and can certainly be used to create great apps. But can we do even better? Let's step back and consider our goal.
 
@@ -59,7 +59,7 @@ This might sound difficult to achieve -- but these constraints are actually incr
 3. Load data incrementally
 4. Treat code like data
 
-### Parallel Data and View Trees {#parallel-data-and-view-trees}
+### Parallel Data and View Trees {/*parallel-data-and-view-trees*/}
 
 One of the most appealing things about the fetch-on-render pattern is that it colocates _what_ data a component needs with _how_ to render that data. This colocation is great -- an example of how it makes sense to group code by concerns and not by technologies. All the issues we saw above were due to _when_ we fetch data in this approach: upon rendering. We need to be able to fetch data _before_ we've rendered the component. The only way to achieve that is by extracting the data dependencies into parallel data and view trees.
 
@@ -96,7 +96,7 @@ Although the GraphQL is written within the component, Relay has a build step (Re
 
 The key is that regardless of the technology we're using to load our data -- GraphQL, REST, etc -- we can separate _what_ data to load from how and when to actually load it. But once we do that, how and when _do_ we fetch our data?
 
-### Fetch in Event Handlers {#fetch-in-event-handlers}
+### Fetch in Event Handlers {/*fetch-in-event-handlers*/}
 
 Imagine that we're about to navigate from a list of a user's posts to the page for a specific post. We'll need to download the code for that page -- `Post.js` -- and also fetch its data.
 
@@ -173,7 +173,7 @@ Once we've implemented the ability to start loading code and data for a view ind
 
 Best of all, we can centralize that logic in a few key places -- a router or core UI components -- and get any performance benefits automatically throughout our app. Of course preloading isn't always beneficial. It's something an application would tune based on the user's device or network speed to avoid eating up user's data plans. But the pattern here makes it easier to centralize the implementation of preloading and the decision of whether to enable it or not.
 
-### Load Data Incrementally {#load-data-incrementally}
+### Load Data Incrementally {/*load-data-incrementally*/}
 
 The above patterns -- parallel data/view trees and fetching in event handlers -- let us start loading all the data for a view earlier. But we still want to be able to show more important parts of the view without waiting for _all_ of our data. At Facebook we've implemented support for this in GraphQL and Relay in the form of some new GraphQL directives (annotations that affect how/when data is delivered, but not what data). These new directives, called `@defer` and `@stream`, allow us to retrieve data incrementally. For example, consider our `<Post>` component from above. We want to show the body without waiting for the comments to be ready. We can achieve this with `@defer` and `<Suspense>`:
 
@@ -208,17 +208,17 @@ function Post(props) {
 
 Here, our GraphQL server will stream back the results, first returning the `author` and `title` fields and then returning the comment data when it's ready. We wrap `<CommentList>` in a `<Suspense>` boundary so that we can render the post body before `<CommentList>` and its data are ready. This same pattern can be applied to other frameworks as well. For example, apps that call a REST API might make parallel requests to fetch the body and comments data for a post to avoid blocking on all the data being ready.
 
-### Treat Code Like Data {#treat-code-like-data}
+### Treat Code Like Data {/*treat-code-like-data*/}
 
 But there's one thing that's still missing. We've shown how to preload _data_ for a route -- but what about code? The example above cheated a bit and used `React.lazy`. However, `React.lazy` is, as the name implies, _lazy_. It won't start downloading code until the lazy component is actually rendered -- it's "fetch-on-render" for code!
 
 To solve this, the React team is considering APIs that would allow bundle splitting and eager preloading for code as well. That would allow a user to pass some form of lazy component to a router, and for the router to trigger loading the code alongside its data as early as possible.
 
-## Putting It All Together {#putting-it-all-together}
+## Putting It All Together {/*putting-it-all-together*/}
 
 To recap, achieving a great loading experience means that we need to **start loading code and data as early as possible, but without waiting for all of it to be ready**. Parallel data and view trees allow us to load the data for a view in parallel with loading the view (code) itself. Fetching in an event handler means we can start loading data as early as possible, and even optimistically preload a view when we have enough confidence that a user will navigate to it. Loading data incrementally allows us to load important data earlier without delaying the fetching of less important data. And treating code as data -- and preloading it with similar APIs -- allows us to load it earlier too.
 
-## Using These Patterns {#using-these-patterns}
+## Using These Patterns {/*using-these-patterns*/}
 
 These patterns aren't just ideas -- we've implemented them in Relay Hooks and are using them in production throughout the new facebook.com (which is currently in beta testing). If you're interested in using or learning more about these patterns, here are some resources:
 

@@ -7,7 +7,7 @@ author: [fisherwebdev]
 
 [Flux](https://facebook.github.io/flux/) is the application architecture that Facebook uses to build web applications with [React](/). It's based on a unidirectional data flow. In previous blog posts and documentation articles, we've shown the [basic structure and data flow](https://facebook.github.io/flux/docs/overview.html), more closely examined the [dispatcher and action creators](/blog/2014/07/30/flux-actions-and-the-dispatcher.html), and shown how to put it all together with a [tutorial](https://facebook.github.io/flux/docs/todo-list.html). Now let's look at how to do formal unit testing of Flux applications with [Jest](https://facebook.github.io/jest/), Facebook's auto-mocking testing framework.
 
-## Testing with Jest {#testing-with-jest}
+## Testing with Jest {/*testing-with-jest*/}
 
 For a unit test to operate on a truly isolated _unit_ of the application, we need to mock every module except the one we are testing. Jest makes the mocking of other parts of a Flux application trivial. To illustrate testing with Jest, we'll return to our [example TodoMVC application](https://github.com/facebook/flux/tree/master/examples/flux-todomvc).
 
@@ -38,7 +38,7 @@ jest.dontMock('TodoStore');
 
 This tells Jest to let TodoStore be a real object with real, live methods. Jest will mock all other objects involved with the test.
 
-## Testing Stores {#testing-stores}
+## Testing Stores {/*testing-stores*/}
 
 At Facebook, Flux stores often receive a great deal of formal unit test coverage, as this is where the application state and logic lives. Stores are arguably the most important place in a Flux application to provide coverage, but at first glance, it's not entirely obvious how to test them.
 
@@ -81,7 +81,7 @@ var keys = Object.keys(all);
 expect(all[keys[0]].text).toEqual('foo');
 ```
 
-## Putting it All Together {#putting-it-all-together}
+## Putting it All Together {/*putting-it-all-together*/}
 
 The example Flux TodoMVC application has been updated with an example test for the TodoStore, but let's look at an abbreviated version of the entire test. The most important things to notice in this test are how we keep a reference to the store's registered callback in the closure of the test, and how we recreate the store before every test so that we clear the state of the store entirely.
 
@@ -149,7 +149,7 @@ describe('TodoStore', function () {
 
 You can take a look at all this code in the [TodoStore's tests on GitHub](https://github.com/facebook/flux/tree/master/examples/flux-todomvc/js/stores/__tests__/TodoStore-test.js) as well.
 
-## Mocking Data Derived from Other Stores {#mocking-data-derived-from-other-stores}
+## Mocking Data Derived from Other Stores {/*mocking-data-derived-from-other-stores*/}
 
 Sometimes our stores rely on data from other stores. Because all of our modules are mocked, we'll need to simulate the data that comes from the other store. We can do this by retrieving the mock function and adding a custom return value to it.
 
@@ -173,7 +173,7 @@ A brief example of this technique is up on GitHub within the Flux Chat example's
 
 For more information about the `mock` property of mocked methods or Jest's ability to provide custom mock values, see Jest's documentation on [mock functions](https://facebook.github.io/jest/docs/mock-functions.html).
 
-## Moving Logic from React to Stores {#moving-logic-from-react-to-stores}
+## Moving Logic from React to Stores {/*moving-logic-from-react-to-stores*/}
 
 What often starts as a little piece of seemingly benign logic in our React components often presents a problem while creating unit tests. We want to be able to write tests that read like a specification for our application's behavior, and when application logic slips into our view layer, this becomes more difficult.
 
@@ -306,7 +306,7 @@ render: function() {
 
 To learn how to test React components themselves, check out the [Jest tutorial for React](https://facebook.github.io/jest/docs/tutorial-react.html) and the [ReactTestUtils documentation](/docs/test-utils.html).
 
-## Further Reading {#further-reading}
+## Further Reading {/*further-reading*/}
 
 - [Mocks Aren't Stubs](http://martinfowler.com/articles/mocksArentStubs.html) by Martin Fowler
 - [Jest API Reference](https://facebook.github.io/jest/docs/api.html)

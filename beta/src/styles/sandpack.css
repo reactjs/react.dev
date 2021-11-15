@@ -3,6 +3,8 @@
  */
 
 html .sp-wrapper {
+  color-scheme: inherit;
+  
   /* palette */
   --sp-colors-fg-active: #24292e !important;
   --sp-colors-fg-default: #959da5 !important;
@@ -190,4 +192,16 @@ html.dark .sp-loading {
 .cm-lineNumbers {
   padding-left: var(--sp-space-1) !important;
   padding-right: var(--sp-space-1) !important;
+}
+
+/* For iOS: prevent browser zoom when clicking on sandbox. */
+@media screen and (max-width: 768px) {
+  @supports (-webkit-overflow-scrolling: touch) {
+    .cm-content {
+      font-size: initial;
+    }
+    .DocSearch-Input {
+      font-size: initial;
+    }
+  } 
 }

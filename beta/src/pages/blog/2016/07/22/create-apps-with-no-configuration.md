@@ -5,9 +5,9 @@ author: [gaearon]
 
 **[Create React App](https://github.com/facebookincubator/create-react-app)** is a new officially supported way to create single-page React applications. It offers a modern build setup with no configuration.
 
-## Getting Started {#getting-started}
+## Getting Started {/*getting-started*/}
 
-### Installation {#installation}
+### Installation {/*installation*/}
 
 First, install the global package:
 
@@ -17,7 +17,7 @@ npm install -g create-react-app
 
 Node.js 4.x or higher is required.
 
-### Creating an App {#creating-an-app}
+### Creating an App {/*creating-an-app*/}
 
 Now you can use it to create a new app:
 
@@ -29,7 +29,7 @@ This will take a while as npm installs the transitive dependencies, but once it�
 
 ![created folder](/images/blog/create-apps-with-no-configuration/created-folder.png)
 
-### Starting the Server {#starting-the-server}
+### Starting the Server {/*starting-the-server*/}
 
 Run `npm start` to launch the development server. The browser will open automatically with the created app’s URL.
 
@@ -46,7 +46,7 @@ ESLint is also integrated so lint warnings are displayed right in the console:
 
 We only picked a small subset of lint rules that often lead to bugs.
 
-### Building for Production {#building-for-production}
+### Building for Production {/*building-for-production*/}
 
 To build an optimized bundle, run `npm run build`:
 
@@ -54,7 +54,7 @@ To build an optimized bundle, run `npm run build`:
 
 It is minified, correctly envified, and the assets include content hashes for caching.
 
-### One Dependency {#one-dependency}
+### One Dependency {/*one-dependency*/}
 
 Your `package.json` contains only a single build dependency and a few scripts:
 
@@ -78,7 +78,7 @@ Your `package.json` contains only a single build dependency and a few scripts:
 
 We take care of updating Babel, ESLint, and webpack to stable compatible versions so you can update a single dependency to get them all.
 
-### Zero Configuration {#zero-configuration}
+### Zero Configuration {/*zero-configuration*/}
 
 It is worth repeating: there are no configuration files or complicated folder structures. The tool only generates the files you need to build your app.
 
@@ -99,7 +99,7 @@ hello-world/
 
 All the build settings are preconfigured and can’t be changed. Some features, such as testing, are currently missing. This is an intentional limitation, and we recognize it might not work for everybody. And this brings us to the last point.
 
-### No Lock-In {#no-lock-in}
+### No Lock-In {/*no-lock-in*/}
 
 We first saw this feature in [Enclave](https://github.com/eanplatter/enclave), and we loved it. We talked to [Ean](https://twitter.com/EanPlatter), and he was excited to collaborate with us. He already sent a few pull requests!
 
@@ -107,7 +107,7 @@ We first saw this feature in [Enclave](https://github.com/eanplatter/enclave), a
 
 We expect that at early stages, many people will “eject” for one reason or another, but as we learn from them, we will make the default setup more and more compelling while still providing no configuration.
 
-## Try It Out! {#try-it-out}
+## Try It Out! {/*try-it-out*/}
 
 You can find [**Create React App**](https://github.com/facebookincubator/create-react-app) with additional instructions on GitHub.
 
@@ -115,7 +115,7 @@ This is an experiment, and only time will tell if it becomes a popular way of cr
 
 We welcome you to participate in this experiment. Help us build the React tooling that more people can use. We are always [open to feedback](https://github.com/facebookincubator/create-react-app/issues/11).
 
-## The Backstory {#the-backstory}
+## The Backstory {/*the-backstory*/}
 
 React was one of the first libraries to embrace transpiling JavaScript. As a result, even though you can [learn React without any tooling](https://github.com/facebook/react/blob/3fd582643ef3d222a00a0c756292c15b88f9f83c/examples/basic-jsx/index.html), the React ecosystem has commonly become associated with an overwhelming explosion of tools.
 
@@ -135,7 +135,7 @@ This doesn’t mean those tools aren’t great. To many of us, they have become 
 
 Still, we knew it was frustrating to spend days setting up a project when all you wanted was to learn React. We wanted to fix this.
 
-## Could We Fix This? {#could-we-fix-this}
+## Could We Fix This? {/*could-we-fix-this*/}
 
 We found ourselves in an unusual dilemma.
 
@@ -145,7 +145,7 @@ However, tooling at Facebook is different than at many smaller companies. Lintin
 
 The React community is very important to us. We knew that we couldn’t fix the problem within the limits of our open source philosophy. This is why we decided to make an exception, and to ship something that we didn’t use ourselves, but that we thought would be useful to the community.
 
-## The Quest for a React <abbr title="Command Line Interface">CLI</abbr> {#the-quest-for-a-react-abbr-titlecommand-line-interfacecliabbr}
+## The Quest for a React <abbr title="Command Line Interface">CLI</abbr> {/*the-quest-for-a-react-abbr-titlecommand-line-interfacecliabbr*/}
 
 Having just attended [EmberCamp](http://embercamp.com/) a week ago, I was excited about [Ember CLI](https://ember-cli.com/). Ember users have a great “getting started” experience thanks to a curated set of tools united under a single command-line interface. I have heard similar feedback about [Elm Reactor](https://github.com/elm-lang/elm-reactor).
 

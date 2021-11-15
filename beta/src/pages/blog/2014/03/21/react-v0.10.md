@@ -20,7 +20,7 @@ We've also published version `0.10.0` of the `react` and `react-tools` packages 
 
 Please try these builds out and [file an issue on GitHub](https://github.com/facebook/react/issues/new) if you see anything awry.
 
-## Clone On Mount {#clone-on-mount}
+## Clone On Mount {/*clone-on-mount*/}
 
 The main purpose of this release is to provide a smooth upgrade path as we evolve some of the implementation of core. In v0.9 we started warning in cases where you called methods on unmounted components. This is part of an effort to enforce the idea that the return value of a component (`React.DOM.div()`, `MyComponent()`) is in fact not a reference to the component instance React uses in the virtual DOM. The return value is instead a light-weight object that React knows how to use. Since the return value currently is a reference to the same object React uses internally, we need to make this transition in stages as many people have come to depend on this implementation detail.
 
@@ -47,11 +47,11 @@ These warnings and method forwarding are only enabled in the development build. 
 
 The plan for v0.11 is that we will go fully to "descriptors". Method calls on the return value of `MyComponent()` will fail hard.
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### New Features {#new-features}
+#### New Features {/*new-features*/}
 
 - Added warnings to help migrate towards descriptors
 - Made it possible to server render without React-related markup (`data-reactid`, `data-react-checksum`). This DOM will not be mountable by React. [Read the docs for `React.renderComponentToStaticMarkup`](/docs/top-level-api.html#react.rendercomponenttostaticmarkup)
@@ -59,16 +59,16 @@ The plan for v0.11 is that we will go fully to "descriptors". Method calls on th
   - `srcSet` for `<img>` to specify images at different pixel ratios
   - `textAnchor` for SVG
 
-#### Bug Fixes {#bug-fixes}
+#### Bug Fixes {/*bug-fixes*/}
 
 - Ensure all void elements don’t insert a closing tag into the markup.
 - Ensure `className={false}` behaves consistently
 - Ensure `this.refs` is defined, even if no refs are specified.
 
-### Addons {#addons}
+### Addons {/*addons*/}
 
 - `update` function to deal with immutable data. [Read the docs](/docs/update.html)
 
-### react-tools {#react-tools}
+### react-tools {/*react-tools*/}
 
 - Added an option argument to `transform` function. The only option supported is `harmony`, which behaves the same as `jsx --harmony` on the command line. This uses the ES6 transforms from [jstransform](https://github.com/facebook/jstransform).

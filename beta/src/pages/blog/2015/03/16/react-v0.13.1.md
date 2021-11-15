@@ -22,25 +22,25 @@ We've also published version `0.13.1` of the `react` and `react-tools` packages 
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React Core {#react-core}
+### React Core {/*react-core*/}
 
-#### Bug Fixes {#bug-fixes}
+#### Bug Fixes {/*bug-fixes*/}
 
 - Don't throw when rendering empty `<select>` elements
 - Ensure updating `style` works when transitioning from `null`
 
-### React with Add-Ons {#react-with-add-ons}
+### React with Add-Ons {/*react-with-add-ons*/}
 
-#### Bug Fixes {#bug-fixes-1}
+#### Bug Fixes {/*bug-fixes-1*/}
 
 - TestUtils: Don't warn about `getDOMNode` for ES6 classes
 - TestUtils: Ensure wrapped full page components (`<html>`, `<head>`, `<body>`) are treated as DOM components
 - Perf: Stop double-counting DOM components
 
-### React Tools {#react-tools}
+### React Tools {/*react-tools*/}
 
-#### Bug Fixes {#bug-fixes-2}
+#### Bug Fixes {/*bug-fixes-2*/}
 
 - Fix option parsing for `--non-strict-es6module`

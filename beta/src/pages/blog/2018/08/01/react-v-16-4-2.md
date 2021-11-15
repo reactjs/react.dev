@@ -5,7 +5,7 @@ author: [gaearon]
 
 We discovered a minor vulnerability that might affect some apps using ReactDOMServer. We are releasing a patch version for every affected React minor release so that you can upgrade with no friction. Read on for more details.
 
-## Short Description {#short-description}
+## Short Description {/*short-description*/}
 
 Today, we are releasing a fix for a vulnerability we discovered in the `react-dom/server` implementation. It was introduced with the version 16.0.0 and has existed in all subsequent releases until today.
 
@@ -13,11 +13,11 @@ This vulnerability **can only affect some server-rendered React apps.** Purely c
 
 While we were investigating this vulnerability, we found similar vulnerabilities in a few other popular front-end libraries. We have coordinated this release together with [Vue](https://github.com/vuejs/vue/releases/tag/v2.5.17) and [Preact](https://github.com/developit/preact-render-to-string/releases/tag/3.7.1) releases fixing the same issue. The tracking number for this vulnerability is `CVE-2018-6341`.
 
-## Mitigation {#mitigation}
+## Mitigation {/*mitigation*/}
 
 **We have prepared a patch release with a fix for every affected minor version.**
 
-### 16.0.x {#160x}
+### 16.0.x {/*160x*/}
 
 If you're using `react-dom/server` with this version:
 
@@ -27,7 +27,7 @@ Update to this version instead:
 
 - `react-dom@16.0.1` **(contains the mitigation)**
 
-### 16.1.x {#161x}
+### 16.1.x {/*161x*/}
 
 If you're using `react-dom/server` with one of these versions:
 
@@ -38,7 +38,7 @@ Update to this version instead:
 
 - `react-dom@16.1.2` **(contains the mitigation)**
 
-### 16.2.x {#162x}
+### 16.2.x {/*162x*/}
 
 If you're using `react-dom/server` with this version:
 
@@ -48,7 +48,7 @@ Update to this version instead:
 
 - `react-dom@16.2.1` **(contains the mitigation)**
 
-### 16.3.x {#163x}
+### 16.3.x {/*163x*/}
 
 If you're using `react-dom/server` with one of these versions:
 
@@ -60,7 +60,7 @@ Update to this version instead:
 
 - `react-dom@16.3.3` **(contains the mitigation)**
 
-### 16.4.x {#164x}
+### 16.4.x {/*164x*/}
 
 If you're using `react-dom/server` with one of these versions:
 
@@ -75,7 +75,7 @@ If you're using a newer version of `react-dom`, no action is required.
 
 Note that only the `react-dom` package needs to be updated.
 
-## Detailed Description {#detailed-description}
+## Detailed Description {/*detailed-description*/}
 
 Your app might be affected by this vulnerability only if both of these two conditions are true:
 
@@ -113,7 +113,7 @@ You would also see a warning about an invalid attribute name.
 
 Note that **we expect attribute names based on user input to be very rare in practice.** It doesn't serve any common practical use case, and has other potential security implications that React can't guard against.
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 React v16.4.2 is available on the npm registry.
 
@@ -138,9 +138,9 @@ We also provide UMD builds of React via a CDN:
 
 Refer to the documentation for [detailed installation instructions](/docs/installation.html).
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-### React DOM Server {#react-dom-server}
+### React DOM Server {/*react-dom-server*/}
 
 * Fix a potential XSS vulnerability when the attacker controls an attribute name (`CVE-2018-6341`). This fix is available in the latest `react-dom@16.4.2`, as well as in previous affected minor versions: `react-dom@16.0.1`, `react-dom@16.1.2`, `react-dom@16.2.1`, and `react-dom@16.3.3`. ([@gaearon](https://github.com/gaearon) in [#13302](https://github.com/facebook/react/pull/13302))
 

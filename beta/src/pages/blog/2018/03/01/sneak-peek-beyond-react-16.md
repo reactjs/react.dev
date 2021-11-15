@@ -13,7 +13,7 @@ Here's the video courtesy of JSConf Iceland:
 
 I think you'll enjoy the talk more if you stop reading here and just watch the video. If you don't have time to watch, a (very) brief summary follows.
 
-## About the Two Demos {#about-the-two-demos}
+## About the Two Demos {/*about-the-two-demos*/}
 
 On the first demo, Dan says: "We've built a generic way to ensure that high-priority updates don't get blocked by a low-priority update, called **time slicing**. If my device is fast enough, it feels almost like it's synchronous; if my device is slow, the app still feels responsive. It adapts to the device thanks to the [requestIdleCallback](https://developers.google.com/web/updates/2015/08/using-requestidlecallback) API. Notice that only the final state was displayed; the rendered screen is always consistent and we don't see visual artifacts of slow rendering causing a janky user experience."
 

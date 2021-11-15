@@ -21,13 +21,13 @@ Everything is backwards compatible for now, and as always React will provide you
 
 Continue reading if you want all the nitty gritty details...
 
-## New Terminology {#new-terminology}
+## New Terminology {/*new-terminology*/}
 
 We wanted to make it easier for new users to see the parallel with the DOM (and why React is different). To align our terminology we now use the term `ReactElement` instead of _descriptor_. Likewise, we use the term `ReactNode` instead of _renderable_.
 
 [See the full React terminology guide.](https://gist.github.com/sebmarkbage/fcb1b6ab493b0c77d589)
 
-## Creating a ReactElement {#creating-a-reactelement}
+## Creating a ReactElement {/*creating-a-reactelement*/}
 
 We now expose an external API for programmatically creating a `ReactElement` object.
 
@@ -42,7 +42,7 @@ var div = React.createFactory('div');
 var reactDivElement = div(props, children);
 ```
 
-## Deprecated: Auto-generated Factories {#deprecated-auto-generated-factories}
+## Deprecated: Auto-generated Factories {/*deprecated-auto-generated-factories*/}
 
 Imagine if `React.createClass` was just a plain JavaScript class. If you call a class as a plain function you would call the component's constructor to create a Component instance, not a `ReactElement`:
 
@@ -66,9 +66,9 @@ In future versions of React, we want to be able to support pure classes without 
 
 This is the biggest change to 0.12. Don't worry though. This functionality continues to work the same for this release, it just warns you if you're using a deprecated API. That way you can upgrade piece-by-piece instead of everything at once.
 
-## Upgrading to 0.12 {#upgrading-to-012}
+## Upgrading to 0.12 {/*upgrading-to-012*/}
 
-### React With JSX {#react-with-jsx}
+### React With JSX {/*react-with-jsx*/}
 
 If you use the React specific [JSX](https://facebook.github.io/jsx/) transform, the upgrade path is simple. Just make sure you have React in scope.
 
@@ -92,7 +92,7 @@ var MyOtherComponent = React.createClass({
 
 _NOTE: React's JSX will not call arbitrary functions in future releases. This restriction is introduced so that it's easier to reason about the output of JSX by both the reader of your code and optimizing compilers. The JSX syntax is not tied to React. Just the transpiler. You can still use [the JSX spec](https://facebook.github.io/jsx/) with a different transpiler for custom purposes._
 
-### React Without JSX {#react-without-jsx}
+### React Without JSX {/*react-without-jsx*/}
 
 If you don't use JSX and just call components as functions, you will need to explicitly create a factory before calling it:
 
@@ -148,7 +148,7 @@ var MyDOMComponent = React.createClass({
 
 We realize that this is noisy. At least it's on the top of the file (out of sight, out of mind). This a tradeoff we had to make to get [the other benefits](https://gist.github.com/sebmarkbage/d7bce729f38730399d28) that this model unlocks.
 
-### Anti-Pattern: Exporting Factories {#anti-pattern-exporting-factories}
+### Anti-Pattern: Exporting Factories {/*anti-pattern-exporting-factories*/}
 
 If you have an isolated project that only you use, then you could create a helper that creates both the class and the factory at once:
 
@@ -165,7 +165,7 @@ It also encourages you to put more logic into these helper functions. Something 
 
 To fit into the React ecosystem we recommend that you always export pure classes from your shared modules and let the consumer decide the best strategy for generating `ReactElement`s.
 
-## Third-party Languages {#third-party-languages}
+## Third-party Languages {/*third-party-languages*/}
 
 The signature of a `ReactElement` is something like this:
 
@@ -180,7 +180,7 @@ The signature of a `ReactElement` is something like this:
 
 Languages with static typing that don't need validation (e.g. [Om in ClojureScript](https://github.com/swannodette/om)), and production level compilers will be able to generate these objects inline instead of going through the validation step. This optimization will allow significant performance improvements in React.
 
-## Your Thoughts and Ideas {#your-thoughts-and-ideas}
+## Your Thoughts and Ideas {/*your-thoughts-and-ideas*/}
 
 We'd love to hear your feedback on this API and your preferred style. A plausible alternative could be to directly inline objects instead of creating factory functions:
 
@@ -202,7 +202,7 @@ This moves the noise down into the render method though. It also doesn't provide
 
 _NOTE: This won't work in this version of React because it's conflicting with other legacy APIs that we're deprecating. (We temporarily add a `element._isReactElement = true` marker on the object.)_
 
-## The Next Step: ES6 Classes {#the-next-step-es6-classes}
+## The Next Step: ES6 Classes {/*the-next-step-es6-classes*/}
 
 After 0.12 we'll begin work on moving to ES6 classes. We will still support `React.createClass` as a backwards compatible API. If you use an ES6 transpiler you will be able to declare your components like this:
 

@@ -9,7 +9,7 @@ This change shouldn't materially affect most of you. Moving to major semver vers
 
 The core of the React API has been stable for years. Our business as well as many of yours all depend heavily on the use of React as a core piece of our infrastructure. We're committed to the stability as well as the progress of React going forward.
 
-## Bring Everyone Along {#bring-everyone-along}
+## Bring Everyone Along {/*bring-everyone-along*/}
 
 React isn't just a library but an ecosystem. We know that your applications and ours are not just isolated islands of code. It is a network of your own application code, your own open source components and third party libraries that all depend on React.
 
@@ -19,7 +19,7 @@ Therefore it is important that we don't just upgrade our own codebases but that 
 
 <img src="/images/blog/versioning-poll.png" width={596} />
 
-## Introducing Minor Releases {#introducing-minor-releases}
+## Introducing Minor Releases {/*introducing-minor-releases*/}
 
 Ideally everyone could just depend on the latest version of React all the time.
 
@@ -31,11 +31,11 @@ We know that in practice that is not possible. In the future, we expect more new
 
 That means that if one component needs a new API, there is no need for any of the other components to do any further work. They remain compatible.
 
-## What Happened to 1.0.0? {#what-happened-to-100}
+## What Happened to 1.0.0? {/*what-happened-to-100*/}
 
 Part of React's growth and popularity is that it is stable and performant in production. People have long asked what React v1.0 will look. Technically some breaking changes are important to avoid stagnating, but we still achieve stability by making it easy to upgrade. If major version numbers indicate API stability and engender trust that it can be used in production, then we got there a long time ago. There are too many preconceived notions of what v1.0 is. We're still following semver. We're just communicating stability by moving the 0 from the beginning to the end.
 
-## Breaking Changes {#breaking-changes}
+## Breaking Changes {/*breaking-changes*/}
 
 Minor revision releases will include deprecation warnings and tips for how to upgrade an API or pattern that will be removed or changed in the future.
 
@@ -43,7 +43,7 @@ We will continue to release [codemods](https://www.youtube.com/watch?v=d0pOgY8__
 
 Once we've reached the end of life for a particular major version, we'll release a new major version where all deprecated APIs have been removed.
 
-## Avoiding The Major Cliff {#avoiding-the-major-cliff}
+## Avoiding The Major Cliff {/*avoiding-the-major-cliff*/}
 
 If you try to upgrade your component to 16.0.0 you might find that your application no longer works if you still have other dependencies. E.g. if Ryan's and Jed's components are only compatible with 15.x.x.
 

@@ -7,11 +7,11 @@ Flux is the application architecture Facebook uses to build JavaScript applicati
 
 Flux is more of a pattern than a full-blown framework, and you can start using it without a lot of new code beyond React. Up until recently, however, we haven't released one crucial piece of our Flux software: the dispatcher. But along with the creation of the new [Flux code repository](https://github.com/facebook/flux) and [Flux website](https://facebook.github.io/flux/), we've now open sourced the same [dispatcher](https://facebook.github.io/flux/docs/dispatcher.html) we use in our production applications.
 
-## Where the Dispatcher Fits in the Flux Data Flow {#where-the-dispatcher-fits-in-the-flux-data-flow}
+## Where the Dispatcher Fits in the Flux Data Flow {/*where-the-dispatcher-fits-in-the-flux-data-flow*/}
 
 The dispatcher is a singleton, and operates as the central hub of data flow in a Flux application. It is essentially a registry of callbacks, and can invoke these callbacks in order. Each _store_ registers a callback with the dispatcher. When new data comes into the dispatcher, it then uses these callbacks to propagate that data to all of the stores. The process of invoking the callbacks is initiated through the dispatch() method, which takes a data payload object as its sole argument.
 
-## Actions and ActionCreators {#actions-and-actioncreators}
+## Actions and ActionCreators {/*actions-and-actioncreators*/}
 
 When new data enters the system, whether through a person interacting with the application or through a web api call, that data is packaged into an _action_ — an object literal containing the new fields of data and a specific action type. We often create a library of helper methods called ActionCreators that not only create the action object, but also pass the action to the dispatcher.
 
@@ -21,7 +21,7 @@ Letting the stores update themselves eliminates many entanglements typically fou
 
 <img src="/images/blog/flux-diagram.png" style={{width: '100%'}} />
 
-## Why We Need a Dispatcher {#why-we-need-a-dispatcher}
+## Why We Need a Dispatcher {/*why-we-need-a-dispatcher*/}
 
 As an application grows, dependencies across different stores are a near certainty. Store A will inevitably need Store B to update itself first, so that Store A can know how to update itself. We need the dispatcher to be able to invoke the callback for Store B, and finish that callback, before moving forward with Store A. To declaratively assert this dependency, a store needs to be able to say to the dispatcher, "I need to wait for Store B to finish processing this action." The dispatcher provides this functionality through its waitFor() method.
 
@@ -31,7 +31,7 @@ Further, the waitFor() method may be used in different ways for different action
 
 Problems arise, however, if we have circular dependencies. That is, if Store A needs to wait for Store B, and Store B needs to wait for Store A, we could wind up in an endless loop. The dispatcher now available in the Flux repo protects against this by throwing an informative error to alert the developer that this problem has occurred. The developer can then create a third store and resolve the circular dependency.
 
-## Example Chat App {#example-chat-app}
+## Example Chat App {/*example-chat-app*/}
 
 Along with the same dispatcher that Facebook uses in its production applications, we've also published a new example [chat app](https://github.com/facebook/flux/tree/master/examples/flux-chat), slightly more complicated than the simplistic TodoMVC, so that engineers can better understand how Flux solves problems like dependencies between stores and calls to a web API.
 

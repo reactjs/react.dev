@@ -7,7 +7,7 @@ As we worked on [React 16](/blog/2017/09/26/react-v16.0), we revamped the folder
 
 While these changes helped us make React better, they don't affect most React users directly. However, we hope that blogging about them might help other library authors solve similar problems. Our contributors might also find these notes helpful!
 
-## Formatting Code with Prettier {#formatting-code-with-prettier}
+## Formatting Code with Prettier {/*formatting-code-with-prettier*/}
 
 React was one of the first large repositories to [fully embrace](https://github.com/facebook/react/pull/9101) opinionated automatic code formatting with [Prettier](https://prettier.io/). Our current Prettier setup consists of:
 
@@ -16,11 +16,11 @@ React was one of the first large repositories to [fully embrace](https://github.
 
 Some team members have also set up the [editor integrations](https://prettier.io/docs/en/editors). Our experience with Prettier has been fantastic, and we recommend it to any team that writes JavaScript.
 
-## Restructuring the Monorepo {#restructuring-the-monorepo}
+## Restructuring the Monorepo {/*restructuring-the-monorepo*/}
 
 Ever since React was split into packages, it has been a [monorepo](https://danluu.com/monorepo/): a set of packages under the umbrella of a single repository. This made it easier to coordinate changes and share the tooling, but our folder structure was deeply nested and difficult to understand. It was not clear which files belonged to which package. After releasing React 16, we've decided to completely reorganize the repository structure. Here is how we did it.
 
-### Migrating to Yarn Workspaces {#migrating-to-yarn-workspaces}
+### Migrating to Yarn Workspaces {/*migrating-to-yarn-workspaces*/}
 
 The Yarn package manager [introduced a feature called Workspaces](https://yarnpkg.com/blog/2017/08/02/introducing-workspaces/) a few months ago. This feature lets you tell Yarn where your monorepo's packages are located in the source tree. Every time you run `yarn`, in addition to installing your dependencies it also sets up the symlinks that point from your project's `node_modules` to the source folders of your packages.
 
@@ -32,7 +32,7 @@ Each package is structured in a similar way. For every public API entry point su
 
 Not all packages have to be published on npm. For example, we keep some utilities that are tiny enough and can be safely duplicated in a [pseudo-package called `shared`](https://github.com/facebook/react/tree/cc52e06b490e0dc2482b345aa5d0d65fae931095/packages/shared). Our bundler is configured to [only treat `dependencies` declared from `package.json` as externals](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/build.js#L326-L329) so it happily bundles the `shared` code into `react` and `react-dom` without leaving any references to `shared/` in the build artifacts. So you can use Yarn Workspaces even if you don't plan to publish actual npm packages!
 
-### Removing the Custom Module System {#removing-the-custom-module-system}
+### Removing the Custom Module System {/*removing-the-custom-module-system*/}
 
 In the past, we used a non-standard module system called "Haste" that lets you import any file from any other file by its unique `@providesModule` directive no matter where it is in the tree. It neatly avoids the problem of deep relative imports with paths like `../../../../` and is great for the product code. However, this makes it hard to understand the dependencies between packages. We also had to resort to hacks to make it work with different tools.
 
@@ -55,7 +55,7 @@ This way, the relative paths can only contain one `./` or `../` followed by the 
 
 In practice, we still have [some cross-package "internal" imports](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/packages/react-dom/src/client/ReactDOMFiberComponent.js#L10-L11) that violate this principle, but they're explicit, and we plan to gradually get rid of them.
 
-## Compiling Flat Bundles {#compiling-flat-bundles}
+## Compiling Flat Bundles {/*compiling-flat-bundles*/}
 
 Historically, React was distributed in two different formats: as a single-file build that you can add as a `<script>` tag in the browser, and as a collection of CommonJS modules that you can bundle with a tool like webpack or Browserify.
 
@@ -89,7 +89,7 @@ For example, [`react.development.js`](https://unpkg.com/react@16/cjs/react.devel
 
 Note how this is essentially the same strategy that we've been using for the single-file browser builds (which now reside in the [`umd` directory](https://unpkg.com/react@16/umd/), short for [Universal Module Definition](https://www.davidbcalhoun.com/2014/what-is-amd-commonjs-and-umd/)). Now we just apply the same strategy to the CommonJS builds as well.
 
-### Migrating to Rollup {#migrating-to-rollup}
+### Migrating to Rollup {/*migrating-to-rollup*/}
 
 Just compiling CommonJS modules into single-file bundles doesn't solve all of the above problems. The really significant wins came from [migrating our build system](https://github.com/facebook/react/pull/9327) from Browserify to [Rollup](https://rollupjs.org/).
 
@@ -99,7 +99,7 @@ Rollup currently doesn't support some features that are important to application
 
 You can find our Rollup build configuration [here](https://github.com/facebook/react/blob/8ec146c38ee4f4c84b6ecf59f52de3371224e8bd/scripts/rollup/build.js#L336-L362), with a [list of plugins we currently use](https://github.com/facebook/react/blob/8ec146c38ee4f4c84b6ecf59f52de3371224e8bd/scripts/rollup/build.js#L196-L273).
 
-### Migrating to Google Closure Compiler {#migrating-to-google-closure-compiler}
+### Migrating to Google Closure Compiler {/*migrating-to-google-closure-compiler*/}
 
 After migrating to flat bundles, we [started](https://github.com/facebook/react/pull/10236) using [the JavaScript version of the Google Closure Compiler](https://github.com/google/closure-compiler-js) in its "simple" mode. In our experience, even with the advanced optimizations disabled, it still provided a significant advantage over Uglify, as it was able to better eliminate dead code and automatically inline small functions when appropriate.
 
@@ -107,7 +107,7 @@ At first, we could only use Google Closure Compiler for the React bundles we shi
 
 Currently, all production React bundles [run through Google Closure Compiler in simple mode](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/build.js#L235-L248), and we may look into enabling advanced optimizations in the future.
 
-### Protecting Against Weak Dead Code Elimination {#protecting-against-weak-dead-code-elimination}
+### Protecting Against Weak Dead Code Elimination {/*protecting-against-weak-dead-code-elimination*/}
 
 While we use an efficient [dead code elimination](https://en.wikipedia.org/wiki/Dead_code_elimination) solution in React itself, we can't make a lot of assumptions about the tools used by the React consumers.
 
@@ -129,7 +129,7 @@ if ('production' !== 'production') {
 
 However, if the bundler is misconfigured, you can accidentally ship development code into production. We can't completely prevent this, but we took a few steps to mitigate the common cases when it happens.
 
-#### Protecting Against Late Envification {#protecting-against-late-envification}
+#### Protecting Against Late Envification {/*protecting-against-late-envification*/}
 
 As mentioned above, our entry points now look like this:
 
@@ -161,7 +161,7 @@ This way, even if the application bundle includes both the development and the p
 
 The additional [IIFE](https://en.wikipedia.org/wiki/Immediately-invoked_function_expression) wrapper is necessary because some declarations (e.g. functions) can't be placed inside an `if` statement in JavaScript.
 
-#### Detecting Misconfigured Dead Code Elimination {#detecting-misconfigured-dead-code-elimination}
+#### Detecting Misconfigured Dead Code Elimination {/*detecting-misconfigured-dead-code-elimination*/}
 
 Even though [the situation is changing](https://twitter.com/iamakulov/status/941336777188696066), many popular bundlers don't yet force the users to specify the development or production mode. In this case `process.env.NODE_ENV` is typically provided by a runtime polyfill, but the dead code elimination doesn't work.
 
@@ -179,11 +179,11 @@ We can write a function that contains a [development-only branch](https://github
 
 We recognize this approach is somewhat fragile. The `toString()` method is not reliable and may change its behavior in future browser versions. This is why we put that logic into React DevTools itself rather than into React. This allows us to remove it later if it becomes problematic. We also warn only if we _found_ the special string literal rather than if we _didn't_ find it. This way, if the `toString()` output becomes opaque, or is overridden, the warning just won't fire.
 
-## Catching Mistakes Early {#catching-mistakes-early}
+## Catching Mistakes Early {/*catching-mistakes-early*/}
 
 We want to catch bugs as early as possible. However, even with our extensive test coverage, occasionally we make a blunder. We made several changes to our build and test infrastructure this year to make it harder to mess up.
 
-### Migrating to ES Modules {#migrating-to-es-modules}
+### Migrating to ES Modules {/*migrating-to-es-modules*/}
 
 With the CommonJS `require()` and `module.exports`, it is easy to import a function that doesn't really exist, and not realize that until you call it. However, tools like Rollup that natively support [`import`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import) and [`export`](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) syntax fail the build if you mistype a named import. After releasing React 16, [we have converted the entire React source code](https://github.com/facebook/react/pull/11389) to the ES Modules syntax.
 
@@ -191,13 +191,13 @@ Not only did this provide some extra protection, but it also helped improve the 
 
 For now, have decided to only convert the source code to ES Modules, but not the tests. We use powerful utilities like `jest.resetModules()` and want to retain tighter control over when the modules get initialized in tests. In order to consume ES Modules from our tests, we enabled the [Babel CommonJS transform](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/jest/preprocessor.js#L28-L29), but only for the test environment.
 
-### Running Tests in Production Mode {#running-tests-in-production-mode}
+### Running Tests in Production Mode {/*running-tests-in-production-mode*/}
 
 Historically, we've been running all tests in a development environment. This let us assert on the warning messages produced by React, and seemed to make general sense. However, even though we try to keep the differences between the development and production code paths minimal, occasionally we would make a mistake in production-only code branches that weren't covered by tests, and cause an issue at Facebook.
 
 To solve this problem, we have added a new [`yarn test-prod`](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/package.json#L110) command that runs on CI for every pull request, and [executes all React test cases in the production mode](https://github.com/facebook/react/pull/11616). We wrapped any assertions about warning messages into development-only conditional blocks in all tests so that they can still check the rest of the expected behavior in both environments. Since we have a custom Babel transform that replaces production error messages with the [error codes](/blog/2016/07/11/introducing-reacts-error-code-system), we also added a [reverse transformation](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/jest/setupTests.js#L91-L126) as part of the production test run.
 
-### Using Public API in Tests {#using-public-api-in-tests}
+### Using Public API in Tests {/*using-public-api-in-tests*/}
 
 When we were [rewriting the React reconciler](https://code.facebook.com/posts/1716776591680069/react-16-a-look-inside-an-api-compatible-rewrite-of-our-frontend-ui-library/), we recognized the importance of writing tests against the public API instead of internal modules. If the test is written against the public API, it is clear what is being tested from the user's perspective, and you can run it even if you rewrite the implementation from scratch.
 
@@ -205,7 +205,7 @@ We reached out to the wonderful React community [asking for help](https://github
 
 We would like to give our deepest thanks to [everyone who contributed to this effort](https://github.com/facebook/react/issues?q=is%3Apr+11299+is%3Aclosed).
 
-### Running Tests on Compiled Bundles {#running-tests-on-compiled-bundles}
+### Running Tests on Compiled Bundles {/*running-tests-on-compiled-bundles*/}
 
 There is also one more benefit to writing tests against the public API: now we can [run them against the compiled bundles](https://github.com/facebook/react/pull/11633).
 
@@ -221,17 +221,17 @@ There are still some test files that we intentionally don't run against the bund
 
 Currently, over 93% out of 2,650 React tests run against the compiled bundles.
 
-### Linting Compiled Bundles {#linting-compiled-bundles}
+### Linting Compiled Bundles {/*linting-compiled-bundles*/}
 
 In addition to linting our source code, we run a much more limited set of lint rules (really, [just two of them](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/validate/eslintrc.cjs.js#L26-L27)) on the compiled bundles. This gives us an extra layer of protection against regressions in the underlying tools and [ensures](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/validate/eslintrc.cjs.js#L22) that the bundles don't use any language features that aren't supported by older browsers.
 
-### Simulating Package Publishing {#simulating-package-publishing}
+### Simulating Package Publishing {/*simulating-package-publishing*/}
 
 Even running the tests on the built packages is not enough to avoid shipping a broken update. For example, we use the `files` field in our `package.json` files to specify a whitelist of folders and files that should be published on npm. However, it is easy to add a new entry point to a package but forget to add it to the whitelist. Even the bundle tests would pass, but after publishing the new entry point would be missing.
 
 To avoid situations like this, we are now simulating the npm publish by [running `npm pack` and then immediately unpacking the archive](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/packaging.js#L129-L134) after the build. Just like `npm publish`, this command filters out anything that isn't in the `files` whitelist. With this approach, if we were to forget adding an entry point to the list, it would be missing in the build folder, and the bundle tests relying on it would fail.
 
-### Creating Manual Test Fixtures {#creating-manual-test-fixtures}
+### Creating Manual Test Fixtures {/*creating-manual-test-fixtures*/}
 
 Our unit tests run only in the Node environment, but not in the browsers. This was an intentional decision because browser-based testing tools were flaky in our experience, and didn't catch many issues anyway.
 
@@ -255,7 +255,7 @@ In some cases, a change proved to be so complex that it necessitated a standalon
 
 Going through the fixtures is still a lot of work, and we are considering automating some of it. Still, the fixture app is invaluable even as documentation for the existing behavior and all the edge cases and browser bugs that React currently handles. Having it gives us confidence in making significant changes to the logic without breaking important use cases. Another improvement we're considering is to have a GitHub bot build and deploy the fixtures automatically for every pull request that touches the relevant files so anyone can help with browser testing.
 
-### Preventing Infinite Loops {#preventing-infinite-loops}
+### Preventing Infinite Loops {/*preventing-infinite-loops*/}
 
 The React 16 codebase contains many `while` loops. They let us avoid the dreaded deep stack traces that occurred with earlier versions of React, but can make development of React really difficult. Every time there is a mistake in an exit condition our tests would just hang, and it took a while to figure out which of the loops is causing the issue.
 
@@ -263,11 +263,11 @@ Inspired by the [strategy adopted by Repl.it](https://repl.it/site/blog/infinite
 
 This approach has a pitfall. If an error thrown from the Babel plugin gets caught and ignored up the call stack, the test will pass even though it has an infinite loop. This is really, really bad. To solve this problem, we [set a global field](https://github.com/facebook/react/blob/d906de7f602df810c38aa622c83023228b047db6/scripts/babel/transform-prevent-infinite-loops.js#L26-L30) before throwing the error. Then, after every test run, we [rethrow that error if the global field has been set](https://github.com/facebook/react/blob/d906de7f602df810c38aa622c83023228b047db6/scripts/jest/setupTests.js#L42-L56). This way any infinite loop will cause a test failure, no matter whether the error from the Babel plugin was caught or not.
 
-## Customizing the Build {#customizing-the-build}
+## Customizing the Build {/*customizing-the-build*/}
 
 There were a few things that we had to fine-tune after introducing our new build process. It took us a while to figure them out, but we're moderately happy with the solutions that we arrived at.
 
-### Dead Code Elimination {#dead-code-elimination}
+### Dead Code Elimination {/*dead-code-elimination*/}
 
 The combination of Rollup and Google Closure Compiler already gets us pretty far in terms of stripping development-only code in production bundles. We [replace](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/build.js#L223-L226) the `__DEV__` literal with a boolean constant during the build, and both Rollup together and Google Closure Compiler can strip out the `if (false) {}` code branches and even some more sophisticated patterns. However, there is one particularly nasty case:
 
@@ -285,7 +285,7 @@ To solve this problem, we use the [`treeshake.pureExternalModules` Rollup option
 
 When we optimize something, we need to ensure it doesn't regress in the future. What if somebody introduces a new development-only import of an external module, and not realize they also need to add it to `pureExternalModules`? Rollup prints a warning in such cases but we've [decided to fail the build completely](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/build.js#L395-L412) instead. This forces the person adding a new external development-only import to [explicitly specify whether it has side effects or not](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/scripts/rollup/modules.js#L10-L22) every time.
 
-### Forking Modules {#forking-modules}
+### Forking Modules {/*forking-modules*/}
 
 In some cases, different bundles need to contain slightly different code. For example, React Native bundles have a different error handling mechanism that shows a redbox instead of printing a message to the console. However, it can be very inconvenient to thread these differences all the way through the calling modules.
 
@@ -330,7 +330,7 @@ This works by essentially forcing Flow to verify that two types are assignable t
 
 To conclude this section, it is important to note that you can't specify your own module forks if you consume React from npm. This is intentional because none of these files are public API, and they are not covered by the [semver](https://semver.org/) guarantees. However, you are always welcome to build React from master or even fork it if you don't mind the instability and the risk of divergence. We hope that this writeup was still helpful in documenting one possible approach to targeting different environments from a single JavaScript library.
 
-### Tracking Bundle Size {#tracking-bundle-size}
+### Tracking Bundle Size {/*tracking-bundle-size*/}
 
 As a final build step, we now [record build sizes for all bundles](https://github.com/facebook/react/blob/d906de7f602df810c38aa622c83023228b047db6/scripts/rollup/build.js#L264-L272) and write them to a file that [looks like this](https://github.com/facebook/react/blob/d906de7f602df810c38aa622c83023228b047db6/scripts/rollup/results.json). When you run `yarn build`, it prints a table with the results:
 
@@ -344,17 +344,17 @@ Keeping the file sizes committed for everyone to see was helpful for tracking si
 
 We haven't been entirely happy with this strategy because the JSON file often causes merge conflicts on larger branches. Updating it is also not currently enforced so it gets out of date. In the future, we're considering integrating a bot that would comment on pull requests with the size changes.
 
-## Simplifying the Release Process {#simplifying-the-release-process}
+## Simplifying the Release Process {/*simplifying-the-release-process*/}
 
 We like to release updates to the open source community often. Unfortunately, the old process of creating a release was slow and would typically take an entire day. After some changes to this process, we're now able to do a full release in less than an hour. Here's what we changed.
 
-### Branching Strategy {#branching-strategy}
+### Branching Strategy {/*branching-strategy*/}
 
 Most of the time spent in the old release process was due to our branching strategy. The `master` branch was assumed to be unstable and would often contain breaking changes. Releases were done from a `stable` branch, and changes were manually cherry-picked into this branch prior to a release. We had [tooling to help automate](https://github.com/facebook/react/pull/7330) some of this process, but it was still [pretty complicated to use](https://github.com/facebook/react/blob/b5a2a1349d6e804d534f673612357c0be7e1d701/scripts/release-manager/Readme.md).
 
 As of version 16, we now release from the `master` branch. Experimental features and breaking changes are allowed, but must be hidden behind [feature flags](https://github.com/facebook/react/blob/cc52e06b490e0dc2482b345aa5d0d65fae931095/packages/shared/ReactFeatureFlags.js) so they can be removed during the build process. The new flat bundles and dead code elimination make it possible for us to do this without fear of leaking unwanted code into open source builds.
 
-### Automated Scripts {#automated-scripts}
+### Automated Scripts {/*automated-scripts*/}
 
 After changing to a stable `master`, we created a new [release process checklist](https://github.com/facebook/react/issues/10620). Although much simpler than the previous process, this still involved dozens of steps and forgetting one could result in a broken release.
 
@@ -372,13 +372,13 @@ All that's left is to tag and publish the release to NPM using the _publish_ scr
 
 (You may have noticed a `--dry` flag in the screenshots above. This flag allows us to run a release, end-to-end, without actually publishing to NPM. This is useful when working on the release script itself.)
 
-## In Conclusion {#in-conclusion}
+## In Conclusion {/*in-conclusion*/}
 
 Did this post inspire you to try some of these ideas in your own projects? We certainly hope so! If you have other ideas about how React build, test, or contribution workflow could be improved, please let us know on [our issue tracker](https://github.com/facebook/react/issues).
 
 You can find the related issues by the [build infrastructure label](https://github.com/facebook/react/labels/Component%3A%20Build%20Infrastructure). These are often great first contribution opportunities!
 
-## Acknowledgements {#acknowledgements}
+## Acknowledgements {/*acknowledgements*/}
 
 We would like to thank:
 

@@ -13,7 +13,7 @@ render(<App />, container, callback);
 
 </Intro>
 
-## Rendering the root component {#rendering-the-root-component}
+## Rendering the root component {/*rendering-the-root-component*/}
 
 To call `render`, you need a piece of JSX and a DOM container:
 
@@ -60,7 +60,7 @@ export default function App() {
 
 <br />
 
-## Rendering multiple roots {#rendering-multiple-roots}
+## Rendering multiple roots {/*rendering-multiple-roots*/}
 
 If you use ["sprinkles"](/learn/add-react-to-a-website) of React here and there, call `render` for each top-level piece of UI managed by React.
 
@@ -134,7 +134,7 @@ nav ul li { display: inline-block; margin-right: 20px; }
 
 <br />
 
-## Updating the rendered tree {#updating-the-rendered-tree}
+## Updating the rendered tree {/*updating-the-rendered-tree*/}
 
 You can call `render` more than once on the same DOM node. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state](/learn/preserving-and-resetting-state). Notice how you can type in the input:
 
@@ -171,7 +171,7 @@ You can destroy the rendered tree with [`unmountComponentAtNode()`](TODO).
 
 <br />
 
-## When not to use it {#when-not-to-use-it}
+## When not to use it {/*when-not-to-use-it*/}
 
 * If your app uses server rendering and generates HTML on the server, use [`hydrate`](TODO) instead of `render`.
 * If your app is fully built with React, you shouldn't need to use `render` more than once. If you want to render something in a different part of the DOM tree (for example, a modal or a tooltip), use [`createPortal`](TODO) instead.
@@ -179,7 +179,7 @@ You can destroy the rendered tree with [`unmountComponentAtNode()`](TODO).
 <br />
 
 
-## Behavior in detail {#behavior-in-detail}
+## Behavior in detail {/*behavior-in-detail*/}
 
 The first time you call `render`, any existing DOM elements inside `container` are replaced. If you call `render` again, React will update the DOM as necessary to reflect the latest JSX. React will decide which parts of the DOM can be reused and which need to be recreated by ["matching it up"](/learn/preserving-and-resetting-state) with the previously rendered tree. Calling `render` repeatedly is similar to calling `setState`--in both cases, React avoids unnecessary DOM updates.
 

@@ -23,7 +23,7 @@ This is important and often forgotten. Forgetting to call `unmountComponentAtNod
 
 It is not unique to the DOM. If you want to insert a React Native view in the middle of an existing iOS app you will hit similar issues.
 
-## Helpers {#helpers}
+## Helpers {/*helpers*/}
 
 If you have multiple React roots, or a single root that gets deleted over time, we recommend that you always create your own wrapper API. These will all look slightly different depending on what your outer system looks like. For example, at Facebook we have a system that automatically ties into our page transition router to automatically call `unmountComponentAtNode`.
 
@@ -31,7 +31,7 @@ Rather than calling `ReactDOM.render()` directly everywhere, consider writing/us
 
 In your environment you may want to always configure internationalization, routers, user data etc. If you have many different React roots it can be a pain to set up configuration nodes all over the place. By creating your own wrapper you can unify that configuration into one place.
 
-## Object Oriented Updates {#object-oriented-updates}
+## Object Oriented Updates {/*object-oriented-updates*/}
 
 If you call `ReactDOM.render` a second time to update properties, all your props are completely replaced.
 

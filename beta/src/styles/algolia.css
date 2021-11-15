@@ -86,6 +86,7 @@ html.dark .DocSearch-Footer {
   @apply text-sm;
   @apply leading-tight;
   @apply text-primary;
+  @apply appearance-none !important;
 }
 html.dark .DocSearch-Input {
   @apply text-primary-dark;

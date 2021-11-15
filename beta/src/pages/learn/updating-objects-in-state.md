@@ -17,7 +17,7 @@ State can hold any kind of JavaScript value, including objects. But you shouldn'
 
 </YouWillLearn>
 
-## What's a mutation? {#whats-a-mutation}
+## What's a mutation? {/*whats-a-mutation*/}
 
 You can store any kind of JavaScript value in state.
 
@@ -47,7 +47,7 @@ position.x = 5;
 
 However, although objects in React state are technically mutable, you should treat them **as if** they were immutable--like numbers, booleans, and strings. Instead of mutating them, you should always replace them.
 
-## Treat state as read-only {#treat-state-as-read-only}
+## Treat state as read-only {/*treat-state-as-read-only*/}
 
 In other words, you should **treat any JavaScript object that you put into state as read-only.**
 
@@ -197,7 +197,7 @@ Mutation is only a problem when you change *existing* objects that are already i
 
 </DeepDive>  
 
-## Copying objects with the spread syntax {#copying-objects-with-the-spread-syntax}
+## Copying objects with the spread syntax {/*copying-objects-with-the-spread-syntax*/}
 
 In the previous example, the `position` object is always created fresh from the current cursor position. But often, you will want to include *existing* data as a part of the new object you're creating. For example, you may want to update *only one* field in a form, but keep the previous values for all other fields.
 
@@ -441,7 +441,7 @@ Here, `e.target.name` refers to the `name` property given to the `<input>` DOM e
 
 </DeepDive>
 
-## Updating a nested object {#updating-a-nested-object}
+## Updating a nested object {/*updating-a-nested-object*/}
 
 Consider a nested object structure like this:
 
@@ -644,7 +644,7 @@ If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.ci
 
 </DeepDive>  
 
-### Write concise update logic with Immer {#write-concise-update-logic-with-immer}
+### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
 
 If your state is deeply nested, you might want to consider [flattening it](/learn/choosing-the-state-structure#avoid-deeply-nested-state). But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
 
@@ -813,7 +813,7 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-### Fix incorrect state updates {#fix-incorrect-state-updates}
+### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
 
 This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
 
@@ -961,7 +961,7 @@ The problem with `handleLastNameChange` was that it did not copy the existing `.
 
 </Solution>
 
-### Find and fix the mutation {#find-and-fix-the-mutation}
+### Find and fix the mutation {/*find-and-fix-the-mutation*/}
 
 There is a draggable box on a static background. You can change the box's color using the select input.
 
@@ -1276,7 +1276,7 @@ select { margin-bottom: 10px; }
 
 </Solution>
 
-### Update an object with Immer {#update-an-object-with-immer}
+### Update an object with Immer {/*update-an-object-with-immer*/}
 
 This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
 

@@ -5,7 +5,7 @@ author: [vjeux]
 
 React was open sourced two weeks ago and it's time for a little round-up of what has been going on.
 
-## Khan Academy Question Editor {#khan-academy-question-editor}
+## Khan Academy Question Editor {/*khan-academy-question-editor*/}
 
 It looks like [Sophie Alpert](http://sophiebits.com/) is the first person outside of Facebook and Instagram to push React code to production. We are very grateful for her contributions in form of pull requests, bug reports and presence on IRC ([#reactjs on Freenode](irc://chat.freenode.net/reactjs)). Sophie wrote about her experience using React:
 
@@ -17,7 +17,7 @@ It looks like [Sophie Alpert](http://sophiebits.com/) is the first person outsid
 >
 > [Read the full post...](http://sophiebits.com/2013/06/09/using-react-to-speed-up-khan-academy.html)
 
-## Pimp my Backbone.View (by replacing it with React) {#pimp-my-backboneview-by-replacing-it-with-react}
+## Pimp my Backbone.View (by replacing it with React) {/*pimp-my-backboneview-by-replacing-it-with-react*/}
 
 [Paul Seiffert](https://blog.mayflower.de/) wrote a blog post that explains how to integrate React into Backbone applications.
 
@@ -29,7 +29,7 @@ It looks like [Sophie Alpert](http://sophiebits.com/) is the first person outsid
 >
 > [Read the full post...](https://blog.mayflower.de/3937-Backbone-React.html)
 
-## Using facebook's React with require.js {#using-facebooks-react-with-requirejs}
+## Using facebook's React with require.js {/*using-facebooks-react-with-requirejs*/}
 
 [Mario Mueller](http://blog.xenji.com/) wrote a menu component in React and was able to easily integrate it with require.js, EventEmitter2 and bower.
 
@@ -37,7 +37,7 @@ It looks like [Sophie Alpert](http://sophiebits.com/) is the first person outsid
 >
 > [Read the full post...](http://blog.xenji.com/2013/06/facebooks-react-require-js.html)
 
-## Origins of React {#origins-of-react}
+## Origins of React {/*origins-of-react*/}
 
 [Pete Hunt](http://www.petehunt.net/blog/) explained what differentiates React from other JavaScript libraries in [a previous blog post](/blog/2013/06/05/why-react.html). [Lee Byron](http://leebyron.com/) gives another perspective on Quora:
 

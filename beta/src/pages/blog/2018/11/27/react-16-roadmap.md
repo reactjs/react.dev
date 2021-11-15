@@ -9,7 +9,7 @@ You might have heard about features like "Hooks", "Suspense", and "Concurrent Re
 >
 > You can find an update to this roadmap in the [React 16.9 release blog post](/blog/2019/08/08/react-v16.9.0#an-update-to-the-roadmap).
 
-## tl;dr {#tldr}
+## tl;dr {/*tldr*/}
 
 We plan to split the rollout of new React features into the following milestones:
 
@@ -31,13 +31,13 @@ We expect to get more clarity on their timeline in the coming months.
 >
 > This post is just a roadmap -- there is nothing in it that requires your immediate attention. When each of these features are released, we'll publish a full blog post announcing them.
 
-## Release Timeline {#release-timeline}
+## Release Timeline {/*release-timeline*/}
 
 We have a single vision for how all of these features fit together, but we're releasing each part as soon as it is ready so that you can test and start using them sooner. The API design doesn't always make sense when looking at one piece in isolation; this post lays out the major parts of our plan to help you see the whole picture. (See our [versioning policy](/docs/faq-versioning) to learn more about our commitment to stability.)
 
 The gradual release strategy helps us refine the APIs, but the transitional period when some things aren't ready can be confusing. Let's look at what these different features mean for your app, how they relate to each other, and when you can expect to start learning and using them.
 
-### [React 16.6](/blog/2018/10/23/react-v-16-6) (shipped): The One with Suspense for Code Splitting {#react-166-shipped-the-one-with-suspense-for-code-splitting}
+### [React 16.6](/blog/2018/10/23/react-v-16-6) (shipped): The One with Suspense for Code Splitting {/*react-166-shipped-the-one-with-suspense-for-code-splitting*/}
 
 _Suspense_ refers to React's new ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In React 16.6, Suspense supports only one use case: lazy loading components with `React.lazy()` and `<React.Suspense>`.
 
@@ -70,7 +70,7 @@ Code splitting is just the first step for Suspense. Our longer term vision for S
 
 **Recommendation:** If you only do client rendering, we recommend widely adopting `React.lazy()` and `<React.Suspense>` for code splitting React components. If you do server rendering, you'll have to wait with adoption until the new server renderer is ready.
 
-### React 16.x (~Q1 2019): The One with Hooks {#react-16x-q1-2019-the-one-with-hooks}
+### React 16.x (~Q1 2019): The One with Hooks {/*react-16x-q1-2019-the-one-with-hooks*/}
 
 _Hooks_ let you use features like state and lifecycle from function components. They also let you reuse stateful logic between components without introducing extra nesting in your tree.
 
@@ -102,7 +102,7 @@ Hooks represent our vision for the future of React. They solve both problems tha
 
 **Recommendation:** When you’re ready, we encourage you to start trying Hooks in new components you write. Make sure everyone on your team is on board with using them and familiar with this documentation. We don’t recommend rewriting your existing classes to Hooks unless you planned to rewrite them anyway (e.g. to fix bugs). Read more about the adoption strategy [here](/docs/hooks-faq#adoption-strategy).
 
-### React 16.x (~Q2 2019): The One with Concurrent Mode {#react-16x-q2-2019-the-one-with-concurrent-mode}
+### React 16.x (~Q2 2019): The One with Concurrent Mode {/*react-16x-q2-2019-the-one-with-concurrent-mode*/}
 
 _Concurrent Mode_ lets React apps be more responsive by rendering component trees without blocking the main thread. It is opt-in and allows React to interrupt a long-running render (for example, rendering a news feed story) to handle a high-priority event (for example, text input or hover). Concurrent Mode also improves the user experience of Suspense by skipping unnecessary loading states on fast connections.
 
@@ -136,7 +136,7 @@ Concurrent Mode is a big part of our vision for React. For CPU-bound work, it al
 
 **Recommendation:** If you wish to adopt Concurrent Mode in the future, wrapping some component subtrees in [`<React.StrictMode>`](https://reactjs.org/docs/strict-mode) and fixing the resulting warnings is a good first step. In general it's not expected that legacy code would immediately be compatible. For example, at Facebook we mostly intend to use the Concurrent Mode in the more recently developed codebases, and keep the legacy ones running in the synchronous mode for the near future.
 
-### React 16.x (~mid 2019): The One with Suspense for Data Fetching {#react-16x-mid-2019-the-one-with-suspense-for-data-fetching}
+### React 16.x (~mid 2019): The One with Suspense for Data Fetching {/*react-16x-mid-2019-the-one-with-suspense-for-data-fetching*/}
 
 As mentioned earlier, _Suspense_ refers to React's ability to "suspend" rendering while components are waiting for something, and display a loading indicator. In the already shipped React 16.6, the only supported use case for Suspense is code splitting. In this future minor release, we'd like to provide officially supported ways to use it for data fetching too. We'll provide a reference implementation of a basic "React Cache" that's compatible with Suspense, but you can also write your own. Data fetching libraries like Apollo and Relay will be able to integrate with Suspense by following a simple specification that we'll document.
 
@@ -183,13 +183,13 @@ Eventually we'd like most data fetching to happen through Suspense but it will t
 
 **Recommendation:** Wait for this minor React release in order to use Suspense for data fetching. Don’t try to use Suspense features in 16.6 for it; it’s not supported. However, your existing `<Suspense>` components for code splitting will be able to show loading states for data too when Suspense for Data Fetching becomes officially supported.
 
-## Other Projects {#other-projects}
+## Other Projects {/*other-projects*/}
 
-### Modernizing React DOM {#modernizing-react-dom}
+### Modernizing React DOM {/*modernizing-react-dom*/}
 
 We started an investigation into [simplifying and modernizing](https://github.com/facebook/react/issues/13525) ReactDOM, with a goal of reduced bundle size and aligning closer with the browser behavior. It is still early to say which specific bullet points will "make it" because the project is in an exploratory phase. We will communicate our progress on that issue.
 
-### Suspense for Server Rendering {#suspense-for-server-rendering}
+### Suspense for Server Rendering {/*suspense-for-server-rendering*/}
 
 We started designing a new server renderer that supports Suspense (including waiting for asynchronous data on the server without double rendering) and progressively loading and hydrating page content in chunks for best user experience. You can watch an overview of its early prototype in [this talk](https://www.youtube.com/watch?v=z-6JC0_cOns). The new server renderer is going to be our major focus in 2019, but it's too early to say anything about its release schedule. Its development, as always, [will happen on GitHub](https://github.com/facebook/react/pulls?utf8=%E2%9C%93&q=is%3Apr+is%3Aopen+fizz).
 

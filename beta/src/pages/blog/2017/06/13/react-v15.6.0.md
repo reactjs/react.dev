@@ -5,7 +5,7 @@ author: [flarnie]
 
 Today we are releasing React 15.6.0. As we prepare for React 16.0, we have been fixing and cleaning up many things. This release continues to pave the way.
 
-## Improving Inputs {#improving-inputs}
+## Improving Inputs {/*improving-inputs*/}
 
 In React 15.6.0 the `onChange` event for inputs is a little bit more reliable and handles more edge cases, including the following:
 
@@ -18,7 +18,7 @@ In React 15.6.0 the `onChange` event for inputs is a little bit more reliable an
 
 Thanks to [Jason Quense](https://github.com/jquense) and everyone who helped out on those issues and PRs.
 
-## Less Noisy Deprecation Warnings {#less-noisy-deprecation-warnings}
+## Less Noisy Deprecation Warnings {/*less-noisy-deprecation-warnings*/}
 
 We are also including a couple of new warnings for upcoming deprecations. These should not affect most users, and for more details see the changelog below.
 
@@ -26,7 +26,7 @@ After the last release, we got valuable community feedback that deprecation warn
 
 ---
 
-## Installation {#installation}
+## Installation {/*installation*/}
 
 We recommend using [Yarn](https://yarnpkg.com/) or [npm](https://www.npmjs.com/) for managing front-end dependencies. If you're new to package managers, the [Yarn documentation](https://yarnpkg.com/en/docs/getting-started) is a good place to get started.
 
@@ -65,18 +65,18 @@ We've also published version `15.6.0` of `react` and `react-dom` on npm, and the
 
 ---
 
-## Changelog {#changelog}
+## Changelog {/*changelog*/}
 
-## 15.6.0 (June 13, 2017) {#1560-june-13-2017}
+## 15.6.0 (June 13, 2017) {/*1560-june-13-2017*/}
 
-### React {#react}
+### React {/*react*/}
 
 - Downgrade deprecation warnings to use `console.warn` instead of `console.error`. ([@flarnie](https://github.com/flarnie) in [#9753](https://github.com/facebook/react/pull/9753))
 - Add a deprecation warning for `React.createClass`. Points users to `create-react-class` instead. ([@flarnie](https://github.com/flarnie) in [#9771](https://github.com/facebook/react/pull/9771))
 - Add deprecation warnings and separate module for `React.DOM` factory helpers. ([@nhunzaker](https://github.com/nhunzaker) in [#8356](https://github.com/facebook/react/pull/8356))
 - Warn for deprecation of `React.createMixin` helper, which was never used. ([@aweary](https://github.com/aweary) in [#8853](https://github.com/facebook/react/pull/8853))
 
-### React DOM {#react-dom}
+### React DOM {/*react-dom*/}
 
 - Add support for CSS variables in `style` attribute. ([@aweary](https://github.com/aweary) in [#9302](https://github.com/facebook/react/pull/9302))
 - Add support for CSS Grid style properties. ([@ericsakmar](https://github.com/ericsakmar) in [#9185](https://github.com/facebook/react/pull/9185))
@@ -85,7 +85,7 @@ We've also published version `15.6.0` of `react` and `react-dom` on npm, and the
 - Fix bug where controlled number input mistakenly allowed period. ([@nhunzaker](https://github.com/nhunzaker) in [#9584](https://github.com/facebook/react/pull/9584))
 - Fix bug where performance entries were being cleared. ([@chrisui](https://github.com/chrisui) in [#9451](https://github.com/facebook/react/pull/9451))
 
-### React Addons {#react-addons}
+### React Addons {/*react-addons*/}
 
 - Fix AMD support for addons depending on `react`. ([@flarnie](https://github.com/flarnie) in [#9919](https://github.com/facebook/react/issues/9919))
 - Fix `isMounted()` to return `true` in `componentWillUnmount`. ([@mridgway](https://github.com/mridgway) in [#9638](https://github.com/facebook/react/issues/9638))

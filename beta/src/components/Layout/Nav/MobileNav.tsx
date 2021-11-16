@@ -74,7 +74,8 @@ function TabButton({
   const classes = cn(
     'inline-flex items-center w-full border-b-2 justify-center text-base leading-9 px-3 py-0.5 hover:text-link hover:gray-5',
     {
-      'text-link dark:text-link-dark dark:border-link-dark border-link font-bold': isActive,
+      'text-link dark:text-link-dark dark:border-link-dark border-link font-bold':
+        isActive,
       'border-transparent': !isActive,
     }
   );

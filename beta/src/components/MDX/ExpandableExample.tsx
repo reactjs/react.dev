@@ -60,8 +60,10 @@ function ExpandableExample({
         <Button
           active={true}
           className={cn({
-            'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50': isDeepDive,
-            'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50': isExample,
+            'bg-purple-50 border-purple-50 hover:bg-purple-40 focus:bg-purple-50 active:bg-purple-50':
+              isDeepDive,
+            'bg-yellow-50 border-yellow-50 hover:bg-yellow-40 focus:bg-yellow-50 active:bg-yellow-50':
+              isExample,
           })}
           onClick={() => setIsExpanded((current) => !current)}>
           <span className="mr-1">

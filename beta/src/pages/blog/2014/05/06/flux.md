@@ -1,6 +1,5 @@
 ---
 title: 'Flux: An Application Architecture for React'
-layout: Post
 author: [fisherwebdev, jingc]
 ---
 

@@ -99,9 +99,9 @@ export default function Stopwatch() {
     setNow(Date.now());
 
     setInterval(() => {
-      // Update the current time every 100ms.
+      // Update the current time every 10ms.
       setNow(Date.now());
-    }, 100);
+    }, 10);
   }
 
   let secondsPassed = 0;
@@ -135,6 +135,10 @@ export default function Stopwatch() {
   const intervalRef = useRef(null);
 
   function handleStart() {
+    // Start counting, if not already.
+    if (intervalRef.current) {
+      return;
+    }
     setStartTime(Date.now());
     setNow(Date.now());
     intervalRef.current = setInterval(() => {
@@ -144,6 +148,7 @@ export default function Stopwatch() {
 
   function handleStop() {
     clearInterval(intervalRef.current);
+    intervalRef.current = null;
   }
 
   let secondsPassed = 0;

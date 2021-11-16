@@ -135,6 +135,8 @@ function Sandpack(props: SandpackProps) {
   return (
     <div className="my-8" translate="no">
       <SandpackProvider
+        // TODO: remove it
+        bundlerURL="https://0-3-0-sandpack.codesandbox.io/"
         key={key}
         template="react"
         customSetup={{...setup, files: files}}

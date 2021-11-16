@@ -8,15 +8,18 @@ import {flushSync} from 'react-dom';
 import {
   useSandpack,
   useActiveCode,
-  SandpackCodeEditor,
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
+import { SandpackCodeEditor } from "@codesandbox/sandpack-react/dist/components/CodeEditor"
+
 import scrollIntoView from 'scroll-into-view-if-needed';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
+
+// const SandpackCodeEditor = React.lazy(() => import('@codesandbox/sandpack-react/dist/components/CodeEditor').then(module => module.SandpackCodeEditor) as any)
 
 export function CustomPreset({
   isSingleFile,
@@ -60,15 +63,17 @@ export function CustomPreset({
               // There has to be some better way to do this...
               minHeight: 216,
             }}>
-            <SandpackCodeEditor
-              customStyle={{
-                height: getHeight(),
-                maxHeight: isExpanded ? '' : 406,
-              }}
-              showLineNumbers
-              showInlineErrors
-              showTabs={false}
-            />
+            <React.Suspense fallback={<pre>{code}</pre>}>
+              <SandpackCodeEditor
+                customStyle={{
+                  height: getHeight(),
+                  maxHeight: isExpanded ? '' : 406,
+                }}
+                showLineNumbers
+                showInlineErrors
+                showTabs={false}
+              />
+            </React.Suspense>
             <Preview
               isExpanded={isExpanded}
               className="order-last xl:order-2"

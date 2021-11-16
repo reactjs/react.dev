@@ -153,7 +153,9 @@ export function Preview({
               // (which we're using for autosizing). This is noticeable
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
-              hideContent ? 'absolute opacity-0 pointer-events-none' : 'opacity-100',
+              hideContent
+                ? 'absolute opacity-0 pointer-events-none'
+                : 'opacity-100'
             )}
             title="Sandbox Preview"
             style={{
@@ -164,10 +166,11 @@ export function Preview({
         </div>
         {error && (
           <div
-            className={cn('p-2',
-            // This isn't absolutely positioned so that
-            // the errors can also expand the parent height.
-            isExpanded ? 'sticky top-8' : null
+            className={cn(
+              'p-2',
+              // This isn't absolutely positioned so that
+              // the errors can also expand the parent height.
+              isExpanded ? 'sticky top-8' : null
             )}>
             <Error error={error} />
           </div>

@@ -16,10 +16,12 @@ This repo contains the source code and documentation powering [reactjs.org](http
 ### Installation
 
 1. `cd reactjs.org` to go into the project root
-1. `yarn` to install the website's npm dependencies
+1. `cd beta` to open the beta website
+3. `yarn` to install the website's npm dependencies
 
 ### Running locally
 
+1. Make sure you're in the `beta` folder
 1. `yarn dev` to start the development server (powered by [Next.js](https://nextjs.org/))
 1. `open http://localhost:3000` to open the site in your favorite browser
 
@@ -46,7 +48,7 @@ The documentation is divided into several sections with a different tone and pur
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-1. Run `yarn check-all` from the project root. (This will run Prettier, ESLint, and Flow.)
+1. Run `yarn check-all` from the `beta` folder. (This will run Prettier, ESLint, and Flow.)
 
 ### Push it
 

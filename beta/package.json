@@ -17,7 +17,8 @@
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc",
     "tsc": "tsc --noEmit",
     "start": "next start",
-    "postinstall": "is-ci || (cd .. && husky install beta/.husky)"
+    "postinstall": "is-ci || (cd .. && husky install beta/.husky)",
+    "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "^0.1.20",

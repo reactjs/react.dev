@@ -48,7 +48,7 @@ The documentation is divided into several sections with a different tone and pur
 ### Test the change
 
 1. If possible, test any visual changes in all latest versions of common browsers, on both desktop and mobile.
-1. Run `yarn check-all` from the `beta` folder. (This will run Prettier, ESLint, and Flow.)
+2. Run `yarn check-all` from the `beta` folder. (This will run Prettier, ESLint and validate types.)
 
 ### Push it
 

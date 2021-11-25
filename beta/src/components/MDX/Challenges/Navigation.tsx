@@ -23,7 +23,9 @@ export function Navigation({
   const challengesNavRef = React.useRef(
     challenges.map(() => createRef<HTMLButtonElement>())
   );
-  const [scrollPos, setScrollPos] = React.useState(0);
+  const activeOrder =
+    challenges.find(({id}) => id === activeChallenge)?.order || 1;
+  const scrollPos = activeOrder - 1;
   const canScrollLeft = scrollPos > 0;
   const canScrollRight = scrollPos < challenges.length - 1;
 
@@ -37,7 +39,6 @@ export function Navigation({
         containerRef.current.scrollLeft = currentNavRef.offsetLeft;
       }
       handleChange(challenges[scrollPos + 1].id);
-      setScrollPos(scrollPos + 1);
     }
   };
 
@@ -51,7 +52,6 @@ export function Navigation({
         containerRef.current.scrollLeft = currentNavRef.offsetLeft;
       }
       handleChange(challenges[scrollPos - 1].id);
-      setScrollPos(scrollPos - 1);
     }
   };
 
@@ -64,7 +64,6 @@ export function Navigation({
       containerRef.current.scrollLeft = currentNavRef?.offsetLeft || 0;
     }
     handleChange(id);
-    setScrollPos(selectedChallenge);
   };
 
   const handleResize = React.useCallback(() => {

@@ -121,7 +121,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
           </H2>
           {challenges.length > 1 && (
             <Navigation
-              activeChallenge={activeChallenge}
+              currentChallenge={currentChallenge}
               challenges={challenges}
               handleChange={handleChallengeChange}
               isRecipes={isRecipes}

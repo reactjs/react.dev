@@ -18,7 +18,7 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
   const {menuRef, isOpen} = React.useContext(MenuContext);
   const isMobileSidebar = useMediaQuery(SIDEBAR_BREAKPOINT);
   let routeTree = React.useContext(SidebarContext);
-  const isHidden = isMobileSidebar ? !isOpen : 'false';
+  const isHidden = isMobileSidebar ? !isOpen : false;
 
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {

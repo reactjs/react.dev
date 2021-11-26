@@ -31,7 +31,7 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
               anchorClassName,
               Comp === 'h1' ? 'hidden' : 'inline-block'
             )}
-            aria-hidden={true}>
+            aria-hidden="true">
             <svg
               width="1em"
               height="1em"

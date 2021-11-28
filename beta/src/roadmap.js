@@ -70,34 +70,12 @@ const createFlowNodes = (
       nodesJSON,
       index,
     });
-    console.log(
-      'parent position is -->',
-      parentPosition,
-      ' my position is ',
-      newNode.position,
-      'my name is ',
-      newNode.id,
-      ' my content are',
-      nodesContent,
-      ' my level is',
-      level
-    );
 
-    // console.log(
-    //   'harish kumar ',
-    //   nodesContent.title,
-    //   nodesContent.routes,
-    //   newNode.position,
-    //   parentPosition
-    // );
     if (nodesContent.routes) {
       // allNodes.push(newNode);
-
-      // console.log('harish here', nodesContent);
       nodesContent?.title && allNodes.push(newNode);
       createFlowNodes(nodesContent.routes, level, newNode.position);
     } else {
-      // console.log('harish ', nodesContent);
       allNodes.push(newNode);
     }
     // if (nodesContent.title) {
@@ -122,10 +100,6 @@ const roadMapData = [
     position: {x: 0, y: 0},
   },
   ...allNodes,
-
-  // {id: 'e1-3', source: '1', target: '2', animated: true},
-  // {id: 'e1-2', source: '2', target: '3', animated: true},
 ];
-console.log('harish kumar', roadMapData);
 
 export default roadMapData;

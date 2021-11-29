@@ -188,7 +188,8 @@ function Illustration({
         <img
           src={src}
           alt={alt}
-          className="max-h-illustration bg-white rounded-lg"
+          style={{maxHeight: 300}}
+          className="bg-white rounded-lg"
         />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">

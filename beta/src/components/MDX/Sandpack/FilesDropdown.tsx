@@ -22,8 +22,9 @@ export function FilesDropdown() {
         {({open}) => (
           <span
             className={cn(
-              'h-full py-2 px-1 mt-px -mb-px flex border-b-2 text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate max-w-file'
-            )}>
+              'h-full py-2 px-1 mt-px -mb-px flex border-b-2 text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate'
+            )}
+            style={{maxWidth: '160px'}}>
             {getFileName(activePath)}
             <span className="ml-2">
               <IconChevron displayDirection={open ? 'up' : 'down'} />

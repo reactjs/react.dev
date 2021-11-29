@@ -19,8 +19,12 @@ export function Toc({
   return (
     <nav
       role="navigation"
-      // w-inherit and max-w-inherit keeps the layout fixed width instead of adjusting for content.
-      className="pt-6 fixed top-0 right-0 w-inherit max-w-inherit">
+      className="pt-6 fixed top-0 right-0"
+      style={{
+        // This keeps the layout fixed width instead of adjusting for content.
+        width: 'inherit',
+        maxWidth: 'inherit',
+      }}>
       <h2 className="mb-3 lg:mb-3 uppercase tracking-wide font-bold text-sm text-secondary dark:text-secondary-dark px-4 w-full">
         On this page
       </h2>

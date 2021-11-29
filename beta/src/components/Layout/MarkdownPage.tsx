@@ -51,7 +51,7 @@ export function MarkdownPage<
     );
   };
   useEffect(() => {
-    const favourites = JSON.parse(localStorage.getItem('favourites') || '');
+    const favourites = JSON.parse(localStorage.getItem('favourites') || '[]');
     setIsFavourite(favourites?.includes(currentPath));
 
     const visitedPages = localStorage.getItem('visitedPages');

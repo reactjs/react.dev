@@ -35,7 +35,7 @@ export function MarkdownPage<
   const currentPath = paths[paths.length - 1];
   const setFavourite = () => {
     setIsFavourite(isFavourite ? false : true);
-    const favourites = JSON.parse(localStorage.getItem('favourites') || '');
+    const favourites = JSON.parse(localStorage.getItem('favourites') || '[]');
 
     localStorage.setItem(
       'favourites',

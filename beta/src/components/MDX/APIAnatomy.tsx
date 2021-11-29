@@ -101,9 +101,6 @@ export function AnatomyStep({
   const color = colors[stepNumber - 1];
   return (
     <div
-      style={{
-        borderLeftColor: color.hex,
-      }}
       className={cn(
         'border-l-4 rounded-lg px-5 pt-8 pb-2 bg-opacity-5 shadow-inner',
         color.border,

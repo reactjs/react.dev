@@ -100,16 +100,6 @@ export function Preview({
     : null;
   const hideContent = !isReady || error;
 
-  // Allow content to be scrolled if it's too high to fit.
-  // Note we don't want this in the expanded state
-  // because it breaks position: sticky (and isn't needed anyway).
-  // We also don't want this for errors because they expand
-  // parent and making them scrollable is confusing.
-  let overflow;
-  if (!isExpanded && !error && isReady) {
-    overflow = 'auto';
-  }
-
   // WARNING:
   // The layout and styling here is convoluted and really easy to break.
   // If you make changes to it, you need to test different cases:
@@ -136,9 +126,14 @@ export function Preview({
       }}>
       <div
         className={cn(
-          'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none'
-        )}
-        style={{overflow}}>
+          'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none',
+          // Allow content to be scrolled if it's too high to fit.
+          // Note we don't want this in the expanded state
+          // because it breaks position: sticky (and isn't needed anyway).
+          // We also don't want this for errors because they expand
+          // parent and making them scrollable is confusing.
+          !isExpanded && !error && isReady ? 'overflow-auto' : null
+        )}>
         <div
           style={{
             padding: 'initial',
@@ -151,31 +146,32 @@ export function Preview({
           }}>
           <iframe
             ref={iframeRef}
-            className="rounded-t-none bg-white shadow-md sm:rounded-lg w-full max-w-full"
-            title="Sandbox Preview"
-            style={{
-              height: iframeComputedHeight || '100%',
-              position: hideContent ? 'absolute' : undefined,
+            className={cn(
+              'rounded-t-none bg-white shadow-md sm:rounded-lg w-full max-w-full',
               // We can't *actually* hide content because that would
               // break calculating the computed height in the iframe
               // (which we're using for autosizing). This is noticeable
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
-              opacity: hideContent ? 0 : 1,
-              pointerEvents: hideContent ? 'none' : undefined,
+              hideContent
+                ? 'absolute opacity-0 pointer-events-none'
+                : 'opacity-100'
+            )}
+            title="Sandbox Preview"
+            style={{
+              height: iframeComputedHeight || '100%',
               zIndex: isExpanded ? 'initial' : -1,
             }}
           />
         </div>
         {error && (
           <div
-            className="p-2"
-            style={{
+            className={cn(
+              'p-2',
               // This isn't absolutely positioned so that
               // the errors can also expand the parent height.
-              position: isExpanded ? 'sticky' : undefined,
-              top: isExpanded ? '2rem' : '',
-            }}>
+              isExpanded ? 'sticky top-8' : null
+            )}>
             <Error error={error} />
           </div>
         )}

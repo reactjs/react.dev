@@ -27,11 +27,11 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
         {isPageAnchor && (
           <a
             href={`#${id}`}
-            className={anchorClassName}
-            aria-hidden={true}
-            style={{
-              display: Comp === 'h1' ? 'none' : 'inline-block',
-            }}>
+            className={cn(
+              anchorClassName,
+              Comp === 'h1' ? 'hidden' : 'inline-block'
+            )}
+            aria-hidden="true">
             <svg
               width="1em"
               height="1em"

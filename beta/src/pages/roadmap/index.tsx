@@ -28,10 +28,12 @@ const getNodeClasses = (type) => {
 };
 
 const Node = ({data: {label, edge, id}, type}) => {
-  const read = JSON.parse(localStorage.getItem('visitedPages')).includes(id);
-  const favourites = JSON.parse(localStorage.getItem('favourites')).includes(
-    id
-  );
+  const read = (
+    JSON.parse(localStorage.getItem('visitedPages')) || []
+  ).includes(id);
+  const favourites = (
+    JSON.parse(localStorage.getItem('favourites')) || []
+  )?.includes(id);
 
   return (
     <>

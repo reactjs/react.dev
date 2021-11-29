@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+import cn from 'classnames';
 import {RouteItem} from 'components/Layout/useRouteMeta';
 import {useRouter} from 'next/router';
 import {removeFromLast} from 'utils/removeFromLast';
@@ -59,8 +60,8 @@ function CollapseWrapper({
   return (
     <div
       ref={ref}
+      className={cn(isExpanded ? 'opacity-100' : 'opacity-50')}
       style={{
-        opacity: isExpanded ? 1 : 0.5,
         transition: `opacity ${duration}ms ease-in-out`,
         animation: `nav-fadein ${duration}ms ease-in-out`,
       }}>

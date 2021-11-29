@@ -25,9 +25,7 @@ export function Page({routeTree, children}: PageProps) {
 
           <div className="flex flex-1 w-full h-full self-stretch">
             <div className="w-full min-w-0">
-              <main
-                className="flex flex-1 self-stretch flex-col items-end"
-                style={{justifyContent: 'space-around'}}>
+              <main className="flex flex-1 self-stretch flex-col items-end justify-around">
                 {children}
                 <Footer />
               </main>

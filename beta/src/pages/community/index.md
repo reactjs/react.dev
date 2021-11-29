@@ -18,9 +18,9 @@ Stack Overflow is a popular forum to ask code-level questions or if you're stuck
 
 <!--
 
-TODO: decide on the criteria for inclusion before uncommenting.
+TODO: decide on the criteria for inclusion before uncommenting. (Change Popular Discussion Forums into heading while un-commenting)
 
-## Popular Discussion Forums {/*popular-discussion-forums*/}
+Popular Discussion Forums
 
 There are many online forums which are a great place for discussion about best practices and application architecture as well as the future of React. If you have an answerable code-level question, Stack Overflow is usually a better fit.
 

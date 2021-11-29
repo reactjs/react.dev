@@ -97,10 +97,10 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
   };
 
   const currentChallenge = challenges.find(({id}) => id === activeChallenge);
+  if (currentChallenge === undefined) {
+    throw new TypeError('currentChallenge should always exist');
+  }
   const nextChallenge = challenges.find(({order}) => {
-    if (!currentChallenge) {
-      return false;
-    }
     return order === currentChallenge.order + 1;
   });
 
@@ -132,16 +132,16 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
           <div key={activeChallenge}>
             <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
               <div className="font-bold block md:inline">
-                {isRecipes ? 'Recipe' : 'Challenge'} {currentChallenge?.order}{' '}
-                of {challenges.length}
+                {isRecipes ? 'Recipe' : 'Challenge'} {currentChallenge.order} of{' '}
+                {challenges.length}
                 <span className="text-primary dark:text-primary-dark">: </span>
               </div>
-              {currentChallenge?.name}
+              {currentChallenge.name}
             </h3>
-            <>{currentChallenge?.content}</>
+            <>{currentChallenge.content}</>
           </div>
           <div className="flex justify-between items-center mt-4">
-            {currentChallenge?.hint ? (
+            {currentChallenge.hint ? (
               <div>
                 <Button className="mr-2" onClick={toggleHint} active={showHint}>
                   <IconHint className="mr-1.5" />{' '}
@@ -187,14 +187,14 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
               </Button>
             )}
           </div>
-          {showHint && currentChallenge?.hint}
+          {showHint && currentChallenge.hint}
 
           {showSolution && (
             <div className="mt-6">
               <h3 className="text-2xl font-bold text-primary dark:text-primary-dark">
                 Solution
               </h3>
-              {currentChallenge?.solution}
+              {currentChallenge.solution}
               <div className="flex justify-between items-center mt-4">
                 <Button onClick={() => setShowSolution(false)}>
                   Close solution

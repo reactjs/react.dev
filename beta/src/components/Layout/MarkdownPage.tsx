@@ -165,16 +165,14 @@ export function MarkdownPage<
       <div className="lg:pt-0 pt-20 pl-0 lg:pl-80 2xl:px-80 ">
         <Seo title={title} />
         {!isHomePage && (
-          <div className="flex justify-between items-center justify-center text-red-600">
-            <PageHeading
-              title={title}
-              description={description}
-              tags={route?.tags}
-            />
-            <div className="m-10" onClick={() => setFavourite()}>
+          <PageHeading
+            title={title}
+            description={description}
+            tags={route?.tags}>
+            <div className="m-2 pt-1" onClick={() => setFavourite()}>
               <Heart fill={isFavourite} />
             </div>
-          </div>
+          </PageHeading>
         )}
         <div className="px-5 sm:px-12">
           <div className="max-w-7xl mx-auto">

@@ -33,7 +33,7 @@ module.exports = {
     },
     extend: {
       maxWidth: {
-        xs: '21rem',
+        xs: '21rem'
       },
       outline: {
         blue: ['1px auto ' + colors.link, '3px'],

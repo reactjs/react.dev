@@ -32,7 +32,7 @@ function Kbd(props: {children?: React.ReactNode}) {
   return (
     <kbd
       className="border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded"
-      style={{width: '2.25em', height: '2.25em'}}
+      style={{minWidth: '2.25em', height: '2.25em'}}
       {...props}
     />
   );
@@ -51,6 +51,10 @@ export const Search: React.FC<SearchProps> = ({
 }) => {
   const [isLoaded] = React.useState(true);
   const [isShowing, setIsShowing] = React.useState(false);
+  const [showKeyboardShortcuts, setShowKeyboardShortcuts] = React.useState(
+    false
+  );
+  const [showMacOsShortcut, setShowMacosShortcut] = React.useState(false);
 
   const importDocSearchModalIfNeeded = React.useCallback(
     function importDocSearchModalIfNeeded() {
@@ -86,6 +90,13 @@ export const Search: React.FC<SearchProps> = ({
 
   useDocSearchKeyboardEvents({isOpen: isShowing, onOpen, onClose});
 
+  React.useEffect(() => {
+    if (typeof navigator !== 'undefined') {
+      setShowMacosShortcut(/(Mac|iPhone|iPod|iPad)/i.test(navigator.userAgent));
+      setShowKeyboardShortcuts(true);
+    }
+  }, []);
+
   return (
     <>
       <Head>
@@ -108,10 +119,12 @@ export const Search: React.FC<SearchProps> = ({
         onClick={onOpen}>
         <IconSearch className="mr-3 align-middle text-gray-30 flex-shrink-0 group-betterhover:hover:text-gray-70" />
         Search
-        <span className="ml-auto hidden sm:flex item-center">
-          <Kbd>⌘</Kbd>
-          <Kbd>K</Kbd>
-        </span>
+        {showKeyboardShortcuts && (
+          <span className="ml-auto hidden sm:flex item-center">
+            <Kbd>{showMacOsShortcut ? '⌘' : 'Ctrl'}</Kbd>
+            <Kbd>K</Kbd>
+          </span>
+        )}
       </button>
 
       {isLoaded &&

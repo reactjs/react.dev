@@ -23,7 +23,7 @@ export function Navigation({
   const challengesNavRef = React.useRef(
     challenges.map(() => createRef<HTMLButtonElement>())
   );
-  const scrollPos = (currentChallenge.order || 1) - 1;
+  const scrollPos = currentChallenge.order - 1;
   const canScrollLeft = scrollPos > 0;
   const canScrollRight = scrollPos < challenges.length - 1;
 

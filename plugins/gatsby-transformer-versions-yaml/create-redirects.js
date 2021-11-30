@@ -53,5 +53,5 @@ module.exports = async function writeRedirectsFile(
     ...oldConfigContent,
     redirects: [...oldConfigContent.redirects, ...redirects],
   };
-  writeFile(redirectsFilePath, JSON.stringify(newContents, null, 2));
+  return writeFile(redirectsFilePath, JSON.stringify(newContents, null, 2));
 };

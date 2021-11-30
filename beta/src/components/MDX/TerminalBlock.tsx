@@ -60,8 +60,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
               onClick={() => {
                 window.navigator.clipboard.writeText(message ?? '');
                 setCopied(true);
-              }}
-            >
+              }}>
               <IconCopy className="inline-flex mr-2 self-center" />{' '}
               {copied ? 'Copied' : 'Copy'}
             </button>

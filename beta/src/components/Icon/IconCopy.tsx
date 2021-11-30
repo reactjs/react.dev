@@ -13,8 +13,7 @@ export const IconCopy = React.memo<JSX.IntrinsicElements['svg']>(
         height="1em"
         viewBox="0 0 18 18"
         fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-      >
+        xmlns="http://www.w3.org/2000/svg">
         <path
           fillRule="evenodd"
           clipRule="evenodd"

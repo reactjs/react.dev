@@ -26,11 +26,7 @@ module.exports = async function writeRedirectsFile(
    * Map data as vercel expects it to be
    */
   redirects = redirects.map(redirect => {
-    const {
-      fromPath,
-      isPermanent,
-      toPath,
-    } = redirect;
+    const {fromPath, isPermanent, toPath} = redirect;
 
     const pieces = {
       source: fromPath,
@@ -45,7 +41,9 @@ module.exports = async function writeRedirectsFile(
    * Make sure we dont have the same redirect already
    */
   oldConfigContent.redirects.forEach(data => {
-    redirects = redirects.filter(newRedirect => newRedirect.source !== data.source);
+    redirects = redirects.filter(
+      newRedirect => newRedirect.source !== data.source,
+    );
   });
 
   /**

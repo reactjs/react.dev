@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {IconCopy} from 'components/Icon/IconCopy';
 import * as React from 'react';
 import {IconTerminal} from '../Icon/IconTerminal';
 
@@ -45,18 +46,23 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
   }, [copied]);
 
   return (
-    <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full hover:bg-gray-50 dark:hover:bg-gray-500">
+    <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full">
       <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
         <div className="text-primary-dark dark:text-primary-dark flex text-sm px-4 py-0.5 relative justify-between">
           <div>
             <IconTerminal className="inline-flex mr-2 self-center" /> Terminal
           </div>
-          <div
-            className={`inline-flex ml-2 self-center opacity-1 ${
-              !copied && 'opacity-0 duration-500 transition-opacity'
-            }`}
-          >
-            Copied to clipboard!
+          <div>
+            <button
+              className="w-full text-left text-primary-dark dark:text-primary-dark "
+              onClick={() => {
+                window.navigator.clipboard.writeText(message ?? '');
+                setCopied(true);
+              }}
+            >
+              <IconCopy className="inline-flex mr-2 self-center" />{' '}
+              {copied ? 'Copied' : 'Copy'}
+            </button>
           </div>
         </div>
       </div>

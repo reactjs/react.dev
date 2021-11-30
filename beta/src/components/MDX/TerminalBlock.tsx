@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {IconCopy} from 'components/Icon/IconCopy';
 import * as React from 'react';
 import {IconTerminal} from '../Icon/IconTerminal';
+import {IconCopy} from 'components/Icon/IconCopy';
 
 type LogLevel = 'info' | 'warning' | 'error';
 
@@ -37,7 +37,9 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
 
   const [copied, setCopied] = React.useState(false);
   React.useEffect(() => {
-    if (copied) {
+    if (!copied) {
+      return;
+    } else {
       const timer = setTimeout(() => {
         setCopied(false);
       }, 2000);

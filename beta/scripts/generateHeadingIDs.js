@@ -9,25 +9,9 @@
 const assert = require('assert');
 const fs = require('fs');
 const GithubSlugger = require('github-slugger');
+const walk = require('./walk');
 
 let modules
-
-function walk(dir) {
-  let results = [];
-  const list = fs.readdirSync(dir);
-  list.forEach(function (file) {
-    file = dir + '/' + file;
-    const stat = fs.statSync(file);
-    if (stat && stat.isDirectory()) {
-      /* Recurse into a subdirectory */
-      results = results.concat(walk(file));
-    } else {
-      /* Is a file */
-      results.push(file);
-    }
-  });
-  return results;
-}
 
 function stripLinks(line) {
   return line.replace(/\[([^\]]+)\]\([^)]+\)/, (match, p1) => p1);

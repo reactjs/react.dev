@@ -165,7 +165,7 @@ The next time you see `{{` and `}}` in JSX, know that it's nothing more than an 
 
 <Gotcha>
 
-Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black"`> would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
+Inline `style` properties are written in camelCase. For example, HTML `<ul style="background-color: black">` would be written as `<ul style={{ backgroundColor: 'black' }}>`  in your component.
 
 </Gotcha>
 

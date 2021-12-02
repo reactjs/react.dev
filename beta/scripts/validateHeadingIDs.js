@@ -9,7 +9,7 @@ const walk = require('./walk');
  * @param {string} line
  * @returns
  */
-function validateHeaderId(line = 1) {
+function validateHeaderId(line) {
   if (!line.startsWith('#')) {
     return;
   }

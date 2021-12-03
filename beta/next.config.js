@@ -10,8 +10,7 @@ module.exports = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   experimental: {
     plugins: true,
-    // TODO: this doesn't work because https://github.com/vercel/next.js/issues/30714
-    // concurrentFeatures: true,
+    concurrentFeatures: true,
     scrollRestoration: true,
   },
   async redirects() {

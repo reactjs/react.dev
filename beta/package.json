@@ -15,7 +15,7 @@
     "prettier:diff": "yarn nit:source",
     "docs:validate-ids": "node scripts/validateHeadingIDs.js src/pages/",
     "generate-ids": "node scripts/generateHeadingIDs.js src/pages/",
-    "ci-check": "npm-run-all prettier:diff --parallel lint tsc",
+    "ci-check": "npm-run-all prettier:diff --parallel lint tsc docs:validate-ids",
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "is-ci || (cd .. && husky install beta/.husky)",

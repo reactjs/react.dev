@@ -4,7 +4,7 @@ title: Acknowledgements
 
 ## React {/*react*/}
 
-React was originally created by [Jordan Walke](https://github.com/jordwalke). Today, React has a [dedicated full-time team working on it](/community/team.html), as well as over a thousand [open source contributors](https://github.com/facebook/react/blob/main/AUTHORS). We'd like to recognize a few people who have made significant contributions to React and its documentation in the past and have helped maintain them over the years:
+React was originally created by [Jordan Walke](https://github.com/jordwalke). Today, React has a [dedicated full-time team working on it](/community/meet-the-team), as well as over a thousand [open source contributors](https://github.com/facebook/react/blob/main/AUTHORS). We'd like to recognize a few people who have made significant contributions to React and its documentation in the past and have helped maintain them over the years:
 
 * [Almero Steyn](https://github.com/AlmeroSteyn)
 * [Andreas Svensson](https://github.com/syranide)

@@ -18,7 +18,7 @@ function validateHeaderId(line) {
   const id = match;
   if (!id) {
     console.error(
-      'Uh Oh seems like the markdown misses headings. Can you run yarn generate-ids to generate headings.'
+      'Uh Oh seems like the markdown misses headings. Can you run yarn fix-headings to generate headings.'
     );
     process.exit(1);
   }
@@ -46,13 +46,13 @@ function validateHeaderIds(lines) {
     validateHeaderId(line);
   });
 }
-
-const [path] = process.argv.slice(2);
-
-main();
-
-async function main() {
-  const files = walk(path);
+/**
+ * paths are basically array of path for which we have to validate heading IDs
+ * @param {Array<string>} paths
+ */
+async function main(paths) {
+  paths = paths.length === 0 ? ['src/pages'] : paths;
+  const files = paths.map((path) => [...walk(path)]).flat();
 
   files.forEach((file) => {
     if (!(file.endsWith('.md') || file.endsWith('.mdx'))) {
@@ -64,3 +64,5 @@ async function main() {
     validateHeaderIds(lines);
   });
 }
+
+module.exports = main;

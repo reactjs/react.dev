@@ -11,7 +11,7 @@ const fs = require('fs');
 const GithubSlugger = require('github-slugger');
 const walk = require('./walk');
 
-let modules
+let modules;
 
 function stripLinks(line) {
   return line.replace(/\[([^\]]+)\]\([^)]+\)/, (match, p1) => p1);
@@ -23,21 +23,37 @@ function addHeaderID(line, slugger) {
     return line;
   }
 
-  const match = /^(#+\s+)(.+?)(\s*\{(?:\/\*|#)([^\}\*\/]+)(?:\*\/)?\}\s*)?$/.exec(line);
-  const before = match[1] + match[2]
-  const proc = modules.unified().use(modules.remarkParse).use(modules.remarkSlug)
-  const tree = proc.runSync(proc.parse(before))
-  const head = tree.children[0]
-  assert(head && head.type === 'heading', 'expected `' + before + '` to be a heading, is it using a normal space after `#`?')
-  const autoId = head.data.id
-  const existingId = match[4]
-  const id = existingId || autoId
+  const match =
+    /^(#+\s+)(.+?)(\s*\{(?:\/\*|#)([^\}\*\/]+)(?:\*\/)?\}\s*)?$/.exec(line);
+  const before = match[1] + match[2];
+  const proc = modules
+    .unified()
+    .use(modules.remarkParse)
+    .use(modules.remarkSlug);
+  const tree = proc.runSync(proc.parse(before));
+  const head = tree.children[0];
+  assert(
+    head && head.type === 'heading',
+    'expected `' +
+      before +
+      '` to be a heading, is it using a normal space after `#`?'
+  );
+  const autoId = head.data.id;
+  const existingId = match[4];
+  const id = existingId || autoId;
   // Ignore numbers:
-  const cleanExisting = existingId ? existingId.replace(/-\d+$/, '') : undefined
-  const cleanAuto = autoId.replace(/-\d+$/, '')
+  const cleanExisting = existingId
+    ? existingId.replace(/-\d+$/, '')
+    : undefined;
+  const cleanAuto = autoId.replace(/-\d+$/, '');
 
   if (cleanExisting && cleanExisting !== cleanAuto) {
-    console.log('Note: heading `%s` has a different ID (`%s`) than what GH generates for it: `%s`:', before, existingId, autoId)
+    console.log(
+      'Note: heading `%s` has a different ID (`%s`) than what GH generates for it: `%s`:',
+      before,
+      existingId,
+      autoId
+    );
   }
 
   return match[1] + match[2] + ' {/*' + id + '*/}';
@@ -65,18 +81,19 @@ function addHeaderIDs(lines) {
   return results;
 }
 
-const [path] = process.argv.slice(2);
+async function main(paths) {
+  paths = paths.length === 0 ? ['src/pages'] : paths;
 
-main()
-
-async function main() {
-  const [unifiedMod, remarkParseMod, remarkSlugMod] = await Promise.all([import('unified'), import('remark-parse'), import('remark-slug')])
-  const unified = unifiedMod.default
-  const remarkParse = remarkParseMod.default
-  const remarkSlug = remarkSlugMod.default
-  modules = {unified, remarkParse, remarkSlug}
-
-  const files = walk(path);
+  const [unifiedMod, remarkParseMod, remarkSlugMod] = await Promise.all([
+    import('unified'),
+    import('remark-parse'),
+    import('remark-slug'),
+  ]);
+  const unified = unifiedMod.default;
+  const remarkParse = remarkParseMod.default;
+  const remarkSlug = remarkSlugMod.default;
+  modules = {unified, remarkParse, remarkSlug};
+  const files = paths.map((path) => [...walk(path)]).flat();
 
   files.forEach((file) => {
     if (!(file.endsWith('.md') || file.endsWith('.mdx'))) {
@@ -88,5 +105,6 @@ async function main() {
     const updatedLines = addHeaderIDs(lines);
     fs.writeFileSync(file, updatedLines.join('\n'));
   });
-
 }
+
+module.exports = main;

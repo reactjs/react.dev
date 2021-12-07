@@ -366,7 +366,7 @@ If you're not yet comfortable with switch statements, using if/else is completel
 </Convention>
 
 
-<DeepDive title="Why are reducers called this way?">
+<DeepDive title="Why are they called reducers?">
 
 Although reducers can "reduce" the amount of code inside your component, they are actually named after the [`reduce()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce) operation that you can perform on arrays.
 

@@ -42,6 +42,9 @@ Here, `useState` is a *Hook* (we'll talk about what this means in a moment). We 
 
 The only argument to `useState` is the initial state. In the example above, it is `0` because our counter starts from zero. Note that unlike `this.state`, the state here doesn't have to be an object -- although it can be if you want. The initial state argument is only used during the first render.
 
+If you are wondering why we are passing a function to setCount, read more about [functional updates](//docs/hooks-reference.html#functional-updates) or [general good practices with updating component state](https://reactjs.org/docs/hooks-reference.html#functional-updates).
+In short, we can pass value or [special function](https://reactjs.org/docs/hooks-reference.html#functional-updates) that takes a previous state value and returns the value we want to set with `setCount` function.
+
 #### Declaring multiple state variables {#declaring-multiple-state-variables}
 
 You can use the State Hook more than once in a single component:

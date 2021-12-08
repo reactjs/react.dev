@@ -17,7 +17,7 @@ function Example() {
   return (
     <div>
       <p>You clicked {count} times</p>
-      <button onClick={(previousCount) => setCount(previousCount + 1)}>
+      <button onClick={() => setCount(previousCount => previousCount + 1)}>
         Click me
       </button>
     </div>

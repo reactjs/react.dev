@@ -89,6 +89,10 @@
     "unist-util-visit": "^2.0.3",
     "webpack-bundle-analyzer": "^4.5.0"
   },
+  "resolutions": {
+    "@codemirror/gutter": "0.19.4",
+    "@codemirror/view": "0.19.14"
+  },
   "engines": {
     "node": ">=12.x"
   },

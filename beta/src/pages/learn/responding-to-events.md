@@ -275,12 +275,11 @@ When your component supports multiple interactions, you might name event handler
 <Sandpack>
 
 ```js
-export default function App() {
+function Button({ onClick, children }) {
   return (
-    <Toolbar
-      onPlayMovie={() => alert('Playing!')}
-      onUploadImage={() => alert('Uploading!')}
-    />
+    <button onClick={onClick}>
+      {children}
+    </button>
   );
 }
 
@@ -297,11 +296,12 @@ function Toolbar({ onPlayMovie, onUploadImage }) {
   );
 }
 
-function Button({ onClick, children }) {
+export default function App() {
   return (
-    <button onClick={onClick}>
-      {children}
-    </button>
+    <Toolbar
+      onPlayMovie={() => alert('Playing!')}
+      onUploadImage={() => alert('Uploading!')}
+    />
   );
 }
 ```

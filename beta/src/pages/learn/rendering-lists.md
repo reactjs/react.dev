@@ -390,7 +390,7 @@ Fragments disappear from the DOM, so this will produce a flat list of `<h1>`, `<
 Different sources of data provide different sources of keys:
 
 * **Data from a database:** If your data is coming from a database, you can use the database keys/IDs, which are unique by nature.
-* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
+* **Locally generated data:** If your data is generated and persisted locally (e.g. notes in a note-taking app), use an incrementing counter, [`crypto.randomUUID()`](https://developer.mozilla.org/en-US/docs/Web/API/Crypto/randomUUID) or a package like [`uuid`](https://www.npmjs.com/package/uuid) when creating items.
 
 ### Rules of keys {/*rules-of-keys*/}
 

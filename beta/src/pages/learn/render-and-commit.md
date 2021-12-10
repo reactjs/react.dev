@@ -91,6 +91,15 @@ In the following example, React will call `Gallery()` and  `Image()` several tim
 <Sandpack>
 
 ```js Gallery.js active
+function Image() {
+  return (
+    <img
+      src="https://i.imgur.com/ZF6s192.jpg"
+      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+    />
+  );
+}
+
 export default function Gallery() {
   return (
     <section>
@@ -99,15 +108,6 @@ export default function Gallery() {
       <Image />
       <Image />
     </section>
-  );
-}
-
-function Image() {
-  return (
-    <img
-      src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
-    />
   );
 }
 ```

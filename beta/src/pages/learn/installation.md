@@ -10,7 +10,7 @@ React has been designed from the start for gradual adoption, and you can use as 
 
 <YouWillLearn>
 
-* [How add React to an HTML page](/learn/add-react-to-a-website)
+* [How to add React to an HTML page](/learn/add-react-to-a-website)
 * [How to start a standalone React project](/learn/start-a-new-react-project)
 * [How to set up your editor](/learn/editor-setup)
 * [How to install React Developer Tools](/learn/react-developer-tools)

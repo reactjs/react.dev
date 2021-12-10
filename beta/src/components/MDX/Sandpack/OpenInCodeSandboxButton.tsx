@@ -3,12 +3,12 @@
  */
 
 import * as React from 'react';
-import {useCodeSandboxLink} from '@codesandbox/sandpack-react';
+// import {useCodeSandboxLink} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 import {IconNewPage} from '../../Icon/IconNewPage';
 
 export const OpenInCodeSandboxButton = ({className}: {className?: string}) => {
-  const url = useCodeSandboxLink();
+  // const url = useCodeSandboxLink();
 
   return (
     <a
@@ -16,7 +16,7 @@ export const OpenInCodeSandboxButton = ({className}: {className?: string}) => {
         'text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1',
         className
       )}
-      href={url}
+      // href={url}
       rel="noreferrer noopener"
       target="_blank"
       title="Open in CodeSandbox">

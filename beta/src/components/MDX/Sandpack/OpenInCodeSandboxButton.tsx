@@ -15,10 +15,7 @@ export const OpenInCodeSandboxButton = ({className}: {className?: string}) => {
         className
       )}
       title="Open in CodeSandbox">
-      <span className="hidden md:inline">
-        <IconNewPage className="inline mb-0.5 text-base" /> Fork
-      </span>
-      <span className="inline md:hidden">
+      <span className="inline">
         <IconNewPage className="inline mb-0.5 text-base" /> Fork
       </span>
     </UnstyledOpenInCodeSandboxButton>

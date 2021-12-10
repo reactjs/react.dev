@@ -10,6 +10,7 @@ import {
   useActiveCode,
   SandpackCodeEditor,
   SandpackThemeProvider,
+  SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
@@ -77,6 +78,7 @@ export function CustomPreset({
                 maxHeight: isExpanded ? '' : 406,
               }}
             />
+
             {isExpandable && (
               <button
                 translate="yes"
@@ -104,6 +106,8 @@ export function CustomPreset({
               </button>
             )}
           </div>
+
+          <SandpackReactDevTools />
         </SandpackThemeProvider>
       </div>
     </>

@@ -50,4 +50,4 @@ Ideally, you should format your code on every save. VS Code has settings for thi
 4. In the search bar, type "format on save"
 5. Be sure the "format on save" option is ticked!
 
-> Prettier can sometimes conflict with other linters. But there's usually a way to get them to run nicely together. For instance, if you're using Prettier with ESLint, you can use [eslint-prettier](https://github.com/prettier/eslint-plugin-prettier) plugin to run prettier as an ESLint rule.
+> Prettier can sometimes conflict with other linters. But there's usually a way to get them to run nicely together. For instance, if you're using Prettier with ESLint, you can use [eslint-config-prettier](https://github.com/prettier/eslint-config-prettier) plugin to disable ESLint rules that conflict with Prettier.

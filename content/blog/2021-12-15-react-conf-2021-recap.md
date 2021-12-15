@@ -19,7 +19,7 @@ After [piloting React 18](https://engineering.fb.com/2020/05/08/web/facebook-red
 
 This release is a milestone of years of collaborative research between the React, React Native, and React Data teams. With this release we're rolling out features that power the [facebook.com](https://www.facebook.com/) site and set the foundation for upcoming features such as **Server Components** and **React Native pre-rendering**.
 
-We also shared how we're raising the bar across many platforms with our [many platform](https://reactnative.dev/blog/2021/08/26/many-platform-vision)[vision](https://reactnative.dev/blog/2021/08/26/many-platform-vision). The foundation set by React 18 will power our investment into platforms such as Desktop and VR.
+We also shared how we're raising the bar across many platforms with our [many platform vision](https://reactnative.dev/blog/2021/08/26/many-platform-vision). The foundation set by React 18 will power our investment into platforms such as Desktop and VR.
 
 ![A diagram showing the proposed platforms React plans to support](../images/blog/react-conf-2021-recap/multi-platform-vision.png)
 

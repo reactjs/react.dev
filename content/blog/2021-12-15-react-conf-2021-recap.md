@@ -23,7 +23,7 @@ We also shared how we're raising the bar across many platforms with our [many pl
 
 ![A diagram showing the proposed platforms React plans to support](../images/blog/react-conf-2021-recap/multi-platform-vision.png)
 
-## Here are some key highlights from the conference: {#key-highlights-from-conf}
+## Here are some key highlights from the conference {#key-highlights-from-conf}
 
 * **React 18 RC:** We announced React 18, the foundation for the future of React. This release includes the **new concurrent renderer** that powers the [facebook.com](http://facebook.com/) site, **Suspense** , and many upcoming features such as **Server Components** , and **React Native pre-rendering**. Learn more at [Andrew Clark](https://twitter.com/acdlite) and [Juan Tejada's](https://twitter.com/_jstejada) talk in the [React 18 Keynote](https://www.youtube.com/watch?v=FZ0cG47msEk).
 * **Gradual Migration:** We were excited to announce our new gradual migration strategy for React 18 and our new concurrent renderer. We previously considered a "mode" that would opt entire apps into concurrent rendering. But with React 18, there's no concurrent mode, only concurrent features. You get concurrency when you opt-in by using new concurrent features. Learn more at [Lauren Tan's](https://twitter.com/sugarpirate_) talk in the [React 18 Keynote](https://www.youtube.com/watch?v=FZ0cG47msEk).
@@ -39,7 +39,7 @@ We also shared how we're raising the bar across many platforms with our [many pl
 * **New Working Groups:** We launched our first public [Working Group](https://github.com/reactwg/react-18) to help ship our gradual adoption strategy for React 18. It was key to our success for React 18, leading directly to changes to many of the APIs mentioned above. We also announced a new public working groups for [Server Components](https://github.com/reactwg/server-components). Learn more at [Aakansha Doshi's](https://twitter.com/aakansha1216) talk about [The First React Working Group](https://www.youtube.com/watch?v=qn7gRClrC9U). Additionally, [Shruti Kapoor](https://twitter.com/shrutikapoor08), a member of the React 18 Working Group, went over what's new in React 18, how to upgrade to React 18, and demoed upgrading to React 18 on a clone of an [existing Kanban board app](https://github.com/oldboyxx/jira_clone). Watch the full talk at [React 18 for app developers](https://www.youtube.com/watch?v=ytudH8je5ko).
 * **Auto-memoization:** We shared an update on the research we've been doing into auto-memoization to provide out-of-the-box perf wins using a compiler for React. Learn more at [Xuan Huang's](https://twitter.com/Huxpro) talk about [React without memo](https://www.youtube.com/watch?v=lGEMwh32soc).
 
-## We heard from partner teams and members of the React community: {#partner-teams}
+## We heard from partner teams and members of the React community {#partner-teams}
 
 * [Sarah Rainsberger](https://twitter.com/sarah11918) talked about learning, building, and maintaining React code using [nothing but a web browser](https://www.youtube.com/watch?v=5X-WEQflCL0).
 * [Linton Ye](https://twitter.com/lintonye) talked about [The ROI of Designing with React](https://www.youtube.com/watch?v=7cPWmID5XAk). Check out his [resource](https://learnreact.design/) for learning React for designers and visual learners.

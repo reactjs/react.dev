@@ -22,9 +22,11 @@ import {CustomTheme} from './Themes';
 export function CustomPreset({
   isSingleFile,
   onReset,
+  showDevTools,
 }: {
   isSingleFile: boolean;
   onReset: () => void;
+  showDevTools: boolean;
 }) {
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -107,7 +109,7 @@ export function CustomPreset({
             )}
           </div>
 
-          <SandpackReactDevTools />
+          {showDevTools && <SandpackReactDevTools />}
         </SandpackThemeProvider>
       </div>
     </>

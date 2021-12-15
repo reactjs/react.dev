@@ -23,7 +23,7 @@ Welcome to the React documentation! Here is an overview of what you can find on 
 
 This is a tiny React app. To get your first taste of React, **edit the code below** and make it display your name:
 
-<Sandpack>
+<Sandpack showDevTools>
 
 ```js
 function Greeting({ name }) {
@@ -99,7 +99,7 @@ To save you time, we provide **a brief overview of each chapter** below.
 
 React applications are built from isolated pieces of UI called ["components"](/learn/your-first-component). A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here, a *parent* `Gallery` component renders three *child* `Profile` components:
 
-<Sandpack>
+<Sandpack showDevTools>
 
 ```js
 function Profile() {

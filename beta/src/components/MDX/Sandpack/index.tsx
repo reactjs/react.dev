@@ -15,6 +15,7 @@ type SandpackProps = {
   children: React.ReactChildren;
   autorun?: boolean;
   setup?: SandpackSetup;
+  showDevTools?: boolean;
 };
 
 const sandboxStyle = `
@@ -64,7 +65,7 @@ ul {
 `.trim();
 
 function Sandpack(props: SandpackProps) {
-  let {children, setup, autorun = true} = props;
+  let {children, setup, autorun = true, showDevTools = false} = props;
   let [resetKey, setResetKey] = React.useState(0);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
@@ -141,6 +142,7 @@ function Sandpack(props: SandpackProps) {
         autorun={autorun}>
         <CustomPreset
           isSingleFile={isSingleFile}
+          showDevTools={showDevTools}
           onReset={() => {
             setResetKey((k) => k + 1);
           }}

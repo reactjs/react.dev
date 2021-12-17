@@ -58,6 +58,7 @@ export default function MovingDot() {
     x: 0,
     y: 0
   });
+  
   return (
     <div
       onPointerMove={e => {
@@ -579,6 +580,7 @@ import { initialTravelPlan } from './places.js';
 
 function PlaceTree({ place }) {
   const childPlaces = place.childPlaces;
+  
   return (
     <>
       <li>{place.title}</li>
@@ -596,6 +598,7 @@ function PlaceTree({ place }) {
 export default function TravelPlan() {
   const [plan, setPlan] = useState(initialTravelPlan);
   const planets = plan.childPlaces;
+  
   return (
     <>
       <h2>Places to visit</h2>
@@ -830,6 +833,7 @@ import { initialTravelPlan } from './places.js';
 function PlaceTree({ id, placesById }) {
   const place = placesById[id];
   const childIds = place.childIds;
+  
   return (
     <>
       <li>{place.title}</li>
@@ -852,6 +856,7 @@ export default function TravelPlan() {
   const [plan, setPlan] = useState(initialTravelPlan);
   const root = plan[0];
   const planetIds = root.childIds;
+  
   return (
     <>
       <h2>Places to visit</h2>
@@ -1163,6 +1168,7 @@ export default function TravelPlan() {
 
   const root = plan[0];
   const planetIds = root.childIds;
+  
   return (
     <>
       <h2>Places to visit</h2>
@@ -1184,6 +1190,7 @@ export default function TravelPlan() {
 function PlaceTree({ id, parentId, placesById, onComplete }) {
   const place = placesById[id];
   const childIds = place.childIds;
+  
   return (
     <>
       <li>
@@ -1507,6 +1514,7 @@ export default function TravelPlan() {
 
   const root = plan[0];
   const planetIds = root.childIds;
+  
   return (
     <>
       <h2>Places to visit</h2>
@@ -1528,6 +1536,7 @@ export default function TravelPlan() {
 function PlaceTree({ id, parentId, placesById, onComplete }) {
   const place = placesById[id];
   const childIds = place.childIds;
+  
   return (
     <>
       <li>
@@ -1864,6 +1873,7 @@ import { useState } from 'react';
 
 export default function Clock(props) {
   const [color, setColor] = useState(props.color);
+  
   return (
     <h1 style={{ color: color }}>
       {props.time}
@@ -1890,6 +1900,7 @@ function useTime() {
 export default function App() {
   const time = useTime();
   const [color, setColor] = useState('lightcoral');
+  
   return (
     <div>
       <p>
@@ -1944,6 +1955,7 @@ function useTime() {
 export default function App() {
   const time = useTime();
   const [color, setColor] = useState('lightcoral');
+  
   return (
     <div>
       <p>
@@ -1996,6 +2008,7 @@ function useTime() {
 export default function App() {
   const time = useTime();
   const [color, setColor] = useState('lightcoral');
+  
   return (
     <div>
       <p>
@@ -2102,6 +2115,7 @@ import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
   const [title, setTitle] = useState('');
+  
   return (
     <>
       <input
@@ -2238,6 +2252,7 @@ import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
   const [title, setTitle] = useState('');
+  
   return (
     <>
       <input

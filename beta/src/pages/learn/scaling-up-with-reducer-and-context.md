@@ -110,6 +110,7 @@ import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
+  
   return (
     <>
       <input
@@ -152,6 +153,7 @@ export default function TaskList({
 function Task({ task, onChange, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   let taskContent;
+  
   if (isEditing) {
     taskContent = (
       <>
@@ -355,6 +357,7 @@ import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
+  
   return (
     <>
       <input
@@ -576,6 +579,7 @@ import { useState } from 'react';
 
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
+  
   return (
     <>
       <input
@@ -726,24 +730,13 @@ import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
-
-export default function TaskBoard() {
-  const [tasks, dispatch] = useReducer(
-    tasksReducer,
-    initialTasks
-  );
-
-  return (
-    <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider value={dispatch}>
-        <h1>Day off in Kyoto</h1>
-        <AddTask />
-        <TaskList />
-      </TasksDispatchContext.Provider>
-    </TasksContext.Provider>
-  );
-}
-
+  
+const initialTasks = [
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
+];
+  
 function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'added': {
@@ -771,11 +764,22 @@ function tasksReducer(tasks, action) {
   }
 }
 
-const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
-];
+export default function TaskBoard() {
+  const [tasks, dispatch] = useReducer(
+    tasksReducer,
+    initialTasks
+  );
+
+  return (
+    <TasksContext.Provider value={tasks}>
+      <TasksDispatchContext.Provider value={dispatch}>
+        <h1>Day off in Kyoto</h1>
+        <AddTask />
+        <TaskList />
+      </TasksDispatchContext.Provider>
+    </TasksContext.Provider>
+  );
+}
 ```
 
 ```js TasksContext.js
@@ -792,6 +796,7 @@ import { TasksDispatchContext } from './TasksContext.js';
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
+  
   return (
     <>
       <input
@@ -818,23 +823,11 @@ let nextId = 3;
 import { useState, useContext } from 'react';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
-export default function TaskList() {
-  const tasks = useContext(TasksContext);
-  return (
-    <ul>
-      {tasks.map(task => (
-        <li key={task.id}>
-          <Task task={task} />
-        </li>
-      ))}
-    </ul>
-  );
-}
-
 function Task({ task }) {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useContext(TasksDispatchContext);
   let taskContent;
+  
   if (isEditing) {
     taskContent = (
       <>
@@ -889,6 +882,20 @@ function Task({ task }) {
         Delete
       </button>
     </label>
+  );
+}
+
+export default function TaskList() {
+  const tasks = useContext(TasksContext);
+  
+  return (
+    <ul>
+      {tasks.map(task => (
+        <li key={task.id}>
+          <Task task={task} />
+        </li>
+      ))}
+    </ul>
   );
 }
 ```
@@ -1016,6 +1023,7 @@ import { TasksDispatchContext } from './TasksContext.js';
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
+  
   return (
     <>
       <input
@@ -1044,6 +1052,7 @@ import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useContext(TasksContext);
+  
   return (
     <ul>
       {tasks.map(task => (
@@ -1059,6 +1068,7 @@ function Task({ task }) {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useContext(TasksDispatchContext);
   let taskContent;
+  
   if (isEditing) {
     taskContent = (
       <>
@@ -1235,6 +1245,7 @@ import { useTasksDispatch } from './TasksContext.js';
 export default function AddTask({ onAddTask }) {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
+  
   return (
     <>
       <input
@@ -1263,6 +1274,7 @@ import { useTasks, useTasksDispatch } from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useTasks();
+  
   return (
     <ul>
       {tasks.map(task => (
@@ -1278,6 +1290,7 @@ function Task({ task }) {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useTasksDispatch();
   let taskContent;
+  
   if (isEditing) {
     taskContent = (
       <>
@@ -1307,6 +1320,7 @@ function Task({ task }) {
       </>
     );
   }
+  
   return (
     <label>
       <input

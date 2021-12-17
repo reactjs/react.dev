@@ -53,11 +53,13 @@ Technically, you can use either of these approaches. But **if some two state var
 
 ```js
 import { useState } from 'react';
+  
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
     y: 0
   });
+  
   return (
     <div
       onPointerMove={e => {
@@ -108,6 +110,13 @@ Here is a hotel feedback form with `isSending` and `isSent` state variables:
 
 ```js
 import { useState } from 'react';
+  
+// Pretend to send a message.
+function sendMessage(text) {
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  });
+}
 
 export default function FeedbackForm() {
   const [text, setText] = useState('');
@@ -145,13 +154,6 @@ export default function FeedbackForm() {
     </form>
   );
 }
-
-// Pretend to send a message.
-function sendMessage(text) {
-  return new Promise(resolve => {
-    setTimeout(resolve, 2000);
-  });
-}
 ```
 
 </Sandpack>
@@ -164,6 +166,13 @@ While this code works, it leaves the door open for "impossible" states. For exam
 
 ```js
 import { useState } from 'react';
+  
+// Pretend to send a message.
+function sendMessage(text) {
+  return new Promise(resolve => {
+    setTimeout(resolve, 2000);
+  });
+}
 
 export default function FeedbackForm() {
   const [text, setText] = useState('');
@@ -201,13 +210,6 @@ export default function FeedbackForm() {
       {isSending && <p>Sending...</p>}
     </form>
   );
-}
-
-// Pretend to send a message.
-function sendMessage(text) {
-  return new Promise(resolve => {
-    setTimeout(resolve, 2000);
-  });
 }
 ```
 
@@ -579,6 +581,7 @@ import { initialTravelPlan } from './places.js';
 
 function PlaceTree({ place }) {
   const childPlaces = place.childPlaces;
+  
   return (
     <>
       <li>{place.title}</li>
@@ -596,6 +599,7 @@ function PlaceTree({ place }) {
 export default function TravelPlan() {
   const [plan, setPlan] = useState(initialTravelPlan);
   const planets = plan.childPlaces;
+  
   return (
     <>
       <h2>Places to visit</h2>
@@ -830,6 +834,7 @@ import { initialTravelPlan } from './places.js';
 function PlaceTree({ id, placesById }) {
   const place = placesById[id];
   const childIds = place.childIds;
+  
   return (
     <>
       <li>{place.title}</li>
@@ -1141,46 +1146,6 @@ Here is an example of how you could go about it:
 import { useState } from 'react';
 import { initialTravelPlan } from './places.js';
 
-export default function TravelPlan() {
-  const [plan, setPlan] = useState(initialTravelPlan);
-
-  function handleComplete(parentId, childId) {
-    const parent = plan[parentId];
-    // Create a new version of the parent place
-    // that doesn't include this child ID.
-    const nextParent = {
-      ...parent,
-      childIds: parent.childIds
-        .filter(id => id !== childId)
-    };
-    // Update the root state object...
-    setPlan({
-      ...plan,
-      // ...so that it has the updated parent.
-      [parentId]: nextParent
-    });
-  }
-
-  const root = plan[0];
-  const planetIds = root.childIds;
-  return (
-    <>
-      <h2>Places to visit</h2>
-      <ol>
-        {planetIds.map(id => (
-          <PlaceTree
-            key={id}
-            id={id}
-            parentId={0}
-            placesById={plan}
-            onComplete={handleComplete}
-          />
-        ))}
-      </ol>
-    </>
-  );
-}
-
 function PlaceTree({ id, parentId, placesById, onComplete }) {
   const place = placesById[id];
   const childIds = place.childIds;
@@ -1207,6 +1172,47 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
           ))}
         </ol>
       }
+    </>
+  );
+}
+  
+export default function TravelPlan() {
+  const [plan, setPlan] = useState(initialTravelPlan);
+
+  function handleComplete(parentId, childId) {
+    const parent = plan[parentId];
+    // Create a new version of the parent place
+    // that doesn't include this child ID.
+    const nextParent = {
+      ...parent,
+      childIds: parent.childIds
+        .filter(id => id !== childId)
+    };
+    // Update the root state object...
+    setPlan({
+      ...plan,
+      // ...so that it has the updated parent.
+      [parentId]: nextParent
+    });
+  }
+
+  const root = plan[0];
+  const planetIds = root.childIds;
+  
+  return (
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {planetIds.map(id => (
+          <PlaceTree
+            key={id}
+            id={id}
+            parentId={0}
+            placesById={plan}
+            onComplete={handleComplete}
+          />
+        ))}
+      </ol>
     </>
   );
 }
@@ -1485,46 +1491,6 @@ Ideally, you would also remove the deleted items (and their children!) from the 
 import { useImmer } from 'use-immer';
 import { initialTravelPlan } from './places.js';
 
-export default function TravelPlan() {
-  const [plan, updatePlan] = useImmer(initialTravelPlan);
-
-  function handleComplete(parentId, childId) {
-    updatePlan(draft => {
-      // Remove from the parent place's child IDs.
-      const parent = draft[parentId];
-      parent.childIds = parent.childIds
-        .filter(id => id !== childId);
-
-      // Forget this place and all its subtree.
-      deleteAllChildren(childId);
-      function deleteAllChildren(id) {
-        const place = draft[id];
-        place.childIds.forEach(deleteAllChildren);
-        delete draft[id];
-      }
-    });
-  }
-
-  const root = plan[0];
-  const planetIds = root.childIds;
-  return (
-    <>
-      <h2>Places to visit</h2>
-      <ol>
-        {planetIds.map(id => (
-          <PlaceTree
-            key={id}
-            id={id}
-            parentId={0}
-            placesById={plan}
-            onComplete={handleComplete}
-          />
-        ))}
-      </ol>
-    </>
-  );
-}
-
 function PlaceTree({ id, parentId, placesById, onComplete }) {
   const place = placesById[id];
   const childIds = place.childIds;
@@ -1551,6 +1517,47 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
           ))}
         </ol>
       }
+    </>
+  );
+}
+  
+export default function TravelPlan() {
+  const [plan, updatePlan] = useImmer(initialTravelPlan);
+
+  function handleComplete(parentId, childId) {
+    updatePlan(draft => {
+      // Remove from the parent place's child IDs.
+      const parent = draft[parentId];
+      parent.childIds = parent.childIds
+        .filter(id => id !== childId);
+
+      // Forget this place and all its subtree.
+      deleteAllChildren(childId);
+      function deleteAllChildren(id) {
+        const place = draft[id];
+        place.childIds.forEach(deleteAllChildren);
+        delete draft[id];
+      }
+    });
+  }
+
+  const root = plan[0];
+  const planetIds = root.childIds;
+  
+  return (
+    <>
+      <h2>Places to visit</h2>
+      <ol>
+        {planetIds.map(id => (
+          <PlaceTree
+            key={id}
+            id={id}
+            parentId={0}
+            placesById={plan}
+            onComplete={handleComplete}
+          />
+        ))}
+      </ol>
     </>
   );
 }
@@ -1864,6 +1871,7 @@ import { useState } from 'react';
 
 export default function Clock(props) {
   const [color, setColor] = useState(props.color);
+  
   return (
     <h1 style={{ color: color }}>
       {props.time}
@@ -2102,6 +2110,7 @@ import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
   const [title, setTitle] = useState('');
+  
   return (
     <>
       <input
@@ -2238,6 +2247,7 @@ import { useState } from 'react';
 
 export default function AddItem({ onAddItem }) {
   const [title, setTitle] = useState('');
+  
   return (
     <>
       <input

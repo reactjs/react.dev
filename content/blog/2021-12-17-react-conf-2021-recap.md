@@ -31,13 +31,13 @@ In the keynote, we also announced that the React 18 RC is available to try now. 
 
 To try the React 18 RC, upgrade your dependencies:
 
-```
+```bash
 npm install react@rc react-dom@rc
 ```
 
 and switch to the new `createRoot` API:
 
-```
+```js
 // before
 const container = `document.getElementById('root');`
 ReactDOM.render(<App />, container);

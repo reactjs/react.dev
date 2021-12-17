@@ -39,7 +39,7 @@ and switch to the new `createRoot` API:
 
 ```js
 // before
-const container = `document.getElementById('root');`
+const container = document.getElementById('root');
 ReactDOM.render(<App />, container);
 
 // after

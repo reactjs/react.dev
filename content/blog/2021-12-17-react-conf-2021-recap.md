@@ -86,7 +86,7 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 
 ## React docs keynote
 
-[Rachel Nabors](https://twitter.com/rachelnabors) shared the [new React Docs beta](https://beta.reactjs.org/) and a demo of all the new features:
+[Rachel Nabors](https://twitter.com/rachelnabors) kicked off a section of talks about learning and designing with React with a keynote about our investment in React's [new docs](https://beta.reactjs.org/):
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

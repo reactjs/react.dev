@@ -58,7 +58,7 @@ React 18 also includes improvements to server-side rendering performance using S
 
 Streaming server rendering lets you generate HTML from React components on the server, and stream that HTML to your users. In React 18, you can use `Suspense` to break down your app into smaller independent units which can be streamed independently of each other without blocking the rest of the app. This means users will see your content sooner and be able to start interacting with it much faster.
 
-For a deep dive, see Shaundai Person’s talk here:
+For a deep dive, see [Shaundai Person](https://twitter.com/shaundai)’s talk here:
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/pj5N-Khihgc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -66,7 +66,7 @@ For a deep dive, see Shaundai Person’s talk here:
 
 For React 18, we created our first Working Group to collaborate with a panel of experts, developers, library maintainers, and educators. Together we worked to create our gradual adoption strategy and refine new APIs such as `useId`, `useSyncExternalStore`, and `useInsertionEffect`.
 
-For an overview of this work, see Aakansha' Doshi's talk:
+For an overview of this work, see [Aakansha' Doshi](https://twitter.com/aakansha1216)'s talk:
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/qn7gRClrC9U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -74,19 +74,19 @@ For an overview of this work, see Aakansha' Doshi's talk:
 
 To support the new features in this release, we also announced the newly formed React DevTools team and a new Timeline Profiler to help developers debug their React apps.
 
-For more information and a demo of new DevTools features, see Brian Vaughn’s talk:
+For more information and a demo of new DevTools features, see [Brian Vaughn](https://twitter.com/brian_d_vaughn)’s talk:
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/oxDfrke8rZg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## React without memo
 
-Looking further into the future, Xuan Huang (黄玄) shared an update on our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
+Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update on our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ## React docs keynote
 
-Rachel Nabors shared the [new React Docs beta](https://beta.reactjs.org/) and a demo of all the new features:
+[Rachel Nabors](https://twitter.com/rachelnabors) shared the [new React Docs beta](https://beta.reactjs.org/) and a demo of all the new features:
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/mneDaMYOKP8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

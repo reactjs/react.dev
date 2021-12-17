@@ -29,6 +29,7 @@ const PageNotFound = ({location}: Props) => (
               Please contact the owner of the site that linked you to the
               original URL and let them know their link is broken.
             </p>
+            <p><a href="/">Back to home</a></p>
           </div>
         </div>
       </div>

@@ -37,16 +37,6 @@ Here, there is only one `<Counter />` JSX tag, but it's rendered at two differen
 ```js
 import { useState } from 'react';
 
-export default function App() {
-  const counter = <Counter />;
-  return (
-    <div>
-      {counter}
-      {counter}
-    </div>
-  );
-}
-
 function Counter() {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -66,6 +56,17 @@ function Counter() {
       <button onClick={() => setScore(score + 1)}>
         Add one
       </button>
+    </div>
+  );
+}
+  
+export default function App() {
+  const counter = <Counter />;
+  
+  return (
+    <div>
+      {counter}
+      {counter}
     </div>
   );
 }
@@ -109,15 +110,6 @@ Try clicking both counters and notice they don't affect each other:
 ```js
 import { useState } from 'react';
 
-export default function App() {
-  return (
-    <div>
-      <Counter />
-      <Counter />
-    </div>
-  );
-}
-
 function Counter() {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -137,6 +129,15 @@ function Counter() {
       <button onClick={() => setScore(score + 1)}>
         Add one
       </button>
+    </div>
+  );
+}
+  
+export default function App() {
+  return (
+    <div>
+      <Counter />
+      <Counter />
     </div>
   );
 }
@@ -167,26 +168,6 @@ React will only keep the state around for as long as you render the same compone
 ```js
 import { useState } from 'react';
 
-export default function App() {
-  const [showB, setShowB] = useState(true);
-  return (
-    <div>
-      <Counter />
-      {showB && <Counter />} 
-      <label>
-        <input
-          type="checkbox"
-          checked={showB}
-          onChange={e => {
-            setShowB(e.target.checked)
-          }}
-        />
-        Render the second counter
-      </label>
-    </div>
-  );
-}
-
 function Counter() {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -206,6 +187,27 @@ function Counter() {
       <button onClick={() => setScore(score + 1)}>
         Add one
       </button>
+    </div>
+  );
+}
+  
+export default function App() {
+  const [showB, setShowB] = useState(true);
+  
+  return (
+    <div>
+      <Counter />
+      {showB && <Counter />} 
+      <label>
+        <input
+          type="checkbox"
+          checked={showB}
+          onChange={e => {
+            setShowB(e.target.checked)
+          }}
+        />
+        Render the second counter
+      </label>
     </div>
   );
 }
@@ -253,29 +255,6 @@ In this example, there are two different `<Counter />` tags:
 ```js
 import { useState } from 'react';
 
-export default function App() {
-  const [isFancy, setIsFancy] = useState(false);
-  return (
-    <div>
-      {isFancy ? (
-        <Counter isFancy={true} /> 
-      ) : (
-        <Counter isFancy={false} /> 
-      )}
-      <label>
-        <input
-          type="checkbox"
-          checked={isFancy}
-          onChange={e => {
-            setIsFancy(e.target.checked)
-          }}
-        />
-        Use fancy styling
-      </label>
-    </div>
-  );
-}
-
 function Counter({ isFancy }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -298,6 +277,30 @@ function Counter({ isFancy }) {
       <button onClick={() => setScore(score + 1)}>
         Add one
       </button>
+    </div>
+  );
+}
+  
+export default function App() {
+  const [isFancy, setIsFancy] = useState(false);
+  
+  return (
+    <div>
+      {isFancy ? (
+        <Counter isFancy={true} /> 
+      ) : (
+        <Counter isFancy={false} /> 
+      )}
+      <label>
+        <input
+          type="checkbox"
+          checked={isFancy}
+          onChange={e => {
+            setIsFancy(e.target.checked)
+          }}
+        />
+        Use fancy styling
+      </label>
     </div>
   );
 }
@@ -348,6 +351,32 @@ Remember that **it's the position in the UI tree--not in the JSX markup--that ma
 
 ```js
 import { useState } from 'react';
+  
+function Counter({ isFancy }) {
+  const [score, setScore] = useState(0);
+  const [hover, setHover] = useState(false);
+
+  let className = 'counter';
+  if (hover) {
+    className += ' hover';
+  }
+  if (isFancy) {
+    className += ' fancy';
+  }
+
+  return (
+    <div
+      className={className}
+      onPointerEnter={() => setHover(true)}
+      onPointerLeave={() => setHover(false)}
+    >
+      <h1>{score}</h1>
+      <button onClick={() => setScore(score + 1)}>
+        Add one
+      </button>
+    </div>
+  );
+}
 
 export default function App() {
   const [isFancy, setIsFancy] = useState(false);
@@ -381,32 +410,6 @@ export default function App() {
         />
         Use fancy styling
       </label>
-    </div>
-  );
-}
-
-function Counter({ isFancy }) {
-  const [score, setScore] = useState(0);
-  const [hover, setHover] = useState(false);
-
-  let className = 'counter';
-  if (hover) {
-    className += ' hover';
-  }
-  if (isFancy) {
-    className += ' fancy';
-  }
-
-  return (
-    <div
-      className={className}
-      onPointerEnter={() => setHover(true)}
-      onPointerLeave={() => setHover(false)}
-    >
-      <h1>{score}</h1>
-      <button onClick={() => setScore(score + 1)}>
-        Add one
-      </button>
     </div>
   );
 }
@@ -455,29 +458,6 @@ In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
 ```js
 import { useState } from 'react';
 
-export default function App() {
-  const [isPaused, setIsPaused] = useState(false);
-  return (
-    <div>
-      {isPaused ? (
-        <p>See you later!</p> 
-      ) : (
-        <Counter /> 
-      )}
-      <label>
-        <input
-          type="checkbox"
-          checked={isPaused}
-          onChange={e => {
-            setIsPaused(e.target.checked)
-          }}
-        />
-        Take a break
-      </label>
-    </div>
-  );
-}
-
 function Counter() {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -497,6 +477,30 @@ function Counter() {
       <button onClick={() => setScore(score + 1)}>
         Add one
       </button>
+    </div>
+  );
+}
+  
+export default function App() {
+  const [isPaused, setIsPaused] = useState(false);
+  
+  return (
+    <div>
+      {isPaused ? (
+        <p>See you later!</p> 
+      ) : (
+        <Counter /> 
+      )}
+      <label>
+        <input
+          type="checkbox"
+          checked={isPaused}
+          onChange={e => {
+            setIsPaused(e.target.checked)
+          }}
+        />
+        Take a break
+      </label>
     </div>
   );
 }
@@ -535,34 +539,7 @@ Also, **when you render a different component in the same position, it resets th
 
 ```js
 import { useState } from 'react';
-
-export default function App() {
-  const [isFancy, setIsFancy] = useState(false);
-  return (
-    <div>
-      {isFancy ? (
-        <div>
-          <Counter isFancy={true} /> 
-        </div>
-      ) : (
-        <section>
-          <Counter isFancy={false} />
-        </section>
-      )}
-      <label>
-        <input
-          type="checkbox"
-          checked={isFancy}
-          onChange={e => {
-            setIsFancy(e.target.checked)
-          }}
-        />
-        Use fancy styling
-      </label>
-    </div>
-  );
-}
-
+  
 function Counter({ isFancy }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -585,6 +562,34 @@ function Counter({ isFancy }) {
       <button onClick={() => setScore(score + 1)}>
         Add one
       </button>
+    </div>
+  );
+}
+
+export default function App() {
+  const [isFancy, setIsFancy] = useState(false);
+  
+  return (
+    <div>
+      {isFancy ? (
+        <div>
+          <Counter isFancy={true} /> 
+        </div>
+      ) : (
+        <section>
+          <Counter isFancy={false} />
+        </section>
+      )}
+      <label>
+        <input
+          type="checkbox"
+          checked={isFancy}
+          onChange={e => {
+            setIsFancy(e.target.checked)
+          }}
+        />
+        Use fancy styling
+      </label>
     </div>
   );
 }
@@ -676,24 +681,6 @@ By default, React preserves state of a component while it stays at the same posi
 ```js
 import { useState } from 'react';
 
-export default function Scoreboard() {
-  const [isPlayerA, setIsPlayerA] = useState(true);
-  return (
-    <div>
-      {isPlayerA ? (
-        <Counter person="Taylor" />
-      ) : (
-        <Counter person="Sarah" />
-      )}
-      <button onClick={() => {
-        setIsPlayerA(!isPlayerA);
-      }}>
-        Next player!
-      </button>
-    </div>
-  );
-}
-
 function Counter({ person }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -712,6 +699,25 @@ function Counter({ person }) {
       <h1>{person}'s score: {score}</h1>
       <button onClick={() => setScore(score + 1)}>
         Add one
+      </button>
+    </div>
+  );
+}
+  
+export default function Scoreboard() {
+  const [isPlayerA, setIsPlayerA] = useState(true);
+  
+  return (
+    <div>
+      {isPlayerA ? (
+        <Counter person="Taylor" />
+      ) : (
+        <Counter person="Sarah" />
+      )}
+      <button onClick={() => {
+        setIsPlayerA(!isPlayerA);
+      }}>
+        Next player!
       </button>
     </div>
   );
@@ -759,26 +765,7 @@ If you want these two `Counter`s to be independent, you can render them in two d
 
 ```js
 import { useState } from 'react';
-
-export default function Scoreboard() {
-  const [isPlayerA, setIsPlayerA] = useState(true);
-  return (
-    <div>
-      {isPlayerA &&
-        <Counter person="Taylor" />
-      }
-      {!isPlayerA &&
-        <Counter person="Sarah" />
-      }
-      <button onClick={() => {
-        setIsPlayerA(!isPlayerA);
-      }}>
-        Next player!
-      </button>
-    </div>
-  );
-}
-
+  
 function Counter({ person }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -797,6 +784,26 @@ function Counter({ person }) {
       <h1>{person}'s score: {score}</h1>
       <button onClick={() => setScore(score + 1)}>
         Add one
+      </button>
+    </div>
+  );
+}
+
+export default function Scoreboard() {
+  const [isPlayerA, setIsPlayerA] = useState(true);
+  
+  return (
+    <div>
+      {isPlayerA &&
+        <Counter person="Taylor" />
+      }
+      {!isPlayerA &&
+        <Counter person="Sarah" />
+      }
+      <button onClick={() => {
+        setIsPlayerA(!isPlayerA);
+      }}>
+        Next player!
       </button>
     </div>
   );
@@ -845,25 +852,7 @@ In this example, the two `<Counter />`s don't share state even though they appea
 
 ```js
 import { useState } from 'react';
-
-export default function Scoreboard() {
-  const [isPlayerA, setIsPlayerA] = useState(true);
-  return (
-    <div>
-      {isPlayerA ? (
-        <Counter key="Taylor" person="Taylor" />
-      ) : (
-        <Counter key="Sarah" person="Sarah" />
-      )}
-      <button onClick={() => {
-        setIsPlayerA(!isPlayerA);
-      }}>
-        Next player!
-      </button>
-    </div>
-  );
-}
-
+  
 function Counter({ person }) {
   const [score, setScore] = useState(0);
   const [hover, setHover] = useState(false);
@@ -882,6 +871,25 @@ function Counter({ person }) {
       <h1>{person}'s score: {score}</h1>
       <button onClick={() => setScore(score + 1)}>
         Add one
+      </button>
+    </div>
+  );
+}
+
+export default function Scoreboard() {
+  const [isPlayerA, setIsPlayerA] = useState(true);
+  
+  return (
+    <div>
+      {isPlayerA ? (
+        <Counter key="Taylor" person="Taylor" />
+      ) : (
+        <Counter key="Sarah" person="Sarah" />
+      )}
+      <button onClick={() => {
+        setIsPlayerA(!isPlayerA);
+      }}>
+        Next player!
       </button>
     </div>
   );
@@ -937,9 +945,16 @@ In this chat app, the `<Chat>` component contains the text input state:
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
+  
+const contacts = [
+  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+  { id: 1, name: 'Alice', email: 'alice@mail.com' },
+  { id: 2, name: 'Bob', email: 'bob@mail.com' }
+];
 
 export default function Messenger() {
   const [to, setTo] = useState(contacts[0]);
+  
   return (
     <div>
       <ContactList
@@ -951,12 +966,6 @@ export default function Messenger() {
     </div>
   )
 }
-
-const contacts = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' }
-];
 ```
 
 ```js ContactList.js
@@ -988,6 +997,7 @@ import { useState } from 'react';
 
 export default function Chat({ contact }) {
   const [text, setText] = useState('');
+      
   return (
     <section className="chat">
       <textarea
@@ -1042,9 +1052,16 @@ Now switching the recipient always clears the text field:
 import { useState } from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
+  
+const contacts = [
+  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+  { id: 1, name: 'Alice', email: 'alice@mail.com' },
+  { id: 2, name: 'Bob', email: 'bob@mail.com' }
+];
 
 export default function Messenger() {
   const [to, setTo] = useState(contacts[0]);
+  
   return (
     <div>
       <ContactList
@@ -1056,12 +1073,6 @@ export default function Messenger() {
     </div>
   )
 }
-
-const contacts = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' }
-];
 ```
 
 ```js ContactList.js
@@ -1093,6 +1104,7 @@ import { useState } from 'react';
 
 export default function Chat({ contact }) {
   const [text, setText] = useState('');
+      
   return (
     <section className="chat">
       <textarea
@@ -1163,8 +1175,20 @@ This example shows a message when you press the button. However, pressing the bu
 ```js App.js
 import { useState } from 'react';
 
+function Form() {
+  const [text, setText] = useState('');
+  
+  return (
+    <textarea
+      value={text}
+      onChange={e => setText(e.target.value)}
+    />
+  );
+}
+      
 export default function App() {
   const [showHint, setShowHint] = useState(false);
+      
   if (showHint) {
     return (
       <div>
@@ -1183,16 +1207,6 @@ export default function App() {
         setShowHint(true);
       }}>Show hint</button>
     </div>
-  );
-}
-
-function Form() {
-  const [text, setText] = useState('');
-  return (
-    <textarea
-      value={text}
-      onChange={e => setText(e.target.value)}
-    />
   );
 }
 ```
@@ -1213,9 +1227,21 @@ The easiest solution is to unify the branches so that `Form` always renders in t
 
 ```js App.js
 import { useState } from 'react';
+  
+function Form() {
+  const [text, setText] = useState('');
+  
+  return (
+    <textarea
+      value={text}
+      onChange={e => setText(e.target.value)}
+    />
+  );
+}
 
 export default function App() {
   const [showHint, setShowHint] = useState(false);
+  
   return (
     <div>
       {showHint &&
@@ -1234,16 +1260,6 @@ export default function App() {
     </div>
   );
 }
-
-function Form() {
-  const [text, setText] = useState('');
-  return (
-    <textarea
-      value={text}
-      onChange={e => setText(e.target.value)}
-    />
-  );
-}
 ```
 
 ```css
@@ -1259,9 +1275,21 @@ Technically, you could also add `null` before `<Form />` in the `else` branch to
 
 ```js App.js
 import { useState } from 'react';
+  
+function Form() {
+  const [text, setText] = useState('');
+  
+  return (
+    <textarea
+      value={text}
+      onChange={e => setText(e.target.value)}
+    />
+  );
+}
 
 export default function App() {
   const [showHint, setShowHint] = useState(false);
+      
   if (showHint) {
     return (
       <div>
@@ -1281,16 +1309,6 @@ export default function App() {
         setShowHint(true);
       }}>Show hint</button>
     </div>
-  );
-}
-
-function Form() {
-  const [text, setText] = useState('');
-  return (
-    <textarea
-      value={text}
-      onChange={e => setText(e.target.value)}
-    />
   );
 }
 ```
@@ -1321,9 +1339,26 @@ It seems like for these fields, their position within the parent is not enough. 
 
 ```js App.js
 import { useState } from 'react';
+  
+function Field({ label }) {
+  const [text, setText] = useState('');
+  
+  return (
+    <label>
+      {label}:{' '}
+      <input
+        type="text"
+        value={text}
+        placeholder={label}
+        onChange={e => setText(e.target.value)}
+      />
+    </label>
+  );
+}
 
 export default function App() {
   const [reverse, setReverse] = useState(false);
+  
   let checkbox = (
     <label>
       <input
@@ -1352,21 +1387,6 @@ export default function App() {
     );    
   }
 }
-
-function Field({ label }) {
-  const [text, setText] = useState('');
-  return (
-    <label>
-      {label}:{' '}
-      <input
-        type="text"
-        value={text}
-        placeholder={label}
-        onChange={e => setText(e.target.value)}
-      />
-    </label>
-  );
-}
 ```
 
 ```css
@@ -1383,6 +1403,22 @@ Give a `key` to both `<Field>` components in both `if` and `else` branches. This
 
 ```js App.js
 import { useState } from 'react';
+  
+function Field({ label }) {
+  const [text, setText] = useState('');
+  
+  return (
+    <label>
+      {label}:{' '}
+      <input
+        type="text"
+        value={text}
+        placeholder={label}
+        onChange={e => setText(e.target.value)}
+      />
+    </label>
+  );
+}
 
 export default function App() {
   const [reverse, setReverse] = useState(false);
@@ -1396,6 +1432,7 @@ export default function App() {
       Reverse order
     </label>
   );
+  
   if (reverse) {
     return (
       <>
@@ -1413,21 +1450,6 @@ export default function App() {
       </>
     );    
   }
-}
-
-function Field({ label }) {
-  const [text, setText] = useState('');
-  return (
-    <label>
-      {label}:{' '}
-      <input
-        type="text"
-        value={text}
-        placeholder={label}
-        onChange={e => setText(e.target.value)}
-      />
-    </label>
-  );
 }
 ```
 
@@ -1451,6 +1473,12 @@ When you select a different contact (for example, Alice), the state updates but 
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
+  
+const initialContacts = [
+  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+  { id: 1, name: 'Alice', email: 'alice@mail.com' },
+  { id: 2, name: 'Bob', email: 'bob@mail.com' }
+];
 
 export default function ContactManager() {
   const [
@@ -1491,12 +1519,6 @@ export default function ContactManager() {
     </div>
   )
 }
-
-const initialContacts = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' }
-];
 ```
 
 ```js ContactList.js
@@ -1532,6 +1554,7 @@ import { useState } from 'react';
 export default function EditContact({ initialData, onSave }) {
   const [name, setName] = useState(initialData.name);
   const [email, setEmail] = useState(initialData.email);
+      
   return (
     <section>
       <label>
@@ -1603,6 +1626,12 @@ Give `key={selectedId}` to the `EditContact` component. This way, switching betw
 import { useState } from 'react';
 import ContactList from './ContactList.js';
 import EditContact from './EditContact.js';
+  
+const initialContacts = [
+  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
+  { id: 1, name: 'Alice', email: 'alice@mail.com' },
+  { id: 2, name: 'Bob', email: 'bob@mail.com' }
+];
 
 export default function ContactManager() {
   const [
@@ -1644,12 +1673,6 @@ export default function ContactManager() {
     </div>
   )
 }
-
-const initialContacts = [
-  { id: 0, name: 'Taylor', email: 'taylor@mail.com' },
-  { id: 1, name: 'Alice', email: 'alice@mail.com' },
-  { id: 2, name: 'Bob', email: 'bob@mail.com' }
-];
 ```
 
 ```js ContactList.js
@@ -1685,6 +1708,7 @@ import { useState } from 'react';
 export default function EditContact({ initialData, onSave }) {
   const [name, setName] = useState(initialData.name);
   const [email, setEmail] = useState(initialData.email);
+      
   return (
     <section>
       <label>
@@ -1774,8 +1798,31 @@ export default function Gallery() {
       setIndex(0);
     }
   }
-
+                                       
+  let images = [{
+    place: 'Penang, Malaysia',
+    src: 'https://i.imgur.com/FJeJR8M.jpg'
+  }, {
+    place: 'Lisbon, Portugal',
+    src: 'https://i.imgur.com/dB2LRbj.jpg'
+  }, {
+    place: 'Bilbao, Spain',
+    src: 'https://i.imgur.com/z08o2TS.jpg'
+  }, {
+    place: 'Valparaíso, Chile',
+    src: 'https://i.imgur.com/Y3utgTi.jpg'
+  }, {
+    place: 'Schwyz, Switzerland',
+    src: 'https://i.imgur.com/JBbMpWY.jpg'
+  }, {
+    place: 'Prague, Czechia',
+    src: 'https://i.imgur.com/QwUKKmF.jpg'
+  }, {
+    place: 'Ljubljana, Slovenia',
+    src: 'https://i.imgur.com/3aIiwfm.jpg'
+  }];
   let image = images[index];
+                                       
   return (
     <>
       <button onClick={handleClick}>
@@ -1791,29 +1838,6 @@ export default function Gallery() {
     </>
   );
 }
-
-let images = [{
-  place: 'Penang, Malaysia',
-  src: 'https://i.imgur.com/FJeJR8M.jpg'
-}, {
-  place: 'Lisbon, Portugal',
-  src: 'https://i.imgur.com/dB2LRbj.jpg'
-}, {
-  place: 'Bilbao, Spain',
-  src: 'https://i.imgur.com/z08o2TS.jpg'
-}, {
-  place: 'Valparaíso, Chile',
-  src: 'https://i.imgur.com/Y3utgTi.jpg'
-}, {
-  place: 'Schwyz, Switzerland',
-  src: 'https://i.imgur.com/JBbMpWY.jpg'
-}, {
-  place: 'Prague, Czechia',
-  src: 'https://i.imgur.com/QwUKKmF.jpg'
-}, {
-  place: 'Ljubljana, Slovenia',
-  src: 'https://i.imgur.com/3aIiwfm.jpg'
-}];
 ```
 
 ```css
@@ -1843,7 +1867,30 @@ export default function Gallery() {
     }
   }
 
+  let images = [{
+    place: 'Penang, Malaysia',
+    src: 'https://i.imgur.com/FJeJR8M.jpg'
+  }, {
+    place: 'Lisbon, Portugal',
+    src: 'https://i.imgur.com/dB2LRbj.jpg'
+  }, {
+    place: 'Bilbao, Spain',
+    src: 'https://i.imgur.com/z08o2TS.jpg'
+  }, {
+    place: 'Valparaíso, Chile',
+    src: 'https://i.imgur.com/Y3utgTi.jpg'
+  }, {
+    place: 'Schwyz, Switzerland',
+    src: 'https://i.imgur.com/JBbMpWY.jpg'
+  }, {
+    place: 'Prague, Czechia',
+    src: 'https://i.imgur.com/QwUKKmF.jpg'
+  }, {
+    place: 'Ljubljana, Slovenia',
+    src: 'https://i.imgur.com/3aIiwfm.jpg'
+  }];
   let image = images[index];
+                                       
   return (
     <>
       <button onClick={handleClick}>
@@ -1859,29 +1906,6 @@ export default function Gallery() {
     </>
   );
 }
-
-let images = [{
-  place: 'Penang, Malaysia',
-  src: 'https://i.imgur.com/FJeJR8M.jpg'
-}, {
-  place: 'Lisbon, Portugal',
-  src: 'https://i.imgur.com/dB2LRbj.jpg'
-}, {
-  place: 'Bilbao, Spain',
-  src: 'https://i.imgur.com/z08o2TS.jpg'
-}, {
-  place: 'Valparaíso, Chile',
-  src: 'https://i.imgur.com/Y3utgTi.jpg'
-}, {
-  place: 'Schwyz, Switzerland',
-  src: 'https://i.imgur.com/JBbMpWY.jpg'
-}, {
-  place: 'Prague, Czechia',
-  src: 'https://i.imgur.com/QwUKKmF.jpg'
-}, {
-  place: 'Ljubljana, Slovenia',
-  src: 'https://i.imgur.com/3aIiwfm.jpg'
-}];
 ```
 
 ```css
@@ -1903,6 +1927,12 @@ Fix it so that the expanded state is associated with each contact, regardless of
 ```js App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
+  
+const contacts = [
+  { id: 0, name: 'Alice', email: 'alice@mail.com' },
+  { id: 1, name: 'Bob', email: 'bob@mail.com' },
+  { id: 2, name: 'Taylor', email: 'taylor@mail.com' }
+];
 
 export default function ContactList() {
   const [reverse, setReverse] = useState(false);
@@ -1934,12 +1964,6 @@ export default function ContactList() {
     </>
   );
 }
-
-const contacts = [
-  { id: 0, name: 'Alice', email: 'alice@mail.com' },
-  { id: 1, name: 'Bob', email: 'bob@mail.com' },
-  { id: 2, name: 'Taylor', email: 'taylor@mail.com' }
-];
 ```
 
 ```js Contact.js
@@ -1947,6 +1971,7 @@ import { useState } from 'react';
 
 export default function Contact({ contact }) {
   const [expanded, setExpanded] = useState(false);
+  
   return (
     <>
       <p><b>{contact.name}</b></p>
@@ -2002,6 +2027,12 @@ Using the contact ID as a `key` instead fixes the issue:
 ```js App.js
 import { useState } from 'react';
 import Contact from './Contact.js';
+  
+const contacts = [
+  { id: 0, name: 'Alice', email: 'alice@mail.com' },
+  { id: 1, name: 'Bob', email: 'bob@mail.com' },
+  { id: 2, name: 'Taylor', email: 'taylor@mail.com' }
+];
 
 export default function ContactList() {
   const [reverse, setReverse] = useState(false);
@@ -2033,12 +2064,6 @@ export default function ContactList() {
     </>
   );
 }
-
-const contacts = [
-  { id: 0, name: 'Alice', email: 'alice@mail.com' },
-  { id: 1, name: 'Bob', email: 'bob@mail.com' },
-  { id: 2, name: 'Taylor', email: 'taylor@mail.com' }
-];
 ```
 
 ```js Contact.js
@@ -2046,6 +2071,7 @@ import { useState } from 'react';
 
 export default function Contact({ contact }) {
   const [expanded, setExpanded] = useState(false);
+  
   return (
     <>
       <p><b>{contact.name}</b></p>

@@ -205,7 +205,7 @@ In the above examples, there is a predefined number of refs. However, sometimes 
 </ul>
 ```
 
-This is because **Hooks must only be called at the top-level of your component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
+This is because **Hooks must only be called at the top level of your component.** You can't call `useRef` in a loop, in a condition, or inside a `map()` call.
 
 Instead, the solution is to **pass a function to the `ref` attribute**. This is called a "ref callback". React will call your ref callback with the DOM node when it's time to set the ref, and with `null` when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
 

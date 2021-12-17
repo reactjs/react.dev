@@ -80,7 +80,7 @@ For more information and a demo of new DevTools features, see [Brian Vaughn](htt
 
 ## React without memo
 
-Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update on our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
+Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpro) shared an update from our React Labs research into an auto-memoizing compiler. Check out this talk for more information and a demo of the compiler prototype:
 
 <iframe style="margin-top:10px" width="560" height="315" src="https://www.youtube.com/embed/lGEMwh32soc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 

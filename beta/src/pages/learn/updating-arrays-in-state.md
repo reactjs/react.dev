@@ -170,9 +170,7 @@ let initialArtists = [
 ];
 
 export default function List() {
-  const [artists, setArtists] = useState(
-    initialArtists
-  );
+  const [artists, setArtists] = useState(initialArtists);
 
   return (
     <>

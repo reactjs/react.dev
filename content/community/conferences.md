@@ -12,21 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### React Conf 2021 {#react-conf-2021}
-December 8, 2021 - remote event (replay event on December 9)
-
-[Website](https://conf.reactjs.org/)
-
-### ReactEurope 2021 {#reacteurope-2021}
-December 9-10, 2021 - remote event
-
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
-
-### ReactNext 2021 {#react-next-2021}
-December 15, 2021. Tel-Aviv, Israel
-
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
-
 ### AgentConf 2022 {#agent-conf-2022} 
 January 27th - 30th, 2022. In-person in Dornbirn and Lech Austria
 
@@ -43,6 +28,21 @@ June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interacti
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ## Past Conferences {#past-conferences}
+
+### React Conf 2021 {#react-conf-2021}
+December 8, 2021 - remote event (replay event on December 9)
+
+[Website](https://conf.reactjs.org/)
+
+### ReactEurope 2021 {#reacteurope-2021}
+December 9-10, 2021 - remote event
+
+[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+
+### ReactNext 2021 {#react-next-2021}
+December 15, 2021. Tel-Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/channel/UC3BT8hh3yTTYxbLQy_wbk2w)
 
 ### React India 2021 {#react-india-2021}
 November 12-13, 2021 - remote event

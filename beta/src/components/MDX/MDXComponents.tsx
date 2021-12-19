@@ -3,9 +3,11 @@
  */
 
 import * as React from 'react';
-
+import {Suspense} from 'react';
 import {APIAnatomy, AnatomyStep} from './APIAnatomy';
-import CodeBlock from './CodeBlock';
+// import CodeBlock from './CodeBlock';
+const CodeBlock = lazy(() => import('./CodeBlock'));
+
 import {CodeDiagram} from './CodeDiagram';
 import ConsoleBlock from './ConsoleBlock';
 import Convention from './Convention';
@@ -18,11 +20,25 @@ import Intro from './Intro';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
-import Sandpack from './Sandpack';
+// import Sandpack from './Sandpack';
+import {lazy} from 'react';
+
+const Sandpack = lazy(() => import('./Sandpack'));
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
-import {Challenges, Hint, Solution} from './Challenges';
+// import { Challenges,Hint, Solution} from './Challenges';
+const Hint = lazy(() =>
+  import('./Challenges').then(({Hint}) => ({default: Hint}))
+);
+const Solution = lazy(() =>
+  import('./Challenges').then(({Solution}) => ({default: Solution}))
+);
+
+const Challenges = lazy(() =>
+  import('./Challenges').then(({Challenges}) => ({default: Challenges}))
+);
+
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
 
@@ -333,11 +349,25 @@ export const MDXComponents = {
   inlineCode: InlineCode,
   hr: Divider,
   a: Link,
-  code: CodeBlock,
+  code: (props: {
+    children: string;
+    className?: string | undefined;
+    metastring: string;
+    noMargin?: boolean | undefined;
+    noMarkers?: boolean | undefined;
+  }) => (
+    <Suspense fallback={<p> loading </p>}>
+      <CodeBlock {...props} />
+    </Suspense>
+  ),
   // The code block renders <pre> so we just want a div here.
   pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,
   // Scary: dynamic(() => import('./Scary')),
-  APIAnatomy,
+  APIAnatomy: (props: {children: React.ReactNode}) => (
+    <Suspense fallback={<p> loading </p>}>
+      <APIAnatomy {...props} />
+    </Suspense>
+  ),
   AnatomyStep,
   CodeDiagram,
   ConsoleBlock,
@@ -359,11 +389,26 @@ export const MDXComponents = {
   PackageImport,
   Recap,
   Recipes,
-  Sandpack,
+  Sandpack: (props: {children: React.ReactChildren; autorun?: boolean}) => (
+    <Suspense fallback={<p> loading </p>}>
+      <Sandpack {...props} />
+    </Suspense>
+  ),
   TerminalBlock,
   YouWillLearn,
   YouWillLearnCard,
-  Challenges,
-  Hint,
+  Challenges: (props: {
+    children: React.ReactElement[];
+    isRecipes?: boolean;
+  }) => (
+    <Suspense fallback={<p> loading </p>}>
+      <Challenges {...props} />
+    </Suspense>
+  ),
+  Hint: (props: {children: React.ReactNode}) => (
+    <Suspense fallback={<p> loading </p>}>
+      <Hint {...props} />
+    </Suspense>
+  ),
   Solution,
 };

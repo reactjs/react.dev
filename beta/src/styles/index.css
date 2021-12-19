@@ -2,9 +2,11 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+ @import "tailwindcss/base";
+ 
+ @import "tailwindcss/components";
+ 
+ @import "tailwindcss/utilities";
 
 @layer base {
   @font-face {

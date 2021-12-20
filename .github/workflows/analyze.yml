@@ -54,7 +54,7 @@ jobs:
         uses: dawidd6/action-download-artifact@v2
         if: success() && github.event.number
         with:
-          workflow: bundle_analysis_upload.yml
+          workflow: analyze.yml
           branch: ${{ github.event.pull_request.base.ref }}
           name: bundle_analysis.json
           path: beta/.next/analyze/base/bundle

@@ -130,7 +130,7 @@ When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, 
 // This function takes a component...
 function withSubscription(WrappedComponent, selectData) {
   // ...and returns another component...
-  return class extends React.Component {
+  return class WithSubscription extends React.Component {
     constructor(props) {
       super(props);
       this.handleChange = this.handleChange.bind(this);
@@ -198,7 +198,7 @@ Instead of mutation, HOCs should use composition, by wrapping the input componen
 
 ```js
 function logProps(WrappedComponent) {
-  return class extends React.Component {
+  return class LogProps extends React.Component {
     componentDidUpdate(prevProps) {
       console.log('Current props: ', this.props);
       console.log('Previous props: ', prevProps);

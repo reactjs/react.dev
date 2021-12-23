@@ -10,7 +10,7 @@ permalink: warnings/dont-call-proptypes.html
 >
 >We provide [a codemod script](/blog/2017/04/07/react-v15.5.0.html#migrating-from-react.proptypes) to automate the conversion.
 
-In a future major release of React, the code that implements PropType validation functions will be stripped in production. Once this happens, any code that calls these functions manually (that isn't stripped in production) will throw an error.
+The code that implemented PropType validation functions has been stripped in production. Hence, any code that calls these functions manually (that isn't stripped in production) will throw an error.
 
 ### Declaring PropTypes is still fine {#declaring-proptypes-is-still-fine}
 
@@ -40,7 +40,7 @@ var error = apiShape(json, 'response');
 
 If you depend on using PropTypes like this, we encourage you to use or create a fork of PropTypes (such as [these](https://github.com/aackerman/PropTypes) [two](https://github.com/developit/proptypes) packages).
 
-If you don't fix the warning, this code will crash in production with React 16.
+If you don't fix the warning, this code crashes in production with React 16.
 
 ### If you don't call PropTypes directly but still get the warning {#if-you-dont-call-proptypes-directly-but-still-get-the-warning}
 

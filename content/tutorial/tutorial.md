@@ -740,7 +740,7 @@ We can now change the Board's `handleClick` function to return early by ignoring
 ```javascript{3-5}
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -847,7 +847,7 @@ The Board component now looks like this:
 class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -964,7 +964,7 @@ Finally, we need to move the `handleClick` method from the Board component to th
     const history = this.state.history;
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -1161,7 +1161,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
+    if (squares[i] || calculateWinner(squares)) {
       return;
     }
     squares[i] = this.state.xIsNext ? 'X' : 'O';

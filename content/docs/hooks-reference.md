@@ -56,12 +56,31 @@ If the new state is computed using the previous state, you can pass a function t
 ```js
 function Counter({initialCount}) {
   const [count, setCount] = useState(initialCount);
+
+  function incrementBy(x) {
+    setCount((prevCount) => prevCount + x);
+  }
+
   return (
     <>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      <button
+        onClick={() => {
+          incrementBy(1);
+          setCount((prevCount) => prevCount / 2);
+        }}
+      >
+        Increment by 1 and then divide by 2
+      </button>
+      <button
+        onClick={() => {
+          incrementBy(2);
+          setCount((prevCount) => prevCount / 3);
+        }}
+      >
+        Increment by 2 and then divide by 3
+      </button>
     </>
   );
 }

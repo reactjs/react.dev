@@ -61,32 +61,36 @@ function Counter({initialCount}) {
     setCount((prevCount) => prevCount + x);
   }
 
+  function multiplyBy(x) {
+    setCount((prevCount) => prevCount * x);
+  }
+
   return (
     <>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
       <button
         onClick={() => {
-          incrementBy(1);
-          setCount((prevCount) => prevCount / 2);
+          incrementBy(2);
+          multiplyBy(2);
         }}
       >
-        Increment by 1 and then divide by 2
+        update to (count + 2) * 2
       </button>
       <button
         onClick={() => {
-          incrementBy(2);
-          setCount((prevCount) => prevCount / 3);
+          multiplyBy(4);
+          incrementBy(1);
         }}
       >
-        Increment by 2 and then divide by 3
+        update to (count * 4) + 1
       </button>
     </>
   );
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
+The two functions use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
 
 If your update function returns the exact same value as the current state, the subsequent rerender will be skipped completely.
 

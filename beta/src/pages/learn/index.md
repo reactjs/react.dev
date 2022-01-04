@@ -292,9 +292,12 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleNextClick}>
-        Next
-      </button>
+      {
+        index < sculptureList.length - 1 && 
+          <button onClick={handleNextClick}>
+            Next
+          </button>
+      }
       <h2>
         <i>{sculpture.name} </i>
         by {sculpture.artist}

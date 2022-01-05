@@ -23,12 +23,12 @@ import {CustomTheme} from './Themes';
 
 export function CustomPreset({
   isSingleFile,
-  onReset,
   showDevTools,
+  onOpenDevTools,
 }: {
   isSingleFile: boolean;
-  onReset: () => void;
   showDevTools: boolean;
+  onOpenDevTools: () => void;
 }) {
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -55,7 +55,10 @@ export function CustomPreset({
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar showDownload={isSingleFile} onReset={onReset} />
+        <NavigationBar
+          showDownload={isSingleFile}
+          onOpenDevTools={onOpenDevTools}
+        />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}

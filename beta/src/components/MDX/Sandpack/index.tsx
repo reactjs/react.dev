@@ -67,6 +67,8 @@ ul {
 function Sandpack(props: SandpackProps) {
   let {children, setup, autorun = true, showDevTools = false} = props;
   let [resetKey, setResetKey] = React.useState(0);
+  const [shouldShowDevTools, setShouldShowDevTools] =
+    React.useState(showDevTools);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
 
@@ -133,6 +135,18 @@ function Sandpack(props: SandpackProps) {
       });
   }
 
+  const onOpenDevTools = () => {
+    setShouldShowDevTools((prev) => !prev);
+
+    /**
+     * Hard Sandpack limitation: force rerender in order to
+     * load the react-devtools-inline dependencies in the preview
+     */
+    if (!shouldShowDevTools) {
+      setResetKey((k) => k + 1);
+    }
+  };
+
   return (
     <div className="my-8" translate="no">
       <SandpackProvider
@@ -142,10 +156,8 @@ function Sandpack(props: SandpackProps) {
         autorun={autorun}>
         <CustomPreset
           isSingleFile={isSingleFile}
-          showDevTools={showDevTools}
-          onReset={() => {
-            setResetKey((k) => k + 1);
-          }}
+          showDevTools={shouldShowDevTools}
+          onOpenDevTools={onOpenDevTools}
         />
       </SandpackProvider>
     </div>

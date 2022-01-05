@@ -10,17 +10,16 @@ import {
   useActiveCode,
   SandpackCodeEditor,
   SandpackThemeProvider,
+  SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
-import dynamic from 'next/dynamic';
+
 import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
-
-const ReactDevTools = dynamic(() => import('./ReactDevTools'), {ssr: false});
 
 export function CustomPreset({
   isSingleFile,
@@ -60,7 +59,10 @@ export function CustomPreset({
         <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}
-            className={cn("sp-layout sp-custom-layout", showDevTools && "sp-layout-devtools")}
+            className={cn(
+              'sp-layout sp-custom-layout',
+              showDevTools && 'sp-layout-devtools'
+            )}
             style={{
               // Prevent it from collapsing below the initial (non-loaded) height.
               // There has to be some better way to do this...
@@ -112,7 +114,7 @@ export function CustomPreset({
             )}
           </div>
 
-          {showDevTools && <ReactDevTools />}
+          {showDevTools && <SandpackReactDevTools />}
         </SandpackThemeProvider>
       </div>
     </>

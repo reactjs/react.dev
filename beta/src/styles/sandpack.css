@@ -112,7 +112,6 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  *
  * If you know a better way to keep them from diverging, send a PR.
  */
-
 .sp-stack {
   height: initial !important;
   width: fit-content !important;
@@ -161,11 +160,6 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
-.sp-devtools {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  overflow: hidden;
-}
 html.dark .sp-layout > :not(:first-child) {
   border-color: #343a46;
 }
@@ -180,6 +174,33 @@ html.dark .sp-loading {
   .sp-tabs .sp-tab-button {
     margin: 0 12px 0 0;
   }
+}
+
+/* Devtools */
+.sp-devtools {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
+}
+.sp-devtools > div {
+  --color-background: var(--sp-colors-bg-default) !important;
+  --color-background-inactive: var(--sp-colors-fg-inactive) !important;
+  --color-background-selected: #087ea4 !important;
+
+  --color-component-name: var(--theme-definition) !important;
+  --color-attribute-name: var(--theme-property) !important;
+  --color-attribute-value: var(--theme-string) !important;
+  --color-attribute-editable-value: var(--theme-property) !important;
+
+  --color-button-background: transparent !important;
+  --color-button: var(--sp-colors-fg-default) !important;
+  --color-button-hover: var(--sp-colors-fg-active) !important;
+
+  --color-border: var(--sp-colors-fg-inactive) !important;
+  --color-text: rgb(35, 39, 47) !important;
+}
+html.dark .sp-devtools > div {
+  --color-text: var(--sp-colors-fg-default) !important;
 }
 
 /* Make focus rings work */

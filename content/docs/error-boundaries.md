@@ -62,7 +62,7 @@ Then you can use it as a regular component:
 
 Error boundaries work like a JavaScript `catch {}` block, but for components. Only class components can be error boundaries. In practice, most of the time you’ll want to declare an error boundary component once and use it throughout your application.
 
-Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how catch {} block works in JavaScript.
+Note that **error boundaries only catch errors in the components below them in the tree**. An error boundary can’t catch an error within itself. If an error boundary fails trying to render the error message, the error will propagate to the closest error boundary above it. This, too, is similar to how the `catch {}` block works in JavaScript.
 
 ## Live Demo {#live-demo}
 
@@ -71,7 +71,7 @@ Check out [this example of declaring and using an error boundary](https://codepe
 
 ## Where to Place Error Boundaries {#where-to-place-error-boundaries}
 
-The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
+The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
 
 
 ## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
@@ -130,7 +130,7 @@ Error boundaries **do not** catch errors inside event handlers.
 
 React doesn't need error boundaries to recover from errors in event handlers. Unlike the render method and lifecycle methods, the event handlers don't happen during rendering. So if they throw, React still knows what to display on the screen.
 
-If you need to catch an error inside event handler, use the regular JavaScript `try` / `catch` statement:
+If you need to catch an error inside an event handler, use the regular JavaScript `try` / `catch` statement:
 
 ```js{9-13,17-20}
 class MyComponent extends React.Component {

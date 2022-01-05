@@ -1,0 +1,171 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
+/* Algolia v3 overrides */
+:root {
+  --docsearch-modal-background: #fff;
+  --docsearch-highlight-color: #087EA4;
+  --docsearch-primary-color: #0074a6;
+  --docsearch-container-background: rgba(52,58,70,.8);
+  --docsearch-modal-shadow: none;
+  --docsearch-searchbox-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+  --ifm-z-index-fixed: 1000;
+  --docsearch-hit-height: 48px;
+  --docsearch-searchbox-height: 72px;
+  --docsearch-footer-height: 108px;
+  --docsearch-icon-stroke-width: 1.4;
+  --hover-overlay: rgba(0, 0, 0, 0.05);
+  --fds-animation-fade-in: cubic-bezier(0, 0, 1, 1);
+  --fds-animation-fade-out: cubic-bezier(0, 0, 1, 1);
+}
+html.dark {
+  --docsearch-modal-background: #23272F;
+  --docsearch-hit-background: #23272F;
+  --docsearch-highlight-color: #149ECA;
+}
+.DocSearch--active #__next {
+  -webkit-filter: blur(0px);
+  filter: blur(0px);
+}
+.DocSearch-SearchBar {
+  @apply py-4;
+  @apply px-5;
+}
+.DocSearch-Form {
+  @apply rounded-lg;
+  @apply shadow-inner;
+  @apply text-sm;
+  @apply bg-gray-10;
+  @apply outline-none;
+  @apply h-auto;
+}
+html.dark .DocSearch-Form {
+  @apply bg-gray-80;
+}
+.DocSearch-Dropdown {
+  @apply px-0;
+  @apply h-full;
+  @apply max-h-full;
+}
+.DocSearch-Commands {
+  @apply w-full;
+  @apply justify-between;
+  @apply border-t;
+  @apply border-border;
+  @apply pt-4;
+}
+html.dark .DocSearch-Commands {
+  @apply border-border-dark
+}
+.DocSearch-Commands-Key {
+  @apply shadow-none;
+  @apply bg-gray-10;
+  @apply text-primary;
+}
+.DocSearch-Logo {
+  @apply pt-4;
+  @apply pb-2;
+}
+.DocSearch-Label {
+  @apply text-xs;
+}
+.DocSearch-Footer {
+  @apply flex-col-reverse;
+  @apply items-start;
+  @apply h-auto;
+  @apply pb-2;
+  @apply px-5;
+  @apply shadow-none;
+}
+html.dark .DocSearch-Footer {
+  @apply bg-wash-dark;
+}
+.DocSearch-Input {
+  @apply py-3;
+  @apply text-sm;
+  @apply leading-tight;
+  @apply text-primary;
+  @apply appearance-none !important;
+}
+html.dark .DocSearch-Input {
+  @apply text-primary-dark;
+}
+.DocSearch-Hit a {
+  @apply rounded-r-lg;
+  @apply rounded-l-none;
+  @apply shadow-none;
+  @apply pl-5;
+}
+.DocSearch-Hit-source {
+  @apply uppercase;
+  @apply tracking-wide;
+  @apply text-sm;
+  @apply text-secondary;
+  @apply font-bold;
+  @apply pt-0;
+  @apply pl-5;
+  @apply m-0;
+}
+html.dark .DocSearch-Hit-source {
+  @apply text-secondary-dark;
+}
+.DocSearch-Dropdown ul {
+  @apply mr-5;
+}
+.DocSearch-Hit-title {
+  @apply text-base;
+  @apply text-primary;
+  @apply font-normal;
+  @apply overflow-ellipsis;
+  @apply whitespace-nowrap;
+  @apply overflow-hidden;
+}
+html.dark .DocSearch-Hit-title {
+  @apply text-primary-dark;
+}
+.DocSearch-Hit-path {
+  @apply font-normal;
+}
+.DocSearch-LoadingIndicator svg, .DocSearch-MagnifierLabel svg {
+  width:13px;
+  height:13px;
+  @apply text-gray-30;
+  @apply mx-1;
+}
+.DocSearch-Modal {
+  margin: 0;
+  @apply flex;
+  @apply justify-between;
+  @apply h-full;
+  @apply max-w-xs;
+  @apply rounded-r-lg;
+  @apply rounded-l-none;
+}
+.DocSearch-Cancel {
+  @apply pl-5;
+  @apply ml-0;
+  @apply text-base;
+  @apply text-link;
+  @apply font-normal;
+}
+@media (max-width: 1024px) {
+  .DocSearch-Modal {
+    @apply max-w-full;
+  }
+  .DocSearch-Cancel {
+    @apply inline-block;
+  }
+  .DocSearch-Commands {
+    @apply hidden;
+  }
+  .DocSearch-Modal {
+    @apply rounded-none;
+  }
+}
+.DocSearch-Search-Icon {
+  height: 20px;
+  width: 20px;
+  stroke-width: 1.6;
+  @apply text-gray-60;
+}

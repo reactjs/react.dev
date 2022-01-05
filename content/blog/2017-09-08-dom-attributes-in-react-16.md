@@ -32,7 +32,7 @@ React has always provided a JavaScript-centric API to the DOM. Since React compo
 <div tabIndex={-1} />
 ```
 
-This has not changed. However, the way we enforced it in the past forced us to maintain a whitelist of all valid React DOM attributes in the bundle:
+This has not changed. However, the way we enforced it in the past forced us to maintain an allowlist of all valid React DOM attributes in the bundle:
 
 ```js
 // ...
@@ -47,9 +47,9 @@ This had two downsides:
 
 * You could not [pass a custom attribute](https://github.com/facebook/react/issues/140). This is useful for supplying browser-specific non-standard attributes, trying new DOM APIs, and integrating with opinionated third-party libraries.
 
-* The attribute list kept growing over time, but most React canonical attribute names are already valid in the DOM. Removing most of the whitelist helped us reduce the bundle size a little bit.
+* The attribute list kept growing over time, but most React canonical attribute names are already valid in the DOM. Removing most of the allowlist helped us reduce the bundle size a little bit.
 
-With the new approach, both of these problems are solved. With React 16, you can now pass custom attributes to all HTML and SVG elements, and React doesn't have to include the whole attribute whitelist in the production version.
+With the new approach, both of these problems are solved. With React 16, you can now pass custom attributes to all HTML and SVG elements, and React doesn't have to include the whole attribute allowlist in the production version.
 
 **Note that you should still use the canonical React naming for known attributes:**
 
@@ -165,7 +165,7 @@ Below is a detailed list of them.
     React 15: Converts `NaN`s to strings and passes them through.  
     React 16: Converts `NaN`s to strings and passes them through with a warning.
 
-While testing this release, we have also [created an automatically generated table](https://github.com/facebook/react/blob/master/fixtures/attribute-behavior/AttributeTableSnapshot.md) for all known attributes to track potential regressions.
+While testing this release, we have also [created an automatically generated table](https://github.com/facebook/react/blob/main/fixtures/attribute-behavior/AttributeTableSnapshot.md) for all known attributes to track potential regressions.
 
 ## Try It! {#try-it}
 

@@ -12,7 +12,7 @@ React has a community of millions of developers.
 
 On this page we've listed some React-related communities that you can be a part of; see the other pages in this section for additional online and in-person learning materials.
 
-Before participating in React's communities, [please read our Code of Conduct](https://github.com/facebook/react/blob/master/CODE_OF_CONDUCT.md). We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
+Before participating in React's communities, [please read our Code of Conduct](https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md). We have adopted the [Contributor Covenant](https://www.contributor-covenant.org/) and we expect that all community members adhere to the guidelines within.
 
 ## Stack Overflow {#stack-overflow}
 
@@ -28,7 +28,6 @@ Each community consists of many thousands of React users.
 * [Hashnode's React community](https://hashnode.com/n/reactjs)
 * [Reactiflux online chat](https://discord.gg/reactiflux)
 * [Reddit's React community](https://www.reddit.com/r/reactjs/)
-* [Spectrum's React community](https://spectrum.chat/react)
 
 ## News {#news}
 

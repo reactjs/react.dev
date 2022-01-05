@@ -1,0 +1,207 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
+html .sp-wrapper {
+  color-scheme: inherit;
+  
+  /* palette */
+  --sp-colors-fg-active: #24292e !important;
+  --sp-colors-fg-default: #959da5 !important;
+  --sp-colors-fg-inactive: #e4e7eb !important;
+  --sp-colors-bg-active: #e4e7eb !important;
+  --sp-colors-bg-default: #ffffff !important;
+  --sp-colors-bg-default-overlay: #ffffff !important;
+  --sp-colors-bg-input: #ffffff !important;
+  --sp-colors-accent: #c8c8fa !important;
+  --sp-colors-bg-error: #ffcdca !important;
+  --sp-colors-fg-error: #811e18 !important;
+  /* syntax */
+  --theme-plain: #24292e;
+  --theme-comment: #6a737d;
+  --theme-keyword: #d73a49;
+  --theme-tag: #22863a;
+  --theme-punctuation: #24292e;
+  --theme-definition: #6f42c1;
+  --theme-property: #005cc5;
+  --theme-static: #032f62;
+  --theme-string: #032f62;
+}
+html.dark .sp-wrapper {
+  --sp-colors-fg-active: #FFFFFF !important;
+  --sp-colors-fg-default: #999999 !important;
+  --sp-colors-fg-inactive: #343434 !important;
+  --sp-colors-bg-active: #343434 !important;
+  --sp-colors-bg-default: #16181D !important;
+  --sp-colors-bg-default-overlay: #16181D !important;
+  --sp-colors-bg-input: #242424 !important;
+  --sp-colors-accent: #6caedd !important;
+  --sp-colors-bg-error: #ffcdca !important;
+  --sp-colors-fg-error: #811e18 !important;
+  /* syntax */
+  --theme-plain: #FFFFFF;
+  --theme-comment: #757575;
+  --theme-keyword: #77B7D7;
+  --theme-tag: #DFAB5C;
+  --theme-punctuation: #ffffff;
+  --theme-definition: #86D9CA;
+  --theme-property: #77B7D7;
+  --theme-static: #C64640;
+  --theme-string: #977CDC;
+}
+
+.sp-tabs, .sp-tab-button:hover {
+  background: none !important;
+}
+
+.sp-tabs .sp-tab-button {
+  color: #087ea4;
+  padding: 0 4px;
+}
+
+html.dark .sp-tabs .sp-tab-button {
+  color: #149eca;
+}
+
+.sp-tabs .sp-tab-button:hover {
+  color: #087ea4;
+}
+
+html.dark .sp-tabs .sp-tab-button:hover {
+  color: #149eca;
+}
+
+.sp-tabs .sp-tab-button[data-active='true'] {
+  color: #087ea4;
+  border-bottom: 2px solid #087ea4;
+}
+
+html.dark .sp-tabs .sp-tab-button[data-active='true'] {
+  color: #149eca;
+  border-bottom: 2px solid #149eca;
+}
+
+.sp-stack .sp-code-editor,
+.sp-tabs .sp-tabs-scrollable-container {
+  overflow: hidden;
+}
+
+.sp-code-editor .cm-errorLine {
+  background-color: rgba(255, 107, 99, 0.10);
+  position: relative;
+}
+
+.sp-code-editor .cm-errorLine:after {
+  position: absolute;
+  right: 8px;
+  top: 0;
+  content: '\26A0';
+  font-size: 22px;
+  line-height: 16px;
+  color: #ff3d3d;
+}
+
+/*
+ * These are manually adjusted to match the final
+ * rendered version without any layout shifts.
+ * Note this affects both sandboxes and code blocks.
+ *
+ * There are probably more maintainable ways to do this.
+ * However, as long as there are kind people paying close
+ * attention to these subtler details, I shall sleep in peace.
+ *
+ * If you know a better way to keep them from diverging, send a PR.
+ */
+.sp-layout {
+  border-bottom-left-radius: 0.5rem !important;
+  border-bottom-right-radius: 0.5rem !important;
+}
+.sp-stack {
+  height: initial !important;
+  width: fit-content !important;
+}
+.sp-cm {
+  -webkit-text-size-adjust: none !important;
+  padding: 0 !important;
+}
+.cm-wrap {
+  background: transparent !important;
+}
+.sp-pre-placeholder {
+  display: block !important;
+  margin-top: 0px !important;
+  margin-bottom: 0px !important;
+  padding: 18px var(--sp-space-3) !important;
+  @apply font-mono !important;
+  font-size: 13.6px !important;
+  line-height: 24px !important;
+  height: 100%;
+  overflow: scroll;
+}
+.text-xl .sp-pre-placeholder {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+.sp-cm .cm-scroller {
+  overflow: auto !important;
+  padding: 18px 0 !important;
+}
+.sp-cm .cm-gutters {
+  background-color: var(--sp-colors-bg-default);
+  z-index: 1;
+}
+.sp-layout {
+  overflow: initial !important;
+  border: 0px solid transparent !important;
+  border-top-left-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+html.dark .sp-layout > :not(:first-child) {
+  border-color: #343a46;
+}
+html.dark .sp-layout {
+  background-color: #343a46;
+}
+html.dark .sp-loading {
+  background-color: #23272f;
+}
+
+@media (min-width: 768px) {
+  .sp-tabs .sp-tab-button {
+    margin: 0 12px 0 0;
+  }
+}
+
+/* Make focus rings work */
+.sp-tab-button {
+  transition: none !important;
+}
+.sp-tab-button:focus {
+  outline: revert !important;
+}
+.sp-tab-button:focus-visible {
+  box-shadow: none !important;
+}
+.sp-cm:focus-visible {
+  box-shadow: inset 0 0 0 4px rgba(20, 158, 202, 0.4) !important;
+  padding-left: 0px !important;
+}
+.cm-line {
+  padding: 0 var(--sp-space-3) !important;
+}
+.cm-lineNumbers {
+  padding-left: var(--sp-space-1) !important;
+  padding-right: var(--sp-space-1) !important;
+}
+
+/* For iOS: prevent browser zoom when clicking on sandbox. */
+@media screen and (max-width: 768px) {
+  @supports (-webkit-overflow-scrolling: touch) {
+    .cm-content {
+      font-size: initial;
+    }
+    .DocSearch-Input {
+      font-size: initial;
+    }
+  } 
+}

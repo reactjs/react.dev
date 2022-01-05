@@ -20,8 +20,8 @@ We would like to make it even easier for developers to test prerelease builds of
 Each of React's release channels is designed for a distinct use case:
 
 - [**Latest**](#latest-channel) is for stable, semver React releases. It's what you get when you install React from npm. This is the channel you're already using today. **Use this for all user-facing React applications.**
-- [**Next**](#next-channel) tracks the master branch of the React source code repository. Think of these as release candidates for the next minor semver release. Use this for integration testing between React and third party projects.
-- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the master branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
+- [**Next**](#next-channel) tracks the main branch of the React source code repository. Think of these as release candidates for the next minor semver release. Use this for integration testing between React and third party projects.
+- [**Experimental**](#experimental-channel) includes experimental APIs and features that aren't available in the stable releases. These also track the main branch, but with additional feature flags turned on. Use this to try out upcoming features before they are released.
 
 All releases are published to npm, but only Latest uses [semantic versioning](/docs/faq-versioning.html). Prereleases (those in the Next and Experimental channels) have versions generated from a hash of their contents, e.g. `0.0.0-1022ee0ec` for Next and `0.0.0-experimental-1022ee0ec` for Experimental.
 
@@ -39,7 +39,7 @@ You can expect updates to Latest to be extremely stable. Versions follow the sem
 
 ### Next Channel {#next-channel}
 
-The Next channel is a prerelease channel that tracks the master branch of the React repository. We use prereleases in the Next channel as release candidates for the Latest channel. You can think of Next as a superset of Latest that is updated more frequently.
+The Next channel is a prerelease channel that tracks the main branch of the React repository. We use prereleases in the Next channel as release candidates for the Latest channel. You can think of Next as a superset of Latest that is updated more frequently.
 
 The degree of change between the most recent Next release and the most recent Latest release is approximately the same as you would find between two minor semver releases. However, **the Next channel does not conform to semantic versioning.** You should expect occasional breaking changes between successive releases in the Next channel.
 
@@ -75,7 +75,7 @@ A project that uses this workflow is Next.js. (No pun intended! Seriously!) You 
 
 ### Experimental Channel {#experimental-channel}
 
-Like Next, the Experimental channel is a prerelease channel that tracks the master branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
+Like Next, the Experimental channel is a prerelease channel that tracks the main branch of the React repository. Unlike Next, Experimental releases include additional features and APIs that are not ready for wider release.
 
 Usually, an update to Next is accompanied by a corresponding update to Experimental. They are based on the same source revision, but are built using a different set of feature flags.
 
@@ -99,4 +99,4 @@ If a feature is not documented, they may be accompanied by an [RFC](https://gith
 
 We will post to the React blog when we're ready to announce new experiments, but that doesn't mean we will publicize every experiment.
 
-You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/master) for a comprehensive list of changes.
+You can always refer to our public GitHub repository's [history](https://github.com/facebook/react/commits/main) for a comprehensive list of changes.

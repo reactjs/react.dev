@@ -5,7 +5,7 @@
 const request = require('request-promise');
 
 const errorCodesUrl =
-  'https://raw.githubusercontent.com/facebook/react/master/scripts/error-codes/codes.json';
+  'https://raw.githubusercontent.com/facebook/react/main/scripts/error-codes/codes.json';
 
 exports.sourceNodes = async ({actions}) => {
   const {createNode} = actions;

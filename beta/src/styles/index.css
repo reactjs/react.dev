@@ -1,0 +1,172 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+  }
+
+  /* Write your own custom base styles here */
+  html {
+    color-scheme: light;
+    
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+
+  body,
+  html,
+  #__next {
+    height: 100%;
+  }
+
+  /* Start purging... */
+  /* Force GPU Accelerated scrolling, credit: Twitter Lite */
+  .scrolling-gpu {
+    transform: translateZ(0);
+  }
+
+  @responsive {
+    .text-7xl {
+      font-size: 5rem;
+    }
+
+    .text-8xl {
+      font-size: 6rem;
+    }
+  }
+
+  a > code {
+    color: #087EA4 !important; /* blue-50 */
+    text-decoration: none !important;
+  }
+
+  html.dark a > code {
+    color: #149ECA !important; /* blue-40 */
+  }
+
+  .text-code {
+    font-size: calc(1em - 10%) !important;
+  }
+
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    box-decoration-break: clone;
+    background-repeat: no-repeat;
+    color: transparent;
+  }
+
+  .text-gradient-electric-blue {
+    background-image: linear-gradient(45deg, #61dafb, #0072ff);
+  }
+  /* Stop purging. */
+  /* Your own custom utilities */
+
+  details {
+    margin-bottom: 1rem;
+  }
+
+  table {
+    width: 100%;
+    margin-bottom: 1rem;
+    display: block;
+    overflow-x: auto;
+  }
+
+  table td,
+  table th {
+    padding: 0.75rem;
+    vertical-align: top;
+    border: 1px solid #dee2e6;
+    overflow: auto;
+  }
+
+  img {
+    max-width: calc(min(700px, 100%));
+  }
+
+  @keyframes nav-fadein {
+    from { opacity: 0.5; }
+    to   { opacity: 1; }
+  }
+
+  /*
+   * Hopefully when scrollbar-color lands everywhere,
+   * (and not just in FF), we'll be able to keep just this.
+   */
+  html .no-bg-scrollbar {
+    scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+  }
+  html.dark .no-bg-scrollbar {
+    scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+  }
+  /*
+   * Until then, we have ... this.
+   * If you're changing this, make sure you've tested:
+   * - Different browsers (Chrome, Safari, FF)
+   * - Dark and light modes
+   * - System scrollbar settings ("always on" vs "when scrolling")
+   * - Switching between modes should never jump width
+   * - When you interact with a sidebar, it should always be visible
+   * - For each combination, test overflowing and non-overflowing sidebar
+   * I've spent hours picking these so I expect no less diligence from you.
+   */
+  html .no-bg-scrollbar::-webkit-scrollbar,
+  html .no-bg-scrollbar::-webkit-scrollbar-track {
+    background-color: transparent;
+  }
+  html .no-bg-scrollbar:hover::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:focus::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:focus-within::-webkit-scrollbar-thumb,
+  html .no-bg-scrollbar:active::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 4px solid transparent;
+    background-clip: content-box;
+    border-radius: 10px;
+  }
+  html .no-bg-scrollbar::-webkit-scrollbar-thumb:hover,
+  html .no-bg-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: rgba(0, 0, 0, 0.35) !important;
+  }
+  html.dark .no-bg-scrollbar:hover::-webkit-scrollbar-thumb,
+  html.dark .no-bg-scrollbar:focus::-webkit-scrollbar-thumb,
+  html.dark .no-bg-scrollbar:focus-within::-webkit-scrollbar-thumb,
+  html.dark .no-bg-scrollbar:active::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  html.dark .no-bg-scrollbar::-webkit-scrollbar-thumb:hover,
+  html.dark .no-bg-scrollbar::-webkit-scrollbar-thumb:active {
+    background-color: rgba(255, 255, 255, 0.35) !important;
+  }
+}
+
+#_hj_feedback_container > div > button:not([aria-label="Close"]) {
+  display: none;
+}
+
+#_hj_feedback_container > div  {
+  --hjFeedbackAccentColor: rgb(230, 247, 255) !important;
+  --hjFeedbackAccentTextColor: rgb(73, 119, 171) !important;
+}

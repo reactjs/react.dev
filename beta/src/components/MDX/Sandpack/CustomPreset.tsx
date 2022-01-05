@@ -13,11 +13,14 @@ import {
   SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+import dynamic from 'next/dynamic';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
+
+const ReactDevTools = dynamic(() => import('./ReactDevTools'), {ssr: false});
 
 export function CustomPreset({
   isSingleFile,
@@ -109,7 +112,7 @@ export function CustomPreset({
             )}
           </div>
 
-          {showDevTools && <SandpackReactDevTools />}
+          {showDevTools && <ReactDevTools />}
         </SandpackThemeProvider>
       </div>
     </>

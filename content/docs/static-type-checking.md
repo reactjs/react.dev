@@ -328,6 +328,12 @@ You can find more infos on integrating ReScript in your existing JS / React code
 
 JetBrains develops and maintains several tools specifically for the React community: [React bindings](https://github.com/JetBrains/kotlin-wrappers) as well as [Create React Kotlin App](https://github.com/JetBrains/create-react-kotlin-app). The latter helps you start building React apps with Kotlin with no build configuration.
 
+## Scala {#scala}
+
+[Scala](https://scala-lang.org/) is a statically typed language developed by Swiss Federal Institute of Technology in Lausanne. Its target platforms include JVM and [JavaScript](https://www.scala-js.org/).
+
+Projects such as [scalajs-react](https://japgolly.github.io/scalajs-react/) and [slinky](https://slinky.dev/) make building React applications with ScalaJS easier.
+
 ## Other Languages {#other-languages}
 
 Note there are other statically typed languages that compile to JavaScript and are thus React compatible. For example, [F#/Fable](https://fable.io/) with [elmish-react](https://elmish.github.io/react). Check out their respective sites for more information, and feel free to add more statically typed languages that work with React to this page!

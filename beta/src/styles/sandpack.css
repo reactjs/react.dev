@@ -112,10 +112,7 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  *
  * If you know a better way to keep them from diverging, send a PR.
  */
-.sp-layout {
-  border-bottom-left-radius: 0.5rem !important;
-  border-bottom-right-radius: 0.5rem !important;
-}
+
 .sp-stack {
   height: initial !important;
   width: fit-content !important;
@@ -150,11 +147,24 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   background-color: var(--sp-colors-bg-default);
   z-index: 1;
 }
-.sp-layout {
-  overflow: initial !important;
-  border: 0px solid transparent !important;
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important;
+.sp-wrapper .sp-custom-layout {
+  overflow: initial;
+  border: 0px solid transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+.sp-wrapper .sp-custom-layout {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.sp-wrapper .sp-layout-devtools {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.sp-devtools {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
 }
 html.dark .sp-layout > :not(:first-child) {
   border-color: #343a46;

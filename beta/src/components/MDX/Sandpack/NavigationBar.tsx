@@ -63,7 +63,7 @@ export function NavigationBar({
         translate="yes">
         {showDownload && <DownloadButton />}
         <ResetButton onReset={onReset} />
-        <OpenInCodeSandboxButton className="ml-2 md:ml-4" />
+        <OpenInCodeSandboxButton />
         <DevToolsButton onClick={onOpenDevTools} />
       </div>
     </div>

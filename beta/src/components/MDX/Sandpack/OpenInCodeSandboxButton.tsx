@@ -4,20 +4,20 @@
 
 import * as React from 'react';
 import {UnstyledOpenInCodeSandboxButton} from '@codesandbox/sandpack-react';
-import cn from 'classnames';
 import {IconNewPage} from '../../Icon/IconNewPage';
 
-export const OpenInCodeSandboxButton = ({className}: {className?: string}) => {
+export const OpenInCodeSandboxButton = () => {
   return (
     <UnstyledOpenInCodeSandboxButton
-      className={cn(
-        'text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1',
-        className
-      )}
+      className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1 ml-3 md:ml-1"
       title="Open in CodeSandbox">
-      <span className="inline">
-        <IconNewPage className="inline mb-0.5 text-base" /> Fork
-      </span>
+      <IconNewPage
+        className="inline mb-0.5 ml-1 mr-1 relative"
+        width=".8em"
+        height=".8em"
+        style={{top: 1}}
+      />
+      <span className="hidden md:block">Fork</span>
     </UnstyledOpenInCodeSandboxButton>
   );
 };

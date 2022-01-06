@@ -15,8 +15,11 @@ export const DevToolsButton: React.FC<ResetButtonProps> = ({onClick}) => {
       onClick={onClick}
       title="Open React devtools"
       type="button">
-      <IconInspect className="inline mb-0.5 ml-1 mr-1 relative top-0.5" />{' '}
-      Inspect
+      <IconInspect
+        className="inline mb-0.5 ml-1 mr-0.5 relative"
+        style={{top: 2}}
+      />
+      <span className="hidden md:block">Inspect</span>
     </button>
   );
 };

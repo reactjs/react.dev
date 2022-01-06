@@ -186,12 +186,17 @@ html.dark .sp-loading {
   --color-background: var(--sp-colors-bg-default) !important;
   --color-background-inactive: var(--sp-colors-fg-inactive) !important;
   --color-background-selected: #087ea4 !important;
+  --color-background-hover: transparent !important;
+  --color-modal-background: #ffffffd2 !important;
+
+  --color-tab-selected-border: #087ea4 !important;
 
   --color-component-name: var(--theme-definition) !important;
   --color-attribute-name: var(--theme-property) !important;
   --color-attribute-value: var(--theme-string) !important;
   --color-attribute-editable-value: var(--theme-property) !important;
 
+  --color-button-active: #087ea4 !important;
   --color-button-background: transparent !important;
   --color-button: var(--sp-colors-fg-default) !important;
   --color-button-hover: var(--sp-colors-fg-active) !important;
@@ -201,6 +206,11 @@ html.dark .sp-loading {
 }
 html.dark .sp-devtools > div {
   --color-text: var(--sp-colors-fg-default) !important;
+  --color-modal-background: #16181de0 !important;
+}
+
+.sp-devtools table td {
+  border: 1px solid var(--sp-colors-fg-inactive);
 }
 
 /* Make focus rings work */

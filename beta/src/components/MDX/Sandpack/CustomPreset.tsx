@@ -25,10 +25,14 @@ export function CustomPreset({
   isSingleFile,
   showDevTools,
   onOpenDevTools,
+  onDevToolsLoad,
+  devToolsLoaded,
 }: {
   isSingleFile: boolean;
   showDevTools: boolean;
-  onOpenDevTools: () => void;
+  devToolsLoaded: boolean;
+  onOpenDevTools: (refresh: () => void) => void;
+  onDevToolsLoad: () => void;
 }) {
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -64,7 +68,7 @@ export function CustomPreset({
             ref={sandpack.lazyAnchorRef}
             className={cn(
               'sp-layout sp-custom-layout',
-              showDevTools && 'sp-layout-devtools'
+              showDevTools && devToolsLoaded && 'sp-layout-devtools'
             )}
             style={{
               // Prevent it from collapsing below the initial (non-loaded) height.
@@ -117,7 +121,9 @@ export function CustomPreset({
             )}
           </div>
 
-          {showDevTools && <SandpackReactDevTools />}
+          {showDevTools && (
+            <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
+          )}
         </SandpackThemeProvider>
       </div>
     </>

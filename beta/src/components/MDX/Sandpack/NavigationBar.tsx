@@ -19,7 +19,7 @@ export function NavigationBar({
   onOpenDevTools,
 }: {
   showDownload: boolean;
-  onOpenDevTools: () => void;
+  onOpenDevTools: (refresh: () => void) => void;
 }) {
   const {sandpack} = useSandpack();
   const [dropdownActive, setDropdownActive] = React.useState(false);
@@ -64,7 +64,7 @@ export function NavigationBar({
         {showDownload && <DownloadButton />}
         <ResetButton onReset={onReset} />
         <OpenInCodeSandboxButton />
-        <DevToolsButton onClick={onOpenDevTools} />
+        <DevToolsButton onClick={() => onOpenDevTools(refresh)} />
       </div>
     </div>
   );

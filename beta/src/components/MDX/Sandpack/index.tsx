@@ -69,6 +69,7 @@ function Sandpack(props: SandpackProps) {
   let [resetKey, setResetKey] = React.useState(0);
   const [shouldShowDevTools, setShouldShowDevTools] =
     React.useState(showDevTools);
+  const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
 
@@ -135,15 +136,18 @@ function Sandpack(props: SandpackProps) {
       });
   }
 
-  const onOpenDevTools = () => {
+  const onOpenDevTools = (refreshPreview: () => void) => {
     setShouldShowDevTools((prev) => !prev);
 
     /**
      * Hard Sandpack limitation: force rerender in order to
      * load the react-devtools-inline dependencies in the preview
      */
-    if (!shouldShowDevTools) {
+    if (!devToolsLoaded) {
       setResetKey((k) => k + 1);
+      // Soft reload to receive `react-devtools-inline` messages
+    } else if (!shouldShowDevTools) {
+      refreshPreview();
     }
   };
 
@@ -158,6 +162,8 @@ function Sandpack(props: SandpackProps) {
           isSingleFile={isSingleFile}
           showDevTools={shouldShowDevTools}
           onOpenDevTools={onOpenDevTools}
+          onDevToolsLoad={() => setDevToolsLoaded(true)}
+          devToolsLoaded={devToolsLoaded}
         />
       </SandpackProvider>
     </div>

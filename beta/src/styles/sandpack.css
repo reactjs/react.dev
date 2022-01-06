@@ -151,8 +151,6 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   border: 0px solid transparent;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-}
-.sp-wrapper .sp-custom-layout {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
@@ -195,6 +193,7 @@ html.dark .sp-loading {
   --color-attribute-name: var(--theme-property) !important;
   --color-attribute-value: var(--theme-string) !important;
   --color-attribute-editable-value: var(--theme-property) !important;
+  --color-attribute-name-not-editable: var(--sp-colors-fg-default) !important;
 
   --color-button-active: #087ea4 !important;
   --color-button-background: transparent !important;

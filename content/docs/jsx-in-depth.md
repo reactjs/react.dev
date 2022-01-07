@@ -231,7 +231,7 @@ In general, we don't recommend *not* passing a value for a prop, because it can 
 
 ### Spread Attributes {#spread-attributes}
 
-If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" operator to pass the whole props object. These two components are equivalent:
+If you already have `props` as an object, and you want to pass it in JSX, you can use `...` as a "spread" syntax to pass the whole props object. These two components are equivalent:
 
 ```js{7}
 function App1() {
@@ -244,7 +244,7 @@ function App2() {
 }
 ```
 
-You can also pick specific props that your component will consume while passing all other props using the spread operator.
+You can also pick specific props that your component will consume while passing all other props using the spread syntax.
 
 ```js{2}
 const Button = props => {

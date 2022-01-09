@@ -280,20 +280,24 @@ import { sculptureList } from './data.js';
 export default function Gallery() {
   const [index, setIndex] = useState(0);
   const [showMore, setShowMore] = useState(false);
+  let sculpture = sculptureList[index];
 
   function handleNextClick() {
-    setIndex(index + 1);
+    index + 1 === sculptureList.length
+      ? setIndex(0)
+      : setIndex(index + 1);
   }
 
   function handleMoreClick() {
     setShowMore(!showMore);
   }
 
-  let sculpture = sculptureList[index];
   return (
     <>
       <button onClick={handleNextClick}>
-        Next
+        {index + 1 === sculptureList.length
+          ? 'Return to begin'
+          : 'Next'}
       </button>
       <h2>
         <i>{sculpture.name} </i>

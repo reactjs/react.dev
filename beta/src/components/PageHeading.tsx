@@ -13,6 +13,7 @@ interface PageHeadingProps {
   status?: string;
   description?: string;
   tags?: RouteTag[];
+  children: React.ReactNode;
 }
 
 function PageHeading({
@@ -20,14 +21,16 @@ function PageHeading({
   status,
   description,
   tags = [],
+  children,
 }: PageHeadingProps) {
   return (
     <div className="px-5 sm:px-12 pt-5">
       <div className="max-w-4xl ml-0 2xl:mx-auto">
         {tags ? <Breadcrumbs /> : null}
-        <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
+        <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words flex flex-wrap">
           {title}
           {status ? <em>—{status}</em> : ''}
+          {children}
         </H1>
         {description && (
           <p className="mt-4 mb-6 text-primary dark:text-primary-dark text-xl text-gray-90 leading-large">

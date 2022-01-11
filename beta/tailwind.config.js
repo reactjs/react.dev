@@ -32,6 +32,9 @@ module.exports = {
       none: 'none',
     },
     extend: {
+      animation: {
+        'spin-slow': 'spin 3s linear infinite',
+       },
       maxWidth: {
         xs: '21rem'
       },

@@ -37,6 +37,7 @@
     "react": "18.0.0-alpha-930c9e7ee-20211015",
     "react-collapsed": "3.1.0",
     "react-dom": "18.0.0-alpha-930c9e7ee-20211015",
+    "react-flow-renderer": "^9.6.11",
     "scroll-into-view-if-needed": "^2.2.25"
   },
   "devDependencies": {

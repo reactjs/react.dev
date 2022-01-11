@@ -10,6 +10,10 @@ import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
 import {Toc} from './Toc';
+import {useRouter} from 'next/router';
+import {useEffect} from 'react';
+import {useState} from 'react';
+import {Heart} from 'components/Heart';
 export interface MarkdownProps<Frontmatter> {
   meta: Frontmatter & {description?: string};
   children?: React.ReactNode;
@@ -25,6 +29,40 @@ export function MarkdownPage<
   const {route, nextRoute, prevRoute} = useRouteMeta();
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
+  const router = useRouter();
+  const [isFavourite, setIsFavourite] = useState(false);
+  const paths = router.pathname.split('/');
+  const currentPath = paths[paths.length - 1];
+  const setFavourite = () => {
+    setIsFavourite(isFavourite ? false : true);
+    const favourites = JSON.parse(localStorage.getItem('favourites') || '[]');
+
+    localStorage.setItem(
+      'favourites',
+      JSON.stringify([
+        ...(favourites?.includes(currentPath)
+          ? favourites.filter((page: string) => page !== currentPath)
+          : [
+              ...(favourites?.length
+                ? [...favourites, currentPath]
+                : [currentPath]),
+            ]),
+      ])
+    );
+  };
+  useEffect(() => {
+    const favourites = JSON.parse(localStorage.getItem('favourites') || '[]');
+    setIsFavourite(favourites?.includes(currentPath));
+
+    const visitedPages = localStorage.getItem('visitedPages');
+    localStorage.setItem(
+      'visitedPages',
+      JSON.stringify([
+        ...(visitedPages !== null ? JSON.parse(visitedPages) : []),
+        ...(!visitedPages?.includes(currentPath) ? [currentPath] : []),
+      ])
+    );
+  }, []);
 
   let anchors: Array<{
     url: string;
@@ -130,8 +168,11 @@ export function MarkdownPage<
           <PageHeading
             title={title}
             description={description}
-            tags={route?.tags}
-          />
+            tags={route?.tags}>
+            <div className="m-2 pt-1" onClick={() => setFavourite()}>
+              <Heart fill={isFavourite} />
+            </div>
+          </PageHeading>
         )}
         <div className="px-5 sm:px-12">
           <div className="max-w-7xl mx-auto">

@@ -330,7 +330,7 @@ JetBrains develops and maintains several tools specifically for the React commun
 
 ## Scala {#scala}
 
-[Scala](https://scala-lang.org/) is a statically typed language developed by Swiss Federal Institute of Technology in Lausanne. Its target platforms include JVM and [JavaScript](https://www.scala-js.org/).
+[Scala](https://scala-lang.org/) is a statically typed language developed by the Swiss Federal Institute of Technology in Lausanne. Its target platforms include JVM and [JavaScript](https://www.scala-js.org/).
 
 Projects such as [scalajs-react](https://japgolly.github.io/scalajs-react/) and [slinky](https://slinky.dev/) make building React applications with ScalaJS easier.
 

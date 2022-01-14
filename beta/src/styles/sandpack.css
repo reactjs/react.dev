@@ -194,6 +194,7 @@ html.dark .sp-loading {
   --color-attribute-value: var(--theme-string) !important;
   --color-attribute-editable-value: var(--theme-property) !important;
   --color-attribute-name-not-editable: var(--sp-colors-fg-default) !important;
+  --color-button-background-focus: var(--sp-colors-fg-inactive) !important;
 
   --color-button-active: #087ea4 !important;
   --color-button-background: transparent !important;

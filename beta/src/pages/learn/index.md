@@ -23,7 +23,7 @@ Welcome to the React documentation! Here is an overview of what you can find on 
 
 This is a tiny React app. To get your first taste of React, **edit the code below** and make it display your name:
 
-<Sandpack showDevTools>
+<Sandpack>
 
 ```js
 function Greeting({ name }) {

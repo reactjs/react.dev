@@ -28,9 +28,9 @@ module.exports = async function writeRedirectsFile(
 
   let vercelRedirects = {};
 
-  redirects.forEach((redirect) => {
+  redirects.forEach(redirect => {
     const {fromPath, isPermanent, toPath} = redirect;
- 
+
     vercelRedirects[fromPath] = {
       destination: toPath,
       permanent: !!isPermanent,
@@ -39,7 +39,7 @@ module.exports = async function writeRedirectsFile(
   /**
    * Make sure we dont have the same redirect already
    */
-  oldConfigContent.redirects.forEach((data) => {
+  oldConfigContent.redirects.forEach(data => {
     if (vercelRedirects[data.source]) {
       delete vercelRedirects[data.source];
     }
@@ -49,14 +49,14 @@ module.exports = async function writeRedirectsFile(
    * Serialize the object to array of objects
    */
   let newRedirects = [];
-  Object.keys(vercelRedirects).forEach((value) =>
+  Object.keys(vercelRedirects).forEach(value =>
     newRedirects.push({
       source: value,
       destination: vercelRedirects[value].destination,
       permanent: !!vercelRedirects[value].isPermanent,
-    })
+    }),
   );
-  
+
   /**
    * We already have a vercel.json so we spread the new contents along with old ones
    */

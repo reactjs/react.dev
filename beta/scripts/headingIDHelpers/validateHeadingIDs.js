@@ -18,7 +18,7 @@ function validateHeaderId(line) {
   const id = match;
   if (!id) {
     console.error(
-      'Uh Oh seems like the markdown misses headings. Can you run yarn fix-headings to generate headings.'
+      'Run yarn fix-headings to generate headings.'
     );
     process.exit(1);
   }

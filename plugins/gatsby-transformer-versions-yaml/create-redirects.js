@@ -25,33 +25,44 @@ module.exports = async function writeRedirectsFile(
   /**
    * Map data as vercel expects it to be
    */
-  redirects = redirects.map(redirect => {
-    const {fromPath, isPermanent, toPath} = redirect;
 
-    const pieces = {
-      source: fromPath,
+  let vercelRedirects = {};
+
+  redirects.forEach((redirect) => {
+    const {fromPath, isPermanent, toPath} = redirect;
+ 
+    vercelRedirects[fromPath] = {
       destination: toPath,
       permanent: !!isPermanent,
     };
-
-    return pieces;
   });
-
   /**
    * Make sure we dont have the same redirect already
    */
-  oldConfigContent.redirects.forEach(data => {
-    redirects = redirects.filter(
-      newRedirect => newRedirect.source !== data.source,
-    );
+  oldConfigContent.redirects.forEach((data) => {
+    if (vercelRedirects[data.source]) {
+      delete vercelRedirects[data.source];
+    }
   });
 
+  /**
+   * Serialize the object to array of objects
+   */
+  let newRedirects = [];
+  Object.keys(vercelRedirects).forEach((value) =>
+    newRedirects.push({
+      source: value,
+      destination: vercelRedirects[value].destination,
+      permanent: !!vercelRedirects[value].isPermanent,
+    })
+  );
+  
   /**
    * We already have a vercel.json so we spread the new contents along with old ones
    */
   const newContents = {
     ...oldConfigContent,
-    redirects: [...oldConfigContent.redirects, ...redirects],
+    redirects: [...oldConfigContent.redirects, ...newRedirects],
   };
   return writeFile(redirectsFilePath, JSON.stringify(newContents, null, 2));
 };

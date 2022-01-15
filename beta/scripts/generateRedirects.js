@@ -12,7 +12,6 @@ const file = readFileSync(versionsFile, 'utf8');
 const versions = safeLoad(file);
 const redirectsFilePath = path.join('vercel.json');
 
-
 function writeRedirectsFile(redirects, redirectsFilePath) {
   if (!redirects.length) {
     return null;
@@ -27,32 +26,45 @@ function writeRedirectsFile(redirects, redirectsFilePath) {
   /**
    * Map data as vercel expects it to be
    */
-  redirects = redirects.map((redirect) => {
+
+  let vercelRedirects = {};
+
+  redirects.forEach((redirect) => {
     const {fromPath, isPermanent, toPath} = redirect;
 
-    const pieces = {
-      source: fromPath,
+    vercelRedirects[fromPath] = {
       destination: toPath,
       permanent: !!isPermanent,
     };
-
-    return pieces;
   });
 
   /**
    * Make sure we dont have the same redirect already
    */
   oldConfigContent.redirects.forEach((data) => {
-    redirects = redirects.filter(
-      (newRedirect) => newRedirect.source !== data.source
-    );
+    if(vercelRedirects[data.source]){
+      delete vercelRedirects[data.source];
+    }
   });
+
+  /**
+   * Serialize the object to array of objects
+   */
+  let newRedirects = [];
+  Object.keys(vercelRedirects).forEach((value) =>
+    newRedirects.push({
+      source: value,
+      destination: vercelRedirects[value].destination,
+      permanent: !!vercelRedirects[value].isPermanent,
+    })
+  );
+
   /**
    * We already have a vercel.json so we spread the new contents along with old ones
    */
   const newContents = {
     ...oldConfigContent,
-    redirects: [...oldConfigContent.redirects, ...redirects],
+    redirects: [...oldConfigContent.redirects, ...newRedirects],
   };
   writeFile(redirectsFilePath, JSON.stringify(newContents, null, 2));
 }

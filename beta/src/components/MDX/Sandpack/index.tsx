@@ -66,7 +66,6 @@ ul {
 
 function Sandpack(props: SandpackProps) {
   let {children, setup, autorun = true, showDevTools = false} = props;
-  let [resetKey, setResetKey] = React.useState(0);
   const [shouldShowDevTools, setShouldShowDevTools] =
     React.useState(showDevTools);
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
@@ -125,43 +124,15 @@ function Sandpack(props: SandpackProps) {
     hidden: true,
   };
 
-  let key = String(resetKey);
-  if (process.env.NODE_ENV !== 'production') {
-    // Remount on any source change in development.
-    key +=
-      '-' +
-      JSON.stringify({
-        ...props,
-        children: files,
-      });
-  }
-
-  const onOpenDevTools = (refreshPreview: () => void) => {
-    setShouldShowDevTools((prev) => !prev);
-
-    /**
-     * Hard Sandpack limitation: force rerender in order to
-     * load the react-devtools-inline dependencies in the preview
-     */
-    if (!devToolsLoaded) {
-      setResetKey((k) => k + 1);
-      // Soft reload to receive `react-devtools-inline` messages
-    } else if (!shouldShowDevTools) {
-      refreshPreview();
-    }
-  };
-
   return (
     <div className="my-8" translate="no">
       <SandpackProvider
-        key={key}
         template="react"
         customSetup={{...setup, files: files}}
         autorun={autorun}>
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={shouldShowDevTools}
-          onOpenDevTools={onOpenDevTools}
           onDevToolsLoad={() => setDevToolsLoaded(true)}
           devToolsLoaded={devToolsLoaded}
         />

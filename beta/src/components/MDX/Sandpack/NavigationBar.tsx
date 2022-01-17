@@ -12,15 +12,8 @@ import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {FilesDropdown} from './FilesDropdown';
-import {DevToolsButton} from './DevToolsButton';
 
-export function NavigationBar({
-  showDownload,
-  onOpenDevTools,
-}: {
-  showDownload: boolean;
-  onOpenDevTools: (refresh: () => void) => void;
-}) {
+export function NavigationBar({showDownload}: {showDownload: boolean}) {
   const {sandpack} = useSandpack();
   const [dropdownActive, setDropdownActive] = React.useState(false);
   const {openPaths, clients} = sandpack;
@@ -64,7 +57,6 @@ export function NavigationBar({
         {showDownload && <DownloadButton />}
         <ResetButton onReset={onReset} />
         <OpenInCodeSandboxButton />
-        <DevToolsButton onClick={() => onOpenDevTools(refresh)} />
       </div>
     </div>
   );

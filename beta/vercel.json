@@ -1,46 +1,253 @@
 {
-  "github": { "silent": true },
+  "github": {
+    "silent": true
+  },
   "trailingSlash": false,
   "redirects": [
-    { "source": "/tips/controlled-input-null-value.html", "destination": "/docs/forms.html#controlled-input-null-value", "permanent": false },
-    { "source": "/link/switch-to-createroot", "destination": "https://github.com/reactwg/react-18/discussions/5", "permanent": false },
-    { "source": "/server-components", "destination": "/blog/2020/12/21/data-fetching-with-react-server-components.html", "permanent": false },
-    { "source": "/concurrent", "destination": "/docs/concurrent-mode-intro.html", "permanent": false },
-    { "source": "/hooks", "destination": "/docs/hooks-intro.html", "permanent": false },
-    { "source": "/tutorial", "destination": "/tutorial/tutorial.html", "permanent": false },
-    { "source": "/your-story", "destination": "https://www.surveymonkey.co.uk/r/MVQV2R9", "permanent": false },
-    { "source": "/stories", "destination": "https://medium.com/react-community-stories", "permanent": false },
-    { "source": "/html-jsx.html", "destination": "https://magic.reactjs.net/htmltojsx.htm", "destination": "", "permanent": false },
-    { "source": "/link/attribute-behavior", "destination": "/blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail", "permanent": false },
-    { "source": "/link/controlled-components", "destination": "/docs/forms.html#controlled-components", "permanent": false },
-    { "source": "/link/crossorigin-error", "destination": "/docs/cross-origin-errors.html", "permanent": false },
-    { "source": "/link/dangerously-set-inner-html", "destination": "/docs/dom-elements.html#dangerouslysetinnerhtml", "permanent": false },
-    { "source": "/link/derived-state", "destination": "/blog/2018/06/07/you-probably-dont-need-derived-state.html", "permanent": false },
-    { "source": "/link/error-boundaries", "destination": "/docs/error-boundaries.html", "permanent": false },
-    { "source": "/link/event-pooling", "destination": "/docs/legacy-event-pooling.html", "permanent": false },
-    { "source": "/link/hooks-data-fetching", "destination": "/docs/hooks-faq.html#how-can-i-do-data-fetching-with-hooks", "permanent": false },
-    { "source": "/link/invalid-aria-props", "destination": "/warnings/invalid-aria-prop.html", "permanent": false },
-    { "source": "/link/invalid-hook-call", "destination": "/warnings/invalid-hook-call-warning.html", "permanent": false },
-    { "source": "/link/legacy-context", "destination": "/docs/legacy-context.html", "permanent": false },
-    { "source": "/link/legacy-factories", "destination": "/warnings/legacy-factories.html", "permanent": false },
-    { "source": "/link/mock-scheduler", "destination": "/docs/testing-environments.html#mocking-a-rendering-surface", "destination": "", "permanent": false },
-    { "source": "/link/perf-use-production-build", "destination": "/docs/optimizing-performance.html#use-the-production-build", "permanent": false },
-    { "source": "/link/react-devtools", "destination": "/blog/2015/09/02/new-react-developer-tools.html#installation", "permanent": false },
-    { "source": "/link/react-polyfills", "destination": "/docs/javascript-environment-requirements.html", "permanent": false },
-    { "source": "/link/refs-must-have-owner", "destination": "/warnings/refs-must-have-owner.html", "permanent": false },
-    { "source": "/link/rules-of-hooks", "destination": "/docs/hooks-rules.html", "permanent": false },
-    { "source": "/link/special-props", "destination": "/warnings/special-props.html", "permanent": false },
-    { "source": "/link/strict-mode-find-node", "destination": "/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage", "permanent": false },
-    { "source": "/link/strict-mode-string-ref", "destination": "/docs/refs-and-the-dom.html#legacy-api-string-refs", "permanent": false },
-    { "source": "/link/unsafe-component-lifecycles", "destination": "/blog/2018/03/27/update-on-async-rendering.html", "permanent": false },
-    { "source": "/link/warning-keys", "destination": "/docs/lists-and-keys.html#keys", "permanent": false },
-    { "source": "/link/wrap-tests-with-act", "destination": "/docs/test-utils.html#act", "permanent": false },
-    { "source": "/link/interaction-tracing", "destination": "https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16", "permanent": false },
-    { "source": "/link/profiling", "destination": "https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977", "permanent": false },
-    { "source": "/link/test-utils-mock-component", "destination": "https://gist.github.com/bvaughn/fbf41b3f895bf2d297935faa5525eee9", "permanent": false },
-    { "source": "/link/uselayouteffect-ssr", "destination": "https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85", "permanent": false },
-    { "source": "/link/react-devtools-faq", "destination": "https://github.com/facebook/react/tree/main/packages/react-devtools#faq", "permanent": false },
-    { "source": "/link/setstate-in-render", "destination": "https://github.com/facebook/react/issues/18178#issuecomment-595846312", "permanent": false },
-    { "source": "/version/15.6", "destination": "https://react-legacy.netlify.app", "permanent": false }
+    {
+      "source": "/tips/controlled-input-null-value.html",
+      "destination": "/docs/forms.html#controlled-input-null-value",
+      "permanent": false
+    },
+    {
+      "source": "/link/switch-to-createroot",
+      "destination": "https://github.com/reactwg/react-18/discussions/5",
+      "permanent": false
+    },
+    {
+      "source": "/server-components",
+      "destination": "/blog/2020/12/21/data-fetching-with-react-server-components.html",
+      "permanent": false
+    },
+    {
+      "source": "/concurrent",
+      "destination": "/docs/concurrent-mode-intro.html",
+      "permanent": false
+    },
+    {
+      "source": "/hooks",
+      "destination": "/docs/hooks-intro.html",
+      "permanent": false
+    },
+    {
+      "source": "/tutorial",
+      "destination": "/tutorial/tutorial.html",
+      "permanent": false
+    },
+    {
+      "source": "/your-story",
+      "destination": "https://www.surveymonkey.co.uk/r/MVQV2R9",
+      "permanent": false
+    },
+    {
+      "source": "/stories",
+      "destination": "https://medium.com/react-community-stories",
+      "permanent": false
+    },
+    {
+      "source": "/html-jsx.html",
+      "destination": "",
+      "permanent": false
+    },
+    {
+      "source": "/link/attribute-behavior",
+      "destination": "/blog/2017/09/08/dom-attributes-in-react-16.html#changes-in-detail",
+      "permanent": false
+    },
+    {
+      "source": "/link/controlled-components",
+      "destination": "/docs/forms.html#controlled-components",
+      "permanent": false
+    },
+    {
+      "source": "/link/crossorigin-error",
+      "destination": "/docs/cross-origin-errors.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/dangerously-set-inner-html",
+      "destination": "/docs/dom-elements.html#dangerouslysetinnerhtml",
+      "permanent": false
+    },
+    {
+      "source": "/link/derived-state",
+      "destination": "/blog/2018/06/07/you-probably-dont-need-derived-state.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/error-boundaries",
+      "destination": "/docs/error-boundaries.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/event-pooling",
+      "destination": "/docs/legacy-event-pooling.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/hooks-data-fetching",
+      "destination": "/docs/hooks-faq.html#how-can-i-do-data-fetching-with-hooks",
+      "permanent": false
+    },
+    {
+      "source": "/link/invalid-aria-props",
+      "destination": "/warnings/invalid-aria-prop.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/invalid-hook-call",
+      "destination": "/warnings/invalid-hook-call-warning.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/legacy-context",
+      "destination": "/docs/legacy-context.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/legacy-factories",
+      "destination": "/warnings/legacy-factories.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/mock-scheduler",
+      "destination": "",
+      "permanent": false
+    },
+    {
+      "source": "/link/perf-use-production-build",
+      "destination": "/docs/optimizing-performance.html#use-the-production-build",
+      "permanent": false
+    },
+    {
+      "source": "/link/react-devtools",
+      "destination": "/blog/2015/09/02/new-react-developer-tools.html#installation",
+      "permanent": false
+    },
+    {
+      "source": "/link/react-polyfills",
+      "destination": "/docs/javascript-environment-requirements.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/refs-must-have-owner",
+      "destination": "/warnings/refs-must-have-owner.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/rules-of-hooks",
+      "destination": "/docs/hooks-rules.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/special-props",
+      "destination": "/warnings/special-props.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/strict-mode-find-node",
+      "destination": "/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage",
+      "permanent": false
+    },
+    {
+      "source": "/link/strict-mode-string-ref",
+      "destination": "/docs/refs-and-the-dom.html#legacy-api-string-refs",
+      "permanent": false
+    },
+    {
+      "source": "/link/unsafe-component-lifecycles",
+      "destination": "/blog/2018/03/27/update-on-async-rendering.html",
+      "permanent": false
+    },
+    {
+      "source": "/link/warning-keys",
+      "destination": "/docs/lists-and-keys.html#keys",
+      "permanent": false
+    },
+    {
+      "source": "/link/wrap-tests-with-act",
+      "destination": "/docs/test-utils.html#act",
+      "permanent": false
+    },
+    {
+      "source": "/link/interaction-tracing",
+      "destination": "https://gist.github.com/bvaughn/8de925562903afd2e7a12554adcdda16",
+      "permanent": false
+    },
+    {
+      "source": "/link/profiling",
+      "destination": "https://gist.github.com/bvaughn/25e6233aeb1b4f0cdb8d8366e54a3977",
+      "permanent": false
+    },
+    {
+      "source": "/link/test-utils-mock-component",
+      "destination": "https://gist.github.com/bvaughn/fbf41b3f895bf2d297935faa5525eee9",
+      "permanent": false
+    },
+    {
+      "source": "/link/uselayouteffect-ssr",
+      "destination": "https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85",
+      "permanent": false
+    },
+    {
+      "source": "/link/react-devtools-faq",
+      "destination": "https://github.com/facebook/react/tree/main/packages/react-devtools#faq",
+      "permanent": false
+    },
+    {
+      "source": "/link/setstate-in-render",
+      "destination": "https://github.com/facebook/react/issues/18178#issuecomment-595846312",
+      "permanent": false
+    },
+    {
+      "source": "/version/15.6",
+      "destination": "https://react-legacy.netlify.app",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.8",
+      "destination": "https://5d4b5feba32acd0008d0df98--reactjs.netlify.com/",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.7",
+      "destination": "https://5c54aa429e16c80007af3cd2--reactjs.netlify.com/",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.6",
+      "destination": "https://5c11762d4be4d10008916ab1--reactjs.netlify.com/",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.5",
+      "destination": "https://5bcf5863c6aed64970d6de5b--reactjs.netlify.com/",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.4",
+      "destination": "https://5b90c17ac9659241e7f4c938--reactjs.netlify.com",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.3",
+      "destination": "https://5b05c94e0733d530fd1fafe0--reactjs.netlify.com",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.2",
+      "destination": "https://5abc31d8be40f1556f06c4be--reactjs.netlify.com",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.1",
+      "destination": "https://5a1dbcf14c4b93299e65b9a9--reactjs.netlify.com",
+      "permanent": false
+    },
+    {
+      "source": "/version/16.0",
+      "destination": "https://5a046bf5a6188f4b8fa4938a--reactjs.netlify.com",
+      "permanent": false
+    }
   ]
 }

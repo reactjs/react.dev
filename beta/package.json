@@ -6,7 +6,7 @@
   "scripts": {
     "analyze": "ANALYZE=true next build",
     "dev": "next",
-    "build": "next build && node ./scripts/generateRSS.js",
+    "build": "next build && node ./scripts/generateRSS.js && node ./scripts/generateRedirects.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
     "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",

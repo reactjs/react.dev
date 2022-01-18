@@ -17,6 +17,11 @@ January 27th - 30th, 2022. In-person in Dornbirn and Lech Austria
 
 [Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
 
+### React Live 2022 {#react-live-2022}
+April 1st, 2022. Amsterdam, The Netherlands
+
+[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
+
 ### React Miami 2022 🌴 {#react-miami-2022}
 April 18th - 19th, 2022. Miami, Florida
 [Website](https://www.reactmiami.com/)

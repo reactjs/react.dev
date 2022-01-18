@@ -143,7 +143,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread operator also lets you prepend an item by placing it *before* the original `...artists`:
+The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
 
 ```js
 setArtists([
@@ -334,7 +334,7 @@ button { margin: 5px; }
 
 ### Inserting into an array {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread operator together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
 
 In this example, the Insert button always inserts at the index `1`:
 
@@ -398,7 +398,7 @@ button { margin-left: 5px; }
 
 ### Making other changes to an array {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread operator and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
 
 **However, you can copy the array first, and then make changes to it.**
 
@@ -442,7 +442,7 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread operator to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
 
 However, **even if you copy an array, you can't mutate existing items _inside_ of it directly**. This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
 

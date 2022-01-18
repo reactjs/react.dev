@@ -66,7 +66,7 @@ We've also published version `0.13.0-rc1` of the `react` and `react-tools` packa
 - `--target` option is available on the jsx command, allowing users to specify and ECMAScript version to target.
   - `es5` is the default.
   - `es3` restored the previous default behavior. An additional transform is added here to ensure the use of reserved words as properties is safe (eg `this.static` will become `this['static']` for IE8 compatibility).
-- The transform for the call spread operator has also been enabled.
+- The transform for the call spread syntax has also been enabled.
 
 ### JSX {/*jsx*/}
 

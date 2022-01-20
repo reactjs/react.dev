@@ -17,11 +17,6 @@ module.exports = {
   async redirects() {
     return redirects.redirects;
   },
-  env: {
-    // @todo Remove when https://github.com/vercel/next.js/pull/16529 lands
-    GA_TRACKING_ID: 'XXXX',
-    NEXT_PUBLIC_GA_TRACKING_ID: 'XXX',
-  },
   rewrites() {
     return [
       {

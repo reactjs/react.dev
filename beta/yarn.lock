@@ -789,11 +789,6 @@
   dependencies:
     glob "7.1.7"
 
-"@next/plugin-google-analytics@^10.0.6":
-  version "10.1.3"
-  resolved "https://registry.yarnpkg.com/@next/plugin-google-analytics/-/plugin-google-analytics-10.1.3.tgz#e0696d13031ca1fced420e74ac45103464c1b0cd"
-  integrity sha512-OAiGb5SXkNnR37lU5ApMePgi8xdnL47K9/yvqWYaCvPrKteEJ9FtVzVUCHjwN1o67PmFRrVSgE3uNU7RryeU9g==
-
 "@next/polyfill-module@12.0.3-canary.10":
   version "12.0.3-canary.10"
   resolved "https://registry.yarnpkg.com/@next/polyfill-module/-/polyfill-module-12.0.3-canary.10.tgz#01eb16506233a00ce679f99dbaf7d8898052e192"

@@ -26,6 +26,11 @@ April 1st, 2022. Amsterdam, The Netherlands
 April 18th - 19th, 2022. Miami, Florida
 [Website](https://www.reactmiami.com/)
 
+### Reactathon 2022 {#reactathon-2022} 
+May 3 - 5, 2022. Berkeley, CA
+
+[Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
+
 ### render(ATL) 2022 {#render-atlanta-2022} 
 June 2-4, 2022. Atlanta, GA, USA
 

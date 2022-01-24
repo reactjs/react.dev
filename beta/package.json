@@ -22,7 +22,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "^0.1.20",
+    "@codesandbox/sandpack-react": "0.13.6-experimental.0",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.3.0",
@@ -34,9 +34,9 @@
     "github-slugger": "^1.3.0",
     "next": "^12.0.5",
     "parse-numeric-range": "^1.2.0",
-    "react": "18.0.0-alpha-930c9e7ee-20211015",
+    "react": "experimental",
     "react-collapsed": "3.1.0",
-    "react-dom": "18.0.0-alpha-930c9e7ee-20211015",
+    "react-dom": "experimental",
     "scroll-into-view-if-needed": "^2.2.25"
   },
   "devDependencies": {

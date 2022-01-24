@@ -10,8 +10,11 @@ import {
   useActiveCode,
   SandpackCodeEditor,
   SandpackThemeProvider,
+  SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+
+import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
@@ -20,10 +23,14 @@ import {CustomTheme} from './Themes';
 
 export function CustomPreset({
   isSingleFile,
-  onReset,
+  showDevTools,
+  onDevToolsLoad,
+  devToolsLoaded,
 }: {
   isSingleFile: boolean;
-  onReset: () => void;
+  showDevTools: boolean;
+  devToolsLoaded: boolean;
+  onDevToolsLoad: () => void;
 }) {
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -50,11 +57,14 @@ export function CustomPreset({
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar showDownload={isSingleFile} onReset={onReset} />
+        <NavigationBar showDownload={isSingleFile} />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}
-            className="sp-layout rounded-t-none"
+            className={cn(
+              'sp-layout sp-custom-layout',
+              showDevTools && devToolsLoaded && 'sp-layout-devtools'
+            )}
             style={{
               // Prevent it from collapsing below the initial (non-loaded) height.
               // There has to be some better way to do this...
@@ -77,6 +87,7 @@ export function CustomPreset({
                 maxHeight: isExpanded ? '' : 406,
               }}
             />
+
             {isExpandable && (
               <button
                 translate="yes"
@@ -104,6 +115,10 @@ export function CustomPreset({
               </button>
             )}
           </div>
+
+          {showDevTools && (
+            <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
+          )}
         </SandpackThemeProvider>
       </div>
     </>

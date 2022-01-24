@@ -92,7 +92,7 @@ function getGreeting(user) {
 You may use quotes to specify string literals as attributes:
 
 ```js
-const element = <div tabIndex="0"></div>;
+const element = <a href="https://www.reactjs.org"> link </a>;
 ```
 
 You may also use curly braces to embed a JavaScript expression in an attribute:

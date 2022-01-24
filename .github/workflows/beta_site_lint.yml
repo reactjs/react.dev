@@ -1,4 +1,4 @@
-name: Beta Site Lint
+name: Beta Site Lint / Heading ID check
 
 on:
   pull_request:

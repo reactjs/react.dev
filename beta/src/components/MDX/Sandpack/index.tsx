@@ -66,7 +66,6 @@ ul {
 
 function Sandpack(props: SandpackProps) {
   let {children, setup, autorun = true, showDevTools = false} = props;
-  let [resetKey, setResetKey] = React.useState(0);
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
@@ -123,38 +122,17 @@ function Sandpack(props: SandpackProps) {
     hidden: true,
   };
 
-  let key = String(resetKey);
-  if (process.env.NODE_ENV !== 'production') {
-    // Remount on any source change in development.
-    key +=
-      '-' +
-      JSON.stringify({
-        ...props,
-        children: files,
-      });
-  }
-
   return (
     <div className="sandpack-container my-8" translate="no">
       <SandpackProvider
         template="react"
         customSetup={{...setup, files: files}}
-        autorun={autorun}
-        key={key}>
+        autorun={autorun}>
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}
           onDevToolsLoad={() => setDevToolsLoaded(true)}
           devToolsLoaded={devToolsLoaded}
-          onReset={() => {
-            /**
-             * Leverage Sandpack API to reset the changes
-             * and refresh the preview component
-             */
-            if (process.env.NODE_ENV !== 'production') {
-              setResetKey((k) => k + 1);
-            }
-          }}
         />
       </SandpackProvider>
     </div>

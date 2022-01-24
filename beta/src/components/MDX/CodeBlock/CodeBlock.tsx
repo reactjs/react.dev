@@ -91,6 +91,7 @@ const CodeBlock = function CodeBlock({
               'sp-cm': styles.codeViewer,
             }}>
             <SandpackCodeViewer
+              key={children.trimEnd()}
               showLineNumbers={false}
               decorators={decorators}
             />

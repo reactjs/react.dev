@@ -127,7 +127,8 @@ function Sandpack(props: SandpackProps) {
       <SandpackProvider
         template="react"
         customSetup={{...setup, files: files}}
-        autorun={autorun}>
+        autorun={autorun}
+        initMode="user-visible">
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}

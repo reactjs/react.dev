@@ -102,21 +102,21 @@ Note that `SuspenseList` only operates on the closest `Suspense` and `SuspenseLi
 ### `useTransition` {#usetransition}
 
 ```js
-const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+const [isPending, startTransition] = useTransition(SUSPENSE_CONFIG);
 ```
 
 `useTransition` allows components to avoid undesirable loading states by waiting for content to load before **transitioning to the next screen**. It also allows components to defer slower, data fetching updates until subsequent renders so that more crucial updates can be rendered immediately.
 
 The `useTransition` hook returns two values in an array.
-* `startTransition` is a function that takes a callback. We can use it to tell React which state we want to defer.
 * `isPending` is a boolean. It's React's way of informing us whether we're waiting for the transition to finish.
+* `startTransition` is a function that takes a callback. We can use it to tell React which state we want to defer.
 
 **If some state update causes a component to suspend, that state update should be wrapped in a transition.**
 
 ```js
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition();
+  const [isPending, startTransition] = useTransition();
   return (
     <>
       <button

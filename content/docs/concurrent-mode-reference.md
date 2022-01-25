@@ -102,8 +102,6 @@ Note that `SuspenseList` only operates on the closest `Suspense` and `SuspenseLi
 ### `useTransition` {#usetransition}
 
 ```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-
 const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
 ```
 
@@ -116,11 +114,9 @@ The `useTransition` hook returns two values in an array.
 **If some state update causes a component to suspend, that state update should be wrapped in a transition.**
 
 ```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+  const [startTransition, isPending] = useTransition();
   return (
     <>
       <button
@@ -143,21 +139,11 @@ function App() {
 }
 ```
 
-In this code, we've wrapped our data fetching with `startTransition`. This allows us to start fetching the profile data right away, while deferring the render of the next profile page and its associated `Spinner` for 2 seconds (the time shown in `timeoutMs`).
+In this code, we've wrapped our data fetching with `startTransition`. This allows us to start fetching the profile data right away, while deferring the render of the next profile page and its associated `Spinner`.
 
 The `isPending` boolean lets React know that our component is transitioning, so we are able to let the user know this by showing some loading text on the previous profile page.
 
 **For an in-depth look at transitions, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#transitions).**
-
-#### useTransition Config {#usetransition-config}
-
-```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-```
-
-`useTransition` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long to wait before showing the next state (the new Profile Page in the above example).
-
-**Note: We recommend that you share Suspense Config between different modules.**
 
 
 ### `useDeferredValue` {#usedeferredvalue}

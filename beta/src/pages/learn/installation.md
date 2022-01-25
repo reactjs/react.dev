@@ -8,7 +8,7 @@ React has been designed from the start for gradual adoption, and you can use as 
 
 </Intro>
 
-<YouWillLearn>
+<YouWillLearn isChapter={true}>
 
 * [How to add React to an HTML page](/learn/add-react-to-a-website)
 * [How to start a standalone React project](/learn/start-a-new-react-project)

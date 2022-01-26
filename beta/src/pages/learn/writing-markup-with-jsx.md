@@ -10,13 +10,13 @@ JSX is a syntax extension for JavaScript that lets you write HTML-like markup in
 
 <YouWillLearn>
 
-- Why React mixes markup with rendering logic
-- How JSX is different from HTML
-- How to display information with JSX
+* Why React mixes markup with rendering logic
+* How JSX is different from HTML
+* How to display information with JSX
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript {/* jsx-putting-markup-into-javascript */}
+## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
 
 The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
 
@@ -36,17 +36,21 @@ Each React component is a JavaScript function that may contain some markup that 
 
 </Note>
 
-## Converting HTML to JSX {/* converting-html-to-jsx */}
+## Converting HTML to JSX {/*converting-html-to-jsx*/}
 
 Suppose that you have some (perfectly valid) HTML:
 
 ```html
 <h1>Hedy Lamarr's Todos</h1>
-<img src="https://i.imgur.com/yXOvdOSs.jpg" alt="Hedy Lamarr" class="photo" />
+<img 
+  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  alt="Hedy Lamarr" 
+  class="photo"
+>
 <ul>
-  <li>Invent new traffic lights</li>
-  <li>Rehearse a movie scene</li>
-  <li>Improve the spectrum technology</li>
+    <li>Invent new traffic lights
+    <li>Rehearse a movie scene
+    <li>Improve the spectrum technology
 </ul>
 ```
 
@@ -62,6 +66,7 @@ export default function TodoList() {
 
 If you copy and paste it as is, it will not work:
 
+
 <Sandpack>
 
 ```js
@@ -69,9 +74,9 @@ export default function TodoList() {
   return (
     // This doesn't quite work!
     <h1>Hedy Lamarr's Todos</h1>
-    <img
-      src="https://i.imgur.com/yXOvdOSs.jpg"
-      alt="Hedy Lamarr"
+    <img 
+      src="https://i.imgur.com/yXOvdOSs.jpg" 
+      alt="Hedy Lamarr" 
       class="photo"
     >
     <ul>
@@ -84,9 +89,7 @@ export default function TodoList() {
 ```
 
 ```css
-img {
-  height: 90px;
-}
+img { height: 90px }
 ```
 
 </Sandpack>
@@ -99,9 +102,9 @@ Most of the times, React's on-screen error messages will help you find where the
 
 </Note>
 
-## The Rules of JSX {/* the-rules-of-jsx */}
+## The Rules of JSX {/*the-rules-of-jsx*/}
 
-### 1. Return a single root element {/* 1-return-a-single-root-element */}
+### 1. Return a single root element {/*1-return-a-single-root-element*/}
 
 To return multiple elements from a component, **wrap them with a single parent tag**.
 
@@ -110,9 +113,9 @@ For example, you can use a `<div>`:
 ```js {1,11}
 <div>
   <h1>Hedy Lamarr's Todos</h1>
-  <img
-    src="https://i.imgur.com/yXOvdOSs.jpg"
-    alt="Hedy Lamarr"
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
     class="photo"
   >
   <ul>
@@ -121,14 +124,15 @@ For example, you can use a `<div>`:
 </div>
 ```
 
+
 If you don't want to add an extra `<div>` to your markup, you can write `<>` and `</>` instead:
 
 ```js {1,11}
 <>
   <h1>Hedy Lamarr's Todos</h1>
-  <img
-    src="https://i.imgur.com/yXOvdOSs.jpg"
-    alt="Hedy Lamarr"
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
     class="photo"
   >
   <ul>
@@ -137,7 +141,7 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a _[React fragment](TODO)_. React fragments let you group things without leaving any trace in the browser HTML tree.
+This empty tag is called a *[React fragment](TODO)*. React fragments let you group things without leaving any trace in the browser HTML tree.
 
 <DeepDive title="Why do multiple JSX tags need to be wrapped?">
 
@@ -145,7 +149,7 @@ JSX looks like HTML, but under the hood it is transformed into plain JavaScript 
 
 </DeepDive>
 
-### 2. Close all the tags {/* 2-close-all-the-tags */}
+### 2. Close all the tags {/*2-close-all-the-tags*/}
 
 JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
 
@@ -153,7 +157,11 @@ This is how Hedy Lamarr's image and list items look closed:
 
 ```js {2-6,8-10}
 <>
-  <img src="https://i.imgur.com/yXOvdOSs.jpg" alt="Hedy Lamarr" class="photo" />
+  <img 
+    src="https://i.imgur.com/yXOvdOSs.jpg" 
+    alt="Hedy Lamarr" 
+    class="photo"
+   />
   <ul>
     <li>Invent new traffic lights</li>
     <li>Rehearse a movie scene</li>
@@ -162,16 +170,16 @@ This is how Hedy Lamarr's image and list items look closed:
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things! {/* 3-camelcase-salls-most-of-the-things */}
+### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
 
 JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
 
 This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
 
 ```js {4}
-<img
-  src="https://i.imgur.com/yXOvdOSs.jpg"
-  alt="Hedy Lamarr"
+<img 
+  src="https://i.imgur.com/yXOvdOSs.jpg" 
+  alt="Hedy Lamarr" 
   className="photo"
 />
 ```
@@ -184,7 +192,7 @@ For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Access
 
 </Gotcha>
 
-### Pro-tip: Use a JSX Converter {/* pro-tip-use-a-jsx-converter */}
+### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
 
 Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
 
@@ -197,10 +205,10 @@ export default function TodoList() {
   return (
     <>
       <h1>Hedy Lamarr's Todos</h1>
-      <img
-        src="https://i.imgur.com/yXOvdOSs.jpg"
-        alt="Hedy Lamarr"
-        className="photo"
+      <img 
+        src="https://i.imgur.com/yXOvdOSs.jpg" 
+        alt="Hedy Lamarr" 
+        className="photo" 
       />
       <ul>
         <li>Invent new traffic lights</li>
@@ -213,9 +221,7 @@ export default function TodoList() {
 ```
 
 ```css
-img {
-  height: 90px;
-}
+img { height: 90px }
 ```
 
 </Sandpack>
@@ -224,15 +230,17 @@ img {
 
 Now you know why JSX exists and how to use it in components:
 
-- React components group rendering logic together with markup because they are related.
-- JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
-- Error messages will often point you in the right direction to fixing your markup.
+* React components group rendering logic together with markup because they are related.
+* JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
+* Error messages will often point you in the right direction to fixing your markup.
 
 </Recap>
 
+
+
 <Challenges>
 
-### Convert some HTML to JSX {/* convert-some-html-to-jsx */}
+### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
 
 This HTML was pasted into a component, but it's not valid JSX. Fix it:
 
@@ -255,16 +263,7 @@ export default function Bio() {
 
 ```css
 .intro {
-  background-image: linear-gradient(
-    to left,
-    violet,
-    indigo,
-    blue,
-    green,
-    yellow,
-    orange,
-    red
-  );
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
   background-clip: text;
   color: transparent;
   -webkit-background-clip: text;
@@ -294,11 +293,8 @@ export default function Bio() {
       </div>
       <p className="summary">
         You can find my thoughts here.
-        <br />
-        <br />
-        <b>
-          And <i>pictures</i>
-        </b> of scientists!
+        <br /><br />
+        <b>And <i>pictures</i></b> of scientists!
       </p>
     </div>
   );
@@ -307,16 +303,7 @@ export default function Bio() {
 
 ```css
 .intro {
-  background-image: linear-gradient(
-    to left,
-    violet,
-    indigo,
-    blue,
-    green,
-    yellow,
-    orange,
-    red
-  );
+  background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);
   background-clip: text;
   color: transparent;
   -webkit-background-clip: text;

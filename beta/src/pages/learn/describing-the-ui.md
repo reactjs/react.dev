@@ -4,24 +4,24 @@ title: Describing the UI
 
 <Intro>
 
-React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable _components._ From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
+React is a JavaScript library for rendering user interfaces (UI). UI is built from small units like buttons, text, and images. React lets you combine them into reusable, nestable *components.* From web sites to phone apps, everything on the screen can be broken down into components. In this chapter, you'll learn to create, customize, and conditionally display React components.
 
 </Intro>
 
 <YouWillLearn>
 
-- [How to write your first React component](/learn/your-first-component)
-- [When and how to create multi-component files](/learn/importing-and-exporting-components)
-- [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
-- [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
-- [How to configure components with props](/learn/passing-props-to-a-component)
-- [How to conditionally render components](/learn/conditional-rendering)
-- [How to render multiple components at a time](/learn/rendering-lists)
-- [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
+* [How to write your first React component](/learn/your-first-component)
+* [When and how to create multi-component files](/learn/importing-and-exporting-components)
+* [How to add markup to JavaScript with JSX](/learn/writing-markup-with-jsx)
+* [How to use curly braces with JSX to access JavaScript functionality from your components](/learn/javascript-in-jsx-with-curly-braces)
+* [How to configure components with props](/learn/passing-props-to-a-component)
+* [How to conditionally render components](/learn/conditional-rendering)
+* [How to render multiple components at a time](/learn/rendering-lists)
+* [How to avoid confusing bugs by keeping components pure](/learn/keeping-components-pure)
 
 </YouWillLearn>
 
-## Your first component {/* your-first-component */}
+## Your first component {/*your-first-component*/}
 
 React applications are built from isolated pieces of UI called "components". A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
 
@@ -29,7 +29,12 @@ React applications are built from isolated pieces of UI called "components". A R
 
 ```js
 function Profile() {
-  return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
+  return (
+    <img
+      src="https://i.imgur.com/MK3eW3As.jpg"
+      alt="Katherine Johnson"
+    />
+  );
 }
 
 export default function Gallery() {
@@ -45,10 +50,7 @@ export default function Gallery() {
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-  height: 90px;
-}
+img { margin: 0 10px 10px 0; height: 90px; }
 ```
 
 </Sandpack>
@@ -59,9 +61,10 @@ Read **[Your First Component](/learn/your-first-component)** to learn how to dec
 
 </LearnMore>
 
-## Importing and exporting components {/* importing-and-exporting-components */}
+## Importing and exporting components {/*importing-and-exporting-components*/}
 
-You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can _export_ a component into its own file, and then _import_ that component from another file:
+You can declare many components in one file, but large files can get difficult to navigate. To solve this, you can *export* a component into its own file, and then *import* that component from another file:
+
 
 <Sandpack>
 
@@ -69,7 +72,9 @@ You can declare many components in one file, but large files can get difficult t
 import Gallery from './Gallery.js';
 
 export default function App() {
-  return <Gallery />;
+  return (
+    <Gallery />
+  );
 }
 ```
 
@@ -90,14 +95,17 @@ export default function Gallery() {
 
 ```js Profile.js
 export default function Profile() {
-  return <img src="https://i.imgur.com/QIrZWGIs.jpg" alt="Alan L. Hart" />;
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
 }
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-}
+img { margin: 0 10px 10px 0; }
 ```
 
 </Sandpack>
@@ -108,7 +116,7 @@ Read **[Importing and Exporting Components](/learn/importing-and-exporting-compo
 
 </LearnMore>
 
-## Writing markup with JSX {/* writing-markup-with-jsx */}
+## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
 Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information.
 
@@ -136,9 +144,7 @@ export default function TodoList() {
 ```
 
 ```css
-img {
-  height: 90px;
-}
+img { height: 90px; }
 ```
 
 </Sandpack>
@@ -168,9 +174,7 @@ export default function TodoList() {
 ```
 
 ```css
-img {
-  height: 90px;
-}
+img { height: 90px; }
 ```
 
 </Sandpack>
@@ -181,7 +185,7 @@ Read **[Writing Markup with JSX](/learn/writing-markup-with-jsx)** to learn how 
 
 </LearnMore>
 
-## JavaScript in JSX with curly braces {/* javascript-in-jsx-with-curly-braces */}
+## JavaScript in JSX with curly braces {/*javascript-in-jsx-with-curly-braces*/}
 
 JSX lets you write HTML-like markup inside a JavaScript file, keeping rendering logic and content in the same place. Sometimes you will want to add a little JavaScript logic or reference a dynamic property inside that markup. In this situation, you can use curly braces in your JSX to "open a window" to JavaScript:
 
@@ -192,8 +196,8 @@ const person = {
   name: 'Gregorio Y. Zara',
   theme: {
     backgroundColor: 'black',
-    color: 'pink',
-  },
+    color: 'pink'
+  }
 };
 
 export default function TodoList() {
@@ -216,17 +220,9 @@ export default function TodoList() {
 ```
 
 ```css
-body {
-  padding: 0;
-  margin: 0;
-}
-body > div > div {
-  padding: 20px;
-}
-.avatar {
-  border-radius: 50%;
-  height: 90px;
-}
+body { padding: 0; margin: 0 }
+body > div > div { padding: 20px; }
+.avatar { border-radius: 50%; height: 90px; }
 ```
 
 </Sandpack>
@@ -237,14 +233,14 @@ Read **[JavaScript in JSX with Curly Braces](/learn/javascript-in-jsx-with-curly
 
 </LearnMore>
 
-## Passing props to a component {/* passing-props-to-a-component */}
+## Passing props to a component {/*passing-props-to-a-component*/}
 
-React components use _props_ to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
+React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, functions, and even JSX!
 
 <Sandpack>
 
 ```js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js'
 
 export default function Profile() {
   return (
@@ -253,14 +249,14 @@ export default function Profile() {
         size={100}
         person={{
           name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2',
+          imageId: 'YfeOqp2'
         }}
       />
     </Card>
   );
 }
 
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   return (
     <img
       className="avatar"
@@ -272,14 +268,24 @@ function Avatar({person, size}) {
   );
 }
 
-function Card({children}) {
-  return <div className="card">{children}</div>;
+function Card({ children }) {
+  return (
+    <div className="card">
+      {children}
+    </div>
+  );
 }
+
 ```
 
 ```js utils.js
 export function getImageUrl(person, size = 's') {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
@@ -308,7 +314,7 @@ Read **[Passing Props to a Component](/learn/passing-props-to-a-component)** to 
 
 </LearnMore>
 
-## Conditional rendering {/* conditional-rendering */}
+## Conditional rendering {/*conditional-rendering*/}
 
 Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
 
@@ -317,7 +323,7 @@ In this example, the JavaScript `&&` operator is used to conditionally render a 
 <Sandpack>
 
 ```js
-function Item({name, isPacked}) {
+function Item({ name, isPacked }) {
   return (
     <li className="item">
       {name} {isPacked && '✔'}
@@ -330,9 +336,18 @@ export default function PackingList() {
     <section>
       <h1>Sally Ride's Packing List</h1>
       <ul>
-        <Item isPacked={true} name="Space suit" />
-        <Item isPacked={true} name="Helmet with a golden leaf" />
-        <Item isPacked={false} name="Photo of Tam" />
+        <Item
+          isPacked={true}
+          name="Space suit"
+        />
+        <Item
+          isPacked={true}
+          name="Helmet with a golden leaf"
+        />
+        <Item
+          isPacked={false}
+          name="Photo of Tam"
+        />
       </ul>
     </section>
   );
@@ -347,7 +362,7 @@ Read **[Conditional Rendering](/learn/conditional-rendering)** to learn the diff
 
 </LearnMore>
 
-## Rendering lists {/* rendering-lists */}
+## Rendering lists {/*rendering-lists*/}
 
 You will often want to display multiple similar components from a collection of data. You can use JavaScript's `filter()` and `map()` with React to filter and transform your array of data into an array of components.
 
@@ -356,20 +371,23 @@ For each array item, you will need to specify a `key`. Usually, you will want to
 <Sandpack>
 
 ```js App.js
-import {people} from './data.js';
-import {getImageUrl} from './utils.js';
+import { people } from './data.js';
+import { getImageUrl } from './utils.js';
 
 export default function List() {
-  const listItems = people.map((person) => (
+  const listItems = people.map(person =>
     <li key={person.id}>
-      <img src={getImageUrl(person)} alt={person.name} />
+      <img
+        src={getImageUrl(person)}
+        alt={person.name}
+      />
       <p>
         <b>{person.name}:</b>
         {' ' + person.profession + ' '}
         known for {person.accomplishment}
       </p>
     </li>
-  ));
+  );
   return (
     <article>
       <h1>Scientists</h1>
@@ -380,74 +398,60 @@ export default function List() {
 ```
 
 ```js data.js
-export const people = [
-  {
-    id: 0,
-    name: 'Creola Katherine Johnson',
-    profession: 'mathematician',
-    accomplishment: 'spaceflight calculations',
-    imageId: 'MK3eW3A',
-  },
-  {
-    id: 1,
-    name: 'Mario José Molina-Pasquel Henríquez',
-    profession: 'chemist',
-    accomplishment: 'discovery of Arctic ozone hole',
-    imageId: 'mynHUSa',
-  },
-  {
-    id: 2,
-    name: 'Mohammad Abdus Salam',
-    profession: 'physicist',
-    accomplishment: 'electromagnetism theory',
-    imageId: 'bE7W1ji',
-  },
-  {
-    id: 3,
-    name: 'Percy Lavon Julian',
-    profession: 'chemist',
-    accomplishment:
-      'pioneering cortisone drugs, steroids and birth control pills',
-    imageId: 'IOjWm71',
-  },
-  {
-    id: 4,
-    name: 'Subrahmanyan Chandrasekhar',
-    profession: 'astrophysicist',
-    accomplishment: 'white dwarf star mass calculations',
-    imageId: 'lrWQx8l',
-  },
-];
+export const people = [{
+  id: 0,
+  name: 'Creola Katherine Johnson',
+  profession: 'mathematician',
+  accomplishment: 'spaceflight calculations',
+  imageId: 'MK3eW3A'
+}, {
+  id: 1,
+  name: 'Mario José Molina-Pasquel Henríquez',
+  profession: 'chemist',
+  accomplishment: 'discovery of Arctic ozone hole',
+  imageId: 'mynHUSa'
+}, {
+  id: 2,
+  name: 'Mohammad Abdus Salam',
+  profession: 'physicist',
+  accomplishment: 'electromagnetism theory',
+  imageId: 'bE7W1ji'
+}, {
+  id: 3,
+  name: 'Percy Lavon Julian',
+  profession: 'chemist',
+  accomplishment: 'pioneering cortisone drugs, steroids and birth control pills',
+  imageId: 'IOjWm71'
+}, {
+  id: 4,
+  name: 'Subrahmanyan Chandrasekhar',
+  profession: 'astrophysicist',
+  accomplishment: 'white dwarf star mass calculations',
+  imageId: 'lrWQx8l'
+}];
 ```
 
 ```js utils.js
 export function getImageUrl(person) {
-  return 'https://i.imgur.com/' + person.imageId + 's.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    's.jpg'
+  );
 }
 ```
 
 ```css
-ul {
-  list-style-type: none;
-  padding: 0px 10px;
-}
+ul { list-style-type: none; padding: 0px 10px; }
 li {
   margin-bottom: 10px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
 }
-img {
-  width: 100px;
-  height: 100px;
-  border-radius: 50%;
-}
-h1 {
-  font-size: 22px;
-}
-h2 {
-  font-size: 20px;
-}
+img { width: 100px; height: 100px; border-radius: 50%; }
+h1 { font-size: 22px; }
+h2 { font-size: 20px; }
 ```
 
 </Sandpack>
@@ -458,12 +462,12 @@ Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list
 
 </LearnMore>
 
-## Keeping components pure {/* keeping-components-pure */}
+## Keeping components pure {/*keeping-components-pure*/}
 
 Some JavaScript functions are “pure.” A pure function:
 
-- **Minds its own business.** It does not change any objects or variables that existed before it was called.
-- **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Minds its own business.** It does not change any objects or variables that existed before it was called.
+* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
 
 By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. Here is an example of an impure component:
 
@@ -485,7 +489,7 @@ export default function TeaSet() {
       <Cup />
       <Cup />
     </>
-  );
+  )
 }
 ```
 
@@ -496,7 +500,7 @@ You can make this component pure by passing a prop instead of modifying a preexi
 <Sandpack>
 
 ```js
-function Cup({guest}) {
+function Cup({ guest }) {
   return <h2>Tea cup for guest #{guest}</h2>;
 }
 
@@ -519,7 +523,7 @@ Read **[Keeping Components Pure](/learn/keeping-components-pure)** to learn how 
 
 </LearnMore>
 
-## What's next? {/* whats-next */}
+## What's next? {/*whats-next*/}
 
 Head over to [Your First Component](/learn/your-first-component) to start reading this chapter page by page!
 

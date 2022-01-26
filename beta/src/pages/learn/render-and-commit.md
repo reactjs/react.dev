@@ -10,10 +10,10 @@ Before your components are displayed on screen, they must be rendered by React. 
 
 <YouWillLearn>
 
-- What rendering means in React
-- When and why React renders a component
-- The steps involved in displaying a component on screen
-- Why rendering does not always produce a DOM update
+* What rendering means in React
+* When and why React renders a component
+* The steps involved in displaying a component on screen
+* Why rendering does not always produce a DOM update
 
 </YouWillLearn>
 
@@ -24,31 +24,19 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 3. **Committing** to the DOM (placing the order on the table)
 
 <IllustrationBlock sequential>
-  <Illustration
-    caption="Trigger"
-    alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen."
-    src="/images/docs/illustrations/i_render-and-commit1.png"
-  />
-  <Illustration
-    caption="Render"
-    alt="The Card Chef gives React a fresh Card component."
-    src="/images/docs/illustrations/i_render-and-commit2.png"
-  />
-  <Illustration
-    caption="Commit"
-    alt="React delivers the Card to the user at their table."
-    src="/images/docs/illustrations/i_render-and-commit3.png"
-  />
+  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
+  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
+  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
 </IllustrationBlock>
 
-## Step 1: Trigger a render {/* step-1-trigger-a-render */}
+## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
 
 There are two reasons for a component to render:
 
 1. It's the component's **initial render.**
 2. The component's **state has been updated.**
 
-### Initial render {/* initial-render */}
+### Initial render {/*initial-render*/}
 
 When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling `ReactDOM.render` with your root component and the target DOM node:
 
@@ -58,7 +46,10 @@ When your app starts, you need to trigger the initial render. Frameworks and san
 import Image from './Image.js';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<Image />, document.getElementById('root'));
+ReactDOM.render(
+  <Image />,
+  document.getElementById('root')
+);
 ```
 
 ```js Image.js
@@ -76,38 +67,26 @@ export default function Image() {
 
 Try commenting out the `ReactDOM.render` call and see the component disappear!
 
-### Re-renders when state updates {/* re-renders-when-state-updates */}
+### Re-renders when state updates {/*re-renders-when-state-updates*/}
 
 Once the component has been initially rendered, you can trigger further renders by updating its state with [`setState`](reference/setstate). Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
 
 <IllustrationBlock sequential>
-  <Illustration
-    caption="State update..."
-    alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!"
-    src="/images/docs/illustrations/i_rerender1.png"
-  />
-  <Illustration
-    caption="...triggers..."
-    alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card."
-    src="/images/docs/illustrations/i_rerender2.png"
-  />
-  <Illustration
-    caption="...render!"
-    alt="The Card Chef gives React the pink Card."
-    src="/images/docs/illustrations/i_rerender3.png"
-  />
+  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
+  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
+  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/* step-2-react-renders-your-components */}
+## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
 
 After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
 
-- **On initial render,** React will call the root component.
-- **For subsequent renders,** React will call the function component whose state update triggered the render.
+* **On initial render,** React will call the root component.
+* **For subsequent renders,** React will call the function component whose state update triggered the render.
 
 This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
 
-In the following example, React will call `Gallery()` and `Image()` several times:
+In the following example, React will call `Gallery()` and  `Image()` several times:
 
 <Sandpack>
 
@@ -137,26 +116,27 @@ function Image() {
 import Gallery from './Gallery.js';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(<Gallery />, document.getElementById('root'));
+ReactDOM.render(
+  <Gallery />,
+  document.getElementById('root')
+);
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-}
+img { margin: 0 10px 10px 0; }
 ```
 
 </Sandpack>
 
-- **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags.
-- **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags. 
+* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
 
 <Gotcha>
 
 Rendering must always be a [pure calculation](/learn/keeping-components-pure):
 
-- **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-- **Mind its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
+* **Mind its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
 
 Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode," React calls each component's function twice, which can help surface mistakes caused by impure functions.
 
@@ -168,19 +148,19 @@ The default behavior of rendering all components nested within the updated compo
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM {/* step-3-react-commits-changes-to-the-dom */}
+## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
 
-After rendering (calling) your components, React will modify the DOM.
+After rendering (calling) your components, React will modify the DOM. 
 
-- **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen.
-- **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen. 
+* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
 
 **React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
 
 <Sandpack>
 
 ```js Clock.js active
-export default function Clock({time}) {
+export default function Clock({ time }) {
   return (
     <>
       <h1>{time}</h1>
@@ -191,7 +171,7 @@ export default function Clock({time}) {
 ```
 
 ```js App.js hidden
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
 function useTime() {
@@ -207,30 +187,29 @@ function useTime() {
 
 export default function App() {
   const time = useTime();
-  return <Clock time={time.toLocaleTimeString()} />;
+  return (
+    <Clock time={time.toLocaleTimeString()} />
+  );
 }
 ```
 
 </Sandpack>
 
 This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-
-## Epilogue: Browser paint {/* epilogue-browser-paint */}
+## Epilogue: Browser paint {/*epilogue-browser-paint*/}
 
 After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion in the rest of these docs.
 
-<Illustration
-  alt="A browser painting 'still life with card element'."
-  src="/images/docs/illustrations/i_browser-paint.png"
-/>
+<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
 
 <Recap>
 
-- Any screen update in a React app happens in three steps:
+* Any screen update in a React app happens in three steps:
   1. Trigger
   2. Render
   3. Commit
-- You can use Strict Mode to find mistakes in your components
-- React does not touch the DOM if the rendering result is the same as last time
+* You can use Strict Mode to find mistakes in your components
+* React does not touch the DOM if the rendering result is the same as last time
 
 </Recap>
+

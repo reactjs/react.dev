@@ -10,23 +10,23 @@ Welcome to the React documentation! Here is an overview of what you can find on 
 
 <YouWillLearn>
 
-- [How to set up React](/learn/installation)
-- [How to think about building user interfaces with React](/learn/thinking-in-react)
-- [How to get something rendering on the screen](/learn/describing-the-ui)
-- [How to make your user interface respond to interactions](/learn/adding-interactivity)
-- [How to keep your logic maintainable as your app grows](/learn/managing-state)
-- [How to step outside React when necessary](/learn/escape-hatches)
+* [How to set up React](/learn/installation)
+* [How to think about building user interfaces with React](/learn/thinking-in-react)
+* [How to get something rendering on the screen](/learn/describing-the-ui)
+* [How to make your user interface respond to interactions](/learn/adding-interactivity)
+* [How to keep your logic maintainable as your app grows](/learn/managing-state)
+* [How to step outside React when necessary](/learn/escape-hatches)
 
 </YouWillLearn>
 
-## Introduction {/* introduction */}
+## Introduction {/*introduction*/}
 
 This is a tiny React app. To get your first taste of React, **edit the code below** and make it display your name:
 
 <Sandpack>
 
 ```js
-function Greeting({name}) {
+function Greeting({ name }) {
   return <h1>Hello, {name}!</h1>;
 }
 
@@ -43,7 +43,7 @@ export default function App() {
 
 </Sandpack>
 
-### What is React? {/* what-is-react */}
+### What is React? {/*what-is-react*/}
 
 React is a JavaScript library for building user interfaces.
 
@@ -51,13 +51,13 @@ React stands at the intersection of design and programming. **It lets you take a
 
 React does not prescribe how you build your entire application. It helps you define and compose components, but stays out of your way in other questions. This means that you will either pick one of the ecosystem solutions for problems like routing, styling, and data fetching, or [use a framework](/learn/start-a-new-react-project#building-with-react-and-a-framework) that provides great defaults.
 
-### What can you do with React? {/* what-can-you-do-with-react */}
+### What can you do with React? {/*what-can-you-do-with-react*/}
 
 Quite a lot, really! People use React to create all kinds of user interfaces--from small controls like buttons and dropdowns to entire apps. **These docs will teach you to use React on the web.** However, most of what you'll learn here applies equally for [React Native](https://reactnative.dev/) which lets you build apps for Android, iOS, and even [Windows and macOS](https://microsoft.github.io/react-native-windows/).
 
 If you're curious which products you use everyday are built with React, you can install the [React Developer Tools](/learn/react-developer-tools). Whenever you visit an app or a website built with React (like this one!), its icon will light up in the toolbar.
 
-### React uses JavaScript {/* react-uses-javascript */}
+### React uses JavaScript {/*react-uses-javascript*/}
 
 With React, you will describe your visual logic in JavaScript. This takes some practice. If you're learning JavaScript and React at the same time, you're not alone--but at times, it will be a little bit more challenging! On the upside, **much of learning React is really learning JavaScript,** which means you will take your learnings far beyond React.
 
@@ -70,12 +70,12 @@ If you're just starting to learn React, you don't need to install anything. Inst
 <Sandpack>
 
 ```js
-function Greeting({name}) {
+function Greeting({ name }) {
   return <h1>Hello, {name}</h1>;
 }
 
 export default function App() {
-  return <Greeting name="world" />;
+  return <Greeting name="world" />
 }
 ```
 
@@ -85,7 +85,7 @@ When you're ready to start a project, there are several options. You can write R
 
 </DeepDive>
 
-## Learn React {/* learn-react */}
+## Learn React {/*learn-react*/}
 
 There are a few ways to get started:
 
@@ -95,9 +95,9 @@ There are a few ways to get started:
 
 To save you time, we provide **a brief overview of each chapter** below.
 
-### Chapter 1 overview: Describing the UI {/* chapter-1-overview-describing-the-ui */}
+### Chapter 1 overview: Describing the UI {/*chapter-1-overview-describing-the-ui*/}
 
-React applications are built from isolated pieces of UI called ["components"](/learn/your-first-component). A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here, a _parent_ `Gallery` component renders three _child_ `Profile` components:
+React applications are built from isolated pieces of UI called ["components"](/learn/your-first-component). A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here, a *parent* `Gallery` component renders three *child* `Profile` components:
 
 <Sandpack>
 
@@ -125,13 +125,8 @@ export default function Gallery() {
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-  height: 90px;
-}
-.avatar {
-  border-radius: 50%;
-}
+img { margin: 0 10px 10px 0; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -143,33 +138,40 @@ Just like you can pass some information to the browser `<img>` tag, you can also
 <Sandpack>
 
 ```js
-function Profile({name, imageUrl}) {
-  return <img className="avatar" src={imageUrl} alt={name} />;
+function Profile({ name, imageUrl }) {
+  return (
+    <img
+      className="avatar"
+      src={imageUrl}
+      alt={name}
+    />
+  );
 }
 
 export default function Gallery() {
   return (
     <section>
       <h1>Amazing scientists</h1>
-      <Profile name="Lin Lanying" imageUrl="https://i.imgur.com/1bX5QH6.jpg" />
+      <Profile
+        name="Lin Lanying"
+        imageUrl="https://i.imgur.com/1bX5QH6.jpg"
+      />
       <Profile
         name="Gregorio Y. Zara"
         imageUrl="https://i.imgur.com/7vQD0fPs.jpg"
       />
-      <Profile name="Hedy Lamarr" imageUrl="https://i.imgur.com/yXOvdOSs.jpg" />
+      <Profile
+        name="Hedy Lamarr"
+        imageUrl="https://i.imgur.com/yXOvdOSs.jpg"
+      />
     </section>
   );
 }
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-  height: 90px;
-}
-.avatar {
-  border-radius: 50%;
-}
+img { margin: 0 10px 10px 0; height: 90px; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -181,15 +183,19 @@ In the above example, all the data was written directly in markup. However, you'
 <Sandpack>
 
 ```js App.js
-import {people} from './data.js';
+import { people } from './data.js';
 import Profile from './Profile.js';
 
 export default function Gallery() {
   return (
     <section>
       <h1>Amazing scientists</h1>
-      {people.map((person) => (
-        <Profile key={person.id} name={person.name} imageId={person.imageId} />
+      {people.map(person => (
+        <Profile
+          key={person.id}
+          name={person.name}
+          imageId={person.imageId}
+        />
       ))}
     </section>
   );
@@ -197,49 +203,49 @@ export default function Gallery() {
 ```
 
 ```js Profile.js
-export default function Profile({name, imageId}) {
-  const imageUrl = 'https://i.imgur.com/' + imageId + 's.jpg';
-  return <img className="avatar" src={imageUrl} alt={name} />;
+export default function Profile({ name, imageId }) {
+  const imageUrl = (
+    'https://i.imgur.com/' +
+    imageId +
+    's.jpg'
+  );
+  return (
+    <img
+      className="avatar"
+      src={imageUrl}
+      alt={name}
+    />
+  );
 }
 ```
 
 ```js data.js
-export const people = [
-  {
-    id: 0,
-    name: 'Creola Katherine Johnson',
-    imageId: 'MK3eW3A',
-  },
-  {
-    id: 1,
-    name: 'Mario José Molina-Pasquel Henríquez',
-    imageId: 'mynHUSa',
-  },
-  {
-    id: 2,
-    name: 'Mohammad Abdus Salam',
-    imageId: 'bE7W1ji',
-  },
-  {
-    id: 3,
-    name: 'Percy Lavon Julian',
-    imageId: 'IOjWm71',
-  },
-  {
-    id: 4,
-    name: 'Subrahmanyan Chandrasekhar',
-    imageId: 'lrWQx8l',
-  },
-];
+export const people = [{
+  id: 0,
+  name: 'Creola Katherine Johnson',
+  imageId: 'MK3eW3A'
+}, {
+  id: 1,
+  name: 'Mario José Molina-Pasquel Henríquez',
+  imageId: 'mynHUSa'
+}, {
+  id: 2,
+  name: 'Mohammad Abdus Salam',
+  imageId: 'bE7W1ji'
+}, {
+  id: 3,
+  name: 'Percy Lavon Julian',
+  imageId: 'IOjWm71'
+}, {
+  id: 4,
+  name: 'Subrahmanyan Chandrasekhar',
+  imageId: 'lrWQx8l'
+}];
 ```
 
 ```css
-img {
-  margin: 0 10px 10px 0;
-}
-.avatar {
-  border-radius: 50%;
-}
+img { margin: 0 10px 10px 0; }
+.avatar { border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -250,9 +256,9 @@ Read **[Describing the UI](/learn/describing-the-ui)** to learn how to make thin
 
 </LearnMore>
 
-### Chapter 2 overview: Adding interactivity {/* chapter-2-overview-adding-interactivity */}
+### Chapter 2 overview: Adding interactivity {/*chapter-2-overview-adding-interactivity*/}
 
-Components often need to change what’s on the screen as a result of an interaction. Typing into the form should update the input field, clicking “next” on an image carousel should change which image is displayed, clicking “buy” puts a product in the shopping cart. Components need to “remember” things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called [_state_](/learn/state-a-components-memory).
+Components often need to change what’s on the screen as a result of an interaction. Typing into the form should update the input field, clicking “next” on an image carousel should change which image is displayed, clicking “buy” puts a product in the shopping cart. Components need to “remember” things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called [*state*](/learn/state-a-components-memory).
 
 You can add state to a component with a [`useState`](/reference/usestate) Hook. Hooks are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
 
@@ -268,8 +274,8 @@ Notice how clicking the buttons updates the screen:
 <Sandpack>
 
 ```js
-import {useState} from 'react';
-import {sculptureList} from './data.js';
+import { useState } from 'react';
+import { sculptureList } from './data.js';
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
@@ -286,7 +292,9 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handleNextClick}>Next</button>
+      <button onClick={handleNextClick}>
+        Next
+      </button>
       <h2>
         <i>{sculpture.name} </i>
         by {sculpture.artist}
@@ -298,127 +306,99 @@ export default function Gallery() {
         {showMore ? 'Hide' : 'Show'} details
       </button>
       {showMore && <p>{sculpture.description}</p>}
-      <img src={sculpture.url} alt={sculpture.alt} />
+      <img
+        src={sculpture.url}
+        alt={sculpture.alt}
+      />
     </>
   );
 }
 ```
 
 ```js data.js
-export const sculptureList = [
-  {
-    name: 'Homenaje a la Neurocirugía',
-    artist: 'Marta Colvin Andrade',
-    description:
-      'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-    url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-    alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.',
-  },
-  {
-    name: 'Floralis Genérica',
-    artist: 'Eduardo Catalano',
-    description:
-      'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-    url: 'https://i.imgur.com/ZF6s192m.jpg',
-    alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.',
-  },
-  {
-    name: 'Eternal Presence',
-    artist: 'John Woodrow Wilson',
-    description:
-      'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-    url: 'https://i.imgur.com/aTtVpES.jpg',
-    alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.',
-  },
-  {
-    name: 'Moai',
-    artist: 'Unknown Artist',
-    description:
-      'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-    url: 'https://i.imgur.com/RCwLEoQm.jpg',
-    alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.',
-  },
-  {
-    name: 'Blue Nana',
-    artist: 'Niki de Saint Phalle',
-    description:
-      'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-    url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-    alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.',
-  },
-  {
-    name: 'Ultimate Form',
-    artist: 'Barbara Hepworth',
-    description:
-      'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-    url: 'https://i.imgur.com/2heNQDcm.jpg',
-    alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.',
-  },
-  {
-    name: 'Cavaliere',
-    artist: 'Lamidi Olonade Fakeye',
-    description:
-      "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-    url: 'https://i.imgur.com/wIdGuZwm.png',
-    alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.',
-  },
-  {
-    name: 'Big Bellies',
-    artist: 'Alina Szapocznikow',
-    description:
-      'Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.',
-    url: 'https://i.imgur.com/AlHTAdDm.jpg',
-    alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.',
-  },
-  {
-    name: 'Terracotta Army',
-    artist: 'Unknown Artist',
-    description:
-      'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-    url: 'https://i.imgur.com/HMFmH6m.jpg',
-    alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.',
-  },
-  {
-    name: 'Lunar Landscape',
-    artist: 'Louise Nevelson',
-    description:
-      'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-    url: 'https://i.imgur.com/rN7hY6om.jpg',
-    alt: 'A black matte sculpture where the individual elements are initially indistinguishable.',
-  },
-  {
-    name: 'Aureole',
-    artist: 'Ranjani Shettar',
-    description:
-      'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-    url: 'https://i.imgur.com/okTpbHhm.jpg',
-    alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.',
-  },
-  {
-    name: 'Hippos',
-    artist: 'Taipei Zoo',
-    description:
-      'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
-    url: 'https://i.imgur.com/6o5Vuyu.jpg',
-    alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.',
-  },
-];
+export const sculptureList = [{
+  name: 'Homenaje a la Neurocirugía',
+  artist: 'Marta Colvin Andrade',
+  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
+  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
+}, {
+  name: 'Floralis Genérica',
+  artist: 'Eduardo Catalano',
+  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+}, {
+  name: 'Eternal Presence',
+  artist: 'John Woodrow Wilson',
+  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  url: 'https://i.imgur.com/aTtVpES.jpg',
+  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+}, {
+  name: 'Moai',
+  artist: 'Unknown Artist',
+  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+}, {
+  name: 'Blue Nana',
+  artist: 'Niki de Saint Phalle',
+  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+}, {
+  name: 'Ultimate Form',
+  artist: 'Barbara Hepworth',
+  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+}, {
+  name: 'Cavaliere',
+  artist: 'Lamidi Olonade Fakeye',
+  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  url: 'https://i.imgur.com/wIdGuZwm.png',
+  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+}, {
+  name: 'Big Bellies',
+  artist: 'Alina Szapocznikow',
+  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+}, {
+  name: 'Terracotta Army',
+  artist: 'Unknown Artist',
+  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+}, {
+  name: 'Lunar Landscape',
+  artist: 'Louise Nevelson',
+  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+}, {
+  name: 'Aureole',
+  artist: 'Ranjani Shettar',
+  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+}, {
+  name: 'Hippos',
+  artist: 'Taipei Zoo',
+  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  url: 'https://i.imgur.com/6o5Vuyu.jpg',
+  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+}];
 ```
 
 ```css
-h2 {
-  margin-top: 10px;
-  margin-bottom: 0;
-}
+h2 { margin-top: 10px; margin-bottom: 0; }
 h3 {
-  margin-top: 5px;
-  font-weight: normal;
-  font-size: 100%;
+ margin-top: 5px;
+ font-weight: normal;
+ font-size: 100%;
 }
-img {
-  width: 120px;
-  height: 120px;
-}
+img { width: 120px; height: 120px; }
 button {
   display: block;
   margin-top: 10px;
@@ -433,33 +413,33 @@ State can hold complex values, too. For example, if you're implementing a form, 
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Form() {
   const [person, setPerson] = useState({
     firstName: 'Barbara',
     lastName: 'Hepworth',
-    email: 'bhepworth@sculpture.com',
+    email: 'bhepworth@sculpture.com'
   });
 
   function handleFirstNameChange(e) {
     setPerson({
       ...person,
-      firstName: e.target.value,
+      firstName: e.target.value
     });
   }
 
   function handleLastNameChange(e) {
     setPerson({
       ...person,
-      lastName: e.target.value,
+      lastName: e.target.value
     });
   }
 
   function handleEmailChange(e) {
     setPerson({
       ...person,
-      email: e.target.value,
+      email: e.target.value
     });
   }
 
@@ -467,18 +447,29 @@ export default function Form() {
     <>
       <label>
         First name:
-        <input value={person.firstName} onChange={handleFirstNameChange} />
+        <input
+          value={person.firstName}
+          onChange={handleFirstNameChange}
+        />
       </label>
       <label>
         Last name:
-        <input value={person.lastName} onChange={handleLastNameChange} />
+        <input
+          value={person.lastName}
+          onChange={handleLastNameChange}
+        />
       </label>
       <label>
         Email:
-        <input value={person.email} onChange={handleEmailChange} />
+        <input
+          value={person.email}
+          onChange={handleEmailChange}
+        />
       </label>
       <p>
-        {person.firstName} {person.lastName} ({person.email})
+        {person.firstName}{' '}
+        {person.lastName}{' '}
+        ({person.email})
       </p>
     </>
   );
@@ -486,13 +477,8 @@ export default function Form() {
 ```
 
 ```css
-label {
-  display: block;
-}
-input {
-  margin-left: 5px;
-  margin-bottom: 5px;
-}
+label { display: block; }
+input { margin-left: 5px; margin-bottom: 5px; }
 ```
 
 </Sandpack>
@@ -502,7 +488,7 @@ You can also hold arrays in state. This lets you add, remove, or change things i
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 let nextId = 0;
 
@@ -513,16 +499,19 @@ export default function List() {
   return (
     <>
       <h1>Inspiring sculptors:</h1>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
-      <button
-        onClick={() => {
-          setName('');
-          setArtists([...artists, {id: nextId++, name: name}]);
-        }}>
-        Add
-      </button>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => {
+        setName('');
+        setArtists([
+          ...artists,
+          { id: nextId++, name: name }
+        ]);
+      }}>Add</button>
       <ul>
-        {artists.map((artist) => (
+        {artists.map(artist => (
           <li key={artist.id}>{artist.name}</li>
         ))}
       </ul>
@@ -539,7 +528,7 @@ Read **[Adding Interactivity](/learn/adding-interactivity)** to learn how to upd
 
 </LearnMore>
 
-### Chapter 3 overview: Managing state {/* chapter-3-overview-managing-state */}
+### Chapter 3 overview: Managing state {/*chapter-3-overview-managing-state*/}
 
 You'll often face a choice of _what exactly_ to put into state. Should you use one state variable or many? An object or an array? How should you [structure your state](/learn/choosing-the-state-structure)? The most important principle is to **avoid redundant state**. If some information never changes, it shouldn't be in state. If some information is received from parent by props, it shouldn't be in state. And if you can compute something from other props or state, it shouldn't be in state either!
 
@@ -548,7 +537,7 @@ For example, this form has a **redundant** `fullName` state variable:
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Form() {
   const [firstName, setFirstName] = useState('');
@@ -569,10 +558,18 @@ export default function Form() {
     <>
       <h2>Let’s check you in</h2>
       <label>
-        First name: <input value={firstName} onChange={handleFirstNameChange} />
+        First name:{' '}
+        <input
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
       </label>
       <label>
-        Last name: <input value={lastName} onChange={handleLastNameChange} />
+        Last name:{' '}
+        <input
+          value={lastName}
+          onChange={handleLastNameChange}
+        />
       </label>
       <p>
         Your ticket will be issued to: <b>{fullName}</b>
@@ -583,10 +580,7 @@ export default function Form() {
 ```
 
 ```css
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+label { display: block; margin-bottom: 5px; }
 ```
 
 </Sandpack>
@@ -596,7 +590,7 @@ You can remove it and simplify the code by calculating `fullName` while the comp
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Form() {
   const [firstName, setFirstName] = useState('');
@@ -616,10 +610,18 @@ export default function Form() {
     <>
       <h2>Let’s check you in</h2>
       <label>
-        First name: <input value={firstName} onChange={handleFirstNameChange} />
+        First name:{' '}
+        <input
+          value={firstName}
+          onChange={handleFirstNameChange}
+        />
       </label>
       <label>
-        Last name: <input value={lastName} onChange={handleLastNameChange} />
+        Last name:{' '}
+        <input
+          value={lastName}
+          onChange={handleLastNameChange}
+        />
       </label>
       <p>
         Your ticket will be issued to: <b>{fullName}</b>
@@ -630,10 +632,7 @@ export default function Form() {
 ```
 
 ```css
-label {
-  display: block;
-  margin-bottom: 5px;
-}
+label { display: block; margin-bottom: 5px; }
 ```
 
 </Sandpack>
@@ -645,7 +644,7 @@ Sometimes, you want the state of two components to always change together. To do
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -655,39 +654,44 @@ export default function Accordion() {
       <Panel
         title="About"
         isActive={activeIndex === 0}
-        onShow={() => setActiveIndex(0)}>
-        With a population of about 2 million, Almaty is Kazakhstan's largest
-        city. From 1929 to 1997, it was its capital city.
+        onShow={() => setActiveIndex(0)}
+      >
+        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
       </Panel>
       <Panel
         title="Etymology"
         isActive={activeIndex === 1}
-        onShow={() => setActiveIndex(1)}>
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for
-        "apple" and is often translated as "full of apples". In fact, the region
-        surrounding Almaty is thought to be the ancestral home of the apple, and
-        the wild <i lang="la">Malus sieversii</i> is considered a likely
-        candidate for the ancestor of the modern domestic apple.
+        onShow={() => setActiveIndex(1)}
+      >
+        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
       </Panel>
     </>
   );
 }
 
-function Panel({title, children, isActive, onShow}) {
+function Panel({
+  title,
+  children,
+  isActive,
+  onShow
+}) {
   return (
     <section className="panel">
       <h3>{title}</h3>
-      {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
+      {isActive ? (
+        <p>{children}</p>
+      ) : (
+        <button onClick={onShow}>
+          Show
+        </button>
+      )}
     </section>
   );
 }
 ```
 
 ```css
-h3,
-p {
-  margin: 5px 0px;
-}
+h3, p { margin: 5px 0px; }
 .panel {
   padding: 10px;
   border: 1px solid #aaa;
@@ -702,14 +706,14 @@ Read **[Managing State](/learn/managing-state)** to learn how to keep your compo
 
 </LearnMore>
 
-## Next steps {/* next-steps */}
+## Next steps {/*next-steps*/}
 
 This page was fast-paced! If you've read this far, you have already seen 80% of React you will use on a daily basis.
 
 Your next steps depend on what you'd like to do:
 
-- Go to [Installation](/learn/installation) if you'd like to set up a React project locally.
-- Read [Thinking in React](/learn/thinking-in-react) if you'd like to see what building a UI in React feels like in practice.
-- Or, start with [Describing the UI](/learn/describing-the-ui) to get a closer look at the first chapter.
+* Go to [Installation](/learn/installation) if you'd like to set up a React project locally.
+* Read [Thinking in React](/learn/thinking-in-react) if you'd like to see what building a UI in React feels like in practice.
+* Or, start with [Describing the UI](/learn/describing-the-ui) to get a closer look at the first chapter.
 
 And don't forget to check the [API Reference](/reference) when you need the API without the fluff!

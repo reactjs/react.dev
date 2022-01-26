@@ -12,7 +12,7 @@ const [state, setState] = useState(initialState);
 
 </Intro>
 
-## Using state {/* using-state */}
+## Using state {/*using-state*/}
 
 You can add state to your component in three steps:
 
@@ -37,7 +37,7 @@ Use the state for rendering by [putting it into the JSX](/learn/javascript-in-js
 </AnatomyStep>
 
 ```js [[1, 4, "const [count, setCount] = useState(0);"], [2, 7, "setCount(count + 1);"], [3, 12, "count"]]
-import {useState} from 'react';
+import { useState } from 'react';
 
 function Counter() {
   const [count, setCount] = useState(0);
@@ -46,7 +46,11 @@ function Counter() {
     setCount(count + 1);
   }
 
-  return <button onClick={handleClick}>You pressed me {count} times</button>;
+  return (
+    <button onClick={handleClick}>
+      You pressed me {count} times
+    </button>
+  );
 }
 ```
 
@@ -57,7 +61,7 @@ function Counter() {
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Counter() {
   const [count, setCount] = useState(0);
@@ -66,7 +70,11 @@ export default function Counter() {
     setCount(count + 1);
   }
 
-  return <button onClick={handleClick}>You pressed me {count} times</button>;
+  return (
+    <button onClick={handleClick}>
+      You pressed me {count} times
+    </button>
+  );
 }
 ```
 
@@ -74,7 +82,7 @@ export default function Counter() {
 
 <br />
 
-## Declaring a state variable {/* declaring-a-state-variable */}
+## Declaring a state variable {/*declaring-a-state-variable*/}
 
 You can declare multiple state variables in a component. You must declare them **at the top level of your component,** outside of any conditions or loops. This component declares state variables called `name` and `age`:
 
@@ -116,7 +124,7 @@ This allows your component to "remember" multiple independent things--for exampl
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Form() {
   const [name, setName] = useState('Taylor');
@@ -124,11 +132,14 @@ export default function Form() {
 
   return (
     <>
-      <input value={name} onChange={(e) => setName(e.target.value)} />
-      <button onClick={() => setAge(age + 1)}>Happy birthday!</button>
-      <p>
-        Hello, {name}. You are {age}.
-      </p>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => setAge(age + 1)}>
+        Happy birthday!
+      </button>
+      <p>Hello, {name}. You are {age}.</p>
     </>
   );
 }
@@ -144,9 +155,9 @@ Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) an
 
 ```js {4}
 function handleClick() {
-  console.log(count); // 0
+  console.log(count);  // 0
   setCount(count + 1); // Request a re-render with 1
-  console.log(count); // Still 0!
+  console.log(count);  // Still 0!
 }
 ```
 
@@ -154,32 +165,32 @@ function handleClick() {
 
 <br />
 
-## When not to use it {/* when-not-to-use-it */}
+## When not to use it {/*when-not-to-use-it*/}
 
-- Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
-- Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
+* Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
+* Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
 
 <br />
 
-## Updating objects and arrays in state {/* updating-objects-and-arrays-in-state */}
+## Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
 
-You can hold objects and arrays in state, too. However, you should always _replace_ objects in state rather than modify the existing ones. [Updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) describe common patterns that help avoid bugs.
+You can hold objects and arrays in state, too. However, you should always *replace* objects in state rather than modify the existing ones. [Updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) describe common patterns that help avoid bugs.
 
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,
-    y: 0,
+    y: 0
   });
   return (
     <div
-      onPointerMove={(e) => {
+      onPointerMove={e => {
         setPosition({
           x: e.clientX,
-          y: e.clientY,
+          y: e.clientY
         });
       }}
       style={{
@@ -187,29 +198,23 @@ export default function MovingDot() {
         width: '100vw',
         height: '100vh',
       }}>
-      <div
-        style={{
-          position: 'absolute',
-          backgroundColor: 'red',
-          borderRadius: '50%',
-          transform: `translate(${position.x}px, ${position.y}px)`,
-          left: -10,
-          top: -10,
-          width: 20,
-          height: 20,
-        }}
-      />
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'red',
+        borderRadius: '50%',
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        left: -10,
+        top: -10,
+        width: 20,
+        height: 20,
+      }} />
     </div>
-  );
+  )
 }
 ```
 
 ```css
-body {
-  margin: 0;
-  padding: 0;
-  height: 250px;
-}
+body { margin: 0; padding: 0; height: 250px; }
 ```
 
 </Sandpack>
@@ -218,13 +223,13 @@ body {
 
 <Recipes>
 
-### Image gallery {/* image-gallery */}
+### Image gallery {/*image-gallery*/}
 
 <Sandpack>
 
 ```js
-import {useState} from 'react';
-import {sculptureList} from './data.js';
+import { useState } from 'react';
+import { sculptureList } from './data.js';
 
 export default function Gallery() {
   const [index, setIndex] = useState(0);
@@ -252,10 +257,16 @@ export default function Gallery() {
   let sculpture = sculptureList[index];
   return (
     <>
-      <button onClick={handlePrevClick} disabled={!hasPrev}>
+      <button
+        onClick={handlePrevClick}
+        disabled={!hasPrev}
+      >
         Previous
       </button>
-      <button onClick={handleNextClick} disabled={!hasNext}>
+      <button
+        onClick={handleNextClick}
+        disabled={!hasNext}
+      >
         Next
       </button>
       <h2>
@@ -269,160 +280,129 @@ export default function Gallery() {
         {showMore ? 'Hide' : 'Show'} details
       </button>
       {showMore && <p>{sculpture.description}</p>}
-      <img src={sculpture.url} alt={sculpture.alt} />
+      <img
+        src={sculpture.url}
+        alt={sculpture.alt}
+      />
     </>
   );
 }
 ```
 
 ```js data.js hidden
-export const sculptureList = [
-  {
-    name: 'Homenaje a la Neurocirugía',
-    artist: 'Marta Colvin Andrade',
-    description:
-      'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-    url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-    alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.',
-  },
-  {
-    name: 'Floralis Genérica',
-    artist: 'Eduardo Catalano',
-    description:
-      'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-    url: 'https://i.imgur.com/ZF6s192m.jpg',
-    alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.',
-  },
-  {
-    name: 'Eternal Presence',
-    artist: 'John Woodrow Wilson',
-    description:
-      'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-    url: 'https://i.imgur.com/aTtVpES.jpg',
-    alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.',
-  },
-  {
-    name: 'Moai',
-    artist: 'Unknown Artist',
-    description:
-      'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-    url: 'https://i.imgur.com/RCwLEoQm.jpg',
-    alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.',
-  },
-  {
-    name: 'Blue Nana',
-    artist: 'Niki de Saint Phalle',
-    description:
-      'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-    url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-    alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.',
-  },
-  {
-    name: 'Ultimate Form',
-    artist: 'Barbara Hepworth',
-    description:
-      'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-    url: 'https://i.imgur.com/2heNQDcm.jpg',
-    alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.',
-  },
-  {
-    name: 'Cavaliere',
-    artist: 'Lamidi Olonade Fakeye',
-    description:
-      "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-    url: 'https://i.imgur.com/wIdGuZwm.png',
-    alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.',
-  },
-  {
-    name: 'Big Bellies',
-    artist: 'Alina Szapocznikow',
-    description:
-      'Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.',
-    url: 'https://i.imgur.com/AlHTAdDm.jpg',
-    alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.',
-  },
-  {
-    name: 'Terracotta Army',
-    artist: 'Unknown Artist',
-    description:
-      'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-    url: 'https://i.imgur.com/HMFmH6m.jpg',
-    alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.',
-  },
-  {
-    name: 'Lunar Landscape',
-    artist: 'Louise Nevelson',
-    description:
-      'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-    url: 'https://i.imgur.com/rN7hY6om.jpg',
-    alt: 'A black matte sculpture where the individual elements are initially indistinguishable.',
-  },
-  {
-    name: 'Aureole',
-    artist: 'Ranjani Shettar',
-    description:
-      'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-    url: 'https://i.imgur.com/okTpbHhm.jpg',
-    alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.',
-  },
-  {
-    name: 'Hippos',
-    artist: 'Taipei Zoo',
-    description:
-      'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
-    url: 'https://i.imgur.com/6o5Vuyu.jpg',
-    alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.',
-  },
-];
+export const sculptureList = [{
+  name: 'Homenaje a la Neurocirugía',
+  artist: 'Marta Colvin Andrade',
+  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
+  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
+  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
+}, {
+  name: 'Floralis Genérica',
+  artist: 'Eduardo Catalano',
+  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
+  url: 'https://i.imgur.com/ZF6s192m.jpg',
+  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
+}, {
+  name: 'Eternal Presence',
+  artist: 'John Woodrow Wilson',
+  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
+  url: 'https://i.imgur.com/aTtVpES.jpg',
+  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
+}, {
+  name: 'Moai',
+  artist: 'Unknown Artist',
+  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
+  url: 'https://i.imgur.com/RCwLEoQm.jpg',
+  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
+}, {
+  name: 'Blue Nana',
+  artist: 'Niki de Saint Phalle',
+  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
+  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
+  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
+}, {
+  name: 'Ultimate Form',
+  artist: 'Barbara Hepworth',
+  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
+  url: 'https://i.imgur.com/2heNQDcm.jpg',
+  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
+}, {
+  name: 'Cavaliere',
+  artist: 'Lamidi Olonade Fakeye',
+  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
+  url: 'https://i.imgur.com/wIdGuZwm.png',
+  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
+}, {
+  name: 'Big Bellies',
+  artist: 'Alina Szapocznikow',
+  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
+  url: 'https://i.imgur.com/AlHTAdDm.jpg',
+  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
+}, {
+  name: 'Terracotta Army',
+  artist: 'Unknown Artist',
+  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
+  url: 'https://i.imgur.com/HMFmH6m.jpg',
+  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
+}, {
+  name: 'Lunar Landscape',
+  artist: 'Louise Nevelson',
+  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
+  url: 'https://i.imgur.com/rN7hY6om.jpg',
+  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
+}, {
+  name: 'Aureole',
+  artist: 'Ranjani Shettar',
+  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
+  url: 'https://i.imgur.com/okTpbHhm.jpg',
+  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
+}, {
+  name: 'Hippos',
+  artist: 'Taipei Zoo',
+  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
+  url: 'https://i.imgur.com/6o5Vuyu.jpg',
+  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
+}];
 ```
 
 ```css
-button {
-  display: block;
-  margin-bottom: 10px;
-}
+button { display: block; margin-bottom: 10px; }
 .Page > * {
   float: left;
   width: 50%;
   padding: 10px;
 }
-h2 {
-  margin-top: 10px;
-  margin-bottom: 0;
-}
+h2 { margin-top: 10px; margin-bottom: 0; }
 h3 {
   margin-top: 5px;
   font-weight: normal;
   font-size: 100%;
 }
-img {
-  width: 120px;
-  height: 120px;
-}
+img { width: 120px; height: 120px; }
 ```
 
 </Sandpack>
 
 <Solution />
 
-### Form with multiple fields {/* form-with-multiple-fields */}
+### Form with multiple fields {/*form-with-multiple-fields*/}
 
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Form() {
   const [person, setPerson] = useState({
     firstName: 'Barbara',
     lastName: 'Hepworth',
-    email: 'bhepworth@sculpture.com',
+    email: 'bhepworth@sculpture.com'
   });
 
   function handleChange(e) {
     setPerson({
       ...person,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value
     });
   }
 
@@ -446,10 +426,16 @@ export default function Form() {
       </label>
       <label>
         Email:
-        <input name="email" value={person.email} onChange={handleChange} />
+        <input
+          name="email"
+          value={person.email}
+          onChange={handleChange}
+        />
       </label>
       <p>
-        {person.firstName} {person.lastName} ({person.email})
+        {person.firstName}{' '}
+        {person.lastName}{' '}
+        ({person.email})
       </p>
     </>
   );
@@ -457,36 +443,34 @@ export default function Form() {
 ```
 
 ```css
-label {
-  display: block;
-}
-input {
-  margin-left: 5px;
-}
+label { display: block; }
+input { margin-left: 5px; }
 ```
 
 </Sandpack>
 
 <Solution />
 
-### Todo list {/* todo-list */}
+### Todo list {/*todo-list*/}
 
 <Sandpack>
 
 ```js App.js
-import {useState} from 'react';
+import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
 
 let nextId = 3;
 const initialTodos = [
-  {id: 0, title: 'Buy milk', done: true},
-  {id: 1, title: 'Eat tacos', done: false},
-  {id: 2, title: 'Brew tea', done: false},
+  { id: 0, title: 'Buy milk', done: true },
+  { id: 1, title: 'Eat tacos', done: false },
+  { id: 2, title: 'Brew tea', done: false },
 ];
 
 export default function TaskBoard() {
-  const [todos, setTodos] = useState(initialTodos);
+  const [todos, setTodos] = useState(
+    initialTodos
+  );
 
   function handleAddTodo(title) {
     setTodos([
@@ -494,30 +478,32 @@ export default function TaskBoard() {
       {
         id: nextId++,
         title: title,
-        done: false,
-      },
+        done: false
+      }
     ]);
   }
 
   function handleChangeTodo(nextTodo) {
-    setTodos(
-      todos.map((t) => {
-        if (t.id === nextTodo.id) {
-          return nextTodo;
-        } else {
-          return t;
-        }
-      })
-    );
+    setTodos(todos.map(t => {
+      if (t.id === nextTodo.id) {
+        return nextTodo;
+      } else {
+        return t;
+      }
+    }));
   }
 
   function handleDeleteTodo(todoId) {
-    setTodos(todos.filter((t) => t.id !== todoId));
+    setTodos(
+      todos.filter(t => t.id !== todoId)
+    );
   }
 
   return (
     <>
-      <AddTodo onAddTodo={handleAddTodo} />
+      <AddTodo
+        onAddTodo={handleAddTodo}
+      />
       <TaskList
         todos={todos}
         onChangeTodo={handleChangeTodo}
@@ -529,45 +515,50 @@ export default function TaskBoard() {
 ```
 
 ```js AddTodo.js
-import {useState} from 'react';
+import { useState } from 'react';
 
-export default function AddTodo({onAddTodo}) {
+export default function AddTodo({ onAddTodo }) {
   const [title, setTitle] = useState('');
   return (
     <>
       <input
         placeholder="Add todo"
         value={title}
-        onChange={(e) => setTitle(e.target.value)}
+        onChange={e => setTitle(e.target.value)}
       />
-      <button
-        onClick={() => {
-          setTitle('');
-          onAddTodo(title);
-        }}>
-        Add
-      </button>
+      <button onClick={() => {
+        setTitle('');
+        onAddTodo(title);
+      }}>Add</button>
     </>
-  );
+  )
 }
 ```
 
 ```js TaskList.js
-import {useState} from 'react';
+import { useState } from 'react';
 
-export default function TaskList({todos, onChangeTodo, onDeleteTodo}) {
+export default function TaskList({
+  todos,
+  onChangeTodo,
+  onDeleteTodo
+}) {
   return (
     <ul>
-      {todos.map((todo) => (
+      {todos.map(todo => (
         <li key={todo.id}>
-          <Task todo={todo} onChange={onChangeTodo} onDelete={onDeleteTodo} />
+          <Task
+            todo={todo}
+            onChange={onChangeTodo}
+            onDelete={onDeleteTodo}
+          />
         </li>
       ))}
     </ul>
   );
 }
 
-function Task({todo, onChange, onDelete}) {
+function Task({ todo, onChange, onDelete }) {
   const [isEditing, setIsEditing] = useState(false);
   let todoContent;
   if (isEditing) {
@@ -575,21 +566,24 @@ function Task({todo, onChange, onDelete}) {
       <>
         <input
           value={todo.title}
-          onChange={(e) => {
+          onChange={e => {
             onChange({
               ...todo,
-              title: e.target.value,
+              title: e.target.value
             });
-          }}
-        />
-        <button onClick={() => setIsEditing(false)}>Save</button>
+          }} />
+        <button onClick={() => setIsEditing(false)}>
+          Save
+        </button>
       </>
     );
   } else {
     todoContent = (
       <>
         {todo.title}
-        <button onClick={() => setIsEditing(true)}>Edit</button>
+        <button onClick={() => setIsEditing(true)}>
+          Edit
+        </button>
       </>
     );
   }
@@ -598,49 +592,46 @@ function Task({todo, onChange, onDelete}) {
       <input
         type="checkbox"
         checked={todo.done}
-        onChange={(e) => {
+        onChange={e => {
           onChange({
             ...todo,
-            done: e.target.checked,
+            done: e.target.checked
           });
         }}
       />
       {todoContent}
-      <button onClick={() => onDelete(todo.id)}>Delete</button>
+      <button onClick={() => onDelete(todo.id)}>
+        Delete
+      </button>
     </label>
   );
 }
 ```
 
 ```css
-button {
-  margin: 5px;
-}
-li {
-  list-style-type: none;
-}
-ul,
-li {
-  margin: 0;
-  padding: 0;
-}
+button { margin: 5px; }
+li { list-style-type: none; }
+ul, li { margin: 0; padding: 0; }
 ```
 
 </Sandpack>
 
 <Solution />
 
-### Multiple selection {/* multiple-selection */}
+### Multiple selection {/*multiple-selection*/}
 
 <Sandpack>
 
 ```js App.js
-import {useState} from 'react';
-import {letters} from './data.js';
+import { useState } from 'react';
+import { letters } from './data.js';
 import Letter from './Letter.js';
 
 export default function MailClient() {
-  const [selectedIds, setSelectedIds] = useState(new Set());
+  const [
+    selectedIds,
+    setSelectedIds
+  ] = useState(new Set());
 
   const selectedCount = selectedIds.size;
 
@@ -657,17 +648,21 @@ export default function MailClient() {
 
   return (
     <ul>
-      {letters.map((letter) => (
+      {letters.map(letter => (
         <Letter
           key={letter.id}
           letter={letter}
-          isSelected={selectedIds.has(letter.id)}
+          isSelected={
+            selectedIds.has(letter.id)
+          }
           onToggle={handleToggle}
         />
       ))}
       <hr />
       <p>
-        <b>You selected {selectedCount} letters</b>
+        <b>
+          You selected {selectedCount} letters
+        </b>
       </p>
     </ul>
   );
@@ -675,9 +670,15 @@ export default function MailClient() {
 ```
 
 ```js Letter.js
-export default function Letter({letter, onToggle, isSelected}) {
+export default function Letter({
+  letter,
+  onToggle,
+  isSelected,
+}) {
   return (
-    <li className={isSelected ? 'selected' : ''}>
+    <li className={
+      isSelected ? 'selected' : ''
+    }>
       <label>
         <input
           type="checkbox"
@@ -689,45 +690,31 @@ export default function Letter({letter, onToggle, isSelected}) {
         {letter.subject}
       </label>
     </li>
-  );
+  )
 }
 ```
 
 ```js data.js
-export const letters = [
-  {
-    id: 0,
-    subject: 'How are you?',
-    isStarred: true,
-  },
-  {
-    id: 1,
-    subject: 'Your taxes are due',
-    isStarred: false,
-  },
-  {
-    id: 2,
-    subject: 'Reminder: dentist',
-    isStarred: false,
-  },
-];
+export const letters = [{
+  id: 0,
+  subject: 'How are you?',
+  isStarred: true,
+}, {
+  id: 1,
+  subject: 'Your taxes are due',
+  isStarred: false,
+}, {
+  id: 2,
+  subject: 'Reminder: dentist',
+  isStarred: false,
+}];
 ```
 
 ```css
-input {
-  margin: 5px;
-}
-li {
-  border-radius: 5px;
-}
-label {
-  width: 100%;
-  padding: 5px;
-  display: inline-block;
-}
-.selected {
-  background: #d2eaff;
-}
+input { margin: 5px; }
+li { border-radius: 5px; }
+label { width: 100%; padding: 5px; display: inline-block; }
+.selected { background: #d2eaff; }
 ```
 
 </Sandpack>
@@ -736,9 +723,9 @@ label {
 
 </Recipes>
 
-## Special cases {/* special-cases */}
+## Special cases {/*special-cases*/}
 
-### Passing the same value to `setState` {/* passing-the-same-value-to-setstate */}
+### Passing the same value to `setState` {/*passing-the-same-value-to-setstate*/}
 
 If you pass the current state to `setState`, React **will skip re-rendering the component**:
 
@@ -750,7 +737,7 @@ This is a performance optimization. React uses the [`Object.is()`](https://devel
 
 <br />
 
-### Passing an updater function to `setState` {/* passing-an-updater-function-to-setstate */}
+### Passing an updater function to `setState` {/*passing-an-updater-function-to-setstate*/}
 
 Instead of passing the next state itself, **you may pass a function to `setState`.** Such a function, like `c => c + 1` in this example, is called an "updater". React will call your updater during the next render to calculate the final state.
 
@@ -772,7 +759,7 @@ But you can pass an updater function to transform it.
 function handleClick() {
   setCount(123);
 
-  setCount((c) => c + 1); // Result: 124
+  setCount(c => c + 1); // Result: 124
 }
 ```
 
@@ -797,13 +784,13 @@ You return the next state you want to see on the screen.
 ```js [[1, 3, "c", 0], [2, 3, "c + 1"], [1, 6, "c", 0], [2, 6, "c + 1"], [1, 9, "c", 0], [2, 9, "c + 1"]]
 function handleClick() {
   // 0 => 1
-  setCount((c) => c + 1);
+  setCount(c => c + 1);
 
   // 1 => 2
-  setCount((c) => c + 1);
+  setCount(c => c + 1);
 
   // 2 => 3
-  setCount((c) => c + 1);
+  setCount(c => c + 1);
 }
 ```
 
@@ -814,38 +801,31 @@ Updaters are a bit verbose but sometimes they come in handy. They let you access
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 export default function Counter() {
   const [count, setCount] = useState(0);
 
   function handleClick() {
-    setCount((c) => c + 1);
-    setCount((c) => c + 1);
-    setCount((c) => c + 1);
+    setCount(c => c + 1);
+    setCount(c => c + 1);
+    setCount(c => c + 1);
   }
 
   return (
     <>
       <h1>{count}</h1>
-      <button onClick={handleClick}>Add 3</button>
+      <button onClick={handleClick}>
+        Add 3
+      </button>
     </>
-  );
+  )
 }
 ```
 
 ```css
-button {
-  display: inline-block;
-  margin: 10px;
-  font-size: 20px;
-}
-h1 {
-  display: inline-block;
-  margin: 10px;
-  width: 30px;
-  text-align: center;
-}
+button { display: inline-block; margin: 10px; font-size: 20px; }
+h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 ```
 
 </Sandpack>
@@ -859,17 +839,17 @@ If you don't have a particular reason to use an updater, you can stick with pass
 You need to be careful when returning an object from an arrow function. This doesn't work:
 
 ```js
-setForm((f) => {
-  name: f.name.toUpperCase();
+setForm(f => {
+  name: f.name.toUpperCase()
 });
 ```
 
 This code doesn't work because JavaScript considers `=> {` to be a function body rather than a returned object. Since it is a function body, you have to write an explicit `return` statement:
 
 ```js
-setForm((f) => {
+setForm(f => {
   return {
-    name: f.name.toUpperCase(),
+    name: f.name.toUpperCase()
   };
 });
 ```
@@ -877,8 +857,8 @@ setForm((f) => {
 Alternatively, you have to add parentheses around your object:
 
 ```js
-setForm((f) => ({
-  name: f.name.toUpperCase(),
+setForm(f => ({
+  name: f.name.toUpperCase()
 }));
 ```
 
@@ -904,9 +884,10 @@ setState(() => myFunction);
 
 <br />
 
-### Passing an initializer function to `useState` {/* passing-an-initializer-function-to-usestate */}
+### Passing an initializer function to `useState` {/*passing-an-initializer-function-to-usestate*/}
 
 The initial state that you pass to `useState` as an argument is only used for the initial render. For next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away many times. **You can pass a function to `useState` to calculate the initial state.** React will only run it during the initialization.
+
 
 <APIAnatomy>
 
@@ -940,26 +921,30 @@ This is a performance optimization. You can use it to avoid creating large objec
 <Sandpack>
 
 ```js
-import {useState} from 'react';
+import { useState } from 'react';
 
 function createInitialTodos() {
   const initialTodos = [];
   for (let i = 0; i < 50; i++) {
     initialTodos.push({
       id: i,
-      text: 'Item #' + i,
+      text: 'Item #' + i
     });
   }
   return initialTodos;
 }
 
 export default function TodoList() {
-  const [todos, setTodos] = useState(() => createInitialTodos());
+  const [todos, setTodos] = useState(
+    () => createInitialTodos()
+  );
 
   return (
     <ul>
-      {todos.map((item) => (
-        <li key={item.id}>{item.text}</li>
+      {todos.map(item => (
+        <li key={item.id}>
+          {item.text}
+        </li>
       ))}
     </ul>
   );

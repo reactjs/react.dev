@@ -10,15 +10,15 @@ React components use **props** to communicate with each other. Every parent comp
 
 <YouWillLearn>
 
-- How to pass props to a component
-- How to read props from a component
-- How to specify default values for props
-- How to pass some JSX to a component
-- How props change over time
+* How to pass props to a component
+* How to read props from a component
+* How to specify default values for props
+* How to pass some JSX to a component
+* How props change over time
 
 </YouWillLearn>
 
-## Familiar props {/* familiar-props */}
+## Familiar props {/*familiar-props*/}
 
 Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
 
@@ -38,44 +38,46 @@ function Avatar() {
 }
 
 export default function Profile() {
-  return <Avatar />;
+  return (
+    <Avatar />
+  );
 }
 ```
 
 ```css
-body {
-  min-height: 120px;
-}
-.avatar {
-  margin: 20px;
-  border-radius: 50%;
-}
+body { min-height: 120px; }
+.avatar { margin: 20px; border-radius: 50%; }
 ```
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to _your own_ components, such as `<Avatar>`, to customize them. Here's how!
+The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
 
-## Passing props to a component {/* passing-props-to-a-component */}
+## Passing props to a component {/*passing-props-to-a-component*/}
 
 In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
 
 ```js
 export default function Profile() {
-  return <Avatar />;
+  return (
+    <Avatar />
+  );
 }
 ```
 
 You can give `Avatar` some props in two steps.
 
-### Step 1: Pass props to the child component {/* step-1-pass-props-to-the-child-component */}
+### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
 
 First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
 
 ```js
 export default function Profile() {
   return (
-    <Avatar person={{name: 'Lin Lanying', imageId: '1bX5QH6'}} size={100} />
+    <Avatar
+      person={{ name: 'Lin Lanying', imageId: '1bX5QH6' }}
+      size={100}
+    />
   );
 }
 ```
@@ -84,12 +86,12 @@ export default function Profile() {
 
 Now you can read these props inside the `Avatar` component.
 
-### Step 2: Read props inside the child component {/* step-2-read-props-inside-the-child-component */}
+### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
 
 You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
 
 ```js
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   // person and size are available here
 }
 ```
@@ -101,9 +103,9 @@ Now you can configure `Avatar` to render in many different ways with different p
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   return (
     <img
       className="avatar"
@@ -120,23 +122,23 @@ export default function Profile() {
     <div>
       <Avatar
         size={100}
-        person={{
-          name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2',
+        person={{ 
+          name: 'Katsuko Saruhashi', 
+          imageId: 'YfeOqp2'
         }}
       />
       <Avatar
         size={80}
         person={{
-          name: 'Aklilu Lemma',
-          imageId: 'OKS67lh',
+          name: 'Aklilu Lemma', 
+          imageId: 'OKS67lh'
         }}
       />
       <Avatar
         size={50}
-        person={{
+        person={{ 
           name: 'Lin Lanying',
-          imageId: '1bX5QH6',
+          imageId: '1bX5QH6'
         }}
       />
     </div>
@@ -146,18 +148,18 @@ export default function Profile() {
 
 ```js utils.js
 export function getImageUrl(person, size = 's') {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-body {
-  min-height: 120px;
-}
-.avatar {
-  margin: 10px;
-  border-radius: 50%;
-}
+body { min-height: 120px; }
+.avatar { margin: 10px; border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -181,7 +183,7 @@ Usually you don't need the whole `props` object itself, so you destructure it in
 **Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
 
 ```js
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   // ...
 }
 ```
@@ -198,12 +200,12 @@ function Avatar(props) {
 
 </Gotcha>
 
-## Specifying a default value for a prop {/* specifying-a-default-value-for-a-prop */}
+## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
 
 If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
 
 ```js
-function Avatar({person, size = 100}) {
+function Avatar({ person, size = 100 }) {
   // ...
 }
 ```
@@ -212,12 +214,12 @@ Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` wi
 
 The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
 
-## Forwarding props with the JSX spread syntax {/* forwarding-props-with-the-jsx-spread-syntax */}
+## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
 Sometimes, passing props gets very repetitive:
 
 ```js
-function Profile({person, size, isSepia, thickBorder}) {
+function Profile({ person, size, isSepia, thickBorder }) {
   return (
     <div className="card">
       <Avatar
@@ -247,7 +249,7 @@ This forwards all of `Profile`'s props to the `Avatar` without listing each of t
 
 **Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
 
-## Passing JSX as children {/* passing-jsx-as-children */}
+## Passing JSX as children {/*passing-jsx-as-children*/}
 
 It is common to nest built-in browser tags:
 
@@ -272,8 +274,12 @@ When you nest content inside a JSX tag, the parent component will receive that c
 ```js App.js
 import Avatar from './Avatar.js';
 
-function Card({children}) {
-  return <div className="card">{children}</div>;
+function Card({ children }) {
+  return (
+    <div className="card">
+      {children}
+    </div>
+  );
 }
 
 export default function Profile() {
@@ -281,9 +287,9 @@ export default function Profile() {
     <Card>
       <Avatar
         size={100}
-        person={{
+        person={{ 
           name: 'Katsuko Saruhashi',
-          imageId: 'YfeOqp2',
+          imageId: 'YfeOqp2'
         }}
       />
     </Card>
@@ -292,9 +298,9 @@ export default function Profile() {
 ```
 
 ```js Avatar.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
-export default function Avatar({person, size}) {
+export default function Avatar({ person, size }) {
   return (
     <img
       className="avatar"
@@ -309,7 +315,12 @@ export default function Avatar({person, size}) {
 
 ```js utils.js
 export function getImageUrl(person, size = 's') {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
@@ -336,12 +347,9 @@ Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card
 
 You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on. You can explore this in more detail in [Extracting Layout Components](/learn/extracting-layout-components).
 
-<Illustration
-  src="/images/docs/illustrations/i_children-prop.png"
-  alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar'
-/>
+<Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/* how-props-change-over-time */}
+## How props change over time {/*how-props-change-over-time*/}
 
 The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
 
@@ -350,13 +358,17 @@ Try changing the color in the select box below:
 <Sandpack>
 
 ```js Clock.js active
-export default function Clock({color, time}) {
-  return <h1 style={{color: color}}>{time}</h1>;
+export default function Clock({ color, time }) {
+  return (
+    <h1 style={{ color: color }}>
+      {time}
+    </h1>
+  );
 }
 ```
 
 ```js App.js hidden
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Clock from './Clock.js';
 
 function useTime() {
@@ -377,7 +389,7 @@ export default function App() {
     <div>
       <p>
         Pick a color:{' '}
-        <select value={color} onChange={(e) => setColor(e.target.value)}>
+        <select value={color} onChange={e => setColor(e.target.value)}>
           <option value="lightcoral">lightcoral</option>
           <option value="midnightblue">midnightblue</option>
           <option value="rebeccapurple">rebeccapurple</option>
@@ -399,26 +411,28 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Recap>
 
-- To pass props, add them to the JSX, just like you would with HTML attributes.
-- To read props, use the `function Avatar({ person, size })` destructuring syntax.
-- You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-- You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-- Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-- Props are read-only snapshots in time: every render receives a new version of props.
-- You can't change props. When you need interactivity, you'll need to set state.
+* To pass props, add them to the JSX, just like you would with HTML attributes.
+* To read props, use the `function Avatar({ person, size })` destructuring syntax.
+* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
+* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
+* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
+* Props are read-only snapshots in time: every render receives a new version of props.
+* You can't change props. When you need interactivity, you'll need to set state.
 
 </Recap>
 
+
+
 <Challenges>
 
-### Extract a component {/* extract-a-component */}
+### Extract a component {/*extract-a-component*/}
 
 This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
 
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
 export default function Gallery() {
   return (
@@ -435,13 +449,12 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profession: </b>
+            <b>Profession: </b> 
             physicist and chemist
           </li>
           <li>
-            <b>Awards: 4 </b>
-            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci
-            Medal)
+            <b>Awards: 4 </b> 
+            (Nobel Prize in Physics, Nobel Prize in Chemistry, Davy Medal, Matteucci Medal)
           </li>
           <li>
             <b>Discovered: </b>
@@ -460,15 +473,16 @@ export default function Gallery() {
         />
         <ul>
           <li>
-            <b>Profession: </b>
+            <b>Profession: </b> 
             geochemist
           </li>
           <li>
-            <b>Awards: 2 </b>
+            <b>Awards: 2 </b> 
             (Miyake Prize for geochemistry, Tanaka Prize)
           </li>
           <li>
-            <b>Discovered: </b>a method for measuring carbon dioxide in seawater
+            <b>Discovered: </b>
+            a method for measuring carbon dioxide in seawater
           </li>
         </ul>
       </section>
@@ -479,35 +493,27 @@ export default function Gallery() {
 
 ```js utils.js
 export function getImageUrl(imageId, size = 's') {
-  return 'https://i.imgur.com/' + imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-.avatar {
-  margin: 5px;
-  border-radius: 50%;
-  min-height: 70px;
-}
+.avatar { margin: 5px; border-radius: 50%; min-height: 70px; }
 .profile {
   border: 1px solid #aaa;
   border-radius: 6px;
   margin-top: 20px;
   padding: 10px;
 }
-h1,
-h2 {
-  margin: 5px;
-}
-h1 {
-  margin-bottom: 10px;
-}
-ul {
-  padding: 0px 10px 0px 20px;
-}
-li {
-  margin: 5px;
-}
+h1, h2 { margin: 5px; }
+h1 { margin-bottom: 10px; }
+ul { padding: 0px 10px 0px 20px; }
+li { margin: 5px; }
 ```
 
 </Sandpack>
@@ -527,7 +533,7 @@ Note that the `imageSize` prop has a default value, which is why we don't pass i
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
 function Profile({
   imageId,
@@ -535,7 +541,7 @@ function Profile({
   profession,
   awards,
   discovery,
-  imageSize = 70,
+  imageSize = 70
 }) {
   return (
     <section className="profile">
@@ -548,11 +554,10 @@ function Profile({
         height={imageSize}
       />
       <ul>
+        <li><b>Profession:</b> {profession}</li>
         <li>
-          <b>Profession:</b> {profession}
-        </li>
-        <li>
-          <b>Awards: {awards.length} </b>({awards.join(', ')})
+          <b>Awards: {awards.length} </b>
+          ({awards.join(', ')})
         </li>
         <li>
           <b>Discovered: </b>
@@ -576,15 +581,18 @@ export default function Gallery() {
           'Nobel Prize in Physics',
           'Nobel Prize in Chemistry',
           'Davy Medal',
-          'Matteucci Medal',
+          'Matteucci Medal'
         ]}
       />
       <Profile
-        imageId="YfeOqp2"
-        name="Katsuko Saruhashi"
-        profession="geochemist"
+        imageId='YfeOqp2'
+        name='Katsuko Saruhashi'
+        profession='geochemist'
         discovery="a method for measuring carbon dioxide in seawater"
-        awards={['Miyake Prize for geochemistry', 'Tanaka Prize']}
+        awards={[
+          'Miyake Prize for geochemistry',
+          'Tanaka Prize'
+        ]}
       />
     </div>
   );
@@ -593,35 +601,27 @@ export default function Gallery() {
 
 ```js utils.js
 export function getImageUrl(imageId, size = 's') {
-  return 'https://i.imgur.com/' + imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-.avatar {
-  margin: 5px;
-  border-radius: 50%;
-  min-height: 70px;
-}
+.avatar { margin: 5px; border-radius: 50%; min-height: 70px; }
 .profile {
   border: 1px solid #aaa;
   border-radius: 6px;
   margin-top: 20px;
   padding: 10px;
 }
-h1,
-h2 {
-  margin: 5px;
-}
-h1 {
-  margin-bottom: 10px;
-}
-ul {
-  padding: 0px 10px 0px 20px;
-}
-li {
-  margin: 5px;
-}
+h1, h2 { margin: 5px; }
+h1 { margin-bottom: 10px; }
+ul { padding: 0px 10px 0px 20px; }
+li { margin: 5px; }
 ```
 
 </Sandpack>
@@ -633,10 +633,10 @@ Another solution, which is more similar to the earlier examples on this page, is
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
-function Profile({person, imageSize = 70}) {
-  const imageSrc = getImageUrl(person);
+function Profile({ person, imageSize = 70 }) {
+  const imageSrc = getImageUrl(person)
 
   return (
     <section className="profile">
@@ -653,7 +653,8 @@ function Profile({person, imageSize = 70}) {
           <b>Profession:</b> {person.profession}
         </li>
         <li>
-          <b>Awards: {person.awards.length} </b>({person.awards.join(', ')})
+          <b>Awards: {person.awards.length} </b>
+          ({person.awards.join(', ')})
         </li>
         <li>
           <b>Discovered: </b>
@@ -661,36 +662,35 @@ function Profile({person, imageSize = 70}) {
         </li>
       </ul>
     </section>
-  );
+  )
 }
 
 export default function Gallery() {
   return (
     <div>
       <h1>Notable Scientists</h1>
-      <Profile
-        person={{
-          imageId: 'szV5sdG',
-          name: 'Maria Skłodowska-Curie',
-          profession: 'physicist and chemist',
-          discovery: 'polonium (chemical element)',
-          awards: [
-            'Nobel Prize in Physics',
-            'Nobel Prize in Chemistry',
-            'Davy Medal',
-            'Matteucci Medal',
-          ],
-        }}
-      />
-      <Profile
-        person={{
-          imageId: 'YfeOqp2',
-          name: 'Katsuko Saruhashi',
-          profession: 'geochemist',
-          discovery: 'a method for measuring carbon dioxide in seawater',
-          awards: ['Miyake Prize for geochemistry', 'Tanaka Prize'],
-        }}
-      />
+      <Profile person={{
+        imageId: 'szV5sdG',
+        name: 'Maria Skłodowska-Curie',
+        profession: 'physicist and chemist',
+        discovery: 'polonium (chemical element)',
+        awards: [
+          'Nobel Prize in Physics',
+          'Nobel Prize in Chemistry',
+          'Davy Medal',
+          'Matteucci Medal'
+        ],
+      }} />
+      <Profile person={{
+        imageId: 'YfeOqp2',
+        name: 'Katsuko Saruhashi',
+        profession: 'geochemist',
+        discovery: 'a method for measuring carbon dioxide in seawater',
+        awards: [
+          'Miyake Prize for geochemistry',
+          'Tanaka Prize'
+        ],
+      }} />
     </div>
   );
 }
@@ -698,35 +698,27 @@ export default function Gallery() {
 
 ```js utils.js
 export function getImageUrl(person, size = 's') {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-.avatar {
-  margin: 5px;
-  border-radius: 50%;
-  min-height: 70px;
-}
+.avatar { margin: 5px; border-radius: 50%; min-height: 70px; }
 .profile {
   border: 1px solid #aaa;
   border-radius: 6px;
   margin-top: 20px;
   padding: 10px;
 }
-h1,
-h2 {
-  margin: 5px;
-}
-h1 {
-  margin-bottom: 10px;
-}
-ul {
-  padding: 0px 10px 0px 20px;
-}
-li {
-  margin: 5px;
-}
+h1, h2 { margin: 5px; }
+h1 { margin-bottom: 10px; }
+ul { padding: 0px 10px 0px 20px; }
+li { margin: 5px; }
 ```
 
 </Sandpack>
@@ -735,7 +727,7 @@ Although the syntax looks slightly different because you're describing propertie
 
 </Solution>
 
-### Adjust the image size based on a prop {/* adjust-the-image-size-based-on-a-prop */}
+### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
 
 In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
 
@@ -744,9 +736,9 @@ Change the `Avatar` component to request the closest image size based on the `si
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   return (
     <img
       className="avatar"
@@ -762,9 +754,9 @@ export default function Profile() {
   return (
     <Avatar
       size={40}
-      person={{
-        name: 'Gregorio Y. Zara',
-        imageId: '7vQD0fP',
+      person={{ 
+        name: 'Gregorio Y. Zara', 
+        imageId: '7vQD0fP'
       }}
     />
   );
@@ -773,15 +765,17 @@ export default function Profile() {
 
 ```js utils.js
 export function getImageUrl(person, size) {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-.avatar {
-  margin: 20px;
-  border-radius: 50%;
-}
+.avatar { margin: 20px; border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -793,9 +787,9 @@ Here is how you could go about it:
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   let thumbnailSize = 's';
   if (size > 90) {
     thumbnailSize = 'b';
@@ -816,16 +810,16 @@ export default function Profile() {
     <>
       <Avatar
         size={40}
-        person={{
-          name: 'Gregorio Y. Zara',
-          imageId: '7vQD0fP',
+        person={{ 
+          name: 'Gregorio Y. Zara', 
+          imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={120}
-        person={{
-          name: 'Gregorio Y. Zara',
-          imageId: '7vQD0fP',
+        person={{ 
+          name: 'Gregorio Y. Zara', 
+          imageId: '7vQD0fP'
         }}
       />
     </>
@@ -835,15 +829,17 @@ export default function Profile() {
 
 ```js utils.js
 export function getImageUrl(person, size) {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-.avatar {
-  margin: 20px;
-  border-radius: 50%;
-}
+.avatar { margin: 20px; border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -853,11 +849,11 @@ You could also show a sharper image for high DPI screens by taking [`window.devi
 <Sandpack>
 
 ```js App.js
-import {getImageUrl} from './utils.js';
+import { getImageUrl } from './utils.js';
 
 const ratio = window.devicePixelRatio;
 
-function Avatar({person, size}) {
+function Avatar({ person, size }) {
   let thumbnailSize = 's';
   if (size * ratio > 90) {
     thumbnailSize = 'b';
@@ -878,23 +874,23 @@ export default function Profile() {
     <>
       <Avatar
         size={40}
-        person={{
-          name: 'Gregorio Y. Zara',
-          imageId: '7vQD0fP',
+        person={{ 
+          name: 'Gregorio Y. Zara', 
+          imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={70}
-        person={{
-          name: 'Gregorio Y. Zara',
-          imageId: '7vQD0fP',
+        person={{ 
+          name: 'Gregorio Y. Zara', 
+          imageId: '7vQD0fP'
         }}
       />
       <Avatar
         size={120}
-        person={{
-          name: 'Gregorio Y. Zara',
-          imageId: '7vQD0fP',
+        person={{ 
+          name: 'Gregorio Y. Zara', 
+          imageId: '7vQD0fP'
         }}
       />
     </>
@@ -904,15 +900,17 @@ export default function Profile() {
 
 ```js utils.js
 export function getImageUrl(person, size) {
-  return 'https://i.imgur.com/' + person.imageId + size + '.jpg';
+  return (
+    'https://i.imgur.com/' +
+    person.imageId +
+    size +
+    '.jpg'
+  );
 }
 ```
 
 ```css
-.avatar {
-  margin: 20px;
-  border-radius: 50%;
-}
+.avatar { margin: 20px; border-radius: 50%; }
 ```
 
 </Sandpack>
@@ -921,7 +919,7 @@ Props let you encapsulate logic like this inside the `Avatar` component (and cha
 
 </Solution>
 
-### Passing JSX in a `children` prop {/* passing-jsx-in-a-children-prop */}
+### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
 
 Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
 
@@ -946,10 +944,7 @@ export default function Profile() {
       <div className="card">
         <div className="card-content">
           <h1>About</h1>
-          <p>
-            Aklilu Lemma was a distinguished Ethiopian scientist who discovered
-            a natural treatment to schistosomiasis.
-          </p>
+          <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
         </div>
       </div>
     </div>
@@ -995,10 +990,12 @@ This is how you can use the `Card` component in both places:
 <Sandpack>
 
 ```js
-function Card({children}) {
+function Card({ children }) {
   return (
     <div className="card">
-      <div className="card-content">{children}</div>
+      <div className="card-content">
+        {children}
+      </div>
     </div>
   );
 }
@@ -1018,10 +1015,7 @@ export default function Profile() {
       </Card>
       <Card>
         <h1>About</h1>
-        <p>
-          Aklilu Lemma was a distinguished Ethiopian scientist who discovered a
-          natural treatment to schistosomiasis.
-        </p>
+        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
       </Card>
     </div>
   );
@@ -1058,7 +1052,7 @@ You can also make `title` a separate prop if you want every `Card` to always hav
 <Sandpack>
 
 ```js
-function Card({children, title}) {
+function Card({ children, title }) {
   return (
     <div className="card">
       <div className="card-content">
@@ -1082,10 +1076,7 @@ export default function Profile() {
         />
       </Card>
       <Card title="About">
-        <p>
-          Aklilu Lemma was a distinguished Ethiopian scientist who discovered a
-          natural treatment to schistosomiasis.
-        </p>
+        <p>Aklilu Lemma was a distinguished Ethiopian scientist who discovered a natural treatment to schistosomiasis.</p>
       </Card>
     </div>
   );

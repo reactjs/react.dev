@@ -13,13 +13,14 @@
     "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
     "prettier": "yarn format:source",
     "prettier:diff": "yarn nit:source",
-    "lint-heading-ids":"node scripts/headingIdLinter.js",
+    "lint-heading-ids": "node scripts/headingIdLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "is-ci || (cd .. && husky install beta/.husky)",
-    "check-all": "npm-run-all prettier lint:fix tsc"
+    "check-all": "npm-run-all prettier lint:fix tsc",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "0.13.6-experimental.0",
@@ -67,6 +68,7 @@
     "gray-matter": "^4.0.2",
     "husky": "^7.0.4",
     "is-ci": "^3.0.1",
+    "lint-staged": ">=10",
     "mdast-util-to-string": "^1.1.0",
     "npm-run-all": "^4.1.5",
     "patch-package": "^6.2.2",
@@ -96,5 +98,10 @@
     "budget": null,
     "budgetPercentIncreaseRed": 10,
     "showDetails": true
+  },
+  "lint-staged": {
+    "*.js": "eslint --cache --fix",
+    "*.{js,css}": "prettier --write",
+    "*.md" : "yarn fix-headings"
   }
 }

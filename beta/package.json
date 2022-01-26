@@ -101,6 +101,6 @@
   "lint-staged": {
     "*.{js,ts,jsx,tsx}": "yarn prettier",
     "*.css": "prettier --write",
-    "*.md": "prettier --write"
+    "*.md": ["yarn fix-headings" , "prettier --write"]
   }
 }

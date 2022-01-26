@@ -10,17 +10,17 @@ As your application grows, it helps to be more intentional about how your state 
 
 <YouWillLearn>
 
-* [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
-* [How to structure state well](/learn/choosing-the-state-structure)
-* [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
-* [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
-* [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
-* [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
-* [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
+- [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
+- [How to structure state well](/learn/choosing-the-state-structure)
+- [How to "lift state up" to share it between components](/learn/sharing-state-between-components)
+- [How to control whether the state gets preserved or reset](/learn/preserving-and-resetting-state)
+- [How to consolidate complex state logic in a function](/learn/extracting-state-logic-into-a-reducer)
+- [How to pass information without "prop drilling"](/learn/passing-data-deeply-with-context)
+- [How to scale state management as your app grows](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
 
-## Reacting to input with state {/*reacting-to-input-with-state*/}
+## Reacting to input with state {/* reacting-to-input-with-state */}
 
 With React, you won't modify the UI from code directly. For example, you won't write commands like "disable the button", "enable the button", "show the success message", etc. Instead, you will describe the UI you want to see for the different visual states of your component ("initial state", "typing state", "success state"), and then trigger the state changes in response to user input. This is similar to how designers think about UI.
 
@@ -29,7 +29,7 @@ Here is a quiz form built using React. Note how it uses the `status` state varia
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Form() {
   const [answer, setAnswer] = useState('');
@@ -37,7 +37,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>That's right!</h1>;
   }
 
   async function handleSubmit(e) {
@@ -69,17 +69,10 @@ export default function Form() {
           disabled={status === 'submitting'}
         />
         <br />
-        <button disabled={
-          answer.length === 0 ||
-          status === 'submitting'
-        }>
+        <button disabled={answer.length === 0 || status === 'submitting'}>
           Submit
         </button>
-        {error !== null &&
-          <p className="Error">
-            {error.message}
-          </p>
-        }
+        {error !== null && <p className="Error">{error.message}</p>}
       </form>
     </>
   );
@@ -89,7 +82,7 @@ function submitForm(answer) {
   // Pretend it's hitting the network.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let shouldError = answer.toLowerCase() !== 'lima'
+      let shouldError = answer.toLowerCase() !== 'lima';
       if (shouldError) {
         reject(new Error('Good guess but a wrong answer. Try again!'));
       } else {
@@ -101,7 +94,9 @@ function submitForm(answer) {
 ```
 
 ```css
-.Error { color: red; }
+.Error {
+  color: red;
+}
 ```
 
 </Sandpack>
@@ -112,7 +107,7 @@ Read **[Reacting to Input with State](/learn/reacting-to-input-with-state)** to 
 
 </LearnMore>
 
-## Choosing the state structure {/*choosing-the-state-structure*/}
+## Choosing the state structure {/* choosing-the-state-structure */}
 
 Structuring state well can make a difference between a component that is pleasant to modify and debug, and one that is a constant source of bugs. The most important principle is that state shouldn't contain redundant or duplicated information. If there's some unnecessary state, it's easy to forget to update it, and introduce bugs!
 
@@ -121,7 +116,7 @@ For example, this form has a **redundant** `fullName` state variable:
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Form() {
   const [firstName, setFirstName] = useState('');
@@ -142,18 +137,10 @@ export default function Form() {
     <>
       <h2>Let’s check you in</h2>
       <label>
-        First name:{' '}
-        <input
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
+        First name: <input value={firstName} onChange={handleFirstNameChange} />
       </label>
       <label>
-        Last name:{' '}
-        <input
-          value={lastName}
-          onChange={handleLastNameChange}
-        />
+        Last name: <input value={lastName} onChange={handleLastNameChange} />
       </label>
       <p>
         Your ticket will be issued to: <b>{fullName}</b>
@@ -164,7 +151,10 @@ export default function Form() {
 ```
 
 ```css
-label { display: block; margin-bottom: 5px; }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
 ```
 
 </Sandpack>
@@ -174,7 +164,7 @@ You can remove it and simplify the code by calculating `fullName` while the comp
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Form() {
   const [firstName, setFirstName] = useState('');
@@ -194,18 +184,10 @@ export default function Form() {
     <>
       <h2>Let’s check you in</h2>
       <label>
-        First name:{' '}
-        <input
-          value={firstName}
-          onChange={handleFirstNameChange}
-        />
+        First name: <input value={firstName} onChange={handleFirstNameChange} />
       </label>
       <label>
-        Last name:{' '}
-        <input
-          value={lastName}
-          onChange={handleLastNameChange}
-        />
+        Last name: <input value={lastName} onChange={handleLastNameChange} />
       </label>
       <p>
         Your ticket will be issued to: <b>{fullName}</b>
@@ -216,7 +198,10 @@ export default function Form() {
 ```
 
 ```css
-label { display: block; margin-bottom: 5px; }
+label {
+  display: block;
+  margin-bottom: 5px;
+}
 ```
 
 </Sandpack>
@@ -229,7 +214,7 @@ Read **[Choosing the State Structure](/learn/choosing-the-state-structure)** to 
 
 </LearnMore>
 
-## Sharing state between components {/*sharing-state-between-components*/}
+## Sharing state between components {/* sharing-state-between-components */}
 
 Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as "lifting state up", and it's one of the most common things you will do writing React code.
 
@@ -238,7 +223,7 @@ In this example, only one panel should be active at a time. To achieve this, ins
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Accordion() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -248,44 +233,39 @@ export default function Accordion() {
       <Panel
         title="About"
         isActive={activeIndex === 0}
-        onShow={() => setActiveIndex(0)}
-      >
-        With a population of about 2 million, Almaty is Kazakhstan's largest city. From 1929 to 1997, it was its capital city.
+        onShow={() => setActiveIndex(0)}>
+        With a population of about 2 million, Almaty is Kazakhstan's largest
+        city. From 1929 to 1997, it was its capital city.
       </Panel>
       <Panel
         title="Etymology"
         isActive={activeIndex === 1}
-        onShow={() => setActiveIndex(1)}
-      >
-        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for "apple" and is often translated as "full of apples". In fact, the region surrounding Almaty is thought to be the ancestral home of the apple, and the wild <i lang="la">Malus sieversii</i> is considered a likely candidate for the ancestor of the modern domestic apple.
+        onShow={() => setActiveIndex(1)}>
+        The name comes from <span lang="kk-KZ">алма</span>, the Kazakh word for
+        "apple" and is often translated as "full of apples". In fact, the region
+        surrounding Almaty is thought to be the ancestral home of the apple, and
+        the wild <i lang="la">Malus sieversii</i> is considered a likely
+        candidate for the ancestor of the modern domestic apple.
       </Panel>
     </>
   );
 }
 
-function Panel({
-  title,
-  children,
-  isActive,
-  onShow
-}) {
+function Panel({title, children, isActive, onShow}) {
   return (
     <section className="panel">
       <h3>{title}</h3>
-      {isActive ? (
-        <p>{children}</p>
-      ) : (
-        <button onClick={onShow}>
-          Show
-        </button>
-      )}
+      {isActive ? <p>{children}</p> : <button onClick={onShow}>Show</button>}
     </section>
   );
 }
 ```
 
 ```css
-h3, p { margin: 5px 0px; }
+h3,
+p {
+  margin: 5px 0px;
+}
 .panel {
   padding: 10px;
   border: 1px solid #aaa;
@@ -300,7 +280,7 @@ Read **[Sharing State Between Components](/learn/sharing-state-between-component
 
 </LearnMore>
 
-## Preserving and resetting state {/*preserving-and-resetting-state*/}
+## Preserving and resetting state {/* preserving-and-resetting-state */}
 
 When you re-render a component, React needs to decide which parts of the tree to keep (and update), and which parts to discard or re-create from scratch. In most cases, React's automatic behavior works well enough. By default, React preserves the parts of the tree that "match up" with the previously rendered component tree.
 
@@ -309,7 +289,7 @@ However, sometimes this is not what you want. For example, in this app, typing a
 <Sandpack>
 
 ```js App.js
-import { useState } from 'react';
+import {useState} from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
 
@@ -320,38 +300,35 @@ export default function Messenger() {
       <ContactList
         contacts={contacts}
         selectedContact={to}
-        onSelect={contact => setTo(contact)}
+        onSelect={(contact) => setTo(contact)}
       />
       <Chat contact={to} />
     </div>
-  )
+  );
 }
 
 const contacts = [
-  { name: 'Taylor', email: 'taylor@mail.com' },
-  { name: 'Alice', email: 'alice@mail.com' },
-  { name: 'Bob', email: 'bob@mail.com' }
+  {name: 'Taylor', email: 'taylor@mail.com'},
+  {name: 'Alice', email: 'alice@mail.com'},
+  {name: 'Bob', email: 'bob@mail.com'},
 ];
 ```
 
 ```js ContactList.js
-export default function ContactList({
-  selectedContact,
-  contacts,
-  onSelect
-}) {
+export default function ContactList({selectedContact, contacts, onSelect}) {
   return (
     <section className="contact-list">
       <ul>
-        {contacts.map(contact =>
+        {contacts.map((contact) => (
           <li key={contact}>
-            <button onClick={() => {
-              onSelect(contact);
-            }}>
+            <button
+              onClick={() => {
+                onSelect(contact);
+              }}>
               {contact.name}
             </button>
           </li>
-        )}
+        ))}
       </ul>
     </section>
   );
@@ -359,16 +336,16 @@ export default function ContactList({
 ```
 
 ```js Chat.js
-import { useState } from 'react';
+import {useState} from 'react';
 
-export default function Chat({ contact }) {
+export default function Chat({contact}) {
   const [text, setText] = useState('');
   return (
     <section className="chat">
       <textarea
         value={text}
         placeholder={'Chat to ' + contact.name}
-        onChange={e => setText(e.target.value)}
+        onChange={(e) => setText(e.target.value)}
       />
       <br />
       <button>Send to {contact.email}</button>
@@ -378,11 +355,13 @@ export default function Chat({ contact }) {
 ```
 
 ```css
-.chat, .contact-list {
+.chat,
+.contact-list {
   float: left;
   margin-bottom: 20px;
 }
-ul, li {
+ul,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -399,12 +378,12 @@ textarea {
 
 </Sandpack>
 
-React lets you override the default behavior, and *force* a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a *different* `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients always resets the input field--even though you render the same component.
+React lets you override the default behavior, and _force_ a component to reset its state by passing it a different `key`, like `<Chat key={email} />`. This tells React that if the recipient is different, it should be considered a _different_ `Chat` component that needs to be re-created from scratch with the new data (and UI like inputs). Now switching between the recipients always resets the input field--even though you render the same component.
 
 <Sandpack>
 
 ```js App.js
-import { useState } from 'react';
+import {useState} from 'react';
 import Chat from './Chat.js';
 import ContactList from './ContactList.js';
 
@@ -415,38 +394,35 @@ export default function Messenger() {
       <ContactList
         contacts={contacts}
         selectedContact={to}
-        onSelect={contact => setTo(contact)}
+        onSelect={(contact) => setTo(contact)}
       />
       <Chat key={to.email} contact={to} />
     </div>
-  )
+  );
 }
 
 const contacts = [
-  { name: 'Taylor', email: 'taylor@mail.com' },
-  { name: 'Alice', email: 'alice@mail.com' },
-  { name: 'Bob', email: 'bob@mail.com' }
+  {name: 'Taylor', email: 'taylor@mail.com'},
+  {name: 'Alice', email: 'alice@mail.com'},
+  {name: 'Bob', email: 'bob@mail.com'},
 ];
 ```
 
 ```js ContactList.js
-export default function ContactList({
-  selectedContact,
-  contacts,
-  onSelect
-}) {
+export default function ContactList({selectedContact, contacts, onSelect}) {
   return (
     <section className="contact-list">
       <ul>
-        {contacts.map(contact =>
+        {contacts.map((contact) => (
           <li key={contact}>
-            <button onClick={() => {
-              onSelect(contact);
-            }}>
+            <button
+              onClick={() => {
+                onSelect(contact);
+              }}>
               {contact.name}
             </button>
           </li>
-        )}
+        ))}
       </ul>
     </section>
   );
@@ -454,16 +430,16 @@ export default function ContactList({
 ```
 
 ```js Chat.js
-import { useState } from 'react';
+import {useState} from 'react';
 
-export default function Chat({ contact }) {
+export default function Chat({contact}) {
   const [text, setText] = useState('');
   return (
     <section className="chat">
       <textarea
         value={text}
         placeholder={'Chat to ' + contact.name}
-        onChange={e => setText(e.target.value)}
+        onChange={(e) => setText(e.target.value)}
       />
       <br />
       <button>Send to {contact.email}</button>
@@ -473,11 +449,13 @@ export default function Chat({ contact }) {
 ```
 
 ```css
-.chat, .contact-list {
+.chat,
+.contact-list {
   float: left;
   margin-bottom: 20px;
 }
-ul, li {
+ul,
+li {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -500,22 +478,19 @@ Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)**
 
 </LearnMore>
 
-## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
+## Extracting state logic into a reducer {/* extracting-state-logic-into-a-reducer */}
 
 Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer." Your event handlers become concise because they only specify the user "actions." At the bottom of the file, the reducer function specifies how the state should update in response to each action!
 
 <Sandpack>
 
 ```js App.js
-import { useReducer } from 'react';
+import {useReducer} from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
 export default function TaskBoard() {
-  const [tasks, dispatch] = useReducer(
-    tasksReducer,
-    initialTasks
-  );
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   function handleAddTask(text) {
     dispatch({
@@ -528,23 +503,21 @@ export default function TaskBoard() {
   function handleChangeTask(task) {
     dispatch({
       type: 'changed',
-      task: task
+      task: task,
     });
   }
 
   function handleDeleteTask(taskId) {
     dispatch({
       type: 'deleted',
-      id: taskId
+      id: taskId,
     });
   }
 
   return (
     <>
       <h1>Prague itinerary</h1>
-      <AddTask
-        onAddTask={handleAddTask}
-      />
+      <AddTask onAddTask={handleAddTask} />
       <TaskList
         tasks={tasks}
         onChangeTask={handleChangeTask}
@@ -557,14 +530,17 @@ export default function TaskBoard() {
 function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'added': {
-      return [...tasks, {
-        id: action.id,
-        text: action.text,
-        done: false
-      }];
+      return [
+        ...tasks,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
     }
     case 'changed': {
-      return tasks.map(t => {
+      return tasks.map((t) => {
         if (t.id === action.task.id) {
           return action.task;
         } else {
@@ -573,7 +549,7 @@ function tasksReducer(tasks, action) {
       });
     }
     case 'deleted': {
-      return tasks.filter(t => t.id !== action.id);
+      return tasks.filter((t) => t.id !== action.id);
     }
     default: {
       throw Error('Unknown action: ' + action.type);
@@ -583,57 +559,52 @@ function tasksReducer(tasks, action) {
 
 let nextId = 3;
 const initialTasks = [
-  { id: 0, text: 'Visit Kafka Museum', done: true },
-  { id: 1, text: 'Watch a puppet show', done: false },
-  { id: 2, text: 'Lennon Wall pic', done: false }
+  {id: 0, text: 'Visit Kafka Museum', done: true},
+  {id: 1, text: 'Watch a puppet show', done: false},
+  {id: 2, text: 'Lennon Wall pic', done: false},
 ];
 ```
 
 ```js AddTask.js hidden
-import { useState } from 'react';
+import {useState} from 'react';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask({onAddTask}) {
   const [text, setText] = useState('');
   return (
     <>
       <input
         placeholder="Add task"
         value={text}
-        onChange={e => setText(e.target.value)}
+        onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={() => {
-        setText('');
-        onAddTask(text);
-      }}>Add</button>
+      <button
+        onClick={() => {
+          setText('');
+          onAddTask(text);
+        }}>
+        Add
+      </button>
     </>
-  )
+  );
 }
 ```
 
 ```js TaskList.js hidden
-import { useState } from 'react';
+import {useState} from 'react';
 
-export default function TaskList({
-  tasks,
-  onChangeTask,
-  onDeleteTask
-}) {
+export default function TaskList({tasks, onChangeTask, onDeleteTask}) {
   return (
     <ul>
-      {tasks.map(task => (
+      {tasks.map((task) => (
         <li key={task.id}>
-          <Task
-            task={task}
-            onChange={onChangeTask}
-            onDelete={onDeleteTask}
-          />
+          <Task task={task} onChange={onChangeTask} onDelete={onDeleteTask} />
         </li>
       ))}
     </ul>
   );
 }
 
-function Task({ task, onChange, onDelete }) {
+function Task({task, onChange, onDelete}) {
   const [isEditing, setIsEditing] = useState(false);
   let taskContent;
   if (isEditing) {
@@ -641,24 +612,21 @@ function Task({ task, onChange, onDelete }) {
       <>
         <input
           value={task.text}
-          onChange={e => {
+          onChange={(e) => {
             onChange({
               ...task,
-              text: e.target.value
+              text: e.target.value,
             });
-          }} />
-        <button onClick={() => setIsEditing(false)}>
-          Save
-        </button>
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
       </>
     );
   } else {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>
-          Edit
-        </button>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
       </>
     );
   }
@@ -667,26 +635,32 @@ function Task({ task, onChange, onDelete }) {
       <input
         type="checkbox"
         checked={task.done}
-        onChange={e => {
+        onChange={(e) => {
           onChange({
             ...task,
-            done: e.target.checked
+            done: e.target.checked,
           });
         }}
       />
       {taskContent}
-      <button onClick={() => onDelete(task.id)}>
-        Delete
-      </button>
+      <button onClick={() => onDelete(task.id)}>Delete</button>
     </label>
   );
 }
 ```
 
 ```css
-button { margin: 5px; }
-li { list-style-type: none; }
-ul, li { margin: 0; padding: 0; }
+button {
+  margin: 5px;
+}
+li {
+  list-style-type: none;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
 ```
 
 </Sandpack>
@@ -697,7 +671,7 @@ Read **[Extracting State Logic into a Reducer](/learn/extracting-state-logic-int
 
 </LearnMore>
 
-## Passing data deeply with context {/*passing-data-deeply-with-context*/}
+## Passing data deeply with context {/* passing-data-deeply-with-context */}
 
 Usually, you will pass information from a parent component to a child component via props. But passing props can become inconvenient if you need to pass some prop through many components, or if many components need the same information. Context lets the parent component make some information available to any component in the tree below it—no matter how deep it is—without passing it explicitly through props.
 
@@ -734,10 +708,10 @@ export default function Page() {
 ```
 
 ```js Section.js
-import { useContext } from 'react';
-import { LevelContext } from './LevelContext.js';
+import {useContext} from 'react';
+import {LevelContext} from './LevelContext.js';
 
-export default function Section({ children }) {
+export default function Section({children}) {
   const level = useContext(LevelContext);
   return (
     <section className="section">
@@ -750,10 +724,10 @@ export default function Section({ children }) {
 ```
 
 ```js Heading.js
-import { useContext } from 'react';
-import { LevelContext } from './LevelContext.js';
+import {useContext} from 'react';
+import {LevelContext} from './LevelContext.js';
 
-export default function Heading({ children }) {
+export default function Heading({children}) {
   const level = useContext(LevelContext);
   switch (level) {
     case 0:
@@ -777,7 +751,7 @@ export default function Heading({ children }) {
 ```
 
 ```js LevelContext.js
-import { createContext } from 'react';
+import {createContext} from 'react';
 
 export const LevelContext = createContext(0);
 ```
@@ -799,7 +773,7 @@ Read **[Passing Data Deeply with Context](/learn/passing-data-deeply-with-contex
 
 </LearnMore>
 
-## Scaling up with reducer and context {/*scaling-up-with-reducer-and-context*/}
+## Scaling up with reducer and context {/* scaling-up-with-reducer-and-context */}
 
 Reducers let you consolidate a component’s state update logic. Context lets you pass information deep down to other components. You can combine reducers and context together to manage state of a complex screen.
 
@@ -810,7 +784,7 @@ With this approach, a parent component with complex state manages it with a redu
 ```js App.js
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
-import { TasksProvider } from './TasksContext.js';
+import {TasksProvider} from './TasksContext.js';
 
 export default function TaskBoard() {
   return (
@@ -824,22 +798,17 @@ export default function TaskBoard() {
 ```
 
 ```js TasksContext.js
-import { createContext, useContext, useReducer } from 'react';
+import {createContext, useContext, useReducer} from 'react';
 
 const TasksContext = createContext(null);
 const TasksDispatchContext = createContext(null);
 
-export function TasksProvider({ children }) {
-  const [tasks, dispatch] = useReducer(
-    tasksReducer,
-    initialTasks
-  );
+export function TasksProvider({children}) {
+  const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
 
   return (
     <TasksContext.Provider value={tasks}>
-      <TasksDispatchContext.Provider
-        value={dispatch}
-      >
+      <TasksDispatchContext.Provider value={dispatch}>
         {children}
       </TasksDispatchContext.Provider>
     </TasksContext.Provider>
@@ -857,14 +826,17 @@ export function useTasksDispatch() {
 function tasksReducer(tasks, action) {
   switch (action.type) {
     case 'added': {
-      return [...tasks, {
-        id: action.id,
-        text: action.text,
-        done: false
-      }];
+      return [
+        ...tasks,
+        {
+          id: action.id,
+          text: action.text,
+          done: false,
+        },
+      ];
     }
     case 'changed': {
-      return tasks.map(t => {
+      return tasks.map((t) => {
         if (t.id === action.task.id) {
           return action.task;
         } else {
@@ -873,7 +845,7 @@ function tasksReducer(tasks, action) {
       });
     }
     case 'deleted': {
-      return tasks.filter(t => t.id !== action.id);
+      return tasks.filter((t) => t.id !== action.id);
     }
     default: {
       throw Error('Unknown action: ' + action.type);
@@ -882,17 +854,17 @@ function tasksReducer(tasks, action) {
 }
 
 const initialTasks = [
-  { id: 0, text: 'Philosopher’s Path', done: true },
-  { id: 1, text: 'Visit the temple', done: false },
-  { id: 2, text: 'Drink matcha', done: false }
+  {id: 0, text: 'Philosopher’s Path', done: true},
+  {id: 1, text: 'Visit the temple', done: false},
+  {id: 2, text: 'Drink matcha', done: false},
 ];
 ```
 
 ```js AddTask.js
-import { useState, useContext } from 'react';
-import { useTasksDispatch } from './TasksContext.js';
+import {useState, useContext} from 'react';
+import {useTasksDispatch} from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask({onAddTask}) {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
   return (
@@ -900,16 +872,19 @@ export default function AddTask({ onAddTask }) {
       <input
         placeholder="Add task"
         value={text}
-        onChange={e => setText(e.target.value)}
+        onChange={(e) => setText(e.target.value)}
       />
-      <button onClick={() => {
-        setText('');
-        dispatch({
-          type: 'added',
-          id: nextId++,
-          text: text,
-        });
-      }}>Add</button>
+      <button
+        onClick={() => {
+          setText('');
+          dispatch({
+            type: 'added',
+            id: nextId++,
+            text: text,
+          });
+        }}>
+        Add
+      </button>
     </>
   );
 }
@@ -918,14 +893,14 @@ let nextId = 3;
 ```
 
 ```js TaskList.js
-import { useState, useContext } from 'react';
-import { useTasks, useTasksDispatch } from './TasksContext.js';
+import {useState, useContext} from 'react';
+import {useTasks, useTasksDispatch} from './TasksContext.js';
 
 export default function TaskList() {
   const tasks = useTasks();
   return (
     <ul>
-      {tasks.map(task => (
+      {tasks.map((task) => (
         <li key={task.id}>
           <Task task={task} />
         </li>
@@ -934,7 +909,7 @@ export default function TaskList() {
   );
 }
 
-function Task({ task }) {
+function Task({task}) {
   const [isEditing, setIsEditing] = useState(false);
   const dispatch = useTasksDispatch();
   let taskContent;
@@ -943,27 +918,24 @@ function Task({ task }) {
       <>
         <input
           value={task.text}
-          onChange={e => {
+          onChange={(e) => {
             dispatch({
               type: 'changed',
               task: {
                 ...task,
-                text: e.target.value
-              }
+                text: e.target.value,
+              },
             });
-          }} />
-        <button onClick={() => setIsEditing(false)}>
-          Save
-        </button>
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
       </>
     );
   } else {
     taskContent = (
       <>
         {task.text}
-        <button onClick={() => setIsEditing(true)}>
-          Edit
-        </button>
+        <button onClick={() => setIsEditing(true)}>Edit</button>
       </>
     );
   }
@@ -972,23 +944,24 @@ function Task({ task }) {
       <input
         type="checkbox"
         checked={task.done}
-        onChange={e => {
+        onChange={(e) => {
           dispatch({
             type: 'changed',
             task: {
               ...task,
-              done: e.target.checked
-            }
+              done: e.target.checked,
+            },
           });
         }}
       />
       {taskContent}
-      <button onClick={() => {
-        dispatch({
-          type: 'deleted',
-          id: task.id
-        });
-      }}>
+      <button
+        onClick={() => {
+          dispatch({
+            type: 'deleted',
+            id: task.id,
+          });
+        }}>
         Delete
       </button>
     </label>
@@ -997,9 +970,17 @@ function Task({ task }) {
 ```
 
 ```css
-button { margin: 5px; }
-li { list-style-type: none; }
-ul, li { margin: 0; padding: 0; }
+button {
+  margin: 5px;
+}
+li {
+  list-style-type: none;
+}
+ul,
+li {
+  margin: 0;
+  padding: 0;
+}
 ```
 
 </Sandpack>
@@ -1010,7 +991,7 @@ Read **[Scaling Up with Reducer and Context](/learn/scaling-up-with-reducer-and-
 
 </LearnMore>
 
-## What's next? {/*whats-next*/}
+## What's next? {/* whats-next */}
 
 Head over to [Reacting to Input with State](/learn/reacting-to-input-with-state) to start reading this chapter page by page!
 

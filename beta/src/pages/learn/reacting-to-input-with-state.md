@@ -10,28 +10,31 @@ React uses a declarative way to manipulate the UI. Instead of manipulating indiv
 
 <YouWillLearn>
 
-* How declarative UI programming differs from imperative UI programming
-* How to enumerate the different visual states your component can be in
-* How to trigger the changes between the different visual states from code
+- How declarative UI programming differs from imperative UI programming
+- How to enumerate the different visual states your component can be in
+- How to trigger the changes between the different visual states from code
 
 </YouWillLearn>
 
-## How declarative UI compares to imperative {/*how-declarative-ui-compares-to-imperative*/}
+## How declarative UI compares to imperative {/* how-declarative-ui-compares-to-imperative */}
 
-When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
+When you design UI interactions, you probably think about how the UI _changes_ in response to user actions. Consider a form that lets the user submit an answer:
 
-* When you type something into a form, the "Submit" button **becomes enabled**.
-* When you press "Submit", both form and the button **become disabled**, and a spinner **appears**.
-* If the network request succeeds, the form **gets hidden**, and the "Thank you" message **appears**.
-* If the network request fails, an error message **appears**, and the form **becomes enabled** again.
+- When you type something into a form, the "Submit" button **becomes enabled**.
+- When you press "Submit", both form and the button **become disabled**, and a spinner **appears**.
+- If the network request succeeds, the form **gets hidden**, and the "Thank you" message **appears**.
+- If the network request fails, an error message **appears**, and the form **becomes enabled** again.
 
 In **imperative programming**, the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
 
-<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
+<Illustration
+  src="/images/docs/illustrations/i_imperative-ui-programming.png"
+  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations."
+/>
 
-They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
+They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called _imperative_ because you have to "command" each element, from the spinner to the button, telling the computer _how_ to update the UI.
 
-In this example of imperative UI programming, the form is built *without* React. It uses the built-in browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+In this example of imperative UI programming, the form is built _without_ React. It uses the built-in browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
 
 <Sandpack>
 
@@ -49,7 +52,7 @@ async function handleFormSubmit(e) {
   } catch (err) {
     show(errorMessage);
     errorMessage.textContent = err.message;
-  } finally {  
+  } finally {
     hide(loadingMessage);
     enable(textarea);
     enable(button);
@@ -112,9 +115,7 @@ textarea.oninput = handleTextareaChange;
 ```html public/index.html
 <form id="form">
   <h2>City quiz</h2>
-  <p>
-    What city is located on two continents?
-  </p>
+  <p>What city is located on two continents?</p>
   <textarea id="textarea"></textarea>
   <br />
   <button id="button" disabled>Submit</button>
@@ -124,8 +125,14 @@ textarea.oninput = handleTextareaChange;
 <h1 id="success" style="display: none">That's right!</h1>
 
 <style>
-* { box-sizing: border-box; }
-body { font-family: sans-serif; margin: 20px; padding: 0; }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
 </style>
 ```
 
@@ -137,9 +144,12 @@ React was built to solve this problem.
 
 In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show**, and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
 
-<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
+<Illustration
+  src="/images/docs/illustrations/i_declarative-ui-programming.png"
+  alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that."
+/>
 
-## Thinking about UI declaratively {/*thinking-about-ui-declaratively*/}
+## Thinking about UI declaratively {/* thinking-about-ui-declaratively */}
 
 You've seen how to implement a form imperatively above. To better understand how to think in React, you'll walk through reimplementing this UI in React below:
 
@@ -149,28 +159,26 @@ You've seen how to implement a form imperatively above. To better understand how
 4. **Remove** any non-essential state variables
 5. **Connect** the event handlers to set the state
 
-### Step 1: Identify your component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
+### Step 1: Identify your component's different visual states {/* step-1-identify-your-components-different-visual-states */}
 
 In computer science, you may hear about a ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) being in one of several “states”. If you work with a designer, you may have seen mockups for different "visual states". React stands at the intersection of design and computer science, so both of these ideas are sources of inspiration.
 
 First, you need to visualize all the different "states" of the UI the user might see:
 
-* **Empty**: Form has a disabled "Submit" button.
-* **Typing**: Form has an enabled "Submit" button.
-* **Submitting**: Form is completely disabled. Spinner is shown.
-* **Success**: "Thank you" message is shown instead of a form.
-* **Error**: Same as Typing state, but with an extra error message.
+- **Empty**: Form has a disabled "Submit" button.
+- **Typing**: Form has an enabled "Submit" button.
+- **Submitting**: Form is completely disabled. Spinner is shown.
+- **Success**: "Thank you" message is shown instead of a form.
+- **Error**: Same as Typing state, but with an extra error message.
 
 Just like a designer, you'll want to "mock up" or create "mocks" for the different states before you add logic. For example, here is a mock for just the visual part of the form. This mock is controlled by a prop called `status` with a default value of `'empty'`:
 
 <Sandpack>
 
 ```js
-export default function Form({
-  status = 'empty'
-}) {
+export default function Form({status = 'empty'}) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>That's right!</h1>;
   }
   return (
     <>
@@ -181,12 +189,10 @@ export default function Form({
       <form>
         <textarea />
         <br />
-        <button>
-          Submit
-        </button>
+        <button>Submit</button>
       </form>
     </>
-  )
+  );
 }
 ```
 
@@ -199,10 +205,10 @@ You could call that prop anything you like, the naming is not important. Try edi
 ```js
 export default function Form({
   // Try 'submitting', 'error', 'success':
-  status = 'empty'
+  status = 'empty',
 }) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>That's right!</h1>;
   }
   return (
     <>
@@ -211,29 +217,24 @@ export default function Form({
         In which city is there a billboard that turns air into drinkable water?
       </p>
       <form>
-        <textarea disabled={
-          status === 'submitting'
-        } />
+        <textarea disabled={status === 'submitting'} />
         <br />
-        <button disabled={
-          status === 'empty' ||
-          status === 'submitting'
-        }>
+        <button disabled={status === 'empty' || status === 'submitting'}>
           Submit
         </button>
-        {status === 'error' &&
-          <p className="Error">
-            Good guess but a wrong answer. Try again!
-          </p>
-        }
+        {status === 'error' && (
+          <p className="Error">Good guess but a wrong answer. Try again!</p>
+        )}
       </form>
-      </>
+    </>
   );
 }
 ```
 
 ```css
-.Error { color: red; }
+.Error {
+  color: red;
+}
 ```
 
 </Sandpack>
@@ -247,18 +248,12 @@ If a component has a lot of visual states, it can be convenient to show them all
 ```js App.js active
 import Form from './Form.js';
 
-let statuses = [
-  'empty',
-  'typing',
-  'submitting',
-  'success',
-  'error',
-];
+let statuses = ['empty', 'typing', 'submitting', 'success', 'error'];
 
 export default function App() {
   return (
     <>
-      {statuses.map(status => (
+      {statuses.map((status) => (
         <section key={status}>
           <h4>Form ({status}):</h4>
           <Form status={status} />
@@ -270,37 +265,39 @@ export default function App() {
 ```
 
 ```js Form.js
-export default function Form({ status }) {
+export default function Form({status}) {
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>That's right!</h1>;
   }
   return (
     <form>
-      <textarea disabled={
-        status === 'submitting'
-      } />
+      <textarea disabled={status === 'submitting'} />
       <br />
-      <button disabled={
-        status === 'empty' ||
-        status === 'submitting'
-      }>
+      <button disabled={status === 'empty' || status === 'submitting'}>
         Submit
       </button>
-      {status === 'error' &&
-        <p className="Error">
-          Good guess but a wrong answer. Try again!
-        </p>
-      }
+      {status === 'error' && (
+        <p className="Error">Good guess but a wrong answer. Try again!</p>
+      )}
     </form>
   );
 }
 ```
 
 ```css
-section { border-bottom: 1px solid #aaa; padding: 20px; }
-h4 { color: #222; }
-body { margin: 0; }
-.Error { color: red; }
+section {
+  border-bottom: 1px solid #aaa;
+  padding: 20px;
+}
+h4 {
+  color: #222;
+}
+body {
+  margin: 0;
+}
+.Error {
+  color: red;
+}
 ```
 
 </Sandpack>
@@ -309,36 +306,47 @@ Pages like this are often called "living styleguides" or "storybooks."
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
+### Step 2: Determine what triggers those state changes {/* step-2-determine-what-triggers-those-state-changes */}
 
 <IllustrationBlock title="Types of inputs">
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration
+    caption="Human inputs"
+    alt="A finger."
+    src="/images/docs/illustrations/i_inputs1.png"
+  />
+  <Illustration
+    caption="Computer inputs"
+    alt="Ones and zeroes."
+    src="/images/docs/illustrations/i_inputs2.png"
+  />
 </IllustrationBlock>
 
 You can trigger state updates in response to two kinds of inputs:
 
-* **Human inputs**, like clicking a button, typing in a field, navigating a link.
-* **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
+- **Human inputs**, like clicking a button, typing in a field, navigating a link.
+- **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
 
 In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI**. For the form you're developing, you will need to change state in response to a few different inputs:
 
-* **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
-* **Clicking the Submit button** (human) should switch it to the *Submitting* state.
-* **Successful network response** (computer) should switch it to the *Success* state.
-* **Failed network response** (computer) should switch it to the *Error* state with the matching error message.
+- **Changing the text input** (human) should switch it from the _Empty_ state to the _Typing_ state or back, depending on whether the text box is empty or not.
+- **Clicking the Submit button** (human) should switch it to the _Submitting_ state.
+- **Successful network response** (computer) should switch it to the _Success_ state.
+- **Failed network response** (computer) should switch it to the _Error_ state with the matching error message.
 
 > Notice that human inputs often require [event handlers](/learn/responding-to-events)!
 
 To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
 
-<img alt="A flow chart showing states and transitions between them" src="/images/docs/sketches/s_flow-chart.jpg" />
+<img
+  alt="A flow chart showing states and transitions between them"
+  src="/images/docs/sketches/s_flow-chart.jpg"
+/>
 
-### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### Step 3: Represent the state in memory with `useState` {/* step-3-represent-the-state-in-memory-with-usestate */}
 
 Next you'll need to represent the visual states of your component in memory with [`useState`](/reference/usestate). Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible**. More complexity leads to more bugs!
 
-Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
+Start with the state that _absolutely must_ be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
 
 ```js
 const [answer, setAnswer] = useState('');
@@ -347,7 +355,7 @@ const [error, setError] = useState(null);
 
 Then, you'll need a state variable representing which one of the visual states described earlier you want to display. There's usually more than a single way to represent that in memory, so you'll need to experiment with it.
 
-If you struggle to think of the best way immediately, start by adding enough state that you're *definitely* sure that all the possible visual states are covered:
+If you struggle to think of the best way immediately, start by adding enough state that you're _definitely_ sure that all the possible visual states are covered:
 
 ```js
 const [isEmpty, setIsEmpty] = useState(true);
@@ -359,17 +367,17 @@ const [isError, setIsError] = useState(false);
 
 Your first idea likely won't be the best, but that's ok--refactoring state is a part of the process!
 
-### Step 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
+### Step 4: Remove any non-essential state variables {/* step-4-remove-any-non-essential-state-variables */}
 
 You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
 
 Here are some questions you can ask about your state variables:
 
-* **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`. 
-* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `message.length === 0`.
-* **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
+- **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`.
+- **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `message.length === 0`.
+- **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
 
-After this clean-up, you're left with 3 (down from 7!) *essential* state variables:
+After this clean-up, you're left with 3 (down from 7!) _essential_ state variables:
 
 ```js
 const [answer, setAnswer] = useState('');
@@ -385,14 +393,14 @@ These three variables are a good enough representation of this form's state. How
 
 </DeepDive>
 
-### Step 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### Step 5: Connect the event handlers to set state {/* step-5-connect-the-event-handlers-to-set-state */}
 
 Lastly, create event handlers to set the state variables. Below is the final form, with all event handlers wired up:
 
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Form() {
   const [answer, setAnswer] = useState('');
@@ -400,7 +408,7 @@ export default function Form() {
   const [status, setStatus] = useState('typing');
 
   if (status === 'success') {
-    return <h1>That's right!</h1>
+    return <h1>That's right!</h1>;
   }
 
   async function handleSubmit(e) {
@@ -432,17 +440,10 @@ export default function Form() {
           disabled={status === 'submitting'}
         />
         <br />
-        <button disabled={
-          answer.length === 0 ||
-          status === 'submitting'
-        }>
+        <button disabled={answer.length === 0 || status === 'submitting'}>
           Submit
         </button>
-        {error !== null &&
-          <p className="Error">
-            {error.message}
-          </p>
-        }
+        {error !== null && <p className="Error">{error.message}</p>}
       </form>
     </>
   );
@@ -452,7 +453,7 @@ function submitForm(answer) {
   // Pretend it's hitting the network.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
-      let shouldError = answer.toLowerCase() !== 'lima'
+      let shouldError = answer.toLowerCase() !== 'lima';
       if (shouldError) {
         reject(new Error('Good guess but a wrong answer. Try again!'));
       } else {
@@ -464,7 +465,9 @@ function submitForm(answer) {
 ```
 
 ```css
-.Error { color: red; }
+.Error {
+  color: red;
+}
 ```
 
 </Sandpack>
@@ -473,8 +476,8 @@ Although this code is longer than the original imperative example, it is much le
 
 <Recap>
 
-* Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
-* When developing a component:
+- Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
+- When developing a component:
   1. Identify all its visual states.
   2. Determine the human and computer triggers for state changes.
   3. Model the state with `useState`.
@@ -483,13 +486,11 @@ Although this code is longer than the original imperative example, it is much le
 
 </Recap>
 
-
-
 <Challenges>
 
-### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+### Add and remove a CSS class {/* add-and-remove-a-css-class */}
 
-Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
+Make it so that clicking on the picture _removes_ the `background--active` CSS class from the outer `<div>`, but _adds_ the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
 
 Visually, you should expect that clicking on the picture removes the purple background and highlights the picture border. Clicking outside the picture highlights the background, but removes the picture border highlight.
 
@@ -510,7 +511,11 @@ export default function Picture() {
 ```
 
 ```css
-body { margin: 0; padding: 0; height: 250px; }
+body {
+  margin: 0;
+  padding: 0;
+  height: 250px;
+}
 
 .background {
   width: 100vw;
@@ -542,17 +547,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 This component has two visual states: when the image is active, and when the image is inactive:
 
-* When the image is active, the CSS classes are `background` and `picture picture--active`.
-* When the image is inactive, the CSS classes are `background background--active` and `picture`.
+- When the image is active, the CSS classes are `background` and `picture picture--active`.
+- When the image is inactive, the CSS classes are `background background--active` and `picture`.
 
-A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
+A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to _describe_ what you want to see rather than _manipulate_ the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
 
 Verify that this version works by clicking the image and then outside of it:
 
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Picture() {
   const [isActive, setIsActive] = useState(false);
@@ -564,14 +569,11 @@ export default function Picture() {
   } else {
     backgroundClassName += ' background--active';
   }
-  
+
   return (
-    <div
-      className={backgroundClassName}
-      onClick={() => setIsActive(false)}
-    >
+    <div className={backgroundClassName} onClick={() => setIsActive(false)}>
       <img
-        onClick={e => {
+        onClick={(e) => {
           e.stopPropagation();
           setIsActive(true);
         }}
@@ -585,7 +587,11 @@ export default function Picture() {
 ```
 
 ```css
-body { margin: 0; padding: 0; height: 250px; }
+body {
+  margin: 0;
+  padding: 0;
+  height: 250px;
+}
 
 .background {
   width: 100vw;
@@ -619,21 +625,18 @@ Alternatively, you could return two separate chunks of JSX:
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function Picture() {
   const [isActive, setIsActive] = useState(false);
   if (isActive) {
     return (
-      <div
-        className="background"
-        onClick={() => setIsActive(false)}
-      >
+      <div className="background" onClick={() => setIsActive(false)}>
         <img
           className="picture picture--active"
           alt="Rainbow houses in Kampung Pelangi, Indonesia"
           src="https://i.imgur.com/5qwVYb1.jpeg"
-          onClick={e => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()}
         />
       </div>
     );
@@ -652,7 +655,11 @@ export default function Picture() {
 ```
 
 ```css
-body { margin: 0; padding: 0; height: 250px; }
+body {
+  margin: 0;
+  padding: 0;
+  height: 250px;
+}
 
 .background {
   width: 100vw;
@@ -685,7 +692,7 @@ Keep in mind that if two different JSX chunks describe the same tree, their nest
 
 </Solution>
 
-### Profile editor {/*profile-editor*/}
+### Profile editor {/* profile-editor */}
 
 Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
 
@@ -711,20 +718,14 @@ function handleFormSubmit(e) {
 
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
-  helloText.textContent = (
-    'Hello ' +
-    firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
-  );
+  helloText.textContent =
+    'Hello ' + firstNameInput.value + ' ' + lastNameInput.value + '!';
 }
 
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
-  helloText.textContent = (
-    'Hello ' +
-    firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
-  );
+  helloText.textContent =
+    'Hello ' + firstNameInput.value + ' ' + lastNameInput.value + '!';
 }
 
 function hide(el) {
@@ -756,29 +757,32 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
-    <input
-      id="firstNameInput"
-      value="Jane"
-      style="display: none">
+    <input id="firstNameInput" value="Jane" style="display: none" />
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
-    <input
-      id="lastNameInput"
-      value="Jacobs"
-      style="display: none">
+    <input id="lastNameInput" value="Jacobs" style="display: none" />
   </label>
   <button type="submit" id="button">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
 <style>
-* { box-sizing: border-box; }
-body { font-family: sans-serif; margin: 20px; padding: 0; }
-label { display: block; margin-bottom: 20px; }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  label {
+    display: block;
+    margin-bottom: 20px;
+  }
 </style>
 ```
 
@@ -797,26 +801,27 @@ export default function EditProfile() {
   return (
     <form>
       <label>
-        First name:{' '}
-        <b>Jane</b>
+        First name: <b>Jane</b>
         <input />
       </label>
       <label>
-        Last name:{' '}
-        <b>Jacobs</b>
+        Last name: <b>Jacobs</b>
         <input />
       </label>
-      <button type="submit">
-        Edit Profile
-      </button>
-      <p><i>Hello, Jane Jacobs!</i></p>
+      <button type="submit">Edit Profile</button>
+      <p>
+        <i>Hello, Jane Jacobs!</i>
+      </p>
     </form>
   );
 }
 ```
 
 ```css
-label { display: block; margin-bottom: 20px; }
+label {
+  display: block;
+  margin-bottom: 20px;
+}
 ```
 
 </Sandpack>
@@ -830,7 +835,7 @@ Finally, you should use [conditional rendering](/learn/conditional-rendering) to
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function EditProfile() {
   const [isEditing, setIsEditing] = useState(false);
@@ -838,17 +843,18 @@ export default function EditProfile() {
   const [lastName, setLastName] = useState('Jacobs');
 
   return (
-    <form onSubmit={e => {
-      e.preventDefault();
-      setIsEditing(!isEditing);
-    }}>
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setIsEditing(!isEditing);
+      }}>
       <label>
         First name:{' '}
         {isEditing ? (
           <input
             value={firstName}
-            onChange={e => {
-              setFirstName(e.target.value)
+            onChange={(e) => {
+              setFirstName(e.target.value);
             }}
           />
         ) : (
@@ -860,25 +866,30 @@ export default function EditProfile() {
         {isEditing ? (
           <input
             value={lastName}
-            onChange={e => {
-              setLastName(e.target.value)
+            onChange={(e) => {
+              setLastName(e.target.value);
             }}
           />
         ) : (
           <b>{lastName}</b>
         )}
       </label>
-      <button type="submit">
-        {isEditing ? 'Save' : 'Edit'} Profile
-      </button>
-      <p><i>Hello, {firstName} {lastName}!</i></p>
+      <button type="submit">{isEditing ? 'Save' : 'Edit'} Profile</button>
+      <p>
+        <i>
+          Hello, {firstName} {lastName}!
+        </i>
+      </p>
     </form>
   );
 }
 ```
 
 ```css
-label { display: block; margin-bottom: 20px; }
+label {
+  display: block;
+  margin-bottom: 20px;
+}
 ```
 
 </Sandpack>
@@ -887,7 +898,7 @@ Compare this solution to the original imperative code. How are they different?
 
 </Solution>
 
-### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+### Refactor the imperative solution without React {/* refactor-the-imperative-solution-without-react */}
 
 Here is the original sandbox from the previous challenge, written imperatively without React:
 
@@ -913,20 +924,14 @@ function handleFormSubmit(e) {
 
 function handleFirstNameChange() {
   firstNameText.textContent = firstNameInput.value;
-  helloText.textContent = (
-    'Hello ' +
-    firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
-  );
+  helloText.textContent =
+    'Hello ' + firstNameInput.value + ' ' + lastNameInput.value + '!';
 }
 
 function handleLastNameChange() {
   lastNameText.textContent = lastNameInput.value;
-  helloText.textContent = (
-    'Hello ' +
-    firstNameInput.value + ' ' +
-    lastNameInput.value + '!'
-  );
+  helloText.textContent =
+    'Hello ' + firstNameInput.value + ' ' + lastNameInput.value + '!';
 }
 
 function hide(el) {
@@ -958,29 +963,32 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
-    <input
-      id="firstNameInput"
-      value="Jane"
-      style="display: none">
+    <input id="firstNameInput" value="Jane" style="display: none" />
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
-    <input
-      id="lastNameInput"
-      value="Jacobs"
-      style="display: none">
+    <input id="lastNameInput" value="Jacobs" style="display: none" />
   </label>
   <button type="submit" id="button">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
 <style>
-* { box-sizing: border-box; }
-body { font-family: sans-serif; margin: 20px; padding: 0; }
-label { display: block; margin-bottom: 20px; }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  label {
+    display: block;
+    margin-bottom: 20px;
+  }
 </style>
 ```
 
@@ -1065,29 +1073,32 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
-    <input
-      id="firstNameInput"
-      value="Jane"
-      style="display: none">
+    <input id="firstNameInput" value="Jane" style="display: none" />
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
-    <input
-      id="lastNameInput"
-      value="Jacobs"
-      style="display: none">
+    <input id="lastNameInput" value="Jacobs" style="display: none" />
   </label>
   <button type="submit" id="button">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
 <style>
-* { box-sizing: border-box; }
-body { font-family: sans-serif; margin: 20px; padding: 0; }
-label { display: block; margin-bottom: 20px; }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  label {
+    display: block;
+    margin-bottom: 20px;
+  }
 </style>
 ```
 
@@ -1148,11 +1159,7 @@ function updateDOM() {
   }
   firstNameText.textContent = firstName;
   lastNameText.textContent = lastName;
-  helloText.textContent = (
-    'Hello ' +
-    firstName + ' ' +
-    lastName + '!'
-  );
+  helloText.textContent = 'Hello ' + firstName + ' ' + lastName + '!';
 }
 
 function hide(el) {
@@ -1184,29 +1191,32 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
-    <input
-      id="firstNameInput"
-      value="Jane"
-      style="display: none">
+    <input id="firstNameInput" value="Jane" style="display: none" />
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
-    <input
-      id="lastNameInput"
-      value="Jacobs"
-      style="display: none">
+    <input id="lastNameInput" value="Jacobs" style="display: none" />
   </label>
   <button type="submit" id="button">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
 <style>
-* { box-sizing: border-box; }
-body { font-family: sans-serif; margin: 20px; padding: 0; }
-label { display: block; margin-bottom: 20px; }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: sans-serif;
+    margin: 20px;
+    padding: 0;
+  }
+  label {
+    display: block;
+    margin-bottom: 20px;
+  }
 </style>
 ```
 

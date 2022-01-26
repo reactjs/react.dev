@@ -17,12 +17,12 @@ Because React handles updating the [DOM](https://developer.mozilla.org/docs/Web/
 
 </YouWillLearn>
 
-## Getting a ref to the node {/*getting-a-ref-to-the-node*/}
+## Getting a ref to the node {/* getting-a-ref-to-the-node */}
 
 To access a DOM node managed by React, first, import the `useRef` Hook:
 
 ```js
-import { useRef } from 'react';
+import {useRef} from 'react';
 ```
 
 Then, use it to declare a ref inside your component:
@@ -44,14 +44,14 @@ The `useRef` Hook returns an object with a single property called `current`. Ini
 myRef.current.scrollIntoView();
 ```
 
-### Example: Focusing a text input {/*example-focusing-a-text-input*/}
+### Example: Focusing a text input {/* example-focusing-a-text-input */}
 
 In this example, clicking the button will focus the input:
 
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import {useRef} from 'react';
 
 export default function Form() {
   const inputRef = useRef(null);
@@ -63,9 +63,7 @@ export default function Form() {
   return (
     <>
       <input ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -82,14 +80,14 @@ To implement this:
 
 While DOM manipulation is the most common use case for refs, the `useRef` Hook can be used for storing other things outside React, like timer IDs. Similarly to state, refs remain between renders. You can even think of refs as state variables that don't trigger re-renders when you set them! You can learn more about refs in [Referencing Values with Refs](/learn/referencing-values-with-refs).
 
-### Example: Scrolling to an element {/*example-scrolling-to-an-element*/}
+### Example: Scrolling to an element {/* example-scrolling-to-an-element */}
 
 You can have more than a single ref in a component. In this example, there is a carousel of three images and three buttons to center them in the view port by calling the browser [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) method the corresponding DOM node:
 
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import {useRef} from 'react';
 
 export default function CatFriends() {
   const firstCatRef = useRef(null);
@@ -100,7 +98,7 @@ export default function CatFriends() {
     firstCatRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
-      inline: 'center'
+      inline: 'center',
     });
   }
 
@@ -108,7 +106,7 @@ export default function CatFriends() {
     secondCatRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
-      inline: 'center'
+      inline: 'center',
     });
   }
 
@@ -116,22 +114,16 @@ export default function CatFriends() {
     thirdCatRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
-      inline: 'center'
+      inline: 'center',
     });
   }
 
   return (
     <>
       <nav>
-        <button onClick={handleScrollToFirstCat}>
-          Tom
-        </button>
-        <button onClick={handleScrollToSecondCat}>
-          Maru
-        </button>
-        <button onClick={handleScrollToThirdCat}>
-          Jellylorum
-        </button>
+        <button onClick={handleScrollToFirstCat}>Tom</button>
+        <button onClick={handleScrollToSecondCat}>Maru</button>
+        <button onClick={handleScrollToThirdCat}>Jellylorum</button>
       </nav>
       <div>
         <ul>
@@ -174,7 +166,7 @@ nav {
 }
 
 button {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 
 ul,
@@ -214,7 +206,7 @@ This example shows how you can use this approach to scroll to an arbitrary node 
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import {useRef} from 'react';
 
 export default function CatFriends() {
   const itemsRef = useRef(null);
@@ -225,7 +217,7 @@ export default function CatFriends() {
     node.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
-      inline: 'center'
+      inline: 'center',
     });
   }
 
@@ -240,19 +232,13 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => scrollToId(0)}>
-          Tom
-        </button>
-        <button onClick={() => scrollToId(5)}>
-          Maru
-        </button>
-        <button onClick={() => scrollToId(9)}>
-          Jellylorum
-        </button>
+        <button onClick={() => scrollToId(0)}>Tom</button>
+        <button onClick={() => scrollToId(5)}>Maru</button>
+        <button onClick={() => scrollToId(9)}>Jellylorum</button>
       </nav>
       <div>
         <ul>
-          {catList.map(cat => (
+          {catList.map((cat) => (
             <li
               key={cat.id}
               ref={(node) => {
@@ -262,12 +248,8 @@ export default function CatFriends() {
                 } else {
                   map.delete(cat.id);
                 }
-              }}
-            >
-              <img
-                src={cat.imageUrl}
-                alt={'Cat #' + cat.id}
-              />
+              }}>
+              <img src={cat.imageUrl} alt={'Cat #' + cat.id} />
             </li>
           ))}
         </ul>
@@ -280,10 +262,9 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://placekitten.com/250/200?image=' + i,
   });
 }
-
 ```
 
 ```css
@@ -297,7 +278,7 @@ nav {
 }
 
 button {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 
 ul,
@@ -336,7 +317,7 @@ This lets you read individual DOM nodes from the Map later.
 
 </DeepDive>
 
-## Accessing another component's DOM nodes {/*accessing-another-components-dom-nodes*/}
+## Accessing another component's DOM nodes {/* accessing-another-components-dom-nodes */}
 
 When you put a ref on a built-in component that outputs a browser element like `<input />`, React will set that ref's `current` property to the corresponding DOM node (such as the actual `<input />` in the browser).
 
@@ -345,7 +326,7 @@ However, if you try to put a ref on **your own** component, like `<MyInput />`, 
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import {useRef} from 'react';
 
 function MyInput(props) {
   return <input {...props} />;
@@ -361,9 +342,7 @@ export default function MyForm() {
   return (
     <>
       <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -396,7 +375,7 @@ Now clicking the button to focus the input works:
 <Sandpack>
 
 ```js
-import { forwardRef, useRef } from 'react';
+import {forwardRef, useRef} from 'react';
 
 const MyInput = forwardRef((props, ref) => {
   return <input {...props} ref={ref} />;
@@ -412,9 +391,7 @@ export default function Form() {
   return (
     <>
       <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -431,11 +408,7 @@ In the above example, `MyInput` exposes the original DOM input element. This let
 <Sandpack>
 
 ```js
-import {
-  forwardRef, 
-  useRef, 
-  useImperativeHandle
-} from 'react';
+import {forwardRef, useRef, useImperativeHandle} from 'react';
 
 const MyInput = forwardRef((props, ref) => {
   const realInputRef = useRef(null);
@@ -458,9 +431,7 @@ export default function Form() {
   return (
     <>
       <MyInput ref={inputRef} />
-      <button onClick={handleClick}>
-        Focus the input
-      </button>
+      <button onClick={handleClick}>Focus the input</button>
     </>
   );
 }
@@ -472,12 +443,12 @@ Here, `realInputRef` inside `MyInput` holds the actual input DOM node. However, 
 
 </DeepDive>
 
-## When React attaches the refs {/*when-react-attaches-the-refs*/}
+## When React attaches the refs {/* when-react-attaches-the-refs */}
 
 In React, every update is split in [two phases](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom):
 
-* During **render,** React calls your components to figure out what should be on the screen.
-* During **commit,** React applies changes to the DOM.
+- During **render,** React calls your components to figure out what should be on the screen.
+- During **commit,** React applies changes to the DOM.
 
 In general, you [don't want](/learn/referencing-values-with-refs#best-practices-for-refs) to access refs during rendering. That goes for refs holding DOM nodes as well. During the first render, the DOM nodes have not yet been created, so `ref.current` will be `null`. And during the rendering of updates, the DOM nodes haven't been updated yet. So it's too early to read them.
 
@@ -487,41 +458,34 @@ React sets `ref.current` during the commit. Before updating the DOM, React sets 
 
 <DeepDive title="Flushing state updates synchronously with flushSync">
 
-Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was *just before* the last added one:
+Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was _just before_ the last added one:
 
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+import {useState, useRef} from 'react';
 
 export default function TodoList() {
   const listRef = useRef(null);
   const [text, setText] = useState('');
-  const [todos, setTodos] = useState(
-    initialTodos
-  );
+  const [todos, setTodos] = useState(initialTodos);
 
   function handleAdd() {
-    const newTodo = { id: nextId++, text: text };
+    const newTodo = {id: nextId++, text: text};
     setText('');
-    setTodos([ ...todos, newTodo]);
+    setTodos([...todos, newTodo]);
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',
-      block: 'nearest'
+      block: 'nearest',
     });
   }
 
   return (
     <>
-      <button onClick={handleAdd}>
-        Add
-      </button>
-      <input
-        value={text}
-        onChange={e => setText(e.target.value)}
-      />
+      <button onClick={handleAdd}>Add</button>
+      <input value={text} onChange={(e) => setText(e.target.value)} />
       <ul ref={listRef}>
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <li key={todo.id}>{todo.text}</li>
         ))}
       </ul>
@@ -534,7 +498,7 @@ let initialTodos = [];
 for (let i = 0; i < 20; i++) {
   initialTodos.push({
     id: nextId++,
-    text: 'Todo #' + (i + 1)
+    text: 'Todo #' + (i + 1),
   });
 }
 ```
@@ -544,7 +508,7 @@ for (let i = 0; i < 20; i++) {
 The issue is with these two lines:
 
 ```js
-setTodos([ ...todos, newTodo]);
+setTodos([...todos, newTodo]);
 listRef.current.lastChild.scrollIntoView();
 ```
 
@@ -554,7 +518,7 @@ To fix this issue, you can force React to update ("flush") the DOM synchronously
 
 ```js
 flushSync(() => {
-  setTodos([ ...todos, newTodo]);
+  setTodos([...todos, newTodo]);
 });
 listRef.current.lastChild.scrollIntoView();
 ```
@@ -564,39 +528,32 @@ This will instruct React to update the DOM synchronously right after the code wr
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
-import { flushSync } from 'react-dom';
+import {useState, useRef} from 'react';
+import {flushSync} from 'react-dom';
 
 export default function TodoList() {
   const listRef = useRef(null);
   const [text, setText] = useState('');
-  const [todos, setTodos] = useState(
-    initialTodos
-  );
+  const [todos, setTodos] = useState(initialTodos);
 
   function handleAdd() {
-    const newTodo = { id: nextId++, text: text };
+    const newTodo = {id: nextId++, text: text};
     flushSync(() => {
       setText('');
-      setTodos([ ...todos, newTodo]);      
+      setTodos([...todos, newTodo]);
     });
     listRef.current.lastChild.scrollIntoView({
       behavior: 'smooth',
-      block: 'nearest'
+      block: 'nearest',
     });
   }
 
   return (
     <>
-      <button onClick={handleAdd}>
-        Add
-      </button>
-      <input
-        value={text}
-        onChange={e => setText(e.target.value)}
-      />
+      <button onClick={handleAdd}>Add</button>
+      <input value={text} onChange={(e) => setText(e.target.value)} />
       <ul ref={listRef}>
-        {todos.map(todo => (
+        {todos.map((todo) => (
           <li key={todo.id}>{todo.text}</li>
         ))}
       </ul>
@@ -609,7 +566,7 @@ let initialTodos = [];
 for (let i = 0; i < 20; i++) {
   initialTodos.push({
     id: nextId++,
-    text: 'Todo #' + (i + 1)
+    text: 'Todo #' + (i + 1),
   });
 }
 ```
@@ -618,7 +575,7 @@ for (let i = 0; i < 20; i++) {
 
 </DeepDive>
 
-## Best practices for DOM manipulation with refs {/*best-practices-for-dom-manipulation-with-refs*/}
+## Best practices for DOM manipulation with refs {/* best-practices-for-dom-manipulation-with-refs */}
 
 Refs are an escape hatch. You should only use them when you have to "step outside React." Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
 
@@ -684,18 +641,16 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 
 </Recap>
 
-
-
 <Challenges>
 
-### Play and pause the video {/*play-and-pause-the-video*/}
+### Play and pause the video {/* play-and-pause-the-video */}
 
 In this example, the button toggles a state variable to switch between a playing and a paused state. However, in order to actually play or pause the video, toggling state is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
 
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+import {useState, useRef} from 'react';
 
 export default function VideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -713,16 +668,16 @@ export default function VideoPlayer() {
           type="video/mp4"
         />
       </video>
-      <button onClick={handleClick}>
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
+      <button onClick={handleClick}>{isPlaying ? 'Pause' : 'Play'}</button>
     </>
-  )
+  );
 }
 ```
 
 ```css
-button { display: block }
+button {
+  display: block;
+}
 ```
 
 </Sandpack>
@@ -734,7 +689,7 @@ Declare a ref and put it on the `<video>` element. Then call `ref.current.play()
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+import {useState, useRef} from 'react';
 
 export default function VideoPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -759,23 +714,23 @@ export default function VideoPlayer() {
           type="video/mp4"
         />
       </video>
-      <button onClick={handleClick}>
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
+      <button onClick={handleClick}>{isPlaying ? 'Pause' : 'Play'}</button>
     </>
-  )
+  );
 }
 ```
 
 ```css
-button { display: block }
+button {
+  display: block;
+}
 ```
 
 </Sandpack>
 
 </Solution>
 
-### Focus the search field {/*focus-the-search-field*/}
+### Focus the search field {/* focus-the-search-field */}
 
 Make it so that clicking the "Search" button puts focus into the field.
 
@@ -788,16 +743,17 @@ export default function Page() {
       <nav>
         <button>Search</button>
       </nav>
-      <input
-        placeholder="Looking for something?"
-      />
+      <input placeholder="Looking for something?" />
     </>
   );
 }
 ```
 
 ```css
-button { display: block; margin-bottom: 10px; }
+button {
+  display: block;
+  margin-bottom: 10px;
+}
 ```
 
 </Sandpack>
@@ -809,37 +765,38 @@ Add a ref to the input, and call `focus()` on the DOM node to focus it:
 <Sandpack>
 
 ```js
-import { useRef } from 'react';
+import {useRef} from 'react';
 
 export default function Page() {
   const inputRef = useRef(null);
   return (
     <>
       <nav>
-        <button onClick={() => {
-          inputRef.current.focus();
-        }}>
+        <button
+          onClick={() => {
+            inputRef.current.focus();
+          }}>
           Search
         </button>
       </nav>
-      <input
-        ref={inputRef}
-        placeholder="Looking for something?"
-      />
+      <input ref={inputRef} placeholder="Looking for something?" />
     </>
   );
 }
 ```
 
 ```css
-button { display: block; margin-bottom: 10px; }
+button {
+  display: block;
+  margin-bottom: 10px;
+}
 ```
 
 </Sandpack>
 
 </Solution>
 
-### Scrolling an image carousel {/*scrolling-an-image-carousel*/}
+### Scrolling an image carousel {/* scrolling-an-image-carousel */}
 
 This image carousel has a "Next" button that switches the active image. Make the gallery scroll horizontally to the active image on click. You will want to call [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) on the DOM node of the active image:
 
@@ -847,33 +804,34 @@ This image carousel has a "Next" button that switches the active image. Make the
 node.scrollIntoView({
   behavior: 'smooth',
   block: 'nearest',
-  inline: 'center'
+  inline: 'center',
 });
 ```
 
 <Hint>
 
-You don't need to have a ref to every image for this exercise. It should be enough to have a ref to the currently active image, or to the list itself. Use `flushSync` to ensure the DOM is updated *before* you scroll.
+You don't need to have a ref to every image for this exercise. It should be enough to have a ref to the currently active image, or to the list itself. Use `flushSync` to ensure the DOM is updated _before_ you scroll.
 
 </Hint>
 
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
 export default function CatFriends() {
   const [index, setIndex] = useState(0);
   return (
     <>
       <nav>
-        <button onClick={() => {
-          if (index < catList.length - 1) {
-            setIndex(index + 1);
-          } else {
-            setIndex(0);
-          }
-        }}>
+        <button
+          onClick={() => {
+            if (index < catList.length - 1) {
+              setIndex(index + 1);
+            } else {
+              setIndex(0);
+            }
+          }}>
           Next
         </button>
       </nav>
@@ -882,11 +840,7 @@ export default function CatFriends() {
           {catList.map((cat, i) => (
             <li key={cat.id}>
               <img
-                className={
-                  index === i ?
-                    'active' :
-                    ''
-                }
+                className={index === i ? 'active' : ''}
                 src={cat.imageUrl}
                 alt={'Cat #' + cat.id}
               />
@@ -902,10 +856,9 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://placekitten.com/250/200?image=' + i,
   });
 }
-
 ```
 
 ```css
@@ -919,7 +872,7 @@ nav {
 }
 
 button {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 
 ul,
@@ -961,8 +914,8 @@ Note that the `flushSync` call is necessary to force React to update the DOM bef
 <Sandpack>
 
 ```js
-import { useRef, useState } from 'react';
-import { flushSync } from 'react-dom';
+import {useRef, useState} from 'react';
+import {flushSync} from 'react-dom';
 
 export default function CatFriends() {
   const selectedRef = useRef(null);
@@ -971,39 +924,30 @@ export default function CatFriends() {
   return (
     <>
       <nav>
-        <button onClick={() => {
-          flushSync(() => {
-            if (index < catList.length - 1) {
-              setIndex(index + 1);
-            } else {
-              setIndex(0);
-            }
-          });
-          selectedRef.current.scrollIntoView({
-            behavior: 'smooth',
-            block: 'nearest',
-            inline: 'center'
-          });            
-        }}>
+        <button
+          onClick={() => {
+            flushSync(() => {
+              if (index < catList.length - 1) {
+                setIndex(index + 1);
+              } else {
+                setIndex(0);
+              }
+            });
+            selectedRef.current.scrollIntoView({
+              behavior: 'smooth',
+              block: 'nearest',
+              inline: 'center',
+            });
+          }}>
           Next
         </button>
       </nav>
       <div>
         <ul>
           {catList.map((cat, i) => (
-            <li
-              key={cat.id}
-              ref={index === i ?
-                selectedRef :
-                null
-              }
-            >
+            <li key={cat.id} ref={index === i ? selectedRef : null}>
               <img
-                className={
-                  index === i ?
-                    'active'
-                    : ''
-                }
+                className={index === i ? 'active' : ''}
                 src={cat.imageUrl}
                 alt={'Cat #' + cat.id}
               />
@@ -1019,10 +963,9 @@ const catList = [];
 for (let i = 0; i < 10; i++) {
   catList.push({
     id: i,
-    imageUrl: 'https://placekitten.com/250/200?image=' + i
+    imageUrl: 'https://placekitten.com/250/200?image=' + i,
   });
 }
-
 ```
 
 ```css
@@ -1036,7 +979,7 @@ nav {
 }
 
 button {
-  margin: .25rem;
+  margin: 0.25rem;
 }
 
 ul,
@@ -1065,7 +1008,7 @@ img {
 
 </Solution>
 
-### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}
+### Focus the search field with separate components {/* focus-the-search-field-with-separate-components */}
 
 Make it so that clicking the "Search" button puts focus into the field. Note that each component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
 
@@ -1095,26 +1038,21 @@ export default function Page() {
 
 ```js SearchButton.js
 export default function SearchButton() {
-  return (
-    <button>
-      Search
-    </button>
-  );
+  return <button>Search</button>;
 }
 ```
 
 ```js SearchInput.js
 export default function SearchInput() {
-  return (
-    <input
-      placeholder="Looking for something?"
-    />
-  );
+  return <input placeholder="Looking for something?" />;
 }
 ```
 
 ```css
-button { display: block; margin-bottom: 10px; }
+button {
+  display: block;
+  margin-bottom: 10px;
+}
 ```
 
 </Sandpack>
@@ -1126,7 +1064,7 @@ You'll need to add an `onClick` prop to the `SearchButton`, and make the `Search
 <Sandpack>
 
 ```js App.js
-import { useRef } from 'react';
+import {useRef} from 'react';
 import SearchButton from './SearchButton.js';
 import SearchInput from './SearchInput.js';
 
@@ -1135,9 +1073,11 @@ export default function Page() {
   return (
     <>
       <nav>
-        <SearchButton onClick={() => {
-          inputRef.current.focus();
-        }} />
+        <SearchButton
+          onClick={() => {
+            inputRef.current.focus();
+          }}
+        />
       </nav>
       <SearchInput ref={inputRef} />
     </>
@@ -1146,32 +1086,24 @@ export default function Page() {
 ```
 
 ```js SearchButton.js
-export default function SearchButton({ onClick }) {
-  return (
-    <button onClick={onClick}>
-      Search
-    </button>
-  );
+export default function SearchButton({onClick}) {
+  return <button onClick={onClick}>Search</button>;
 }
 ```
 
 ```js SearchInput.js
-import { forwardRef } from 'react';
+import {forwardRef} from 'react';
 
-export default forwardRef(
-  function SearchInput(props, ref) {
-    return (
-      <input
-        ref={ref}
-        placeholder="Looking for something?"
-      />
-    );
-  }
-);
+export default forwardRef(function SearchInput(props, ref) {
+  return <input ref={ref} placeholder="Looking for something?" />;
+});
 ```
 
 ```css
-button { display: block; margin-bottom: 10px; }
+button {
+  display: block;
+  margin-bottom: 10px;
+}
 ```
 
 </Sandpack>

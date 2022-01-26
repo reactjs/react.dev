@@ -8,6 +8,7 @@ next: introducing-jsx.html
 
 The smallest React example looks like this:
 
+TODO - this code sample does not work, even after fixing the 'Hello, World' line to be enclosed in quotes, Codepen gives an error that "ReactDOM is not defined"
 ```js
 ReactDOM.render(
   <h1>Hello, world!</h1>,
@@ -16,6 +17,9 @@ ReactDOM.render(
 ```
 
 It displays a heading saying "Hello, world!" on the page.
+
+
+TODO - This link does not work, it opens a blank code pen project.
 
 [](codepen://hello-world)
 

@@ -19,8 +19,7 @@
     "tsc": "tsc --noEmit",
     "start": "next start",
     "postinstall": "is-ci || (cd .. && husky install beta/.husky)",
-    "check-all": "npm-run-all prettier lint:fix tsc",
-    "prepare": "husky install"
+    "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
     "@codesandbox/sandpack-react": "0.13.6-experimental.0",
@@ -75,7 +74,7 @@
     "postcss": "^8.3.6",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "^2.1.1",
+    "prettier": "^2.5.1",
     "reading-time": "^1.2.0",
     "remark": "^12.0.1",
     "remark-external-links": "^7.0.0",
@@ -100,8 +99,8 @@
     "showDetails": true
   },
   "lint-staged": {
-    "*.js": "eslint --cache --fix",
-    "*.{js,css}": "prettier --write",
-    "*.md" : "yarn fix-headings"
+    "*.{js,ts,jsx,tsx}": "yarn prettier",
+    "*.css": "prettier --write",
+    "*.md": "prettier --write"
   }
 }

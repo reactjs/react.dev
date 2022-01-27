@@ -108,7 +108,7 @@ Then you write the CSS rules for it in a separate CSS file:
 
 React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
 
-## Curly braces in JSX {/*curly-braces-in-jsx*/}
+## Displaying data {/*displaying-data*/}
 
 JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
 
@@ -136,14 +136,14 @@ You can put any dynamic expressions inside JSX curlies, including function calls
 <Sandpack>
 
 ```js
-let user = {
+const user = {
   name: 'Hedy Lamarr',
   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
   imageSize: 90,
 };
 
 export default function Profile() {
-  let classes = ['avatar'];
+  const classes = ['avatar'];
   if (user.imageSize > 100) {
     classes.push('large');
   }
@@ -197,4 +197,69 @@ function MyButton() {
 ```
 
 Notice how `onClick={handleClick}` has no parentheses at the end. You don't need to _call_ your event handler, you need to _pass_ the event handler itself. React will call your handler when the user clicks the button.
+
+Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component:
+
+```js {1,4}
+import { useState } from 'react';
+
+function MyButton() {
+  const [count, setCount] = useState(0);
+
+  // ...
+}
+```
+
+You can think of state as a component's memory.
+
+Initially, the number of clicks is `0`. That's what `count` will be the first time the component is displayed. When you want to change it, you need to call `setCount`. For example, clicking this button will increment the counter:
+
+```js {5}
+function MyButton() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+React will call your component function again, but this time, `count` will be `1`. Then it will be `2`. And so on.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+function MyButton() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Welcome to my app</h1>
+      <MyButton />
+    </div>
+  );
+}
+```
+
+</Sandpack>
 

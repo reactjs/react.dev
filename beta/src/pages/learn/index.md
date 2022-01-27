@@ -191,6 +191,25 @@ export default function Profile() {
 
 </Sandpack>
 
-
 Here, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies.
+
+## Responding to events {/*responding-to-events*/}
+
+You can respond to events by declaring event handler functions inside your components:
+
+```js {2-4,7}
+function MyButton() {
+  function handleClick() {
+    alert('You clicked me!');
+  }
+
+  return (
+    <button onClick={handleClick}>
+      Click me
+    </button>
+  );
+}
+```
+
+Notice how `onClick={handleClick}` has no parentheses at the end. You don't need to _call_ your event handler, you need to _pass_ the event handler itself. React will call your handler when the user clicks the button.
 

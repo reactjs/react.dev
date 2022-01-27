@@ -121,7 +121,7 @@ If you don't know the values ahead of time, use the inline `style` attribute. It
 />
 ```
 
-Notice that you had to write `style={ }` with curly braces rather than with quotes in order to pass an object. This syntax is not specific to styles. You will always use it when you want to access JavaScript from your JSX.
+To pass an object, you need to write `style={` rather than `style="`. Here's how that works.
 
 ## Curly braces in JSX {/*curly-braces-in-jsx*/}
 
@@ -135,7 +135,7 @@ return (
 );
 ```
 
-You can also use curly braces for attributes, but you have to put them *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+You can also "escape into JavaScript" from JSX attributes, but you have to use curlies *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
 
 ```js {3,4}
 return (

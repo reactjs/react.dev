@@ -256,7 +256,7 @@ function MyButton() {
 export default function MyApp() {
   return (
     <div>
-      <h1>Independent counters</h1>
+      <h1>Counters that update separately</h1>
       <MyButton />
       <MyButton />
       <MyButton />
@@ -292,7 +292,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Counters that update separately</h1>
       <MyButton />
       <MyButton />
       <MyButton />

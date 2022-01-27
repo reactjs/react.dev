@@ -148,28 +148,6 @@ return (
 
 You can put any dynamic expressions inside JSX curlies, including function calls and object literals:
 
-```js {8-13}
-let classes = ['avatar'];
-if (user.imageSize > 100) {
-  classes.push('large');
-}
-return (
-  <img
-    src={user.imageUrl}
-    className={classes.join(' ')}
-    alt={'Photo of ' + user.name}
-    style={{
-      width: user.imageSize,
-      height: user.imageSize
-    }}
-  />
-);
-```
-
-Here, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies.
-
-JSX curly braces let you take static markup and then put dynamic data into it:
-
 <Sandpack>
 
 ```js
@@ -212,4 +190,7 @@ export default function Profile() {
 ```
 
 </Sandpack>
+
+
+Here, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies.
 

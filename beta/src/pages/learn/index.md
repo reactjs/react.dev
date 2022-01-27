@@ -232,6 +232,8 @@ function MyButton() {
 
 React will call your component function again, but this time, `count` will be `1`. Then it will be `2`. And so on.
 
+If you render the same component multiple times, each will get its own state. Try clicking each button separately:
+
 <Sandpack>
 
 ```js
@@ -254,12 +256,124 @@ function MyButton() {
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
+      <h1>Independent counters</h1>
+      <MyButton />
+      <MyButton />
       <MyButton />
     </div>
   );
 }
 ```
 
+```css
+button {
+  display: block;
+  margin-bottom: 5px;
+}
+```
+
 </Sandpack>
 
+## Sharing data between components {/*sharing-data-between-components*/}
+
+In the above example, each counter is independent. If you want them to display the same value and update together, *move the state up* to their closest common ancestor. First, move state from `MyButton` into `MyApp`:
+
+```js {2,6-10}
+function MyButton() {
+  // ... we're moving code from here ...
+}
+
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton />
+      <MyButton />
+      <MyButton />
+    </div>
+  );
+}
+```
+
+Then, *pass down* the state and the event handler that's now inside `MyApp` to `MyButton`. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+
+```js {11-13}
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+```
+
+Finally, change `MyButton` to *read* the passed data from the parent component instead of using state:
+
+```js {1,3}
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+```
+
+Information received from a parent component is called *props*. The parent `MyApp` component keeps `count` in its state and declares the `handleClick` event handler. It passes `count` and `handleClick` as props to each of the `MyButton` components. When a button is clicked, the state of `MyApp` changes, and React updates the screen.
+
+This is called "lifting state up". By moving state up, we've shared it between components.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
+  );
+}
+
+export default function MyApp() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <div>
+      <h1>Counters that update together</h1>
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+      <MyButton count={count} onClick={handleClick} />
+    </div>
+  );
+}
+```
+
+```css
+button {
+  display: block;
+  margin-bottom: 5px;
+}
+```
+
+</Sandpack>

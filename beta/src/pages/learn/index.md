@@ -89,7 +89,7 @@ function AboutPage() {
 
 If you have a lot of HTML to port to JSX, you can use an [online converter](https://transform.tools/html-to-jsx).
 
-## Styling a component {/*styling-a-component*/}
+## Adding styles {/*adding-styles*/}
 
 In React, you specify a CSS class with `className`. It works the same way as HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
 
@@ -107,21 +107,6 @@ Then you write the CSS rules for it in a separate CSS file:
 ```
 
 React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
-
-If you don't know the values ahead of time, use the inline `style` attribute. It's like the HTML [`style`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/style) attribute, but you pass an object of camelCase CSS properties rather than a string:
-
-```js {4-6}
-<img
-  className="avatar"
-  style={
-    {
-      borderColor: user.themeColor
-    }
-  }
-/>
-```
-
-To pass an object, you need to write `style={` rather than `style="`. Here's how that works.
 
 ## Curly braces in JSX {/*curly-braces-in-jsx*/}
 
@@ -191,7 +176,7 @@ export default function Profile() {
 
 </Sandpack>
 
-Here, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies.
+In the above example, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies. You can use the `style` attribute when your styles depend on JavaScript variables.
 
 ## Responding to events {/*responding-to-events*/}
 

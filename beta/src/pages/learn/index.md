@@ -10,7 +10,12 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 <YouWillLearn>
 
-TODO
+- How to define components
+- How to add markup and styles
+- How to display data
+- How to render conditions and lists
+- How to respond to events and update the screen
+- How to share data between components
 
 </YouWillLearn>
 
@@ -250,14 +255,19 @@ Notice how `<li>` has a `key` attribute. A key helps React figure out what happe
 
 ```js
 const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
+  { title: 'Cabbage', isFruit: false, id: 1 },
+  { title: 'Garlic', isFruit: false, id: 2 },
+  { title: 'Apple', isFruit: true, id: 3 },
 ];
 
 export default function ShoppingList() {
   const listItems = products.map(product =>
-    <li key={product.id}>
+    <li
+      key={product.id}
+      style={{
+        color: product.isFruit ? 'magenta' : 'darkgreen'
+      }}
+    >
       {product.title}
     </li>
   );
@@ -471,3 +481,9 @@ button {
 ```
 
 </Sandpack>
+
+## Next steps {/*next-steps*/}
+
+By now, you know the basics of how to write React code.
+
+Head to [Thinking in React](/learn/thinking-in-react) to see how it feels to build a UI with React in practice.

@@ -195,7 +195,7 @@ td {
 
 </Sandpack>
 
-**Don't fret if this code example looks intimidating!** In this guide, we're focusing on concepts rather than code. Make sure to bookmark [Describing the UI](/learn/describing-the-ui) which will help you fill in the gaps and make sense of this code.
+(If this code looks intimidating, go through the [Quick Start](/learn/) first!)
 
 After building your components, you'll have a library of reusable components that render your data model. Because this is a static app, the components will only return JSX. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level component to the ones at the bottom of the tree.
 

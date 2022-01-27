@@ -178,6 +178,44 @@ export default function Profile() {
 
 In the above example, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies. You can use the `style` attribute when your styles depend on JavaScript variables.
 
+## Conditional rendering {/*conditional-rendering*/}
+
+In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. To render a component conditionally, you can use [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement:
+
+```js
+let content;
+if (isLoggedIn) {
+  content = <AdminPanel />;
+} else {
+  content = <LoginForm />;
+}
+<div>
+  {content}
+</div>
+```
+
+Or, if you prefer terser code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator):
+
+```js
+<div>
+  {isLoggedIn ? (
+    <AdminPanel />
+  ) : (
+    <LoginForm />
+  )}
+</div>
+```
+
+If you don't have the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+
+```js
+<div>
+  {isLoggedIn && <AdminPanel />}
+</div>
+```
+
+If you're unfamiliar with this JavaScript syntax, you can start by always using `if...else`.
+
 ## Responding to events {/*responding-to-events*/}
 
 You can respond to events by declaring event handler functions inside your components:
@@ -197,6 +235,8 @@ function MyButton() {
 ```
 
 Notice how `onClick={handleClick}` has no parentheses at the end. You don't need to _call_ your event handler, you need to _pass_ the event handler itself. React will call your handler when the user clicks the button.
+
+## Updating the screen {/*updating-the-screen*/}
 
 Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component:
 

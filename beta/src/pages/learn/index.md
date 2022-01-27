@@ -135,33 +135,40 @@ return (
 );
 ```
 
-You can also use curly braces for attributes, but you have to put them *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.avatarUrl}` reads the JavaScript `user.avatarUrl` variable value, and then passes that value as the `src` attribute:
+You can also use curly braces for attributes, but you have to put them *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
 
 ```js {3,4}
 return (
   <img
     className="avatar"
-    src={user.avatarUrl}
+    src={user.imageUrl}
   />
 );
 ```
 
-You can put any dynamic expressions inside JSX curlies. For example, you can join CSS class from an array:
+You can put any dynamic expressions inside JSX curlies, including function calls and object literals:
 
-```js {7}
+```js {8-13}
 let classes = ['avatar'];
-if (size > 100) {
+if (user.imageSize > 100) {
   classes.push('large');
 }
 return (
   <img
+    src={user.imageUrl}
     className={classes.join(' ')}
-    src={src}
+    alt={'Photo of ' + user.name}
+    style={{
+      width: user.imageSize,
+      height: user.imageSize
+    }}
   />
 );
 ```
 
-Curly braces let you take some static markup, and then put your own data into it. Let's give this a try!
+Here, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies.
+
+JSX curly braces let you take static markup and then put dynamic data into it:
 
 <Sandpack>
 
@@ -169,27 +176,40 @@ Curly braces let you take some static markup, and then put your own data into it
 let user = {
   name: 'Hedy Lamarr',
   imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
-  themeColor: 'pink'
+  imageSize: 90,
 };
 
 export default function Profile() {
-  let description = 'Photo of ' + user.name;
+  let classes = ['avatar'];
+  if (user.imageSize > 100) {
+    classes.push('large');
+  }
   return (
-    <div>
+    <>
       <h1>{user.name}</h1>
       <img
-        className="avatar"
         src={user.imageUrl}
-        alt={description}
-        title={description}
-        style={{ borderColor: user.themeColor }}
+        className={classes.join(' ')}
+        alt={'Photo of ' + user.name}
+        style={{
+          width: user.imageSize,
+          height: user.imageSize
+        }}
       />
-    </div>
+    </>
   );
+}
+```
+
+```css
+.avatar {
+  border-radius: 50%;
+}
+
+.large {
+  border: 4px solid gold;
 }
 ```
 
 </Sandpack>
 
-
-Note that `style={{ ... }}` above is not a special "double curly" syntax. What you see is a regular `{ borderColor: user.themeColor }` JavaScript object wrapped inside of the `style={ }` JSX curlies.

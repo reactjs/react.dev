@@ -8,7 +8,7 @@ permalink: community/courses.html
 
 ## Free Courses {#free-courses}
 
-- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit/) - A free, 5-part video course with interactive code examples that will help you learn React.
+- [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - A free, 5-part video course with interactive code examples that will help you learn React.
 
 - [Codecademy: React 101](https://www.codecademy.com/learn/react-101) - Codecademy's introductory course for React.
 
@@ -16,21 +16,22 @@ permalink: community/courses.html
 
 - [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) - A beginner-friendly crash course through the most important React topics.
 
-- [React Armory: Learn React by Itself](https://reactarmory.com/guides/learn-react-by-itself) - With React Armory, you can learn React without the buzzwords.
+- [Frontend Armory: React Fundamentals](https://frontarm.com/courses/react-fundamentals/) - Learn React without the buzzwords.
 
-- [The Road to Learn React](https://www.robinwieruch.de/the-road-to-learn-react/) - Build a real world application in plain React without complicated tooling.
-
-- [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-reactjs) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
+- [Egghead.io: The Beginner's Guide to ReactJS](https://egghead.io/courses/the-beginner-s-guide-to-react) - Free course for React newbies and those looking to get a better understanding of React fundamentals.
 
 - [Free React Bootcamp](https://tylermcginnis.com/free-react-bootcamp/) - Recordings from three days of a free online React bootcamp.
 
 - [Scrimba: Learn React for free](https://scrimba.com/g/glearnreact) - 48 hands-on video tutorials building react apps.
 
+- [University of Helsinki: Full Stack Open MOOC](https://fullstackopen.com/en/) - Learn to build web applications with React. Available in English, Spanish, Chinese and Finnish.
+
+
 ## Paid Courses {#paid-courses}
 
 - [Egghead.io](https://egghead.io/browse/frameworks/react) - Short instructional videos on React and many other topics.
 
-- [Frontend Masters](https://frontendmasters.com/courses/) - Video courses on React and other frontend frameworks.
+- [Frontend Masters](https://frontendmasters.com/learn/react/) - Video courses on React.
 
 - [Fullstack React](https://www.fullstackreact.com/) - The up-to-date, in-depth, complete guide to React and friends.
 
@@ -49,3 +50,9 @@ permalink: community/courses.html
 - [Tyler McGinnis](https://tylermcginnis.com/courses) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
 
 - [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
+
+- [React Tutorial](https://react-tutorial.app) - Learn React step by step in an interactive environment with flashcards.
+
+- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+
+- [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro

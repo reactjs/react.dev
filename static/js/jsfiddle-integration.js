@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 // Do not delete or move this file.
 // Many fiddles reference it so we have to keep it here.
 (function() {

@@ -12,7 +12,7 @@ It also offers full support for React Hooks, including inspecting nested objects
 
 ![DevTools version 4 screenshot](../images/blog/devtools-v4-screenshot.png)
 
-[Visit the interactive tutorial](https://react-devtools-tutorial.now.sh/) to try out the new version or [see the changelog](https://github.com/facebook/react/blob/master/packages/react-devtools/CHANGELOG.md#400-august-15-2019) for demo videos and more details.
+[Visit the interactive tutorial](https://react-devtools-tutorial.now.sh/) to try out the new version or [see the changelog](https://github.com/facebook/react/blob/main/packages/react-devtools/CHANGELOG.md#400-august-15-2019) for demo videos and more details.
 
 ## Which versions of React are supported? {#which-versions-of-react-are-supported}
 
@@ -23,8 +23,8 @@ It also offers full support for React Hooks, including inspecting nested objects
 * `16.x`: Supported
 
 **`react-native`**
-* `0`-`0.61`: Not supported
-* `0.62`: Will be supported (when 0.62 is released)
+* `0`-`0.61.x`: Not supported
+* `0.62`: Supported
 
 ## How do I get the new DevTools? {#how-do-i-get-the-new-devtools}
 

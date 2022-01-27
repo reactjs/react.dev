@@ -122,7 +122,7 @@ People often assume that `componentWillMount` and `componentWillUnmount` are alw
 For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
 `embed:update-on-async-rendering/adding-event-listeners-after.js`
 
-Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this. We'll publish it along with React 16.3.
+Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/main/packages/create-subscription), to help with this. We'll publish it along with React 16.3.
 
 Rather than passing a subscribable `dataSource` prop as we did in the example above, we could use `create-subscription` to pass in the subscribed value:
 

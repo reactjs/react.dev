@@ -19,8 +19,8 @@ We don't necessarily recommend any of these conventions in React apps. Many of t
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
 
-* [`packages`](https://github.com/facebook/react/tree/master/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
-* [`fixtures`](https://github.com/facebook/react/tree/master/fixtures) contains a few small React test applications for contributors.
+* [`packages`](https://github.com/facebook/react/tree/main/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
+* [`fixtures`](https://github.com/facebook/react/tree/main/fixtures) contains a few small React test applications for contributors.
 * `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
 
 The documentation is hosted [in a separate repository from React](https://github.com/reactjs/reactjs.org).
@@ -35,33 +35,11 @@ For example, a test for [`setInnerHTML.js`](https://github.com/facebook/react/bl
 
 ### Warnings and Invariants {#warnings-and-invariants}
 
-The React codebase uses the `warning` module to display warnings:
+The React codebase uses `console.error` to display warnings:
 
 ```js
-var warning = require('warning');
-
-warning(
-  2 + 2 === 4,
-  'Math is not working today.'
-);
-```
-
-**The warning is shown when the `warning` condition is `false`.**
-
-One way to think about it is that the condition should reflect the normal situation rather than the exceptional one.
-
-It is a good idea to avoid spamming the console with duplicate warnings:
-
-```js
-var warning = require('warning');
-
-var didWarnAboutMath = false;
-if (!didWarnAboutMath) {
-  warning(
-    2 + 2 === 4,
-    'Math is not working today.'
-  );
-  didWarnAboutMath = true;
+if (__DEV__) {
+  console.error('Something is wrong.');
 }
 ```
 
@@ -114,46 +92,13 @@ ReactRef.detachRefs = function(
 When possible, new code should use Flow annotations.
 You can run `yarn flow` locally to check your code with Flow.
 
-### Dynamic Injection {#dynamic-injection}
-
-React uses dynamic injection in some modules. While it is always explicit, it is still unfortunate because it hinders understanding of the code. The main reason it exists is because React originally only supported DOM as a target. React Native started as a React fork. We had to add dynamic injection to let React Native override some behaviors.
-
-You may see modules declaring their dynamic dependencies like this:
-
-```js
-// Dynamically injected
-var textComponentClass = null;
-
-// Relies on dynamically injected value
-function createInstanceForText(text) {
-  return new textComponentClass(text);
-}
-
-var ReactHostComponent = {
-  createInstanceForText,
-
-  // Provides an opportunity for dynamic injection
-  injection: {
-    injectTextComponentClass: function(componentClass) {
-      textComponentClass = componentClass;
-    },
-  },
-};
-
-module.exports = ReactHostComponent;
-```
-
-The `injection` field is not handled specially in any way. But by convention, it means that this module wants to have some (presumably platform-specific) dependencies injected into it at runtime.
-
-There are multiple injection points in the codebase. In the future, we intend to get rid of the dynamic injection mechanism and wire up all the pieces statically during the build.
-
 ### Multiple Packages {#multiple-packages}
 
 React is a [monorepo](https://danluu.com/monorepo/). Its repository contains multiple separate packages so that their changes can be coordinated together, and issues live in one place.
 
 ### React Core {#react-core}
 
-The "core" of React includes all the [top-level `React` APIs](/docs/top-level-api.html#react), for example:
+The "core" of React includes all the [top-level `React` APIs](/docs/react-api.html#react), for example:
 
 * `React.createElement()`
 * `React.Component`
@@ -161,7 +106,7 @@ The "core" of React includes all the [top-level `React` APIs](/docs/top-level-ap
 
 **React core only includes the APIs necessary to define components.** It does not include the [reconciliation](/docs/reconciliation.html) algorithm or any platform-specific code. It is used both by React DOM and React Native components.
 
-The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/master/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
+The code for React core is located in [`packages/react`](https://github.com/facebook/react/tree/main/packages/react) in the source tree. It is available on npm as the [`react`](https://www.npmjs.com/package/react) package. The corresponding standalone browser build is called `react.js`, and it exports a global called `React`.
 
 ### Renderers {#renderers}
 
@@ -169,17 +114,17 @@ React was originally created for the DOM but it was later adapted to also suppor
 
 **Renderers manage how a React tree turns into the underlying platform calls.**
 
-Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/master/packages/):
+Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/main/packages/):
 
-* [React DOM Renderer](https://github.com/facebook/react/tree/master/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
-* [React Native Renderer](https://github.com/facebook/react/tree/master/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
-* [React Test Renderer](https://github.com/facebook/react/tree/master/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
+* [React DOM Renderer](https://github.com/facebook/react/tree/main/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
+* [React Native Renderer](https://github.com/facebook/react/tree/main/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
+* [React Test Renderer](https://github.com/facebook/react/tree/main/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
 
-The only other officially supported renderer is [`react-art`](https://github.com/facebook/react/tree/master/packages/react-art). It used to be in a separate [GitHub repository](https://github.com/reactjs/react-art) but we moved it into the main source tree for now.
+The only other officially supported renderer is [`react-art`](https://github.com/facebook/react/tree/main/packages/react-art). It used to be in a separate [GitHub repository](https://github.com/reactjs/react-art) but we moved it into the main source tree for now.
 
 >**Note:**
 >
->Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/master/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
+>Technically the [`react-native-renderer`](https://github.com/facebook/react/tree/main/packages/react-native-renderer) is a very thin layer that teaches React to interact with React Native implementation. The real platform-specific code managing the native views lives in the [React Native repository](https://github.com/facebook/react-native) together with its components.
 
 ### Reconcilers {#reconcilers}
 
@@ -207,13 +152,11 @@ Its main goals are:
 
 You can read more about React Fiber Architecture [here](https://github.com/acdlite/react-fiber-architecture) and [here](https://blog.ag-grid.com/inside-fiber-an-in-depth-overview-of-the-new-reconciliation-algorithm-in-react). While it has shipped with React 16, the async features are not enabled by default yet.
 
-Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/master/packages/react-reconciler).
+Its source code is located in [`packages/react-reconciler`](https://github.com/facebook/react/tree/main/packages/react-reconciler).
 
 ### Event System {#event-system}
 
-React implements a synthetic event system which is agnostic of the renderers and works both with React DOM and React Native. Its source code is located in [`packages/legacy-events`](https://github.com/facebook/react/tree/master/packages/legacy-events).
-
-There is a [video with a deep code dive into it](https://www.youtube.com/watch?v=dRo_egw7tBc) (66 mins).
+React implements a layer over native events to smooth out cross-browser differences. Its source code is located in [`packages/react-dom/src/events`](https://github.com/facebook/react/tree/main/packages/react-dom/src/events).
 
 ### What Next? {#what-next}
 

@@ -1,5 +1,6 @@
 [ignore]
 
+<PROJECT_ROOT>/beta/.*
 <PROJECT_ROOT>/content/.*
 <PROJECT_ROOT>/node_modules/.*
 <PROJECT_ROOT>/public/.*

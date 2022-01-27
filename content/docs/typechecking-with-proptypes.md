@@ -30,6 +30,8 @@ Greeting.propTypes = {
 };
 ```
 
+In this example, we are using a class component, but the same functionality could also be applied to function components, or components created by [`React.memo`](/docs/react-api.html#reactmemo) or [`React.forwardRef`](/docs/react-api.html#reactforwardref).
+
 `PropTypes` exports a range of validators that can be used to make sure the data you receive is valid. In this example, we're using `PropTypes.string`. When an invalid value is provided for a prop, a warning will be shown in the JavaScript console. For performance reasons, `propTypes` is only checked in development mode.
 
 ### PropTypes {#proptypes}
@@ -59,7 +61,7 @@ MyComponent.propTypes = {
 
   // A React element type (ie. MyComponent).
   optionalElementType: PropTypes.elementType,
-  
+
   // You can also declare that a prop is an instance of a class. This uses
   // JS's instanceof operator.
   optionalMessage: PropTypes.instanceOf(Message),
@@ -86,7 +88,7 @@ MyComponent.propTypes = {
     color: PropTypes.string,
     fontSize: PropTypes.number
   }),
-  
+
   // An object with warnings on extra properties
   optionalObjectWithStrictShape: PropTypes.exact({
     name: PropTypes.string,
@@ -97,7 +99,7 @@ MyComponent.propTypes = {
   // is shown if the prop isn't provided.
   requiredFunc: PropTypes.func.isRequired,
 
-  // A value of any data type
+  // A required value of any data type
   requiredAny: PropTypes.any.isRequired,
 
   // You can also specify a custom validator. It should return an Error
@@ -177,7 +179,7 @@ ReactDOM.render(
 );
 ```
 
-If you are using a Babel transform like [transform-class-properties](https://babeljs.io/docs/plugins/transform-class-properties/) , you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
+If you are using a Babel transform like [plugin-proposal-class-properties](https://babeljs.io/docs/en/babel-plugin-proposal-class-properties/) (previously _plugin-transform-class-properties_), you can also declare `defaultProps` as static property within a React component class. This syntax has not yet been finalized though and will require a compilation step to work within a browser. For more information, see the [class fields proposal](https://github.com/tc39/proposal-class-fields).
 
 ```javascript
 class Greeting extends React.Component {
@@ -194,3 +196,47 @@ class Greeting extends React.Component {
 ```
 
 The `defaultProps` will be used to ensure that `this.props.name` will have a value if it was not specified by the parent component. The `propTypes` typechecking happens after `defaultProps` are resolved, so typechecking will also apply to the `defaultProps`.
+
+### Function Components {#function-components}
+
+If you are using function components in your regular development, you may want to make some small changes to allow PropTypes to be properly applied.
+
+Let's say you have a component like this:
+
+```javascript
+export default function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+```
+
+To add PropTypes, you may want to declare the component in a separate function before exporting, like this:
+
+```javascript
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+export default HelloWorldComponent
+```
+
+Then, you can add PropTypes directly to the `HelloWorldComponent`:
+
+```javascript
+import PropTypes from 'prop-types'
+
+function HelloWorldComponent({ name }) {
+  return (
+    <div>Hello, {name}</div>
+  )
+}
+
+HelloWorldComponent.propTypes = {
+  name: PropTypes.string
+}
+
+export default HelloWorldComponent
+```

@@ -1,0 +1,7 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+cd beta
+yarn lint-heading-ids
+yarn prettier
+yarn lint:fix

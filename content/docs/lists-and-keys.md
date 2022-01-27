@@ -185,8 +185,7 @@ function NumberList(props) {
   const numbers = props.numbers;
   const listItems = numbers.map((number) =>
     // Correct! Key should be specified inside the array.
-    <ListItem key={number.toString()}
-              value={number} />
+    <ListItem key={number.toString()} value={number} />
   );
   return (
     <ul>
@@ -208,7 +207,7 @@ A good rule of thumb is that elements inside the `map()` call need keys.
 
 ### Keys Must Only Be Unique Among Siblings {#keys-must-only-be-unique-among-siblings}
 
-Keys used within arrays should be unique among their siblings. However they don't need to be globally unique. We can use the same keys when we produce two different arrays:
+Keys used within arrays should be unique among their siblings. However, they don't need to be globally unique. We can use the same keys when we produce two different arrays:
 
 ```js{2,5,11,12,19,21}
 function Blog(props) {

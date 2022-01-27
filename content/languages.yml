@@ -42,7 +42,7 @@
 - name: Persian
   translated_name: فارسی
   code: fa
-  status: 0
+  status: 1
 - name: French
   translated_name: Français
   code: fr
@@ -66,7 +66,7 @@
 - name: Hungarian
   translated_name: magyar
   code: hu
-  status: 1
+  status: 2
 - name: Armenian
   translated_name: Հայերեն
   code: hy

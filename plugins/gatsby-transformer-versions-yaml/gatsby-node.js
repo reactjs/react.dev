@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const readFileSync = require('fs').readFileSync;
 const resolve = require('path').resolve;
 const safeLoad = require('js-yaml').safeLoad;
@@ -12,14 +16,10 @@ exports.onPostBuild = async ({store}) => {
   const versions = safeLoad(file);
 
   const {program} = store.getState();
-  const redirectsFilePath = path.join(
-    program.directory,
-    'public',
-    '_redirects',
-  );
+  const redirectsFilePath = path.join(program.directory, 'vercel.json');
 
   // versions.yml structure is [{path: string, url: string, ...}, ...]
-  createRedirects(
+  await createRedirects(
     versions
       .filter(version => version.path && version.url)
       .map(version => ({

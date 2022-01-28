@@ -114,7 +114,7 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  */
 .sp-stack {
   height: initial !important;
-  width: fit-content !important;
+  width: 100% !important;
 }
 .sp-cm {
   -webkit-text-size-adjust: none !important;
@@ -145,6 +145,9 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 .sp-cm .cm-gutters {
   background-color: var(--sp-colors-bg-default);
   z-index: 1;
+}
+.sp-wrapper {
+  width: 100% !important;
 }
 .sp-wrapper .sp-custom-layout {
   overflow: initial;

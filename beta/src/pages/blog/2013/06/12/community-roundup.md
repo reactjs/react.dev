@@ -33,7 +33,7 @@ It looks like [Sophie Alpert](http://sophiebits.com/) is the first person outsid
 
 [Mario Mueller](http://blog.xenji.com/) wrote a menu component in React and was able to easily integrate it with require.js, EventEmitter2 and bower.
 
-> I recently stumbled upon facebook's React library, which is a JavaScript library for building reusable frontend components. Even if this lib is only at version 0.3.x it behaves very stable, it is fast and is fun to code. I'm a big fan of require.js, so I tried to use React within the require.js eco system. It was not as hard as expected and here are some examples and some thoughts about it.
+> I recently stumbled upon facebook's React framework, which is a JavaScript framework for building reusable frontend components. Even if this lib is only at version 0.3.x it behaves very stable, it is fast and is fun to code. I'm a big fan of require.js, so I tried to use React within the require.js eco system. It was not as hard as expected and here are some examples and some thoughts about it.
 >
 > [Read the full post...](http://blog.xenji.com/2013/06/facebooks-react-require-js.html)
 

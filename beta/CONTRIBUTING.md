@@ -1,18 +1,18 @@
-# Contributing {/*contributing*/}
+# Contributing
 
 Thank you for your interest in contributing to the React Docs!
 
-## Code of Conduct {/*code-of-conduct*/}
+## Code of Conduct
 
 Facebook has adopted a Code of Conduct that we expect project
 participants to adhere to. Please [read the full text](https://code.facebook.com/codeofconduct)
 so that you can understand what actions will and will not be tolerated.
 
-## Technical Writing Tips {/*technical-writing-tips*/}
+## Technical Writing Tips
 
 This is a [good summary](https://medium.com/@kvosswinkel/coding-like-a-journalist-ee52360a16bc) for things to keep in mind when writing technical docs.
 
-## Guidelines for Text {/*guidelines-for-text*/}
+## Guidelines for Text
 
 **Different sections intentionally have different styles.**
 
@@ -26,25 +26,25 @@ The documentation is divided into sections to cater to different learning styles
 
 When writing step-by-step instructions (e.g. how to install something), try to forget everything you know about the topic, and actually follow the instructions you wrote, a single step at time. Often you will discover that there is implicit knowledge that you forgot to mention, or that there are missing or out-of-order steps in the instructions. Bonus points for getting *somebody else* to follow the steps and watching what they struggle with. Often it would be something very simple that you have not anticipated.
 
-## Guidelines for Code Examples {/*guidelines-for-code-examples*/}
+## Guidelines for Code Examples
 
-### Syntax {/*syntax*/}
+### Syntax
 
-#### Prefer JSX to `createElement`. {/*prefer-jsx-to-createelement*/}
+#### Prefer JSX to `createElement`.
 
 Ignore this if you're specifically describing `createElement`.
 
-#### Use `const` where possible, otherwise `let`. Don't use `var`. {/*use-const-where-possible-otherwise-let-dont-use-var*/}
+#### Use `const` where possible, otherwise `let`. Don't use `var`.
 
 Ignore this if you're specifically writing about ES5.
 
-#### Don't use ES6 features when equivalent ES5 features have no downsides. {/*dont-use-es6-features-when-equivalent-es5-features-have-no-downsides*/}
+#### Don't use ES6 features when equivalent ES5 features have no downsides.
 
 Remember that ES6 is still new to a lot of people. While we use it in many places (`const` / `let`, classes, arrow functions), if the equivalent ES5 code is just as straightforward and readable, consider using it.
 
 In particular, you should prefer named `function` declarations over `const myFunction = () => ...` arrows for top-level functions. However, you *should* use arrow functions where they provide a tangible improvement (such as preserving `this` context inside a component). Consider both sides of the tradeoff when deciding whether to use a new feature.
 
-#### Don't use features that aren't standardized yet. {/*dont-use-features-that-arent-standardized-yet*/}
+#### Don't use features that aren't standardized yet.
 
 For example, **don't** write this:
 
@@ -74,13 +74,13 @@ class MyComponent extends React.Component {
 
 Ignore this rule if you're specifically describing an experimental proposal. Make sure to mention its experimental nature in the code and in the surrounding text.
 
-### Style {/*style*/}
+### Style
 
 - Use semicolons.
 - No space between function names and parens (`method() {}` not `method () {}`).
 - When in doubt, use the default style favored by [Prettier](https://prettier.io/playground/).
 
-### Highlighting {/*highlighting*/}
+### Highlighting
 
 Use `js` as the highlighting language in Markdown code blocks:
 

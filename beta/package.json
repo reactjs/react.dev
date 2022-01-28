@@ -9,11 +9,11 @@
     "build": "next build && node ./scripts/generateRSS.js && node ./scripts/generateRedirects.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
-    "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
+    "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
+    "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
     "prettier": "yarn format:source",
     "prettier:diff": "yarn nit:source",
-    "lint-heading-ids":"node scripts/headingIdLinter.js",
+    "lint-heading-ids": "node scripts/headingIdLinter.js",
     "fix-headings": "node scripts/headingIdLinter.js --fix",
     "ci-check": "npm-run-all prettier:diff --parallel lint tsc lint-heading-ids",
     "tsc": "tsc --noEmit",
@@ -67,13 +67,14 @@
     "gray-matter": "^4.0.2",
     "husky": "^7.0.4",
     "is-ci": "^3.0.1",
+    "lint-staged": ">=10",
     "mdast-util-to-string": "^1.1.0",
     "npm-run-all": "^4.1.5",
     "patch-package": "^6.2.2",
     "postcss": "^8.3.6",
     "postcss-flexbugs-fixes": "4.2.1",
     "postcss-preset-env": "^6.7.0",
-    "prettier": "^2.1.1",
+    "prettier": "^2.5.1",
     "reading-time": "^1.2.0",
     "remark": "^12.0.1",
     "remark-external-links": "^7.0.0",
@@ -96,5 +97,9 @@
     "budget": null,
     "budgetPercentIncreaseRed": 10,
     "showDetails": true
+  },
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx,css}": "yarn prettier",
+    "*.md": "yarn fix-headings"
   }
 }

@@ -9,8 +9,8 @@
     "build": "next build && node ./scripts/generateRSS.js && node ./scripts/generateRedirects.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
-    "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
-    "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx}\"",
+    "format:source": "prettier --config .prettierrc --write \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
+    "nit:source": "prettier --config .prettierrc --list-different \"{plugins,src}/**/*.{js,ts,jsx,tsx,css}\"",
     "prettier": "yarn format:source",
     "prettier:diff": "yarn nit:source",
     "lint-heading-ids": "node scripts/headingIdLinter.js",
@@ -99,8 +99,7 @@
     "showDetails": true
   },
   "lint-staged": {
-    "*.{js,ts,jsx,tsx}": "yarn prettier",
-    "*.css": "prettier --write",
+    "*.{js,ts,jsx,tsx,css}": "yarn prettier",
     "*.md": "yarn fix-headings"
   }
 }

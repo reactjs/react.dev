@@ -42,7 +42,6 @@ const colors = [
 
 export function APIAnatomy({children}: APIAnatomyProps) {
   const [activeStep, setActiveStep] = React.useState<number | null>(null);
-  const ref = React.useRef<HTMLDivElement>();
 
   const {steps, code} = React.Children.toArray(children).reduce(
     (acc: AnatomyContent, child) => {
@@ -60,11 +59,7 @@ export function APIAnatomy({children}: APIAnatomyProps) {
           break;
         case 'pre':
           acc.code = (
-            <CodeBlock
-              ref={ref}
-              {...child.props.children.props}
-              noMargin={true}
-            />
+            <CodeBlock {...child.props.children.props} noMargin={true} />
           );
           break;
       }

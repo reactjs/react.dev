@@ -5,9 +5,9 @@
 /* Algolia v3 overrides */
 :root {
   --docsearch-modal-background: #fff;
-  --docsearch-highlight-color: #087EA4;
+  --docsearch-highlight-color: #087ea4;
   --docsearch-primary-color: #0074a6;
-  --docsearch-container-background: rgba(52,58,70,.8);
+  --docsearch-container-background: rgba(52, 58, 70, 0.8);
   --docsearch-modal-shadow: none;
   --docsearch-searchbox-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
   --ifm-z-index-fixed: 1000;
@@ -20,9 +20,9 @@
   --fds-animation-fade-out: cubic-bezier(0, 0, 1, 1);
 }
 html.dark {
-  --docsearch-modal-background: #23272F;
-  --docsearch-hit-background: #23272F;
-  --docsearch-highlight-color: #149ECA;
+  --docsearch-modal-background: #23272f;
+  --docsearch-hit-background: #23272f;
+  --docsearch-highlight-color: #149eca;
 }
 .DocSearch--active #__next {
   -webkit-filter: blur(0px);
@@ -56,7 +56,7 @@ html.dark .DocSearch-Form {
   @apply pt-4;
 }
 html.dark .DocSearch-Commands {
-  @apply border-border-dark
+  @apply border-border-dark;
 }
 .DocSearch-Commands-Key {
   @apply shadow-none;
@@ -127,9 +127,10 @@ html.dark .DocSearch-Hit-title {
 .DocSearch-Hit-path {
   @apply font-normal;
 }
-.DocSearch-LoadingIndicator svg, .DocSearch-MagnifierLabel svg {
-  width:13px;
-  height:13px;
+.DocSearch-LoadingIndicator svg,
+.DocSearch-MagnifierLabel svg {
+  width: 13px;
+  height: 13px;
   @apply text-gray-30;
   @apply mx-1;
 }

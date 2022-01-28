@@ -1,6 +1,9 @@
-name: Build
+name: Lint / Flow check
 
 on:
+  push:
+    branches:
+      - main # change this if your default branch is named differently
   pull_request:
     types: [opened, synchronize, reopened]
 

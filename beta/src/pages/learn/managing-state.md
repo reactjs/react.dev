@@ -8,7 +8,7 @@ As your application grows, it helps to be more intentional about how your state 
 
 </Intro>
 
-<YouWillLearn>
+<YouWillLearn isChapter={true}>
 
 * [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
 * [How to structure state well](/learn/choosing-the-state-structure)

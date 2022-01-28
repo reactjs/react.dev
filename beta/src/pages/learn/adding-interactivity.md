@@ -8,7 +8,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 </Intro>
 
-<YouWillLearn>
+<YouWillLearn isChapter={true}>
 
 * [How to handle user-initiated events](/learn/responding-to-events)
 * [How to make components "remember" information with state](/learn/state-a-components-memory)

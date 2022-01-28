@@ -12,21 +12,24 @@
 
 @font-face {
   font-family: 'Optimistic Display';
-  src: url('https://facebookmicrosites.github.io/design/public/fonts/OptimisticDisplayLight-199be98cf48e5b4c688356b08a02362c.woff2') format('woff2');
+  src: url('https://facebookmicrosites.github.io/design/public/fonts/OptimisticDisplayLight-199be98cf48e5b4c688356b08a02362c.woff2')
+    format('woff2');
   font-weight: 300;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Optimistic Display';
-  src: url('https://facebookmicrosites.github.io/design/public/fonts/OptimisticDisplayRegular-b0e4e99f91efd0021c3ab8e4df0e6e1b.woff2') format('woff2');
+  src: url('https://facebookmicrosites.github.io/design/public/fonts/OptimisticDisplayRegular-b0e4e99f91efd0021c3ab8e4df0e6e1b.woff2')
+    format('woff2');
   font-weight: 500;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'Optimistic Display';
-  src: url('https://facebookmicrosites.github.io/design/public/fonts/OptimisticDisplayBold-3a50548145f36de582c3b36d9626f4d6.woff2') format('woff2');
+  src: url('https://facebookmicrosites.github.io/design/public/fonts/OptimisticDisplayBold-3a50548145f36de582c3b36d9626f4d6.woff2')
+    format('woff2');
   font-weight: 700;
   font-style: normal;
 }

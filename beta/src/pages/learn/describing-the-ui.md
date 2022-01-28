@@ -8,7 +8,7 @@ React is a JavaScript library for rendering user interfaces (UI). UI is built fr
 
 </Intro>
 
-<YouWillLearn>
+<YouWillLearn isChapter={true}>
 
 * [How to write your first React component](/learn/your-first-component)
 * [When and how to create multi-component files](/learn/importing-and-exporting-components)

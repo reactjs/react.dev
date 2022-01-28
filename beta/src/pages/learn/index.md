@@ -10,7 +10,7 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 <YouWillLearn>
 
-- How to define components
+- How to create and nest components
 - How to add markup and styles
 - How to display data
 - How to render conditions and lists
@@ -77,7 +77,7 @@ The `export default` keywords specify the main component in the file. If you're 
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called JSX. It is optional, but most React projects use JSX for its convenience. Browsers don't understand JSX natively, but you can [set up a tranform locally](/learn/installation) when you're ready.
+The markup syntax you've seen above is called JSX. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
 JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
 
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-You can put any dynamic expressions inside JSX curlies, including function calls and object literals:
+You can put any dynamic expressions inside JSX curlies, including string concatenation and object literals:
 
 <Sandpack>
 
@@ -148,16 +148,12 @@ const user = {
 };
 
 export default function Profile() {
-  const classes = ['avatar'];
-  if (user.imageSize > 100) {
-    classes.push('large');
-  }
   return (
     <>
       <h1>{user.name}</h1>
       <img
+        className="avatar"
         src={user.imageUrl}
-        className={classes.join(' ')}
         alt={'Photo of ' + user.name}
         style={{
           width: user.imageSize,
@@ -185,7 +181,7 @@ In the above example, `style={{ }}` is not a special syntax, but a regular objec
 
 ## Conditional rendering {/*conditional-rendering*/}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. To render a component conditionally, you can use [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement:
+In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
 
 ```js
 let content;
@@ -194,12 +190,14 @@ if (isLoggedIn) {
 } else {
   content = <LoginForm />;
 }
-<div>
-  {content}
-</div>
+return (
+  <div>
+    {content}
+  </div>
+);
 ```
 
-Or, if you prefer terser code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator):
+If you prefer terser code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). Unlike `if`, it works inside JSX:
 
 ```js
 <div>
@@ -211,7 +209,7 @@ Or, if you prefer terser code, you can use the [conditional `?` operator](https:
 </div>
 ```
 
-If you don't have the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
 <div>
@@ -219,7 +217,7 @@ If you don't have the `else` branch, you can also use a shorter [logical `&&` sy
 </div>
 ```
 
-If you're unfamiliar with this JavaScript syntax, you can start by always using `if...else`.
+All of the same approaches work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
 
 ## Rendering lists {/*rendering-lists*/}
 
@@ -249,7 +247,7 @@ return (
 );
 ```
 
-Notice how `<li>` has a `key` attribute. A key helps React figure out what happened when list items are inserted, removed, or reordered. Usually you should use a key from your data, such as a database ID. Keys should be unique among items in the same parent tag. Although you can technically specify index as a key, your list won't work correctly when items are inserted, removed, or reordered. Always try to use ID as a key if you can.
+Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React will rely on your keys to understand what happened if you later insert, delete, or reorder the items.
 
 <Sandpack>
 
@@ -298,25 +296,28 @@ function MyButton() {
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end. You don't need to _call_ your event handler, you need to _pass_ the event handler itself. React will call your handler when the user clicks the button.
+Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
 
 ## Updating the screen {/*updating-the-screen*/}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component:
+Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+
+First, import [`useState`](/reference/usestate) from React:
 
 ```js {1,4}
 import { useState } from 'react';
-
-function MyButton() {
-  const [count, setCount] = useState(0);
-
-  // ...
-}
 ```
 
-You can think of state as a component's memory.
+Now you can declare a *state variable* inside your component:
 
-Initially, the number of clicks is `0`. That's what `count` will be the first time the component is displayed. When you want to change it, you need to call `setCount`. For example, clicking this button will increment the counter:
+```js
+function MyButton() {
+  const [count, setCount] = useState(0);
+```
+
+You will get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to call them like `[thing, setThing]`.
+
+The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
 
 ```js {5}
 function MyButton() {
@@ -334,7 +335,7 @@ function MyButton() {
 }
 ```
 
-React will call your component function again, but this time, `count` will be `1`. Then it will be `2`. And so on.
+React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
 
 If you render the same component multiple times, each will get its own state. Try clicking each button separately:
 
@@ -377,6 +378,10 @@ button {
 ```
 
 </Sandpack>
+
+Functions starting with `use` are called Hooks. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/reference). You can also write your own Hooks by combining the existing ones.
+
+Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to `useState` in a condition or a loop, extract a new component and put it there.
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
@@ -482,8 +487,8 @@ button {
 
 </Sandpack>
 
-## Next steps {/*next-steps*/}
+## Next Steps {/*next-steps*/}
 
-By now, you know the basics of how to write React code.
+By now, you know the basics of how to write React code!
 
 Head to [Thinking in React](/learn/thinking-in-react) to see how it feels to build a UI with React in practice.

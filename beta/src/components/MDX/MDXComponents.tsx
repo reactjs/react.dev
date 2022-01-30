@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-
+import {SandpackSetup} from '@codesandbox/sandpack-react';
 import {APIAnatomy, AnatomyStep} from './APIAnatomy';
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
@@ -18,7 +18,10 @@ import Intro from './Intro';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
-import Sandpack from './Sandpack';
+import dynamic from 'next/dynamic';
+const Sandpack = dynamic(() => import('./Sandpack'), {
+  suspense: true,
+});
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
@@ -366,7 +369,21 @@ export const MDXComponents = {
   PackageImport,
   Recap,
   Recipes,
-  Sandpack,
+  Sandpack: (props: {
+    children: React.ReactChildren;
+    autorun?: boolean;
+    setup?: SandpackSetup;
+    showDevTools?: boolean;
+  }) => (
+    <React.Suspense
+      fallback={
+        <div className="h-[406px] animate-pulse w-full shadow-lg dark:shadow-lg-dark rounded-lg dark:bg-[#16181d] bg-white">
+          <div className="bg-wash dark:bg-card-dark h-[39px] border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none"></div>
+        </div>
+      }>
+      <Sandpack {...props} />
+    </React.Suspense>
+  ),
   TerminalBlock,
   YouWillLearn,
   YouWillLearnCard,

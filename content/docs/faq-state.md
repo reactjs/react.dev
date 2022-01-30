@@ -78,6 +78,40 @@ handleSomething() {
 
 [Learn more about setState](/docs/react-component.html#setstate)
 
+### How do I update nested state properties?
+
+Let's say the state of your component looks like this:
+
+```jsx
+state = {
+    isVerified: false
+    user: {
+        firstname: 'Abhay',
+        lastname: 'Chauhan',
+        age: 22
+    }
+}
+```
+
+If you want to update `user.lastname` while keeping the other properties the same, use the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) in the update function to copy the old user object to a new object.
+
+```jsx
+changeLastName(newLastName) {
+  this.setState((state) => {
+    return {
+        user: {
+            ...state.user,
+            lastName: newLastName
+        }
+    };
+  });
+}
+
+handleSomething(newLastName) {
+    this.changeLastName(newLastName);
+}
+```
+
 ### When is `setState` asynchronous? {#when-is-setstate-asynchronous}
 
 Currently, `setState` is asynchronous inside event handlers.

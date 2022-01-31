@@ -20,7 +20,7 @@ You must declare state variables **at the top level of your component,** outside
 
 <AnatomyStep title="Initial state">
 
-You pass the value you want the state to be initially.
+You pass the value you want the state [to be initially](usestate#passing-an-initializer-function-to-usestate).
 
 </AnatomyStep>
 
@@ -32,7 +32,7 @@ You get the latest state value for your JSX.
 
 <AnatomyStep title="State setter">
 
-You get the function that lets you update the state.
+You get the function that lets you [update the state](usestate#passing-an-updater-function-to-setstate).
 
 </AnatomyStep>
 

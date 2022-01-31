@@ -4,7 +4,7 @@ title: useState()
 
 <Intro>
 
-`useState` is a React Hook that lets a component "remember" some information (called [state](/learn/state-a-components-memory)). It returns two values: the current state, and the function you can use to update it.
+The `useState` Hook lets your component ["remember" information that changes over time](/learn/state-a-components-memory) (called state). It returns two values: the current state, and the function that lets you update it.
 
 ```js
 const [state, setState] = useState(initialState);
@@ -12,9 +12,50 @@ const [state, setState] = useState(initialState);
 
 </Intro>
 
+## Declaring a state variable {/*declaring-a-state-variable*/}
+
+You can declare one or more [state variables](/learn/state-a-components-memory) at the top level of your component:
+
+<APIAnatomy>
+
+<AnatomyStep title="You pass: Initial state">
+
+Pass any value that you want the state to be initially.
+
+<small>You can also pass an <a href="#passing-an-initializer-to-usestate">initializer function</a>.</small>
+
+</AnatomyStep>
+
+<AnatomyStep title="You get: Current state">
+
+This is the current state value that you can display in JSX.
+
+</AnatomyStep>
+
+<AnatomyStep title="You get: State setter">
+
+This is the function that lets you update the state later.
+
+</AnatomyStep>
+
+```js [[2, 4, "name"], [3, 4, "setName"], [1, 4, "'Taylor'"], [2, 6, "age"], [3, 6, "setAge"], [1, 6, "28"]]
+import { useState } from 'react';
+
+function Form() {
+  const [name, setName] = useState('Taylor');
+
+  const [age, setAge] = useState(28);
+
+  // ...
+```
+
+</APIAnatomy>
+
+This `[` and `]` syntax is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items--it's a pair. By convention, name them like `[thing, setThing]`.
+
 ## Using state {/*using-state*/}
 
-You can add state to your component in three steps:
+First, declare the state variables you need. Then, update them on interaction and display them in your JSX:
 
 <APIAnatomy>
 
@@ -24,15 +65,17 @@ Call `useState` and pass the initial state to it. React will store the state tha
 
 </AnatomyStep>
 
-<AnatomyStep title="Update state on interaction">
+<AnatomyStep title="Set state on interaction">
 
-To change it, call the state setter function with the next state value. React will put that value into state instead.
+To change the state, call the state setter function with the next state value. React will put that value into state instead.
+
+<small>You can also pass an <a href="#passing-a-state-updater-to-setstate">updater function</a>.</small>
 
 </AnatomyStep>
 
 <AnatomyStep title="Render state in the UI">
 
-Use the state for rendering by [putting it into the JSX](/learn/javascript-in-jsx-with-curly-braces).
+Use the state in your JSX.
 
 </AnatomyStep>
 
@@ -56,8 +99,6 @@ function Counter() {
 
 </APIAnatomy>
 
-[State is a component's memory](/learn/state-a-components-memory). A state variable lets you hold some information that **changes over time and is specific to your component**. Here, `count` holds the number of clicks. However, you can keep any JavaScript value in state--for example, the current input text, the selected gallery image, or the contents of a shopping cart.
-
 <Sandpack>
 
 ```js
@@ -80,312 +121,70 @@ export default function Counter() {
 
 </Sandpack>
 
-<br />
-
-## Declaring a state variable {/*declaring-a-state-variable*/}
-
-You can declare multiple state variables in a component. You must declare them **at the top level of your component,** outside of any conditions or loops. This component declares state variables called `name` and `age`:
-
-<APIAnatomy>
-
-<AnatomyStep title="Current state">
-
-You get the latest state value for your JSX.
-
-</AnatomyStep>
-
-<AnatomyStep title="State setter">
-
-You get the function that lets you update the state.
-
-</AnatomyStep>
-
-<AnatomyStep title="Initial state">
-
-You pass the value you want the state to be initially.
-
-</AnatomyStep>
-
-```js [[1, 4, "name"], [2, 4, "setName"], [3, 4, "'Taylor'"], [1, 6, "age"], [2, 6, "setAge"], [3, 6, "28"]]
-import { useState } from 'react';
-
-function Form() {
-  const [name, setName] = useState('Taylor');
-
-  const [age, setAge] = useState(28);
-
-  // ...
-```
-
-</APIAnatomy>
-
-This allows your component to "remember" multiple independent things--for example, different form fields.
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-
-export default function Form() {
-  const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(28);
-
-  return (
-    <>
-      <input
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <button onClick={() => setAge(age + 1)}>
-        Happy birthday!
-      </button>
-      <p>Hello, {name}. You are {age}.</p>
-    </>
-  );
-}
-```
-
-</Sandpack>
-
-The `[` and `]` syntax here is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items--it's a pair. By convention, name them like `[thing, setThing]`.
-
-<Gotcha>
-
-Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
-
-```js {4}
-function handleClick() {
-  console.log(count);  // 0
-  setCount(count + 1); // Request a re-render with 1
-  console.log(count);  // Still 0!
-}
-```
-
-</Gotcha>
-
-<br />
-
-## When not to use it {/*when-not-to-use-it*/}
-
-* Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
-* Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
-
-<br />
-
-## Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
-
-You can hold objects and arrays in state, too. However, you should always *replace* objects in state rather than modify the existing ones. [Updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) describe common patterns that help avoid bugs.
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-export default function MovingDot() {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0
-  });
-  return (
-    <div
-      onPointerMove={e => {
-        setPosition({
-          x: e.clientX,
-          y: e.clientY
-        });
-      }}
-      style={{
-        position: 'relative',
-        width: '100vw',
-        height: '100vh',
-      }}>
-      <div style={{
-        position: 'absolute',
-        backgroundColor: 'red',
-        borderRadius: '50%',
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        left: -10,
-        top: -10,
-        width: 20,
-        height: 20,
-      }} />
-    </div>
-  )
-}
-```
-
-```css
-body { margin: 0; padding: 0; height: 250px; }
-```
-
-</Sandpack>
-
-<br />
-
 <Recipes>
 
-### Image gallery {/*image-gallery*/}
+### Text field (string) {/*text-field-string*/}
 
 <Sandpack>
 
 ```js
 import { useState } from 'react';
-import { sculptureList } from './data.js';
 
-export default function Gallery() {
-  const [index, setIndex] = useState(0);
-  const [showMore, setShowMore] = useState(false);
+export default function MyInput() {
+  const [text, setText] = useState('hello');
 
-  let hasPrev = index > 0;
-  let hasNext = index < sculptureList.length - 1;
-
-  function handlePrevClick() {
-    if (hasPrev) {
-      setIndex(index - 1);
-    }
+  function handleChange(e) {
+    setText(e.target.value);
   }
 
-  function handleNextClick() {
-    if (hasNext) {
-      setIndex(index + 1);
-    }
-  }
-
-  function handleMoreClick() {
-    setShowMore(!showMore);
-  }
-
-  let sculpture = sculptureList[index];
   return (
     <>
-      <button
-        onClick={handlePrevClick}
-        disabled={!hasPrev}
-      >
-        Previous
-      </button>
-      <button
-        onClick={handleNextClick}
-        disabled={!hasNext}
-      >
-        Next
-      </button>
-      <h2>
-        <i>{sculpture.name} </i>
-        by {sculpture.artist}
-      </h2>
-      <h3>
-        ({index + 1} of {sculptureList.length})
-      </h3>
-      <button onClick={handleMoreClick}>
-        {showMore ? 'Hide' : 'Show'} details
-      </button>
-      {showMore && <p>{sculpture.description}</p>}
-      <img
-        src={sculpture.url}
-        alt={sculpture.alt}
-      />
+      <input value={text} onChange={handleChange} />
+      <p>You typed: {text}</p>
     </>
   );
 }
-```
-
-```js data.js hidden
-export const sculptureList = [{
-  name: 'Homenaje a la Neurocirugía',
-  artist: 'Marta Colvin Andrade',
-  description: 'Although Colvin is predominantly known for abstract themes that allude to pre-Hispanic symbols, this gigantic sculpture, an homage to neurosurgery, is one of her most recognizable public art pieces.',
-  url: 'https://i.imgur.com/Mx7dA2Y.jpg',
-  alt: 'A bronze statue of two crossed hands delicately holding a human brain in their fingertips.'
-}, {
-  name: 'Floralis Genérica',
-  artist: 'Eduardo Catalano',
-  description: 'This enormous (75 ft. or 23m) silver flower is located in Buenos Aires. It is designed to move, closing its petals in the evening or when strong winds blow and opening them in the morning.',
-  url: 'https://i.imgur.com/ZF6s192m.jpg',
-  alt: 'A gigantic metallic flower sculpture with reflective mirror-like petals and strong stamens.'
-}, {
-  name: 'Eternal Presence',
-  artist: 'John Woodrow Wilson',
-  description: 'Wilson was known for his preoccupation with equality, social justice, as well as the essential and spiritual qualities of humankind. This massive (7ft. or 2,13m) bronze represents what he described as "a symbolic Black presence infused with a sense of universal humanity."',
-  url: 'https://i.imgur.com/aTtVpES.jpg',
-  alt: 'The sculpture depicting a human head seems ever-present and solemn. It radiates calm and serenity.'
-}, {
-  name: 'Moai',
-  artist: 'Unknown Artist',
-  description: 'Located on the Easter Island, there are 1,000 moai, or extant monumental statues, created by the early Rapa Nui people, which some believe represented deified ancestors.',
-  url: 'https://i.imgur.com/RCwLEoQm.jpg',
-  alt: 'Three monumental stone busts with the heads that are disproportionately large with somber faces.'
-}, {
-  name: 'Blue Nana',
-  artist: 'Niki de Saint Phalle',
-  description: 'The Nanas are triumphant creatures, symbols of femininity and maternity. Initially, Saint Phalle used fabric and found objects for the Nanas, and later on introduced polyester to achieve a more vibrant effect.',
-  url: 'https://i.imgur.com/Sd1AgUOm.jpg',
-  alt: 'A large mosaic sculpture of a whimsical dancing female figure in a colorful costume emanating joy.'
-}, {
-  name: 'Ultimate Form',
-  artist: 'Barbara Hepworth',
-  description: 'This abstract bronze sculpture is a part of The Family of Man series located at Yorkshire Sculpture Park. Hepworth chose not to create literal representations of the world but developed abstract forms inspired by people and landscapes.',
-  url: 'https://i.imgur.com/2heNQDcm.jpg',
-  alt: 'A tall sculpture made of three elements stacked on each other reminding of a human figure.'
-}, {
-  name: 'Cavaliere',
-  artist: 'Lamidi Olonade Fakeye',
-  description: "Descended from four generations of woodcarvers, Fakeye's work blended traditional and contemporary Yoruba themes.",
-  url: 'https://i.imgur.com/wIdGuZwm.png',
-  alt: 'An intricate wood sculpture of a warrior with a focused face on a horse adorned with patterns.'
-}, {
-  name: 'Big Bellies',
-  artist: 'Alina Szapocznikow',
-  description: "Szapocznikow is known for her sculptures of the fragmented body as a metaphor for the fragility and impermanence of youth and beauty. This sculpture depicts two very realistic large bellies stacked on top of each other, each around five feet (1,5m) tall.",
-  url: 'https://i.imgur.com/AlHTAdDm.jpg',
-  alt: 'The sculpture reminds a cascade of folds, quite different from bellies in classical sculptures.'
-}, {
-  name: 'Terracotta Army',
-  artist: 'Unknown Artist',
-  description: 'The Terracotta Army is a collection of terracotta sculptures depicting the armies of Qin Shi Huang, the first Emperor of China. The army consisted of more than 8,000 soldiers, 130 chariots with 520 horses, and 150 cavalry horses.',
-  url: 'https://i.imgur.com/HMFmH6m.jpg',
-  alt: '12 terracotta sculptures of solemn warriors, each with a unique facial expression and armor.'
-}, {
-  name: 'Lunar Landscape',
-  artist: 'Louise Nevelson',
-  description: 'Nevelson was known for scavenging objects from New York City debris, which she would later assemble into monumental constructions. In this one, she used disparate parts like a bedpost, juggling pin, and seat fragment, nailing and gluing them into boxes that reflect the influence of Cubism’s geometric abstraction of space and form.',
-  url: 'https://i.imgur.com/rN7hY6om.jpg',
-  alt: 'A black matte sculpture where the individual elements are initially indistinguishable.'
-}, {
-  name: 'Aureole',
-  artist: 'Ranjani Shettar',
-  description: 'Shettar merges the traditional and the modern, the natural and the industrial. Her art focuses on the relationship between man and nature. Her work was described as compelling both abstractly and figuratively, gravity defying, and a "fine synthesis of unlikely materials."',
-  url: 'https://i.imgur.com/okTpbHhm.jpg',
-  alt: 'A pale wire-like sculpture mounted on concrete wall and descending on the floor. It appears light.'
-}, {
-  name: 'Hippos',
-  artist: 'Taipei Zoo',
-  description: 'The Taipei Zoo commissioned a Hippo Square featuring submerged hippos at play.',
-  url: 'https://i.imgur.com/6o5Vuyu.jpg',
-  alt: 'A group of bronze hippo sculptures emerging from the sett sidewalk as if they were swimming.'
-}];
-```
-
-```css
-button { display: block; margin-bottom: 10px; }
-.Page > * {
-  float: left;
-  width: 50%;
-  padding: 10px;
-}
-h2 { margin-top: 10px; margin-bottom: 0; }
-h3 {
-  margin-top: 5px;
-  font-weight: normal;
-  font-size: 100%;
-}
-img { width: 120px; height: 120px; }
 ```
 
 </Sandpack>
 
 <Solution />
 
-### Form with multiple fields {/*form-with-multiple-fields*/}
+### Checkbox (boolean) {/*checkbox-boolean*/}
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function MyCheckbox() {
+  const [liked, setLiked] = useState(true);
+
+  function handleChange(e) {
+    setLiked(e.target.checked);
+  }
+
+  return (
+    <>
+      <label>
+        <input
+          type="checkbox"
+          checked={liked}
+          onChange={handleChange}
+        />
+        I liked this
+      </label>
+      <p>You {liked ? 'liked' : 'did not like'} this.</p>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+### Form (object) {/*form-object*/}
 
 <Sandpack>
 
@@ -451,7 +250,7 @@ input { margin-left: 5px; }
 
 <Solution />
 
-### Todo list {/*todo-list*/}
+### List (array) {/*list-array*/}
 
 <Sandpack>
 
@@ -468,9 +267,7 @@ const initialTodos = [
 ];
 
 export default function TaskBoard() {
-  const [todos, setTodos] = useState(
-    initialTodos
-  );
+  const [todos, setTodos] = useState(initialTodos);
 
   function handleAddTodo(title) {
     setTodos([
@@ -618,103 +415,30 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-### Multiple selection {/*multiple-selection*/}
+### Multiple state variables {/*multiple-state-variables*/}
 
 <Sandpack>
 
-```js App.js
+```js
 import { useState } from 'react';
-import { letters } from './data.js';
-import Letter from './Letter.js';
 
-export default function MailClient() {
-  const [
-    selectedIds,
-    setSelectedIds
-  ] = useState(new Set());
-
-  const selectedCount = selectedIds.size;
-
-  function handleToggle(toggledId) {
-    // Create a copy (to avoid mutation).
-    const nextIds = new Set(selectedIds);
-    if (nextIds.has(toggledId)) {
-      nextIds.delete(toggledId);
-    } else {
-      nextIds.add(toggledId);
-    }
-    setSelectedIds(nextIds);
-  }
+export default function Form() {
+  const [name, setName] = useState('Taylor');
+  const [age, setAge] = useState(28);
 
   return (
-    <ul>
-      {letters.map(letter => (
-        <Letter
-          key={letter.id}
-          letter={letter}
-          isSelected={
-            selectedIds.has(letter.id)
-          }
-          onToggle={handleToggle}
-        />
-      ))}
-      <hr />
-      <p>
-        <b>
-          You selected {selectedCount} letters
-        </b>
-      </p>
-    </ul>
+    <>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => setAge(age + 1)}>
+        Happy birthday!
+      </button>
+      <p>Hello, {name}. You are {age}.</p>
+    </>
   );
 }
-```
-
-```js Letter.js
-export default function Letter({
-  letter,
-  onToggle,
-  isSelected,
-}) {
-  return (
-    <li className={
-      isSelected ? 'selected' : ''
-    }>
-      <label>
-        <input
-          type="checkbox"
-          checked={isSelected}
-          onChange={() => {
-            onToggle(letter.id);
-          }}
-        />
-        {letter.subject}
-      </label>
-    </li>
-  )
-}
-```
-
-```js data.js
-export const letters = [{
-  id: 0,
-  subject: 'How are you?',
-  isStarred: true,
-}, {
-  id: 1,
-  subject: 'Your taxes are due',
-  isStarred: false,
-}, {
-  id: 2,
-  subject: 'Reminder: dentist',
-  isStarred: false,
-}];
-```
-
-```css
-input { margin: 5px; }
-li { border-radius: 5px; }
-label { width: 100%; padding: 5px; display: inline-block; }
-.selected { background: #d2eaff; }
 ```
 
 </Sandpack>
@@ -722,6 +446,25 @@ label { width: 100%; padding: 5px; display: inline-block; }
 <Solution />
 
 </Recipes>
+
+<Gotcha>
+
+Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
+
+```js {4}
+function handleClick() {
+  console.log(count);  // 0
+  setCount(count + 1); // Request a re-render with 1
+  console.log(count);  // Still 0!
+}
+```
+
+</Gotcha>
+
+## When not to use it {/*when-not-to-use-it*/}
+
+* Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
+* Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
 
 ## Special cases {/*special-cases*/}
 
@@ -735,11 +478,57 @@ setCount(count); // Won't trigger a re-render
 
 This is a performance optimization. React uses the [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) algorithm to compare the values.
 
-<br />
 
-### Passing an updater function to `setState` {/*passing-an-updater-function-to-setstate*/}
+### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
 
-Instead of passing the next state itself, **you may pass a function to `setState`.** Such a function, like `c => c + 1` in this example, is called an "updater". React will call your updater during the next render to calculate the final state.
+You can hold objects and arrays in state, too. However, you should always *replace* objects in state rather than modify the existing ones. [Updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) describe common patterns that help avoid bugs.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+export default function MovingDot() {
+  const [position, setPosition] = useState({
+    x: 0,
+    y: 0
+  });
+  return (
+    <div
+      onPointerMove={e => {
+        setPosition({
+          x: e.clientX,
+          y: e.clientY
+        });
+      }}
+      style={{
+        position: 'relative',
+        width: '100vw',
+        height: '100vh',
+      }}>
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'red',
+        borderRadius: '50%',
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        left: -10,
+        top: -10,
+        width: 20,
+        height: 20,
+      }} />
+    </div>
+  )
+}
+```
+
+```css
+body { margin: 0; padding: 0; height: 250px; }
+```
+
+</Sandpack>
+
+### Passing a state updater to `setState` {/*passing-a-state-updater-to-setstate*/}
+
+Instead of passing the next state, **you may pass a function to `setState`.** Such a function, like `c => c + 1` in this example, is called an "updater". React will call your updater during the next render to calculate the final state.
 
 <APIAnatomy>
 
@@ -769,13 +558,13 @@ Your updater function will receive the pending state and should return the next 
 
 <APIAnatomy>
 
-<AnatomyStep title="Pending state">
+<AnatomyStep title="You receive: Pending state">
 
 You get the latest state with the previously queued updates applied to it. For example, if `count` was `0` and you call `setCount(c => c + 1)` three times in a row, then the pending `c` state will be `0` in the first updater, `1` in the second one, and `2` in the third one, and `3` is the final state.
 
 </AnatomyStep>
 
-<AnatomyStep title="Next state">
+<AnatomyStep title="You return: Next state">
 
 You return the next state you want to see on the screen.
 
@@ -830,63 +619,37 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Updater functions run during rendering. This is why [they should be pure functions](/learn/keeping-components-pure). In other words, your **updater functions should only calculate and return the next state**. They should not try to "do" things or set state.
+Updater functions run during rendering. This is why [they should be pure](/learn/keeping-components-pure). In other words, your **updater functions should only calculate and return the next state**. They should not try to "do" things or set state.
 
 If you don't have a particular reason to use an updater, you can stick with passing the next state directly.
 
 <Gotcha>
 
-You need to be careful when returning an object from an arrow function. This doesn't work:
+Because `setState()` acts differently when you pass a function, you can't put a function in state like this:
 
 ```js
-setForm(f => {
-  name: f.name.toUpperCase()
-});
-```
+const [func, setFunc] = useState(initialFunc);
 
-This code doesn't work because JavaScript considers `=> {` to be a function body rather than a returned object. Since it is a function body, you have to write an explicit `return` statement:
-
-```js
-setForm(f => {
-  return {
-    name: f.name.toUpperCase()
-  };
-});
-```
-
-Alternatively, you have to add parentheses around your object:
-
-```js
-setForm(f => ({
-  name: f.name.toUpperCase()
-}));
-```
-
-This is an unfortunate language quirk of JavaScript, and is not specific to React.
-
-</Gotcha>
-
-<Gotcha>
-
-Because `setState()` with a function argument has this special meaning, you can't put a function in state like this:
-
-```js
-setState(myFunction);
+function handleClick() {
+  setFunc(otherFunc);
+}
 ```
 
 If you really need to put a function in state (which is rare), you can do this instead:
 
 ```js
-setState(() => myFunction);
+const [func, setFunc] = useState(() => initialFunc);
+
+function handleClick() {
+  setFunc(() => otherFunc);
+}
 ```
 
 </Gotcha>
 
-<br />
+### Passing an initializer to `useState` {/*passing-an-initializer-to-usestate*/}
 
-### Passing an initializer function to `useState` {/*passing-an-initializer-function-to-usestate*/}
-
-The initial state that you pass to `useState` as an argument is only used for the initial render. For next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away many times. **You can pass a function to `useState` to calculate the initial state.** React will only run it during the initialization.
+The initial state that you pass to `useState` is only used for the initial render. For next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away many times. **You can pass a function to `useState` to calculate the initial state.** React will only run it during the initialization.
 
 
 <APIAnatomy>
@@ -953,6 +716,7 @@ export default function TodoList() {
 
 </Sandpack>
 
-Initializer functions run during rendering. This is why [they should be pure functions](/learn/keeping-components-pure). In other words, your **initializer functions should only calculate and return the initial state**. They should not try to "do" things or set state.
+Initializer functions run during rendering. This is why [they should be pure](/learn/keeping-components-pure). In other words, your **initializer functions should only calculate and return the initial state**. They should not try to "do" things or set state.
 
 If you don't have a particular reason to use an initializer, you can stick with passing the initial state directly.
+

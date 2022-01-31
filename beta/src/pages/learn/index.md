@@ -389,7 +389,7 @@ Hooks are more restrictive than regular functions. You can only call Hooks *at t
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
-In the previous example, each button had its own counter. Imagine the structure of that example:
+In the previous example, each button had its own counter. Consider the structure of that example:
 
 ```js {2-4}
 - MyApp

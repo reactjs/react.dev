@@ -217,7 +217,7 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of these approaches work for conditionally specifying attributes too. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
 
 ## Rendering lists {/*rendering-lists*/}
 

@@ -4,13 +4,94 @@ title: useState()
 
 <Intro>
 
-`useState` is a React Hook that lets a component "remember" some information (called [state](/learn/state-a-components-memory)). It returns two values: the current state, and the function you can use to update it.
+`useState` is a React Hook that lets a component "remember" some information (called [state](/learn/state-a-components-memory)). It returns two values: the current state, and the function you can use to update it.
 
 ```js
 const [state, setState] = useState(initialState);
 ```
 
 </Intro>
+
+## Declaring a state variable {/*declaring-a-state-variable*/}
+
+You must declare state variables **at the top level of your component,** outside of any conditions or loops. You can declare multiple state variables in a component. This component declares state variables called `name` and `age`:
+
+<APIAnatomy>
+
+<AnatomyStep title="Initial state">
+
+You pass the value you want the state to be initially.
+
+</AnatomyStep>
+
+<AnatomyStep title="Current state">
+
+You get the latest state value for your JSX.
+
+</AnatomyStep>
+
+<AnatomyStep title="State setter">
+
+You get the function that lets you update the state.
+
+</AnatomyStep>
+
+```js [[2, 4, "name"], [3, 4, "setName"], [1, 4, "'Taylor'"], [2, 6, "age"], [3, 6, "setAge"], [1, 6, "28"]]
+import { useState } from 'react';
+
+function Form() {
+  const [name, setName] = useState('Taylor');
+
+  const [age, setAge] = useState(28);
+
+  // ...
+```
+
+</APIAnatomy>
+
+This allows your component to "remember" multiple independent things--for example, different form fields.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Form() {
+  const [name, setName] = useState('Taylor');
+  const [age, setAge] = useState(28);
+
+  return (
+    <>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => setAge(age + 1)}>
+        Happy birthday!
+      </button>
+      <p>Hello, {name}. You are {age}.</p>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+The `[` and `]` syntax here is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items--it's a pair. By convention, name them like `[thing, setThing]`.
+
+<Gotcha>
+
+Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
+
+```js {4}
+function handleClick() {
+  console.log(count);  // 0
+  setCount(count + 1); // Request a re-render with 1
+  console.log(count);  // Still 0!
+}
+```
+
+</Gotcha>
 
 ## Using state {/*using-state*/}
 
@@ -79,89 +160,6 @@ export default function Counter() {
 ```
 
 </Sandpack>
-
-<br />
-
-## Declaring a state variable {/*declaring-a-state-variable*/}
-
-You can declare multiple state variables in a component. You must declare them **at the top level of your component,** outside of any conditions or loops. This component declares state variables called `name` and `age`:
-
-<APIAnatomy>
-
-<AnatomyStep title="Current state">
-
-You get the latest state value for your JSX.
-
-</AnatomyStep>
-
-<AnatomyStep title="State setter">
-
-You get the function that lets you update the state.
-
-</AnatomyStep>
-
-<AnatomyStep title="Initial state">
-
-You pass the value you want the state to be initially.
-
-</AnatomyStep>
-
-```js [[1, 4, "name"], [2, 4, "setName"], [3, 4, "'Taylor'"], [1, 6, "age"], [2, 6, "setAge"], [3, 6, "28"]]
-import { useState } from 'react';
-
-function Form() {
-  const [name, setName] = useState('Taylor');
-
-  const [age, setAge] = useState(28);
-
-  // ...
-```
-
-</APIAnatomy>
-
-This allows your component to "remember" multiple independent things--for example, different form fields.
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-
-export default function Form() {
-  const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(28);
-
-  return (
-    <>
-      <input
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <button onClick={() => setAge(age + 1)}>
-        Happy birthday!
-      </button>
-      <p>Hello, {name}. You are {age}.</p>
-    </>
-  );
-}
-```
-
-</Sandpack>
-
-The `[` and `]` syntax here is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items--it's a pair. By convention, name them like `[thing, setThing]`.
-
-<Gotcha>
-
-Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
-
-```js {4}
-function handleClick() {
-  console.log(count);  // 0
-  setCount(count + 1); // Request a re-render with 1
-  console.log(count);  // Still 0!
-}
-```
-
-</Gotcha>
 
 <br />
 

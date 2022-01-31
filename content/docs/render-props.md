@@ -182,6 +182,7 @@ class Mouse extends React.Component {
   }
 
   render() {
+    const {render : Slot} = this.props;
     return (
       <div style={{ height: '100vh' }} onMouseMove={this.handleMouseMove}>
 
@@ -189,7 +190,7 @@ class Mouse extends React.Component {
           Instead of providing a static representation of what <Mouse> renders,
           use the `render` prop to dynamically determine what to render.
         */}
-        {this.props.render(this.state)}
+        <Slot data={this.state}/>
       </div>
     );
   }
@@ -200,7 +201,7 @@ class MouseTracker extends React.Component {
     return (
       <div>
         <h1>Move the mouse around!</h1>
-        <Mouse render={mouse => (
+        <Mouse render={{data:mouse} => (
           <Cat mouse={mouse} />
         )}/>
       </div>
@@ -224,7 +225,7 @@ function withMouse(Component) {
   return class extends React.Component {
     render() {
       return (
-        <Mouse render={mouse => (
+        <Mouse render={{data:mouse} => (
           <Component {...this.props} mouse={mouse} />
         )}/>
       );
@@ -242,7 +243,7 @@ It's important to remember that just because the pattern is called "render props
 Although the examples above use `render`, we could just as easily use the `children` prop!
 
 ```js
-<Mouse children={mouse => (
+<Mouse children={{data:mouse} => (
   <p>The mouse position is {mouse.x}, {mouse.y}</p>
 )}/>
 ```
@@ -251,7 +252,7 @@ And remember, the `children` prop doesn't actually need to be named in the list 
 
 ```js
 <Mouse>
-  {mouse => (
+  {{data:mouse} => (
     <p>The mouse position is {mouse.x}, {mouse.y}</p>
   )}
 </Mouse>
@@ -290,7 +291,7 @@ class MouseTracker extends React.Component {
           This is bad! The value of the `render` prop will
           be different on each render.
         */}
-        <Mouse render={mouse => (
+        <Mouse render={{data:mouse} => (
           <Cat mouse={mouse} />
         )}/>
       </div>
@@ -307,7 +308,7 @@ To get around this problem, you can sometimes define the prop as an instance met
 class MouseTracker extends React.Component {
   // Defined as an instance method, `this.renderTheCat` always
   // refers to *same* function when we use it in render
-  renderTheCat(mouse) {
+  renderTheCat({data:mouse}) {
     return <Cat mouse={mouse} />;
   }
 

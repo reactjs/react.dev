@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import cn from 'classnames';
+import cn from 'clsx';
 import {
   ClasserProvider,
   SandpackCodeViewer,

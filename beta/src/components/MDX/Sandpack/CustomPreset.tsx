@@ -14,7 +14,7 @@ import {
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 
-import cn from 'classnames';
+import cn from 'clsx';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';

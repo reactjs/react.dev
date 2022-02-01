@@ -6,7 +6,7 @@
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
-import cn from 'classnames';
+import cn from 'clsx';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import Link from 'next/link';
 import {useIsMobile} from '../useMediaQuery';

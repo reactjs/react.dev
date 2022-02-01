@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {IconChevron} from '../../Icon/IconChevron';
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {Listbox} from '@headlessui/react';

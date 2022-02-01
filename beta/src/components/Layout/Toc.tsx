@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import cx from 'classnames';
+import cx from 'clsx';
 import * as React from 'react';
 import {useTocHighlight} from './useTocHighlight';
 

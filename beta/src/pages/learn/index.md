@@ -125,7 +125,7 @@ return (
 );
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curlies *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
 
 ```js {3,4}
 return (
@@ -136,7 +136,7 @@ return (
 );
 ```
 
-You can put any dynamic expressions inside JSX curlies, including string concatenation and object literals:
+You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
 
 <Sandpack>
 
@@ -177,7 +177,7 @@ export default function Profile() {
 
 </Sandpack>
 
-In the above example, `style={{ }}` is not a special syntax, but a regular object inside the JSX curlies. You can use the `style` attribute when your styles depend on JavaScript variables.
+In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
 
 ## Conditional rendering {/*conditional-rendering*/}
 
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer terser code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). Unlike `if`, it works inside JSX:
+If you prefer more compact code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). Unlike `if`, it works inside JSX:
 
 ```js
 <div>
@@ -217,7 +217,7 @@ When you don't need the `else` branch, you can also use a shorter [logical `&&` 
 </div>
 ```
 
-All of the same approaches work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
 
 ## Rendering lists {/*rendering-lists*/}
 
@@ -379,13 +379,39 @@ button {
 
 </Sandpack>
 
+Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+
+## Using Hooks {/*using-hooks*/}
+
 Functions starting with `use` are called Hooks. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/reference). You can also write your own Hooks by combining the existing ones.
 
 Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to `useState` in a condition or a loop, extract a new component and put it there.
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
-In the above example, each counter is independent. If you want them to display the same value and update together, *move the state up* to their closest common ancestor. First, move state from `MyButton` into `MyApp`:
+In the previous example, each button had its own independent counter:
+
+```js {2-4}
+- MyApp
+  - MyButton (count: 3)
+  - MyButton (count: 1)
+  - MyButton (count: 2)
+```
+
+However, you'll often need components to *share data and always update together*.
+
+To make all buttons display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them. In this example, it is `MyApp`:
+
+```js {1}
+- MyApp (count: 3)
+  - MyButton
+  - MyButton
+  - MyButton
+```
+
+Here's how you can express this in code.
+
+First, *move the state up* from `MyButton` into `MyApp`:
 
 ```js {2,6-10}
 function MyButton() {
@@ -410,7 +436,7 @@ export default function MyApp() {
 }
 ```
 
-Then, *pass down* the state and the event handler that's now inside `MyApp` to `MyButton`. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
 
 ```js {11-13}
 export default function MyApp() {
@@ -431,7 +457,9 @@ export default function MyApp() {
 }
 ```
 
-Finally, change `MyButton` to *read* the passed data from the parent component instead of using state:
+The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+
+Finally, change `MyButton` to *read* the props you have passed from its parent component:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
@@ -443,7 +471,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-Information received from a parent component is called *props*. The parent `MyApp` component keeps `count` in its state and declares the `handleClick` event handler. It passes `count` and `handleClick` as props to each of the `MyButton` components. When a button is clicked, the state of `MyApp` changes, and React updates the screen.
+When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value.
 
 This is called "lifting state up". By moving state up, we've shared it between components.
 

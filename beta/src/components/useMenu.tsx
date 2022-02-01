@@ -60,7 +60,7 @@ export const useMenu = () => {
       menuRef,
       isOpen,
     }),
-    []
+    [hideSidebar, showSidebar, toggleOpen, menuRef, isOpen]
   );
 };
 

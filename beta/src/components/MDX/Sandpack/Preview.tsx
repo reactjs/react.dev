@@ -184,7 +184,10 @@ export function Preview({
             <Error error={error} />
           </div>
         )}
-        <LoadingOverlay clientId={clientId.current} loading={!isReady && iframeComputedHeight === null} />
+        <LoadingOverlay
+          clientId={clientId.current}
+          loading={!isReady && iframeComputedHeight === null}
+        />
       </div>
     </div>
   );

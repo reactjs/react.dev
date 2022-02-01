@@ -455,7 +455,9 @@ export default function MyApp() {
 }
 ```
 
-Finally, change `MyButton` to *read* the passed data from the parent component instead of using state:
+The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+
+Finally, change `MyButton` to *read* the props we have passed from its parent component:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
@@ -467,7 +469,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-Information received from a parent component is called *props*. The parent `MyApp` component keeps `count` in its state and declares the `handleClick` event handler. It passes `count` and `handleClick` as props to each of the `MyButton` components. When a button is clicked, the state of `MyApp` changes, and React updates the screen.
+When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as props to all buttons, so they appear updated together.
 
 This is called "lifting state up". By moving state up, we've shared it between components.
 

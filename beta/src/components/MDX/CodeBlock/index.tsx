@@ -18,9 +18,11 @@ export default React.memo(function CodeBlockWrapper(props: any): any {
   return (
     <React.Suspense
       fallback={
-        <div className="h-[406px] animate-pulse w-full shadow-lg dark:shadow-lg-dark rounded-lg dark:bg-[#16181d] bg-white">
-          <div className="bg-wash dark:bg-card-dark h-[39px] border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none"></div>
-        </div>
+        <pre className="rounded-lg leading-6 h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg my-8 text-[13.6px] overflow-hidden">
+          <div className="py-6 pl-5 transition-all duration-1000 font-normal">
+            {props.children}
+          </div>
+        </pre>
       }>
       <CodeBlock {...props} />
     </React.Suspense>

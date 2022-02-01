@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import {SandpackSetup} from '@codesandbox/sandpack-react';
+import type {SandpackSetup} from '@codesandbox/sandpack-react';
 import {APIAnatomy, AnatomyStep} from './APIAnatomy';
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';

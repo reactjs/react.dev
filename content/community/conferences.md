@@ -36,6 +36,11 @@ June 2-4, 2022. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
 
+### App.js Conf 2022 {#appjs-conf-2022}
+June 08-10, 2022. Kraków, PL
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf?s=20) -[YouTube](https://www.youtube.com/channel/UCKgDsBDpYdZf2mbRzcEC8FA)
+
 ### React Summit 2022 {#react-summit-2022}
 June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
 

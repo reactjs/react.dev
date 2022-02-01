@@ -10,10 +10,7 @@ const CodeBlock = React.lazy(
         new Promise((resolve) => {
           setTimeout(() => resolve(x), 3000);
         })
-    ),
-  {
-    suspense: true,
-  }
+    ) as any
 );
 
 export default React.memo(function CodeBlockWrapper(props: any): any {

@@ -51,13 +51,17 @@ export const useMenu = () => {
     };
   }, [router.pathname, hideSidebar]);
 
-  return {
-    hideSidebar,
-    showSidebar,
-    toggleOpen,
-    menuRef,
-    isOpen,
-  };
+  // Avoid top-level context re-renders
+  return React.useMemo(
+    () => ({
+      hideSidebar,
+      showSidebar,
+      toggleOpen,
+      menuRef,
+      isOpen,
+    }),
+    []
+  );
 };
 
 export const MenuContext = React.createContext<ReturnType<typeof useMenu>>(

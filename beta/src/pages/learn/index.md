@@ -389,7 +389,7 @@ Hooks are more restrictive than regular functions. You can only call Hooks *at t
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
-In the previous example, each button had its own counter. Consider the structure of that example:
+In the previous example, each button had its own independent counter:
 
 ```js {2-4}
 - MyApp
@@ -398,7 +398,9 @@ In the previous example, each button had its own counter. Consider the structure
   - MyButton (count: 2)
 ```
 
-If you want all buttons to display the same `count` and *update together* on click, you need to move the state from the individual buttons "upwards" to the closest component containing all of them. In this example, it is `MyApp`:
+However, you'll often need components to *share data and always update together*.
+
+To make all buttons display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them. In this example, it is `MyApp`:
 
 ```js {1}
 - MyApp (count: 3)
@@ -407,7 +409,7 @@ If you want all buttons to display the same `count` and *update together* on cli
   - MyButton
 ```
 
-Let's try this in code.
+Here's how you can express this in code.
 
 First, *move the state up* from `MyButton` into `MyApp`:
 
@@ -457,7 +459,7 @@ export default function MyApp() {
 
 The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
 
-Finally, change `MyButton` to *read* the props we have passed from its parent component:
+Finally, change `MyButton` to *read* the props you have passed from its parent component:
 
 ```js {1,3}
 function MyButton({ count, onClick }) {
@@ -469,7 +471,7 @@ function MyButton({ count, onClick }) {
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as props to all buttons, so they appear updated together.
+When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as props to all buttons, so they all show the new value.
 
 This is called "lifting state up". By moving state up, we've shared it between components.
 

@@ -18,6 +18,8 @@ type SandpackProps = {
   showDevTools?: boolean;
 };
 
+console.log('--- actually loaded sandpack ----');
+
 const sandboxStyle = `
 * {
   box-sizing: border-box;

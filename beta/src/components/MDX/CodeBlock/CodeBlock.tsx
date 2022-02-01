@@ -20,6 +20,8 @@ interface InlineHiglight {
   endColumn: number;
 }
 
+console.log('--- actually loaded codeblock ----');
+
 const CodeBlock = function CodeBlock({
   children,
   className = 'language-js',

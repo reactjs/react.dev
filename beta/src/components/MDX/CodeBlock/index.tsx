@@ -3,12 +3,21 @@
  */
 
 import * as React from 'react';
-import dynamic from 'next/dynamic';
-const CodeBlock = dynamic(() => import('./CodeBlock'), {
-  suspense: true,
-});
+const CodeBlock = React.lazy(
+  () =>
+    import('./CodeBlock').then(
+      (x) =>
+        new Promise((resolve) => {
+          setTimeout(() => resolve(x), 3000);
+        })
+    ),
+  {
+    suspense: true,
+  }
+);
 
-export default function CodeBlockWrapper(props: any): any {
+export default React.memo(function CodeBlockWrapper(props: any): any {
+  console.log('- render', props);
   return (
     <React.Suspense
       fallback={
@@ -19,4 +28,4 @@ export default function CodeBlockWrapper(props: any): any {
       <CodeBlock {...props} />
     </React.Suspense>
   );
-}
+});

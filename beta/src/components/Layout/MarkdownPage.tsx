@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+// @ts-ignore
 import {MDXContext} from '@mdx-js/react';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {MDXComponents} from 'components/MDX/MDXComponents';

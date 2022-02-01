@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+// @ts-ignore
 import {MDXContext} from '@mdx-js/react';
 import recentPostsRouteTree from 'blogIndexRecent.json';
 import {DocsPageFooter} from 'components/DocsFooter';

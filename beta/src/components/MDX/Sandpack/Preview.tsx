@@ -79,22 +79,22 @@ export function Preview({
 
   React.useEffect(
     function bundlerListener() {
-      const unsubscribeListen = listen((message: any) => {
+      const unsubscribe = listen((message: any) => {
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
         } else if (message.type === 'start') {
           if (message.firstLoad) {
             setIsReady(false);
           }
-        } else if (message.type === 'test') {
-          // Does it make sense that we're listening to "test" event?
-          // Not really. Does it cause less flicker than "done"? Yes.
+        } else if (message.type === 'done') {
           setIsReady(true);
         }
       }, clientId.current);
 
       return () => {
-        unsubscribeListen();
+        setIsReady(false);
+        setComputedAutoHeight(null);
+        unsubscribe();
       };
     },
     [status === 'idle']
@@ -184,7 +184,7 @@ export function Preview({
             <Error error={error} />
           </div>
         )}
-        <LoadingOverlay clientId={clientId.current} />
+        <LoadingOverlay clientId={clientId.current} loading={!isReady && iframeComputedHeight === null} />
       </div>
     </div>
   );

@@ -128,7 +128,8 @@ function Sandpack(props: SandpackProps) {
         template="react"
         customSetup={{...setup, files: files}}
         autorun={autorun}
-        initMode="user-visible">
+        initMode="user-visible"
+        initModeObserverOptions={{rootMargin: '1400px 0px'}}>
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}

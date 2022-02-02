@@ -1,6 +1,14 @@
 import * as React from 'react';
 import {reducedCodeSnippet} from './utils';
-const Sandpack = React.lazy(() => import('./SandpackWrapper') as any);
+const Sandpack = React.lazy(
+  () =>
+    import('./SandpackWrapper').then(
+      (x) =>
+        new Promise((resolve) => {
+          setTimeout(() => resolve(x), 3000);
+        })
+    ) as any
+);
 
 const SandpackFallBack = ({code}: {code: string}) => (
   <div className="sandpack-container my-8">

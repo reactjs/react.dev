@@ -59,7 +59,11 @@ export function APIAnatomy({children}: APIAnatomyProps) {
           break;
         case 'pre':
           acc.code = (
-            <CodeBlock {...child.props.children.props} noMargin={true} />
+            <CodeBlock
+              {...child.props.children.props}
+              noMargin={true}
+              isFromAPIAnatomy
+            />
           );
           break;
       }

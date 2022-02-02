@@ -18,6 +18,7 @@ export function PackageImport({children}: PackageImportProps) {
       return (
         <CodeBlock
           {...child.props.children.props}
+          isFromPackageImport
           key={i}
           noMargin={true}
           noMarkers={true}

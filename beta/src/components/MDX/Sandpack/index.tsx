@@ -23,11 +23,11 @@ const SandpackFallBack = ({code}: {code: string}) => (
         <div className="sp-layout sp-custom-layout min-h-[216px]">
           <div className="sp-stack max-h-[406px] h-auto">
             <div className="sp-code-editor">
-              <div className="sp-cm sp-pristine">
+              <div className="sp-cm sp-pristine overflow-auto">
                 <div className="cm-editor">
                   <div>
                     <div className="cm-gutters pl-9 sticky min-h-[192px]">
-                      <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder">
+                      <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder overflow-scroll">
                         {code}
                       </div>
                     </div>
@@ -39,6 +39,9 @@ const SandpackFallBack = ({code}: {code: string}) => (
           <div className="sp-stack order-last xl:order-2 max-h-[406px] h-auto">
             <div className="p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none overflow-auto"></div>
           </div>
+          {code.split('\n').length > 16 && (
+            <div className="flex h-9 text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"></div>
+          )}
         </div>
       </div>
     </div>

@@ -547,18 +547,18 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
-"@codesandbox/sandpack-client@^0.13.6-experimental.0":
-  version "0.13.6-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-0.13.6-experimental.0.tgz#6688663f74f3f526f11691fb23cc3d1dea6d1f80"
-  integrity sha512-xEwGRg3ETgsmcGFYAcWSyYDRRxy5uwxQ2Zu0G82GXySZunLYwc5gQy+NOfgjnn6O+Tp7BW4ao6j3OGTZYqZOUg==
+"@codesandbox/sandpack-client@^0.13.9-experimental.0":
+  version "0.13.9-experimental.0"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-0.13.9-experimental.0.tgz#10eccbd0a3b35d3f46f9484405580c13a4693127"
+  integrity sha512-ktd6HWeQyErO91Sm5DxcLAc4BouUyUUNM1mKwWKzRkw6uUyt9IPbJNttnU0FH88gQxIwduEYVi7wEx/qn0AtMQ==
   dependencies:
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@0.13.6-experimental.0":
-  version "0.13.6-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.13.6-experimental.0.tgz#3070cd0e5b741284133b65e32d313b2aca0c5d50"
-  integrity sha512-QLP6wusM8COpFpmizUh1HGtNmKXDo8KNk5NSYSsCojeQyr9YFC1ye65MM6bMp5kXeF7c6kJFs9MulxpIckEbUQ==
+"@codesandbox/sandpack-react@0.13.9-experimental.6":
+  version "0.13.9-experimental.6"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.13.9-experimental.6.tgz#81ee72ad96b8dadf3626271a0ec9ae0694a421de"
+  integrity sha512-IOjuSPg28B/YkRGvbYCjDA45SHIBL2oF/1LBDkUisBHz1fbMTROYLLqdzNDP4yWgA9Ya9OgOgJe904i3pcE4YQ==
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"
@@ -574,10 +574,11 @@
     "@codemirror/matchbrackets" "^0.19.3"
     "@codemirror/state" "^0.19.6"
     "@codemirror/view" "^0.19.32"
-    "@codesandbox/sandpack-client" "^0.13.6-experimental.0"
+    "@codesandbox/sandpack-client" "^0.13.9-experimental.0"
     "@react-hook/intersection-observer" "^3.1.1"
     codesandbox-import-util-types "^2.2.3"
     codesandbox-import-utils "^2.2.3"
+    lodash.isequal "^4.5.0"
     react-devtools-inline "4.22.1"
     react-is "^17.0.2"
 

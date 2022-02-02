@@ -46,6 +46,7 @@ export function Preview({
     errorScreenRegisteredRef,
     openInCSBRegisteredRef,
     loadingScreenRegisteredRef,
+    status,
   } = sandpack;
 
   if (
@@ -67,29 +68,37 @@ export function Preview({
   errorScreenRegisteredRef.current = true;
   loadingScreenRegisteredRef.current = true;
 
-  React.useEffect(() => {
+  React.useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
     registerBundler(iframeElement, clientId.current);
 
-    const unsub = listen((message: any) => {
-      if (message.type === 'resize') {
-        setComputedAutoHeight(message.height);
-      } else if (message.type === 'start') {
-        if (message.firstLoad) {
-          setIsReady(false);
-        }
-      } else if (message.type === 'test') {
-        // Does it make sense that we're listening to "test" event?
-        // Not really. Does it cause less flicker than "done"? Yes.
-        setIsReady(true);
-      }
-    }, clientId.current);
-
     return () => {
-      unsub();
       unregisterBundler(clientId.current);
     };
   }, []);
+
+  React.useEffect(
+    function bundlerListener() {
+      const unsubscribe = listen((message: any) => {
+        if (message.type === 'resize') {
+          setComputedAutoHeight(message.height);
+        } else if (message.type === 'start') {
+          if (message.firstLoad) {
+            setIsReady(false);
+          }
+        } else if (message.type === 'done') {
+          setIsReady(true);
+        }
+      }, clientId.current);
+
+      return () => {
+        setIsReady(false);
+        setComputedAutoHeight(null);
+        unsubscribe();
+      };
+    },
+    [status === 'idle']
+  );
 
   const viewportStyle = computeViewportSize('auto', 'portrait');
   const overrideStyle = error
@@ -175,7 +184,10 @@ export function Preview({
             <Error error={error} />
           </div>
         )}
-        <LoadingOverlay clientId={clientId.current} />
+        <LoadingOverlay
+          clientId={clientId.current}
+          loading={!isReady && iframeComputedHeight === null}
+        />
       </div>
     </div>
   );

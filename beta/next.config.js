@@ -11,7 +11,7 @@ module.exports = {
   experimental: {
     plugins: true,
     // TODO: this doesn't work because https://github.com/vercel/next.js/issues/30714
-    concurrentFeatures: false,
+    concurrentFeatures: true,
     scrollRestoration: true,
   },
   async redirects() {

@@ -27,7 +27,7 @@ import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -207,9 +207,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-A reducer helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` state and the `dispatch` function are only available in the top-level `TaskBoard` component.** To let other components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current state and the event handlers that change it as props.
+A reducer helps keep the event handlers short and concise. However, as your app grows, you might run into another difficulty. **Currently, the `tasks` state and the `dispatch` function are only available in the top-level `TaskApp` component.** To let other components read the list of tasks or change it, you have to explicitly [pass down](/learn/passing-props-to-a-component) the current state and the event handlers that change it as props.
 
-For example, `TaskBoard` passes a list of tasks and the event handlers to `TaskList`:
+For example, `TaskApp` passes a list of tasks and the event handlers to `TaskList`:
 
 ```js
 <TaskList
@@ -233,7 +233,7 @@ In a small example like this, this works well, but if you have tens or hundreds 
 
 <!--(TODO: illustration of prop drilling)-->
 
-This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context](/learn/passing-data-deeply-with-context). **This way, any component below `TaskBoard` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
+This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context](/learn/passing-data-deeply-with-context). **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
 
 <!--(TODO: illustration of context)-->
 
@@ -265,7 +265,7 @@ import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -452,16 +452,16 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskBoard` component.
+Here, you're passing `null` as the default value to both contexts. The actual values will be provided by the `TaskApp` component.
 
 ### Step 2: Put state and dispatch into context {/*step-2-put-state-and-dispatch-into-context*/}
 
-Now you can import both contexts in your `TaskBoard` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
+Now you can import both contexts in your `TaskApp` component. Take the `tasks` and `dispatch` returned by `useReducer()` and [provide them](/learn/passing-data-deeply-with-context#step-3-provide-the-context) to the entire tree below:
 
 ```js {4,7-8}
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(tasksReducer, initialTasks);
   // ...
   return (
@@ -484,7 +484,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -717,7 +717,7 @@ export default function AddTask({ onAddTask }) {
     // ...
 ```
 
-**The `TaskBoard` component does not pass any event handlers down, and the `TaskList` does not pass any event handlers to the `Task` component either.** Each component reads the context that it needs:
+**The `TaskApp` component does not pass any event handlers down, and the `TaskList` does not pass any event handlers to the `Task` component either.** Each component reads the context that it needs:
 
 <Sandpack>
 
@@ -727,7 +727,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksContext, TasksDispatchContext } from './TasksContext.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -901,7 +901,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-**The state still "lives" in the top-level `TaskBoard` component, managed with `useReducer`.** But its `tasks` and `dispatch` are now available to every component below in the tree by importing and using these contexts.
+**The state still "lives" in the top-level `TaskApp` component, managed with `useReducer`.** But its `tasks` and `dispatch` are now available to every component below in the tree by importing and using these contexts.
 
 ## Moving all wiring into a single file {/*moving-all-wiring-into-a-single-file*/}
 
@@ -934,7 +934,7 @@ export function TasksProvider({ children }) {
 }
 ```
 
-**This removes all the complexity and wiring from your `TaskBoard` component:**
+**This removes all the complexity and wiring from your `TaskApp` component:**
 
 <Sandpack>
 
@@ -943,7 +943,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksProvider } from './TasksContext.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   return (
     <TasksProvider>
       <h1>Day off in Kyoto</h1>
@@ -1153,7 +1153,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksProvider } from './TasksContext.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   return (
     <TasksProvider>
       <h1>Day off in Kyoto</h1>

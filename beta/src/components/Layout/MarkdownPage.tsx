@@ -50,9 +50,9 @@ export function MarkdownPage<
       }
       if (child.props.mdxType === 'Recipes') {
         return {
-          url: '#recipes',
+          url: '#' + (child.props.titleId ?? 'examples'),
           depth: 0,
-          text: 'Recipes',
+          text: child.props.titleText ?? 'Examples',
         };
       }
       if (child.props.mdxType === 'Recap') {

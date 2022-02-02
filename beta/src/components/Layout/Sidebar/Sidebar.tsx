@@ -25,17 +25,6 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
     routeTree = (routeTree as any).routes[0];
   }
 
-  function handleFeedback() {
-    const nodes: any = document.querySelectorAll(
-      '#_hj_feedback_container button'
-    );
-    if (nodes.length > 0) {
-      nodes[nodes.length - 1].click();
-    } else {
-      window.location.href =
-        'https://github.com/reactjs/reactjs.org/issues/3308';
-    }
-  }
   const feedbackIcon = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -80,12 +69,28 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
           <SidebarRouteTree routeTree={routeTree} />
         )}
       </nav>
-      <div className="px-5 py-3 sticky bottom-0 lg:px-5 w-full hidden lg:flex items-center bg-gradient-to-t from-wash dark:from-wash-dark">
-        <Button
-          className="w-full text-center justify-center"
-          onClick={handleFeedback}>
-          {feedbackIcon} Feedback
-        </Button>
+      <div className="px-5 py-3 sticky bottom-0 lg:px-5 w-full hidden lg:flex bg-gradient-to-t from-wash dark:from-wash-dark">
+        <p>Is this page useful?</p>
+        <button
+          onClick={() => {
+            gtag('event', 'feedback', {
+              event_category: 'button',
+              event_label: window.location.pathname,
+              value: 1,
+            });
+          }}>
+          Yes
+        </button>
+        <button
+          onClick={() => {
+            gtag('event', 'feedback', {
+              event_category: 'button',
+              event_label: window.location.pathname,
+              value: 0,
+            });
+          }}>
+          No
+        </button>
       </div>
     </aside>
   );

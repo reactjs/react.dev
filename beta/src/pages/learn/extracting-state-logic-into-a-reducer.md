@@ -19,7 +19,7 @@ Components with many state updates spread across many event handlers can get ove
 
 ## Consolidate state logic with a reducer {/*consolidate-state-logic-with-a-reducer*/}
 
-As your components grow in complexity, it can get harder to see all the different ways that a component's state gets updated at a glance. For example, the `TaskBoard` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
+As your components grow in complexity, it can get harder to see all the different ways that a component's state gets updated at a glance. For example, the `TaskApp` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
 
 <Sandpack>
 
@@ -28,7 +28,7 @@ import { useState } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, setTasks] = useState(initialTasks);
 
   function handleAddTask(text) {
@@ -492,7 +492,7 @@ import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -682,7 +682,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import tasksReducer from './tasksReducer.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -925,7 +925,7 @@ function tasksReducer(draft, action) {
   }
 }
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useImmerReducer(
     tasksReducer,
     initialTasks

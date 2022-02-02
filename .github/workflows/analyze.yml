@@ -19,7 +19,7 @@ jobs:
           node-version: "14.x"
 
       - name: Install dependencies
-        uses: bahmutov/npm-install@v1.6.0
+        uses: bahmutov/npm-install@v1.7.10
         with:
           working-directory: 'beta'
 

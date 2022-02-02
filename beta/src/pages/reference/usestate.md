@@ -266,7 +266,7 @@ const initialTodos = [
   { id: 2, title: 'Brew tea', done: false },
 ];
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [todos, setTodos] = useState(initialTodos);
 
   function handleAddTodo(title) {

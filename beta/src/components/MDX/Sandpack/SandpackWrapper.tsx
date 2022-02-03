@@ -18,7 +18,6 @@ type SandpackProps = {
   showDevTools?: boolean;
 };
 import {reducedCodeSnippet} from './utils';
-console.log('--- actually loaded sandpack ----');
 
 const sandboxStyle = `
 * {

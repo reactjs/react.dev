@@ -121,9 +121,25 @@ export default function Counter() {
 
 </Sandpack>
 
-<Recipes>
+<Gotcha>
+
+Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
+
+```js {4}
+function handleClick() {
+  console.log(count);  // 0
+  setCount(count + 1); // Request a re-render with 1
+  console.log(count);  // Still 0!
+}
+```
+
+</Gotcha>
+
+<Recipes titleText="Common useState examples" titleId="examples-common">
 
 ### Text field (string) {/*text-field-string*/}
+
+In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
 
 <Sandpack>
 
@@ -141,6 +157,9 @@ export default function MyInput() {
     <>
       <input value={text} onChange={handleChange} />
       <p>You typed: {text}</p>
+      <button onClick={() => setText('hello')}>
+        Reset
+      </button>
     </>
   );
 }
@@ -151,6 +170,8 @@ export default function MyInput() {
 <Solution />
 
 ### Checkbox (boolean) {/*checkbox-boolean*/}
+
+In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
 
 <Sandpack>
 
@@ -184,7 +205,9 @@ export default function MyCheckbox() {
 
 <Solution />
 
-### Form (object) {/*form-object*/}
+### Form (two variables) {/*form-two-variables*/}
+
+You can declare more than one state variable in the same component. Each state variable is completely independent.
 
 <Sandpack>
 
@@ -192,49 +215,91 @@ export default function MyCheckbox() {
 import { useState } from 'react';
 
 export default function Form() {
-  const [person, setPerson] = useState({
+  const [name, setName] = useState('Taylor');
+  const [age, setAge] = useState(28);
+
+  return (
+    <>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => setAge(age + 1)}>
+        Happy birthday!
+      </button>
+      <p>Hello, {name}. You are {age}.</p>
+    </>
+  );
+}
+```
+
+```css
+button { display: block; margin-top: 10px; }
+```
+
+</Sandpack>
+
+<Solution />
+
+
+### Form (object) {/*form-object*/}
+
+In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that [the state object is replaced rather than mutated.](/learn/updating-objects-in-state)
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Form() {
+  const [form, setForm] = useState({
     firstName: 'Barbara',
     lastName: 'Hepworth',
-    email: 'bhepworth@sculpture.com'
+    email: 'bhepworth@sculpture.com',
   });
-
-  function handleChange(e) {
-    setPerson({
-      ...person,
-      [e.target.name]: e.target.value
-    });
-  }
 
   return (
     <>
       <label>
         First name:
         <input
-          name="firstName"
-          value={person.firstName}
-          onChange={handleChange}
+          value={form.firstName}
+          onChange={e => {
+            setForm({
+              ...form,
+              firstName: e.target.value
+            });
+          }}
         />
       </label>
       <label>
         Last name:
         <input
-          name="lastName"
-          value={person.lastName}
-          onChange={handleChange}
+          value={form.lastName}
+          onChange={e => {
+            setForm({
+              ...form,
+              lastName: e.target.value
+            });
+          }}
         />
       </label>
       <label>
         Email:
         <input
-          name="email"
-          value={person.email}
-          onChange={handleChange}
+          value={form.email}
+          onChange={e => {
+            setForm({
+              ...form,
+              email: e.target.value
+            });
+          }}
         />
       </label>
       <p>
-        {person.firstName}{' '}
-        {person.lastName}{' '}
-        ({person.email})
+        {form.firstName}{' '}
+        {form.lastName}{' '}
+        ({form.email})
       </p>
     </>
   );
@@ -251,6 +316,8 @@ input { margin-left: 5px; }
 <Solution />
 
 ### List (array) {/*list-array*/}
+
+In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure [the state array is replaced rather than mutated.](/learn/updating-arrays-in-state)
 
 <Sandpack>
 
@@ -415,116 +482,21 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-### Multiple state variables {/*multiple-state-variables*/}
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-
-export default function Form() {
-  const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(28);
-
-  return (
-    <>
-      <input
-        value={name}
-        onChange={e => setName(e.target.value)}
-      />
-      <button onClick={() => setAge(age + 1)}>
-        Happy birthday!
-      </button>
-      <p>Hello, {name}. You are {age}.</p>
-    </>
-  );
-}
-```
-
-</Sandpack>
-
-<Solution />
-
 </Recipes>
-
-<Gotcha>
-
-Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
-
-```js {4}
-function handleClick() {
-  console.log(count);  // 0
-  setCount(count + 1); // Request a re-render with 1
-  console.log(count);  // Still 0!
-}
-```
-
-</Gotcha>
-
-## When not to use it {/*when-not-to-use-it*/}
-
-* Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
-* Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
 
 ## Special cases {/*special-cases*/}
 
 ### Passing the same value to `setState` {/*passing-the-same-value-to-setstate*/}
 
-If you pass the current state to `setState`, React **will skip re-rendering the component**:
+If you pass the current state to `setState`, React **will skip re-rendering the component and its children**:
 
 ```js
 setCount(count); // Won't trigger a re-render
 ```
 
-This is a performance optimization. React uses the [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) algorithm to compare the values.
+React uses the [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) algorithm to compare the values.
 
-
-### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
-
-You can hold objects and arrays in state, too. However, you should always *replace* objects in state rather than modify the existing ones. [Updating objects](/learn/updating-objects-in-state) and [updating arrays](/learn/updating-arrays-in-state) describe common patterns that help avoid bugs.
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-export default function MovingDot() {
-  const [position, setPosition] = useState({
-    x: 0,
-    y: 0
-  });
-  return (
-    <div
-      onPointerMove={e => {
-        setPosition({
-          x: e.clientX,
-          y: e.clientY
-        });
-      }}
-      style={{
-        position: 'relative',
-        width: '100vw',
-        height: '100vh',
-      }}>
-      <div style={{
-        position: 'absolute',
-        backgroundColor: 'red',
-        borderRadius: '50%',
-        transform: `translate(${position.x}px, ${position.y}px)`,
-        left: -10,
-        top: -10,
-        width: 20,
-        height: 20,
-      }} />
-    </div>
-  )
-}
-```
-
-```css
-body { margin: 0; padding: 0; height: 250px; }
-```
-
-</Sandpack>
+This is a performance optimization. React might still need to call your component function in some cases, but it will discard the result and bail out of re-rendering the child tree if the state has not changed.
 
 ### Passing a state updater to `setState` {/*passing-a-state-updater-to-setstate*/}
 
@@ -554,7 +526,7 @@ function handleClick() {
 
 </APIAnatomy>
 
-Your updater function will receive the pending state and should return the next state.
+This is useful when you want to update state based on the state _you have just set_ (like `123` above) and that has not yet been reflected to the screen. By using updaters, you can [queue multiple updates](/learn/queueing-a-series-of-state-updates) on top of each other:
 
 <APIAnatomy>
 
@@ -585,72 +557,29 @@ function handleClick() {
 
 </APIAnatomy>
 
-Updaters are a bit verbose but sometimes they come in handy. They let you access the pending state rather than the last rendered state. This is helpful if you want to [queue multiple updates](/learn/queueing-a-series-of-state-updates) on top of each other.
+React puts the updater functions in a queue and runs them during the next render. You can think of a regular `setState(something)` call as a `setState(() => something)` call where the pending state is not used.
 
-<Sandpack>
+<Note>
 
-```js
-import { useState } from 'react';
+**Updaters need to be [pure functions that only calculate and return the next state](/learn/keeping-components-pure).** Don't "do" things or set state from the updater functions. React runs updater functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
 
-export default function Counter() {
-  const [count, setCount] = useState(0);
+</Note>
 
-  function handleClick() {
-    setCount(c => c + 1);
-    setCount(c => c + 1);
-    setCount(c => c + 1);
-  }
+<DeepDive title="Is using an updater always preferred?">
 
-  return (
-    <>
-      <h1>{count}</h1>
-      <button onClick={handleClick}>
-        Add 3
-      </button>
-    </>
-  )
-}
-```
+You might hear a recomendation to always write code like `setCount(c => c + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
 
-```css
-button { display: inline-block; margin: 10px; font-size: 20px; }
-h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
-```
+In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `count` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `count` at the beginning of the event handler.
 
-</Sandpack>
+However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
 
-Updater functions run during rendering. This is why [they should be pure](/learn/keeping-components-pure). In other words, your **updater functions should only calculate and return the next state**. They should not try to "do" things or set state.
+If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer](/learn/extracting-state-logic-into-a-reducer).
 
-If you don't have a particular reason to use an updater, you can stick with passing the next state directly.
-
-<Gotcha>
-
-Because `setState()` acts differently when you pass a function, you can't put a function in state like this:
-
-```js
-const [func, setFunc] = useState(initialFunc);
-
-function handleClick() {
-  setFunc(otherFunc);
-}
-```
-
-If you really need to put a function in state (which is rare), you can do this instead:
-
-```js
-const [func, setFunc] = useState(() => initialFunc);
-
-function handleClick() {
-  setFunc(() => otherFunc);
-}
-```
-
-</Gotcha>
+</DeepDive>
 
 ### Passing an initializer to `useState` {/*passing-an-initializer-to-usestate*/}
 
-The initial state that you pass to `useState` is only used for the initial render. For next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away many times. **You can pass a function to `useState` to calculate the initial state.** React will only run it during the initialization.
-
+The initial state that you pass to `useState` is only used for the initial render. For the next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away many times. **You can pass a function to `useState` to calculate the initial state.** React will only run it during the initialization.
 
 <APIAnatomy>
 
@@ -679,7 +608,62 @@ function TodoList() {
 
 </APIAnatomy>
 
-This is a performance optimization. You can use it to avoid creating large objects or arrays on re-renders.
+This is a performance optimization. Initializers let you avoid creating large objects or arrays on re-renders.
+
+<Note>
+
+**Initializers need to be [pure functions that only calculate and return the initial state](/learn/keeping-components-pure).** Don't "do" things or set state from the initializer functions. React runs initializer functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
+
+</Note>
+
+<Recipes titleText="Special useState examples" titleId="examples-special">
+
+### Passing an updater to setState {/*passing-an-updater-to-setstate*/}
+
+In this example, the `increment` method increments the counter with `setNumber(n => n + 1)`. Verify both "+3" and "+1" buttons work. The "+3" button calls `increment()` three times, which enqueues three separate state updates to the `number`:
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  function increment() {
+    setNumber(n => n + 1)
+  }
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button onClick={() => {
+        increment();
+        increment();
+        increment();
+      }}>+3</button>
+      <button onClick={() => increment()}>
+        +1
+      </button>
+    </>
+  );
+}
+```
+
+```css
+button { display: inline-block; margin: 10px; font-size: 20px; }
+h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
+```
+
+</Sandpack>
+
+Notice how if you change the code to `setNumber(number + 1)`, the "+3" button no longer works. This is because `number` [always refers to what's currently on the screen](/learn/state-as-a-snapshot). When you call `setNumber(number + 1)`, `number` stays the same until the next render.
+
+<Solution />
+
+### Passing an initializer to useState {/*passing-an-initializer-to-usestate*/}
+
+In this example, the initial state is populated with an array. Recreating this array during every render would be wasteful, so we pass a function to `useState`. React calls the initializer to figure out what the initial state should be, and puts it in `todos`.
 
 <Sandpack>
 
@@ -698,9 +682,7 @@ function createInitialTodos() {
 }
 
 export default function TodoList() {
-  const [todos, setTodos] = useState(
-    () => createInitialTodos()
-  );
+  const [todos, setTodos] = useState(createInitialTodos);
 
   return (
     <ul>
@@ -716,7 +698,66 @@ export default function TodoList() {
 
 </Sandpack>
 
-Initializer functions run during rendering. This is why [they should be pure](/learn/keeping-components-pure). In other words, your **initializer functions should only calculate and return the initial state**. They should not try to "do" things or set state.
+<Solution />
 
-If you don't have a particular reason to use an initializer, you can stick with passing the initial state directly.
+### Preventing re-renders with same state {/*preventing-re-renders-with-same-state*/}
 
+In this example, the two buttons switch the `tab` state between `'home'` and `'about'`. This sandbox has a logging utility function that helps us visualize what React is doing. Initially, React renders the Home tab. (Double renders are due to [Strict Mode](/reference/strictmode).)
+
+If you press "Home" _again_, neither the Home component nor its children will re-render. This is because you're calling `setTab('home')` but `tab` is already `'home'`. That's the special behavior of `setState` when the value is the same.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function MySite() {
+  const [tab, setTab] = useState('home');
+  debugLog('rendered MySite');
+
+  return (
+    <>
+      <nav>
+        <button onClick={() => setTab('home')}>
+          Home
+        </button>
+        <button onClick={() => setTab('about')}>
+          About
+        </button>
+      </nav>
+      {tab === 'home' && <Home />}
+      {tab === 'about' && <About />}
+    </>
+  );
+}
+
+function Home() {
+  debugLog('rendered Home');
+  return <h1>Home sweet home</h1>
+}
+
+function About() {
+  debugLog('rendered About');
+  return <h1>About me</h1>
+}
+
+function debugLog(text) {
+  const message = document.createElement('p');
+  message.textContent = text;
+  message.style.fontFamily = 12;
+  message.style.color = 'grey';
+  document.body.appendChild(message);
+}
+```
+
+```css
+button { display: inline-block; margin: 10px; font-size: 20px; }
+```
+
+</Sandpack>
+
+You'll notice that if you switch to About and then press About again, you might get an extra log of the parent component render. React may still need to call the parent component in some cases, but it won't re-render any of the children.
+
+<Solution />
+
+</Recipes>

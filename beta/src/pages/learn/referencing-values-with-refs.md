@@ -137,6 +137,9 @@ export default function Stopwatch() {
   function handleStart() {
     setStartTime(Date.now());
     setNow(Date.now());
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+    }
     intervalRef.current = setInterval(() => {
       setNow(Date.now());
     }, 10);

@@ -135,11 +135,6 @@ function handleClick() {
 
 </Gotcha>
 
-## When not to use it {/*when-not-to-use-it*/}
-
-* Don't use state when a regular variable works. State is only used to [persist information between re-renders](/learn/state-a-components-memory).
-* Don't add [redundant state](/learn/choosing-the-state-structure#avoid-redundant-state). If you can calculate something during render, you don't need state for it.
-
 <Recipes titleText="Common useState examples" titleId="examples-common">
 
 ### Text field (string) {/*text-field-string*/}

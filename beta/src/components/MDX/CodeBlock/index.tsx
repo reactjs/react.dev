@@ -18,7 +18,6 @@ export default React.memo(function CodeBlockWrapper(props: {
   isFromPackageImport: boolean;
   children: string;
 }): any {
-  console.log('- render', props);
   const {children, isFromAPIAnatomy, isFromPackageImport} = props;
   return (
     <React.Suspense

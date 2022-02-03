@@ -40,7 +40,7 @@ const SandpackFallBack = ({code}: {code: string}) => (
             <div className="p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none overflow-auto"></div>
           </div>
           {code.split('\n').length > 16 && (
-            <div className="flex h-9 text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"></div>
+            <div className="flex h-[42px] text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"></div>
           )}
         </div>
       </div>

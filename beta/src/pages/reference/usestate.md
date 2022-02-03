@@ -4,43 +4,71 @@ title: useState
 
 <Intro>
 
-`useState` is a React Hook that lets you declare a state variable.
-
-```js
-let [state, setState] = useState(initialState);
-```
+`useState` is a React Hook that lets you add a [state variable](/learn/state-a-components-memory) to your component.
 
 </Intro>
 
-## `useState()` {/*usestate*/}
+## On this page {/*on-this-page*/}
 
-### Arguments {/*arguments*/}
+- [Reference](#reference)
+  - [`useState(initialState)`](#usestate)
+  - [`setState(nextState)`](#setstate)
+- [Usage](#usage)
+  - [Adding state to a component](#adding-state-to-a-component)
+  - [Updating state based on the previous state](#updating-state-based-on-the-previous-state)
+  - [Updating objects and arrays in state](#updating-objects-and-arrays-in-state)
+  - [Avoiding recreation of the initial state](#avoiding-recreation-of-the-initial-state)
 
-* `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. If you pass a function, React will not store it, but will *call* your function instead, and store its return value as the initial state. The `initialState` argument is ignored after the initial render.
+## Reference {/*reference*/}
 
-### Returns {/*returns*/}
+### `useState(initialState)` {/*usestate*/}
 
-`useState` returns an array with exactly two values:
-
-* `state`: The current state.
-* [`setState`](#setstate): A function that lets you update the state to a different value and trigger a re-render.
-
-By convention, we use array destructuring to give them names like `[thing, setThing]`.
-
-### Example {/*example*/}
+Import it from React:
 
 ```js
-function Form() {
-  const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(28);
+import { useState } from 'react';
+```
+
+Call `useState` at the top level of your component to declare a [state variable](/learn/state-a-components-memory).
+
+```js
+function MyComponent() {
+  const [state, setState] = useState(initialState);
   // ...
 ```
 
-### Caveats {/*caveats*/}
+The convention is to name state variables like `[thing, setThing]` using [array destructuring](/learn/a-javascript-refresher#array-destructuring):
 
-* `useState` is a Hook, so you can't call it inside loops or conditions.
+```js
+function Form() {
+  const [age, setAge] = useState(28);
+  const [name, setName] = useState('Taylor');
+  const [todos, setTodos] = useState(() => createTodos());
+  // ...
+```
 
-## `setState()` {/*setstate*/}
+[See more examples below.](#examples-basic)
+
+#### Arguments {/*arguments*/}
+
+* `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
+  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreation-of-the-initial-state)
+
+#### Returns {/*returns*/}
+
+`useState` returns an array with exactly two values:
+
+* `state`: The current state. During the first render, it will match the `initialState` you have passed.
+* [`setState`](#setstate): A function that lets you update the state to a different value and trigger a re-render.
+
+#### Pitfalls {/*pitfalls*/}
+
+* `useState` is a Hook, so you can only call it at the top level of your component or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state there.
+* In Strict Mode, React will call your initializer function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+
+---
+
+### `setState(nextState)` {/*setstate*/}
 
 `setState` lets you update the state to a different value and trigger a re-render:
 
@@ -48,37 +76,667 @@ function Form() {
 setState(nextState);
 ```
 
-### Arguments {/*setstate-arguments*/}
-
-* `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions. If you pass a function, React will not store it, but will *call* your function instead during the next render with the pending state, and store its return value.
-
-### Returns {/*setstate-returns*/}
-
-`setState` does not have a return value.
-
-
-### Example {/*setstate-example*/}
+You can pass the next state directly, or a function that calculates it from the previous state:
 
 ```js
-function Form() {
-  const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(28);
-
-  function handleChange(e) {
-    setName(e.target.value);
-  }
-  
-  function handleClick() {
-    setAge(a => a + 1);
-  }
-
+function handleClick() {
+  setName('Taylor');
+  setAge(a => a + 1);
   // ...
 ```
 
-### Caveats {/*caveats*/}
+#### Arguments {/*setstate-arguments*/}
+
+* `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
+  * You may also pass an *updater function* as `nextState`. It must be pure, should take a single argument (the pending state), and it should return the next state. React will put it in a queue. On the next render, React will calculate the next state by applying the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
+
+#### Returns {/*setstate-returns*/}
+
+`setState` does not have a return value.
+
+#### Pitfalls {/*pitfalls*/}
 
 * Calling `setState()` only updates the state for the next render. If you read the `state` variable after calling `setState()`, you will still get the value that was on the screen before your call.
 
 * If you call `setState()` with the value that's identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will bail out of re-rendering the component and its children. However, in some cases React may still need to call your component before discarding the result.
 
+* In Strict Mode, React will call your updater function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
+---
+
+## Usage {/*usage*/}
+
+### Adding state to a component {/*adding-state-to-a-component*/}
+
+First, declare the state variables you need. Then, update them on interaction and display them in your JSX.
+
+<APIAnatomy>
+
+<AnatomyStep title="Declare a state variable">
+
+Call `useState` and pass the initial state to it. React will store the state that you passed, and give it back to you.
+
+</AnatomyStep>
+
+<AnatomyStep title="Set state on interaction">
+
+To change the state, call the state setter function with the next state value. React will put that value into state instead.
+
+</AnatomyStep>
+
+<AnatomyStep title="Render state in the UI">
+
+Use the state in your JSX.
+
+</AnatomyStep>
+
+```js [[1, 4, "const [count, setCount] = useState(0);"], [2, 7, "setCount(count + 1);"], [3, 12, "count"]]
+import { useState } from 'react';
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      You pressed me {count} times
+    </button>
+  );
+}
+```
+
+</APIAnatomy>
+
+<Recipes titleText="Basic useState examples" titleId="examples-basic">
+
+### Counter (number) {/*counter-number*/}
+
+In this example, the `count` state variable holds a number. Clicking the button increments it.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      You pressed me {count} times
+    </button>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+### Text field (string) {/*text-field-string*/}
+
+In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function MyInput() {
+  const [text, setText] = useState('hello');
+
+  function handleChange(e) {
+    setText(e.target.value);
+  }
+
+  return (
+    <>
+      <input value={text} onChange={handleChange} />
+      <p>You typed: {text}</p>
+      <button onClick={() => setText('hello')}>
+        Reset
+      </button>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+### Checkbox (boolean) {/*checkbox-boolean*/}
+
+In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function MyCheckbox() {
+  const [liked, setLiked] = useState(true);
+
+  function handleChange(e) {
+    setLiked(e.target.checked);
+  }
+
+  return (
+    <>
+      <label>
+        <input
+          type="checkbox"
+          checked={liked}
+          onChange={handleChange}
+        />
+        I liked this
+      </label>
+      <p>You {liked ? 'liked' : 'did not like'} this.</p>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+### Form (two variables) {/*form-two-variables*/}
+
+You can declare more than one state variable in the same component. Each state variable is completely independent.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Form() {
+  const [name, setName] = useState('Taylor');
+  const [age, setAge] = useState(28);
+
+  return (
+    <>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <button onClick={() => setAge(age + 1)}>
+        Happy birthday!
+      </button>
+      <p>Hello, {name}. You are {age}.</p>
+    </>
+  );
+}
+```
+
+```css
+button { display: block; margin-top: 10px; }
+```
+
+</Sandpack>
+
+<Solution />
+
+</Recipes>
+
+Read [state as a component's memory](/learn/state-a-components-memory) to learn more.
+
+<Gotcha>
+
+Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
+
+```js {4}
+function handleClick() {
+  console.log(count);  // 0
+  setCount(count + 1); // Request a re-render with 1
+  console.log(count);  // Still 0!
+}
+```
+
+If you need the next state, you can save it in a variable before passing it to `setState`.
+
+</Gotcha>
+
+---
+
+### Updating state based on the previous state {/*updating-state-based-on-the-previous-state*/}
+
+This code looks like it increments the counter three times, but it only increments once:
+
+```js
+const [count, setCount] = useState(0);
+
+function handleClick() {
+  setCount(count + 1); // setCount(0 + 1)
+  setCount(count + 1); // setCount(0 + 1)
+  setCount(count + 1); // setCount(0 + 1)
+}
+```
+
+This is because calling `setCounter` will not update the `count` until the next render, so each call becomes `setCounter(0 + 1)`. **To make a series of state changes, each of which depends on the previous state,** pass an *updater function* to `setCount`. React will queue them and run them all to calculate state on next render.
+
+<APIAnatomy>
+
+<AnatomyStep title="You receive: Pending state">
+
+You get the latest state with the previously queued updates applied to it. For example, if `count` was `0` and you call `setCount(c => c + 1)` three times in a row, then the pending `c` state will be `0` in the first updater, `1` in the second one, and `2` in the third one, and `3` is the final state.
+
+</AnatomyStep>
+
+<AnatomyStep title="You return: Next state">
+
+You return the next state you want to see on the screen.
+
+</AnatomyStep>
+
+```js [[1, 3, "c", 0], [2, 3, "c + 1"], [1, 6, "c", 0], [2, 6, "c + 1"], [1, 9, "c", 0], [2, 9, "c + 1"]]
+function handleClick() {
+  // 0 => 1
+  setCount(c => c + 1);
+
+  // 1 => 2
+  setCount(c => c + 1);
+
+  // 2 => 3
+  setCount(c => c + 1);
+}
+```
+
+</APIAnatomy>
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(c => c + 1);
+    setCount(c => c + 1);
+    setCount(c => c + 1);
+    console.log(count); // Still 0 until next render!
+  }
+
+  return (
+    <>
+      <h1>{count}</h1>
+      <button onClick={handleClick}>+3</button>
+    </>
+  );
+}
+```
+
+```css
+button { display: inline-block; margin: 10px; font-size: 20px; }
+h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
+```
+
+</Sandpack>
+
+Read [state as a snapshot](/learn/state-as-a-snapshot) and [queueing a series of state changes](/learn/queueing-a-series-of-state-updates) to learn more.
+
+<Note>
+
+**Updaters need to be [pure functions that only calculate and return the next state](/learn/keeping-components-pure).** Don't "do" things or set state from the updater functions. React runs updater functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
+
+</Note>
+
+<DeepDive title="Is using an updater always preferred?">
+
+You might hear a recomendation to always write code like `setCount(c => c + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
+
+In most cases, there is no difference between these two approaches. React always makes sure that for intentional user actions, like clicks, the `count` state variable would be updated before the next click. This means there is no risk of a click handler seeing a "stale" `count` at the beginning of the event handler.
+
+However, if you do multiple updates within the same event, updaters can be helpful. They're also helpful if accessing the state variable itself is inconvenient (you might run into this when optimizing re-renders).
+
+If you prefer consistency over slightly more verbose syntax, it's reasonable to always write an updater if the state you're setting is calculated from the previous state. If it's calculated from the previous state of some *other* state variable, you might want to combine them into one object and [use a reducer](/learn/extracting-state-logic-into-a-reducer).
+
+</DeepDive>
+
+---
+
+
+### Updating objects and arrays in state {/*updating-objects-and-arrays-in-state*/}
+
+You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't update it like this:
+
+```js
+// Don't mutate an object in state like this:
+form.firstName = 'Taylor';
+```
+
+Instead, replace the whole object by creating a new one:
+
+```js
+setForm({
+  ...form,
+  firstName: 'Taylor'
+});
+```
+
+<Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
+
+### Form (object) {/*form-object*/}
+
+In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that the state object is replaced rather than mutated.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Form() {
+  const [form, setForm] = useState({
+    firstName: 'Barbara',
+    lastName: 'Hepworth',
+    email: 'bhepworth@sculpture.com',
+  });
+
+  return (
+    <>
+      <label>
+        First name:
+        <input
+          value={form.firstName}
+          onChange={e => {
+            setForm({
+              ...form,
+              firstName: e.target.value
+            });
+          }}
+        />
+      </label>
+      <label>
+        Last name:
+        <input
+          value={form.lastName}
+          onChange={e => {
+            setForm({
+              ...form,
+              lastName: e.target.value
+            });
+          }}
+        />
+      </label>
+      <label>
+        Email:
+        <input
+          value={form.email}
+          onChange={e => {
+            setForm({
+              ...form,
+              email: e.target.value
+            });
+          }}
+        />
+      </label>
+      <p>
+        {form.firstName}{' '}
+        {form.lastName}{' '}
+        ({form.email})
+      </p>
+    </>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 5px; }
+```
+
+</Sandpack>
+
+<Solution />
+
+### List (array) {/*list-array*/}
+
+In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AddTodo from './AddTodo.js';
+import TaskList from './TaskList.js';
+
+let nextId = 3;
+const initialTodos = [
+  { id: 0, title: 'Buy milk', done: true },
+  { id: 1, title: 'Eat tacos', done: false },
+  { id: 2, title: 'Brew tea', done: false },
+];
+
+export default function TaskApp() {
+  const [todos, setTodos] = useState(initialTodos);
+
+  function handleAddTodo(title) {
+    setTodos([
+      ...todos,
+      {
+        id: nextId++,
+        title: title,
+        done: false
+      }
+    ]);
+  }
+
+  function handleChangeTodo(nextTodo) {
+    setTodos(todos.map(t => {
+      if (t.id === nextTodo.id) {
+        return nextTodo;
+      } else {
+        return t;
+      }
+    }));
+  }
+
+  function handleDeleteTodo(todoId) {
+    setTodos(
+      todos.filter(t => t.id !== todoId)
+    );
+  }
+
+  return (
+    <>
+      <AddTodo
+        onAddTodo={handleAddTodo}
+      />
+      <TaskList
+        todos={todos}
+        onChangeTodo={handleChangeTodo}
+        onDeleteTodo={handleDeleteTodo}
+      />
+    </>
+  );
+}
+```
+
+```js AddTodo.js
+import { useState } from 'react';
+
+export default function AddTodo({ onAddTodo }) {
+  const [title, setTitle] = useState('');
+  return (
+    <>
+      <input
+        placeholder="Add todo"
+        value={title}
+        onChange={e => setTitle(e.target.value)}
+      />
+      <button onClick={() => {
+        setTitle('');
+        onAddTodo(title);
+      }}>Add</button>
+    </>
+  )
+}
+```
+
+```js TaskList.js
+import { useState } from 'react';
+
+export default function TaskList({
+  todos,
+  onChangeTodo,
+  onDeleteTodo
+}) {
+  return (
+    <ul>
+      {todos.map(todo => (
+        <li key={todo.id}>
+          <Task
+            todo={todo}
+            onChange={onChangeTodo}
+            onDelete={onDeleteTodo}
+          />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Task({ todo, onChange, onDelete }) {
+  const [isEditing, setIsEditing] = useState(false);
+  let todoContent;
+  if (isEditing) {
+    todoContent = (
+      <>
+        <input
+          value={todo.title}
+          onChange={e => {
+            onChange({
+              ...todo,
+              title: e.target.value
+            });
+          }} />
+        <button onClick={() => setIsEditing(false)}>
+          Save
+        </button>
+      </>
+    );
+  } else {
+    todoContent = (
+      <>
+        {todo.title}
+        <button onClick={() => setIsEditing(true)}>
+          Edit
+        </button>
+      </>
+    );
+  }
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={todo.done}
+        onChange={e => {
+          onChange({
+            ...todo,
+            done: e.target.checked
+          });
+        }}
+      />
+      {todoContent}
+      <button onClick={() => onDelete(todo.id)}>
+        Delete
+      </button>
+    </label>
+  );
+}
+```
+
+```css
+button { margin: 5px; }
+li { list-style-type: none; }
+ul, li { margin: 0; padding: 0; }
+```
+
+</Sandpack>
+
+<Solution />
+
+</Recipes>
+
+Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
+
+---
+
+### Avoiding recreation of the initial state {/*avoiding-recreation-of-the-initial-state*/}
+
+The initial state that you pass to `useState` is only used for the initial render. For the next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away on every render. To avoid this, **you can pass an *initializer function* to `useState`.** React will only run it during the initialization to calculate the initial state, but won't run it for re-renders. This is a performance optimization.
+
+<APIAnatomy>
+
+<AnatomyStep title="Initializing state with a value">
+
+Most often, you will provide the initial state during render.
+
+</AnatomyStep>
+
+<AnatomyStep title="Initializing state with a function">
+
+But you can also give React a function that calculates the initial state instead. React will only call that function when initializing the component, and won't call it again.
+
+</AnatomyStep>
+
+```js [[1, 2, "''"], [2, 5, "() => createInitialTodos()"]]
+function TodoList() {
+  const [text, setText] = useState('');
+
+  const [todos, setTodos] = useState(
+    () => createInitialTodos()
+  );
+
+  // ...
+```
+
+</APIAnatomy>
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+function createInitialTodos() {
+  const initialTodos = [];
+  for (let i = 0; i < 50; i++) {
+    initialTodos.push({
+      id: i,
+      text: 'Item #' + i
+    });
+  }
+  return initialTodos;
+}
+
+export default function TodoList() {
+  const [todos, setTodos] = useState(createInitialTodos);
+
+  return (
+    <ul>
+      {todos.map(item => (
+        <li key={item.id}>
+          {item.text}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+</Sandpack>
+
+<Note>
+
+**Initializers need to be [pure functions that only calculate and return the initial state](/learn/keeping-components-pure).** Don't "do" things or set state from the initializer functions. React runs initializer functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
+
+</Note>

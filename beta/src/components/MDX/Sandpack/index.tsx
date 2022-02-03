@@ -27,7 +27,7 @@ const SandpackFallBack = ({code}: {code: string}) => (
                 <div className="cm-editor">
                   <div>
                     <div className="cm-gutters pl-9 sticky min-h-[192px]">
-                      <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder overflow-scroll">
+                      <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder">
                         {code}
                       </div>
                     </div>

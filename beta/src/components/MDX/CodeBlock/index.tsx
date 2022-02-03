@@ -28,7 +28,7 @@ export default React.memo(function CodeBlockWrapper(props: {
             !isFromPackageImport && !isFromAPIAnatomy && 'my-8'
           )}>
           <div className="py-6 pl-5 font-normal ">
-            <p className="sp-pre-placeholder">{children}</p>
+            <p className="sp-pre-placeholder overflow-hidden">{children}</p>
           </div>
         </pre>
       }>

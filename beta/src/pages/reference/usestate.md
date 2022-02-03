@@ -318,70 +318,6 @@ input { margin-left: 5px; }
 
 </Sandpack>
 
-In the above example, each input has its own change handler. However, if their logic is the same, you can reuse one event handler. Here, all inputs share the same `handleChange` handler which decides which field to update by reading the `name` DOM attribute:
-
-<Sandpack>
-
-```js
-import { useState } from 'react';
-
-export default function Form() {
-  const [form, setForm] = useState({
-    firstName: 'Barbara',
-    lastName: 'Hepworth',
-    email: 'bhepworth@sculpture.com',
-  });
-
-  function handleChange(e) {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  return (
-    <>
-      <label>
-        First name:
-        <input
-          name="firstName"
-          value={form.firstName}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Last name:
-        <input
-          name="lastName"
-          value={form.lastName}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Email:
-        <input
-          name="email"
-          value={form.email}
-          onChange={handleChange}
-        />
-      </label>
-      <p>
-        {form.firstName}{' '}
-        {form.lastName}{' '}
-        ({form.email})
-      </p>
-    </>
-  );
-}
-```
-
-```css
-label { display: block; }
-input { margin-left: 5px; }
-```
-
-</Sandpack>
-
 <Solution />
 
 ### List (array) {/*list-array*/}
@@ -557,13 +493,15 @@ ul, li { margin: 0; padding: 0; }
 
 ### Passing the same value to `setState` {/*passing-the-same-value-to-setstate*/}
 
-If you pass the current state to `setState`, React **will skip re-rendering the component's children**:
+If you pass the current state to `setState`, React **will skip re-rendering the component and its children**:
 
 ```js
-setCount(count); // Won't trigger a re-render because we're setting it to the same value
+setCount(count); // Won't trigger a re-render
 ```
 
-React uses the [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) algorithm to compare the values. This is a performance optimization. React may still need to call your component in some cases, but it won't re-render its children if the state has not changed.
+React uses the [`Object.is()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) algorithm to compare the values.
+
+This is a performance optimization. React might still need to call your component function in some cases, but it will discard the result and bail out of re-rendering the child tree if the state has not changed.
 
 ### Passing a state updater to `setState` {/*passing-a-state-updater-to-setstate*/}
 
@@ -593,9 +531,7 @@ function handleClick() {
 
 </APIAnatomy>
 
-In the above example, `setCount(123)` will only change the `count` [for the next render](/learn/state-as-a-snapshot). So `setCount(count + 1)` will "see" the previous `count` value that was on the screen rather than `123`. But calling `setCount(c => c + 1)` lets you read the *pending* state you have just set. You'll receive `123` as `c`, so the final result will be `124`.
-
-By using updaters, you can [queue multiple updates](/learn/queueing-a-series-of-state-updates) on top of each other:
+This is useful when you want to update state based on the state _you have just set_ (like `123` above) and that has not yet been reflected to the screen. By using updaters, you can [queue multiple updates](/learn/queueing-a-series-of-state-updates) on top of each other:
 
 <APIAnatomy>
 
@@ -625,6 +561,8 @@ function handleClick() {
 ```
 
 </APIAnatomy>
+
+React puts the updater functions in a queue and runs them during the next render. You can think of a regular `setState(something)` call as a `setState(() => something)` call where the pending state is not used.
 
 <Note>
 
@@ -687,7 +625,7 @@ This is a performance optimization. Initializers let you avoid creating large ob
 
 ### Passing an updater to setState {/*passing-an-updater-to-setstate*/}
 
-In this example, the `increment` method increments the counter with `setNumber(n => n + 1)`. Verify both "+3" and "+1" buttons work. Notice how if you change it to `setNumber(number + 1)`, the "+3" button no longer works. This is because `number` always refers to [what's currently on the screen](/learn/state-as-a-snapshot), so if you want to [queue multiple state changes](/learn/queueing-a-series-of-state-updates), you need to use an updater function.
+In this example, the `increment` method increments the counter with `setNumber(n => n + 1)`. Verify both "+3" and "+1" buttons work. The "+3" button calls `increment()` three times, which enqueues three separate state updates to the `number`:
 
 <Sandpack>
 
@@ -723,6 +661,8 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 ```
 
 </Sandpack>
+
+Notice how if you change the code to `setNumber(number + 1)`, the "+3" button no longer works. This is because `number` [always refers to what's currently on the screen](/learn/state-as-a-snapshot). When you call `setNumber(number + 1)`, `number` stays the same until the next render.
 
 <Solution />
 
@@ -767,11 +707,9 @@ export default function TodoList() {
 
 ### Preventing re-renders with same state {/*preventing-re-renders-with-same-state*/}
 
-In this example, the two buttons switch the `tab` state between `'home'` and `'about'`.
+In this example, the two buttons switch the `tab` state between `'home'` and `'about'`. This sandbox has a logging utility function that helps us visualize what React is doing. Initially, React renders the Home tab. (Double renders are due to [Strict Mode](/reference/strictmode).)
 
-This sandbox has a helper `debugLog` function defined at the bottom which helps us keep track of the rendering behavior. Initially, when the sandbox loads, we display the Home tab. This is why you see a render of the `MySite` component and then the `Home` component. The logs appear twice because the sandbox runs in Strict Mode [to help find accidentally impure components](/learn/keeping-components-pure).
-
-If you press "Home" again after loading, neither the Home component nor its children will re-render. This is because you're calling `setTab('home')` but `tab` is already `'home'`. That's the special behavior of `setState` when the value is the same.
+If you press "Home" _again_, neither the Home component nor its children will re-render. This is because you're calling `setTab('home')` but `tab` is already `'home'`. That's the special behavior of `setState` when the value is the same.
 
 <Sandpack>
 
@@ -823,7 +761,7 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-You'll notice that if you switch to About and then press About again, you might get an extra log of the parent component render. React may need to call the parent component in some cases, but it won't use the result if the state has really not changed.
+You'll notice that if you switch to About and then press About again, you might get an extra log of the parent component render. React may still need to call the parent component in some cases, but it won't re-render any of the children.
 
 <Solution />
 

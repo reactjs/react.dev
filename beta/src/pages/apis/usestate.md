@@ -795,9 +795,7 @@ In most cases you don't need derived state:
 * If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
 * If you can, update all the relevant state in the event handlers.
 
-If none of this applies, you can use derived state.
-
-This `CountLabel` component displays the `count` prop passed to it:
+Let's consider an example. This `CountLabel` component displays the `count` prop passed to it:
 
 ```js CountLabel.js
 export default function CountLabel({ count }) {
@@ -805,20 +803,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-Let's say you have a new requirement to show whether the counter has *increased or decreased* since the last change. The `count` prop alone doesn't tell you this -- you need to somehow keep track of what it used to be.
-
-To add derived state, you're going to need two state variables. The `prevCount` state variable will track the `count` prop from the previous render. The `trend` state variable will hold whether the count has increased or decreased. When you use derived state, the logic always follows the same pattern: you compare the previous value with the new value, and if they're not equal, you update the previous value *and* your derived state together:
-
-```js {3-6}
-const [prevCount, setPrevCount] = useState(count);
-const [trend, setTrend] = useState(null);
-if (prevCount !== count) {
-  setPrevCount(count);
-  setTrend(count > prevCount ? 'increasing' : 'decreasing');
-}
-```
-
-Try to press both buttons and see how derived state works in practice:
+You want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*. Here, `trend` is an example of derived state:
 
 <Sandpack>
 
@@ -866,7 +851,5 @@ button { margin-bottom: 10px; }
 ```
 
 </Sandpack>
-
-Let's walk through it step by step. When you press "Increment", `count` becomes `1`. Initially, `prevCount` was `0`, so `prevCount !== count` is `true`. You're calling `setPrevCount(1)`, which queues a re-render (but [doesn't](/learn/state-as-a-snapshot) update `prevCount` right away). You're also calling `setTrend(1 > 0 ? 'increasing' : 'decreasing')`. React discards the result of this render and immediately performs another render. This time, both `count` and `prevCount` are `1`, and `trend` is `'increasing'`. This time, the condition is `false`, so we avoid an infinite loop.
 
 When you can, try to avoid derived state. However, derived state is better than updating state in an effect. This is because calling the `set` function in render restarts a render immediately without waiting for child components. 

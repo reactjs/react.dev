@@ -17,7 +17,7 @@ title: useState
   - [Adding state to a component](#adding-state-to-a-component)
   - [Updating state based on the previous state](#updating-state-based-on-the-previous-state)
   - [Updating objects and arrays in state](#updating-objects-and-arrays-in-state)
-  - [Avoiding recreation of the initial state](#avoiding-recreation-of-the-initial-state)
+  - [Avoiding recreating of the initial state](#avoiding-recreating-of-the-initial-state)
 
 ## Reference {/*reference*/}
 
@@ -52,7 +52,7 @@ function Form() {
 #### Arguments {/*arguments*/}
 
 * `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
-  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreation-of-the-initial-state)
+  * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-of-the-initial-state)
 
 #### Returns {/*returns*/}
 
@@ -671,7 +671,7 @@ Read [updating objects in state](/learn/updating-objects-in-state) and [updating
 
 ---
 
-### Avoiding recreation of the initial state {/*avoiding-recreation-of-the-initial-state*/}
+### Avoiding recreating of the initial state {/*avoiding-recreating-of-the-initial-state*/}
 
 The initial state that you pass to `useState` is only used for the initial render. For the next renders, this argument is ignored. If creating the initial state is expensive, it is wasteful to create and throw it away on every render. To avoid this, **you can pass an *initializer function* to `useState`.** React will only run it during the initialization to calculate the initial state, but won't run it for re-renders. This is a performance optimization.
 

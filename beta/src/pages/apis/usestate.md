@@ -790,7 +790,7 @@ Usually, you will update state in event handlers. However, **in rare cases you m
 
 In most cases you don't need derived state:
 
-* If you want to always copy a prop into state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)
+* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether](/learn/choosing-the-state-structure#avoid-redundant-state).** If you're worried about recomputing too often, the [`useMemo` Hook](/apis/usememo) can help.
 * If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
 * If you can, update all the relevant state in the event handlers.
 

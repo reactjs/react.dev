@@ -12,7 +12,7 @@ title: useState
 
 - [Reference](#reference)
   - [`useState(initialState)`](#usestate)
-  - [`set` functions, like `setName(nextState)`](#setstate)
+  - [`set` functions, like `setSomething(nextState)`](#setstate)
 - [Usage](#usage)
   - [Adding state to a component](#adding-state-to-a-component)
   - [Updating state based on the previous state](#updating-state-based-on-the-previous-state)
@@ -35,7 +35,7 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[thing, setThing]` using [array destructuring](/learn/a-javascript-refresher#array-destructuring).
+The convention is to name state variables like `[something, setSomething]` using [array destructuring](/learn/a-javascript-refresher#array-destructuring).
 
 [See more examples below.](#examples-basic)
 
@@ -48,17 +48,17 @@ The convention is to name state variables like `[thing, setThing]` using [array 
 
 `useState` returns an array with exactly two values:
 
-* `state`: The current state. During the first render, it will match the `initialState` you have passed.
-* [`setState`](#setstate): A function that lets you update the state to a different value and trigger a re-render.
+1. The current state. During the first render, it will match the `initialState` you have passed.
+2. The [`set` function](#setstate) that lets you update the state to a different value and trigger a re-render.
 
-#### Pitfalls {/*pitfalls*/}
+#### Caveats {/*caveats*/}
 
 * `useState` is a Hook, so you can only call it at the top level of your component or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state there.
 * In Strict Mode, React will call your initializer function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
 ---
 
-### `set` functions, like `setName(nextState)` {/*setstate*/}
+### `set` functions, like `setSomething(nextState)` {/*setstate*/}
 
 The `set` function returned by `useState` lets you update the state to a different value and trigger a re-render. You can pass the next state directly, or a function that calculates it from the previous state:
 
@@ -74,15 +74,15 @@ function handleClick() {
 #### Arguments {/*setstate-arguments*/}
 
 * `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
-  * You may also pass an *updater function* as `nextState`. It must be pure, should take a single argument (the pending state), and it should return the next state. React will put it in a queue. On the next render, React will calculate the next state by applying the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
+  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
 
 #### Returns {/*setstate-returns*/}
 
 `set` functions do not have a return value.
 
-#### Pitfalls {/*pitfalls*/}
+#### Caveats {/*caveats*/}
 
-* Calling `setState()` only updates the state for the next render. If you read the `state` variable after calling `setState()`, you will still get the value that was on the screen before your call.
+* The `set` function only updates the state variable for the next render. If you read the state variable after calling the `set` function, you will still get the value that was on the screen before your call.
 
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will bail out of re-rendering the component and its children. However, in some cases React may still need to call your component before discarding the result.
 
@@ -276,9 +276,9 @@ Read [state as a component's memory](/learn/state-a-components-memory) to learn 
 
 <Gotcha>
 
-Calling `setState` [only affects the next render](/learn/state-as-a-snapshot) and **does not change state in the already running code:**
+Calling the `set` function only [affects the next render](/learn/state-as-a-snapshot) and **does not change state in the running code**:
 
-```js {4}
+```js {3,4}
 function handleClick() {
   console.log(count);  // 0
   setCount(count + 1); // Request a re-render with 1
@@ -286,7 +286,7 @@ function handleClick() {
 }
 ```
 
-If you need the next state, you can save it in a variable before passing it to `setState`.
+If you need the next state, you can save it in a variable before passing it to the `set` function.
 
 </Gotcha>
 
@@ -306,7 +306,7 @@ function handleClick() {
 }
 ```
 
-This is because calling `setCounter` will not update the `count` until the next render, so each call becomes `setCounter(0 + 1)`. **To make a series of state changes, each of which depends on the previous state,** pass an *updater function* to `setCount`. React will queue them and run them all to calculate state on next render.
+This is because calling `setCount` will not update the `count` until the next render, so each call becomes `setCount(0 + 1)`. **To make a series of state changes, each of which depends on the previous state,** pass an *updater function* to `setCount`. React will queue them and run them all to calculate state on next render.
 
 <APIAnatomy>
 

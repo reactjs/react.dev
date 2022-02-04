@@ -23,7 +23,7 @@ April 1st, 2022. Amsterdam, The Netherlands
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
 
 ### < React Global > by Geekle {#react-global-2022}
-April 21st-22nd, 2022 - Online Summitt
+April 21st-22nd, 2022 - Online Summit
 
 [Website](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/) 
 

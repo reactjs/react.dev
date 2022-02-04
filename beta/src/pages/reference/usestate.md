@@ -23,7 +23,7 @@ title: useState
 
 ### `useState(initialState)` {/*usestate*/}
 
-Import it from React, then call `useState` at the top level of your component to declare a [state variable](/learn/state-a-components-memory).
+Call `useState` at the top level of your component to declare a [state variable](/learn/state-a-components-memory).
 
 ```js
 import { useState } from 'react';

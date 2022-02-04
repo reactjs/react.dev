@@ -763,7 +763,6 @@ export default function App() {
 
 function Form() {
   const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(28);
 
   return (
     <>

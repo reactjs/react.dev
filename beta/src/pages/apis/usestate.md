@@ -854,6 +854,6 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-In this example, if you can't modify the parent component to track it, derived state is the right solution.
+Note that derived state must set be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of it. Otherwise, your component would re-render in a loop until it crashes.
 
 When you can, try to avoid derived state. However, derived state is better than updating state in an effect. This is because calling the `set` function in render restarts a render immediately without waiting for child components. 

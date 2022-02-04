@@ -1,7 +1,7 @@
 {
   "title": "API Reference",
   "heading": true,
-  "path": "/reference",
+  "path": "/apis",
   "routes": [
     {
       "heading": true,
@@ -9,21 +9,21 @@
       "routes": [
         {
           "title": "React APIs",
-          "path": "/reference",
+          "path": "/apis",
           "routes": [
             {
               "title": "useState()",
-              "path": "/reference/usestate"
+              "path": "/apis/usestate"
             }
           ]
         },
         {
           "title": "ReactDOM APIs",
-          "path": "/reference/reactdom",
+          "path": "/apis/reactdom",
           "routes": [
             {
               "title": "render()",
-              "path": "/reference/render"
+              "path": "/apis/render"
             }
           ]
         }

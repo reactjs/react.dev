@@ -5,6 +5,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/reference/:path*",
+      "destination": "/apis/:path*",
+      "permanent": false
+    },
+    {
       "source": "/tips/controlled-input-null-value.html",
       "destination": "/docs/forms.html#controlled-input-null-value",
       "permanent": false

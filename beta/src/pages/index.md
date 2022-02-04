@@ -23,7 +23,7 @@ This is a **beta website**. There will be bugs, performance issues, and missing 
 ## How much content is ready? {/*how-much-content-is-ready*/}
 
 * [Learn React](/learn): ~70% finished.
-* [API Reference](/reference): ~5% finished.
+* [API Reference](/apis): ~5% finished.
 
 You can track our progress [on GitHub](https://github.com/reactjs/reactjs.org/issues/3308).
 

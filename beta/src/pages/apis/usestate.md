@@ -795,7 +795,9 @@ In most cases you don't need derived state:
 * If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
 * If you can, update all the relevant state in the event handlers.
 
-Let's consider an example. This `CountLabel` component displays the `count` prop passed to it:
+If none of this applies and you still need to adjust some state based on a prop, try derived state.
+
+Here's an example. This `CountLabel` component displays the `count` prop passed to it:
 
 ```js CountLabel.js
 export default function CountLabel({ count }) {
@@ -803,7 +805,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-You want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*. Here, `trend` is an example of derived state:
+Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*. Here, `trend` is an example of derived state:
 
 <Sandpack>
 
@@ -851,5 +853,7 @@ button { margin-bottom: 10px; }
 ```
 
 </Sandpack>
+
+In this example, if you can't modify the parent component to track it, derived state is the right solution.
 
 When you can, try to avoid derived state. However, derived state is better than updating state in an effect. This is because calling the `set` function in render restarts a render immediately without waiting for child components. 

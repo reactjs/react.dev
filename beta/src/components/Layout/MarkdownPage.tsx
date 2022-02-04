@@ -34,7 +34,7 @@ export function MarkdownPage<
   }> = React.Children.toArray(children)
     .filter((child: any) => {
       if (child.props?.mdxType) {
-        return ['h1', 'h2', 'h3', 'Challenges', 'Recipes', 'Recap'].includes(
+        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(
           child.props.mdxType
         );
       }
@@ -46,13 +46,6 @@ export function MarkdownPage<
           url: '#challenges',
           depth: 0,
           text: 'Challenges',
-        };
-      }
-      if (child.props.mdxType === 'Recipes') {
-        return {
-          url: '#' + (child.props.titleId ?? 'examples'),
-          depth: 0,
-          text: child.props.titleText ?? 'Examples',
         };
       }
       if (child.props.mdxType === 'Recap') {

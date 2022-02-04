@@ -355,7 +355,7 @@ const [index, setIndex] = useState(0);
 
 In this case, you want React to remember `index`.
 
-> The convention is to name this pair like `const [thing, setThing]`. You could name it anything you like, but conventions make things easier to understand across projects.
+> The convention is to name this pair like `const [something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
 
 The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
 

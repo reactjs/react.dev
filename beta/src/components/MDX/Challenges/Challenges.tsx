@@ -6,6 +6,7 @@ import * as React from 'react';
 import cn from 'classnames';
 import {Button} from 'components/Button';
 import {H2} from 'components/MDX/Heading';
+import {H4} from 'components/MDX/Heading';
 import {Navigation} from './Navigation';
 import {IconHint} from '../../Icon/IconHint';
 import {IconSolution} from '../../Icon/IconSolution';
@@ -111,21 +112,24 @@ export function Challenges({
     return order === currentChallenge.order + 1;
   });
 
+  const Heading = isRecipes ? H4 : H2;
   return (
-    <div className="max-w-7xl mx-auto py-4 md:py-12">
+    <div className="max-w-7xl mx-auto py-4">
       <div
         className={cn(
           'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-lg'
         )}>
         <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
-          <H2
+          <Heading
             id={titleId}
             className={cn(
-              'text-3xl mb-2 leading-10 relative',
-              isRecipes ? 'text-purple-50 dark:text-purple-30' : 'text-link'
+              'mb-2 leading-10 relative',
+              isRecipes
+                ? 'text-xl text-purple-50 dark:text-purple-30'
+                : 'text-3xl text-link'
             )}>
             {titleText}
-          </H2>
+          </Heading>
           {challenges.length > 1 && (
             <Navigation
               currentChallenge={currentChallenge}

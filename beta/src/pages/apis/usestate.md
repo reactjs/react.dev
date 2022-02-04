@@ -18,6 +18,8 @@ title: useState
   - [Updating state based on the previous state](#updating-state-based-on-the-previous-state)
   - [Updating objects and arrays in state](#updating-objects-and-arrays-in-state)
   - [Avoiding recreating the initial state](#avoiding-recreating-the-initial-state)
+  - [Resetting state with a key](#resetting-state-with-a-key)
+  - [Adjusting derived state during rendering](#adjusting-derived-state-during-rendering)
 
 ## Reference {/*reference*/}
 
@@ -85,6 +87,8 @@ function handleClick() {
 * The `set` function only updates the state variable for the next render. If you read the state variable after calling the `set` function, you will still get the value that was on the screen before your call.
 
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will bail out of re-rendering the component and its children. However, in some cases React may still need to call your component before discarding the result.
+
+* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. React will do this in a loop until you either stop setting state, or do it too many times. This pattern is called "derived state". It is uncommon, but you can use it to adjust a piece of state in response to a prop change. [See an example below.](#adjusting-derived-state-during-rendering)
 
 * In Strict Mode, React will call your updater function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
@@ -726,3 +730,143 @@ export default function TodoList() {
 **Initializers need to be [pure functions that only calculate and return the initial state](/learn/keeping-components-pure).** Don't "do" things or set state from the initializer functions. React runs initializer functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
 
 </Note>
+
+---
+
+### Resetting state with a key {/*resetting-state-with-a-key*/}
+
+Typically, you might encounter the `key` attribute when [rendering lists](/learn/rendering-lists). However, it also serves another purpose.
+
+You can **reset a component's state by passing a different `key` to a component.** In this example, the Reset button changes the `version` state variable, which we pass as a `key` to the `Form`. When the `key` changes, React re-creates the `Form` component (and all of its children) from scratch, so its state gets reset.
+
+Read [preserving and resetting state](/learn/preserving-and-resetting-state) to learn more.
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+
+export default function App() {
+  const [version, setVersion] = useState(0);
+
+  function handleReset() {
+    setVersion(version + 1);
+  }
+
+  return (
+    <>
+      <button onClick={handleReset}>Reset</button>
+      <Form key={version} />
+    </>
+  );
+}
+
+function Form() {
+  const [name, setName] = useState('Taylor');
+  const [age, setAge] = useState(28);
+
+  return (
+    <>
+      <input
+        value={name}
+        onChange={e => setName(e.target.value)}
+      />
+      <p>Hello, {name}.</p>
+    </>
+  );
+}
+```
+
+```css
+button { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+---
+
+### Adjusting derived state during rendering {/*adjusting-derived-state-during-rendering*/}
+
+Usually, you will update state in event handlers. However, **in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes**. This is called "derived state" because the state change is caused by some other, earlier state change elsewhere.
+
+In most cases you don't need derived state:
+
+* If you want to always copy a prop into state, [remove that redundant state altogether.](/learn/choosing-the-state-structure#avoid-redundant-state)
+* If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
+* If you can, update all the relevant state in the event handlers.
+
+If none of this applies, you can use derived state.
+
+This `CountLabel` component displays the `count` prop passed to it:
+
+```js CountLabel.js
+export default function CountLabel({ count }) {
+  return <h1>{count}</h1>
+}
+```
+
+Let's say you have a new requirement to show whether the counter has *increased or decreased* since the last change. The `count` prop alone doesn't tell you this -- you need to somehow keep track of what it used to be.
+
+To add derived state, you're going to need two state variables. The `prevCount` state variable will track the `count` prop from the previous render. The `trend` state variable will hold whether the count has increased or decreased. When you use derived state, the logic always follows the same pattern: you compare the previous value with the new value, and if they're not equal, you update the previous value *and* your derived state together:
+
+```js {3-6}
+const [prevCount, setPrevCount] = useState(count);
+const [trend, setTrend] = useState(null);
+if (prevCount !== count) {
+  setPrevCount(count);
+  setTrend(count > prevCount ? 'increasing' : 'decreasing');
+}
+```
+
+Try to press both buttons and see how derived state works in practice:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import CountLabel from './CountLabel.js';
+
+export default function App() {
+  const [count, setCount] = useState(0);
+  return (
+    <>
+      <button onClick={() => setCount(count + 1)}>
+        Increment
+      </button>
+      <button onClick={() => setCount(count - 1)}>
+        Decrement
+      </button>
+      <CountLabel count={count} />
+    </>
+  );
+}
+```
+
+```js CountLabel.js active
+import { useState } from 'react';
+
+export default function CountLabel({ count }) {
+  const [prevCount, setPrevCount] = useState(count);
+  const [trend, setTrend] = useState(null);
+  if (prevCount !== count) {
+    setPrevCount(count);
+    setTrend(count > prevCount ? 'increasing' : 'decreasing');
+  }
+  return (
+    <>
+      <h1>{count}</h1>
+      {trend && <p>The count is {trend}</p>}
+    </>
+  );
+}
+```
+
+```css
+button { margin-bottom: 10px; }
+```
+
+</Sandpack>
+
+Let's walk through it step by step. When you press "Increment", `count` becomes `1`. Initially, `prevCount` was `0`, so `prevCount !== count` is `true`. You're calling `setPrevCount(1)`, which queues a re-render (but [doesn't](/learn/state-as-a-snapshot) update `prevCount` right away). You're also calling `setTrend(1 > 0 ? 'increasing' : 'decreasing')`. React discards the result of this render and immediately performs another render. This time, both `count` and `prevCount` are `1`, and `trend` is `'increasing'`. This time, the condition is `false`, so we avoid an infinite loop.
+
+When you can, try to avoid derived state. However, derived state is better than updating state in an effect. This is because calling the `set` function in render restarts a render immediately without waiting for child components. 

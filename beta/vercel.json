@@ -7,7 +7,7 @@
     {
       "source": "/reference/:path*",
       "destination": "/apis/:path*",
-      "permanent": true,
+      "permanent": false
     },
     {
       "source": "/tips/controlled-input-null-value.html",

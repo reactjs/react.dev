@@ -35,6 +35,7 @@ export function Preview({
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
   const [isReady, setIsReady] = React.useState(false);
+  const [heightIsUpdated, setHeightIsUpdated] = React.useState(false);
   const [iframeComputedHeight, setComputedAutoHeight] = React.useState<
     number | null
   >(null);
@@ -82,6 +83,7 @@ export function Preview({
       const unsubscribe = listen((message: any) => {
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
+          setHeightIsUpdated(true);
         } else if (message.type === 'start') {
           if (message.firstLoad) {
             setIsReady(false);
@@ -93,7 +95,7 @@ export function Preview({
 
       return () => {
         setIsReady(false);
-        setComputedAutoHeight(null);
+        setHeightIsUpdated(false);
         unsubscribe();
       };
     },
@@ -162,9 +164,7 @@ export function Preview({
               // (which we're using for autosizing). This is noticeable
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
-              hideContent
-                ? 'absolute opacity-0 pointer-events-none'
-                : 'opacity-100'
+              hideContent ? 'opacity-0 pointer-events-none' : 'opacity-100'
             )}
             title="Sandbox Preview"
             style={{
@@ -186,7 +186,7 @@ export function Preview({
         )}
         <LoadingOverlay
           clientId={clientId.current}
-          loading={!isReady && iframeComputedHeight === null}
+          loading={!isReady && !heightIsUpdated}
         />
       </div>
     </div>

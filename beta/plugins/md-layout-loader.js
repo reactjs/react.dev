@@ -23,7 +23,7 @@ module.exports = async function (src) {
   const layoutMap = {
     blog: 'Post',
     learn: 'Learn',
-    reference: 'API',
+    apis: 'API',
   };
   const layout = layoutMap[pageParentDir] || 'Home';
   const code =

@@ -187,6 +187,14 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
+Alternatively, we could use another way of incrementing count variable by using `setCount` function parameter. This is in fact more safe way to update count variable, because we will make sure to receive the latest count variable from our state.
+
+```js{1}
+  <button onClick={() => setCount(prevCount=>count + 1)}>
+    Click me
+  </button>
+```
+
 ## Recap {#recap}
 
 Let's now **recap what we learned line by line** and check our understanding.

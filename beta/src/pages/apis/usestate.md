@@ -19,7 +19,7 @@ title: useState
   - [Updating objects and arrays in state](#updating-objects-and-arrays-in-state)
   - [Avoiding recreating the initial state](#avoiding-recreating-the-initial-state)
   - [Resetting state with a key](#resetting-state-with-a-key)
-  - [Adjusting derived state during rendering](#adjusting-derived-state-during-rendering)
+  - [Storing information from previous renders](#storing-information-from-previous-renders)
 
 ## Reference {/*reference*/}
 
@@ -784,17 +784,15 @@ button { display: block; margin-bottom: 20px; }
 
 ---
 
-### Adjusting derived state during rendering {/*adjusting-derived-state-during-rendering*/}
+### Storing information from previous renders {/*storing-information-from-previous-renders*/}
 
-Usually, you will update state in event handlers. However, **in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes**. This is called "derived state" because the state change is caused by some other, earlier state change elsewhere.
-
-In most cases you don't need derived state:
+Usually, you will update state in event handlers. However, in rare cases you might want to adjust state in response to rendering -- for example, you might want to change a state variable when a prop changes.  In most cases, you don't need this:
 
 * **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether](/learn/choosing-the-state-structure#avoid-redundant-state).** If you're worried about recomputing too often, the [`useMemo` Hook](/apis/usememo) can help.
 * If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
 * If you can, update all the relevant state in the event handlers.
 
-If none of this applies and you still need to adjust some state based on a prop, try derived state.
+In the rare case that none of these apply, there is a pattern you can use to update state based on the values that have been rendered so far, by calling a `set` function while your component is rendering.
 
 Here's an example. This `CountLabel` component displays the `count` prop passed to it:
 
@@ -804,7 +802,7 @@ export default function CountLabel({ count }) {
 }
 ```
 
-Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*. Here, `trend` is an example of derived state:
+Say you want to show whether the counter has *increased or decreased* since the last change. The `count` prop doesn't tell you this -- you need to keep track of its previous value. Add the `prevCount` state variable to track it. Add another state variable called `trend` to hold whether the count has increased or decreased. Compare `prevCount` with `count`, and if they're not equal, update both `prevCount` and `trend`. Now you can show both the current count prop and *how it has changed since the last render*.
 
 <Sandpack>
 
@@ -853,6 +851,6 @@ button { margin-bottom: 10px; }
 
 </Sandpack>
 
-Note that derived state must be set inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of it. Otherwise, your component would re-render in a loop until it crashes.
+Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes.
 
-If you can, try to avoid derived state. However, derived state is better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice.
+This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice.

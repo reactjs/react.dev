@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-const {appendFile, exists, readFile, writeFile} = require('fs-extra');
-
-const HEADER_COMMENT = `## Created with gatsby-transformer-versions-yaml`;
+const readFileSync = require('fs').readFileSync;
+const resolve = require('path').resolve;
+const {writeFile} = require('fs-extra');
 
 // Patterned after the 'gatsby-plugin-netlify' plug-in:
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-plugin-netlify/src/create-redirects.js
@@ -16,56 +16,53 @@ module.exports = async function writeRedirectsFile(
     return null;
   }
 
-  // Map redirect data to the format Netlify expects
-  // https://www.netlify.com/docs/redirects/
-  redirects = redirects.map(redirect => {
-    const {
-      fromPath,
-      isPermanent,
-      redirectInBrowser, // eslint-disable-line no-unused-vars
-      toPath,
-      ...rest
-    } = redirect;
+  /**
+   * We will first read the old config to validate if the redirect already exists in the json
+   */
+  const vercelConfigPath = resolve(__dirname, '../../vercel.json');
+  const vercelConfigFile = readFileSync(vercelConfigPath);
+  const oldConfigContent = JSON.parse(vercelConfigFile);
+  /**
+   * Map data as vercel expects it to be
+   */
 
-    // The order of these parameters is significant.
-    const pieces = [
-      fromPath,
-      toPath,
-      isPermanent ? 301 : 302, // Status
-    ];
+  let vercelRedirects = {};
 
-    for (let key in rest) {
-      const value = rest[key];
+  redirects.forEach(redirect => {
+    const {fromPath, isPermanent, toPath} = redirect;
 
-      if (typeof value === `string` && value.indexOf(` `) >= 0) {
-        console.warn(
-          `Invalid redirect value "${value}" specified for key "${key}". ` +
-            `Values should not contain spaces.`,
-        );
-      } else {
-        pieces.push(`${key}=${value}`);
-      }
+    vercelRedirects[fromPath] = {
+      destination: toPath,
+      permanent: !!isPermanent,
+    };
+  });
+  /**
+   * Make sure we dont have the same redirect already
+   */
+  oldConfigContent.redirects.forEach(data => {
+    if (vercelRedirects[data.source]) {
+      delete vercelRedirects[data.source];
     }
-
-    return pieces.join(`  `);
   });
 
-  let appendToFile = false;
+  /**
+   * Serialize the object to array of objects
+   */
+  let newRedirects = [];
+  Object.keys(vercelRedirects).forEach(value =>
+    newRedirects.push({
+      source: value,
+      destination: vercelRedirects[value].destination,
+      permanent: !!vercelRedirects[value].isPermanent,
+    }),
+  );
 
-  // Websites may also have statically defined redirects
-  // In that case we should append to them (not overwrite)
-  // Make sure we aren't just looking at previous build results though
-  const fileExists = await exists(redirectsFilePath);
-  if (fileExists) {
-    const fileContents = await readFile(redirectsFilePath);
-    if (fileContents.indexOf(HEADER_COMMENT) < 0) {
-      appendToFile = true;
-    }
-  }
-
-  const data = `${HEADER_COMMENT}\n\n${redirects.join(`\n`)}`;
-
-  return appendToFile
-    ? appendFile(redirectsFilePath, `\n\n${data}`)
-    : writeFile(redirectsFilePath, data);
+  /**
+   * We already have a vercel.json so we spread the new contents along with old ones
+   */
+  const newContents = {
+    ...oldConfigContent,
+    redirects: [...oldConfigContent.redirects, ...newRedirects],
+  };
+  return writeFile(redirectsFilePath, JSON.stringify(newContents, null, 2));
 };

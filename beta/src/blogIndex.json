@@ -1,0 +1,1400 @@
+{
+  "routes": [
+    {
+      "path": "/blog/2020/08/10/react-v17-rc.md",
+      "date": "2020-08-10",
+      "title": "React v17.0 Release Candidate: No New Features",
+      "author": [
+        "gaearon",
+        "rachelnabors"
+      ],
+      "excerpt": "<p>Today, we are publishing the first Release Candidate for React 17. It has been two and a half years since <a href=\"/blog/2017/09/26/react-v16.0.html\">the previous major release of React</a>, which is a long time even by our standards! In this blog post, we will describe the role of this major release, what changes you can expect in it, and how you can try this release.</p>\n",
+      "readingTime": "20 min read"
+    },
+    {
+      "path": "/blog/2020/02/26/react-v16.13.0.md",
+      "date": "2020-02-26",
+      "title": "React v16.13.0",
+      "author": [
+        "threepointone"
+      ],
+      "excerpt": "<p>Today we are releasing React 16.13.0. It contains bugfixes and new deprecation warnings to help prepare for a future major release.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2019/11/06/building-great-user-experiences-with-concurrent-mode-and-suspense.md",
+      "date": "2019-11-06",
+      "title": "Building Great User Experiences with Concurrent Mode and Suspense",
+      "author": [
+        "josephsavona"
+      ],
+      "excerpt": "<p>At React Conf 2019 we announced an <a href=\"/docs/concurrent-mode-adoption#installation\">experimental release</a> of React that supports Concurrent Mode and Suspense. In this post we’ll introduce best practices for using them that we’ve identified through the process of building <a href=\"https://twitter.com/facebook/status/1123322299418124289\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">the new facebook.com</a>.</p>\n",
+      "readingTime": "17 min read"
+    },
+    {
+      "path": "/blog/2019/10/22/react-release-channels.md",
+      "date": "2019-10-22",
+      "title": "Preparing for the Future with React Prereleases",
+      "author": [
+        "acdlite"
+      ],
+      "excerpt": "<p>To share upcoming changes with our partners in the React ecosystem, we’re establishing official prerelease channels. We hope this process will help us make changes to React with confidence, and give developers the opportunity to try out experimental features.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2019/08/15/new-react-devtools.md",
+      "date": "2019-08-15",
+      "title": "Introducing the New React DevTools",
+      "author": [
+        "bvaughn"
+      ],
+      "excerpt": "<p>We are excited to announce a new release of the React Developer Tools, available today in Chrome, Firefox, and (Chromium) Edge!</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2019/08/08/react-v16.9.0.md",
+      "date": "2019-08-08",
+      "title": "React v16.9.0 and the Roadmap Update",
+      "author": [
+        "gaearon",
+        "bvaughn"
+      ],
+      "excerpt": "<p>Today we are releasing React 16.9. It contains several new features, bugfixes, and new deprecation warnings to help prepare for a future major release.</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2019/02/23/is-react-translated-yet.md",
+      "date": "2019-02-23",
+      "title": "Is React Translated Yet? ¡Sí! Sim! はい！",
+      "author": [
+        "tesseralis"
+      ],
+      "excerpt": "<p>We’re excited to announce an ongoing effort to maintain official translations of the React documentation website into different languages. Thanks to the dedicated efforts of React community members from around the world, React is now being translated into <em>over 30</em> languages! You can find them on the new <a href=\"/languages\">Languages</a> page.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2019/02/06/react-v16.8.0.md",
+      "date": "2019-02-06",
+      "title": "React v16.8: The One With Hooks",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>With React 16.8, <a href=\"/docs/hooks-intro.html\">React Hooks</a> are available in a stable release!</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2018/12/19/react-v-16-7.md",
+      "date": "2018-12-19",
+      "title": "React v16.7: No, This Is Not the One With Hooks",
+      "author": [
+        "acdlite"
+      ],
+      "excerpt": "<p>Our latest release includes an important performance bugfix for <code>React.lazy</code>. Although there are no API changes, we’re releasing it as a minor instead of a patch.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2018/11/27/react-16-roadmap.md",
+      "date": "2018-11-27",
+      "title": "React 16.x Roadmap",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>You might have heard about features like “Hooks”, “Suspense”, and “Concurrent Rendering” in the previous blog posts and talks. In this post, we’ll look at how they fit together and the expected timeline for their availability in a stable release of React.</p>\n",
+      "readingTime": "14 min read"
+    },
+    {
+      "path": "/blog/2018/11/13/react-conf-recap.md",
+      "date": "2018-11-13",
+      "title": "React Conf recap: Hooks, Suspense, and Concurrent Rendering",
+      "author": [
+        "tomocchino"
+      ],
+      "excerpt": "<p>This year’s <a href=\"https://conf.reactjs.org/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">React Conf</a> took place on October 25 and 26 in Henderson, Nevada, where more than 600 attendees gathered to discuss the latest in UI engineering.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2018/10/23/react-v-16-6.md",
+      "date": "2018-10-23",
+      "title": "React v16.6.0: lazy, memo and contextType",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>Today we’re releasing React 16.6 with a few new convenient features. A form of PureComponent/shouldComponentUpdate for function components, a way to do code splitting using Suspense and an easier way to consume Context from class components.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2018/10/01/create-react-app-v2.md",
+      "date": "2018-10-01",
+      "title": "Create React App 2.0: Babel 7, Sass, and More",
+      "author": [
+        "timer",
+        "gaearon"
+      ],
+      "excerpt": "<p>Create React App 2.0 has been released today, and it brings a year’s worth of improvements in a single dependency update.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2018/09/10/introducing-the-react-profiler.md",
+      "date": "2018-09-10",
+      "title": "Introducing the React Profiler",
+      "author": [
+        "bvaughn"
+      ],
+      "excerpt": "<p>React 16.5 adds support for a new DevTools profiler plugin.</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2018/08/01/react-v-16-4-2.md",
+      "date": "2018-08-01",
+      "title": "React v16.4.2: Server-side vulnerability fix",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>We discovered a minor vulnerability that might affect some apps using ReactDOMServer. We are releasing a patch version for every affected React minor release so that you can upgrade with no friction. Read on for more details.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2018/06/07/you-probably-dont-need-derived-state.md",
+      "date": "2018-06-07",
+      "title": "You Probably Don't Need Derived State",
+      "author": [
+        "bvaughn"
+      ],
+      "excerpt": "<p>React 16.4 included a <a href=\"/blog/2018/05/23/react-v-16-4#bugfix-for-getderivedstatefromprops\">bugfix for getDerivedStateFromProps</a> which caused some existing bugs in React components to reproduce more consistently. If this release exposed a case where your application was using an anti-pattern and didn’t work properly after the fix, we’re sorry for the churn. In this post, we will explain some common anti-patterns with derived state and our preferred alternatives.</p>\n",
+      "readingTime": "14 min read"
+    },
+    {
+      "path": "/blog/2018/05/23/react-v-16-4.md",
+      "date": "2018-05-23",
+      "title": "React v16.4.0: Pointer Events",
+      "author": [
+        "acdlite"
+      ],
+      "excerpt": "<p>The latest minor release adds support for an oft-requested feature: pointer events!</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2018/03/29/react-v-16-3.md",
+      "date": "2018-03-29",
+      "title": "React v16.3.0: New lifecycles and context API",
+      "author": [
+        "bvaughn"
+      ],
+      "excerpt": "<p>A few days ago, we <a href=\"/blog/2018/03/27/update-on-async-rendering\">wrote a post about upcoming changes to our legacy lifecycle methods</a>, including gradual migration strategies. In React 16.3.0, we are adding a few new lifecycle methods to assist with that migration. We are also introducing new APIs for long requested features: an official context API, a ref forwarding API, and an ergonomic ref API.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2018/03/27/update-on-async-rendering.md",
+      "date": "2018-03-27",
+      "title": "Update on Async Rendering",
+      "author": [
+        "bvaughn"
+      ],
+      "excerpt": "<p>For over a year, the React team has been working to implement asynchronous rendering. Last month during his talk at JSConf Iceland, <a href=\"/blog/2018/03/01/sneak-peek-beyond-react-16\">Dan unveiled some of the exciting new possibilities async rendering unlocks</a>. Now we’d like to share with you some of the lessons we’ve learned while working on these features, and some recipes to help prepare your components for async rendering when it launches.</p>\n",
+      "readingTime": "12 min read"
+    },
+    {
+      "path": "/blog/2018/03/01/sneak-peek-beyond-react-16.md",
+      "date": "2018-03-01",
+      "title": "Sneak Peek: Beyond React 16",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p><a href=\"https://twitter.com/dan_abramov\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Dan Abramov</a> from our team just spoke at <a href=\"https://2018.jsconf.is/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">JSConf Iceland 2018</a> with a preview of some new features we’ve been working on in React. The talk opens with a question: “With vast differences in computing power and network speed, how do we deliver the best user experience for everyone?”</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2017/12/15/improving-the-repository-infrastructure.md",
+      "date": "2017-12-15",
+      "title": "Behind the Scenes: Improving the Repository Infrastructure",
+      "author": [
+        "gaearon",
+        "bvaughn"
+      ],
+      "excerpt": "<p>As we worked on <a href=\"/blog/2017/09/26/react-v16.0\">React 16</a>, we revamped the folder structure and much of the build tooling in the React repository. Among other things, we introduced projects such as <a href=\"https://rollupjs.org/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Rollup</a>, <a href=\"https://prettier.io/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Prettier</a>, and <a href=\"https://developers.google.com/closure/compiler/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Google Closure Compiler</a> into our workflow. People often ask us questions about how we use those tools. In this post, we would like to share some of the changes that we’ve made to our build and test infrastructure in 2017, and what motivated them.</p>\n",
+      "readingTime": "30 min read"
+    },
+    {
+      "path": "/blog/2017/12/07/introducing-the-react-rfc-process.md",
+      "date": "2017-12-07",
+      "title": "Introducing the React RFC Process",
+      "author": [
+        "acdlite"
+      ],
+      "excerpt": "<p>We’re adopting an RFC (“request for comments”) process for contributing ideas to React.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2017/11/28/react-v16.2.0-fragment-support.md",
+      "date": "2017-11-28",
+      "title": "React v16.2.0: Improved Support for Fragments",
+      "author": [
+        "clemmy"
+      ],
+      "excerpt": "<p>React 16.2 is now available! The biggest addition is improved support for returning multiple children from a component’s render method. We call this feature <em>fragments</em>:</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2017/09/26/react-v16.0.md",
+      "date": "2017-09-26",
+      "title": "React v16.0",
+      "author": [
+        "acdlite"
+      ],
+      "excerpt": "<p>We’re excited to announce the release of React v16.0! Among the changes are some long-standing feature requests, including <a href=\"#new-render-return-types-fragments-and-strings\"><strong>fragments</strong></a>, <a href=\"#better-error-handling\"><strong>error boundaries</strong></a>, <a href=\"#portals\"><strong>portals</strong></a>, support for <a href=\"#support-for-custom-dom-attributes\"><strong>custom DOM attributes</strong></a>, improved <a href=\"#better-server-side-rendering\"><strong>server-side rendering</strong></a>, and <a href=\"#reduced-file-size\"><strong>reduced file size</strong></a>.</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2017/09/25/react-v15.6.2.md",
+      "date": "2017-09-25",
+      "title": "React v15.6.2",
+      "author": [
+        "nhunzaker"
+      ],
+      "excerpt": "<p>Today we’re sending out React 15.6.2. In 15.6.1, we shipped a few fixes for change events and inputs that had some unintended consequences. Those regressions have been ironed out, and we’ve also included a few more fixes to improve the stability of React across all browsers.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2017/09/08/dom-attributes-in-react-16.md",
+      "date": "2017-09-08",
+      "title": "DOM Attributes in React 16",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>In the past, React used to ignore unknown DOM attributes. If you wrote JSX with an attribute that React doesn’t recognize, React would just skip it. For example, this:</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2017/07/26/error-handling-in-react-16.md",
+      "date": "2017-07-26",
+      "title": "Error Handling in React 16",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>As React 16 release is getting closer, we would like to announce a few changes to how React handles JavaScript errors inside components. These changes are included in React 16 beta versions, and will be a part of React 16.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2017/06/13/react-v15.6.0.md",
+      "date": "2017-06-13",
+      "title": "React v15.6.0",
+      "author": [
+        "flarnie"
+      ],
+      "excerpt": "<p>Today we are releasing React 15.6.0. As we prepare for React 16.0, we have been fixing and cleaning up many things. This release continues to pave the way.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2017/05/18/whats-new-in-create-react-app.md",
+      "date": "2017-05-18",
+      "title": "What's New in Create React App",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>Less than a year ago, we introduced <a href=\"/blog/2016/07/22/create-apps-with-no-configuration\">Create React App</a> as an officially supported way to create apps with zero configuration. The project has since enjoyed tremendous growth, with over 950 commits by more than 250 contributors.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2017/04/07/react-v15.5.0.md",
+      "date": "2017-04-07",
+      "title": "React v15.5.0",
+      "author": [
+        "acdlite"
+      ],
+      "excerpt": "<p>It’s been exactly one year since the last breaking change to React. Our next major release, React 16, will include some exciting improvements, including a <a href=\"https://www.youtube.com/watch?v=ZCuYPiUIONs\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">complete rewrite</a> of React’s internals. <a href=\"/docs/design-principles#stability\">We take stability seriously</a>, and are committed to bringing those improvements to all of our users with minimal effort.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2016/11/16/react-v15.4.0.md",
+      "date": "2016-11-16",
+      "title": "React v15.4.0",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>Today we are releasing React 15.4.0.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2016/09/28/our-first-50000-stars.md",
+      "date": "2016-09-28",
+      "title": "Our First 50,000 Stars",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>Just three and a half years ago we open sourced a little JavaScript library called React. The journey since that day has been incredibly exciting.</p>\n",
+      "readingTime": "10 min read"
+    },
+    {
+      "path": "/blog/2016/08/05/relay-state-of-the-state.md",
+      "date": "2016-08-05",
+      "title": "Relay: State of the State",
+      "author": [
+        "josephsavona"
+      ],
+      "excerpt": "<p>This month marks a year since we released Relay and we’d like to share an update on the project and what’s next.</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2016/07/22/create-apps-with-no-configuration.md",
+      "date": "2016-07-22",
+      "title": "Create Apps with No Configuration",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p><strong><a href=\"https://github.com/facebookincubator/create-react-app\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Create React App</a></strong> is a new officially supported way to create single-page React applications. It offers a modern build setup with no configuration.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2016/07/13/mixins-considered-harmful.md",
+      "date": "2016-07-13",
+      "title": "Mixins Considered Harmful",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>“How do I share the code between several components?” is one of the first questions that people ask when they learn React. Our answer has always been to use component composition for code reuse. You can define a component and use it in several other components.</p>\n",
+      "readingTime": "20 min read"
+    },
+    {
+      "path": "/blog/2016/07/11/introducing-reacts-error-code-system.md",
+      "date": "2016-07-11",
+      "title": "Introducing React's Error Code System",
+      "author": [
+        "keyanzhang"
+      ],
+      "excerpt": "<p>Building a better developer experience has been one of the things that React deeply cares about, and a crucial part of it is to detect anti-patterns/potential errors early and provide helpful error messages when things (may) go wrong. However, most of these only exist in development mode; in production, we avoid having extra expensive assertions and sending down full error messages in order to reduce the number of bytes sent over the wire.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2016/04/08/react-v15.0.1.md",
+      "date": "2016-04-08",
+      "title": "React v15.0.1",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Yesterday afternoon we shipped v15.0.0 and quickly got some feedback about a couple of issues. We apologize for these problems and we’ve been working since then to make sure we get fixes into your hands as quickly as possible.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2016/04/07/react-v15.md",
+      "date": "2016-04-07",
+      "title": "React v15.0",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>We would like to thank the React community for reporting issues and regressions in the release candidates on our <a href=\"https://github.com/facebook/react/issues/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">issue tracker</a>. Over the last few weeks we fixed those issues, and now, after two release candidates, we are excited to finally release the stable version of React 15.</p>\n",
+      "readingTime": "15 min read"
+    },
+    {
+      "path": "/blog/2016/03/29/react-v0.14.8.md",
+      "date": "2016-03-29",
+      "title": "React v0.14.8",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>We have already released two release candidates for React 15, and the final version is coming soon.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2016/03/16/react-v15-rc2.md",
+      "date": "2016-03-16",
+      "title": "React v15.0 Release Candidate 2",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re releasing a second release candidate for version 15. Primarily this is to address 2 issues, but we also picked up a few small changes from new contributors, including some improvements to some of our new warnings.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2016/03/07/react-v15-rc1.md",
+      "date": "2016-03-07",
+      "title": "React v15.0 Release Candidate",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Sorry for the small delay in releasing this. As we said, we’ve been busy binge-watching House of Cards. That scene in the last episode where Francis and Claire Underwood <abbr title=\"You didn't think we would actually spoil anything did you?\">████████████████████████████████████</abbr>. WOW!</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2016/02/19/new-versioning-scheme.md",
+      "date": "2016-02-19",
+      "title": "New Versioning Scheme",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>Today we’re announcing that we’re switching to major revisions for React. The current version is 0.14.7. The next release will be: <strong>15.0.0</strong></p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2016/01/12/discontinuing-ie8-support.md",
+      "date": "2016-01-12",
+      "title": "Discontinuing IE 8 Support in React DOM",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>Since its 2013 release, React has supported all popular browsers, including Internet Explorer 8 and above. We handle normalizing many quirks present in old browser versions, including event system differences, so that your app code doesn’t have to worry about most browser bugs.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2016/01/08/A-implies-B-does-not-imply-B-implies-A.md",
+      "date": "2016-01-08",
+      "title": "(A => B) !=> (B => A)",
+      "author": [
+        "jimfb"
+      ],
+      "excerpt": "<p>The documentation for <code>componentWillReceiveProps</code> states that <code>componentWillReceiveProps</code> will be invoked when the props change as the result of a rerender. Some people assume this means “if <code>componentWillReceiveProps</code> is called, then the props must have changed”, but that conclusion is logically incorrect.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2015/12/29/react-v0.14.4.md",
+      "date": "2015-12-29",
+      "title": "React v0.14.4",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>Happy December! We have a minor point release today. It has just a few small bug fixes.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2015/12/18/react-components-elements-and-instances.md",
+      "date": "2015-12-18",
+      "title": "React Components, Elements, and Instances",
+      "author": [
+        "gaearon"
+      ],
+      "excerpt": "<p>The difference between <strong>components, their instances, and elements</strong> confuses many React beginners. Why are there three different terms to refer to something that is painted on screen?</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2015/12/16/ismounted-antipattern.md",
+      "date": "2015-12-16",
+      "title": "isMounted is an Antipattern",
+      "author": [
+        "jimfb"
+      ],
+      "excerpt": "<p>As we move closer to officially deprecating isMounted, it’s worth understanding why the function is an antipattern, and how to write code without the isMounted function.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/12/04/react-js-conf-2016-diversity-scholarship.md",
+      "date": "2015-12-04",
+      "title": "React.js Conf 2016 Diversity Scholarship",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>I am thrilled to announced that we will be organizing another diversity scholarship program for the upcoming React.js Conf! The tech industry is suffering from a lack of diversity, but it’s important to us that we have a thriving community that is made up of people with a variety of experiences and viewpoints.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2015/11/18/react-v0.14.3.md",
+      "date": "2015-11-18",
+      "title": "React v0.14.3",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>It’s time for another installment of React patch releases! We didn’t break anything in v0.14.2 but we do have a couple of other bugs we’re fixing. The biggest change in this release is actually an addition of a new built file. We heard from a number of people that they still need the ability to use React to render to a string on the client. While the use cases are not common and there are other ways to achieve this, we decided that it’s still valuable to support. So we’re now building <code>react-dom-server.js</code>, which will be shipped to Bower and in the <code>dist/</code> directory of the <code>react-dom</code> package on npm. This file works the same way as <code>react-dom.js</code> and therefore requires that the primary React build has already been included on the page.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/11/02/react-v0.14.2.md",
+      "date": "2015-11-02",
+      "title": "React v0.14.2",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>We have a quick update following the release of 0.14.1 last week. It turns out we broke a couple things in the development build of React when using Internet Explorer. Luckily it was only the development build, so your production applications were unaffected. This release is mostly to address those issues. There is one notable change if consuming React from npm. For the <code>react-dom</code> package, we moved <code>react</code> from a regular dependency to a peer dependency. This will impact very few people as these two are typically installed together at the top level, but it will fix some issues with dependencies of installed components also using <code>react</code> as a peer dependency.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/10/28/react-v0.14.1.md",
+      "date": "2015-10-28",
+      "title": "React v0.14.1",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>After a couple weeks of having more people use v0.14, we’re ready to ship a patch release addressing a few issues. Thanks to everybody who has reported issues and written patches!</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/10/19/reactiflux-is-moving-to-discord.md",
+      "date": "2015-10-19",
+      "title": "Reactiflux is moving to Discord",
+      "author": [
+        "benigeri"
+      ],
+      "excerpt": "<p>TL;DR: Slack decided that Reactiflux had too many members and disabled new invites. Reactiflux is moving to Discord. Join us: <a href=\"http://join.reactiflux.com/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">http://join.reactiflux.com</a></p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2015/10/07/react-v0.14.md",
+      "date": "2015-10-07",
+      "title": "React v0.14",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>We’re happy to announce the release of React 0.14 today! This release has a few major changes, primarily designed to simplify the code you write every day and to better support environments like React Native.</p>\n",
+      "readingTime": "12 min read"
+    },
+    {
+      "path": "/blog/2015/10/01/react-render-and-top-level-api.md",
+      "date": "2015-10-01",
+      "title": "ReactDOM.render and the Top Level React API",
+      "author": [
+        "jimfb",
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>When you’re in React’s world you are just building components that fit into other components. Everything is a component. Unfortunately not everything around you is built using React. At the root of your tree you still have to write some plumbing code to connect the outer world into React.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2015/09/14/community-roundup-27.md",
+      "date": "2015-09-14",
+      "title": "Community Round-up #27 – Relay Edition",
+      "author": [
+        "steveluscher"
+      ],
+      "excerpt": "<p>In the weeks following the <a href=\"/blog/2015/08/11/relay-technical-preview.html\">open-source release</a> of the Relay technical preview, the community has been abuzz with activity. We are honored to have been able to enjoy a steady stream of ideas and contributions from such a talented group of individuals. Let’s take a look at some of the things we’ve achieved, together!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2015/09/10/react-v0.14-rc1.md",
+      "date": "2015-09-10",
+      "title": "React v0.14 Release Candidate",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>We’re happy to announce our first release candidate for React 0.14! We gave you a <a href=\"/blog/2015/07/03/react-v0.14-beta-1.html\">sneak peek in July</a> at the upcoming changes but we’ve now stabilized the release more and we’d love for you to try it out before we release the final version.</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2015/09/02/new-react-developer-tools.md",
+      "date": "2015-09-02",
+      "title": "New React Developer Tools",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>A month ago, we <a href=\"/blog/2015/08/03/new-react-devtools-beta.html\">posted a beta</a> of the new React developer tools. Today, we’re releasing the first stable version of the new devtools. We’re calling it version 0.14, but it’s a full rewrite so we think of it more like a 2.0 release.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/08/13/reacteurope-roundup.md",
+      "date": "2015-08-13",
+      "title": "ReactEurope Round-up",
+      "author": [
+        "matthewjohnston4"
+      ],
+      "excerpt": "<p>Last month, the first React.js European conference took place in the city of Paris, at ReactEurope. Attendees were treated to a range of talks covering React, React Native, Flux, Relay, and GraphQL. Big thanks to everyone involved with organizing the conference, to all the attendees, and everyone who gave their time to speak - it wouldn’t have been possible without the help and support of the React community.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2015/08/11/relay-technical-preview.md",
+      "date": "2015-08-11",
+      "title": "Relay Technical Preview",
+      "author": [
+        "josephsavona"
+      ],
+      "excerpt": "<h1 id=\"relay\">Relay </h1>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/08/03/new-react-devtools-beta.md",
+      "date": "2015-08-03",
+      "title": "New React Devtools Beta",
+      "author": [
+        "jaredly"
+      ],
+      "excerpt": "<p>We’ve made an entirely new version of the devtools, and we want you to try it</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/07/03/react-v0.14-beta-1.md",
+      "date": "2015-07-03",
+      "title": "React v0.14 Beta 1",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>This week, many people in the React community are at <a href=\"https://www.react-europe.org/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">ReactEurope</a> in the beautiful (and very warm) city of Paris, the second React conference that’s been held to date. At our last conference, we released the first beta of React 0.13, and we figured we’d do the same today with our first beta of React 0.14, giving you something to play with if you’re not at the conference or you’re looking for something to do on the way home.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2015/06/12/deprecating-jstransform-and-react-tools.md",
+      "date": "2015-06-12",
+      "title": "Deprecating JSTransform and react-tools",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re announcing the deprecation of react-tools and JSTransform.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/05/22/react-native-release-process.md",
+      "date": "2015-05-22",
+      "title": "React Native Release Process",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>The React Native release process have been a bit chaotic since we open sourced. It was unclear when new code was released, there was no changelog, we bumped the minor and patch version inconsistently and we often had to submit updates right after a release to fix a bad bug. In order to <em>move fast with stable infra</em>, we are introducing a real release process with a two-week release schedule.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/05/08/react-v0.13.3.md",
+      "date": "2015-05-08",
+      "title": "React v0.13.3",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re sharing another patch release in the v0.13 branch. There are only a few small changes, with a couple to address some issues that arose around that undocumented feature so many of you are already using: <code>context</code>. We also improved developer ergonomics just a little bit, making some warnings better.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2015/05/01/graphql-introduction.md",
+      "date": "2015-05-01",
+      "title": "GraphQL Introduction",
+      "author": [
+        "schrockn"
+      ],
+      "excerpt": "<p>At the React.js conference in late January 2015, we revealed our next major technology in the React family: <a href=\"/blog/2015/02/20/introducing-relay-and-graphql.html\">Relay</a>.</p>\n",
+      "readingTime": "11 min read"
+    },
+    {
+      "path": "/blog/2015/04/18/react-v0.13.2.md",
+      "date": "2015-04-18",
+      "title": "React v0.13.2",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Yesterday the <a href=\"/blog/2015/04/17/react-native-v0.4.html\">React Native team shipped v0.4</a>. Those of us working on the web team just a few feet away couldn’t just be shown up like that so we’re shipping v0.13.2 today as well! This is a bug fix release to address a few things while we continue to work towards v0.14.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/04/17/react-native-v0.4.md",
+      "date": "2015-04-17",
+      "title": "React Native v0.4",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>It’s been three weeks since we open sourced React Native and there’s been some insane amount of activity already: over 12.5k stars, 1000 commits, 500 issues, 380 pull requests, and 100 contributors, plus <a href=\"http://react.parts/native-ios\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">35 plugins</a> and <a href=\"http://herman.asia/building-a-flashcard-app-with-react-native\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">1 app in the app store</a>! We were expecting some buzz around the project but this is way beyond anything we imagined. Thank you!</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/03/30/community-roundup-26.md",
+      "date": "2015-03-30",
+      "title": "Community Round-up #26",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>We open sourced React Native last week and the community reception blew away all our expectations! So many of you tried it, made cool stuff with it, raised many issues and even submitted pull requests to fix them! The entire team wants to say thank you!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2015/03/26/introducing-react-native.md",
+      "date": "2015-03-26",
+      "title": "Introducing React Native",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>In January at React.js Conf, we announced React Native, a new framework for building native apps using React. We’re happy to announce that we’re open-sourcing React Native and you can start building your apps with it today.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/03/19/building-the-facebook-news-feed-with-relay.md",
+      "date": "2015-03-19",
+      "title": "Building The Facebook News Feed With Relay",
+      "author": [
+        "josephsavona"
+      ],
+      "excerpt": "<p>At React.js Conf in January we gave a preview of Relay, a new framework for building data-driven applications in React. In this post, we’ll describe the process of creating a Relay application. This post assumes some familiarity with the concepts of Relay and GraphQL, so if you haven’t already we recommend reading <a href=\"/blog/2015/02/20/introducing-relay-and-graphql.html\">our introductory blog post</a> or watching <a href=\"https://www.youtube-nocookie.com/v/9sc8Pyc51uU\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">the conference talk</a>.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2015/03/16/react-v0.13.1.md",
+      "date": "2015-03-16",
+      "title": "React v0.13.1",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>It’s been less than a week since we shipped v0.13.0 but it’s time to do another quick release. We just released v0.13.1 which contains bugfixes for a number of small issues.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2015/03/10/react-v0.13.md",
+      "date": "2015-03-10",
+      "title": "React v0.13",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>Today, we’re happy to release React v0.13!</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2015/03/04/community-roundup-25.md",
+      "date": "2015-03-04",
+      "title": "Community Round-up #25",
+      "author": [
+        "matthewjohnston4"
+      ],
+      "excerpt": "<h2 id=\"react-101\">React 101 </h2>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/03/03/react-v0.13-rc2.md",
+      "date": "2015-03-03",
+      "title": "React v0.13 RC2",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>Thanks to everybody who has already been testing the release candidate. We’ve received some good feedback and as a result we’re going to do a second release candidate. The changes are minimal. We haven’t changed the behavior of any APIs we exposed in the previous release candidate. Here’s a summary of the changes:</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2015/02/24/streamlining-react-elements.md",
+      "date": "2015-02-24",
+      "title": "Streamlining React Elements",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>React v0.13 is right around the corner and so we wanted to discuss some upcoming changes to ReactElement. In particular, we added several warnings to some esoteric use cases of ReactElement. There are no runtime behavior changes for ReactElement - we’re adding these warnings in the hope that we can change some behavior in v0.14 if the changes are valuable to the community.</p>\n",
+      "readingTime": "10 min read"
+    },
+    {
+      "path": "/blog/2015/02/24/react-v0.13-rc1.md",
+      "date": "2015-02-24",
+      "title": "React v0.13 RC",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Over the weekend we pushed out our first (and hopefully only) release candidate for React v0.13!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2015/02/20/introducing-relay-and-graphql.md",
+      "date": "2015-02-20",
+      "title": "Introducing Relay and GraphQL",
+      "author": [
+        "wincent"
+      ],
+      "excerpt": "<h2 id=\"data-fetching-for-react-applications\">Data fetching for React applications </h2>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2015/02/18/react-conf-roundup-2015.md",
+      "date": "2015-02-18",
+      "title": "React.js Conf Round-up 2015",
+      "author": [
+        "steveluscher"
+      ],
+      "excerpt": "<p>It was a privilege to welcome the React community to Facebook HQ on January 28–29 for the first-ever React.js Conf, and a pleasure to be able to unveil three new technologies that we’ve been using internally at Facebook for some time: GraphQL, Relay, and React Native.</p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2015/01/27/react-v0.13.0-beta-1.md",
+      "date": "2015-01-27",
+      "title": "React v0.13.0 Beta 1",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>React 0.13 has a lot of nice features but there is one particular feature that I’m really excited about. I couldn’t wait for React.js Conf to start tomorrow morning.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2014/12/19/react-js-conf-diversity-scholarship.md",
+      "date": "2014-12-19",
+      "title": "React.js Conf Diversity Scholarship",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today I’m really happy to announce the React.js Conf Diversity Scholarship! We believe that a diverse set of viewpoints and opinions is really important to build a thriving community. In an ideal world, every part of the tech community would be made up of people from all walks of life. However the reality is that we must be proactive and make an effort to make sure everybody has a voice. As conference organizers we worked closely with the Diversity Team here at Facebook to set aside 10 tickets and provide a scholarship. 10 tickets may not be many in the grand scheme but we really believe that this will have a positive impact on the discussions we have at the conference.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2014/12/18/react-v0.12.2.md",
+      "date": "2014-12-18",
+      "title": "React v0.12.2",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>We just shipped React v0.12.2, bringing the 0.12 branch up to date with a few small fixes that landed in master over the past 2 months.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2014/11/25/community-roundup-24.md",
+      "date": "2014-11-25",
+      "title": "Community Round-up #24",
+      "author": [
+        "steveluscher"
+      ],
+      "excerpt": "<h2 id=\"keep-it-simple\">Keep it Simple </h2>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2014/11/24/react-js-conf-updates.md",
+      "date": "2014-11-24",
+      "title": "React.js Conf Updates",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>Yesterday was the <a href=\"http://conf.reactjs.com/index.html\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">React.js Conf</a> call for presenters submission deadline. We were</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2014/10/28/react-v0.12.md",
+      "date": "2014-10-28",
+      "title": "React v0.12",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>We’re happy to announce the availability of React v0.12! After over a week of baking as the release candidate, we uncovered and fixed a few small issues. Thanks to all of you who upgraded and gave us feedback!</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2014/10/27/react-js-conf.md",
+      "date": "2014-10-27",
+      "title": "React.js Conf",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>Every few weeks someone asks us when we are going to organize a conference for React. Our answer has always been “some day”. In the mean time, people have been talking about React at other JavaScript conferences around the world. But now the time has finally come for us to have a conference of our own.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2014/10/17/community-roundup-23.md",
+      "date": "2014-10-17",
+      "title": "Community Round-up #23",
+      "author": [
+        "LoukaN"
+      ],
+      "excerpt": "<p>This round-up is a special edition on <a href=\"https://facebook.github.io/flux/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Flux</a>. If you expect to see diagrams showing arrows that all point in the same direction, you won’t be disappointed!</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2014/10/16/react-v0.12-rc1.md",
+      "date": "2014-10-16",
+      "title": "React v0.12 RC",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>We are finally ready to share the work we’ve been doing over the past couple months. A lot has gone into this and we want to make sure we iron out any potential issues before we make this final. So, we’re shipping a Release Candidate for React v0.12 today. If you get a chance, please give it a try and report any issues you find! A full changelog will accompany the final release but we’ve highlighted the interesting and breaking changes below.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2014/10/14/introducing-react-elements.md",
+      "date": "2014-10-14",
+      "title": "Introducing React Elements",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>The upcoming React 0.12 tweaks some APIs to get us close to the final 1.0 API. This release is all about setting us up for making the <code>ReactElement</code> type really FAST, <a href=\"https://facebook.github.io/jest/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">jest unit testing</a> easier, making classes simpler (in preparation for ES6 classes) and better integration with third-party languages!</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2014/09/24/testing-flux-applications.md",
+      "date": "2014-09-24",
+      "title": "Testing Flux Applications",
+      "author": [
+        "fisherwebdev"
+      ],
+      "excerpt": "<p><strong>A more up-to-date version of this post is available as part of the <a href=\"https://facebook.github.io/flux/docs/testing-flux-applications.html\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Flux documentation</a>.</strong></p>\n",
+      "readingTime": "8 min read"
+    },
+    {
+      "path": "/blog/2014/09/16/react-v0.11.2.md",
+      "date": "2014-09-16",
+      "title": "React v0.11.2",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re releasing React v0.11.2 to add a few small features.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2014/09/12/community-round-up-22.md",
+      "date": "2014-09-12",
+      "title": "Community Round-up #22",
+      "author": [
+        "LoukaN"
+      ],
+      "excerpt": "<p>This has been an exciting summer as four big companies: Yahoo, Mozilla, Airbnb and Reddit announced that they were using React!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/09/03/introducing-the-jsx-specification.md",
+      "date": "2014-09-03",
+      "title": "Introducing the JSX Specification",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>At Facebook we’ve been using JSX for a long time. We originally introduced it to the world last year alongside React, but we actually used it in another form before that to create native DOM nodes. We’ve also seen some similar efforts grow out of our work in order to be used with other libraries and in interesting ways. At this point React JSX is just one of many implementations.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2014/08/03/community-roundup-21.md",
+      "date": "2014-08-03",
+      "title": "Community Round-up #21",
+      "author": [
+        "LoukaN"
+      ],
+      "excerpt": "<h2 id=\"react-router\">React Router </h2>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2014/07/30/flux-actions-and-the-dispatcher.md",
+      "date": "2014-07-30",
+      "title": "Flux: Actions and the Dispatcher",
+      "author": [
+        "fisherwebdev"
+      ],
+      "excerpt": "<p>Flux is the application architecture Facebook uses to build JavaScript applications. It’s based on a unidirectional data flow. We’ve built everything from small widgets to huge applications with Flux, and it’s handled everything we’ve thrown at it. Because we’ve found it to be a great way to structure our code, we’re excited to share it with the open source community. <a href=\"http://youtu.be/nYkdrAPrdcw?t=10m20s\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Jing Chen presented Flux</a> at the F8 conference, and since that time we’ve seen a lot of interest in it. We’ve also published an <a href=\"https://facebook.github.io/flux/docs/overview.html\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">overview of Flux</a> and a <a href=\"https://github.com/facebook/flux/tree/master/examples/flux-todomvc/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">TodoMVC example</a>, with an accompanying <a href=\"https://facebook.github.io/flux/docs/todo-list.html\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">tutorial</a>.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2014/07/28/community-roundup-20.md",
+      "date": "2014-07-28",
+      "title": "Community Round-up #20",
+      "author": [
+        "LoukaN"
+      ],
+      "excerpt": "<p>It’s an exciting time for React as there are now more commits from open source contributors than from Facebook engineers! Keep up the good work :)</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/07/25/react-v0.11.1.md",
+      "date": "2014-07-25",
+      "title": "React v0.11.1",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re releasing React v0.11.1 to address a few small issues. Thanks to everybody who has reported them as they’ve begun upgrading.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2014/07/17/react-v0.11.md",
+      "date": "2014-07-17",
+      "title": "React v0.11",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p><strong>Update:</strong> We missed a few important changes in our initial post and changelog. We’ve updated this post with details about <a href=\"#descriptors\">Descriptors</a> and <a href=\"#prop-type-validation\">Prop Type Validation</a>.</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2014/07/13/react-v0.11-rc1.md",
+      "date": "2014-07-13",
+      "title": "React v0.11 RC",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>It’s that time again… we’re just about ready to ship a new React release! v0.11 includes a wide array of bug fixes and features. We highlighted some of the most important changes below, along with the full changelog.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2014/06/27/community-roundup-19.md",
+      "date": "2014-06-27",
+      "title": "Community Round-up #19",
+      "author": [
+        "chenglou"
+      ],
+      "excerpt": "<h2 id=\"react-meetups\">React Meetups! </h2>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2014/05/29/one-year-of-open-source-react.md",
+      "date": "2014-05-29",
+      "title": "One Year of Open-Source React",
+      "author": [
+        "chenglou"
+      ],
+      "excerpt": "<p>Today marks the one-year open-source anniversary of React.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2014/05/06/flux.md",
+      "date": "2014-05-06",
+      "title": "Flux: An Application Architecture for React",
+      "author": [
+        "fisherwebdev",
+        "jingc"
+      ],
+      "excerpt": "<p>We recently spoke at one of f8’s breakout session about Flux, a data flow architecture that works well with React. Check out the video here:</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2014/04/04/reactnet.md",
+      "date": "2014-04-04",
+      "title": "Use React and JSX in ASP.NET MVC",
+      "author": [
+        "Daniel15"
+      ],
+      "excerpt": "<p>Today we’re happy to announce the initial release of</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2014/03/28/the-road-to-1.0.md",
+      "date": "2014-03-28",
+      "title": "The Road to 1.0",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>When we launched React last spring, we purposefully decided not to call it 1.0. It was production ready, but we had plans to evolve APIs and behavior as we saw how people were using React, both internally and externally. We’ve learned a lot over the past 9 months and we’ve thought a lot about what 1.0 will mean for React. A couple weeks ago, I outlined [several projects][projects] that we have planned to take us to 1.0 and beyond. Today I’m writing a bit more about them to give our users a better insight into our plans.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/03/21/react-v0.10.md",
+      "date": "2014-03-21",
+      "title": "React v0.10",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Hot on the heels of the <a href=\"/blog/2014/03/19/react-v0.10-rc1.html\">release candidate earlier this week</a>, we’re ready to call v0.10 done. The only major issue we discovered had to do with the <code>react-tools</code> package, which has been updated. We’ve copied over the changelog from the RC with some small clarifying changes.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/03/19/react-v0.10-rc1.md",
+      "date": "2014-03-19",
+      "title": "React v0.10 RC",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p><a href=\"/blog/2014/02/20/react-v0.9.html\">v0.9 has only been out for a month</a>, but we’re getting ready to push out v0.10 already. Unlike v0.9 which took a long time, we don’t have a long list of changes to talk about.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/03/14/community-roundup-18.md",
+      "date": "2014-03-14",
+      "title": "Community Round-up #18",
+      "author": [
+        "jgebhardt"
+      ],
+      "excerpt": "<p>In this Round-up, we are taking a few closer looks at React’s interplay with different frameworks and architectures.</p>\n",
+      "readingTime": "5 min read"
+    },
+    {
+      "path": "/blog/2014/02/24/community-roundup-17.md",
+      "date": "2014-02-24",
+      "title": "Community Round-up #17",
+      "author": [
+        "jgebhardt"
+      ],
+      "excerpt": "<p>It’s exciting to see the number of real-world React applications and components skyrocket over the past months! This community round-up features a few examples of inspiring React applications and components.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2014/02/20/react-v0.9.md",
+      "date": "2014-02-20",
+      "title": "React v0.9",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>I’m excited to announce that today we’re releasing React v0.9, which incorporates many bug fixes and several new features since the last release. This release contains almost four months of work, including over 800 commits from over 70 committers!</p>\n",
+      "readingTime": "7 min read"
+    },
+    {
+      "path": "/blog/2014/02/16/react-v0.9-rc1.md",
+      "date": "2014-02-16",
+      "title": "React v0.9 RC",
+      "author": [
+        "sophiebits"
+      ],
+      "excerpt": "<p>We’re almost ready to release React v0.9! We’re posting a release candidate so that you can test your apps on it; we’d much prefer to find show-stopping bugs now rather than after we release.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2014/02/15/community-roundup-16.md",
+      "date": "2014-02-15",
+      "title": "Community Round-up #16",
+      "author": [
+        "jgebhardt"
+      ],
+      "excerpt": "<p>There have been many posts recently covering the <i>why</i> and <i>how</i> of React. This week’s community round-up includes a collection of recent articles to help you get started with React, along with a few posts that explain some of the inner workings.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/02/05/community-roundup-15.md",
+      "date": "2014-02-05",
+      "title": "Community Round-up #15",
+      "author": [
+        "jgebhardt"
+      ],
+      "excerpt": "<p>Interest in React seems to have surged ever since David Nolen (<a href=\"https://twitter.com/swannodette\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">@swannodette</a>)‘s introduction of <a href=\"https://github.com/swannodette/om\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Om</a> in his post <a href=\"https://swannodette.github.io/2013/12/17/the-future-of-javascript-mvcs/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">“The Future of JavaScript MVC Frameworks”</a>.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2014/01/06/community-roundup-14.md",
+      "date": "2014-01-06",
+      "title": "Community Round-up #14",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>The theme of this first round-up of 2014 is integration. I’ve tried to assemble a list of articles and projects that use React in various environments.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2014/01/02/react-chrome-developer-tools.md",
+      "date": "2014-01-02",
+      "title": "React Chrome Developer Tools",
+      "author": [
+        "sebmarkbage"
+      ],
+      "excerpt": "<p>With the new year, we thought you’d enjoy some new tools for debugging React code. Today we’re releasing the <a href=\"https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">React Developer Tools</a>, an extension to the Chrome Developer Tools. <a href=\"https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Download them from the Chrome Web Store</a>.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/12/30/community-roundup-13.md",
+      "date": "2013-12-30",
+      "title": "Community Round-up #13",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>Happy holidays! This blog post is a little-late Christmas present for all the React users. Hopefully it will inspire you to write awesome web apps in 2014!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/12/23/community-roundup-12.md",
+      "date": "2013-12-23",
+      "title": "Community Round-up #12",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>React got featured on the front-page of Hacker News thanks to the Om library. If you try it out for the first time, take a look at the <a href=\"/docs/getting-started.html\">docs</a> and do not hesitate to ask questions on the <a href=\"https://groups.google.com/group/reactjs\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Google Group</a>, <a href=\"irc://chat.freenode.net/reactjs\">IRC</a> or <a href=\"http://stackoverflow.com/questions/tagged/reactjs\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">Stack Overflow</a>. We are trying our best to help you out!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/12/19/react-v0.8.0.md",
+      "date": "2013-12-19",
+      "title": "React v0.8",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>I’ll start by answering the obvious question:</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/12/18/react-v0.5.2-v0.4.2.md",
+      "date": "2013-12-18",
+      "title": "React v0.5.2, v0.4.2",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re releasing an update to address a potential XSS vulnerability that can arise when using user data as a <code>key</code>. Typically “safe” data is used for a <code>key</code>, for example, an id from your database, or a unique hash. However there are cases where it may be reasonable to use user generated content. A carefully crafted piece of content could result in arbitrary JS execution. While we make a very concerted effort to ensure all text is escaped before inserting it into the DOM, we missed one case. Immediately following the discovery of this vulnerability, we performed an audit to ensure we this was the only such vulnerability.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/11/18/community-roundup-11.md",
+      "date": "2013-11-18",
+      "title": "Community Round-up #11",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>This round-up is the proof that React has taken off from its Facebook’s root: it features three in-depth presentations of React done by external people. This is awesome, keep them coming!</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/11/06/community-roundup-10.md",
+      "date": "2013-11-06",
+      "title": "Community Round-up #10",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>This is the 10th round-up already and React has come quite far since it was open sourced. Almost all new web projects at Khan Academy, Facebook, and Instagram are being developed using React. React has been deployed in a variety of contexts: a Chrome extension, a Windows 8 application, mobile websites, and desktop websites supporting Internet Explorer 8! Language-wise, React is not only being used within JavaScript but also CoffeeScript and ClojureScript.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2013/10/29/react-v0-5-1.md",
+      "date": "2013-10-29",
+      "title": "React v0.5.1",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>This release focuses on fixing some small bugs that have been uncovered over the past two weeks. I would like to thank everybody involved, specifically members of the community who fixed half of the issues found. Thanks to [Sophie Alpert][1], [Andrey Popp][2], and [Laurence Rowe][3] for their contributions!</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2013/10/16/react-v0.5.0.md",
+      "date": "2013-10-16",
+      "title": "React v0.5",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>This release is the result of several months of hard work from members of the team and the community. While there are no groundbreaking changes in core, we’ve worked hard to improve performance and memory usage. We’ve also worked hard to make sure we are being consistent in our usage of DOM properties.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/10/03/community-roundup-9.md",
+      "date": "2013-10-03",
+      "title": "Community Round-up #9",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>We organized a React hackathon last week-end in the Facebook Seattle office. 50 people, grouped into 15 teams, came to hack for a day on React. It was a lot of fun and we’ll probably organize more in the future.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/09/24/community-roundup-8.md",
+      "date": "2013-09-24",
+      "title": "Community Round-up #8",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>A lot has happened in the month since our last update. Here are some of the more interesting things we’ve found. But first, we have a couple updates before we share links.</p>\n",
+      "readingTime": "6 min read"
+    },
+    {
+      "path": "/blog/2013/08/26/community-roundup-7.md",
+      "date": "2013-08-26",
+      "title": "Community Round-up #7",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>It’s been three months since we open sourced React and it is going well. Some stats so far:</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/08/19/use-react-and-jsx-in-python-applications.md",
+      "date": "2013-08-19",
+      "title": "Use React and JSX in Python Applications",
+      "author": [
+        "kmeht"
+      ],
+      "excerpt": "<p>Today we’re happy to announce the initial release of <a href=\"https://github.com/facebook/react-python\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">PyReact</a>, which makes it easier to use React and JSX in your Python applications. It’s designed to provide an API to transform your JSX files into JavaScript, as well as provide access to the latest React source files.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/08/05/community-roundup-6.md",
+      "date": "2013-08-05",
+      "title": "Community Round-up #6",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>This is the first Community Round-up where none of the items are from Facebook/Instagram employees. It’s great to see the adoption of React growing.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/07/30/use-react-and-jsx-in-ruby-on-rails.md",
+      "date": "2013-07-30",
+      "title": "Use React and JSX in Ruby on Rails",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Today we’re releasing a gem to make it easier to use React and JSX in Ruby on Rails applications: <a href=\"https://github.com/facebook/react-rails\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">react-rails</a>.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/07/26/react-v0-4-1.md",
+      "date": "2013-07-26",
+      "title": "React v0.4.1",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>React v0.4.1 is a small update, mostly containing correctness fixes. Some code has been restructured internally but those changes do not impact any of our public APIs.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2013/07/23/community-roundup-5.md",
+      "date": "2013-07-23",
+      "title": "Community Round-up #5",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>We launched the <a href=\"https://www.facebook.com/react\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">React Facebook Page</a> along with the React v0.4 launch. 700 people already liked it to get updated on the project :)</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/07/17/react-v0-4-0.md",
+      "date": "2013-07-17",
+      "title": "React v0.4.0",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Over the past 2 months we’ve been taking feedback and working hard to make React even better. We fixed some bugs, made some under-the-hood improvements, and added several features that we think will improve the experience developing with React. Today we’re proud to announce the availability of React v0.4!</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/07/11/react-v0-4-prop-validation-and-default-values.md",
+      "date": "2013-07-11",
+      "title": "New in React v0.4: Prop Validation and Default Values",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>Many of the questions we got following the public launch of React revolved around <code>props</code>, specifically that people wanted to do validation and to make sure their components had sensible defaults.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/07/03/community-roundup-4.md",
+      "date": "2013-07-03",
+      "title": "Community Round-up #4",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>React reconciliation process appears to be very well suited to implement a text editor with a live preview as people at Khan Academy show us.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/07/02/react-v0-4-autobind-by-default.md",
+      "date": "2013-07-02",
+      "title": "New in React v0.4: Autobind by Default",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>React v0.4 is very close to completion. As we finish it off, we’d like to share with you some of the major changes we’ve made since v0.3. This is the first of several posts we’ll be making over the next week.</p>\n",
+      "readingTime": "2 min read"
+    },
+    {
+      "path": "/blog/2013/06/27/community-roundup-3.md",
+      "date": "2013-06-27",
+      "title": "Community Round-up #3",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>The highlight of this week is that an interaction-heavy app has been ported to React. React components are solving issues they had with nested views.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/06/21/react-v0-3-3.md",
+      "date": "2013-06-21",
+      "title": "React v0.3.3",
+      "author": [
+        "zpao"
+      ],
+      "excerpt": "<p>We have a ton of great stuff coming in v0.4, but in the meantime we’re releasing v0.3.3. This release addresses some small issues people were having and simplifies our tools to make them easier to use.</p>\n",
+      "readingTime": "1 min read"
+    },
+    {
+      "path": "/blog/2013/06/19/community-roundup-2.md",
+      "date": "2013-06-19",
+      "title": "Community Round-up #2",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>Since the launch we have received a lot of feedback and are actively working on React 0.4. In the meantime, here are the highlights of this week.</p>\n",
+      "readingTime": "4 min read"
+    },
+    {
+      "path": "/blog/2013/06/12/community-roundup.md",
+      "date": "2013-06-12",
+      "title": "Community Round-up #1",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p>React was open sourced two weeks ago and it’s time for a little round-up of what has been going on.</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/06/05/why-react.md",
+      "date": "2013-06-05",
+      "title": "Why did we build React?",
+      "author": [
+        "petehunt"
+      ],
+      "excerpt": "<p>There are a lot of JavaScript MVC frameworks out there. Why did we build React</p>\n",
+      "readingTime": "3 min read"
+    },
+    {
+      "path": "/blog/2013/06/02/jsfiddle-integration.md",
+      "date": "2013-06-02",
+      "title": "JSFiddle Integration",
+      "author": [
+        "vjeux"
+      ],
+      "excerpt": "<p><a href=\"https://jsfiddle.net\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">JSFiddle</a> just announced support for React. This is an exciting news as it makes collaboration on snippets of code a lot easier. You can play around this <strong><a href=\"http://jsfiddle.net/vjeux/kb3gN/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">base React JSFiddle</a></strong>, fork it and share it! A <a href=\"http://jsfiddle.net/vjeux/VkebS/\" target=\"_blank\" rel=\"nofollow noopener noreferrer\">fiddle without JSX</a> is also available.</p>\n",
+      "readingTime": "1 min read"
+    }
+  ]
+}

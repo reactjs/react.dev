@@ -68,6 +68,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 ## England (UK) {#england-uk}
 * [Manchester](https://www.meetup.com/Manchester-React-User-Group/)
 * [React.JS Girls London](https://www.meetup.com/ReactJS-Girls-London/)
+* [React London : Bring Your Own Project](https://www.meetup.com/React-London-Bring-Your-Own-Project/)
 
 ## France {#france}
 * [Nantes](https://www.meetup.com/React-Nantes/)
@@ -110,6 +111,9 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Italy {#italy}
 * [Milan](https://www.meetup.com/React-JS-Milano/)
+
+## Kenya {#kenya}
+* [Nairobi - Reactdevske](https://kommunity.com/reactjs-developer-community-kenya-reactdevske)
 
 ## Malaysia {#malaysia}
 * [Kuala Lumpur](https://www.kl-react.com/)
@@ -157,6 +161,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 
 ## Sweden {#sweden}
 * [Goteborg](https://www.meetup.com/ReactJS-Goteborg/)
+* [Stockholm](https://www.meetup.com/Stockholm-ReactJS-Meetup/)
 
 ## Switzerland {#switzerland}
 * [Zurich](https://www.meetup.com/Zurich-ReactJS-Meetup/)
@@ -181,6 +186,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Dallas, TX - ReactJS](https://www.meetup.com/ReactDallas/)
 * [Dallas, TX - [Remote] React JS](https://www.meetup.com/React-JS-Group/)
 * [Detroit, MI - Detroit React User Group](https://www.meetup.com/Detroit-React-User-Group/)
+* [Indianapolis, IN - React.Indy](https://www.meetup.com/React-Indy)
 * [Irvine, CA - ReactJS](https://www.meetup.com/ReactJS-OC/)
 * [Kansas City, MO - ReactJS](https://www.meetup.com/Kansas-City-React-Meetup/)
 * [Las Vegas, NV - ReactJS](https://www.meetup.com/ReactVegas/)
@@ -193,6 +199,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [New York, NY - React Ladies](https://www.meetup.com/React-Ladies/)
 * [New York, NY - React Native](https://www.meetup.com/React-Native-NYC/)
 * [New York, NY - useReactNYC](https://www.meetup.com/useReactNYC/)
+* [Omaha, NE - ReactJS/React Native](https://www.meetup.com/omaha-react-meetup-group/)
 * [Palo Alto, CA - React Native](https://www.meetup.com/React-Native-Silicon-Valley/)
 * [Philadelphia, PA - ReactJS](https://www.meetup.com/Reactadelphia/)
 * [Phoenix, AZ - ReactJS](https://www.meetup.com/ReactJS-Phoenix/)

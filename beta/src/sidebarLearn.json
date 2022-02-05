@@ -1,0 +1,171 @@
+{
+  "title": "Learn React",
+  "heading": true,
+  "path": "/learn",
+  "routes": [
+    {
+      "heading": true,
+      "path": "",
+      "routes": [
+        {
+          "title": "Installation",
+          "path": "/learn/installation",
+          "routes": [
+            {
+              "title": "Start a New React Project",
+              "path": "/learn/start-a-new-react-project"
+            },
+            {
+              "title": "Add React to a Website",
+              "path": "/learn/add-react-to-a-website"
+            },
+            {
+              "title": "Editor Setup",
+              "path": "/learn/editor-setup"
+            },
+            {
+              "title": "React Developer Tools",
+              "path": "/learn/react-developer-tools"
+            }
+          ]
+        },
+        {
+          "title": "Quick Start",
+          "path": "/learn",
+          "routes": [{
+            "title": "Thinking in React",
+            "path": "/learn/thinking-in-react"
+          }]
+        },
+        {
+          "title": "Describing the UI",
+          "tags": [],
+          "path": "/learn/describing-the-ui",
+          "routes": [
+            {
+              "title": "Your First Component",
+              "path": "/learn/your-first-component"
+            },
+            {
+              "title": "Importing and Exporting Components",
+              "path": "/learn/importing-and-exporting-components"
+            },
+            {
+              "title": "Writing Markup with JSX",
+              "path": "/learn/writing-markup-with-jsx"
+            },
+            {
+              "title": "JavaScript in JSX with Curly Braces",
+              "path": "/learn/javascript-in-jsx-with-curly-braces"
+            },
+            {
+              "title": "Passing Props to a Component",
+              "path": "/learn/passing-props-to-a-component"
+            },
+            {
+              "title": "Conditional Rendering",
+              "path": "/learn/conditional-rendering"
+            },
+            {
+              "title": "Rendering Lists",
+              "path": "/learn/rendering-lists"
+            },
+            {
+              "title": "Keeping Components Pure",
+              "path": "/learn/keeping-components-pure"
+            }
+          ]
+        },
+        {
+          "title": "Adding Interactivity",
+          "path": "/learn/adding-interactivity",
+          "tags": [],
+          "routes": [
+            {
+              "title": "Responding to Events",
+              "path": "/learn/responding-to-events"
+            },
+            {
+              "title": "State: A Component's Memory",
+              "path": "/learn/state-a-components-memory"
+            },
+            {
+              "title": "Render and Commit",
+              "path": "/learn/render-and-commit"
+            },
+            {
+              "title": "State as a Snapshot",
+              "path": "/learn/state-as-a-snapshot"
+            },
+            {
+              "title": "Queueing a Series of State Updates",
+              "path": "/learn/queueing-a-series-of-state-updates"
+            },
+            {
+              "title": "Updating Objects in State",
+              "path": "/learn/updating-objects-in-state"
+            },
+            {
+              "title": "Updating Arrays in State",
+              "path": "/learn/updating-arrays-in-state"
+            }
+          ]
+        },
+        {
+          "title": "Managing State",
+          "path": "/learn/managing-state",
+          "tags": [
+            "intermediate"
+          ],
+          "routes": [
+            {
+              "title": "Reacting to Input with State",
+              "path": "/learn/reacting-to-input-with-state"
+            },
+            {
+              "title": "Choosing the State Structure",
+              "path": "/learn/choosing-the-state-structure"
+            },
+            {
+              "title": "Sharing State Between Components",
+              "path": "/learn/sharing-state-between-components"
+            },
+            {
+              "title": "Preserving and Resetting State",
+              "path": "/learn/preserving-and-resetting-state"
+            },
+            {
+              "title": "Extracting State Logic into a Reducer",
+              "path": "/learn/extracting-state-logic-into-a-reducer"
+            },
+            {
+              "title": "Passing Data Deeply with Context",
+              "path": "/learn/passing-data-deeply-with-context"
+            },
+            {
+              "title": "Scaling Up with Reducer and Context",
+              "path": "/learn/scaling-up-with-reducer-and-context"
+            }
+          ]
+        },
+        {
+          "title": "Escape Hatches",
+          "path": "/learn/escape-hatches",
+          "tags": [
+            "advanced"
+          ],
+          "routes": [
+            {
+              "title": "Referencing Values with Refs",
+              "path": "/learn/referencing-values-with-refs"
+            },
+            {
+              "title": "Manipulating the DOM with Refs",
+              "path": "/learn/manipulating-the-dom-with-refs"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

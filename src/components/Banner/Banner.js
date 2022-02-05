@@ -11,7 +11,7 @@ import {colors, fonts, media} from 'theme';
 import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
 
 const linkProps = {
-  href: 'https://www.surveymonkey.co.uk/r/673TZ7T',
+  href: 'https://surveys.savanta.com/survey/selfserve/21e3/210643?list=2',
   target: '_blank',
   rel: 'noopener',
 };
@@ -135,7 +135,7 @@ export default function Banner() {
             target="_blank"
             rel="noopener">
             <span css={{color: colors.brand}}>
-              Take our 2020 Community Survey!
+              Take our 2021 Community Survey!
             </span>
             <ExternalLinkSvg
               cssProps={{

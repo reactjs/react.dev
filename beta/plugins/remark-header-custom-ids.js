@@ -31,32 +31,50 @@ module.exports = ({
   return function transformer(tree) {
     visit(tree, 'heading', (node) => {
       const children = node.children;
+      const rawHeader = toString(node);
+      const match = /^.+(\s*\{.*\}\s*)$/u.exec(rawHeader);
+      /**
+       * we check if there is a heading and custom id with regex.
+       * If there is a match then we set the id to be the match[1] which is the custom id
+       * else we have to generate id
+       */
+      let id =
+        match && match.length === 2
+          ? match[1]
+          : slugs.slug(rawHeader, maintainCase);
+
       let tail = children[children.length - 1];
 
-      // A bit weird: this is to support MDX 2 comments in expressions,
-      // while we’re still on MDX 1, which doesn’t support them.
-      if (!tail || tail.type !== 'text' || tail.value !== '/}') {
-        return;
+      /**
+       * If there was a match then we might want to return when they dont have proper heading ids
+       * Else we generate ids
+       */
+      if (match) {
+        if (!tail || tail.type !== 'text' || tail.value !== '/}') {
+          return;
+        }
+
+        tail = children[children.length - 2];
+
+        if (!tail && tail.type !== 'emphasis') {
+          return;
+        }
+
+        id = toString(tail);
+
+        tail = children[children.length - 3];
+
+        if (!tail || tail.type !== 'text' || !tail.value.endsWith('{/')) {
+          return;
+        }
+        /**
+         * We have to splice the children only if they contain heading ids
+         */
+        // Remove the emphasis and trailing `/}`
+        children.splice(children.length - 2, 2);
+        // Remove the `{/`
+        tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
       }
-
-      tail = children[children.length - 2];
-
-      if (!tail && tail.type !== 'emphasis') {
-        return;
-      }
-
-      const id = toString(tail);
-
-      tail = children[children.length - 3];
-
-      if (!tail || tail.type !== 'text' || !tail.value.endsWith('{/')) {
-        return;
-      }
-
-      // Remove the emphasis and trailing `/}`
-      children.splice(children.length - 2, 2);
-      // Remove the `{/`
-      tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
 
       const data = patch(node, 'data', {});
 

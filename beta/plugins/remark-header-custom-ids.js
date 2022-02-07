@@ -32,31 +32,25 @@ module.exports = ({
     visit(tree, 'heading', (node) => {
       const children = node.children;
       let tail = children[children.length - 1];
-
-      // A bit weird: this is to support MDX 2 comments in expressions,
-      // while we’re still on MDX 1, which doesn’t support them.
-      if (!tail || tail.type !== 'text' || tail.value !== '/}') {
-        return;
+      // Generate slugs on the fly (even if not specified in markdown)
+      // so that it's possible to copy anchor links in newly written content.
+      let id = slugs.slug(toString(node), maintainCase);
+      // However, for committed docs, we'll extract slug from the headers.
+      if (tail && tail.type === 'text' && tail.value === '/}') {
+        tail = children[children.length - 2];
+        if (tail && tail.type === 'emphasis') {
+          // Use custom ID instead.
+          id = toString(tail);
+          // Until we're on MDX 2, we need to "cut off" the comment syntax.
+          tail = children[children.length - 3];
+          if (tail && tail.type === 'text' && tail.value.endsWith('{/')) {
+            // Remove the emphasis and trailing `/}`
+            children.splice(children.length - 2, 2);
+            // Remove the `{/`
+            tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
+          }
+        }
       }
-
-      tail = children[children.length - 2];
-
-      if (!tail && tail.type !== 'emphasis') {
-        return;
-      }
-
-      const id = toString(tail);
-
-      tail = children[children.length - 3];
-
-      if (!tail || tail.type !== 'text' || !tail.value.endsWith('{/')) {
-        return;
-      }
-
-      // Remove the emphasis and trailing `/}`
-      children.splice(children.length - 2, 2);
-      // Remove the `{/`
-      tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
 
       const data = patch(node, 'data', {});
 

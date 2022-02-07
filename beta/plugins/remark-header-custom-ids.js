@@ -31,49 +31,25 @@ module.exports = ({
   return function transformer(tree) {
     visit(tree, 'heading', (node) => {
       const children = node.children;
-      const rawHeader = toString(node);
-      const match = /^.+(\s*\{.*\}\s*)$/u.exec(rawHeader);
-      /**
-       * we check if there is a heading and custom id with regex.
-       * If there is a match then we set the id to be the match[1] which is the custom id
-       * else we have to generate id
-       */
-      let id =
-        match && match.length === 2
-          ? match[1]
-          : slugs.slug(rawHeader, maintainCase);
-
       let tail = children[children.length - 1];
-
-      /**
-       * If there was a match then we might want to return when they dont have proper heading ids
-       * Else we generate ids
-       */
-      if (match) {
-        if (!tail || tail.type !== 'text' || tail.value !== '/}') {
-          return;
-        }
-
+      // Generate slugs on the fly (even if not specified in markdown)
+      // so that it's possible to copy anchor links in newly written content.
+      let id = slugs.slug(toString(node), maintainCase);
+      // However, for committed docs, we'll extract slug from the headers.
+      if (tail && tail.type === 'text' && tail.value === '/}') {
         tail = children[children.length - 2];
-
-        if (!tail && tail.type !== 'emphasis') {
-          return;
+        if (tail && tail.type === 'emphasis') {
+          // Use custom ID instead.
+          id = toString(tail);
+          // Until we're on MDX 2, we need to "cut off" the comment syntax.
+          tail = children[children.length - 3];
+          if (tail && tail.type === 'text' && tail.value.endsWith('{/')) {
+            // Remove the emphasis and trailing `/}`
+            children.splice(children.length - 2, 2);
+            // Remove the `{/`
+            tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
+          }
         }
-
-        id = toString(tail);
-
-        tail = children[children.length - 3];
-
-        if (!tail || tail.type !== 'text' || !tail.value.endsWith('{/')) {
-          return;
-        }
-        /**
-         * We have to splice the children only if they contain heading ids
-         */
-        // Remove the emphasis and trailing `/}`
-        children.splice(children.length - 2, 2);
-        // Remove the `{/`
-        tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
       }
 
       const data = patch(node, 'data', {});

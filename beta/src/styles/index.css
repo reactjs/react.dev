@@ -18,7 +18,7 @@
   /* Write your own custom base styles here */
   html {
     color-scheme: light;
-    
+
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
   }
@@ -57,12 +57,12 @@
   }
 
   a > code {
-    color: #087EA4 !important; /* blue-50 */
+    color: #087ea4 !important; /* blue-50 */
     text-decoration: none !important;
   }
 
   html.dark a > code {
-    color: #149ECA !important; /* blue-40 */
+    color: #149eca !important; /* blue-40 */
   }
 
   .text-code {
@@ -108,8 +108,12 @@
   }
 
   @keyframes nav-fadein {
-    from { opacity: 0.5; }
-    to   { opacity: 1; }
+    from {
+      opacity: 0.5;
+    }
+    to {
+      opacity: 1;
+    }
   }
 
   /*
@@ -162,11 +166,11 @@
   }
 }
 
-#_hj_feedback_container > div > button:not([aria-label="Close"]) {
+#_hj_feedback_container > div > button:not([aria-label='Close']) {
   display: none;
 }
 
-#_hj_feedback_container > div  {
+#_hj_feedback_container > div {
   --hjFeedbackAccentColor: rgb(230, 247, 255) !important;
   --hjFeedbackAccentTextColor: rgb(73, 119, 171) !important;
 }

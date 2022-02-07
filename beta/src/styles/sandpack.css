@@ -4,7 +4,7 @@
 
 html .sp-wrapper {
   color-scheme: inherit;
-  
+
   /* palette */
   --sp-colors-fg-active: #24292e !important;
   --sp-colors-fg-default: #959da5 !important;
@@ -28,29 +28,30 @@ html .sp-wrapper {
   --theme-string: #032f62;
 }
 html.dark .sp-wrapper {
-  --sp-colors-fg-active: #FFFFFF !important;
+  --sp-colors-fg-active: #ffffff !important;
   --sp-colors-fg-default: #999999 !important;
   --sp-colors-fg-inactive: #343434 !important;
   --sp-colors-bg-active: #343434 !important;
-  --sp-colors-bg-default: #16181D !important;
-  --sp-colors-bg-default-overlay: #16181D !important;
+  --sp-colors-bg-default: #16181d !important;
+  --sp-colors-bg-default-overlay: #16181d !important;
   --sp-colors-bg-input: #242424 !important;
   --sp-colors-accent: #6caedd !important;
   --sp-colors-bg-error: #ffcdca !important;
   --sp-colors-fg-error: #811e18 !important;
   /* syntax */
-  --theme-plain: #FFFFFF;
+  --theme-plain: #ffffff;
   --theme-comment: #757575;
-  --theme-keyword: #77B7D7;
-  --theme-tag: #DFAB5C;
+  --theme-keyword: #77b7d7;
+  --theme-tag: #dfab5c;
   --theme-punctuation: #ffffff;
-  --theme-definition: #86D9CA;
-  --theme-property: #77B7D7;
-  --theme-static: #C64640;
-  --theme-string: #977CDC;
+  --theme-definition: #86d9ca;
+  --theme-property: #77b7d7;
+  --theme-static: #c64640;
+  --theme-string: #977cdc;
 }
 
-.sp-tabs, .sp-tab-button:hover {
+.sp-tabs,
+.sp-tab-button:hover {
   background: none !important;
 }
 
@@ -87,14 +88,13 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 }
 
 .sp-code-editor .cm-errorLine {
-  background-color: rgba(255, 107, 99, 0.10);
+  background-color: rgba(255, 107, 99, 0.1);
   position: relative;
 }
 
 .sp-code-editor .cm-errorLine:after {
-  position: absolute;
-  right: 8px;
-  top: 0;
+  position: relative;
+  top: 1px;
   content: '\26A0';
   font-size: 22px;
   line-height: 16px;
@@ -112,13 +112,9 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  *
  * If you know a better way to keep them from diverging, send a PR.
  */
-.sp-layout {
-  border-bottom-left-radius: 0.5rem !important;
-  border-bottom-right-radius: 0.5rem !important;
-}
 .sp-stack {
   height: initial !important;
-  width: fit-content !important;
+  width: 100% !important;
 }
 .sp-cm {
   -webkit-text-size-adjust: none !important;
@@ -150,11 +146,20 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   background-color: var(--sp-colors-bg-default);
   z-index: 1;
 }
-.sp-layout {
-  overflow: initial !important;
-  border: 0px solid transparent !important;
-  border-top-left-radius: 0px !important;
-  border-top-right-radius: 0px !important;
+.sp-wrapper {
+  width: 100% !important;
+}
+.sp-wrapper .sp-custom-layout {
+  overflow: initial;
+  border: 0px solid transparent;
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+}
+.sp-wrapper .sp-layout-devtools {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
 }
 html.dark .sp-layout > :not(:first-child) {
   border-color: #343a46;
@@ -170,6 +175,45 @@ html.dark .sp-loading {
   .sp-tabs .sp-tab-button {
     margin: 0 12px 0 0;
   }
+}
+
+/* Devtools */
+.sp-devtools {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
+}
+.sp-devtools > div {
+  --color-background: var(--sp-colors-bg-default) !important;
+  --color-background-inactive: var(--sp-colors-fg-inactive) !important;
+  --color-background-selected: #087ea4 !important;
+  --color-background-hover: transparent !important;
+  --color-modal-background: #ffffffd2 !important;
+
+  --color-tab-selected-border: #087ea4 !important;
+
+  --color-component-name: var(--theme-definition) !important;
+  --color-attribute-name: var(--theme-property) !important;
+  --color-attribute-value: var(--theme-string) !important;
+  --color-attribute-editable-value: var(--theme-property) !important;
+  --color-attribute-name-not-editable: var(--sp-colors-fg-default) !important;
+  --color-button-background-focus: var(--sp-colors-fg-inactive) !important;
+
+  --color-button-active: #087ea4 !important;
+  --color-button-background: transparent !important;
+  --color-button: var(--sp-colors-fg-default) !important;
+  --color-button-hover: var(--sp-colors-fg-active) !important;
+
+  --color-border: var(--sp-colors-fg-inactive) !important;
+  --color-text: rgb(35, 39, 47) !important;
+}
+html.dark .sp-devtools > div {
+  --color-text: var(--sp-colors-fg-default) !important;
+  --color-modal-background: #16181de0 !important;
+}
+
+.sp-devtools table td {
+  border: 1px solid var(--sp-colors-fg-inactive);
 }
 
 /* Make focus rings work */
@@ -203,5 +247,5 @@ html.dark .sp-loading {
     .DocSearch-Input {
       font-size: initial;
     }
-  } 
+  }
 }

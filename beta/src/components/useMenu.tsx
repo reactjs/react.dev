@@ -10,7 +10,7 @@ import {
 } from 'body-scroll-lock';
 import {useRouter} from 'next/router';
 
-type SidebarNav = 'root' | 'docs' | 'reference';
+type SidebarNav = 'root' | 'docs' | 'apis';
 /**
  * Menu toggle that enables body scroll locking (for
  * iOS Mobile and Tablet, Android, desktop Safari/Chrome/Firefox)
@@ -51,13 +51,17 @@ export const useMenu = () => {
     };
   }, [router.pathname, hideSidebar]);
 
-  return {
-    hideSidebar,
-    showSidebar,
-    toggleOpen,
-    menuRef,
-    isOpen,
-  };
+  // Avoid top-level context re-renders
+  return React.useMemo(
+    () => ({
+      hideSidebar,
+      showSidebar,
+      toggleOpen,
+      menuRef,
+      isOpen,
+    }),
+    [hideSidebar, showSidebar, toggleOpen, menuRef, isOpen]
+  );
 };
 
 export const MenuContext = React.createContext<ReturnType<typeof useMenu>>(

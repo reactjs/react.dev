@@ -107,6 +107,7 @@ Looking further into the future, [Xuan Huang (黄玄)](https://twitter.com/Huxpr
 
 **And talks from the community on accessibility, tooling, and Server Components:**
 
+* Daishi Kato: [React 18 for External Store Libraries](https://youtu.be/oPfSC5bQPR8).
 * Diego Haz: [Building Accessible Components in React 18](https://youtu.be/dcm8fjBfro8).
 * Tafu Nakazaki: [Accessible Japanese Form Components with React](https://youtu.be/S4a0QlsH0pU).
 * Lyle Troxell: [UI tools for artists](https://youtu.be/b3l4WxipFsE).

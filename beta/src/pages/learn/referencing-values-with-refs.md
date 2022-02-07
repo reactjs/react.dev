@@ -146,7 +146,6 @@ export default function Stopwatch() {
 
   function handleStop() {
     clearInterval(intervalRef.current);
-    intervalRef.current = null;
   }
 
   let secondsPassed = 0;

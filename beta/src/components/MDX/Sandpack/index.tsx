@@ -16,6 +16,7 @@ type SandpackProps = {
   autorun?: boolean;
   setup?: SandpackSetup;
   showDevTools?: boolean;
+  template: 'react-ts' | undefined;
 };
 
 const sandboxStyle = `
@@ -65,7 +66,7 @@ ul {
 `.trim();
 
 function Sandpack(props: SandpackProps) {
-  let {children, setup, autorun = true, showDevTools = false} = props;
+  let {children, setup, autorun = true, showDevTools = false, template} = props;
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
@@ -95,6 +96,8 @@ function Sandpack(props: SandpackProps) {
           filePath = '/App.js';
         } else if (props.className === 'language-css') {
           filePath = '/styles.css';
+        } else if (props.className === 'language-tsx') {
+          filePath = '/App.tsx';
         } else {
           throw new Error(
             `Code block is missing a filename: ${props.children}`
@@ -125,7 +128,7 @@ function Sandpack(props: SandpackProps) {
   return (
     <div className="sandpack-container my-8" translate="no">
       <SandpackProvider
-        template="react"
+        template={template || 'react'}
         customSetup={{...setup, files: files}}
         autorun={autorun}>
         <CustomPreset

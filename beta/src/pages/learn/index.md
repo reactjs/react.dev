@@ -8,6 +8,31 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 </Intro>
 
+
+<Sandpack template="react-ts">
+
+```tsx
+function MyButton({name}:{name:string}) {
+  return (
+    <button>
+      Click me {name}
+    </button>
+  );
+}
+
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Welcome to my app</h1>
+      <MyButton name='harish'/>
+    </div>
+  );
+}
+```
+
+</Sandpack>
+
+
 <YouWillLearn>
 
 - How to create and nest components

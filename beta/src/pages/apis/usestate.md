@@ -1084,7 +1084,7 @@ React will **ignore your update if the next state is equal to the previous state
 
 ```js {2}
 obj.x = 10;
-setObj(obj); // Has no effect
+setObj(obj); // Doesn't do anything
 ```
 
 You called `setObj` with the same `obj` object, so React bailed out of rendering. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):

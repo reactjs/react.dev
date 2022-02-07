@@ -717,9 +717,7 @@ const initialList = [
 ];
 
 export default function BucketList() {
-  const [list, updateList] = useImmer(
-    initialList
-  );
+  const [list, updateList] = useImmer(initialList);
 
   function handleToggle(artworkId, nextSeen) {
     updateList(draft => {

@@ -20,6 +20,11 @@ title: useState
   - [Avoiding recreating the initial state](#avoiding-recreating-the-initial-state)
   - [Resetting state with a key](#resetting-state-with-a-key)
   - [Storing information from previous renders](#storing-information-from-previous-renders)
+- [Troubleshooting](#troubleshooting)
+  - [I’ve updated the state, but logging gives me the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value)
+  - [I've updated the state, but the screen doesn't update](#ive-updated-the-state-but-the-screen-doesnt-update)
+  - [I'm getting an error: "Too many re-renders"](#im-getting-an-error-too-many-re-renders)
+
 
 ## Reference {/*reference*/}
 
@@ -278,22 +283,6 @@ button { display: block; margin-top: 10px; }
 
 Read [state as a component's memory](/learn/state-a-components-memory) to learn more.
 
-<Gotcha>
-
-Calling the `set` function only [affects the next render](/learn/state-as-a-snapshot) and **does not change state in the running code**:
-
-```js {3,4}
-function handleClick() {
-  console.log(count);  // 0
-  setCount(count + 1); // Request a re-render with 1
-  console.log(count);  // Still 0!
-}
-```
-
-If you need the next state, you can save it in a variable before passing it to the `set` function.
-
-</Gotcha>
-
 ---
 
 ### Updating state based on the previous state {/*updating-state-based-on-the-previous-state*/}
@@ -488,6 +477,118 @@ input { margin-left: 5px; }
 
 <Solution />
 
+### Form (nested object) {/*form-nested-object*/}
+
+In this example, the state is more nested. When you update nested state, you need to create a copy of the object you're updating, as well as any objects "containing" it on the way upwards. Read [updating a nested object](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Form() {
+  const [person, setPerson] = useState({
+    name: 'Niki de Saint Phalle',
+    artwork: {
+      title: 'Blue Nana',
+      city: 'Hamburg',
+      image: 'https://i.imgur.com/Sd1AgUOm.jpg',
+    }
+  });
+
+  function handleNameChange(e) {
+    setPerson({
+      ...person,
+      name: e.target.value
+    });
+  }
+
+  function handleTitleChange(e) {
+    setPerson({
+      ...person,
+      artwork: {
+        ...person.artwork,
+        title: e.target.value
+      }
+    });
+  }
+
+  function handleCityChange(e) {
+    setPerson({
+      ...person,
+      artwork: {
+        ...person.artwork,
+        city: e.target.value
+      }
+    });
+  }
+
+  function handleImageChange(e) {
+    setPerson({
+      ...person,
+      artwork: {
+        ...person.artwork,
+        image: e.target.value
+      }
+    });
+  }
+
+  return (
+    <>
+      <label>
+        Name:
+        <input
+          value={person.name}
+          onChange={handleNameChange}
+        />
+      </label>
+      <label>
+        Title:
+        <input
+          value={person.artwork.title}
+          onChange={handleTitleChange}
+        />
+      </label>
+      <label>
+        City:
+        <input
+          value={person.artwork.city}
+          onChange={handleCityChange}
+        />
+      </label>
+      <label>
+        Image:
+        <input
+          value={person.artwork.image}
+          onChange={handleImageChange}
+        />
+      </label>
+      <p>
+        <i>{person.artwork.title}</i>
+        {' by '}
+        {person.name}
+        <br />
+        (located in {person.artwork.city})
+      </p>
+      <img 
+        src={person.artwork.image} 
+        alt={person.artwork.title}
+      />
+    </>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 5px; margin-bottom: 5px; }
+img { width: 200px; height: 200px; }
+```
+
+</Sandpack>
+
+<Solution />
+
 ### List (array) {/*list-array*/}
 
 In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
@@ -649,6 +750,93 @@ function Task({ todo, onChange, onDelete }) {
 button { margin: 5px; }
 li { list-style-type: none; }
 ul, li { margin: 0; padding: 0; }
+```
+
+</Sandpack>
+
+<Solution />
+
+### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+
+If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+import { useImmer } from 'use-immer';
+
+let nextId = 3;
+const initialList = [
+  { id: 0, title: 'Big Bellies', seen: false },
+  { id: 1, title: 'Lunar Landscape', seen: false },
+  { id: 2, title: 'Terracotta Army', seen: true },
+];
+
+export default function BucketList() {
+  const [list, updateList] = useImmer(initialList);
+
+  function handleToggle(artworkId, nextSeen) {
+    updateList(draft => {
+      const artwork = draft.find(a =>
+        a.id === artworkId
+      );
+      artwork.seen = nextSeen;
+    });
+  }
+
+  return (
+    <>
+      <h1>Art Bucket List</h1>
+      <h2>My list of art to see:</h2>
+      <ItemList
+        artworks={list}
+        onToggle={handleToggle} />
+    </>
+  );
+}
+
+function ItemList({ artworks, onToggle }) {
+  return (
+    <ul>
+      {artworks.map(artwork => (
+        <li key={artwork.id}>
+          <label>
+            <input
+              type="checkbox"
+              checked={artwork.seen}
+              onChange={e => {
+                onToggle(
+                  artwork.id,
+                  e.target.checked
+                );
+              }}
+            />
+            {artwork.title}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```json package.json
+{
+  "dependencies": {
+    "immer": "1.7.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "use-immer": "0.5.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
 ```
 
 </Sandpack>
@@ -856,3 +1044,72 @@ button { margin-bottom: 10px; }
 Note that if you call a `set` function while rendering, it must be inside a condition like `prevCount !== count`, and there must be a call like `setPrevCount(count)` inside of the condition. Otherwise, your component would re-render in a loop until it crashes. Also, you can only update the state of the *currently rendering* component like this. Calling the `set` function of *another* component during rendering is an error. Finally, your `set` call should still [update state without mutation](#updating-objects-and-arrays-in-state) -- this special case doesn't mean you can break other rules of [pure functions](/learn/keeping-components-pure).
 
 This pattern can be hard to understand and is usually best avoided. However, it's better than updating state in an effect. When you call the `set` function during render, React will re-render that component immediately after your component exits with a `return` statement, and before rendering the children. This way, children don't need to render twice. The rest of your component function will still execute (and the result will be thrown away), but if your condition is below all the calls to Hooks, you may add `return null` inside it to restart rendering earlier.
+
+---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### I've updated the state, but logging gives me the old value {/*ive-updated-the-state-but-logging-gives-me-the-old-value*/}
+
+Calling the `set` function **does not change state in the running code**:
+
+```js {4,5,8}
+function handleClick() {
+  console.log(count);  // 0
+
+  setCount(count + 1); // Request a re-render with 1
+  console.log(count);  // Still 0!
+
+  setTimeout(() => {
+    console.log(count); // Also 0!
+  }, 5000);
+}
+```
+
+This is because [states behaves like a snapshot](/learn/state-as-a-snapshot). Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already running event handler.
+
+If you need to use the next state, you can save it in a variable before passing it to the `set` function:
+
+```js
+const nextCount = count + 1;
+setCount(nextCount);
+
+console.log(count);     // 0
+console.log(nextCount); // 1
+```
+
+### I've updated the state, but the screen doesn't update {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
+
+React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
+
+```js {2}
+obj.x = 10;
+setObj(obj); // Doesn't do anything
+```
+
+You called `setObj` with the same `obj` object, so React bailed out of rendering. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+
+```js
+setObj({
+  ...obj,
+  x: 10
+});
+```
+
+### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
+
+You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
+
+```js {1-2}
+// 🚩 Wrong: calls the handler during render
+return <button onClick={handleClick()}>Click me</button>
+
+// ✅ Correct: passes down the event handler
+return <button onClick={handleClick}>Click me</button>
+
+// ✅ Correct: passes down an inline function
+return <button onClick={(e) => handleClick(e)}>Click me</button>
+```
+
+If you can't find the cause of this error, click on the arrow next to the error in the console, and look through the JavaScript stack to find the specific `set` function call responsible for the error.
+

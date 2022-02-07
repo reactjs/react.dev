@@ -102,7 +102,7 @@ Return statements can be written all on one line, as in this component:
 return <img src="https://i.imgur.com/MK3eW3As.jpg" alt="Katherine Johnson" />;
 ```
 
-But if your markup isn't all on the same line as the return statement, you must wrap it in a pair of parentheses like this:
+But if your markup isn't all on the same line as the `return` keyword, you must wrap it in a pair of parentheses like this:
 
 ```js
 return (

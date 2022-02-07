@@ -15,6 +15,7 @@ type SandpackProps = {
   children: React.ReactChildren;
   autorun?: boolean;
   setup?: SandpackSetup;
+  showDevTools?: boolean;
 };
 
 const sandboxStyle = `
@@ -64,8 +65,8 @@ ul {
 `.trim();
 
 function Sandpack(props: SandpackProps) {
-  let {children, setup, autorun = true} = props;
-  let [resetKey, setResetKey] = React.useState(0);
+  let {children, setup, autorun = true, showDevTools = false} = props;
+  const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
 
@@ -121,29 +122,17 @@ function Sandpack(props: SandpackProps) {
     hidden: true,
   };
 
-  let key = String(resetKey);
-  if (process.env.NODE_ENV !== 'production') {
-    // Remount on any source change in development.
-    key +=
-      '-' +
-      JSON.stringify({
-        ...props,
-        children: files,
-      });
-  }
-
   return (
-    <div className="my-8" translate="no">
+    <div className="sandpack-container my-8" translate="no">
       <SandpackProvider
-        key={key}
         template="react"
         customSetup={{...setup, files: files}}
         autorun={autorun}>
         <CustomPreset
           isSingleFile={isSingleFile}
-          onReset={() => {
-            setResetKey((k) => k + 1);
-          }}
+          showDevTools={showDevTools}
+          onDevToolsLoad={() => setDevToolsLoaded(true)}
+          devToolsLoaded={devToolsLoaded}
         />
       </SandpackProvider>
     </div>

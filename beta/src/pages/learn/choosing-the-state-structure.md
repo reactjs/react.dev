@@ -53,6 +53,7 @@ Technically, you can use either of these approaches. But **if some two state var
 
 ```js
 import { useState } from 'react';
+
 export default function MovingDot() {
   const [position, setPosition] = useState({
     x: 0,

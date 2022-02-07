@@ -1123,7 +1123,7 @@ select { margin-bottom: 10px; }
 
 The problem was in the mutation inside `handleMove`. It mutated `shape.position`, but that's the same object that `initialPosition` points at. This is why both the shape and the background move. (It's a mutation, so the change doesn't reflect on the screen until an unrelated update--the color change--triggers a re-render.)
 
-The fix is to remove the mutation from `handleMove`, and use the spread operator to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
+The fix is to remove the mutation from `handleMove`, and use the spread syntax to copy the shape. Note that `+=` is a mutation, so you need to rewrite it to use a regular `+` operation.
 
 <Sandpack>
 

@@ -99,9 +99,9 @@ export default function Stopwatch() {
     setNow(Date.now());
 
     setInterval(() => {
-      // Update the current time every 100ms.
+      // Update the current time every 10ms.
       setNow(Date.now());
-    }, 100);
+    }, 10);
   }
 
   let secondsPassed = 0;

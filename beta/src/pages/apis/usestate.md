@@ -121,7 +121,7 @@ To change the state, call the state setter function with the next state value. R
 
 <AnatomyStep title="Render state in the UI">
 
-Use the state in your JSX.
+Use the state in your JSX or component logic.
 
 </AnatomyStep>
 

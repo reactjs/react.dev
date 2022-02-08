@@ -41,7 +41,7 @@ export function Toc({
                 <li
                   key={`heading-${h.url}-${i}`}
                   className={cx(
-                    'text-sm px-2 py-1 rounded-l-lg',
+                    'text-sm px-2 rounded-l-lg',
                     selectedIndex === i
                       ? 'bg-highlight dark:bg-highlight-dark'
                       : null,
@@ -55,7 +55,7 @@ export function Toc({
                       selectedIndex === i
                         ? 'text-link dark:text-link-dark font-bold'
                         : 'text-secondary dark:text-secondary-dark',
-                      'block hover:text-link dark:hover:text-link-dark'
+                      'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
                     )}
                     href={h.url}>
                     {h.text}

@@ -2,7 +2,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {MDXProvider} from '@mdx-js/react';
+// @ts-ignore
+import {MDXContext} from '@mdx-js/react';
 import recentPostsRouteTree from 'blogIndexRecent.json';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {ExternalLink} from 'components/ExternalLink';
@@ -87,7 +88,9 @@ function LayoutPost({meta, children}: LayoutPostProps) {
             </span>
           </p>
 
-          <MDXProvider components={MDXComponents}>{children}</MDXProvider>
+          <MDXContext.Provider value={MDXComponents}>
+            {children}
+          </MDXContext.Provider>
           <DocsPageFooter
             route={route}
             nextRoute={nextRoute}

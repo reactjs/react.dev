@@ -11,19 +11,19 @@ const debounce = require('debounce');
 export function Navigation({
   challenges,
   handleChange,
-  activeChallenge,
+  currentChallenge,
   isRecipes,
 }: {
   challenges: ChallengeContents[];
   handleChange: (id: string) => void;
-  activeChallenge: string;
+  currentChallenge: ChallengeContents;
   isRecipes?: boolean;
 }) {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const challengesNavRef = React.useRef(
     challenges.map(() => createRef<HTMLButtonElement>())
   );
-  const [scrollPos, setScrollPos] = React.useState(0);
+  const scrollPos = currentChallenge.order - 1;
   const canScrollLeft = scrollPos > 0;
   const canScrollRight = scrollPos < challenges.length - 1;
 
@@ -37,7 +37,6 @@ export function Navigation({
         containerRef.current.scrollLeft = currentNavRef.offsetLeft;
       }
       handleChange(challenges[scrollPos + 1].id);
-      setScrollPos(scrollPos + 1);
     }
   };
 
@@ -51,7 +50,6 @@ export function Navigation({
         containerRef.current.scrollLeft = currentNavRef.offsetLeft;
       }
       handleChange(challenges[scrollPos - 1].id);
-      setScrollPos(scrollPos - 1);
     }
   };
 
@@ -64,7 +62,6 @@ export function Navigation({
       containerRef.current.scrollLeft = currentNavRef?.offsetLeft || 0;
     }
     handleChange(id);
-    setScrollPos(selectedChallenge);
   };
 
   const handleResize = React.useCallback(() => {
@@ -94,10 +91,10 @@ export function Navigation({
               className={cn(
                 'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap overflow-ellipsis',
                 isRecipes &&
-                  activeChallenge === id &&
+                  currentChallenge.id === id &&
                   'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30',
                 !isRecipes &&
-                  activeChallenge === id &&
+                  currentChallenge.id === id &&
                   'text-link border-link hover:text-link dark:text-link-dark dark:border-link-dark dark:hover:text-link-dark'
               )}
               onClick={() => handleSelectNav(id)}

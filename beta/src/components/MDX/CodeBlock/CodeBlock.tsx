@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
 import cn from 'classnames';
 import {
   ClasserProvider,
@@ -21,22 +20,19 @@ interface InlineHiglight {
   endColumn: number;
 }
 
-const CodeBlock = React.forwardRef(function CodeBlock(
-  {
-    children,
-    className = 'language-js',
-    metastring,
-    noMargin,
-    noMarkers,
-  }: {
-    children: string;
-    className?: string;
-    metastring: string;
-    noMargin?: boolean;
-    noMarkers?: boolean;
-  },
-  ref?: React.Ref<HTMLDivElement>
-) {
+const CodeBlock = function CodeBlock({
+  children,
+  className = 'language-js',
+  metastring,
+  noMargin,
+  noMarkers,
+}: {
+  children: string;
+  className?: string;
+  metastring: string;
+  noMargin?: boolean;
+  noMarkers?: boolean;
+}) {
   const getDecoratedLineInfo = () => {
     if (!metastring) {
       return [];
@@ -95,7 +91,7 @@ const CodeBlock = React.forwardRef(function CodeBlock(
               'sp-cm': styles.codeViewer,
             }}>
             <SandpackCodeViewer
-              ref={ref}
+              key={children.trimEnd()}
               showLineNumbers={false}
               decorators={decorators}
             />
@@ -104,7 +100,7 @@ const CodeBlock = React.forwardRef(function CodeBlock(
       </SandpackProvider>
     </div>
   );
-});
+};
 
 export default CodeBlock;
 

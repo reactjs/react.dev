@@ -86,11 +86,11 @@ const lightIcon = (
   </svg>
 );
 
-function inferSection(pathname: string): 'learn' | 'reference' | 'home' {
+function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
   if (pathname.startsWith('/learn')) {
     return 'learn';
-  } else if (pathname.startsWith('/reference')) {
-    return 'reference';
+  } else if (pathname.startsWith('/apis')) {
+    return 'apis';
   } else {
     return 'home';
   }
@@ -166,7 +166,7 @@ export default function Nav() {
         <NavLink href="/learn" isActive={section === 'learn'}>
           Learn
         </NavLink>
-        <NavLink href="/reference" isActive={section === 'reference'}>
+        <NavLink href="/apis" isActive={section === 'apis'}>
           API
         </NavLink>
       </div>

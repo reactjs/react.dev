@@ -8,7 +8,7 @@ As your application grows, it helps to be more intentional about how your state 
 
 </Intro>
 
-<YouWillLearn>
+<YouWillLearn isChapter={true}>
 
 * [How to think about UI changes as state changes](/learn/reacting-to-input-with-state)
 * [How to structure state well](/learn/choosing-the-state-structure)
@@ -511,7 +511,7 @@ import { useReducer } from 'react';
 import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   const [tasks, dispatch] = useReducer(
     tasksReducer,
     initialTasks
@@ -812,7 +812,7 @@ import AddTask from './AddTask.js';
 import TaskList from './TaskList.js';
 import { TasksProvider } from './TasksContext.js';
 
-export default function TaskBoard() {
+export default function TaskApp() {
   return (
     <TasksProvider>
       <h1>Day off in Kyoto</h1>

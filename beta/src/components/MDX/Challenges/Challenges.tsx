@@ -6,6 +6,7 @@ import * as React from 'react';
 import cn from 'classnames';
 import {Button} from 'components/Button';
 import {H2} from 'components/MDX/Heading';
+import {H4} from 'components/MDX/Heading';
 import {Navigation} from './Navigation';
 import {IconHint} from '../../Icon/IconHint';
 import {IconSolution} from '../../Icon/IconSolution';
@@ -14,6 +15,8 @@ import {IconArrowSmall} from '../../Icon/IconArrowSmall';
 interface ChallengesProps {
   children: React.ReactElement[];
   isRecipes?: boolean;
+  titleText?: string;
+  titleId?: string;
 }
 
 export interface ChallengeContents {
@@ -66,7 +69,12 @@ const parseChallengeContents = (
   return contents;
 };
 
-export function Challenges({children, isRecipes}: ChallengesProps) {
+export function Challenges({
+  children,
+  isRecipes,
+  titleText = isRecipes ? 'Try out some examples' : 'Try out some challenges',
+  titleId = isRecipes ? 'examples' : 'challenges',
+}: ChallengesProps) {
   const challenges = parseChallengeContents(children);
   const scrollAnchorRef = React.useRef<HTMLDivElement>(null);
 
@@ -97,31 +105,34 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
   };
 
   const currentChallenge = challenges.find(({id}) => id === activeChallenge);
+  if (currentChallenge === undefined) {
+    throw new TypeError('currentChallenge should always exist');
+  }
   const nextChallenge = challenges.find(({order}) => {
-    if (!currentChallenge) {
-      return false;
-    }
     return order === currentChallenge.order + 1;
   });
 
+  const Heading = isRecipes ? H4 : H2;
   return (
-    <div className="max-w-7xl mx-auto py-4 md:py-12">
+    <div className="max-w-7xl mx-auto py-4">
       <div
         className={cn(
           'border-gray-10 bg-card dark:bg-card-dark shadow-inner rounded-none -mx-5 sm:mx-auto sm:rounded-lg'
         )}>
         <div ref={scrollAnchorRef} className="py-2 px-5 sm:px-8 pb-0 md:pb-0">
-          <H2
-            id={isRecipes ? 'recipes' : 'challenges'}
+          <Heading
+            id={titleId}
             className={cn(
-              'text-3xl mb-2 leading-10 relative',
-              isRecipes ? 'text-purple-50 dark:text-purple-30' : 'text-link'
+              'mb-2 leading-10 relative',
+              isRecipes
+                ? 'text-xl text-purple-50 dark:text-purple-30'
+                : 'text-3xl text-link'
             )}>
-            {isRecipes ? 'Try out some recipes' : 'Try out some challenges'}
-          </H2>
+            {titleText}
+          </Heading>
           {challenges.length > 1 && (
             <Navigation
-              activeChallenge={activeChallenge}
+              currentChallenge={currentChallenge}
               challenges={challenges}
               handleChange={handleChallengeChange}
               isRecipes={isRecipes}
@@ -132,16 +143,16 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
           <div key={activeChallenge}>
             <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
               <div className="font-bold block md:inline">
-                {isRecipes ? 'Recipe' : 'Challenge'} {currentChallenge?.order}{' '}
+                {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order}{' '}
                 of {challenges.length}
                 <span className="text-primary dark:text-primary-dark">: </span>
               </div>
-              {currentChallenge?.name}
+              {currentChallenge.name}
             </h3>
-            <>{currentChallenge?.content}</>
+            <>{currentChallenge.content}</>
           </div>
           <div className="flex justify-between items-center mt-4">
-            {currentChallenge?.hint ? (
+            {currentChallenge.hint ? (
               <div>
                 <Button className="mr-2" onClick={toggleHint} active={showHint}>
                   <IconHint className="mr-1.5" />{' '}
@@ -179,7 +190,7 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
                   setShowSolution(false);
                 }}
                 active>
-                Next {isRecipes ? 'Recipe' : 'Challenge'}
+                Next {isRecipes ? 'Example' : 'Challenge'}
                 <IconArrowSmall
                   displayDirection="right"
                   className="block ml-1.5"
@@ -187,14 +198,14 @@ export function Challenges({children, isRecipes}: ChallengesProps) {
               </Button>
             )}
           </div>
-          {showHint && currentChallenge?.hint}
+          {showHint && currentChallenge.hint}
 
           {showSolution && (
             <div className="mt-6">
               <h3 className="text-2xl font-bold text-primary dark:text-primary-dark">
                 Solution
               </h3>
-              {currentChallenge?.solution}
+              {currentChallenge.solution}
               <div className="flex justify-between items-center mt-4">
                 <Button onClick={() => setShowSolution(false)}>
                   Close solution

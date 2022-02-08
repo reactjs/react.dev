@@ -2,9 +2,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import {Router, withRouter} from 'next/router';
+
 import Head from 'next/head';
-import {withRouter, Router} from 'next/router';
+import React from 'react';
 
 export interface SeoProps {
   title: string;
@@ -24,9 +25,7 @@ export const Seo = withRouter(
   }: SeoProps & {router: Router}) => (
     <Head>
       {/* DEFAULT */}
-
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-
       {title != null && <title key="title">{title}</title>}
       {description != null && (
         <meta name="description" key="description" content={description} />
@@ -51,13 +50,11 @@ export const Seo = withRouter(
           content={description}
         />
       )}
-
       <meta
         property="og:image"
         key="og:image"
         content={`https://beta.reactjs.org${image}`}
       />
-
       {/* TWITTER */}
       <meta
         name="twitter:card"
@@ -76,11 +73,40 @@ export const Seo = withRouter(
           content={description}
         />
       )}
-
       <meta
         name="twitter:image"
         key="twitter:image"
         content={`https://beta.reactjs.org${image}`}
+      />
+
+      {/* Download and cache the font files as soon as possible */}
+      <link
+        rel="preload"
+        href="/fonts/SourceCodePro-Regular.ttf"
+        as="font"
+        type="font/ttf"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/OptimisticDisplay-Light.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/OptimisticDisplay-Regular.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
+      />
+      <link
+        rel="preload"
+        href="/fonts/OptimisticDisplay-Bold.woff2"
+        as="font"
+        type="font/woff2"
+        crossOrigin="anonymous"
       />
 
       {children}

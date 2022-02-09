@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 
 export const IconSolution = React.memo<JSX.IntrinsicElements['svg']>(
   function IconSolution({className}) {

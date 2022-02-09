@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import NextLink from 'next/link';
-import cn from 'classnames';
+import cn from 'clsx';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
 import {IconTwitter} from 'components/Icon/IconTwitter';

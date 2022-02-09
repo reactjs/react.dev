@@ -5,7 +5,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
-import cn from 'classnames';
+import cn from 'clsx';
 
 import {Error} from './Error';
 import {computeViewportSize, generateRandomId} from './utils';

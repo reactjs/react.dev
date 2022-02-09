@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 
 export const IconArrow = React.memo<
   JSX.IntrinsicElements['svg'] & {

@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import cn from 'classnames';
+import cn from 'clsx';
 import {ExternalLink} from 'components/ExternalLink';
 import NextLink from 'next/link';
 

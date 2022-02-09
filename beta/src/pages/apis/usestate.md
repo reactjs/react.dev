@@ -46,7 +46,7 @@ The convention is to name state variables like `[something, setSomething]` using
 
 [See more examples below.](#examples-basic)
 
-#### Arguments {/*arguments*/}
+#### Parameters {/*parameters*/}
 
 * `initialState`: The value you want the state to be initially. It can be a value of any type, but there is a special behavior for functions. This argument is ignored after the initial render.
   * If you pass a function as `initialState`, it will be treated as an _initializer function_. It should be pure, should take no arguments, and should return a value of any type. React will call your initializer function when initializing the component, and store its return value as the initial state. [See an example below.](#avoiding-recreating-the-initial-state)
@@ -78,7 +78,7 @@ function handleClick() {
   // ...
 ```
 
-#### Arguments {/*setstate-arguments*/}
+#### Parameters {/*setstate-parameters*/}
 
 * `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
   * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)

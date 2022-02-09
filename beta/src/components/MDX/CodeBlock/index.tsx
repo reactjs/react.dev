@@ -3,15 +3,7 @@
  */
 import cn from 'classnames';
 import * as React from 'react';
-const CodeBlock = React.lazy(
-  () =>
-    import('./CodeBlock').then(
-      (x) =>
-        new Promise((resolve) => {
-          setTimeout(() => resolve(x), 3000);
-        })
-    ) as any
-);
+const CodeBlock = React.lazy(() => import('./CodeBlock'));
 
 export default React.memo(function CodeBlockWrapper(props: {
   isFromAPIAnatomy: boolean;

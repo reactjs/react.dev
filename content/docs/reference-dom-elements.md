@@ -37,12 +37,8 @@ If you use React with Web Components (which is uncommon), use the `class` attrib
 `dangerouslySetInnerHTML` is React's replacement for using `innerHTML` in the browser DOM. In general, setting HTML from code is risky because it's easy to inadvertently expose your users to a [cross-site scripting (XSS)](https://en.wikipedia.org/wiki/Cross-site_scripting) attack. So, you can set HTML directly from React, but you have to type out `dangerouslySetInnerHTML` and pass an object with a `__html` key, to remind yourself that it's dangerous. For example:
 
 ```js
-function createMarkup() {
-  return {__html: 'First &middot; Second'};
-}
-
 function MyComponent() {
-  return <div dangerouslySetInnerHTML={createMarkup()} />;
+  return <div dangerouslySetInnerHTML={{__html: 'First &middot; Second'}} />;
 }
 ```
 

@@ -11,6 +11,7 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import Layout from 'components/Layout';
 import React from 'react';
 import {sharedStyles} from 'theme';
+import { Link } from "gatsby"
 
 type Props = {
   location: Location,

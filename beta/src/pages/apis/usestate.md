@@ -87,7 +87,7 @@ function handleClick() {
 
 `set` functions do not have a return value.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*setstate-caveats*/}
 
 * The `set` function only updates the state variable for the next render. If you read the state variable after calling the `set` function, you will still get the value that was on the screen before your call.
 

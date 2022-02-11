@@ -471,7 +471,7 @@ One rudimentary way to measure the position or size of a DOM node is to use a [c
 function MeasureExample() {
   const [height, setHeight] = useState(0);
 
-  const measuredRef = useCallback(node => {
+  const measureH1 = useCallback(node => {
     if (node !== null) {
       setHeight(node.getBoundingClientRect().height);
     }
@@ -479,7 +479,7 @@ function MeasureExample() {
 
   return (
     <>
-      <h1 ref={measuredRef}>Hello, world</h1>
+      <h1 ref={measureH1}>Hello, world</h1>
       <h2>The above header is {Math.round(height)}px tall</h2>
     </>
   );
@@ -488,7 +488,9 @@ function MeasureExample() {
 
 We didn't choose `useRef` in this example because an object ref doesn't notify us about *changes* to the current ref value. Using a callback ref ensures that [even if a child component displays the measured node later](https://codesandbox.io/s/818zzk8m78) (e.g. in response to a click), we still get notified about it in the parent component and can update the measurements.
 
-Note that we pass `[]` as a dependency array to `useCallback`. This ensures that our ref callback doesn't change between the re-renders, and so React won't call it unnecessarily.
+Note that we pass `[]` as a dependency array to `useCallback`. We're defining a function to pass as our attribute rather than a ref object, and without `useCallback`'s memoization of that function, javascript would create a new object each time the function was declared (which happens each time our component renders), resulting in referential inequality. And so every time our component rendered, the function would be called to attach our "new" handler to the ref attribute. We don't want that, so we create a memoized version via `useCallback` to ensure that our ref callback doesn't change between the re-renders, so React won't call it unnecessarily.
+
+Now the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
 
 In this example, the callback ref will be called only when the component mounts and unmounts, since the rendered `<h1>` component stays present throughout any rerenders. If you want to be notified any time a component resizes, you may want to use [`ResizeObserver`](https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserver) or a third-party Hook built on it.
 

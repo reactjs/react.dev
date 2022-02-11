@@ -73,8 +73,7 @@ export function CustomPreset({
             <SandpackCodeEditor
               customStyle={{
                 height: getHeight(),
-                maxHeight: isExpanded ? '' : '[40vh]',
-                minHeight: isExpanded ? '' : 'min-h-[40vh] xl:min-h-0',
+                maxHeight: isExpanded ? '' : '40vh',
               }}
               showLineNumbers
               showInlineErrors

@@ -112,10 +112,6 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  *
  * If you know a better way to keep them from diverging, send a PR.
  */
-.sp-stack {
-  height: initial !important;
-  width: 100% !important;
-}
 .sp-cm {
   -webkit-text-size-adjust: none !important;
   padding: 0 !important;
@@ -248,4 +244,22 @@ html.dark .sp-devtools > div {
       font-size: initial;
     }
   }
+}
+
+.sp-layout {
+  min-height: 216px;
+}
+.sp-layout > .sp-stack:nth-child(1) {
+  height: auto;
+  max-height: 406px;
+}
+.sp-layout > .sp-stack:nth-child(2) {
+  height: auto;
+  max-height: 406px;
+}
+.sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+  max-height: unset;
+}
+.sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+  max-height: unset;
 }

@@ -44,7 +44,6 @@ export function CustomPreset({
   }
   const lineCount = lineCountRef.current[activePath];
   const isExpandable = lineCount > 16 || isExpanded;
-  const editorHeight = isExpandable ? lineCount * 24 + 24 : 'auto'; // shown lines * line height (24px)
 
   return (
     <>
@@ -57,15 +56,18 @@ export function CustomPreset({
             ref={sandpack.lazyAnchorRef}
             className={cn(
               'sp-layout sp-custom-layout',
-              showDevTools && devToolsLoaded && 'sp-layout-devtools'
+              showDevTools && devToolsLoaded && 'sp-layout-devtools',
+              isExpanded && 'sp-layout-expanded'
             )}>
             <SandpackCodeEditor
               showLineNumbers
               showInlineErrors
               showTabs={false}
             />
-            <Preview isExpanded={isExpanded} />
-
+            <Preview
+              className="order-last xl:order-2"
+              isExpanded={isExpanded}
+            />
             {isExpandable && (
               <button
                 translate="yes"

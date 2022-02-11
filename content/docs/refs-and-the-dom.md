@@ -279,7 +279,7 @@ In the example above, `Parent` passes its ref callback as an `inputRef` prop to 
 
 #### Callback refs and function components {#callback-refs-and-function-components}
 
-See [https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node](this example)
+See [this example](https://reactjs.org/docs/hooks-faq.html#how-can-i-measure-a-dom-node)
 
 ### Legacy API: String Refs {#legacy-api-string-refs}
 

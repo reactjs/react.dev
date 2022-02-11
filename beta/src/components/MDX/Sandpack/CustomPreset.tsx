@@ -45,12 +45,6 @@ export function CustomPreset({
   const lineCount = lineCountRef.current[activePath];
   const isExpandable = lineCount > 16 || isExpanded;
   const editorHeight = isExpandable ? lineCount * 24 + 24 : 'auto'; // shown lines * line height (24px)
-  const getHeight = () => {
-    if (!isExpandable) {
-      return editorHeight;
-    }
-    return isExpanded ? editorHeight : 406;
-  };
 
   return (
     <>
@@ -64,29 +58,13 @@ export function CustomPreset({
             className={cn(
               'sp-layout sp-custom-layout',
               showDevTools && devToolsLoaded && 'sp-layout-devtools'
-            )}
-            style={{
-              // Prevent it from collapsing below the initial (non-loaded) height.
-              // There has to be some better way to do this...
-              minHeight: 216,
-            }}>
+            )}>
             <SandpackCodeEditor
-              customStyle={{
-                height: getHeight(),
-                maxHeight: isExpanded ? '' : '40vh',
-              }}
               showLineNumbers
               showInlineErrors
               showTabs={false}
             />
-            <Preview
-              isExpanded={isExpanded}
-              className="order-last min-h-[40vh] xl:order-2 xl:min-h-0"
-              customStyle={{
-                height: getHeight(),
-                maxHeight: isExpanded ? '' : 406,
-              }}
-            />
+            <Preview isExpanded={isExpanded} />
 
             {isExpandable && (
               <button

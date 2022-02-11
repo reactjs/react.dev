@@ -9,6 +9,10 @@ export default React.memo(function CodeBlockWrapper(props: {
   isFromAPIAnatomy: boolean;
   isFromPackageImport: boolean;
   children: string;
+  className?: string;
+  metastring: string;
+  noMargin?: boolean;
+  noMarkers?: boolean;
 }): any {
   const {children, isFromAPIAnatomy, isFromPackageImport} = props;
   return (

@@ -115,6 +115,7 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 .sp-stack {
   height: initial !important;
   width: 100% !important;
+  min-width: 431px !important;
 }
 .sp-cm {
   -webkit-text-size-adjust: none !important;

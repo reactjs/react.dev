@@ -12,7 +12,7 @@ import {computeViewportSize, generateRandomId} from './utils';
 
 type CustomPreviewProps = {
   className?: string;
-  customStyle: Record<string, unknown>;
+  customStyle?: Record<string, unknown>;
   isExpanded: boolean;
 };
 

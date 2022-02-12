@@ -63,6 +63,7 @@ export function CustomPreset({
               showLineNumbers
               showInlineErrors
               showTabs={false}
+              showRunButton={false}
             />
             <Preview
               className="order-last xl:order-2"

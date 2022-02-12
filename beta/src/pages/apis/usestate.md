@@ -1073,6 +1073,8 @@ console.log(count);     // 0
 console.log(nextCount); // 1
 ```
 
+---
+
 ### I've updated the state, but the screen doesn't update {/*ive-updated-the-state-but-the-screen-doesnt-update*/}
 
 React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
@@ -1091,6 +1093,8 @@ setObj({
 });
 ```
 
+---
+
 ### I'm getting an error: "Too many re-renders" {/*im-getting-an-error-too-many-re-renders*/}
 
 You might get an error that says: `Too many re-renders. React limits the number of renders to prevent an infinite loop.` Typically, this means that you're unconditionally setting state *during render*, so your component enters a loop: render, set state (which causes a render), render, set state (which causes a render), and so on. Very often, this is caused by a mistake in specifying an event handler:
@@ -1108,6 +1112,7 @@ return <button onClick={(e) => handleClick(e)}>Click me</button>
 
 If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `set` function call responsible for the error.
 
+---
 
 ### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
 

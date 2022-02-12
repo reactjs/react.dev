@@ -24,6 +24,7 @@ title: useState
   - [I’ve updated the state, but logging gives me the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value)
   - [I've updated the state, but the screen doesn't update](#ive-updated-the-state-but-the-screen-doesnt-update)
   - [I'm getting an error: "Too many re-renders"](#im-getting-an-error-too-many-re-renders)
+  - [My initializer or updater function runs twice](#my-initializer-or-updater-function-runs-twice)
 
 
 ## Reference {/*reference*/}
@@ -60,8 +61,8 @@ The convention is to name state variables like `[something, setSomething]` using
 
 #### Caveats {/*caveats*/}
 
-* `useState` is a Hook, so you can only call it at the top level of your component or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state there.
-* In Strict Mode, React will call your initializer function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* `useState` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+* In Strict Mode, React will **call your initializer function twice** in order to [help you find accidental impurities](#my-initializer-or-updater-function-runs-twice). This is development-only behavior and does not affect production. If your initializer function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
 ---
 
@@ -87,15 +88,17 @@ function handleClick() {
 
 `set` functions do not have a return value.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*setstate-caveats*/}
 
-* The `set` function only updates the state variable for the next render. If you read the state variable after calling the `set` function, you will still get the value that was on the screen before your call.
+* The `set` function **only updates the state variable for the *next* render**. If you read the state variable after calling the `set` function, [you will still get the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value) that was on the screen before your call.
 
-* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will bail out of re-rendering the component and its children. However, in some cases React may still need to call your component before discarding the result.
+* If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
 
-* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. React will do this in a loop until you either stop setting state, or do it too many times. This pattern is called "derived state". It is uncommon, but you can use it to store information from previous renders. [See an example below.](#storing-information-from-previous-renders)
+* React [batches state updates](/learn/queueing-a-series-of-state-updates). It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`](/apis/flushsync).
 
-* In Strict Mode, React will call your updater function twice in order to help you find accidental impurities. This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example below.](#storing-information-from-previous-renders)
+
+* In Strict Mode, React will **call your updater function twice** in order to [help you find accidental impurities](#my-initializer-or-updater-function-runs-twice). This is development-only behavior and does not affect production. If your updater function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 
 ---
 
@@ -361,13 +364,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
+React may [call your updater function twice](#my-initializer-or-updater-function-runs-twice) in development.
+
 Read [state as a snapshot](/learn/state-as-a-snapshot) and [queueing a series of state changes](/learn/queueing-a-series-of-state-updates) to learn more.
-
-<Note>
-
-**Updaters need to be [pure functions that only calculate and return the next state](/learn/keeping-components-pure).** Don't "do" things or set state from the updater functions. React runs updater functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
-
-</Note>
 
 <DeepDive title="Is using an updater always preferred?">
 
@@ -913,11 +912,7 @@ export default function TodoList() {
 
 </Sandpack>
 
-<Note>
-
-**Initializers need to be [pure functions that only calculate and return the initial state](/learn/keeping-components-pure).** Don't "do" things or set state from the initializer functions. React runs initializer functions **twice in development only** in Strict Mode to stress-test them. This shouldn't affect pure functions, so it helps find accidental impurities.
-
-</Note>
+React may [call your initializer function twice](#my-initializer-or-updater-function-runs-twice) in development.
 
 ---
 
@@ -1066,7 +1061,7 @@ function handleClick() {
 }
 ```
 
-This is because [states behaves like a snapshot](/learn/state-as-a-snapshot). Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already running event handler.
+This is because [states behaves like a snapshot](/learn/state-as-a-snapshot). Updating state requests another render with the new state value, but does not affect the `count` JavaScript variable in your already-running event handler.
 
 If you need to use the next state, you can save it in a variable before passing it to the `set` function:
 
@@ -1111,5 +1106,53 @@ return <button onClick={handleClick}>Click me</button>
 return <button onClick={(e) => handleClick(e)}>Click me</button>
 ```
 
-If you can't find the cause of this error, click on the arrow next to the error in the console, and look through the JavaScript stack to find the specific `set` function call responsible for the error.
+If you can't find the cause of this error, click on the arrow next to the error in the console and look through the JavaScript stack to find the specific `set` function call responsible for the error.
 
+
+### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
+
+In [Strict Mode](/apis/strictmode), React will call some of your functions twice instead of once:
+
+```js {2,5-6,11-12}
+function TodoList() {
+  // This component function will run twice for every render.
+
+  const [todos, setTodos] = useState(() => {
+    // This initializer function will run twice during initialization.
+    return createTodos();
+  });
+
+  function handleClick() {
+    setTodos(prevTodos => {
+      // This updater function will run twice for every click.
+      return [...prevTodos, createTodo()];
+    });
+  }
+  // ...
+```
+
+This is expected and shouldn't break your code.
+
+This **development-only** behavior helps you [keep components pure](/learn/keeping-components-pure). React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and updater functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes and fix it.
+
+For example, this impure updater function mutates an array in state:
+
+```js {2,3}
+setTodos(prevTodos => {
+  // 🚩 Mistake: mutating state
+  prevTodos.push(createTodo());
+});
+```
+
+Because React calls your updater function twice, you'll see the todo was added twice, so you'll know that there is a mistake. In this example, you can fix the mistake by [replacing the array instead of mutating it](#updating-objects-and-arrays-in-state):
+
+```js {2,3}
+setTodos(prevTodos => {
+  // ✅ Correct: replacing with new state
+  return [...prevTodos, createTodo()];
+});
+```
+
+Now that this updater function is pure, calling it an extra time doesn't make a difference in behavior. This is why React calling it twice helps you find mistakes. **Only component, initializer, and updater functions need to be pure.** Event handlers don't need to be pure, so React will never call your event handlers twice.
+
+Read [keeping components pure](/learn/keeping-components-pure) to learn more.

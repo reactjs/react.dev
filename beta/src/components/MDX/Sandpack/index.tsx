@@ -107,7 +107,7 @@ function Sandpack(props: SandpackProps) {
         );
       }
       result[filePath] = {
-        code: props.children as string,
+        code: (props.children as string).trim(),
         hidden: fileHidden,
         active: fileActive,
       };

@@ -113,10 +113,6 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
  *
  * If you know a better way to keep them from diverging, send a PR.
  */
-.sp-stack {
-  height: initial !important;
-  width: 100% !important;
-}
 .sp-cm {
   -webkit-text-size-adjust: none !important;
   padding: 0 !important;
@@ -248,5 +244,54 @@ html.dark .sp-devtools > div {
     .DocSearch-Input {
       font-size: initial;
     }
+  }
+}
+
+.sp-layout {
+  min-height: 216px;
+}
+.sp-layout > .sp-stack:nth-child(1) {
+  /* Force vertical if there isn't enough space. */
+  min-width: 431px;
+  /* No min height on mobile because we know code in advance. */
+  /* Max height is needed to avoid too long files. */
+  max-height: 40vh;
+}
+.sp-layout > .sp-stack:nth-child(2) {
+  /* Force vertical if there isn't enough space. */
+  min-width: 431px;
+  /* Keep preview a fixed size on mobile to avoid jumps. */
+  /* This is because we don't know its content in advance. */
+  min-height: 40vh;
+  max-height: 40vh;
+}
+.sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+  /* Clicking "show more" lets mobile editor go full height. */
+  max-height: unset;
+  height: auto;
+}
+.sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+  /* Clicking "show more" lets mobile preview go full height. */
+  max-height: unset;
+  height: auto;
+}
+@media (min-width: 1280px) {
+  .sp-layout > .sp-stack:nth-child(1) {
+    /* On desktop, clamp height by pixels instead. */
+    height: auto;
+    min-height: unset;
+    max-height: 406px;
+  }
+  .sp-layout > .sp-stack:nth-child(2) {
+    /* On desktop, clamp height by pixels instead. */
+    height: auto;
+    min-height: unset;
+    max-height: 406px;
+  }
+  .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+    max-height: unset;
+  }
+  .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+    max-height: unset;
   }
 }

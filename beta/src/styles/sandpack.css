@@ -93,8 +93,9 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
 }
 
 .sp-code-editor .cm-errorLine:after {
-  position: relative;
-  top: 1px;
+  position: absolute;
+  right: 8px;
+  top: 0;
   content: '\26A0';
   font-size: 22px;
   line-height: 16px;

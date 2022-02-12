@@ -200,6 +200,28 @@ render() {
 
 Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
 
+### Inline Conditional Props {#inline-conditional-props}
+
+A component's props can be conditionally rendered using inline conditional operators. This can be more DRY than conditionally rendering a whole component or element.
+
+In the example below, a button is disabled using a an inline conditional expression:
+
+```javascript{5}
+render() {
+  const validFormEntries = this.state.validFormEntries;
+  return (
+    <button
+      id="submit-button"
+      className="submit-button"
+      disabled={this.state.validFormEntries ? false : true}
+      type="submit"
+    >
+      Submit
+    </button>
+  );
+}
+```
+
 ### Preventing Component from Rendering {#preventing-component-from-rendering}
 
 In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.

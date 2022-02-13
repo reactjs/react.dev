@@ -97,7 +97,7 @@ The core team is monitoring for pull requests. We will review your pull request 
 
 ### Contributor License Agreement (CLA) {#contributor-license-agreement-cla}
 
-In order to accept your pull request, we need you to submit a CLA. You only need to do this once, so if you've done this for another Facebook open source project, you're good to go. If you are submitting a pull request for the first time, just let us know that you have completed the CLA and we can cross-check with your GitHub username.
+In order to accept your pull request, we need you to submit a CLA. You only need to do this once, so if you've done this for another Facebook open source project, you're good to go. Each time you submit a pull request, our Github bot will automatically verify your CLA by your Github username.
 
 **[Complete your CLA here.](https://code.facebook.com/cla)**
 

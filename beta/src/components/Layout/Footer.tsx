@@ -126,11 +126,13 @@ export function Footer() {
               </FooterLink>
               <div className="flex flex-row mt-8 gap-x-2">
                 <ExternalLink
+                  aria-label="React on Facebook"
                   href="https://www.facebook.com/react"
                   className={socialLinkClasses}>
                   <IconFacebookCircle />
                 </ExternalLink>
                 <ExternalLink
+                  aria-label="React on Twitter"
                   href="https://twitter.com/reactjs"
                   className={socialLinkClasses}>
                   <IconTwitter />

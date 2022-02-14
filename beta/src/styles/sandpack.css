@@ -91,6 +91,8 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   background-color: rgba(255, 107, 99, 0.1);
   position: relative;
   padding-right: 26px !important;
+  display: inline-block;
+  width: 100%;
 }
 
 .sp-code-editor .cm-errorLine:after {

@@ -8,8 +8,9 @@ title: useState
 
 </Intro>
 
-## On this page {/*on-this-page*/}
+---
 
+- [Summary](#summary)
 - [Reference](#reference)
   - [`useState(initialState)`](#usestate)
   - [`set` functions, like `setSomething(nextState)`](#setstate)
@@ -26,6 +27,73 @@ title: useState
   - [I'm getting an error: "Too many re-renders"](#im-getting-an-error-too-many-re-renders)
   - [My initializer or updater function runs twice](#my-initializer-or-updater-function-runs-twice)
 
+---
+
+## Summary {/*summary*/}
+
+Call `useState` at the top level of your component to declare one or more [state variables](/learn/state-a-components-memory).
+
+```js [[1, 4, "age"], [2, 4, "setAge"], [3, 4, "28"], [1, 5, "name"], [2, 5, "setName"], [3, 5, "'Taylor'"]]
+import { useState } from 'react';
+
+function MyComponent() {
+  const [age, setAge] = useState(28);
+  const [name, setName] = useState('Taylor');
+  // ...
+```
+
+`useState` returns an array with exactly two items:
+
+1. The <CodeStep step={1}>current state</CodeStep> of this state variable, initially set to the <CodeStep step={3}>initial state</CodeStep> you provided.
+2. The <CodeStep step={2}>`set` function</CodeStep> that lets you change it to any other value in response to interaction.
+
+To update what’s on the screen, call the `set` function with some next state:
+
+```js
+function handleClick() {
+  setName('Robin');
+}
+```
+
+React will store the next state, render your component again with the new values, and update the UI.
+
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  function handleClick() {
+    setCount(count + 1);
+  }
+
+  return (
+    <button onClick={handleClick}>
+      You pressed me {count} times
+    </button>
+  );
+}
+```
+
+</Sandpack>
+
+<Gotcha>
+
+Calling the `set` function **does not** change the current state in the already executing code:
+
+```js {3}
+function handleClick() {
+  setName('Robin');
+  console.log(name); // Still "Taylor"!
+}
+```
+
+It only affects what `useState` will return starting from the next render.
+
+</Gotcha>
 
 ## Reference {/*reference*/}
 

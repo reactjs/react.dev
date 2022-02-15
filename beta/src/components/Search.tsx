@@ -95,6 +95,7 @@ export const Search: React.FC<SearchProps> = ({
       </Head>
 
       <button
+        aria-label="Search"
         type="button"
         className="inline-flex md:hidden items-center text-lg p-1 ml-4 lg:ml-6"
         onClick={onOpen}>

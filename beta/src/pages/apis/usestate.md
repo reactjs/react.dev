@@ -793,24 +793,6 @@ function ItemList({ artworks, onToggle }) {
 }
 ```
 
-```json package.json
-{
-  "dependencies": {
-    "immer": "1.7.3",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-scripts": "latest",
-    "use-immer": "0.5.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
-  }
-}
-```
-
 </Sandpack>
 
 <Solution />

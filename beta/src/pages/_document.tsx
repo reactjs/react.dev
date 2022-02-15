@@ -46,6 +46,7 @@ const MyDocument = () => {
                   setTheme(initialTheme);
 
                   darkQuery.addEventListener('change', function (e) {
+                    console.log('asdddddf')
                     if (!preferredTheme) {
                       setTheme(e.matches ? 'dark' : 'light');
                     }

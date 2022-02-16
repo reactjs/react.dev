@@ -19,6 +19,7 @@ import Intro from './Intro';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
+import dynamic from 'next/dynamic';
 import Sandpack from './Sandpack';
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';

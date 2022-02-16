@@ -1,146 +1,68 @@
-/*
- * Copyright (c) Facebook, Inc. and its affiliates.
- */
+import * as React from 'react';
+import {reducedCodeSnippet} from './utils';
+const Sandpack = React.lazy(() => import('./SandpackWrapper'));
 
-import React from 'react';
-import {
-  SandpackProvider,
-  SandpackSetup,
-  SandpackFile,
-} from '@codesandbox/sandpack-react';
+const SandpackFallBack = ({code}: {code: string}) => (
+  <div className="sandpack-container my-8">
+    <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
+      <div className="bg-wash h-10 dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
+        <div className="px-4 lg:px-6">
+          <div className="sp-tabs"></div>
+        </div>
+        <div className="px-3 flex items-center justify-end flex-grow text-right"></div>
+      </div>
+      <div className="sp-wrapper">
+        <div className="sp-layout sp-custom-layout min-h-[216px]">
+          <div className="sp-stack max-h-[406px] h-auto">
+            <div className="sp-code-editor">
+              <div className="sp-cm sp-pristine overflow-auto">
+                <div className="cm-editor">
+                  <div>
+                    <div className="cm-gutters pl-9 sticky min-h-[192px]">
+                      <div className="cm-gutter cm-lineNumbers whitespace-pre sp-pre-placeholder">
+                        {code}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="sp-stack order-last xl:order-2 max-h-[406px] h-auto">
+            <div className="p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative rounded-b-lg lg:rounded-b-none overflow-auto"></div>
+          </div>
+          {code.split('\n').length > 16 && (
+            <div className="flex h-[42px] text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"></div>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
-import {CustomPreset} from './CustomPreset';
-
-type SandpackProps = {
-  children: React.ReactChildren;
-  autorun?: boolean;
-  setup?: SandpackSetup;
-  showDevTools?: boolean;
-};
-
-const sandboxStyle = `
-* {
-  box-sizing: border-box;
-}
-
-body {
-  font-family: sans-serif;
-  margin: 20px;
-  padding: 0;
-}
-
-h1 {
-  margin-top: 0;
-  font-size: 22px;
-}
-
-h2 {
-  margin-top: 0;
-  font-size: 20px;
-}
-
-h3 {
-  margin-top: 0;
-  font-size: 18px;
-}
-
-h4 {
-  margin-top: 0;
-  font-size: 16px;
-}
-
-h5 {
-  margin-top: 0;
-  font-size: 14px;
-}
-
-h6 {
-  margin-top: 0;
-  font-size: 12px;
-}
-
-ul {
-  padding-left: 20px;
-}
-`.trim();
-
-function Sandpack(props: SandpackProps) {
-  let {children, setup, autorun = true, showDevTools = false} = props;
-  const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
-  let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
-  let isSingleFile = true;
-
-  const files = codeSnippets.reduce(
-    (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
-      if (codeSnippet.props.mdxType !== 'pre') {
-        return result;
-      }
-      const {props} = codeSnippet.props.children;
-      let filePath; // path in the folder structure
-      let fileHidden = false; // if the file is available as a tab
-      let fileActive = false; // if the file tab is shown by default
-
-      if (props.metastring) {
-        const [name, ...params] = props.metastring.split(' ');
-        filePath = '/' + name;
-        if (params.includes('hidden')) {
-          fileHidden = true;
-        }
-        if (params.includes('active')) {
-          fileActive = true;
-        }
-        isSingleFile = false;
-      } else {
-        if (props.className === 'language-js') {
-          filePath = '/App.js';
-        } else if (props.className === 'language-css') {
-          filePath = '/styles.css';
-        } else {
-          throw new Error(
-            `Code block is missing a filename: ${props.children}`
-          );
-        }
-      }
-      if (result[filePath]) {
-        throw new Error(
-          `File ${filePath} was defined multiple times. Each file snippet should have a unique path name`
-        );
-      }
-      result[filePath] = {
-        code: (props.children as string).trim(),
-        hidden: fileHidden,
-        active: fileActive,
-      };
-
-      return result;
-    },
-    {}
+export default React.memo(function SandpackWrapper(props: any): any {
+  const codeSnippet = reducedCodeSnippet(
+    React.Children.toArray(props.children)
   );
 
-  files['/styles.css'] = {
-    code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: true,
-  };
+  // To set the active file in the fallback we have to find the active file first. If there are no active files we fallback to App.js as default
+  let activeCodeSnippet = Object.keys(codeSnippet).filter(
+    (fileName) =>
+      codeSnippet[fileName]?.active === true &&
+      codeSnippet[fileName]?.hidden === false
+  );
+  let activeCode;
+  if (!activeCodeSnippet.length) {
+    activeCode = codeSnippet['/App.js'].code;
+  } else {
+    activeCode = codeSnippet[activeCodeSnippet[0]].code;
+  }
 
   return (
-    <div className="sandpack-container my-8" translate="no">
-      <SandpackProvider
-        template="react"
-        customSetup={{...setup, files: files}}
-        autorun={autorun}
-        initMode="user-visible"
-        initModeObserverOptions={{rootMargin: '1400px 0px'}}>
-        <CustomPreset
-          isSingleFile={isSingleFile}
-          showDevTools={showDevTools}
-          onDevToolsLoad={() => setDevToolsLoaded(true)}
-          devToolsLoaded={devToolsLoaded}
-        />
-      </SandpackProvider>
-    </div>
+    <>
+      <React.Suspense fallback={<SandpackFallBack code={activeCode} />}>
+        <Sandpack {...props} />
+      </React.Suspense>
+    </>
   );
-}
-
-Sandpack.displayName = 'Sandpack';
-
-export default Sandpack;
+});

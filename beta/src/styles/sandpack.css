@@ -132,7 +132,6 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   font-size: 13.6px !important;
   line-height: 24px !important;
   height: 100%;
-  overflow: scroll;
 }
 .text-xl .sp-pre-placeholder {
   font-size: 16px !important;
@@ -250,6 +249,9 @@ html.dark .sp-devtools > div {
   }
 }
 
+.sp-cm.sp-pristine {
+  padding-left: 8px !important;
+}
 .sp-layout {
   min-height: 216px;
 }

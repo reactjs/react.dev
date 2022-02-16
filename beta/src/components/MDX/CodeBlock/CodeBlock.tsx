@@ -4,14 +4,12 @@
 
 import cn from 'classnames';
 import {
-  ClasserProvider,
   SandpackCodeViewer,
   SandpackProvider,
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 import rangeParser from 'parse-numeric-range';
 import {CustomTheme} from '../Sandpack/Themes';
-import styles from './CodeBlock.module.css';
 
 interface InlineHiglight {
   step: number;
@@ -86,16 +84,11 @@ const CodeBlock = function CodeBlock({
           },
         }}>
         <SandpackThemeProvider theme={CustomTheme}>
-          <ClasserProvider
-            classes={{
-              'sp-cm': styles.codeViewer,
-            }}>
-            <SandpackCodeViewer
-              key={children.trimEnd()}
-              showLineNumbers={false}
-              decorators={decorators}
-            />
-          </ClasserProvider>
+          <SandpackCodeViewer
+            key={children.trimEnd()}
+            showLineNumbers={false}
+            decorators={decorators}
+          />
         </SandpackThemeProvider>
       </SandpackProvider>
     </div>

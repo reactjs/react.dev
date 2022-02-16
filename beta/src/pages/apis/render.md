@@ -23,7 +23,16 @@ render(reactNode, domNode, callback?)
 
 ## Usage {/*usage*/}
 
-Call `render` to display a React component inside a browser DOM node.
+Call `render` to display a <CodeStep step={1}>React component</CodeStep> inside a <CodeStep step={2}>browser DOM node</CodeStep>.
+
+```js [[1, 4, "<App />"], [2, 4, "document.getElementById('root')"]]
+import {render} from 'react-dom';
+import App from './App.js';
+
+render(<App />, document.getElementById('root'));
+````
+
+### Rendering the root component {/*rendering-the-root-component*/}
 
 In apps fully built with React, **you will usually only do this once at startup**--to render the "root" component.
 

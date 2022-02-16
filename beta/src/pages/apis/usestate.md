@@ -244,9 +244,9 @@ Here, `a => a + 1` is your updater function. It takes the <CodeStep step={1}>pen
 
 React puts your updater functions in a [queue](/learn/queueing-a-series-of-state-updates). Then, during the next render, it will call them in the same order:
 
-1. `a => a + 1` will receive `42` as the <CodeStep step={1}>pending state</CodeStep> and return `43` as the <CodeStep step={2}>next state</CodeStep>.
-1. `a => a + 1` will receive `43` as the <CodeStep step={1}>pending state</CodeStep> and return `44` as the <CodeStep step={2}>next state</CodeStep>.
-1. `a => a + 1` will receive `44` as the <CodeStep step={1}>pending state</CodeStep> and return `45` as the <CodeStep step={2}>next state</CodeStep>.
+1. `a => a + 1` will receive `42` as the pending state and return `43` as the next state.
+1. `a => a + 1` will receive `43` as the pending state and return `44` as the next state.
+1. `a => a + 1` will receive `44` as the pending state and return `45` as the next state.
 
 There are no other queued updates, so React will store `45` as the current state in the end.
 

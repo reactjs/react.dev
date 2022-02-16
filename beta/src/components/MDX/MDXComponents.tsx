@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+import cn from 'classnames';
 
 import {APIAnatomy, AnatomyStep} from './APIAnatomy';
 import CodeBlock from './CodeBlock';
@@ -25,6 +26,24 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
+
+function CodeStep({children, step}: {children: any; step: number}) {
+  return (
+    <span
+      data-step={step}
+      className={cn(
+        'code-step bg-opacity-10 relative rounded-md p-1 ml-2 pl-3 before:content-[attr(data-step)] before:block before:w-4 before:h-4 before:absolute before:top-1 before:-left-2 before:rounded-full before:text-white before:text-center before:text-xs before:leading-4',
+        {
+          'bg-blue-40 before:bg-blue-40': step === 1,
+          'bg-yellow-40 before:bg-yellow-40': step === 2,
+          'bg-green-40 before:bg-green-40': step === 3,
+          'bg-purple-40 before:bg-purple-40': step === 4,
+        }
+      )}>
+      {children}
+    </span>
+  );
+}
 
 const P = (p: JSX.IntrinsicElements['p']) => (
   <p className="whitespace-pre-wrap my-4" {...p} />
@@ -373,4 +392,5 @@ export const MDXComponents = {
   Challenges,
   Hint,
   Solution,
+  CodeStep,
 };

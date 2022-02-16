@@ -2,14 +2,12 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
-import {
-  SandpackProvider,
-  SandpackSetup,
-  SandpackFile,
-} from '@codesandbox/sandpack-react';
-
+import * as React from 'react';
+import {SandpackProvider} from '@codesandbox/sandpack-react';
 import {CustomPreset} from './CustomPreset';
+import {createFileMap} from './utils';
+
+import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
   children: React.ReactChildren;
@@ -17,7 +15,6 @@ type SandpackProps = {
   setup?: SandpackSetup;
   showDevTools?: boolean;
 };
-import {reducedCodeSnippet} from './utils';
 
 const sandboxStyle = `
 * {
@@ -65,13 +62,13 @@ ul {
 }
 `.trim();
 
-function SandpackWrapper(props: SandpackProps) {
+function SandpackRoot(props: SandpackProps) {
   let {children, setup, autorun = true, showDevTools = false} = props;
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
 
-  const files = reducedCodeSnippet(codeSnippets);
+  const files = createFileMap(codeSnippets);
 
   files['/styles.css'] = {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
@@ -97,6 +94,6 @@ function SandpackWrapper(props: SandpackProps) {
   );
 }
 
-SandpackWrapper.displayName = 'Sandpack';
+SandpackRoot.displayName = 'Sandpack';
 
-export default SandpackWrapper;
+export default SandpackRoot;

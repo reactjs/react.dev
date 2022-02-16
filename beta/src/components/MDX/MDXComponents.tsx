@@ -19,7 +19,6 @@ import Intro from './Intro';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
-import dynamic from 'next/dynamic';
 import Sandpack from './Sandpack';
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
@@ -363,7 +362,6 @@ export const MDXComponents = {
   code: CodeBlock,
   // The code block renders <pre> so we just want a div here.
   pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,
-  // Scary: dynamic(() => import('./Scary')),
   APIAnatomy,
   AnatomyStep,
   CodeDiagram,

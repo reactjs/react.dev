@@ -48,8 +48,7 @@ export const computeViewportSize = (
   return viewport;
 };
 
-//TODO: revisit to reduce this (moved this to utils from sandpackWrapper since it is being used for finding active file for fallBack too)
-export const reducedCodeSnippet = (codeSnippets: any) => {
+export const createFileMap = (codeSnippets: any) => {
   let isSingleFile = true;
 
   return codeSnippets.reduce(

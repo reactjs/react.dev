@@ -1,8 +1,14 @@
-import * as React from 'react';
-import {reducedCodeSnippet} from './utils';
-const Sandpack = React.lazy(() => import('./SandpackWrapper'));
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
 
-const SandpackFallBack = ({code}: {code: string}) => (
+import * as React from 'react';
+import dynamic from 'next/dynamic';
+import {createFileMap} from './utils';
+
+const SandpackRoot = dynamic(() => import('./SandpackRoot'), {suspense: true});
+
+const SandpackGlimmer = ({code}: {code: string}) => (
   <div className="sandpack-container my-8">
     <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
       <div className="bg-wash h-10 dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
@@ -41,11 +47,10 @@ const SandpackFallBack = ({code}: {code: string}) => (
 );
 
 export default React.memo(function SandpackWrapper(props: any): any {
-  const codeSnippet = reducedCodeSnippet(
-    React.Children.toArray(props.children)
-  );
+  const codeSnippet = createFileMap(React.Children.toArray(props.children));
 
-  // To set the active file in the fallback we have to find the active file first. If there are no active files we fallback to App.js as default
+  // To set the active file in the fallback we have to find the active file first.
+  // If there are no active files we fallback to App.js as default.
   let activeCodeSnippet = Object.keys(codeSnippet).filter(
     (fileName) =>
       codeSnippet[fileName]?.active === true &&
@@ -59,10 +64,8 @@ export default React.memo(function SandpackWrapper(props: any): any {
   }
 
   return (
-    <>
-      <React.Suspense fallback={<SandpackFallBack code={activeCode} />}>
-        <Sandpack {...props} />
-      </React.Suspense>
-    </>
+    <React.Suspense fallback={<SandpackGlimmer code={activeCode} />}>
+      <SandpackRoot {...props} />
+    </React.Suspense>
   );
 });

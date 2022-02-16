@@ -547,18 +547,18 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
-"@codesandbox/sandpack-client@^0.13.9-experimental.0":
-  version "0.13.9-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-0.13.9-experimental.0.tgz#10eccbd0a3b35d3f46f9484405580c13a4693127"
-  integrity sha512-ktd6HWeQyErO91Sm5DxcLAc4BouUyUUNM1mKwWKzRkw6uUyt9IPbJNttnU0FH88gQxIwduEYVi7wEx/qn0AtMQ==
+"@codesandbox/sandpack-client@^0.13.16-experimental.0":
+  version "0.13.16-experimental.0"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-0.13.16-experimental.0.tgz#c8ef9e56e0cc2c264412f0e79cbc14f2e04c4479"
+  integrity sha512-n32sFGug1OksZR/4O7I9YYRs/p4JuVvjGPjf4xnDImKfs+butW9sLT8QzCfhad8QLfSGdzBHIyXPWrFe/zilvQ==
   dependencies:
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@0.13.11-experimental.0":
-  version "0.13.11-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.13.11-experimental.0.tgz#3d24a3258e2d94d30415c49e97d8b1f02ef4af8d"
-  integrity sha512-rIqChiYcuEbNEG/G7gShu8NBHO6bBrnfWQv4QTLbZMWvTh3MqRVKgFm3ah184Ara49L0AHnnBmrk/6yeojqxRA==
+"@codesandbox/sandpack-react@0.13.16-experimental.0":
+  version "0.13.16-experimental.0"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.13.16-experimental.0.tgz#e8982aabc4a584e1ee261cd19606b9531be471f8"
+  integrity sha512-nXxwTwAA42b3AG2Lx6Mqi+yncG8BIACpXjau619KJQFqeoAkc6e2n0D5oYO/qrIean1CntB95xWfvSNbFX8K1Q==
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"
@@ -574,7 +574,7 @@
     "@codemirror/matchbrackets" "^0.19.3"
     "@codemirror/state" "^0.19.6"
     "@codemirror/view" "^0.19.32"
-    "@codesandbox/sandpack-client" "^0.13.9-experimental.0"
+    "@codesandbox/sandpack-client" "^0.13.16-experimental.0"
     "@react-hook/intersection-observer" "^3.1.1"
     codesandbox-import-util-types "^2.2.3"
     codesandbox-import-utils "^2.2.3"

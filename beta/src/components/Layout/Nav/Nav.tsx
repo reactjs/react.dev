@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+import {createPortal} from 'react-dom';
 import cn from 'classnames';
 import NextLink from 'next/link';
 import {useRouter} from 'next/router';
@@ -13,6 +14,7 @@ import {Search} from 'components/Search';
 import {MenuContext} from 'components/useMenu';
 
 import {Logo} from '../../Logo';
+import {Feedback} from '../Feedback';
 import NavLink from './NavLink';
 
 declare global {
@@ -99,18 +101,13 @@ function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
 export default function Nav() {
   const {pathname} = useRouter();
   const {isOpen, toggleOpen} = React.useContext(MenuContext);
+  const [showFeedback, setShowFeedback] = React.useState(false);
+  const feedbackAutohideRef = React.useRef<any>(null);
   const section = inferSection(pathname);
 
   function handleFeedback() {
-    const nodes: any = document.querySelectorAll(
-      '#_hj_feedback_container button'
-    );
-    if (nodes.length > 0) {
-      nodes[nodes.length - 1].click();
-    } else {
-      window.location.href =
-        'https://github.com/reactjs/reactjs.org/issues/3308';
-    }
+    clearTimeout(feedbackAutohideRef.current);
+    setShowFeedback((s) => !s);
   }
 
   return (
@@ -190,6 +187,18 @@ export default function Nav() {
             {darkIcon}
           </button>
         </div>
+        {showFeedback && (
+          <div className="fixed top-20 left-0 w-full">
+            <Feedback
+              onSubmit={() => {
+                clearTimeout(feedbackAutohideRef.current);
+                feedbackAutohideRef.current = setTimeout(() => {
+                  setShowFeedback(false);
+                }, 1000);
+              }}
+            />
+          </div>
+        )}
         <div className="hidden dark:block">
           <button
             type="button"

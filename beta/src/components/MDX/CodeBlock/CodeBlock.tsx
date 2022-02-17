@@ -49,14 +49,15 @@ const CodeBlock = function CodeBlock({
       (line: InlineHiglight) => ({
         ...line,
         elementAttributes: {'data-step': `${line.step}`},
-        className: cn('code-step bg-opacity-10 relative rounded-md p-1 ml-2', {
-          'pl-3 before:content-[attr(data-step)] before:block before:w-4 before:h-4 before:absolute before:top-1 before:-left-2 before:rounded-full before:text-white before:text-center before:text-xs before:leading-4':
-            !noMarkers,
-          'bg-blue-40 before:bg-blue-40': line.step === 1,
-          'bg-yellow-40 before:bg-yellow-40': line.step === 2,
-          'bg-green-40 before:bg-green-40': line.step === 3,
-          'bg-purple-40 before:bg-purple-40': line.step === 4,
-        }),
+        className: cn(
+          'code-step bg-opacity-10 dark:bg-opacity-20 relative rounded px-1 py-[1.5px] border-b-[2px] border-opacity-60',
+          {
+            'bg-blue-40 border-blue-40': line.step === 1,
+            'bg-yellow-40 border-yellow-40': line.step === 2,
+            'bg-green-40 border-green-40': line.step === 3,
+            'bg-purple-40 border-purple-40': line.step === 4,
+          }
+        ),
       })
     );
 

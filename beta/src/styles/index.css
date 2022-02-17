@@ -174,3 +174,14 @@
   --hjFeedbackAccentColor: rgb(230, 247, 255) !important;
   --hjFeedbackAccentTextColor: rgb(73, 119, 171) !important;
 }
+
+.code-step * {
+  color: black !important;
+}
+.code-step code {
+  background: none !important;
+  padding: 2px !important;
+}
+html.dark .code-step * {
+  color: white !important;
+}

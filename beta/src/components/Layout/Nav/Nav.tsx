@@ -166,7 +166,7 @@ export default function Nav() {
           API
         </NavLink>
       </div>
-      <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end slg:max-w-sm">
+      <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end lg:max-w-sm">
         <Search />
         <button
           aria-label="Give feedback"
@@ -174,7 +174,7 @@ export default function Nav() {
           className={cn(
             'inline-flex lg:hidden items-center rounded-full px-1.5 ml-4 lg:ml-6 relative top-px',
             {
-              'bg-card': showFeedback,
+              'bg-card dark:bg-card-dark': showFeedback,
             }
           )}
           onClick={handleFeedback}>

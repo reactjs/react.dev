@@ -67,52 +67,6 @@ By using a ref, you ensure that:
 
 Changing a ref does not trigger a re-render, so refs are not appropriate for storing information that you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
 
-<Gotcha>
-
-**Do not write _or read_ `ref.current` during rendering.**
-
-React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
-
-- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
-- Calling it in a different order or with different arguments should not affect the results of other calls.
-
-Reading or writing a ref **during rendering** breaks these expectations.
-
-```js {3-4,6-7}
-function MyComponent() {
-  // ...
-  // 🚩 Don't write a ref during rendering
-  myRef.current = 123;
-  // ...
-  // 🚩 Don't read a ref during rendering
-  return <h1>{myOtherRef.current}</h1>;
-}
-```
-
-You can read or write refs **from event handlers or effects instead**.
-
-```js {4-5,9-10}
-function MyComponent() {
-  // ...
-  useEffect(() => {
-    // ✅ You can read or write refs in effects
-    myRef.current = 123;
-  });
-  // ...
-  function handleClick() {
-    // ✅ You can read or write refs in event handlers
-    doSomething(myOtherRef.current);
-  }
-  // ...
-}
-```
-
-If you *have to* read [or write](/apis/usestate#storing-information-from-previous-renders) something during rendering, [use state](/apis/usestate) instead.
-
-When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure](/learn/keeping-components-pure#where-you-can-cause-side-effects).
-
-</Gotcha>
-
 <Recipes titleText="Examples of referencing a value with useRef" titleId="examples-value">
 
 ### Click counter {/*click-counter*/}
@@ -198,6 +152,52 @@ export default function Stopwatch() {
 <Solution />
 
 </Recipes>
+
+<Gotcha>
+
+**Do not write _or read_ `ref.current` during rendering.**
+
+React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
+
+- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
+- Calling it in a different order or with different arguments should not affect the results of other calls.
+
+Reading or writing a ref **during rendering** breaks these expectations.
+
+```js {3-4,6-7}
+function MyComponent() {
+  // ...
+  // 🚩 Don't write a ref during rendering
+  myRef.current = 123;
+  // ...
+  // 🚩 Don't read a ref during rendering
+  return <h1>{myOtherRef.current}</h1>;
+}
+```
+
+You can read or write refs **from event handlers or effects instead**.
+
+```js {4-5,9-10}
+function MyComponent() {
+  // ...
+  useEffect(() => {
+    // ✅ You can read or write refs in effects
+    myRef.current = 123;
+  });
+  // ...
+  function handleClick() {
+    // ✅ You can read or write refs in event handlers
+    doSomething(myOtherRef.current);
+  }
+  // ...
+}
+```
+
+If you *have to* read [or write](/apis/usestate#storing-information-from-previous-renders) something during rendering, [use state](/apis/usestate) instead.
+
+When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure](/learn/keeping-components-pure#where-you-can-cause-side-effects).
+
+</Gotcha>
 
 ---
 

@@ -479,7 +479,7 @@ Normally, writing or reading `ref.current` during render is not allowed. However
 
 <DeepDive title="How to avoid null checks when initializing useRef later">
 
-If use a type checker and don't want to always check for `null`, you can try a pattern like this instead:
+If you use a type checker and don't want to always check for `null`, you can try a pattern like this instead:
 
 ```js
 function Video() {

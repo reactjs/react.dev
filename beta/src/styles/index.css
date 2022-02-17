@@ -12,7 +12,8 @@
     font-style: normal;
     font-weight: 400;
     font-display: swap;
-    src: url('/fonts/SourceCodePro-Regular.ttf') format('truetype');
+    src: local('Source Code Pro'),
+      url('/fonts/Source-Code-Pro-Regular.woff2') format('woff2');
   }
 
   /* Write your own custom base styles here */

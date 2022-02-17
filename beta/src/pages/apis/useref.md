@@ -4,7 +4,7 @@ title: useRef
 
 <Intro>
 
-`useRef` is a React Hook that lets you reference a value that's not used for rendering.
+`useRef` is a React Hook that lets you reference a value that's not needed for rendering.
 
 ```js
 const ref = useRef(initialValue)
@@ -27,7 +27,7 @@ const ref = useRef(initialValue)
 
 Call `useRef` at the top level of your component to declare one or more [refs](/learn/referencing-values-with-refs).
 
-```js [[1, 4, "intervalRef"], [2, 4, "0"]]
+```js [[1, 4, "intervalRef"], [3, 4, "0"]]
 import { useRef } from 'react';
 
 function Stopwatch() {
@@ -35,51 +35,81 @@ function Stopwatch() {
   // ...
 ```
 
-`useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a `current` property that’s initially set to the <CodeStep step={2}>initial value</CodeStep> you provided:
+`useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
 
-```js [[2, 2, "0"]]
-{
-  current: 0
+On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/apis/usestate), but there is an important difference.
+
+**Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
+
+```js [[2, 5, "intervalRef.current"]]
+function handleStartClick() {
+  const intervalId = setInterval(() => {
+    // ...
+  }, 1000);
+  intervalRef.current = intervalId;
 }
 ```
 
-Importantly, `useRef` will return *the same ref object* for next renders, so you can put some information in a ref and then read it later. You can access the `current` property to manually read or write to a ref:
+Later, you can read that interval ID from the ref so that you can call [clear that interval](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
 
-```js [[1, 2, "intervalRef"], [1, 3, "intervalRef"], [1, 4, "intervalRef"]]
-function handleClick() {
-  console.log(intervalRef.current); // 0
-  intervalRef.current = 10;
-  console.log(intervalRef.current); // 10
+```js [[2, 2, "intervalRef.current"]]
+function handleStopClick() {
+  const intervalId = intervalRef.current;
+  clearInterval(intervalId);
 }
 ```
 
-**Unlike setting state, writing to the `current` property does not trigger a re-render.**
+By using a ref, you ensure that:
 
-This is why refs are good for storing information that's **not needed for rendering**, like [interval IDs](https://developer.mozilla.org/en-US/docs/Web/API/setInterval). Here is a stopwatch that stores an interval ID when you click "Start" and reads it to call [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) on "Stop".
+- You can **store information** between re-renders. (Unlike regular variables, which reset on every render.)
+- Changing it **does not trigger a re-render**. (Unlike state variables, which trigger a re-render.)
+- The **information is local** to each copy of your component. (Unlike the variables outside, which are shared.)
 
-```js {6,10}
-function Stopwatch() {
-  const intervalRef = useRef(0);
-
-  function handleStart() {
-    const timeoutId = setInterval(() => { /* ... */ }, 1000);
-    intervalRef.current = timeoutId; // Write to a ref
-  }
-
-  function handleStop() {
-    const timeoutId = intervalRef.current; // Read from a ref
-    clearInterval(timeoutId);
-  }
-  // ...
-```
-
-When your component uses some information for rendering (for example, to display some value in JSX), put that information into state instead of a ref. Read more about [choosing between `useRef` and `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
-
-If you render multiple `<Stopwatch />` components, each will get its own separate `intervalRef`.
+Changing a ref does not trigger a re-render, so refs are not appropriate for storing information that you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
 
 <Gotcha>
 
-**Do not write _or read_ `ref.current` during rendering.** This makes your component unpredictictable because it depends on a value that changes without React's knowledge. If you want to read or write `ref.current` during rendering for purposes other than [initialization](#avoiding-recreating-the-ref-contents), you should use state instead.
+**Do not write _or read_ `ref.current` during rendering.**
+
+React expects that the body of your component [behaves like a pure function](/learn/keeping-components-pure):
+
+- If the inputs ([props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context)) are the same, it should return exactly the same JSX.
+- Calling it in a different order or with different arguments should not affect the results of other calls.
+
+Reading or writing a ref **during rendering** breaks these expectations.
+
+```js {3-4,6-7}
+function MyComponent() {
+  // ...
+  // 🚩 Don't write a ref during rendering
+  myRef.current = 123;
+  // ...
+  // 🚩 Don't read a ref during rendering
+  return <h1>{myOtherRef.current}</h1>;
+}
+```
+
+You can read or write refs **from event handlers or effects instead**.
+
+```js {4-5,9-10}
+function MyComponent() {
+  // ...
+  useEffect(() => {
+    // ✅ You can read or write refs in effects
+    myRef.current = 123;
+  });
+  // ...
+  function handleClick() {
+    // ✅ You can read or write refs in event handlers
+    doSomething(myOtherRef.current);
+  }
+  // ...
+}
+```
+
+If you *have to* read [or write](/apis/usestate#storing-information-from-previous-renders) something during rendering, [use state](/apis/usestate) instead.
+
+When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure](/learn/keeping-components-pure#where-you-can-cause-side-effects).
 
 </Gotcha>
 
@@ -175,9 +205,9 @@ export default function Stopwatch() {
 
 It's particularly common to use a ref to manipulate the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API). React has bulit-in support for this.
 
-First, declare a <CodeStep step={1}>ref object</CodeStep> with an <CodeStep step={2}>initial value</CodeStep> of `null`:
+First, declare a <CodeStep step={1}>ref object</CodeStep> with an <CodeStep step={3}>initial value</CodeStep> of `null`:
 
-```js [[1, 4, "inputRef"], [2, 4, "null"]]
+```js [[1, 4, "inputRef"], [3, 4, "null"]]
 import { useRef } from 'react';
 
 function MyComponent() {
@@ -192,11 +222,11 @@ Then pass your ref object as the `ref` attribute to the JSX of the DOM node you 
   return <input ref={inputRef} />;
 ```
 
-After React creates the DOM node and puts it on the screen, React will set the <CodeStep step={3}>`current` property</CodeStep> of your ref object to that DOM node. Now you can access the `<input>`'s DOM node and call methods like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
+After React creates the DOM node and puts it on the screen, React will set the <CodeStep step={2}>`current` property</CodeStep> of your ref object to that DOM node. Now you can access the `<input>`'s DOM node and call methods like [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus):
 
-```js [[3, 2, "inputRef.current"]]
+```js [[2, 2, "inputRef.current"]]
   function handleClick() {
-  	inputRef.current.focus();
+    inputRef.current.focus();
   }
 ```
 
@@ -250,9 +280,9 @@ export default function CatFriends() {
   const listRef = useRef(null);
 
   function scrollToIndex(index) {
-  	const listNode = listRef.current;
-  	// This line assumes a particular DOM structure:
-  	const imgNode = listNode.querySelectorAll('li > img')[index];
+    const listNode = listRef.current;
+    // This line assumes a particular DOM structure:
+    const imgNode = listNode.querySelectorAll('li > img')[index];
     imgNode.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
@@ -440,7 +470,7 @@ To solve it, you may initialize the ref like this instead:
 function Video() {
   const playerRef = useRef(null);
   if (playerRef.current === null) {
-  	playerRef.current = new VideoPlayer();
+    playerRef.current = new VideoPlayer();
   }
   // ...
 ```
@@ -459,7 +489,7 @@ function Video() {
     if (playerRef.current !== null) {
       return playerRef.current;
     }
-  	const player = new VideoPlayer();
+    const player = new VideoPlayer();
     playerRef.current = player;
     return player;
   }

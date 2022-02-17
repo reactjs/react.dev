@@ -191,18 +191,20 @@ export default function Nav() {
             {darkIcon}
           </button>
         </div>
-        {showFeedback && (
-          <div className="fixed top-12 right-0">
-            <Feedback
-              onSubmit={() => {
-                clearTimeout(feedbackAutohideRef.current);
-                feedbackAutohideRef.current = setTimeout(() => {
-                  setShowFeedback(false);
-                }, 1000);
-              }}
-            />
-          </div>
-        )}
+        <div
+          className={cn(
+            'fixed top-12 right-0',
+            showFeedback ? 'block' : 'hidden'
+          )}>
+          <Feedback
+            onSubmit={() => {
+              clearTimeout(feedbackAutohideRef.current);
+              feedbackAutohideRef.current = setTimeout(() => {
+                setShowFeedback(false);
+              }, 1000);
+            }}
+          />
+        </div>
         <div className="hidden dark:block">
           <button
             type="button"

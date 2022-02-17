@@ -257,7 +257,7 @@
   ],
   "headers": [
     {
-      "source": "/fonts(.*)",
+      "source": "/fonts/(.*).woff2",
       "headers": [
         {
           "key": "Cache-Control",

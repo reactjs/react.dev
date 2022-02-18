@@ -10,7 +10,7 @@ module.exports = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   experimental: {
     plugins: true,
-    concurrentFeatures: true,
+    // concurrentFeatures: true,
     scrollRestoration: true,
     runtime: 'nodejs',
     serverComponents: true,

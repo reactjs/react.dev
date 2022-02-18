@@ -7,8 +7,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: local('Source Code Pro'),
-    url('/fonts/Source-Code-Pro-Regular.woff2') format('woff2');
+  src: url('/fonts/Source-Code-Pro-Regular.woff2') format('woff2');
 }
 
 @font-face {

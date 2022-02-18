@@ -127,16 +127,20 @@ export function MarkdownPage<
           />
         )}
         <div className="px-5 sm:px-12">
-          <div className="max-w-7xl mx-auto">
-            <MDXContext.Provider value={MDXComponents}>
-              {finalChildren}
-            </MDXContext.Provider>
-          </div>
-          <DocsPageFooter
-            route={route}
-            nextRoute={nextRoute}
-            prevRoute={prevRoute}
-          />
+          <React.Suspense
+            fallback={<div className="h-screen" />}
+            unstable_avoidThisFallback={true}>
+            <div className="max-w-7xl mx-auto">
+              <MDXContext.Provider value={MDXComponents}>
+                {finalChildren}
+              </MDXContext.Provider>
+            </div>
+            <DocsPageFooter
+              route={route}
+              nextRoute={nextRoute}
+              prevRoute={prevRoute}
+            />
+          </React.Suspense>
         </div>
       </div>
       <div className="w-full lg:max-w-xs hidden 2xl:block">

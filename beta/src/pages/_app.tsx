@@ -47,11 +47,8 @@ export default function MyApp({Component, pageProps}: AppProps) {
   }
 
   return (
-    // @ts-ignore
-    <React.Suspense fallback={null} unstable_avoidThisFallback={true}>
-      <AppShell>
-        <Component {...pageProps} />
-      </AppShell>
-    </React.Suspense>
+    <AppShell>
+      <Component {...pageProps} />
+    </AppShell>
   );
 }

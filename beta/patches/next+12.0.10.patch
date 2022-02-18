@@ -1,0 +1,23 @@
+diff --git a/node_modules/next/dist/client/index.js b/node_modules/next/dist/client/index.js
+index 73c36a5..94c39a1 100644
+--- a/node_modules/next/dist/client/index.js
++++ b/node_modules/next/dist/client/index.js
+@@ -562,6 +562,9 @@ function clearMarks() {
+     );
+ }
+ function AppContainer({ children  }) {
++    const publicRouter = (0, _router1).makePublicRouterInstance(router)
++    // HACK
++    const memoizedRouter = _react.default.useMemo(() => publicRouter, [publicRouter.asPath])
+     return(/*#__PURE__*/ _react.default.createElement(Container, {
+         fn: (error)=>renderError({
+                 App: CachedApp,
+@@ -569,7 +572,7 @@ function AppContainer({ children  }) {
+             }).catch((err)=>console.error('Error rendering page: ', err)
+             )
+     }, /*#__PURE__*/ _react.default.createElement(_routerContext.RouterContext.Provider, {
+-        value: (0, _router1).makePublicRouterInstance(router)
++        value: memoizedRouter
+     }, /*#__PURE__*/ _react.default.createElement(_headManagerContext.HeadManagerContext.Provider, {
+         value: headManager
+     }, children))));

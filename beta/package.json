@@ -35,9 +35,9 @@
     "github-slugger": "^1.3.0",
     "next": "^12.0.10",
     "parse-numeric-range": "^1.2.0",
-    "react": "experimental",
+    "react": "0.0.0-experimental-79ed5e18f-20220217",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.3.0-patched-react-18",
-    "react-dom": "experimental",
+    "react-dom": "0.0.0-experimental-79ed5e18f-20220217",
     "scroll-into-view-if-needed": "^2.2.25"
   },
   "devDependencies": {

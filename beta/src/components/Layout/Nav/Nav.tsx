@@ -103,14 +103,14 @@ export default function Nav() {
   const [showFeedback, setShowFeedback] = React.useState(false);
   const feedbackAutohideRef = React.useRef<any>(null);
   const section = inferSection(pathname);
-  const feedbackPopupRef = React.useRef(null);
+  const feedbackPopupRef = React.useRef<null | HTMLDivElement>(null);
 
   React.useEffect(() => {
     if (!showFeedback) {
       return;
     }
-    function handleDocumentClickCapture(e) {
-      if (!feedbackPopupRef.current.contains(e.target)) {
+    function handleDocumentClickCapture(e: MouseEvent) {
+      if (!feedbackPopupRef.current!.contains(e.target as any)) {
         e.stopPropagation();
         e.preventDefault();
         setShowFeedback(false);

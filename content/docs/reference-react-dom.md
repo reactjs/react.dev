@@ -18,7 +18,7 @@ The `react-dom` package provides DOM-specific methods that can be used at the to
 
 > Note
 > 
-> These methods are considered legacy. Both `render` and `hydrate` will warn that your app is running as if it is in React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)):
+> These methods are considered legacy. Both `render` and `hydrate` will warn that your app will behave as if it's running React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)):
 >- [`render()`](#render)
 >- [`hydrate()`](#hydrate)
 >- [`findDOMNode()`](#finddomnode)

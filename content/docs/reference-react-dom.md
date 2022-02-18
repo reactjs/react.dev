@@ -40,7 +40,7 @@ React supports all popular browsers, including Internet Explorer 9 and above, al
 ReactDOM.createRoot(container[, options]);
 ```
 
-Create a React root for the supplied `container` and return the root. The root can be used to Render a React element into the DOM with `render`:
+Create a React root for the supplied `container` and return the root. The root can be used to render a React element into the DOM with `render`:
 
 ```javascript
 const root = ReactDOM.createRoot(container);

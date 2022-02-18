@@ -64,7 +64,10 @@ export default React.memo(function SandpackWrapper(props: any): any {
   }
 
   return (
-    <React.Suspense fallback={<SandpackGlimmer code={activeCode} />}>
+    <React.Suspense
+      fallback={<SandpackGlimmer code={activeCode} />}
+      // @ts-ignore
+      unstable_expectedLoadTime={1}>
       <SandpackRoot {...props} />
     </React.Suspense>
   );

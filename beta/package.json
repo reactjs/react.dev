@@ -36,7 +36,7 @@
     "next": "^12.0.10",
     "parse-numeric-range": "^1.2.0",
     "react": "experimental",
-    "react-collapsed": "3.1.0",
+    "react-collapsed": "npm:@gaearon/react-collapsed@3.3.0-patched-react-18",
     "react-dom": "experimental",
     "scroll-into-view-if-needed": "^2.2.25"
   },

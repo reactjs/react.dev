@@ -1,0 +1,15 @@
+diff --git a/node_modules/@codesandbox/sandpack-react/dist/esm/index.js b/node_modules/@codesandbox/sandpack-react/dist/esm/index.js
+index 53841ee..ae52c77 100644
+--- a/node_modules/@codesandbox/sandpack-react/dist/esm/index.js
++++ b/node_modules/@codesandbox/sandpack-react/dist/esm/index.js
+@@ -1504,7 +1504,9 @@ var SandpackProvider = class extends PureComponent {
+       }));
+     }
+     const editorState = isEqual(files, this.state.files) ? "pristine" : "dirty";
+-    this.setState({ editorState });
++    if (editorState !== this.state.editorState) {
++      this.setState({ editorState });
++    }
+   }
+   componentWillUnmount() {
+     if (typeof this.unsubscribe === "function") {

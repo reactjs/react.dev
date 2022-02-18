@@ -1,21 +1,17 @@
 import MDXRenderer from '../components/MDXRenderer';
-import Link from 'next/link';
 
 const mdx = `
-# hello there!
+# hello there too!
 
-*niiiice*
+nice to meet you
 `;
 
 export default function Hello() {
   return (
     <>
-      <p>my content:</p>
+      <p>my other content:</p>
       <hr />
       <MDXRenderer mdx={mdx} />
-      <Link href="/goodbye">
-        <a>bye</a>
-      </Link>
     </>
   );
 }

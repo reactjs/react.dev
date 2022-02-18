@@ -22,6 +22,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
+    "@babel/preset-react": "^7.16.7",
     "@codesandbox/sandpack-react": "0.13.16-experimental.0",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",

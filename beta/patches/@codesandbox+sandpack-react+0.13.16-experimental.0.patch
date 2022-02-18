@@ -1,5 +1,19 @@
+diff --git a/node_modules/@codesandbox/sandpack-react/dist/cjs/index.js b/node_modules/@codesandbox/sandpack-react/dist/cjs/index.js
+index 50f068a..8b05387 100644
+--- a/node_modules/@codesandbox/sandpack-react/dist/cjs/index.js
++++ b/node_modules/@codesandbox/sandpack-react/dist/cjs/index.js
+@@ -2124,7 +2124,8 @@ var CodeMirror = React11.forwardRef(({
+   const [shouldInitEditor, setShouldInitEditor] = React11.useState(initMode === "immediate");
+   const c = (0, import_classer6.useClasser)("sp");
+   const { listen } = useSandpack();
+-  const ariaId = React11.useRef(id != null ? id : generateRandomId());
++  const reactId = React11.useId();
++  const ariaId = React11.useRef(id != null ? id : reactId);
+   const { isIntersecting } = (0, import_intersection_observer.default)(wrapper, {
+     rootMargin: "600px 0px",
+     threshold: 0.2
 diff --git a/node_modules/@codesandbox/sandpack-react/dist/esm/index.js b/node_modules/@codesandbox/sandpack-react/dist/esm/index.js
-index 53841ee..ae52c77 100644
+index 53841ee..fdba9e3 100644
 --- a/node_modules/@codesandbox/sandpack-react/dist/esm/index.js
 +++ b/node_modules/@codesandbox/sandpack-react/dist/esm/index.js
 @@ -1504,7 +1504,9 @@ var SandpackProvider = class extends PureComponent {
@@ -13,3 +27,21 @@ index 53841ee..ae52c77 100644
    }
    componentWillUnmount() {
      if (typeof this.unsubscribe === "function") {
+@@ -1816,6 +1818,7 @@ import {
+   createElement as createElement8,
+   forwardRef,
+   useEffect,
++  useId,
+   useImperativeHandle,
+   useRef,
+   useState
+@@ -2082,7 +2085,8 @@ var CodeMirror = forwardRef(({
+   const [shouldInitEditor, setShouldInitEditor] = useState(initMode === "immediate");
+   const c = useClasser6("sp");
+   const { listen } = useSandpack();
+-  const ariaId = useRef(id != null ? id : generateRandomId());
++  const reactId = useId();
++  const ariaId = useRef(id != null ? id : reactId);
+   const { isIntersecting } = useIntersectionObserver(wrapper, {
+     rootMargin: "600px 0px",
+     threshold: 0.2

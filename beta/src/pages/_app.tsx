@@ -21,7 +21,8 @@ if (typeof window !== 'undefined') {
   if (process.env.NODE_ENV === 'production') {
     galite('create', process.env.NEXT_PUBLIC_GA_TRACKING_ID, 'auto');
   }
-  window.addEventListener('unload', function () {
+  const terminationEvent = 'onpagehide' in window ? 'pagehide' : 'unload';
+  window.addEventListener(terminationEvent, function () {
     galite('send', 'timing', 'JS Dependencies', 'unload');
   });
 }

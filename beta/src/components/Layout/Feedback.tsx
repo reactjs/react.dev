@@ -54,7 +54,7 @@ function sendGAEvent(isPositive: boolean) {
     'button',
     'feedback',
     window.location.pathname,
-    isPositive ? '1' : 0
+    isPositive ? '1' : '0'
   );
 }
 

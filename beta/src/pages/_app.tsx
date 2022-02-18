@@ -8,7 +8,6 @@ import {useRouter} from 'next/router';
 // @ts-ignore
 import galite from 'ga-lite';
 import '@docsearch/css';
-import '../styles/fonts.css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';

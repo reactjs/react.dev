@@ -20,6 +20,11 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
   {as: Comp = 'div', className, children, id, isPageAnchor = true, ...props},
   ref
 ) {
+  let label = 'Link for this heading';
+  if (typeof children === 'string') {
+    label = 'Link for ' + children;
+  }
+
   return (
     <>
       <Comp id={id} {...props} ref={ref} className={cn('heading', className)}>
@@ -27,11 +32,12 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
         {isPageAnchor && (
           <a
             href={`#${id}`}
+            aria-label={label}
+            title={label}
             className={cn(
               anchorClassName,
               Comp === 'h1' ? 'hidden' : 'inline-block'
-            )}
-            aria-hidden="true">
+            )}>
             <svg
               width="1em"
               height="1em"

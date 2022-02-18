@@ -18,7 +18,7 @@ The `react-dom` package provides DOM-specific methods that can be used at the to
 
 > Note
 > 
-> These methods are considered legacy. Both `render` and `hydrate` will warn that your app is running in React 17:
+> These methods are considered legacy. Both `render` and `hydrate` will warn that your app is running as if it is in React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)):
 >- [`render()`](#render)
 >- [`hydrate()`](#hydrate)
 >- [`findDOMNode()`](#finddomnode)
@@ -111,7 +111,7 @@ If the optional callback is provided, it will be executed after the component is
 > and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
 > [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
 >
-> Using `ReactDOM.render()` to hydrate a server-rendered container is deprecated and will be removed in React 17. Use [`hydrate()`](#hydrate) instead.
+> Using `ReactDOM.render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](#hydrateroot) instead.
 
 * * *
 

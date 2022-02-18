@@ -16,17 +16,21 @@ import Script from 'next/script';
 const EmptyAppShell: React.FC = ({children}) => <>{children}</>;
 
 if (typeof window !== 'undefined') {
+  // @ts-ignore
   window.dataLayer = window.dataLayer || [];
+  // @ts-ignore
   window.gtag = function () {
-    dataLayer.push(arguments);
+    // @ts-ignore
+    window.dataLayer.push(arguments);
   };
+  // @ts-ignore
   gtag('js', new Date());
 }
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
   React.useEffect(() => {
-    const handleRouteChange = (url) => {
+    const handleRouteChange = (url: string) => {
       // @ts-ignore
       gtag('config', process.env.NEXT_PUBLIC_GA_TRACKING_ID, {
         page_path: url,

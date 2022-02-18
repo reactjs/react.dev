@@ -32,23 +32,25 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
         isOpen ? 'block z-40' : 'hidden lg:block'
       )}
       aria-hidden={isHidden}>
-      <div className="px-5">
-        <Search />
-      </div>
-      <nav
-        role="navigation"
-        ref={menuRef}
-        style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-        className="w-full h-screen lg:h-auto flex-grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
-        {isMobileSidebar ? (
-          <MobileNav />
-        ) : (
-          <SidebarRouteTree routeTree={routeTree} />
-        )}
-      </nav>
-      <div className="sticky bottom-0 hidden lg:block">
-        <Feedback />
-      </div>
+      <React.Suspense unstable_avoidThisFallback={true} fallback={null}>
+        <div className="px-5">
+          <Search />
+        </div>
+        <nav
+          role="navigation"
+          ref={menuRef}
+          style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+          className="w-full h-screen lg:h-auto flex-grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
+          {isMobileSidebar ? (
+            <MobileNav />
+          ) : (
+            <SidebarRouteTree routeTree={routeTree} />
+          )}
+        </nav>
+        <div className="sticky bottom-0 hidden lg:block">
+          <Feedback />
+        </div>
+      </React.Suspense>
     </aside>
   );
 }

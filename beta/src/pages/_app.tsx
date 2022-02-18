@@ -5,6 +5,8 @@
 import * as React from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
+// @ts-ignore
+import galite from 'ga-lite';
 import '@docsearch/css';
 import '../styles/fonts.css';
 import '../styles/algolia.css';
@@ -16,25 +18,20 @@ import Script from 'next/script';
 const EmptyAppShell: React.FC = ({children}) => <>{children}</>;
 
 if (typeof window !== 'undefined') {
-  // @ts-ignore
-  window.dataLayer = window.dataLayer || [];
-  // @ts-ignore
-  window.gtag = function () {
-    // @ts-ignore
-    window.dataLayer.push(arguments);
-  };
-  // @ts-ignore
-  gtag('js', new Date());
+  if (process.env.NODE_ENV === 'production') {
+    galite('create', process.env.NEXT_PUBLIC_GA_TRACKING_ID, 'auto');
+  }
+  window.addEventListener('unload', function () {
+    galite('send', 'timing', 'JS Dependencies', 'unload');
+  });
 }
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
   React.useEffect(() => {
     const handleRouteChange = (url: string) => {
-      // @ts-ignore
-      gtag('config', process.env.NEXT_PUBLIC_GA_TRACKING_ID, {
-        page_path: url,
-      });
+      galite('set', 'page', url);
+      galite('send', 'pageview');
     };
     router.events.on('routeChangeComplete', handleRouteChange);
     return () => {
@@ -52,12 +49,6 @@ export default function MyApp({Component, pageProps}: AppProps) {
   return (
     <AppShell>
       <Component {...pageProps} />
-      {process.env.NODE_ENV === 'production' && (
-        <Script
-          strategy="lazyOnload"
-          src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GA_TRACKING_ID}`}
-        />
-      )}
     </AppShell>
   );
 }

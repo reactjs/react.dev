@@ -31,6 +31,7 @@
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "debounce": "^1.2.1",
+    "ga-lite": "^2.1.4",
     "github-slugger": "^1.3.0",
     "next": "^12.0.10",
     "parse-numeric-range": "^1.2.0",

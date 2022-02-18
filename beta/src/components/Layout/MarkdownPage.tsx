@@ -83,7 +83,6 @@ export function MarkdownPage<
   // a full-width section which interrupts it.
   let fullWidthTypes = [
     'Sandpack',
-    'APIAnatomy',
     'FullWidth',
     'Illustration',
     'IllustrationBlock',

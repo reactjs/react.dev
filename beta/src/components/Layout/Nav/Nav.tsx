@@ -3,7 +3,6 @@
  */
 
 import * as React from 'react';
-import {createPortal} from 'react-dom';
 import cn from 'classnames';
 import NextLink from 'next/link';
 import {useRouter} from 'next/router';

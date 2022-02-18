@@ -4,6 +4,8 @@
 
 import * as React from 'react';
 import {useRouter} from 'next/router';
+// @ts-ignore
+import galite from 'ga-lite';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
   const {pathname} = useRouter();
@@ -43,6 +45,19 @@ const thumbsDownIcon = (
   </svg>
 );
 
+function sendGAEvent(isPositive: boolean) {
+  // Fragile. Don't change unless you've tested the network payload
+  // and verified that the right events actually show up in GA.
+  galite(
+    'send',
+    'event',
+    'button',
+    'feedback',
+    window.location.pathname,
+    isPositive ? '1' : '0'
+  );
+}
+
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
   const [isSubmitted, setIsSubmitted] = React.useState(false);
   return (
@@ -56,13 +71,8 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
           className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3 mr-2"
           onClick={() => {
             setIsSubmitted(true);
-            // @ts-ignore
-            gtag('event', 'feedback', {
-              event_category: 'button',
-              event_label: window.location.pathname,
-              value: 1,
-            });
             onSubmit();
+            sendGAEvent(true);
           }}>
           {thumbsUpIcon}
         </button>
@@ -73,13 +83,8 @@ function SendFeedback({onSubmit}: {onSubmit: () => void}) {
           className="bg-secondary-button dark:bg-secondary-button-dark rounded-lg text-primary dark:text-primary-dark px-3"
           onClick={() => {
             setIsSubmitted(true);
-            // @ts-ignore
-            gtag('event', 'feedback', {
-              event_category: 'button',
-              event_label: window.location.pathname,
-              value: 0,
-            });
             onSubmit();
+            sendGAEvent(false);
           }}>
           {thumbsDownIcon}
         </button>

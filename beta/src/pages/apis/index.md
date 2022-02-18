@@ -52,7 +52,7 @@ Declares a ref.
 
 ```js
 function MyComponent() {
-  const inputRef = useState(null);
+  const inputRef = useRef(null);
   // ...
 ```
 

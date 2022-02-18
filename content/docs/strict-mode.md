@@ -21,6 +21,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 * [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
 * [Detecting unexpected side effects](#detecting-unexpected-side-effects)
 * [Detecting legacy context API](#detecting-legacy-context-api)
+* [Detecting unsafe effects](#detecting-unsafe-effects)
 
 Additional functionality will be added with future releases of React.
 
@@ -127,3 +128,65 @@ The legacy context API is error-prone, and will be removed in a future major ver
 ![](../images/blog/warn-legacy-context-in-strict-mode.png)
 
 Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
+
+
+### Detecting unsafe effects {#detecting-unsafe-effects}
+
+Conceptually, React effects include three phases:
+* The **create** phase is called for all effects when the effect is created.
+* The **update** phase is called when the dependencies change, if applicable.
+* The **destroy** phase is called for all effects when the effect is destroyed.
+
+In the past, React has only called the create phase once when a component mounts:
+
+```
+* React mounts the component.
+  * Layout effects are created.
+  * Effect effects are created.
+```
+
+and the destroy phase once when a component unmounts:
+
+```
+* React unmounts the component.
+  * Layout effects are destroyed.
+  * Effect effects are destroyed.
+```
+
+> Note:
+>
+> It's common to hear effects being "mounted" and "unmounted". This is because effects have historically been created when a component was mounted, and destroyed when a component was unmounted. This can cause confusion, so we refer to them as "created" and "destroyed" here instead.
+
+In the future, we'd like to add features to React which would allow a component to mount without immediately creating effects (such as pre-rendering), or to destroy effects in already-mounted components (such as when a component isn't visible). These features will add better performance and resource management out-of-the-box to React, but require effects to be decoupled from the component lifecycle and resilient to being created and destroyed multiple times in a component.
+
+To help surface these issues, React 18 introduced Strict Effects to Strict Mode.
+
+With Strict Effects, React will automatically destroy and re-create every effect in development, whenever a component mounts:
+
+```
+* React mounts the component.
+    * Layout effects are created.
+    * Effect effects are created.
+* React simulates effects being destroyed on a mounted component.
+    * Layout effects are destroyed.
+    * Effects are destroyed.
+* React simulates effects being re-created on a mounted component.
+    * Layout effect setup code runs
+    * Effect setup code runs
+```
+
+when the component unmounts, effects are destroyed as normal:
+
+```
+* React unmounts the component.
+  * Layout effects are destroyed.
+  * Effect effects are destroyed.
+```
+
+> Note:
+>
+> This only applies to development mode. _Strict Effects will not run in production mode._
+
+For more information, see:
+  - [Adding Strict Effects to Strict Mode](https://github.com/reactwg/react-18/discussions/19)
+  - [How to Support Strict Effects](https://github.com/reactwg/react-18/discussions/18)

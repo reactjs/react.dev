@@ -166,6 +166,9 @@ html.dark .sp-layout > :not(:first-child) {
 html.dark .sp-layout {
   background-color: #343a46;
 }
+html .sp-loading {
+  background-color: transparent;
+}
 html.dark .sp-loading {
   background-color: #23272f;
 }

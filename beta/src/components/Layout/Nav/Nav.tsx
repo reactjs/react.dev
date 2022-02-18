@@ -103,10 +103,31 @@ export default function Nav() {
   const [showFeedback, setShowFeedback] = React.useState(false);
   const feedbackAutohideRef = React.useRef<any>(null);
   const section = inferSection(pathname);
+  const feedbackPopupRef = React.useRef(null);
+
+  React.useEffect(() => {
+    if (!showFeedback) {
+      return;
+    }
+    function handleDocumentClickCapture(e) {
+      if (!feedbackPopupRef.current.contains(e.target)) {
+        e.stopPropagation();
+        e.preventDefault();
+        setShowFeedback(false);
+      }
+    }
+    document.addEventListener('click', handleDocumentClickCapture, {
+      capture: true,
+    });
+    return () =>
+      document.removeEventListener('click', handleDocumentClickCapture, {
+        capture: true,
+      });
+  }, [showFeedback]);
 
   function handleFeedback() {
     clearTimeout(feedbackAutohideRef.current);
-    setShowFeedback((s) => !s);
+    setShowFeedback(!showFeedback);
   }
 
   return (
@@ -192,6 +213,7 @@ export default function Nav() {
           </button>
         </div>
         <div
+          ref={feedbackPopupRef}
           className={cn(
             'fixed top-12 right-0',
             showFeedback ? 'block' : 'hidden'

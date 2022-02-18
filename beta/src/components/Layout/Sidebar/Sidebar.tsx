@@ -32,6 +32,7 @@ export function Sidebar({isMobileOnly}: {isMobileOnly?: boolean}) {
         isOpen ? 'block z-40' : 'hidden lg:block'
       )}
       aria-hidden={isHidden}>
+      {/* @ts-ignore */}
       <React.Suspense unstable_avoidThisFallback={true} fallback={null}>
         <div className="px-5">
           <Search />

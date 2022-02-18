@@ -129,6 +129,7 @@ export function MarkdownPage<
         <div className="px-5 sm:px-12">
           <React.Suspense
             fallback={<div className="h-screen" />}
+            // @ts-ignore
             unstable_avoidThisFallback={true}>
             <div className="max-w-7xl mx-auto">
               <MDXContext.Provider value={MDXComponents}>

@@ -108,6 +108,7 @@ export function Navigation({
       <div className="flex z-10 pb-2 pl-2">
         <button
           onClick={handleScrollLeft}
+          aria-label="Scroll left"
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r',
             {
@@ -119,6 +120,7 @@ export function Navigation({
         </button>
         <button
           onClick={handleScrollRight}
+          aria-label="Scroll right"
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r-lg',
             {

@@ -21,7 +21,9 @@ module.exports = async function (src) {
     compiled.indexOf('</MDXLayout>') + '</MDXLayout>'.length
   );
   const code = `
-import MDXLayout from 'components/Layout/${layouts[pageParentDir]}';
+import MDXLayout from 'components/Layout/${
+    layouts[pageParentDir] || 'LayoutLearn'
+  }';
 import A from 'components/MDX/Link.client'
 const layoutProps = {};
 
@@ -34,6 +36,5 @@ export default function MDXContent({
   `
     .replace(/<a/g, '<A')
     .replace(/<\/a>/g, '</A>');
-  console.log(code);
   return callback(null, code);
 };

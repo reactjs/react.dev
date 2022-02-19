@@ -1,4 +1,5 @@
-import Link from './MDX/Link.client';
+import Link from './Link.client';
+export const a = Link;
 
 export function Hello() {
   return <h1>hi</h1>;

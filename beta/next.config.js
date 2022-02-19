@@ -52,6 +52,7 @@ module.exports = {
             remarkPlugins,
           },
         },
+        path.join(__dirname, './plugins/md-layout-preloader'),
       ],
     });
 

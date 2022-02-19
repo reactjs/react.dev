@@ -15,7 +15,6 @@ import {H1, H2, H3, H4} from './Heading';
 import HomepageHero from './HomepageHero';
 import InlineCode from './InlineCode';
 import Intro from './Intro';
-import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
 import Sandpack from './Sandpack';
@@ -357,7 +356,6 @@ export const MDXComponents = {
   h4: H4,
   inlineCode: InlineCode,
   hr: Divider,
-  a: Link,
   code: CodeBlock,
   // The code block renders <pre> so we just want a div here.
   pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,

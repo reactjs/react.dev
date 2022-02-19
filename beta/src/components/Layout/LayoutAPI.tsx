@@ -4,10 +4,11 @@
 
 import * as React from 'react';
 
-export default function LayoutAPI({children}) {
+// @ts-ignore
+export default function LayoutAPI({children}: {children: any}) {
   return (
     <>
-      <h1>you're in api</h1>
+      <h1>your in api</h1>
       <input placeholder="Search" />
       <hr />
       {children}

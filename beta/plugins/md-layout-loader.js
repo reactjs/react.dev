@@ -3,18 +3,27 @@ const path = require('path');
 const compile = require('@mdx-js/mdx');
 const {transformSync} = require('@babel/core');
 
+const layouts = {
+  apis: 'LayoutAPI',
+  learn: 'LayoutLearn',
+};
+
 module.exports = async function (src) {
   const callback = this.async();
   const {content, data} = fm(src);
   const compiled = compile.sync(content);
-  console.log('-- orig --', compiled);
+  const pageParentDir = path
+    .dirname(path.relative('./src/pages', this.resourcePath))
+    .split(path.sep)
+    .shift();
   const returnCode = compiled.slice(
     compiled.indexOf('return ') + 'return '.length,
     compiled.indexOf('</MDXLayout>') + '</MDXLayout>'.length
   );
   const code = `
+import MDXLayout from 'components/Layout/${layouts[pageParentDir]}';
+import A from 'components/MDX/Link.client'
 const layoutProps = {};
-const MDXLayout = "wrapper"
 
 export default function MDXContent({
   components,
@@ -22,7 +31,9 @@ export default function MDXContent({
 }) {
   return ${returnCode}
 }
-  `;
+  `
+    .replace(/<a/g, '<A')
+    .replace(/<\/a>/g, '</A>');
   console.log(code);
   return callback(null, code);
 };

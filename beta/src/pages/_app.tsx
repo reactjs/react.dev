@@ -39,5 +39,14 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  return <Component {...pageProps} />;
+  return (
+    <Component
+      {...pageProps}
+      components={{
+        a: function () {
+          return <h1>lala</h1>;
+        },
+      }}
+    />
+  );
 }

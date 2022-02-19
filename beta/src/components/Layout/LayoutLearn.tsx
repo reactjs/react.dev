@@ -4,10 +4,15 @@
 
 import * as React from 'react';
 
-export default function LayoutLearn({children}) {
+if (typeof alert !== 'undefined') {
+  alert('lalala');
+}
+
+// @ts-ignore
+export default function LayoutLearn({children}: {children: any}) {
   return (
     <>
-      <h1>you're in learn</h1>
+      <h1>your in learn</h1>
       <input placeholder="Search" />
       <hr />
       {children}

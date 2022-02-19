@@ -45,12 +45,6 @@ module.exports = {
       test: /.mdx?$/, // load both .md and .mdx files
       use: [
         options.defaultLoaders.babel,
-        {
-          loader: '@mdx-js/loader',
-          options: {
-            remarkPlugins,
-          },
-        },
         path.join(__dirname, './plugins/md-layout-loader'),
       ],
     });

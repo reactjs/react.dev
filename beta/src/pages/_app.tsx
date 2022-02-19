@@ -39,16 +39,5 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  let AppShell = (Component as any).appShell || EmptyAppShell;
-  // In order to make sidebar scrolling between pages work as expected
-  // we need to access the underlying MDX component.
-  if ((Component as any).isMDXComponent) {
-    AppShell = (Component as any)({}).props.originalType.appShell;
-  }
-
-  return (
-    <AppShell>
-      <Component {...pageProps} />
-    </AppShell>
-  );
+  return <Component {...pageProps} />;
 }

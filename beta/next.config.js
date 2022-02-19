@@ -46,6 +46,12 @@ module.exports = {
       use: [
         options.defaultLoaders.babel,
         path.join(__dirname, './plugins/md-layout-loader'),
+        {
+          loader: '@mdx-js/loader',
+          options: {
+            remarkPlugins,
+          },
+        },
       ],
     });
 

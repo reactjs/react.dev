@@ -1,0 +1,17 @@
+diff --git a/node_modules/@mdx-js/react/dist/cjs.js b/node_modules/@mdx-js/react/dist/cjs.js
+index 106db37..02ecf7b 100644
+--- a/node_modules/@mdx-js/react/dist/cjs.js
++++ b/node_modules/@mdx-js/react/dist/cjs.js
+@@ -125,6 +125,12 @@ var withMDXComponents = function withMDXComponents(Component) {
+   };
+ };
+ var useMDXComponents = function useMDXComponents(components) {
++
++  // --- HACK ---
++  return global.COMPONENTS;
++  // /-- HACK ---
++
++
+   var contextComponents = React__default['default'].useContext(MDXContext);
+   var allComponents = contextComponents;
+ 

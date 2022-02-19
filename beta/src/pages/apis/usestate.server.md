@@ -2,3 +2,4 @@
 
 lalalal  [go to props](/learn/props)
 
+<Hello />

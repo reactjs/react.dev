@@ -5,7 +5,7 @@
   "license": "CC",
   "scripts": {
     "analyze": "ANALYZE=true next build",
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build && node ./scripts/generateRSS.js && node ./scripts/generateRedirects.js",
     "lint": "next lint",
     "lint:fix": "next lint --fix",

@@ -16,6 +16,8 @@ export default React.memo(function CodeBlockWrapper(props: {
   const {children, isFromPackageImport} = props;
   return (
     <React.Suspense
+      // @ts-ignore
+      unstable_expectedLoadTime={1}
       fallback={
         <pre
           className={cn(

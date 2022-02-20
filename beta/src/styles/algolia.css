@@ -117,7 +117,7 @@ html.dark .DocSearch-Hit-source {
   @apply text-base;
   @apply text-primary;
   @apply font-normal;
-  @apply overflow-ellipsis;
+  @apply text-ellipsis;
   @apply whitespace-nowrap;
   @apply overflow-hidden;
 }

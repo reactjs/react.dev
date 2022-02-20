@@ -6,12 +6,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('./colors');
 
 module.exports = {
-  mode: 'jit',
-  purge: [
-    './src/components/**/*.{js,ts,jsx,tsx}',
-    './src/pages/**/*.{js,ts,jsx,tsx}',
-    './src/styles/**/*.{js,ts,jsx,tsx}',
-  ],
+  content: ['./src/{components, pages, styles}/**/*.{js,ts,jsx,tsx}'],
   darkMode: 'class',
   theme: {
     // Override base screen sizes
@@ -69,19 +64,6 @@ module.exports = {
         code: 'calc(1em - 20%)',
       },
       colors,
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['focus', 'hover', 'active'],
-      borderStyle: ['focus'],
-      borderWidth: ['focus', 'active'],
-      borderColor: ['active'],
-      margin: ['last'],
-      ringOffsetWidth: ['active'],
-      ringWidth: ['focus', 'active'],
-      textColor: ['group-focus', 'active'],
-      textOpacity: ['group-focus'],
     },
   },
   plugins: [],

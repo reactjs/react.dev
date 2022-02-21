@@ -89,7 +89,7 @@ export function Navigation({
           {challenges.map(({name, id, order}, index) => (
             <button
               className={cn(
-                'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap overflow-ellipsis',
+                'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap text-ellipsis',
                 isRecipes &&
                   currentChallenge.id === id &&
                   'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30',

@@ -73,7 +73,7 @@
     transform: translateZ(0);
   }
 
-  @responsive {
+  @layer utilities {
     .text-7xl {
       font-size: 5rem;
     }

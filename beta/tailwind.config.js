@@ -6,8 +6,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('./colors');
 
 module.exports = {
-  mode: 'jit',
-  purge: [
+  content: [
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/styles/**/*.{js,ts,jsx,tsx}',
@@ -69,19 +68,6 @@ module.exports = {
         code: 'calc(1em - 20%)',
       },
       colors,
-    },
-  },
-  variants: {
-    extend: {
-      backgroundColor: ['focus', 'hover', 'active'],
-      borderStyle: ['focus'],
-      borderWidth: ['focus', 'active'],
-      borderColor: ['active'],
-      margin: ['last'],
-      ringOffsetWidth: ['active'],
-      ringWidth: ['focus', 'active'],
-      textColor: ['group-focus', 'active'],
-      textOpacity: ['group-focus'],
     },
   },
   plugins: [],

@@ -15,7 +15,7 @@ const SandpackGlimmer = ({code}: {code: string}) => (
         <div className="px-4 lg:px-6">
           <div className="sp-tabs"></div>
         </div>
-        <div className="px-3 flex items-center justify-end flex-grow text-right"></div>
+        <div className="px-3 flex items-center justify-end grow text-right"></div>
       </div>
       <div className="sp-wrapper">
         <div className="sp-layout sp-custom-layout min-h-[216px]">

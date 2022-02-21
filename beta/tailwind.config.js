@@ -6,7 +6,11 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('./colors');
 
 module.exports = {
-  content: ['./src/{components, pages, styles}/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    './src/components/**/*.{js,ts,jsx,tsx}',
+    './src/pages/**/*.{js,ts,jsx,tsx}',
+    './src/styles/**/*.{js,ts,jsx,tsx}',
+  ],
   darkMode: 'class',
   theme: {
     // Override base screen sizes

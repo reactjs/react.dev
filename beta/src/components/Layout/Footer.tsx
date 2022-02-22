@@ -9,11 +9,14 @@ import {ExternalLink} from 'components/ExternalLink';
 import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
 import {IconTwitter} from 'components/Icon/IconTwitter';
 
-export function Footer() {
+export function Footer({fullWidth = true}) {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';
   return (
     <>
-      <div className="self-stretch w-full sm:pl-0 lg:pl-80 sm:pr-0 2xl:pr-80 pl-0 pr-0">
+      <div
+        className={cn('self-stretch w-full', {
+          'sm:pl-0 lg:pl-80 sm:pr-0 2xl:pr-80 pl-0 pr-0': fullWidth,
+        })}>
         <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10 md:pt-12 lg:pt-10">
           <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
         </div>

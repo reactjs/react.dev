@@ -15,7 +15,7 @@ import toCommaSeparatedList from 'utils/toCommaSeparatedList';
 export default function RecentPosts() {
   return (
     <>
-      <div className="w-full px-12">
+      <div className="w-full lg:pt-8 px-5 sm:px-12">
         <div className="max-w-4xl mx-auto w-full container pt-10">
           <header className="pt-14 pb-8">
             <div className="flex items-center justify-between">
@@ -23,45 +23,49 @@ export default function RecentPosts() {
                 title="Blog"
                 description="Offical React.js news, announcements, and release notes."
               />
-              <h1 className="text-5xl font-bold text-primary dark:text-primary-dark mb-8">
+              <h1 className="text-5xl font-bold  dark:text-primary-dark mb-8">
                 Blog
               </h1>
               <a
                 href="/feed.xml"
-                className="p-2 betterhover:hover:bg-gray-20 transition duration-150 ease-in-out rounded-lg inline-flex items-center">
+                className="p-2 bg-card betterhover:hover:bg-secondary-button dark:bg-secondary-button-dark betterhover:hover:dark:bg-card-dark transition duration-150 ease-in-out rounded-lg inline-flex items-center">
                 <IconRss className="w-5 h-5 mr-2" />
                 RSS
               </a>
             </div>
-            <p className="text-primary dark:text-primary-dark text-xl text-primary dark:text-primary-dark leading-large">
+            <p className=" dark:text-primary-dark text-xl leading-large">
               Offical React.js news, announcements, and release notes.
             </p>
           </header>
           <div className="space-y-12 pb-40">
             {blogIndexRecentRouteTree.routes.map((post) => (
               <div key={post.path}>
-                <h3 className="font-bold leading-8 text-primary dark:text-primary-dark text-2xl mb-2 hover:underline">
+                <h3 className="font-bold leading-8 dark:text-primary-dark text-2xl mb-2 hover:underline">
                   <Link href={removeFromLast(post.path, '.')}>
                     <a>{post.title}</a>
                   </Link>
                 </h3>
                 <div
-                  className={styles.markdown + ' mb-0'}
+                  className={
+                    styles.markdown +
+                    ' text-gray-70 dark:text-primary-dark mb-0'
+                  }
                   dangerouslySetInnerHTML={{__html: post.excerpt.trim()}}
                 />
                 <div className="flex items-center">
                   <div>
-                    <p className="text-sm leading-5 text-gray-80">
+                    <p className="text-sm leading-5 text-gray-80 dark:text-gray-10">
                       By{' '}
                       {toCommaSeparatedList(post.author, (author) => (
                         <ExternalLink
+                          key={author}
                           href={getAuthor(author).url}
                           className="font-bold betterhover:hover:underline">
                           <span>{getAuthor(author).name}</span>
                         </ExternalLink>
                       ))}
                     </p>
-                    <div className="flex text-sm leading-5 text-gray-50">
+                    <div className="flex text-sm leading-5 text-gray-50 dark:text-gray-20">
                       <time dateTime={post.date}>
                         {format(parseISO(post.date), 'MMMM dd, yyyy')}
                       </time>
@@ -74,7 +78,7 @@ export default function RecentPosts() {
             ))}
             <div className="text-center">
               <Link href="/blog/all">
-                <a className="p-2 text-center bg-card dark:bg-card-dark font-bold betterhover:hover:bg-secondary-button dark:bg-secondary-button-dark transition duration-150 ease-in-out rounded-lg inline-flex items-center">
+                <a className="p-2 text-center bg-card font-bold betterhover:hover:bg-secondary-button dark:bg-secondary-button-dark betterhover:hover:dark:bg-card-dark transition duration-150 ease-in-out rounded-lg inline-flex items-center">
                   View all articles
                 </a>
               </Link>
@@ -91,5 +95,11 @@ export default function RecentPosts() {
 RecentPosts.displayName = 'Index';
 
 RecentPosts.appShell = function AppShell(props: {children: React.ReactNode}) {
-  return <Page routeTree={blogIndexRecentRouteTree} {...props} />;
+  return (
+    <Page
+      displaySidebar={false}
+      routeTree={blogIndexRecentRouteTree}
+      {...props}
+    />
+  );
 };

@@ -52,7 +52,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
         {dropdownActive ? <FilesDropdown /> : <FileTabs />}
       </div>
       <div
-        className="px-3 flex items-center justify-end flex-grow text-right"
+        className="px-3 flex items-center justify-end grow text-right"
         translate="yes">
         {showDownload && <DownloadButton />}
         <ResetButton onReset={handleReset} />

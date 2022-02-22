@@ -89,7 +89,7 @@ export function Navigation({
           {challenges.map(({name, id, order}, index) => (
             <button
               className={cn(
-                'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap overflow-ellipsis',
+                'py-2 mr-4 text-base border-b-4 duration-100 ease-in transition whitespace-nowrap text-ellipsis',
                 isRecipes &&
                   currentChallenge.id === id &&
                   'text-purple-50 border-purple-50 hover:text-purple-50 dark:text-purple-30 dark:border-purple-30 dark:hover:text-purple-30',
@@ -108,6 +108,7 @@ export function Navigation({
       <div className="flex z-10 pb-2 pl-2">
         <button
           onClick={handleScrollLeft}
+          aria-label="Scroll left"
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-l border-gray-20 border-r',
             {
@@ -119,6 +120,7 @@ export function Navigation({
         </button>
         <button
           onClick={handleScrollRight}
+          aria-label="Scroll right"
           className={cn(
             'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r-lg',
             {

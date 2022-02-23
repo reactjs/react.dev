@@ -364,7 +364,6 @@ export default function MyApp() {
       <h1>Counters that update separately</h1>
       <MyButton />
       <MyButton />
-      <MyButton />
     </div>
   );
 }
@@ -389,27 +388,33 @@ Hooks are more restrictive than regular functions. You can only call Hooks *at t
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
-In the previous example, each button had its own independent counter:
+In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
 
-```js {2-4}
-- MyApp
-  - MyButton (count: 3)
-  - MyButton (count: 1)
-  - MyButton (count: 2)
-```
+<DiagramGroup>
+    <Diagram name="sharing_data_child.png" alt="TODO: Sharing data" height={734} width={814}>
+        Before clicking, each MyButton has a count value set to zero.
+    </Diagram>
+    <Diagram name="sharing_data_child_clicked.png" alt="TODO: Sharing data" height={734} width={814}>
+        After clicking, only one MyButton count value has updated.
+    </Diagram>
+</DiagramGroup>
 
-However, you'll often need components to *share data and always update together*.
+However, often you'll need components to *share data and always update together*.
 
-To make all buttons display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them. In this example, it is `MyApp`:
+To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
 
-```js {1}
-- MyApp (count: 3)
-  - MyButton
-  - MyButton
-  - MyButton
-```
+In this example, it is `MyApp`:
 
-Here's how you can express this in code.
+<DiagramGroup>
+    <Diagram name="sharing_data_parent.png" alt="TODO: Sharing data" height={770} width={820}>
+        Before clicking, count is stored in MyApp and passed down to both children as props.
+    </Diagram>
+    <Diagram name="sharing_data_parent_clicked.png" alt="TODO: Sharing data" height={770} width={820}>
+        After clicking, count updates in MyApp and the update is passed to both children as props.
+    </Diagram>
+</DiagramGroup>
+
+Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
 
 First, *move the state up* from `MyButton` into `MyApp`:
 
@@ -430,7 +435,6 @@ export default function MyApp() {
       <h1>Counters that update separately</h1>
       <MyButton />
       <MyButton />
-      <MyButton />
     </div>
   );
 }
@@ -438,7 +442,7 @@ export default function MyApp() {
 
 Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
 
-```js {11-13}
+```js {11-12}
 export default function MyApp() {
   const [count, setCount] = useState(0);
 
@@ -449,7 +453,6 @@ export default function MyApp() {
   return (
     <div>
       <h1>Counters that update together</h1>
-      <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -498,7 +501,6 @@ export default function MyApp() {
   return (
     <div>
       <h1>Counters that update together</h1>
-      <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>

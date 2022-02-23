@@ -1,7 +1,7 @@
 import blogIndexRecentRouteTree from 'blogIndexRecent.json';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconRss} from 'components/Icon/IconRss';
-import {Page} from 'components/Layout/Page';
+import {LayoutBlog} from 'components/Layout/LayoutBlog';
 import styles from 'components/MDX/MDXComponents.module.css';
 import {Seo} from 'components/Seo';
 import format from 'date-fns/format';
@@ -95,11 +95,5 @@ export default function RecentPosts() {
 RecentPosts.displayName = 'Index';
 
 RecentPosts.appShell = function AppShell(props: {children: React.ReactNode}) {
-  return (
-    <Page
-      displaySidebar={false}
-      routeTree={blogIndexRecentRouteTree}
-      {...props}
-    />
-  );
+  return <LayoutBlog {...props} />;
 };

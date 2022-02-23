@@ -1,8 +1,7 @@
 import blogIndex from 'blogIndex.json';
-import blogIndexRecentRouteTree from 'blogIndexRecent.json';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconRss} from 'components/Icon/IconRss';
-import {Page} from 'components/Layout/Page';
+import {LayoutBlog} from 'components/Layout/LayoutBlog';
 import format from 'date-fns/format';
 import parseISO from 'date-fns/parseISO';
 import Link from 'next/link';
@@ -68,11 +67,5 @@ export default function Archive() {
 Archive.displayName = 'Index';
 
 Archive.appShell = function AppShell(props: {children: React.ReactNode}) {
-  return (
-    <Page
-      displaySidebar={false}
-      routeTree={blogIndexRecentRouteTree}
-      {...props}
-    />
-  );
+  return <LayoutBlog {...props} />;
 };

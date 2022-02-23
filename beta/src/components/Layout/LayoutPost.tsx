@@ -4,7 +4,6 @@
 
 // @ts-ignore
 import {MDXContext} from '@mdx-js/react';
-import recentPostsRouteTree from 'blogIndexRecent.json';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {ExternalLink} from 'components/ExternalLink';
 import {MDXComponents} from 'components/MDX/MDXComponents';
@@ -15,9 +14,9 @@ import {useRouter} from 'next/router';
 import * as React from 'react';
 import {getAuthor} from 'utils/getAuthor';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-import {Page} from './Page';
 import {RouteItem, useRouteMeta} from './useRouteMeta';
 import {useTwitter} from './useTwitter';
+import {LayoutBlog} from './LayoutBlog';
 
 interface PageFrontmatter {
   id?: string;
@@ -107,7 +106,7 @@ function LayoutPost({meta, children}: LayoutPostProps) {
 }
 
 function AppShell(props: {children: React.ReactNode}) {
-  return <Page routeTree={recentPostsRouteTree as RouteItem} {...props} />;
+  return <LayoutBlog {...props} />;
 }
 
 export default function withLayoutPost(meta: any) {

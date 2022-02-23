@@ -107,13 +107,7 @@ function LayoutPost({meta, children}: LayoutPostProps) {
 }
 
 function AppShell(props: {children: React.ReactNode}) {
-  return (
-    <Page
-      displaySidebar={false}
-      routeTree={recentPostsRouteTree as RouteItem}
-      {...props}
-    />
-  );
+  return <Page routeTree={recentPostsRouteTree as RouteItem} {...props} />;
 }
 
 export default function withLayoutPost(meta: any) {

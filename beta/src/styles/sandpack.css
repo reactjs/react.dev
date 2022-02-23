@@ -230,7 +230,6 @@ html.dark .sp-devtools > div {
 }
 .sp-cm:focus-visible {
   box-shadow: inset 0 0 0 4px rgba(20, 158, 202, 0.4) !important;
-  padding-left: 0px !important;
 }
 .cm-line {
   padding: 0 var(--sp-space-3) !important;

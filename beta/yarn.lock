@@ -555,10 +555,10 @@
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@v0.14.3-experimental.0":
-  version "0.14.3-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.14.3-experimental.0.tgz#7e60e9d6beabe9de2c727a6110297d0c77c5b85d"
-  integrity sha512-weZX+J/zit3XnC1n7Sx/c5KgZN+J+OcyQNPajlDRfZD5X2n/CCLqJtkUdHnf/CXKaqcapWzBkeOnZtAEojSJMQ==
+"@codesandbox/sandpack-react@v0.14.3-experimental.1":
+  version "0.14.3-experimental.1"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.14.3-experimental.1.tgz#574eb822449089c77b29e0b8bc7ac1d8ee20d0be"
+  integrity sha512-5jFVLJKunVPUgZi105p+nxjjTJN+w/MwO3abW/Ob17jp/UT6o+m1x5XhiJVpc832/jwWGrDGKukFMbOtk35CuQ==
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"

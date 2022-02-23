@@ -12,10 +12,10 @@ export const IconChevron = React.memo<
 >(function IconChevron({className, displayDirection, ...rest}) {
   const classes = cn(
     {
-      'transform rotate-0': displayDirection === 'down',
-      'transform rotate-90': displayDirection === 'left',
-      'transform rotate-180': displayDirection === 'up',
-      'transform -rotate-90': displayDirection === 'right',
+      'rotate-0': displayDirection === 'down',
+      'rotate-90': displayDirection === 'left',
+      'rotate-180': displayDirection === 'up',
+      '-rotate-90': displayDirection === 'right',
     },
     className
   );

@@ -11,8 +11,8 @@ export const IconArrowSmall = React.memo<
   }
 >(function IconArrowSmall({displayDirection, className, ...rest}) {
   const classes = cn(className, {
-    'transform rotate-180': displayDirection === 'left',
-    'transform rotate-90': displayDirection === 'down',
+    'rotate-180': displayDirection === 'left',
+    'rotate-90': displayDirection === 'down',
   });
   return (
     <svg

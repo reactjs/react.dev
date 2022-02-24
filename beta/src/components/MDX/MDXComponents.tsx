@@ -19,6 +19,8 @@ import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
 import Sandpack from './Sandpack';
+import Diagram from './Diagram';
+import DiagramGroup from './DiagramGroup';
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
@@ -369,6 +371,8 @@ export const MDXComponents = {
     title: string;
     excerpt: string;
   }) => <ExpandableExample {...props} type="DeepDive" />,
+  Diagram,
+  DiagramGroup,
   Gotcha,
   HomepageHero,
   Illustration,

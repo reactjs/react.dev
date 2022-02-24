@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React, {ReactNode} from 'react';
+import React from 'react';
 
 export interface IntroProps {
   children?: React.ReactNode;

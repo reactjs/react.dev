@@ -5,14 +5,10 @@
 import * as React from 'react';
 import {IconRestart} from '../../Icon/IconRestart';
 export interface ResetButtonProps {
-  clientId?: string;
   onReset: () => void;
 }
 
-export const ResetButton: React.FC<ResetButtonProps> = ({
-  clientId,
-  onReset,
-}) => {
+export const ResetButton: React.FC<ResetButtonProps> = ({onReset}) => {
   return (
     <button
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"

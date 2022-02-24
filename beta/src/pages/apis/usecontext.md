@@ -916,13 +916,9 @@ If React can't find any providers of that particular <CodeStep step={1}>context<
 const ThemeContext = createContext(null);
 ```
 
-<Gotcha>
-
 The default value **never changes**. If you want to update context, use it with state as [described above](#updating-data-passed-via-context).
 
-</Gotcha>
-
-It often makes sense to specify some meaningful value as a default, for example:
+Often, instead of `null`, there is some more meaningful value you can use as a default, for example:
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "light"]]
 const ThemeContext = createContext('light');

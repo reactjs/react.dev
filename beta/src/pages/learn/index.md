@@ -364,7 +364,6 @@ export default function MyApp() {
       <h1>Counters that update separately</h1>
       <MyButton />
       <MyButton />
-      <MyButton />
     </div>
   );
 }
@@ -389,27 +388,47 @@ Hooks are more restrictive than regular functions. You can only call Hooks *at t
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 
-In the previous example, each button had its own independent counter:
+In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
 
-```js {2-4}
-- MyApp
-  - MyButton (count: 3)
-  - MyButton (count: 1)
-  - MyButton (count: 2)
-```
+<DiagramGroup>
 
-However, you'll often need components to *share data and always update together*.
+<Diagram name="sharing_data_child" height={734} width={814} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
 
-To make all buttons display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them. In this example, it is `MyApp`:
+Before clicking, each MyButton has a count value set to zero.
 
-```js {1}
-- MyApp (count: 3)
-  - MyButton
-  - MyButton
-  - MyButton
-```
+</Diagram>
 
-Here's how you can express this in code.
+<Diagram name="sharing_data_child_clicked" height={734} width={814} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+
+After clicking, only one MyButton count value has updated.
+
+</Diagram>
+
+</DiagramGroup>
+
+However, often you'll need components to *share data and always update together*.
+
+To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+
+In this example, it is `MyApp`:
+
+<DiagramGroup>
+
+<Diagram name="sharing_data_parent" height={770} width={820} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+
+Before clicking, count is stored in MyApp and passed down to both children as props.
+
+</Diagram>
+
+<Diagram name="sharing_data_parent_clicked" height={770} width={820} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+
+After clicking, count updates in MyApp and the new value is passed to both children as props.
+
+</Diagram>
+
+</DiagramGroup>
+
+Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
 
 First, *move the state up* from `MyButton` into `MyApp`:
 
@@ -430,7 +449,6 @@ export default function MyApp() {
       <h1>Counters that update separately</h1>
       <MyButton />
       <MyButton />
-      <MyButton />
     </div>
   );
 }
@@ -438,7 +456,7 @@ export default function MyApp() {
 
 Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
 
-```js {11-13}
+```js {11-12}
 export default function MyApp() {
   const [count, setCount] = useState(0);
 
@@ -449,7 +467,6 @@ export default function MyApp() {
   return (
     <div>
       <h1>Counters that update together</h1>
-      <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -498,7 +515,6 @@ export default function MyApp() {
   return (
     <div>
       <h1>Counters that update together</h1>
-      <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>

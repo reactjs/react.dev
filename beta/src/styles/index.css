@@ -54,6 +54,22 @@
     color-scheme: dark;
   }
 
+  html .dark-image {
+    display: none;
+  }
+
+  html .light-image {
+    display: block;
+  }
+
+  html.dark .dark-image {
+    display: block;
+  }
+
+  html.dark .light-image {
+    display: none;
+  }
+
   html,
   body {
     height: 100%;

@@ -14,6 +14,7 @@ const value = useContext(SomeContext)
 
 - [Usage](#usage)
   - [Passing data deeply into the tree](#passing-data-deeply-into-the-tree)
+  - [Updating data passed via context](#updating-data-passed-via-context)
   - [Specifying a fallback default value](#specifying-a-fallback-default-value)
   - [Overriding context for a part of the tree](#overriding-context-for-a-part-of-the-tree)
 - [Reference](#reference)
@@ -56,40 +57,6 @@ function Form() {
 ```
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `useContext(ThemeContext)`, it will receive `"dark"` as the value.
-
-Often, you'll want the context to change over time. To update context, you need to combine it with [state](/apis/usestate). Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
-
-```js {2,7} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
-function MyPage() {
-  const [theme, setTheme] = useState('dark');
-  return (
-    <ThemeContext.Provider value={theme}>
-      <Form />
-      <Button onClick={() => {
-        setTheme('light');
-      }}>
-        Switch to light theme
-      </Button>
-    </ThemeContext.Provider>
-  );
-}
-```
-
-Now any `Button` inside of the provider will receive the current `theme` value. If you call `setTheme` to update the `theme` value that you pass to the provider, all `Button` components will re-render with the new `'light'` value.
-
-Note that `value="dark"` passes the `"dark"` string, but `value={theme}` passes the value of the JavaScript `theme` variable with [JSX curly braces](/learn/javascript-in-jsx-with-curly-braces). Curly braces also let you pass context values that aren't strings.
-
-<Gotcha>
-
-`useContext()` always looks for the closest provider *above* the calling component in the tree. **It does not take into account any providers in the same component from which you're calling `useContext()`.**
-
-</Gotcha>
-
-<Recipes titleText="Examples of passing context" titleId="examples-basic">
-
-### Passing an unchanging value via context {/*passing-an-unchanging-value-via-context*/}
-
-In this example, both `Panel` and `Button` components read the `ThemeContext` to compute their CSS class. The `MyApp` component provides the `ThemeContext` for them and specifies its value to always be the string `"dark"`.
 
 <Sandpack>
 
@@ -173,7 +140,37 @@ function Button({ children }) {
 
 </Sandpack>
 
-<Solution />
+### Updating data passed via context {/*updating-data-passed-via-context*/}
+
+Often, you'll want the context to change over time. To update context, you need to combine it with [state](/apis/usestate). Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
+
+```js {2} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
+function MyPage() {
+  const [theme, setTheme] = useState('dark');
+  return (
+    <ThemeContext.Provider value={theme}>
+      <Form />
+      <Button onClick={() => {
+        setTheme('light');
+      }}>
+        Switch to light theme
+      </Button>
+    </ThemeContext.Provider>
+  );
+}
+```
+
+Now any `Button` inside of the provider will receive the current `theme` value. If you call `setTheme` to update the `theme` value that you pass to the provider, all `Button` components will re-render with the new `'light'` value.
+
+Note that `value="dark"` passes the `"dark"` string, but `value={theme}` passes the value of the JavaScript `theme` variable with [JSX curly braces](/learn/javascript-in-jsx-with-curly-braces). Curly braces also let you pass context values that aren't strings.
+
+<Gotcha>
+
+`useContext()` always looks for the closest provider *above* the calling component in the tree. **It does not take into account any providers in the same component from which you're calling `useContext()`.**
+
+</Gotcha>
+
+<Recipes titleText="Examples of updating context" titleId="examples-basic">
 
 ### Updating a value via context {/*updating-a-value-via-context*/}
 
@@ -703,6 +700,212 @@ label {
 
 <Solution />
 
+### Scaling up with context and a reducer {/*scaling-up-with-context-and-a-reducer*/}
+
+In larger apps, it is common to combine context with a [reducer](/apis/usereducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
+
+Read a [full walkthrough](/learn/scaling-up-with-reducer-and-context) of this example.
+
+<Sandpack>
+
+```js App.js
+import AddTask from './AddTask.js';
+import TaskList from './TaskList.js';
+import { TasksProvider } from './TasksContext.js';
+
+export default function TaskApp() {
+  return (
+    <TasksProvider>
+      <h1>Day off in Kyoto</h1>
+      <AddTask />
+      <TaskList />
+    </TasksProvider>
+  );
+}
+```
+
+```js TasksContext.js
+import { createContext, useContext, useReducer } from 'react';
+
+const TasksContext = createContext(null);
+
+const TasksDispatchContext = createContext(null);
+
+export function TasksProvider({ children }) {
+  const [tasks, dispatch] = useReducer(
+    tasksReducer,
+    initialTasks
+  );
+
+  return (
+    <TasksContext.Provider value={tasks}>
+      <TasksDispatchContext.Provider value={dispatch}>
+        {children}
+      </TasksDispatchContext.Provider>
+    </TasksContext.Provider>
+  );
+}
+
+export function useTasks() {
+  return useContext(TasksContext);
+}
+
+export function useTasksDispatch() {
+  return useContext(TasksDispatchContext);
+}
+
+function tasksReducer(tasks, action) {
+  switch (action.type) {
+    case 'added': {
+      return [...tasks, {
+        id: action.id,
+        text: action.text,
+        done: false
+      }];
+    }
+    case 'changed': {
+      return tasks.map(t => {
+        if (t.id === action.task.id) {
+          return action.task;
+        } else {
+          return t;
+        }
+      });
+    }
+    case 'deleted': {
+      return tasks.filter(t => t.id !== action.id);
+    }
+    default: {
+      throw Error('Unknown action: ' + action.type);
+    }
+  }
+}
+
+const initialTasks = [
+  { id: 0, text: 'Philosopher’s Path', done: true },
+  { id: 1, text: 'Visit the temple', done: false },
+  { id: 2, text: 'Drink matcha', done: false }
+];
+```
+
+```js AddTask.js
+import { useState, useContext } from 'react';
+import { useTasksDispatch } from './TasksContext.js';
+
+export default function AddTask({ onAddTask }) {
+  const [text, setText] = useState('');
+  const dispatch = useTasksDispatch();
+  return (
+    <>
+      <input
+        placeholder="Add task"
+        value={text}
+        onChange={e => setText(e.target.value)}
+      />
+      <button onClick={() => {
+        setText('');
+        dispatch({
+          type: 'added',
+          id: nextId++,
+          text: text,
+        }); 
+      }}>Add</button>
+    </>
+  );
+}
+
+let nextId = 3;
+```
+
+```js TaskList.js
+import { useState, useContext } from 'react';
+import { useTasks, useTasksDispatch } from './TasksContext.js';
+
+export default function TaskList() {
+  const tasks = useTasks();
+  return (
+    <ul>
+      {tasks.map(task => (
+        <li key={task.id}>
+          <Task task={task} />
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function Task({ task }) {
+  const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useTasksDispatch();
+  let taskContent;
+  if (isEditing) {
+    taskContent = (
+      <>
+        <input
+          value={task.text}
+          onChange={e => {
+            dispatch({
+              type: 'changed',
+              task: {
+                ...task,
+                text: e.target.value
+              }
+            });
+          }} />
+        <button onClick={() => setIsEditing(false)}>
+          Save
+        </button>
+      </>
+    );
+  } else {
+    taskContent = (
+      <>
+        {task.text}
+        <button onClick={() => setIsEditing(true)}>
+          Edit
+        </button>
+      </>
+    );
+  }
+  return (
+    <label>
+      <input
+        type="checkbox"
+        checked={task.done}
+        onChange={e => {
+          dispatch({
+            type: 'changed',
+            task: {
+              ...task,
+              done: e.target.checked
+            }
+          });
+        }}
+      />
+      {taskContent}
+      <button onClick={() => {
+        dispatch({
+          type: 'deleted',
+          id: task.id
+        });
+      }}>
+        Delete
+      </button>
+    </label>
+  );
+}
+```
+
+```css
+button { margin: 5px; }
+li { list-style-type: none; }
+ul, li { margin: 0; padding: 0; }
+```
+
+</Sandpack>
+
+<Solution />
+
 </Recipes>
 
 ### Specifying a fallback default value {/*specifying-a-fallback-default-value*/}
@@ -715,7 +918,7 @@ const ThemeContext = createContext(null);
 
 <Gotcha>
 
-The default value **never changes**. If you want to update context, use it with state as [described above](#passing-data-deeply-into-the-tree).
+The default value **never changes**. If you want to update context, use it with state as [described above](#updating-data-passed-via-context).
 
 </Gotcha>
 
@@ -945,6 +1148,8 @@ footer {
 ### Automatically nested headings {/*automatically-nested-headings*/}
 
 You can "accumulate" information when you nest context providers. In this example, the `Section` component keeps track of the `LevelContext` which specifies the depth of the section nesting. It reads the `LevelContext` from the parent section, and provides the `LevelContext` number increased by one to its children. As a result, the `Heading` component can automatically decide which of the `<h1>`, `<h2>`, `<h3>`, ..., tags to use based on how many `Section` components it is nested inside of.
+
+Read a [detailed walkthrough](/learn/passing-data-deeply-with-context) of this example.
 
 <Sandpack>
 

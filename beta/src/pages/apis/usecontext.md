@@ -60,7 +60,7 @@ It doesn't matter how many layers of components there are between the provider a
 
 <Gotcha>
 
-`useContext()` always looks for the closest provider *above* the calling component in the tree. **It does not take into account any providers in the same component from which you're calling `useContext()`.**
+`useContext()` always looks for the closest provider *above* the component that calls it. It searches upwards and **does not** consider providers in the component from which you're calling `useContext()`.
 
 </Gotcha>
 

@@ -391,10 +391,10 @@ Hooks are more restrictive than regular functions. You can only call Hooks *at t
 In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
 
 <DiagramGroup>
-    <Diagram name="sharing_data_child.svg" alt="TODO: Sharing data" height={734} width={814}>
+    <Diagram name="sharing_data_child" alt="TODO: Sharing data" height={734} width={814}>
         Before clicking, each MyButton has a count value set to zero.
     </Diagram>
-    <Diagram name="sharing_data_child_clicked.svg" alt="TODO: Sharing data" height={734} width={814}>
+    <Diagram name="sharing_data_child_clicked" alt="TODO: Sharing data" height={734} width={814}>
         After clicking, only one MyButton count value has updated.
     </Diagram>
 </DiagramGroup>
@@ -406,10 +406,10 @@ To make both `MyButton` components display the same `count` and update together,
 In this example, it is `MyApp`:
 
 <DiagramGroup>
-    <Diagram name="sharing_data_parent.svg" alt="TODO: Sharing data" height={770} width={820}>
+    <Diagram name="sharing_data_parent" alt="TODO: Sharing data" height={770} width={820}>
         Before clicking, count is stored in MyApp and passed down to both children as props.
     </Diagram>
-    <Diagram name="sharing_data_parent_clicked.svg" alt="TODO: Sharing data" height={770} width={820}>
+    <Diagram name="sharing_data_parent_clicked" alt="TODO: Sharing data" height={770} width={820}>
         After clicking, count updates in MyApp and the update is passed to both children as props.
     </Diagram>
 </DiagramGroup>

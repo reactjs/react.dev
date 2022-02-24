@@ -18,7 +18,7 @@ export function Diagram({name, alt, height, width, children}: DiagramProps) {
     <figure className="flex flex-col px-0 py-5 sm:p-10">
       <div className="dark-image">
         <Image
-          src={`/images/docs/diagrams/dark_${name}`}
+          src={`/images/docs/diagrams/${name}.dark.svg`}
           alt={alt}
           height={height}
           width={width}
@@ -26,7 +26,7 @@ export function Diagram({name, alt, height, width, children}: DiagramProps) {
       </div>
       <div className="light-image">
         <Image
-          src={`/images/docs/diagrams/${name}`}
+          src={`/images/docs/diagrams/${name}.svg`}
           alt={alt}
           height={height}
           width={width}

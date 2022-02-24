@@ -13,7 +13,7 @@ Videos dedicated to the discussion of React and the React ecosystem.
 ### Explain Like I'm 5: React DevTools {#eli5-react-devtools}
 
 A short overview of React DevTools from the Meta Open Source Team.
-<iframe title="Explain Like I'm 5: React" width="650" height="366" src="https://www.youtube.com/embed/ToG0BMM6HTI" frameborder="0" allowfullscreen></iframe>
+<iframe title="Explain Like I'm 5: React DevTools" width="650" height="366" src="https://www.youtube.com/embed/ToG0BMM6HTI" frameborder="0" allowfullscreen></iframe>
 
 ### React Conf 2021 {#react-conf-2021}
 
@@ -28,7 +28,7 @@ A short overview of React from the Meta Open Source Team.
 ### Explain Like I'm 5: React Native {#eli5-react-native}
 
 A short overview of React Native from the Meta Open Source Team.
-<iframe title="Explain Like I'm 5: React" width="650" height="366" src="https://www.youtube.com/embed/wUDeLT6WXnQ" frameborder="0" allowfullscreen></iframe>
+<iframe title="Explain Like I'm 5: React Native" width="650" height="366" src="https://www.youtube.com/embed/wUDeLT6WXnQ" frameborder="0" allowfullscreen></iframe>
 
 ### React Labs Series {#react-labs-series}
 

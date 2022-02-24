@@ -58,6 +58,12 @@ function Form() {
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `useContext(ThemeContext)`, it will receive `"dark"` as the value.
 
+<Gotcha>
+
+`useContext()` always looks for the closest provider *above* the calling component in the tree. **It does not take into account any providers in the same component from which you're calling `useContext()`.**
+
+</Gotcha>
+
 <Sandpack>
 
 ```js
@@ -162,14 +168,6 @@ function MyPage() {
 
 Now any `Button` inside of the provider will receive the current `theme` value. If you call `setTheme` to update the `theme` value that you pass to the provider, all `Button` components will re-render with the new `'light'` value.
 
-Note that `value="dark"` passes the `"dark"` string, but `value={theme}` passes the value of the JavaScript `theme` variable with [JSX curly braces](/learn/javascript-in-jsx-with-curly-braces). Curly braces also let you pass context values that aren't strings.
-
-<Gotcha>
-
-`useContext()` always looks for the closest provider *above* the calling component in the tree. **It does not take into account any providers in the same component from which you're calling `useContext()`.**
-
-</Gotcha>
-
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
 
 ### Updating a value via context {/*updating-a-value-via-context*/}
@@ -269,6 +267,8 @@ function Button({ children }) {
 ```
 
 </Sandpack>
+
+Note that `value="dark"` passes the `"dark"` string, but `value={theme}` passes the value of the JavaScript `theme` variable with [JSX curly braces](/learn/javascript-in-jsx-with-curly-braces). Curly braces also let you pass context values that aren't strings.
 
 <Solution />
 

@@ -17,6 +17,7 @@ const value = useContext(SomeContext)
   - [Updating data passed via context](#updating-data-passed-via-context)
   - [Specifying a fallback default value](#specifying-a-fallback-default-value)
   - [Overriding context for a part of the tree](#overriding-context-for-a-part-of-the-tree)
+  - [Optimizing re-renders when passing objects and functions](#optimizing-re-renders-when-passing-objects-and-functions)
 - [Reference](#reference)
   - [`useContext(SomeContext)`](#usecontext)
 - [Troubleshooting](#troubleshooting)
@@ -129,6 +130,8 @@ function Button({ children }) {
 
 .button-light,
 .button-dark {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -145,6 +148,8 @@ function Button({ children }) {
 ```
 
 </Sandpack>
+
+---
 
 ### Updating data passed via context {/*updating-data-passed-via-context*/}
 
@@ -169,6 +174,8 @@ function MyPage() {
 Now any `Button` inside of the provider will receive the current `theme` value. If you call `setTheme` to update the `theme` value that you pass to the provider, all `Button` components will re-render with the new `'light'` value.
 
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
+
+---
 
 ### Updating a value via context {/*updating-a-value-via-context*/}
 
@@ -251,6 +258,8 @@ function Button({ children }) {
 
 .button-light,
 .button-dark {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -353,6 +362,8 @@ label {
 }
 
 .button {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -508,6 +519,8 @@ label {
 
 .button-light,
 .button-dark {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -529,7 +542,7 @@ label {
 
 ### Extracting providers to a component {/*extracting-providers-to-a-component*/}
 
-As your app grows, it is expected that you'll have a "pyramid" of contexts closer to the root of your app. There is nothing wrong with that. However, if you dislike the nesting aesthetically, you can extract the providers into a single component. In this example, `MyProviders` hides the "plumbing" and renders the children passed to it inside the necessary providers. However, note that the `theme` and `setTheme` state is needed in `MyApp` itself, so `MyApp` still owns that piece of the state.
+As your app grows, it is expected that you'll have a "pyramid" of contexts closer to the root of your app. There is nothing wrong with that. However, if you dislike the nesting aesthetically, you can extract the providers into a single component. In this example, `MyProviders` hides the "plumbing" and renders the children passed to it inside the necessary providers. Note that the `theme` and `setTheme` state is needed in `MyApp` itself, so `MyApp` still owns that piece of the state.
 
 <Sandpack>
 
@@ -681,6 +694,8 @@ label {
 
 .button-light,
 .button-dark {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -908,6 +923,8 @@ ul, li { margin: 0; padding: 0; }
 
 </Recipes>
 
+---
+
 ### Specifying a fallback default value {/*specifying-a-fallback-default-value*/}
 
 If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/api/createcontext):
@@ -1002,6 +1019,8 @@ function Button({ children, onClick }) {
 
 .button-light,
 .button-dark {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -1018,6 +1037,8 @@ function Button({ children, onClick }) {
 ```
 
 </Sandpack>
+
+---
 
 ### Overriding context for a part of the tree {/*overriding-context-for-a-part-of-the-tree*/}
 
@@ -1122,6 +1143,8 @@ footer {
 
 .button-light,
 .button-dark {
+  border: 1px solid #777;
+  padding: 5px;
   margin-right: 10px;
   margin-top: 10px;
 }
@@ -1241,6 +1264,61 @@ export const LevelContext = createContext(0);
 
 </Recipes>
 
+---
+
+### Optimizing re-renders when passing objects and functions {/*optimizing-re-renders-when-passing-objects-and-functions*/}
+
+You can pass any values via context, including objects and functions.
+
+```js [[2, 10, "{ currentUser, login }"]] 
+function MyApp() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  function login(response) {
+    storeCredentials(response.credentials);
+    setCurrentUser(response.user);
+  }
+
+  return (
+    <AuthContext.Provider value={{ currentUser, login }}>
+      <Page />
+    </AuthContext.Provider>
+  );
+}
+```
+
+Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
+
+In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/usecallback) and wrap the object creation into [`useMemo`](/apis/usememo). This is a performance optimization:
+
+```js {1,6-9,11-14}
+import { useCallback, useMemo } from 'react';
+
+function MyApp() {
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const login = useCallback((response) => {
+    storeCredentials(response.credentials);
+    setCurrentUser(response.user);
+  }, []);
+
+  const contextValue = useMemo(() => ({
+    currentUser,
+    login
+  }), [currentUser, login]);
+
+  return (
+    <AuthContext.Provider value={contextValue}>
+      <Page />
+    </AuthContext.Provider>
+  );
+}
+```
+
+The `login` function does not use any information from the render scope, so you can specify an empty array of dependencies. The `contextValue` object consists of `currentUser` and `login`, so it needs to list both as dependencies. As a result of this change, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` changes. Read more about [skipping re-renders with memoization](TODO).
+
+---
+
 ## Reference {/*reference*/}
 
 ### `useContext(SomeContext)` {/*usecontext*/}
@@ -1271,6 +1349,7 @@ function MyComponent() {
 * React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/apis/memo) does not prevent the children receiving fresh context values from above.
 * If your build system produces duplicates modules in the output (which can happen if you use symlinks), this can break context. Passing something via context only works if `SomeContext` that you use to provide context and `SomeContext` that you use to read it are ***exactly* the same object**, as determined by a `===` comparison.
 
+---
 
 ## Troubleshooting {/*troubleshooting*/}
 
@@ -1298,7 +1377,7 @@ If you forget to specify `value`, it's like passing `value={undefined}`.
 You may have also mistakingly used a different prop name by mistake:
 
 ```js {1,2}
-// 🚩 Doesn't work: prop shouold be called "value"
+// 🚩 Doesn't work: prop should be called "value"
 <ThemeContext.Provider theme={theme}>
    <Button />
 </ThemeContext.Provider>

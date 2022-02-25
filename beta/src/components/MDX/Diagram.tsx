@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import Image from 'next/image';
+// import Image from 'next/image';
 
 interface DiagramProps {
   name: string;
@@ -17,7 +17,7 @@ export function Diagram({name, alt, height, width, children}: DiagramProps) {
   return (
     <figure className="flex flex-col px-0 py-5 sm:p-10">
       <div className="dark-image">
-        <Image
+        <img
           src={`/images/docs/diagrams/${name}.dark.svg`}
           alt={alt}
           height={height}
@@ -25,7 +25,7 @@ export function Diagram({name, alt, height, width, children}: DiagramProps) {
         />
       </div>
       <div className="light-image">
-        <Image
+        <img
           src={`/images/docs/diagrams/${name}.svg`}
           alt={alt}
           height={height}

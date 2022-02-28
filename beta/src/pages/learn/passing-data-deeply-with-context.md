@@ -218,7 +218,7 @@ Using context in close children
 
 </Diagram>
 
-<Diagram name="passing_data_context_far" height={430} width={608} alt="Diagram with a tree of ten nodes, each node with two children or less. The root parent note contains a bubble representing a value highlighted in orange. The value projects down directly to four leaves and one intermediate component in the tree, which are all highlighted in orange. None of the other intermediate components are highlighted.">
+<Diagram name="passing_data_context_far" height={430} width={608} alt="Diagram with a tree of ten nodes, each node with two children or less. The root parent node contains a bubble representing a value highlighted in orange. The value projects down directly to four leaves and one intermediate component in the tree, which are all highlighted in orange. None of the other intermediate components are highlighted.">
 
 Using context in distant children
 

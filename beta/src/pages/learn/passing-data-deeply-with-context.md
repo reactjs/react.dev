@@ -212,7 +212,7 @@ Context lets a parent--even a distant one!--provide some data to the entire tree
 
 <DiagramGroup>
 
-<Diagram name="passing_data_context_close" height={430} width={608} alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange.q" >
+<Diagram name="passing_data_context_close" height={430} width={608} alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
 
 Using context in close children
 

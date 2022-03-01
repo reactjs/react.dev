@@ -9,7 +9,7 @@ export const IconNavArrow = React.memo<
   JSX.IntrinsicElements['svg'] & {
     displayDirection: 'right' | 'down' | 'left';
   }
->(function IconNavArrow({displayDirection = 'right', className, ...rest}) {
+>(function IconNavArrow({displayDirection = 'right', className}) {
   const classes = cn(
     'duration-100 ease-in transition',
     {

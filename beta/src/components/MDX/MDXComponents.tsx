@@ -200,14 +200,12 @@ function Illustration({
   alt,
   author,
   authorLink,
-  children,
 }: {
   caption: string;
   src: string;
   alt: string;
   author: string;
   authorLink: string;
-  children: any;
 }) {
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">

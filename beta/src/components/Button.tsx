@@ -23,9 +23,9 @@ export function Button({
   return (
     <button
       style={style}
-      onMouseDown={(e) => {
-        e.preventDefault();
-        e.stopPropagation();
+      onMouseDown={(evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
       }}
       onClick={onClick}
       className={cn(

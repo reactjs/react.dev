@@ -68,14 +68,6 @@ export default function SocialBanner() {
             target="_blank"
             rel="noopener">
             <span css={{color: colors.brand}}>{bannerLink}</span>
-            <ExternalLinkSvg
-              cssProps={{
-                verticalAlign: -2,
-                display: 'inline-block',
-                marginLeft: '0.5rem',
-                color: 'inherit',
-              }}
-            />
           </a>
         </span>
       </div>

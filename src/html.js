@@ -51,7 +51,8 @@ export default class HTML extends React.Component<Props> {
                     so it needs to stay compatible with older browsers.
                   */
 
-                  var activeBanner = null;
+                  var activeSurveyBanner = null;
+                  var socialBanner = null;
                   var snoozeStartDate = null;
                   var today = new Date();
 
@@ -61,7 +62,7 @@ export default class HTML extends React.Component<Props> {
                     return time;
                   }
 
-                  activeBanner = {
+                  activeSurveyBanner = {
                     storageId: 'reactjs_banner_2021survey',
                     normalHeight: 50,
                     smallHeight: 75,
@@ -70,11 +71,11 @@ export default class HTML extends React.Component<Props> {
                     snoozeForDays: 7,
                   };
 
-                  if (activeBanner) {
+                  if (activeSurveyBanner) {
                     try {
-                      if (localStorage[activeBanner.storageId]) {
+                      if (localStorage[activeSurveyBanner.storageId]) {
                         snoozeStartDate = new Date(
-                          parseInt(localStorage.getItem(activeBanner.storageId), 10),
+                          parseInt(localStorage.getItem(activeSurveyBanner.storageId), 10),
                         );
                       }
                     } catch (err) {
@@ -84,44 +85,58 @@ export default class HTML extends React.Component<Props> {
                     try {
                       // If it's too early or long past the campaign, don't show the banner:
                       if (
-                        today < new Date(activeBanner.campaignStartDate) ||
-                        today > new Date(activeBanner.campaignEndDate)
+                        today < new Date(activeSurveyBanner.campaignStartDate) ||
+                        today > new Date(activeSurveyBanner.campaignEndDate)
                       ) {
-                        activeBanner = null;
+                        activeSurveyBanner = null;
                         // If we're in the campaign window, but the snooze has been set and it hasn't expired:
                       } else if (
                         snoozeStartDate &&
-                        addTimes(snoozeStartDate, activeBanner.snoozeForDays) >= today
+                        addTimes(snoozeStartDate, activeSurveyBanner.snoozeForDays) >= today
                       ) {
-                        activeBanner = null;
+                        activeSurveyBanner = null;
                       }
                     } catch (err) {
                       // Ignore.
                     }
                   }
 
+                  activeSocialBanner = {
+                    normalHeight: 50,
+                    smallHeight: 75
+                  };
+
                   function updateStyles() {
-                    if (activeBanner) {
-                      document.documentElement.style.setProperty('--banner-display', 'block');
-                      document.documentElement.style.setProperty('--banner-height-normal', activeBanner.normalHeight + 'px');
-                      document.documentElement.style.setProperty('--banner-height-small', activeBanner.smallHeight + 'px');
+                    if (activeSurveyBanner) {
+                      document.documentElement.style.setProperty('--survey-banner-display', 'block');
+                      document.documentElement.style.setProperty('--survey-banner-height-normal', activeSurveyBanner.normalHeight + 'px');
+                      document.documentElement.style.setProperty('--survey-banner-height-small', activeSurveyBanner.smallHeight + 'px');
                     } else {
-                      document.documentElement.style.setProperty('--banner-display', 'none');
-                      document.documentElement.style.setProperty('--banner-height-normal', '0px');
-                      document.documentElement.style.setProperty('--banner-height-small', '0px');
+                      document.documentElement.style.setProperty('--survey-banner-display', 'none');
+                      document.documentElement.style.setProperty('--survey-banner-height-normal', '0px');
+                      document.documentElement.style.setProperty('--survey-banner-height-small', '0px');
+                    }
+                    if (activeSocialBanner) {
+                      document.documentElement.style.setProperty('--social-banner-display', 'block');
+                      document.documentElement.style.setProperty('--social-banner-height-normal', activeSocialBanner.normalHeight + 'px');
+                      document.documentElement.style.setProperty('--social-banner-height-small', activeSocialBanner.smallHeight + 'px');
+                    } else {
+                      document.documentElement.style.setProperty('--social-banner-display', 'none');
+                      document.documentElement.style.setProperty('--social-banner-height-normal', '0px');
+                      document.documentElement.style.setProperty('--social-banner-height-small', '0px');
                     }
                   }
 
                   updateStyles();
-                  window.__dismissBanner = function() {
-                    if (activeBanner) {
+                  window.__dismissSurveyBanner = function() {
+                    if (activeSurveyBanner) {
                       try {
-                        localStorage.setItem(activeBanner.storageId, Date.now().toString());
+                        localStorage.setItem(activeSurveyBanner.storageId, Date.now().toString());
                       } catch (err) {
                         // Ignore.
                       }
                       // Don't show for next navigations within the session.
-                      activeBanner = null;
+                      activeSurveyBanner = null;
                       updateStyles();
                     }
                   };

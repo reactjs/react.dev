@@ -47,6 +47,7 @@ export default function SocialBanner() {
             [media.lessThan('small')]: {
               flexDirection: 'column',
               lineHeight: 1.5,
+              textAlign: 'center',
             },
           }}>
           <span

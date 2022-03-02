@@ -67,9 +67,7 @@ export default function SocialBanner() {
             {...linkProps}
             target="_blank"
             rel="noopener">
-            <span css={{color: colors.brand}}>
-              {bannerLink}
-            </span>
+            <span css={{color: colors.brand}}>{bannerLink}</span>
             <ExternalLinkSvg
               cssProps={{
                 verticalAlign: -2,

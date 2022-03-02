@@ -75,9 +75,11 @@ const MarkdownPage = ({
         position: 'relative',
         zIndex: 0,
         '& h1, & h2, & h3, & h4, & h5, & h6': {
-          scrollMarginTop: 'var(--banner-height-normal)',
+          scrollMarginTop:
+            'calc(var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
           [media.lessThan('small')]: {
-            scrollMarginTop: 'var(--banner-height-small)',
+            scrollMarginTop:
+              'calc(var(--survey-banner-height-small) + var(--social-banner-height-small))',
           },
         },
       }}>

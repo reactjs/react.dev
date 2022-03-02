@@ -6,6 +6,8 @@
 import React from 'react';
 import {ExternalLink} from './ExternalLink';
 
+// TODO: Unify with the old site settings.
+// Turning this off also requires changing the Page top value to pull up the sidebar.
 const bannerText = 'Support Ukraine 🇺🇦';
 const bannerLink = 'https://opensource.fb.com/support-ukraine';
 const bannerLinkText = 'Help Provide Humanitarian Aid to Ukraine.';

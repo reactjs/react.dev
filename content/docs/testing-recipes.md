@@ -96,7 +96,7 @@ export default function Hello(props) {
 
 We can write a test for this component:
 
-```jsx{24-27}
+```jsx
 // hello.test.js
 
 import React from "react";
@@ -119,17 +119,21 @@ afterEach(() => {
   container = null;
 });
 
-it("renders with or without a name", () => {
+it("renders without a name", () => {
   act(() => {
     render(<Hello />, container);
   });
   expect(container.textContent).toBe("Hey, stranger");
+});
 
+it("renders with the name Jenny", () => {
   act(() => {
     render(<Hello name="Jenny" />, container);
   });
   expect(container.textContent).toBe("Hello, Jenny!");
+});
 
+it("renders with the name Margaret", () => {
   act(() => {
     render(<Hello name="Margaret" />, container);
   });

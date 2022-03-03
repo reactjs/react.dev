@@ -5,8 +5,7 @@
  * @flow
  */
 
-import SurveyBanner from 'components/SurveyBanner';
-import SocialBanner from 'components/SocialBanner';
+import Banner from 'components/Banner';
 import Container from 'components/Container';
 import HeaderLink from './HeaderLink';
 import {Link} from 'gatsby';
@@ -47,8 +46,7 @@ const Header = ({location}: {location: Location}) => (
     <ContainerWrapper>
       <Container>
         <div style={{position: 'relative'}}>
-          <SurveyBanner />
-          <SocialBanner />
+          <Banner />
         </div>
       </Container>
     </ContainerWrapper>

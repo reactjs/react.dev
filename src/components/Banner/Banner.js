@@ -16,18 +16,18 @@ const linkProps = {
   rel: 'noopener',
 };
 
-export default function SurveyBanner() {
+export default function Banner() {
   return (
     <div
       css={{
-        display: 'var(--survey-banner-display)',
-        height: 'var(--survey-banner-height-normal)',
+        display: 'var(--banner-display)',
+        height: 'var(--banner-height-normal)',
         fontSize: 18,
         [media.lessThan('large')]: {
           fontSize: 16,
         },
         [media.lessThan('small')]: {
-          height: 'var(--survey-banner-height-small)',
+          height: 'var(--banner-height-small)',
           fontSize: 14,
         },
       }}>
@@ -167,7 +167,7 @@ export default function SurveyBanner() {
             }}
             onClick={() => {
               // See html.js
-              window.__dismissSurveyBanner();
+              window.__dismissBanner();
             }}>
             <svg
               xmlns="http://www.w3.org/2000/svg"

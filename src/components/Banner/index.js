@@ -4,6 +4,6 @@
  * @emails react-core
  */
 
-import SurveyBanner from './SurveyBanner';
+import Banner from './Banner';
 
-export default SurveyBanner;
+export default Banner;

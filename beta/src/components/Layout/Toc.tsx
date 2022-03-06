@@ -19,7 +19,7 @@ export function Toc({
   return (
     <nav
       role="navigation"
-      className="pt-6 fixed top-0 right-0"
+      className="pt-6 fixed top-10 right-0"
       style={{
         // This keeps the layout fixed width instead of adjusting for content.
         width: 'inherit',

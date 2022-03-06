@@ -14,7 +14,7 @@ const bannerLinkText = 'Help Provide Humanitarian Aid to Ukraine.';
 
 export default function SocialBanner() {
   return (
-    <div className="w-full bg-gray-100 dark:bg-gray-700 sticky py-2 h-16 sm:h-10 sm:py-0 flex items-center justify-center flex-col sm:flex-row">
+    <div className="w-full bg-gray-100 dark:bg-gray-700 fixed py-2 h-16 sm:h-10 sm:py-0 flex items-center justify-center flex-col sm:flex-row z-50">
       {bannerText}
       <ExternalLink
         className="ml-0 sm:ml-1 text-link dark:text-link-dark hover:underline"

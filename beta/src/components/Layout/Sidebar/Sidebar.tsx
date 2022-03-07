@@ -31,7 +31,7 @@ export function Sidebar() {
         isOpen ? 'block z-40' : 'hidden lg:block'
       )}
       aria-hidden={isHidden}>
-      <div className="px-5">
+      <div className="px-5 pt-16 sm:pt-10 lg:pt-0">
         <Search />
       </div>
       <nav

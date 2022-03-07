@@ -16,8 +16,8 @@ const linkProps = {
   rel: 'noopener',
 };
 
-const bannerText = 'Support Ukraine people 🇺🇦 ';
-const bannerLink = 'Help Provide Humanitarian Aid to Ukraine people.';
+const bannerText = 'Support civilians in war 🇺🇦 ';
+const bannerLink = 'Help Provide Humanitarian Aid to civilians in war.';
 
 export default function SocialBanner() {
   return (

@@ -23,7 +23,15 @@ Browsers use many tree structures to model UI. The [DOM](https://developer.mozil
 
 React also uses tree structures to manage and model the UI you make. React makes **UI trees** from your JSX. Then React DOM updates the browser DOM elements to match that UI tree. (React Native translates these trees into elements specific to mobile platforms.)
 
-<img alt="React takes components, turns them into UI tree structures, and ReactDOM turns them into HTML in your browser using the DOM." src="/images/docs/sketches/s_react-dom-tree.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_dom_tree" height={193} width={864} alt="TODO">
+
+From components, React creates a UI Tree which React DOM uses to render the DOM. 
+
+</Diagram>
+
+</DiagramGroup>
 
 ## State is tied to a position in the tree {/*state-is-tied-to-a-position-in-the-tree*/}
 
@@ -94,9 +102,17 @@ label {
 
 </Sandpack>
 
-Here's how these look as a tree: 
+Here's how these look as a tree:    
 
-<img alt="The JSX become a tree." src="/images/docs/sketches/s_jsx-to-tree.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_tree" height={248} width={395} alt="TODO">
+
+React Tree
+
+</Diagram>
+
+</DiagramGroup>
 
 **These are two separate counters because each is rendered at its own position in the tree.** You don't usually have to think about these positions to use React, but it can be useful to understand how it works.
 
@@ -160,7 +176,21 @@ function Counter() {
 
 </Sandpack>
 
-React will only keep the state around for as long as you render the same component at the same position. To see this, increment both counters, then clear "Render the second counter" checkbox, and then tick it again:
+As you can see, when one counter is updated, only the state for that component is updated:
+
+
+<DiagramGroup>
+
+<Diagram name="preserving_state_increment" height={248} width={441} alt="TODO">
+
+Updating state
+
+</Diagram>
+
+</DiagramGroup>
+
+
+React will keep the state around for as long as you render the same component at the same position. To see this, increment both counters, then remove the second component by unchecking "Render the second counter" checkbox, and then add it back by ticking it again:
 
 <Sandpack>
 
@@ -236,11 +266,27 @@ label {
 
 Notice how the moment you stop rendering the second counter, its state disappears completely. That's because when React removes a component, it destroys its state.
 
-<img alt="React removes a component from the tree, it destroys its state as well" src="/images/docs/sketches/s_remove-ui.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_remove_component" height={253} width={422} alt="TODO">
+
+Deleting a component
+
+</Diagram>
+
+</DiagramGroup>
 
 When you tick "Render the second counter," a second `Counter` and its state are initialized from scratch (`score = 0`) and added to the DOM.
 
-<img alt="When React adds UI to the DOM tree, it starts with all new state." src="/images/docs/sketches/s_add-back-ui.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_add_component" height={258} width={500} alt="TODO">
+
+Adding a component
+
+</Diagram>
+
+</DiagramGroup>
 
 **React preserves a component's state for as long as it's being rendered at its position in the UI tree.** If it gets removed, or a different component gets rendered at the same position, React discards its state.
 
@@ -333,12 +379,18 @@ label {
 
 When you tick or clear the checkbox, the counter state does not get reset. Whether `isFancy` is `true` or `false`, you always have a `<Counter />` as the first child of the `div` returned from the root `App` component:
 
-<img alt="React only sees the component and its position in the UI tree on render." src="/images/docs/sketches/s_ui-swap.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_same_component" height={461} width={600} alt="TODO">
+
+Since Counter is always in the same position, the count does not reset, event when isFancy state in the parent changes.
+
+</Diagram>
+
+</DiagramGroup>
 
 
 It's the same component at the same position, so from React's perspective, it's the same counter.
-
-<Illustration src="/images/docs/illustrations/i_react-is-blind-to-ui-swap.png" alt="React weighs both components, and although they are different colors, it sees them as the same." />
 
 <Gotcha>
 
@@ -527,7 +579,25 @@ label {
 
 Here, you switch between _different_ component types at the same position. Initially, the first child of the `<div>` contained a `Counter`. But when you swapped in a `p`, React removed the `Counter` from the UI tree and destroyed its state.
 
-<img alt="Removing a component from the UI tree destroys its state." src="/images/docs/sketches/s_ui-component-swap.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="TODO">
+
+When Counter changes to p, first the Counter is unmounted, then the p is mounted.
+
+</Diagram>
+
+</DiagramGroup>
+
+<DiagramGroup>
+
+<Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="TODO">
+
+When switching back, first the p is unmounted, then the Counter is mounted.
+
+</Diagram>
+
+</DiagramGroup>
 
 Also, **when you render a different component in the same position, it resets the state of its entire subtree**. To see how this works, increment the counter and then tick the checkbox:
 
@@ -620,7 +690,25 @@ label {
 
 The counter state gets reset when you click the checkbox. Although you render a `Counter`, the first child of the `div` changes from a `div` to a `section`. When the child `div` was removed from the DOM, the whole tree below it (including the `Counter` and its state) was destroyed as well.
 
-<img alt="If the first child isn't the same, forget about it!" src="/images/docs/sketches/s_ui-components-swap.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_diff_same_pt1" height={362} width={752} alt="TODO">
+
+When section changes to div, first the section is unmounted then the new div is mounted.
+
+</Diagram>
+
+</DiagramGroup>
+
+<DiagramGroup>
+
+<Diagram name="preserving_state_diff_same_pt2" height={362} width={752} alt="TODO">
+
+When switching back, first the div is unmounted then the new section is mounted.
+
+</Diagram>
+
+</DiagramGroup>
 
 As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to "match up"** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
 
@@ -827,7 +915,27 @@ h1 {
 * Initially, `isPlayerA` is `true`. So the first position contains `Counter` state, and the second one is empty.
 * When you click the "Next player" button the first position clears but the second one now contains a `Counter`.
 
-<img alt=" " src="/images/docs/sketches/s_placeholder-ui.png" />
+<DiagramGroup>
+
+<Diagram name="preserving_state_diif_position_p1" height={375} width={504} alt="TODO">
+
+Initial State
+
+</Diagram>
+
+<Diagram name="preserving_state_diif_position_p2" height={375} width={504} alt="TODO">
+
+Clicking "next"
+
+</Diagram>
+
+<Diagram name="preserving_state_diif_position_p3" height={375} width={504} alt="TODO">
+
+Clicking "next" again
+
+</Diagram>
+
+</DiagramGroup>
 
 > Each `Counter`'s state gets destroyed each time its removed from the DOM. This is why they reset every time you click the button.
 

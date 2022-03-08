@@ -1,11 +1,11 @@
 ---
-title: "React v18.0 Release Candidate: Upgrade Guide"
+title: "How to Upgrade to the React 18 Release Candidate"
 author: [rickhanlonii]
 ---
 
-Today we’re publishing the second release candidate for React 18. With this release, we’re encouraging users to install and test React 18 to [raise any issues](https://github.com/facebook/react/issues/new/choose) for any problems you encounter in the upgrade before we publish the full stable release.
+Our next major version, React 18, is available today as a Release Candidate (RC). As we shared at [React Conf](https://reactjs.org/blog/2021/12/17/react-conf-2021-recap.html), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
 
-As we shared at [React Conf](https://reactjs.org/blog/2021/12/17/react-conf-2021-recap.html), React 18 will include our new concurrent renderer and a gradual migration strategy for concurrent features. React 18 also includes a small number of breaking changes and features outside of concurrent rendering. In this post we will describe the changes to expect when upgrading to React 18.
+If you'd like to help us test React 18, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter so we can fix them before the stable release.
 
 *Note for React Native users: React 18 will ship in React Native with the New React Native Architecture. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).*
 
@@ -193,7 +193,7 @@ React 18 also introduces new APIs for concurrent rendering such as `startTransit
 
 In the future, we'd like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React would unmount and remount trees using the same component state as before.
 
-This feature will give React better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once. 
+This feature will give React better performance out-of-the-box, but requires components to be resilient to effects being mounted and destroyed multiple times. Most effects will work without any changes, but some effects assume they are only mounted or destroyed once.
 
 To help surface these issues, React 18 introduces a new development-only check to Strict Mode. This new check will automatically unmount and remount every component, whenever a component mounts for the first time, restoring the previous state on the second mount.
 

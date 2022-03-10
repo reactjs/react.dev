@@ -72,4 +72,4 @@ You can verify by inspecting the [last example](https://codepen.io/gaearon/pen/g
 
 Even though we create an element describing the whole UI tree on every tick, only the text node whose contents have changed gets updated by React DOM.
 
-In our experience, thinking about how the UI should look at any given moment, rather than how to change it over time, eliminates a whole class of bugs.
+In our experience, thinking about how the UI should look at any given moment, rather than how to change it over time also helps the developers to loads the page faster and secure manner which eliminates a whole class of bugs.

@@ -45,7 +45,7 @@ export function Sidebar() {
           <SidebarRouteTree routeTree={routeTree} />
         )}
       </nav>
-      <div className="sticky bottom-0 hidden lg:block">
+      <div className="sticky bottom-[35px] hidden lg:block">
         <Feedback />
       </div>
     </aside>

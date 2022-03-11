@@ -13,6 +13,7 @@ import {
   SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+import {useTimer} from 'use-timer';
 
 import cn from 'classnames';
 
@@ -20,6 +21,28 @@ import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
+import {ReturnValue} from 'use-timer/lib/types';
+
+/**
+ * Temp component: testing purposes only
+ */
+const Timer: React.FC<{timer: ReturnValue}> = ({timer}) => {
+  const {listen} = useSandpack();
+
+  React.useEffect(() => {
+    const unsub = listen((message) => {
+      if (message.type === 'start') {
+        timer.start();
+      } else if (message.type === 'done') {
+        timer.pause();
+      }
+    });
+
+    return () => unsub();
+  }, []);
+
+  return <>{timer.time}ms</>;
+};
 
 export function CustomPreset({
   isSingleFile,
@@ -32,6 +55,7 @@ export function CustomPreset({
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
+  const timer = useTimer({interval: 1});
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
@@ -47,10 +71,11 @@ export function CustomPreset({
 
   return (
     <>
+      Time to load: <Timer timer={timer} />
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar showDownload={isSingleFile} />
+        <NavigationBar showDownload={isSingleFile} onReset={timer.reset} />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}

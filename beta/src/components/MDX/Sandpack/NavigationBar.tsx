@@ -13,7 +13,13 @@ import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {FilesDropdown} from './FilesDropdown';
 
-export function NavigationBar({showDownload}: {showDownload: boolean}) {
+export function NavigationBar({
+  showDownload,
+  onReset,
+}: {
+  showDownload: boolean;
+  onReset: () => void;
+}) {
   const {sandpack} = useSandpack();
   const [dropdownActive, setDropdownActive] = React.useState(false);
   const {openPaths, clients} = sandpack;
@@ -44,6 +50,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
   const handleReset = () => {
     sandpack.resetAllFiles();
     refresh();
+    onReset();
   };
 
   return (

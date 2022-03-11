@@ -7,8 +7,7 @@
 
 // $FlowFixMe Update Flow
 import React from 'react';
-import {colors, fonts, media} from 'theme';
-import ExternalLinkSvg from 'templates/components/ExternalLinkSvg';
+import {colors, media} from 'theme';
 
 const linkProps = {
   href: 'https://opensource.fb.com/support-ukraine',

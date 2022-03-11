@@ -81,6 +81,7 @@ export function Preview({
     function bundlerListener() {
       const unsubscribe = listen((message: any) => {
         if (message.type === 'resize') {
+          console.log(message);
           setComputedAutoHeight(message.height);
         } else if (message.type === 'start') {
           if (message.firstLoad) {

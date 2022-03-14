@@ -11,11 +11,28 @@ interface DiagramProps {
   height: number;
   width: number;
   children: string;
+  captionPosition: 'top' | 'bottom' | null;
 }
 
-export function Diagram({name, alt, height, width, children}: DiagramProps) {
+function Caption({text}: {text: string}) {
   return (
-    <figure className="flex flex-col px-0 p-0 sm:p-10">
+    <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-tight">
+      {text}
+    </figcaption>
+  );
+}
+
+export function Diagram({
+  name,
+  alt,
+  height,
+  width,
+  children,
+  captionPosition,
+}: DiagramProps) {
+  return (
+    <figure className="flex flex-col px-0 p-0 sm:p-10 first:mt-0 mt-10 sm:mt-0">
+      {captionPosition === 'top' && <Caption text={children} />}
       <div className="dark-image">
         <Image
           src={`/images/docs/diagrams/${name}.dark.svg`}
@@ -32,9 +49,9 @@ export function Diagram({name, alt, height, width, children}: DiagramProps) {
           width={width}
         />
       </div>
-      <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-none sm:leading-3">
-        {children}
-      </figcaption>
+      {(!captionPosition || captionPosition === 'bottom') && (
+        <Caption text={children} />
+      )}
     </figure>
   );
 }

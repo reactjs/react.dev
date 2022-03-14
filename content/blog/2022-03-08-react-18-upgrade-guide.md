@@ -227,11 +227,11 @@ When you first update your tests to use `createRoot`, you may see this warning i
 
 > The current testing environment is not configured to support act(...)
 
-To fix this, set `global.IS_REACT_ACT_ENVIRONMENT` to `true` before running your test:
+To fix this, set `globalThis.IS_REACT_ACT_ENVIRONMENT` to `true` before running your test:
 
 ```js
 // In your test setup file
-global.IS_REACT_ACT_ENVIRONMENT = true;
+globalThis.IS_REACT_ACT_ENVIRONMENT = true;
 ```
 
 The purpose of the flag is to tell React that it's running in a unit test-like environment. React will log helpful warnings if you forget to wrap an update with `act`.

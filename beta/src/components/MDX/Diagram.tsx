@@ -15,7 +15,7 @@ interface DiagramProps {
 
 export function Diagram({name, alt, height, width, children}: DiagramProps) {
   return (
-    <figure className="flex flex-col px-0 py-5 sm:p-10">
+    <figure className="flex flex-col px-0 p-0 sm:p-10">
       <div className="dark-image">
         <Image
           src={`/images/docs/diagrams/${name}.dark.svg`}
@@ -32,7 +32,7 @@ export function Diagram({name, alt, height, width, children}: DiagramProps) {
           width={width}
         />
       </div>
-      <figcaption className="p-1 sm:p-4 mt-4 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-6">
+      <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-none sm:leading-3">
         {children}
       </figcaption>
     </figure>

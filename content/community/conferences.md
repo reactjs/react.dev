@@ -36,10 +36,10 @@ May 3 - 5, 2022. Berkeley, CA
 
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
 
-### render(ATL) 2022 {#render-atlanta-2022} 
-June 2-4, 2022. Atlanta, GA, USA
+### render(ATL) 2022 🍑 {#render-atlanta-2022} 
+June 1-4, 2022. Atlanta, GA, USA
 
-[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
+[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### App.js Conf 2022 {#appjs-conf-2022}
 June 8-10, 2022. In-person in Kraków, Poland + remote

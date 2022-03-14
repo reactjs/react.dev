@@ -19,9 +19,24 @@ Usually, you will pass information from a parent component to a child component 
 
 ## The problem with passing props {/*the-problem-with-passing-props*/}
 
-[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it. But it can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation sometimes called "prop drilling."
+[Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
 
-<img alt="Lifting state up vs prop drilling" src="/images/docs/sketches/s_prop-drilling.png" />
+But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation sometimes called "prop drilling."
+
+<DiagramGroup>
+
+<Diagram name="passing_data_lifting_state" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in purple. The value flows down to each of the two children, both highlighted in purple." >
+
+Lifting state up
+
+</Diagram>
+<Diagram name="passing_data_prop_drilling" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root node contains a bubble representing a value highlighted in purple. The value flows down through the two children, each of which pass the value but do not contain it. The left child passes the value down to two children which are both highlighted purple. The right child of the root passes the value through to one of its two children - the right one, which is highlighted purple. That child passed the value through its single child, which passes it down to both of its two children, which are highlighted purple.">
+
+Prop drilling
+
+</Diagram>
+
+</DiagramGroup>
 
 Wouldn't it be great if there were a way to "teleport" data to the components in the tree that need it without passing props? With React's context feature, there is!
 
@@ -195,7 +210,21 @@ You can't do it with props alone. This is where context comes into play. You wil
 
 Context lets a parent--even a distant one!--provide some data to the entire tree inside of it.
 
-<img alt="Context provides data to the entire tree" src="/images/docs/sketches/s_providing-context.png" />
+<DiagramGroup>
+
+<Diagram name="passing_data_context_close" height={160} width={608} captionPosition="top" alt="Diagram with a tree of three components. The parent contains a bubble representing a value highlighted in orange which projects down to the two children, each highlighted in orange." >
+
+Using context in close children
+
+</Diagram>
+
+<Diagram name="passing_data_context_far" height={430} width={608} captionPosition="top" alt="Diagram with a tree of ten nodes, each node with two children or less. The root parent node contains a bubble representing a value highlighted in orange. The value projects down directly to four leaves and one intermediate component in the tree, which are all highlighted in orange. None of the other intermediate components are highlighted.">
+
+Using context in distant children
+
+</Diagram>
+
+</DiagramGroup>
 
 ### Step 1: Create the context {/*step-1-create-the-context*/}
 
@@ -828,8 +857,6 @@ If neither of these approaches works well for you, consider context.
 Context is not limited to static values. If you pass a different value on the next render, React will update all the components reading it below! This is why context is often used in combination with state.
 
 In general, if some information is needed by distant components in different parts of the tree, it's a good indication that context will help you.
-
-<img alt="Context provides data to the entire tree" src="/images/docs/sketches/s_lifting-v-providing.png" />
 
 <Recap>
 

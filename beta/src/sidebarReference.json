@@ -12,6 +12,10 @@
           "path": "/apis",
           "routes": [
             {
+              "title": "createContext()",
+              "path": "/apis/createcontext"
+            },
+            {
               "title": "useContext()",
               "path": "/apis/usecontext"
             },

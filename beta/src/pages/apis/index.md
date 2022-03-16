@@ -74,6 +74,16 @@ function MyComponent() {
 
 </YouWillLearnCard>
 
+<YouWillLearnCard title="createContext" path="/apis/createContext">
+
+Creates a context that components can provide or read.
+
+```js
+const ThemeContext = createContext('light');
+```
+
+</YouWillLearnCard>
+
 ### Refs {/*refs*/}
 
 <YouWillLearnCard title="useRef" path="/apis/useref">

@@ -12,11 +12,17 @@ If you load React from a `<script>` tag, these top-level APIs are available on t
 
 The `react-dom` package provides DOM-specific methods that can be used at the top level of your app and as an escape hatch to get outside of the React model if you need to. Most of your components should not need to use this module.
 
-- [`render()`](#render)
-- [`hydrate()`](#hydrate)
-- [`unmountComponentAtNode()`](#unmountcomponentatnode)
-- [`findDOMNode()`](#finddomnode)
+- [`createRoot()`](#createroot)
+- [`hydrateRoot()`](#hydrateroot)
 - [`createPortal()`](#createportal)
+
+> Note
+> 
+> These methods are considered legacy. Both `render` and `hydrate` will warn that your app will behave as if it's running React 17 (learn more [here](https://reactjs.org/link/switch-to-createroot)):
+>- [`render()`](#render)
+>- [`hydrate()`](#hydrate)
+>- [`findDOMNode()`](#finddomnode)
+>- [`unmountComponentAtNode()`](#unmountcomponentatnode)
 
 ### Browser Support {#browser-support}
 
@@ -26,12 +32,65 @@ React supports all popular browsers, including Internet Explorer 9 and above, al
 >
 > We don't support older browsers that don't support ES5 methods, but you may find that your apps do work in older browsers if polyfills such as [es5-shim and es5-sham](https://github.com/es-shims/es5-shim) are included in the page. You're on your own if you choose to take this path.
 
-* * *
-
 ## Reference {#reference}
 
-### `render()` {#render}
+### `createRoot()` {#createroot}
 
+```javascript
+ReactDOM.createRoot(container[, options]);
+```
+
+Create a React root for the supplied `container` and return the root. The root can be used to render a React element into the DOM with `render`:
+
+```javascript
+const root = ReactDOM.createRoot(container);
+root.render(element);
+```
+
+The root can also be unmounted with `unmount`:
+
+```javascript
+root.unmount();
+```
+
+> Note:
+>
+> `ReactDOM.createRoot()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when render is called. Later calls use React’s DOM diffing algorithm for efficient updates.
+>
+> `ReactDOM.createRoot()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
+>
+> Using `ReactDOM.createRoot()` to hydrate a server-rendered container is not supported. Use [`hydrateRoot()`](#hydrateroot) instead.
+
+* * *
+
+### `hydrateRoot()` {#hydrateroot}
+
+```javascript
+ReactDOM.hydrateRoot(element, container[, options])
+```
+
+Same as [`createRoot()`](#createroot), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
+
+`hydrateRoot` accepts two optional callbacks as options:
+- `onDeleted`: callback called when content is deleted.
+- `onHydrated`: callback called after hydration completes.
+
+
+> Note
+> 
+> React expects that the rendered content is identical between the server and the client. It can patch up differences in text content, but you should treat mismatches as bugs and fix them. In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
+
+* * *
+
+### `createPortal()` {#createportal}
+
+```javascript
+ReactDOM.createPortal(child, container)
+```
+
+Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
+## Legacy Reference
+### `render()` {#render}
 ```javascript
 ReactDOM.render(element, container[, callback])
 ```
@@ -52,7 +111,7 @@ If the optional callback is provided, it will be executed after the component is
 > and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
 > [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
 >
-> Using `ReactDOM.render()` to hydrate a server-rendered container is deprecated and will be removed in React 17. Use [`hydrate()`](#hydrate) instead.
+> Using `ReactDOM.render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](#hydrateroot) instead.
 
 * * *
 
@@ -104,11 +163,3 @@ When a component renders to `null` or `false`, `findDOMNode` returns `null`. Whe
 > `findDOMNode` cannot be used on function components.
 
 * * *
-
-### `createPortal()` {#createportal}
-
-```javascript
-ReactDOM.createPortal(child, container)
-```
-
-Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).

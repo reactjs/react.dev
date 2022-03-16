@@ -12,16 +12,20 @@
           "path": "/apis",
           "routes": [
             {
-              "title": "useState()",
-              "path": "/apis/usestate"
-            },
-            {
               "title": "useContext()",
               "path": "/apis/usecontext"
             },
             {
+              "title": "useReducer()",
+              "path": "/apis/usereducer"
+            },
+            {
               "title": "useRef()",
               "path": "/apis/useref"
+            },
+            {
+              "title": "useState()",
+              "path": "/apis/usestate"
             }
           ]
         },

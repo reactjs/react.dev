@@ -359,13 +359,14 @@ h1 { display: block; margin: 10px; }
 You can put objects and arrays into state. In React, state is considered read-only, so **you should *replace* it rather than *mutate* your existing objects**. For example, if you have a `form` object in state, don't update it like this:
 
 ```js
-// Don't mutate an object in state like this:
+// 🚩 Don't mutate an object in state like this:
 form.firstName = 'Taylor';
 ```
 
 Instead, replace the whole object by creating a new one:
 
 ```js
+// ✅ Replace state with a new object
 setForm({
   ...form,
   firstName: 'Taylor'
@@ -1193,14 +1194,15 @@ console.log(nextCount); // 1
 
 React will **ignore your update if the next state is equal to the previous state,** as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. This usually happens when you change an object or an array in state directly:
 
-```js {2}
-obj.x = 10;
-setObj(obj); // Doesn't do anything
+```js
+obj.x = 10;  // 🚩 Wrong: mutating existing object
+setObj(obj); // 🚩 Doesn't do anything
 ```
 
-You called `setObj` with the same `obj` object, so React bailed out of rendering. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
+You mutated an existing `obj` object and passed it back to `setObj`, so React ignored the update. To fix this, you need to ensure that you're always [_replacing_ objects and arrays in state instead of _mutating_ them](#updating-objects-and-arrays-in-state):
 
 ```js
+// ✅ Correct: creating a new object
 setObj({
   ...obj,
   x: 10

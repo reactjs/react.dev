@@ -120,6 +120,8 @@ function App() {
 }
 ```
 
+This works similar to [importing and exporting components.](/learn/importing-and-exporting-components)
+
 ---
 
 ## Reference {/*reference*/}

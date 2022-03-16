@@ -221,7 +221,7 @@ function ProfileTimeline() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/fragrant-glade-8huj6)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/fast-glade-rqnhtt)**
 
 If you run this code and watch the console logs, you'll notice the sequence is:
 
@@ -296,7 +296,7 @@ function ProfileTimeline({ posts }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/wandering-morning-ev6r0)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/hopeful-lake-loddz9)**
 
 The event sequence now becomes like this:
 
@@ -422,7 +422,7 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/infallible-feather-xjtbu)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/sparkling-field-41z4r3)**
 
 With this approach, we can **fetch code and data in parallel**. When we navigate between pages, we don't need to wait for a page's code to load to start loading its data. We can start fetching both code and data at the same time (during the link click), delivering a much better user experience.
 
@@ -509,7 +509,7 @@ function ProfileTimeline({ id }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/nervous-glade-b5sel)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/beautiful-mendeleev-qwyxzg)**
 
 Note how we also changed the effect dependencies from `[]` to `[id]` — because we want the effect to re-run when the `id` changes. Otherwise, we wouldn't refetch new data.
 
@@ -587,7 +587,7 @@ class ProfileTimeline extends React.Component {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/trusting-clarke-8twuq)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/async-wind-9o4ojn)**
 
 This code is deceptively easy to read.
 
@@ -647,7 +647,7 @@ function ProfileTimeline({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/infallible-feather-xjtbu)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/sparkling-field-41z4r3)**
 
 In the previous Suspense example, we only had one `resource`, so we held it in a top-level variable. Now that we have multiple resources, we moved it to the `<App>`'s component state:
 
@@ -720,7 +720,7 @@ function ProfilePage() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/adoring-goodall-8wbn7)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/sparkling-rgb-r5vfhs)**
 
 It would catch both rendering errors *and* errors from Suspense data fetching. We can have as many error boundaries as we like but it's best to [be intentional](https://aweary.dev/fault-tolerance-react/) about their placement.
 
@@ -734,6 +734,6 @@ Suspense answers some questions, but it also poses new questions of its own:
 * What if we want to show a spinner in a different place than "above" the component in a tree?
 * If we intentionally *want* to show an inconsistent UI for a small period of time, can we do that?
 * Instead of showing a spinner, can we add a visual effect like "greying out" the current screen?
-* Why does our [last Suspense example](https://codesandbox.io/s/infallible-feather-xjtbu) log a warning when clicking the "Next" button?
+* Why does our [last Suspense example](https://codesandbox.io/s/sparkling-field-41z4r3) log a warning when clicking the "Next" button?
 
 To answer these questions, we will refer to the next section on [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).

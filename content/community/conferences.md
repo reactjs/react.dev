@@ -12,22 +12,17 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### AgentConf 2022 {#agent-conf-2022} 
-January 27th - 30th, 2022. In-person in Dornbirn and Lech Austria
-
-[Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
-
 ### React Live 2022 {#react-live-2022}
-April 1st, 2022. Amsterdam, The Netherlands
+April 1, 2022. Amsterdam, The Netherlands
 
 [Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
 
 ### React Miami 2022 🌴 {#react-miami-2022}
-April 18th - 19th, 2022. Miami, Florida
+April 18 - 19, 2022. Miami, Florida
 [Website](https://www.reactmiami.com/)
 
 ### < React Global > Online Summit 2022 by Geekle {#react-global-2022}
-April 20-21, 2022 - Online Summit
+April 20 - 21, 2022 - Online Summit
 
 [Website](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/) 
 
@@ -37,12 +32,12 @@ May 3 - 5, 2022. Berkeley, CA
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
 
 ### render(ATL) 2022 🍑 {#render-atlanta-2022} 
-June 1-4, 2022. Atlanta, GA, USA
+June 1 - 4, 2022. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### App.js Conf 2022 {#appjs-conf-2022}
-June 8-10, 2022. In-person in Kraków, Poland + remote
+June 8 - 10, 2022. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
@@ -66,6 +61,12 @@ September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ## Past Conferences {#past-conferences}
+
+### AgentConf 2022 {#agent-conf-2022} 
+
+January 27 - 30, 2022. In-person in Dornbirn and Lech Austria
+
+[Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
 
 ### React Conf 2021 {#react-conf-2021}
 December 8, 2021 - remote event (replay event on December 9)

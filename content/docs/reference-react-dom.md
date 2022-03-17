@@ -26,7 +26,7 @@ The `react-dom/client` package provides DOM client-specific methods that can be 
 
 ### Browser Support {#browser-support}
 
-React supports all popular browsers, including Internet Explorer 9 and above, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older browsers such as IE 9 and IE 10.
+React supports all modern browsers, although [some polyfills are required](/docs/javascript-environment-requirements.html) for older versions.
 
 > Note
 >

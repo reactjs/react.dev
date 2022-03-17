@@ -55,11 +55,11 @@ root.unmount();
 
 > Note:
 >
-> `ReactDOMClient.createRoot()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when render is called. Later calls use React’s DOM diffing algorithm for efficient updates.
+> `createRoot()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when render is called. Later calls use React’s DOM diffing algorithm for efficient updates.
 >
-> `ReactDOMClient.createRoot()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
+> `createRoot()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
 >
-> Using `ReactDOMClient.createRoot()` to hydrate a server-rendered container is not supported. Use [`hydrateRoot()`](#hydrateroot) instead.
+> Using `createRoot()` to hydrate a server-rendered container is not supported. Use [`hydrateRoot()`](#hydrateroot) instead.
 
 * * *
 
@@ -103,15 +103,15 @@ If the optional callback is provided, it will be executed after the component is
 
 > Note:
 >
-> `ReactDOMClient.render()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when first called. Later calls use React’s DOM diffing algorithm for efficient updates.
+> `render()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when first called. Later calls use React’s DOM diffing algorithm for efficient updates.
 >
-> `ReactDOMClient.render()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
+> `render()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
 >
-> `ReactDOMClient.render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
+> `render()` currently returns a reference to the root `ReactComponent` instance. However, using this return value is legacy
 > and should be avoided because future versions of React may render components asynchronously in some cases. If you need a reference to the root `ReactComponent` instance, the preferred solution is to attach a
 > [callback ref](/docs/refs-and-the-dom.html#callback-refs) to the root element.
 >
-> Using `ReactDOMClient.render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](#hydrateroot) instead.
+> Using `render()` to hydrate a server-rendered container is deprecated. Use [`hydrateRoot()`](#hydrateroot) instead.
 
 * * *
 

@@ -22,10 +22,10 @@ npm install react-dom
 
 ```js
 // Importing a specific API:
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
 // Importing all APIs together:
-import * as ReactDOM from 'react';
+import * as ReactDOMClient from 'react-dom/client';
 ```
 
 </PackageImport>

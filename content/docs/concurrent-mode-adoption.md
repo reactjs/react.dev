@@ -74,7 +74,7 @@ import ReactDOM from 'react-dom';
 //
 // You can opt into Concurrent Mode by writing:
 
-ReactDOM.unstable_createRoot(
+ReactDOM.createRoot(
   document.getElementById('root')
 ).render(<App />);
 ```

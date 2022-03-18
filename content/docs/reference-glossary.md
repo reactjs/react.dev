@@ -41,11 +41,10 @@ React DOM uses camelCase property naming convention instead of HTML attribute na
 
 ```js
 const name = 'Clementine';
-ReactDOM.render(
+root.render(
   <h1 className="hello">My name is {name}!</h1>,
-  document.getElementById('root')
 );
-```  
+```
 
 ## [Elements](/docs/rendering-elements.html) {#elements}
 

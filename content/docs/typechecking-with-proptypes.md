@@ -173,7 +173,7 @@ Greeting.defaultProps = {
 };
 
 // Renders "Hello, Stranger":
-const root = ReactDOM.render(document.getElementById('example')); 
+const root = ReactDOM.createRoot(document.getElementById('example')); 
 root.render(<Greeting />);
 ```
 

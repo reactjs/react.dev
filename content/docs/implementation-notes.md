@@ -32,10 +32,11 @@ The reconciler itself doesn't have a public API. [Renderers](/docs/codebase-over
 Let's consider the first time you mount a component:
 
 ```js
-ReactDOM.render(<App />, rootEl);
+const root = ReactDOM.createRoot(rootEl);
+root.render(<App />);
 ```
 
-React DOM will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
+`root.render` will pass `<App />` along to the reconciler. Remember that `<App />` is a React element, that is, a description of *what* to render. You can think about it as a plain object:
 
 ```js
 console.log(<App />);
@@ -236,9 +237,9 @@ This is working but still far from how the reconciler is really implemented. The
 The key feature of React is that you can re-render everything, and it won't recreate the DOM or reset the state:
 
 ```js
-ReactDOM.render(<App />, rootEl);
+root.render(<App />);
 // Should reuse the existing DOM:
-ReactDOM.render(<App />, rootEl);
+root.render(<App />);
 ```
 
 However, our implementation above only knows how to mount the initial tree. It can't perform updates on it because it doesn't store all the necessary information, such as all the `publicInstance`s, or which DOM `node`s correspond to which components.
@@ -412,7 +413,7 @@ If you're struggling to imagine how an internal instance tree is structured in m
 
  <img src="../images/docs/implementation-notes-tree.png" width="500" style="max-width: 100%" alt="React DevTools tree" />
 
-To complete this refactoring, we will introduce a function that mounts a complete tree into a container node, just like `ReactDOM.render()`. It returns a public instance, also like `ReactDOM.render()`:
+To complete this refactoring, we will introduce a function that mounts a complete tree into a container node and a public instance:
 
 ```js
 function mountTree(element, containerNode) {

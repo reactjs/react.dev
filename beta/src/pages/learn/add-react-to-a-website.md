@@ -74,11 +74,12 @@ function LikeButton() {
 
 ### Step 4: Add your React Component to the page {/*step-4-add-your-react-component-to-the-page*/}
 
-Lastly, add two lines to the bottom of **like_button.js**. These two lines of code find the `<div>` you added to your HTML in the first step and then display the "Like" button React component inside of it.
+Lastly, add three lines to the bottom of **like_button.js**. These three lines of code find the `<div>` you added to your HTML in the first step, create a React app with it, and then display the "Like" button React component inside of it.
 
 ```js
 const domContainer = document.getElementById('component-goes-here');
-ReactDOM.render(React.createElement(LikeButton), domContainer);
+const root = ReactDOM.createRoot(domContainer);
+root.render(React.createElement(LikeButton));
 ```
 
 **Congratulations! You have just rendered your first React component to your website!**
@@ -88,21 +89,21 @@ ReactDOM.render(React.createElement(LikeButton), domContainer);
 
 #### You can reuse components! {/*you-can-reuse-components*/}
 
-You might want to display a React component in multiple places on the same HTML page. This is most useful while React-powered parts of the page are isolated from each other. You can do this by calling `ReactDOM.render()` multiple times with multiple container elements.
+You might want to display a React component in multiple places on the same HTML page. This is most useful while React-powered parts of the page are isolated from each other. You can do this by calling `ReactDOM.createRoot()` multiple times with multiple container elements.
 
 1. In **index.html**, add an additional container element `<div id="component-goes-here-too"></div>`.
 2. In **like_button.js**, add an additional `ReactDOM.render()` for the new container element:
 
 ```js {6,7,8,9}
-ReactDOM.render(
-  React.createElement(LikeButton),
+const root1 = ReactDOM.createRoot(
   document.getElementById('component-goes-here')
 );
+root1.render(React.createElement(LikeButton));
 
-ReactDOM.render(
-  React.createElement(LikeButton),
+const root2 = ReactDOM.createRoot(
   document.getElementById('component-goes-here-too')
 );
+root2.render(React.createElement(LikeButton));
 ```
 
 Check out [an example that displays the "Like" button three times and passes some data to it](https://gist.github.com/rachelnabors/c0ea05cc33fbe75ad9bbf78e9044d7f8)!
@@ -157,8 +158,8 @@ Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribut
 
 ```jsx {1}
 <script type="text/babel">
-  ReactDOM.render(
-  <h1>Hello, world!</h1>, document.getElementById('root') );
+  const root = ReactDOM.createRoot(document.getElementById('root'));
+  root.render(<h1>Hello, world!</h1>);
 </script>
 ```
 

@@ -829,8 +829,6 @@ h1 {
 
 Currently, when you change the player, the score is preserved. The two `Counter`s appear in the same position, so React sees them as *the same* `Counter` whose `person` prop has changed.
 
-<Illustration src="/images/docs/illustrations/i_react-is-blind-to-ui-swap.png" alt="React weighs both components, and although they are different colors, it sees them as the same." />
-
 But conceptually, in this app they should be two separate counters. They might appear in the same place in the UI, but one is a counter for Taylor, and another is a counter for Sarah.
 
 There are two ways to reset state when switching between them:
@@ -1028,8 +1026,6 @@ Switching between Taylor and Sarah does not preserve the state. This is because 
 ```
 
 Specifying a `key` tells React to use the `key` itself as part of the position, instead of their order within the parent. This is why, even though you render them in the same place in JSX, from React's perspective, these are two different counters. As a result, they will never share state. Every time a counter appears on the screen, its state is created. Every time it is removed, its state is destroyed. Toggling between them resets their state over and over.
-
-<Illustration src="/images/docs/illustrations/i_keys-in-trees.png" alt="React distinguishes between components with different keys, even if they are of the same type." />
 
 > Remember that keys are not globally unique. They only specify the position *within the parent*.
 

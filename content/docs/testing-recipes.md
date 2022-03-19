@@ -605,7 +605,7 @@ It's typically better to make more specific assertions than to use snapshots. Th
 
 ### Multiple Renderers {#multiple-renderers}
 
-In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `ReactDOM.render` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
+In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `render` from `react-dom` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
 
 ```jsx
 import { act as domAct } from "react-dom/test-utils";

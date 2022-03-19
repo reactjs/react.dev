@@ -248,14 +248,23 @@ class CodeEditor extends Component {
 
   _render() {
     const {compiled} = this.state;
+    const {containerNodeID} = this.props;
+
+    // Until we upgrade Gatsby to React 18, fake the new root API.
+    const root = {
+      render: element => {
+        ReactDOM.render(element, document.getElementById(containerNodeID));
+      },
+    };
 
     try {
       // Example code requires React, ReactDOM, and Remarkable to be within scope.
       // It also requires a "mountNode" variable for ReactDOM.render()
       // eslint-disable-next-line no-new-func
-      new Function('React', 'ReactDOM', 'Remarkable', compiled)(
+      new Function('React', 'ReactDOM', 'root', 'Remarkable', compiled)(
         React,
         ReactDOM,
+        root,
         Remarkable,
       );
     } catch (error) {

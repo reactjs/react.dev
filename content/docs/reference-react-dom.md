@@ -62,11 +62,13 @@ Creates a portal. Portals provide a way to [render children into a DOM node that
 flushSync(callback)
 ```
 
-Force React to flush updates synchronously. This method is useful for being able to read the value of `state` immediately.
+Force React to flush any updates inside the provided callback synchronously. This method is useful for being able to read the result of those updates immediately.
 
 > Note:
 > 
 > `flushSync` can have a significant impact on performance. Use sparingly.
+> 
+> `flushSync` will force Suspense boundaries to show their `fallback` state.
 > 
 > `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
 

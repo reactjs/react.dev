@@ -9,7 +9,9 @@ next: introducing-jsx.html
 The smallest React example looks like this:
 
 ```jsx
-<h1>Hello, world!</h1>
+ReactDOM
+  .createRoot(document.getElementById('root'))
+  .render(<h1>Hello, world!</h1>);
 ```
 
 It displays a heading saying "Hello, world!" on the page.

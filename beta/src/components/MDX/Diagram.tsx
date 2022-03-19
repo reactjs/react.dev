@@ -31,7 +31,7 @@ export function Diagram({
   captionPosition,
 }: DiagramProps) {
   return (
-    <figure className="flex flex-col px-0 p-0 sm:p-10 first:mt-0 mt-10 sm:mt-0">
+    <figure className="flex flex-col px-0 p-0 sm:p-10 first:mt-0 mt-10 sm:mt-0 justify-center items-center">
       {captionPosition === 'top' && <Caption text={children} />}
       <div className="dark-image">
         <Image

@@ -26,7 +26,7 @@ The `react-dom` package also provides modules specific to client and server apps
 
 The `react-dom` package exports these methods:
 - [`createPortal()`](#createportal)
-
+- [`flushSync()`](#flushsync)
 
 These `react-dom` methods are also exported, but are considered legacy:
 - [`render()`](#render)
@@ -55,6 +55,25 @@ createPortal(child, container)
 ```
 
 Creates a portal. Portals provide a way to [render children into a DOM node that exists outside the hierarchy of the DOM component](/docs/portals.html).
+
+### `flushSync()` {#flushsync}
+
+```javascript
+flushSync(callback)
+```
+
+Force React to flush any updates inside the provided callback synchronously. This method is useful for being able to read the result of those updates immediately.
+
+> Note:
+> 
+> `flushSync` can have a significant impact on performance. Use sparingly.
+> 
+> `flushSync` may force pending Suspense boundaries to show their `fallback` state.
+> 
+> `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
+> 
+> `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+
 ## Legacy Reference
 ### `render()` {#render}
 ```javascript

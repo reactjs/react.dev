@@ -68,9 +68,11 @@ Force React to flush any updates inside the provided callback synchronously. Thi
 > 
 > `flushSync` can have a significant impact on performance. Use sparingly.
 > 
-> `flushSync` will force Suspense boundaries to show their `fallback` state.
+> `flushSync` may force pending Suspense boundaries to show their `fallback` state.
 > 
 > `flushSync` may also run pending effects and synchronously apply any updates they contain before returning.
+> 
+> `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
 
 ## Legacy Reference
 ### `render()` {#render}

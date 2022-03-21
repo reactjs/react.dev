@@ -24,6 +24,12 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useImperativeHandle`](#useimperativehandle)
   - [`useLayoutEffect`](#uselayouteffect)
   - [`useDebugValue`](#usedebugvalue)
+  - [`useDeferredValue`](#usedeferredvalue)
+  - [`useTransition`](#usetransition)
+  - [`useId`](#useid)
+- [Library Hooks](#library-hooks)
+  - [`useSyncExternalStore`](#usesyncexternalstore)
+  - [`useInsertionEffect`](#useinsertioneffect)
 
 ## Basic Hooks {#basic-hooks}
 
@@ -508,3 +514,59 @@ For example a custom Hook that returned a `Date` value could avoid calling the `
 ```js
 useDebugValue(date, date => date.toDateString());
 ```
+
+### `useDeferredValue` {#usedeferredvalue}
+
+```js
+const [deferredValue] = useDeferredValue(value);
+```
+
+TODO: description
+
+### `useTransition` {#usetransition}
+
+```js
+const [isPending, startTransition] = useTransition();
+```
+
+TODO: description
+
+### `useId` {#useid}
+
+```js
+const id = useId(value);
+```
+
+TODO: description
+
+> Note:
+> 
+> TODO: identifierPrefix
+
+## Library Hooks {#library-hooks}
+
+The following Hooks are provided for library authors to integrate libraries deeply into the React model, and are not typically used in application code.
+
+### `useSyncExternalStore` {#usesyncexternalstore}
+
+```js
+const state = useSyncExternalStore(subscribe, snapshot);
+```
+
+TODO: description
+
+> Note:
+>
+> TODO: use-sync-external-store/shim
+
+### `useInsertionEffect` {#useinsertioneffect}
+
+```js
+useInsertionEffect(didUpdate);
+```
+
+TODO: description
+
+> Note:
+> 
+> TODO: no refs

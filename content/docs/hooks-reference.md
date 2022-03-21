@@ -26,10 +26,10 @@ If you're new to Hooks, you might want to check out [the overview](/docs/hooks-o
   - [`useDebugValue`](#usedebugvalue)
   - [`useDeferredValue`](#usedeferredvalue)
   - [`useTransition`](#usetransition)
-- [Library Hooks](#library-hooks)
   - [`useId`](#useid)
-  - [`useInsertionEffect`](#useinsertioneffect)
+- [Library Hooks](#library-hooks)
   - [`useSyncExternalStore`](#usesyncexternalstore)
+  - [`useInsertionEffect`](#useinsertioneffect)
 
 ## Basic Hooks {#basic-hooks}
 
@@ -531,10 +531,6 @@ const [isPending, startTransition] = useTransition();
 
 TODO: description
 
-## Library Hooks {#library-hooks}
-
-The following Hooks are provided for library authors to integrate libraries deeply into the React model, and are not typically used in application code.
-
 ### `useId` {#useid}
 
 ```js
@@ -547,6 +543,22 @@ TODO: description
 > 
 > TODO: identifierPrefix
 
+## Library Hooks {#library-hooks}
+
+The following Hooks are provided for library authors to integrate libraries deeply into the React model, and are not typically used in application code.
+
+### `useSyncExternalStore` {#usesyncexternalstore}
+
+```js
+const state = useSyncExternalStore(subscribe, snapshot);
+```
+
+TODO: description
+
+> Note:
+>
+> TODO: use-sync-external-store/shim
+
 ### `useInsertionEffect` {#useinsertioneffect}
 
 ```js
@@ -558,15 +570,3 @@ TODO: description
 > Note:
 > 
 > TODO: no refs
-
-### `useSyncExternalStore` {#usesyncexternalstore}
-
-```js
-const state = useSyncExternalStore(subscribe, snapshot);
-```
-
-TODO: description
-
-> Note:
-> 
-> TODO: use-sync-external-store/shim

@@ -90,10 +90,10 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
   - [`useDebugValue`](/docs/hooks-reference.html#usedebugvalue)
   - [`useDeferredValue`](/docs/hooks-reference.html#usedeferredvalue)
   - [`useTransition`](/docs/hooks-reference.html#usetransition)
-- [Library Hooks](/docs/hooks-reference.html#library-hooks)
   - [`useId`](/docs/hooks-reference.html#useid)
-  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
+- [Library Hooks](/docs/hooks-reference.html#library-hooks)
   - [`useSyncExternalStore`](/docs/hooks-reference.html#usesyncexternalstore)
+  - [`useInsertionEffect`](/docs/hooks-reference.html#useinsertioneffect)
 
 * * *
 

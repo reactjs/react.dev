@@ -44,7 +44,10 @@ const Versions = ({location}: Props) => (
             </p>
             <blockquote>
               <p>Note</p>
-              <p>The current docs are for React 18. For React 17, see <a href="https://17.reactjs.org">https://17.reactjs.org.</a></p>
+              <p>
+                The current docs are for React 18. For React 17, see{' '}
+                <a href="https://17.reactjs.org">https://17.reactjs.org.</a>
+              </p>
             </blockquote>
             <p>
               See our FAQ for information about{' '}

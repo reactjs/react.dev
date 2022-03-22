@@ -81,10 +81,6 @@ When using [Babel](https://babeljs.io/), you'll need to make sure that Babel can
 
 ## `React.lazy` {#reactlazy}
 
-> Note:
->
-> `React.lazy` and Suspense are not yet available for server-side rendering. If you want to do code-splitting in a server rendered app, we recommend [Loadable Components](https://github.com/gregberge/loadable-components). It has a nice [guide for bundle splitting with server-side rendering](https://loadable-components.com/docs/server-side-rendering/).
-
 The `React.lazy` function lets you render a dynamic import as a regular component.
 
 **Before:**

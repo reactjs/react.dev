@@ -8,6 +8,14 @@
 
 const {resolve} = require('path');
 
+const v17_REDIRECTS = [
+  '/docs/concurrent-mode-adoption.html',
+  '/docs/concurrent-mode-intro.html',
+  '/docs/concurrent-mode-patterns.html',
+  '/docs/concurrent-mode-reference.html',
+  '/docs/concurrent-mode-suspense.html',
+];
+
 module.exports = async ({graphql, actions}) => {
   const {createPage, createRedirect} = actions;
 
@@ -25,6 +33,14 @@ module.exports = async ({graphql, actions}) => {
     redirectInBrowser: true,
     toPath: '/',
   });
+
+  for (const slug of v17_REDIRECTS) {
+    createRedirect({
+      isPermanent: true,
+      fromPath: slug,
+      toPath: 'https://17.reactjs.org' + slug,
+    });
+  }
 
   const allMarkdown = await graphql(
     `

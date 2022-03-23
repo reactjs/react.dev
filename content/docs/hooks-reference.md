@@ -558,7 +558,7 @@ const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 This method returns the value of the store and accepts three arguments:
 - `subscribe`: function to register a callback that is called whenever the store changes.
 - `getSnapshot`: function that returns the current value of the store.
-- `getServerSnapshot` (optional): function that returns the snapshot used during server rendering.
+- `getServerSnapshot`: function that returns the snapshot used during server rendering.
 
 The most basic example simply subscribes to the entire store:
 

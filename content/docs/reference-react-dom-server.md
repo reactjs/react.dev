@@ -24,8 +24,9 @@ The following methods can be used in both the server and browser environments:
 
 These additional methods depend on a package (`stream`) that is **only available on the server**, and won't work in the browser.
 
-- [`renderToNodeStream()`](#rendertonodestream)
+- [`renderToNodeStream()`](#rendertonodestream) (Deprecated)
 - [`renderToStaticNodeStream()`](#rendertostaticnodestream)
+- [`renderToPipeableStream()`](#rendertopipeablestream)
 
 * * *
 
@@ -54,8 +55,24 @@ Similar to [`renderToString`](#rendertostring), except this doesn't create extra
 If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use [`renderToString`](#rendertostring) on the server and [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on the client.
 
 * * *
+### `renderToPipeableStream()` {#rendertopipeablestream}
 
-### `renderToNodeStream()` {#rendertonodestream}
+```javascript
+ReactDOMServer.renderToPipeableStream(element, options)
+```
+
+Render a React element to its initial HTML. Returns a [Control object](https://github.com/facebook/react/blob/3f8990898309c61c817fbf663f5221d9a00d0eaa/packages/react-dom/src/server/ReactDOMFizzServerNode.js#L49-L54) that allows you to pipe the output or abort the request. Fully supports Suspense and streaming of HTML with "delayed" content blocks "popping in" later through javascript execution. [Read more](https://github.com/reactwg/react-18/discussions/37)
+
+If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
+
+> Note:
+>
+> Server-only. This API is not available in the browser.
+>
+
+* * *
+
+### `renderToNodeStream()` {#rendertonodestream} (Deprecated)
 
 ```javascript
 ReactDOMServer.renderToNodeStream(element)

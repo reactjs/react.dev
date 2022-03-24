@@ -539,7 +539,7 @@ const id = useId();
 
 `useId` is a hook for generating unique IDs that are stable across the server and client, while avoiding hydration mismatches.
 
-For a basic example, simply pass the ID to the elements that need it:
+For a basic example, pass the `id` directly to the elements that need it:
 
 ```js
 function Checkbox() {
@@ -553,7 +553,7 @@ function Checkbox() {
 };
 ```
 
-For multiple IDs in the same component, `useId` supports appending a suffix:
+For multiple IDs in the same component, append a suffix using the same `id`:
 
 ```js
 function NameFields() {
@@ -575,7 +575,7 @@ function NameFields() {
 
 > Note:
 > 
-> `useId` generates a string that includes the `:` token. This helps ensure that the token is unique, but is not supported in CSS selectors.
+> `useId` generates a string that includes the `:` token. This helps ensure that the token is unique, but is not supported in CSS selectors or APIs like `querySelectorAll`.
 > 
 > `useId` supports an `identifierPrefix` to prevent collisions in multi-root apps. To configure, see the options for [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) and [`ReactDOMServer`](/docs/react-dom-server.html).
 

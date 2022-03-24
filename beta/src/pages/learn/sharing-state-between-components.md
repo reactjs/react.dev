@@ -166,7 +166,7 @@ Lifting state up often changes the nature of what you're storing as state.
 
 <img alt="The parent component passes the state setting function to both child components." src="/images/docs/sketches/s_passing-functions-down.png" />
 
-In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use an number as the index of the active `Panel` for the state variable:
+In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
 
 ```js
 const [activeIndex, setActiveIndex] = useState(0);

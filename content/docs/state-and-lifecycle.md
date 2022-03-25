@@ -59,7 +59,7 @@ setInterval(tick, 1000);
 
 However, it misses a crucial requirement: the fact that the `Clock` sets up a timer and updates the UI every second should be an implementation detail of the `Clock`.
 
-Ideally we want to write this once and have the `Clock` update itself:
+Ideally we want to write this once and have the `Clock` update itself. This means the encompassing `tick()` function will no longer be needed:
 
 ```js{2}
 ReactDOM.render(
@@ -68,7 +68,7 @@ ReactDOM.render(
 );
 ```
 
-To implement this, we need to add "state" to the `Clock` component.
+To implement a self-updating `Clock`, we need to add "state" to the `Clock` component.
 
 State is similar to props, but it is private and fully controlled by the component.
 

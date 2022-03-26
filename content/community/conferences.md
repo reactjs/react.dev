@@ -60,6 +60,11 @@ September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
+### React Alicante 2022 {#react-alicante-2022}
+September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
+
+[Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 ## Past Conferences {#past-conferences}
 
 ### AgentConf 2022 {#agent-conf-2022} 

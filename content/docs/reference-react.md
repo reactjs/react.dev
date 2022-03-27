@@ -383,7 +383,7 @@ a higher priority than neighboring boundaries. [Read more](https://github.com/re
 ```js
 React.startTransition(callback)
 ```
-`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used outside a hook context when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
 
 > Note:
 >

@@ -601,7 +601,7 @@ function App() {
 >
 > Updates in a transition yield to more urgent updates such as clicks.
 >
-> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+> Updates in a transitions will not show a fallback for re-suspended content. This allows the user to continue interacting with the current content while rendering the update.
 
 ### `useId` {#useid}
 

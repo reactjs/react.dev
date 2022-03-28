@@ -130,7 +130,7 @@ The legacy context API is error-prone, and will be removed in a future major ver
 Read the [new context API documentation](/docs/context.html) to help migrate to the new version.
 
 
-### Detecting unsafe effects {#detecting-unsafe-effects}
+### Ensuring reusable state {#ensuring-reusable-state}
 
 In the future, we’d like to add a feature that allows React to add and remove sections of the UI while preserving state. For example, when a user tabs away from a screen and back, React should be able to immediately show the previous screen. To do this, React support remounting trees using the same component state used before unmounting.
 
@@ -175,4 +175,4 @@ When the component unmounts, effects are destroyed as normal:
 > This only applies to development mode, _production behavior is unchanged_.
 
 For help supporting common issues, see:
-  - [How to Support Strict Effects](https://github.com/reactwg/react-18/discussions/18)
+  - [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18)

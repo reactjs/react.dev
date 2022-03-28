@@ -139,7 +139,7 @@ function MyComponent() {
 }
 ```
 
-### Unexpected fallbacks
+### Avoiding fallbacks
 Any component may suspend as a result of rendering, even components that were already shown to the user. In order for screen content to always be consistent, if an already shown component suspends, React has to hide its tree up to the closest `<Suspense>` boundary. However, from the user's perspective, this can be disorienting.
 
 Consider this tab switcher:
@@ -162,7 +162,7 @@ function MyComponent() {
   return (
     <div>
       <Tabs onTabSelect={handleTabSelect} />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Glimmer />}>
         {tab === 'photos' ? <Photos /> : <Comments />}
       </Suspense>
     </div>
@@ -171,7 +171,7 @@ function MyComponent() {
 
 ```
 
-In this example, if tab gets set to from `'photos'` to `'comments'`, but `Comments` suspends, the user will see a glimmer. This makes sense because the user no longer wants to see `Photos`, the `Comments` component is not ready to render anything, and React needs to keep the user experience consistent, so it has no choice but to show the `Glimmer` above.
+In this example, if tab gets changed from `'photos'` to `'comments'`, but `Comments` suspends, the user will see a glimmer. This makes sense because the user no longer wants to see `Photos`, the `Comments` component is not ready to render anything, and React needs to keep the user experience consistent, so it has no choice but to show the `Glimmer` above.
 
 However, sometimes this user experience is not desirable. In particular, it is sometimes better to show the "old" UI while the new UI is being prepared. You can use the new [`startTransition`](/docs/react-api.html#starttransition) API to make React do this:
 

@@ -378,8 +378,7 @@ down the actual content and throw away the fallback.
 
 #### `React.Suspense` during hydration
 Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 
-a higher priority than neighboring boundaries. If the code for the boundary is ready then it will hydrate synchronously in the capture phase of the event. Persistent events (`focusin`, `mouseenter`, `dragenter`, `mouseover`, `pointerover`, `gotpointercapture`) will be rebroadcasted using native event dispatch with clones of the original event when their targets hydrate.
-
+a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
 
 
 ### `React.startTransition` {#starttransition}

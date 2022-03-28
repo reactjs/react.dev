@@ -366,11 +366,9 @@ It is documented in our [code splitting guide](/docs/code-splitting.html#reactla
 
 While this is not supported today, in the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
 
-#### `React.Suspense` in SSR
-During SSR trees wrapped in Suspense are rendered synchronously as deeply as possible. If the boundary never suspends 
-then the tree renders as though the boundary were never there. If a component does suspend then we schedule a low 
-priority task to render the fallback instead. If the component unsuspends before we flush the fallback then we send 
-down the actual content and throw away the fallback.
+#### `React.Suspense` in Server Side Rendering
+During server side rendering Suspense Boundaries allow you to flush your application in smaller chunks by suspending.
+When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
 
 #### `React.Suspense` during hydration
 Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 

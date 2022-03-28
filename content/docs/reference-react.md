@@ -342,10 +342,6 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 
 Note that rendering `lazy` components requires that there's a `<React.Suspense>` component higher in the rendering tree. This is how you specify a loading indicator.
 
-> **Note**
->
-> Using `React.lazy`with dynamic import requires Promises to be available in the JS environment. This requires a polyfill on IE11 and below.
-
 ### `React.Suspense` {#reactsuspense}
 
 `React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. Today, lazy loading components is the **only** use case supported by `<React.Suspense>`:
@@ -379,7 +375,6 @@ down the actual content and throw away the fallback.
 #### `React.Suspense` during hydration
 Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at 
 a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
-
 
 ### `React.startTransition` {#starttransition}
 

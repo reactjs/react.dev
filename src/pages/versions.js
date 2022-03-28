@@ -40,8 +40,15 @@ const Versions = ({location}: Props) => (
                 on GitHub
               </a>
               .<br />
-              Documentation for recent releases can also be found below.
+              Changelogs for recent releases can also be found below.
             </p>
+            <blockquote>
+              <p>Note</p>
+              <p>
+                The current docs are for React 18. For React 17, see{' '}
+                <a href="https://17.reactjs.org">https://17.reactjs.org.</a>
+              </p>
+            </blockquote>
             <p>
               See our FAQ for information about{' '}
               <a href="/docs/faq-versioning.html">

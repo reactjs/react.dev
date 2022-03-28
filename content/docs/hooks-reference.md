@@ -534,14 +534,50 @@ TODO: description
 ### `useId` {#useid}
 
 ```js
-const id = useId(value);
+const id = useId();
 ```
 
-TODO: description
+`useId` is a hook for generating unique IDs that are stable across the server and client, while avoiding hydration mismatches.
+
+For a basic example, pass the `id` directly to the elements that need it:
+
+```js
+function Checkbox() {
+  const id = useId();
+  return (
+    <>
+      <label htmlFor={id}>Do you like React?</label>
+      <input id={id} type="checkbox" name="react"/>
+    </>
+  );
+};
+```
+
+For multiple IDs in the same component, append a suffix using the same `id`:
+
+```js
+function NameFields() {
+  const id = useId();
+  return (
+    <div>
+      <label htmlFor={id + '-firstName'}>First Name</label>
+      <div>
+        <input id={id + '-firstName'} type="text" />
+      </div>
+      <label htmlFor={id + '-lastName'}>Last Name</label>
+      <div>
+        <input id={id + '-lastName'} type="text" />
+      </div>
+    </div>
+  );
+}
+```
 
 > Note:
 > 
-> TODO: identifierPrefix
+> `useId` generates a string that includes the `:` token. This helps ensure that the token is unique, but is not supported in CSS selectors or APIs like `querySelectorAll`.
+> 
+> `useId` supports an `identifierPrefix` to prevent collisions in multi-root apps. To configure, see the options for [`hydrateRoot`](/docs/react-dom-client.html#hydrateroot) and [`ReactDOMServer`](/docs/react-dom-server.html).
 
 ## Library Hooks {#library-hooks}
 
@@ -550,14 +586,48 @@ The following Hooks are provided for library authors to integrate libraries deep
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
 ```js
-const state = useSyncExternalStore(subscribe, snapshot);
+const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
 ```
 
-TODO: description
+`useSyncExternalStore` is a hook recommended for reading and subscribing from external data sources in a way that's compatible with concurrent rendering features like selective hydration and time slicing.
+
+This method returns the value of the store and accepts three arguments:
+- `subscribe`: function to register a callback that is called whenever the store changes.
+- `getSnapshot`: function that returns the current value of the store.
+- `getServerSnapshot`: function that returns the snapshot used during server rendering.
+
+The most basic example simply subscribes to the entire store:
+
+```js
+const state = useSyncExternalStore(store.subscribe, store.getSnapshot);
+```
+
+However, you can also subscribe to a specific field:
+
+```js
+const selectedField = useSyncExternalStore(
+  store.subscribe,
+  () => store.getSnapshot().selectedField,
+);
+```
+
+When server rendering, you must serialize the store value used on the server, and provide it to `useSyncExternalStore`. React will use this snapshot during hydration to prevent server mismatches:
+
+```js
+const selectedField = useSyncExternalStore(
+  store.subscribe,
+  () => store.getSnapshot().selectedField,
+  () => INITIAL_SERVER_SNAPSHOT.selectedField,
+);
+```
 
 > Note:
 >
-> TODO: use-sync-external-store/shim
+> `getSnapshot` must return a cached value. If getSnapshot is called multiple times in a row, it must return the same exact value unless there was a store update in between.
+> 
+> A shim is provided for supporting multiple React versions published as `use-sync-external-store/shim`. This shim will prefer `useSyncExternalStore` when available, and fallback to a user-space implementation when it's not.
+> 
+> As a convenience, we also provide a version of the API with automatic support for memoizing the result of getSnapshot published as `use-sync-external-store/with-selector`.
 
 ### `useInsertionEffect` {#useinsertioneffect}
 
@@ -565,8 +635,8 @@ TODO: description
 useInsertionEffect(didUpdate);
 ```
 
-TODO: description
+The signature is identical to `useEffect`, but it fires synchronously _before_ all DOM mutations. Use this to inject styles into the DOM before reading layout in [`useLayoutEffect`](#uselayouteffect). Since this hook is limited in scope, this hook does not have access to refs and cannot schedule updates.
 
 > Note:
-> 
-> TODO: no refs
+>
+> `useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](#useeffect) or [`useLayoutEffect`](#uselayouteffect) instead.

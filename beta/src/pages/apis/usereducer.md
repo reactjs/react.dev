@@ -36,7 +36,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init)
 Call `useReducer` at the top level of your component to manage state with a [reducer](/learn/extracting-state-logic-into-a-reducer).
 
 ```js [[1, 8, "state"], [2, 8, "dispatch"], [4, 8, "reducer"], [3, 8, "{ age: 42 }"]]
-import { useState } from 'react';
+import { useReducer } from 'react';
 
 function reducer(state, action) {
   // ...

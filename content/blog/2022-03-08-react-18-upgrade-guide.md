@@ -1,26 +1,26 @@
 ---
-title: "How to Upgrade to the React 18 Release Candidate"
+title: "How to Upgrade to the React 18"
 author: [rickhanlonii]
 ---
 
-Our next major version, React 18, is available today as a Release Candidate (RC). As we shared at [React Conf](https://reactjs.org/blog/2021/12/17/react-conf-2021-recap.html), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
+As we shared in the [release post](/blog/2022/03/28/react-v18.html), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
 
-If you'd like to help us test React 18, follow the steps in this upgrade guide and [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter so we can fix them before the stable release.
+Please [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter while upgrading to React 18.
 
 *Note for React Native users: React 18 will ship in React Native with the New React Native Architecture. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).*
 
 ## Installing
 
-To install the latest React 18 RC, use the `@rc` tag:
+To install the latest version of React:
 
 ```bash
-npm install react@rc react-dom@rc
+npm install react react-dom
 ```
 
 Or if you’re using yarn:
 
 ```bash
-yarn add react@rc react-dom@rc
+yarn add react react-dom
 ```
 
 ## Updates to Client Rendering APIs
@@ -181,13 +181,12 @@ For more information, see the [Automatic batching deep dive](https://github.com/
 
 ## New APIs for Libraries
 
-In the React 18 Working Group we worked with library maintainers to create new APIs needed to support concurrent rendering for use cases specific to their use case in areas like styles, external stores, and accessibility. To support React 18, some libraries may need to switch to one of the following APIs:
+In the React 18 Working Group we worked with library maintainers to create new APIs needed to support concurrent rendering for use cases specific to their use case in areas like styles, and external stores. To support React 18, some libraries may need to switch to one of the following APIs:
 
-* `useId` is a new hook for generating unique IDs on both the client and server, while avoiding hydration mismatches. This solves an issue that already exists in React 17 and below, but it's even more important in React 18 because of how our streaming server renderer delivers HTML out-of-order. For more information see the [useId post in the working group](https://github.com/reactwg/react-18/discussions/111).
 * `useSyncExternalStore` is a new hook that allows external stores to support concurrent reads by forcing updates to the store to be synchronous. This new API is recommended for any library that integrates with state external to React. For more information, see the [useSyncExternalStore overview post](https://github.com/reactwg/react-18/discussions/70) and [useSyncExternalStore API details](https://github.com/reactwg/react-18/discussions/86).
 * `useInsertionEffect` is a new hook that allows CSS-in-JS libraries to address performance issues of injecting styles in render. Unless you've already built a CSS-in-JS library we don't expect you to ever use this. This hook will run after the DOM is mutated, but before layout effects read the new layout. This solves an issue that already exists in React 17 and below, but is even more important in React 18 because React yields to the browser during concurrent rendering, giving it a chance to recalculate layout. For more information, see the [Library Upgrade Guide for `<style>`](https://github.com/reactwg/react-18/discussions/110).
 
-React 18 also introduces new APIs for concurrent rendering such as `startTransition` and `useDeferredValue`, which we will share more about in the upcoming stable release post.
+React 18 also introduces new APIs for concurrent rendering such as `startTransition`, `useDeferredValue` and `useId`, which we share more about in the [release post](/blog/2022/03/28/react-v18.html).
 
 ## Updates to Strict Mode
 
@@ -219,7 +218,7 @@ With Strict Mode in React 18, React will simulate unmounting and remounting the 
     * Effect setup code runs
 ```
 
-For more information, see the Working Group posts for [Adding Strict Effects to Strict Mode](https://github.com/reactwg/react-18/discussions/19) and [How to Support Strict Effects](https://github.com/reactwg/react-18/discussions/18).
+For more information, see the Working Group posts for [Adding Reusable State to StrictMode](https://github.com/reactwg/react-18/discussions/19) and [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18).
 
 ## Configuring Your Testing Environment
 

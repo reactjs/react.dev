@@ -247,10 +247,36 @@ In this release, React is dropping support for Internet Explorer, which is [goin
 
 If you need to support Internet Explorer we recommend you stay with React 17.
 
-## Other Changes
+## Deprecations
 
-* [Update to remove the "setState on unmounted component" warning](https://github.com/reactwg/react-18/discussions/82)
-* [Suspense no longer requires a `fallback` prop to capture](https://github.com/reactwg/react-18/discussions/72)
-* [Components can now render undefined](https://github.com/reactwg/react-18/discussions/75)
-* [Deprecated renderSubtreeIntoContainer](https://github.com/facebook/react/pull/23355)
-* [StrictMode updated to not silence double logging by default](https://github.com/reactwg/react-18/discussions/96)
+* `react-dom`: `ReactDOM.render` has been deprecated. Using it will warn and run your app in React 17 mode.
+* `react-dom`: `ReactDOM.hydrate` has been deprecated. Using it will warn and run your app in React 17 mode.
+* `react-dom`: `ReactDOM.unmountComponentAtNode` has been deprecated.
+* `react-dom`: `ReactDOM.renderSubtreeIntoContainer` has been deprecated.
+* `react-dom/server`: `ReactDOMServer.renderToNodeStream` has been deprecated.
+
+## Other Breaking Changes
+
+* **Consistent useEffect timing**: React now always synchronously flushes effect functions if the update was triggered during a discrete user input event such as a click or a keydown event. Previously, the behavior wasn't always predictable or consistent.
+* **Stricter hydration errors**: Hydration mismatches due to missing or extra text content are now treated like errors instead of warnings. React will no longer attempt to "patch up" individual nodes by inserting or deleting a node on the client in an attempt to match the server markup, and will revert to client rendering up to the closest `<Suspense>` boundary in the tree. This ensures the hydrated tree is consistent and avoids potential privacy and security holes that can be caused by hydration mismatches.
+* **Layout Effects with Suspense**: When a tree re-suspends and reverts to a fallback, React will now clean up layout effects, and then re-create them when the content inside the boundary is shown again. This fixes an issue which prevented component libraries from correctly measuring layout when used with Suspense.
+* **New JS Environment Requirements**: React now depends on modern browsers features including `Promise`, `Symbol`, and `Object.assign`. If you support older browsers and devices such as Internet Explorer which do not provide modern browser features natively or have non-compliant implementations, consider including a global polyfill in your bundled application.
+
+## Other Notable Changes
+
+### React
+
+* **Components can now render `undefined`:** React no longer warns if you return `undefined` from a component. This makes the allowed component return values consistent with values that are allowed in the middle of a component tree. We suggest to use a linter to prevent mistakes like forgetting a `return` statement before JSX.
+* **In tests, `act` warnings are now opt-in:** If you're running end-to-end tests, the `act` warnings are unnecessary. We've introduced an [opt-in](https://github.com/reactwg/react-18/discussions/102) mechanism so you can enable them only for unit tests where they are useful and beneficial.
+* **No warning about `setState` on unmounted components:** Previously, React warned about memory leaks when you call `setState` on an unmounted component. This warning was added for subscriptions, but people primarily run into it in scenarios where setting state is fine, and workarounds make the code worse. We've [removed](https://github.com/facebook/react/pull/22114) this warning.
+* **No suppression of console logs:** When you use Strict Mode, React renders each component twice to help you find unexpected side effects. In React 17, we've suppressed console logs for one of the two renders to make the logs easier to read. In response to [community feedback](https://github.com/facebook/react/issues/21783) about this being confusing, we've removed the suppression. Instead, if you have React DevTools installed, the second log's renders will be displayed in grey, and there will be an option (off by default) to suppress them completely.
+* **Improved memory usage:** React now cleans up more internal fields on unmount, making the impact from unfixed memory leaks that may exist in your application code less severe.
+
+### React DOM Server
+
+* **`renderToString`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary and then retry rendering the same content on the client. It is still recommended that you switch to a streaming API like `renderToPipeableStream` or `renderToReadableStream` instead.
+* **`renderToStaticMarkup`:** Will no longer error when suspending on the server. Instead, it will emit the fallback HTML for the closest `<Suspense>` boundary and retry rendering on the client.
+
+## Changelog
+
+You can view the [full changelog here](https://github.com/facebook/react/blob/main/CHANGELOG.md).

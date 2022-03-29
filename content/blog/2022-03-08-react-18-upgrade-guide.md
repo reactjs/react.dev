@@ -70,7 +70,7 @@ function AppWithCallbackAfterRender() {
     console.log('rendered');
   });
 
-return <App tab="home" />
+  return <App tab="home" />
 }
 
 const container = document.getElementById('app');

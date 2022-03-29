@@ -7,7 +7,7 @@ As we shared in the [release post](/blog/2022/03/29/react-v18.html), React 18 in
 
 Please [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter while upgrading to React 18.
 
-*Note for React Native users: React 18 will ship in React Native with the New React Native Architecture. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).*
+*Note for React Native users: React 18 will ship in a future version of React Native. This is because React 18 relies on the New React Native Architecture to benefit from the new capabilities presented in this blogpost. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).*
 
 ## Installing {#installing}
 

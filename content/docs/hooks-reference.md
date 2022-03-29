@@ -565,7 +565,43 @@ Memoizing the children tells React that it only needs to re-render them when `de
 const [isPending, startTransition] = useTransition();
 ```
 
-TODO: description
+Returns a stateful value for the pending state of the transition, and a function to start it.
+
+`startTransition` lets you mark updates in the provided callback as transitions:
+
+```js
+startTransition(() => {
+  setCount(count + 1);
+})
+```
+
+`isPending` indicates when a transition is active to show a pending state:
+
+```js
+function App() {
+  const [isPending, startTransition] = useTransition();
+  const [count, setCount] = useState(0);
+  
+  function handleClick() {
+    startTransition(() => {
+      setCount(c => c + 1);
+    })
+  }
+
+  return (
+    <div>
+      {isPending && <Spinner />}
+      <button onClick={handleClick}>{count}</button>
+    </div>
+  );
+}
+```
+
+> Note:
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transitions will not show a fallback for re-suspended content. This allows the user to continue interacting with the current content while rendering the update.
 
 ### `useId` {#useid}
 

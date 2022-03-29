@@ -383,9 +383,12 @@ a higher priority than neighboring boundaries. [Read more](https://github.com/re
 ```js
 React.startTransition(callback)
 ```
-
-TODO: description
+`React.startTransition` lets you mark updates inside the provided callback as transitions. This method is designed to be used when [`React.useTransition`](/docs/hooks-reference.html#usetransition) is not available.
 
 > Note:
-> 
-> TODO: useTransition
+>
+> Updates in a transition yield to more urgent updates such as clicks.
+>
+> Updates in a transitions will not show a fallback for re-suspended content, allowing the user to continue interacting while rendering the update.
+>
+> `React.startTransition` does not provide an `isPending` flag. To track the pending status of a transition see [`React.useTransition`](/docs/hooks-reference.html#usetransition).

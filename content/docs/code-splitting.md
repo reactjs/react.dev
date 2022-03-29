@@ -139,7 +139,7 @@ function MyComponent() {
 }
 ```
 
-### Avoiding fallbacks
+### Avoiding fallbacks {#avoiding-fallbacks}
 Any component may suspend as a result of rendering, even components that were already shown to the user. In order for screen content to always be consistent, if an already shown component suspends, React has to hide its tree up to the closest `<Suspense>` boundary. However, from the user's perspective, this can be disorienting.
 
 Consider this tab switcher:

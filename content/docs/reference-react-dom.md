@@ -74,7 +74,7 @@ Force React to flush any updates inside the provided callback synchronously. Thi
 > 
 > `flushSync` may also flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
 
-## Legacy Reference
+## Legacy Reference {#legacy-reference}
 ### `render()` {#render}
 ```javascript
 render(element, container[, callback])

@@ -46,7 +46,7 @@ June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interacti
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
-### React Native EU 2022: Powered by {callstack}
+### React Native EU 2022: Powered by {callstack} {#react-native-eu-2022-powered-by-callstack}
 September 1-2, 2022 - Remote event
 
 [Website](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -

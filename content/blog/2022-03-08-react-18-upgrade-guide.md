@@ -1,5 +1,5 @@
 ---
-title: "How to Upgrade to the React 18"
+title: "How to Upgrade to React 18"
 author: [rickhanlonii]
 ---
 

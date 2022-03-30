@@ -26,6 +26,7 @@
     "gatsby-plugin-manifest": "^4.11.0",
     "gatsby-plugin-netlify": "^2.0.0",
     "gatsby-plugin-nprogress": "^2.0.0",
+    "gatsby-plugin-offline": "^5.11.0",
     "gatsby-plugin-react-helmet": "^3.0.0",
     "gatsby-plugin-sharp": "^2.4.12",
     "gatsby-plugin-twitter": "^2.0.0",

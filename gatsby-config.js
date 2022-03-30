@@ -35,6 +35,7 @@ module.exports = {
         crossOrigin: `use-credentials`,
       },
     },
+    'gatsby-plugin-offline',
     'gatsby-source-react-error-codes',
     'gatsby-transformer-authors-yaml',
     'gatsby-transformer-home-example-code',

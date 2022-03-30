@@ -97,6 +97,10 @@ const root = hydrateRoot(container, <App tab="home" />);
 
 For more information, see the [working group discussion here](https://github.com/reactwg/react-18/discussions/5).
 
+> Note
+>
+> **If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) as you fix the issues it points out.
+
 ## Updates to Server Rendering APIs {#updates-to-server-rendering-apis}
 
 In this release, we’re revamping our `react-dom/server` APIs to fully support Suspense on the server and Streaming SSR. As part of these changes, we're deprecating the old Node streaming API, which does not support incremental Suspense streaming on the server.

@@ -30,8 +30,8 @@ You can place a "container" element like this `<div>` anywhere inside the `<body
 
 In the HTML page, right before the closing `</body>` tag, add three `<script>` tags for the following files:
 
-- [**react.development.js**](https://unpkg.com/react@17/umd/react.development.js) loads the core of React
-- [**react-dom.development.js**](https://unpkg.com/react-dom@17/umd/react-dom.development.js) lets React render HTML elements to the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model).
+- [**react.development.js**](https://unpkg.com/react@18/umd/react.development.js) loads the core of React
+- [**react-dom.development.js**](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render HTML elements to the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model).
 - **like_button.js** is where you'll write your component in step 3!
 
 <Gotcha>
@@ -42,8 +42,8 @@ When deploying, replace "development.js" with "production.min.js".
 
 ```html
   <!-- end of the page -->
-  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="like_button.js"></script>
 </body>
 ```
@@ -116,8 +116,8 @@ Unminified JavaScript can significantly slow down page load times for your users
 - **If you already minify** your application scripts, your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js` like so:
 
 ```html
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
 ## Try React with JSX {/*try-react-with-jsx*/}
@@ -145,8 +145,8 @@ The quickest way to try JSX in your project is to add the Babel compiler to your
 ```html {6}
 <!-- ... rest of <head> ... -->
 
-<script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
-<script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 

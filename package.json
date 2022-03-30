@@ -23,7 +23,7 @@
     "gatsby-plugin-feed": "^2.0.0",
     "gatsby-plugin-glamor": "^2.0.0",
     "gatsby-plugin-google-analytics": "^2.0.0",
-    "gatsby-plugin-manifest": "^2.0.0",
+    "gatsby-plugin-manifest": "^4.11.0",
     "gatsby-plugin-netlify": "^2.0.0",
     "gatsby-plugin-nprogress": "^2.0.0",
     "gatsby-plugin-react-helmet": "^3.0.0",

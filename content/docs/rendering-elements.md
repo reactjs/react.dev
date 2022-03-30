@@ -54,7 +54,7 @@ Consider this ticking clock example:
 
 **[Try it on CodePen](https://codepen.io/gaearon/pen/gwoJZk?editors=1010)**
 
-It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback.
+It calls [`root.render()`](/docs/react-dom.html#render) every second from a [`setInterval()`](https://developer.mozilla.org/en-US/docs/Web/API/WindowTimers/setInterval) callback. Here we are creating a new function trick() on each callback, not the root object. ReactDOM.createRoot is created once in this program and by using its object root we are updating the output on root.render(element) successfully.
 
 >**Note:**
 >

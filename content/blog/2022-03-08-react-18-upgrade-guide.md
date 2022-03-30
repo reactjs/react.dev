@@ -70,7 +70,7 @@ function AppWithCallbackAfterRender() {
     console.log('rendered');
   });
 
-return <App tab="home" />
+  return <App tab="home" />
 }
 
 const container = document.getElementById('app');
@@ -78,7 +78,9 @@ const root = ReactDOM.createRoot(container);
 root.render(<AppWithCallbackAfterRender />);
 ```
 
-> Note: There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+> Note:
+> 
+> There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
 
 Finally, if your app uses server-side rendering with hydration, upgrade `hydrate` to `hydrateRoot`:
 
@@ -96,6 +98,10 @@ const root = hydrateRoot(container, <App tab="home" />);
 ```
 
 For more information, see the [working group discussion here](https://github.com/reactwg/react-18/discussions/5).
+
+> Note
+> 
+> **If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) after you fix the issues that it's pointing out.
 
 ## Updates to Server Rendering APIs {#updates-to-server-rendering-apis}
 

@@ -2,14 +2,14 @@ const fs = require('fs');
 
 module.exports = function walk(dir) {
   let results = [];
-  /** 
+  /**
    * If the param is a directory we can return the file
    */
-  if(dir.includes('md')){
+  if (dir.includes('md')) {
     return [dir];
   }
   const list = fs.readdirSync(dir);
-  list.forEach(function (file) {
+  list.forEach(function(file) {
     file = dir + '/' + file;
     const stat = fs.statSync(file);
     if (stat && stat.isDirectory()) {

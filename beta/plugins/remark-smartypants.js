@@ -8,7 +8,7 @@ function check(parent) {
   return true;
 }
 
-module.exports = function (options) {
+module.exports = function(options) {
   const processor = retext().use(smartypants, options);
 
   function transformer(tree) {

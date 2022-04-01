@@ -25,7 +25,10 @@ Promise.resolve()
       const rawStr = await fs.readFile(postpath, 'utf8');
       const {data, excerpt, content} = fm(rawStr, {
         excerpt: function firstLine(file, options) {
-          file.excerpt = file.content.split('\n').slice(0, 2).join(' ');
+          file.excerpt = file.content
+            .split('\n')
+            .slice(0, 2)
+            .join(' ');
         },
       });
       const rendered = await markdownToHtml(excerpt.trimLeft().trim());

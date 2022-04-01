@@ -29,7 +29,7 @@ module.exports = ({
 } = {}) => {
   slugs.reset();
   return function transformer(tree) {
-    visit(tree, 'heading', (node) => {
+    visit(tree, 'heading', node => {
       const children = node.children;
       let tail = children[children.length - 1];
       // Generate slugs on the fly (even if not specified in markdown)

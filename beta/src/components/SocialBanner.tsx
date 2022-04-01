@@ -18,7 +18,8 @@ export default function SocialBanner() {
       {bannerText}
       <ExternalLink
         className="ml-0 sm:ml-1 text-link dark:text-link-dark hover:underline"
-        href={bannerLink}>
+        href={bannerLink}
+      >
         {bannerLinkText}
       </ExternalLink>
     </div>

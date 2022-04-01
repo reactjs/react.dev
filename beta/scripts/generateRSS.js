@@ -18,7 +18,7 @@ function generate() {
     feed_url: SITE_URL + '/feed.xml',
   });
 
-  blogIndexJson.routes.map((meta) => {
+  blogIndexJson.routes.map(meta => {
     feed.item({
       title: meta.title,
       guid: removeFromLast(meta.path, '.'),
@@ -26,14 +26,14 @@ function generate() {
       date: parse(meta.date, 'yyyy-MM-dd', new Date()),
       description: meta.description,
       custom_elements: [].concat(
-        meta.author.map((author) => ({
-          author: [{ name: authorsJson[author].name }],
+        meta.author.map(author => ({
+          author: [{name: authorsJson[author].name}],
         }))
       ),
     });
   });
 
-  const rss = feed.xml({ indent: true });
+  const rss = feed.xml({indent: true});
 
   fs.writeFileSync('./.next/static/feed.xml', rss);
 }

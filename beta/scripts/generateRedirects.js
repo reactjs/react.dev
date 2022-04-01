@@ -29,7 +29,7 @@ function writeRedirectsFile(redirects, redirectsFilePath) {
 
   let vercelRedirects = {};
 
-  redirects.forEach((redirect) => {
+  redirects.forEach(redirect => {
     const {fromPath, isPermanent, toPath} = redirect;
 
     vercelRedirects[fromPath] = {
@@ -41,8 +41,8 @@ function writeRedirectsFile(redirects, redirectsFilePath) {
   /**
    * Make sure we dont have the same redirect already
    */
-  oldConfigContent.redirects.forEach((data) => {
-    if(vercelRedirects[data.source]){
+  oldConfigContent.redirects.forEach(data => {
+    if (vercelRedirects[data.source]) {
       delete vercelRedirects[data.source];
     }
   });
@@ -51,7 +51,7 @@ function writeRedirectsFile(redirects, redirectsFilePath) {
    * Serialize the object to array of objects
    */
   let newRedirects = [];
-  Object.keys(vercelRedirects).forEach((value) =>
+  Object.keys(vercelRedirects).forEach(value =>
     newRedirects.push({
       source: value,
       destination: vercelRedirects[value].destination,
@@ -72,8 +72,8 @@ function writeRedirectsFile(redirects, redirectsFilePath) {
 // versions.yml structure is [{path: string, url: string, ...}, ...]
 writeRedirectsFile(
   versions
-    .filter((version) => version.path && version.url)
-    .map((version) => ({
+    .filter(version => version.path && version.url)
+    .map(version => ({
       fromPath: version.path,
       toPath: version.url,
     })),

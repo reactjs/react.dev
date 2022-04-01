@@ -23,8 +23,9 @@ function addHeaderID(line, slugger) {
     return line;
   }
 
-  const match =
-    /^(#+\s+)(.+?)(\s*\{(?:\/\*|#)([^\}\*\/]+)(?:\*\/)?\}\s*)?$/.exec(line);
+  const match = /^(#+\s+)(.+?)(\s*\{(?:\/\*|#)([^\}\*\/]+)(?:\*\/)?\}\s*)?$/.exec(
+    line
+  );
   const before = match[1] + match[2];
   const proc = modules
     .unified()
@@ -64,7 +65,7 @@ function addHeaderIDs(lines) {
   const slugger = new GithubSlugger();
   let inCode = false;
   const results = [];
-  lines.forEach((line) => {
+  lines.forEach(line => {
     // Ignore code blocks
     if (line.startsWith('```')) {
       inCode = !inCode;
@@ -93,9 +94,9 @@ async function main(paths) {
   const remarkParse = remarkParseMod.default;
   const remarkSlug = remarkSlugMod.default;
   modules = {unified, remarkParse, remarkSlug};
-  const files = paths.map((path) => [...walk(path)]).flat();
+  const files = paths.map(path => [...walk(path)]).flat();
 
-  files.forEach((file) => {
+  files.forEach(file => {
     if (!(file.endsWith('.md') || file.endsWith('.mdx'))) {
       return;
     }

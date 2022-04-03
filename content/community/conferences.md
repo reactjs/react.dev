@@ -36,6 +36,11 @@ June 1 - 4, 2022. Atlanta, GA, USA
 
 [Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
+### React Day Bangalore 2022 {#reactday-bangalore-2022}
+June 8 - 9, 2022.  Remote
+
+[Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
+
 ### App.js Conf 2022 {#appjs-conf-2022}
 June 8 - 10, 2022. In-person in Kraków, Poland + remote
 

@@ -60,6 +60,11 @@ September 1-2, 2022 - Remote event
 [Facebook](https://www.facebook.com/reactnativeeu/) - 
 [Instagram](https://www.instagram.com/reactnative_eu/)
 
+### React Finland 2022 {#react-finland-2022}
+September 12 - 16, 2022. In-person in Helsinki, Finland
+
+[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [Schedule](https://react-finland.fi/schedule/) - [Speakers](https://react-finland.fi/speakers/)
+
 ### React India 2022 {#react-india-2022}
 September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 

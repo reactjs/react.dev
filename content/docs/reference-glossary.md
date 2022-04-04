@@ -39,13 +39,9 @@ JSX is a syntax extension to JavaScript. It is similar to a template language, b
 
 React DOM uses camelCase property naming convention instead of HTML attribute names. For example, `tabindex` becomes `tabIndex` in JSX. The attribute `class` is also written as `className` since `class` is a reserved word in JavaScript:
 
-```js
-const name = 'Clementine';
-ReactDOM.render(
-  <h1 className="hello">My name is {name}!</h1>,
-  document.getElementById('root')
-);
-```  
+```jsx
+<h1 className="hello">My name is Clementine!</h1>
+```
 
 ## [Elements](/docs/rendering-elements.html) {#elements}
 

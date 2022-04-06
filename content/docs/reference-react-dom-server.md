@@ -44,11 +44,6 @@ Render a React element to its initial HTML. Returns the `{ pipe, abort }` method
 
 If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
 
-> Note:
->
-> This is a Node.js-specific API. Environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), like Deno and modern edge runtimes, should use [`renderToReadableStream`](#rendertoreadablestream) instead.
->
-
 ```javascript
 let didError = false;
 const {pipe, abort} = renderToPipeableStream(
@@ -86,6 +81,11 @@ const {pipe, abort} = renderToPipeableStream(
 ```
 
 See the [full list of options](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-dom/src/server/ReactDOMFizzServerNode.js#L36-L46).
+
+> Note:
+>
+> This is a Node.js-specific API. Environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), like Deno and modern edge runtimes, should use [`renderToReadableStream`](#rendertoreadablestream) instead.
+>
 
 * * *
 

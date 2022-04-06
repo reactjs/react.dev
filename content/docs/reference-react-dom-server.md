@@ -10,7 +10,7 @@ The `ReactDOMServer` object enables you to render components to static markup. T
 
 ```js
 // ES modules
-import ReactDOMServer from 'react-dom/server';
+import * as ReactDOMServer from 'react-dom/server';
 // CommonJS
 var ReactDOMServer = require('react-dom/server');
 ```
@@ -27,7 +27,7 @@ These methods are only available in the **environments with [Web Streams](https:
 
 - [`renderToReadableStream()`](#rendertoreadablestream)
 
-The following methods can be used in both the server and browser environments:
+The following methods can be used in both the server and Web API environments:
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)

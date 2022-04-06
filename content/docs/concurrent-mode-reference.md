@@ -134,7 +134,7 @@ The `useTransition` hook returns two values in an array.
 ```js
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition();
+  const [isPending, startTransition] = useTransition();
   return (
     <>
       <button

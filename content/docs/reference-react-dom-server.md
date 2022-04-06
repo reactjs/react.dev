@@ -66,7 +66,7 @@ const stream = renderToPipeableStream(
     onAllReady() {
       // If you don't want streaming, use this instead of onShellReady.
       // This will fire after the entire page content is ready.
-      // You can use this for crawlers (SEO) or static generation.
+      // You can use this for crawlers or static generation.
 
       // res.statusCode = didError ? 500 : 200;
       // res.setHeader('Content-type', 'text/html');
@@ -118,7 +118,7 @@ try {
   
   // This is to wait for all Suspense boundaries to be ready. You can uncomment
   // this line if you want to buffer the entire HTML instead of streaming it.
-  // You can use this for crawlers (SEO) or static generation:
+  // You can use this for crawlers or static generation:
 
   // await stream.allReady;
 

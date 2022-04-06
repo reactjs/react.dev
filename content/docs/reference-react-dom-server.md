@@ -40,13 +40,13 @@ The following methods can be used in both the server and browser environments:
 ReactDOMServer.renderToPipeableStream(element, options)
 ```
 
-Render a React element to its initial HTML. Returns the `{ pipe, abort }` methods that allows you to pipe the output or abort the request. Fully supports Suspense and streaming of HTML with "delayed" content blocks "popping in" via inline `<script>` tags later. [Read more](https://github.com/reactwg/react-18/discussions/37)
+Render a React element to its initial HTML. Returns a stream with a `pipe(res)` method to pipe the output and `abort()` to abort the request. Fully supports Suspense and streaming of HTML with "delayed" content blocks "popping in" via inline `<script>` tags later. [Read more](https://github.com/reactwg/react-18/discussions/37)
 
 If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
 
 ```javascript
 let didError = false;
-const {pipe, abort} = renderToPipeableStream(
+const stream = renderToPipeableStream(
   <App />,
   {
     onShellReady() {
@@ -54,7 +54,7 @@ const {pipe, abort} = renderToPipeableStream(
       // If something errored before we started streaming, we set the error code appropriately.
       res.statusCode = didError ? 500 : 200;
       res.setHeader('Content-type', 'text/html');
-      pipe(res);
+      stream.pipe(res);
     },
     onShellError(error) {
       // Something errored before we could complete the shell so we emit an alternative shell.
@@ -70,7 +70,7 @@ const {pipe, abort} = renderToPipeableStream(
 
       // res.statusCode = didError ? 500 : 200;
       // res.setHeader('Content-type', 'text/html');
-      // pipe(res);
+      // stream.pipe(res);
     },
     onError(x) {
       didError = true;

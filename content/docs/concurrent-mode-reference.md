@@ -55,6 +55,8 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
 >
 >This explanation is outdated. The strategy of a separate "mode" was abandoned in React 18. Instead, concurrent rendering is only enabled when you use concurrent features.
 
+</div>
+
 ### `createRoot` {#createroot}
 
 ```js

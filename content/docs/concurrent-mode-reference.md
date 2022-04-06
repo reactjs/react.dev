@@ -16,12 +16,22 @@ prev: concurrent-mode-adoption.html
 
 >Caution:
 >
->This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>This page is **somewhat outdated** and only exists for historical purposes.
 >
->Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
-) for the up-to-date information.**
+>React 18 was released with support for concurrency. However, **there is no "mode" anymore,** and the new behavior is fully opt-in and only enabled [when you use the new features](https://reactjs.org/blog/2022/03/29/react-v18.html#gradually-adopting-concurrent-features).
 >
->Before React 18 is released, we will replace this page with stable documentation.
+>**For up-to-date high-level information, refer to:**
+>* [React 18 Announcement](https://reactjs.org/blog/2022/03/29/react-v18.html)
+>* [Upgrading to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)
+>* [React Conf 2021 Videos](http://localhost:8000/blog/2021/12/17/react-conf-2021-recap.html)
+>
+>**For details about concurrent APIs in React 18, refer to:**
+>* [`React.Suspense`](https://reactjs.org/docs/react-api.html#reactsuspense) reference
+>* [`React.startTransition`](https://reactjs.org/docs/react-api.html#starttransition) reference
+>* [`React.useTransition`](https://reactjs.org/docs/hooks-reference.html#usetransition) reference
+>* [`React.useDeferredValue`](https://reactjs.org/docs/hooks-reference.html#usedeferredvalue) reference
+>
+>The rest of this page may include content that's stale, broken, or incorrect.
 
 </div>
 
@@ -38,6 +48,14 @@ This page is an API reference for the React [Concurrent Mode](/docs/concurrent-m
     - [`useDeferredValue`](#usedeferredvalue)
 
 ## Enabling Concurrent Mode {#concurrent-mode}
+
+<div class="scary">
+
+>Caution:
+>
+>This explanation is outdated. The strategy of a separate "mode" was abandoned in React 18. Instead, concurrent rendering is only enabled when you use concurrent features.
+
+</div>
 
 ### `createRoot` {#createroot}
 
@@ -102,25 +120,21 @@ Note that `SuspenseList` only operates on the closest `Suspense` and `SuspenseLi
 ### `useTransition` {#usetransition}
 
 ```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-
-const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+const [isPending, startTransition] = useTransition();
 ```
 
 `useTransition` allows components to avoid undesirable loading states by waiting for content to load before **transitioning to the next screen**. It also allows components to defer slower, data fetching updates until subsequent renders so that more crucial updates can be rendered immediately.
 
+* `isPending` is a boolean. It's React's way of informing us whether we're waiting for the transition to finish.
 The `useTransition` hook returns two values in an array.
 * `startTransition` is a function that takes a callback. We can use it to tell React which state we want to defer.
-* `isPending` is a boolean. It's React's way of informing us whether we're waiting for the transition to finish.
 
 **If some state update causes a component to suspend, that state update should be wrapped in a transition.**
 
 ```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition(SUSPENSE_CONFIG);
+  const [isPending, startTransition] = useTransition();
   return (
     <>
       <button
@@ -143,30 +157,19 @@ function App() {
 }
 ```
 
-In this code, we've wrapped our data fetching with `startTransition`. This allows us to start fetching the profile data right away, while deferring the render of the next profile page and its associated `Spinner` for 2 seconds (the time shown in `timeoutMs`).
+In this code, we've wrapped our data fetching with `startTransition`. This allows us to start fetching the profile data right away, while deferring the render of the next profile page and its associated `Spinner`.
 
 The `isPending` boolean lets React know that our component is transitioning, so we are able to let the user know this by showing some loading text on the previous profile page.
 
 **For an in-depth look at transitions, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#transitions).**
 
-#### useTransition Config {#usetransition-config}
-
-```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-```
-
-`useTransition` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long to wait before showing the next state (the new Profile Page in the above example).
-
-**Note: We recommend that you share Suspense Config between different modules.**
-
-
 ### `useDeferredValue` {#usedeferredvalue}
 
 ```js
-const deferredValue = useDeferredValue(value, { timeoutMs: 2000 });
+const deferredValue = useDeferredValue(value);
 ```
 
-Returns a deferred version of the value that may "lag behind" it for at most `timeoutMs`.
+Returns a deferred version of the value that may "lag behind" it.
 
 This is commonly used to keep the interface responsive when you have something that renders immediately based on user input and something that needs to wait for a data fetch.
 
@@ -175,7 +178,7 @@ A good example of this is a text input.
 ```js
 function App() {
   const [text, setText] = useState("hello");
-  const deferredText = useDeferredValue(text, { timeoutMs: 2000 }); 
+  const deferredText = useDeferredValue(text); 
 
   return (
     <div className="App">
@@ -189,16 +192,6 @@ function App() {
  }
 ```
 
-This allows us to start showing the new text for the `input` immediately, which allows the webpage to feel responsive. Meanwhile, `MySlowList` "lags behind" for up to 2 seconds according to the `timeoutMs` before updating, allowing it to render with the current text in the background.
+This allows us to start showing the new text for the `input` immediately, which allows the webpage to feel responsive. Meanwhile, `MySlowList` "lags behind", allowing it to render with the current text in the background.
 
 **For an in-depth look at deferring values, you can read [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html#deferring-a-value).**
-
-#### useDeferredValue Config {#usedeferredvalue-config}
-
-```js
-const SUSPENSE_CONFIG = { timeoutMs: 2000 };
-```
-
-`useDeferredValue` accepts an **optional Suspense Config** with a `timeoutMs`. This timeout (in milliseconds) tells React how long the deferred value is allowed to lag behind.
-
-React will always try to use a shorter lag when network and device allows it.

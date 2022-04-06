@@ -17,12 +17,22 @@ next: concurrent-mode-patterns.html
 
 >Caution:
 >
->This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>This page is **somewhat outdated** and only exists for historical purposes.
 >
->Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
-) for the up-to-date information.**
+>React 18 was released with support for concurrency. However, **there is no "mode" anymore,** and the new behavior is fully opt-in and only enabled [when you use the new features](https://reactjs.org/blog/2022/03/29/react-v18.html#gradually-adopting-concurrent-features).
 >
->Before React 18 is released, we will replace this page with stable documentation.
+>**For up-to-date high-level information, refer to:**
+>* [React 18 Announcement](https://reactjs.org/blog/2022/03/29/react-v18.html)
+>* [Upgrading to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)
+>* [React Conf 2021 Videos](http://localhost:8000/blog/2021/12/17/react-conf-2021-recap.html)
+>
+>**For details about concurrent APIs in React 18, refer to:**
+>* [`React.Suspense`](https://reactjs.org/docs/react-api.html#reactsuspense) reference
+>* [`React.startTransition`](https://reactjs.org/docs/react-api.html#starttransition) reference
+>* [`React.useTransition`](https://reactjs.org/docs/hooks-reference.html#usetransition) reference
+>* [`React.useDeferredValue`](https://reactjs.org/docs/hooks-reference.html#usedeferredvalue) reference
+>
+>The rest of this page includes content that's stale, broken, or incorrect.
 
 </div>
 
@@ -734,6 +744,5 @@ Suspense answers some questions, but it also poses new questions of its own:
 * What if we want to show a spinner in a different place than "above" the component in a tree?
 * If we intentionally *want* to show an inconsistent UI for a small period of time, can we do that?
 * Instead of showing a spinner, can we add a visual effect like "greying out" the current screen?
-* Why does our [last Suspense example](https://codesandbox.io/s/sparkling-field-41z4r3) log a warning when clicking the "Next" button?
 
 To answer these questions, we will refer to the next section on [Concurrent UI Patterns](/docs/concurrent-mode-patterns.html).

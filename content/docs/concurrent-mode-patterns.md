@@ -17,14 +17,22 @@ next: concurrent-mode-adoption.html
 
 >Caution:
 >
->This page was about experimental features that aren't yet available in a stable release. It was aimed at early adopters and people who are curious.
+>This page is **somewhat outdated** and only exists for historical purposes.
 >
->Much of the information on this page is now outdated and exists only for archival purposes. **Please refer to the [React 18 Alpha announcement post](/blog/2021/06/08/the-plan-for-react-18.html
-) for the up-to-date information.**
+>React 18 was released with support for concurrency. However, **there is no "mode" anymore,** and the new behavior is fully opt-in and only enabled [when you use the new features](https://reactjs.org/blog/2022/03/29/react-v18.html#gradually-adopting-concurrent-features).
 >
->Before React 18 is released, we will replace this page with stable documentation.
-
-</div>
+>**For up-to-date high-level information, refer to:**
+>* [React 18 Announcement](https://reactjs.org/blog/2022/03/29/react-v18.html)
+>* [Upgrading to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)
+>* [React Conf 2021 Videos](http://localhost:8000/blog/2021/12/17/react-conf-2021-recap.html)
+>
+>**For details about concurrent APIs in React 18, refer to:**
+>* [`React.Suspense`](https://reactjs.org/docs/react-api.html#reactsuspense) reference
+>* [`React.startTransition`](https://reactjs.org/docs/react-api.html#starttransition) reference
+>* [`React.useTransition`](https://reactjs.org/docs/hooks-reference.html#usetransition) reference
+>* [`React.useDeferredValue`](https://reactjs.org/docs/hooks-reference.html#usedeferredvalue) reference
+>
+>The rest of this page includes content that's stale, broken, or incorrect.
 
 Usually, when we update the state, we expect to see changes on the screen immediately. This makes sense because we want to keep our app responsive to user input. However, there are cases where we might prefer to **defer an update from appearing on the screen**.
 
@@ -79,20 +87,25 @@ Finally, we'll use it inside the `App` component:
 ```js{3-5}
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
-    timeoutMs: 3000
-  });
+  const [isPending, startTransition] = useTransition();
   // ...
 ```
 
 **By itself, this code doesn't do anything yet.** We will need to use this Hook's return values to set up our state transition. There are two values returned from `useTransition`:
 
-* `startTransition` is a function. We'll use it to tell React *which* state update we want to defer.
 * `isPending` is a boolean. It's React telling us whether that transition is ongoing at the moment.
+* `startTransition` is a function. We'll use it to tell React *which* state update we want to defer.
 
 We will use them right below.
 
-Note we passed a configuration object to `useTransition`. Its `timeoutMs` property specifies **how long we're willing to wait for the transition to finish**. By passing `{timeoutMs: 3000}`, we say "If the next profile takes more than 3 seconds to load, show the big spinner -- but before that timeout it's okay to keep showing the previous screen".
+<div class="scary">
+
+>Caution:
+>
+>In earlier experimental releases and demos, the order of the return values was reversed.
+
+</div>
+
 
 ### Wrapping setState in a Transition {#wrapping-setstate-in-a-transition}
 
@@ -120,11 +133,20 @@ Our "Next" button click handler sets the state that switches the current profile
 >
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/vigilant-feynman-kpjy8w)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/elastic-vaughan-ykzsi0?file=/src/index.js)**
 
 Press "Next" a few times. Notice it already feels very different. **Instead of immediately seeing an empty screen on click, we now keep seeing the previous page for a while.** When the data has loaded, React transitions us to the new screen.
 
-If we make our API responses take 5 seconds, [we can confirm](https://codesandbox.io/s/heuristic-leftpad-9hit59) that now React "gives up" and transitions anyway to the next screen after 3 seconds. This is because we passed `{timeoutMs: 3000}` to `useTransition()`. For example, if we passed `{timeoutMs: 60000}` instead, it would wait a whole minute.
+React only "waits" for `<Suspense>` boundaries that are already displayed. If you mount a new `<Suspense>` boundary as a part of transition, React will display its fallback immediately.
+
+<div class="scary">
+
+>Caution:
+>
+>In earlier experimental releases and demos, there was a configurable timeout. It was removed.
+
+</div>
+
 
 ### Adding a Pending Indicator {#adding-a-pending-indicator}
 
@@ -133,7 +155,7 @@ There's still something that feels broken about [our last example](https://codes
 Our `useTransition()` call returns two values: `startTransition` and `isPending`.
 
 ```js
-  const [startTransition, isPending] = useTransition({ timeoutMs: 3000 });
+  const [isPending, startTransition] = useTransition();
 ```
 
 We've already used `startTransition` to wrap the state update. Now we're going to use `isPending` too. React gives this boolean to us so we can tell whether **we're currently waiting for this transition to finish**. We'll use it to indicate that something is happening:
@@ -158,7 +180,7 @@ return (
 );
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-haslett-ds0h9h)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/serverless-fast-isjkvt)**
 
 Now, this feels a lot better! When we click Next, it gets disabled because clicking it multiple times doesn't make sense. And the new "Loading..." tells the user that the app didn't freeze.
 
@@ -166,12 +188,10 @@ Now, this feels a lot better! When we click Next, it gets disabled because click
 
 Let's take another look at all the changes we've made since the [original example](https://codesandbox.io/s/nice-shadow-zvosx0):
 
-```js{3-5,9,11,14,19}
+```js{3,9-12,17}
 function App() {
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
-    timeoutMs: 3000
-  });
+  const [isPending, startTransition] = useTransition();
   return (
     <>
       <button
@@ -192,12 +212,11 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/frosty-haslett-ds0h9h)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/serverless-fast-isjkvt)**
 
 It took us only seven lines of code to add this transition:
 
 * We've imported the `useTransition` Hook and used it in the component that updates the state.
-* We've passed `{timeoutMs: 3000}` to stay on the previous screen for at most 3 seconds.
 * We've wrapped our state update into `startTransition` to tell React it's okay to delay it.
 * We're using `isPending` to communicate the state transition progress to the user and to disable the button.
 
@@ -259,12 +278,9 @@ We can see in [this example](https://codesandbox.io/s/trusting-brown-6hj0m0) tha
 
 However, the experience feels really jarring. We were browsing a page, but it got replaced by a loading state right as we were interacting with it. It's disorienting. **Just like before, to avoid showing an undesirable loading state, we can wrap the state update in a transition:**
 
-```js{2-5,9-11,21}
+```js{2,6-8,18}
 function ProfilePage() {
-  const [startTransition, isPending] = useTransition({
-    // Wait 10 seconds before fallback
-    timeoutMs: 10000
-  });
+  const [isPending, startTransition] = useTransition();
   const [resource, setResource] = useState(initialResource);
 
   function handleRefreshClick() {
@@ -290,77 +306,9 @@ function ProfilePage() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/zealous-mccarthy-fiiwu2)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/inspiring-dawn-vho1yg?file=/src/index.js)**
 
 This feels a lot better! Clicking "Refresh" doesn't pull us away from the page we're browsing anymore. We see something is loading "inline", and when the data is ready, it's displayed.
-
-### Baking Transitions Into the Design System {#baking-transitions-into-the-design-system}
-
-We can now see that the need for `useTransition` is *very* common. Pretty much any button click or interaction that can lead to a component suspending needs to be wrapped in `useTransition` to avoid accidentally hiding something the user is interacting with.
-
-This can lead to a lot of repetitive code across components. This is why **we generally recommend to bake `useTransition` into the *design system* components of your app**. For example, we can extract the transition logic into our own `<Button>` component:
-
-```js{7-9,20,24}
-function Button({ children, onClick }) {
-  const [startTransition, isPending] = useTransition({
-    timeoutMs: 10000
-  });
-
-  function handleClick() {
-    startTransition(() => {
-      onClick();
-    });
-  }
-
-  const spinner = (
-    // ...
-  );
-
-  return (
-    <>
-      <button
-        onClick={handleClick}
-        disabled={isPending}
-      >
-        {children}
-      </button>
-      {isPending ? spinner : null}
-    </>
-  );
-}
-```
-
-**[Try it on CodeSandbox](https://codesandbox.io/s/heuristic-cerf-8bo4rk)**
-
-Note that the button doesn't care *what* state we're updating. It's wrapping *any* state updates that happen during its `onClick` handler into a transition. Now that our `<Button>` takes care of setting up the transition, the `<ProfilePage>` component doesn't need to set up its own:
-
-```js{4-6,11-13}
-function ProfilePage() {
-  const [resource, setResource] = useState(initialResource);
-
-  function handleRefreshClick() {
-    setResource(fetchProfileData());
-  }
-
-  return (
-    <Suspense fallback={<h1>Loading profile...</h1>}>
-      <ProfileDetails resource={resource} />
-      <Button onClick={handleRefreshClick}>
-        Refresh
-      </Button>
-      <Suspense fallback={<h1>Loading posts...</h1>}>
-        <ProfileTimeline resource={resource} />
-      </Suspense>
-    </Suspense>
-  );
-}
-```
-
-**[Try it on CodeSandbox](https://codesandbox.io/s/heuristic-cerf-8bo4rk)**
-
-When a button gets clicked, it starts a transition and calls `props.onClick()` inside of it -- which triggers `handleRefreshClick` in the `<ProfilePage>` component. We start fetching the fresh data, but it doesn't trigger a fallback because we're inside a transition, and the 10 second timeout specified in the `useTransition` call hasn't passed yet. While a transition is pending, the button displays an inline loading indicator.
-
-We can see now how Concurrent Mode helps us achieve a good user experience without sacrificing isolation and modularity of components. React coordinates the transition.
 
 ## The Three Steps {#the-three-steps}
 
@@ -369,6 +317,15 @@ By now we have discussed all of the different visual states that an update may g
 <br>
 
 <img src="../images/docs/cm-steps-simple.png" alt="Three steps" />
+
+<div class="scary">
+
+>Caution:
+>
+>The "timeout" case that switches from Pending to Receded has been removed.
+
+</div>
+
 
 At the very end, we have the **Complete** state. That's where we want to eventually get to. It represents the moment when the next screen is fully rendered and isn't loading more data.
 
@@ -476,7 +433,7 @@ The only difference between these two examples is that the first uses regular `<
 
 ### Wrap Lazy Features in `<Suspense>` {#wrap-lazy-features-in-suspense}
 
-Open [this example](https://codesandbox.io/s/crazy-browser-0tdg6m). When you press a button, you'll see the Pending state for a second before moving on. This transition feels nice and fluid.
+Open [this example](https://codesandbox.io/s/mystifying-tamas-1f2xjg). When you press a button, you'll see the Pending state for a second before moving on. This transition feels nice and fluid.
 
 We will now add a brand new feature to the profile page -- a list of fun facts about a person:
 
@@ -508,13 +465,11 @@ function ProfileTrivia({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/agitated-snowflake-m3scjk)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/blue-shape-lqwc82)**
 
 If you press "Open Profile" now, you can tell something is wrong. It takes a whole seven seconds to make the transition now! This is because our trivia API is too slow. Let's say we can't make the API faster. How can we improve the user experience with this constraint?
 
-If we don't want to stay in the Pending state for too long, our first instinct might be to set `timeoutMs` in `useTransition` to something smaller, like `3000`. You can try this [here](https://codesandbox.io/s/nervous-galileo-ln6pbh). This lets us escape the prolonged Pending state, but we still don't have anything useful to show!
-
-There is a simpler way to solve this. **Instead of making the transition shorter, we can "disconnect" the slow component from the transition** by wrapping it into `<Suspense>`:
+Let's "disconnect" the slow component from the transition by wrapping it into `<Suspense>`:
 
 ```js{8,10}
 function ProfilePage({ resource }) {
@@ -532,9 +487,7 @@ function ProfilePage({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/mutable-silence-wffd1t)**
-
-This reveals an important insight. React always prefers to go to the Skeleton state as soon as possible. Even if we use transitions with long timeouts everywhere, React will not stay in the Pending state for longer than necessary to avoid the Receded state.
+**[Try it on CodeSandbox](https://codesandbox.io/s/nice-shaw-k6t10j)**
 
 **If some feature isn't a vital part of the next screen, wrap it in `<Suspense>` and let it load lazily.** This ensures we can show the rest of the content as soon as possible. Conversely, if a screen is *not worth showing* without some component, such as `<ProfileDetails>` in our example, do *not* wrap it in `<Suspense>`. Then the transitions will "wait" for it to be ready.
 
@@ -542,7 +495,7 @@ This reveals an important insight. React always prefers to go to the Skeleton st
 
 When we're already on the next screen, sometimes the data needed to "unlock" different `<Suspense>` boundaries arrives in quick succession. For example, two different responses might arrive after 1000ms and 1050ms, respectively. If you've already waited for a second, waiting another 50ms is not going to be perceptible. This is why React reveals `<Suspense>` boundaries on a schedule, like a "train" that arrives periodically. This trades a small delay for reducing the layout thrashing and the number of visual changes presented to the user.
 
-You can see a demo of this [here](https://codesandbox.io/s/ecstatic-sammet-zeddc4). The "posts" and "fun facts" responses come within 100ms of each other. But React coalesces them and "reveals" their Suspense boundaries together. 
+You can see a demo of this [here](https://codesandbox.io/s/great-sea-3d788s). The "posts" and "fun facts" responses come within 100ms of each other. But React coalesces them and "reveals" their Suspense boundaries together. 
 
 ### Delaying a Pending Indicator {#delaying-a-pending-indicator}
 
@@ -550,9 +503,7 @@ Our `Button` component will immediately show the Pending state indicator on clic
 
 ```js{2,13}
 function Button({ children, onClick }) {
-  const [startTransition, isPending] = useTransition({
-    timeoutMs: 10000
-  });
+  const [startTransition, isPending] = useTransition();
 
   // ...
 
@@ -567,43 +518,33 @@ function Button({ children, onClick }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/jolly-http-n94od0)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/happy-cloud-2m8lxg)**
 
-This signals to the user that some work is happening. However, if the transition is relatively short (less than 500ms), it might be too distracting and make the transition itself feel *slower*.
+This signals to the user that some work is happening. However, if the transition is relatively short (less than 200ms), it might be too distracting and make the transition itself feel *slower*.
 
-One possible solution to this is to *delay the spinner itself* from displaying:
+The recommended solution is to use CSS to *reveal the spinner gradually and delay it*:
 
-```css
-.DelayedSpinner {
-  animation: 0s linear 0.5s forwards makeVisible;
-  visibility: hidden;
-}
-
-@keyframes makeVisible {
-  to {
-    visibility: visible;
-  }
-}
-```
-
-```js{2-4,10}
-const spinner = (
-  <span className="DelayedSpinner">
-    {/* ... */}
-  </span>
-);
-
+```js
 return (
   <>
     <button onClick={handleClick}>{children}</button>
-    {isPending ? spinner : null}
+    <span
+      style={{
+        transition: isPending
+          ? "opacity 0.3s 0.2s linear"
+          : "opacity 0s 0s linear",
+        opacity: isPending ? 1 : 0
+      }}
+    >
+      {/* ... */}
+    </span>
   </>
 );
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/optimistic-night-4td1me)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/great-feistel-xb5ic7)**
 
-With this change, even though we're in the Pending state, we don't display any indication to the user until 500ms has passed. This may not seem like much of an improvement when the API responses are slow. But compare how it feels [before](https://codesandbox.io/s/priceless-water-yw7zw4) and [after](https://codesandbox.io/s/mystifying-noether-tnxftn) when the API call is fast. Even though the rest of the code hasn't changed, suppressing a "too fast" loading state improves the perceived performance by not calling attention to the delay.
+With this change, even though we're in the Pending state, we don't display any indication to the user until 200ms has passed, and even after that, it takes a while to become fully visible. In cases where you expect the transition to be short, you might want to not use spinners at all, and instead display the button itself in an "active" state similar to being pressed.
 
 ### Recap {#recap}
 
@@ -613,7 +554,6 @@ The most important things we learned so far are:
 * The Receded state doesn't feel very nice because it hides existing content.
 * With `useTransition`, we can opt into showing a Pending state first instead. This will keep us on the previous screen while the next screen is being prepared.
 * If we don't want some component to delay the transition, we can wrap it in its own `<Suspense>` boundary.
-* Instead of doing `useTransition` in every other component, we can build it into our design system.
 
 ## Other Patterns {#other-patterns}
 
@@ -661,29 +601,17 @@ function Translation({ resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/boring-frost-t5ijqm)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/nervous-sunset-zuxrid)**
 
 Notice how when you type into the input, the `<Translation>` component suspends, and we see the `<p>Loading...</p>` fallback until we get fresh results. This is not ideal. It would be better if we could see the *previous* translation for a bit while we're fetching the next one.
 
-In fact, if we open the console, we'll see a warning:
-
-```
-Warning: App triggered a user-blocking update that suspended.
-
-The fix is to split the update into multiple parts: a user-blocking update to provide immediate feedback, and another update that triggers the bulk of the changes.
-
-Refer to the documentation for useTransition to learn how to implement this pattern.
-```
-
 As we mentioned earlier, if some state update causes a component to suspend, that state update should be wrapped in a transition. Let's add `useTransition` to our component:
 
-```js{4-6,10,13}
+```js{4,8,11}
 function App() {
   const [query, setQuery] = useState(initialQuery);
   const [resource, setResource] = useState(initialResource);
-  const [startTransition, isPending] = useTransition({
-    timeoutMs: 5000
-  });
+  const [startTransition, isPending] = useTransition();
 
   function handleChange(e) {
     const value = e.target.value;
@@ -692,13 +620,11 @@ function App() {
       setResource(fetchTranslation(value));
     });
   }
-
   // ...
-
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/wizardly-swirles-476m52)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/relaxed-sanne-23nrn7)**
 
 Try typing into the input now. Something's wrong! The input is updating very slowly.
 
@@ -724,7 +650,7 @@ function handleChange(e) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/elegant-kalam-dhlrkz)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/muddy-sun-lg10ks)**
 
 With this change, it works as expected. We can type into the input immediately, and the translation later "catches up" to what we have typed.
 
@@ -748,12 +674,10 @@ However, sometimes it might be helpful to intentionally introduce an inconsisten
 ```js
 import { useDeferredValue } from 'react';
 
-const deferredValue = useDeferredValue(value, {
-  timeoutMs: 5000
-});
+const deferredValue = useDeferredValue(value);
 ```
 
-To demonstrate this feature, we'll use [the profile switcher example](https://codesandbox.io/s/quirky-carson-vs6g0i). Click the "Next" button and notice how it takes 1 second to do a transition.
+To demonstrate this feature, we'll use [the profile switcher example](https://codesandbox.io/s/serene-roman-9t9njd). Click the "Next" button and notice how it takes 1 second to do a transition.
 
 Let's say that fetching the user details is very fast and only takes 300 milliseconds. Currently, we're waiting a whole second because we need both user details and posts to display a consistent profile page. But what if we want to show the details faster?
 
@@ -761,9 +685,7 @@ If we're willing to sacrifice consistency, we could **pass potentially stale dat
 
 ```js{2-4,10,11,21}
 function ProfilePage({ resource }) {
-  const deferredResource = useDeferredValue(resource, {
-    timeoutMs: 1000
-  });
+  const deferredResource = useDeferredValue(resource);
   return (
     <Suspense fallback={<h1>Loading profile...</h1>}>
       <ProfileDetails resource={resource} />
@@ -789,7 +711,7 @@ function ProfileTimeline({ isStale, resource }) {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/dazzling-fog-o6ovhr)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/zealous-sun-3k3uhe)**
 
 The tradeoff we're making here is that `<ProfileTimeline>` will be inconsistent with other components and potentially show an older item. Click "Next" a few times, and you'll notice it. But thanks to that, we were able to cut down the transition time from 1000ms to 300ms.
 
@@ -820,18 +742,16 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/runtime-pine-kl2yff)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/agitated-glitter-ybnfni)**
 
 In this example, **every item in `<MySlowList>` has an artificial slowdown -- each of them blocks the thread for a few milliseconds**. We'd never do this in a real app, but this helps us simulate what can happen in a deep component tree with no single obvious place to optimize.
 
 We can see how typing in the input causes stutter. Now let's add `useDeferredValue`:
 
-```js{3-5,18}
+```js{3,16}
 function App() {
   const [text, setText] = useState("hello");
-  const deferredText = useDeferredValue(text, {
-    timeoutMs: 5000
-  });
+  const deferredText = useDeferredValue(text);
 
   function handleChange(e) {
     setText(e.target.value);
@@ -850,7 +770,7 @@ function App() {
 }
 ```
 
-**[Try it on CodeSandbox](https://codesandbox.io/s/charming-goldwasser-6kuh4m)**
+**[Try it on CodeSandbox](https://codesandbox.io/s/jovial-frost-30embe)**
 
 Now typing has a lot less stutter -- although we pay for this by showing the results with a lag.
 
@@ -859,6 +779,14 @@ How is this different from debouncing? Our example has a fixed artificial delay 
 Even though there is an improvement in responsiveness, this example isn't as compelling yet because Concurrent Mode is missing some crucial optimizations for this use case. Still, it is interesting to see that features like `useDeferredValue` (or `useTransition`) are useful regardless of whether we're waiting for network or for computational work to finish.
 
 ### SuspenseList {#suspenselist}
+
+<div class="scary">
+
+>Caution:
+>
+>`<SuspenseList>` is not a part of React 18 and will be included in a future release.
+
+</div>
 
 `<SuspenseList>` is the last pattern that's related to orchestrating loading states.
 

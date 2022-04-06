@@ -72,9 +72,9 @@ const stream = renderToPipeableStream(
       // res.setHeader('Content-type', 'text/html');
       // stream.pipe(res);
     },
-    onError(x) {
+    onError(err) {
       didError = true;
-      console.error(x);
+      console.error(err);
     },
   }
 );
@@ -101,6 +101,7 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 
 ```javascript
 let controller = new AbortController();
+let didError = false;
 try {
   let stream = await renderToReadableStream(
     <html>
@@ -108,6 +109,10 @@ try {
     </html>,
     {
       signal: controller.signal,
+      onError(e) {
+        didError = true;
+        console.error(err);
+      }
     }
   );
   
@@ -118,6 +123,7 @@ try {
   // await stream.allReady;
 
   return new Response(stream, {
+    status: didError ? 500 : 200,
     headers: {'Content-Type': 'text/html'},
   });
 } catch (error) {

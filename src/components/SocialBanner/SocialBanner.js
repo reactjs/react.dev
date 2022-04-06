@@ -10,13 +10,13 @@ import React from 'react';
 import {colors, media} from 'theme';
 
 const linkProps = {
-  href: 'https://opensource.fb.com/support-ukraine',
+  href: 'https://reactjs.org',
   target: '_blank',
   rel: 'noopener',
 };
 
-const bannerText = 'Support Ukraine 🇺🇦 ';
-const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
+const bannerText = 'This documentation is for React 17.';
+const bannerLink = 'Go to the latest docs.';
 
 export default function SocialBanner() {
   return (

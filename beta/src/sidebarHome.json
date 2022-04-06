@@ -17,9 +17,14 @@
           "routes": [{
             "title": "Acknowledgements",
             "path": "/community/acknowledgements"
-          }, {
+          },
+          {
             "title": "Meet the Team",
             "path": "/community/meet-the-team"
+          },
+          {
+            "title": "Examples",
+            "path": "/community/examples"
           }]
         }
       ]

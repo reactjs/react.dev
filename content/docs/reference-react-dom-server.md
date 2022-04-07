@@ -109,9 +109,9 @@ try {
     </html>,
     {
       signal: controller.signal,
-      onError(e) {
+      onError(error) {
         didError = true;
-        console.error(err);
+        console.error(error);
       }
     }
   );

@@ -23,7 +23,7 @@ prev: concurrent-mode-adoption.html
 >**For up-to-date high-level information, refer to:**
 >* [React 18 Announcement](https://reactjs.org/blog/2022/03/29/react-v18.html)
 >* [Upgrading to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html)
->* [React Conf 2021 Videos](http://localhost:8000/blog/2021/12/17/react-conf-2021-recap.html)
+>* [React Conf 2021 Videos](https://reactjs.org/blog/2021/12/17/react-conf-2021-recap.html)
 >
 >**For details about concurrent APIs in React 18, refer to:**
 >* [`React.Suspense`](https://reactjs.org/docs/react-api.html#reactsuspense) reference

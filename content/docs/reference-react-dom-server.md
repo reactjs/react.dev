@@ -27,7 +27,7 @@ These methods are only available in the **environments with [Web Streams](https:
 
 - [`renderToReadableStream()`](#rendertoreadablestream)
 
-The following methods can be used in both the server and Web API environments:
+The following methods can be used in the environments that don't support streams:
 
 - [`renderToString()`](#rendertostring)
 - [`renderToStaticMarkup()`](#rendertostaticmarkup)

@@ -62,7 +62,19 @@ Creates a portal. Portals provide a way to [render children into a DOM node that
 flushSync(callback)
 ```
 
-Force React to flush any updates inside the provided callback synchronously. This method is useful for being able to read the result of those updates immediately.
+Force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately so that you can do something with the result.
+
+```javascript
+function handleCarouselNextClick() {
+  // Force this state update to be synchronous.
+  flushSync(() => {
+    setCarouselIndex(carouselIndex + 1);
+  });
+
+  // By this point, DOM has been updated.
+  carouselRef.current.lastChild.scrollIntoView();
+}
+```
 
 > Note:
 > 

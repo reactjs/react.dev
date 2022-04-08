@@ -57,7 +57,7 @@ When you're ready to deploy to production, running `npm run build` will create a
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) is a popular and lightweight framework for **build-time and request-time server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
 
 Learn Next.js from [its official guide](https://nextjs.org/learn/).
 

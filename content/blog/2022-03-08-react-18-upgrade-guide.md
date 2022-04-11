@@ -65,6 +65,7 @@ ReactDOM.render(<App tab="home" />, container, () => {
 });
 
 // After
+import { createRoot } from 'react-dom/client';
 function AppWithCallbackAfterRender() {
   useEffect(() => {
     console.log('rendered');
@@ -74,7 +75,7 @@ function AppWithCallbackAfterRender() {
 }
 
 const container = document.getElementById('app');
-const root = ReactDOM.createRoot(container);
+const root = createRoot(container);
 root.render(<AppWithCallbackAfterRender />);
 ```
 

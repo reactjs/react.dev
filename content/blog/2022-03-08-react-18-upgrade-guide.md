@@ -60,12 +60,11 @@ We've also removed the callback from render, since it usually does not have the 
 ```js
 // Before
 const container = document.getElementById('app');
-ReactDOM.render(<App tab="home" />, container, () => {
+render(<App tab="home" />, container, () => {
   console.log('rendered');
 });
 
 // After
-import { createRoot } from 'react-dom/client';
 function AppWithCallbackAfterRender() {
   useEffect(() => {
     console.log('rendered');

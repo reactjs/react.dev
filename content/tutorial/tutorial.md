@@ -29,7 +29,7 @@ The tutorial is divided into several sections:
 * [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
 * [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
+You don't have to complete all the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
 
 ### What Are We Building? {#what-are-we-building}
 
@@ -37,7 +37,7 @@ In this tutorial, we'll show how to build an interactive tic-tac-toe game with R
 
 You can see what we'll be building here: **[Final Result](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
 
-We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
+We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all the moves that have occurred in the game, and it is updated as the game progresses.
 
 You can close the tic-tac-toe game once you're familiar with it. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
 
@@ -182,7 +182,7 @@ By inspecting the code, you'll notice that we have three React components:
 * Board
 * Game
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
+The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values, which we'll modify later. There are currently no interactive components.
 
 ### Passing Data Through Props {#passing-data-through-props}
 
@@ -395,7 +395,7 @@ The Board's `renderSquare` method currently looks like this:
 
 In the beginning, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component). This is why Square currently ignores the `value` prop passed to it by the Board.
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
+We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). Not only that, but we have already defined the `squares` array in the Board's constructor, and we will modify the Board's `renderSquare` method to read from it:
 
 ```javascript{2}
   renderSquare(i) {
@@ -1045,7 +1045,7 @@ Let's `map` over the `history` in the Game's `render` method:
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
 
-As we iterate through `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested in `move` here, hence `step` is not getting assigned to anything.
+As we iterate through the `history` array, `step` variable refers to the current `history` element value, and `move` refers to the current `history` element index. We are only interested to `move` here, hence `step` is not getting assigned to anything.
 
 For each move in the tic-tac-toe game's history, we create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a method called `this.jumpTo()`. We haven't implemented the `jumpTo()` method yet. For now, we should see a list of the moves that have occurred in the game and a warning in the developer tools console that says:
 
@@ -1148,7 +1148,7 @@ Next, we'll define the `jumpTo` method in Game to update that `stepNumber`. We a
   }
 ```
 
-Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
+Notice in `jumpTo` method, we haven't updated `history` property of the state. That is because state updates are merged or in more simple words React will update only the properties mentioned in `setState` method leaving the remaining state as is. For more info, **[see the documentation](/docs/state-and-lifecycle.html#state-updates-are-merged)**.
 
 We will now make a few changes to the Game's `handleClick` method which fires when you click on a square.
 

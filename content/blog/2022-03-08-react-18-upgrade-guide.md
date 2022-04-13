@@ -40,19 +40,7 @@ render(<App tab="home" />, container);
 // After
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('app');
-const root = createRoot(container);
-root.render(<App tab="home" />);
-```
-
-Example code if your project uses TypeScript:
-
-```typescript{3}
-import ReactDOM from 'react-dom/client';
-
-const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(<App tab="home" />);
 ```
 

@@ -40,9 +40,8 @@ render(<App tab="home" />, container);
 // After
 import { createRoot } from 'react-dom/client';
 const container = document.getElementById('app');
-const root = createRoot(container);
+const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(<App tab="home" />);
-
 ```
 
 We’ve also changed `unmountComponentAtNode` to `root.unmount`:

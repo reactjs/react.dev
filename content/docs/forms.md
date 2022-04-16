@@ -183,6 +183,22 @@ Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select
 >```js
 ><select multiple={true} value={['B', 'C']}>
 >```
+> When select is multiple it does not return array in its value property
+> To get all selected options you can use this:
+>'''js
+>handleChange(event) {
+>        this.setState(
+>            {
+>                value: Array.from(event.target.children).filter(
+>                    children => children.selected
+>                ).map(
+>                    children => children.value
+>                )
+>            }
+>        );
+>    }
+>'''js
+  
 
 ## The file input Tag {#the-file-input-tag}
 

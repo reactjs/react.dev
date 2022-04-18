@@ -187,6 +187,14 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
+Alternatively, we can use the second form of setState() that accepts a function. That function will receive the previous state as the first argument `prevState`, which will always contain the modified state in the recent `setCount` call:
+
+```js{1}
+  <button onClick={() => setCount((prevState) => prevState + 1)}>
+    Click me
+  </button>
+```
+
 ## Recap {#recap}
 
 Let's now **recap what we learned line by line** and check our understanding.

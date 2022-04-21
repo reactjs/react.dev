@@ -85,7 +85,7 @@ function SandpackRoot(props: SandpackProps) {
         initModeObserverOptions={{rootMargin: '1400px 0px'}}
         bundlerURL={
           window.localStorage.getItem('sandpack-new-bundler') === 'true'
-            ? 'https://sandpack-bundler.pages.dev/'
+            ? 'https://cf56a978.sandpack-bundler.pages.dev'
             : 'https://0-14-0-sandpack.codesandbox.io/'
         }>
         <CustomPreset

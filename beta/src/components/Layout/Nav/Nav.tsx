@@ -17,9 +17,6 @@ import {Feedback} from '../Feedback';
 import NavLink from './NavLink';
 
 declare global {
-  interface proces {
-    VERCEL_URL: string;
-  }
   interface Window {
     __theme: string;
     __setPreferredTheme: (theme: string) => void;

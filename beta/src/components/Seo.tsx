@@ -6,6 +6,11 @@ import React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 
+interface Process {
+  VERCEL_URL: string;
+}
+declare var process: Process;
+
 const apiURL = process.VERCEL_URL ? process.VERCEL_URL : 'localhost:3000';
 
 export interface SeoProps {

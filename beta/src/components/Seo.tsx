@@ -11,7 +11,9 @@ interface Process {
 }
 declare var process: Process;
 
-const apiURL = process.VERCEL_URL ? process.VERCEL_URL : 'localhost:3000';
+const apiURL = process.VERCEL_URL
+  ? 'https://' + process.VERCEL_URL
+  : 'http://localhost:3000';
 
 export interface SeoProps {
   title: string;

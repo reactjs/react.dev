@@ -6,6 +6,8 @@ import React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 
+const apiURL = process.VERCEL_URL ? process.VERCEL_URL : 'localhost:3000';
+
 export interface SeoProps {
   title: string;
   description?: string;
@@ -31,10 +33,16 @@ export const Seo = withRouter(
       {description != null && (
         <meta name="description" key="description" content={description} />
       )}
+      {console.log}
       {/* <link rel="icon" type="image/x-icon" href={favicon} />
       <link rel="apple-touch-icon" href={favicon} />  @todo favicon */}
       <meta property="fb:app_id" content="623268441017527" />
       {/* OPEN GRAPH */}
+      <meta
+        property="og:image"
+        content={`${apiURL}/api?description=${description}&title=${title}`}
+      />
+
       <meta property="og:type" key="og:type" content="website" />
       <meta
         property="og:url"

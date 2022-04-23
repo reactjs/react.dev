@@ -7,12 +7,12 @@ import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 
 interface Process {
-  VERCEL_URL: string;
+  env: {VERCEL_URL: string};
 }
 declare var process: Process;
 
-const apiURL = process.VERCEL_URL
-  ? 'https://' + process.VERCEL_URL
+const apiURL = process.env?.VERCEL_URL
+  ? 'https://' + process.env?.VERCEL_URL
   : 'http://localhost:3000';
 
 export interface SeoProps {

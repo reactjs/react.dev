@@ -11,7 +11,7 @@ interface Process {
 }
 declare var process: Process;
 
-const apiURL = process.env?.VERCEL_URL
+const apiURL = process.env.VERCEL_URL
   ? 'https://' + process.env?.VERCEL_URL
   : 'http://localhost:3000';
 

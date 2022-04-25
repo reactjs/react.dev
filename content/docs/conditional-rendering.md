@@ -36,6 +36,7 @@ function Greeting(props) {
 }
 
 const root = ReactDOM.createRoot(document.getElementById('root')); 
+// Try changing to isLoggedIn={true}:
 root.render(<Greeting isLoggedIn={false} />);
 ```
 

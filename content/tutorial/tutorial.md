@@ -1208,7 +1208,7 @@ There's one last step, currently a game participant could edit the history of th
         stepNumber: history.length
       });
     }
-
+```
 **[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
 ### Wrapping Up {#wrapping-up}

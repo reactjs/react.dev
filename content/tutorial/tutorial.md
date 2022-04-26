@@ -1177,7 +1177,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
 
 Finally, we will modify the Game component's `render` method from always rendering the last move to rendering the currently selected move according to `stepNumber`:
 
-```javascript{3}
+```javascript
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
@@ -1187,6 +1187,27 @@ Finally, we will modify the Game component's `render` method from always renderi
 ```
 
 If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
+
+There's one last step, currently a game participant could edit the history of the game while viewing historical game moves. We must update the `handleClick` method in the `Game` class to include a new condition to test against when evaluting if we should return early. In order to do so we would check that the current `this.state.stepNumber` is at the end of the `this.state.history` array signifying that it's on the last played move. The `handleClick` method would end up looking like this:
+
+```javascript{3}
+    handleClick(i){
+      const history = this.state.history.slice(0, this.state.stepNumber + 1);
+      const current = history[history.length - 1];
+      const squares = current.squares.slice();
+
+      if(this.state.stepNumber != this.state.history.length -1 || calculateWinner(squares) || squares[i]){
+        return;
+      }
+      squares[i] = this.state.xIsNext ? 'X' : 'O';
+      this.setState({
+        xIsNext: !this.state.xIsNext,
+        history: history.concat([{
+          squares: squares,
+        }]),
+        stepNumber: history.length
+      });
+    }
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 

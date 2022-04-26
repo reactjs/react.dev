@@ -76,7 +76,7 @@ class MyComponent extends React.Component {
 
 > Note:
 >
-> In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#display_contents) attribute can be used if you don't want the node to be part of the layout.
+> In CSS, the [`display: contents`](https://developer.mozilla.org/en-US/docs/Web/CSS/display#box) attribute can be used if you don't want the node to be part of the layout.
 
 ### Detecting unexpected side effects {#detecting-unexpected-side-effects}
 

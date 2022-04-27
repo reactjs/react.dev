@@ -1,5 +1,7 @@
+- title: '18.1.0'
+  changelog: https://github.com/facebook/react/blob/main/CHANGELOG.md#1810-april-26-2022
 - title: '18.0.0'
-  changelog: https://github.com/facebook/react/blob/main/CHANGELOG.md
+  changelog: https://github.com/facebook/react/blob/main/CHANGELOG.md#1800-march-29-2022
 - title: '17.0.2'
   changelog: https://github.com/facebook/react/blob/main/CHANGELOG.md#1702-march-22-2021
   url: https://17.reactjs.org

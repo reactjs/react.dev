@@ -48,7 +48,7 @@ Function and Class components both have some additional features that we will di
 
 ## Rendering a Component {#rendering-a-component}
 
-Previously, we only encountered React elements that represent DOM tags:
+Previously, we encountered only React elements that represent DOM tags:
 
 ```js
 const element = <div />;

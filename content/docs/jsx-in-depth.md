@@ -412,6 +412,10 @@ Children passed to a custom component can be anything, as long as that component
 
 `false`, `null`, `undefined`, and `true` are valid children. They simply don't render. These JSX expressions will all render to the same thing:
 
+>**Note:**
+>
+>Since version 18, React rendering `undefined`.
+
 ```js
 <div />
 

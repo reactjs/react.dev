@@ -72,6 +72,10 @@ function WarningButton() {
 
 If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
 
+>**Note:**
+>
+>Since version 17, there is a new [JSX Transform](/blog/2020/09/22/introducing-the-new-jsx-transform.html) that allows you not to import React.
+
 ### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
 
 You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:

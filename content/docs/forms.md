@@ -32,7 +32,7 @@ We can combine the two by making the React state be the "single source of truth"
 For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:
 
 ```javascript{2,4,6-9,12,15}
-const NameForm = (props) => {
+function NameForm(props) {
   const [name, setName] = React.useState("");
   
   const handleChange = (event) => setName(event.target.value);
@@ -73,7 +73,7 @@ In HTML, a `<textarea>` element defines its text by its children:
 In React, a `<textarea>` uses a `value` attribute instead. This way, a form using a `<textarea>` can be written very similarly to a form that uses a single-line input:
 
 ```javascript{2,15}
-const EssayForm = (props) => {
+function EssayForm(props) {
   const [essay, setEssay] = React.useState("Please write an essay about your favorite DOM element.");
 
   const handleChange = (event) => setEssay(event.target.value);
@@ -113,7 +113,7 @@ In HTML, `<select>` creates a drop-down list. For example, this HTML creates a d
 Note that the Coconut option is initially selected, because of the `selected` attribute. React, instead of using this `selected` attribute, uses a `value` attribute on the root `select` tag. This is more convenient in a controlled component because you only need to update it in one place. For example:
 
 ```javascript{2,15}
-const FlavorForm = (props) => {
+function FlavorForm(props) {
   const [flavor, setFlavor] = React.useState("coconut");
   
   const handleChange = (event) => setFlavor(event.target.value);
@@ -169,7 +169,7 @@ When you need to handle multiple controlled `input` elements, you can add a `nam
 For example:
 
 ```javascript{10,12,20,30}
-const Reservation = (props) => {
+function Reservation(props) {
   const [inputs, setInputs] = React.useState({
     isGoing: true,
     numberOfGuests: 2

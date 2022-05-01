@@ -172,10 +172,6 @@ When the component unmounts, effects are destroyed as normal:
   * Effect effects are destroyed.
 ```
 
-> Note:
->
-> This only applies to development mode, _production behavior is unchanged_.
-
 Unmounting and remounting includes:
 
 - `componentDidMount`
@@ -183,6 +179,10 @@ Unmounting and remounting includes:
 - `useEffect`
 - `useLayoutEffect`
 - `useInsertionEffect`
+
+> Note:
+>
+> This only applies to development mode, _production behavior is unchanged_.
 
 For help supporting common issues, see:
   - [How to support Reusable State in Effects](https://github.com/reactwg/react-18/discussions/18)

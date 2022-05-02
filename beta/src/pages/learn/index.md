@@ -1,71 +1,65 @@
 ---
-title: Quick Start
+title: Pika-aloitus
 ---
 
 <Intro>
 
-Welcome to the React documentation! This page will give you an introduction to the 80% of React concepts that you will use on a daily basis.
+Tervetuloa Reactin dokumentaatioon. Tällä sivulla esitellään 80% Reactin konsepteista, joita käytät päivittäin.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to create and nest components
-- How to add markup and styles
-- How to display data
-- How to render conditions and lists
-- How to respond to events and update the screen
-- How to share data between components
+- Miten luodaan ja sijoitetaan komponentteja
+- Miten lisätään merkintäkoodia ja tyylejä
+- Miten tietoja näytetään
+- Miten renderöidään listoja ja ehtoja
+- Miten vastataan tapahtumiin ja päivitetään ruutua
+- Miten tietoa jaetaan komponenttien välillä
 
 </YouWillLearn>
 
-## Creating and nesting components {/*components*/}
+## Komponenttien luominen ja sijoittaminen {/* components */}
 
-React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React sovellukset koostuvat komponenteista. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin vaikka painonappi tai suuri kuin koko sivu.
 
-React components are JavaScript functions that return markup:
+React komponentit ovat JavaScript funktioita jotka palauttavat merkintäkoodin:
 
 ```js
-function MyButton() {
-  return (
-    <button>Click me</button>
-  );
+function Painonappi() {
+  return <button>Napsauta minua</button>;
 }
 ```
 
-Now that you've declared `MyButton`, you can nest it into another component:
+Nyt kun on esitelty `Painonappi` -komponentti, voidaan se sijoittaa toisen komponentin sisään:
 
 ```js {5}
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
-      <MyButton />
+      <h1>Tervetuloa sovellukseeni</h1>
+      <Painonappi />
     </div>
   );
 }
 ```
 
-Notice that `<MyButton />` starts with a capital letter. That's how you know it's a React component. React component names must always start with a capital letter, while HTML tags must be lowercase.
+Huomaa, että `<Painonappi />` alkaa isolla alkukirjaimella. Tästä voit päätellä, että kyseessä on React komponentti. React komponentin nimen on aina alettava isolla alkukirjaimella, kun taas HTML tagit alkavat pienellä alkukirjaimella.
 
-Have a look at the result:
+Katsotaanpa lopputulosta:
 
 <Sandpack>
 
 ```js
-function MyButton() {
-  return (
-    <button>
-      Click me
-    </button>
-  );
+function Painonappi() {
+  return <button>Napsauta minua</button>;
 }
 
 export default function MyApp() {
   return (
     <div>
-      <h1>Welcome to my app</h1>
-      <MyButton />
+      <h1>Tervetuloa sovellukseeni</h1>
+      <Painonappi />
     </div>
   );
 }
@@ -73,91 +67,87 @@ export default function MyApp() {
 
 </Sandpack>
 
-The `export default` keywords specify the main component in the file. If you're not familiar with some piece of JavaScript syntax, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) and [javascript.info](https://javascript.info/import-export) have great references.
+Avainsanat `export default` määrittävät tiedoston pääkomponentin. Mikäli JavaScript syntaksi ei ole tuttua, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) ja [javascript.info](https://javascript.info/import-export) ovat hyviä tietolähteitä.
 
-## Writing markup with JSX {/*writing-markup-with-jsx*/}
+## Merkintäkoodin kirjoittaminen JSX:llä {/* writing-markup-with-jsx */}
 
-The markup syntax you've seen above is called JSX. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+Merkintäkoodi jota näit ylhäällä kutsutaan nimeltään JSX. Sen käyttö on valinnaista, mutta useimmat React projektit käyttävät JSX:ää sen mukavuuden vuoksi. Kaikki [työkalut, joita suosittelemme paikalliseen kehitykseen](/learn/installation) tukevat JSX:ää oletuksena.
 
-JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
+JSX on tarkempaa kuin HTML. Sinun täytyy sulkea tagit kuten `<br />`. Komponenttisi ei myöskään voi palauttaa useampia JSX tageja, vaan ne täytyy kääriä yhden pääelementin sisään, kuten `<div>...</div>` tagiin tai tyhjään `<>...</>` elementtiin:
 
 ```js {3,6}
-function AboutPage() {
+function TietoaSivu() {
   return (
     <>
-      <h1>About</h1>
-      <p>Hello there.<br />How do you do?</p>
+      <h1>Tietoa</h1>
+      <p>
+        Heippa.
+        <br />
+        Mitä kuuluu?
+      </p>
     </>
   );
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter](https://transform.tools/html-to-jsx).
+Mikäli sinulla on paljon HTML merkintäkoodia muutettavana JSX koodiksi, voit käyttää [verkkomuunninta](https://transform.tools/html-to-jsx).
 
-## Adding styles {/*adding-styles*/}
+## Tyylien lisääminen {/* adding-styles */}
 
-In React, you specify a CSS class with `className`. It works the same way as HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+Reactissa voit määritellä CSS luokat käyttämällä `className` attribuuttia. Se toimii samoin kuin HTML kielen [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribuutti:
 
 ```js
 <img className="avatar" />
 ```
 
-Then you write the CSS rules for it in a separate CSS file:
+Tämän jälkeen kerrot tyylimäärittelyt erilisessä CSS tiedostossa:
 
 ```css
-/* In your CSS */
+/* CSS koodissasi */
 .avatar {
   border-radius: 50%;
 }
 ```
 
-React does not prescribe how you add CSS files. In the simplest case, you'll add a [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tag to your HTML. If you use a build tool or a framework, consult its documentation to learn how to add a CSS file to your project.
+React ei määrää miten lisäät CSS tiedostot. Yksinkertaisimmillaan lisäät [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tagin HTML merkintäkoodiin. Jos käytät käännöstyökalua tai ohjelmistokehystä, konsultoi niiden dokumentaatiota löytääksesi tavan lisätä CSS tiedostoja projektiisi.
 
-## Displaying data {/*displaying-data*/}
+## Tiedon näyttäminen {/* displaying-data */}
 
-JSX lets you put markup into JavaScript. Curly braces let you "escape back" into JavaScript so that you can embed some variable from your code and display it to the user. For example, this will display `user.name`:
+JSX mahdollistaa merkintäkoodin käytön JavaScriptissa. Aaltosulkeilla antaa sinun "peruuttaa takaisin" JavaScriptiin, jotta voit upottaa jonkun muuttujan koodistasi ja näytää sen käyttäjälle. Esimerkiksi, tämä tulostaa `kayttaja.nimi`:
 
 ```js {3}
-return (
-  <h1>
-    {user.name}
-  </h1>
-);
+return <h1>{kayttaja.nimi}</h1>;
 ```
 
-You can also "escape into JavaScript" from JSX attributes, but you have to use curly braces *instead of* quotes. For example, `className="avatar"` passes the `"avatar"` string as the CSS class, but `src={user.imageUrl}` reads the JavaScript `user.imageUrl` variable value, and then passes that value as the `src` attribute:
+Voit myös "peruuttaa takaisin JavaScriptiin" JSX attribuutissa, mutta tässä täytyy käyttää aaltosulkeita lainausmerkkien sijaan. Esimerkiksi `className="avatar"` syöttää `"avatar"` merkkijonon CSS luokaksi, mutta `src={kayttaja.kuvanUrl}` lukee JavaScriptissa `kayttaja.kuvanUrl` muuttujan arvon ja palauttaa sen `src` attribuuttiin:
 
 ```js {3,4}
-return (
-  <img
-    className="avatar"
-    src={user.imageUrl}
-  />
-);
+return <img className="avatar" src={kayttaja.kuvanUrl} />;
 ```
 
-You can put more complex expressions inside the JSX curly braces too, for example, [string concatenation](https://javascript.info/operators#string-concatenation-with-binary):
+JSX aaltosulkeisiin voi laittaa myös laajempia lausekkeita, esimerkiksi [merkkijonojen yhdistämistä](https://javascript.info/operators#string-concatenation-with-binary):
+
 
 <Sandpack>
 
 ```js
-const user = {
-  name: 'Hedy Lamarr',
-  imageUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
-  imageSize: 90,
+const kayttaja = {
+  nimi: 'Hedy Lamarr',
+  kuvanUrl: 'https://i.imgur.com/yXOvdOSs.jpg',
+  kuvanKoko: 90,
 };
 
-export default function Profile() {
+export default function Profiili() {
   return (
     <>
-      <h1>{user.name}</h1>
+      <h1>{kayttaja.nimi}</h1>
       <img
         className="avatar"
-        src={user.imageUrl}
-        alt={'Photo of ' + user.name}
+        src={kayttaja.kuvanUrl}
+        alt={'Kuva henkilöstä ' + kayttaja.nimi}
         style={{
-          width: user.imageSize,
-          height: user.imageSize
+          width: kayttaja.kuvanKoko,
+          height: kayttaja.kuvanKoko,
         }}
       />
     </>
@@ -177,193 +167,162 @@ export default function Profile() {
 
 </Sandpack>
 
-In the above example, `style={{}}` is not a special syntax, but a regular `{}` object inside the `style={ }` JSX curly braces. You can use the `style` attribute when your styles depend on JavaScript variables.
+Ylläolevasta esimerkissä `style={{}}` ei ole erityistä syntaksia, vaan normaali `{}` olio JSX aaltosulkeiden `style={ }` sisällä. Voit käyttää `style` attribuuttia kun tyylisi riippuu JavaScript muuttujista.
 
-## Conditional rendering {/*conditional-rendering*/}
+## Ehdollinen renderöinti {/* conditional-rendering */}
 
-In React, there is no special syntax for writing conditions. Instead, you'll use the same techniques as you use when writing regular JavaScript code. For example, you can use an [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) statement to conditionally include JSX:
+Reactissa ei ole erityistä syntaksia ehtolauseiden kirjoittamiseen. Sen sijaan voit käyttää samoja tekniikoita kuin mitä käytät kirjoittaessasi tavallista JavaScript koodia. Esimerkiksi, voit käyttää [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) lausetta sisällyttämään JSX koodia ehdollisesti:
 
 ```js
-let content;
-if (isLoggedIn) {
-  content = <AdminPanel />;
+let sisalto;
+if (onkoKirjautunutSisaan) {
+  sisalto = <Hallintapaneeli />;
 } else {
-  content = <LoginForm />;
+  sisalto = <Kirjautumislomake />;
 }
-return (
-  <div>
-    {content}
-  </div>
-);
+return <div>{sisalto}</div>;
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). Unlike `if`, it works inside JSX:
+Mikäli suosit kompaktimpaa koodia, voit käyttää [`?` operaattoria](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). Toisin kuin `if, se toimii myös JSX:n sisällä:
 
 ```js
-<div>
-  {isLoggedIn ? (
-    <AdminPanel />
-  ) : (
-    <LoginForm />
-  )}
-</div>
+<div>{onkoKirjautunutSisaan ? <Hallintapaneeli /> : <Kirjautumislomake />}</div>
 ```
 
-When you don't need the `else` branch, you can also use a shorter [logical `&&` syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
+Kun et tarvitse `else` osaa, voit käyttää lyhyempäää [loogista `&&` syntaksia](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#short-circuit_evaluation):
 
 ```js
-<div>
-  {isLoggedIn && <AdminPanel />}
-</div>
+<div>{onkoKirjautunutSisaan && <Hallintapaneeli />}</div>
 ```
 
-All of these approaches also work for conditionally specifying attributes. If you're unfamiliar with some of this JavaScript syntax, you can start by always using `if...else`.
+Kaikki nämä tavat toimivat myös attribuuttien ehdolliseen määrittelyyn. Jos jokin tässä käyty JavaScript syntaksi ei ole tuttua, voit aina aloittaa käyttämällä `if...else`.
 
-## Rendering lists {/*rendering-lists*/}
+## Listojen renderöinti {/* rendering-lists */}
 
-You will rely on JavaScript features like [`for` loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) and the [array `map()` function](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to render lists of components.
+Tulet käyttämään JavaScriptin ominaisuuksia kuten [`for` silmukkaa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) sekä [array `map()` funktiota](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) komponenttilistojen renderöintiin.
 
-For example, let's say you have an array of products:
+Esimerkiksi, sanotaan, että sinulla on lista tuotteista:
 
 ```js
-const products = [
-  { title: 'Cabbage', id: 1 },
-  { title: 'Garlic', id: 2 },
-  { title: 'Apple', id: 3 },
+const tuotteet = [
+  {otsikko: 'Kaali', id: 1},
+  {otsikko: 'Valkosipuli', id: 2},
+  {otsikko: 'Omena', id: 3},
 ];
 ```
 
-Inside your component, use the `map()` function to transform an array of products into an array of `<li>` items:
+Komponentin sisällä voit käyttää `map()` funktiota muuttaaksesi tuotelistan listaksi `<li>` elementtejä:
 
 ```js
-const listItems = products.map(product =>
-  <li key={product.id}>
-    {product.title}
-  </li>
-);
+const listaKohteet = tuotteet.map((tuote) => (
+  <li key={tuote.id}>{tuote.otsikko}</li>
+));
 
-return (
-  <ul>{listItems}</ul>
-);
+return <ul>{listaKohteet}</ul>;
 ```
 
-Notice how `<li>` has a `key` attribute. For each item in a list, you should pass a string or a number that uniquely identifies that item among its siblings. Usually, a key should be coming from your data, such as a database ID. React will rely on your keys to understand what happened if you later insert, delete, or reorder the items.
+Huomaa miten `<li>` elementillä on `key` attribuutti. Jokaiselle listan kohteelle tulisi antaa merkkijono tai numero, joka yksilöllisesti erottaa kohteen sen sisaruksista. Useimiten, avain tulisi suoraan tietolähteestä, kuten tietokannan ID kentästä. React hyödyntää avaimiasi ymmärtääkseen mitä tapahtui jos myöhemmin lisäät, poistat tai uudelleenjärjestät kohteita.
 
 <Sandpack>
 
 ```js
-const products = [
-  { title: 'Cabbage', isFruit: false, id: 1 },
-  { title: 'Garlic', isFruit: false, id: 2 },
-  { title: 'Apple', isFruit: true, id: 3 },
+const tuotteet = [
+  {otsikko: 'Kaali', onHedelma: false, id: 1},
+  {otsikko: 'Valkosipuli', onHedelma: false, id: 2},
+  {otsikko: 'Omena', onHedelma: true, id: 3},
 ];
 
-export default function ShoppingList() {
-  const listItems = products.map(product =>
+export default function Ostoslista() {
+  const listaKohteet = tuotteet.map((tuote) => (
     <li
-      key={product.id}
+      key={tuote.id}
       style={{
-        color: product.isFruit ? 'magenta' : 'darkgreen'
-      }}
-    >
-      {product.title}
+        color: tuote.onHedelma ? 'magenta' : 'darkgreen',
+      }}>
+      {tuote.otsikko}
     </li>
-  );
+  ));
 
-  return (
-    <ul>{listItems}</ul>
-  );
+ return <ul>{listaKohteet}</ul>;
 }
 ```
 
 </Sandpack>
 
-## Responding to events {/*responding-to-events*/}
+## Vastaaminen tapahtumiin {/* responding-to-events */}
 
-You can respond to events by declaring event handler functions inside your components:
+Voit vastata tapahtumiin määrittelemällä tapahtumakäsittelijän komponettiesi sisällä:
 
 ```js {2-4,7}
-function MyButton() {
-  function handleClick() {
-    alert('You clicked me!');
+function Painonappi() {
+  function kunKlikataan() {
+    alert('Napsautit minua!');
   }
 
-  return (
-    <button onClick={handleClick}>
-      Click me
-    </button>
-  );
+  return <button onClick={kunKlikataan}>Napsauta minua</button>;
 }
 ```
 
-Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ the event handler function: you only need to *pass it down*. React will call your event handler when the user clicks the button.
+Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _antaa se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.  
 
-## Updating the screen {/*updating-the-screen*/}
+## Ruudun päivittäminen {/* updating-the-screen */}
 
-Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
+Usein haluat, että komponenttisi "muistaa" jotain tietoa ja näyttää sitä. Esimerkiksi, ehkäpä haluat laskea montako kertaa painiketta on napsautettu. Tehdäksesi tämän, lisää tila eli _state_ komponenttiisi.
 
-First, import [`useState`](/apis/usestate) from React:
+Ensiksi, importtaa [`useState`](/apis/usestate) Reactista:
 
 ```js {1,4}
-import { useState } from 'react';
+import {useState} from 'react';
 ```
 
-Now you can declare a *state variable* inside your component:
+Nyt voit määritellä tilamuuttujan komponentin sisällä:
 
 ```js
-function MyButton() {
+function Painonappi() {
   const [count, setCount] = useState(0);
 ```
 
-You will get two things from `useState`: the current state (`count`), and the function that lets you update it (`setCount`). You can give them any names, but the convention is to call them like `[something, setSomething]`.
+Saat kaksi asiaa `useState`:lta. Tämänhetkisen tilan (`count`), ja funktion jolla voit päivittää sitä (`setCount`). Voit antaa niille mitkä tahansa nimet, mutta käytäntö on kutsua niitä seuraavasti: `[something, setSomething]`.
 
-The first time the button is displayed, `count` will be `0` because you passed `0` to `useState()`. When you want to change state, call `setCount()` and pass the new value to it. Clicking this button will increment the counter:
+Ensimmäisen kerran kun painike näytetään, `count` on `0` koska `useState()` määrittelyssä annettiin `0`. Kun haluat muuttaa tilaa, kutsu `setCount()` funktiota ja anna sille uusi arvo. Painiketta napsauttamalla luku kasvaa:
 
 ```js {5}
-function MyButton() {
+function Painonappi() {
   const [count, setCount] = useState(0);
 
-  function handleClick() {
+  function kunKlikataan() {
     setCount(count + 1);
   }
 
-  return (
-    <button onClick={handleClick}>
-      Clicked {count} times
-    </button>
-  );
+  return <button onClick={kunKlikataan}>Napsautettu {count} kertaa</button>;
 }
 ```
 
-React will call your component function again. This time, `count` will be `1`. Then it will be `2`. And so on.
+React kutsuu komponenttifunktiota uudelleen. Silloin `count` on `1`. Sitten se tulee olemaan `2`. Ja niin edellleen.
 
-If you render the same component multiple times, each will get its own state. Try clicking each button separately:
+Jos renderöit saman komponentin useasti, kullakin komponentilla on oma tilansa. Kokeile napsauttaa painikkeita erikseen:
 
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
-function MyButton() {
+function Painonappi() {
   const [count, setCount] = useState(0);
 
-  function handleClick() {
+  function kunKlikataan() {
     setCount(count + 1);
   }
 
-  return (
-    <button onClick={handleClick}>
-      Clicked {count} times
-    </button>
-  );
+  return <button onClick={kunKlikataan}>Napsautit {count} kertaa</button>;
 }
 
 export default function MyApp() {
   return (
     <div>
-      <h1>Counters that update separately</h1>
-      <MyButton />
-      <MyButton />
+      <h1>Laskurit, jotka päivittyvät erikseen</h1>
+      <Painonappi />
+      <Painonappi />
     </div>
   );
 }
@@ -378,35 +337,34 @@ button {
 
 </Sandpack>
 
-Notice how each button "remembers" its own `count` state and doesn't affect other buttons.
+Huomaa miten kukin painike "muistaa" sen oman `count` tilan eikä se vaikuta muihin painikkeisiin.
 
-## Using Hooks {/*using-hooks*/}
+## Hookkien käyttäminen {/* using-hooks */}
 
-Functions starting with `use` are called Hooks. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis). You can also write your own Hooks by combining the existing ones.
+Funktiot jotka alkavat sanalla `use` ovat hookkeja. `useState` on Reactin sisäänrakennettu hookki. Löydät lisää sisäänrakennettuja hookkeja [React API referenssistä](/apis). VOit myös kirjoittaa omia hookkeja olemassaolevia yhdistelemällä.
 
-Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to `useState` in a condition or a loop, extract a new component and put it there.
+Hookit ovat rajoittavampia kuin normaalit funktiot. Voit kutsua hookkeja _ainoastaan_ komponentin päätasolta (tai muista hookeista). Jos haluat käyttää `useState` hookkia ehdollisesti tai loopissa, luo uusi komponentti ja sijoita se sinne.
 
-## Sharing data between components {/*sharing-data-between-components*/}
+## Tiedon jakaminen komponenttien välillä {/* sharing-data-between-components */}
 
-In the previous example, each `MyButton` had its own independent `count`, and when each button was clicked, only the `count` for the button clicked changed:
+Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `count` tila, sekä kun yksittäistä painiketta napsautettiin, vain sen painikkeen `count` tila muuttui:
 
 <DiagramGroup>
 
 <Diagram name="sharing_data_child" height={734} width={814} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
 
-Before clicking, each MyButton has a count value set to zero.
-
+Ennen napsautusta, jokaisella Painonappi komponentilla tila on asetettuna nollaksi.
 </Diagram>
 
 <Diagram name="sharing_data_child_clicked" height={734} width={814} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
 
-After clicking, only one MyButton count value has updated.
+Napsautuksen jälkeen, vain yhdellä Painonappi komponentilla tila on päivittynyt.
 
 </Diagram>
 
 </DiagramGroup>
 
-However, often you'll need components to *share data and always update together*.
+However, often you'll need components to _share data and always update together_.
 
 To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
 
@@ -430,7 +388,7 @@ After clicking, count updates in MyApp and the new value is passed to both child
 
 Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
 
-First, *move the state up* from `MyButton` into `MyApp`:
+First, _move the state up_ from `MyButton` into `MyApp`:
 
 ```js {2,6-10}
 function MyButton() {
@@ -454,7 +412,7 @@ export default function MyApp() {
 }
 ```
 
-Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Then, _pass the state down_ from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
 
 ```js {11-12}
 export default function MyApp() {
@@ -474,17 +432,13 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and *passes both of them down as props* to each of the buttons.
+The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and _passes both of them down as props_ to each of the buttons.
 
-Finally, change `MyButton` to *read* the props you have passed from its parent component:
+Finally, change `MyButton` to _read_ the props you have passed from its parent component:
 
 ```js {1,3}
-function MyButton({ count, onClick }) {
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  );
+function MyButton({count, onClick}) {
+  return <button onClick={onClick}>Clicked {count} times</button>;
 }
 ```
 
@@ -495,14 +449,10 @@ This is called "lifting state up". By moving state up, we've shared it between c
 <Sandpack>
 
 ```js
-import { useState } from 'react';
+import {useState} from 'react';
 
-function MyButton({ count, onClick }) {
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  );
+function MyButton({count, onClick}) {
+  return <button onClick={onClick}>Clicked {count} times</button>;
 }
 
 export default function MyApp() {
@@ -531,7 +481,7 @@ button {
 
 </Sandpack>
 
-## Next Steps {/*next-steps*/}
+## Next Steps {/* next-steps */}
 
 By now, you know the basics of how to write React code!
 

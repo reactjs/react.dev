@@ -253,7 +253,7 @@ If you click on a Square now, you should see 'click' in your browser's devtools 
 >class Square extends React.Component {
 >  render() {
 >    return (
->      <button className="square" onClick={() => console.log('click')}>
+>      <button className="square" onClick={() => { console.log('click'); }}>
 >        {this.props.value}
 >      </button>
 >    );

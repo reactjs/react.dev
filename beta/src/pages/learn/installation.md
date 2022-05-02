@@ -1,55 +1,55 @@
 ---
-title: Installation
+title: Asennus
 ---
 
 <Intro>
 
-React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. Whether you want to get a taste of React, add some interactivity to an HTML page, or start a complex React-powered app, this section will help you get started.
+React on suunniteltu alusta alkaen asteittaiseen käyttöönottoon. Voit käyttää niin paljon tai vähän Reactia kuin tarvitset. Halusitpa sitten koittaa Reactia, lisätä vähän interaktiivisuutta HTML sivuun, tai aloittaa monimutkaisen React-käyttöisen sovelluksen, tämä osio auttaa sinua pääsemään alkuun.
 
 </Intro>
 
 <YouWillLearn isChapter={true}>
 
-* [How to add React to an HTML page](/learn/add-react-to-a-website)
-* [How to start a standalone React project](/learn/start-a-new-react-project)
-* [How to set up your editor](/learn/editor-setup)
-* [How to install React Developer Tools](/learn/react-developer-tools)
+- [How to add React to an HTML page](/learn/add-react-to-a-website)
+- [How to start a standalone React project](/learn/start-a-new-react-project)
+- [How to set up your editor](/learn/editor-setup)
+- [How to install React Developer Tools](/learn/react-developer-tools)
 
 </YouWillLearn>
 
-## Try React {/*try-react*/}
+## Kokeile Reactia {/* try-react */}
 
-You don't need to install anything to play with React. Try editing this sandbox!
+Reactia kokeillaksesi sinun ei tarvitse asentaa mitään. Kokeile muokata tätä hiekkalaatikkoa!
 
 <Sandpack>
 
 ```js
-function Greeting({ name }) {
-  return <h1>Hello, {name}</h1>;
+function Tervehdys({nimi}) {
+  return <h1>Hei, {nimi}</h1>;
 }
 
 export default function App() {
-  return <Greeting name="world" />
+  return <Tervehdys nimi="maailma" />;
 }
 ```
 
 </Sandpack>
 
-We use sandboxes throughout these docs as teaching aids. Sandboxes can help familiarize you with how React works and help you decide if React is right for you. Outside of the React documentation, there are many online sandboxes that support React: for example, [CodeSandbox](https://codesandbox.io/s/new), [Stackblitz](https://stackblitz.com/fork/react), or [CodePen](
-https://codepen.io/pen/?template=wvdqJJm).
+Käytämme hiekkalaatikkoja osana dokumentaatiota opetuksen tukena. Hiekkalaatikot auttaa tutustumaan Reactin toimintaan sekä auttaa päättämään sopiiko React sinulle.
+Reactin dokumentaation ulkopuolelta löytyy monia hiekkalaatikkoja, jotka tukevat Reactia: esimerkiksi [CodeSandbox](https://codesandbox.io/s/new), [Stackblitz](https://stackblitz.com/fork/react), tai [CodePen](https://codepen.io/pen/?template=wvdqJJm).
 
-### Try React locally {/*try-react-locally*/}
+## Kokeile Reactia paikallisesti {/* try-react-locally */}
 
-To try React locally on your computer, [download this HTML page](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html). Open it in your editor and in your browser!
+Kokeile Reactia paikallisesti omalla tietokoneellasi [lataamalla tämä HTML sivu](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html). Avaa se editorissasi sekä selaimesasi!
 
-## Add React to a page {/*add-react-to-a-page*/}
+## Lisää React sivuun {/* add-react-to-a-page */}
 
-If you're working with an existing site and just need to add a little bit of React, you can [add React with a script tag.](/learn/add-react-to-a-website)
+Jos työskentelet olemassaolevan sivun kanssa ja tarvitset vain vähäsen Reactia, voit [lisätä Reactin script -tagilla.](/learn/add-react-to-a-website)
 
-## Start a React project {/*start-a-react-project*/}
+## Aloita React -projekti {/* start-a-react-project */}
 
-If you're ready to [start a standalone project](/learn/start-a-new-react-project) with React, you can set up a minimal toolchain for a pleasant developer experience. You can also start with a framework that makes a lot of decisions for you out of the box.
+Jos olet valmis [aloittamaan itsenäisen projektin](/learn/start-a-new-react-project) Reactilla, voit pystyttää minimaalisen ympäristön miellyttävää kehittäjäkokemusta varten. Voit myös aloittaa käyttämällä ohjelmistokehystä, joka teke paljon päätöksiä puolestasi.
 
-## Next steps {/*next-steps*/}
+## Seuraavat vaiheet {/* next-steps */}
 
-Where you start depends on how you like to learn, what you need to accomplish, and where you want to go next! Why not read [Thinking in React](/learn/thinking-in-react)--our introductory tutorial? Or you can jump to [Describing the UI](/learn/describing-the-ui) to play with more examples and learn each topic step by step. There is no wrong way to learn React!
+Se mistä aloitat riippuu pitkälti miten haluat oppia, mitä sinun täytyy saavuttaa, ja minne haluat edetä seuraavaksi! Mikset lukisi [Ajattelua Reactissa](/learn/thinking-in-react) -johdantoa? Tai voit myös hypätä [Käyttöliittymän kuvaukseen](/learn/describing-the-ui) kokeillaksesi esimerkeillä ja oppiaksesi aiheen vaihe vaiheelta. Ei ole väärää tapaa oppia Reactia!

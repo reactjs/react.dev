@@ -42,13 +42,12 @@ ReactDOMServer.renderToPipeableStream(element, options)
 
 Render a React element to its initial HTML without interaction. Returns a [Node.js stream](https://nodejs.dev/learn/nodejs-streams) with a `pipe(res)` method to pipe the output and `abort()` to abort the request.
 
-This method fully supports Suspense, and offers two approaches for handling suspended content. The first lets you stream content blocks as they become ready. The second waits until **all** suspended content blocks are ready before sending a response.
+This method fully supports Suspense, allowing you to stream in suspended content blocks as they become ready.
 
-#### Suspense approach one: Initial shell with streamed content blocks
 
-The first allows you to respond with an initial HTML shell and then "pop in" content blocks when they become ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)
+An initial HTML shell with your suspense fallbacks is first outputted, and then content blocks are "popped in" when ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)
 
-To get this behaviour, implement the `onShellReady` callback and start streaming your response here. The `onShellError` option will be called if an error occurs before the shell was ready. The `onError` option will be called if an error occurs after the shell is ready.
+To get this behaviour, implement the `onShellReady` callback and start piping the stream into your response here. The `onShellError` option will be called if an error occurs before the shell was ready. The `onError` option will be called if an error occurs after the shell is ready.
 
 ```javascript
 let didError = false;
@@ -80,11 +79,11 @@ const stream = renderToPipeableStream(
 );
 ```
 
-#### Suspense approach two: Wait until all suspended blocks are ready
+#### Opting-out of inline scripts
 
-If you’d like to support clients that can’t run client-side JavaScript like crawlers, you can wait until all suspended blocks are ready and then stream the HTML in one go.
+If you’d like to support clients that can’t run client-side JavaScript such as crawlers, you can wait until **all** suspended blocks are ready and then stream the HTML in one go.
 
-To do so, implement the `onAllReady` callback and start streaming your response here. The `onError` option will be called if an error occurs during rendering.
+To do so, implement the `onAllReady` callback and start piping the stream into your response here. The `onError` option will be called if an error occurs during rendering, while may mean you HTML will only be partially outputted up to the point the error occurred.
 
 ```javascript
 let didError = false;
@@ -110,21 +109,21 @@ const stream = renderToPipeableStream(
 
 #### Hydrating to add interactivity {#rendertopipeablestream-hydrate}
 
-If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a DOM node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience. This works with either approach to handling suspense.
+If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) on a DOM node that already has this server-rendered markup, React will preserve it and only attach event handlers, allowing you to have a very performant first-load experience.
 
 #### Options
 
+- `onShellReady?: () => void` — use to stream a initial shell and then 
+- `onShellError?: () => void` — called if an error occurs while rendering the initial shell.
+- `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming.
+- `onError?: (error: mixed) => void` — (called when?)
 - `identifierPrefix?: string`
-- `namespaceURI?: string`
+- `namespaceURI?: string` — supports `http://www.w3.org/2000/svg` for SVGs or `http://www.w3.org/1998/Math/MathML` for MathML
 - `nonce?: string`
 - `bootstrapScriptContent?: string`
 - `bootstrapScripts?: Array<string>`
 - `bootstrapModules?: Array<string>`
 - `progressiveChunkSize?: number`
-- `onShellReady?: () => void`
-- `onShellError?: () => void`
-- `onAllReady?: () => void`
-- `onError?: (error: mixed) => void`
 
 > Note:
 >

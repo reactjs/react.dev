@@ -112,9 +112,9 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 
 #### Options
 
-- `onShellReady?: () => void` — use to stream a initial shell and then 
+- `onShellReady?: () => void` — called when an initial shell is ready to be streamed. Start piping into your response here and suspended content blocks will "pop in" via inline <script> tags.
 - `onShellError?: () => void` — called if an error occurs while rendering the initial shell.
-- `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming.
+- `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming. Start piping into your response here and the entire HTML tree will be outputted in one go.
 - `onError?: (error: mixed) => void` — (called when?)
 - `identifierPrefix?: string` — prefix for all generated [`useId()`](https://reactjs.org/docs/hooks-reference.html#useid) values to prevent collisions in multi-root apps. Must be the same prefix passed to [`hydrateRoot()`](https://reactjs.org/docs/react-dom-client.html#hydrateroot)
 - `namespaceURI?: string` — supports `http://www.w3.org/2000/svg` for SVGs or `http://www.w3.org/1998/Math/MathML` for MathML.

@@ -44,7 +44,6 @@ Render a React element to its initial HTML without interaction. Returns a [Node.
 
 This method fully supports Suspense, allowing you to stream in suspended content blocks as they become ready.
 
-
 An initial HTML shell with your suspense fallbacks is first outputted, and then content blocks are "popped in" when ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)
 
 To get this behaviour, implement the `onShellReady` callback and start piping the stream into your response here. The `onShellError` option will be called if an error occurs before the shell was ready. The `onError` option will be called if an error occurs after the shell is ready.

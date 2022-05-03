@@ -84,7 +84,7 @@ const stream = renderToPipeableStream(
 
 If you’d like to support clients that can’t run client-side JavaScript such as crawlers, you can wait until **all** suspended blocks are ready and then stream the HTML in one go.
 
-To do so, implement the `onAllReady` callback and start piping the stream into your response here. The `onError` option will be called if an error occurs during rendering, while may mean you HTML will only be partially outputted up to the point the error occurred.
+To do so, implement the `onAllReady` callback and start piping the stream into your response here. The `onError` option will be called if an error occurs during rendering, which may mean you HTML will only be partially outputted up to the point the error occurred.
 
 ```javascript
 let didError = false;

@@ -116,13 +116,13 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 - `onShellError?: () => void` — called if an error occurs while rendering the initial shell.
 - `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming.
 - `onError?: (error: mixed) => void` — (called when?)
-- `identifierPrefix?: string`
-- `namespaceURI?: string` — supports `http://www.w3.org/2000/svg` for SVGs or `http://www.w3.org/1998/Math/MathML` for MathML
-- `nonce?: string`
-- `bootstrapScriptContent?: string`
-- `bootstrapScripts?: Array<string>`
-- `bootstrapModules?: Array<string>`
-- `progressiveChunkSize?: number`
+- `identifierPrefix?: string` — prefix for all generated [`useId()`](https://reactjs.org/docs/hooks-reference.html#useid) values to prevent collisions in multi-root apps. Must be the same prefix passed to [`hydrateRoot()`](https://reactjs.org/docs/react-dom-client.html#hydrateroot)
+- `namespaceURI?: string` — supports `http://www.w3.org/2000/svg` for SVGs or `http://www.w3.org/1998/Math/MathML` for MathML.
+- `nonce?: string` — sets the [`nonce` attribute](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) to allow scripts in a [script-src Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).
+- `bootstrapScriptContent?: string` — inline `<script>` to include.
+- `bootstrapScripts?: Array<string>` — external `<script>` to include.
+- `bootstrapModules?: Array<string>` — external `<script type="module">` to include.
+- `progressiveChunkSize?: number` — [read more](https://github.com/facebook/react/blob/14c2be8dac2d5482fda8a0906a31d239df8551fc/packages/react-server/src/ReactFizzServer.js#L210)
 
 > Note:
 >

@@ -42,6 +42,8 @@ ReactDOMServer.renderToPipeableStream(element, options)
 
 Render a React element to its initial HTML without interaction. Returns a [Node.js stream](https://nodejs.dev/learn/nodejs-streams) with a `pipe(res)` method to pipe the output and `abort()` to abort the request.
 
+Rendering a root `<html>` element will include a doctype (`<!DOCTYPE html>`) for you.
+
 This method fully supports Suspense, allowing you to stream in suspended content blocks as they become ready.
 
 An initial HTML shell with your suspense fallbacks is first outputted, and then content blocks are "popped in" when ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)

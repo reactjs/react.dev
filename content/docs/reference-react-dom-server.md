@@ -114,7 +114,7 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 
 #### Options
 
-- `onShellReady?: () => void` — called when an initial shell is ready to be streamed. Start piping into your response here and suspended content blocks will "pop in" via inline `<script>` tags.
+- `onShellReady?: () => void` — called when an initial shell is ready to be streamed. Start piping into your response here and suspended content blocks will "pop in" via inline `<script>` tags once they are ready.
 - `onShellError?: () => void` — called if an error occurs while rendering the initial shell.
 - `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming. Start piping into your response here and the entire HTML tree will be outputted in one go.
 - `onError?: (error: mixed) => void` — (called when?)

@@ -16,7 +16,7 @@ Handling events with React elements is very similar to handling events on DOM el
 For example, the HTML:
 
 ```html
-<button onclick="activateLasers()">
+<button onClick="activateLasers()">
   Activate Lasers
 </button>
 ```
@@ -32,7 +32,7 @@ is slightly different in React:
 Another difference is that you cannot return `false` to prevent default behavior in React. You must call `preventDefault` explicitly. For example, with plain HTML, to prevent the default form behavior of submitting, you can write:
 
 ```html
-<form onsubmit="console.log('You clicked submit.'); return false">
+<form onSubmit="console.log('You clicked submit.'); return false">
   <button type="submit">Submit</button>
 </form>
 ```

@@ -75,7 +75,7 @@ This setup requires more work but allows you to complete the tutorial using an e
 2. Follow the [installation instructions for Create React App](/docs/create-a-new-react-app.html#create-react-app) to make a new project.
 
 ```bash
-npx create-react-app my-app
+npx create-react-app@latest my-app
 ```
 
 3. Delete all files in the `src/` folder of the new project 

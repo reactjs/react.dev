@@ -122,9 +122,9 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 #### Options
 
 - `onShellReady?: () => void` — called when an initial shell is ready to be streamed. Start piping into your response here and suspended content blocks will "pop in" via inline `<script>` tags once they are ready.
-- `onShellError?: () => void` — called if an error occurs while rendering the initial shell.
+- `onShellError?: () => void` — called if an error occurs while rendering the initial shell. No bytes will be emitted from the stream and `onShellReady` and other callbacks won’t be called.
 - `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming. Start piping into your response here and the entire HTML tree will be outputted in one go.
-- `onError?: (error: mixed) => void` — (called when?)
+- `onError?: (error: mixed) => void` — called if an error occurs during rendering, including from suspended content.
 - `identifierPrefix?: string` — prefix for all generated [`useId()`](https://reactjs.org/docs/hooks-reference.html#useid) values to prevent collisions in multi-root apps. Must be the same prefix passed to [`hydrateRoot()`](https://reactjs.org/docs/react-dom-client.html#hydrateroot)
 - `namespaceURI?: string` — supports `http://www.w3.org/2000/svg` for SVGs or `http://www.w3.org/1998/Math/MathML` for MathML.
 - `nonce?: string` — sets the [`nonce` attribute](http://developer.mozilla.org/en-US/docs/Web/HTML/Element/script#nonce) to allow scripts in a [script-src Content-Security-Policy](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy/script-src).

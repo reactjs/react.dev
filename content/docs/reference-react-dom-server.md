@@ -63,7 +63,7 @@ const stream = renderToPipeableStream(
     },
     onShellError(error) {
       // Something errored before we could complete the shell so we emit an alternative shell.
-      // The stream can be safely ignored — `onShellReady` won’t be called.
+      // The stream is destroyed and `onShellReady` won’t be called, so you can send your own response.
       res.statusCode = 500;
       res.send(
         '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
@@ -100,7 +100,7 @@ const stream = renderToPipeableStream(
     },
     onShellError(error) {
       // Something errored before we could complete the shell so we emit an alternative shell.
-      // The stream can be safely ignored — `onShellReady` won’t be called.
+      // The stream is destroyed and `onShellReady` won’t be called, so you can send your own response.
       res.statusCode = 500;
       res.send(
         '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
@@ -122,7 +122,7 @@ If you call [`ReactDOM.hydrateRoot()`](/docs/react-dom-client.html#hydrateroot) 
 #### Options
 
 - `onShellReady?: () => void` — called when an initial shell is ready to be streamed. Start piping into your response here and suspended content blocks will "pop in" via inline `<script>` tags once they are ready.
-- `onShellError?: () => void` — called if an error occurs while rendering the initial shell. No bytes will be emitted from the stream and `onShellReady` and other callbacks won’t be called.
+- `onShellError?: () => void` — called if an error occurs while rendering the initial shell. No bytes will be emitted from the stream and `onShellReady` and other callbacks won’t be called, so you can output your own response.
 - `onAllReady?: () => void` — use instead of `onShellReady` to wait for all suspense boundaries to be ready before streaming. Start piping into your response here and the entire HTML tree will be outputted in one go.
 - `onError?: (error: mixed) => void` — called if an error occurs during rendering, including from suspended content.
 - `identifierPrefix?: string` — prefix for all generated [`useId()`](https://reactjs.org/docs/hooks-reference.html#useid) values to prevent collisions in multi-root apps. Must be the same prefix passed to [`hydrateRoot()`](https://reactjs.org/docs/react-dom-client.html#hydrateroot)

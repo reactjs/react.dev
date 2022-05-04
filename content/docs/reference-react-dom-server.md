@@ -48,16 +48,22 @@ This method fully supports Suspense, allowing you to stream in suspended content
 
 An initial HTML shell with your suspense fallbacks is first outputted, and then content blocks are "popped in" when ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)
 
-To get this behaviour, implement the `onShellReady` callback and start piping the stream into your response here. The `onShellError` option will be called if an error occurs before the shell was ready. The `onError` option will be called if an error occurs after the shell is ready.
+To get this behaviour, implement the `onShellReady` callback and start piping the stream into your response here.
 
 ```javascript
 let didError = false;
 const stream = renderToPipeableStream(
   <App />,
   {
+    onError(err) {
+      // Something errored after the shell was completed. It could have been a suspended resource or within a suspensed component tree.
+      // This can be called _before_ onShellReady() even though the shell will be successfully outputted, so record that fact so we can send a 500 status.
+      didError = true;
+      console.error(err);
+    },
     onShellError(error) {
       // Something errored before we could complete the shell so we emit an alternative shell.
-      // The stream can be safely ignored.
+      // The stream can be safely ignored — `onShellReady` won’t be called.
       res.statusCode = 500;
       res.send(
         '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
@@ -70,12 +76,6 @@ const stream = renderToPipeableStream(
       res.setHeader('Content-type', 'text/html');
       stream.pipe(res);
     },
-    onError(err) {
-      // TODO: when is this called?
-      // ??? Called if one of the suspended content blocks failed to render.
-      didError = true;
-      console.error(err);
-    },
   }
 );
 ```
@@ -84,22 +84,29 @@ const stream = renderToPipeableStream(
 
 If you’d like to support clients that can’t run client-side JavaScript such as crawlers, you can wait until **all** suspended blocks are ready and then stream the HTML in one go.
 
-To do so, implement the `onAllReady` callback and start piping the stream into your response here. The `onError` option will be called if an error occurs during rendering, which may mean you HTML will only be partially outputted up to the point the error occurred.
+To do so, implement the `onAllReady` callback and start piping the stream into your response here. The `onError` option will be called if an error occurs during rendering.
 
 ```javascript
+const isCrawler = requestIsCrawler(req); // You supply this.
 let didError = false;
 const stream = renderToPipeableStream(
   <App />,
   {
     onError(err) {
-      // Called if an error occurred while rendering.
+      // Something errored after the shell was completed. It could have been a suspended resource or within a suspensed component tree.
+      // This can be called _before_ onShellReady() even though the shell will be successfully outputted, so record that fact so we can send a 500 status.
       didError = true;
       console.error(err);
     },
-    onAllReady() {
-      // If you don't want streaming, use this instead of onShellReady.
-      // This will fire after the entire page content is ready.
-      // You can use this for crawlers or static generation.
+    onShellError(error) {
+      // Something errored before we could complete the shell so we emit an alternative shell.
+      // The stream can be safely ignored — `onShellReady` won’t be called.
+      res.statusCode = 500;
+      res.send(
+        '<!doctype html><p>Loading...</p><script src="clientrender.js"></script>'
+      );
+    },
+    [isCrawler ? 'onAllReady' : 'onShellReady']() {
       res.statusCode = didError ? 500 : 200;
       res.setHeader('Content-type', 'text/html');
       stream.pipe(res);

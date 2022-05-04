@@ -46,7 +46,7 @@ Rendering a root `<html>` element will include a doctype (`<!DOCTYPE html>`) for
 
 This method fully supports Suspense, allowing you to stream in suspended content blocks as they become ready.
 
-An initial HTML shell with your suspense fallbacks is first outputted, and then content blocks are "popped in" when ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)
+An initial HTML "shell" with your suspense fallbacks is sent first, and then content blocks are "popped in" when ready via inline `<script>` tags later. [Read more on how this works](https://github.com/reactwg/react-18/discussions/37)
 
 To get this behaviour, implement the `onShellReady` callback and start piping the stream into your response here.
 

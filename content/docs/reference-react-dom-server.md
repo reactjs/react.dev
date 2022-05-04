@@ -56,7 +56,7 @@ const stream = renderToPipeableStream(
   <App />,
   {
     onError(err) {
-      // Something errored after the shell was completed. It could have been a suspended resource or within a suspensed component tree.
+      // Something errored. It could have been a suspended resource or within a suspensed component tree.
       // This can be called _before_ onShellReady() even though the shell will be successfully outputted, so record that fact so we can send a 500 status.
       didError = true;
       console.error(err);
@@ -93,7 +93,7 @@ const stream = renderToPipeableStream(
   <App />,
   {
     onError(err) {
-      // Something errored after the shell was completed. It could have been a suspended resource or within a suspensed component tree.
+      // Something errored. It could have been a suspended resource or within a suspensed component tree.
       // This can be called _before_ onShellReady() even though the shell will be successfully outputted, so record that fact so we can send a 500 status.
       didError = true;
       console.error(err);

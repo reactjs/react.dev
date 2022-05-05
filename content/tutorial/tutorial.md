@@ -109,7 +109,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 ```
-Copy the JS and CSS from the **[Starter Code](https://codepen.io/gaearon/pen/oWWQNa?editors=0010)** and add it in your local in `index.js` and `index.css` respectively.
 
 Now if you run `npm start` in the project folder and open `http://localhost:3000` in the browser, you should see an empty tic-tac-toe field.
 

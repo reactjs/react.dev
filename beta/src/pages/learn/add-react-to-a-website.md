@@ -200,7 +200,7 @@ Adding JSX to a project doesn't require complicated tools like a [bundler](/lear
 Go to your project folder in the terminal, and paste these two commands (**Be sure you have [Node.js](https://nodejs.org/) installed!**):
 
 1. `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
-2. `npm install babel-cli@6 babel-preset-react-app@3`
+2. `npm install @babel/core @babel/cli @babel/preset-react`
 
 You only need npm to install the JSX preprocessor. You won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
 
@@ -211,7 +211,7 @@ Congratulations! You just added a **production-ready JSX setup** to your project
 You can preprocess JSX so that every time you save a file with JSX in it, the transform will be re-run, converting the JSX file into a new, plain JavaScript file.
 
 1. Create a folder called **src**
-2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for JSX.)
+2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets @babel/preset-react ` (Don't wait for it to finish! This command starts an automated watcher for JSX.)
 3. Move your JSX-ified **like_button.js** to the new **src** folder (or create a **like_button.js** containing this [JSX starter code](https://gist.githubusercontent.com/rachelnabors/ffbc9a0e33665a58d4cfdd1676f05453/raw/652003ff54d2dab8a1a1e5cb3bb1e28ff207c1a6/like_button.js))
 
 The watcher will create a preprocessed **like_button.js** with the plain JavaScript code suitable for the browser.

@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en"><head><link rel="preload" href="https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js" as="script"/><meta charSet="utf-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><link rel="icon" href="/favicon.ico"/><meta name="apple-mobile-web-app-capable" content="yes"/><link rel="apple-touch-icon" href="/logo-180x180.png"/><meta name="apple-mobile-web-app-title" content="React"/><meta name="note" content="environment=development"/><style type="text/css">
+    .anchor {
+      float: left;
+      padding-right: 4px;
+      margin-left: -20px;
+    }
+    h1 .anchor svg,
+    h2 .anchor svg,
+    h3 .anchor svg,
+    h4 .anchor svg,
+    h5 .anchor svg,
+    h6 .anchor svg {
+      visibility: hidden;
+    }
+    h1:hover .anchor svg,
+    h2:hover .anchor svg,
+    h3:hover .anchor svg,
+    h4:hover .anchor svg,
+    h5:hover .anchor svg,
+    h6:hover .anchor svg,
+    h1 .anchor:focus svg,
+    h2 .anchor:focus svg,
+    h3 .anchor:focus svg,
+    h4 .anchor:focus svg,
+    h5 .anchor:focus svg,
+    h6 .anchor:focus svg {
+      visibility: visible;
+    }
+  </style><script>
+    document.addEventListener("DOMContentLoaded", function(event) {
+      var hash = window.decodeURI(location.hash.replace('#', ''))
+      if (hash !== '') {
+        var element = document.getElementById(hash)
+        if (element) {
+          var offset = element.offsetTop
+          // Wait for the browser to finish rendering before scrolling.
+          setTimeout((function() {
+            window.scrollTo(0, offset - 0)
+          }), 0)
+        }
+      }
+    })
+  </script><link rel="alternate" type="application/rss+xml" href="/feed.xml"/><title data-react-helmet="true"></title><link rel="icon" href="/favicon-32x32.png?v=f4d46f030265b4c48a05c999b8d93791" type="image/png"/><link rel="manifest" href="/manifest.webmanifest"/><meta name="theme-color" content="#20232a"/><link rel="apple-touch-icon" sizes="48x48" href="/icons/icon-48x48.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="72x72" href="/icons/icon-72x72.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="96x96" href="/icons/icon-96x96.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="144x144" href="/icons/icon-144x144.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192x192.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="256x256" href="/icons/icon-256x256.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="384x384" href="/icons/icon-384x384.png?v=f4d46f030265b4c48a05c999b8d93791"/><link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512x512.png?v=f4d46f030265b4c48a05c999b8d93791"/><script src="/socket.io/socket.io.js"></script></head><body><script>
+                (function() {
+                  /*
+                    BE CAREFUL!
+                    This code is not compiled by our transforms
+                    so it needs to stay compatible with older browsers.
+                  */
+
+                  var activeSurveyBanner = null;
+                  var socialBanner = null;
+                  var snoozeStartDate = null;
+                  var today = new Date();
+
+                  function addTimes(date, days) {
+                    var time = new Date(date);
+                    time.setDate(time.getDate() + days);
+                    return time;
+                  }
+
+                  activeSurveyBanner = {
+                    storageId: 'reactjs_banner_2021survey',
+                    normalHeight: 50,
+                    smallHeight: 75,
+                    campaignStartDate: '2021-08-16T00:00:00Z', // the Z is for UTC
+                    campaignEndDate: '2021-08-31T00:00:00Z', // the Z is for UTC
+                    snoozeForDays: 7,
+                  };
+
+                  if (activeSurveyBanner) {
+                    try {
+                      if (localStorage[activeSurveyBanner.storageId]) {
+                        snoozeStartDate = new Date(
+                          parseInt(localStorage.getItem(activeSurveyBanner.storageId), 10),
+                        );
+                      }
+                    } catch (err) {
+                      // Ignore.
+                    }
+
+                    try {
+                      // If it's too early or long past the campaign, don't show the banner:
+                      if (
+                        today < new Date(activeSurveyBanner.campaignStartDate) ||
+                        today > new Date(activeSurveyBanner.campaignEndDate)
+                      ) {
+                        activeSurveyBanner = null;
+                        // If we're in the campaign window, but the snooze has been set and it hasn't expired:
+                      } else if (
+                        snoozeStartDate &&
+                        addTimes(snoozeStartDate, activeSurveyBanner.snoozeForDays) >= today
+                      ) {
+                        activeSurveyBanner = null;
+                      }
+                    } catch (err) {
+                      // Ignore.
+                    }
+                  }
+
+                  activeSocialBanner = {
+                    normalHeight: 50,
+                    smallHeight: 75
+                  };
+
+                  function updateStyles() {
+                    if (activeSurveyBanner) {
+                      document.documentElement.style.setProperty('--survey-banner-display', 'block');
+                      document.documentElement.style.setProperty('--survey-banner-height-normal', activeSurveyBanner.normalHeight + 'px');
+                      document.documentElement.style.setProperty('--survey-banner-height-small', activeSurveyBanner.smallHeight + 'px');
+                    } else {
+                      document.documentElement.style.setProperty('--survey-banner-display', 'none');
+                      document.documentElement.style.setProperty('--survey-banner-height-normal', '0px');
+                      document.documentElement.style.setProperty('--survey-banner-height-small', '0px');
+                    }
+                    if (activeSocialBanner) {
+                      document.documentElement.style.setProperty('--social-banner-display', 'block');
+                      document.documentElement.style.setProperty('--social-banner-height-normal', activeSocialBanner.normalHeight + 'px');
+                      document.documentElement.style.setProperty('--social-banner-height-small', activeSocialBanner.smallHeight + 'px');
+                    } else {
+                      document.documentElement.style.setProperty('--social-banner-display', 'none');
+                      document.documentElement.style.setProperty('--social-banner-height-normal', '0px');
+                      document.documentElement.style.setProperty('--social-banner-height-small', '0px');
+                    }
+                  }
+
+                  updateStyles();
+                  window.__dismissSurveyBanner = function() {
+                    if (activeSurveyBanner) {
+                      try {
+                        localStorage.setItem(activeSurveyBanner.storageId, Date.now().toString());
+                      } catch (err) {
+                        // Ignore.
+                      }
+                      // Don't show for next navigations within the session.
+                      activeSurveyBanner = null;
+                      updateStyles();
+                    }
+                  };
+                })();
+              </script><div id="___gatsby"></div><script src="/polyfill.js" nomodule=""></script><script src="/commons.js"></script><script src="https://unpkg.com/docsearch.js@2.4.1/dist/cdn/docsearch.min.js"></script></body></html>

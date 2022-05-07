@@ -127,7 +127,6 @@ return <img className="avatar" src={kayttaja.kuvanUrl} />;
 
 JSX aaltosulkeisiin voi laittaa myös laajempia lausekkeita, esimerkiksi [merkkijonojen yhdistämistä](https://javascript.info/operators#string-concatenation-with-binary):
 
-
 <Sandpack>
 
 ```js
@@ -243,7 +242,7 @@ export default function Ostoslista() {
     </li>
   ));
 
- return <ul>{listaKohteet}</ul>;
+  return <ul>{listaKohteet}</ul>;
 }
 ```
 
@@ -263,7 +262,7 @@ function Painonappi() {
 }
 ```
 
-Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _antaa se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.  
+Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _antaa se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.
 
 ## Ruudun päivittäminen {/* updating-the-screen */}
 
@@ -354,6 +353,7 @@ Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `co
 <Diagram name="sharing_data_child" height={734} width={814} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
 
 Ennen napsautusta, jokaisella Painonappi komponentilla tila on asetettuna nollaksi.
+
 </Diagram>
 
 <Diagram name="sharing_data_child_clicked" height={734} width={814} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >

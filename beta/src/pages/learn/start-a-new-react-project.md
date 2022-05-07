@@ -4,30 +4,32 @@ title: Start a New React Project
 
 <Intro>
 
-If you're learning React or considering adding it to an existing project, you can get started quickly by [adding React to any HTML page with script tags](/learn/add-react-to-a-website). If your project will need many components and many files, it might be time to consider the options below!
+If you're starting a new project, we recommend to use a toolchain or a framework. These tools provide a comfortable development environment but require a local Node.js installation.
 
 </Intro>
 
+<YouWillLearn>
+
+* How toolchains are different from frameworks
+* How to start a project with a minimal toolchain
+* How to start a project with a fully-featured framework
+* What's inside popular toolchains and frameworks
+
+</YouWillLearn>
+
 ## Choose your own adventure {/*choose-your-own-adventure*/}
 
-React is a library that lets you organize UI code by breaking it apart into pieces called components. React doesn't take care of routing or data management. For these features, you'll want to use third-party libraries or write your own solutions. This means there are several ways to start a new React project:
+React is a library that lets you organize UI code by breaking it apart into pieces called components. React doesn't take care of routing or data management. This means there are several ways to start a new React project:
 
-* Start with a **minimal set up with just a toolchain,** adding features to your project as necessary.
-* Start with an **opinionated framework** with common functionality already built in.
+* [Start with an **HTML file and a script tag**.](/learn/add-react-to-a-website) This doesn't require Node.js setup but offers limited features.
+* Start with a **minimal toolchain,** adding more features to your project as you go. (Great for learning!)
+* Start with an **opinionated framework** that has common features like data fetching and routing built-in.
 
-Whether you're just getting started, looking to build something big, or want to set up your own toolchain, this guide will set you on the right path.
+## Getting started with a minimal toolchain {/*getting-started-with-a-minimal-toolchain*/}
 
-## Getting started with a React toolchain {/*getting-started-with-a-react-toolchain*/}
+If you're **learning React,** we recommend [Create React App](https://create-react-app.dev/). It is the most popular way to try out React and build a new single-page, client-side application. It's made for React but isn't opinionated about routing or data fetching.
 
-If you're just getting started with React, we recommend [Create React App](https://create-react-app.dev/), the most popular way to try out React's features and a great way to build a new single-page, client-side application. Create React App is an unopinionated toolchain configured just for React. Toolchains help with things like:
-
-* Scaling to many files and components
-* Using third-party libraries from npm
-* Detecting common mistakes early
-* Live-editing CSS and JS in development
-* Optimizing the output for production
-
-You can get started building with Create React App with one line of code in your terminal! (**Be sure you have [Node.js](https://nodejs.org/) installed!**)
+First, install [Node.js](https://nodejs.org/en/). Then open your terminal and run this line to create a project:
 
 <TerminalBlock>
 
@@ -46,35 +48,36 @@ npm start
 
 For more information, [check out the official guide](https://create-react-app.dev/docs/getting-started).
 
-> Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline. This means you can use it with any backend you want. But if you're looking for more features like routing and server-side logic, read on!
+> Create React App doesn't handle backend logic or databases. You can use it with any backend. When you build a project, you'll get a folder with static HTML, CSS and JS. Because Create React App can't take advantage of the server, it doesn't provide the best performance. If you're looking for faster loading times and built-in features like routing and server-side logic, we recommend using a framework instead.
 
-### Other options {/*other-options*/}
-
-Create React App is great to get started working with React, but if you'd like an even lighter toolchain, you might try one of these other popular toolchains:
+### Popular alternatives {/*popular-alternatives*/}
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/)
-* [Snowpack](https://www.snowpack.dev/tutorials/react)
 
-## Building with React and a framework {/*building-with-react-and-a-framework*/}
+## Building with a full-featured framework {/*building-with-a-full-featured-framework*/}
 
-If you're looking to start a bigger, production-ready project, [Next.js](https://nextjs.org/) is a great place to start. Next.js is a popular, lightweight framework for static and server‑rendered applications built with React. It comes pre-packaged with features like routing, styling, and server-side rendering, getting your project up and running quickly. 
+If you're looking to **start a production-ready project,** [Next.js](https://nextjs.org/) is a great place to start. Next.js is a popular, lightweight framework for static and server‑rendered applications built with React. It comes pre-packaged with features like routing, styling, and server-side rendering, getting your project up and running quickly. 
 
-[Get started building with Next.js](https://nextjs.org/docs/getting-started) with the official guide.
+The [Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) tutorial is a great introduction to building with React and Next.js.
 
-### Other options {/*other-options-1*/}
+### Popular alternatives {/*popular-alternatives*/}
 
-* [Gatsby](https://www.gatsbyjs.org/) lets you generate static websites with React with GraphQL.
-* [Razzle](https://razzlejs.org/) is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+* [Gatsby](https://www.gatsbyjs.org/)
+* [Remix](https://remix.run/)
+* [Razzle](https://razzlejs.org/)
 
 ## Custom toolchains {/*custom-toolchains*/}
 
-You may prefer to create and configure your own toolchain. A JavaScript build toolchain typically consists of:
+You may prefer to create and configure your own toolchain. A toolchain typically consists of:
 
-* A **package manager**—lets you install, update and manage third-party packages. [Yarn](https://yarnpkg.com/) and [npm](https://www.npmjs.com/) are two popular package managers.
-* A **bundler**—lets you write modular code and bundle it together into small packages to optimize load time. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), [Parcel](https://parceljs.org/) are several popular bundlers.
-* A **compiler**—lets you write modern JavaScript code that still works in older browsers. [Babel](https://babeljs.io/) is one such example.
+* A **package manager** lets you install, update, and manage third-party packages. Popular package managers: [npm](https://www.npmjs.com/) (built into Node.js), [Yarn](https://yarnpkg.com/), [pnpm](https://pnpm.io/).
+* A **compiler** lets you compile modern language features and additional syntax like JSX or type annotations for the browsers. Popular compilers: [Babel](https://babeljs.io/), [TypeScript](http://typescript.org/), [swc](https://swc.rs/).
+* A **bundler** lets you write modular code and bundle it together into small packages to optimize load time. Popular bundlers: [webpack](https://webpack.js.org/), [Parcel](https://parceljs.org/), [esbuild](https://esbuild.github.io/), [swc](https://swc.rs/).
+* A **minifier** makes your code more compact so that it loads faster. Popular minifiers: [Terser](https://terser.org/), [swc](https://swc.rs/).
+* A **server** handles server requests so that you can render components to HTML. Popular servers: [Express](https://expressjs.com/).
+* A **linter** checks your code for common mistakes. Popular linters: [ESLint](https://eslint.org/).
+* A **test runner** lets you run tests against your code. Popular test runners: [Jest](https://jestjs.io/).
 
-In a larger project, you might also want to have a tool to manage multiple packages in a single repository. [Nx](https://nx.dev/react) is an example of such a tool.
+If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality. A framework will usually also provide a routing and a data fetching solution. In a larger project, you might also want to manage multiple packages in a single repository with a tool like [Nx](https://nx.dev/react).
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.

@@ -20,7 +20,7 @@ Before your components are displayed on screen, they must be rendered by React. 
 Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
 
 1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (getting the order from the kitchen)
+2. **Rendering** the component (preparing the order in the kitchen)
 3. **Committing** to the DOM (placing the order on the table)
 
 <IllustrationBlock sequential>

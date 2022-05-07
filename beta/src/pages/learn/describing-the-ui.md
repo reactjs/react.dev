@@ -23,7 +23,7 @@ React is a JavaScript library for rendering user interfaces (UI). UI is built fr
 
 ## Your first component {/*your-first-component*/}
 
-React applications are built from isolated pieces of UI called "components". A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
+React applications are built from isolated pieces of UI called *components*. A React component is a JavaScript function that you can sprinkle with markup. Components can be as small as a button, or as large as an entire page. Here is a `Gallery` component rendering three `Profile` components:
 
 <Sandpack>
 
@@ -464,7 +464,7 @@ Read **[Rendering Lists](/learn/rendering-lists)** to learn how to render a list
 
 ## Keeping components pure {/*keeping-components-pure*/}
 
-Some JavaScript functions are “pure.” A pure function:
+Some JavaScript functions are *pure.* A pure function:
 
 * **Minds its own business.** It does not change any objects or variables that existed before it was called.
 * **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.

@@ -83,11 +83,7 @@ function SandpackRoot(props: SandpackProps) {
         autorun={autorun}
         initMode="user-visible"
         initModeObserverOptions={{rootMargin: '1400px 0px'}}
-        bundlerURL={
-          window.localStorage.getItem('sandpack-new-bundler') === 'true'
-            ? 'https://cf56a978.sandpack-bundler.pages.dev'
-            : 'https://0-14-0-sandpack.codesandbox.io/'
-        }>
+        bundlerURL="https://cf56a978.sandpack-bundler.pages.dev">
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}

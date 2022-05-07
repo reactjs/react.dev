@@ -38,8 +38,7 @@
     "react": "experimental",
     "react-collapsed": "3.1.0",
     "react-dom": "experimental",
-    "scroll-into-view-if-needed": "^2.2.25",
-    "use-timer": "^2.0.1"
+    "scroll-into-view-if-needed": "^2.2.25"
   },
   "devDependencies": {
     "@mdx-js/loader": "^1.6.16",

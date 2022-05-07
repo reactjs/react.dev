@@ -346,7 +346,7 @@ Hookit ovat rajoittavampia kuin normaalit funktiot. Voit kutsua hookkeja _ainoas
 
 ## Tiedon jakaminen komponenttien välillä {/* sharing-data-between-components */}
 
-Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `count` tila, sekä kun yksittäistä painiketta napsautettiin, vain sen painikkeen `count` tila muuttui:
+Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `count` tila, ja kun yksittäistä painiketta napsautettiin, vain painetun painikkeen `count` tila muuttui:
 
 <DiagramGroup>
 

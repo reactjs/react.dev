@@ -4,6 +4,9 @@
 
 - **React hook**: React hookki, koukku
 - **props**: proppi, propit
+- **prop drilling**: proppien poraus
+- **reducer**: reducer
+- **dispatch**: dispatch, lähettää
 - **pure component**: puhdas komponentti
 
 ## General

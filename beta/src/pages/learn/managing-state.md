@@ -4,7 +4,7 @@ title: Tilan hallinta
 
 <Intro>
 
-Sovelluksesi kasvaessa, kannattaa olla tietoisempi miten tilasi on järjestetty sekä miten tieto kulkee komponenttien välilä. Turha tai toistettu tila on yleinen bugien lähden. Tässä luvussa opit miten tila järjestetään hyvin, miten tilapäivityksen logiikka pidetään ylläpidettävänä, sekä miten jaetaan tilaa kaukaisten komponettien välillä.
+Sovelluksesi kasvaessa, kannattaa olla tietoisempi miten tilasi on järjestetty sekä miten tieto kulkee komponenttien välilä. Turha tai toistettu tila on yleinen bugien lähde. Tässä luvussa opit miten tila järjestetään hyvin, miten tilapäivityksen logiikka pidetään ylläpidettävänä, sekä miten tila jaetaan kaukaisten komponettien välillä.
 
 </Intro>
 

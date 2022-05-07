@@ -4,7 +4,7 @@ title: Updating Arrays in State
 
 <Intro>
 
-Arrays are another type of mutable JavaScript objects you can store in state and should treat as immutable. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+Arrays are mutable in JavaScript, but you should treat as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
 
 </Intro>
 

@@ -92,6 +92,8 @@
           title: React.Component
     - id: react-dom
       title: ReactDOM
+    - id: react-dom-client
+      title: ReactDOMClient
     - id: react-dom-server
       title: ReactDOMServer
     - id: dom-elements

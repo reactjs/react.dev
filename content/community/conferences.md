@@ -12,37 +12,24 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### AgentConf 2022 {#agent-conf-2022} 
-January 27th - 30th, 2022. In-person in Dornbirn and Lech Austria
-
-[Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
-
-### React Live 2022 {#react-live-2022}
-April 1st, 2022. Amsterdam, The Netherlands
-
-[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
-
-### < React Global > by Geekle {#react-global-2022}
-April 21-22, 2022 - Online Summit
-
-[Website](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/) 
-
-### React Miami 2022 🌴 {#react-miami-2022}
-April 18th - 19th, 2022. Miami, Florida
-[Website](https://www.reactmiami.com/)
 
 ### Reactathon 2022 {#reactathon-2022} 
 May 3 - 5, 2022. Berkeley, CA
 
 [Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
 
-### render(ATL) 2022 {#render-atlanta-2022} 
-June 2-4, 2022. Atlanta, GA, USA
+### render(ATL) 2022 🍑 {#render-atlanta-2022} 
+June 1 - 4, 2022. Atlanta, GA, USA
 
-[Website](https://renderatl.com) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl)
+[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
+
+### React Day Bangalore 2022 {#reactday-bangalore-2022}
+June 8 - 9, 2022.  Remote
+
+[Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
 
 ### App.js Conf 2022 {#appjs-conf-2022}
-June 8-10, 2022. In-person in Kraków, Poland + remote
+June 8 - 10, 2022. In-person in Kraków, Poland + remote
 
 [Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
 
@@ -51,12 +38,62 @@ June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interacti
 
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
+### React Norway 2022 {#react-norway-2022}
+June 24, 2022. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+
+### ReactNext 2022 {#react-next-2022}
+June 28, 2022. Tel-Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/c/ReactNext)
+
+### React Native EU 2022: Powered by {callstack} {#react-native-eu-2022-powered-by-callstack}
+September 1-2, 2022 - Remote event
+
+[Website](https://www.react-native.eu/?utm_campaign=React_Native_EU&utm_source=referral&utm_content=reactjs_community_conferences) -
+[Twitter](https://twitter.com/react_native_eu) -
+[Linkedin](https://www.linkedin.com/showcase/react-native-eu) -
+[Facebook](https://www.facebook.com/reactnativeeu/) - 
+[Instagram](https://www.instagram.com/reactnative_eu/)
+
+### React Finland 2022 {#react-finland-2022}
+September 12 - 16, 2022. In-person in Helsinki, Finland
+
+[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [Schedule](https://react-finland.fi/schedule/) - [Speakers](https://react-finland.fi/speakers/)
+
 ### React India 2022 {#react-india-2022}
 September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 
 [Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
+### React Alicante 2022 {#react-alicante-2022}
+September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
+
+[Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+
 ## Past Conferences {#past-conferences}
+
+
+### < React Global > Online Summit 2022 by Geekle {#react-global-2022}
+April 20 - 21, 2022 - Online Summit
+
+[Website](https://events.geekle.us/react2/) - [LinkedIn](https://www.linkedin.com/events/reactglobalonlinesummit-226887417664541614081/)
+
+### React Miami 2022 🌴 {#react-miami-2022}
+April 18 - 19, 2022. Miami, Florida
+[Website](https://www.reactmiami.com/)
+
+### React Live 2022 {#react-live-2022}
+April 1, 2022. Amsterdam, The Netherlands
+
+[Website](https://www.reactlive.nl/) - [Twitter](https://twitter.com/reactlivenl)
+
+### AgentConf 2022 {#agent-conf-2022} 
+
+January 27 - 30, 2022. In-person in Dornbirn and Lech Austria
+
+[Website](https://agent.sh/) - [Twitter](https://twitter.com/AgentConf) - [Instagram](https://www.instagram.com/teamagent/)
 
 ### React Conf 2021 {#react-conf-2021}
 December 8, 2021 - remote event (replay event on December 9)
@@ -81,7 +118,7 @@ November 12-13, 2021 - remote event
 ### < React Global > by Geekle {#react-global-2021}
 November 3-4, 2021 - remote event
 
-[Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) 
+[Website](https://geekle.us/react) - [LinkedIn](https://www.linkedin.com/events/javascriptglobalsummit6721691514176720896/) - [YouTube](https://www.youtube.com/watch?v=0HhWIvPhbu0)
 
 ### React Advanced 2021 {#react-advanced-2021}
 October 22-23, 2021. In-person in London, UK + remote (hybrid event)

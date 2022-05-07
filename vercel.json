@@ -11,7 +11,7 @@
     },
     {
       "source": "/link/switch-to-createroot",
-      "destination": "https://github.com/reactwg/react-18/discussions/5",
+      "destination": "https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis",
       "permanent": false
     },
     {
@@ -248,6 +248,31 @@
       "source": "/version/16.0",
       "destination": "https://5a046bf5a6188f4b8fa4938a--reactjs.netlify.com",
       "permanent": false
+    },
+    {
+      "source": "/docs/concurrent-mode-adoption.html",
+      "destination": "https://17.reactjs.org/docs/concurrent-mode-adoption.html",
+      "permanent": true
+    },
+    {
+      "source": "/docs/concurrent-mode-intro.html",
+      "destination": "https://17.reactjs.org/docs/concurrent-mode-intro.html",
+      "permanent": true
+    },
+    {
+      "source": "/docs/concurrent-mode-patterns.html",
+      "destination": "https://17.reactjs.org/docs/concurrent-mode-patterns.html",
+      "permanent": true
+    },
+    {
+      "source": "/docs/concurrent-mode-reference.html",
+      "destination": "https://17.reactjs.org/docs/concurrent-mode-reference.html",
+      "permanent": true
+    },
+    {
+      "source": "/docs/concurrent-mode-suspense.html",
+      "destination": "https://17.reactjs.org/docs/concurrent-mode-suspense.html",
+      "permanent": true
     }
   ]
 }

@@ -8,4 +8,4 @@ The invalid-aria-prop warning will fire if you attempt to render a DOM element w
 
 1. If you feel that you are using a valid prop, check the spelling carefully. `aria-labelledby` and `aria-activedescendant` are often misspelled.
 
-2. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React. However, React currently strips all unknown attributes, so specifying them in your React app will not cause them to be rendered
+2. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React.

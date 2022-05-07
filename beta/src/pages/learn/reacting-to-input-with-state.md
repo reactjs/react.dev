@@ -332,7 +332,15 @@ In both cases, **you must set [state variables](/learn/state-a-components-memory
 
 To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
 
-<img alt="A flow chart showing states and transitions between them" src="/images/docs/sketches/s_flow-chart.jpg" />
+<DiagramGroup>
+
+<Diagram name="responding_to_input_flow" height={350} width={688} alt="Flow chart moving left to right with 5 nodes. The first node labeled 'empty' has one edge labeled 'start typing' connected to a node labeled 'typing'. That node has one edge labeled 'press submit' connected to a node labeled 'submitting', which has two edges. The left edge is labeled 'network error' connecting to a node labeled 'error'. The right edge is labeled 'network success' connecting to a node labeled 'success'.">
+
+Form States
+
+</Diagram>
+
+</DiagramGroup>
 
 ### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
@@ -366,7 +374,7 @@ You want to avoid duplication in the state content so you're only tracking what 
 Here are some questions you can ask about your state variables:
 
 * **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`. 
-* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `message.length === 0`.
+* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `answer.length === 0`.
 * **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
 
 After this clean-up, you're left with 3 (down from 7!) *essential* state variables:

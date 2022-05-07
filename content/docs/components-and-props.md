@@ -64,23 +64,21 @@ When React sees an element representing a user-defined component, it passes JSX 
 
 For example, this code renders "Hello, Sara" on the page:
 
-```js{1,5}
+```js{1,6}
 function Welcome(props) {
   return <h1>Hello, {props.name}</h1>;
 }
 
+const root = ReactDOM.createRoot(document.getElementById('root'));
 const element = <Welcome name="Sara" />;
-ReactDOM.render(
-  element,
-  document.getElementById('root')
-);
+root.render(element);
 ```
 
 **[Try it on CodePen](https://codepen.io/gaearon/pen/YGYmEG?editors=1010)**
 
 Let's recap what happens in this example:
 
-1. We call `ReactDOM.render()` with the `<Welcome name="Sara" />` element.
+1. We call `root.render()` with the `<Welcome name="Sara" />` element.
 2. React calls the `Welcome` component with `{name: 'Sara'}` as the props.
 3. Our `Welcome` component returns a `<h1>Hello, Sara</h1>` element as the result.
 4. React DOM efficiently updates the DOM to match `<h1>Hello, Sara</h1>`.
@@ -111,11 +109,6 @@ function App() {
     </div>
   );
 }
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('root')
-);
 ```
 
 **[Try it on CodePen](https://codepen.io/gaearon/pen/KgQKPr?editors=1010)**

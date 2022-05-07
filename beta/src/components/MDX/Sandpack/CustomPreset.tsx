@@ -20,7 +20,6 @@ import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
-import {ReturnValue} from 'use-timer/lib/types';
 
 export function CustomPreset({
   isSingleFile,

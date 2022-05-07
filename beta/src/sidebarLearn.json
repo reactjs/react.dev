@@ -30,7 +30,7 @@
           ]
         },
         {
-          "title": "Quick Start",
+          "title": "Pika-aloitus",
           "path": "/learn",
           "routes": [
             {
@@ -40,40 +40,40 @@
           ]
         },
         {
-          "title": "Describing the UI",
+          "title": "Käyttöliittymän kuvaus",
           "tags": [],
           "path": "/learn/describing-the-ui",
           "routes": [
             {
-              "title": "Your First Component",
+              "title": "Ensimmäinen komponenttisi",
               "path": "/learn/your-first-component"
             },
             {
-              "title": "Importing and Exporting Components",
+              "title": "Komponenttien tuonti ja vienti",
               "path": "/learn/importing-and-exporting-components"
             },
             {
-              "title": "Writing Markup with JSX",
+              "title": "Merkintäkoodin kirjoittaminen JSX:llä",
               "path": "/learn/writing-markup-with-jsx"
             },
             {
-              "title": "JavaScript in JSX with Curly Braces",
+              "title": "JavaScriptia JSX:ssa aaltosulkeilla",
               "path": "/learn/javascript-in-jsx-with-curly-braces"
             },
             {
-              "title": "Passing Props to a Component",
+              "title": "Proppien välittäminen komponenteille",
               "path": "/learn/passing-props-to-a-component"
             },
             {
-              "title": "Conditional Rendering",
+              "title": "Ehdollinen renderöinti",
               "path": "/learn/conditional-rendering"
             },
             {
-              "title": "Rendering Lists",
+              "title": "Listojen renderöinti",
               "path": "/learn/rendering-lists"
             },
             {
-              "title": "Keeping Components Pure",
+              "title": "Komponenttien pitäminen puhtaina",
               "path": "/learn/keeping-components-pure"
             }
           ]

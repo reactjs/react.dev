@@ -350,13 +350,13 @@ Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `co
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={734} width={814} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={734} width={814} alt="Puukaavio joka näyttää kolme komponenttia, yhden MyApp pääkomponentin sekä kaksi MyButton lapsikomponenttia. Molemmat MyButton komponentit sisältävät count tilan, jonka arvo on nolla.">
 
 Ennen napsautusta, jokaisella Painonappi komponentilla tila on asetettuna nollaksi.
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={734} width={814} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={734} width={814} alt="Sama kaavio kuin aiemmin, mutta ensimmäisen MyButton komponentin count tila on korostettuna osoittaen klikkausta, jolloin count tila on noussut yhteen. Toinen MyButton komponentti silti sisältää arvon nolla." >
 
 Napsautuksen jälkeen, vain yhdellä Painonappi komponentilla tila on päivittynyt.
 
@@ -364,35 +364,35 @@ Napsautuksen jälkeen, vain yhdellä Painonappi komponentilla tila on päivittyn
 
 </DiagramGroup>
 
-However, often you'll need components to _share data and always update together_.
+Usein kuitenkin komponenttien täytyy _jakaa tietoa ja päivittyä sen mukana_.
 
-To make both `MyButton` components display the same `count` and update together, you need to move the state from the individual buttons "upwards" to the closest component containing all of them.
+Jotta molemmat `MyButton` komponentit näyttävät saman `count` luvun sekä päivittyvät sen mukana, täytyy yksilöllinen tila poistaa nappi -komponenteilta "ylöspäin" lähimmälle pääkomponentille.
 
-In this example, it is `MyApp`:
+Tässä esimerkissä se on `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={770} width={820} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={770} width={820} alt="Puukaavio sisältäen kolme komponenttia, yhden MyApp pääkomponentin sekä kaksi MyButton lapsikomponenttia. MyApp pitää sisällään count tilan arvolla nolla, joka on annettu molemmille MyButton komponenteille, jotka myöskin näyttävät arvoa nolla." >
 
-Before clicking, count is stored in MyApp and passed down to both children as props.
+Ennen napsautusta, count tila on MyApp komponentissa ja annettu molemmille lapsikomponenteille proppeina.
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={770} width={820} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={770} width={820} alt="Sama kaavio kuin aiemmin, jossa MyApp komponentin count tila on korostettu osoittaen klikkausta, jolloin tilan arvo on noussut yhteen. Tiedon virtaus molempiin lapsikomponentteihin on myös korostettu, sekä tila kummassakin lapsikomponentissa on asetettu yhdeksi osoittaen tilan virtausta alaspäin." >
 
-After clicking, count updates in MyApp and the new value is passed to both children as props.
+Klikkauksen jälkeen tila päivittyy MyApp komponentissa sekä uusi arvo on annettu molemmille lapsikomponenteille proppeina.
 
 </Diagram>
 
 </DiagramGroup>
 
-Now when you click either button, the `count` in `MyApp` will change, which will change both of the counts in `MyButton`. Here's how you can express this in code.
+Nyt kun klikkaat kumpaakin painiketta, `count` tila `MyApp` komponentissa muuttuu. Tämä muutos muuttaa molempien `MyButton` komponenttien tilat.Tässä vielä miten se tehtäisiin koodissa.
 
-First, _move the state up_ from `MyButton` into `MyApp`:
+Ensiksi, _siirrä tila ylöspäin_ `MyButton` komponentista `MyApp` komponenttiin:
 
 ```js {2,6-10}
 function MyButton() {
-  // ... we're moving code from here ...
+  // ... siirretään tila täältä ...
 }
 
 export default function MyApp() {
@@ -404,7 +404,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update separately</h1>
+      <h1>Laskurit, jotka päivittyvät erikseen</h1>
       <MyButton />
       <MyButton />
     </div>
@@ -412,7 +412,7 @@ export default function MyApp() {
 }
 ```
 
-Then, _pass the state down_ from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
+Sitten _anna tila alaspäin_ `MyApp` komponentissa kuhunkin `MyButton` komponenttiin yhdessä klikkauksen tapahtumakäsittelijän kanssa. Voit antaa tietoa `MyButton` komponenttiin käyttäen JSX aaltosulkeita, aivan kuten aiemmin teit sisäänrakennettujen `<img>` tagien kanssa:
 
 ```js {11-12}
 export default function MyApp() {
@@ -424,7 +424,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Laskurit jotka päivittyvät yhdessä</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -432,19 +432,19 @@ export default function MyApp() {
 }
 ```
 
-The information you pass down like this is called _props_. Now the `MyApp` component contains the `count` state and the `handleClick` event handler, and _passes both of them down as props_ to each of the buttons.
+Tietoa, jota annat alaspäin näin kutsutaan _propeiksi_ (engl. props). Nyt `MyApp` komponentti sisältää `count` tilan, `handleClick` tapahtumakäsittelijän, sekä _antaa molemmat näistä proppeina_ kullekin painikkeelle.
 
-Finally, change `MyButton` to _read_ the props you have passed from its parent component:
+Lopuksi, mutta `MyButton` _lukemaan_ propit, jotka annoit sille sen pääkomponentista:
 
 ```js {1,3}
 function MyButton({count, onClick}) {
-  return <button onClick={onClick}>Clicked {count} times</button>;
+  return <button onClick={onClick}>Napsautit {count} kertaa</button>;
 }
 ```
 
-When you click the button, the `onClick` handler fires. Each button's `onClick` prop was set to the `handleClick` function inside `MyApp`, so the code inside of it runs. That code calls `setCount(count + 1)`, incrementing the `count` state variable. The new `count` value is passed as a prop to each button, so they all show the new value.
+Kun klikkaat painiketta, `onClick` tapahtumakäsittelijää kutsutaan. Jokaisen painikkeen `onClick` proppi on asetettu `handleClick` funktioon `MyApp` komponentissa, joten koodi sen sisällä suoritetaan. Se koodi kutsuu `setCount(count + 1)`, nostaen `count` tilamuuttujaa. Uusi `count` tila annetaan proppina kullekin painikkeelle jolloin ne kaikki näyttävät samaa uutta arvoa.
 
-This is called "lifting state up". By moving state up, we've shared it between components.
+Tätä kutsutaan "tilan nostamiseksi ylös". Siirtämällä tilaa ylös jaamme sitä komponenttien välillä.
 
 <Sandpack>
 
@@ -452,7 +452,7 @@ This is called "lifting state up". By moving state up, we've shared it between c
 import {useState} from 'react';
 
 function MyButton({count, onClick}) {
-  return <button onClick={onClick}>Clicked {count} times</button>;
+  return <button onClick={onClick}>Napsautit {count} kertaa</button>;
 }
 
 export default function MyApp() {
@@ -464,7 +464,7 @@ export default function MyApp() {
 
   return (
     <div>
-      <h1>Counters that update together</h1>
+      <h1>Laskurit jotka päivittyvät yhdessä</h1>
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
@@ -481,8 +481,8 @@ button {
 
 </Sandpack>
 
-## Next Steps {/* next-steps */}
+## Seuraavat vaiheet {/* next-steps */}
 
-By now, you know the basics of how to write React code!
+Tähän mennessä osaat miten kirjoitetaan perusteet React koodista!
 
-Head to [Thinking in React](/learn/thinking-in-react) to see how it feels to build a UI with React in practice.
+Siirry seuraavaksi [Ajattelua Reactissa](/learn/thinking-in-react) nähdäksesi, miltä käyttöliittymän rakentaminen Reactilla tuntuu käytännössä.

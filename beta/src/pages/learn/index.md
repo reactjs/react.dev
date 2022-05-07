@@ -394,13 +394,13 @@ In the previous example, each `MyButton` had its own independent `count`, and wh
 
 <Diagram name="sharing_data_child" height={734} width={814} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
 
-Before clicking, each MyButton has a count value set to zero.
+Initially, each `MyButton`'s `count` state is `0`
 
 </Diagram>
 
 <Diagram name="sharing_data_child_clicked" height={734} width={814} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
 
-After clicking, only one MyButton count value has updated.
+On click, the first `MyButton` updates its `count` state to `1`
 
 </Diagram>
 
@@ -416,13 +416,13 @@ In this example, it is `MyApp`:
 
 <Diagram name="sharing_data_parent" height={770} width={820} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
 
-Before clicking, count is stored in MyApp and passed down to both children as props.
+Initially, `MyApp`'s `count` state is `0` and is passed down to both children
 
 </Diagram>
 
 <Diagram name="sharing_data_parent_clicked" height={770} width={820} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
 
-After clicking, count updates in MyApp and the new value is passed to both children as props.
+On click, `MyApp` updates its `count` state to `1` and passes it down to both children
 
 </Diagram>
 

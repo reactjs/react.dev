@@ -75,6 +75,22 @@ h3, p { margin: 5px 0px; }
 
 Notice how pressing one panel's button does not affect the other panel--they are independent.
 
+<DiagramGroup>
+
+<Diagram name="sharing_state_child" height={368} width={478} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+
+Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
+
+</Diagram>
+
+<Diagram name="sharing_state_child_clicked" height={368} width={481} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+
+Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone, so each panel expands independently
+
+</Diagram>
+
+</DiagramGroup>
+
 **But now let's say you want to change it so that only one panel is expanded at any given time.** With that design, expanding the second panel should collapse the first one. How would you do that?
 
 To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
@@ -84,8 +100,6 @@ To coordinate these two panels, you need to "lift their state up" to a parent co
 3. **Add** state to the common parent and pass it down together with the event handlers.
 
 This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
-
-<img alt="On the left are two components each owning their own state values. On the right, they are the children of a parent component that owns both their state values." src="/images/docs/sketches/s_lifting-state-up.png" />
 
 ### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
 
@@ -163,8 +177,6 @@ Try editing the hardcoded `isActive` values in the `Accordion` component and see
 ### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
 
 Lifting state up often changes the nature of what you're storing as state.
-
-<img alt="The parent component passes the state setting function to both child components." src="/images/docs/sketches/s_passing-functions-down.png" />
 
 In this case, only one panel should be active at a time. This means that the `Accordion` common parent component needs to keep track of *which* panel is the active one. Instead of a `boolean` value, it could use a number as the index of the active `Panel` for the state variable:
 
@@ -255,6 +267,22 @@ h3, p { margin: 5px 0px; }
 </Sandpack>
 
 This completes lifting state up! Moving state into the common parent component allowed you to coordinate the two panels. Using the active index instead of two "is shown" flags ensured that only one panel is active at a given time. And passing down the event handler to the child allowed the child to change the parent's state.
+
+<DiagramGroup>
+
+<Diagram name="sharing_state_parent" height={385} width={521} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+
+Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
+
+</Diagram>
+
+<Diagram name="sharing_state_parent_clicked" height={385} width={521} alt="The same diagram as the previous, with the activeIndex value of the parent Accordion component highlighted indicating a click with the value changed to one. The flow to both of the children Panel components is also highlighted, and the isActive value passed to each child is set to the opposite: false for the first Panel and true for the second one." >
+
+When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receives `isActive = true` instead
+
+</Diagram>
+
+</DiagramGroup>
 
 <DeepDive title="Controlled and Uncontrolled Components">
 

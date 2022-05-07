@@ -43,9 +43,9 @@ The last thing you want to do when sharing your code with another contributor is
 You can install the [Prettier extension in VSCode](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode) by following these steps:
 
 1. Launch VS Code
-2. Use Quick Open (press `CTRL/CMD + P`)
+2. Use Quick Open (press Ctrl/Cmd+P)
 3. Paste in `ext install esbenp.prettier-vscode`
-4. Press enter
+4. Press Enter
 
 #### Formatting on save {/*formatting-on-save*/}
 
@@ -53,8 +53,8 @@ Ideally, you should format your code on every save. VS Code has settings for thi
 
 1. In VS Code, press `CTRL/CMD + SHIFT + P`.
 2. Type "settings"
-3. Hit enter
+3. Hit Enter
 4. In the search bar, type "format on save"
 5. Be sure the "format on save" option is ticked!
 
-> Prettier can sometimes conflict with other linters. But there's usually a way to get them to run nicely together. For instance, if you're using Prettier with ESLint, you can use [eslint-prettier](https://github.com/prettier/eslint-plugin-prettier) plugin to run prettier as an ESLint rule.
+> If your ESLint preset has formatting rules, they may conflict with Prettier. We recommend to disable all formatting rules in your ESLint preset using [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier) so that ESLint is *only* used for catching logical mistakes. If you want to enforce that files are formatted before a pull request is merged, use [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) for your continuous integration.

@@ -4,7 +4,7 @@ title: Responding to Events
 
 <Intro>
 
-React lets you add event handlers to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to interactions like clicking, hovering, focusing form inputs, and so on.
 
 </Intro>
 
@@ -67,7 +67,7 @@ You defined the `handleClick` function and then [passed it as a prop](/learn/pas
 * Are usually defined *inside* your components.
 * Have names that start with `handle`, followed by the name of the event.
 
-> While there is no special syntax for event handlers, it is a convention to name them `handle` followed by the event handled. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
+> By convention, it is common to name event handlers as `handle` followed by the event name. You'll often see `onClick={handleClick}`, `onMouseEnter={handleMouseEnter}`, and so on.
 
 Alternatively, you can define an event handler inline in the JSX:
 

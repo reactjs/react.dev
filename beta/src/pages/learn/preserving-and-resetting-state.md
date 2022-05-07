@@ -108,7 +108,7 @@ Here's how these look as a tree:
 
 <Diagram name="preserving_state_tree" height={248} width={395} alt="Diagram of a tree of React components. The root node is labeled 'div' and has two children. Each of the children are labeled 'Counter' and both contain a state bubble labeled 'count' with value 0.">
 
-React Tree
+React tree
 
 </Diagram>
 
@@ -383,7 +383,7 @@ When you tick or clear the checkbox, the counter state does not get reset. Wheth
 
 <Diagram name="preserving_state_same_component" height={461} width={600} alt="Diagram with two sections separated by an arrow transitioning between them. Each section contains a layout of components with a parent labeled 'App' containing a state bubble labeled isFancy. This component has one child labeled 'div', which leads to a prop bubble containing isFancy (highlighted in purple) passed down to the only child. The last child is labeled 'Counter' and contains a state bubble with label 'count' and value 3 in both diagrams. In the left section of the diagram, nothing is highlighted and the isFancy parent state value is false. In the right section of the diagram, the isFancy parent state value has changed to true and it is highlighted in yellow, and so is the props bubble below, which has also changed its isFancy value to true.">
 
-Since Counter is always in the same position, the count does not reset, event when isFancy state in the parent changes.
+Updating the `App` state does not reset the `Counter` state because it stays in the same position
 
 </Diagram>
 
@@ -583,7 +583,7 @@ Here, you switch between _different_ component types at the same position. Initi
 
 <Diagram name="preserving_state_diff_pt1" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'p', highlighted in yellow.">
 
-When Counter changes to p, first the Counter is unmounted, then the p is mounted.
+When `Counter` changes to `p`, the `Counter` is deleted and the `p` is added
 
 </Diagram>
 
@@ -593,7 +593,7 @@ When Counter changes to p, first the Counter is unmounted, then the p is mounted
 
 <Diagram name="preserving_state_diff_pt2" height={290} width={753} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'p'. The middle section has the same 'div' parent, but the child component has now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, highlighted in yellow.">
 
-When switching back, first the p is unmounted, then the Counter is mounted.
+When switching back, the `p` is deleted and the `Counter` is added
 
 </Diagram>
 
@@ -694,7 +694,7 @@ The counter state gets reset when you click the checkbox. Although you render a 
 
 <Diagram name="preserving_state_diff_same_pt1" height={362} width={752} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'section', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 3. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'div', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
-When section changes to div, first the section is unmounted then the new div is mounted.
+When `section` changes to `div`, the `section` is deleted and the new `div` is added
 
 </Diagram>
 
@@ -704,7 +704,7 @@ When section changes to div, first the section is unmounted then the new div is 
 
 <Diagram name="preserving_state_diff_same_pt2" height={362} width={752} alt="Diagram with three sections, with an arrow transitioning each section in between. The first section contains a React component labeled 'div' with a single child labeled 'div', which has a single child labeled 'Counter' containing a state bubble labeled 'count' with value 0. The middle section has the same 'div' parent, but the child components have now been deleted, indicated by a yellow 'proof' image. The third section has the same 'div' parent again, now with a new child labeled 'section', highlighted in yellow, also with a new child labeled 'Counter' containing a state bubble labeled 'count' with value 0, all highlighted in yellow.">
 
-When switching back, first the div is unmounted then the new section is mounted.
+When switching back, the `div` is deleted and the new `section` is added
 
 </Diagram>
 
@@ -917,7 +917,7 @@ h1 {
 
 <Diagram name="preserving_state_diff_position_p1" height={375} width={504} alt="Diagram with a tree of React components. The parent is labeled 'Scoreboard' with a state bubble labeled isPlayerA with value 'true'. The only child, arranged to the left, is labeled Counter with a state bubble labeled 'count' and value 0. All of the left child is highlighted in yellow, indicating it was added.">
 
-Initial State
+Initial state
 
 </Diagram>
 

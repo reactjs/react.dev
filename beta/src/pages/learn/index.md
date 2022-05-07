@@ -21,7 +21,7 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 ## Creating and nesting components {/*components*/}
 
-React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
 
 React components are JavaScript functions that return markup:
 
@@ -77,7 +77,7 @@ The `export default` keywords specify the main component in the file. If you're 
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called JSX. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
 JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
 
@@ -280,7 +280,7 @@ export default function ShoppingList() {
 
 ## Responding to events {/*responding-to-events*/}
 
-You can respond to events by declaring event handler functions inside your components:
+You can respond to events by declaring *event handler* functions inside your components:
 
 ```js {2-4,7}
 function MyButton() {
@@ -382,7 +382,7 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 
 ## Using Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called Hooks. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis). You can also write your own Hooks by combining the existing ones.
+Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis). You can also write your own Hooks by combining the existing ones.
 
 Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to `useState` in a condition or a loop, extract a new component and put it there.
 

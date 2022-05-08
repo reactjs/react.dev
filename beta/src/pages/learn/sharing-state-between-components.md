@@ -77,15 +77,15 @@ Notice how pressing one panel's button does not affect the other panel--they are
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_child" height={368} width={478} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
+<Diagram name="sharing_state_child" height={367} width={477} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Both Panel components contain isActive with value false.">
 
 Initially, each `Panel`'s `isActive` state is `false`, so they both appear collapsed
 
 </Diagram>
 
-<Diagram name="sharing_state_child_clicked" height={368} width={481} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
+<Diagram name="sharing_state_child_clicked" height={367} width={480} alt="The same diagram as the previous, with the isActive of the first child Panel component highlighted indicating a click with the isActive value set to true. The second Panel component still contains value false." >
 
-Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone, so each panel expands independently
+Clicking either `Panel`'s button will only update that `Panel`'s `isActive` state alone
 
 </Diagram>
 
@@ -270,7 +270,7 @@ This completes lifting state up! Moving state into the common parent component a
 
 <DiagramGroup>
 
-<Diagram name="sharing_state_parent" height={385} width={521} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
+<Diagram name="sharing_state_parent" height={385} width={487} alt="Diagram showing a tree of three components, one parent labeled Accordion and two children labeled Panel. Accordion contains an activeIndex value of zero which turns into isActive value of true passed to the first Panel, and isActive value of false passed to the second Panel." >
 
 Initially, `Accordion`'s `activeIndex` is `0`, so the first `Panel` receives `isActive = true`
 

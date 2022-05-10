@@ -83,7 +83,7 @@ function SandpackRoot(props: SandpackProps) {
         autorun={autorun}
         initMode="user-visible"
         initModeObserverOptions={{rootMargin: '1400px 0px'}}
-        bundlerURL="https://cf56a978.sandpack-bundler.pages.dev">
+        bundlerURL="https://8r8rls-1234.preview.csb.app">
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}

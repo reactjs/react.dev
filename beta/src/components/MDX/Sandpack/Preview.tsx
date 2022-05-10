@@ -80,6 +80,7 @@ export function Preview({
   React.useEffect(
     function bundlerListener() {
       const unsubscribe = listen((message: any) => {
+        console.log(message);
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
         } else if (message.type === 'start') {

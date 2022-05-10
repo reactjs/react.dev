@@ -247,6 +247,8 @@ function withdraw(account, amount) {
   account.total -= amount;
 }
 ```
+account is an object that has a property of total, altering account.total means altering account 
+
 
 React is pretty flexible but it has a single strict rule:
 

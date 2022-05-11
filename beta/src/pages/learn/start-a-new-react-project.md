@@ -1,80 +1,83 @@
 ---
-title: Start a New React Project
+title: Aloita uusi React projekti
 ---
 
 <Intro>
 
-If you're learning React or considering adding it to an existing project, you can get started quickly by [adding React to any HTML page with script tags](/learn/add-react-to-a-website). If your project will need many components and many files, it might be time to consider the options below!
+Jos olet opettelemassa Reactia tai harkitsen sen lisäämistä olemassa olevaan projektiin, voit aloittaa nopeasti [lisäämällä Reactin mille tahansa HTML sivulle script -tagien avulla](/learn/add-react-to-a-website).
+Mikäli projektisi tulee tarvitsemaan useita komponentteja ja tiedostoja, voi olla aika harkita muita alla olevia vaihtoehtoja!
 
 </Intro>
 
-## Choose your own adventure {/*choose-your-own-adventure*/}
+## Valitse oma polkusi {/*choose-your-own-adventure*/}
 
-React is a library that lets you organize UI code by breaking it apart into pieces called components. React doesn't take care of routing or data management. For these features, you'll want to use third-party libraries or write your own solutions. This means there are several ways to start a new React project:
+React on kirjasto, jonka avulla voit järjestää käyttöliittymäkoodia hajottamalla koodin palasiksi eli komponenteiksi. React ei huolehdi reitittämisestä tai tiedon hallinnasta. Näihin ominaisuuksiin saatat haluta käyttää kolmansien osapuolien kirjastoja tai kirjoittaa omia ratkaisujasi. Tämä tarkoittaa, että on useita tapoja aloittaa uusi React projekti:
 
-* Start with a **minimal set up with just a toolchain,** adding features to your project as necessary.
-* Start with an **opinionated framework** with common functionality already built in.
 
-Whether you're just getting started, looking to build something big, or want to set up your own toolchain, this guide will set you on the right path.
+* Aloita **minimaalisella työkalupakilla,** lisäät ominaisuuksia projektiisi tarpeen tullen.
+* Aloita **täysikokoisella ohjelmistokehyksellä,** jossa on yleisimpiä toiminnallisuuksia sisäänrakennettuna.
 
-## Getting started with a React toolchain {/*getting-started-with-a-react-toolchain*/}
+Mikäli olet aloittamassa, rakentamassa jotain isoa, tai haluat asentaa oman ympäristön, tämä opas ohjaa sinut oikealle polulle.
 
-If you're just getting started with React, we recommend [Create React App](https://create-react-app.dev/), the most popular way to try out React's features and a great way to build a new single-page, client-side application. Create React App is an unopinionated toolchain configured just for React. Toolchains help with things like:
+## React-työkalupakin käytön aloittaminen {/*getting-started-with-a-react-toolchain*/}
 
-* Scaling to many files and components
-* Using third-party libraries from npm
-* Detecting common mistakes early
-* Live-editing CSS and JS in development
-* Optimizing the output for production
+Jos olet aloittamassa Reactin käyttöä, suosittelemme Create React App](https://create-react-app.dev/) ympäristöä. Se on suosituin tapa kokeilla Reactin ominaisuuksia ja mahtava tapa rakentaa uusi yhden-sivun sovellus. Create React App on mielipiteetön työkalu konfiguroitu vain Reactille. Työkalupakki auttaa mm. seuraavissa asioissa:
 
-You can get started building with Create React App with one line of code in your terminal! (**Be sure you have [Node.js](https://nodejs.org/) installed!**)
+* Skaalautuu useisiin tiedostoihin ja komponentteihin
+* Kolmansien osapuolien npm -pakettien käyttö
+* Tunnistaa yleisiä virheitä aikaisin
+* CSS ja JS koodin muokkaaminen reaaliajassa
+* Optimoi koodin lopputuloksen tuotantoa varten
+
+Pääset aloittamaan koodauksen Create React App:lla yhdellä rivillä terminaalissasi! (**Tarkista, että sinulla on [Node.js](https://nodejs.org/) asennettuna!**)
 
 <TerminalBlock>
 
-npx create-react-app my-app
+npx create-react-app mun-softa
 
 </TerminalBlock>
 
-Now you can run your app with:
+
+Nyt voit suorittaa sovelluksesi komennolla:
 
 <TerminalBlock>
 
-cd my-app
+cd mun-softa
 npm start
 
 </TerminalBlock>
 
-For more information, [check out the official guide](https://create-react-app.dev/docs/getting-started).
+Lisätietoja löydät [lukemalla virallista opasta](https://create-react-app.dev/docs/getting-started).
 
-> Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline. This means you can use it with any backend you want. But if you're looking for more features like routing and server-side logic, read on!
+> Create React App ei hoida backendin logiikkaa taikka tietokantoja; se tuottaa vain frontendin kehitysputken. Tämä tarkoittaa, että voit käyttää sitä minkä tahansa taustajärjestelmän kanssa haluat. Mutta jos etsit lisäominaisuuksia kuten reitittämistä ja palvelinpuolen logiikkaa, jatka lukemista!
 
-### Other options {/*other-options*/}
+### Muut vaihtoehdot {/*other-options*/}
 
-Create React App is great to get started working with React, but if you'd like an even lighter toolchain, you might try one of these other popular toolchains:
+Create React APp on hyvä vaihtoehto Reactin käytön aloittamiseen, mutta jos haluat vielä kevyemmän työkalupakit, voit kokeilla yhtä näistä muista:
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/)
 * [Snowpack](https://www.snowpack.dev/tutorials/react)
 
-## Building with React and a framework {/*building-with-react-and-a-framework*/}
+## Rakentaminen Reactilla ja ohjelmistokehyksellä {/*building-with-react-and-a-framework*/}
 
-If you're looking to start a bigger, production-ready project, [Next.js](https://nextjs.org/) is a great place to start. Next.js is a popular, lightweight framework for static and server‑rendered applications built with React. It comes pre-packaged with features like routing, styling, and server-side rendering, getting your project up and running quickly. 
+Jos aiot aloittaa suuren, tuotanto-valmiin projektin, [Next.js](https://nextjs.org/) on hyvä aloituspaikka. Next.js on suosittu ja kevyt ohjelmistokehys staattisiin sekä palvelin-renderöityihin sovelluksiin Reactilla. Sen mukana tulee pakattuna valmiiksi ominaisuuksia, kuten reititys, tyylit sekä palvelinpuolen renderöinti, jotta saat projektin alkuun nopeasti.
 
-[Get started building with Next.js](https://nextjs.org/docs/getting-started) with the official guide.
+[Aloita rakentaminen Next.js -kehyksellä](https://nextjs.org/docs/getting-started) virallisen oppaan avulla.
 
-### Other options {/*other-options-1*/}
+### Muut vaihtoehdot {/*other-options-1*/}
 
-* [Gatsby](https://www.gatsbyjs.org/) lets you generate static websites with React with GraphQL.
-* [Razzle](https://razzlejs.org/) is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+* [Gatsby](https://www.gatsbyjs.org/):lla voit luoda staattisia verrkosivua Reactin skeä GraphQL:n avulla.
+* [Razzle](https://razzlejs.org/) on palvelinpuolen renderöintikehys, joka ei vaadi yhtään konfigurointia, mutta tarjoaa enemmän joustavuutta kuin Next.js.
 
-## Custom toolchains {/*custom-toolchains*/}
+## Kustomoidut työkalupakit {/*custom-toolchains*/}
 
-You may prefer to create and configure your own toolchain. A JavaScript build toolchain typically consists of:
+Saatat pitää enemmän itseluodusta ja -määritellystä työkalupakista. JavaScript työkalupakki useimmiten koostuu seuraavista:
 
-* A **package manager**—lets you install, update and manage third-party packages. [Yarn](https://yarnpkg.com/) and [npm](https://www.npmjs.com/) are two popular package managers.
-* A **bundler**—lets you write modular code and bundle it together into small packages to optimize load time. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), [Parcel](https://parceljs.org/) are several popular bundlers.
-* A **compiler**—lets you write modern JavaScript code that still works in older browsers. [Babel](https://babeljs.io/) is one such example.
+* **Paketinhallintajärjestelmä**—antaa sinun asentaa, päivittää sekä hallita kolmasien osapuolten paketteja. [Yarn](https://yarnpkg.com/) ja [npm](https://www.npmjs.com/) ovat kaksi suosittua paketinhallintajärjestelmää.
+* **Bundler**—antaa sinuun kirjoittaa modulaarista koodia ja yhdistä ne yhteen pieniksi paketeiksi latausajan optimoimiseksi. [Webpack](https://webpack.js.org/), [Snowpack](https://www.snowpack.dev/), [Parcel](https://parceljs.org/) ovat suosittuja bundlereita.
+* **Kääntäjä**—antaa sinun krijoittaa modernia JavaScript koodia, joka silti toimii vanhemmissa selaimissa. [Babel](https://babeljs.io/) on yksi hyvä esimerkki.
 
-In a larger project, you might also want to have a tool to manage multiple packages in a single repository. [Nx](https://nx.dev/react) is an example of such a tool.
+Laajemmassa projektissa saatat haluta käyttää työkalua hallitsemaan useita paketteja yhdessä repositoryssa. [Nx](https://nx.dev/react) on esimerkki sellaisesta työkalusta.
 
-If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.
+Jos suosit oman JavaScript työkalupakin asennusta alusta alkaen, [katso tämä opas](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) joka luo uudelleen tiettyjä Create React Appin toimintoja.

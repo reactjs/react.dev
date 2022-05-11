@@ -11,6 +11,11 @@
 
 ## General
 
+- **frontend**: frontend
+- **backend**: backend, taustajärjestelmä
+- **pipeline**: putki
+- **bundler**: bundler
+- **repository**: repository, repo
 - **trigger**: triggeröinti
 - **export**: exportata, viedä
 - **import**: importata, tuoda

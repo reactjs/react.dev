@@ -20,7 +20,7 @@ Sovelluksesi kasvaessa, kannattaa olla tietoinen miten tilasi on järjestetty se
 
 </YouWillLearn>
 
-## Tilan reagointi syötteeseen {/* reacting-to-input-with-state */}
+## Tilan reagointi syötteeseen {/*reacting-to-input-with-state*/}
 
 Reactissa et muokkaa käyttöliittymäkoodia suoraan. Esimerkiksi, et kirjoita komentoja kuten "poista painike käytöstä", "ota painike käyttöön", "näytä onnistumisviesti", jne. Sen sijaan kerrot käyttöliittymän, jonka haluat nähdä erilaisissa komponentin tiloissa ("alkutila", "kirjoitetaan -tila", "onnistumistila"), ja sitten vaihdat tilaa käyttäjän syötteen pohjalta. Tämä vastaa samaa kuin miten suunnittelijat ajattelevat käyttöliittymiä.
 
@@ -107,7 +107,7 @@ Lue **[Reacting to Input with State](/learn/reacting-to-input-with-state)** oppi
 
 </LearnMore>
 
-## Tilarakenteen päättäminen {/* choosing-the-state-structure */}
+## Tilarakenteen päättäminen {/*choosing-the-state-structure*/}
 
 Hyvän tilarakenteen päättäminen voi tehdä suuren eron komponenttien välillä, jota on miellyttävä muokata ja korjata, ja sellaisen joka on jatkuva virheiden lähde. Tärkein periaate on se, että tilan ei kuuluisi sisältää tarpeetonta tai toistettua tietoa. Mikäli tilassa on tarpeetonta tietoa, on sen päivitys helppo unohtaa ja esitellä bugeja!
 
@@ -214,7 +214,7 @@ Lue **[Tilarakenteen päättäminen](/learn/choosing-the-state-structure)** oppi
 
 </LearnMore>
 
-## Tilan jakaminen komponenttien välillä {/* sharing-state-between-components */}
+## Tilan jakaminen komponenttien välillä {/*sharing-state-between-components*/}
 
 Joskus haluat, että kahden komponentin tila muuttuu yhdessä. Tämän tehdäksesi, poista tila molemmista komponenteista ja siirrä se lähmimpään pääkomponenttiin, ja välitä tila alas proppeja käyttäen. Tätä kutsutaan "tilan nostamiseksi ylös", ja se on yksiä yleisimmistä asioista joita tulet tekemään React koodia kirjoittaessasi.
 
@@ -280,7 +280,7 @@ Lue **[Tilan jakaminen komponenttien välillä](/learn/sharing-state-between-com
 
 </LearnMore>
 
-## Tilan säilyttäminen ja nollaus {/* preserving-and-resetting-state */}
+## Tilan säilyttäminen ja nollaus {/*preserving-and-resetting-state*/}
 
 Kun uudelleenrenderöit komponenttia, Reactin täytyy päättää mitkä osat puusta pitää (ja päivittää), ja mitkä osat häivittää tai luoda uudelleen alusta alkaen. Useimmissa tapauksissa Reactin automaattinen käyttäytyminen toimii tarpeeksi hyvin. Oletuksena React ylläpitää osat puusta, jotka "vastaavat" aiemmin renderöityä komponettipuuta.
 
@@ -478,7 +478,7 @@ Lue **[Tilan säilyttäminen ja nollaus](/learn/preserving-and-resetting-state)*
 
 </LearnMore>
 
-## Tilalogiikan siirtäminen reduceriin {/* extracting-state-logic-into-a-reducer */}
+## Tilalogiikan siirtäminen reduceriin {/*extracting-state-logic-into-a-reducer*/}
 
 Komponentit, joissa on useita tilapäivityksiä, jotka on hajallaan useisiin tapahtumakäsittelijöihin, voivat olla hankalia ymmärtää. Näihin tapauksiin voit tiivistää kaikki tilamuutoksen logiikan komponentin ulkopuolelle yhteen funktioon, jota kutsutaan "reduceriksi". Tapahtumakäsittelijöistäsi tulee tiivitä, koska ne määrittelevät ainoastaan käyttäjän "toiminnot". Tiedoston lopussa reducer funktio määrittelee miten tila kuuluisi päivittää kuhunkin tapahtumaan nähden!
 
@@ -671,7 +671,7 @@ Lue **[Tilalogiikan siirtäminen reduceriin](/learn/extracting-state-logic-into-
 
 </LearnMore>
 
-## Tiedon välittäminen syvälle kontekstilla {/* passing-data-deeply-with-context */}
+## Tiedon välittäminen syvälle kontekstilla {/*passing-data-deeply-with-context*/}
 
 Usein täytyy antaa tietoa pääkomponentista lapsikomponettiin proppien avulla. Mutta proppien välittämisestä saattaa tulla epämukavaa jos proppeja täytyy antaa useiden komponenttien läpi, tai jos moni komponentti tarvitsee samaa tietoa. Kontekstin avulla pääkomponenti voi asettaa tietyn tiedon saataville kaikkiin komponentteihin pääkomponentin sisällä-riippumatta siitä miten syvällä se on-ilman, että sitä annetaan proppien kautta.
 
@@ -773,7 +773,7 @@ Lue **[Tiedon välittäminen syvälle kontekstilla](/learn/passing-data-deeply-w
 
 </LearnMore>
 
-## Skaalaus reducerilla ja kontekstilla {/* scaling-up-with-reducer-and-context */}
+## Skaalaus reducerilla ja kontekstilla {/*scaling-up-with-reducer-and-context*/}
 
 Reducerien avulla voit yhdistää komponentin tilanpäivityslogiikan. Kontekstin avulla voit antaa tietoa syvälle muihin komponentteihin. Voit yhdistää reducereita ja konteksteja yhteen hallitaksesi monimutkaisen ruudun tilaa.
 
@@ -991,7 +991,7 @@ Lue **[Skaalaus reducerilla ja kontekstilla](/learn/scaling-up-with-reducer-and-
 
 </LearnMore>
 
-## Mitä seuraavaksi {/* whats-next */}
+## Mitä seuraavaksi {/*whats-next*/}
 
 Siirry seuraavaksi sivulle [Tilan reagointi syötteeseen](/learn/reacting-to-input-with-state) lukeaksesi tämän luvun sivu kerrallaan!
 

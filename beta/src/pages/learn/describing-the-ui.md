@@ -21,7 +21,7 @@ React on JavaScript kirjasto käyttöliittymien (UI) renderöintiin. Käyttölii
 
 </YouWillLearn>
 
-## Ensimmäinen komponenttisi {/* your-first-component */}
+## Ensimmäinen komponenttisi {/*your-first-component*/}
 
 React sovellukset rakennetaan eristetyistä käyttöliittymäpalasista, joita kutsutaan "komponenteiksi". React komponentti on JavaScript funktio johon voit ripotella merkintäkoodia. Komponentit voivat olla pieniä kuten painikkeita, tai suuria kuten kokonaisia sivuja. Tässä on `Gallery` komponentti, joka renderöi kolme `Profile` komponenttia:
 
@@ -59,7 +59,7 @@ Lue **[Ensimmäinen komponenttisi](/learn/your-first-component)** oppiaksesi mit
 
 </LearnMore>
 
-## Komponettien tuonti ja vienti {/* importing-and-exporting-components */}
+## Komponettien tuonti ja vienti {/*importing-and-exporting-components*/}
 
 Voit määritellä monia komponentteja yhdessä tiedostossa, mutta navigointi isojen tiedostojen sisällä saattaa muuttua hankalaksi. Tämän ratkaisemiseksi, voit _exportata_ eli viedä komponentin sen omaan tiedostoon ja sitten _importata_ eli tuoda sen komponentin toisesta tiedostosta:
 
@@ -108,7 +108,7 @@ Lue **[Komponenttien tuonti ja vienti](/learn/importing-and-exporting-components
 
 </LearnMore>
 
-## Merkintäkoodin kirjoittaminen JSX:llä {/* writing-markup-with-jsx */}
+## Merkintäkoodin kirjoittaminen JSX:llä {/*writing-markup-with-jsx*/}
 
 Jokainen React komponentti on JavaScript funktio, joka saattaa sisältää jotain merkintäkoodia, jonka React renderöi selaimeen. React komponentit käyttävät syntaksilisäosaa nimeltään JSX edustamaan kyseistä merkintää. JSX näyttää pitkälti samalta kuin HTML, mutta on hieman tiukempaa ja se voi näyttää dynaamista informaatiota.
 
@@ -181,7 +181,7 @@ Lue **[Merkintäkoodin kirjoittaminen JSX:llä](/learn/writing-markup-with-jsx)*
 
 </LearnMore>
 
-## JavaScriptia JSX:ssa aaltosulkeilla {/* javascript-in-jsx-with-curly-braces */}
+## JavaScriptia JSX:ssa aaltosulkeilla {/*javascript-in-jsx-with-curly-braces*/}
 
 JSX antaa sinun kirjoittaa HTML-näköistä merkintäkoodia JavaScript tiedoston sisällä, pitäen renderöintilogiikan ja sisällön samassa paikassa. Joskus haluat lisätä vähäsen JavaScript logiikaa tai viitata dynaamiseen propertyyn merkintäkoodin sisällä. Tässä tapauksessa voit käyttää aaltosulkeita JSX koodissasi avataksesi "pienen ikkunan" takaisin JavaScriptiin:
 
@@ -237,7 +237,7 @@ Lue **[JavaScriptia JSX:ssa aaltosulkeilla](/learn/javascript-in-jsx-with-curly-
 
 </LearnMore>
 
-## Proppien välittäminen komponenteille {/* passing-props-to-a-component */}
+## Proppien välittäminen komponenteille {/*passing-props-to-a-component*/}
 
 React komponentit käyttävät _proppeja_ kommunikoidakseen toisten välillä. Jokainen pääkomponentti voi antaa tietoa sen lapsikomponeteilleen antamalla ne propseina. Propsit saattavat muistuttaa HTML attribuuteista, mutta voit antaa mitä tahansa JavaScript arovoa niiden välillä, esim. oliota, listoja, funktioita ja myös JSX koodia!
 
@@ -308,7 +308,7 @@ Lue **[Proppien välittäminen komponenteille](/learn/passing-props-to-a-compone
 
 </LearnMore>
 
-## Ehdollinen renderöinti {/* conditional-rendering */}
+## Ehdollinen renderöinti {/*conditional-rendering*/}
 
 Komponenteissasi usein täytyy näyttää tietoa riippuen erilaisista ehdoista. Reactissa voit renderöidä ehdollisesti JSX koodia käyttäen JavaScript syntaksia kuten `if` lausetta, `&&` ja `? :` operaattoreita.
 
@@ -347,7 +347,7 @@ Lue **[Ehdollinen renderöinti](/learn/conditional-rendering)** oppiaksesi eri t
 
 </LearnMore>
 
-## Listojen renderöinti {/* rendering-lists */}
+## Listojen renderöinti {/*rendering-lists*/}
 
 Usein haluat näyttää useita samoja komponentteja listasta dataa. Voit käyttää JavaScriptin `filter()` ja `map()` funktioita Reactissa listan suodattamiseksi ja muuttamiseksi uuteen listaan komponenteista.
 
@@ -458,7 +458,7 @@ Lue **[Listojen renderöinti](/learn/rendering-lists)** oppiaksesi miten render�
 
 </LearnMore>
 
-## Komponenttien pitäminen puhtaina {/* keeping-components-pure */}
+## Komponenttien pitäminen puhtaina {/*keeping-components-pure*/}
 
 Jotkin JavaScript funktiot ovat "puhtaita". Puhdas funktio on seuraavanlainen:
 
@@ -519,7 +519,7 @@ Lue **[Komponenttien pitäminen puhtaana](/learn/keeping-components-pure)** oppi
 
 </LearnMore>
 
-## Mitä seuraavaksi? {/* whats-next */}
+## Mitä seuraavaksi? {/*whats-next*/}
 
 Siirry seuraavaksi [Ensimmäinen komponenttisi](/learn/your-first-component) lukeaksesi tämän luvun sivu kerrallaan!
 

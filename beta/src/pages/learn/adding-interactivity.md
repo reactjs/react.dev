@@ -20,7 +20,7 @@ Jotkin asiat ruudulla päivittyvät käyttäjän syötteen mukaan. Esimerkiksi, 
 
 </YouWillLearn>
 
-## Vastaaminen tapahtumiin {/* responding-to-events */}
+## Vastaaminen tapahtumiin {/*responding-to-events*/}
 
 Reactissa voit lisätä tapahtumakäsittelijöitä JSX koodiin. Tapahtumakäsittelijät ovat funktioitasi, joita kutsutaan vastauksena käyttäjän toimintoihin kuten klikkaukseen, hoverointiin, focusointiin ja niin edelleen.
 
@@ -66,7 +66,7 @@ Lue **[Responding to Events](/learn/responding-to-events)** oppiaksesi miten lis
 
 </LearnMore>
 
-## Tila: komponentin muisti {/* state-a-components-memory */}
+## Tila: komponentin muisti {/*state-a-components-memory*/}
 
 Komponenttien on usein muutettava näytön sisältöä vuorovaikutuksen seurauksena. Lomakkeeseen kirjoittaminen päivittää syöttökenttää, kuvakarusellissa "seuraava" napsauttaminen muuttaa näytettävää kuvaa, "osta"-painikkeella laitetaan tuote ostoskoriin. Komponenttien täytyy "muistaa" asioita: nykyinen syöte, nykyinen kuva, ostoskori. Reactissa tämän kaltaista komponenttikohtaista muistia kutsutaan tilaksi.
 
@@ -248,7 +248,7 @@ Lue **[Tila: Komponentin muisti](/learn/state-a-components-memory)** oppiaksesi 
 
 </LearnMore>
 
-## Renderöinti ja kommitointi {/* render-and-commit */}
+## Renderöinti ja kommitointi {/*render-and-commit*/}
 
 Ennen kuin komponenttisi näytetään ruudlla, Reactin täytyy renderöidä ne. Tämän prosessin vaiheiden ymmärtäminen auttaa sinua miettimään miten koodiasi suoritetaan ja selittämään sen toimintaa.
 
@@ -282,7 +282,7 @@ Lue **[Render and Commit](/learn/render-and-commit)** oppiaksesi käyttöliittym
 
 </LearnMore>
 
-## Tila tilannekuvana {/* state-as-a-snapshot */}
+## Tila tilannekuvana {/*state-as-a-snapshot*/}
 
 Toisin kuin tavalliset JavaScript muuttujat, Reactin tila käyttäytyy enemmän kuin tilannekuva. Tilan muuttaminen ei muuta tilamuuttujaa joka sinulla jo on, vaan sen sijaan triggeröi uudelleenrenderöinnin. Tämä saattaa olla yllättävää aluksi!
 
@@ -346,7 +346,7 @@ Lue **[Tila tilannekuvana](/learn/state-as-a-snapshot)** oppiaksesi miksi tila v
 
 </LearnMore>
 
-## Tilapäivityksen lisääminen jonoon {/* queueing-a-series-of-state-changes */}
+## Tilapäivityksen lisääminen jonoon {/*queueing-a-series-of-state-changes*/}
 
 Tämä komponentti on buginen: kun klikataan "+3" se nostaa pisteytystä vain kerran.
 
@@ -448,7 +448,7 @@ Lue **[Tilapäivityksen lisääminen jonoon](/learn/queueing-a-series-of-state-c
 
 </LearnMore>
 
-## Olioiden päivittäminen tilassa {/* updating-objects-in-state */}
+## Olioiden päivittäminen tilassa {/*updating-objects-in-state*/}
 
 Tila voi pitää sisällään mitä vain JavaScript arvoa, kuten olioita. Mutta React tilassa olevia olioita ja listoja ei pitäisi muuttaa suoraan. Sen sijaan kun haluat päivittää oliota ja listaa, luo uusi (tai tee kopio olemassa olevasta), ja sitten päivitä tila käyttämään uutta kopiota.
 
@@ -665,7 +665,7 @@ Lue **[Updating Objects in State](/learn/updating-objects-in-state)** oppiaksesi
 
 </LearnMore>
 
-## Listojen päivittäminen tilassa {/* updating-arrays-in-state */}
+## Listojen päivittäminen tilassa {/*updating-arrays-in-state*/}
 
 Listat ovat toisen tyyppisiä muuttuvia JavaScript olioita, joita voit tallettaa tilaan, ja joita tulisi käsitellä vain-luku muotoisina. Juuri kuten olioiden kanssa, kun haluat päivittää listaa tilassa, tarvitset uuden listan (tai kopion olemassa olevasta), ja sitten aseta tila käyttämään uutta listaa:
 
@@ -811,7 +811,7 @@ Lue **[Updating Arrays in State](/learn/updating-arrays-in-state)** oppiaksesi m
 
 </LearnMore>
 
-## Mitä seuraavaksi? {/* whats-next */}
+## Mitä seuraavaksi? {/*whats-next*/}
 
 Siirry seuraavaksi [Vastaaminen tapahtumiin](/learn/responding-to-events) -sivulle lukeaksesi tämän luvun sivu kerrallaan!
 

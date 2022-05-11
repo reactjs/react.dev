@@ -19,7 +19,7 @@ Tervetuloa Reactin dokumentaatioon. Tällä sivulla esitellään 80% Reactin kon
 
 </YouWillLearn>
 
-## Komponenttien luominen ja sijoittaminen {/* components */}
+## Komponenttien luominen ja sijoittaminen {/*components*/}
 
 React sovellukset koostuvat komponenteista. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin vaikka painonappi tai suuri kuin koko sivu.
 
@@ -69,7 +69,7 @@ export default function MyApp() {
 
 Avainsanat `export default` määrittävät tiedoston pääkomponentin. Mikäli JavaScript syntaksi ei ole tuttua, [MDN](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export) ja [javascript.info](https://javascript.info/import-export) ovat hyviä tietolähteitä.
 
-## Merkintäkoodin kirjoittaminen JSX:llä {/* writing-markup-with-jsx */}
+## Merkintäkoodin kirjoittaminen JSX:llä {/*writing-markup-with-jsx*/}
 
 Merkintäkoodi jota näit ylhäällä kutsutaan nimeltään JSX. Sen käyttö on valinnaista, mutta useimmat React projektit käyttävät JSX:ää sen mukavuuden vuoksi. Kaikki [työkalut, joita suosittelemme paikalliseen kehitykseen](/learn/installation) tukevat JSX:ää oletuksena.
 
@@ -92,7 +92,7 @@ function TietoaSivu() {
 
 Mikäli sinulla on paljon HTML merkintäkoodia muutettavana JSX koodiksi, voit käyttää [verkkomuunninta](https://transform.tools/html-to-jsx).
 
-## Tyylien lisääminen {/* adding-styles */}
+## Tyylien lisääminen {/*adding-styles*/}
 
 Reactissa voit määritellä CSS luokat käyttämällä `className` attribuuttia. Se toimii samoin kuin HTML kielen [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribuutti:
 
@@ -111,7 +111,7 @@ Tämän jälkeen kerrot tyylimäärittelyt erilisessä CSS tiedostossa:
 
 React ei määrää miten lisäät CSS tiedostot. Yksinkertaisimmillaan lisäät [`<link>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/link) tagin HTML merkintäkoodiin. Jos käytät käännöstyökalua tai ohjelmistokehystä, konsultoi niiden dokumentaatiota löytääksesi tavan lisätä CSS tiedostoja projektiisi.
 
-## Tiedon näyttäminen {/* displaying-data */}
+## Tiedon näyttäminen {/*displaying-data*/}
 
 JSX mahdollistaa merkintäkoodin käytön JavaScriptissa. Aaltosulkeilla antaa sinun "peruuttaa takaisin" JavaScriptiin, jotta voit upottaa jonkun muuttujan koodistasi ja näytää sen käyttäjälle. Esimerkiksi, tämä tulostaa `kayttaja.nimi`:
 
@@ -168,7 +168,7 @@ export default function Profiili() {
 
 Ylläolevasta esimerkissä `style={{}}` ei ole erityistä syntaksia, vaan normaali `{}` olio JSX aaltosulkeiden `style={ }` sisällä. Voit käyttää `style` attribuuttia kun tyylisi riippuu JavaScript muuttujista.
 
-## Ehdollinen renderöinti {/* conditional-rendering */}
+## Ehdollinen renderöinti {/*conditional-rendering*/}
 
 Reactissa ei ole erityistä syntaksia ehtolauseiden kirjoittamiseen. Sen sijaan voit käyttää samoja tekniikoita kuin mitä käytät kirjoittaessasi tavallista JavaScript koodia. Esimerkiksi, voit käyttää [`if`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) lausetta sisällyttämään JSX koodia ehdollisesti:
 
@@ -196,7 +196,7 @@ Kun et tarvitse `else` osaa, voit käyttää lyhyempäää [loogista `&&` syntak
 
 Kaikki nämä tavat toimivat myös attribuuttien ehdolliseen määrittelyyn. Jos jokin tässä käyty JavaScript syntaksi ei ole tuttua, voit aina aloittaa käyttämällä `if...else`.
 
-## Listojen renderöinti {/* rendering-lists */}
+## Listojen renderöinti {/*rendering-lists*/}
 
 Tulet käyttämään JavaScriptin ominaisuuksia kuten [`for` silmukkaa](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for) sekä [array `map()` funktiota](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) komponenttilistojen renderöintiin.
 
@@ -248,7 +248,7 @@ export default function Ostoslista() {
 
 </Sandpack>
 
-## Vastaaminen tapahtumiin {/* responding-to-events */}
+## Vastaaminen tapahtumiin {/*responding-to-events*/}
 
 Voit vastata tapahtumiin määrittelemällä tapahtumakäsittelijän komponettiesi sisällä:
 
@@ -264,7 +264,7 @@ function Painonappi() {
 
 Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _antaa se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.
 
-## Ruudun päivittäminen {/* updating-the-screen */}
+## Ruudun päivittäminen {/*updating-the-screen*/}
 
 Usein haluat, että komponenttisi "muistaa" jotain tietoa ja näyttää sitä. Esimerkiksi, ehkäpä haluat laskea montako kertaa painiketta on napsautettu. Tehdäksesi tämän, lisää tila eli _state_ komponenttiisi.
 
@@ -338,13 +338,13 @@ button {
 
 Huomaa miten kukin painike "muistaa" sen oman `count` tilan eikä se vaikuta muihin painikkeisiin.
 
-## Hookkien käyttäminen {/* using-hooks */}
+## Hookkien käyttäminen {/*using-hooks*/}
 
 Funktiot jotka alkavat sanalla `use` ovat hookkeja. `useState` on Reactin sisäänrakennettu hookki. Löydät lisää sisäänrakennettuja hookkeja [React API referenssistä](/apis). VOit myös kirjoittaa omia hookkeja olemassaolevia yhdistelemällä.
 
 Hookit ovat rajoittavampia kuin normaalit funktiot. Voit kutsua hookkeja _ainoastaan_ komponentin päätasolta (tai muista hookeista). Jos haluat käyttää `useState` hookkia ehdollisesti tai loopissa, luo uusi komponentti ja sijoita se sinne.
 
-## Tiedon jakaminen komponenttien välillä {/* sharing-data-between-components */}
+## Tiedon jakaminen komponenttien välillä {/*sharing-data-between-components*/}
 
 Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `count` tila, ja kun yksittäistä painiketta napsautettiin, vain painetun painikkeen `count` tila muuttui:
 
@@ -481,7 +481,7 @@ button {
 
 </Sandpack>
 
-## Seuraavat vaiheet {/* next-steps */}
+## Seuraavat vaiheet {/*next-steps*/}
 
 Tähän mennessä osaat miten kirjoitetaan perusteet React koodista!
 

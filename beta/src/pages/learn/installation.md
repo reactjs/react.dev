@@ -17,7 +17,7 @@ React on suunniteltu alusta alkaen asteittaiseen käyttöönottoon. Voit käytt�
 
 </YouWillLearn>
 
-## Kokeile Reactia {/* try-react */}
+## Kokeile Reactia {/*try-react*/}
 
 Reactia kokeillaksesi sinun ei tarvitse asentaa mitään. Kokeile muokata tätä hiekkalaatikkoa!
 
@@ -38,18 +38,18 @@ export default function App() {
 Käytämme hiekkalaatikkoja osana dokumentaatiota opetuksen tukena. Hiekkalaatikot auttaa tutustumaan Reactin toimintaan sekä auttaa päättämään sopiiko React sinulle.
 Reactin dokumentaation ulkopuolelta löytyy monia hiekkalaatikkoja, jotka tukevat Reactia: esimerkiksi [CodeSandbox](https://codesandbox.io/s/new), [Stackblitz](https://stackblitz.com/fork/react), tai [CodePen](https://codepen.io/pen/?template=wvdqJJm).
 
-## Kokeile Reactia paikallisesti {/* try-react-locally */}
+## Kokeile Reactia paikallisesti {/*try-react-locally*/}
 
 Kokeile Reactia paikallisesti omalla tietokoneellasi [lataamalla tämä HTML sivu](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html). Avaa se editorissasi sekä selaimesasi!
 
-## Lisää React sivuun {/* add-react-to-a-page */}
+## Lisää React sivuun {/*add-react-to-a-page*/}
 
 Jos työskentelet olemassaolevan sivun kanssa ja tarvitset vain vähäsen Reactia, voit [lisätä Reactin script -tagilla.](/learn/add-react-to-a-website)
 
-## Aloita React -projekti {/* start-a-react-project */}
+## Aloita React -projekti {/*start-a-react-project*/}
 
 Jos olet valmis [aloittamaan itsenäisen projektin](/learn/start-a-new-react-project) Reactilla, voit pystyttää minimaalisen ympäristön miellyttävää kehittäjäkokemusta varten. Voit myös aloittaa käyttämällä ohjelmistokehystä, joka teke paljon päätöksiä puolestasi.
 
-## Seuraavat vaiheet {/* next-steps */}
+## Seuraavat vaiheet {/*next-steps*/}
 
 Se mistä aloitat riippuu pitkälti miten haluat oppia, mitä sinun täytyy saavuttaa, ja minne haluat edetä seuraavaksi! Mikset lukisi [Ajattelua Reactissa](/learn/thinking-in-react) -johdantoa? Tai voit myös hypätä [Käyttöliittymän kuvaukseen](/learn/describing-the-ui) kokeillaksesi esimerkeillä ja oppiaksesi aiheen vaihe vaiheelta. Ei ole väärää tapaa oppia Reactia!

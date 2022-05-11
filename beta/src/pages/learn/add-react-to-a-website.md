@@ -1,56 +1,56 @@
 ---
-title: Add React to a Website
+title: Lisää React verkkosivulle
 ---
 
 <Intro>
 
-React has been designed from the start for gradual adoption, and you can use as little or as much React as you need. Whether you're working with micro-frontends, an existing system, or just giving React a try, you can start adding interactive React components to an HTML page with just a few lines of code—and no build tooling!
+React on suunniteltu alusta asti asteittaiseen käyttöönottoon sekä voit käyttää niin vähän tai paljon Reactia kuin tarvitset. Mikäli työskentelet micro-käyttöliittymien, olemassaolevien järjestelmien, tai vain kokeilet Reactin käyttöä, voit lisätä interaktiivisia React komponentteja HTML sivuun vain muutamalla rivillä koodia-ilman kehitysympäristöä.
 
 </Intro>
 
-## Add React in one minute {/*add-react-in-one-minute*/}
+## Lisää React minuutissa {/*add-react-in-one-minute*/}
 
-You can add a React component to an existing HTML page in under a minute. Try this out with your own website or [an empty HTML file](https://gist.github.com/rachelnabors/7b33305bf33776354797a2e3c1445186/archive/859eac2f7079c9e1f0a6eb818a9684a464064d80.zip)—all you need is an internet connection and a text editor like Notepad (or VSCode—check out our guide on [how to set yours up](/learn/editor-setup/))!
+Voit lisätä React komponentin olemassa olevaan HTML sivuun alle minuutissa. Kokeile tätä omalla verkkosivullasi tai [tyhjällä HTML tiedostolla](https://gist.github.com/rachelnabors/7b33305bf33776354797a2e3c1445186/archive/859eac2f7079c9e1f0a6eb818a9684a464064d80.zip)—tarvitset vain internet-yhteyden sekä tekstieditorin kuten Notepadin (tai VSCode—lue ohjeemme [oman editorin määrittelystä](/learn/editor-setup/))!
 
-### Step 1: Add an element to the HTML {/*step-1-add-an-element-to-the-html*/}
+### Vaihe 1: Lisää elementti HTML koodiin {/*step-1-add-an-element-to-the-html*/}
 
-In the HTML page you want to edit, add an HTML element like an empty `<div>` tag with a unique `id` to mark the spot where you want to display something with React.
+HTML sivuun, jota haluat muokata, lisää tyhjä HTML elementti kuten tyhjä `<div>` tagi uniikilla `id` attribuutilla merkitäksesi kohdan johon haluat tulostaa jotain Reactilla.
 
-You can place a "container" element like this `<div>` anywhere inside the `<body>` tag. React will replace any existing content inside HTML elements, so they are usually empty. You can have as many of these HTML elements on one page as you need.
+Voit asettaa "container" elementin kuten tämän `<div>` tagin minne tahansa `<body>` tagien sisällä. React korvaa HTML elementtien välisen sisällön, joten useimmiten se on tyhjä. Sinulla voi olla niin monta HTML elementtiä yhdellä sivulla kuin tarvitset.
 
 ```html {3}
-<!-- ... existing HTML ... -->
+<!-- ... olemassa oleva HTML ... -->
 
-<div id="component-goes-here"></div>
+<div id="komponentti-tulee-tähän"></div>
 
-<!-- ... existing HTML ... -->
+<!-- ... olemassa oleva HTML ... -->
 ```
 
-### Step 2: Add the Script Tags {/*step-2-add-the-script-tags*/}
+### Vaihe 2: Lisää script -tagit {/*step-2-add-the-script-tags*/}
 
-In the HTML page, right before the closing `</body>` tag, add three `<script>` tags for the following files:
+Lisää kolme `<script>` tagia seuraaviin tiedostoihin HTML sivussa juuri ennen sulkevaa `</body>` tagia:
 
-- [**react.development.js**](https://unpkg.com/react@18/umd/react.development.js) loads the core of React
-- [**react-dom.development.js**](https://unpkg.com/react-dom@18/umd/react-dom.development.js) lets React render HTML elements to the [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model).
-- **like_button.js** is where you'll write your component in step 3!
+- [**react.development.js**](https://unpkg.com/react@18/umd/react.development.js) lataa Reactin ytimen
+- [**react-dom.development.js**](https://unpkg.com/react-dom@18/umd/react-dom.development.js) mahdollistaa Reactin renderöinnin [DOM](https://developer.mozilla.org/docs/Web/API/Document_Object_Model)iin.
+- **like_button.js** johon tulet kirjoittamaan komponenttisi seuraavassa vaiheessa!
 
 <Gotcha>
 
-When deploying, replace "development.js" with "production.min.js".
+Kun siirrytään tuotantoon, korvaa "development.js" sanalla "production.min.js".
 
 </Gotcha>
 
 ```html
-  <!-- end of the page -->
+  <!-- sivun loppu -->
   <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
   <script src="like_button.js"></script>
 </body>
 ```
 
-### Step 3: Create a React component {/*step-3-create-a-react-component*/}
+### Vaihe 3: Luo React komponentti {/*step-3-create-a-react-component*/}
 
-Create a file called **like_button.js** next to your HTML page, add this code snippet, and save the file. This code defines a React component called `LikeButton`. [You can learn more about making components in our guides.](/learn/your-first-component)
+Luo tiedosto nimeltään **like_button.js** HTML sivun viereen, lisää tämä koodinpätkä ja tallenna tiedosto. Tämä koodi määrittää React komponentin nimeltään `LikeButton`. [Voit oppia komponettien luomisesta oppassamme.](/learn/your-first-component)
 
 ```js
 'use strict';
@@ -72,78 +72,78 @@ function LikeButton() {
 }
 ```
 
-### Step 4: Add your React Component to the page {/*step-4-add-your-react-component-to-the-page*/}
+### Vaihe 4: Lisää React komponenttisi sivuun {/*step-4-add-your-react-component-to-the-page*/}
 
-Lastly, add three lines to the bottom of **like_button.js**. These three lines of code find the `<div>` you added to your HTML in the first step, create a React app with it, and then display the "Like" button React component inside of it.
+Viimeiseksi, lisää kolme riviä koodia **like_button.js** tiedoston pohjaan. Nämä kolme riviä koodia etsivät `<div>` tagin, jonka lisäsit HTML tiedostoon ensimmäisessä vaiheessa, luo React -sovelluksen, ja näyttää sitten "Like" painikkeen React komponentin sen sisällä.
 
 ```js
-const domContainer = document.getElementById('component-goes-here');
+const domContainer = document.getElementById('komponentti-tulee-tähän');
 const root = ReactDOM.createRoot(domContainer);
 root.render(React.createElement(LikeButton));
 ```
 
-**Congratulations! You have just rendered your first React component to your website!**
+**Onnittelut! Juuri renderöit ensimmäisen React komponentin verkkosivullasi!**
 
-- [View the full example source code](https://gist.github.com/rachelnabors/c64b3aeace8a191cf5ea6fb5202e66c9)
-- [Download the full example (2KB zipped)](https://gist.github.com/rachelnabors/c64b3aeace8a191cf5ea6fb5202e66c9/archive/7b41a88cb1027c9b5d8c6aff5212ecd3d0493504.zip)
+- [Näytä esimerkin koko lähdekoodi](https://gist.github.com/rachelnabors/c64b3aeace8a191cf5ea6fb5202e66c9)
+- [Lataa koko esimerkki (2KT zip)](https://gist.github.com/rachelnabors/c64b3aeace8a191cf5ea6fb5202e66c9/archive/7b41a88cb1027c9b5d8c6aff5212ecd3d0493504.zip)
 
-#### You can reuse components! {/*you-can-reuse-components*/}
+#### Voit uudelleenkäyttää komponentteja! {/*you-can-reuse-components*/}
 
-You might want to display a React component in multiple places on the same HTML page. This is most useful while React-powered parts of the page are isolated from each other. You can do this by calling `ReactDOM.createRoot()` multiple times with multiple container elements.
+Saatat haluta näyttää React komponentin useissa eri paikoissa samalla HTML sivulla. Tämä on hyödyllisintä, kun sivun React-käyttöiset osat on eristetty toisistaan. Voit tehdä tämän kutsumalla `ReactDOM.createRoot()` funktiota useampia kertoja useilla "container" elementeillä.
 
-1. In **index.html**, add an additional container element `<div id="component-goes-here-too"></div>`.
-2. In **like_button.js**, add an additional `ReactDOM.render()` for the new container element:
+1. **index.html** tiedostossa, lisää uusi container elementti `<div id="komponentti-tulee-tähän-myös"></div>`.
+2. **like_button.js** tiedostossa, lisää uusi `ReactDOM.render()` uudelle container elementille:
 
 ```js {6,7,8,9}
 const root1 = ReactDOM.createRoot(
-  document.getElementById('component-goes-here')
+  document.getElementById('komponentti-tulee-tähän')
 );
 root1.render(React.createElement(LikeButton));
 
 const root2 = ReactDOM.createRoot(
-  document.getElementById('component-goes-here-too')
+  document.getElementById('komponentti-tulee-tähän-myös')
 );
 root2.render(React.createElement(LikeButton));
 ```
 
-Check out [an example that displays the "Like" button three times and passes some data to it](https://gist.github.com/rachelnabors/c0ea05cc33fbe75ad9bbf78e9044d7f8)!
+Katso [esimerkki, joka näyttää "Like" painikkeen kolmesti ja antaa dataa sille](https://gist.github.com/rachelnabors/c0ea05cc33fbe75ad9bbf78e9044d7f8)!
 
-### Step 5: Minify JavaScript for production {/*step-5-minify-javascript-for-production*/}
+### Vaihe 5: Pienennä JavaScript tuotantoa varten {/*step-5-minify-javascript-for-production*/}
 
-Unminified JavaScript can significantly slow down page load times for your users. Before deploying your website to production, it's a good idea to minify its scripts.
+Pienentämätön JavaScript voi merkittävästi hidastaa verkkosivun latausaikoja käyttäjillesi. Ennen verkkosivun siirtämistä tuotantoon, on hyvä idea pienentää eli minifioida script -tiedostot.
 
-- **If you don't have a minification step** for your scripts, [here's one way to set it up](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
-- **If you already minify** your application scripts, your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js` like so:
+- **Jos sinulla ei ole minifiointi-vaihetta** koodeillesi, [täältä löydät yhden tavan asentaa sen](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
+- **Jos jo minifioit** sovelluksesi koodit, sivusi on tuotantovalmis mikäli varmistat, että tuotantoon siirrettävä HTML koodi lataa versiot Reactista, jotka loppuvat `production.min.js` päätteellä, kuten:
 
 ```html
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 ```
 
-## Try React with JSX {/*try-react-with-jsx*/}
+## Kokeile Reactia JSX:llä {/*try-react-with-jsx*/}
 
-The examples above rely on features that are natively supported by browsers. This is why **like_button.js** uses a JavaScript function call to tell React what to display:
+Esimerkit yllä riippuvat ominaisuuksista, jotka ovat natiivisti tuettuja selaimissa. Tämä on syy miksi **like_button.js** käyttää JavaScript funktiokutsua kertoakseen Reactille mitä näyttää:
 
 ```js
 return React.createElement('button', {onClick: () => setLiked(true)}, 'Like');
 ```
 
-However, React also offers an option to use [JSX](/learn/writing-markup-with-jsx), an HTML-like JavaScript syntax, instead:
+Kuitenkin, React tarjoaa myös vaihtoehdon käyttää HTML-tyylistä JavaScript syntaksia nimeltään [JSX](/learn/writing-markup-with-jsx). Esimerkiksi:
 
 ```jsx
 return <button onClick={() => setLiked(true)}>Like</button>;
 ```
 
-These two code snippets are equivalent. JSX is popular syntax for describing markup in JavaScript. Many people find it familiar and helpful for writing UI code--both with React and with other libraries. You might see "markup sprinkled throughout your JavaScript" in other projects!
+Nämä kaksi koodinpätkää vastaavat toisiaan. JSX on suosittu syntaksi määrittelemään merkintää JavaScriptissa. Useat kokevat sen tutuksi ja helppokäyttöiseksi käyttöliittymäkoodin kirjoittamiseen--joko Reactin kanssa tai muiden kirjastojen. Saatat nähdä "merkintäkoodia ripoteltuna ympäri JavaScript koodiasi" muissa projekteissa!
 
-> You can play with transforming HTML markup into JSX using [this online converter](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.17).
+> Voit kokeilla muuttaa HTML merkintäkoodia JSX koodiksi käyttämällä [tätä verkkomuunninta](https://babeljs.io/en/repl#?babili=false&browsers=&build=&builtIns=false&spec=false&loose=false&code_lz=DwIwrgLhD2B2AEcDCAbAlgYwNYF4DeAFAJTw4B88EAFmgM4B0tAphAMoQCGETBe86WJgBMAXJQBOYJvAC-RGWQBQ8FfAAyaQYuAB6cFDhkgA&debug=false&forceAllTransforms=false&shippedProposals=false&circleciRepo=&evaluate=false&fileSize=false&timeTravel=false&sourceType=module&lineWrap=true&presets=es2015%2Creact%2Cstage-2&prettier=false&targets=&version=7.17).
 
-### Try JSX {/*try-jsx*/}
+### Kokeile JSX:ää {/*try-jsx*/}
 
-The quickest way to try JSX in your project is to add the Babel compiler to your page's `<head>` along with React and ReactDOM like so:
+Nopein tapa kokeilla JSX:ää projektissasi on lisätä Babel -kääntäjä sivusi `<head>` tagien sisälle Reactin sekä ReactDOMin kanssa, kuten:
 
 ```html {6}
-<!-- ... rest of <head> ... -->
+<!-- ... loput <head> elementistä ... -->
 
 <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
@@ -151,10 +151,10 @@ The quickest way to try JSX in your project is to add the Babel compiler to your
 <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
 
 </head>
-<!-- ... rest of <body> ... -->
+<!-- ... loput <body> elementistä ... -->
 ```
 
-Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribute to it. For instance:
+Nyt voit käyttää JSX merkintäkieltä missä tahansa `<script>` tageissa lisäämällä `type="text/babel"` attribuutin siihen. Esimerkiksi: 
 
 ```jsx {1}
 <script type="text/babel">
@@ -163,9 +163,9 @@ Now you can use JSX in any `<script>` tag by adding `type="text/babel"` attribut
 </script>
 ```
 
-To convert **like_button.js** to use JSX:
+Muuttaaksesi **like_button.js** tiedoston käyttämään JSX:ää:
 
-1. In **like_button.js**, replace
+1. **like_button.js** tiedostossa, korvaa
 
 ```js
 return React.createElement(
@@ -177,63 +177,64 @@ return React.createElement(
 );
 ```
 
-with:
+seuraavalla:
 
 ```jsx
 return <button onClick={() => setLiked(true)}>Like</button>;
 ```
 
-2. In **index.html**, add `type="text/babel"` to the like button's script tag:
+1. **index.html** tiedostossa, lisää `type="text/babel"` like -painikkeen script -tagiin:
 
 ```html
 <script src="like_button.js" type="text/babel"></script>
 ```
 
-Here is [an example HTML file with JSX](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html) that you can download and play with.
+Tässä on [esimerkki HTML tiedostosta JSX:n kanssa](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), jonka voit ladata itsellesi ja leikkiä sen kanssa.
 
-This approach is fine for learning and creating simple demos. However, it makes your website slow and **isn't suitable for production**. When you're ready to move forward, remove this new `<script>` tag and the `type="text/babel"` attributes you've added. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags automatically.
 
-### Add JSX to a project {/*add-jsx-to-a-project*/}
+Tämä lähestymistapa on hyvä oppimiseen ja yksinkertaisiin demoihin. Kuitenkin, se tekee sivustasi hintaan ja **ei ole sopiva tuotantoon**. Kun olet valmis siirtymään eteenpäin, poista tämä uusi `<script>` tagi ja `type="text/babel"` attribuutti, jonka lisäsit. Sen sijaan seuraavassa vaiheessa tulet asentamaan JSX esikääntäjän muuntamaan kaikki `<script>` tagisi automaattisesti. 
 
-Adding JSX to a project doesn't require complicated tools like a [bundler](/learn/start-a-new-react-project#custom-toolchains) or a development server. Adding a JSX preprocessor is a lot like adding a CSS preprocessor.
+### Lisää JSX projektiin {/*add-jsx-to-a-project*/}
 
-Go to your project folder in the terminal, and paste these two commands (**Be sure you have [Node.js](https://nodejs.org/) installed!**):
+JSX:n lisääminen projektiin ei vaadi monimutkaisia työkaluja kuten [bundleria](/learn/start-a-new-react-project#custom-toolchains) tai kehityspalvelinta. JSX esikääntäjän lisääminen on lähes samanlaista kuin CSS esikääntän lisääminen.
 
-1. `npm init -y` (if it fails, [here's a fix](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
+Siirry projektisi hakemistoon terminaalissa ja liitä nämä kaksi kometoa (**Varmista, että sinulla on [Node.js](https://nodejs.org/) asennettuna!**):
+
+1. `npm init -y` (mikäli epäonnistuu, [täällä on ratkaisu](https://gist.github.com/gaearon/246f6380610e262f8a648e3e51cad40d))
 2. `npm install babel-cli@6 babel-preset-react-app@3`
 
-You only need npm to install the JSX preprocessor. You won't need it for anything else. Both React and the application code can stay as `<script>` tags with no changes.
+Tarvitset vain npm:n asentaaksesi JSX esikääntäjän. Et tarvitse sitä mihinkään muuhun. Sekä React että sovelluskoodisi voi pysyä `<script>` tageina ilman muutoksia.
 
-Congratulations! You just added a **production-ready JSX setup** to your project.
+Onnittelut! Lisäsit juuri **tuotantovalmiin JSX ympäristön** projektiisi.
 
-### Run the JSX Preprocessor {/*run-the-jsx-preprocessor*/}
+### Suorita JSX esikääntäjä {/*run-the-jsx-preprocessor*/}
 
-You can preprocess JSX so that every time you save a file with JSX in it, the transform will be re-run, converting the JSX file into a new, plain JavaScript file.
+Voit esikääntää JSX koodin siten, että joka kerta kun tallennat tiedoston, jossa on JSX -koodia, muunnin suoritetaan uudelleen, kääntääkseen JSX tiedoston pelkäksi JavaScript tiedostoksi.
 
-1. Create a folder called **src**
-2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for JSX.)
-3. Move your JSX-ified **like_button.js** to the new **src** folder (or create a **like_button.js** containing this [JSX starter code](https://gist.githubusercontent.com/rachelnabors/ffbc9a0e33665a58d4cfdd1676f05453/raw/652003ff54d2dab8a1a1e5cb3bb1e28ff207c1a6/like_button.js))
+1. Luo kansio nimeltään **src**
+2. Terminaalissa, suorita komento: `npx babel --watch src --out-dir . --presets react-app/prod ` (Älä odota sen valmistumista! Tämä komento aloittaa automaattisen tarkkailijan JSX koodillesi.)
+3. Siirrä JSX koodiksi muunnettu **like_button.js** uuteen **src** hakemistoon (tai luo **like_button.js** tiedosto, joka sisältää tämän [JSX aloituskoodin](https://gist.githubusercontent.com/rachelnabors/ffbc9a0e33665a58d4cfdd1676f05453/raw/652003ff54d2dab8a1a1e5cb3bb1e28ff207c1a6/like_button.js))
 
-The watcher will create a preprocessed **like_button.js** with the plain JavaScript code suitable for the browser.
+Tarkkailija luo uuden esikäännetyn **like_button.js** tiedoston, joka sisältää selaimelle sopivaa pelkää JavaScript koodia.
 
 <Gotcha>
 
-If you see an error message saying "You have mistakenly installed the `babel` package", you might have missed [the previous step](#add-jsx-to-a-project). Perform it in the same folder, and then try again.
+Jos törmäät virheeseen "You have mistakenly installed the `babel` package", saatoit vahingossa unohtaa [aikaisemman vaiheen](#add-jsx-to-a-project). Tee se samassa hakemistossa ja yritä uudelleen.
 
 </Gotcha>
 
-As a bonus, this also lets you use modern JavaScript syntax features like classes without worrying about breaking older browsers. The tool we just used is called Babel, and you can learn more about it from [its documentation](https://babeljs.io/docs/en/babel-cli/).
+Bonuksena, tämä antaa sinun käyttää modernin JavaScript syntaksin ominaisuuksia kuten luokkia murehtimatta vanhojen selaiten tukevuutta. Työkalu, jota juuri käytimme on nimeltään Babel, ja voit lukea lisää siitä [sen dokumentaatiosta](https://babeljs.io/docs/en/babel-cli/).
 
-If you're getting comfortable with build tools and want them to do more for you, [we cover some of the most popular and approachable toolchains here](/learn/start-a-new-react-project).
+Jos viihdyt kehitystyökalujen kanssa ja haluat niiden tekevän enemmän, [käsittelemme joitain suosituimmista ja helposti lähestyttävistä työkalupakeista täällä](/learn/start-a-new-react-project).
 
-<DeepDive title="React without JSX">
+<DeepDive title="React ilman JSX:ää">
 
-Originally JSX was introduced to make writing components with React feel as familiar as writing HTML. Since then, the syntax has become widespread. However, there may be instances where you do not want to use or cannot use JSX. You have two options:
+Alun perin JSX esiteltiin, jotta Reactilla kirjoittavat komponentit tuntuvat yhtä tutuilta kuin HTML:n kirjoittaminen. Sittemmin syntaksi on yleistynyt. Kuitenkin, on tilanteita joissa et välttämättä halua tai voi käyttää JSX:ää. Sinulla on kaksi vaihtoehtoa:
 
-- Use a JSX alternative like [htm](https://github.com/developit/htm) which doesn't use a compiler—it uses JavaScript's native Tagged Templates.
-- Use [`React.createElement()`](/apis/createelement), which has a special structure explained below.
+- Käytä vaihtoehtoista JSX:ää kuten [htm](https://github.com/developit/htm), joka ei käytä kääntäjää—se käyttää JavaScriptin natiiveja Tagged Templateja.
+- Käytä [`React.createElement()`](/apis/createelement) funktiota, jolla on erityinen rakene selitettynä alla.
 
-With JSX, you would write a component like so:
+JSX:llä kirjoittaisit komponentin seuraavasti:
 
 ```jsx
 function Hello(props) {
@@ -243,7 +244,7 @@ function Hello(props) {
 ReactDOM.render(<Hello toWhat="World" />, document.getElementById('root'));
 ```
 
-With `React.createElement()`, you would write it like this:
+`React.createElement()` funktiolla kirjoittaisit sen seuraavasti:
 
 ```js
 function Hello(props) {
@@ -256,13 +257,13 @@ ReactDOM.render(
 );
 ```
 
-It accepts three arguments: `React.createElement(component, props, children)`. Here's how they work:
+Se hyväksyy kolme argumenttia: `React.createElement(component, props, children)`. Tässä miten ne toimivat:
 
-1. A **component**, which can be a string representing an HTML element or a function component
-2. An object of any [**props** you want to pass](/learn/passing-props-to-a-component)
-3. An object of any **children** the component might have, such as text strings
+1. **component**, joka voi olla merkkijono edustamassa HTML elementtiä tai funktiokomponenttia
+2. Olio mistä vain [**propseista**, joita haluat välittää](/learn/passing-props-to-a-component)
+3. Olio mistä vain **lapsista**, joita komponentilla saattaa olla, kuten merkkijonoja
 
-If you get tired of typing `React.createElement()`, one common pattern is to assign a shorthand:
+Jos tylsistyt kirjoittamaan `React.createElement()`, yksi yleinen tapa on asettaa sille lyhenne:
 
 ```js
 const e = React.createElement;
@@ -270,6 +271,6 @@ const e = React.createElement;
 ReactDOM.render(e('div', null, 'Hello World'), document.getElementById('root'));
 ```
 
-If you use this shorthand form for `React.createElement()`, it can be almost as convenient to use React without JSX.
+Jos käytät tätä lyhennettä `React.createElement()` funktiosta, voi olla jopa melkein yhtä kätevää käyttää Reactia ilman JSX:ää.
 
 </DeepDive>

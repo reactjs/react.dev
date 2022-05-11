@@ -15,6 +15,9 @@
 - **backend**: backend, taustajärjestelmä
 - **pipeline**: putki
 - **bundler**: bundler
+- **container**: container
+- **minify**: minifioida, pienentää
+- **preprocessor**: esikääntäjä
 - **repository**: repository, repo
 - **trigger**: triggeröinti
 - **export**: exportata, viedä

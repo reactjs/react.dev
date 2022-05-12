@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import {Linter} from 'eslint';
 import type {Diagnostic} from '@codemirror/lint';
 import type {Text} from '@codemirror/text';

@@ -11,6 +11,7 @@
 
 ## General
 
+- **linting**: lintteri
 - **frontend**: frontend
 - **backend**: backend, taustajärjestelmä
 - **pipeline**: putki

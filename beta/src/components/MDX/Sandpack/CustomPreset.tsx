@@ -2,7 +2,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import React, {useState} from 'react';
+import {linter} from '@codemirror/lint';
 // @ts-ignore
 import {flushSync} from 'react-dom';
 import {
@@ -13,6 +14,7 @@ import {
   SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
+import {lintDiagnostic} from './lint';
 
 import cn from 'classnames';
 
@@ -32,6 +34,23 @@ export function CustomPreset({
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
+  const [diagnostic, setDiagnostic] = useState<
+    {
+      line: number;
+      column: number;
+      severity: 'warning' | 'error';
+      message: string;
+    }[]
+  >([]);
+
+  const onLint = (props: any) => {
+    const editorState = props.state.doc;
+    const {codeMirrorPayload, errors} = lintDiagnostic(editorState);
+
+    setDiagnostic(errors);
+
+    return codeMirrorPayload;
+  };
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
@@ -64,6 +83,7 @@ export function CustomPreset({
               showInlineErrors
               showTabs={false}
               showRunButton={false}
+              extensions={[linter(onLint)]}
             />
             <Preview
               className="order-last xl:order-2"

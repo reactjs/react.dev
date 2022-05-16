@@ -23,7 +23,7 @@ React on JavaScript kirjasto käyttöliittymien (UI) renderöintiin. Käyttölii
 
 ## Ensimmäinen komponenttisi {/*your-first-component*/}
 
-React sovellukset rakennetaan eristetyistä käyttöliittymäpalasista, joita kutsutaan "komponenteiksi". React komponentti on JavaScript funktio johon voit ripotella merkintäkoodia. Komponentit voivat olla pieniä kuten painikkeita, tai suuria kuten kokonaisia sivuja. Tässä on `Gallery` komponentti, joka renderöi kolme `Profile` komponenttia:
+React sovellukset rakennetaan eristetyistä käyttöliittymäpalasista, joita kutsutaan *komponenteiksi*. React komponentti on JavaScript funktio, johon voit ripotella merkintäkoodia. Komponentit voivat olla pieniä kuten painikkeita, tai suuria kuten kokonaisia sivuja. Tässä on `Gallery` komponentti, joka renderöi kolme `Profile` komponenttia:
 
 <Sandpack>
 
@@ -460,7 +460,7 @@ Lue **[Listojen renderöinti](/learn/rendering-lists)** oppiaksesi miten render�
 
 ## Komponenttien pitäminen puhtaina {/*keeping-components-pure*/}
 
-Jotkin JavaScript funktiot ovat "puhtaita". Puhdas funktio on seuraavanlainen:
+Jotkin JavaScript funktiot ovat *puhtaita.* Puhdas funktio on seuraavanlainen:
 
 - **Hoitaa omia asioitaan.** Se ei muuta objekteja tai muuttujia, jotka olivat olemassa ennen sen kutsumista.
 - **Same inputs, same output.** Kun annetaan samat syötteet, puhtaan funktion tulisi aina palauttaa sama tulos.

@@ -8,6 +8,12 @@ React kehitystyökaluja voi käyttää tarkastamaan React [komponentteja](/learn
 
 </Intro>
 
+<YouWillLearn>
+
+* Miten asennetaan React kehitystyökalut
+
+</YouWillLearn>
+
 ## Selainlisäosa {/*browser-extension*/}
 
 Helpoin tapa debugata Reactilla rakennettuja verkkosivuja on asentamalla React Developer Tools selainlisäosa. Se on saatavilla useille suosituille selaimille:

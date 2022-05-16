@@ -16,9 +16,11 @@ interface DiagramProps {
 
 function Caption({text}: {text: string}) {
   return (
-    <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-tight">
-      {text}
-    </figcaption>
+    <div className="w-full table">
+      <figcaption className="p-1 sm:p-2 mt-0 sm:mt-0 text-gray-40 text-base lg:text-lg text-center leading-tight table-caption">
+        {text}
+      </figcaption>
+    </div>
   );
 }
 
@@ -35,7 +37,7 @@ export function Diagram({
       {captionPosition === 'top' && <Caption text={children} />}
       <div className="dark-image">
         <Image
-          src={`/images/docs/diagrams/${name}.dark.svg`}
+          src={`/images/docs/diagrams/${name}.dark.png`}
           alt={alt}
           height={height}
           width={width}
@@ -43,7 +45,7 @@ export function Diagram({
       </div>
       <div className="light-image">
         <Image
-          src={`/images/docs/diagrams/${name}.svg`}
+          src={`/images/docs/diagrams/${name}.png`}
           alt={alt}
           height={height}
           width={width}

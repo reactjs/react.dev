@@ -4,7 +4,7 @@ title: Your First Component
 
 <Intro>
 
-Components are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
 
 </Intro>
 

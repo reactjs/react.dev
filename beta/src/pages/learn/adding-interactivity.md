@@ -4,7 +4,7 @@ title: Interaktiivisuuden lisääminen
 
 <Intro>
 
-Jotkin asiat ruudulla päivittyvät käyttäjän syötteen mukaan. Esimerkiksi, kuvan klikkaaminen galleriassa vaihtaa aktiivista kuvaa. Reactissa ajan myötä muuttuvia tietoja kutsutaan tilaksi. Voit lisätä tilan mihin tahansa komponenttiin ja päivittää sitä tarvittaessa. Tässä luvussa opit miten kirjoitetaan komponentteja, jotka vastaavat toimintohin, päivittävät niiden tilaa sekä näyättävät eri ulostuloa ajan myötä.
+Jotkin asiat ruudulla päivittyvät käyttäjän syötteen mukaan. Esimerkiksi, kuvan klikkaaminen galleriassa vaihtaa aktiivista kuvaa. Reactissa ajan myötä muuttuvia tietoja kutsutaan *tilaksi.* Voit lisätä tilan mihin tahansa komponenttiin ja päivittää sitä tarvittaessa. Tässä luvussa opit miten kirjoitetaan komponentteja, jotka vastaavat toimintohin, päivittävät niiden tilaa sekä näyttävät eri tulostetta ajan myötä.
 
 </Intro>
 
@@ -22,7 +22,7 @@ Jotkin asiat ruudulla päivittyvät käyttäjän syötteen mukaan. Esimerkiksi, 
 
 ## Vastaaminen tapahtumiin {/*responding-to-events*/}
 
-Reactissa voit lisätä tapahtumakäsittelijöitä JSX koodiin. Tapahtumakäsittelijät ovat funktioitasi, joita kutsutaan vastauksena käyttäjän toimintoihin kuten klikkaukseen, hoverointiin, focusointiin ja niin edelleen.
+Reactissa voit lisätä *tapahtumakäsittelijöitä* JSX koodiin. Tapahtumakäsittelijät ovat funktioitasi, joita kutsutaan vastauksena käyttäjän toimintoihin kuten klikkaukseen, hoverointiin, focusointiin ja niin edelleen.
 
 Sisäänrakennetut komponentit kuten `<button>` tukevat ainoastaan selaimen sisäänrakennettuja tapahtumia kuten `onClick`. Voit kuitenkin luoda omia komponentteja ja niiden tapahtumakäsittelijöiden nimet voivat olla niin sovelluskohtaisia kuin haluat.
 
@@ -68,9 +68,9 @@ Lue **[Responding to Events](/learn/responding-to-events)** oppiaksesi miten lis
 
 ## Tila: komponentin muisti {/*state-a-components-memory*/}
 
-Komponenttien on usein muutettava näytön sisältöä vuorovaikutuksen seurauksena. Lomakkeeseen kirjoittaminen päivittää syöttökenttää, kuvakarusellissa "seuraava" napsauttaminen muuttaa näytettävää kuvaa, "osta"-painikkeella laitetaan tuote ostoskoriin. Komponenttien täytyy "muistaa" asioita: nykyinen syöte, nykyinen kuva, ostoskori. Reactissa tämän kaltaista komponenttikohtaista muistia kutsutaan tilaksi.
+Komponenttien on usein muutettava näytön sisältöä vuorovaikutuksen seurauksena. Lomakkeeseen kirjoittaminen päivittää syöttökenttää, kuvakarusellissa "seuraava" napsauttaminen tulisi muuttaa näytettävää kuvaa, "osta"-painike asettaa tuotteen ostoskoriin. Komponenttien täytyy "muistaa" asioita: nykyinen syöte, nykyinen kuva, ostoskori. Reactissa tämän kaltaista komponenttikohtaista muistia kutsutaan *tilaksi.*
 
-Voit lisätä tilaa komponetteihin käyttämällä [`useState`](/apis/usestate) koukkua eli hookkia. Hookit ovat erikoisfunktioita, joilla voit käyttää Reactin ominaisuuksia komponenteissasi. Tila on yksi näistä. `useState` hookilla voit määritellä tilamuuttujan. Sille voidaan antaa alustava tila ja se palauttaa parin: nykyisen tilan, sekä setter funktion, jolla voit päivittää sitä.
+Voit lisätä komponentteihin tilan käyttämällä [`useState`](/apis/usestate) koukkua eli hookkia. *Hookit* ovat erikoisfunktioita, joilla voit käyttää Reactin ominaisuuksia komponenteissasi (tila on yksi näistä ominaisuuksista). `useState` hookilla voit määritellä tilamuuttujan. Sille voidaan antaa alustava tila ja se palauttaa parin arvoja: nykyisen tilan, sekä setter funktion, jolla voit päivittää sitä.
 
 ```js
 const [index, setIndex] = useState(0);
@@ -255,7 +255,7 @@ Ennen kuin komponenttisi näytetään ruudlla, Reactin täytyy renderöidä ne. 
 Kuvittele, että komponettisi ovat kokkeja keittiössä, kasaten maukkaita aterioita ainesosista. Tässä skenaariossa React on tarjoilija joka laittaa ylös asiakkaiden tilaukset sekä vie tilaukset heille. Tässä käyttöliittymän pyyntö- ja vientiprosessissa on kolme vaihetta:
 
 1. **Triggeröidään** renderöinti (viedään ruokalijan tilaus keittiölle)
-2. **Renderöidään** komponentti (saadaan tilaus keittiöltä)
+2. **Renderöidään** komponentti (valmistellaan tilausta keittiössä)
 3. **Kommitoidaan** DOM:iin (asetetaan tilaus pöydälle)
 
 <IllustrationBlock sequential>

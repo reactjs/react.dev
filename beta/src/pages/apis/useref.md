@@ -592,7 +592,7 @@ const MyInput = forwardRef(({ value, onChange }, ref) => {
       ref={ref}
     />
   );
-};
+});
 
 export default MyInput;
 ```

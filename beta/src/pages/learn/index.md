@@ -21,7 +21,7 @@ Tervetuloa Reactin dokumentaatioon. Tällä sivulla esitellään 80% Reactin kon
 
 ## Komponenttien luominen ja sijoittaminen {/*components*/}
 
-React sovellukset koostuvat komponenteista. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin vaikka painonappi tai suuri kuin koko sivu.
+React sovellukset koostuvat *komponenteista*. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin vaikka painonappi tai suuri kuin koko sivu.
 
 React komponentit ovat JavaScript funktioita jotka palauttavat merkintäkoodin:
 
@@ -71,7 +71,7 @@ Avainsanat `export default` määrittävät tiedoston pääkomponentin. Mikäli 
 
 ## Merkintäkoodin kirjoittaminen JSX:llä {/*writing-markup-with-jsx*/}
 
-Merkintäkoodi jota näit ylhäällä kutsutaan nimeltään JSX. Sen käyttö on valinnaista, mutta useimmat React projektit käyttävät JSX:ää sen mukavuuden vuoksi. Kaikki [työkalut, joita suosittelemme paikalliseen kehitykseen](/learn/installation) tukevat JSX:ää oletuksena.
+Merkintäkoodi jota näit ylhäällä kutsutaan nimeltään *JSX*. Sen käyttö on valinnaista, mutta useimmat React projektit käyttävät JSX:ää sen mukavuuden vuoksi. Kaikki [työkalut, joita suosittelemme paikalliseen kehitykseen](/learn/installation) tukevat JSX:ää oletuksena.
 
 JSX on tarkempaa kuin HTML. Sinun täytyy sulkea tagit kuten `<br />`. Komponenttisi ei myöskään voi palauttaa useampia JSX tageja, vaan ne täytyy kääriä yhden pääelementin sisään, kuten `<div>...</div>` tagiin tai tyhjään `<>...</>` elementtiin:
 
@@ -250,7 +250,7 @@ export default function Ostoslista() {
 
 ## Vastaaminen tapahtumiin {/*responding-to-events*/}
 
-Voit vastata tapahtumiin määrittelemällä tapahtumakäsittelijän komponettiesi sisällä:
+Voit vastata tapahtumiin määrittelemällä *tapahtumakäsittelijän* komponettiesi sisällä:
 
 ```js {2-4,7}
 function Painonappi() {
@@ -340,7 +340,7 @@ Huomaa miten kukin painike "muistaa" sen oman `count` tilan eikä se vaikuta mui
 
 ## Hookkien käyttäminen {/*using-hooks*/}
 
-Funktiot jotka alkavat sanalla `use` ovat hookkeja. `useState` on Reactin sisäänrakennettu hookki. Löydät lisää sisäänrakennettuja hookkeja [React API referenssistä](/apis). VOit myös kirjoittaa omia hookkeja olemassaolevia yhdistelemällä.
+Funktiot, jotka alkavat sanalla `use` ovat *hookkeja*. `useState` on Reactin sisäänrakennettu hookki. Löydät lisää sisäänrakennettuja hookkeja [React API referenssistä](/apis). VOit myös kirjoittaa omia Hookkeja olemassaolevia yhdistelemällä.
 
 Hookit ovat rajoittavampia kuin normaalit funktiot. Voit kutsua hookkeja _ainoastaan_ komponentin päätasolta (tai muista hookeista). Jos haluat käyttää `useState` hookkia ehdollisesti tai loopissa, luo uusi komponentti ja sijoita se sinne.
 
@@ -350,15 +350,15 @@ Aikaisemmassa esimerkissä jokaisella `Painonappi` komponentilla oli sen oma `co
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={734} width={814} alt="Puukaavio joka näyttää kolme komponenttia, yhden MyApp pääkomponentin sekä kaksi MyButton lapsikomponenttia. Molemmat MyButton komponentit sisältävät count tilan, jonka arvo on nolla.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Puukaavio joka näyttää kolme komponenttia, yhden MyApp pääkomponentin sekä kaksi MyButton lapsikomponenttia. Molemmat MyButton komponentit sisältävät count tilan, jonka arvo on nolla.">
 
-Ennen napsautusta, jokaisella Painonappi komponentilla tila on asetettuna nollaksi.
+Aluksi, jokaisen `MyButton`:in `count` tila on `0`.
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={734} width={814} alt="Sama kaavio kuin aiemmin, mutta ensimmäisen MyButton komponentin count tila on korostettuna osoittaen klikkausta, jolloin count tila on noussut yhteen. Toinen MyButton komponentti silti sisältää arvon nolla." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="Sama kaavio kuin aiemmin, mutta ensimmäisen MyButton komponentin count tila on korostettuna osoittaen klikkausta, jolloin count tila on noussut yhteen. Toinen MyButton komponentti silti sisältää arvon nolla." >
 
-Napsautuksen jälkeen, vain yhdellä Painonappi komponentilla tila on päivittynyt.
+Ensimmäinen `MyButton` päivittää sen `count` tilansa arvoksi `1`
 
 </Diagram>
 
@@ -372,15 +372,15 @@ Tässä esimerkissä se on `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={770} width={820} alt="Puukaavio sisältäen kolme komponenttia, yhden MyApp pääkomponentin sekä kaksi MyButton lapsikomponenttia. MyApp pitää sisällään count tilan arvolla nolla, joka on annettu molemmille MyButton komponenteille, jotka myöskin näyttävät arvoa nolla." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Puukaavio sisältäen kolme komponenttia, yhden MyApp pääkomponentin sekä kaksi MyButton lapsikomponenttia. MyApp pitää sisällään count tilan arvolla nolla, joka on annettu molemmille MyButton komponenteille, jotka myöskin näyttävät arvoa nolla." >
 
-Ennen napsautusta, count tila on MyApp komponentissa ja annettu molemmille lapsikomponenteille proppeina.
+Aluksi, `MyApp`:in `count` tila on `0` ja se on välitetty molemmille lapsikomponenteille
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={770} width={820} alt="Sama kaavio kuin aiemmin, jossa MyApp komponentin count tila on korostettu osoittaen klikkausta, jolloin tilan arvo on noussut yhteen. Tiedon virtaus molempiin lapsikomponentteihin on myös korostettu, sekä tila kummassakin lapsikomponentissa on asetettu yhdeksi osoittaen tilan virtausta alaspäin." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="Sama kaavio kuin aiemmin, jossa MyApp komponentin count tila on korostettu osoittaen klikkausta, jolloin tilan arvo on noussut yhteen. Tiedon virtaus molempiin lapsikomponentteihin on myös korostettu, sekä tila kummassakin lapsikomponentissa on asetettu yhdeksi osoittaen tilan virtausta alaspäin." >
 
-Klikkauksen jälkeen tila päivittyy MyApp komponentissa sekä uusi arvo on annettu molemmille lapsikomponenteille proppeina.
+Klikkauksen jälkeen `MyApp` päivittää sen `count` tilan arvoksi `1` ja välittää sen molemmille lapsikomponenteille
 
 </Diagram>
 

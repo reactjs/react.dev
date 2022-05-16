@@ -10,10 +10,10 @@ React on suunniteltu alusta alkaen asteittaiseen käyttöönottoon. Voit käytt�
 
 <YouWillLearn isChapter={true}>
 
-- [How to add React to an HTML page](/learn/add-react-to-a-website)
-- [How to start a standalone React project](/learn/start-a-new-react-project)
-- [How to set up your editor](/learn/editor-setup)
-- [How to install React Developer Tools](/learn/react-developer-tools)
+- [Miten lisätä Reactia HTML sivuun](/learn/add-react-to-a-website)
+- [Miten aloittaa kokonainen React -projekti](/learn/start-a-new-react-project)
+- [Miten määritellä editori](/learn/editor-setup)
+- [Miten asennetaan Reactin kehitystyökalut](/learn/react-developer-tools)
 
 </YouWillLearn>
 
@@ -35,8 +35,9 @@ export default function App() {
 
 </Sandpack>
 
-Käytämme hiekkalaatikkoja osana dokumentaatiota opetuksen tukena. Hiekkalaatikot auttaa tutustumaan Reactin toimintaan sekä auttaa päättämään sopiiko React sinulle.
-Reactin dokumentaation ulkopuolelta löytyy monia hiekkalaatikkoja, jotka tukevat Reactia: esimerkiksi [CodeSandbox](https://codesandbox.io/s/new), [Stackblitz](https://stackblitz.com/fork/react), tai [CodePen](https://codepen.io/pen/?template=wvdqJJm).
+Voit muokata sitä suoraan tai avata sen uudessa välilehdessä painamalla "Fork" painiketta oikeasta yläreunasta.
+
+Useimmat sivut Reactin dokumentaatiossa sisältävät hiekkalaatikkoja kuten tämän. Reactin dokumentaation ulkopuolelta löytyy monia hiekkalaatikkoja, jotka tukevat Reactia: esimerkiksi [CodeSandbox](https://codesandbox.io/s/new), [Stackblitz](https://stackblitz.com/fork/react), tai [CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb).
 
 ## Kokeile Reactia paikallisesti {/*try-react-locally*/}
 
@@ -52,4 +53,5 @@ Jos olet valmis [aloittamaan itsenäisen projektin](/learn/start-a-new-react-pro
 
 ## Seuraavat vaiheet {/*next-steps*/}
 
-Se mistä aloitat riippuu pitkälti miten haluat oppia, mitä sinun täytyy saavuttaa, ja minne haluat edetä seuraavaksi! Mikset lukisi [Ajattelua Reactissa](/learn/thinking-in-react) -johdantoa? Tai voit myös hypätä [Käyttöliittymän kuvaukseen](/learn/describing-the-ui) kokeillaksesi esimerkeillä ja oppiaksesi aiheen vaihe vaiheelta. Ei ole väärää tapaa oppia Reactia!
+Suuntaa kohti [Pika-aloitus](/learn) -oppaaseen ja tutustu tärkeimpiin React-ominaisuuksiin, joita kohtaat joka päivä.
+

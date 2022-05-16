@@ -21,7 +21,7 @@ In the above example, strict mode checks will *not* be run against the `Header` 
 * [Warning about deprecated findDOMNode usage](#warning-about-deprecated-finddomnode-usage)
 * [Detecting unexpected side effects](#detecting-unexpected-side-effects)
 * [Detecting legacy context API](#detecting-legacy-context-api)
-* [Detecting unsafe effects](#detecting-unsafe-effects)
+* [Ensuring reusable state](#ensuring-reusable-state)
 
 Additional functionality will be added with future releases of React.
 
@@ -171,6 +171,14 @@ When the component unmounts, effects are destroyed as normal:
   * Layout effects are destroyed.
   * Effect effects are destroyed.
 ```
+
+Unmounting and remounting includes:
+
+- `componentDidMount`
+- `componentWillUnmount`
+- `useEffect`
+- `useLayoutEffect`
+- `useInsertionEffect`
 
 > Note:
 >

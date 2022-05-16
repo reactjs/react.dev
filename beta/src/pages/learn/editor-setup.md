@@ -8,15 +8,22 @@ Oikein määritelty editori voi tehdä koodista selkeämpää lukea ja nopeampaa
 
 </Intro>
 
+<YouWillLearn>
+
+* Mitkä ovat suosituimmat editorit
+* Miten koodi muotoillaan automaattisesti
+
+</YouWillLearn>
+
 ## Editorisi {/*your-editor*/}
 
 [VS Code](https://code.visualstudio.com/) on yksiä suosituimpia editoreita käytössä nykypäivänä. Sillä on suuri kauppa lisäosille ja se integroituu hyvin suosittujen palveluiden kuten GitHubin kanssa. Useimmat alla olevista ominaisuuksista voidaan lisätä VS Codeen lisäosina, joka tekee siitä todella konfiguroitavan!
 
 Muita suosittuja tekstieditoreita React-yhteisössä ovat muun muassa:
 
-* [WebStorm](https://www.jetbrains.com/webstorm/)—IDE ohjelmointiympäristö suunniteltu erityisesti JavaScriptille.
-* [Sublime Text](https://www.sublimetext.com/)—editorissa on tuki JSX:lle sekä TypeScriptille, [syntaksin korostus](https://stackoverflow.com/a/70960574/458193) ja sisäänrakennettu automaattinen täydennys.
-* [Vim](https://www.vim.org/)—laajasti konfiguroitava tekstieditori, joka tekee tekstin luomisesta ja muokkaamisesta tehokasta. Useissa UNIX ja Applen macOS järjestelmissä se tulee mukana "vi" komentona.
+* [WebStorm](https://www.jetbrains.com/webstorm/) on IDE ohjelmointiympäristö suunniteltu erityisesti JavaScriptille.
+* [Sublime Text](https://www.sublimetext.com/) editorissa on tuki JSX:lle sekä TypeScriptille, [syntaksin korostus](https://stackoverflow.com/a/70960574/458193) ja sisäänrakennettu automaattinen täydennys.
+* [Vim](https://www.vim.org/) on laajasti konfiguroitava tekstieditori, joka tekee tekstin luomisesta ja muokkaamisesta tehokasta. Useissa UNIX ja Applen macOS järjestelmissä se tulee mukana "vi" komentona.
 
 ## Suositellut tekstieditoreiden ominaisuudet {/*recommended-text-editor-features*/}
 
@@ -50,4 +57,4 @@ Ihannetilanteessa sinun pitäisi muotoilla koodisi jokaisen tallennuksen yhteyde
 4. Hakupalkissa, hae "format on save"
 5. Varmista, että "format on save" vaihtoehto on valittuna!
 
-> Prettier voi joskus joutua ristiriitaan toisten lintterien kanssa. Usein niihin on kuitenkin tapa saada ne toimimaan keskenään. Esimerkiksi jos käytät Prettieriä ESLintin kanssa, voit käyttää [eslint-prettier](https://github.com/prettier/eslint-plugin-prettier) lisäosaa suorittaaksesi Prettierin ESLint sääntönä.
+> Jos ESLint säännöissäsi on muotoilusääntöjä, ne voivat olla ristiriidassa Prettierin kanssa. Suosittelemme poistamaan käytöstä kaikki ESLint muotoilusäännöt käyttämällä [`eslint-config-prettier`](https://github.com/prettier/eslint-config-prettier), jotta ESLint on *ainoastaan* käytössä logiikkavirheiden etsimiseen. Jos haluat pakottaa, että tiedostot määritellään ennen kuin pull request yhdistetän, käytä [`prettier --check`](https://prettier.io/docs/en/cli.html#--check) komentoa CI työkalussasi.

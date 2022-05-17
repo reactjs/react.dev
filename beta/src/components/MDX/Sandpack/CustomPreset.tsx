@@ -1,8 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-import React, {useState} from 'react';
-import {linter} from '@codemirror/lint';
+import React from 'react';
 // @ts-ignore
 import {flushSync} from 'react-dom';
 import {
@@ -13,13 +12,15 @@ import {
   SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
-import {lintDiagnostic} from './lint';
 import cn from 'classnames';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
+import {useSandpackLint} from './utils';
+
+const ENABLE_ESLINT = localStorage.getItem('SANDPACK_ESLINT') === 'true';
 
 export function CustomPreset({
   isSingleFile,
@@ -32,23 +33,7 @@ export function CustomPreset({
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
-  const [diagnostic, setDiagnostic] = useState<
-    {
-      line: number;
-      column: number;
-      severity: 'warning' | 'error';
-      message: string;
-    }[]
-  >([]);
-
-  const onLint = (props: any) => {
-    const editorState = props.state.doc;
-    const {codeMirrorPayload, errors} = lintDiagnostic(editorState);
-
-    setDiagnostic(errors);
-
-    return codeMirrorPayload;
-  };
+  const {diagnostic, onLint} = useSandpackLint();
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
@@ -81,10 +66,12 @@ export function CustomPreset({
               showInlineErrors
               showTabs={false}
               showRunButton={false}
+              extensions={ENABLE_ESLINT ? [onLint] : []}
             />
             <Preview
               className="order-last xl:order-2"
               isExpanded={isExpanded}
+              diagnostic={diagnostic}
             />
             {isExpandable && (
               <button

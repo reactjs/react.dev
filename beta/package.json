@@ -22,8 +22,6 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
-    "@codemirror/lint": "^0.20.2",
-    "@codemirror/text": "^0.19.6",
     "@codesandbox/sandpack-react": "v0.19.8-experimental.0",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",

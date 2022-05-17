@@ -9,11 +9,13 @@ import cn from 'classnames';
 
 import {Error} from './Error';
 import {computeViewportSize, generateRandomId} from './utils';
+import type {LintDiagnostic} from './utils';
 
 type CustomPreviewProps = {
   className?: string;
   customStyle?: Record<string, unknown>;
   isExpanded: boolean;
+  diagnostic: LintDiagnostic;
 };
 
 function useDebounced(value: any): any {
@@ -32,6 +34,7 @@ export function Preview({
   customStyle,
   isExpanded,
   className,
+  diagnostic,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
   const [isReady, setIsReady] = React.useState(false);
@@ -186,6 +189,25 @@ export function Preview({
           clientId={clientId.current}
           loading={!isReady && iframeComputedHeight === null}
         />
+
+        {/*
+         * TODO: properly style the errors
+         */}
+        {diagnostic.length > 0 && (
+          <div style={{zIndex: 99}}>
+            {diagnostic.map((e) => {
+              return (
+                <p
+                  key={`${e.column} ${e.line}`}
+                  style={{
+                    color: e.severity === 'warning' ? 'orange' : 'red',
+                  }}>
+                  [{e.line}:{e.column}] - {e.message}
+                </p>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

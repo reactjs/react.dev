@@ -7,7 +7,7 @@ import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 
-import {Error, LintError} from './Error';
+import {Error} from './Error';
 import {computeViewportSize, generateRandomId} from './utils';
 import type {LintDiagnostic} from './utils';
 
@@ -59,6 +59,19 @@ export function Preview({
     // Work around a noisy internal error.
     rawError = null;
   }
+
+  if (lintErrors.length > 0) {
+    if (rawError == null || rawError.title === 'Runtime Exception') {
+      // When there's a lint error, show it -- even over a runtime error.
+      // (However, when there's a build error, we keep showing the build one.)
+      const {line, column, message} = lintErrors[0];
+      rawError = {
+        title: 'Lint Error',
+        message: `${line}:${column} - ${message}`,
+      };
+    }
+  }
+
   // It changes too fast, causing flicker.
   const error = useDebounced(rawError);
 
@@ -110,7 +123,7 @@ export function Preview({
         maxHeight: undefined,
       }
     : null;
-  const hideContent = !isReady || error || lintErrors.length;
+  const hideContent = !isReady || error;
 
   // WARNING:
   // The layout and styling here is convoluted and really easy to break.
@@ -189,17 +202,6 @@ export function Preview({
           clientId={clientId.current}
           loading={!isReady && iframeComputedHeight === null}
         />
-
-        {/*
-         * TODO: properly style the errors
-         */}
-        {lintErrors.length > 0 && !error && (
-          <div className={cn('p-2', isExpanded ? 'sticky top-8' : null)}>
-            <div style={{zIndex: 99}}>
-              <LintError error={lintErrors[0]} />
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

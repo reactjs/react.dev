@@ -1,6 +1,10 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
+import {useState} from 'react';
+import {lintDiagnostic} from './eslint-integration';
+import {linter} from '@codemirror/lint';
+import type {EditorView} from '@codemirror/view';
 import type {SandpackFile} from '@codesandbox/sandpack-react';
 export type ViewportSizePreset =
   | 'iPhone X'
@@ -94,4 +98,28 @@ export const createFileMap = (codeSnippets: any) => {
     },
     {}
   );
+};
+
+export type LintDiagnostic = {
+  line: number;
+  column: number;
+  severity: 'warning' | 'error';
+  message: string;
+}[];
+
+export const useSandpackLint = () => {
+  const [lintErrors, setDiagnostic] = useState<LintDiagnostic>([]);
+
+  const onLint = linter((props: EditorView) => {
+    const editorState = props.state.doc;
+    return import('./eslint-integration').then((module) => {
+      const {errors} = module.lintDiagnostic(editorState);
+
+      setDiagnostic(errors);
+
+      return module.lintDiagnostic(editorState).codeMirrorPayload;
+    });
+  });
+
+  return {lintErrors, onLint};
 };

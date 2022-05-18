@@ -7,13 +7,15 @@ import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 
-import {Error} from './Error';
+import {Error, LintError} from './Error';
 import {computeViewportSize, generateRandomId} from './utils';
+import type {LintDiagnostic} from './utils';
 
 type CustomPreviewProps = {
   className?: string;
   customStyle?: Record<string, unknown>;
   isExpanded: boolean;
+  lintErrors: LintDiagnostic;
 };
 
 function useDebounced(value: any): any {
@@ -32,6 +34,7 @@ export function Preview({
   customStyle,
   isExpanded,
   className,
+  lintErrors,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
   const [isReady, setIsReady] = React.useState(false);
@@ -107,7 +110,7 @@ export function Preview({
         maxHeight: undefined,
       }
     : null;
-  const hideContent = !isReady || error;
+  const hideContent = !isReady || error || lintErrors.length;
 
   // WARNING:
   // The layout and styling here is convoluted and really easy to break.
@@ -186,6 +189,17 @@ export function Preview({
           clientId={clientId.current}
           loading={!isReady && iframeComputedHeight === null}
         />
+
+        {/*
+         * TODO: properly style the errors
+         */}
+        {lintErrors.length > 0 && !error && (
+          <div className={cn('p-2', isExpanded ? 'sticky top-8' : null)}>
+            <div style={{zIndex: 99}}>
+              <LintError error={lintErrors[0]} />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

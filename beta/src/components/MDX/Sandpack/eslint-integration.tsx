@@ -27,8 +27,6 @@ linter.defineRules({
   'react-hooks/exhaustive-deps': reactRules['exhaustive-deps'],
 });
 
-const rules = linter.getRules();
-
 const options = {
   parserOptions: {
     ecmaVersion: 12,
@@ -38,12 +36,6 @@ const options = {
   rules: {
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
-    ...Array.from(rules).reduce((result, [ruleId, rule]) => {
-      if (rule.meta?.docs?.recommended) {
-        result[ruleId] = 2;
-      }
-      return result;
-    }, {}),
   },
 };
 

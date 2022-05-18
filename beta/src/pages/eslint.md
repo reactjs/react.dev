@@ -1,10 +1,17 @@
 <Sandpack>
 
 ```js
+let name = ''
+
+  if (name !== '') {
+    useEffect(function persistForm() {
+console.log('e')
+    });
+  }
+
 import { useState, useEffect } from "react"
 
-const foo = ""
-foo = 123
+
 
 export default function App() {
   const [a, setA] = useState("");
@@ -24,5 +31,6 @@ export default function App() {
     </div>
   );
 }
+
 ```
 </Sandpack>

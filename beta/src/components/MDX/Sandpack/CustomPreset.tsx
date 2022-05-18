@@ -33,7 +33,7 @@ export function CustomPreset({
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
-  const {diagnostic, onLint} = useSandpackLint();
+  const {lintErrors, onLint} = useSandpackLint();
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
@@ -71,7 +71,7 @@ export function CustomPreset({
             <Preview
               className="order-last xl:order-2"
               isExpanded={isExpanded}
-              diagnostic={diagnostic}
+              lintErrors={lintErrors}
             />
             {isExpandable && (
               <button

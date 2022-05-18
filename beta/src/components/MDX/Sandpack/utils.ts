@@ -4,7 +4,7 @@
 import {useState} from 'react';
 import {lintDiagnostic} from './eslint-integration';
 import {linter} from '@codemirror/lint';
-
+import type {EditorView} from '@codemirror/view';
 import type {SandpackFile} from '@codesandbox/sandpack-react';
 export type ViewportSizePreset =
   | 'iPhone X'
@@ -108,9 +108,9 @@ export type LintDiagnostic = {
 }[];
 
 export const useSandpackLint = () => {
-  const [diagnostic, setDiagnostic] = useState<LintDiagnostic>([]);
+  const [lintErrors, setDiagnostic] = useState<LintDiagnostic>([]);
 
-  const onLint = linter((props: any) => {
+  const onLint = linter((props: EditorView) => {
     const editorState = props.state.doc;
     const {codeMirrorPayload, errors} = lintDiagnostic(editorState);
 
@@ -119,5 +119,5 @@ export const useSandpackLint = () => {
     return codeMirrorPayload;
   });
 
-  return {diagnostic, onLint};
+  return {lintErrors, onLint};
 };

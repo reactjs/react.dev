@@ -7,7 +7,7 @@ import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 
-import {Error} from './Error';
+import {Error, LintError} from './Error';
 import {computeViewportSize, generateRandomId} from './utils';
 import type {LintDiagnostic} from './utils';
 
@@ -15,7 +15,7 @@ type CustomPreviewProps = {
   className?: string;
   customStyle?: Record<string, unknown>;
   isExpanded: boolean;
-  diagnostic: LintDiagnostic;
+  lintErrors: LintDiagnostic;
 };
 
 function useDebounced(value: any): any {
@@ -34,7 +34,7 @@ export function Preview({
   customStyle,
   isExpanded,
   className,
-  diagnostic,
+  lintErrors,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
   const [isReady, setIsReady] = React.useState(false);
@@ -110,7 +110,7 @@ export function Preview({
         maxHeight: undefined,
       }
     : null;
-  const hideContent = !isReady || error;
+  const hideContent = !isReady || error || lintErrors.length;
 
   // WARNING:
   // The layout and styling here is convoluted and really easy to break.
@@ -193,19 +193,24 @@ export function Preview({
         {/*
          * TODO: properly style the errors
          */}
-        {diagnostic.length > 0 && (
-          <div style={{zIndex: 99}}>
-            {diagnostic.map((e) => {
-              return (
-                <p
-                  key={`${e.column} ${e.line}`}
-                  style={{
-                    color: e.severity === 'warning' ? 'orange' : 'red',
-                  }}>
-                  [{e.line}:{e.column}] - {e.message}
-                </p>
-              );
-            })}
+        {lintErrors.length > 0 && (
+          <div
+            className={cn(
+              'p-2',
+              // This isn't absolutely positioned so that
+              // the errors can also expand the parent height.
+              isExpanded ? 'sticky top-8' : null
+            )}>
+            <div style={{zIndex: 99}}>
+              {lintErrors.map((error: any) => {
+                console.log(error);
+                return (
+                  <div className="mt-2">
+                    <LintError error={error} />
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>

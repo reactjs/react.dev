@@ -19,13 +19,7 @@ State variables might look like regular JavaScript variables that you can read a
 
 ## Setting state triggers renders {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user input like a click. This may feel intuitive if you've been [storyboarding](https://wikipedia.org/wiki/Storyboard) your designs and interactions:
-
-<Illustration alt="A linear progression from a form, to a finger on the submit button, to a confirmation message." src="/images/docs/sketches/s_ui-response.jpg" />
-
-In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the input, you need to set its state.
-
-<Illustration alt="React initially renders a form, a finger on the submit button sends a setState to React, and React re-renders a confirmation message." src="/images/docs/sketches/s_react-ui-response.jpg" />
+You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
 
 In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
 
@@ -75,8 +69,6 @@ Here's what happens when you click the button:
 
 Let's take a closer look at the relationship between state and rendering.
 
-<Illustration alt="State living in React; React gets a setUpdate; in the re-render, React passes a snapshot of the state value into the component." src="/images/docs/illustrations/i_ui-snapshot.png" />
-
 ## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
 
 ["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
@@ -98,9 +90,9 @@ When React re-renders a component:
 As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
 
 <IllustrationBlock sequential>
-  <Illustration caption="React gets a setUpdate." src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value." src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component." src="/images/docs/illustrations/i_state-snapshot3.png" />
+  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
 Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.

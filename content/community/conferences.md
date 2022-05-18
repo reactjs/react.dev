@@ -13,11 +13,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 ## Upcoming Conferences {#upcoming-conferences}
 
 
-### Reactathon 2022 {#reactathon-2022} 
-May 3 - 5, 2022. Berkeley, CA
-
-[Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
-
 ### render(ATL) 2022 🍑 {#render-atlanta-2022} 
 June 1 - 4, 2022. Atlanta, GA, USA
 
@@ -74,6 +69,10 @@ September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid ev
 
 ## Past Conferences {#past-conferences}
 
+### Reactathon 2022 {#reactathon-2022} 
+May 3 - 5, 2022. Berkeley, CA
+
+[Website](https://reactathon.com) - [Twitter](https://twitter.com/reactathon) -[YouTube](https://www.youtube.com/watch?v=-YG5cljNXIA)
 
 ### < React Global > Online Summit 2022 by Geekle {#react-global-2022}
 April 20 - 21, 2022 - Online Summit

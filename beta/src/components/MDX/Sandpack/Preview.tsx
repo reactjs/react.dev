@@ -194,30 +194,9 @@ export function Preview({
          * TODO: properly style the errors
          */}
         {lintErrors.length > 0 && (
-          <div
-            className={cn(
-              'p-2',
-              // This isn't absolutely positioned so that
-              // the errors can also expand the parent height.
-              isExpanded ? 'sticky top-8' : null
-            )}>
+          <div className={cn(isExpanded ? 'sticky top-8' : null)}>
             <div style={{zIndex: 99}}>
-              {lintErrors.map(
-                (
-                  error: {
-                    line: number;
-                    column: number;
-                    message: string;
-                  },
-                  index: number
-                ) => {
-                  return (
-                    <div className="mt-2" key={`lint-error-${error.line}`}>
-                      <LintError error={error} />
-                    </div>
-                  );
-                }
-              )}
+              <LintError error={lintErrors[0]} />
             </div>
           </div>
         )}

@@ -162,6 +162,10 @@
             {
               "title": "Manipulating the DOM with Refs",
               "path": "/learn/manipulating-the-dom-with-refs"
+            },
+            {
+              "title": "Synchronizing with Effects",
+              "path": "/learn/synchronizing-with-effects"
             }
           ]
         }

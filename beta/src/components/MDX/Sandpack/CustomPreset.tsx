@@ -20,8 +20,6 @@ import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
 import {useSandpackLint} from './utils';
 
-const ENABLE_ESLINT = localStorage.getItem('SANDPACK_ESLINT') === 'true';
-
 export function CustomPreset({
   isSingleFile,
   showDevTools,
@@ -66,7 +64,7 @@ export function CustomPreset({
               showInlineErrors
               showTabs={false}
               showRunButton={false}
-              extensions={ENABLE_ESLINT ? [onLint] : []}
+              extensions={[onLint]}
             />
             <Preview
               className="order-last xl:order-2"

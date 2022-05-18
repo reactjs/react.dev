@@ -108,15 +108,14 @@ export type LintDiagnostic = {
 }[];
 
 export const useSandpackLint = () => {
-  const [lintErrors, setDiagnostic] = useState<LintDiagnostic>([]);
+  const [lintErrors, setLintErrors] = useState<LintDiagnostic>([]);
 
   const onLint = linter((props: EditorView) => {
     const editorState = props.state.doc;
     return import('./eslint-integration').then((module) => {
-      const {errors} = module.lintDiagnostic(editorState);
-
-      setDiagnostic(errors);
-
+      let {errors} = module.lintDiagnostic(editorState);
+      // Only show errors from rules, not parsing errors etc
+      setLintErrors(errors.filter((e) => !e.fatal));
       return module.lintDiagnostic(editorState).codeMirrorPayload;
     });
   });

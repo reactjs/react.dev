@@ -193,8 +193,8 @@ export function Preview({
         {/*
          * TODO: properly style the errors
          */}
-        {lintErrors.length > 0 && (
-          <div className={cn(isExpanded ? 'sticky top-8' : null)}>
+        {lintErrors.length > 0 && !error && (
+          <div className={cn('p-2', isExpanded ? 'sticky top-8' : null)}>
             <div style={{zIndex: 99}}>
               <LintError error={lintErrors[0]} />
             </div>

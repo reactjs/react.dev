@@ -34,7 +34,6 @@ export function LintError({
     message: string;
   };
 }) {
-  console.log(message, 'err');
   return (
     <div
       className={

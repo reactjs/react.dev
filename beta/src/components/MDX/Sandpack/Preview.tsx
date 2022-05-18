@@ -202,14 +202,22 @@ export function Preview({
               isExpanded ? 'sticky top-8' : null
             )}>
             <div style={{zIndex: 99}}>
-              {lintErrors.map((error: any) => {
-                console.log(error);
-                return (
-                  <div className="mt-2">
-                    <LintError error={error} />
-                  </div>
-                );
-              })}
+              {lintErrors.map(
+                (
+                  error: {
+                    line: number;
+                    column: number;
+                    message: string;
+                  },
+                  index: number
+                ) => {
+                  return (
+                    <div className="mt-2" key={`lint-error-${error.line}`}>
+                      <LintError error={error} />
+                    </div>
+                  );
+                }
+              )}
             </div>
           </div>
         )}

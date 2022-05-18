@@ -112,11 +112,13 @@ export const useSandpackLint = () => {
 
   const onLint = linter((props: EditorView) => {
     const editorState = props.state.doc;
-    const {codeMirrorPayload, errors} = lintDiagnostic(editorState);
+    return import('./eslint-integration').then((module) => {
+      const {errors} = module.lintDiagnostic(editorState);
 
-    setDiagnostic(errors);
+      setDiagnostic(errors);
 
-    return codeMirrorPayload;
+      return module.lintDiagnostic(editorState).codeMirrorPayload;
+    });
   });
 
   return {lintErrors, onLint};

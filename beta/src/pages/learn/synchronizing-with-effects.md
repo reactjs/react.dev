@@ -35,8 +35,8 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 **Don't rush to add effects to your components.** First, check whether the logic you want to add can be expressed as a [pure calculation](/learn/keeping-components-pure) during rendering. In that case, it's not an effect. Is this logic specific to a particular interaction, like a button click? Then it might be better placed in an [event handler](/learn/responding-to-events). Keep in mind that effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. To write an effect, follow these three steps:
 
 1. **Declare an effect that runs after *every* render.** (This is the default behavior when you declare an effect.)
-2. **Then, check whether your effect needs cleanup.** Some effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
-3. **Finally, check whether your effect needs dependencies.** Some effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+2. **Then, check whether your effect needs dependencies.** Some effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+3. **Finally, check whether your effect needs cleanup.** Some effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
 
 Let's look at each of these steps in detail.
 
@@ -61,9 +61,7 @@ function MyComponent() {
 
 Every time your component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
 
-### Example: Synchronizing `isPlaying` prop to `play()` and `pause()` calls {/*example-synchronizing-isplaying-prop-to-play-and-pause-calls*/}
-
-Let's synchronize an external system with React props or state. Consider a `<VideoPlayer>` React component. It would be convenient to control whether it's playing or paused by passing an `isPlaying` value to it as a prop:
+Let's see how you can use an effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
 
 ```js
 <VideoPlayer isPlaying={isPlaying} />;
@@ -146,6 +144,8 @@ video { width: 250px; }
 
 </Sandpack>
 
+In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
+
 <DeepDive title="What happens if you call play() and pause() outside the effect?">
 
 Try commenting out the 6th and 12th lines in the above example to see what happens when the `play()` and `pause()` calls run during rendering. The code will crash because the `<video>` tag does not yet exist in the DOM. **By using an effect, you tell React to put `<video>` in the DOM, and _then_ do something.**
@@ -156,15 +156,213 @@ In general you should always [treat rendering as a pure calculation](/learn/keep
 
 </DeepDive>
 
-In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
+<Gotcha>
 
-Note that `play()` and `pause()` methods above get called **after every render.** Whether `VideoPlayer` renders for the first time, or re-renders for any reason, the effect will run--even if the `isPlaying` prop did not change! This is not a problem because calling `play()` on an already playing video doesn't do anything (the video keeps playing.) But for many other effects, this re-firing can be a problem. Let's look at a case like this and how to solve it.
+By default, effects run after *every* render. This is why code like this will **produce an infinite loop:**
 
-## Step 2: Check whether your effect needs cleanup {/*step-2-check-whether-your-effect-needs-cleanup*/}
+```js
+useEffect(() => {
+  setCounter(counter + 1);
+});
+```
+
+Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an effect is like short-circuiting an electrical chain. The effect runs, you set the state, which causes a re-render, which causes the effect to run, it sets the state again, this causes another re-render, and so on.
+
+Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
+
+</Gotcha>
+
+## Step 2: Check whether your effect needs dependencies {/*step-2-check-whether-your-effect-needs-dependencies*/}
+
+By default, effects run after *every* render. Often, this is **not what you want:**
+
+- Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
+- Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
+
+To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing into the input causes the effect to re-run:
+
+<Sandpack>
+
+```js
+import { useState, useRef, useEffect } from 'react';
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      console.log('Calling video.play()');
+      ref.current.play();
+    } else {
+      console.log('Calling video.pause()');
+      ref.current.pause();
+    }
+  });
+
+  return <video ref={ref} src={src} loop />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [text, setText] = useState('');
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      />
+    </>
+  );
+}
+```
+
+```css
+input, button { display: block; margin-bottom: 20px; }
+video { width: 250px; }
+```
+
+</Sandpack>
+
+You can tell React to **skip unnecessarily re-running the effect** by specifying an array of *dependencies* as the second argument to the `useEffect` call. Start by adding an empty `[]` array to the above example on line 14:
+
+```js {3}
+  useEffect(() => {
+    // ...
+  }, []);
+```
+
+You should see an error saying `React Hook useEffect has a missing dependency: 'isPlaying'`:
+
+<Sandpack>
+
+```js
+import { useState, useRef, useEffect } from 'react';
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      console.log('Calling video.play()');
+      ref.current.play();
+    } else {
+      console.log('Calling video.pause()');
+      ref.current.pause();
+    }
+  }, []); // This causes an error
+
+  return <video ref={ref} src={src} loop />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [text, setText] = useState('');
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      />
+    </>
+  );
+}
+```
+
+```css
+input, button { display: block; margin-bottom: 20px; }
+video { width: 250px; }
+```
+
+</Sandpack>
+
+The problem is that the code inside of your effect *depends on* the `isPlaying` prop to decide what to do, but this dependency was not explicitly declared. To fix this issue, add `isPlaying` to the dependency array:
+
+```js {2,7}
+  useEffect(() => {
+    if (isPlaying) { // It's used here...
+      // ...
+    } else {
+      // ...
+    }
+  }, [isPlaying]); // ...so it must be declared here!
+```
+
+This tells React that it should skip re-running your effect if `isPlaying` is the same as it was during the previous render. With this change, typing into the input doesn't cause the effect to re-run, but pressing Play/Pause does:
+
+<Sandpack>
+
+```js
+import { useState, useRef, useEffect } from 'react';
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      console.log('Calling video.play()');
+      ref.current.play();
+    } else {
+      console.log('Calling video.pause()');
+      ref.current.pause();
+    }
+  }, [isPlaying]);
+
+  return <video ref={ref} src={src} loop />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [text, setText] = useState('');
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      />
+    </>
+  );
+}
+```
+
+```css
+input, button { display: block; margin-bottom: 20px; }
+video { width: 250px; }
+```
+
+</Sandpack>
+
+**Notice that you can't "choose" your dependencies.** When you specify the dependencies, you will get a lint error if it doesn't match what React expects based on the code inside your effect. This helps catch many bugs in your code. However, this can be a problem if your effect uses some value but you *don't* want to re-run the effect when that value changes. When you're faced with this problem, the correct fix is to *change the effect code itself* to not "need" that dependency. You will learn common strategies to do that in [Specifying the Effect Dependencies](/learn/specifying-effect-dependencies).
+
+<Gotcha>
+
+The behaviors *without* the dependency array and with an *empty* `[]` dependency array are very different:
+
+```js {3,7}
+useEffect(() => {
+  // This runs after every render
+});
+
+useEffect(() => {
+  // This runs only on mount (when the component appears)
+}, []);
+```
+
+We'll take a close look at what "mount" means in the next step.
+
+</Gotcha>
+
+## Step 3: Check whether your effect needs cleanup {/*step-3-check-whether-your-effect-needs-cleanup*/}
 
 TODO
-
-## Step 3: Check whether your effect needs dependencies {/*step-3-check-whether-your-effect-needs-dependencies*/}
-
-TODO
-

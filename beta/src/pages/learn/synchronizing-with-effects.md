@@ -166,7 +166,7 @@ useEffect(() => {
 });
 ```
 
-Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an effect is like short-circuiting an electrical chain. The effect runs, you set the state, which causes a re-render, which causes the effect to run, it sets the state again, this causes another re-render, and so on.
+Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an effect is like plugging a power outlet into itself. The effect runs, you set the state, which causes a re-render, which causes the effect to run, it sets the state again, this causes another re-render, and so on.
 
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
 
@@ -365,4 +365,67 @@ We'll take a close look at what "mount" means in the next step.
 
 ## Step 3: Check whether your effect needs cleanup {/*step-3-check-whether-your-effect-needs-cleanup*/}
 
+Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `setup()` and `destroy()` methods. How do you keep the component connected while it is displayed to the user?
+
+Start by writing the effect logic:
+
+```js
+useEffect(() => {
+  const connection = createConnection();
+  connection.setup();
+});
+```
+
+It would be slow to connect to the chat after every re-render, so you add the dependency array:
+
+```js {4}
+useEffect(() => {
+  const connection = createConnection();
+  connection.setup();
+}, []);
+```
+
+The code inside the effect does not use any props or state, so your dependency list is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.
+
+However, if you try running this code and look at the console logs, you will notice that `setup()` gets called twice:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom() {
+  useEffect(() => {
+    const connection = createConnection();
+    connection.setup();
+  }, []);
+  return <h1>Welcome to the chat!</h1>;
+}
+```
+
+```js chat.js
+export function createConnection() {
+  // A real implementation would actually connect to the server
+  return {
+    setup() {
+      console.log('Connecting...');
+    },
+    destroy() {
+      console.log('Disconnecting...');
+    }
+  };
+}
+```
+
+```css
+input { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+This behavior may seem surprising!
+
 TODO
+
+

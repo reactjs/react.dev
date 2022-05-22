@@ -45,14 +45,11 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
 
   React.useEffect(() => {
     const unsubscribe = listen((message) => {
-      // there is no such type as console in Sandpack
-      if (message.status === 'installing-dependencies') {
+      if (message.type === 'start') {
         setLogs([]);
       }
+      // there is no such type as console in Sandpack
       if (message.type === 'console' && message.codesandbox) {
-        console.log(message, 'message');
-
-        console.log(message);
         setLogs((prev) => {
           const messages = [...prev, ...message.log];
           messages.slice(Math.max(0, messages.length - MAX_MESSAGE_COUNT));
@@ -72,14 +69,34 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
   }, [logs]);
 
   return (
-    <div className="w-full h-full bg-gray-95 text-white">
+    <div className="w-full h-full border-y dark:border-gray-700 dark:bg-gray-95 dark:text-white">
+      {!!logs.length && (
+        <div className="flex justify-between">
+          <p className="p-2 text-md">console</p>
+          <button className="p-2" onClick={() => setLogs([])}>
+            <svg
+              viewBox="0 0 24 24"
+              width="18"
+              height="18"
+              stroke="currentColor"
+              strokeWidth="2"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              className="css-i6dzq1">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+            </svg>
+          </button>
+        </div>
+      )}
       <div className={cn('console-scroll')} ref={wrapperRef}>
         {logs.map(({data, id, method}) => {
           return (
             <p
               key={id}
               className={cn(
-                'border-y border border-gray-700',
+                'border-y border dark:border-gray-700 text-md p-1 pl-2',
                 `console-${getType(method)}`
               )}>
               <span className={cn('console-message')}>
@@ -109,10 +126,6 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
           );
         })}
       </div>
-
-      <button className="" onClick={() => setLogs([])}>
-        {/* <RefreshIcon /> */}
-      </button>
     </div>
   );
 };

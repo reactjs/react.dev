@@ -1,104 +1,6 @@
 ---
 title: useContext
 ---
-<Sandpack>
-
-
-```js
-console.log('strek')
-
-import { createContext, useContext, useState } from 'react';
-
-const ThemeContext = createContext(null);
-
-export default function MyApp() {
-  const [theme, setTheme] = useState('light');
-  return (
-    <ThemeContext.Provider value={theme}>
-      <Form />
-      <label>
-        <input
-          type="checkbox"
-          checked={theme === 'dark'}
-          onChange={(e) => {
-            setTheme(e.target.checked ? 'dark' : 'light')
-          }}
-        />
-        Use dark mode
-      </label>
-    </ThemeContext.Provider>
-  )
-}
-
-function Form({ children }) {
-  return (
-    <Panel title="Welcome">
-      <Button>Sign up</Button>
-      <Button>Log in</Button>
-    </Panel>
-  );
-}
-
-function Panel({ title, children }) {
-  const theme = useContext(ThemeContext);
-  const className = 'panel-' + theme;
-  return (
-    <section className={className}>
-      <h1>{title}</h1>
-      {children}
-    </section>
-  )
-}
-
-function Button({ children }) {
-  const theme = useContext(ThemeContext);
-  const className = 'button-' + theme;
-  return (
-    <button className={className}>
-      {children}
-    </button>
-  );
-}
-```
-
-```css
-.panel-light,
-.panel-dark {
-  border: 1px solid black;
-  border-radius: 4px;
-  padding: 20px;
-  margin-bottom: 10px;
-}
-.panel-light {
-  color: #222;
-  background: #fff;
-}
-
-.panel-dark {
-  color: #fff;
-  background: rgb(23, 32, 42);
-}
-
-.button-light,
-.button-dark {
-  border: 1px solid #777;
-  padding: 5px;
-  margin-right: 10px;
-  margin-top: 10px;
-}
-
-.button-dark {
-  background: #222;
-  color: #fff;
-}
-
-.button-light {
-  background: #fff;
-  color: #222;
-}
-```
-
-</Sandpack>
 <Intro>
 
 `useContext` is a React Hook that lets you read and subscribe to [context](/learn/passing-data-deeply-with-context) from your component.
@@ -280,9 +182,7 @@ In this example, the `MyApp` component holds a state variable which is then pass
 
 <Sandpack>
 
-
 ```js
-console.log('strek')
 
 import { createContext, useContext, useState } from 'react';
 

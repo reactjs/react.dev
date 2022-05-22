@@ -117,8 +117,6 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
                         return <span key={`${msg}-${index}`}>{msg}</span>;
                       }
 
-                      console.log('console', console);
-
                       const children = JSON.stringify(msg);
 
                       return (

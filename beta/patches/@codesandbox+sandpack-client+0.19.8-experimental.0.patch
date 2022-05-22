@@ -12,6 +12,7 @@ index a18cc43..46c4b0e 100644
 +    logs: Array<{
 +      method: string;
 +      id: string;
++      log: string;
 +      data: string[];
 +    }>;
 +  });

@@ -148,6 +148,8 @@ video { width: 250px; }
 
 In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
 
+Note that this example is slightly simplified. It doesn't handle the fact that the user may play or pause the video manually using the browser controls. It also doesn't handle when the browser prevents the media from playing. We're going to ignore this for now, and fix some of these problems in the Challenges section at the bottom.
+
 <DeepDive title="What happens if you call play() and pause() outside the effect?">
 
 Try commenting out the 6th and 12th lines in the above example to see what happens when the `play()` and `pause()` calls run during rendering. The code will crash because the `<video>` tag does not yet exist in the DOM. **By using an effect, you tell React to put `<video>` in the DOM, and _then_ do something.**

@@ -431,7 +431,7 @@ input { display: block; margin-bottom: 20px; }
 
 This effect only runs on mount, so you might expect `Connecting...` to be printed once in the console. However, it gets printed twice! During development, React stress-tests your components by mounting them twice.
 
-**You might be wondering: "How to I run an effect once?" However, that's not the right question. The right question is: "Why does remounting break my effect?"** You need to fix the problem at its source. By mounting your component twice, React simulates what happens when you navigate to another page and then back to this component. Then, even without this stress-test, you'd also see two `Connecting...` logs (and two connections being set up). By mounting your component twice in development, React exposes a bug in your code sooner.
+**You might be wondering: "How do I run an effect once?" However, that's not the right question. The right question is: "Why does remounting break my effect?"** You need to fix the problem at its source. By mounting your component twice, React simulates what happens when you navigate to another page and then back to this component. Then, even without this stress-test, you'd also see two `Connecting...` logs (and two connections being set up). By mounting your component twice in development, React exposes a bug in your code sooner.
 
 To fix the actual issue, you need to return a *cleanup function* from your effect:
 

@@ -32,7 +32,9 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 
 ## How to write an effect {/*how-to-write-an-effect*/}
 
-**Don't rush to add effects to your components.** First, check whether the logic you want to add can be expressed as a [pure calculation](/learn/keeping-components-pure) during rendering. In that case, it's not an effect. Is this logic specific to a particular interaction, like a button click? Then it might be better placed in an [event handler](/learn/responding-to-events). Keep in mind that effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. To write an effect, follow these three steps:
+**Don't rush to add effects to your components.** Keep in mind that effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your effect only adjusts some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
+
+To write an effect, follow these three steps:
 
 1. **Declare an effect that runs after *every* render.** (This is the default behavior when you declare an effect.)
 2. **Then, check whether your effect needs dependencies.** Some effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
@@ -166,7 +168,7 @@ useEffect(() => {
 });
 ```
 
-Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an effect is like plugging a power outlet into itself. The effect runs, you set the state, which causes a re-render, which causes the effect to run, it sets the state again, this causes another re-render, and so on.
+Effects run as a *result* of rendering. Setting state *triggers* rendering. Setting state immediately in an effect is like plugging a power outlet into itself. The effect runs, it sets the state, which causes a re-render, which causes the effect to run, it sets the state again, this causes another re-render, and so on.
 
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
 
@@ -295,7 +297,7 @@ The problem is that the code inside of your effect *depends on* the `isPlaying` 
   }, [isPlaying]); // ...so it must be declared here!
 ```
 
-This tells React that it should skip re-running your effect if `isPlaying` is the same as it was during the previous render. With this change, typing into the input doesn't cause the effect to re-run, but pressing Play/Pause does:
+Now all dependencies are declared, so there is no error. Specifying `[isPlaying]` as the dependency array tells React that it should skip re-running your effect if `isPlaying` is the same as it was during the previous render. With this change, typing into the input doesn't cause the effect to re-run, but pressing Play/Pause does:
 
 <Sandpack>
 
@@ -365,14 +367,14 @@ We'll take a close look at what "mount" means in the next step.
 
 ## Step 3: Check whether your effect needs cleanup {/*step-3-check-whether-your-effect-needs-cleanup*/}
 
-Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `setup()` and `destroy()` methods. How do you keep the component connected while it is displayed to the user?
+Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
 
 Start by writing the effect logic:
 
 ```js
 useEffect(() => {
   const connection = createConnection();
-  connection.setup();
+  connection.connect();
 });
 ```
 
@@ -381,13 +383,13 @@ It would be slow to connect to the chat after every re-render, so you add the de
 ```js {4}
 useEffect(() => {
   const connection = createConnection();
-  connection.setup();
+  connection.connect();
 }, []);
 ```
 
-The code inside the effect does not use any props or state, so your dependency list is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.
+The code inside the effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.
 
-However, if you try running this code and look at the console logs, you will notice that `setup()` gets called twice:
+Let's try running this code:
 
 <Sandpack>
 
@@ -398,7 +400,7 @@ import { createConnection } from './chat.js';
 export default function ChatRoom() {
   useEffect(() => {
     const connection = createConnection();
-    connection.setup();
+    connection.connect();
   }, []);
   return <h1>Welcome to the chat!</h1>;
 }
@@ -408,11 +410,11 @@ export default function ChatRoom() {
 export function createConnection() {
   // A real implementation would actually connect to the server
   return {
-    setup() {
+    connect() {
       console.log('Connecting...');
     },
-    destroy() {
-      console.log('Disconnecting...');
+    disconnect() {
+      console.log('Disconnected.');
     }
   };
 }
@@ -424,8 +426,131 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This behavior may seem surprising!
+This effect only runs on mount, so you might expect `Connecting...` to be printed once in the console. However, it gets printed twice! During development, React stress-tests your components by mounting them twice.
+
+**You might be wondering: "How to I run an effect once?" However, that's not the right question. The right question is: "Why does remounting break my effect?"** You need to fix the problem at its source. By mounting your component twice, React simulates what happens when you navigate to another page and then back to this component. Then, even without this stress-test, you'd also see two `Connecting...` logs (and two connections being set up). By mounting your component twice in development, React exposes a bug in your code sooner.
+
+To fix the actual issue, you need to return a *cleanup function* from your effect:
+
+```js {4-6}
+  useEffect(() => {
+    const connection = createConnection();
+    connection.connect();
+    return () => {
+      connection.disconnect();
+    };
+  }, []);
+```
+
+React will call your cleanup function each time before the effect runs again, and one final time when the component unmounts (gets removed). Let's see what happens when the cleanup function is implemented:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom() {
+  useEffect(() => {
+    const connection = createConnection();
+    connection.connect();
+    return () => connection.disconnect();
+  }, []);
+  return <h1>Welcome to the chat!</h1>;
+}
+```
+
+```js chat.js
+export function createConnection() {
+  // A real implementation would actually connect to the server
+  return {
+    connect() {
+      console.log('Connecting...');
+    },
+    disconnect() {
+      console.log('Disconnected.');
+    }
+  };
+}
+```
+
+```css
+input { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+Now you get three console logs in development:
+
+1. `Connecting...`
+2. `Disconnected.`
+3. `Connecting...`
+
+This means that your cleanup function is working! In development, React simulates what happens when the user navigates away from your component and then comes back to it. Previously, your component incorrectly set up two connections. Thanks to React immediately remounting your component in development, you noticed this issue, and fixed it by implementing the cleanup function. Now only one connection is active at a time.
+
+**Don't worry about the extra request in development. In production, the component would only mount once.** The development-only remounting behavior is opt-in and only enabled when your app is wrapped in [Strict Mode](/apis/strictmode). We strongly recommend to keep it on. Strict Mode makes existing issues in your code show up earlier. While it can be frustrating to fix them so early, this makes your code more resilient to future changes in your app's requirements.
+
+<DeepDive title="What are some common cleanup patterns?">
+
+If your effect subscribes to something, the cleanup function should unsubscribe:
+
+```js {3}
+useEffect(() => {
+  window.addEventListener('resize', handleScroll);
+  return () => window.removeEventListener('resize', handleScroll);
+}, []);
+```
+
+If your effect fetches something, the cleanup function should abort the fetch:
+
+```js {10}
+useEffect(() => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+  fetchUser(userId, { signal }).then(result => {
+    signal.throwIfAborted();
+    setResult(result);
+  });
+
+  return () => controller.abort();
+}, [userId]);
+```
+
+Alternatively, you can set a local variable to tell the effect to ignore the fetch result:
+
+```js {2,10-12}
+useEffect(() => {
+  let ignore = false;
+
+  fetchUser(userId).then(result => {
+    if (!ignore) {
+      setResult(result);
+    }
+  });
+
+  return () => {
+    ignore = true;
+  };
+}, [userId]);
+```
+
+Cleaning up your effect ensures that your component works well if it gets removed from the page and then added again. It also ensures that if a dependency (like `userId` above) changes, the "outdated" effect (which may already be fetching something) does not conflict with fetching the next `userId`. 
+
+</DeepDive>
+
+## Recap {/*recap*/}
+
+- Unlike events, effects are caused by rendering itself rather than a particular interaction.
+- Effects let you synchronize a component with some external system (third-party API, network, etc).
+- By default, effects run after every render (including the initial one).
+- React will skip an effect you specify dependencies, and all of them are the same as during the last render.
+- You can't "choose" your dependencies. They are determined by the code inside the effect.
+- An empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
+- When Strict Mode us in, React mounts components twice (in development only!) to stress-test your effects.
+- If your effect breaks because of remounting, you need to implement a cleanup function.
+- React will call your cleanup function before the effect runs next time, and during the unmount.
+
+## Challenges {/*challenges*/}
 
 TODO
-
-

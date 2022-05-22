@@ -1,5 +1,6 @@
 import cn from 'classnames';
 import * as React from 'react';
+import {IconChevron} from 'components/Icon/IconChevron';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
 import type {SandpackMessage} from '@codesandbox/sandpack-client';
@@ -45,7 +46,9 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
   React.useEffect(() => {
     const unsubscribe = listen((message) => {
       // there is no such type as console in Sandpack
-      console.log(message.type, 'message');
+      if (message.status === 'installing-dependencies') {
+        setLogs([]);
+      }
       if (message.type === 'console' && message.codesandbox) {
         console.log(message, 'message');
 
@@ -69,14 +72,16 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
   }, [logs]);
 
   return (
-    <div className={cn('console')}>
+    <div className="w-full h-full bg-gray-95 text-white">
       <div className={cn('console-scroll')} ref={wrapperRef}>
         {logs.map(({data, id, method}) => {
           return (
             <p
               key={id}
-              className={cn('console-item', `console-${getType(method)}`)}>
-              <span />
+              className={cn(
+                'border-y border border-gray-700',
+                `console-${getType(method)}`
+              )}>
               <span className={cn('console-message')}>
                 {data.map((msg, index) => {
                   if (typeof msg === 'string') {
@@ -105,7 +110,7 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
         })}
       </div>
 
-      <button className={cn('console-clean')} onClick={() => setLogs([])}>
+      <button className="" onClick={() => setLogs([])}>
         {/* <RefreshIcon /> */}
       </button>
     </div>

@@ -1,18 +1,35 @@
 diff --git a/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts b/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts
-index a18cc43..46c4b0e 100644
+index a18cc43..8b85844 100644
 --- a/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts
 +++ b/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts
-@@ -152,4 +152,11 @@ export declare type SandpackMessage = BaseSandpackMessage & ({
+@@ -88,6 +88,7 @@ export interface SandpackErrorMessage {
+ export interface BaseSandpackMessage {
+     type: string;
+     $id?: number;
++    status?: ClientStatus
+     codesandbox?: boolean;
+ }
+ export declare type SandpackMessage = BaseSandpackMessage & ({
+@@ -152,4 +153,22 @@ export declare type SandpackMessage = BaseSandpackMessage & ({
  } | {
      type: "activate-react-devtools";
      uid?: string;
--});
-+}| {
-+    type: "console";
-+    logs: Array<{
-+      method: string;
-+      id: string;
-+      log: string;
-+      data: string[];
-+    }>;
-+  });
++} | {
++    type: "console",
++    log: Array<
++        {
++            method: 'log'
++            | 'debug'
++            | 'info'
++            | 'warn'
++            | 'error'
++            | 'table'
++            | 'clear'
++            | 'time'
++            | 'timeEnd'
++            | 'count'
++            | 'assert',
++            id: string,
++            data: string[]
++        }>,
+ });

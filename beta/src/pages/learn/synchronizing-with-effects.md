@@ -163,8 +163,9 @@ In general you should always [treat rendering as a pure calculation](/learn/keep
 By default, effects run after *every* render. This is why code like this will **produce an infinite loop:**
 
 ```js
+const [count, setCount] = useState(0);
 useEffect(() => {
-  setCounter(counter + 1);
+  setCount(count + 1);
 });
 ```
 

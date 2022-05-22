@@ -1,0 +1,17 @@
+diff --git a/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts b/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts
+index a18cc43..46c4b0e 100644
+--- a/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts
++++ b/node_modules/@codesandbox/sandpack-client/dist/types/types.d.ts
+@@ -152,4 +152,11 @@ export declare type SandpackMessage = BaseSandpackMessage & ({
+ } | {
+     type: "activate-react-devtools";
+     uid?: string;
+-});
++}| {
++    type: "console";
++    logs: Array<{
++      method: string;
++      id: string;
++      data: string[];
++    }>;
++  });

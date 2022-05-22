@@ -11,6 +11,7 @@ import {
   SandpackThemeProvider,
   SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
+import {SandpackConsole} from './Console';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 
@@ -98,6 +99,7 @@ export function CustomPreset({
               </button>
             )}
           </div>
+          <SandpackConsole />
 
           {showDevTools && (
             <SandpackReactDevTools onLoadModule={onDevToolsLoad} />

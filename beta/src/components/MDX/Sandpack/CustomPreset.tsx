@@ -24,10 +24,12 @@ import {useSandpackLint} from './utils';
 export function CustomPreset({
   isSingleFile,
   showDevTools,
+  showConsole,
   onDevToolsLoad,
   devToolsLoaded,
 }: {
   isSingleFile: boolean;
+  showConsole: boolean;
   showDevTools: boolean;
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
@@ -67,11 +69,14 @@ export function CustomPreset({
               showRunButton={false}
               extensions={[onLint]}
             />
-            <Preview
-              className="order-last xl:order-2"
-              isExpanded={isExpanded}
-              lintErrors={lintErrors}
-            />
+            <div className="sp-stack h-full">
+              <Preview
+                className="h-full"
+                isExpanded={isExpanded}
+                lintErrors={lintErrors}
+              />
+              {showConsole && <SandpackConsole />}
+            </div>
             {isExpandable && (
               <button
                 translate="yes"
@@ -99,7 +104,6 @@ export function CustomPreset({
               </button>
             )}
           </div>
-          <SandpackConsole />
 
           {showDevTools && (
             <SandpackReactDevTools onLoadModule={onDevToolsLoad} />

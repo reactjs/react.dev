@@ -3,7 +3,6 @@ import * as React from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
-import type {SandpackMessage} from '@codesandbox/sandpack-client';
 
 const getType = (message: Methods): 'info' | 'warning' | 'error' => {
   if (message === 'log' || message === 'info') {
@@ -62,6 +61,8 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
     return unsubscribe;
   }, [listen]);
 
+  const [showConsole, toggleConsole] = React.useState(false);
+
   React.useEffect(() => {
     if (wrapperRef.current) {
       wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
@@ -69,63 +70,76 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
   }, [logs]);
 
   return (
-    <div className="w-full h-full border-y dark:border-gray-700 dark:bg-gray-95 dark:text-white">
-      {!!logs.length && (
-        <div className="flex justify-between">
-          <p className="p-2 text-md">console</p>
-          <button className="p-2" onClick={() => setLogs([])}>
-            <svg
-              viewBox="0 0 24 24"
-              width="18"
-              height="18"
-              stroke="currentColor"
-              strokeWidth="2"
-              fill="none"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="css-i6dzq1">
-              <circle cx="12" cy="12" r="10"></circle>
-              <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
-            </svg>
-          </button>
+    <div
+      className={cn(
+        'absolute dark:border-gray-700 dark:bg-gray-95 border-t  bottom-0 w-full',
+        !!!logs.length && 'cursor-not-allowed'
+      )}>
+      <div className="flex justify-between h-8 items-center">
+        <div onClick={() => !!logs.length && toggleConsole(!showConsole)}>
+          <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
+        </div>
+        <p className="p-1 text-md">console ({logs.length})</p>
+        <button
+          className={cn('p-1', !!!logs.length && 'cursor-not-allowed')}
+          onClick={() => {
+            setLogs([]);
+            toggleConsole(false);
+          }}>
+          <svg
+            viewBox="0 0 24 24"
+            width="18"
+            height="18"
+            stroke="currentColor"
+            strokeWidth="2"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"></line>
+          </svg>
+        </button>
+      </div>
+      {showConsole && (
+        <div className="w-full h-full border-y dark:border-gray-700 dark:bg-gray-95 dark:text-white">
+          <div className={cn('console-scroll')} ref={wrapperRef}>
+            {logs.map(({data, id, method}) => {
+              return (
+                <p
+                  key={id}
+                  className={cn(
+                    'border-y border dark:border-gray-700 text-md p-1 pl-2',
+                    `console-${getType(method)}`
+                  )}>
+                  <span className={cn('console-message')}>
+                    {data.map((msg, index) => {
+                      if (typeof msg === 'string') {
+                        return <span key={`${msg}-${index}`}>{msg}</span>;
+                      }
+
+                      console.log('console', console);
+
+                      const children = JSON.stringify(msg);
+
+                      return (
+                        <span
+                          className={cn('console-span')}
+                          key={`${msg}-${index}`}>
+                          <SandpackCodeViewer
+                            initMode="user-visible"
+                            // fileType="js"
+                            code={children}
+                          />
+                        </span>
+                      );
+                    })}
+                  </span>
+                </p>
+              );
+            })}
+          </div>
         </div>
       )}
-      <div className={cn('console-scroll')} ref={wrapperRef}>
-        {logs.map(({data, id, method}) => {
-          return (
-            <p
-              key={id}
-              className={cn(
-                'border-y border dark:border-gray-700 text-md p-1 pl-2',
-                `console-${getType(method)}`
-              )}>
-              <span className={cn('console-message')}>
-                {data.map((msg, index) => {
-                  if (typeof msg === 'string') {
-                    return <span key={`${msg}-${index}`}>{msg}</span>;
-                  }
-
-                  console.log('console', console);
-
-                  const children = JSON.stringify(msg);
-
-                  return (
-                    <span
-                      className={cn('console-span')}
-                      key={`${msg}-${index}`}>
-                      <SandpackCodeViewer
-                        initMode="user-visible"
-                        // fileType="js"
-                        code={children}
-                      />
-                    </span>
-                  );
-                })}
-              </span>
-            </p>
-          );
-        })}
-      </div>
     </div>
   );
 };

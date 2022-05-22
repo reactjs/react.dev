@@ -14,6 +14,7 @@ type SandpackProps = {
   autorun?: boolean;
   setup?: SandpackSetup;
   showDevTools?: boolean;
+  showConsole?: boolean;
 };
 
 const sandboxStyle = `
@@ -63,7 +64,13 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, setup, autorun = true, showDevTools = false} = props;
+  let {
+    children,
+    setup,
+    autorun = true,
+    showDevTools = false,
+    showConsole = true,
+  } = props;
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   let isSingleFile = true;
@@ -86,6 +93,7 @@ function SandpackRoot(props: SandpackProps) {
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}
+          showConsole={showConsole}
           onDevToolsLoad={() => setDevToolsLoaded(true)}
           devToolsLoaded={devToolsLoaded}
         />

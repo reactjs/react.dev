@@ -181,7 +181,7 @@ By default, effects run after *every* render. Often, this is **not what you want
 - Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
 - Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing into the input causes the effect to re-run:
+To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Open the console and notice how typing causes the effect to re-run:
 
 <Sandpack>
 
@@ -344,6 +344,8 @@ video { width: 250px; }
 ```
 
 </Sandpack>
+
+The dependency array can contain multiple dependencies. React will only skip re-running the effect if *all* of the dependencies you specify have exactly the same values as they had during the previous render. React compares the dependency values using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. See the [`useEffect` API reference](/apis/useeffect#reference) for more details.
 
 **Notice that you can't "choose" your dependencies.** When you specify the dependencies, you will get a lint error if they don't match what React expects based on the code inside your effect. This helps catch many bugs in your code. However, this can be a problem if your effect uses some value but you *don't* want to re-run the effect when that value changes. When you're faced with this problem, the correct fix is to *change the effect code itself* to not "need" that dependency. You will learn common strategies to do that in [Specifying the Effect Dependencies](/learn/specifying-effect-dependencies).
 

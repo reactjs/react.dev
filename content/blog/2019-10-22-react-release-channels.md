@@ -58,13 +58,13 @@ If you're the author of a third party React framework, library, developer tool, 
 - Set up a cron job using your preferred continuous integration platform. Cron jobs are supported by both [CircleCI](https://circleci.com/docs/2.0/triggers/#scheduled-builds) and [Travis CI](https://docs.travis-ci.com/user/cron-jobs/).
 - In the cron job, update your React packages to the most recent React release in the Next channel, using `next` tag on npm. Using the npm cli:
 
-  ```
+  ```console
   npm update react@next react-dom@next
   ```
 
   Or yarn:
 
-  ```
+  ```console
   yarn upgrade react@next react-dom@next
   ```
 - Run your test suite against the updated packages.

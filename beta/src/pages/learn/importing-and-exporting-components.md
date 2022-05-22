@@ -1,26 +1,26 @@
 ---
-title: Importing and Exporting Components
+title: Komponenttien importtaus ja exporttaus
 ---
 
 <Intro>
 
-The magic of components lies in their reusability: you can create components that are composed of other components. But as you nest more and more components, it often makes sense to start splitting them into different files. This lets you keep your files easy to scan and reuse components in more places.
+Komponenttien taika perustuu niiden uudelleenkäytettävyyteen: voit luoda komponentteja, jotka koostuvat toisista komponenteista. Mutta kun upotat enemmän ja enemmän komponentteja, on usein järkevää hajottaa niitä eri tiedostoihin. Näin voit pitää tiedostot helppolukuisina ja uudelleenkäyttää komponentteja useammissa paikoissa.
 
 </Intro>
 
 <YouWillLearn>
 
-* What a root component file is
-* How to import and export a component
-* When to use default and named imports and exports
-* How to import and export multiple components from one file
-* How to split components into multiple files
+* Mikä juurikomponenttitiedosto on
+* Miten importata ja exportata komponentti
+* Milloin käyttää default exportteja sekä nimettyjä importteja ja exportteja
+* Miten importata ja exportata useita komponentteja yhdestä tiedostosta
+* Miten hajottaa komponentti useisiin tiedostoihin
 
 </YouWillLearn>
 
-## The root component file {/*the-root-component-file*/}
+## Juurikomponenttitiedosto {/*the-root-component-file*/}
 
-In [Your First Component](/learn/your-first-component), you made a `Profile` component and a `Gallery` component that renders it:
+[Ensimmäinen komponenttisi](/learn/your-first-component) -sivulla teit `Profile` komponentin sekä `Gallery` komponentin joka renderöi sen:
 
 <Sandpack>
 
@@ -52,17 +52,18 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-These currently live in a **root component file,** named `App.js` in this example. In [Create React App](https://create-react-app.dev/), your app lives in `src/App.js`. Depending on your setup, your root component could be in another file, though. If you use a framework with file-based routing, such as Next.js, your root component will be different for every page.
+Tässä esimerkissä nämä löytyvät **juurikomponenttitiedostosta** nimeltään `App.js`. [Create React App](https://create-react-app.dev/):ssa sovelluksesi elää `src/App.js` tiedostossa. Riippuen asennuksestasi, juurikomponenttisi saattaa olla toisessa tiedostossa. Jos käytät ohkelmistokehystä, jossa on tiedosto-pohjainen reititys, kuten Next.js, juurikomponenttisi on eri jokaiselle sivulle.
 
-## Exporting and importing a component {/*exporting-and-importing-a-component*/}
+## Komponentin exporttaus ja importtaus {/*exporting-and-importing-a-component*/}
 
-What if you want to change the landing screen in the future and put a list of science books there? Or place all the profiles somewhere else? It makes sense to move `Gallery` and `Profile` out of the root component file. This will make them more modular and reusable in other files. You can move a component in three steps:
+Mitä jos haluat muuttaa laskeutumissivua tulevaisuudessa ja asettaa listan tiedekirjoista siihen? Tai siirtää kaikki profiilut jonnekin muualle? On järkevää siirtää `Gallery` ja `Profile` pois juurikomponentin tiedostosta. Tämä tekee niistä modulaarisempia ja uudelleenkäytettäviä muissa tiedostoissa. Voit siirtää komponentin kolmessa vaiheessa:
 
-1. **Make** a new JS file to put the components in.
-2. **Export** your function component from that file (using either [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exports).
-3. **Import** it in the file where you’ll use the component (using the corresponding technique for importing [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) or [named](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exports).
 
-Here both `Profile` and `Gallery` have been moved out of `App.js` into a new file called `Gallery.js`. Now you can change `App.js` to import `Gallery` from `Gallery.js`:
+1. **Luo** uusi JS tiedosto johon komponentin voi laittaa.
+2. **Exporttaa** funktiokomponenttisi tiedostosta (käyttämällä joko [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_the_default_export) tai [nimettyjä](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/export#using_named_exports) exportteja).
+3. **Importtaa** se tiedostoon, jossa tulet käyttämään komponenttia (käyttäen vastaavaa tapaa [default](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#importing_defaults) tai [nimettyjen](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/import#import_a_single_export_from_a_module) exporttien importtaukseen).
+
+Tässä sekä `Profile` että `Gallery` on siirretty pois `App.js` tiedostosta uuteen tiedostoon nimeltään `Gallery.js`. Nyt voit muuttaa `App.js` importtaamaan `Gallery` komponentin `Gallery.js` tiedostosta:
 
 <Sandpack>
 
@@ -104,54 +105,54 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Notice how this example is broken down into two component files now:
+Huomaa miten tämä esimerkki jakautuu kahteen komponenttitiedostoon:
 
 1. `Gallery.js`:
-     - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export**.
+     - Määrittelee `Profile` komponentin, jota käytetään vain tiedoston sisällä eikä sitä ole exportattu.
+     - Exporttaa `Gallery` komponentin **default exporttina**.
 2. `App.js`:
-     - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export**.
+     - Importtaa `Gallery`:n **default importtina** `Gallery.js` tiedostosta.
+     - Exporttaa juuri `App` komponentin **default exporttina**.
 
 
 <Note>
 
-You may encounter files that leave off the `.js` file extension like so:
+Saatat huomata tiedostoja, jotka luopuvat `.js` päätteestä, kuten:
 
 ```js 
 import Gallery from './Gallery';
 ```
 
-Either `'./Gallery.js'` or `'./Gallery'` will work with React, though the former is closer to how [native ES Modules](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) work.
+Molemmat `'./Gallery.js'` tai `'./Gallery'` toimivat Reactin kanssa, kuitenkin ensin mainittu on lähempänä miten [natiivit ES Moduulit](https://developer.mozilla.org/docs/Web/JavaScript/Guide/Modules) toimivat.
 
 </Note>
 
 <DeepDive title="Default vs Named Exports">
 
-There are two primary ways to export values with JavaScript: default exports and named exports. So far, our examples have only used default exports. But you can use one or both of them in the same file. **A file can have no more than one _default_ export, but it can have as many _named_ exports as you like.**
+JavaScriptissa on kaksi ensisijaista tapaa exportata arvoja: default exportit ja nimetyt exportit. Tähän mennessä esimerkit ovat käyttäneet ainoastaan default exportteja. Voit kuitenkin käyttää jompaa kumpaa tai molempia samassa tiedostossa. **Tiedostossa voi olla ainoastaan yksi _default_ exportti, mutta sillä voi olla niin monta _nimettyä_ exporttia kuin haluat.**
 
-![Default and named exports](/images/docs/illustrations/i_import-export.svg)
+![Default ja nimetyt exportit](/images/docs/illustrations/i_import-export.svg)
 
-How you export your component dictates how you must import it. You will get an error if you try to import a default export the same way you would a named export! This chart can help you keep track:
+Miten exporttaat komponenttisi määrää miten se täytyy importata. Saat virheen jos yrität importata default exporttia samalla tavalla kuin nimettyä exporttia! Tämän kaavion avulla voit seurata tapoja:
 
-| Syntax           | Export statement                           | Import statement                          |
-| -----------      | -----------                                | -----------                               |
-| Default  | `export default function Button() {}` | `import Button from './button.js';`     |
-| Named    | `export function Button() {}`         | `import { Button } from './button.js';` |
+| Syntaksi         | Export-lause                           | Import-lause |
+| -----------      | -----------                                | -----------                  |
+| Default    | `export default function Button() {}` | `import Button from './button.js';`     |
+| Nimetty    | `export function Button() {}`         | `import { Button } from './button.js';` |
 
-When you write a _default_ import, you can put any name you want after `import`. For example, you could write `import Banana from './button.js'` instead and it would still provide you with the same default export. In contrast, with named imports, the name has to match on both sides. That's why they are called _named_ imports!
+Kun kirjoitat _default_ importtia, voit antaa sille minkä tahansa nimen `import`:n jälkeen. Esimerkiksi, voit kirjoittaa `import Banana from './button.js'` ja se silti tarjoaa saman default exportin. Verrattuna nimettyihin importteihin, nimen on vastattava toisiaan molemmin puolin. Siksi niitä kutsutaan _nimetyiksi_ importeiksi!
 
-**People often use default exports if the file exports only one component, and use named exports if it exports multiple components and values.** Regardless of which coding style you prefer, always give meaningful names to your component functions and the files that contain them. Components without names, like `export default () => {}`, are discouraged because they make debugging harder.
+**Ihmiset usein käyttävät default exportteja jos tiedosto exporttaa ainoastaan yhden komponentin, ja käytävät nimettyjä exportteja jos se exporttaa useita kompoenntteja ja arvoja.** Riippumatta siitä kumpaa koodityyliä suosit, anna aina merkityksellisiä nimiä komponenteillesi ja tiedostoille jotka pitävät niitä sisällään. Komponentin ilman nimiä, kuten `export default () => {}` ei suosita sillä ne tekevät virheenkorjauksesta hankalempaa.
 
 </DeepDive>
 
-## Exporting and importing multiple components from the same file {/*exporting-and-importing-multiple-components-from-the-same-file*/}
+## Useiden komponenttien exporttaus ja importtaus samasta tiedostosta {/*exporting-and-importing-multiple-components-from-the-same-file*/}
 
-What if you want to show just one `Profile` instead of a gallery? You can export the `Profile` component, too. But `Gallery.js` already has a *default* export, and you can't have _two_ default exports. You could create a new file with a default export, or you could add a *named* export for `Profile`. **A file can only have one default export, but it can have numerous named exports!**
+Mitä jos haluat näyttää vain yhden `Profile`:n gallerian sijaan? Sinun täytyy exportata `Profile` komponentti, myös. Mutta `Gallery.js` tiedostossa on jo *default* exportti, ja sinulla ei voi olla _kahta_ default exporttia. Voit luoda uuden tiedoston, jossa on default exportti, tai voit lisätä *nimetyn exportin* `Profile`:lle. **Tiedosto voi pitää sisällään vain yhden default exportin, mutta se voi sisältää useita nimettyjä exportteja!**
 
-> To reduce the potential confusion between default and named exports, some teams choose to only stick to one style (default or named), or avoid mixing them in a single file. It's a matter of preference. Do what works best for you!
+> Vähentääksesi mahdollista sekaannusta default ja nimettyjen exporttien välillä, jotkin tiimit valitsevat pitäytymään yhdessä tavassa (default tai nimetty), tai välttävät niiden yhteiskäyttöä yhdessä tiedostossa. Tämä on mieltymyskysymys. Käytä sitä mikä toimii parhaiten sinulle!
 
-First, **export** `Profile` from `Gallery.js` using a named export (no `default` keyword):
+Ensiksi, **exporttaa** `Profile` tiedostosta `Gallery.js` käyttämällä nimettyä exporttia (ei `default` avainsanaa):
 
 ```js
 export function Profile() {
@@ -159,21 +160,20 @@ export function Profile() {
 }
 ```
 
-Then, **import** `Profile` from `Gallery.js` to `App.js` using a named import (with the curly braces):
+Sitten **importtaa** `Profile` tiedostosta `Gallery.js` tiedostoon `App.js` käyttäen nimettyä importtia (aaltosulkeilla):
 
 ```js
 import { Profile } from './Gallery.js';
 ```
 
-Finally, **render** `<Profile />` from the `App` component:
+Lopuksi **renderöi** `<Profile />` komponentista `App`:
 
 ```js
 export default function App() {
   return <Profile />;
 }
 ```
-
-Now `Gallery.js` contains two exports: a default `Gallery` export, and a named `Profile` export. `App.js` imports both of them. Try editing `<Profile />` to `<Gallery />` and back in this example:
+Nyt `Gallery.js` sisältää kaksi exporttia: default `Gallery` exportin, sekä nimetyn `Profile` exportin. `App.js` importtaa molemmat näistä. Kokeile muokata `<Profile />` lukemaan `<Gallery />` tässä esimerkissä:
 
 <Sandpack>
 
@@ -216,24 +216,24 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Now you're using a mix of default and named exports:
+Käytät nyt nimettyjä ja default exportteja yhdessä:
 
 * `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`**.
-  - Exports the `Gallery` component as a **default export**.
+  - Exporttaa `Profile` komponentin **nimettynä exporttina nimeltään `Profile`**.
+  - Exporttaa `Gallery` komponentin **default exporttina**.
 * `App.js`:
-  - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
-  - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export**.
+  - Importtaa `Profile`:n **nimettynä importtina nimeltään `Profile`** tiedostosta `Gallery.js`.
+  - Importtaa `Gallery`:n **default importtina** tiedostosta `Gallery.js`.
+  - Exporttaa juuri `App` komponentin **default exporttina**.
 
 <Recap>
 
-On this page you learned:
+Tällä sivulla opit:
 
-* What a root component file is
-* How to import and export a component
-* When and how to use default and named imports and exports
-* How to export multiple components from the same file
+* Mikä juurikomponenttitiedosto on
+* Miten importata ja exportata komponentti
+* Milloin käyttää default exportteja sekä nimettyjä importteja ja exportteja
+* Miten exportata useita komponentteja yhdestä tiedostosta
 
 </Recap>
 
@@ -241,22 +241,22 @@ On this page you learned:
 
 <Challenges>
 
-### Split the components further {/*split-the-components-further*/}
+### Jaa komponentteja edelleen {/*split-the-components-further*/}
 
-Currently, `Gallery.js` exports both `Profile` and `Gallery`, which is a bit confusing.
+Tällä hetkellä `Gallery.js` exporttaa molemmat `Profile`:n sekä `Gallery`:n, joka on hieman sekavaa.
 
-Move the `Profile` component to its own `Profile.js`, and then change the `App` component to render both `<Profile />` and `<Gallery />` one after another.
+Siirrä `Profile` komponentti sen omaan `Profile.js` tiedostoon ja sitten muuta `App` komponentti renderöimään molemmat `<Profile />` ja `<Gallery />` yksi toisensa jälkeen.
 
-You may use either a default or a named export for `Profile`, but make sure that you use the corresponding import syntax in both `App.js` and `Gallery.js`! You can refer to the table from the deep dive above:
+Voit käyttää joko default tai nimettyä exporttia `Profile` komponentille, mutta varmista, että käytät vastaavaa import-syntaksia sekä `App.js` että `Gallery.js` tiedostoissa! Voit viitata taulukkoon: 
 
-| Syntax           | Export statement                           | Import statement                          |
-| -----------      | -----------                                | -----------                               |
-| Default  | `export default function Button() {}` | `import Button from './button.js';`     |
-| Named    | `export function Button() {}`         | `import { Button } from './button.js';` |
+| Syntaksi         | Export-lause                           | Import-lause |
+| -----------      | -----------                                | -----------                  |
+| Default    | `export default function Button() {}` | `import Button from './button.js';`     |
+| Nimetty    | `export function Button() {}`         | `import { Button } from './button.js';` |
 
 <Hint>
 
-Don't forget to import your components where they are called. Doesn't `Gallery` use `Profile`, too?
+Älä unohda importata komponenttia missä sitä kutsutaan. Eikö `Gallery` käytä `Profile`:a myöskin?
 
 </Hint>
 
@@ -307,11 +307,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-After you get it working with one kind of exports, make it work with the other kind.
+Kun olet saanut sen toimimaan toisella exportilla, varmista, että se toimii toisellakin tapaa.
 
 <Solution>
 
-This is the solution with named exports:
+Tässä ratkaisu nimetyillä exporteilla:
 
 <Sandpack>
 
@@ -361,7 +361,7 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-This is the solution with default exports:
+Tässä ratkaisu default exporteilla:
 
 <Sandpack>
 

@@ -12,19 +12,19 @@
           "path": "/learn/installation",
           "routes": [
             {
-              "title": "Start a New React Project",
+              "title": "Aloita uusi React projekti",
               "path": "/learn/start-a-new-react-project"
             },
             {
-              "title": "Add React to a Website",
+              "title": "Lisää React verkkosivulle",
               "path": "/learn/add-react-to-a-website"
             },
             {
-              "title": "Editor Setup",
+              "title": "Editorin asentaminen",
               "path": "/learn/editor-setup"
             },
             {
-              "title": "React Developer Tools",
+              "title": "React kehitystyökalut",
               "path": "/learn/react-developer-tools"
             }
           ]
@@ -34,7 +34,7 @@
           "path": "/learn",
           "routes": [
             {
-              "title": "Thinking in React",
+              "title": "Ajattelu Reactissa",
               "path": "/learn/thinking-in-react"
             }
           ]
@@ -79,7 +79,7 @@
           ]
         },
         {
-          "title": "Adding Interactivity",
+          "title": "Interaktiivisuuden lisääminen",
           "path": "/learn/adding-interactivity",
           "tags": [],
           "routes": [
@@ -114,7 +114,7 @@
           ]
         },
         {
-          "title": "Managing State",
+          "title": "Tilan hallinta",
           "path": "/learn/managing-state",
           "tags": ["intermediate"],
           "routes": [

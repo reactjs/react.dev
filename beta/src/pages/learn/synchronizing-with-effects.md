@@ -96,7 +96,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   });
 
-  return <video ref={ref} src={src} loop />;
+  return <video ref={ref} src={src} loop playsinline />;
 }
 ```
 
@@ -120,7 +120,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   });
 
-  return <video ref={ref} src={src} loop />;
+  return <video ref={ref} src={src} loop playsinline />;
 }
 
 export default function App() {
@@ -147,8 +147,6 @@ video { width: 250px; }
 </Sandpack>
 
 In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
-
-Note that this example is slightly simplified. It doesn't handle the fact that the user may play or pause the video manually using the browser controls. It also doesn't handle when the browser prevents the media from playing. We're going to ignore this for now, and fix some of these problems in the Challenges section at the bottom.
 
 <DeepDive title="What happens if you call play() and pause() outside the effect?">
 
@@ -203,7 +201,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   });
 
-  return <video ref={ref} src={src} loop />;
+  return <video ref={ref} src={src} loop playsinline />;
 }
 
 export default function App() {
@@ -259,7 +257,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   }, []); // This causes an error
 
-  return <video ref={ref} src={src} loop />;
+  return <video ref={ref} src={src} loop playsinline />;
 }
 
 export default function App() {
@@ -319,7 +317,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   }, [isPlaying]);
 
-  return <video ref={ref} src={src} loop />;
+  return <video ref={ref} src={src} loop playsinline />;
 }
 
 export default function App() {

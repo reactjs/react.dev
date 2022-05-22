@@ -184,7 +184,7 @@ Congratulations! You just added a **production-ready JSX setup** to your project
 
 Create a folder called `src` and run this terminal command:
 
-```
+```console
 npx babel --watch src --out-dir . --presets react-app/prod
 ```
 

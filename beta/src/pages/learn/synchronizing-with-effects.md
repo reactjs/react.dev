@@ -96,7 +96,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   });
 
-  return <video ref={ref} src={src} loop playsinline />;
+  return <video ref={ref} src={src} loop playsInline />;
 }
 ```
 
@@ -120,7 +120,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   });
 
-  return <video ref={ref} src={src} loop playsinline />;
+  return <video ref={ref} src={src} loop playsInline />;
 }
 
 export default function App() {
@@ -202,7 +202,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   });
 
-  return <video ref={ref} src={src} loop playsinline />;
+  return <video ref={ref} src={src} loop playsInline />;
 }
 
 export default function App() {
@@ -258,7 +258,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   }, []); // This causes an error
 
-  return <video ref={ref} src={src} loop playsinline />;
+  return <video ref={ref} src={src} loop playsInline />;
 }
 
 export default function App() {
@@ -318,7 +318,7 @@ function VideoPlayer({ src, isPlaying }) {
     }
   }, [isPlaying]);
 
-  return <video ref={ref} src={src} loop playsinline />;
+  return <video ref={ref} src={src} loop playsInline />;
 }
 
 export default function App() {

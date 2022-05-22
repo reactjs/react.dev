@@ -549,7 +549,7 @@ Cleaning up your effect ensures that your component works well if it gets remove
 - React will skip an effect you specify dependencies, and all of them are the same as during the last render.
 - You can't "choose" your dependencies. They are determined by the code inside the effect.
 - An empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
-- When Strict Mode us in, React mounts components twice (in development only!) to stress-test your effects.
+- When Strict Mode is on, React mounts components twice (in development only!) to stress-test your effects.
 - If your effect breaks because of remounting, you need to implement a cleanup function.
 - React will call your cleanup function before the effect runs next time, and during the unmount.
 

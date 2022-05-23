@@ -1,9 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-import {useState} from 'react';
-import {lintDiagnostic} from './eslint-integration';
-import {linter} from '@codemirror/lint';
+import {useState, useEffect} from 'react';
 import type {EditorView} from '@codemirror/view';
 import type {SandpackFile} from '@codesandbox/sandpack-react';
 export type ViewportSizePreset =
@@ -109,16 +107,23 @@ export type LintDiagnostic = {
 
 export const useSandpackLint = () => {
   const [lintErrors, setLintErrors] = useState<LintDiagnostic>([]);
+  const [lintExtensions, setLintExtensions] = useState<any>([]);
 
-  const onLint = linter((props: EditorView) => {
-    const editorState = props.state.doc;
-    return import('./eslint-integration').then((module) => {
-      let {errors} = module.lintDiagnostic(editorState);
-      // Only show errors from rules, not parsing errors etc
-      setLintErrors(errors.filter((e) => !e.fatal));
-      return module.lintDiagnostic(editorState).codeMirrorPayload;
+  useEffect(() => {
+    Promise.all([
+      import('@codemirror/lint'),
+      import('./eslint-integration'),
+    ]).then(([linterModule, integrationModule]) => {
+      const onLint = linterModule.linter((props: EditorView) => {
+        const editorState = props.state.doc;
+        let {errors} = integrationModule.lintDiagnostic(editorState);
+        // Only show errors from rules, not parsing errors etc
+        setLintErrors(errors.filter((e) => !e.fatal));
+        return integrationModule.lintDiagnostic(editorState).codeMirrorPayload;
+      });
+      setLintExtensions([onLint]);
     });
-  });
+  }, []);
 
-  return {lintErrors, onLint};
+  return {lintErrors, lintExtensions};
 };

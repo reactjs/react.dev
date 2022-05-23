@@ -7,7 +7,7 @@ import {useSandpack} from '@codesandbox/sandpack-react';
 import {IconArrowSmall} from '../../Icon/IconArrowSmall';
 export interface DownloadButtonProps {}
 
-let supportsImportMap;
+let supportsImportMap: boolean | void;
 
 function useSupportsImportMap() {
   function subscribe() {
@@ -24,6 +24,7 @@ function useSupportsImportMap() {
   function getServerSnapshot() {
     return false;
   }
+  // @ts-ignore
   return React.useSyncExternalStore(
     subscribe,
     getCurrentValue,

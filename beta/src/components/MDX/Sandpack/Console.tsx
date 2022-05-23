@@ -3,8 +3,11 @@ import * as React from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
+import type {SandpackMessageConsoleMethods} from '@codesandbox/sandpack-client';
 
-const getType = (message: Methods): 'info' | 'warning' | 'error' => {
+const getType = (
+  message: SandpackMessageConsoleMethods
+): 'info' | 'warning' | 'error' => {
   if (message === 'log' || message === 'info') {
     return 'info';
   }
@@ -19,25 +22,12 @@ const getType = (message: Methods): 'info' | 'warning' | 'error' => {
 type ConsoleData = Array<{
   data: Array<string | Record<string, string>>;
   id: string;
-  method: Methods;
+  method: SandpackMessageConsoleMethods;
 }>;
-
-type Methods =
-  | 'log'
-  | 'debug'
-  | 'info'
-  | 'warn'
-  | 'error'
-  | 'table'
-  | 'clear'
-  | 'time'
-  | 'timeEnd'
-  | 'count'
-  | 'assert';
 
 const MAX_MESSAGE_COUNT = 100;
 
-export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
+export const SandpackConsole: React.FC = () => {
   const {listen} = useSandpack();
   const [logs, setLogs] = React.useState<ConsoleData>([]);
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -47,7 +37,7 @@ export const SandpackConsole: React.FC<{clientId?: string}> = ({clientId}) => {
       if (message.type === 'start') {
         setLogs([]);
       }
-      // there is no such type as console in Sandpack
+
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
           const messages = [...prev, ...message.log];

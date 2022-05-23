@@ -39,9 +39,9 @@ const options = {
   },
 };
 
-export const lintDiagnostic = (
+export const runESLint = (
   doc: Text
-): {errors: any[]; codeMirrorPayload: Diagnostic[]} => {
+): {errors: any[]; codeMirrorErrors: Diagnostic[]} => {
   const codeString = doc.toString();
   const errors = linter.verify(codeString, options) as any[];
 
@@ -50,7 +50,7 @@ export const lintDiagnostic = (
     2: 'error',
   };
 
-  const codeMirrorPayload = errors
+  const codeMirrorErrors = errors
     .map((error) => {
       if (!error) return undefined;
 
@@ -65,6 +65,7 @@ export const lintDiagnostic = (
       });
 
       return {
+        ruleId: error.ruleId,
         from,
         to,
         severity: severity[error.severity],
@@ -74,7 +75,7 @@ export const lintDiagnostic = (
     .filter(Boolean) as Diagnostic[];
 
   return {
-    codeMirrorPayload,
+    codeMirrorErrors,
     errors: errors.map((item) => {
       return {
         ...item,

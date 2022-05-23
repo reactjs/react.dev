@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import dynamic from 'next/dynamic';
-import {createFileMap} from './utils';
+import {createFileMap} from './createFileMap';
 
 const SandpackRoot = dynamic(() => import('./SandpackRoot'), {suspense: true});
 

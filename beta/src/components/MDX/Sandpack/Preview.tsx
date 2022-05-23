@@ -6,10 +6,11 @@
 import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
-
 import {Error} from './Error';
-import {computeViewportSize, generateRandomId} from './utils';
-import type {LintDiagnostic} from './utils';
+import type {LintDiagnostic} from './useSandpackLint';
+
+const generateRandomId = (): string =>
+  Math.floor(Math.random() * 10000).toString();
 
 type CustomPreviewProps = {
   className?: string;
@@ -116,7 +117,6 @@ export function Preview({
     [status === 'idle']
   );
 
-  const viewportStyle = computeViewportSize('auto', 'portrait');
   const overrideStyle = error
     ? {
         // Don't collapse errors
@@ -146,7 +146,6 @@ export function Preview({
       style={{
         // TODO: clean up this mess.
         ...customStyle,
-        ...viewportStyle,
         ...overrideStyle,
       }}>
       <div

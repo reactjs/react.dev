@@ -25,10 +25,11 @@ export const useSandpackLint = () => {
   const onLint = linter(async (props: EditorView) => {
     const {runESLint} = await import('./runESLint');
     const editorState = props.state.doc;
-    let {errors, codeMirrorPayload} = runESLint(editorState);
-    // Only show errors from rules, not parsing errors etc
-    setLintErrors(errors.filter((e) => !e.fatal));
-    return codeMirrorPayload;
+    let {errors, codeMirrorErrors} = runESLint(editorState);
+    // Ignore parsing or internal linter errors.
+    const isReactRuleError = (error: any) => error.ruleId != null;
+    setLintErrors(errors.filter(isReactRuleError));
+    return codeMirrorErrors.filter(isReactRuleError);
   });
 
   return {lintErrors, lintExtensions: [onLint]};

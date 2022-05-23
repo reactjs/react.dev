@@ -38,6 +38,24 @@ module.exports = {
       );
     }
 
+    const {IgnorePlugin} = require('webpack');
+    config.plugins.push(
+      new IgnorePlugin({
+        checkResource(resource, context) {
+          if (
+            /\/eslint\/lib\/rules$/.test(context) &&
+            /\.\/[\w-]+(\.js)?$/.test(resource)
+          ) {
+            // Skips imports of built-in rules that ESLint
+            // tries to carry into the bundle by default.
+            // We only want the engine and the React rules.
+            return true;
+          }
+          return false;
+        },
+      })
+    );
+
     // Add our custom markdown loader in order to support frontmatter
     // and layout
     config.module.rules.push({

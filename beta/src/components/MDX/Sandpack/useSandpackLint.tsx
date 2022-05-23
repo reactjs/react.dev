@@ -4,10 +4,8 @@
 
 // @ts-nocheck
 
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import {linter} from '@codemirror/lint';
-import type {Diagnostic} from '@codemirror/lint';
-import type {Text} from '@codemirror/text';
 import type {EditorView} from '@codemirror/view';
 
 export type LintDiagnostic = {

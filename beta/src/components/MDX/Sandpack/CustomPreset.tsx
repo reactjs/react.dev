@@ -18,7 +18,7 @@ import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
-import {useSandpackLint} from './utils';
+import {useSandpackLint} from './useSandpackLint';
 
 export function CustomPreset({
   isSingleFile,

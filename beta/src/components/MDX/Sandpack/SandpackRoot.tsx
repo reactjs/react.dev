@@ -6,7 +6,7 @@ import * as React from 'react';
 import {SandpackProvider} from '@codesandbox/sandpack-react';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
-import {createFileMap} from './utils';
+import {createFileMap} from './createFileMap';
 
 import type {SandpackSetup} from '@codesandbox/sandpack-react';
 

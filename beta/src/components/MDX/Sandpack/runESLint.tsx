@@ -39,7 +39,7 @@ const options = {
   },
 };
 
-export const lintDiagnostic = (
+export const runESLint = (
   doc: Text
 ): {errors: any[]; codeMirrorPayload: Diagnostic[]} => {
   const codeString = doc.toString();

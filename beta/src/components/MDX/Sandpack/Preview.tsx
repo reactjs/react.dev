@@ -7,7 +7,7 @@ import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 import {Error} from './Error';
-import type {LintDiagnostic} from './utils';
+import type {LintDiagnostic} from './useSandpackLint';
 
 const generateRandomId = (): string =>
   Math.floor(Math.random() * 10000).toString();

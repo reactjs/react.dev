@@ -1,6 +1,6 @@
 // @ts-nocheck
 
-// import {Linter} from 'eslint/lib/linter/linter';
+import {Linter} from 'eslint/lib/linter/linter';
 
 import type {Diagnostic} from '@codemirror/lint';
 import type {Text} from '@codemirror/text';
@@ -12,7 +12,7 @@ const getCodeMirrorPosition = (
   return doc.line(line).from + (column ?? 0) - 1;
 };
 
-// const linter = new Linter();
+const linter = new Linter();
 
 // HACK! Eslint requires 'esquery' using `require`, but there's no commonjs interop.
 // because of this it tries to run `esquery.parse()`, while there's only `esquery.default.parse()`.
@@ -22,10 +22,10 @@ esquery.parse = esquery.default?.parse;
 esquery.matches = esquery.default?.matches;
 
 const reactRules = require('eslint-plugin-react-hooks').rules;
-// linter.defineRules({
-//   'react-hooks/rules-of-hooks': reactRules['rules-of-hooks'],
-//   'react-hooks/exhaustive-deps': reactRules['exhaustive-deps'],
-// });
+linter.defineRules({
+  'react-hooks/rules-of-hooks': reactRules['rules-of-hooks'],
+  'react-hooks/exhaustive-deps': reactRules['exhaustive-deps'],
+});
 
 const options = {
   parserOptions: {

@@ -19,6 +19,7 @@ import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
 import {useSandpackLint} from './useSandpackLint';
+import {useTypescriptExtension} from './sandpack-tsserver/useTypescriptExtension';
 
 // Workaround for https://github.com/reactjs/reactjs.org/issues/4686#issuecomment-1137402613.
 const emptyArray: Array<any> = [];
@@ -34,7 +35,17 @@ export function CustomPreset({
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
+  // Codemirror extensions
   const {lintErrors, lintExtensions} = useSandpackLint();
+  const typescriptExtensions = useTypescriptExtension();
+  let forceSandpackRemountKeyRef = React.useRef(0);
+  const extensions = React.useMemo(() => {
+    // Whenever an extension changes, we need to remount <SandpackCodeEditor>
+    forceSandpackRemountKeyRef.current++;
+    const result = [lintExtensions, typescriptExtensions].flat();
+    return result;
+  }, [lintExtensions, typescriptExtensions]);
+
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
@@ -63,11 +74,12 @@ export function CustomPreset({
               isExpanded && 'sp-layout-expanded'
             )}>
             <SandpackCodeEditor
+              key={forceSandpackRemountKeyRef.current}
               showLineNumbers
               showInlineErrors
               showTabs={false}
               showRunButton={false}
-              extensions={lintExtensions}
+              extensions={extensions}
               extensionsKeymap={emptyArray}
             />
             <Preview

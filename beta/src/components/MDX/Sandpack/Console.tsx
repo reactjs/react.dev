@@ -62,7 +62,7 @@ export const SandpackConsole: React.FC = () => {
   return (
     <div
       className={cn(
-        'absolute dark:border-gray-700 dark:bg-gray-95 border-t  bottom-0 w-full',
+        'absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t  bottom-0 w-full',
         !!!logs.length && 'cursor-not-allowed'
       )}>
       <div className="flex justify-between h-8 items-center">
@@ -91,8 +91,8 @@ export const SandpackConsole: React.FC = () => {
         </button>
       </div>
       {showConsole && (
-        <div className="w-full h-full border-y dark:border-gray-700 dark:bg-gray-95 dark:text-white">
-          <div className={cn('console-scroll')} ref={wrapperRef}>
+        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 dark:text-white">
+          <div className="max-h-52 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
                 <p

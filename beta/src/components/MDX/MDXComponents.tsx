@@ -19,14 +19,15 @@ import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
 import Sandpack from './Sandpack';
-import Diagram from './Diagram';
-import DiagramGroup from './DiagramGroup';
 import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
+const Diagram = React.lazy(() => import('./Diagram'));
+const DiagramGroup = React.lazy(() => import('./DiagramGroup'));
+import type {DiagramProps} from './Diagram';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -369,8 +370,16 @@ export const MDXComponents = {
     title: string;
     excerpt: string;
   }) => <ExpandableExample {...props} type="DeepDive" />,
-  Diagram,
-  DiagramGroup,
+  Diagram: (props: DiagramProps) => (
+    <div>
+      <Diagram {...props} />
+    </div>
+  ),
+  DiagramGroup: (props: {children: React.ReactNode}) => (
+    <div>
+      <DiagramGroup {...props} />
+    </div>
+  ),
   Gotcha,
   HomepageHero,
   Illustration,

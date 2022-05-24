@@ -5,7 +5,7 @@
 import * as React from 'react';
 import Image from 'next/image';
 
-interface DiagramProps {
+export interface DiagramProps {
   name: string;
   alt: string;
   height: number;

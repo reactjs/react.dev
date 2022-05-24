@@ -91,14 +91,14 @@ export const Seo = withRouter(
       />
       <link
         rel="preload"
-        href="https://conf.reactjs.org/fonts/Optimistic_Display_W_Md.woff2"
+        href="https://beta.reactjs.org/fonts/Optimistic_Display_W_Md.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"
       />
       <link
         rel="preload"
-        href="https://conf.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2"
+        href="https://beta.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2"
         as="font"
         type="font/woff2"
         crossOrigin="anonymous"

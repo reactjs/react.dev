@@ -2,7 +2,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {lazy, Children, Suspense} from 'react';
+import type {ReactNode} from 'react';
 import cn from 'classnames';
 
 import CodeBlock from './CodeBlock';
@@ -18,15 +19,15 @@ import Intro from './Intro';
 import Link from './Link';
 import {PackageImport} from './PackageImport';
 import Recap from './Recap';
-import Sandpack from './Sandpack';
+const Sandpack = lazy(() => import('./Sandpack'));
 import SimpleCallout from './SimpleCallout';
-import TerminalBlock from './TerminalBlock';
+const TerminalBlock = lazy(() => import('./TerminalBlock'));
 import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
-const Diagram = React.lazy(() => import('./Diagram'));
-const DiagramGroup = React.lazy(() => import('./DiagramGroup'));
+const Diagram = lazy(() => import('./Diagram'));
+const DiagramGroup = lazy(() => import('./DiagramGroup'));
 import type {DiagramProps} from './Diagram';
 
 function CodeStep({children, step}: {children: any; step: number}) {
@@ -69,10 +70,10 @@ const Divider = () => (
   <hr className="my-6 block border-b border-border dark:border-border-dark" />
 );
 
-const Gotcha = ({children}: {children: React.ReactNode}) => (
+const Gotcha = ({children}: {children: ReactNode}) => (
   <ExpandableCallout type="gotcha">{children}</ExpandableCallout>
 );
-const Note = ({children}: {children: React.ReactNode}) => (
+const Note = ({children}: {children: ReactNode}) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
 );
 
@@ -241,7 +242,7 @@ function IllustrationBlock({
   sequential: boolean;
   children: any;
 }) {
-  const imageInfos = React.Children.toArray(children).map(
+  const imageInfos = Children.toArray(children).map(
     (child: any) => child.props
   );
   const images = imageInfos.map((info, index) => (
@@ -362,26 +363,24 @@ export const MDXComponents = {
   code: CodeBlock,
   // The code block renders <pre> so we just want a div here.
   pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,
-  CodeDiagram,
+  // CodeDiagram,
   ConsoleBlock,
   Convention,
-  DeepDive: (props: {
-    children: React.ReactNode;
-    title: string;
-    excerpt: string;
-  }) => <ExpandableExample {...props} type="DeepDive" />,
+  DeepDive: (props: {children: ReactNode; title: string; excerpt: string}) => (
+    <ExpandableExample {...props} type="DeepDive" />
+  ),
   Diagram: (props: DiagramProps) => (
     <div>
       <Diagram {...props} />
     </div>
   ),
-  DiagramGroup: (props: {children: React.ReactNode}) => (
+  DiagramGroup: (props: {children: ReactNode}) => (
     <div>
       <DiagramGroup {...props} />
     </div>
   ),
   Gotcha,
-  HomepageHero,
+  HomepageHero, //2KB
   Illustration,
   IllustrationBlock,
   Intro,
@@ -389,11 +388,12 @@ export const MDXComponents = {
   Math,
   MathI,
   Note,
-  PackageImport,
-  Recap,
-  Recipes,
-  Sandpack,
-  TerminalBlock,
+  PackageImport, //no use
+  //  124 - 119
+  Recap, //1KB
+  Recipes, // 1KB
+  Sandpack, // 3KB
+  TerminalBlock, // 2KB
   YouWillLearn,
   YouWillLearnCard,
   Challenges,

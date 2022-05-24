@@ -33,3 +33,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# external fonts
+public/fonts/Optimistic_Display_W_Lt.woff2
+public/fonts/Optimistic_Display_W_Md.woff2
+public/fonts/Optimistic_Display_W_Bd.woff2

@@ -483,16 +483,18 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
-"@codesandbox/sandpack-client@^0.19.8-experimental.0":
-  version "0.19.8-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-0.19.8-experimental.0.tgz#044afb1efce0356e18b6d644960694c817012a2a"
+"@codesandbox/sandpack-client@^0.19.8-experimental.2":
+  version "0.19.9"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-0.19.9.tgz#29fded94a3087de155035634d596651268e27797"
+  integrity sha512-/PPFqAJ8NSlP1jpWjQtwvmVS5o1xLRVqdbzXF7Num7zVUdYLZAbpzT7KijneZSmdcJHOvCCAYGLKJg+TcgmLjw==
   dependencies:
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@v0.19.8-experimental.0":
-  version "0.19.8-experimental.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.19.8-experimental.0.tgz#0a86971be53f5d177d61796d4e048998c2dcc271"
+"@codesandbox/sandpack-react@v0.19.8-experimental.2":
+  version "0.19.8-experimental.2"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-0.19.8-experimental.2.tgz#99b5f6a3c5ab056aaa0c9024e05704f53e245450"
+  integrity sha512-juaOZjlHVQ7BV6tj0d+RfhTptFp2AOBvVHI53Ze5T4hGmlCg6Ic8/DlStS98lygNWL9vKHiyv7umlN9Xom/EjQ==
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"
@@ -508,7 +510,7 @@
     "@codemirror/matchbrackets" "^0.19.3"
     "@codemirror/state" "^0.19.6"
     "@codemirror/view" "^0.19.32"
-    "@codesandbox/sandpack-client" "^0.19.8-experimental.0"
+    "@codesandbox/sandpack-client" "^0.19.8-experimental.2"
     "@react-hook/intersection-observer" "^3.1.1"
     codesandbox-import-util-types "^2.2.3"
     lodash.isequal "^4.5.0"

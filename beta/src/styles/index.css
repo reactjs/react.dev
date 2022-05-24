@@ -17,7 +17,7 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://conf.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2')
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2')
       format('woff2');
     font-weight: 300;
     font-style: normal;
@@ -26,7 +26,7 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://conf.reactjs.org/fonts/Optimistic_Display_W_Md.woff2')
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Md.woff2')
       format('woff2');
     font-weight: 500;
     font-style: normal;
@@ -35,7 +35,7 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://conf.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2')
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2')
       format('woff2');
     font-weight: 700;
     font-style: normal;

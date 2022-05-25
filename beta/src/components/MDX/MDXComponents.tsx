@@ -80,21 +80,11 @@ const Blockquote = ({
   ...props
 }: JSX.IntrinsicElements['blockquote']) => {
   return (
-    <>
-      <blockquote
-        className="mdx-blockquote py-4 px-8 my-8 shadow-inner bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-lg leading-6 flex relative"
-        {...props}>
-        <span className="block relative">{children}</span>
-      </blockquote>
-      <style jsx global>{`
-        .mdx-blockquote > span > p:first-of-type {
-          margin-bottom: 0;
-        }
-        .mdx-blockquote > span > p:last-of-type {
-          margin-bottom: 1rem;
-        }
-      `}</style>
-    </>
+    <blockquote
+      className="mdx-blockquote py-4 px-8 my-8 shadow-inner bg-highlight dark:bg-highlight-dark bg-opacity-50 rounded-lg leading-6 flex relative"
+      {...props}>
+      <span className="block relative">{children}</span>
+    </blockquote>
   );
 };
 
@@ -274,72 +264,6 @@ function IllustrationBlock({
         <div className="mdx-illustration-block">{images}</div>
       )}
       {author ? <AuthorCredit author={author} authorLink={authorLink} /> : null}
-      <style jsx global>{`
-        .mdx-illustration-block {
-          display: flex;
-          flex-direction: row;
-          flex-wrap: nowrap;
-          justify-content: center;
-          align-content: stretch;
-          align-items: stretch;
-          gap: 42px;
-        }
-        ol.mdx-illustration-block {
-          gap: 60px;
-        }
-        .mdx-illustration-block li {
-          display: flex;
-          align-items: flex-start;
-          align-content: stretch;
-          justify-content: space-around;
-          position: relative;
-          padding: 1rem;
-        }
-        .mdx-illustration-block figure {
-          display: flex;
-          flex-direction: column;
-          align-content: center;
-          align-items: center;
-
-          justify-content: space-between;
-          position: relative;
-          height: 100%;
-        }
-        .mdx-illustration-block li:after {
-          content: ' ';
-          display: block;
-          position: absolute;
-          top: 50%;
-          right: 100%;
-          transform: translateY(-50%);
-          width: 60px;
-          height: 49px;
-          background: center / contain no-repeat url('/images/g_arrow.png');
-        }
-        .mdx-illustration-block li:first-child:after {
-          content: ' ';
-          display: none;
-        }
-        .mdx-illustration-block img {
-          max-height: 250px;
-          width: 100%;
-        }
-        @media (max-width: 680px) {
-          .mdx-illustration-block {
-            flex-direction: column;
-          }
-          .mdx-illustration-block img {
-            max-height: 200px;
-            width: auto;
-          }
-          .mdx-illustration-block li:after {
-            top: 0;
-            left: 50%;
-            right: auto;
-            transform: translateX(-50%) translateY(-100%) rotate(90deg);
-          }
-        }
-      `}</style>
     </div>
   );
 }

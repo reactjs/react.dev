@@ -164,6 +164,8 @@ render() {
 }
 ```
 
+In these cases a boolean expression like `count !== undefined` is needed.
+
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
 Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
@@ -198,6 +200,8 @@ render() {
 ```
 
 Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+
+Note that for a condition that is falsy other than `false` the same caveats apply as mentioned in the previous section.
 
 ### Preventing Component from Rendering {#preventing-component-from-rendering}
 

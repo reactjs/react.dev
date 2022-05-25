@@ -43,7 +43,7 @@ export const SandpackConsole: React.FC = () => {
           const messages = [...prev, ...message.log];
           messages.slice(Math.max(0, messages.length - MAX_MESSAGE_COUNT));
 
-          return messages;
+          return messages.filter(({method}) => method === 'log');
         });
       }
     });
@@ -60,18 +60,16 @@ export const SandpackConsole: React.FC = () => {
   }, [logs]);
 
   return (
-    <div
-      className={cn(
-        'absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t  bottom-0 w-full',
-        !!!logs.length && 'cursor-not-allowed'
-      )}>
-      <div className="flex justify-between h-8 items-center">
-        <div onClick={() => !!logs.length && toggleConsole(!showConsole)}>
-          <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
+    <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t  bottom-0 w-full">
+      <div className="flex justify-between p-1">
+        <div className="flex items-center p-2">
+          <div onClick={() => toggleConsole(!showConsole)}>
+            <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
+          </div>
+          <span className="pl-1 text-base">Console ({logs.length})</span>
         </div>
-        <p className="p-1 text-md">console ({logs.length})</p>
         <button
-          className={cn('p-1', !!!logs.length && 'cursor-not-allowed')}
+          className="p-1"
           onClick={() => {
             setLogs([]);
             toggleConsole(false);
@@ -91,7 +89,7 @@ export const SandpackConsole: React.FC = () => {
         </button>
       </div>
       {showConsole && (
-        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 dark:text-white">
+        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 dark:text-white min-h-[28px]">
           <div className="max-h-52 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (

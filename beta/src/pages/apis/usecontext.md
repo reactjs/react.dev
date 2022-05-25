@@ -184,7 +184,6 @@ In this example, the `MyApp` component holds a state variable which is then pass
 <Sandpack>
 
 ```js
-
 import { createContext, useContext, useState } from 'react';
 
 const ThemeContext = createContext(null);

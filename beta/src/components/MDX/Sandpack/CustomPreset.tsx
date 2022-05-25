@@ -10,6 +10,8 @@ import {
   SandpackCodeEditor,
   SandpackThemeProvider,
   SandpackReactDevTools,
+  CodeEditorProps,
+  CodeEditorRef,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
@@ -35,16 +37,12 @@ export function CustomPreset({
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
-  // Codemirror extensions
   const {lintErrors, lintExtensions} = useSandpackLint();
   const typescriptExtensions = useTypescriptExtension();
-  let forceSandpackRemountKeyRef = React.useRef(0);
-  const extensions = React.useMemo(() => {
-    // Whenever an extension changes, we need to remount <SandpackCodeEditor>
-    forceSandpackRemountKeyRef.current++;
-    const result = [lintExtensions, typescriptExtensions].flat();
-    return result;
-  }, [lintExtensions, typescriptExtensions]);
+  const extensions = React.useMemo(
+    () => [lintExtensions, typescriptExtensions].flat(),
+    [lintExtensions, typescriptExtensions]
+  );
 
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -73,8 +71,7 @@ export function CustomPreset({
               showDevTools && devToolsLoaded && 'sp-layout-devtools',
               isExpanded && 'sp-layout-expanded'
             )}>
-            <SandpackCodeEditor
-              key={forceSandpackRemountKeyRef.current}
+            <MemoCodeEditor
               showLineNumbers
               showInlineErrors
               showTabs={false}
@@ -123,3 +120,30 @@ export function CustomPreset({
     </>
   );
 }
+
+const MemoCodeEditor = React.memo(
+  React.forwardRef<CodeEditorRef, CodeEditorProps>((props, ref) => {
+    const {extensions, ...rest} = props;
+
+    // Conspire to re-mount SandpackCodeEditor if extensions change.
+    const keyRef = React.useRef(0);
+    const prevExtensions = React.useRef(extensions);
+    if (prevExtensions.current !== extensions) {
+      keyRef.current++;
+    }
+    prevExtensions.current = extensions;
+
+    console.log('MemoCodeEditor', keyRef.current, extensions);
+
+    return (
+      <SandpackCodeEditor
+        ref={ref}
+        key={keyRef.current}
+        {...rest}
+        extensions={extensions}
+      />
+    );
+  })
+);
+
+MemoCodeEditor.displayName = 'MemoCodeEditor';

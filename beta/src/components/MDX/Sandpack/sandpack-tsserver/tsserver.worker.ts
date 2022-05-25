@@ -42,7 +42,7 @@ const wrappedPostMessage = DEBUG_EDITOR_WORKER.wrap('tx', postMessage);
 /**
  * Fetch dependencies types from CodeSandbox CDN
  */
-const fetchDependencyTyping = async ({
+const fetchTypesFromCodeSandboxBucket = async ({
   name,
   version,
 }: {
@@ -61,6 +61,25 @@ const fetchDependencyTyping = async ({
   }
 };
 
+interface TypeRegistryJson {
+  entries: Record<
+    string,
+    {
+      latest: string;
+    }
+  >;
+}
+
+/**
+ * Pull the list of @types/... packages from the "types-registry" package.
+ * @see https://www.npmjs.com/package/types-registry
+ */
+const getDefinitelyTypedPackageMapping = async () => {
+  const request = await fetch(TYPES_REGISTRY);
+  const json: TypeRegistryJson = await request.json();
+  return json.entries;
+};
+
 /**
  * Process the TS compile options or default to
  */
@@ -73,6 +92,8 @@ const getCompileOptions = DEBUG_EDITOR_WORKER.wrap(
       lib: ['es2021', 'es2020', 'dom', 'webworker'],
       esModuleInterop: true,
       allowJs: true,
+      checkJs: true,
+      jsx: TS.JsxEmit.ReactJSXDev,
     };
 
     if (tsconfigFile.compilerOptions) {
@@ -118,10 +139,12 @@ class TSServerWorker {
     const tsFiles = new Map();
     const allFiles = new Map();
     const rootPaths = [];
-    const dependenciesMap = new Map();
+    type PackageName = string;
+    type Version = string;
+    const dependenciesMap = new Map<PackageName, Version>();
     let tsconfig = null;
     let packageJson = null;
-    let typeVersionsFromRegistry: Record<string, {latest: string}>;
+    let typeRegistryFetchPromise: Promise<Record<string, {latest: string}>>;
 
     /**
      * Collect files
@@ -138,7 +161,7 @@ class TSServerWorker {
         tsconfig = content;
       } else if (filePath === '/package.json') {
         packageJson = content;
-      } else if (/^[^.]+.tsx?$/.test(filePath)) {
+      } else if (/^[^.]+.(t|j)sx?$/.test(filePath)) {
         // Only ts files
         tsFiles.set(filePath, content);
         rootPaths.push(filePath);
@@ -197,46 +220,49 @@ class TSServerWorker {
     /**
      * Fetch dependencies types
      */
-    dependenciesMap.forEach(async (version, name) => {
-      // 1. CodeSandbox CDN
-      const files = await fetchDependencyTyping({name, version});
-      const hasTypes = Object.keys(files).some(
-        (key) => key.startsWith('/' + name) && key.endsWith('.d.ts')
-      );
+    await Promise.all(
+      Array.from(dependenciesMap).map(async ([name, version]) => {
+        // Try to fetch types of current version directly from the CDN.
+        // This will work if the package contains .d.ts files.
+        const files = await fetchTypesFromCodeSandboxBucket({name, version});
+        const hasTypes = Object.keys(files).some(
+          (key) => key.startsWith('/' + name) && key.endsWith('.d.ts')
+        );
 
-      // 2. Types found
-      if (hasTypes) {
-        Object.entries(files).forEach(([key, value]) => {
-          if (isValidTypeModule(key, value)) {
-            fsMap.set(`/node_modules${key}`, value.module.code);
-          }
-        });
+        // Types found at current version - add them to the filesystem.
+        if (hasTypes) {
+          Object.entries(files).forEach(([key, value]) => {
+            if (isValidTypeModule(key, value)) {
+              fsMap.set(`/node_modules${key}`, value.module.code);
+            }
+          });
 
-        return;
-      }
+          return;
+        }
 
-      // 3. Types found: fetch types version from registry
-      if (!typeVersionsFromRegistry) {
-        typeVersionsFromRegistry = await fetch(TYPES_REGISTRY)
-          .then((data) => data.json())
-          .then((data) => data.entries);
-      }
+        // Pull the list of @types/... packages from the "types-registry" package.
+        // https://www.npmjs.com/package/types-registry
+        if (!typeRegistryFetchPromise) {
+          typeRegistryFetchPromise = getDefinitelyTypedPackageMapping();
+        }
 
-      // 4. Types found: no Look for types in @types register
-      const typingName = `@types/${name}`;
-      if (typeVersionsFromRegistry[name]) {
-        const atTypeFiles = await fetchDependencyTyping({
-          name: typingName,
-          version: typeVersionsFromRegistry[name].latest,
-        });
+        // If types are available in the registry, use them.
+        const typingName = `@types/${name}`;
+        const registryEntries = await typeRegistryFetchPromise;
+        if (registryEntries[name]) {
+          const atTypeFiles = await fetchTypesFromCodeSandboxBucket({
+            name: typingName,
+            version: registryEntries[name].latest,
+          });
 
-        Object.entries(atTypeFiles).forEach(([key, value]) => {
-          if (isValidTypeModule(key, value)) {
-            fsMap.set(`/node_modules${key}`, value.module.code);
-          }
-        });
-      }
-    });
+          Object.entries(atTypeFiles).forEach(([key, value]) => {
+            if (isValidTypeModule(key, value)) {
+              fsMap.set(`/node_modules${key}`, value.module.code);
+            }
+          });
+        }
+      })
+    );
 
     const system = createSystem(fsMap);
 

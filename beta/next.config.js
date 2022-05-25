@@ -40,6 +40,9 @@ module.exports = {
       );
     }
 
+    // Don't bundle the shim unnecessarily.
+    config.resolve.alias['use-sync-external-store/shim'] = 'react';
+
     const {IgnorePlugin} = require('webpack');
     config.plugins.push(
       new IgnorePlugin({

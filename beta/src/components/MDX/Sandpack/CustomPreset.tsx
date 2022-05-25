@@ -21,7 +21,7 @@ import {CustomTheme} from './Themes';
 import {useSandpackLint} from './useSandpackLint';
 
 // Workaround for https://github.com/reactjs/reactjs.org/issues/4686#issuecomment-1137402613.
-const emptyArray = [];
+const emptyArray: Array<any> = [];
 
 export function CustomPreset({
   isSingleFile,

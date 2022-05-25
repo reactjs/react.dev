@@ -57,7 +57,7 @@ export function MobileNav() {
           API
         </TabButton>
       </div>
-      {/* No fallback UI so need to be careful not to spend directly inside. */}
+      {/* No fallback UI so need to be careful not to suspend directly inside. */}
       <React.Suspense fallback={null}>
         <SidebarRouteTree routeTree={tree as RouteItem} isMobile={true} />
       </React.Suspense>

@@ -26,7 +26,7 @@ export function Page({routeTree, children}: PageProps) {
               <Sidebar />
             </div>
 
-            {/* No fallback UI so need to be careful not to spend directly inside. */}
+            {/* No fallback UI so need to be careful not to suspend directly inside. */}
             <React.Suspense fallback={null}>
               <div className="flex flex-1 w-full h-full self-stretch">
                 <div className="w-full min-w-0">

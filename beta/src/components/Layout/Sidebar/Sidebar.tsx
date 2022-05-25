@@ -42,7 +42,7 @@ export function Sidebar() {
         {isMobileSidebar ? (
           <MobileNav />
         ) : (
-          /* No fallback UI so need to be careful not to spend directly inside. */
+          /* No fallback UI so need to be careful not to suspend directly inside. */
           <React.Suspense fallback={null}>
             <SidebarRouteTree routeTree={routeTree} />
           </React.Suspense>

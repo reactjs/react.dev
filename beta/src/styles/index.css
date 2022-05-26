@@ -320,3 +320,16 @@ ol.mdx-illustration-block {
     transform: translateX(-50%) translateY(-100%) rotate(90deg);
   }
 }
+
+/* Rotating Class */
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.rotating {
+  animation: rotating 1.2s linear infinite;
+}

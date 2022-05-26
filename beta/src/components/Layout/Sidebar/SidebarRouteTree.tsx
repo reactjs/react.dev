@@ -11,6 +11,7 @@ import {useRouteMeta} from '../useRouteMeta';
 import {SidebarLink} from './SidebarLink';
 import useCollapse from 'react-collapsed';
 import {useLayoutEffect} from 'react';
+import usePendingRoute from 'hooks/usePendingRoute';
 
 interface SidebarRouteTreeProps {
   isMobile?: boolean;
@@ -76,28 +77,10 @@ export function SidebarRouteTree({
   level = 0,
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
-  const {pathname, events} = useRouter();
-  const [pendingRoute, setPendingRoute] = React.useState<string | null>(null);
-  const currentRoute = React.useRef<string | null>(null);
+  const {pathname} = useRouter();
+  const pendingRoute = usePendingRoute();
+
   const slug = pathname;
-
-  React.useEffect(() => {
-    const handleRouteChange = (url: string) => {
-      // Do not set pending link if the route is the same as the current one.
-      if (currentRoute.current === url) return;
-      // Set current router
-      currentRoute.current = url;
-      // Set pending State
-      setPendingRoute(url);
-    };
-    const handleRouteChangeComplete = () => setPendingRoute(null);
-    events.on('routeChangeStart', handleRouteChange);
-    events.on('routeChangeComplete', handleRouteChangeComplete);
-    return () => {
-      events.off('routeChangeStart', handleRouteChange);
-    };
-  }, []);
-
   const currentRoutes = routeTree.routes as RouteItem[];
   const expandedPath = currentRoutes.reduce(
     (acc: string | undefined, curr: RouteItem) => {

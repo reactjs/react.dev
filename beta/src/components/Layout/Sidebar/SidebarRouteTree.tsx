@@ -77,12 +77,20 @@ export function SidebarRouteTree({
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
   const {pathname, events} = useRouter();
-  const [pendingLink, setPendingLink] = React.useState<string | null>(null);
+  const [pendingRoute, setPendingRoute] = React.useState<string | null>(null);
+  const currentRoute = React.useRef<string | null>(null);
   const slug = pathname;
 
   React.useEffect(() => {
-    const handleRouteChange = (url: string) => setPendingLink(url);
-    const handleRouteChangeComplete = () => setPendingLink(null);
+    const handleRouteChange = (url: string) => {
+      // Do not set pending link if the route is the same as the current one.
+      if (currentRoute.current === url) return;
+      // Set current router
+      currentRoute.current = url;
+      // Set pending State
+      setPendingRoute(url);
+    };
+    const handleRouteChangeComplete = () => setPendingRoute(null);
     events.on('routeChangeStart', handleRouteChange);
     events.on('routeChangeComplete', handleRouteChangeComplete);
     return () => {
@@ -132,7 +140,7 @@ export function SidebarRouteTree({
               <SidebarLink
                 key={`${title}-${path}-${level}-link`}
                 href={pagePath}
-                isPending={pendingLink === pagePath}
+                isPending={pendingRoute === pagePath}
                 selected={selected}
                 level={level}
                 title={title}
@@ -155,7 +163,7 @@ export function SidebarRouteTree({
         return (
           <li key={`${title}-${path}-${level}-link`}>
             <SidebarLink
-              isPending={pendingLink === pagePath}
+              isPending={pendingRoute === pagePath}
               href={pagePath}
               selected={selected}
               level={level}

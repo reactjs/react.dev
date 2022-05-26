@@ -3,14 +3,17 @@
  */
 
 import * as React from 'react';
-// @ts-ignore
-import {MDXContext} from '@mdx-js/react';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
 import {Toc} from './Toc';
+import dynamic from 'next/dynamic';
+
+const MarkdownContent = dynamic(() => import('./MarkdownContent'), {
+  suspense: true,
+});
+
 export interface MarkdownProps<Frontmatter> {
   meta: Frontmatter & {description?: string};
   children?: React.ReactNode;
@@ -128,9 +131,7 @@ export function MarkdownPage<
         )}
         <div className="px-5 sm:px-12">
           <div className="max-w-7xl mx-auto">
-            <MDXContext.Provider value={MDXComponents}>
-              {finalChildren}
-            </MDXContext.Provider>
+            <MarkdownContent>{finalChildren}</MarkdownContent>
           </div>
           <DocsPageFooter
             route={route}

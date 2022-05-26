@@ -11,7 +11,7 @@ import {createFileMap} from './createFileMap';
 import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
-  children: React.ReactChildren;
+  children: React.ReactNode;
   autorun?: boolean;
   setup?: SandpackSetup;
   showDevTools?: boolean;

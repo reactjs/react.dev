@@ -61,15 +61,22 @@ export function Preview({
     rawError = null;
   }
 
-  if (lintErrors.length > 0) {
-    if (rawError == null || rawError.title === 'Runtime Exception') {
-      // When there's a lint error, show it -- even over a runtime error.
-      // (However, when there's a build error, we keep showing the build one.)
+  // Memoized because it's fed to debouncing.
+  const firstLintError = React.useMemo(() => {
+    if (lintErrors.length === 0) {
+      return null;
+    } else {
       const {line, column, message} = lintErrors[0];
-      rawError = {
+      return {
         title: 'Lint Error',
         message: `${line}:${column} - ${message}`,
       };
+    }
+  }, [lintErrors]);
+
+  if (rawError == null || rawError.title === 'Runtime Exception') {
+    if (firstLintError !== null) {
+      rawError = firstLintError;
     }
   }
 

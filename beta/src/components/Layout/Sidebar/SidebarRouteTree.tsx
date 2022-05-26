@@ -76,8 +76,19 @@ export function SidebarRouteTree({
   level = 0,
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
-  const {pathname} = useRouter();
+  const {pathname, events} = useRouter();
+  const [pendingLink, setPendingLink] = React.useState<string | null>(null);
   const slug = pathname;
+
+  React.useEffect(() => {
+    const handleRouteChange = (url: string) => setPendingLink(url);
+    const handleRouteChangeComplete = () => setPendingLink(null);
+    events.on('routeChangeStart', handleRouteChange);
+    events.on('routeChangeComplete', handleRouteChangeComplete);
+    return () => {
+      events.off('routeChangeStart', handleRouteChange);
+    };
+  }, []);
 
   const currentRoutes = routeTree.routes as RouteItem[];
   const expandedPath = currentRoutes.reduce(
@@ -121,6 +132,7 @@ export function SidebarRouteTree({
               <SidebarLink
                 key={`${title}-${path}-${level}-link`}
                 href={pagePath}
+                isPending={pendingLink === pagePath}
                 selected={selected}
                 level={level}
                 title={title}
@@ -143,6 +155,7 @@ export function SidebarRouteTree({
         return (
           <li key={`${title}-${path}-${level}-link`}>
             <SidebarLink
+              isPending={pendingLink === pagePath}
               href={pagePath}
               selected={selected}
               level={level}

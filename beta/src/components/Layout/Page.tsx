@@ -14,6 +14,9 @@ interface PageProps {
   routeTree: RouteItem;
 }
 
+// Preload.
+import('../MDX/Sandpack/SandpackRoot');
+
 export function Page({routeTree, children}: PageProps) {
   return (
     <>

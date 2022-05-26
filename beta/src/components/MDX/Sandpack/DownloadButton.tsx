@@ -12,6 +12,7 @@ let supportsImportMap: boolean | void;
 function useSupportsImportMap() {
   function subscribe() {
     // It never updates.
+    return () => {};
   }
   function getCurrentValue() {
     if (supportsImportMap === undefined) {
@@ -24,7 +25,7 @@ function useSupportsImportMap() {
   function getServerSnapshot() {
     return false;
   }
-  // @ts-ignore
+
   return React.useSyncExternalStore(
     subscribe,
     getCurrentValue,

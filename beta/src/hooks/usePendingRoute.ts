@@ -12,24 +12,25 @@ const usePendingRoute = () => {
   React.useEffect(() => {
     let routeTransitionTimer: any = null;
 
-    const handleRouteChange = (url: string) => {
+    const handleRouteChangeStart = (url: string) => {
       clearTimeout(routeTransitionTimer);
       routeTransitionTimer = setTimeout(() => {
-        if (currentRoute.current === url) return;
-        currentRoute.current = url;
-        setPendingRoute(url);
+        if (currentRoute.current !== url) {
+          currentRoute.current = url;
+          setPendingRoute(url);
+        }
       }, 100);
     };
-    const cleanupPendingState = () => {
+    const handleRouteChangeComplete = () => {
       setPendingRoute(null);
       clearTimeout(routeTransitionTimer);
     };
-    events.on('routeChangeStart', handleRouteChange);
-    events.on('routeChangeComplete', cleanupPendingState);
+    events.on('routeChangeStart', handleRouteChangeStart);
+    events.on('routeChangeComplete', handleRouteChangeComplete);
 
     return () => {
-      events.off('routeChangeStart', handleRouteChange);
-      events.off('routeChangeComplete', cleanupPendingState);
+      events.off('routeChangeStart', handleRouteChangeStart);
+      events.off('routeChangeComplete', handleRouteChangeComplete);
       clearTimeout(routeTransitionTimer);
     };
   }, []);

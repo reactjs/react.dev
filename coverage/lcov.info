@@ -1,0 +1,16 @@
+TN:
+SF:content\home\examples\a-simple-component.js
+FN:3,HelloMessage
+FNF:1
+FNH:1
+FNDA:6,HelloMessage
+DA:4,6
+DA:5,4
+DA:7,2
+LF:3
+LH:3
+BRDA:4,0,0,4
+BRDA:4,0,1,2
+BRF:2
+BRH:2
+end_of_record

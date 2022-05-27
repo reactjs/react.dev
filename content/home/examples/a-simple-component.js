@@ -1,7 +1,9 @@
-class HelloMessage extends React.Component {
-  render() {
-    return <div>Hello {this.props.name}</div>;
+import React from "react";
+
+export default function HelloMessage(props) {
+  if (props.name) {
+    return <h1>Hello, {props.name}!</h1>;
+  } else {
+    return <span>Hey, stranger</span>;
   }
 }
-
-root.render(<HelloMessage name="Taylor" />);

@@ -1,3 +1,7 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 import {useRouter} from 'next/router';
 import React from 'react';
 

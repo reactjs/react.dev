@@ -9,6 +9,7 @@ const usePendingRoute = () => {
     let routeTransitionTimer: any = null;
 
     const handleRouteChange = (url: string) => {
+      clearTimeout(routeTransitionTimer);
       routeTransitionTimer = setTimeout(() => {
         if (currentRoute.current === url) return;
         currentRoute.current = url;
@@ -21,11 +22,10 @@ const usePendingRoute = () => {
     };
     events.on('routeChangeStart', handleRouteChange);
     events.on('routeChangeComplete', cleanupPendingState);
-    events.on('routeChangeError', cleanupPendingState);
+
     return () => {
       events.off('routeChangeStart', handleRouteChange);
       events.off('routeChangeComplete', cleanupPendingState);
-      events.off('routeChangeError', cleanupPendingState);
       clearTimeout(routeTransitionTimer);
     };
   }, []);

@@ -15,15 +15,18 @@ const usePendingRoute = () => {
         setPendingRoute(url);
       }, 100);
     };
-    const handleRouteChangeComplete = () => {
+    const cleanupPendingState = () => {
       setPendingRoute(null);
       clearTimeout(routeTransitionTimer);
     };
     events.on('routeChangeStart', handleRouteChange);
-    events.on('routeChangeComplete', handleRouteChangeComplete);
+    events.on('routeChangeComplete', cleanupPendingState);
+    events.on('routeChangeError', cleanupPendingState);
     return () => {
       events.off('routeChangeStart', handleRouteChange);
-      events.off('routeChangeComplete', handleRouteChangeComplete);
+      events.off('routeChangeComplete', cleanupPendingState);
+      events.off('routeChangeError', cleanupPendingState);
+      clearTimeout(routeTransitionTimer);
     };
   }, []);
 

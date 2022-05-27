@@ -29,9 +29,7 @@ export const useSandpackLint = () => {
         // Ignore parsing or internal linter errors.
         const isReactRuleError = (error: any) => error.ruleId != null;
         setLintErrors(errors.filter(isReactRuleError));
-        return codeMirrorErrors
-          .filter(isReactRuleError)
-          .map((error) => ({...error, severity: 'error'}));
+        return codeMirrorErrors.filter(isReactRuleError);
       });
       setLintExtensions([onLint]);
     };

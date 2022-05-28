@@ -35,6 +35,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Juiz de Fora](https://www.meetup.com/pt-br/React-Juiz-de-Fora/)
 * [Maringá](https://www.meetup.com/pt-BR/React-Maringa/)
 * [Porto Alegre](https://www.meetup.com/pt-BR/React-Porto-Alegre/)
+* [Recife](https://www.meetup.com/pt-BR/ReactJS-Recife/)
 * [Rio de Janeiro](https://www.meetup.com/pt-BR/React-Rio-de-Janeiro/)
 * [Salvador](https://www.meetup.com/pt-BR/ReactSSA)
 * [São Paulo](https://www.meetup.com/pt-BR/ReactJS-SP/)

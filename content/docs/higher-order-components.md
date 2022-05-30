@@ -124,7 +124,7 @@ const BlogPostWithSubscription = withSubscription(
 
 The first parameter is the wrapped component. The second parameter retrieves the data we're interested in, given a `DataSource` and the current props.
 
-When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed a `data` prop with the most current data retrieved from `DataSource`:
+When `CommentListWithSubscription` and `BlogPostWithSubscription` are rendered, `CommentList` and `BlogPost` will be passed to a `data` prop with the most current data retrieved from `DataSource`:
 
 ```js
 // This function takes a component...

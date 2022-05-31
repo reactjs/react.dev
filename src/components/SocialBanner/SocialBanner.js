@@ -20,12 +20,12 @@ const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
 
 export default function SocialBanner() {
   const [showBanner, setShowBanner] = React.useState(true);
-  const updateVisibily = () => window.scrollY >= 6 ? setShowBanner(false) : setShowBanner(true)
+  const updateVisibily = () => window.scrollY >= 6 ? setShowBanner(false) : setShowBanner(true);
   
   React.useEffect(() => {
-    if(window.scrollY >= 6) setShowBanner(false)
-    window.addEventListener('scroll', updateVisibily)
-    return () => window.removeEventListener('scroll', updateVisibily)
+    if(window.scrollY >= 6) setShowBanner(false);
+    window.addEventListener('scroll', updateVisibily);
+    return () => window.removeEventListener('scroll', updateVisibily);
   }, [])
 
   return (

@@ -7,7 +7,7 @@
 
 // $FlowFixMe Update Flow
 import React from 'react';
-import { colors, media } from 'theme';
+import {colors, media} from 'theme';
 
 const linkProps = {
   href: 'https://opensource.fb.com/support-ukraine',
@@ -77,7 +77,7 @@ export default function SocialBanner() {
             {...linkProps}
             target="_blank"
             rel="noopener">
-            <span css={{ color: colors.brand }}>{bannerLink}</span>
+            <span css={{color: colors.brand}}>{bannerLink}</span>
           </a>
         </span>
       </div>

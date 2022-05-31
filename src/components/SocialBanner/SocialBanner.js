@@ -6,7 +6,7 @@
  */
 
 // $FlowFixMe Update Flow
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {colors, media} from 'theme';
 
 const linkProps = {
@@ -19,12 +19,12 @@ const bannerText = 'Support Ukraine 🇺🇦 ';
 const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
 
 export default function SocialBanner() {
-  const [showBanner, setShowBanner] = React.useState(true);
+  const [showBanner, setShowBanner] = useState(true);
   const updateVisibily = () => setShowBanner(window.scrollY <= 6);
-  React.useEffect(() => {
-    if(window.scrollY >= 6) {
-      setShowBanner(false)
-    };
+  useEffect(() => {
+    if (window.scrollY >= 6) {
+      setShowBanner(false);
+    }
     window.addEventListener('scroll', updateVisibily);
     return () => window.removeEventListener('scroll', updateVisibily);
   }, []);

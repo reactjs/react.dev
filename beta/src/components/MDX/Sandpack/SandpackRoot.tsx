@@ -91,7 +91,7 @@ function SandpackRoot(props: SandpackProps) {
         autorun={autorun}
         initMode="user-visible"
         initModeObserverOptions={{rootMargin: '1400px 0px'}}
-        bundlerURL="https://22530bfe.sandpack-bundler.pages.dev"
+        bundlerURL="https://f13a87c3.sandpack-bundler.pages.dev"
         logLevel={SandpackLogLevel.None}>
         <CustomPreset
           isSingleFile={isSingleFile}

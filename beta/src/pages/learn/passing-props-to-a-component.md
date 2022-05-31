@@ -1,26 +1,26 @@
 ---
-title: Passing Props to a Component
+title: Propsien välittäminen komponentille
 ---
 
 <Intro>
 
-React components use *props* to communicate with each other. Every parent component can pass some information to its child components by giving them props. Props might remind you of HTML attributes, but you can pass any JavaScript value through them, including objects, arrays, and functions.
+React komponentit käyttävät *propseja* kommunikoidakseen toistensa välillä. Jokainen pääkomponentti voi välittää tietoa sen lapsikomponenteille antamalla niille propseja. Propsit saattavat muistuttaa HTML attribuuteista, mutta ne voivat välittää mitä tahansa JavaScript arvoa, kuten oliota, listoja ja funktioita.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to pass props to a component
-* How to read props from a component
-* How to specify default values for props
-* How to pass some JSX to a component
-* How props change over time
+* Miten välittää propseja komponentille
+* Miten lukea propseja komponentista
+* Miten määritellä oletusarvoja propseille
+* Miten välittää JSX:ää komponenteille
+* Miten propsit muuttuvat ajan kanssa
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## Tuttuja propseja {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+Propsit ovat tietoa jota välität JSX tagille. Esimerkiksi `className`, `src`, `alt`, `width` ja `height` ovat muutamia propseja, joita voit välittää `<img>` tagille:
 
 <Sandpack>
 
@@ -51,11 +51,11 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+Propsit joita välität `<img>` tagille ovat esimääriteltyjä (ReactDOM mukautuu [HTML standardiin](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). Mutta voit välittää mitä tahansa propseja *omalle* komponentillesi, kuten `<Avatar>`:lle, mukauttaaksesi sen. Tässä miten!
 
-## Passing props to a component {/*passing-props-to-a-component*/}
+## Propsien välittäminen komponentille {/*passing-props-to-a-component*/}
 
-In this code, the `Profile` component isn't passing any props to its child component, `Avatar`:
+Seuraavassa koodissa `Profile` komponentti ei välitä yhtään propsia sen `Avatar` lapsikomponentille:
 
 ```js
 export default function Profile() {
@@ -65,11 +65,11 @@ export default function Profile() {
 }
 ```
 
-You can give `Avatar` some props in two steps.
+Voit antaa `Avatar`:lle propseja kahdessa vaiheessa.
 
-### Step 1: Pass props to the child component {/*step-1-pass-props-to-the-child-component*/}
+### 1. Vaihe: Välitä propsi lapsikomponentille {/*step-1-pass-props-to-the-child-component*/}
 
-First, pass some props to `Avatar`. For example, let's pass two props: `person` (an object), and `size` (a number):
+Ensiksi välitä jokin propsi `Avatar`:lle. Esimerkiksi anna sille kaksi propsia: `person` (olio) ja `size` (numero):
 
 ```js
 export default function Profile() {
@@ -82,13 +82,13 @@ export default function Profile() {
 }
 ```
 
-> If double curly braces after `person=` confuse you, remember [they are merely an object](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) inside the JSX curlies.
+> Mikäli aaltosulkeet `person=` hämmentävät sinua, muista että [ne ovat vain olioita](/learn/javascript-in-jsx-with-curly-braces#using-double-curlies-css-and-other-objects-in-jsx) JSX aaltosulkeiden sisällä.
 
-Now you can read these props inside the `Avatar` component.
+Nyt voit lukea näitä propseja `Avatar` komponentin sisällä.
 
-### Step 2: Read props inside the child component {/*step-2-read-props-inside-the-child-component*/}
+### 2. Vaihe: Lue propsit lapsikomponentin sisällä {/*step-2-read-props-inside-the-child-component*/}
 
-You can read these props by listing their names `person, size` separated by the commas inside `({` and `})` directly after `function Avatar`. This lets you use them inside the `Avatar` code, like you would with a variable.
+Voit lukea nämä propsit listaamalla niiden nimet `person, size` pilkulla eroteltuna `({` and `})` sisällä suoraan `function Avatar` jälkeen. Näin voit käyttää niitä `Avatar` koodin sisällä, kuten käyttäisit muuttujia.
 
 ```js
 function Avatar({ person, size }) {
@@ -96,9 +96,9 @@ function Avatar({ person, size }) {
 }
 ```
 
-Add some logic to `Avatar` that uses the `person` and `size` props for rendering, and you're done.
+Lisää vähän logiikkaa `Avatar`:lle, joka hyödyntää `person` ja `size` proppeja renderöinnissä, ja olet valmis.
 
-Now you can configure `Avatar` to render in many different ways with different props. Try tweaking the values!
+Nyt voit määritellä `Avatar`:n renderöimään monella erilaisella tavalla eri propseilla. Kokeile muuttaa arvoja!
 
 <Sandpack>
 
@@ -164,9 +164,9 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-Props let you think about parent and child components independently. For example, you can change the `person` or the `size` props inside `Profile` without having to think about how `Avatar` uses them. Similarly, you can change how the `Avatar` uses these props, without looking at the `Profile`.
+Propsien avulla voit ajatella pää- ja lapsikomponentteja erikseen. Esimerkiksi voit muuttaa `person` tai `size` propsia `Profile`:n sisällä ilman, että täytyy miettiä miten `Avatar` käyttää niitä. Samoin voit muuttaa miten `Avatar` käyttää näitä propseja ilman, että täytyy katsoa `Profile` koodia.
 
-You can think of props like "knobs" that you can adjust. They serve the same role as arguments serve for functions—in fact, props _are_ the only argument to your component! React component functions accept a single argument, a `props` object:
+Voit ajatella propseja "säätiminä", joita voit säätää. Niillä on sama rooli kuin argumenteilla on funktioissa—itse asiassa, propsit _ovat_ ainoa argumentti komponenttiisi! React komponentit hyväksyvät yhden argumentin, `props` olion:
 
 ```js
 function Avatar(props) {
@@ -175,12 +175,11 @@ function Avatar(props) {
   // ...
 }
 ```
-
-Usually you don't need the whole `props` object itself, so you destructure it into individual props.
+Useimmiten ei tarvitse kirjoittaa koko `props` oliota itsessään, vaan voit destrukturoida sen yksittäisiksi propseiksi.
 
 <Gotcha>
 
-**Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
+**Älä unohda `{` ja `}` aaltosulkeita** `(` ja `)` sulkeiden sisällä kun määrität propseja:
 
 ```js
 function Avatar({ person, size }) {
@@ -188,7 +187,7 @@ function Avatar({ person, size }) {
 }
 ```
 
-This syntax is called ["destructuring"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) and is equivalent to reading properties from a function parameter:
+Tätä syntaksia kutsutaan ["destrukturoinniksi"](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment#Unpacking_fields_from_objects_passed_as_a_function_parameter) ja se vastaa argumenttien lukemiseen funktiossa:
 
 ```js
 function Avatar(props) {
@@ -200,9 +199,9 @@ function Avatar(props) {
 
 </Gotcha>
 
-## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
+## Oletusarvon määrittäminen propsille {/*specifying-a-default-value-for-a-prop*/}
 
-If you want to give a prop a default value to fall back on when no value is specified, you can do it with the destructuring by putting `=` and the default value right after the parameter:
+Jos haluat antaa propsille oletusarvon johon turvautua kun arvoa ei ole määritelty, voit tehdä sen destrukturoinnissa laittamalla `=` ja oletusarvon sen jälkeen:
 
 ```js
 function Avatar({ person, size = 100 }) {
@@ -210,13 +209,13 @@ function Avatar({ person, size = 100 }) {
 }
 ```
 
-Now, if `<Avatar person={...} />` is rendered with no `size` prop, the `size` will be set to `100`.
+Nyt jos `<Avatar person={...} />` renderöidään ilman `size` propsia, `size` asetetaan arvoon `100`.
 
-The default value is only used if the `size` prop is missing or if you pass `size={undefined}`. But if you pass `size={null}` or `size={0}`, the default value will **not** be used.
+Oletusarvoa käytetään vain jos `size` propsi puuttuu tai jos välität `size={undefined}`. Mutta jos välität `size={null}` tai `size={0}`, oletusarvoa **ei** käytetä.
 
-## Forwarding props with the JSX spread syntax {/*forwarding-props-with-the-jsx-spread-syntax*/}
+## Propsien välittäminen JSX spread-syntaksilla {/*forwarding-props-with-the-jsx-spread-syntax*/}
 
-Sometimes, passing props gets very repetitive:
+Joskus propsien välittäminen käy toistuvaksi:
 
 ```js
 function Profile({ person, size, isSepia, thickBorder }) {
@@ -233,7 +232,7 @@ function Profile({ person, size, isSepia, thickBorder }) {
 }
 ```
 
-There's nothing wrong with repetitive code—it can be more legible. But at times you may value conciseness. Some components forward all of their props to their children, like how this `Profile` does with `Avatar`. Because they don't use any of their props directly, it can make sense to use a more concise "spread" syntax:
+Toistuvassa koodissa ei ole mitään väärää-se voi olla luettavempaa. Mutta ajoittain saatat arvostaa ytimekkyyttä. Jotkin komponentit välittävät kaikki niiden propsit niiden lapsikomponenteilleen, kuten tämä `Profile` tekee sen `Avatar`:lle. Koska se ei itse käytä suoraan yhtään propsia, voi olla järkevää käyttää lyhyttä "spread" syntaksia:
 
 ```js
 function Profile(props) {
@@ -245,13 +244,13 @@ function Profile(props) {
 }
 ```
 
-This forwards all of `Profile`'s props to the `Avatar` without listing each of their names.
+Tämä välittää kaikki `Profile`:n propsit `Avatar`:lle ilman jokaisen nimen listaamista.
 
-**Use spread syntax with restraint.** If you're using it in every other component, something is wrong. Often, it indicates that you should split your components and pass children as JSX. More on that next!
+**Käytä spread-syntaksia hillitysti.** Jos käytät sitä jokaisessa komponentissa, jotain on pielessä. Useimmiten se osoittaa, että sinun täytyisi jakaa komponenttisi osiin ja välittää JSX lapsina. Tästä lisää seuraavaksi!
 
-## Passing JSX as children {/*passing-jsx-as-children*/}
+## JSX:n välittäminen lapsena {/*passing-jsx-as-children*/}
 
-It is common to nest built-in browser tags:
+On yleistä upottaa selaimen sisäänrakennettuja tageja toisiinsa:
 
 ```js
 <div>
@@ -259,7 +258,7 @@ It is common to nest built-in browser tags:
 </div>
 ```
 
-Sometimes you'll want to nest your own components the same way:
+Joskus haluat upottaa omia komponentteja samalla tavalla:
 
 ```js
 <Card>
@@ -267,7 +266,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+Kun upotat sisältöä JSX tagiin, pääkomponentti vastaanottaa sisällön proppina nimeltään `children`. Esimerkiksi `Card` komponentti vastaanottaa `children` propin, joka sisältää `<Avatar />` komponentin ja renderöi sen diviin käärittynä:
 
 <Sandpack>
 
@@ -343,17 +342,17 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+Kokeile korvata `<Card>` komponentista `<Avatar>` jollain tekstillä nähdäksesi miten `Card` komponentti voi kääriä mitä vain sisältöä. Sen ei tarvitse "tietää" mitä renderöidään sen sisällä. Näet tätä tapaa käytettävän monissa paikoissa.
 
-You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on. You can explore this in more detail in [Extracting Layout Components](/learn/extracting-layout-components).
+Voit ajatella komponenttia, jolla on `children` proppi kuin sillä olisi "aukko" joka voidaan "täyttää" sen pääkomponentista mielivaltaisella JSX:llä. Voit käyttää `children` proppia visuaalisiin wrappereihin: paneeleihin, ruudukkoihin, jne. Voit tutkia tästä lisää sivulta [Extracting Layout Components](/learn/extracting-layout-components).
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
-## How props change over time {/*how-props-change-over-time*/}
+## Miten prosit muuttuvat ajan kanssa {/*how-props-change-over-time*/}
 
-The `Clock` component below receives two props from its parent component: `color` and `time`. (The parent component's code is omitted because it uses [state](/learn/state-a-components-memory), which we won't dive into just yet.)
+`Clock` komponentti alla vastaanottaa kaksi propsia sen pääkomponentilta: `color` ja `time`. (Pääkomponentin koodi on jätetty pois koska se käyttää [tilaa](/learn/state-a-components-memory), johon emme vielä syvenny.)
 
-Try changing the color in the select box below:
+Kokeile muuttaa väriä valintaruudusta alla:
 
 <Sandpack>
 
@@ -403,21 +402,22 @@ export default function App() {
 
 </Sandpack>
 
-This example illustrates that **a component may receive different props over time.** Props are not always static! Here, the `time` prop changes every second, and the `color` prop changes when you select another color. Props reflect a component's data at any point in time, rather than only in the beginning.
+Tämä esimerkki havainnollistaa, että **komponentti voi vastaanottaa erilaisia propseja ajan saatossa.** Propsit eivät aina ole staattisia! Tässä `time` propsi muuttuu joka sekunti ja `color` propsi muuttuu kun valitset toisen värin. Propsit kuvastavat komponentin dataa ajan kuluessa, ei ainoastaan alussa.
 
-However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)—a term from computer science meaning "unchangeable." When a component needs to change its props (for example, in response to a user interaction or new data), it will have to "ask" its parent component to pass it _different props_—a new object! Its old props will then be cast aside, and eventually the JavaScript engine will reclaim the memory taken by them.
+Propsit ovat kuitenkin muuttumattomia (engl. [immutable](https://en.wikipedia.org/wiki/Immutable_object)). Kun komponentin täytyy muuttaa sen propseja (esimerkiksi vastauksena käyttäjän toimintoon tai uuteen dataan), sen täytyy "kysyä" sen pääkomponentilta antaakseen sille _eri propsit_-uuden olion! Sen vanhat propsit sitten heitetään pois ja lopulta JavaScript moottori suorittaa roskienkeruun palauttaen niiden käyttämän muistin.
 
-**Don't try to "change props".** When you need to respond to the user input (like changing the selected color), you will need to "set state", which you can learn about in [State: A Component's Memory](/learn/state-a-components-memory).
+
+**Älä yritä "muuttaa propseja".** Kun sinun täytyy vastata käyttäjän syötteeseen (kuten värin muutokseen), täytyy "asettaa tila", josta voit oppia lisää lukemalla [Tila: Komponentin muisti](/learn/state-a-components-memory).
 
 <Recap>
 
-* To pass props, add them to the JSX, just like you would with HTML attributes.
-* To read props, use the `function Avatar({ person, size })` destructuring syntax.
-* You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
-* You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
-* Props are read-only snapshots in time: every render receives a new version of props.
-* You can't change props. When you need interactivity, you'll need to set state.
+* Välittääksesi propseja, lisää ne JSX:ään kuten tekisit HTML attribuuteilla.
+* Lukeaksesi propseja, käytä `function Avatar({ person, size })` destrukturointi -syntaksia.
+* Voit määritellä oletusarvon kuten `size = 100`, jota käytetään puuttuvissa sekä `undefined` propseissa.
+* Voit välittää kaikki propsit käyttämällä `<Avatar {...props} />` JSX spread syntaksia, mutta älä käytä sitä liikaa!
+* Sisäkkäinen JSX koodi kuten `<Card><Avatar /></Card>` ilmenee `Card` komponentin `children` proppina.
+* Propsit ovat vain-luku snapshotteja ajasta: joka renderillä se vastaanottaa uuden version propseista.
+* Et voi muuttaa propseja. Kun tarvitset interaktiivisuutta, käytä tilaa.
 
 </Recap>
 
@@ -425,9 +425,9 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)�
 
 <Challenges>
 
-### Extract a component {/*extract-a-component*/}
+### Erota komponentti {/*extract-a-component*/}
 
-This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
+Tämä `Gallery` komponentti sisältää samanlaista merkintäkoodia kahdelle profiilille. Luo `Profile` komponentti vähentääksesi koodin toistoa. Sinun täytyy päättää mitä propseja välität sille.
 
 <Sandpack>
 
@@ -520,15 +520,15 @@ li { margin: 5px; }
 
 <Hint>
 
-Start by extracting the markup for one of the scientists. Then find the pieces that don't match it in the second example, and make them configurable by props.
+Aloita irroittamalla merkintäkoodi toiselle tutkijalle. Sitten etsi kohdat, jotka eivät vastaa toista esimerkin tutkijaa, ja tee kohdista muokattavia propsien avulla.
 
 </Hint>
 
 <Solution>
 
-In this solution, the `Profile` component accepts multiple props: `imageId` (a string), `name` (a string), `profession` (a string), `awards` (an array of strings), `discovery` (a string), and `imageSize` (a number).
+Tässä ratkaisussa `Profile` komponentti sallii usieta propseja: `imageId` (merkkijono), `name` (merkkijono), `profession` (merkkijono), `awards` (lista merkkijonoista), `discovery` (merkkijono) ja `imageSize` (numero).
 
-Note that the `imageSize` prop has a default value, which is why we don't pass it to the component.
+Huomaa, että `imageSize` propsilla on oletusarvo, jonka takia emme välitä sitä komponentille.
 
 <Sandpack>
 
@@ -626,9 +626,9 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Note how you don't need a separate `awardCount` prop if `awards` is an array. Then you can use `awards.length` to count the number of awards. Remember that props can take any values, and that includes arrays too!
+Huomaa miten et tarvitse erillistä `awardCount` propsia jos `awards` on lista. Voit käyttää vain `awards.length` saadaksesi määrän palkinnoista. Muista, että propsit voivat olla mitä vain arvoja ja se tarkoittaa myös listoja.
 
-Another solution, which is more similar to the earlier examples on this page, is to group all information about a person in a single object, and pass that object as one prop:
+Toinen ratkaisu, joka on lähempänä aikaisempia esimerkkejä tällä sivulla on ryhmittää kaikki tieto henkilöstä yhteen olioon ja välittää olio yhtenä propsina:
 
 <Sandpack>
 
@@ -723,15 +723,15 @@ li { margin: 5px; }
 
 </Sandpack>
 
-Although the syntax looks slightly different because you're describing properties of a JavaScript object rather than a collection of JSX attributes, these examples are mostly equivalent, and you can pick either approach.
+Vaikka syntaksi näyttää hivenen erilaiselta koska kuvailet JavaScript olion ominaisuuksia JSX attribuuttien sijaan. Nämä esimerkit vastaavat lähes toisiaan, voit valita jomman kumman tavan.
 
 </Solution>
 
-### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+### Säädä kuvan kokoa propsin avulla {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+Tässä esimerkissä `Avatar` vastaanottaa numeerisen `size` propsin, joka määrittää `<img>`:n leveyden ja korkeuden. `size` propsi on asetettu arvoon `40` tässä esimerkissä, Kuitenkin jos avaat kuva uudessa välilehdessä, huomaat, että kuva itsessään on suurempi (`160` pikseliä). Oikea kuvan koko määritellään minkä pikkukuvan kokoa pyydät.
 
-Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
+Muuta `Avatar` komponentti pyytämään lähimpää kuvan kokoa `size` propsin perusteella. Erityisesti jos `size` on pienempi kuin `90` anna `'s'` ("small") mielummin kuin `'b'` ("big") `getImageUrl` funktiolle. Varmista että muutoksesi toimivat renderöimällä profiilikuvat `size` propsin eri avvoilla ja avaamalla kuvat uudella välilehdellä.
 
 <Sandpack>
 
@@ -782,7 +782,7 @@ export function getImageUrl(person, size) {
 
 <Solution>
 
-Here is how you could go about it:
+Tässä miten voisit tehdä sen:
 
 <Sandpack>
 
@@ -844,7 +844,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-You could also show a sharper image for high DPI screens by taking [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio) into account:
+Voit myös näyttää tarkemman kuvan korkean pikselitiheyden näytöille huomioimalla [`window.devicePixelRatio`](https://developer.mozilla.org/en-US/docs/Web/API/Window/devicePixelRatio):n.
 
 <Sandpack>
 
@@ -915,13 +915,13 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+Propseilla voit koteloida tämänkaltaisen logiikan `Avatar` komponentin sisään (ja muuttaa sitä myöhemmin tarvittaessa), jotta kaikki voivat käyttää `<Avatar>` komponenttia miettimättä miten kuvia pyydetään ja niiden kokoa muutetaan.
 
 </Solution>
 
-### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+### JSX:n välittäminen `children` propsissa {/*passing-jsx-in-a-children-prop*/}
 
-Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
+Luo `Card` komponentti alla olevasta merkintäkoodista ja käytä `children` propsia välittääksesi eri JSX:ää sille:
 
 <Sandpack>
 
@@ -979,13 +979,13 @@ h1 {
 
 <Hint>
 
-Any JSX you put inside of a component's tag will be passed as the `children` prop to that component.
+Kaikki komponentin tagin sisälle laittamasi JSX välitetään `children` propsina komponentille.
 
 </Hint>
 
 <Solution>
 
-This is how you can use the `Card` component in both places:
+Tässä miten voit käyttää `Card` komponenttia molemmissa paikoissa:
 
 <Sandpack>
 
@@ -1047,7 +1047,7 @@ h1 {
 
 </Sandpack>
 
-You can also make `title` a separate prop if you want every `Card` to always have a title:
+Voit myös tehdä `title` propsin jos haluat jokaisen `Card` komponentin aina sisältämään otsikon:
 
 <Sandpack>
 

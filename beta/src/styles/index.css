@@ -17,7 +17,7 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://conf.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2')
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2')
       format('woff2');
     font-weight: 300;
     font-style: normal;
@@ -26,7 +26,7 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://conf.reactjs.org/fonts/Optimistic_Display_W_Md.woff2')
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Md.woff2')
       format('woff2');
     font-weight: 500;
     font-style: normal;
@@ -35,7 +35,7 @@
 
   @font-face {
     font-family: 'Optimistic Display';
-    src: url('https://conf.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2')
+    src: url('https://beta.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2')
       format('woff2');
     font-weight: 700;
     font-style: normal;
@@ -218,4 +218,105 @@
 }
 html.dark .code-step * {
   color: white !important;
+}
+
+.mdx-heading {
+  scroll-margin-top: 2.5em;
+  /* Space for the anchor */
+  padding-right: 1em;
+}
+.mdx-heading:before {
+  height: 6rem;
+  margin-top: -6rem;
+  visibility: hidden;
+  content: '';
+}
+.mdx-heading .mdx-header-anchor {
+  /* Prevent the anchor from
+     overflowing to its own line */
+  height: 0px;
+  width: 0px;
+}
+.mdx-heading .mdx-header-anchor svg {
+  display: inline;
+}
+.mdx-heading .mdx-header-anchor svg {
+  visibility: hidden;
+}
+.mdx-heading:hover .mdx-header-anchor svg {
+  visibility: visible;
+}
+.mdx-heading .mdx-header-anchor:focus svg {
+  visibility: visible;
+}
+
+.mdx-blockquote > span > p:first-of-type {
+  margin-bottom: 0;
+}
+.mdx-blockquote > span > p:last-of-type {
+  margin-bottom: 1rem;
+}
+.mdx-illustration-block {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-content: stretch;
+  align-items: stretch;
+  gap: 42px;
+}
+ol.mdx-illustration-block {
+  gap: 60px;
+}
+.mdx-illustration-block li {
+  display: flex;
+  align-items: flex-start;
+  align-content: stretch;
+  justify-content: space-around;
+  position: relative;
+  padding: 1rem;
+}
+.mdx-illustration-block figure {
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+
+  justify-content: space-between;
+  position: relative;
+  height: 100%;
+}
+.mdx-illustration-block li:after {
+  content: ' ';
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 100%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 49px;
+  background: center / contain no-repeat url('/images/g_arrow.png');
+}
+.mdx-illustration-block li:first-child:after {
+  content: ' ';
+  display: none;
+}
+.mdx-illustration-block img {
+  max-height: 250px;
+  width: 100%;
+}
+@media (max-width: 680px) {
+  .mdx-illustration-block {
+    flex-direction: column;
+  }
+  .mdx-illustration-block img {
+    max-height: 200px;
+    width: auto;
+  }
+  .mdx-illustration-block li:after {
+    top: 0;
+    left: 50%;
+    right: auto;
+    transform: translateX(-50%) translateY(-100%) rotate(90deg);
+  }
 }

@@ -12,7 +12,4 @@ export const siteConfig = {
     apiKey: '861ccfb8707150c0e776b88357286123',
     indexName: 'beta-react',
   },
-  headerIdConfig: {
-    className: `anchor`,
-  },
 };

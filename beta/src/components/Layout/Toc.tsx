@@ -28,7 +28,7 @@ export function Toc({
       <h2 className="mb-3 lg:mb-3 uppercase tracking-wide font-bold text-sm text-secondary dark:text-secondary-dark px-4 w-full">
         On this page
       </h2>
-      <div className="toc h-full overflow-y-auto pl-4">
+      <div className="h-full overflow-y-auto pl-4 max-h-[calc(100vh-7.5rem)]">
         <ul className="space-y-2 pb-16">
           {headings &&
             headings.length > 0 &&
@@ -65,17 +65,6 @@ export function Toc({
             })}
         </ul>
       </div>
-      <style jsx global>{`
-        .toc {
-          /** Screen - nav - toc offset */
-          max-height: calc(100vh - 7.5rem);
-        }
-        .toc-link > code {
-          overflow-wrap: break-word;
-          white-space: pre-wrap;
-          font-size: 90%;
-        }
-      `}</style>
     </nav>
   );
 }

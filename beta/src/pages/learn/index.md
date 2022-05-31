@@ -27,7 +27,9 @@ React komponentit ovat JavaScript funktioita jotka palauttavat merkintäkoodin:
 
 ```js
 function Painonappi() {
-  return <button>Napsauta minua</button>;
+  return (
+    <button>Olen painike</button>
+  );
 }
 ```
 
@@ -52,7 +54,11 @@ Katsotaanpa lopputulosta:
 
 ```js
 function Painonappi() {
-  return <button>Napsauta minua</button>;
+  return (
+    <button>
+      Olen painke
+    </button>
+  );
 }
 
 export default function MyApp() {

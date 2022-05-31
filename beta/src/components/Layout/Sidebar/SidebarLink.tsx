@@ -21,6 +21,7 @@ interface SidebarLinkProps {
   isExpanded?: boolean;
   isBreadcrumb?: boolean;
   hideArrow?: boolean;
+  isPending: boolean;
 }
 
 export function SidebarLink({
@@ -32,6 +33,7 @@ export function SidebarLink({
   isExpanded,
   isBreadcrumb,
   hideArrow,
+  isPending,
 }: SidebarLinkProps) {
   const ref = React.useRef<HTMLAnchorElement>(null);
   const isMobile = useIsMobile();
@@ -67,8 +69,11 @@ export function SidebarLink({
               !selected && !heading,
             'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               selected,
+            'dark:bg-gray-60 bg-gray-3 dark:hover:bg-gray-60 hover:bg-gray-3':
+              isPending,
           }
         )}>
+        {/* This here needs to be refactored ofc */}
         {title}
         {isExpanded != null && !heading && !hideArrow && (
           <span

@@ -22,7 +22,9 @@ export default function SocialBanner() {
   const [showBanner, setShowBanner] = useState(true);
   const updateVisibily = () => setShowBanner(window.scrollY <= 6);
   useEffect(() => {
-    if (window.scrollY >= 6) setShowBanner(false);
+    if (window.scrollY >= 6) {
+      setShowBanner(false);
+    }
     window.addEventListener('scroll', updateVisibily);
     return () => window.removeEventListener('scroll', updateVisibily);
   }, []);

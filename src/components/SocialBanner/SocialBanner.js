@@ -7,7 +7,7 @@
 
 // $FlowFixMe Update Flow
 import React from 'react';
-import {colors, media} from 'theme';
+import { colors, media } from 'theme';
 
 const linkProps = {
   href: 'https://opensource.fb.com/support-ukraine',
@@ -19,10 +19,20 @@ const bannerText = 'Support Ukraine 🇺🇦 ';
 const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
 
 export default function SocialBanner() {
+  const [showBanner, setShowBanner] = React.useState(true);
+  const updateVisibily = () => window.scrollY >= 6 ? setShowBanner(false) : setShowBanner(true)
+  
+  React.useEffect(() => {
+    if(window.scrollY >= 6) setShowBanner(false)
+    window.addEventListener('scroll', updateVisibily)
+    return () => window.removeEventListener('scroll', updateVisibily)
+  }, [])
+
   return (
     <div
       css={{
-        display: 'var(--social-banner-display)',
+        display: showBanner ? 'var(--social-banner-display)' : 'none',
+        transition: 'opacity 1s ease-out',
         height: 'var(--social-banner-height-normal)',
         fontSize: 18,
         [media.lessThan('large')]: {
@@ -67,7 +77,7 @@ export default function SocialBanner() {
             {...linkProps}
             target="_blank"
             rel="noopener">
-            <span css={{color: colors.brand}}>{bannerLink}</span>
+            <span css={{ color: colors.brand }}>{bannerLink}</span>
           </a>
         </span>
       </div>

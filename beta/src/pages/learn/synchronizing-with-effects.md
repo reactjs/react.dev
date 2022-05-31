@@ -42,7 +42,7 @@ To write an effect, follow these three steps:
 
 Let's look at each of these steps in detail.
 
-## Step 1: Declare an effect that runs after every render {/*step-1-declare-an-effect-that-runs-after-every-render*/}
+### Step 1: Declare an effect that runs after every render {/*step-1-declare-an-effect-that-runs-after-every-render*/}
 
 To declare an effect in your component, import the [`useEffect` Hook](/api/useeffect) from React:
 
@@ -62,6 +62,8 @@ function MyComponent() {
 ```
 
 Every time your component renders, React will update the screen *and then* run the code inside `useEffect`. In other words, **`useEffect` "delays" a piece of code from running until that render is reflected on the screen.**
+
+#### Example: Synchronizing `isPlaying` prop with `play()` and `pause()` calls {/*example-synchronizing-isplaying-prop-with-play-and-pause-calls*/}
 
 Let's see how you can use an effect to synchronize with an external system. Consider a `<VideoPlayer>` React component. It would be nice to control whether it's playing or paused by passing an `isPlaying` prop to it:
 
@@ -148,6 +150,8 @@ video { width: 250px; }
 
 In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
 
+(Keep in mind that this example is simplified. Controlling video playback has many edge cases not shown here.)
+
 <DeepDive title="What happens if you call play() and pause() outside the effect?">
 
 Try commenting out the 6th and 12th lines in the above example to see what happens when the `play()` and `pause()` calls run during rendering. The code will crash because the `<video>` tag does not yet exist in the DOM. **By using an effect, you tell React to put `<video>` in the DOM, and _then_ do something.**
@@ -175,14 +179,18 @@ Effects should usually synchronize your components with an *external* system. If
 
 </Gotcha>
 
-## Step 2: Check whether your effect needs dependencies {/*step-2-check-whether-your-effect-needs-dependencies*/}
+### Step 2: Check whether your effect needs dependencies {/*step-2-check-whether-your-effect-needs-dependencies*/}
 
 By default, effects run after *every* render. Often, this is **not what you want:**
 
 - Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
 - Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Open the console and notice how typing causes the effect to re-run:
+Here is how you can instruct React to skip re-running effects.
+
+#### Example: skipping unnecessary `play`/`pause` calls {/*example-skipping-unnecessary-playpause-calls*/}
+
+This example is similar to the one before, but it logs when `play` and `pause` are called. It also has a text input that updates the parent component's state. Open the console and notice that typing into the input re-runs the effect:
 
 <Sandpack>
 
@@ -346,29 +354,11 @@ video { width: 250px; }
 
 </Sandpack>
 
-The dependency array can contain multiple dependencies. React will only skip re-running the effect if *all* of the dependencies you specify have exactly the same values as they had during the previous render. React compares the dependency values using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. See the [`useEffect` API reference](/apis/useeffect#reference) for more details.
+You can specify more than a single dependency. React only skips re-running the effect if *all* of the dependencies have the same values as they had during the previous render. See the [`useEffect` API reference](/apis/useeffect#reference) for more details.
 
-**Notice that you can't "choose" your dependencies.** When you specify the dependencies, you will get a lint error if they don't match what React expects based on the code inside your effect. This helps catch many bugs in your code. However, this can be a problem if your effect uses some value but you *don't* want to re-run the effect when that value changes. When you're faced with this problem, the correct fix is to *change the effect code itself* to not "need" that dependency. You will learn common strategies to do that in [Specifying the Effect Dependencies](/learn/specifying-effect-dependencies).
+**Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your effect. This helps catch many bugs in your code. If your effect uses some value but you *don't* want to re-run the effect when it changes, you'll need to *edit the effect code itself* to not "need" that dependency. Learn more about this in [Specifying the Effect Dependencies](/learn/specifying-effect-dependencies).
 
-<Gotcha>
-
-The behaviors *without* the dependency array and with an *empty* `[]` dependency array are very different:
-
-```js {3,7}
-useEffect(() => {
-  // This runs after every render
-});
-
-useEffect(() => {
-  // This runs only on mount (when the component appears)
-}, []);
-```
-
-We'll take a close look at what "mount" means in the next step.
-
-</Gotcha>
-
-## Step 3: Check whether your effect needs cleanup {/*step-3-check-whether-your-effect-needs-cleanup*/}
+#### Running effects only on mount {/*running-effects-only-on-mount*/}
 
 Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
 
@@ -381,7 +371,55 @@ useEffect(() => {
 });
 ```
 
-It would be slow to connect to the chat after every re-render, so you add the dependency array:
+If you type into the input and look at the console, you'll notice the same problem as in the previous example:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom() {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    const connection = createConnection();
+    connection.connect();
+  });
+
+  return (
+    <>
+      <h1>Welcome to the chat!</h1>
+      <input
+        value={message}
+        onChange={e => setMessage(e.target.value)}
+      />
+    </>
+  );
+}
+```
+
+```js chat.js
+export function createConnection() {
+  // A real implementation would actually connect to the server
+  return {
+    connect() {
+      console.log('Connecting...');
+    },
+    disconnect() {
+      console.log('Disconnected.');
+    }
+  };
+}
+```
+
+```css
+input { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+Typing updates the state, which causes a re-render and re-runs the effect. This is why `"Connecting..."` is printed on every keystroke. To avoid reconnecting on every keystroke, add the dependency array:
 
 ```js {4}
 useEffect(() => {
@@ -390,9 +428,7 @@ useEffect(() => {
 }, []);
 ```
 
-The code inside the effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.
-
-Let's try running this code:
+**An empty dependency array like `[]` tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.** Now, when you type into the input, the chat won't reconnect:
 
 <Sandpack>
 
@@ -401,11 +437,22 @@ import { useState, useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 export default function ChatRoom() {
+  const [message, setMessage] = useState('');
+
   useEffect(() => {
     const connection = createConnection();
     connection.connect();
   }, []);
-  return <h1>Welcome to the chat!</h1>;
+
+  return (
+    <>
+      <h1>Welcome to the chat!</h1>
+      <input
+        value={message}
+        onChange={e => setMessage(e.target.value)}
+      />
+    </>
+  );
 }
 ```
 
@@ -429,131 +476,36 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This effect only runs on mount, so you might expect `Connecting...` to be printed once in the console. However, it gets printed twice! During development, React stress-tests your components by mounting them twice.
+In the video player example, `[]` caused a lint error because the effect code depended on the `isPlaying` prop. But in this example, `[]` is valid because the effect code does not depend on *any* value outside the effect--it has *empty* dependencies. It does not depend on anything, so there's no reason to re-run this effect again and again.
 
-**You might be wondering: "How do I run an effect once?" However, that's not the right question. The right question is: "Why does remounting break my effect?"** You need to fix the problem at its source. By mounting your component twice, React simulates what happens when you navigate to another page and then back to this component. Then, even without this stress-test, you'd also see two `Connecting...` logs (and two connections being set up). By mounting your component twice in development, React exposes a bug in your code sooner.
+However, if the effect called `createConnection(serverUrl, roomId)`, where `serverUrl` and `roomId` are props to `ChatRoom`, the linter would force you to declare `[serverUrl, roomId]` as dependencies instead of `[]`. This is because connecting to the chat *depends on* the server URL and the room ID. If they change, you need to reconnect. The linter rule enforces this and catches bugs from running such code only "on mount."
 
-To fix the actual issue, you need to return a *cleanup function* from your effect:
+<Gotcha>
 
-```js {4-6}
-  useEffect(() => {
-    const connection = createConnection();
-    connection.connect();
-    return () => {
-      connection.disconnect();
-    };
-  }, []);
-```
+The behaviors *without* the dependency array and with an *empty* `[]` dependency array are very different:
 
-React will call your cleanup function each time before the effect runs again, and one final time when the component unmounts (gets removed). Let's see what happens when the cleanup function is implemented:
-
-<Sandpack>
-
-```js
-import { useState, useEffect } from 'react';
-import { createConnection } from './chat.js';
-
-export default function ChatRoom() {
-  useEffect(() => {
-    const connection = createConnection();
-    connection.connect();
-    return () => connection.disconnect();
-  }, []);
-  return <h1>Welcome to the chat!</h1>;
-}
-```
-
-```js chat.js
-export function createConnection() {
-  // A real implementation would actually connect to the server
-  return {
-    connect() {
-      console.log('Connecting...');
-    },
-    disconnect() {
-      console.log('Disconnected.');
-    }
-  };
-}
-```
-
-```css
-input { display: block; margin-bottom: 20px; }
-```
-
-</Sandpack>
-
-Now you get three console logs in development:
-
-1. `Connecting...`
-2. `Disconnected.`
-3. `Connecting...`
-
-This means that your cleanup function is working! In development, React simulates what happens when the user navigates away from your component and then comes back to it. Previously, your component incorrectly set up two connections. Thanks to React immediately remounting your component in development, you noticed this issue, and fixed it by implementing the cleanup function. Now only one connection is active at a time.
-
-**Don't worry about the extra request in development. In production, the component would only mount once.** The development-only remounting behavior is opt-in and only enabled when your app is wrapped in [Strict Mode](/apis/strictmode). We strongly recommend to keep it on. Strict Mode makes existing issues in your code show up earlier. While it can be frustrating to fix them so early, this makes your code more resilient to future changes in your app's requirements.
-
-<DeepDive title="What are some common cleanup patterns?">
-
-If your effect subscribes to something, the cleanup function should unsubscribe:
-
-```js {3}
+```js {3,7}
 useEffect(() => {
-  window.addEventListener('resize', handleScroll);
-  return () => window.removeEventListener('resize', handleScroll);
-}, []);
-```
+  // ...
+}); // Runs after every render
 
-If your effect fetches something, the cleanup function should abort the fetch:
-
-```js {10}
 useEffect(() => {
-  const controller = new AbortController();
-  const signal = controller.signal;
-
-  fetchUser(userId, { signal }).then(result => {
-    signal.throwIfAborted();
-    setResult(result);
-  });
-
-  return () => controller.abort();
-}, [userId]);
+  // ...
+}, []); // Runs only on mount (when the component appears)
 ```
 
-Alternatively, you can set a local variable to tell the effect to ignore the fetch result:
+</Gotcha>
 
-```js {2,10-12}
-useEffect(() => {
-  let ignore = false;
+### Step 3: Check whether your effect needs cleanup {/*step-3-check-whether-your-effect-needs-cleanup*/}
 
-  fetchUser(userId).then(result => {
-    if (!ignore) {
-      setResult(result);
-    }
-  });
+However, there is still a second issue you need to fix. If you press "Reset" on the sandbox and look at the console while it loads, you will notice that `"Connecting..."` is printed twice instead of once as you might expect.
 
-  return () => {
-    ignore = true;
-  };
-}, [userId]);
-```
+**Why does the effect run twice even with `[]` dependencies?**
 
-Cleaning up your effect ensures that your component works well if it gets removed from the page and then added again. It also ensures that if a dependency (like `userId` above) changes, the "outdated" effect (which may already be fetching something) does not conflict with fetching the next `userId`. 
+The problem with this effect is that it's missing *cleanup*. Often, effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore".
 
-</DeepDive>
 
-## Recap {/*recap*/}
+## Why does React run  {/*why-does-react-run*/}
 
-- Unlike events, effects are caused by rendering itself rather than a particular interaction.
-- Effects let you synchronize a component with some external system (third-party API, network, etc).
-- By default, effects run after every render (including the initial one).
-- React will skip an effect you specify dependencies, and all of them are the same as during the last render.
-- You can't "choose" your dependencies. They are determined by the code inside the effect.
-- An empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
-- When Strict Mode is on, React mounts components twice (in development only!) to stress-test your effects.
-- If your effect breaks because of remounting, you need to implement a cleanup function.
-- React will call your cleanup function before the effect runs next time, and during the unmount.
-
-## Challenges {/*challenges*/}
-
-TODO
+- changing deps
+- navigation

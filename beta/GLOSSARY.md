@@ -17,6 +17,8 @@
 - **pipeline**: putki
 - **bundler**: bundler
 - **container**: container
+- **wrapper**: wrapper
+- **to wrap smth**: kääriä, wräpätä
 - **minify**: minifioida, pienentää
 - **preprocessor**: esikääntäjä
 - **repository**: repository, repo

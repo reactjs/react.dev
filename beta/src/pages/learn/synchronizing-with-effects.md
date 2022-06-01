@@ -142,16 +142,37 @@ React will remember the cleanup function you returned from the effect. React wil
 
 Writing effects is the hardest part of writing React apps. It's okay to feel intimidated! When you write JSX, React takes care of [translating declarative code into imperative commands](/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative). But when you write effects, you are doing this translation yourself. It takes some practice to get comfortable. Let's walk through some common examples.
 
+### Example: controlling a video player {/*example-controlling-a-video-player*/}
+
+TODO
+
 ### Example: sending an analytics log {/*example-sending-an-analytics-log*/}
 
-### Example: controlling a video player {/*example-controlling-a-video-player*/}
+TODO
 
 ### Example: connecting to a chat {/*example-connecting-to-a-chat*/}
 
-### Example: fade-in animation {/*example-fade-in-animation*/}
+TODO
+
+### Example: animating {/*example-animating*/}
+
+TODO
 
 ### Example: fetching data {/*example-fetching-data*/}
 
+TODO
+
+## Common mistakes {/*common-mistakes*/}
+
+TODO
+
+## Recap {/*recap*/}
+
+TODO
+
+## Challenges {/*challenges*/}
+
+TODO
 
 
 

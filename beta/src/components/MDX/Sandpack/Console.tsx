@@ -34,7 +34,7 @@ export const SandpackConsole: React.FC = () => {
 
   React.useEffect(() => {
     const unsubscribe = listen((message) => {
-      if (message.type === 'start') {
+      if (message.type === 'start' && message.firstLoad) {
         setLogs([]);
       }
 

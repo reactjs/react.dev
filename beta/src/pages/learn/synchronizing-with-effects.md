@@ -40,7 +40,7 @@ To write an effect, follow these three steps:
 2. **Specify the dependencies.** Most effects should only re-run *when needed* rather than after every render. For example, connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
 3. **Add cleanup if needed.** Some effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
 
-We'll look at these steps in more detail first, and then consider a few concrete examples.
+Before we dive into concrete examples, let's look at the syntax.
 
 ### Step 1: Declare an effect {/*step-1-declare-an-effect*/}
 
@@ -77,7 +77,7 @@ function MyComponent() {
   }, []); // Runs on mount
 ```
 
-**With empty `[]` dependencies, your effect will only run _on mount,_** i.e. when the component is added to the screen. It will not run when the component re-renders due to a change in props or state. (You may still notice that your effect always fires twice during development, but we'll get back to what this means later on this page.)
+**With empty `[]` dependencies, your effect will only run _on mount,_** i.e. when the component is added to the screen. It will no longer run when the component re-renders due to a change in props or state. (During development, you'll see your effect firing twice even with `[]`, but we'll see what this means later.)
 
 **You can't leave the dependencies empty if your effect uses information from rendering.** The effect code below uses the `color` prop and the `text` state variable. If your linter is [configured correctly](/learn/editor-setup#linting), you will see a lint error:
 
@@ -111,9 +111,7 @@ However, that mental model is misleading and more complex than how it works. Whe
 
 Let's say your component re-renders again for some unrelated reason without changing `color` or `text`. This means that for this render, your effect's dependency values are again `['red', 'hello']`. React compares `['red', 'hello']` from the previous render with `['red', 'hello']` from this render. Since all dependencies have the same values, React knows it can skip re-running your effect.
 
-So React does not really "subscribe" to anything. It only remembers the values of your dependencies on each render, and skips re-running the effect if the dependencies are the same during the next render.
-
-Only values computed from props, state, context are valid dependencies. A global mutable value like `[window.location.pathname]` is not a valid dependency because React wouldn't know when it changes.
+So React does not really "subscribe" to anything. It only remembers the values of your dependencies on each render, and skips re-running the effect if the dependencies are the same during the next render. This is why you can't use a global variable or a mutable value like `window.location.pathname` as a dependency. React can't know when it changes, so it wouldn't re-run your effect. Instead, your dependencies should be computed from props, state, context, or values you created during rendering.
 
 </DeepDive>
 
@@ -125,20 +123,22 @@ You can add cleanup to your effect by returning a function _from_ your effect:
 
 ```js {3-5}
   useEffect(() => {
-    const something = createSomething();
+    subscribeToSomething(id);
     return () => {
-      something.destroy();
+      unsubscribeFromSomething(id);
     };
-  }, []);
+  }, [id]);
 ```
 
-When React runs your effect, it will remember the cleanup function that you have provided. React will call that cleanup function before applying the same effect again (if a dependency changed and then effect needs to re-run). React will *also* always call cleanup when the component unmounts, i.e. gets removed from the screen.
+When React runs your effect, it will remember the cleanup function that you have provided. React will call that cleanup function before applying the same effect again when some dependency (like `id` in this example) changes. React will *also* always call cleanup when the component unmounts, i.e. gets removed from the screen.
 
-**During development, React will stress-test your components by remounting them immediately after they get mounted.** This lets you find effects that need cleanup. If your effect does a fetch without cancellation, you will notice it fetching twice. If your effect subscribes to a data source but never unsubscribes from it, you will notice two subscriptions. This behavior is development-only and helps find many bugs, as you will see later on this page.
+**The cleanup function should "cancel out" whatever the effect was doing.** The application user shouldn't be able to notice the difference between calling your effect once and doing an _effect → cleanup → effect_ sequence. For example, from the user's perspective, calling `subscribeToSomething()` once produces the same behavior as a sequence of `subscribeToSomething()`, `unsubscribeFromSomething()`, and `subscribeToSomething()`.
+
+**During development, React will stress-test your effects by remounting them once right after mounting.** This lets you find effects that need cleanup. If your effect does a fetch without cancellation, you'll see the fetch callback run twice. If your effect subscribes to a data source but never unsubscribes from it, you will notice two subscriptions. This behavior is development-only and helps find many bugs, as you will see later on this page.
 
 ## Writing effects in practice {/*writing-effects-in-practice*/}
 
-Let's go through a few examples to see how the steps above work in practice.
+Writing effects is the hardest part of writing React apps. It's okay to feel intimidated! When you write JSX, React takes care of [translating declarative code into imperative commands](/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative). But when you write effects, you are doing this translation yourself. It takes some practice to get comfortable. Let's walk through some common examples.
 
 ### Example: sending an analytics log {/*example-sending-an-analytics-log*/}
 

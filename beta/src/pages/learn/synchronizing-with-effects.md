@@ -30,9 +30,11 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 
 ***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *effect* because it needs to happen regardless of which interaction caused the component to appear. Effects run at the end of the [rendering process](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
 
-## How to write an effect {/*how-to-write-an-effect*/}
+## You might not need an effect {/*you-might-not-need-an-effect*/}
 
 **Don't rush to add effects to your components.** Keep in mind that effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your effect only adjusts some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
+
+## How to write an effect {/*how-to-write-an-effect*/}
 
 To write an effect, follow these three steps:
 
@@ -130,11 +132,11 @@ You can add cleanup to your effect by returning a function _from_ your effect:
   }, [id]);
 ```
 
-When React runs your effect, it will remember the cleanup function that you have provided. React will call that cleanup function before applying the same effect again when some dependency (like `id` in this example) changes. React will *also* always call cleanup when the component unmounts, i.e. gets removed from the screen.
+React will remember the cleanup function you returned from the effect. React will call that cleanup function before applying the same effect again (for example, if the `id` dependency changes or when you save the file in development). React will *also* call cleanup when the component unmounts, i.e. gets removed from the screen.
 
-**The cleanup function should "cancel out" whatever the effect was doing.** The application user shouldn't be able to notice the difference between calling your effect once and doing an _effect → cleanup → effect_ sequence. For example, from the user's perspective, calling `subscribeToSomething()` once produces the same behavior as a sequence of `subscribeToSomething()`, `unsubscribeFromSomething()`, and `subscribeToSomething()`.
+**The cleanup function should "cancel out" whatever the effect was doing.** As a rule of thumb, the app user shouldn't feel a difference between runnning the effect once and running an _effect → cleanup → effect_ sequence. The above example passes this test because running `subscribeToSomething()` once produces the same visible behavior as running `subscribeToSomething()` → `unsubscribeFromSomething()` → `subscribeToSomething()`.
 
-**During development, React will stress-test your effects by remounting them once right after mounting.** This lets you find effects that need cleanup. If your effect does a fetch without cancellation, you'll see the fetch callback run twice. If your effect subscribes to a data source but never unsubscribes from it, you will notice two subscriptions. This behavior is development-only and helps find many bugs, as you will see later on this page.
+**During development, React will stress-test your effects by remounting them immediately after mount.** This lets you find effects that need cleanup. If your effect does a fetch without cancellation, you'll notice the fetch callback running twice. If your effect subscribes to a data source but never unsubscribes from it, you will notice two subscriptions. This behavior is development-only and helps find many bugs, as you will see later on this page.
 
 ## Writing effects in practice {/*writing-effects-in-practice*/}
 

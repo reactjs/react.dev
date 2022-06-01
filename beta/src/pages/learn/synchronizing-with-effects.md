@@ -125,16 +125,16 @@ You can add cleanup to your effect by returning a function _from_ your effect:
 
 ```js {3-5}
   useEffect(() => {
-    subscribeToSomething(id);
+    subscribeToSomething(userId);
     return () => {
-      unsubscribeFromSomething(id);
+      unsubscribeFromSomething(userId);
     };
-  }, [id]);
+  }, [userId]);
 ```
 
-React will remember the cleanup function you returned from the effect. React will call that cleanup function before applying the same effect again (for example, if the `id` dependency changes or when you save the file in development). React will *also* call cleanup when the component unmounts, i.e. gets removed from the screen.
+React will remember the cleanup function you returned from the effect. React will call the cleanup function before applying that effect again (for example, if a dependency like `userId` changes or when you save the file in development). React will *also* call cleanup when the component unmounts, i.e. gets removed from the screen.
 
-**The cleanup function should "cancel out" whatever the effect was doing.** As a rule of thumb, the app user shouldn't feel a difference between runnning the effect once and running an _effect → cleanup → effect_ sequence. The above example passes this test because running `subscribeToSomething()` once produces the same visible behavior as running `subscribeToSomething()` → `unsubscribeFromSomething()` → `subscribeToSomething()`.
+**The cleanup function needs to undo or stop whatever the effect was doing.** As a rule of thumb, the app user shouldn't feel a difference between runnning the effect once and running an _effect → cleanup → effect_ sequence. The above example passes this test because running `subscribeToSomething()` once produces the same visible behavior as running `subscribeToSomething()` → `unsubscribeFromSomething()` → `subscribeToSomething()`.
 
 **During development, React will stress-test your effects by remounting them immediately after mount.** This lets you find effects that need cleanup. If your effect does a fetch without cancellation, you'll notice the fetch callback running twice. If your effect subscribes to a data source but never unsubscribes from it, you will notice two subscriptions. This behavior is development-only and helps find many bugs, as you will see later on this page.
 

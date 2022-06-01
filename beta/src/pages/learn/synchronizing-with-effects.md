@@ -140,7 +140,7 @@ React will remember the cleanup function you returned from the effect. React wil
 
 ## Writing effects in practice {/*writing-effects-in-practice*/}
 
-Writing effects is the hardest part of writing React apps. It's okay to feel intimidated! When you write JSX, React takes care of [translating declarative code into imperative commands](/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative). But when you write effects, you are doing this translation yourself. It takes some practice to get comfortable. Let's walk through some common examples.
+Writing effects is the hardest part of writing React apps. It's okay to feel intimidated! When you write JSX, React takes care of [translating declarative code into imperative commands](/learn/reacting-to-input-with-state#how-declarative-ui-compares-to-imperative). But when you write effects, you are doing this translation yourself. It takes some practice to get comfortable, so let's walk through some examples.
 
 ### Example: controlling a video player {/*example-controlling-a-video-player*/}
 
@@ -154,7 +154,7 @@ TODO
 
 TODO
 
-### Example: animating {/*example-animating*/}
+### Example: animating fade-in {/*example-animating-fade-in*/}
 
 TODO
 

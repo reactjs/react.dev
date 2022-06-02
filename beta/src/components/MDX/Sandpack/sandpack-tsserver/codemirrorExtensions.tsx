@@ -15,15 +15,15 @@ import {
   openLintPanel,
 } from '@codemirror/lint';
 import {EditorState} from '@codemirror/state';
-import {hoverTooltip, Tooltip, tooltips} from '@codemirror/tooltip';
+import {hoverTooltip, Tooltip} from '@codemirror/tooltip';
 import {Command, EditorView, keymap, ViewUpdate} from '@codemirror/view';
-import {SandpackFiles} from '@codesandbox/sandpack-react';
 import {ReactElement, ReactNode} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import type ts from 'typescript';
 import {SymbolDisplayPart, SymbolDisplayPartKind} from 'typescript';
 import {ChannelClient} from './ChannelBridge';
 import {DEBUG_EDITOR_RENDER} from './debug';
+import {ensurePathStartsWithSlash} from './ensurePathBeginsWithSlash';
 import type {TSServerWorker} from './tsserver.worker';
 
 export function codemirrorTypescriptExtensions(
@@ -641,25 +641,4 @@ function throttleAsync<Args extends any[], R>(
     startTimeout();
     return result.promise;
   };
-}
-
-export function ensurePathStartsWithSlash(path: string): string;
-export function ensurePathStartsWithSlash(path: undefined): undefined;
-export function ensurePathStartsWithSlash(path: string | undefined) {
-  if (path === undefined) {
-    return path;
-  }
-  if (path[0] === '/') {
-    return path;
-  }
-  return `/${path}`;
-}
-
-export function ensureAllPathsStartWithSlash(fs: SandpackFiles): SandpackFiles {
-  return Object.fromEntries(
-    Object.entries(fs).map(([key, value]) => [
-      ensurePathStartsWithSlash(key),
-      value,
-    ])
-  );
 }

@@ -1,12 +1,11 @@
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {useEffect, useMemo, useState} from 'react';
 import {ChannelClient, ChannelServer} from './ChannelBridge';
+import {DEBUG_EDITOR_RENDER} from './debug';
 import {
-  codemirrorTypescriptExtensions,
   ensureAllPathsStartWithSlash,
   ensurePathStartsWithSlash,
-} from './codemirrorExtensions';
-import {DEBUG_EDITOR_RENDER} from './debug';
+} from './ensurePathBeginsWithSlash';
 import {getLocalStorage} from './localStorageHelper';
 import type {TSServerWorker} from './tsserver.worker';
 
@@ -39,6 +38,18 @@ export const useTypescriptExtension = () => {
       client: new ChannelClient<TSServerWorker>({postMessage}, true),
     };
   });
+
+  const [codemirrorExtensions, setCodemirrorExtensions] =
+    useState<typeof import('./codemirrorExtensions')>();
+
+  useEffect(() => {
+    const loadExtensions = async () => {
+      const codemirrorExtensions = await import('./codemirrorExtensions');
+      setCodemirrorExtensions(codemirrorExtensions);
+    };
+
+    loadExtensions();
+  }, []);
 
   const {sandpack} = useSandpack();
 
@@ -91,12 +102,15 @@ export const useTypescriptExtension = () => {
 
   const activePath = sandpack.activePath;
   const extensions = useMemo(() => {
-    if (!tsServerWorker) {
+    if (!tsServerWorker || !codemirrorExtensions) {
       return [];
     }
 
-    return codemirrorTypescriptExtensions(tsServerWorker.client, activePath);
-  }, [tsServerWorker, activePath]);
+    return codemirrorExtensions.codemirrorTypescriptExtensions(
+      tsServerWorker.client,
+      activePath
+    );
+  }, [codemirrorExtensions, tsServerWorker, activePath]);
 
   return extensions;
 };

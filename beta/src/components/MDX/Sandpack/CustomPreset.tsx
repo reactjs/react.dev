@@ -73,7 +73,13 @@ export function CustomPreset({
             )}>
             <MemoCodeEditor
               showLineNumbers
-              showInlineErrors
+              // If `showInlineErrors` is enabled, Sandpack dismisses autocompletion whenever
+              // the build errors. This is frustrating because on a fast connection, the editor
+              // will update and dismiss autocomplete in the middle of a function name!
+              //
+              // Instead, we use typescript's error diagnostics, which are more
+              // subtle but don't disrupt autocomplete.
+              showInlineErrors={false}
               showTabs={false}
               showRunButton={false}
               extensions={extensions}

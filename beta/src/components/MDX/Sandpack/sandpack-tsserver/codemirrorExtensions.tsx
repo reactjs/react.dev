@@ -34,33 +34,10 @@ export const codemirrorTypescriptExtensions = (
     'codemirrorTypescriptExtensions(filePath: "%s")',
     filePath
   );
-  const formatCode: Command = (target) => {
-    if (!filePath) {
-      return false;
-    }
-    void (async () => {
-      const contents = target.state.doc.toJSON().join('\n');
-      await client.call(
-        'updateFile',
-        ensurePathStartsWithSlash(filePath),
-        contents
-      );
-      const changes = await client.call(
-        'formatFile',
-        ensurePathStartsWithSlash(filePath)
-      );
-      if (!changes) {
-        return;
-      }
-      target.dispatch({
-        changes: tsTextChangesToCodemirrorChanges(target.state, changes),
-      });
-    })();
-    return true;
-  };
 
   return [
     requiredExtensions(client, filePath),
+    formatExtension(client, filePath),
     autocompletion({
       activateOnTyping: true,
       override: [
@@ -217,14 +194,6 @@ export const codemirrorTypescriptExtensions = (
         key: 'Cmd-.',
         run: (editor) => openLintPanel(editor) || closeLintPanel(editor),
       },
-      {
-        key: 'Shift-Alt-f',
-        run: formatCode,
-      },
-      {
-        key: 'Mod-s',
-        run: formatCode,
-      },
     ]),
 
     linter(
@@ -345,6 +314,48 @@ function requiredExtensions(
         textAlign: 'left',
       },
     }),
+  ];
+}
+
+function formatExtension(
+  client: ChannelClient<TSServerWorker>,
+  filePath: string | undefined
+) {
+  const formatCode: Command = (target) => {
+    if (!filePath) {
+      return false;
+    }
+    void (async () => {
+      const contents = target.state.doc.toJSON().join('\n');
+      await client.call(
+        'updateFile',
+        ensurePathStartsWithSlash(filePath),
+        contents
+      );
+      const changes = await client.call(
+        'formatFile',
+        ensurePathStartsWithSlash(filePath)
+      );
+      if (!changes) {
+        return;
+      }
+      target.dispatch({
+        changes: tsTextChangesToCodemirrorChanges(target.state, changes),
+      });
+    })();
+    return true;
+  };
+  return [
+    keymap.of([
+      {
+        key: 'Shift-Alt-f',
+        run: formatCode,
+      },
+      {
+        key: 'Mod-s',
+        run: formatCode,
+      },
+    ]),
   ];
 }
 

@@ -457,7 +457,6 @@ const FormatCodeSettings: TS.FormatCodeSettings = {
   indentSize: 2,
   tabSize: 2,
   convertTabsToSpaces: true,
-  baseIndentSize: 2,
   indentStyle: TS.IndentStyle.Smart,
   insertSpaceAfterCommaDelimiter: true,
   insertSpaceAfterKeywordsInControlFlowStatements: true,

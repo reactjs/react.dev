@@ -1,3 +1,7 @@
+// eslint considers named arguments in interfaces and overloads unused.
+// Disabling to avoid noise in this type-heavy file.
+/* eslint-disable no-unused-vars */
+
 /** Used for type-level retrieval */
 const ResponseTypeSymbol = Symbol('Response Type');
 

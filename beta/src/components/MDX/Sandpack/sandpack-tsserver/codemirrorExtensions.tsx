@@ -15,7 +15,7 @@ import {
   openLintPanel,
 } from '@codemirror/lint';
 import {EditorState} from '@codemirror/state';
-import {hoverTooltip, Tooltip} from '@codemirror/tooltip';
+import {hoverTooltip, Tooltip, tooltips} from '@codemirror/tooltip';
 import {Command, EditorView, keymap, ViewUpdate} from '@codemirror/view';
 import {SandpackFiles} from '@codesandbox/sandpack-react';
 import {ReactElement, ReactNode} from 'react';
@@ -64,10 +64,21 @@ function requiredExtensions(
       }
     }),
 
+    tooltips({
+      // position: absolute allows us to use percent width.
+      position: 'absolute',
+    }),
+
     EditorView.baseTheme({
+      '.cm-tooltip': {
+        // fighting .sp-code-editor .cm-tooltip, which sets max-width: 200px.
+        maxWidth: 'min(60ch, 80%) !important',
+      },
       '.quickinfo-monospace': {
         fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
         fontSize: '87%',
+        // Some tupe
+        overflowWrap: 'break-word',
       },
       '.quickinfo-truncate': {
         display: '-webkit-box',
@@ -438,28 +449,35 @@ const TS_SYMBOL_TAG_TO_CODEMIRROR_TAG: Record<
   linkText: hl.tags.link,
 };
 
-const BRACKET_TYPE = {
-  '(': hl.tags.paren,
-  ')': hl.tags.paren,
-  '[': hl.tags.squareBracket,
-  ']': hl.tags.squareBracket,
-  '}': hl.tags.brace,
-  '{': hl.tags.brace,
-  '<': hl.tags.angleBracket,
-  '>': hl.tags.angleBracket,
-};
+const BRACKETS = {
+  '(': {tag: hl.tags.paren, type: 'open'},
+  ')': {tag: hl.tags.paren, type: 'close'},
+  '[': {tag: hl.tags.squareBracket, type: 'open'},
+  ']': {tag: hl.tags.squareBracket, type: 'close'},
+  '{': {tag: hl.tags.brace, type: 'open'},
+  '}': {tag: hl.tags.brace, type: 'close'},
+  '<': {tag: hl.tags.angleBracket, type: 'open'},
+  '>': {tag: hl.tags.angleBracket, type: 'close'},
+} as const;
+
+const ZERO_WIDTH_SPACE = '​';
 
 function highlightSymbolDisplayPart(sym: SymbolDisplayPart) {
   if (sym.kind in TS_SYMBOL_TAG_TO_CODEMIRROR_TAG) {
     const kind = sym.kind as keyof typeof TS_SYMBOL_TAG_TO_CODEMIRROR_TAG;
 
-    if (kind === 'punctuation' && sym.text in BRACKET_TYPE) {
-      return BRACKET_TYPE[sym.text as keyof typeof BRACKET_TYPE];
+    if (kind === 'punctuation' && sym.text in BRACKETS) {
+      return BRACKETS[sym.text as keyof typeof BRACKETS];
     }
 
-    return TS_SYMBOL_TAG_TO_CODEMIRROR_TAG[
-      sym.kind as keyof typeof TS_SYMBOL_TAG_TO_CODEMIRROR_TAG
-    ];
+    const tag =
+      TS_SYMBOL_TAG_TO_CODEMIRROR_TAG[
+        sym.kind as keyof typeof TS_SYMBOL_TAG_TO_CODEMIRROR_TAG
+      ];
+
+    if (tag) {
+      return {tag, type: 'other'} as const;
+    }
   }
 
   console.warn(`Unknown symbol kind: ${sym.kind} (in "${sym.text}")`);
@@ -485,10 +503,13 @@ function SymbolDisplayParts(props: {
 }) {
   const {state, parts} = props;
   const items = parts.map<ReactNode>((sym, i) => {
-    const tag = highlightSymbolDisplayPart(sym);
+    const symbolInfo = highlightSymbolDisplayPart(sym);
     return (
-      <CodeMirrorTag state={state} tag={tag} key={i}>
+      <CodeMirrorTag state={state} tag={symbolInfo?.tag} key={i}>
+        {/* Add zero width spaces before/after braces to assist in wrapping long symbols. */}
+        {symbolInfo?.type === 'close' ? ZERO_WIDTH_SPACE : ''}
         {sym.text}
+        {symbolInfo?.type === 'open' ? ZERO_WIDTH_SPACE : ''}
       </CodeMirrorTag>
     );
   });

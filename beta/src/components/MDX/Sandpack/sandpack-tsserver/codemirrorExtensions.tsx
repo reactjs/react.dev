@@ -26,10 +26,10 @@ import {ChannelClient} from './ChannelBridge';
 import {DEBUG_EDITOR_RENDER} from './debug';
 import type {TSServerWorker} from './tsserver.worker';
 
-export const codemirrorTypescriptExtensions = (
+export function codemirrorTypescriptExtensions(
   client: ChannelClient<TSServerWorker>,
   filePath: string | undefined
-) => {
+) {
   DEBUG_EDITOR_RENDER(
     'codemirrorTypescriptExtensions(filePath: "%s")',
     filePath
@@ -42,7 +42,7 @@ export const codemirrorTypescriptExtensions = (
     autocompleteExtension(client, filePath),
     hoverTooltipExtension(client, filePath),
   ];
-};
+}
 
 function requiredExtensions(
   client: ChannelClient<TSServerWorker>,

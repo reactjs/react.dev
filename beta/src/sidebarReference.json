@@ -30,6 +30,10 @@
             {
               "title": "useState()",
               "path": "/apis/usestate"
+            },
+            {
+              "title": "useMemo()",
+              "path": "/apis/usememo"
             }
           ]
         },

@@ -84,6 +84,16 @@ const ThemeContext = createContext('light');
 
 </YouWillLearnCard>
 
+<YouWillLearnCard title="useMemo" path="/apis/usememo">
+
+Returns a memoized value.
+
+```js
+const memoizedvalue= useMemo(() => expensiveFunction(count), [count]);
+```
+
+</YouWillLearnCard>
+
 ### Refs {/*refs*/}
 
 <YouWillLearnCard title="useRef" path="/apis/useref">

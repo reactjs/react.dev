@@ -1,4 +1,4 @@
-import {VirtualTypeScriptEnvironment} from '@typescript/vfs';
+import type {VirtualTypeScriptEnvironment} from '@typescript/vfs';
 import type {CompilerOptions} from 'typescript';
 import {DEBUG_EDITOR_WORKER} from './debug';
 import {ChannelServer} from './ChannelBridge';

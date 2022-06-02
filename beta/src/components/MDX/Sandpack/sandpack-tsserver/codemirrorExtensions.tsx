@@ -562,6 +562,9 @@ function QuickInfo(props: {
 }
 
 function renderIntoNode(node: Element, reactNode: ReactElement) {
+  // Use renderToStaticMarkup + innerHTML because Codemirror doesn't give us a
+  // hook to unmount a React root when the tooltip closes. I'm not sure if that
+  // would leak memory.
   const html = renderToStaticMarkup(reactNode);
   node.innerHTML = html;
 }

@@ -1,12 +1,12 @@
-import {SandpackCodeEditor, useSandpack} from '@codesandbox/sandpack-react';
-import {memo, useEffect, useLayoutEffect, useMemo, useState} from 'react';
-import {DEBUG_EDITOR_RENDER} from './debug';
+import {useSandpack} from '@codesandbox/sandpack-react';
+import {useEffect, useMemo, useState} from 'react';
 import {ChannelClient, ChannelServer} from './ChannelBridge';
 import {
   codemirrorTypescriptExtensions,
-  ensurePathStartsWithSlash,
   ensureAllPathsStartWithSlash,
+  ensurePathStartsWithSlash,
 } from './codemirrorExtensions';
+import {DEBUG_EDITOR_RENDER} from './debug';
 import {getLocalStorage} from './localStorageHelper';
 import type {TSServerWorker} from './tsserver.worker';
 
@@ -89,23 +89,14 @@ export const useTypescriptExtension = () => {
     tsServerWorker,
   ]);
 
-  // const [tooltipNode, setTooltipNode] = useState<HTMLElement | null>(null);
-  // useLayoutEffect(() => {
-  //   setTooltipNode(sandpack.lazyAnchorRef.current?.parentElement ?? null);
-  // });
-
   const activePath = sandpack.activePath;
   const extensions = useMemo(() => {
     if (!tsServerWorker) {
       return [];
     }
 
-    return codemirrorTypescriptExtensions(
-      tsServerWorker.client,
-      activePath
-      // tooltipNode
-    );
-  }, [tsServerWorker?.client, activePath /* tooltipNode */]);
+    return codemirrorTypescriptExtensions(tsServerWorker.client, activePath);
+  }, [tsServerWorker, activePath]);
 
   return extensions;
 };

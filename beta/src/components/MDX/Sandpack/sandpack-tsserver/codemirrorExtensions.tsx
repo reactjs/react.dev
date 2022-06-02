@@ -15,21 +15,20 @@ import {
   openLintPanel,
 } from '@codemirror/lint';
 import {EditorState} from '@codemirror/state';
-import {hoverTooltip, Tooltip, tooltips} from '@codemirror/tooltip';
+import {hoverTooltip, Tooltip} from '@codemirror/tooltip';
 import {Command, EditorView, keymap, ViewUpdate} from '@codemirror/view';
 import {SandpackFiles} from '@codesandbox/sandpack-react';
 import {ReactElement, ReactNode} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import type ts from 'typescript';
 import {SymbolDisplayPart, SymbolDisplayPartKind} from 'typescript';
-import {DEBUG_EDITOR_RENDER} from './debug';
 import {ChannelClient} from './ChannelBridge';
+import {DEBUG_EDITOR_RENDER} from './debug';
 import type {TSServerWorker} from './tsserver.worker';
 
 export const codemirrorTypescriptExtensions = (
   client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined,
-  tooltipRef?: HTMLElement | null | undefined
+  filePath: string | undefined
 ) => {
   DEBUG_EDITOR_RENDER(
     'codemirrorTypescriptExtensions(filePath: "%s")',
@@ -63,13 +62,6 @@ export const codemirrorTypescriptExtensions = (
   let previousFileContent: string | undefined;
 
   return [
-    tooltips({
-      // Fixed mode doesn't work well if your document scrolls!
-      position: 'absolute',
-      // TODO: this doesn't seem to work!
-      parent: DEBUG_EDITOR_RENDER.tap('tooltipRef', tooltipRef) ?? undefined,
-    }),
-
     EditorView.updateListener.of((update: ViewUpdate) => {
       if (filePath) {
         const newFileContent = update.state.doc.toJSON().join('\n');

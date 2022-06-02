@@ -102,16 +102,12 @@ export const codemirrorTypescriptExtensions = (
                 ));
 
               if (!completions) {
-                console.log('Unable to get completions', {pos});
+                DEBUG_EDITOR_RENDER('Unable to get completions', {pos});
                 return null;
               }
 
               return completeFromList(
                 completions.entries.map((c, i) => {
-                  if (c.name === 'useRef') {
-                    console.log(`completion ${i}:`, c);
-                  }
-
                   const details = c.details;
                   const description = details?.codeActions?.at(0)?.description;
                   const source =
@@ -136,8 +132,11 @@ export const codemirrorTypescriptExtensions = (
 
                           const apply = c.name;
 
-                          // TODO: this is messed yp
-                          // debugger;
+                          // TODO: currently we re-implement codemirror/autocomplete's default behavior
+                          // because we couldn't have both a custom action and do the default.
+                          // Upstream added a helper, but upgrading autocomplete requires a bump in many
+                          // codemirror-related packages.
+                          // See https://github.com/codemirror/autocomplete/blob/main/CHANGELOG.md#0202-2022-05-24
                           const matchedPrefix =
                             ctx.matchBefore(/\w+/) ??
                             DEBUG_EDITOR_RENDER.tap('fallback', {
@@ -152,59 +151,6 @@ export const codemirrorTypescriptExtensions = (
                             to: view.state.selection.main.to,
                             insert: apply,
                           };
-
-                          // Copied from here:
-                          // https://github.com/codemirror/autocomplete/blob/97bf06555c5028ca9930576fb05e5f809a2d604f/src/completion.ts#L213-L229
-                          // But, we don't have the things we need to use it.
-                          // const insertLabelChanges = view.state.changeByRange(
-                          //   (range) => {
-                          //     if (range == view.state.selection.main)
-                          //       return {
-                          //         changes: {
-                          //           from: baseLabelChange.from,
-                          //           to: baseLabelChange.to,
-                          //           insert: apply,
-                          //         },
-                          //         range: EditorSelection.cursor(
-                          //           baseLabelChange.from + apply.length
-                          //         ),
-                          //       };
-                          //     const len =
-                          //       baseLabelChange.to - baseLabelChange.from;
-                          //     if (
-                          //       !range.empty ||
-                          //       (len &&
-                          //         view.state.sliceDoc(
-                          //           range.from - len,
-                          //           range.from
-                          //         ) !=
-                          //           view.state.sliceDoc(
-                          //             baseLabelChange.from,
-                          //             baseLabelChange.to
-                          //           ))
-                          //     )
-                          //       return { range };
-                          //     return {
-                          //       changes: {
-                          //         from: range.from - len,
-                          //         to: range.from,
-                          //         insert: apply,
-                          //       },
-                          //       range: EditorSelection.cursor(
-                          //         range.from - len + apply.length
-                          //       ),
-                          //     };
-                          //   }
-                          // );
-
-                          console.log(
-                            'change',
-                            baseLabelChange,
-                            ctx.state.sliceDoc(
-                              baseLabelChange.from,
-                              baseLabelChange.to
-                            )
-                          );
 
                           view.dispatch({
                             // ...insertLabelChanges,
@@ -248,7 +194,7 @@ export const codemirrorTypescriptExtensions = (
                 })
               )(ctx);
             } catch (e) {
-              console.log('Unable to get completions', {pos, error: e});
+              DEBUG_EDITOR_RENDER('Unable to get completions', {pos, error: e});
               return null;
             }
           }

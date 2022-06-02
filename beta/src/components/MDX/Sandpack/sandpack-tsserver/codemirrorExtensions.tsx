@@ -72,13 +72,28 @@ function requiredExtensions(
 
     EditorView.baseTheme({
       '.cm-tooltip': {
-        // fighting .sp-code-editor .cm-tooltip, which sets max-width: 200px.
-        maxWidth: 'min(60ch, 80%, 70vw) !important',
+        // fighting .sp-code-editor .cm-tooltip here:
+        maxWidth: 'min(60ch, 70vw) !important', // set to 200px by Sandpack
+        border: '1px solid var(--sp-colors-fg-inactive) !important', // set to light colors always
+        padding: '2px',
+        borderRadius: '4px',
+        background: 'var(--sp-colors-bg-default)',
+      },
+      '.cm-tooltip-autocomplete ul li[aria-selected]': {
+        borderRadius: '2px',
+      },
+      '.cm-tooltip.cm-completionInfo': {
+        margin: '0px 2px',
+        maxWidth: '400px !important', // sins of !important :(
       },
       '.quickinfo-monospace': {
-        fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
-        fontSize: '87%',
-        // Some tupe
+        // Respect dark color theme better
+        color: 'var(--theme-plain)',
+        // TODO: is there a better way to get the mono font stack?
+        fontFamily:
+          '"Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
+        // fontSize: '87%',
+        // Some types are very long!
         overflowWrap: 'break-word',
       },
       '.quickinfo-truncate': {
@@ -529,10 +544,9 @@ function QuickInfo(props: {
     <>
       {displayParts && (
         <div
-          className={`cm-tooltip-section quickinfo-documentation  ${
+          className={`cm-tooltip-section quickinfo-documentation quickinfo-monospace  ${
             truncateDisplayParts ? 'quickinfo-truncate quickinfo-small' : ''
           }`}>
-          <span className="quickinfo-monospace"></span>
           <SymbolDisplayParts state={state} parts={displayParts} />
         </div>
       )}

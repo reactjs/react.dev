@@ -227,7 +227,7 @@ html.dark .code-step * {
 }
 .mdx-heading:before {
   height: 6rem;
-  margin-top: -6rem;
+  /* margin-top: -6rem; */
   visibility: hidden;
   content: '';
 }

@@ -4,8 +4,8 @@ import {DEBUG_EDITOR_RENDER} from './debug';
 import {ChannelClient, ChannelServer} from './ChannelBridge';
 import {
   codemirrorTypescriptExtensions,
-  normalizePath,
-  normalizePaths,
+  ensurePathStartsWithSlash,
+  ensureAllPathsStartWithSlash,
 } from './codemirrorExtensions';
 import {getLocalStorage} from './localStorageHelper';
 import type {TSServerWorker} from './tsserver.worker';
@@ -79,8 +79,8 @@ export const useTypescriptExtension = () => {
     const cache = tsServerWorker.renderer.loadTypescriptCache();
     tsServerWorker.client.call(
       'createTsSystem',
-      normalizePaths(sandpack.files) as any /* TODO */,
-      normalizePath(sandpack.activePath),
+      ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
+      ensurePathStartsWithSlash(sandpack.activePath),
       cache
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps

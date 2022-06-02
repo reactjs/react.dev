@@ -26,24 +26,6 @@ import {DEBUG_EDITOR_RENDER} from './debug';
 import {ChannelClient} from './ChannelBridge';
 import type {TSServerWorker} from './tsserver.worker';
 
-export function normalizePath(path: string): string;
-export function normalizePath(path: undefined): undefined;
-export function normalizePath(path: string | undefined) {
-  if (path === undefined) {
-    return path;
-  }
-  if (path[0] === '/') {
-    return path;
-  }
-  return `/${path}`;
-}
-
-export function normalizePaths(fs: SandpackFiles): SandpackFiles {
-  return Object.fromEntries(
-    Object.entries(fs).map(([key, value]) => [normalizePath(key), value])
-  );
-}
-
 export const codemirrorTypescriptExtensions = (
   client: ChannelClient<TSServerWorker>,
   filePath: string | undefined,
@@ -59,8 +41,15 @@ export const codemirrorTypescriptExtensions = (
     }
     void (async () => {
       const contents = target.state.doc.toJSON().join('\n');
-      await client.call('updateFile', normalizePath(filePath), contents);
-      const changes = await client.call('formatFile', normalizePath(filePath));
+      await client.call(
+        'updateFile',
+        ensurePathStartsWithSlash(filePath),
+        contents
+      );
+      const changes = await client.call(
+        'formatFile',
+        ensurePathStartsWithSlash(filePath)
+      );
       if (!changes) {
         return;
       }
@@ -88,7 +77,7 @@ export const codemirrorTypescriptExtensions = (
           previousFileContent = newFileContent;
           client.call(
             'updateFile',
-            normalizePath(filePath),
+            ensurePathStartsWithSlash(filePath),
             update.state.doc.toJSON().join('\n')
           );
         }
@@ -109,7 +98,7 @@ export const codemirrorTypescriptExtensions = (
                 (await client.call(
                   'autocompleteAtPosition',
                   pos,
-                  normalizePath(filePath)
+                  ensurePathStartsWithSlash(filePath)
                 ));
 
               if (!completions) {
@@ -270,7 +259,11 @@ export const codemirrorTypescriptExtensions = (
     hoverTooltip(
       async (_: EditorView, pos: number): Promise<Tooltip | null> => {
         const allInfo = filePath
-          ? await client.call('infoAtPosition', pos, normalizePath(filePath))
+          ? await client.call(
+              'infoAtPosition',
+              pos,
+              ensurePathStartsWithSlash(filePath)
+            )
           : undefined;
 
         if (!allInfo) {
@@ -320,7 +313,7 @@ export const codemirrorTypescriptExtensions = (
 
         const diagnostics = await client.call(
           'lintSystem',
-          normalizePath(filePath)
+          ensurePathStartsWithSlash(filePath)
         );
 
         if (!diagnostics) {
@@ -420,7 +413,7 @@ function getCodemirrorFileChanges(
   filePath: string
 ) {
   return changes.flatMap((fileEdit) => {
-    if (fileEdit.fileName !== normalizePath(filePath)) {
+    if (fileEdit.fileName !== ensurePathStartsWithSlash(filePath)) {
       console.warn('Unable to apply changes to other files', fileEdit);
       return [];
     }
@@ -634,4 +627,25 @@ function throttleAsync<Args extends any[], R>(
     startTimeout();
     return result.promise;
   };
+}
+
+export function ensurePathStartsWithSlash(path: string): string;
+export function ensurePathStartsWithSlash(path: undefined): undefined;
+export function ensurePathStartsWithSlash(path: string | undefined) {
+  if (path === undefined) {
+    return path;
+  }
+  if (path[0] === '/') {
+    return path;
+  }
+  return `/${path}`;
+}
+
+export function ensureAllPathsStartWithSlash(fs: SandpackFiles): SandpackFiles {
+  return Object.fromEntries(
+    Object.entries(fs).map(([key, value]) => [
+      ensurePathStartsWithSlash(key),
+      value,
+    ])
+  );
 }

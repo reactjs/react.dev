@@ -38,6 +38,7 @@ export const codemirrorTypescriptExtensions = (
   return [
     requiredExtensions(client, filePath),
     formatExtension(client, filePath),
+    diagnosticExtension(client, filePath),
     autocompletion({
       activateOnTyping: true,
       override: [
@@ -188,66 +189,6 @@ export const codemirrorTypescriptExtensions = (
       },
       {hideOnChange: true}
     ),
-
-    keymap.of([
-      {
-        key: 'Cmd-.',
-        run: (editor) => openLintPanel(editor) || closeLintPanel(editor),
-      },
-    ]),
-
-    linter(
-      async (): Promise<Diagnostic[]> => {
-        if (!filePath) {
-          return [];
-        }
-
-        const diagnostics = await client.call(
-          'lintSystem',
-          ensurePathStartsWithSlash(filePath)
-        );
-
-        if (!diagnostics) {
-          return [];
-        }
-
-        return diagnostics.map<Diagnostic>((diagnostic) => {
-          const {serializedActions, ...valid} = diagnostic;
-          return {
-            ...valid,
-            actions: serializedActions.map((action) => {
-              let applied = false;
-              return {
-                name: action.name,
-                apply: (editor) => {
-                  if (applied) {
-                    return;
-                  }
-                  applied = true;
-
-                  const changes = tsFileTextChangesToCodemirrorChanges(
-                    editor.state,
-                    action.data.changes,
-                    filePath
-                  );
-
-                  editor.dispatch({
-                    changes,
-                  });
-
-                  if (action.data.commands) {
-                    client.call('applyCodeAction', action.data.commands);
-                  }
-
-                  forceLinting(editor);
-                },
-              };
-            }),
-          };
-        });
-      },
-      {delay: 400}
-    ),
   ];
 };
 
@@ -356,6 +297,73 @@ function formatExtension(
         run: formatCode,
       },
     ]),
+  ];
+}
+
+function diagnosticExtension(
+  client: ChannelClient<TSServerWorker>,
+  filePath: string | undefined
+) {
+  return [
+    keymap.of([
+      {
+        key: 'Cmd-.',
+        run: (editor) => openLintPanel(editor) || closeLintPanel(editor),
+      },
+    ]),
+
+    linter(
+      async (): Promise<Diagnostic[]> => {
+        if (!filePath) {
+          return [];
+        }
+
+        const diagnostics = await client.call(
+          'lintSystem',
+          ensurePathStartsWithSlash(filePath)
+        );
+
+        if (!diagnostics) {
+          return [];
+        }
+
+        return diagnostics.map<Diagnostic>((diagnostic) => {
+          const {serializedActions, ...valid} = diagnostic;
+          return {
+            ...valid,
+            actions: serializedActions.map((action) => {
+              let applied = false;
+              return {
+                name: action.name,
+                apply: (editor) => {
+                  if (applied) {
+                    return;
+                  }
+                  applied = true;
+
+                  const changes = tsFileTextChangesToCodemirrorChanges(
+                    editor.state,
+                    action.data.changes,
+                    filePath
+                  );
+
+                  editor.dispatch({
+                    changes,
+                  });
+
+                  if (action.data.commands) {
+                    client.call('applyCodeAction', action.data.commands);
+                  }
+
+                  forceLinting(editor);
+                },
+              };
+            }),
+          };
+        });
+      },
+      {delay: 400}
+    ),
   ];
 }
 

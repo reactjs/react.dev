@@ -53,7 +53,7 @@ export const codemirrorTypescriptExtensions = (
         return;
       }
       target.dispatch({
-        changes: getCodemirrorChanges(target.state, changes),
+        changes: tsTextChangesToCodemirrorChanges(target.state, changes),
       });
     })();
     return true;
@@ -115,7 +115,7 @@ export const codemirrorTypescriptExtensions = (
                     apply: actions
                       ? (view) => {
                           const codeActionChanges = actions.flatMap((action) =>
-                            getCodemirrorFileChanges(
+                            tsFileTextChangesToCodemirrorChanges(
                               view.state,
                               action.changes,
                               filePath
@@ -177,8 +177,7 @@ export const codemirrorTypescriptExtensions = (
                         );
                         return container;
                       },
-                    // detail: c.
-                    // TODO:: populate details and info
+                    // TODO: double-check ranking makes sense.
                     boost: 1 / Number(c.sortText),
                   };
 
@@ -208,7 +207,7 @@ export const codemirrorTypescriptExtensions = (
           return null;
         }
 
-        const {result: quickInfo, tootltipText} = allInfo;
+        const quickInfo = allInfo.result;
 
         if (!quickInfo) return null;
 
@@ -272,7 +271,7 @@ export const codemirrorTypescriptExtensions = (
                   }
                   applied = true;
 
-                  const changes = getCodemirrorFileChanges(
+                  const changes = tsFileTextChangesToCodemirrorChanges(
                     editor.state,
                     action.data.changes,
                     filePath
@@ -297,9 +296,6 @@ export const codemirrorTypescriptExtensions = (
     ),
 
     EditorView.baseTheme({
-      // ".cm-diagnostic-info": {
-      //   borderLeft: "5px solid var(--sp-colors-fg-default)",
-      // },
       '.quickinfo-monospace': {
         fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,
         fontSize: '87%',
@@ -345,7 +341,7 @@ export const codemirrorTypescriptExtensions = (
   ];
 };
 
-function getCodemirrorFileChanges(
+function tsFileTextChangesToCodemirrorChanges(
   state: EditorState,
   changes: ts.FileTextChanges[],
   filePath: string
@@ -356,11 +352,11 @@ function getCodemirrorFileChanges(
       return [];
     }
 
-    return getCodemirrorChanges(state, fileEdit.textChanges);
+    return tsTextChangesToCodemirrorChanges(state, fileEdit.textChanges);
   });
 }
 
-function getCodemirrorChanges(
+function tsTextChangesToCodemirrorChanges(
   state: EditorState,
   changes: readonly ts.TextChange[]
 ) {

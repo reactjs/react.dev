@@ -78,6 +78,10 @@ function requiredExtensions(
         padding: '2px',
         borderRadius: '4px',
         background: 'var(--sp-colors-bg-default)',
+        color: 'var(--theme-plain)',
+      },
+      '.cm-tooltip-section:not(:first-child)': {
+        borderColor: 'var(--sp-colors-fg-inactive)',
       },
       '.cm-tooltip-autocomplete ul li[aria-selected]': {
         borderRadius: '2px',
@@ -87,14 +91,12 @@ function requiredExtensions(
         maxWidth: '400px !important', // sins of !important :(
       },
       '.quickinfo-monospace': {
-        // Respect dark color theme better
-        color: 'var(--theme-plain)',
         // TODO: is there a better way to get the mono font stack?
         fontFamily:
           '"Source Code Pro", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace',
-        // fontSize: '87%',
         // Some types are very long!
         overflowWrap: 'break-word',
+        whiteSpace: 'pre-wrap',
       },
       '.quickinfo-truncate': {
         display: '-webkit-box',
@@ -105,6 +107,9 @@ function requiredExtensions(
       '.quickinfo-small': {
         fontSize: '90%',
       },
+      '.cm-diagnostic': {
+        color: 'var(--theme-plain) !important',
+      },
       '.cm-diagnostic .quickinfo-documentation:first-child': {
         paddingTop: 0,
       },
@@ -113,10 +118,6 @@ function requiredExtensions(
         paddingTop: '3px',
       },
       '.quickinfo-documentation': {
-        marginLeft: '-8px',
-        paddingLeft: '8px',
-        marginRight: '-6px',
-        paddingRight: '6px',
         paddingTop: '6px',
         marginTop: '6px',
       },
@@ -393,7 +394,7 @@ function hoverTooltipExtension(
         pos,
         create(view) {
           const dom = document.createElement('div');
-          dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
+          // dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
           renderIntoNode(
             dom,
             <QuickInfo state={view.state} info={quickInfo} />
@@ -494,6 +495,8 @@ function highlightSymbolDisplayPart(sym: SymbolDisplayPart) {
     if (tag) {
       return {tag, type: 'other'} as const;
     }
+
+    return undefined;
   }
 
   console.warn(`Unknown symbol kind: ${sym.kind} (in "${sym.text}")`);

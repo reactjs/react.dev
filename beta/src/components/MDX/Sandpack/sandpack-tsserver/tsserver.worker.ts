@@ -273,12 +273,7 @@ class TSServerWorker {
       compilerOpts
     );
 
-    try {
-      return this.lintSystem(entry);
-    } catch (error) {
-      // Not ready?
-      console.error('todo', error);
-    }
+    return this.lintSystem(entry);
   };
 
   lintSystem = (filePath: string) => {

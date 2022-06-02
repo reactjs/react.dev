@@ -64,15 +64,16 @@ function requiredExtensions(
       }
     }),
 
-    tooltips({
-      // position: absolute allows us to use percent width.
-      position: 'absolute',
-    }),
+    // position: absolute allows us to use percent-based max-width, but the tooltip
+    // renders *under* the iframe.
+    // tooltips({
+    //   position: 'absolute',
+    // }),
 
     EditorView.baseTheme({
       '.cm-tooltip': {
         // fighting .sp-code-editor .cm-tooltip, which sets max-width: 200px.
-        maxWidth: 'min(60ch, 80%) !important',
+        maxWidth: 'min(60ch, 80%, 70vw) !important',
       },
       '.quickinfo-monospace': {
         fontFamily: `"SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace`,

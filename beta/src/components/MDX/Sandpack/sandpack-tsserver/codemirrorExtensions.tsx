@@ -20,9 +20,8 @@ import {Command, EditorView, keymap, ViewUpdate} from '@codemirror/view';
 import {ReactElement, ReactNode} from 'react';
 import {renderToStaticMarkup} from 'react-dom/server';
 import type ts from 'typescript';
-import {SymbolDisplayPart, SymbolDisplayPartKind} from 'typescript';
+import type {SymbolDisplayPart, SymbolDisplayPartKind} from 'typescript';
 import {ChannelClient} from './ChannelBridge';
-import {DEBUG_EDITOR_RENDER} from './debug';
 import {ensurePathStartsWithSlash} from './ensurePathBeginsWithSlash';
 import type {TSServerWorker} from './tsserver.worker';
 
@@ -30,11 +29,6 @@ export function codemirrorTypescriptExtensions(
   client: ChannelClient<TSServerWorker>,
   filePath: string | undefined
 ) {
-  DEBUG_EDITOR_RENDER(
-    'codemirrorTypescriptExtensions(filePath: "%s")',
-    filePath
-  );
-
   return [
     requiredExtensions(client, filePath),
     formatExtension(client, filePath),
@@ -269,7 +263,7 @@ function autocompleteExtension(
               ));
 
             if (!completions) {
-              DEBUG_EDITOR_RENDER('Unable to get completions', {pos});
+              console.warn('Unable to get completions', {pos});
               return null;
             }
 
@@ -303,15 +297,13 @@ function autocompleteExtension(
                         // Upstream added a helper, but upgrading autocomplete requires a bump in many
                         // codemirror-related packages.
                         // See https://github.com/codemirror/autocomplete/blob/main/CHANGELOG.md#0202-2022-05-24
-                        const matchedPrefix =
-                          ctx.matchBefore(/\w+/) ??
-                          DEBUG_EDITOR_RENDER.tap('fallback', {
-                            from: Math.min(
-                              ctx.pos,
-                              view.state.selection.main.from
-                            ),
-                            to: view.state.selection.main.to,
-                          });
+                        const matchedPrefix = ctx.matchBefore(/\w+/) ?? {
+                          from: Math.min(
+                            ctx.pos,
+                            view.state.selection.main.from
+                          ),
+                          to: view.state.selection.main.to,
+                        };
                         const baseLabelChange = {
                           from: matchedPrefix.from,
                           to: view.state.selection.main.to,
@@ -359,7 +351,7 @@ function autocompleteExtension(
               })
             )(ctx);
           } catch (e) {
-            DEBUG_EDITOR_RENDER('Unable to get completions', {pos, error: e});
+            console.error('Unable to get completions', {pos, error: e});
             return null;
           }
         }

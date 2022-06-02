@@ -1,6 +1,5 @@
 import type {VirtualTypeScriptEnvironment} from '@typescript/vfs';
 import type {CompilerOptions} from 'typescript';
-import {DEBUG_EDITOR_WORKER} from './debug';
 import {ChannelServer} from './ChannelBridge';
 import ts from 'typescript';
 import {
@@ -12,7 +11,7 @@ import type {Diagnostic} from '@codemirror/lint';
 
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
-const wrappedPostMessage = DEBUG_EDITOR_WORKER.wrap('tx', postMessage);
+const wrappedPostMessage = (msg: any) => postMessage(msg);
 
 interface SerializedAction {
   name: string;
@@ -36,8 +35,6 @@ const fetchTypesFromCodeSandboxBucket = async ({
   try {
     const url = `${BUCKET_URL}/${name}/${version}.json`;
     const {files} = await fetch(url).then((data) => data.json());
-    DEBUG_EDITOR_WORKER('fetched types', name, version, files);
-
     return files;
   } catch (error) {
     console.warn(`Failed to fetch types: ${name}@${version}`, error);
@@ -67,28 +64,27 @@ const getDefinitelyTypedPackageMapping = async () => {
 /**
  * Process the TS compile options or default to
  */
-const getCompileOptions = DEBUG_EDITOR_WORKER.wrap(
-  'getCompilerOptions',
-  (tsconfigFile: Record<string, any>): CompilerOptions => {
-    const defaultValue: CompilerOptions = {
-      target: ts.ScriptTarget.ES2021,
-      module: ts.ModuleKind.ES2020,
-      lib: ['es2021', 'es2020', 'dom', 'webworker'],
-      esModuleInterop: true,
-      allowJs: true,
-      checkJs: true,
-      jsx: ts.JsxEmit.ReactJSXDev,
-    };
+const getCompileOptions = (
+  tsconfigFile: Record<string, any>
+): CompilerOptions => {
+  const defaultValue: CompilerOptions = {
+    target: ts.ScriptTarget.ES2021,
+    module: ts.ModuleKind.ES2020,
+    lib: ['es2021', 'es2020', 'dom', 'webworker'],
+    esModuleInterop: true,
+    allowJs: true,
+    checkJs: true,
+    jsx: ts.JsxEmit.ReactJSXDev,
+  };
 
-    if (tsconfigFile.compilerOptions) {
-      const blankSystem = createSystem(new Map());
-      return ts.parseJsonConfigFileContent(tsconfigFile, blankSystem, '/')
-        .options;
-    }
-
-    return defaultValue;
+  if (tsconfigFile.compilerOptions) {
+    const blankSystem = createSystem(new Map());
+    return ts.parseJsonConfigFileContent(tsconfigFile, blankSystem, '/')
+      .options;
   }
-);
+
+  return defaultValue;
+};
 
 const processTypescriptCacheFromStorage = (
   fsMapCached: Map<string, string>
@@ -136,7 +132,6 @@ class TSServerWorker {
     for (const filePath in files) {
       const content = files[filePath].code;
       allFiles.set(filePath, content);
-      DEBUG_EDITOR_WORKER('file', filePath, content);
       if (filePath[0] !== '/') {
         throw new Error(`Paths must be absolute: ${filePath}`);
       }

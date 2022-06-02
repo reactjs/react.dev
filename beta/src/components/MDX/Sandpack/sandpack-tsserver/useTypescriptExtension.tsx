@@ -1,7 +1,6 @@
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {useEffect, useMemo, useState} from 'react';
 import {ChannelClient, ChannelServer} from './ChannelBridge';
-import {DEBUG_EDITOR_RENDER} from './debug';
 import {
   ensureAllPathsStartWithSlash,
   ensurePathStartsWithSlash,
@@ -22,12 +21,8 @@ export const useTypescriptExtension = () => {
       }
     );
 
-    const postMessage = DEBUG_EDITOR_RENDER.wrap('tx', (msg) =>
-      worker.postMessage(msg)
-    );
-
+    const postMessage = (msg: any) => worker.postMessage(msg);
     const renderer = new TSServerRender(getLocalStorage());
-
     return {
       worker,
       renderer,

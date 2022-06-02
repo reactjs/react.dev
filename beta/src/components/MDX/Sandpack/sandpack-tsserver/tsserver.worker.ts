@@ -9,7 +9,6 @@ import {
 } from '@typescript/vfs';
 import type {Diagnostic} from '@codemirror/lint';
 
-const LOAD_DEPENDENCY_TYPES_FROM_CDN = false;
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
 const wrappedPostMessage = (msg: any) => postMessage(msg);
@@ -259,14 +258,14 @@ class TSServerWorker {
      *
      * To rebuild:
      *
-     * 1. set LOAD_DEPENDENCY_TYPES_FROM_CDN to true.
+     * 1. Change `false` to `true` here.
      * 2. Go to a page with a Sandpack and open the console.
      * 3. Find the 'Loaded type files for dependencies' debug log. You may need to enable verbose logging.
      * 4. Right-click on the logged object and choose "copy".
      * 5. Paste the contents into react-type-cache.json. On mac, you can run `pbpaste > react-type-cache.json`
      *    in this directory.
      */
-    const dependencyFiles = LOAD_DEPENDENCY_TYPES_FROM_CDN
+    const dependencyFiles = false
       ? await fetchDependencyTypesFromCDN(dependenciesMap)
       : (await import('./react-type-cache.json')).default;
     for (const [key, value] of Object.entries(dependencyFiles)) {

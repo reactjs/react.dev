@@ -39,122 +39,7 @@ export const codemirrorTypescriptExtensions = (
     requiredExtensions(client, filePath),
     formatExtension(client, filePath),
     diagnosticExtension(client, filePath),
-    autocompletion({
-      activateOnTyping: true,
-      override: [
-        throttleAsync(
-          150,
-          async (ctx: CompletionContext): Promise<CompletionResult | null> => {
-            const {pos} = ctx;
-
-            try {
-              const completions =
-                filePath &&
-                (await client.call(
-                  'autocompleteAtPosition',
-                  pos,
-                  ensurePathStartsWithSlash(filePath)
-                ));
-
-              if (!completions) {
-                DEBUG_EDITOR_RENDER('Unable to get completions', {pos});
-                return null;
-              }
-
-              return completeFromList(
-                completions.entries.map((c, i) => {
-                  const details = c.details;
-                  const description = details?.codeActions?.at(0)?.description;
-                  const source =
-                    details?.sourceDisplay
-                      ?.map((token) => token.text)
-                      .join('') || c.sourceDisplayString;
-                  const actions = details?.codeActions;
-
-                  const suggestions: Completion = {
-                    type: c.kind,
-                    label: c.name,
-                    detail: source,
-                    apply: actions
-                      ? (view) => {
-                          const codeActionChanges = actions.flatMap((action) =>
-                            tsFileTextChangesToCodemirrorChanges(
-                              view.state,
-                              action.changes,
-                              filePath
-                            )
-                          );
-
-                          const apply = c.name;
-
-                          // TODO: currently we re-implement codemirror/autocomplete's default behavior
-                          // because we couldn't have both a custom action and do the default.
-                          // Upstream added a helper, but upgrading autocomplete requires a bump in many
-                          // codemirror-related packages.
-                          // See https://github.com/codemirror/autocomplete/blob/main/CHANGELOG.md#0202-2022-05-24
-                          const matchedPrefix =
-                            ctx.matchBefore(/\w+/) ??
-                            DEBUG_EDITOR_RENDER.tap('fallback', {
-                              from: Math.min(
-                                ctx.pos,
-                                view.state.selection.main.from
-                              ),
-                              to: view.state.selection.main.to,
-                            });
-                          const baseLabelChange = {
-                            from: matchedPrefix.from,
-                            to: view.state.selection.main.to,
-                            insert: apply,
-                          };
-
-                          view.dispatch({
-                            // ...insertLabelChanges,
-                            changes: [
-                              // insertLabelChanges.changes,
-                              baseLabelChange,
-                              ...codeActionChanges,
-                            ],
-                            annotations: pickedCompletion.of(suggestions),
-                          });
-                        }
-                      : undefined,
-                    info:
-                      details &&
-                      function () {
-                        const container = document.createElement('div');
-                        renderIntoNode(
-                          container,
-
-                          <>
-                            {description && (
-                              <div className="quickinfo-documentation cm-tooltip-section">
-                                {description}
-                              </div>
-                            )}
-                            <QuickInfo
-                              state={ctx.state}
-                              info={details}
-                              truncateDisplayParts={true}
-                            />
-                          </>
-                        );
-                        return container;
-                      },
-                    // TODO: double-check ranking makes sense.
-                    boost: 1 / Number(c.sortText),
-                  };
-
-                  return suggestions;
-                })
-              )(ctx);
-            } catch (e) {
-              DEBUG_EDITOR_RENDER('Unable to get completions', {pos, error: e});
-              return null;
-            }
-          }
-        ),
-      ],
-    }),
+    autocompleteExtension(client, filePath),
 
     hoverTooltip(
       async (_: EditorView, pos: number): Promise<Tooltip | null> => {
@@ -365,6 +250,127 @@ function diagnosticExtension(
       {delay: 400}
     ),
   ];
+}
+
+function autocompleteExtension(
+  client: ChannelClient<TSServerWorker>,
+  filePath: string | undefined
+) {
+  return autocompletion({
+    activateOnTyping: true,
+    override: [
+      throttleAsync(
+        150,
+        async (ctx: CompletionContext): Promise<CompletionResult | null> => {
+          const {pos} = ctx;
+
+          try {
+            const completions =
+              filePath &&
+              (await client.call(
+                'autocompleteAtPosition',
+                pos,
+                ensurePathStartsWithSlash(filePath)
+              ));
+
+            if (!completions) {
+              DEBUG_EDITOR_RENDER('Unable to get completions', {pos});
+              return null;
+            }
+
+            return completeFromList(
+              completions.entries.map((c, i) => {
+                const details = c.details;
+                const description = details?.codeActions?.at(0)?.description;
+                const source =
+                  details?.sourceDisplay?.map((token) => token.text).join('') ||
+                  c.sourceDisplayString;
+                const actions = details?.codeActions;
+
+                const suggestions: Completion = {
+                  type: c.kind,
+                  label: c.name,
+                  detail: source,
+                  apply: actions
+                    ? (view) => {
+                        const codeActionChanges = actions.flatMap((action) =>
+                          tsFileTextChangesToCodemirrorChanges(
+                            view.state,
+                            action.changes,
+                            filePath
+                          )
+                        );
+
+                        const apply = c.name;
+
+                        // TODO: currently we re-implement codemirror/autocomplete's default behavior
+                        // because we couldn't have both a custom action and do the default.
+                        // Upstream added a helper, but upgrading autocomplete requires a bump in many
+                        // codemirror-related packages.
+                        // See https://github.com/codemirror/autocomplete/blob/main/CHANGELOG.md#0202-2022-05-24
+                        const matchedPrefix =
+                          ctx.matchBefore(/\w+/) ??
+                          DEBUG_EDITOR_RENDER.tap('fallback', {
+                            from: Math.min(
+                              ctx.pos,
+                              view.state.selection.main.from
+                            ),
+                            to: view.state.selection.main.to,
+                          });
+                        const baseLabelChange = {
+                          from: matchedPrefix.from,
+                          to: view.state.selection.main.to,
+                          insert: apply,
+                        };
+
+                        view.dispatch({
+                          // ...insertLabelChanges,
+                          changes: [
+                            // insertLabelChanges.changes,
+                            baseLabelChange,
+                            ...codeActionChanges,
+                          ],
+                          annotations: pickedCompletion.of(suggestions),
+                        });
+                      }
+                    : undefined,
+                  info:
+                    details &&
+                    function () {
+                      const container = document.createElement('div');
+                      renderIntoNode(
+                        container,
+
+                        <>
+                          {description && (
+                            <div className="quickinfo-documentation cm-tooltip-section">
+                              {description}
+                            </div>
+                          )}
+                          <QuickInfo
+                            state={ctx.state}
+                            info={details}
+                            truncateDisplayParts={true}
+                          />
+                        </>
+                      );
+                      return container;
+                    },
+                  // TODO: double-check ranking makes sense.
+                  boost: 1 / Number(c.sortText),
+                };
+
+                return suggestions;
+              })
+            )(ctx);
+          } catch (e) {
+            DEBUG_EDITOR_RENDER('Unable to get completions', {pos, error: e});
+            return null;
+          }
+        }
+      ),
+    ],
+  });
 }
 
 function tsFileTextChangesToCodemirrorChanges(

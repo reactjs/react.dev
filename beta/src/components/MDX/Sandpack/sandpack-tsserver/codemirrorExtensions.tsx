@@ -59,23 +59,8 @@ export const codemirrorTypescriptExtensions = (
     return true;
   };
 
-  let previousFileContent: string | undefined;
-
   return [
-    EditorView.updateListener.of((update: ViewUpdate) => {
-      if (filePath) {
-        const newFileContent = update.state.doc.toJSON().join('\n');
-        if (newFileContent !== previousFileContent) {
-          previousFileContent = newFileContent;
-          client.call(
-            'updateFile',
-            ensurePathStartsWithSlash(filePath),
-            update.state.doc.toJSON().join('\n')
-          );
-        }
-      }
-    }),
-
+    requiredExtensions(client, filePath),
     autocompletion({
       activateOnTyping: true,
       override: [
@@ -294,6 +279,28 @@ export const codemirrorTypescriptExtensions = (
       },
       {delay: 400}
     ),
+  ];
+};
+
+function requiredExtensions(
+  client: ChannelClient<TSServerWorker>,
+  filePath: string | undefined
+) {
+  let previousFileContent: string | undefined;
+  return [
+    EditorView.updateListener.of((update: ViewUpdate) => {
+      if (filePath) {
+        const newFileContent = update.state.doc.toJSON().join('\n');
+        if (newFileContent !== previousFileContent) {
+          previousFileContent = newFileContent;
+          client.call(
+            'updateFile',
+            ensurePathStartsWithSlash(filePath),
+            update.state.doc.toJSON().join('\n')
+          );
+        }
+      }
+    }),
 
     EditorView.baseTheme({
       '.quickinfo-monospace': {
@@ -339,7 +346,7 @@ export const codemirrorTypescriptExtensions = (
       },
     }),
   ];
-};
+}
 
 function tsFileTextChangesToCodemirrorChanges(
   state: EditorState,

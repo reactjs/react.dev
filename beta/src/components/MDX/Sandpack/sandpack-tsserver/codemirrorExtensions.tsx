@@ -40,40 +40,7 @@ export const codemirrorTypescriptExtensions = (
     formatExtension(client, filePath),
     diagnosticExtension(client, filePath),
     autocompleteExtension(client, filePath),
-
-    hoverTooltip(
-      async (_: EditorView, pos: number): Promise<Tooltip | null> => {
-        const allInfo = filePath
-          ? await client.call(
-              'infoAtPosition',
-              pos,
-              ensurePathStartsWithSlash(filePath)
-            )
-          : undefined;
-
-        if (!allInfo) {
-          return null;
-        }
-
-        const quickInfo = allInfo.result;
-
-        if (!quickInfo) return null;
-
-        return {
-          pos,
-          create(view) {
-            const dom = document.createElement('div');
-            dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
-            renderIntoNode(
-              dom,
-              <QuickInfo state={view.state} info={quickInfo} />
-            );
-            return {dom};
-          },
-        };
-      },
-      {hideOnChange: true}
-    ),
+    hoverTooltipExtension(client, filePath),
   ];
 };
 
@@ -371,6 +338,45 @@ function autocompleteExtension(
       ),
     ],
   });
+}
+
+function hoverTooltipExtension(
+  client: ChannelClient<TSServerWorker>,
+  filePath: string | undefined
+) {
+  return hoverTooltip(
+    async (_: EditorView, pos: number): Promise<Tooltip | null> => {
+      const allInfo = filePath
+        ? await client.call(
+            'infoAtPosition',
+            pos,
+            ensurePathStartsWithSlash(filePath)
+          )
+        : undefined;
+
+      if (!allInfo) {
+        return null;
+      }
+
+      const quickInfo = allInfo.result;
+
+      if (!quickInfo) return null;
+
+      return {
+        pos,
+        create(view) {
+          const dom = document.createElement('div');
+          dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
+          renderIntoNode(
+            dom,
+            <QuickInfo state={view.state} info={quickInfo} />
+          );
+          return {dom};
+        },
+      };
+    },
+    {hideOnChange: true}
+  );
 }
 
 function tsFileTextChangesToCodemirrorChanges(

@@ -2,42 +2,26 @@ import type {VirtualTypeScriptEnvironment} from '@typescript/vfs';
 import type {CompilerOptions} from 'typescript';
 import {DEBUG_EDITOR_WORKER} from './debug';
 import {ChannelServer} from './ChannelBridge';
-import TS from 'typescript';
+import ts from 'typescript';
+import {
+  createDefaultMapFromCDN,
+  createSystem,
+  createVirtualTypeScriptEnvironment,
+} from '@typescript/vfs';
+import type {Diagnostic} from '@codemirror/lint';
 
-declare const importScripts: (url: string) => void;
-importScripts('https://unpkg.com/@typescript/vfs@1.3.5/dist/vfs.globals.js');
-importScripts(
-  'https://cdnjs.cloudflare.com/ajax/libs/typescript/4.4.3/typescript.min.js'
-);
-
-type TS = typeof import('typescript');
-export type VFS = typeof import('@typescript/vfs');
-export type Diagnostic = import('@codemirror/lint').Diagnostic;
+const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
+const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
+const wrappedPostMessage = DEBUG_EDITOR_WORKER.wrap('tx', postMessage);
 
 interface SerializedAction {
   name: string;
-  data: TS.CodeFixAction;
+  data: ts.CodeFixAction;
 }
 
 export interface SerializedDiagnostic extends Diagnostic {
   serializedActions: SerializedAction[];
 }
-
-const getGlobalImport = <Type>(key: string): Type => (globalThis as any)[key];
-const {
-  createDefaultMapFromCDN,
-  createSystem,
-  createVirtualTypeScriptEnvironment,
-} = getGlobalImport<VFS>('tsvfs');
-const ts = getGlobalImport<TS>('ts');
-
-// TODO: can we remove this?
-// globalThis.localStorage = globalThis.localStorage ?? ({} as Storage);
-
-const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
-const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
-
-const wrappedPostMessage = DEBUG_EDITOR_WORKER.wrap('tx', postMessage);
 
 /**
  * Fetch dependencies types from CodeSandbox CDN
@@ -93,7 +77,7 @@ const getCompileOptions = DEBUG_EDITOR_WORKER.wrap(
       esModuleInterop: true,
       allowJs: true,
       checkJs: true,
-      jsx: TS.JsxEmit.ReactJSXDev,
+      jsx: ts.JsxEmit.ReactJSXDev,
     };
 
     if (tsconfigFile.compilerOptions) {
@@ -429,7 +413,7 @@ class TSServerWorker {
     }
   };
 
-  applyCodeAction(action: TS.CodeActionCommand) {
+  applyCodeAction(action: ts.CodeActionCommand) {
     const env = this.env;
     if (!env) {
       return;
@@ -446,13 +430,13 @@ class TSServerWorker {
   }
 }
 
-const FormatCodeSettings: TS.FormatCodeSettings = {
-  semicolons: TS.SemicolonPreference.Insert,
+const FormatCodeSettings: ts.FormatCodeSettings = {
+  semicolons: ts.SemicolonPreference.Insert,
   trimTrailingWhitespace: true,
   indentSize: 2,
   tabSize: 2,
   convertTabsToSpaces: true,
-  indentStyle: TS.IndentStyle.Smart,
+  indentStyle: ts.IndentStyle.Smart,
   insertSpaceAfterCommaDelimiter: true,
   insertSpaceAfterKeywordsInControlFlowStatements: true,
   insertSpaceAfterSemicolonInForStatements: true,

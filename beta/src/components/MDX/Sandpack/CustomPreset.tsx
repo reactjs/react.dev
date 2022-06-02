@@ -139,8 +139,6 @@ const MemoCodeEditor = React.memo(
     }
     prevExtensions.current = extensions;
 
-    console.log('MemoCodeEditor', keyRef.current, extensions);
-
     return (
       <SandpackCodeEditor
         ref={ref}

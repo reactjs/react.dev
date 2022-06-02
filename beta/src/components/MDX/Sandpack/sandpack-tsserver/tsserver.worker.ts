@@ -9,6 +9,7 @@ import {
 } from '@typescript/vfs';
 import type {Diagnostic} from '@codemirror/lint';
 
+const LOAD_DEPENDENCY_TYPES_FROM_CDN = false;
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
 const wrappedPostMessage = (msg: any) => postMessage(msg);
@@ -22,6 +23,8 @@ export interface SerializedDiagnostic extends Diagnostic {
   serializedActions: SerializedAction[];
 }
 
+type FetchedTypes = Record<string, {module: {code: string}}>;
+
 /**
  * Fetch dependencies types from CodeSandbox CDN
  */
@@ -31,7 +34,7 @@ const fetchTypesFromCodeSandboxBucket = async ({
 }: {
   name: string;
   version: string;
-}): Promise<Record<string, {module: {code: string}}>> => {
+}): Promise<FetchedTypes> => {
   try {
     const url = `${BUCKET_URL}/${name}/${version}.json`;
     const {files} = await fetch(url).then((data) => data.json());
@@ -104,9 +107,64 @@ const processTypescriptCacheFromStorage = (
   return cache;
 };
 
-const isValidTypeModule = (key: string, value?: {module: {code: string}}) =>
-  key.endsWith('.d.ts') ||
-  (key.endsWith('/package.json') && value?.module?.code);
+/**
+ * Fetch dependencies types from Sandpack's CDN.
+ * If a package has no types, discover them from DefinitelyTyped.
+ */
+const fetchDependencyTypesFromCDN = async (
+  dependenciesMap: Map<string, string>
+): Promise<FetchedTypes> => {
+  let typeRegistryFetchPromise: Promise<Record<string, {latest: string}>>;
+  const requiredTypeFiles: FetchedTypes = {};
+  const mergeValidTypes = (files: FetchedTypes) => {
+    Object.entries(files).forEach(([key, value]) => {
+      const isTypeModule =
+        key.endsWith('.d.ts') ||
+        (key.endsWith('/package.json') && value?.module?.code);
+      if (isTypeModule) {
+        const fileName = `/node_modules${key}`;
+        requiredTypeFiles[fileName] = value;
+      }
+    });
+  };
+  await Promise.all(
+    Array.from(dependenciesMap).map(async ([name, version]) => {
+      // Try to fetch types of current version directly from the CDN.
+      // This will work if the package contains .d.ts files.
+      const files = await fetchTypesFromCodeSandboxBucket({name, version});
+      const hasTypes = Object.keys(files).some(
+        (key) => key.startsWith('/' + name) && key.endsWith('.d.ts')
+      );
+
+      // Types found at current version - add them to the filesystem.
+      if (hasTypes) {
+        mergeValidTypes(files);
+        return;
+      }
+
+      // Pull the list of @types/... packages from the "types-registry" package.
+      // https://www.npmjs.com/package/types-registry
+      if (!typeRegistryFetchPromise) {
+        typeRegistryFetchPromise = getDefinitelyTypedPackageMapping();
+      }
+
+      // If types are available in the registry, use them.
+      const typingName = `@types/${name}`;
+      const registryEntries = await typeRegistryFetchPromise;
+      if (registryEntries[name]) {
+        const atTypeFiles = await fetchTypesFromCodeSandboxBucket({
+          name: typingName,
+          version: registryEntries[name].latest,
+        });
+        mergeValidTypes(atTypeFiles);
+      }
+    })
+  );
+
+  console.debug('Loaded type files for dependencies', requiredTypeFiles);
+
+  return requiredTypeFiles;
+};
 
 class TSServerWorker {
   env: VirtualTypeScriptEnvironment | undefined;
@@ -124,7 +182,6 @@ class TSServerWorker {
     const dependenciesMap = new Map<PackageName, Version>();
     let tsconfig = null;
     let packageJson = null;
-    let typeRegistryFetchPromise: Promise<Record<string, {latest: string}>>;
 
     /**
      * Collect files
@@ -197,51 +254,24 @@ class TSServerWorker {
     }
 
     /**
-     * Fetch dependencies types
+     * Fetch dependencies types. To avoid needless work, we pre-bundle required types into react-type-cache.json
+     * to avoid needless round trips for end users. This file is up-to-date as of 2022-06-02.
+     *
+     * To rebuild:
+     *
+     * 1. set LOAD_DEPENDENCY_TYPES_FROM_CDN to true.
+     * 2. Go to a page with a Sandpack and open the console.
+     * 3. Find the 'Loaded type files for dependencies' debug log. You may need to enable verbose logging.
+     * 4. Right-click on the logged object and choose "copy".
+     * 5. Paste the contents into react-type-cache.json. On mac, you can run `pbpaste > react-type-cache.json`
+     *    in this directory.
      */
-    await Promise.all(
-      Array.from(dependenciesMap).map(async ([name, version]) => {
-        // Try to fetch types of current version directly from the CDN.
-        // This will work if the package contains .d.ts files.
-        const files = await fetchTypesFromCodeSandboxBucket({name, version});
-        const hasTypes = Object.keys(files).some(
-          (key) => key.startsWith('/' + name) && key.endsWith('.d.ts')
-        );
-
-        // Types found at current version - add them to the filesystem.
-        if (hasTypes) {
-          Object.entries(files).forEach(([key, value]) => {
-            if (isValidTypeModule(key, value)) {
-              fsMap.set(`/node_modules${key}`, value.module.code);
-            }
-          });
-
-          return;
-        }
-
-        // Pull the list of @types/... packages from the "types-registry" package.
-        // https://www.npmjs.com/package/types-registry
-        if (!typeRegistryFetchPromise) {
-          typeRegistryFetchPromise = getDefinitelyTypedPackageMapping();
-        }
-
-        // If types are available in the registry, use them.
-        const typingName = `@types/${name}`;
-        const registryEntries = await typeRegistryFetchPromise;
-        if (registryEntries[name]) {
-          const atTypeFiles = await fetchTypesFromCodeSandboxBucket({
-            name: typingName,
-            version: registryEntries[name].latest,
-          });
-
-          Object.entries(atTypeFiles).forEach(([key, value]) => {
-            if (isValidTypeModule(key, value)) {
-              fsMap.set(`/node_modules${key}`, value.module.code);
-            }
-          });
-        }
-      })
-    );
+    const dependencyFiles = LOAD_DEPENDENCY_TYPES_FROM_CDN
+      ? await fetchDependencyTypesFromCDN(dependenciesMap)
+      : (await import('./react-type-cache.json')).default;
+    for (const [key, value] of Object.entries(dependencyFiles)) {
+      fsMap.set(key, value.module.code);
+    }
 
     const system = createSystem(fsMap);
 

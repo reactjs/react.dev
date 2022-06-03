@@ -394,7 +394,7 @@ The dependency array can contain multiple dependencies. React will only skip re-
 
 The behaviors *without* the dependency array and with an *empty* `[]` dependency array are very different:
 
-```js {3,7}
+```js {3,7,11}
 useEffect(() => {
   // This runs after every render
 });
@@ -402,6 +402,10 @@ useEffect(() => {
 useEffect(() => {
   // This runs only on mount (when the component appears)
 }, []);
+
+useEffect(() => {
+  // This runs on mount *and also* if either a or b have changed since the last render
+}, [a, b]);
 ```
 
 We'll take a close look at what "mount" means in the next step.

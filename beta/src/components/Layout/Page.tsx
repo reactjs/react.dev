@@ -15,13 +15,25 @@ interface PageProps {
 }
 
 export function Page({routeTree, children}: PageProps) {
+  const [showBanner, setShowBanner] = React.useState(true);
+  const updateVisibility = () => setShowBanner(window.scrollY <= 6);
+  React.useEffect(() => {
+    setShowBanner(window.scrollY <= 6);
+    window.addEventListener('scroll', updateVisibility);
+    return () => window.removeEventListener('scroll', updateVisibility);
+  }, []);
   return (
     <>
-      <SocialBanner />
+      <div className={showBanner ? 'block' : 'hidden'}>
+        <SocialBanner />
+      </div>
       <MenuProvider>
         <SidebarContext.Provider value={routeTree}>
           <div className="h-auto lg:h-screen flex flex-row">
-            <div className="no-bg-scrollbar h-auto lg:h-[calc(100%-40px)] lg:overflow-y-scroll fixed flex flex-row lg:flex-col py-0 left-0 right-0 lg:max-w-xs w-full shadow lg:shadow-none z-50">
+            <div
+              className={`no-bg-scrollbar h-auto lg:h-[calc(100%-40px)] lg:overflow-y-scroll fixed flex flex-row lg:flex-col py-0 ${
+                showBanner ? 'top-16 sm:top-10' : ''
+              } left-0 right-0 lg:max-w-xs w-full shadow lg:shadow-none z-50`}>
               <Nav />
               <Sidebar />
             </div>

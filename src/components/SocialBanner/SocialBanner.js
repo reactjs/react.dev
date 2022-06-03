@@ -20,13 +20,13 @@ const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
 
 export default function SocialBanner() {
   const [showBanner, setShowBanner] = useState(true);
-  const updateVisibily = () => setShowBanner(window.scrollY <= 6);
+  const updateVisibility = () => setShowBanner(window.scrollY <= 6);
   useEffect(() => {
     if (window.scrollY >= 6) {
       setShowBanner(false);
     }
-    window.addEventListener('scroll', updateVisibily);
-    return () => window.removeEventListener('scroll', updateVisibily);
+    window.addEventListener('scroll', updateVisibility);
+    return () => window.removeEventListener('scroll', updateVisibility);
   }, []);
 
   return (

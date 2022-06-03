@@ -410,7 +410,7 @@ We'll take a close look at what "mount" means in the next step.
 
 <DeepDive title="Why was the ref omitted from the dependency array?">
 
-This uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
+This effects uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
 
 ```js {9}
 function VideoPlayer({ src, isPlaying }) {

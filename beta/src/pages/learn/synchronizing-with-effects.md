@@ -495,7 +495,7 @@ Now you get three console logs in development:
 2. `"Disconnected."`
 3. `"Connecting..."`
 
-**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back does not break your component's logic. Disconnecting and then connecting again is exactly what should happen. When you write the effect function well, there should be no difference in behavior between running the effect once and running it, cleaning it up, and running it again. There is an extra connect/disconnect call pair in development, but you shouldn't try to "make it run once". This is React probing your code for bugs.
+**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you write the effect function well, there should be no user-visible difference between running the effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal and you shouldn't try to make it go away.
 
 **In production, you would only see `"Connecting..."` printed once.** Remounting components only happens in development to help you find effects that need cleanup. You can turn off [Strict Mode](/apis/strictmode) to opt out of the development behavior, but we recommend to keep it on. This lets you find many bugs like the one above.
 

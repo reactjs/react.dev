@@ -31,6 +31,7 @@ import type {TSServerWorker} from './tsserver.worker';
  */
 const POLICY = {
   showTypes: false,
+  showDocTags: false,
 } as const;
 
 export function codemirrorTypescriptExtensions(
@@ -564,21 +565,22 @@ function QuickInfo(props: {
           {documentation && (
             <SymbolDisplayParts state={state} parts={documentation} />
           )}
-          {tags?.map((tag, i) => (
-            <div className="quickinfo-tsdoc-tag" key={i}>
-              <CodeMirrorTag
-                state={state}
-                tag={hl.tags.definitionKeyword}
-                key={i}>
-                <span style={{fontWeight: 'bold'}}>@{tag.name}</span>
-              </CodeMirrorTag>
-              {tag.text && (
-                <>
-                  : <SymbolDisplayParts state={state} parts={tag.text} />
-                </>
-              )}
-            </div>
-          ))}
+          {POLICY.showDocTags &&
+            tags?.map((tag, i) => (
+              <div className="quickinfo-tsdoc-tag" key={i}>
+                <CodeMirrorTag
+                  state={state}
+                  tag={hl.tags.definitionKeyword}
+                  key={i}>
+                  <span style={{fontWeight: 'bold'}}>@{tag.name}</span>
+                </CodeMirrorTag>
+                {tag.text && (
+                  <>
+                    : <SymbolDisplayParts state={state} parts={tag.text} />
+                  </>
+                )}
+              </div>
+            ))}
         </div>
       )}
     </>

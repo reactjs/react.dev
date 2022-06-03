@@ -126,7 +126,7 @@ video { width: 250px; }
 
 The code above **does not work** and crashes with an error.
 
-The problem is that you're trying to do something with the DOM node during rendering. In React, [rendering should be pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM. Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! React won't know what DOM to create until after you return the JSX. **Wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+The problem is that you're trying to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM. Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! React won't know what DOM to create until after you return the JSX. **Wrap the side effect with `useEffect` to move it out of the rendering calculation:**
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';
@@ -146,7 +146,7 @@ function VideoPlayer({ src, isPlaying }) {
 }
 ```
 
-By wrapping the DOM update in an effect, you let React to update the screen first. Then your effect runs.
+By wrapping the DOM update in an effect, you let React update the screen first. Then your effect runs.
 
 When your `VideoPlayer` component renders (either the first time or if it re-renders), a few things will happen. First, React will update the screen, ensuring the `<video>` tag is in the DOM with the right props. Then React will run your effect. Finally, your effect will call `play()` or `pause()` depending on the value of `isPlaying` prop.
 

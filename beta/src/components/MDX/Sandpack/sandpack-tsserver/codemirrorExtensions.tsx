@@ -25,6 +25,14 @@ import {ChannelClient} from './ChannelBridge';
 import {ensurePathStartsWithSlash} from './ensurePathBeginsWithSlash';
 import type {TSServerWorker} from './tsserver.worker';
 
+/**
+ * Turn features on and off to change the UX.
+ * @todo Inline the policy decisions once we're happy with the UX.
+ */
+const POLICY = {
+  showTypes: false,
+} as const;
+
 export function codemirrorTypescriptExtensions(
   client: ChannelClient<TSServerWorker>,
   filePath: string | undefined
@@ -379,21 +387,27 @@ function hoverTooltipExtension(
       }
 
       const quickInfo = allInfo.result;
-
       if (!quickInfo) return null;
 
-      return {
-        pos,
-        create(view) {
-          const dom = document.createElement('div');
-          // dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
-          renderIntoNode(
-            dom,
-            <QuickInfo state={view.state} info={quickInfo} />
-          );
-          return {dom};
-        },
-      };
+      const hasNonTypeInfo = Boolean(
+        quickInfo.documentation || quickInfo.tags?.length
+      );
+      if (hasNonTypeInfo || POLICY.showTypes) {
+        return {
+          pos,
+          create(view) {
+            const dom = document.createElement('div');
+            // dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
+            renderIntoNode(
+              dom,
+              <QuickInfo state={view.state} info={quickInfo} />
+            );
+            return {dom};
+          },
+        };
+      } else {
+        return null;
+      }
     },
     {hideOnChange: true}
   );
@@ -537,7 +551,7 @@ function QuickInfo(props: {
 
   return (
     <>
-      {displayParts && (
+      {POLICY.showTypes && displayParts && (
         <div
           className={`cm-tooltip-section quickinfo-documentation quickinfo-monospace  ${
             truncateDisplayParts ? 'quickinfo-truncate quickinfo-small' : ''

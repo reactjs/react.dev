@@ -30,19 +30,21 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 
 ***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *effect* because it needs to happen regardless of which interaction caused the component to appear. Effects run at the end of the [rendering process](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
 
-## How to write an effect {/*how-to-write-an-effect*/}
+## You might not need an effect {/*you-might-not-need-an-effect*/}
 
 **Don't rush to add effects to your components.** Keep in mind that effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your effect only adjusts some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
 
+## How to write an effect {/*how-to-write-an-effect*/}
+
 To write an effect, follow these three steps:
 
-1. **Declare an effect that runs after *every* render.** (This is the default behavior when you declare an effect.)
-2. **Then, check whether your effect needs dependencies.** Some effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Finally, check whether your effect needs cleanup.** Some effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+1. **Declare an effect.** By default, your effect will run after every render.
+2. **Specify the effect dependencies.** Most effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
+3. **Add cleanup if needed.** Some effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
 
 Let's look at each of these steps in detail.
 
-## Step 1: Declare an effect that runs after every render {/*step-1-declare-an-effect-that-runs-after-every-render*/}
+### Step 1: Declare an effect {/*step-1-declare-an-effect*/}
 
 To declare an effect in your component, import the [`useEffect` Hook](/api/useeffect) from React:
 
@@ -148,15 +150,7 @@ video { width: 250px; }
 
 In this example, the "external system" you synchronized to React state was the browser media API. You can use a similar approach to wrap legacy non-React code (like jQuery plugins) into declarative React components.
 
-<DeepDive title="What happens if you call play() and pause() outside the effect?">
-
-Try commenting out the 6th and 12th lines in the above example to see what happens when the `play()` and `pause()` calls run during rendering. The code will crash because the `<video>` tag does not yet exist in the DOM. **By using an effect, you tell React to put `<video>` in the DOM, and _then_ do something.**
-
-There are other important practical reasons for wrapping side effects like DOM manipulation into an effect. If you use a server-rendering framework that runs React components to generate HTML, calling `play()` and `pause()` outside of an effect would crash. This is because the DOM does not exist on the server at all. Wrapping this code in an effect fixes this because effects are always ignored on the server.
-
-In general you should always [treat rendering as a pure calculation](/learn/keeping-components-pure). During rendering, all you want to do is to calculate the returned JSX. If your component needs to *do* something because of a particular event, the logic should go into that event handler. And if your component needs to *do* something as a result of rendering, wrap that logic in an effect. React will run it [after committing changes to the screen.](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)
-
-</DeepDive>
+*(Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.)*
 
 <Gotcha>
 
@@ -175,7 +169,17 @@ Effects should usually synchronize your components with an *external* system. If
 
 </Gotcha>
 
-## Step 2: Check whether your effect needs dependencies {/*step-2-check-whether-your-effect-needs-dependencies*/}
+<DeepDive title="What happens if you call play() and pause() outside the effect?">
+
+Try commenting out the 6th and 12th lines in the above example to see what happens when the `play()` and `pause()` calls run during rendering. The code will crash because the `<video>` tag does not yet exist in the DOM. **By using an effect, you tell React to put `<video>` in the DOM, and _then_ do something.**
+
+There are other important practical reasons for wrapping side effects like DOM manipulation into an effect. If you use a server-rendering framework that runs React components to generate HTML, calling `play()` and `pause()` outside of an effect would crash. This is because the DOM does not exist on the server at all. Wrapping this code in an effect fixes this because effects are always ignored on the server.
+
+In general you should always [treat rendering as a pure calculation](/learn/keeping-components-pure). During rendering, all you want to do is to calculate the returned JSX. If your component needs to *do* something because of a particular event, the logic should go into that event handler. And if your component needs to *do* something as a result of rendering, wrap that logic in an effect. React will run it [after committing changes to the screen.](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)
+
+</DeepDive>
+
+### Step 2: Specify the effect dependencies {/*step-2-specify-the-effect-dependencies*/}
 
 By default, effects run after *every* render. Often, this is **not what you want:**
 
@@ -348,7 +352,7 @@ video { width: 250px; }
 
 The dependency array can contain multiple dependencies. React will only skip re-running the effect if *all* of the dependencies you specify have exactly the same values as they had during the previous render. React compares the dependency values using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. See the [`useEffect` API reference](/apis/useeffect#reference) for more details.
 
-**Notice that you can't "choose" your dependencies.** When you specify the dependencies, you will get a lint error if they don't match what React expects based on the code inside your effect. This helps catch many bugs in your code. However, this can be a problem if your effect uses some value but you *don't* want to re-run the effect when that value changes. When you're faced with this problem, the correct fix is to *change the effect code itself* to not "need" that dependency. You will learn common strategies to do that in [Specifying the Effect Dependencies](/learn/specifying-effect-dependencies).
+**Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your effect. This helps catch many bugs in your code. If your effect uses some value but you *don't* want to re-run the effect when it changes, you'll need to *edit the effect code itself* to not "need" that dependency. Learn more about this in [Specifying the Effect Dependencies](/learn/specifying-effect-dependencies).
 
 <Gotcha>
 
@@ -368,7 +372,7 @@ We'll take a close look at what "mount" means in the next step.
 
 </Gotcha>
 
-## Step 3: Check whether your effect needs cleanup {/*step-3-check-whether-your-effect-needs-cleanup*/}
+### Step 3: Add cleanup if needed {/*step-3-add-cleanup-if-needed*/}
 
 Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?
 
@@ -390,7 +394,7 @@ useEffect(() => {
 }, []);
 ```
 
-The code inside the effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.
+**The code inside the effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.**
 
 Let's try running this code:
 
@@ -429,11 +433,11 @@ input { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This effect only runs on mount, so you might expect `Connecting...` to be printed once in the console. However, it gets printed twice! During development, React stress-tests your components by mounting them twice.
+This effect only runs on mount, so you might expect `"Connecting..."` to be printed once in the console. **However, if you check the console, `"Connecting..."` gets printed twice. Why does it happen?**
 
-**You might be wondering: "How do I run an effect once?" However, that's not the right question. The right question is: "Why does remounting break my effect?"** You need to fix the problem at its source. By mounting your component twice, React simulates what happens when you navigate to another page and then back to this component. Then, even without this stress-test, you'd also see two `Connecting...` logs (and two connections being set up). By mounting your component twice in development, React exposes a bug in your code sooner.
+Imagine the `ChatRoom` component is a part of a larger app with many different screens. The user starts their journey on the `ChatRoom` page. The component mounts and calls `connection.connect()`. Then imagine the user navigates to another screen--for example, to the Settings page. The `ChatRoom` component unmounts. Finally, the user clicks Back and `ChatRoom` mounts again. This would set up a second connection--but the first connection was never destroyed! As the user navigates across the app, the connections would keep piling up.
 
-To fix the actual issue, you need to return a *cleanup function* from your effect:
+Bugs like this are easy to miss, so during development React simulates navigating-there-and-back for every component. It mounts your components and then immediately remounts them (preserving their state). That's why there are two `"Connecting..."` logs. **The issue isn't that your effect runs twice. It's that your effect doesn't "clean up" after itself.** To fix the issue, return a *cleanup function* from your effect:
 
 ```js {4-6}
   useEffect(() => {
@@ -485,15 +489,17 @@ input { display: block; margin-bottom: 20px; }
 
 Now you get three console logs in development:
 
-1. `Connecting...`
-2. `Disconnected.`
-3. `Connecting...`
+1. `"Connecting..."`
+2. `"Disconnected."`
+3. `"Connecting..."`
 
-This means that your cleanup function is working! In development, React simulates what happens when the user navigates away from your component and then comes back to it. Previously, your component incorrectly set up two connections. Thanks to React immediately remounting your component in development, you noticed this issue, and fixed it by implementing the cleanup function. Now only one connection is active at a time.
+**This is the correct behavior in development.** React tests that navigating away from your component and back works as intended. Disconnecting and then connecting again is exactly what should happen. Now that your effect has a cleanup function, one connection is active at a time. Ignore the extra connect/disconnect call pair.
 
-**Don't worry about the extra request in development. In production, the component would only mount once.** The development-only remounting behavior is opt-in and only enabled when your app is wrapped in [Strict Mode](/apis/strictmode). We strongly recommend to keep it on. Strict Mode makes existing issues in your code show up earlier. While it can be frustrating to fix them so early, this makes your code more resilient to future changes in your app's requirements.
+**In production, you would only see `"Connecting..."` printed once.** Remounting components only happens in development to help you find effects that need cleanup. You can turn off [Strict Mode](/apis/strictmode) to opt out of the development behavior, but we recommend to keep it on. This lets you find many bugs like the one above.
 
-<DeepDive title="What are some common cleanup patterns?">
+## Common cleanup patterns {/*common-cleanup-patterns*/}
+
+The cleanup function should stop or undo whatever the effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the effect running once and an _effect → cleanup → effect_ sequence.
 
 If your effect subscribes to something, the cleanup function should unsubscribe:
 
@@ -506,31 +512,60 @@ useEffect(() => {
 
 If your effect fetches something, the cleanup function should abort the fetch:
 
-```js {10}
+```js {12}
 useEffect(() => {
   const controller = new AbortController();
   const signal = controller.signal;
-
   fetchUser(userId, { signal }).then(result => {
     signal.throwIfAborted();
     setResult(result);
+  }).catch(err => {
+    if (error.name !== 'AbortError') {
+      setError(err);
+    }
   });
-
   return () => controller.abort();
 }, [userId]);
 ```
 
 Alternatively, you can set a local variable to tell the effect to ignore the fetch result:
 
-```js {2,10-12}
+```js {12-14}
 useEffect(() => {
   let ignore = false;
-
   fetchUser(userId).then(result => {
     if (!ignore) {
       setResult(result);
     }
+  }).catch(err => {
+    if (!ignore) {
+      setError(err);
+    }
   });
+  return () => {
+    ignore = true;
+  };
+}, [userId]);
+```
+
+You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. For example, if the `userId` changes from `'Bob'` to `'Alice'`, cleanup ensures that the `'Bob'` response is ignored even if it arrives after `'Alice'`.
+
+<Gotcha>
+
+You can't pass an `async` function to `useEffect`. This is because all asynchronous effects need cleanup to [avoid race conditions](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect). You can, however, write an async function *inside* your effect, and then call it:
+
+```js {4-9,11}
+useEffect(() => {
+  let ignore = false;
+
+  async function startFetching() {
+    const user = await fetchUser(userId);
+    if (!ignore) {
+      setResult(user);
+    }
+  }
+
+  startFetching();
 
   return () => {
     ignore = true;
@@ -538,9 +573,127 @@ useEffect(() => {
 }, [userId]);
 ```
 
-Cleaning up your effect ensures that your component works well if it gets removed from the page and then added again. It also ensures that if a dependency (like `userId` above) changes, the "outdated" effect (which may already be fetching something) does not conflict with fetching the next `userId`. 
+</Gotcha>
+
+<DeepDive title="Is fetching data in effects recommended?">
+
+If you use a [framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework) with support for server rendering, **we strongly recommend to use your framework's data fetching mechanism instead of fetching data in effects.** There are a few reasons:
+
+- Effects don't run on the server. This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
+- Fetching in effects makes it easy to create "network waterfalls". You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
+- There is no easy way to cache or preload data fetches when you fetch in effects. For example, if the component unmounts and then mounts again, it would have to fetch the data again.
+
+This list of downsides is not specific to React. It applies to fetching data on mount with any library. When you can, we recommend you to fetch data with an optimized framework and a client-side cache.
 
 </DeepDive>
+
+## Putting it all together {/*putting-it-all-together*/}
+
+You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this effect:
+
+```js
+export default function ChatRoom({ roomId }) {
+  useEffect(() => {
+    const connection = createConnection(roomId);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]);
+
+  return <h1>Welcome to {roomId}!</h1>;
+}
+```
+
+Let's see what exactly happens as the user navigates around the app.
+
+### Initial render {/*initial-render*/}
+
+The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` with `'general'`:
+
+```js
+  // JSX for the first render (roomId = "general")
+  return <h1>Welcome to general!</h1>;
+```
+
+**The effect is *also* a part of the rendering output.** The first render's effect becomes:
+
+```js
+  // Effect for the first render (roomId = "general")
+  () => {
+    const connection = createConnection('general');
+    connection.connect();
+    return () => connection.disconnect();
+  },
+  // Dependencies for the first render (roomId = "general")
+  ['general']
+```
+
+React runs this effect, which connects to the `'general'` chat room.
+
+### Re-render with same dependencies {/*re-render-with-same-dependencies*/}
+
+Let's say `<ChatRoom roomId="general" />` re-renders. The JSX output is the same:
+
+```js
+  // JSX for the second render (roomId = "general")
+  return <h1>Welcome to general!</h1>;
+```
+
+React sees that the rendering output has not changed, so it doesn't update the DOM.
+
+The effect from the second render looks like this:
+
+```js
+  // Effect for the second render (roomId = "general")
+  () => {
+    const connection = createConnection('general');
+    connection.connect();
+    return () => connection.disconnect();
+  },
+  // Dependencies for the second render (roomId = "general")
+  ['general']
+```
+
+React compares `['general']` from the second render with `['general']` from the first render. **Because all dependencies are the same, React *ignores* the effect from the second render.** It never gets called.
+
+### Re-render with different dependencies {/*re-render-with-different-dependencies*/}
+
+Then, the user visits `<ChatRoom roomId="travel" />`. This time, the component returns different JSX:
+
+```js
+  // JSX for the third render (roomId = "travel")
+  return <h1>Welcome to travel!</h1>;
+```
+
+React updates the DOM to change `"Welcome to general"` into `"Welcome to travel"`.
+
+The effect from the third render looks like this:
+
+```js
+  // Effect for the third render (roomId = "travel")
+  () => {
+    const connection = createConnection('travel');
+    connection.connect();
+    return () => connection.disconnect();
+  },
+  // Dependencies for the third render (roomId = "travel")
+  ['travel']
+```
+
+React compares `['travel']` from the third render with `['general']` from the second render. This time, one dependency is different: `Object.is('travel', 'general')` is `false`. The effect can't be skipped.
+
+**Before React can apply the effect from the third render, it needs to clean up the last effect that _did_ run.** Effect from the second render was skipped, so the effect React needs to clean up is from the first render. If you scroll up to the first render, you'll see that its cleanup calls `connection.disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
+
+After the last effect is cleaned up, React runs the third render's effect. It connects to the `'travel'` chat room.
+
+### Unmount {/*unmount*/}
+
+Finally, let's say the user navigates away, and the `ChatRoom` component unmounts.
+
+React run the last effect's cleanup function. The last effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
+
+### Development-only behaviors {/*development-only-behaviors*/}
+
+As [described earlier](#step-3-add-cleanup-if-needed), when [Strict Mode](/apis/strictmode) is on, React will remount all effects once immediately after mount. This help you find effects that need cleanup and exposes bugs like race conditions early. Additionally, React will remount the effects whenever you save a file in development. Both of these behaviors are development-only.
 
 ## Recap {/*recap*/}
 

@@ -82,9 +82,55 @@ function VideoPlayer({ src, isPlaying }) {
 
 However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with imperative calls like `play()` and `pause()`.**
 
-[Get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node, and put the synchronization logic into the effect:
+Let's [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node and try to call `play()` or `pause()` during rendering:
 
-```js {6-12}
+<Sandpack>
+
+```js
+import { useState, useRef, useEffect } from 'react';
+
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  });
+
+  return <video ref={ref} src={src} loop playsInline />;
+}
+
+export default function App() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  return (
+    <>
+      <button onClick={() => setIsPlaying(!isPlaying)}>
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      <VideoPlayer
+        isPlaying={isPlaying}
+        src="https://interactive-examples.mdn.mozilla.net/media/cc0-videos/flower.mp4"
+      />
+    </>
+  );
+}
+```
+
+```css
+button { display: block; margin-bottom: 20px; }
+video { width: 250px; }
+```
+
+</Sandpack>
+
+The code above **does not work** and crashes with an error.
+
+The problem is that you're trying to do something with the DOM node during rendering. In React, [rendering should be pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM. Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! React won't know what DOM to create until after you return the JSX. **Wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+
+```js {6,12}
 import { useEffect, useRef } from 'react';
 
 function VideoPlayer({ src, isPlaying }) {
@@ -101,6 +147,8 @@ function VideoPlayer({ src, isPlaying }) {
   return <video ref={ref} src={src} loop playsInline />;
 }
 ```
+
+By wrapping the DOM update in an effect, you let React to update the screen first. Then your effect runs.
 
 When your `VideoPlayer` component renders (either the first time or if it re-renders), a few things will happen. First, React will update the screen, ensuring the `<video>` tag is in the DOM with the right props. Then React will run your effect. Finally, your effect will call `play()` or `pause()` depending on the value of `isPlaying` prop.
 
@@ -168,16 +216,6 @@ Effects run as a *result* of rendering. Setting state *triggers* rendering. Sett
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
 
 </Gotcha>
-
-<DeepDive title="What happens if you call play() and pause() outside the effect?">
-
-Try commenting out the 6th and 12th lines in the above example to see what happens when the `play()` and `pause()` calls run during rendering. The code will crash because the `<video>` tag does not yet exist in the DOM. **By using an effect, you tell React to put `<video>` in the DOM, and _then_ do something.**
-
-There are other important practical reasons for wrapping side effects like DOM manipulation into an effect. If you use a server-rendering framework that runs React components to generate HTML, calling `play()` and `pause()` outside of an effect would crash. This is because the DOM does not exist on the server at all. Wrapping this code in an effect fixes this because effects are always ignored on the server.
-
-In general you should always [treat rendering as a pure calculation](/learn/keeping-components-pure). During rendering, all you want to do is to calculate the returned JSX. If your component needs to *do* something because of a particular event, the logic should go into that event handler. And if your component needs to *do* something as a result of rendering, wrap that logic in an effect. React will run it [after committing changes to the screen.](/learn/render-and-commit#step-3-react-commits-changes-to-the-dom)
-
-</DeepDive>
 
 ### Step 2: Specify the effect dependencies {/*step-2-specify-the-effect-dependencies*/}
 
@@ -661,7 +699,7 @@ React run the last effect's cleanup function. The last effect was from the third
 
 When [Strict Mode](/apis/strictmode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the effects whenever you save a file in development. Both of these behaviors are development-only.
 
-## Recap {/*recap*/}
+<Recap>
 
 - Unlike events, effects are caused by rendering itself rather than a particular interaction.
 - Effects let you synchronize a component with some external system (third-party API, network, etc).
@@ -673,6 +711,5 @@ When [Strict Mode](/apis/strictmode) is on, React remounts every component once 
 - If your effect breaks because of remounting, you need to implement a cleanup function.
 - React will call your cleanup function before the effect runs next time, and during the unmount.
 
-## Challenges {/*challenges*/}
+</Recap>
 
-TODO

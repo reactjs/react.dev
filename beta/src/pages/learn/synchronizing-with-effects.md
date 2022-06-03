@@ -533,7 +533,7 @@ useEffect(() => {
 }, [userId]);
 ```
 
-You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. For example, if the `userId` changes from `'Bob'` to `'Alice'`, cleanup ensures that the `'Bob'` response is ignored even if it arrives after `'Alice'`.
+You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. For example, if the `userId` changes from `'Alice'` to `'Bob'`, cleanup ensures that the `'Alice'` response is ignored even if it arrives after `'Bob'`.
 
 <DeepDive title="What are good alternatives to data fetching in effects?">
 

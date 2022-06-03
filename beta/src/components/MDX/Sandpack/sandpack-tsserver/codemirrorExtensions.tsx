@@ -548,12 +548,12 @@ function getBetaDocsLink(
   const seeTag = tags?.find((tag) => tag.name === 'see');
   const seeTagPlaintext = seeTag?.text?.map((it) => it.text).join('');
   if (!seeTagPlaintext) {
-    return;
+    return undefined;
   }
 
   const match = seeTagPlaintext.match(URL_REGEX);
   if (!match) {
-    return;
+    return undefined;
   }
 
   const url = match[1];
@@ -562,6 +562,8 @@ function getBetaDocsLink(
       return `/apis/${url.slice(prefix.length)}`;
     }
   }
+
+  return undefined;
 }
 
 function QuickInfo(props: {

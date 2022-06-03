@@ -408,6 +408,40 @@ We'll take a close look at what "mount" means in the next step.
 
 </Gotcha>
 
+<DeepDive title="Why was the ref omitted from the dependency array?">
+
+This uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
+
+```js {9}
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  }, [isPlaying]);
+```
+
+This is because the `ref` object has a *stable identity:* React guarantees [you'll always get the same object](/apis/useref#returns) from the same `useRef` call on every render. It never changes, so it will never by itself cause the effect to re-run. Therefore, it does not matter whether you include it or not. Including it is fine too:
+
+```js {9}
+function VideoPlayer({ src, isPlaying }) {
+  const ref = useRef(null);
+  useEffect(() => {
+    if (isPlaying) {
+      ref.current.play();
+    } else {
+      ref.current.pause();
+    }
+  }, [isPlaying, ref]);
+```
+
+Omitting always-stable dependencies only works when the linter can "see" that the object is stable. For example, if `ref` was passed from a parent component, you would have to specify it in the dependency array. However, this is good because you can't know whether the parent component always passes the same ref, or passes one of several refs conditionally. So your effect _would_ depend on which ref is passed.
+
+</DeepDive>
+
 ### Step 3: Add cleanup if needed {/*step-3-add-cleanup-if-needed*/}
 
 Consider a different example. You're writing a `ChatRoom` component that needs to connect to the chat server when it appears. You are given a `createConnection()` API that returns an object with `connect()` and `disconnect()` methods. How do you keep the component connected while it is displayed to the user?

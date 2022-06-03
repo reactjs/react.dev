@@ -82,7 +82,7 @@ function VideoPlayer({ src, isPlaying }) {
 
 However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with imperative calls like `play()` and `pause()`.**
 
-Let's [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node and try to call `play()` or `pause()` during rendering:
+[Get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node and try to call `play()` or `pause()` during rendering:
 
 <Sandpack>
 
@@ -124,9 +124,9 @@ video { width: 250px; }
 
 </Sandpack>
 
-The code above **does not work** and crashes with an error.
+The code above **does not work yet** and crashes with an error. Let's fix it!
 
-The problem is that you're trying to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM. Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! React won't know what DOM to create until after you return the JSX. **Wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+The problem is that this code tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM. Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! React won't know what DOM to create until after you return the JSX. **Wrap the side effect with `useEffect` to move it out of the rendering calculation:**
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';

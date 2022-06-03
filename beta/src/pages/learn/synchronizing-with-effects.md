@@ -659,14 +659,14 @@ React run the last effect's cleanup function. The last effect was from the third
 
 ### Development-only behaviors {/*development-only-behaviors*/}
 
-As [described earlier](#step-3-add-cleanup-if-needed), when [Strict Mode](/apis/strictmode) is on, React will remount all effects once immediately after mount. This help you find effects that need cleanup and exposes bugs like race conditions early. Additionally, React will remount the effects whenever you save a file in development. Both of these behaviors are development-only.
+When [Strict Mode](/apis/strictmode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the effects whenever you save a file in development. Both of these behaviors are development-only.
 
 ## Recap {/*recap*/}
 
 - Unlike events, effects are caused by rendering itself rather than a particular interaction.
 - Effects let you synchronize a component with some external system (third-party API, network, etc).
 - By default, effects run after every render (including the initial one).
-- React will skip an effect you specify dependencies, and all of them are the same as during the last render.
+- React will skip the effect if all of its dependencies have the same values as during the last render.
 - You can't "choose" your dependencies. They are determined by the code inside the effect.
 - An empty dependency array (`[]`) corresponds to the component "mounting", i.e. being added to the screen.
 - When Strict Mode is on, React mounts components twice (in development only!) to stress-test your effects.

@@ -437,7 +437,9 @@ This effect only runs on mount, so you might expect `"Connecting..."` to be prin
 
 Imagine the `ChatRoom` component is a part of a larger app with many different screens. The user starts their journey on the `ChatRoom` page. The component mounts and calls `connection.connect()`. Then imagine the user navigates to another screen--for example, to the Settings page. The `ChatRoom` component unmounts. Finally, the user clicks Back and `ChatRoom` mounts again. This would set up a second connection--but the first connection was never destroyed! As the user navigates across the app, the connections would keep piling up.
 
-Bugs like this are easy to miss, so during development React simulates navigating-there-and-back for every component. It mounts your components and then immediately remounts them (preserving their state). That's why there are two `"Connecting..."` logs. **The issue isn't that your effect runs twice. It's that your effect doesn't "clean up" after itself.** To fix the issue, return a *cleanup function* from your effect:
+Bugs like this are easy to miss without extensive manual testing. To help you spot them quickly, in development React remounts every component once immediately after its initial mount. **Seeing the `"Connecting..."` log twice helps you notice the real issue: your code doesn't close the connection when the component unmounts.**
+
+To fix the issue, return a *cleanup function* from your effect:
 
 ```js {4-6}
   useEffect(() => {
@@ -493,7 +495,7 @@ Now you get three console logs in development:
 2. `"Disconnected."`
 3. `"Connecting..."`
 
-**This is the correct behavior in development.** React tests that navigating away from your component and back works as intended. Disconnecting and then connecting again is exactly what should happen. Now that your effect has a cleanup function, one connection is active at a time. Ignore the extra connect/disconnect call pair.
+**This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back does not break your component's logic. Disconnecting and then connecting again is exactly what should happen. When you write the effect function well, there should be no difference in behavior between running the effect once and running it, cleaning it up, and running it again. There is an extra connect/disconnect call pair in development, but you shouldn't try to "make it run once". This is React probing your code for bugs.
 
 **In production, you would only see `"Connecting..."` printed once.** Remounting components only happens in development to help you find effects that need cleanup. You can turn off [Strict Mode](/apis/strictmode) to opt out of the development behavior, but we recommend to keep it on. This lets you find many bugs like the one above.
 
@@ -505,56 +507,14 @@ If your effect subscribes to something, the cleanup function should unsubscribe:
 
 ```js {3}
 useEffect(() => {
-  window.addEventListener('resize', handleScroll);
-  return () => window.removeEventListener('resize', handleScroll);
-}, []);
+  window.addEventListener('scroll', handleScroll);
+  return () => window.removeEventListener('scroll', handleScroll);
+}, [handleScroll]);
 ```
 
-If your effect fetches something, the cleanup function should abort the fetch:
+If your effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
 
-```js {12}
-useEffect(() => {
-  const controller = new AbortController();
-  const signal = controller.signal;
-  fetchUser(userId, { signal }).then(result => {
-    signal.throwIfAborted();
-    setResult(result);
-  }).catch(err => {
-    if (error.name !== 'AbortError') {
-      setError(err);
-    }
-  });
-  return () => controller.abort();
-}, [userId]);
-```
-
-Alternatively, you can set a local variable to tell the effect to ignore the fetch result:
-
-```js {12-14}
-useEffect(() => {
-  let ignore = false;
-  fetchUser(userId).then(result => {
-    if (!ignore) {
-      setResult(result);
-    }
-  }).catch(err => {
-    if (!ignore) {
-      setError(err);
-    }
-  });
-  return () => {
-    ignore = true;
-  };
-}, [userId]);
-```
-
-You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. For example, if the `userId` changes from `'Bob'` to `'Alice'`, cleanup ensures that the `'Bob'` response is ignored even if it arrives after `'Alice'`.
-
-<Gotcha>
-
-You can't pass an `async` function to `useEffect`. This is because all asynchronous effects need cleanup to [avoid race conditions](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect). You can, however, write an async function *inside* your effect, and then call it:
-
-```js {4-9,11}
+```js {2,6,13-15}
 useEffect(() => {
   let ignore = false;
 
@@ -573,17 +533,23 @@ useEffect(() => {
 }, [userId]);
 ```
 
-</Gotcha>
+You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. For example, if the `userId` changes from `'Bob'` to `'Alice'`, cleanup ensures that the `'Bob'` response is ignored even if it arrives after `'Alice'`.
 
-<DeepDive title="Is fetching data in effects recommended?">
+<DeepDive title="What are good alternatives to data fetching in effects?">
 
-If you use a [framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework) with support for server rendering, **we strongly recommend to use your framework's data fetching mechanism instead of fetching data in effects.** There are a few reasons:
+Writing `fetch` calls inside effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
 
-- Effects don't run on the server. This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
-- Fetching in effects makes it easy to create "network waterfalls". You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
-- There is no easy way to cache or preload data fetches when you fetch in effects. For example, if the component unmounts and then mounts again, it would have to fetch the data again.
+- **Effects don't run on the server.** This means that the initial server-rendered HTML will only include a loading state with no data. The client computer will have to download all JavaScript and render your app only to discover that now it needs to load the data. This is not very efficient.
+- **Fetching directly in effects makes it easy to create "network waterfalls".** You render the parent component, it fetches some data, renders the child components, and then they start fetching their data. If the network is not very fast, this is significantly slower than fetching all data in parallel.
+- **Fetching directly in effects usually means you don't preload or cache data.** For example, if the component unmounts and then mounts again, it would have to fetch the data again.
+- **It's not very ergonomic.** There's quite a bit of boilerplate code involved when writing `fetch` calls in a way that doesn't suffer from bugs like [race conditions](https://maxrozen.com/race-conditions-fetching-data-react-with-useeffect).
 
-This list of downsides is not specific to React. It applies to fetching data on mount with any library. When you can, we recommend you to fetch data with an optimized framework and a client-side cache.
+This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
+
+- **If you use a [framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://react-query.tanstack.com/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+](https://beta.reactrouter.com/en/remixing/getting-started/data). You can build your own solution too, in which case you would use effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+
+You can continue fetching data directly in effects if neither of these approaches suit you.
 
 </DeepDive>
 

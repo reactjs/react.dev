@@ -22,17 +22,9 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import type ts from 'typescript';
 import type {SymbolDisplayPart, SymbolDisplayPartKind} from 'typescript';
 import {ChannelClient} from './ChannelBridge';
+import {CONFIG} from './config';
 import {ensurePathStartsWithSlash} from './ensurePathBeginsWithSlash';
 import type {TSServerWorker} from './tsserver.worker';
-
-/**
- * Turn features on and off to change the UX.
- * @todo Inline the policy decisions once we're happy with the UX.
- */
-const POLICY = {
-  showTypes: false,
-  showDocTags: false,
-} as const;
 
 export function codemirrorTypescriptExtensions(
   client: ChannelClient<TSServerWorker>,
@@ -390,10 +382,11 @@ function hoverTooltipExtension(
       const quickInfo = allInfo.result;
       if (!quickInfo) return null;
 
-      const hasNonTypeInfo = Boolean(
-        quickInfo.documentation || quickInfo.tags?.length
-      );
-      if (hasNonTypeInfo || POLICY.showTypes) {
+      if (
+        CONFIG.showTypes ||
+        quickInfo.documentation ||
+        (CONFIG.showDocTags && quickInfo.tags?.length)
+      ) {
         return {
           pos,
           create(view) {
@@ -542,6 +535,35 @@ function SymbolDisplayParts(props: {
   return <>{items}</>;
 }
 
+const URL_REGEX = /(https?:\/\/[^\s]+)/;
+const REFERENCE_PREFIXES = [
+  // TODO: add more references.
+  'https://reactjs.org/docs/hooks-reference.html#', // eg, #usestate
+  'https://reactjs.org/docs/concurrent-mode-reference.html#', // eg, #usetransition
+  'https://reactjs.org/docs/react-dom.html#', // eg, #render
+];
+function getBetaDocsLink(
+  tags: ts.JSDocTagInfo[] | undefined
+): string | undefined {
+  const seeTag = tags?.find((tag) => tag.name === 'see');
+  const seeTagPlaintext = seeTag?.text?.map((it) => it.text).join('');
+  if (!seeTagPlaintext) {
+    return;
+  }
+
+  const match = seeTagPlaintext.match(URL_REGEX);
+  if (!match) {
+    return;
+  }
+
+  const url = match[1];
+  for (const prefix of REFERENCE_PREFIXES) {
+    if (url.startsWith(prefix)) {
+      return `/apis/${url.slice(prefix.length)}`;
+    }
+  }
+}
+
 function QuickInfo(props: {
   state: EditorState;
   truncateDisplayParts?: boolean;
@@ -549,10 +571,11 @@ function QuickInfo(props: {
 }) {
   const {state, info, truncateDisplayParts} = props;
   const {displayParts, documentation, tags} = info;
+  const betaDocsLink = CONFIG.showBetaDocsLinks && getBetaDocsLink(tags);
 
   return (
     <>
-      {POLICY.showTypes && displayParts && (
+      {CONFIG.showTypes && displayParts && (
         <div
           className={`cm-tooltip-section quickinfo-documentation quickinfo-monospace  ${
             truncateDisplayParts ? 'quickinfo-truncate quickinfo-small' : ''
@@ -560,12 +583,12 @@ function QuickInfo(props: {
           <SymbolDisplayParts state={state} parts={displayParts} />
         </div>
       )}
-      {(documentation?.length || tags?.length) && (
+      {(documentation?.length || tags?.length || betaDocsLink) && (
         <div className="quickinfo-documentation quickinfo-small cm-tooltip-section">
           {documentation && (
             <SymbolDisplayParts state={state} parts={documentation} />
           )}
-          {POLICY.showDocTags &&
+          {CONFIG.showDocTags &&
             tags?.map((tag, i) => (
               <div className="quickinfo-tsdoc-tag" key={i}>
                 <CodeMirrorTag
@@ -581,6 +604,19 @@ function QuickInfo(props: {
                 )}
               </div>
             ))}
+          {betaDocsLink && (
+            <div className="quickinfo-tsdoc-tag">
+              <CodeMirrorTag state={state} tag={hl.tags.definitionKeyword}>
+                <span style={{fontWeight: 'bold'}}>Docs</span>
+              </CodeMirrorTag>
+              <>: </>
+              <CodeMirrorTag state={state} tag={hl.tags.link}>
+                <a href={betaDocsLink}>
+                  https://beta.reactjs.org{betaDocsLink}
+                </a>
+              </CodeMirrorTag>
+            </div>
+          )}
         </div>
       )}
     </>

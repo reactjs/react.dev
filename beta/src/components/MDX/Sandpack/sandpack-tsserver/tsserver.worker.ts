@@ -8,6 +8,7 @@ import {
   createVirtualTypeScriptEnvironment,
 } from '@typescript/vfs';
 import type {Diagnostic} from '@codemirror/lint';
+import {CONFIG} from './config';
 
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
@@ -292,8 +293,9 @@ class TSServerWorker {
       env.languageService.getSyntacticDiagnostics(filePath);
     const SemanticDiagnostic =
       env.languageService.getSemanticDiagnostics(filePath);
-    const SuggestionDiagnostics =
-      env.languageService.getSuggestionDiagnostics(filePath);
+    const SuggestionDiagnostics = CONFIG.showSuggestionDiagnostics
+      ? env.languageService.getSuggestionDiagnostics(filePath)
+      : [];
     type Diagnostics = typeof SyntacticDiagnostics &
       typeof SemanticDiagnostic &
       typeof SuggestionDiagnostics;

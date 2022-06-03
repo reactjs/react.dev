@@ -28,7 +28,7 @@ React components are JavaScript functions that return markup:
 ```js
 function MyButton() {
   return (
-    <button>Click me</button>
+    <button>I'm a button</button>
   );
 }
 ```
@@ -56,7 +56,7 @@ Have a look at the result:
 function MyButton() {
   return (
     <button>
-      Click me
+      I'm a button
     </button>
   );
 }

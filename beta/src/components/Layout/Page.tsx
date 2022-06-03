@@ -26,14 +26,17 @@ export function Page({routeTree, children}: PageProps) {
               <Sidebar />
             </div>
 
-            <div className="flex flex-1 w-full h-full self-stretch">
-              <div className="w-full min-w-0">
-                <main className="flex flex-1 self-stretch mt-16 sm:mt-10 flex-col items-end justify-around">
-                  {children}
-                  <Footer />
-                </main>
+            {/* No fallback UI so need to be careful not to suspend directly inside. */}
+            <React.Suspense fallback={null}>
+              <div className="flex flex-1 w-full h-full self-stretch">
+                <div className="w-full min-w-0">
+                  <main className="flex flex-1 self-stretch mt-16 sm:mt-10 flex-col items-end justify-around">
+                    {children}
+                    <Footer />
+                  </main>
+                </div>
               </div>
-            </div>
+            </React.Suspense>
           </div>
         </SidebarContext.Provider>
       </MenuProvider>

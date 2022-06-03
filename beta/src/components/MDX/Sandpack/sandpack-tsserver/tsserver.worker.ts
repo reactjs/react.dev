@@ -1,6 +1,6 @@
 import type {VirtualTypeScriptEnvironment} from '@typescript/vfs';
 import type {CompilerOptions} from 'typescript';
-import {ChannelServer} from './ChannelBridge';
+import {ChannelClient, ChannelServer} from './ChannelBridge';
 import ts from 'typescript';
 import {
   createDefaultMapFromCDN,
@@ -168,6 +168,11 @@ const fetchDependencyTypesFromCDN = async (
 
 class TSServerWorker {
   env: VirtualTypeScriptEnvironment | undefined;
+  renderer = ChannelClient.createAndListen<TSServerRender>({
+    waitForReady: true,
+    requestPort: {postMessage: wrappedPostMessage},
+    listenPort: globalThis,
+  })[0];
 
   createTsSystem = async (
     files: Record<string, {code: string}>,
@@ -219,6 +224,7 @@ class TSServerWorker {
         false,
         ts
       );
+      await this.renderer.call('saveTypescriptCache', ts.version, fsMap);
     }
 
     /**
@@ -472,7 +478,7 @@ const FormatCodeSettings: ts.FormatCodeSettings = {
 
 export type {TSServerWorker};
 
-ChannelServer.create({
+ChannelServer.createAndListen({
   expose: new TSServerWorker(),
   listenPort: globalThis,
   responsePort: {postMessage: wrappedPostMessage},

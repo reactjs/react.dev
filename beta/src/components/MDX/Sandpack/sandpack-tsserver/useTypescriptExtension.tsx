@@ -22,15 +22,16 @@ export const useTypescriptExtension = () => {
     );
 
     const postMessage = (msg: any) => worker.postMessage(msg);
+
     const renderer = new TSServerRender(getLocalStorage());
     return {
       worker,
       renderer,
-      server: new ChannelServer({
+      rendererServer: new ChannelServer({
         expose: renderer,
         responsePort: {postMessage},
       }),
-      client: new ChannelClient<TSServerWorker>({postMessage}, true),
+      workerClient: new ChannelClient<TSServerWorker>({postMessage}, true),
     };
   });
 
@@ -57,20 +58,20 @@ export const useTypescriptExtension = () => {
 
       tsServerWorker.worker.addEventListener(
         'message',
-        tsServerWorker.client.onMessage
+        tsServerWorker.workerClient.onMessage
       );
       tsServerWorker.worker.addEventListener(
         'message',
-        tsServerWorker.server.onMessage
+        tsServerWorker.rendererServer.onMessage
       );
       return () => {
         tsServerWorker.worker.removeEventListener(
           'message',
-          tsServerWorker.client.onMessage
+          tsServerWorker.workerClient.onMessage
         );
         tsServerWorker.worker.removeEventListener(
           'message',
-          tsServerWorker.server.onMessage
+          tsServerWorker.rendererServer.onMessage
         );
       };
     },
@@ -83,7 +84,8 @@ export const useTypescriptExtension = () => {
       return;
     }
     const cache = tsServerWorker.renderer.loadTypescriptCache();
-    tsServerWorker.client.call(
+    tsServerWorker.rendererServer.sendReady();
+    tsServerWorker.workerClient.call(
       'createTsSystem',
       ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
       ensurePathStartsWithSlash(sandpack.activePath),
@@ -102,7 +104,7 @@ export const useTypescriptExtension = () => {
     }
 
     return codemirrorExtensions.codemirrorTypescriptExtensions(
-      tsServerWorker.client,
+      tsServerWorker.workerClient,
       activePath
     );
   }, [codemirrorExtensions, tsServerWorker, activePath]);
@@ -110,7 +112,7 @@ export const useTypescriptExtension = () => {
   return extensions;
 };
 
-class TSServerRender {
+export class TSServerRender {
   constructor(private storage: Storage | undefined) {}
 
   loadTypescriptCache() {

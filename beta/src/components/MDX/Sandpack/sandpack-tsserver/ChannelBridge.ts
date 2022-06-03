@@ -74,7 +74,7 @@ type GetOf<T> = Extract<MessageType<T>, {type: 'get'}>['prop'];
  * via `addEventListener` for `message` events.
  */
 export class ChannelClient<Interface> {
-  static create<Interface>(args: {
+  static createAndListen<Interface>(args: {
     listenPort: ListenablePort;
     requestPort: WritablePort;
     waitForReady: boolean;
@@ -168,7 +168,7 @@ export class ChannelServer<Interface> {
   private impl: Interface;
   private responsePort: WritablePort;
 
-  static create<Interface>(args: {
+  static createAndListen<Interface>(args: {
     expose: Interface;
     listenPort: ListenablePort;
     responsePort: WritablePort;

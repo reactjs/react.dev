@@ -71,7 +71,7 @@ export function CustomPreset({
               showDevTools && devToolsLoaded && 'sp-layout-devtools',
               isExpanded && 'sp-layout-expanded'
             )}>
-            <MemoCodeEditor
+            <SandpackCodeEditor
               showLineNumbers
               // If `showInlineErrors` is enabled, Sandpack dismisses autocompletion whenever
               // the build errors. This is frustrating because on a fast connection, the editor
@@ -126,28 +126,3 @@ export function CustomPreset({
     </>
   );
 }
-
-const MemoCodeEditor = React.memo(
-  React.forwardRef<CodeEditorRef, CodeEditorProps>((props, ref) => {
-    const {extensions, ...rest} = props;
-
-    // Conspire to re-mount SandpackCodeEditor if extensions change.
-    const keyRef = React.useRef(0);
-    const prevExtensions = React.useRef(extensions);
-    if (prevExtensions.current !== extensions) {
-      keyRef.current++;
-    }
-    prevExtensions.current = extensions;
-
-    return (
-      <SandpackCodeEditor
-        ref={ref}
-        key={keyRef.current}
-        {...rest}
-        extensions={extensions}
-      />
-    );
-  })
-);
-
-MemoCodeEditor.displayName = 'MemoCodeEditor';

@@ -9,6 +9,7 @@ import {
 } from '@typescript/vfs';
 import type {Diagnostic} from '@codemirror/lint';
 import {CONFIG} from './config';
+import type {TSServerRender} from './useTypescriptExtension';
 
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';

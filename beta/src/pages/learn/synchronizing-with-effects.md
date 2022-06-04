@@ -82,7 +82,9 @@ function VideoPlayer({ src, isPlaying }) {
 
 However, the browser `<video>` tag does not have an `isPlaying` prop. The only way to control it is to manually call the [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) methods on the DOM element. **You need to synchronize the value of `isPlaying` prop, which tells whether the video _should_ currently be playing, with imperative calls like `play()` and `pause()`.**
 
-[Get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node and try to call `play()` or `pause()` during rendering:
+We'll need to first [get a ref](/learn/manipulating-the-dom-with-refs) to the `<video>` DOM node.
+
+You might be tempted to try to call `play()` or `pause()` during rendering, but that isn't correct:
 
 <Sandpack>
 
@@ -93,9 +95,9 @@ function VideoPlayer({ src, isPlaying }) {
   const ref = useRef(null);
 
   if (isPlaying) {
-    ref.current.play();
+    ref.current.play();   // Calling these while rendering isn't allowed.
   } else {
-    ref.current.pause(); // It will crash here!
+    ref.current.pause();  // Also, this crashes.
   }
 
   return <video ref={ref} src={src} loop playsInline />;
@@ -124,9 +126,11 @@ video { width: 250px; }
 
 </Sandpack>
 
-The code above **does not work yet** and crashes with an error. Let's fix it!
+The reason this code isn't correct is that it tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM.
 
-The problem is that this code tries to do something with the DOM node during rendering. In React, [rendering should be a pure calculation](/learn/keeping-components-pure) of JSX and should not contain side effects like modifying the DOM. Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! React won't know what DOM to create until after you return the JSX. **Wrap the side effect with `useEffect` to move it out of the rendering calculation:**
+Moreover, by the time `VideoPlayer` is called for the first time, its DOM does not exist yet! There isn't any DOM node yet to call `play()` or `pause()` on, because React doesn't know what DOM to create until after you return the JSX.
+
+The solution here is to **wrap the side effect with `useEffect` to move it out of the rendering calculation:**
 
 ```js {6,12}
 import { useEffect, useRef } from 'react';
@@ -573,7 +577,7 @@ Now you get three console logs in development:
 
 **This is the correct behavior in development.** By remounting your component, React verifies that navigating away and back would not break your code. Disconnecting and then connecting again is exactly what should happen! When you implement the cleanup well, there should be no user-visible difference between running the effect once vs running it, cleaning it up, and running it again. There's an extra connect/disconnect call pair because React is probing your code for bugs in development. This is normal and you shouldn't try to make it go away.
 
-**In production, you would only see `"Connecting..."` printed once.** Remounting components only happens in development to help you find effects that need cleanup. You can turn off [Strict Mode](/apis/strictmode) to opt out of the development behavior, but we recommend to keep it on. This lets you find many bugs like the one above.
+**In production, you would only see `"Connecting..."` printed once.** Remounting components only happens in development to help you find effects that need cleanup. You can turn off [Strict Mode](/apis/strictmode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
 
 ## Common cleanup patterns {/*common-cleanup-patterns*/}
 

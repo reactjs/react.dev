@@ -26,4 +26,10 @@ export const CONFIG = {
    * Intended primarily for debugging use.
    */
   showDiagnosticCodeNumber: false,
+  /**
+   * Show JSON of each completion
+   */
+  showCompletionDebugDetails: false,
+  /** Show random declared globals? Nah. */
+  showAmbientDeclareCompletions: false,
 } as const;

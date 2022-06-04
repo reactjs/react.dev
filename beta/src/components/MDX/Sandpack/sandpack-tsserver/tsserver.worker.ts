@@ -404,16 +404,41 @@ class TSServerWorker {
       : {result, tooltipText: ''};
   };
 
-  autocompleteAtPosition = (pos: number, filePath: string) => {
+  autocompleteAtPosition = (args: {
+    pos: number;
+    explicit: boolean;
+    filePath: string;
+    charBefore?: string;
+  }) => {
+    const triggerCharacters = new Set<string | undefined>([
+      '.',
+      '"',
+      "'",
+      '`',
+      '/',
+      '@',
+      '<',
+      '#',
+      ' ',
+    ]);
+    const {pos, explicit, filePath, charBefore} = args;
     const completions = this.env?.languageService.getCompletionsAtPosition(
       filePath,
       pos,
       {
         includeCompletionsForImportStatements: true,
         includeCompletionsWithInsertText: true,
+        // includeCompletionsWithSnippetText: true,
         includeCompletionsForModuleExports: true,
         includeAutomaticOptionalChainCompletions: true,
         includePackageJsonAutoImports: 'auto',
+        triggerKind:
+          explicit || !triggerCharacters.has(charBefore)
+            ? ts.CompletionTriggerKind.Invoked
+            : ts.CompletionTriggerKind.TriggerCharacter,
+        triggerCharacter: triggerCharacters.has(charBefore)
+          ? (charBefore as ts.CompletionsTriggerCharacter)
+          : undefined,
       }
     );
 
@@ -423,21 +448,42 @@ class TSServerWorker {
 
     return {
       ...completions,
-      entries: completions.entries.map((entry) => ({
-        ...entry,
-        sourceDisplayString: ts.displayPartsToString(entry.sourceDisplay),
-        details:
-          entry.data &&
-          this.env?.languageService.getCompletionEntryDetails(
-            filePath,
-            pos,
-            entry.name,
-            FormatCodeSettings,
-            entry.source,
-            undefined,
-            entry.data
-          ),
-      })),
+      entries: completions.entries
+        .filter((entry) => {
+          if (entry.data) {
+            return true;
+          }
+
+          if (CONFIG.showAmbientDeclareCompletions === false) {
+            if (entry.kindModifiers?.includes('deprecated')) {
+              return false;
+            }
+
+            if (
+              entry.kindModifiers?.includes('declare') &&
+              entry.kind === 'var'
+            ) {
+              return Boolean(entry.source);
+            }
+          }
+
+          return true;
+        })
+        .map((entry) => ({
+          ...entry,
+          sourceDisplayString: ts.displayPartsToString(entry.sourceDisplay),
+          details:
+            entry.data &&
+            this.env?.languageService.getCompletionEntryDetails(
+              filePath,
+              pos,
+              entry.name,
+              FormatCodeSettings,
+              entry.source,
+              undefined,
+              entry.data
+            ),
+        })),
     };
   };
 

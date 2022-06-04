@@ -255,13 +255,15 @@ function autocompleteExtension(
           const {pos} = ctx;
 
           try {
+            const charBefore = ctx.matchBefore(/./)?.text;
             const completions =
               filePath &&
-              (await client.call(
-                'autocompleteAtPosition',
+              (await client.call('autocompleteAtPosition', {
                 pos,
-                ensurePathStartsWithSlash(filePath)
-              ));
+                filePath: ensurePathStartsWithSlash(filePath),
+                explicit: ctx.explicit,
+                charBefore: !ctx.explicit ? charBefore : undefined,
+              }));
 
             if (!completions) {
               console.warn('Unable to get completions', {pos});
@@ -323,27 +325,33 @@ function autocompleteExtension(
                       }
                     : undefined,
                   info:
-                    details &&
-                    function () {
-                      const container = document.createElement('div');
-                      renderIntoNode(
-                        container,
+                    details || CONFIG.showCompletionDebugDetails
+                      ? function () {
+                          const container = document.createElement('div');
+                          renderIntoNode(
+                            container,
 
-                        <>
-                          {description && (
-                            <div className="quickinfo-documentation cm-tooltip-section">
-                              {description}
-                            </div>
-                          )}
-                          <QuickInfo
-                            state={ctx.state}
-                            info={details}
-                            truncateDisplayParts={true}
-                          />
-                        </>
-                      );
-                      return container;
-                    },
+                            <>
+                              {description && (
+                                <div className="quickinfo-documentation cm-tooltip-section">
+                                  {description}
+                                </div>
+                              )}
+                              {details && (
+                                <QuickInfo
+                                  state={ctx.state}
+                                  info={details}
+                                  truncateDisplayParts={true}
+                                />
+                              )}
+                              {CONFIG.showCompletionDebugDetails && (
+                                <pre>{JSON.stringify(c, null, 2)}</pre>
+                              )}
+                            </>
+                          );
+                          return container;
+                        }
+                      : undefined,
                   // TODO: double-check ranking makes sense.
                   boost: 1 / Number(c.sortText),
                 };

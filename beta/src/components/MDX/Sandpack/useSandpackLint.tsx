@@ -28,8 +28,6 @@ export const useSandpackLint = () => {
         let {errors, codeMirrorErrors} = runESLint(editorState);
         // Ignore parsing or internal linter errors.
         const isReactRuleError = (error: any) => error.ruleId != null;
-        // XXX: this is being called very frequently (every second?) even when the editor is idle,
-        // which causes a re-render of all editor-related components.
         setLintErrors(errors.filter(isReactRuleError));
         return codeMirrorErrors.filter(isReactRuleError);
       });

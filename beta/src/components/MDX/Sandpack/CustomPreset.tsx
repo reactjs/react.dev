@@ -36,10 +36,6 @@ export function CustomPreset({
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
   const typescriptExtensions = useTypescriptExtension();
-  const extensions = React.useMemo(
-    () => [lintExtensions, typescriptExtensions].flat(),
-    [lintExtensions, typescriptExtensions]
-  );
 
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
@@ -79,7 +75,7 @@ export function CustomPreset({
               showInlineErrors={false}
               showTabs={false}
               showRunButton={false}
-              extensions={extensions}
+              extensions={[lintExtensions, typescriptExtensions]}
             />
             <Preview
               className="order-last xl:order-2"

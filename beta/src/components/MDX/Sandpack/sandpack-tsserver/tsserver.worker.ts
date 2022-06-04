@@ -298,8 +298,15 @@ class TSServerWorker {
 
     const SyntacticDiagnostics =
       env.languageService.getSyntacticDiagnostics(filePath);
-    const SemanticDiagnostic =
-      env.languageService.getSemanticDiagnostics(filePath);
+    const SemanticDiagnostic = env.languageService
+      .getSemanticDiagnostics(filePath)
+      .filter((semantic) => {
+        if (CONFIG.semanticDiagnosticsAllowList) {
+          return CONFIG.semanticDiagnosticsAllowList.has(semantic.code);
+        } else {
+          return true;
+        }
+      });
     const SuggestionDiagnostics = CONFIG.showSuggestionDiagnostics
       ? env.languageService.getSuggestionDiagnostics(filePath)
       : [];
@@ -357,10 +364,13 @@ class TSServerWorker {
       ];
 
       messagesErrors(result.messageText).forEach((message) => {
+        const finalMessage = CONFIG.showDiagnosticCodeNumber
+          ? `${message} (${result.code})`
+          : message;
         acc.push({
           from,
           to,
-          message,
+          message: finalMessage,
           source: result?.source,
           severity: severity[result.category],
           serializedActions: codeActions.map((action) => {

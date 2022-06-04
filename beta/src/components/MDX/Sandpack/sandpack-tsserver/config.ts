@@ -9,4 +9,21 @@ export const CONFIG = {
   showBetaDocsLinks: true,
   /** Eg, "this variable is unused, delete it?" */
   showSuggestionDiagnostics: false,
+  /**
+   * Only show semantic diagnostics related to imports:
+   * Many existing examples don't infer types correctly.
+   */
+  semanticDiagnosticsAllowList: new Set([
+    // Module '{0}' has no exported member '{1}'."
+    2305,
+    // File '{0}' is not a module.
+    2306,
+    // Cannot find module '{0}' or its corresponding type declarations.
+    2307,
+  ]),
+  /**
+   * Show the Typescript diagnostic number when rendering diagnostics.
+   * Intended primarily for debugging use.
+   */
+  showDiagnosticCodeNumber: false,
 } as const;

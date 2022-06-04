@@ -23,9 +23,6 @@ import {CustomTheme} from './Themes';
 import {useSandpackLint} from './useSandpackLint';
 import {useTypescriptExtension} from './sandpack-tsserver/useTypescriptExtension';
 
-// Workaround for https://github.com/reactjs/reactjs.org/issues/4686#issuecomment-1137402613.
-const emptyArray: Array<any> = [];
-
 export function CustomPreset({
   isSingleFile,
   showDevTools,
@@ -83,7 +80,6 @@ export function CustomPreset({
               showTabs={false}
               showRunButton={false}
               extensions={extensions}
-              extensionsKeymap={emptyArray}
             />
             <Preview
               className="order-last xl:order-2"

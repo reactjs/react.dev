@@ -80,6 +80,7 @@ export const useTypescriptExtension = () => {
           'message',
           tsServerWorker.rendererServer.onMessage
         );
+        tsServerWorker.worker.terminate();
       };
     },
     [tsServerWorker]

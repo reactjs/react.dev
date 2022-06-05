@@ -392,7 +392,7 @@ function hoverTooltipExtension(
 
       if (
         CONFIG.showTypes ||
-        quickInfo.documentation ||
+        quickInfo.documentation?.length ||
         (CONFIG.showDocTags && quickInfo.tags?.length)
       ) {
         return {

@@ -1,6 +1,7 @@
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {useEffect, useMemo, useState} from 'react';
 import {ChannelClient, ChannelServer} from './ChannelBridge';
+import {CONFIG} from './config';
 import {
   ensureAllPathsStartWithSlash,
   ensurePathStartsWithSlash,
@@ -64,6 +65,12 @@ export const useTypescriptExtension = () => {
         'message',
         tsServerWorker.rendererServer.onMessage
       );
+      if (CONFIG.debugBridge) {
+        tsServerWorker.worker.addEventListener('message', (e) => {
+          console.log('worker -> render', e.data);
+        });
+      }
+
       return () => {
         tsServerWorker.worker.removeEventListener(
           'message',

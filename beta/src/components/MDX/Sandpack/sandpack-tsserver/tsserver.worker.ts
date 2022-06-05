@@ -14,6 +14,11 @@ import type {TSServerRender} from './useTypescriptExtension';
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
 const wrappedPostMessage = (msg: any) => postMessage(msg);
+if (CONFIG.debugBridge) {
+  addEventListener('message', (e) => {
+    console.log('render -> worker', e.data);
+  });
+}
 
 interface SerializedAction {
   name: string;
@@ -318,7 +323,6 @@ class TSServerWorker {
       SemanticDiagnostic,
       SuggestionDiagnostics
     );
-
     return tsDiagnostics.reduce((acc, result) => {
       const from = result.start;
       const to = result.start + result.length;

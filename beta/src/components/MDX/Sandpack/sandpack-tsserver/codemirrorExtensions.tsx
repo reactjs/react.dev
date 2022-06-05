@@ -325,7 +325,7 @@ function autocompleteExtension(
                       }
                     : undefined,
                   info:
-                    details || CONFIG.showCompletionDebugDetails
+                    details || CONFIG.debugCompletions
                       ? function () {
                           const container = document.createElement('div');
                           renderIntoNode(
@@ -344,7 +344,7 @@ function autocompleteExtension(
                                   truncateDisplayParts={true}
                                 />
                               )}
-                              {CONFIG.showCompletionDebugDetails && (
+                              {CONFIG.debugCompletions && (
                                 <pre>{JSON.stringify(c, null, 2)}</pre>
                               )}
                             </>

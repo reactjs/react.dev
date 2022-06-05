@@ -3,6 +3,13 @@
  * @todo Inline the policy decisions once we're happy with the UX.
  */
 export const CONFIG = {
+  /** When true, console.log all communications sent between the worker & main thread */
+  debugBridge: true,
+  /**
+   * Show JSON of each completion
+   */
+  debugCompletions: false,
+
   showTypes: false,
   showDocTags: false,
   /** Convert @see URLs to beta URLs */
@@ -26,10 +33,6 @@ export const CONFIG = {
    * Intended primarily for debugging use.
    */
   showDiagnosticCodeNumber: false,
-  /**
-   * Show JSON of each completion
-   */
-  showCompletionDebugDetails: false,
   /** Show random declared globals? Nah. */
   showAmbientDeclareCompletions: false,
 } as const;

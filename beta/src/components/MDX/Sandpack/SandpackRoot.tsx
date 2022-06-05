@@ -11,7 +11,7 @@ import {createFileMap} from './createFileMap';
 import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
-  children: React.ReactChildren;
+  children: React.ReactNode;
   autorun?: boolean;
   setup?: SandpackSetup;
   showDevTools?: boolean;
@@ -84,7 +84,7 @@ function SandpackRoot(props: SandpackProps) {
         autorun={autorun}
         initMode="user-visible"
         initModeObserverOptions={{rootMargin: '1400px 0px'}}
-        bundlerURL="https://22530bfe.sandpack-bundler.pages.dev"
+        bundlerURL="https://3f1bb162.sandpack-bundler.pages.dev"
         logLevel={SandpackLogLevel.None}>
         <CustomPreset
           isSingleFile={isSingleFile}

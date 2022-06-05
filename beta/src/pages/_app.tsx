@@ -12,7 +12,9 @@ import '../styles/index.css';
 import '../styles/sandpack.css';
 import '@codesandbox/sandpack-react/dist/index.css';
 
-const EmptyAppShell: React.FC = ({children}) => <>{children}</>;
+const EmptyAppShell = ({children}: {children: React.ReactNode}) => (
+  <>{children}</>
+);
 
 if (typeof window !== 'undefined') {
   if (process.env.NODE_ENV === 'production') {

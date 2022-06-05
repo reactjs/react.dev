@@ -182,8 +182,7 @@ class TSServerWorker {
 
   createTsSystem = async (
     files: Record<string, {code: string}>,
-    entry: string,
-    fsMapCached: Map<string, string>
+    entry: string
   ) => {
     const tsFiles = new Map();
     const allFiles = new Map();
@@ -222,6 +221,7 @@ class TSServerWorker {
     /**
      * Process cache or get a fresh one
      */
+    const fsMapCached = await this.renderer.call('loadTypescriptCache');
     let fsMap = processTypescriptCacheFromStorage(fsMapCached);
     if (fsMap.size === 0) {
       fsMap = await createDefaultMapFromCDN(

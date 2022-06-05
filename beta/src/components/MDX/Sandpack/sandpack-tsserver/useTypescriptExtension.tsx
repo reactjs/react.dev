@@ -91,13 +91,11 @@ export const useTypescriptExtension = () => {
     if (!tsServerWorker) {
       return;
     }
-    const cache = tsServerWorker.renderer.loadTypescriptCache();
     tsServerWorker.rendererServer.sendReady();
     tsServerWorker.workerClient.call(
       'createTsSystem',
       ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
-      ensurePathStartsWithSlash(sandpack.activePath),
-      cache
+      ensurePathStartsWithSlash(sandpack.activePath)
     );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [

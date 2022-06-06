@@ -26,33 +26,34 @@ import {CONFIG} from './config';
 import {ensurePathStartsWithSlash} from './ensurePathBeginsWithSlash';
 import type {TSServerWorker} from './tsserver.worker';
 
-export function codemirrorTypescriptExtensions(
-  client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined
-) {
+interface ExtensionEnv {
+  envId: number;
+  client: ChannelClient<TSServerWorker>;
+  filePath: string | undefined;
+}
+
+export function codemirrorTypescriptExtensions(env: ExtensionEnv) {
   return [
-    requiredExtensions(client, filePath),
-    formatExtension(client, filePath),
-    diagnosticExtension(client, filePath),
-    autocompleteExtension(client, filePath),
-    hoverTooltipExtension(client, filePath),
+    requiredExtensions(env),
+    formatExtension(env),
+    diagnosticExtension(env),
+    autocompleteExtension(env),
+    hoverTooltipExtension(env),
   ];
 }
 
-function requiredExtensions(
-  client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined
-) {
+function requiredExtensions(env: ExtensionEnv) {
   let previousFileContent: string | undefined;
   return [
     EditorView.updateListener.of((update: ViewUpdate) => {
-      if (filePath) {
+      if (env.filePath) {
         const newFileContent = update.state.doc.toJSON().join('\n');
         if (newFileContent !== previousFileContent) {
           previousFileContent = newFileContent;
-          client.call(
+          env.client.call(
             'updateFile',
-            ensurePathStartsWithSlash(filePath),
+            env.envId,
+            ensurePathStartsWithSlash(env.filePath),
             update.state.doc.toJSON().join('\n')
           );
         }
@@ -133,10 +134,8 @@ function requiredExtensions(
   ];
 }
 
-function formatExtension(
-  client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined
-) {
+function formatExtension(env: ExtensionEnv) {
+  const {filePath, client, envId} = env;
   const formatCode: Command = (target) => {
     if (!filePath) {
       return false;
@@ -145,11 +144,13 @@ function formatExtension(
       const contents = target.state.doc.toJSON().join('\n');
       await client.call(
         'updateFile',
+        envId,
         ensurePathStartsWithSlash(filePath),
         contents
       );
       const changes = await client.call(
         'formatFile',
+        envId,
         ensurePathStartsWithSlash(filePath)
       );
       if (!changes) {
@@ -175,10 +176,7 @@ function formatExtension(
   ];
 }
 
-function diagnosticExtension(
-  client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined
-) {
+function diagnosticExtension({client, envId, filePath}: ExtensionEnv) {
   return [
     keymap.of([
       {
@@ -193,10 +191,10 @@ function diagnosticExtension(
           return [];
         }
 
-        const diagnostics = await client.call(
-          'lintSystem',
-          ensurePathStartsWithSlash(filePath)
-        );
+        const diagnostics = await client.call('lintSystem', {
+          envId,
+          filePath: ensurePathStartsWithSlash(filePath),
+        });
 
         if (!diagnostics) {
           return [];
@@ -227,7 +225,7 @@ function diagnosticExtension(
                   });
 
                   if (action.data.commands) {
-                    client.call('applyCodeAction', action.data.commands);
+                    client.call('applyCodeAction', envId, action.data.commands);
                   }
 
                   forceLinting(editor);
@@ -242,10 +240,7 @@ function diagnosticExtension(
   ];
 }
 
-function autocompleteExtension(
-  client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined
-) {
+function autocompleteExtension({client, envId, filePath}: ExtensionEnv) {
   return autocompletion({
     activateOnTyping: true,
     override: [
@@ -259,6 +254,7 @@ function autocompleteExtension(
             const completions =
               filePath &&
               (await client.call('autocompleteAtPosition', {
+                envId,
                 pos,
                 filePath: ensurePathStartsWithSlash(filePath),
                 explicit: ctx.explicit,
@@ -369,18 +365,15 @@ function autocompleteExtension(
   });
 }
 
-function hoverTooltipExtension(
-  client: ChannelClient<TSServerWorker>,
-  filePath: string | undefined
-) {
+function hoverTooltipExtension({client, envId, filePath}: ExtensionEnv) {
   return hoverTooltip(
     async (_: EditorView, pos: number): Promise<Tooltip | null> => {
       const allInfo = filePath
-        ? await client.call(
-            'infoAtPosition',
+        ? await client.call('infoAtPosition', {
+            envId,
             pos,
-            ensurePathStartsWithSlash(filePath)
-          )
+            filePath: ensurePathStartsWithSlash(filePath),
+          })
         : undefined;
 
       if (!allInfo) {

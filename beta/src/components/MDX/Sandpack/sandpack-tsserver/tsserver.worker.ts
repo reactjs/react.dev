@@ -9,7 +9,7 @@ import {
 } from '@typescript/vfs';
 import type {Diagnostic} from '@codemirror/lint';
 import {CONFIG} from './config';
-import type {TSServerRender} from './useTypescriptExtension';
+import type {TSServerRender} from './TypescriptServerProvider';
 
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
@@ -173,17 +173,20 @@ const fetchDependencyTypesFromCDN = async (
 };
 
 class TSServerWorker {
-  env: VirtualTypeScriptEnvironment | undefined;
+  envs = new Map<number, VirtualTypeScriptEnvironment>();
+
   renderer = ChannelClient.createAndListen<TSServerRender>({
     waitForReady: true,
     requestPort: {postMessage: wrappedPostMessage},
     listenPort: globalThis,
   })[0];
 
-  createTsSystem = async (
-    files: Record<string, {code: string}>,
-    entry: string
-  ) => {
+  createEnv = async (args: {
+    envId: number;
+    files: Record<string, {code: string}>;
+    entry: string;
+  }) => {
+    const {envId, files, entry} = args;
     const tsFiles = new Map();
     const allFiles = new Map();
     const rootPaths = [];
@@ -234,14 +237,6 @@ class TSServerWorker {
     }
 
     /**
-     * Post CDN payload to cache in the browser storage
-     */
-    wrappedPostMessage({
-      event: 'cache-typescript-fsmap',
-      details: {fsMap, version: ts.version},
-    });
-
-    /**
      * Add local files to the file-system
      */
     allFiles.forEach((content, filePath) => {
@@ -287,19 +282,34 @@ class TSServerWorker {
 
     const system = createSystem(fsMap);
 
-    this.env = createVirtualTypeScriptEnvironment(
+    const env = createVirtualTypeScriptEnvironment(
       system,
       rootPaths,
       ts,
       compilerOpts
     );
 
-    return this.lintSystem(entry);
+    this.envs.set(envId, env);
+    return this.lintSystem({
+      envId,
+      filePath: entry,
+    });
   };
 
-  lintSystem = (filePath: string) => {
-    const env = this.env;
-    if (!env) return;
+  deleteEnv(envId: number) {
+    return this.envs.delete(envId);
+  }
+
+  getEnv(envId: number): VirtualTypeScriptEnvironment | undefined {
+    return this.envs.get(envId);
+  }
+
+  lintSystem = (args: {envId: number; filePath: string}) => {
+    const {envId, filePath} = args;
+    const env = this.getEnv(envId);
+    if (!env) {
+      return undefined;
+    }
 
     const SyntacticDiagnostics =
       env.languageService.getSyntacticDiagnostics(filePath);
@@ -390,10 +400,14 @@ class TSServerWorker {
     }, [] as SerializedDiagnostic[]);
   };
 
-  infoAtPosition = (pos: number, filePath: string) => {
-    const result = this.env?.languageService.getQuickInfoAtPosition(
-      filePath,
-      pos
+  infoAtPosition = (args: {envId: number; pos: number; filePath: string}) => {
+    const env = this.getEnv(args.envId);
+    if (!env) {
+      return undefined;
+    }
+    const result = env.languageService.getQuickInfoAtPosition(
+      args.filePath,
+      args.pos
     );
 
     return result
@@ -409,11 +423,16 @@ class TSServerWorker {
   };
 
   autocompleteAtPosition = (args: {
+    envId: number;
     pos: number;
     explicit: boolean;
     filePath: string;
     charBefore?: string;
   }) => {
+    const env = this.getEnv(args.envId);
+    if (!env) {
+      return undefined;
+    }
     const triggerCharacters = new Set<string | undefined>([
       '.',
       '"',
@@ -426,7 +445,7 @@ class TSServerWorker {
       ' ',
     ]);
     const {pos, explicit, filePath, charBefore} = args;
-    const completions = this.env?.languageService.getCompletionsAtPosition(
+    const completions = env.languageService.getCompletionsAtPosition(
       filePath,
       pos,
       {
@@ -478,7 +497,7 @@ class TSServerWorker {
           sourceDisplayString: ts.displayPartsToString(entry.sourceDisplay),
           details:
             entry.data &&
-            this.env?.languageService.getCompletionEntryDetails(
+            env.languageService.getCompletionEntryDetails(
               filePath,
               pos,
               entry.name,
@@ -491,32 +510,39 @@ class TSServerWorker {
     };
   };
 
-  updateFile = (filePath: string, content: string) => {
+  updateFile = (envId: number, filePath: string, content: string) => {
+    const env = this.getEnv(envId);
+    if (!env) {
+      return undefined;
+    }
     try {
-      this.env?.updateFile(filePath, content);
+      env.updateFile(filePath, content);
     } catch (error) {
       if (
         error instanceof Error &&
         error.message.includes('Did not find a source file')
       ) {
-        this.env?.createFile(filePath, content);
+        env.createFile(filePath, content);
       } else {
         throw error;
       }
     }
   };
 
-  applyCodeAction(action: ts.CodeActionCommand) {
-    const env = this.env;
+  applyCodeAction(envId: number, action: ts.CodeActionCommand) {
+    const env = this.getEnv(envId);
     if (!env) {
       return;
     }
-
     env.languageService.applyCodeActionCommand(action);
   }
 
-  formatFile(filePath: string) {
-    return this.env?.languageService.getFormattingEditsForDocument(
+  formatFile(envId: number, filePath: string) {
+    const env = this.getEnv(envId);
+    if (!env) {
+      return undefined;
+    }
+    return env.languageService.getFormattingEditsForDocument(
       filePath,
       FormatCodeSettings
     );

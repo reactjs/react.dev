@@ -11,6 +11,7 @@ import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 import '@codesandbox/sandpack-react/dist/index.css';
+import {TypescriptServerProvider} from 'components/MDX/Sandpack/sandpack-tsserver/TypescriptServerProvider';
 
 const EmptyAppShell = ({children}: {children: React.ReactNode}) => (
   <>{children}</>
@@ -48,7 +49,9 @@ export default function MyApp({Component, pageProps}: AppProps) {
 
   return (
     <AppShell>
-      <Component {...pageProps} />
+      <TypescriptServerProvider>
+        <Component {...pageProps} />
+      </TypescriptServerProvider>
     </AppShell>
   );
 }

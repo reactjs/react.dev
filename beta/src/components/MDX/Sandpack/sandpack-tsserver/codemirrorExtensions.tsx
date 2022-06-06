@@ -73,8 +73,8 @@ function requiredExtensions(env: ExtensionEnv) {
         border: '1px solid var(--sp-colors-fg-inactive) !important', // set to light colors always
         padding: '2px',
         borderRadius: '4px',
-        background: 'var(--sp-colors-bg-default)',
-        color: 'var(--theme-plain)',
+        background: 'var(--sp-colors-bg-default) !important',
+        color: 'var(--theme-plain) !important',
       },
       '.cm-tooltip-section:not(:first-child)': {
         borderColor: 'var(--sp-colors-fg-inactive)',

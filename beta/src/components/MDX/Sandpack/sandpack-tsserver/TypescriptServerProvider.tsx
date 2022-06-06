@@ -9,6 +9,7 @@ import {
   useCallback,
   useEffect,
   useMemo,
+  useRef,
   useState,
 } from 'react';
 import {ChannelServer, ChannelClient} from './ChannelBridge';
@@ -79,12 +80,19 @@ export class TSServerRender {
  * Provide a web worker to offload Typescript language services.
  */
 export function TypescriptServerProvider(props: {children: ReactNode}) {
+  const startedLoading = useRef(false);
   const [tsServer, setTsServer] = useState<TSServer | undefined>(undefined);
   const [codemirrorExtensions, setCodemirrorExtensions] =
     useState<typeof import('./codemirrorExtensions')>();
 
   const createTsServer = useCallback(() => {
-    if (typeof Worker !== undefined && tsServer === undefined) {
+    if (
+      startedLoading.current === false &&
+      typeof Worker !== undefined &&
+      tsServer === undefined
+    ) {
+      // Need to use a ref so we create the worker only once.
+      startedLoading.current = true;
       import('./codemirrorExtensions').then(setCodemirrorExtensions);
       const tsServer = new TSServer();
       setTsServer(tsServer);

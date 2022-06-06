@@ -1,12 +1,12 @@
+import {hoverTooltip} from '@codemirror/tooltip';
+import {EditorView} from '@codemirror/view';
 import {useSandpack} from '@codesandbox/sandpack-react';
-import {useCallback, useContext, useEffect, useMemo, useState} from 'react';
+import {useContext, useEffect, useMemo, useState} from 'react';
 import {
   ensureAllPathsStartWithSlash,
   ensurePathStartsWithSlash,
 } from './ensurePathBeginsWithSlash';
 import {TypescriptServerContext} from './TypescriptServerProvider';
-import {EditorView} from '@codemirror/view';
-import {hoverTooltip} from '@codemirror/tooltip';
 
 let globalEnvironmentIdCounter = 0;
 

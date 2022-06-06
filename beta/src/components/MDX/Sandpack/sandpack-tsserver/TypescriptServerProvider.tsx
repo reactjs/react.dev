@@ -17,11 +17,15 @@ import {getLocalStorage} from './localStorageHelper';
 import type {TSServerWorker} from './tsserver.worker';
 
 type TSServerContext =
-  | {server: TSServer; createServer?: undefined}
-  | {server?: undefined; createServer: () => void};
+  | {
+      tsServer: TSServer;
+      codemirrorExtensions: typeof import('./codemirrorExtensions') | undefined;
+      setup?: undefined;
+    }
+  | {tsServer?: undefined; codemirrorExtensions?: undefined; setup: () => void};
 
 export const TypescriptServerContext = createContext<TSServerContext>({
-  createServer: () => {},
+  setup: () => {},
 });
 
 class TSServer {
@@ -76,23 +80,24 @@ export class TSServerRender {
  */
 export function TypescriptServerProvider(props: {children: ReactNode}) {
   const [tsServer, setTsServer] = useState<TSServer | undefined>(undefined);
+  const [codemirrorExtensions, setCodemirrorExtensions] =
+    useState<typeof import('./codemirrorExtensions')>();
 
-  // TODO: we could lazy-load more things here, but I'm not sure it's worth the
-  // complexity yet.
   const createTsServer = useCallback(() => {
-    if (typeof Worker !== undefined) {
+    if (typeof Worker !== undefined && tsServer === undefined) {
+      import('./codemirrorExtensions').then(setCodemirrorExtensions);
       const tsServer = new TSServer();
       setTsServer(tsServer);
     }
-  }, []);
+  }, [tsServer]);
 
   const context = useMemo<TSServerContext>(() => {
     if (tsServer) {
-      return {server: tsServer};
+      return {tsServer, codemirrorExtensions};
     } else {
-      return {createServer: createTsServer};
+      return {setup: createTsServer};
     }
-  }, [tsServer, createTsServer]);
+  }, [tsServer, codemirrorExtensions, createTsServer]);
 
   useEffect(() => {
     if (!tsServer) {

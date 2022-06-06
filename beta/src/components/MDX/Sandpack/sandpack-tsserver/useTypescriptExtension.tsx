@@ -1,39 +1,29 @@
 import {useSandpack} from '@codesandbox/sandpack-react';
-import {useContext, useEffect, useMemo, useState} from 'react';
+import {useCallback, useContext, useEffect, useMemo, useState} from 'react';
 import {
   ensureAllPathsStartWithSlash,
   ensurePathStartsWithSlash,
 } from './ensurePathBeginsWithSlash';
 import {TypescriptServerContext} from './TypescriptServerProvider';
+import {EditorView} from '@codemirror/view';
+import {hoverTooltip} from '@codemirror/tooltip';
 
 let globalEnvironmentIdCounter = 0;
 
 export const useTypescriptExtension = () => {
-  const tsServerContext = useContext(TypescriptServerContext);
+  const {tsServer, codemirrorExtensions, setup} = useContext(
+    TypescriptServerContext
+  );
   const [envId] = useState(() => globalEnvironmentIdCounter++);
-
-  const [codemirrorExtensions, setCodemirrorExtensions] =
-    useState<typeof import('./codemirrorExtensions')>();
-
-  useEffect(() => {
-    const loadExtensions = async () => {
-      const codemirrorExtensions = await import('./codemirrorExtensions');
-      setCodemirrorExtensions(codemirrorExtensions);
-    };
-
-    loadExtensions();
-  }, []);
-
   const {sandpack} = useSandpack();
+  const activePath = sandpack.activePath;
 
-  // Set up the environment.
+  // Set up the environment for this hook once the tsServer is available.
   useEffect(() => {
-    if (!tsServerContext.server) {
-      tsServerContext.createServer();
+    if (!tsServer) {
       return;
     }
 
-    const tsServer = tsServerContext.server;
     tsServer.workerClient.call('createEnv', {
       envId,
       files: ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
@@ -47,13 +37,16 @@ export const useTypescriptExtension = () => {
   }, [
     // other dependencies intentionally omitted - we should initialize once, then do incremental updates.
     envId,
-    tsServerContext,
+    tsServer,
   ]);
 
-  const activePath = sandpack.activePath;
   const extensions = useMemo(() => {
-    const tsServer = tsServerContext.server;
-    if (!tsServer || !codemirrorExtensions) {
+    if (!tsServer) {
+      return lazyLoadOnInteractionExtension(setup);
+    }
+
+    if (!codemirrorExtensions) {
+      // Waiting for dependency to load.
       return [];
     }
 
@@ -62,7 +55,38 @@ export const useTypescriptExtension = () => {
       client: tsServer.workerClient,
       filePath: activePath,
     });
-  }, [tsServerContext.server, codemirrorExtensions, activePath, envId]);
+  }, [tsServer, setup, codemirrorExtensions, activePath, envId]);
 
   return extensions;
 };
+
+/**
+ * Call `setup` if the user interacts with the editor
+ */
+function lazyLoadOnInteractionExtension(setup: () => void) {
+  let triggered = false;
+  return [
+    // Trigger on edit intent
+    EditorView.updateListener.of((update) => {
+      if (triggered) {
+        return;
+      }
+
+      if (update.view.hasFocus) {
+        triggered = true;
+        setup();
+      }
+    }),
+    // Trigger on tooltip intent
+    hoverTooltip(() => {
+      if (triggered) {
+        return null;
+      }
+
+      triggered = true;
+      setup();
+
+      return null;
+    }),
+  ];
+}

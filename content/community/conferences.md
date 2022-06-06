@@ -102,7 +102,7 @@ December 8, 2021 - remote event (replay event on December 9)
 ### ReactEurope 2021 {#reacteurope-2021}
 December 9-10, 2021 - remote event
 
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### ReactNext 2021 {#react-next-2021}
 December 15, 2021. Tel-Aviv, Israel
@@ -187,7 +187,7 @@ September 3-4, 2020 - remote event
 ### ReactEurope 2020 {#reacteurope-2020}
 May 14-15, 2020 in Paris, France
 
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### Byteconf React 2020 {#byteconf-react-2020}
 May 1, 2020. Streamed online on YouTube.
@@ -312,7 +312,7 @@ May 25, 2019 in Yerevan, Armenia
 ### ReactEurope 2019 {#reacteurope-2019}
 May 23-24, 2019 in Paris, France
 
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope) - [Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### <React.NotAConf /> 2019 {#reactnotaconf--2019}
 May 11 in Sofia, Bulgaria
@@ -423,7 +423,7 @@ May 26 in Mumbai, India
 ### ReactEurope 2018 {#reacteurope-2018}
 May 17-18 in Paris, France
 
-[Website](https://www.react-europe.org) - [Twitter](https://twitter.com/ReactEurope) - [Facebook](https://www.facebook.com/ReactEurope)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### <React.NotAConf /> 2018 {#reactnotaconf--2018}
 April 28 in Sofia, Bulgaria
@@ -538,7 +538,7 @@ July 10-11 in Portland, Oregon USA
 ### ReactEurope 2017 {#reacteurope-2017}
 May 18th & 19th in Paris, France
 
-[Website](http://www.react-europe.org/) - [Schedule](http://www.react-europe.org/#schedule) - [Videos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React Amsterdam 2017 {#react-amsterdam-2017}
 April 21st in Amsterdam, The Netherlands
@@ -588,7 +588,7 @@ August 25-26 in Salt Lake City, UT
 ### ReactEurope 2016 {#reacteurope-2016}
 June 2 & 3 in Paris, France
 
-[Website](http://www.react-europe.org/) - [Schedule](http://www.react-europe.org/#schedule) - [Videos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React Amsterdam 2016 {#react-amsterdam-2016}
 April 16 in Amsterdam, The Netherlands
@@ -608,7 +608,7 @@ November 2-4 in Bratislava, Slovakia
 ### ReactEurope 2015 {#reacteurope-2015}
 July 2 & 3 in Paris, France
 
-[Website](http://www.react-europe.org/) - [Schedule](http://www.react-europe.org/#schedule) - [Videos](https://www.youtube.com/channel/UCorlLn2oZfgOJ-FUcF2eZ1A/playlists)
+[Videos](https://www.youtube.com/c/ReacteuropeOrgConf)
 
 ### React.js Conf 2015 {#reactjs-conf-2015}
 January 28 & 29 in Facebook HQ, CA

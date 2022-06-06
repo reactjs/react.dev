@@ -98,7 +98,7 @@ export const SandpackConsole: React.FC = () => {
           <div className="max-h-52 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
-                <p
+                <div
                   key={id}
                   className={cn(
                     'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono',
@@ -110,7 +110,16 @@ export const SandpackConsole: React.FC = () => {
                         return <span key={`${msg}-${index}`}>{msg}</span>;
                       }
 
-                      const children = JSON.stringify(msg);
+                      let children;
+                      try {
+                        children = JSON.stringify(msg);
+                      } catch (error) {
+                        try {
+                          children = Object.prototype.toString.call(msg);
+                        } catch (err) {
+                          children = '[' + typeof msg + ']';
+                        }
+                      }
 
                       return (
                         <span
@@ -125,7 +134,7 @@ export const SandpackConsole: React.FC = () => {
                       );
                     })}
                   </span>
-                </p>
+                </div>
               );
             })}
           </div>

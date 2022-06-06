@@ -6,11 +6,11 @@ import {
 } from './ensurePathBeginsWithSlash';
 import {TypescriptServerContext} from './TypescriptServerProvider';
 
-let globalSystemIdCounter = 0;
+let globalEnvironmentIdCounter = 0;
 
 export const useTypescriptExtension = () => {
-  const tsServerWorker = useContext(TypescriptServerContext);
-  const [envId] = useState(() => globalSystemIdCounter++);
+  const tsServerContext = useContext(TypescriptServerContext);
+  const [envId] = useState(() => globalEnvironmentIdCounter++);
 
   const [codemirrorExtensions, setCodemirrorExtensions] =
     useState<typeof import('./codemirrorExtensions')>();
@@ -26,40 +26,43 @@ export const useTypescriptExtension = () => {
 
   const {sandpack} = useSandpack();
 
-  // Send setup data to the worker once.
+  // Set up the environment.
   useEffect(() => {
-    if (!tsServerWorker) {
+    if (!tsServerContext.server) {
+      tsServerContext.createServer();
       return;
     }
-    tsServerWorker.rendererServer.sendReady();
-    tsServerWorker.workerClient.call('createEnv', {
+
+    const tsServer = tsServerContext.server;
+    tsServer.workerClient.call('createEnv', {
       envId,
       files: ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
       entry: ensurePathStartsWithSlash(sandpack.activePath),
     });
 
     return () => {
-      tsServerWorker.workerClient.call('deleteEnv', envId);
+      tsServer.workerClient.call('deleteEnv', envId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // other dependencies intentionally omitted - we should initialize once, then do incremental updates.
     envId,
-    tsServerWorker,
+    tsServerContext,
   ]);
 
   const activePath = sandpack.activePath;
   const extensions = useMemo(() => {
-    if (!tsServerWorker || !codemirrorExtensions) {
+    const tsServer = tsServerContext.server;
+    if (!tsServer || !codemirrorExtensions) {
       return [];
     }
 
     return codemirrorExtensions.codemirrorTypescriptExtensions({
       envId,
-      client: tsServerWorker.workerClient,
+      client: tsServer.workerClient,
       filePath: activePath,
     });
-  }, [codemirrorExtensions, tsServerWorker, activePath, envId]);
+  }, [tsServerContext.server, codemirrorExtensions, activePath, envId]);
 
   return extensions;
 };

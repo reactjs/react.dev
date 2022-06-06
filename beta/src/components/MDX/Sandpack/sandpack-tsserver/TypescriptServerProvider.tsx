@@ -3,15 +3,26 @@
  * This avoids us loading 8mb per active Sandpack editor using Typescript features.
  */
 
-import {createContext, ReactNode, useEffect, useState} from 'react';
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react';
 import {ChannelServer, ChannelClient} from './ChannelBridge';
 import {CONFIG} from './config';
 import {getLocalStorage} from './localStorageHelper';
 import type {TSServerWorker} from './tsserver.worker';
 
-export const TypescriptServerContext = createContext<TSServer | undefined>(
-  undefined
-);
+type TSServerContext =
+  | {server: TSServer; createServer?: undefined}
+  | {server?: undefined; createServer: () => void};
+
+export const TypescriptServerContext = createContext<TSServerContext>({
+  createServer: () => {},
+});
 
 class TSServer {
   worker = new Worker(new URL('./tsserver.worker.ts', import.meta.url), {
@@ -64,47 +75,63 @@ export class TSServerRender {
  * Provide a web worker to offload Typescript language services.
  */
 export function TypescriptServerProvider(props: {children: ReactNode}) {
-  const [tsserver] = useState(() => {
-    if (typeof Worker !== 'undefined') {
-      return new TSServer();
+  const [tsServer, setTsServer] = useState<TSServer | undefined>(undefined);
+
+  // TODO: we could lazy-load more things here, but I'm not sure it's worth the
+  // complexity yet.
+  const createTsServer = useCallback(() => {
+    if (typeof Worker !== undefined) {
+      const tsServer = new TSServer();
+      setTsServer(tsServer);
     }
-    return undefined;
-  });
+  }, []);
+
+  const context = useMemo<TSServerContext>(() => {
+    if (tsServer) {
+      return {server: tsServer};
+    } else {
+      return {createServer: createTsServer};
+    }
+  }, [tsServer, createTsServer]);
 
   useEffect(() => {
-    if (!tsserver) {
+    if (!tsServer) {
       return;
     }
 
-    tsserver.worker.addEventListener(
+    tsServer.worker.addEventListener(
       'message',
-      tsserver.workerClient.onMessage
+      tsServer.workerClient.onMessage
     );
-    tsserver.worker.addEventListener(
+    tsServer.worker.addEventListener(
       'message',
-      tsserver.rendererServer.onMessage
+      tsServer.rendererServer.onMessage
     );
     if (CONFIG.debugBridge) {
-      tsserver.worker.addEventListener('message', (e) => {
+      tsServer.worker.addEventListener('message', (e) => {
         console.log('worker -> render', e.data);
       });
     }
 
+    // We can handle calls back from the worker to the renderer now that we
+    // added listeners.
+    tsServer.rendererServer.sendReady();
+
     return () => {
-      tsserver.worker.removeEventListener(
+      tsServer.worker.removeEventListener(
         'message',
-        tsserver.workerClient.onMessage
+        tsServer.workerClient.onMessage
       );
-      tsserver.worker.removeEventListener(
+      tsServer.worker.removeEventListener(
         'message',
-        tsserver.rendererServer.onMessage
+        tsServer.rendererServer.onMessage
       );
-      tsserver.worker.terminate();
+      tsServer.worker.terminate();
     };
-  }, [tsserver]);
+  }, [tsServer]);
 
   return (
-    <TypescriptServerContext.Provider value={tsserver}>
+    <TypescriptServerContext.Provider value={context}>
       {props.children}
     </TypescriptServerContext.Provider>
   );

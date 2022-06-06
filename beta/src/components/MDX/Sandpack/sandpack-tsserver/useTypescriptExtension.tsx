@@ -42,7 +42,7 @@ export const useTypescriptExtension = () => {
 
   const extensions = useMemo(() => {
     if (!tsServer) {
-      return lazyLoadOnInteractionExtension(setup);
+      return onceOnInteractionExtension(setup);
     }
 
     if (!codemirrorExtensions) {
@@ -63,7 +63,7 @@ export const useTypescriptExtension = () => {
 /**
  * Call `setup` if the user interacts with the editor
  */
-function lazyLoadOnInteractionExtension(setup: () => void) {
+function onceOnInteractionExtension(setup: () => void) {
   let triggered = false;
   return [
     // Trigger on edit intent

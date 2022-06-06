@@ -3,14 +3,21 @@
  * @todo Inline the policy decisions once we're happy with the UX.
  */
 export const CONFIG = {
-  /** When true, console.log all communications sent between the worker & main thread */
+  /**
+   * When true, console.log all communications sent between the worker & main
+   * thread
+   */
   debugBridge: true,
   /**
-   * Show JSON of each completion
+   * Show JSON of each completion.
    */
   debugCompletions: false,
-
+  /**
+   * Show type information on hover or during import. Turning this on exposes
+   * the user directly to Typescript's type syntax.
+   */
   showTypes: false,
+  /** Show doc tags like `@version` or `@see` as written. */
   showDocTags: false,
   /** Convert @see URLs to beta URLs */
   showBetaDocsLinks: true,
@@ -33,6 +40,6 @@ export const CONFIG = {
    * Intended primarily for debugging use.
    */
   showDiagnosticCodeNumber: false,
-  /** Show random declared globals? Nah. */
+  /** Show random declared globals in completions. This is a heuristic. */
   showAmbientDeclareCompletions: false,
 } as const;

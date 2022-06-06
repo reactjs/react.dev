@@ -466,7 +466,7 @@ class TSServerWorker {
     );
 
     if (!completions) {
-      return;
+      return undefined;
     }
 
     return {
@@ -513,7 +513,7 @@ class TSServerWorker {
   updateFile = (envId: number, filePath: string, content: string) => {
     const env = this.getEnv(envId);
     if (!env) {
-      return undefined;
+      return;
     }
     try {
       env.updateFile(filePath, content);

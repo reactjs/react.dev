@@ -64,12 +64,14 @@ export const SandpackConsole: React.FC = () => {
 
   return (
     <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t  bottom-0 w-full">
-      <div className="flex justify-between p-1">
-        <div className="flex items-center p-2">
+      <div className="flex justify-between">
+        <div className="flex items-center p-1">
           <div onClick={() => toggleConsole(!showConsole)}>
             <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
           </div>
-          <span className="pl-1 text-base">Console ({logs.length})</span>
+          <span className="pl-1 text-sm font-mono">
+            Console ({logs.length})
+          </span>
         </div>
         <button
           className="p-1"
@@ -99,7 +101,7 @@ export const SandpackConsole: React.FC = () => {
                 <p
                   key={id}
                   className={cn(
-                    'border-y border dark:border-gray-700 text-md p-1 pl-2',
+                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono',
                     `console-${getType(method)}`
                   )}>
                   <span className={cn('console-message')}>

@@ -66,13 +66,7 @@ export function CustomPreset({
             )}>
             <SandpackCodeEditor
               showLineNumbers
-              // If `showInlineErrors` is enabled, Sandpack dismisses autocompletion whenever
-              // the build errors. This is frustrating because on a fast connection, the editor
-              // will update and dismiss autocomplete in the middle of a function name!
-              //
-              // Instead, we use typescript's error diagnostics, which are more
-              // subtle but don't disrupt autocomplete.
-              showInlineErrors={false}
+              showInlineErrors
               showTabs={false}
               showRunButton={false}
               extensions={[lintExtensions, typescriptExtensions]}

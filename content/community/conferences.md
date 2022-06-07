@@ -67,7 +67,17 @@ September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid ev
 
 [Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
+### RemixConf 2023 {#remixconf-2023}
+May, 2023. Salt Lake City, UT
+
+[Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run))
+
 ## Past Conferences {#past-conferences}
+
+### RemixConf 2022 {#remixconf-2022}
+May 24 - 25, 2022. Salt Lake City, UT
+
+[Website](https://remix.run/conf/2022) - [Twitter](https://twitter.com/remix_run) - [YouTube](https://www.youtube.com/playlist?list=PLXoynULbYuEC36XutMMWEuTu9uuh171wx)
 
 ### Reactathon 2022 {#reactathon-2022} 
 May 3 - 5, 2022. Berkeley, CA

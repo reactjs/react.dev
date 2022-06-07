@@ -7,7 +7,7 @@ export const CONFIG = {
    * When true, console.log all communications sent between the worker & main
    * thread
    */
-  debugBridge: true,
+  debugBridge: false,
   /**
    * Show JSON of each completion.
    */

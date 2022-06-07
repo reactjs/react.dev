@@ -69,7 +69,7 @@ function requiredExtensions(env: ExtensionEnv) {
     EditorView.baseTheme({
       '.cm-tooltip': {
         // fighting .sp-code-editor .cm-tooltip here:
-        maxWidth: 'min(60ch, 70vw) !important', // set to 200px by Sandpack
+        maxWidth: 'min(60ch, 33vw) !important', // set to 200px by Sandpack
         border: '1px solid var(--sp-colors-fg-inactive) !important', // set to light colors always
         padding: '2px',
         borderRadius: '4px',

@@ -21,13 +21,12 @@ export const useTypescriptExtension = () => {
   const [interacted, setInteracted] = useState(false);
 
   const activePath = sandpack.activePath;
-  const sandpackIsVisible =
-    sandpack.status !== 'initial' && sandpack.status !== 'idle';
+  const isVisible = sandpack.status !== 'initial' && sandpack.status !== 'idle';
 
   // Set up the environment for this hook once the tsServer is available and the
   // user interacted with the editor.
   useEffect(() => {
-    if (!tsServer || !interacted || !sandpackIsVisible) {
+    if (!tsServer || !interacted || !isVisible) {
       return;
     }
 
@@ -47,7 +46,9 @@ export const useTypescriptExtension = () => {
     envId,
     tsServer,
     interacted,
-    sandpackIsVisible,
+    // Destroy the environment when the user scrolls away and Sandpack stops
+    // rendering.
+    isVisible,
   ]);
 
   const extensions = useMemo(() => {

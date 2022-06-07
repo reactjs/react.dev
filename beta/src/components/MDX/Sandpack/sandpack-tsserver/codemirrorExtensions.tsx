@@ -136,6 +136,7 @@ function requiredExtensions(env: ExtensionEnv) {
 
 function formatExtension(env: ExtensionEnv) {
   const {filePath, client, envId} = env;
+
   const formatCode: Command = (target) => {
     if (!filePath) {
       return false;
@@ -154,16 +155,62 @@ function formatExtension(env: ExtensionEnv) {
         ensurePathStartsWithSlash(filePath)
       );
       if (!changes) {
-        return;
+        return false;
       }
       target.dispatch({
         changes: tsTextChangesToCodemirrorChanges(target.state, changes),
       });
+      return true;
     })();
     return true;
   };
+
   return [
+    // Format the code when the user inserts a newline.
+    EditorView.updateListener.of(async (update: ViewUpdate) => {
+      if (!update.docChanged || !filePath) {
+        return;
+      }
+
+      let insertedNewline = false;
+      update.changes.iterChanges((_, __, ___, ____, inserted) => {
+        if (inserted.lines >= 2) {
+          insertedNewline = true;
+        }
+      });
+      if (!insertedNewline) {
+        return;
+      }
+
+      const prevContents = update.startState.doc.toJSON().join('\n');
+      const changeForPrevState = await client.call(
+        'getFormattingEditsForSnapshot',
+        {
+          envId,
+          fileContents: prevContents,
+          filePath: ensurePathStartsWithSlash(filePath),
+        }
+      );
+      if (!changeForPrevState || !changeForPrevState.length) {
+        return;
+      }
+
+      const changes = tsTextChangesToCodemirrorChanges(
+        update.startState,
+        changeForPrevState
+      ).map((change) =>
+        // Note: this is the Operational Transform "map", not Array.map
+        // Convert each formatting `change` so it occurs in the current
+        // document, not in `update.startState`.
+        change.map(update.changes)
+      );
+      update.view.dispatch({changes});
+    }),
+    // Keymaps to manually format the code.
+    // These fit the muscle memory of VS Code users.
     keymap.of([
+      // Ideally we could do something like `enter: () => {formatCode();
+      // insertNewlineAndIndent() }` but doing so never gets called.
       {
         key: 'Shift-Alt-f',
         run: formatCode,

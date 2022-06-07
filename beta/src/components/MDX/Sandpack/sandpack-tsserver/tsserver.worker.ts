@@ -547,6 +547,34 @@ class TSServerWorker {
       FormatCodeSettings
     );
   }
+
+  /**
+   * Get formatting edits for a previous or future state of a document.
+   */
+  getFormattingEditsForSnapshot(args: {
+    envId: number;
+    filePath: string;
+    fileContents: string;
+  }) {
+    const {envId, filePath, fileContents} = args;
+    const env = this.getEnv(envId);
+    if (!env) {
+      return undefined;
+    }
+
+    const restoreContents = env.getSourceFile(filePath)?.getText();
+    this.updateFile(args.envId, filePath, fileContents);
+    const edits = env.languageService.getFormattingEditsForDocument(
+      filePath,
+      FormatCodeSettings
+    );
+    if (restoreContents === undefined) {
+      env.sys.deleteFile?.(filePath);
+    } else {
+      this.updateFile(args.envId, filePath, restoreContents);
+    }
+    return edits;
+  }
 }
 
 const FormatCodeSettings: ts.FormatCodeSettings = {

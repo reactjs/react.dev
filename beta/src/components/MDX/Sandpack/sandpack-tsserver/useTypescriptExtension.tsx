@@ -11,16 +11,20 @@ import {TypescriptServerContext} from './TypescriptServerProvider';
 let globalEnvironmentIdCounter = 0;
 
 export const useTypescriptExtension = () => {
-  const {tsServer, codemirrorExtensions, setup} = useContext(
-    TypescriptServerContext
-  );
+  const {
+    tsServer,
+    codemirrorExtensions,
+    setup: setUpGlobalWorker,
+  } = useContext(TypescriptServerContext);
   const [envId] = useState(() => globalEnvironmentIdCounter++);
   const {sandpack} = useSandpack();
   const activePath = sandpack.activePath;
+  const [enabled, setEnabled] = useState(false);
 
-  // Set up the environment for this hook once the tsServer is available.
+  // Set up the environment for this hook once the tsServer is available and the
+  // user interacted with the editor.
   useEffect(() => {
-    if (!tsServer) {
+    if (!tsServer || !enabled) {
       return;
     }
 
@@ -38,11 +42,21 @@ export const useTypescriptExtension = () => {
     // other dependencies intentionally omitted - we should initialize once, then do incremental updates.
     envId,
     tsServer,
+    enabled,
   ]);
 
   const extensions = useMemo(() => {
     if (!tsServer) {
-      return onceOnInteractionExtension(setup);
+      return onceOnInteractionExtension(() => {
+        setUpGlobalWorker();
+        setEnabled(true);
+      });
+    }
+
+    if (!enabled) {
+      return onceOnInteractionExtension(() => {
+        setEnabled(true);
+      });
     }
 
     if (!codemirrorExtensions) {
@@ -55,7 +69,14 @@ export const useTypescriptExtension = () => {
       client: tsServer.workerClient,
       filePath: activePath,
     });
-  }, [tsServer, setup, codemirrorExtensions, activePath, envId]);
+  }, [
+    tsServer,
+    enabled,
+    codemirrorExtensions,
+    envId,
+    activePath,
+    setUpGlobalWorker,
+  ]);
 
   return extensions;
 };

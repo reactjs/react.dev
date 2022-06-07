@@ -1329,7 +1329,7 @@ Call `useContext` at the top level of your component to read and subscribe to [c
 import { useContext } from 'react';
 
 function MyComponent() {
-  const theme = useTheme(ThemeContext);
+  const theme = useContext(ThemeContext);
   // ...
 ```
 

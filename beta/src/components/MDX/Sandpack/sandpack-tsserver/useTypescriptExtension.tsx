@@ -18,13 +18,16 @@ export const useTypescriptExtension = () => {
   } = useContext(TypescriptServerContext);
   const [envId] = useState(() => globalEnvironmentIdCounter++);
   const {sandpack} = useSandpack();
+  const [interacted, setInteracted] = useState(false);
+
   const activePath = sandpack.activePath;
-  const [enabled, setEnabled] = useState(false);
+  const sandpackIsVisible =
+    sandpack.status !== 'initial' && sandpack.status !== 'idle';
 
   // Set up the environment for this hook once the tsServer is available and the
   // user interacted with the editor.
   useEffect(() => {
-    if (!tsServer || !enabled) {
+    if (!tsServer || !interacted || !sandpackIsVisible) {
       return;
     }
 
@@ -36,26 +39,28 @@ export const useTypescriptExtension = () => {
 
     return () => {
       tsServer.workerClient.call('deleteEnv', envId);
+      setInteracted(false);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     // other dependencies intentionally omitted - we should initialize once, then do incremental updates.
     envId,
     tsServer,
-    enabled,
+    interacted,
+    sandpackIsVisible,
   ]);
 
   const extensions = useMemo(() => {
     if (!tsServer) {
       return onceOnInteractionExtension(() => {
         setUpGlobalWorker();
-        setEnabled(true);
+        setInteracted(true);
       });
     }
 
-    if (!enabled) {
+    if (!interacted) {
       return onceOnInteractionExtension(() => {
-        setEnabled(true);
+        setInteracted(true);
       });
     }
 
@@ -71,7 +76,7 @@ export const useTypescriptExtension = () => {
     });
   }, [
     tsServer,
-    enabled,
+    interacted,
     codemirrorExtensions,
     envId,
     activePath,

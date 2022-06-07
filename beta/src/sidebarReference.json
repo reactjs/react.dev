@@ -20,6 +20,10 @@
               "path": "/apis/usecontext"
             },
             {
+              "title": "useMemo()",
+              "path": "/apis/usememo"
+            },
+            {
               "title": "useReducer()",
               "path": "/apis/usereducer"
             },
@@ -32,8 +36,8 @@
               "path": "/apis/usestate"
             },
             {
-              "title": "useMemo()",
-              "path": "/apis/usememo"
+              "title": "forwardref",
+              "path": "/apis/forwardref"
             }
           ]
         },

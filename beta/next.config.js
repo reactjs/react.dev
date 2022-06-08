@@ -6,8 +6,12 @@ const path = require('path');
 const {remarkPlugins} = require('./plugins/markdownToHtml');
 const redirects = require('./src/redirects.json');
 
-module.exports = {
+/**
+ * @type {import('next').NextConfig}
+ **/
+const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
+  optimizeFonts: true,
   experimental: {
     plugins: true,
     scrollRestoration: true,
@@ -80,3 +84,5 @@ module.exports = {
     return config;
   },
 };
+
+module.exports = nextConfig;

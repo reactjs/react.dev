@@ -744,18 +744,18 @@ Sometimes, even if you write a cleanup function, there's no way to prevent user-
 ```js {2-3}
 useEffect(() => {
   // 🔴 Wrong: This effect fires twice in development, exposing a problem in the code.
-  fetch('/api/product/buy', { method: 'POST' });
+  fetch('/api/buy', { method: 'POST' });
 }, []);
 ```
 
 You wouldn't want to buy the product twice. However, this is also why you shouldn't put this logic in an effect. What if the user goes to another page and then presses Back? Your effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button.
 
-Buying is not caused by rendering; it's caused by a specific interaction. It only runs once because the interaction (a click) happens once. **Delete the effect and move your `/api/buy` endpoint into the Buy button event handler:**
+Buying is not caused by rendering; it's caused by a specific interaction. It only runs once because the interaction (a click) happens once. **Delete the effect and move your `/api/buy` request into the Buy button event handler:**
 
 ```js {2-3}
   function handleClick() {
     // ✅ Buying is an event because it is caused by a particular interaction.
-    fetch('/api/product/buy', { method: 'POST' });
+    fetch('/api/buy', { method: 'POST' });
   }
 ```
 

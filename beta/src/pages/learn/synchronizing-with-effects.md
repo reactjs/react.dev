@@ -30,6 +30,13 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 
 ***Effects* let you specify side effects that are caused by rendering itself, rather than by a particular event.** Sending a message in the chat is an *event* because it is directly caused by the user clicking a specific button. However, setting up a server connection is an *effect* because it needs to happen regardless of which interaction caused the component to appear. Effects run at the end of the [rendering process](/learn/render-and-commit) after the screen updates. This is a good time to synchronize the React components with some external system (like network or a third-party library).
 
+<Note>
+
+Here and later in this text, "effects" refers to the React-specific definition above, i.e. side effects caused by rendering. When we want to refer to the broader programming concept, we'll say "side effects".
+
+</Note>
+
+
 ## You might not need an effect {/*you-might-not-need-an-effect*/}
 
 **Don't rush to add effects to your components.** Keep in mind that effects are typically used to "step out" of your React code and synchronize with some *external* system. This includes browser APIs, third-party widgets, network, and so on. If your effect only adjusts some state based on other state, [you might not need an effect.](/learn/you-might-not-need-an-effect)
@@ -653,9 +660,9 @@ useEffect(() => {
   let ignore = false;
 
   async function startFetching() {
-    const user = await fetchUser(userId);
+    const json = await fetchTodos(userId);
     if (!ignore) {
-      setResult(user);
+      setTodos(json);
     }
   }
 
@@ -671,11 +678,11 @@ You can't "undo" a network request that already happened, but your cleanup funct
 
 **In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
 
-**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their reponses between components:
+**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their responses between components:
 
 ```js
 function TodoList() {
-  const todos = useSomeDataLibrary('/api/todos');
+  const todos = useSomeDataLibrary(`/api/user/${userId}/todos`);
   // ...
 ```
 
@@ -699,7 +706,7 @@ You can continue fetching data directly in effects if neither of these approache
 
 </DeepDive>
 
-### Sending analytics and other POST requests {/*sending-analytics-and-other-post-requests*/}
+### Sending analytics {/*sending-analytics*/}
 
 Consider this code that sends an analytics event on the page visit:
 
@@ -709,9 +716,48 @@ useEffect(() => {
 }, [url]);
 ```
 
-In development, `logVisit` will be called twice for every URL, so you might be tempted to try to work around it. **We recommend to let it fire twice.** In most realistic setups, `logVisit` would not do anything in development anyway because logs from development machines shouldn't skew the production metrics. If you're specifically debugging which analytics are being sent, you can either do this in a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/api/strictmode) and its development-only remounting checks.
+In development, `logVisit` will be called twice for every URL, so you might be tempted to try to work around it. **We recommend to keep this code as is.** Like with earlier examples, there is no *user-visible* behavior difference between running it once and running it twice. In most realistic setups, `logVisit` should not do anything in development anyway because logs from development machines shouldn't skew the production metrics. Keep in mind that in addition to remounting, effects also re-run every time you save the component file in development.
 
-But what about other kinds of POST requests, like buying a product? You wouldn't want to charge the user twice. However, this is also why you shouldn't put this logic in an effect. What if the user goes to another page and then presses Back? Your effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button. This is why you should call your `/api/buy` endpoint in the Buy button *event handler,* not in an effect. Buying is not caused by rendering; it's caused by a specific interaction.
+To debug the analytics events you're sending, you can deploy your app to a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/api/strictmode) and its development-only remounting checks. You may also send analytics from the route change event handlers instead of effects. For even more precise analytics, [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) can help track which components are in the viewport and how long they remain visible.
+
+### Not an effect: Initializing the application {/*not-an-effect-initializing-the-application*/}
+
+Some logic should only run once when the application starts. You can put it outside your components:
+
+```js {2-3}
+if (typeof window !== 'undefined') { // Check if we're running in the browser.
+  checkAuthToken();
+  loadDataFromLocalStorage();
+}
+
+function App() {
+  // ...
+}
+```
+
+This guarantees that such logic only runs once after the browser loads the page.
+
+### Not an effect: Buying a product {/*not-an-effect-buying-a-product*/}
+
+Sometimes, even if you write a cleanup function, there's no way to prevent user-visible consequences of running the effect twice. For example, maybe your effect sends a POST request like buying a product:
+
+```js {2-3}
+useEffect(() => {
+  // 🔴 Wrong: This effect fires twice in development, exposing a problem in the code.
+  fetch('/api/product/buy', { method: 'POST' });
+}, []);
+```
+
+You wouldn't want to buy the product twice. However, this is also why you shouldn't put this logic in an effect. What if the user goes to another page and then presses Back? Your effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button.
+
+Buying is not caused by rendering; it's caused by a specific interaction. It only runs once because the interaction (a click) happens once. **Delete the effect and move your `/api/buy` endpoint into the Buy button event handler:**
+
+```js {2-3}
+  function handleClick() {
+    // ✅ Buying is an event because it is caused by a particular interaction.
+    fetch('/api/product/buy', { method: 'POST' });
+  }
+```
 
 **This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From the user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, and then pressing Back. React verifies that your components don't break this principle by remounting them once in development.
 

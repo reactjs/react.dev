@@ -644,7 +644,7 @@ useEffect(() => {
 
 In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the tween's timeline to its initial state.
 
-### Data fetching {/*data-fetching*/}
+### Fetching data {/*fetching-data*/}
 
 If your effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
 

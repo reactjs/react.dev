@@ -6,7 +6,7 @@ import React, {createRef} from 'react';
 import cn from 'classnames';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {ChallengeContents} from './Challenges';
-const debounce = require('debounce');
+import {debounce} from 'debounce';
 
 export function Navigation({
   challenges,

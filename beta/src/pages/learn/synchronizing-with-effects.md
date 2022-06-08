@@ -716,9 +716,9 @@ useEffect(() => {
 }, [url]);
 ```
 
-In development, `logVisit` will be called twice for every URL, so you might be tempted to try to work around it. **We recommend to keep this code as is.** Like with earlier examples, there is no *user-visible* behavior difference between running it once and running it twice. From a practical point of view, `logVisit` should not do anything in development because you don't want the logs from the development machines to skew the production metrics.
+In development, `logVisit` will be called twice for every URL, so you might be tempted to try to work around it. **We recommend to keep this code as is.** Like with earlier examples, there is no *user-visible* behavior difference between running it once and running it twice. From a practical point of view, `logVisit` should not do anything in development because you don't want the logs from the development machines to skew the production metrics. Your component remounts every time you save its file, so it would send extra visits during development anyway.
 
-Keep in mind that your component remounts (and calls `logVisit`) every time you save its file in your editor. Even without the initial remounting, it would still run extra times on the same page during development.
+**In production, there will be no duplicate visit logs.**
 
 To debug the analytics events you're sending, you can deploy your app to a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/api/strictmode) and its development-only remounting checks. You may also send analytics from the route change event handlers instead of effects. For even more precise analytics, [intersection observers](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) can help track which components are in the viewport and how long they remain visible.
 

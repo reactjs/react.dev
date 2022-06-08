@@ -579,18 +579,72 @@ Now you get three console logs in development:
 
 **In production, you would only see `"Connecting..."` printed once.** Remounting components only happens in development to help you find effects that need cleanup. You can turn off [Strict Mode](/apis/strictmode) to opt out of the development behavior, but we recommend keeping it on. This lets you find many bugs like the one above.
 
-## Common cleanup patterns {/*common-cleanup-patterns*/}
+## How to handle the effect firing twice in development? {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
-The cleanup function should stop or undo whatever the effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the effect running once and an _effect → cleanup → effect_ sequence.
+React intentionally remounts your components in development to help you find bugs like in the last example. **The right question isn't "how to run an effect once," but "how to fix my effect so that it works after remounting".**
+
+Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the effect running once (as in production) and an _effect → cleanup → effect_ sequence (as you'd see in development).
+
+Most of the effects you'll write will fit into one of the common patterns below.
+
+### Controlling non-React widgets {/*controlling-non-react-widgets*/}
+
+Sometimes you need to add UI widgets that aren't written to React. For example, let's say you're adding a map component to your page. It has a `setZoomLevel()` method, and you'd like to keep the zoom level in sync with a `zoomLevel` state variable in your React code. Your effect would look like similar to this:
+
+```js
+useEffect(() => {
+  const map = mapRef.current;
+  map.setZoomLevel(zoomLevel);
+}, [zoomLevel]);
+```
+
+Note that there is no cleanup needed in this case. In development, React will call the effect twice, but this is not a problem because calling `setZoomLevel` twice with the same value does not do anything. It may be slightly slower, but this doesn't matter because the remounting is development-only and won't happen in production.
+
+Some APIs may not allow you to call them twice in a row. For example, the [`showModal`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal) method of the built-in [`<dialog>`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement) element throws if you call it twice. Implement the cleanup function and make it close the dialog:
+
+```js {4}
+useEffect(() => {
+  const dialog = dialogRef.current;
+  dialog.showModal();
+  return () => dialog.close();
+}, []);
+```
+
+In development, your effect will call `showModal()`, then immediately `close()`, and then `showModal()` again. This has the same user-visible behavior as calling `showModal()` once, as you would see in production.
+
+### Subscribing to events {/*subscribing-to-events*/}
 
 If your effect subscribes to something, the cleanup function should unsubscribe:
 
-```js {3}
+```js {6}
 useEffect(() => {
+  function handleScroll(e) {
+    console.log(e.clientX, e.clientY);
+  }
   window.addEventListener('scroll', handleScroll);
   return () => window.removeEventListener('scroll', handleScroll);
-}, [handleScroll]);
+}, []);
 ```
+
+In development, your effect will call `addEventListener()`, then immediately `removeEventListener()`, and then `addEventListener()` again with the same handler. So there would be only one active subscription at a time. This has the same user-visible behavior as calling `addEventListener()` once, as you would see in production.
+
+### Triggering animations {/*triggering-animations*/}
+
+If your effect animates something in, the cleanup function should reset the animation to the initial values:
+
+```js {4-6}
+useEffect(() => {
+  const node = ref.current;
+  node.style.opacity = 1; // Trigger the animation
+  return () => {
+    node.style.opacity = 0; // Reset to the initial value
+  };
+}, []);
+```
+
+In development, opacity will be set to `1`, then to `0`, and then to `1` again. This should have the same user-visible behavior as setting it to `1` directly, which is what would happen in production. If you use a third-party animation library with support for tweening, your cleanup function should reset the tween's timeline to its initial state.
+
+### Data fetching {/*data-fetching*/}
 
 If your effect fetches something, the cleanup function should either [abort the fetch](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) or ignore its result:
 
@@ -615,6 +669,18 @@ useEffect(() => {
 
 You can't "undo" a network request that already happened, but your cleanup function should ensure that the fetch that's _not relevant anymore_ does not keep affecting your application. For example, if the `userId` changes from `'Alice'` to `'Bob'`, cleanup ensures that the `'Alice'` response is ignored even if it arrives after `'Bob'`.
 
+**In development, you will see two fetches in the Network tab.** There is nothing wrong with that. With the approach above, the first effect will immediately get cleaned up so its copy of the `ignore` variable will be set to `true`. So even though there is an extra request, it won't affect the state thanks to the `if (!ignore)` check.
+
+**In production, there will only be one request.** If the second request in development is bothering you, the best approach is to use a solution that deduplicates requests and caches their reponses between components:
+
+```js
+function TodoList() {
+  const todos = useSomeDataLibrary('/api/todos');
+  // ...
+```
+
+This will not only improve the development experience, but also make your application feel faster. For example, the user pressing the Back button won't have to wait for some data to load again because it will be cached. You can either build such a cache yourself or use one of the many existing alternatives to manual fetching in effects.
+
 <DeepDive title="What are good alternatives to data fetching in effects?">
 
 Writing `fetch` calls inside effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
@@ -632,6 +698,22 @@ This list of downsides is not specific to React. It applies to fetching data on 
 You can continue fetching data directly in effects if neither of these approaches suit you.
 
 </DeepDive>
+
+### Sending analytics and other POST requests {/*sending-analytics-and-other-post-requests*/}
+
+Consider this code that sends an analytics event on the page visit:
+
+```js
+useEffect(() => {
+  logVisit(url); // Sends a POST request
+}, [url]);
+```
+
+In development, `logVisit` will be called twice for every URL, so you might be tempted to try to work around it. **We recommend to let it fire twice.** In most realistic setups, `logVisit` would not do anything in development anyway because logs from development machines shouldn't skew the production metrics. If you're specifically debugging which analytics are being sent, you can either do this in a staging environment (which runs in production mode) or temporarily opt out of [Strict Mode](/api/strictmode) and its development-only remounting checks.
+
+But what about other kinds of POST requests, like buying a product? You wouldn't that code to run twice. However, this is also why you shouldn't put it in an effect. What if the user goes to another page and then presses Back? Your effect would run again. You don't want to buy the product when the user *visits* a page; you want to buy it when the user *clicks* the Buy button. **Buying a product is an *event,* not an effect.**
+
+**This illustrates that if remounting breaks the logic of your application, this usually uncovers existing bugs.** From the user's perspective, visiting a page shouldn't be different from visiting it, clicking a link, and then pressing Back. React verifies that your components don't break this principle by remounting them once in development.
 
 ## Putting it all together {/*putting-it-all-together*/}
 

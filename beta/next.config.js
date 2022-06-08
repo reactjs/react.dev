@@ -11,7 +11,6 @@ const redirects = require('./src/redirects.json');
  **/
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
-  optimizeFonts: true,
   experimental: {
     plugins: true,
     scrollRestoration: true,

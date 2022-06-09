@@ -63,9 +63,9 @@ function handleStopClick() {
 
 By using a ref, you ensure that:
 
-- You can **store information** between re-renders. (Unlike regular variables, which reset on every render.)
-- Changing it **does not trigger a re-render**. (Unlike state variables, which trigger a re-render.)
-- The **information is local** to each copy of your component. (Unlike the variables outside, which are shared.)
+- You can **store information** between re-renders (unlike regular variables, which reset on every render).
+- Changing it **does not trigger a re-render** (unlike state variables, which trigger a re-render).
+- The **information is local** to each copy of your component (unlike the variables outside, which are shared).
 
 Changing a ref does not trigger a re-render, so refs are not appropriate for storing information that you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
 

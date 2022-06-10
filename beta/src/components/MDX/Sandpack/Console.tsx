@@ -72,7 +72,7 @@ export const SandpackConsole = () => {
     <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t bottom-0 w-full">
       <div className="flex justify-between">
         <button
-          className="flex items-center p-1"
+          className="flex items-center p-1 dark:text-white"
           onClick={() => setIsExpanded(!isExpanded)}>
           <IconChevron displayDirection={isExpanded ? 'down' : 'right'} />
           <span className="pl-1 text-sm">Console ({logs.length})</span>

@@ -116,7 +116,7 @@ export const SandpackConsole = () => {
 
                       let children;
                       try {
-                        children = JSON.stringify(msg);
+                        children = JSON.stringify(msg, null, 2);
                       } catch (error) {
                         try {
                           children = Object.prototype.toString.call(msg);

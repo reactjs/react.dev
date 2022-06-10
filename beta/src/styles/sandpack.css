@@ -155,7 +155,9 @@ html.dark .sp-code-editor .cm-diagnostic {
   padding: 18px 0 !important;
 }
 
-.console .sp-cm .cm-scroller {
+.console .sp-cm,
+.console .sp-cm .cm-scroller,
+.console .sp-cm .cm-line {
   padding: 0px !important;
 }
 

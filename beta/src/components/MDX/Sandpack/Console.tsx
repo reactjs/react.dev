@@ -69,10 +69,10 @@ export const SandpackConsole = () => {
   }
 
   return (
-    <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t bottom-0 w-full">
+    <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t bottom-0 w-full dark:text-white">
       <div className="flex justify-between">
         <button
-          className="flex items-center p-1 dark:text-white"
+          className="flex items-center p-1"
           onClick={() => setIsExpanded(!isExpanded)}>
           <IconChevron displayDirection={isExpanded ? 'down' : 'right'} />
           <span className="pl-1 text-sm">Console ({logs.length})</span>
@@ -98,7 +98,7 @@ export const SandpackConsole = () => {
         </button>
       </div>
       {isExpanded && (
-        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 dark:text-white min-h-[28px] console">
+        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
           <div className="max-h-52 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (

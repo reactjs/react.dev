@@ -115,13 +115,18 @@ export const SandpackConsole = () => {
                       }
 
                       let children;
-                      try {
-                        children = JSON.stringify(msg, null, 2);
-                      } catch (error) {
+                      if (msg != null && typeof msg['@t'] === 'string') {
+                        // CodeSandbox wraps custom types
+                        children = msg['@t'];
+                      } else {
                         try {
-                          children = Object.prototype.toString.call(msg);
-                        } catch (err) {
-                          children = '[' + typeof msg + ']';
+                          children = JSON.stringify(msg, null, 2);
+                        } catch (error) {
+                          try {
+                            children = Object.prototype.toString.call(msg);
+                          } catch (err) {
+                            children = '[' + typeof msg + ']';
+                          }
                         }
                       }
 

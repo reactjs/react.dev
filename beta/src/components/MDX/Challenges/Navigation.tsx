@@ -6,7 +6,7 @@ import React, {createRef} from 'react';
 import cn from 'classnames';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {ChallengeContents} from './Challenges';
-const debounce = require('debounce');
+import {debounce} from 'debounce';
 
 export function Navigation({
   challenges,
@@ -122,7 +122,7 @@ export function Navigation({
           onClick={handleScrollRight}
           aria-label="Scroll right"
           className={cn(
-            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r-lg',
+            'bg-secondary-button dark:bg-secondary-button-dark h-8 px-2 rounded-r',
             {
               'text-primary dark:text-primary-dark': canScrollRight,
               'text-gray-30': !canScrollRight,

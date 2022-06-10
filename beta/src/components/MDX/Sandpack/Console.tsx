@@ -1,3 +1,6 @@
+/*
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
 import cn from 'classnames';
 import * as React from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
@@ -27,20 +30,21 @@ type ConsoleData = Array<{
 
 const MAX_MESSAGE_COUNT = 100;
 
-export const SandpackConsole: React.FC = () => {
+export const SandpackConsole = () => {
   const {listen} = useSandpack();
   const [logs, setLogs] = React.useState<ConsoleData>([]);
   const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    console.log('subscribing');
     const unsubscribe = listen((message) => {
+      console.log(message);
       if (
         (message.type === 'start' && message.firstLoad) ||
         message.type === 'refresh'
       ) {
         setLogs([]);
       }
-
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
           const messages = [...prev, ...message.log];
@@ -62,17 +66,21 @@ export const SandpackConsole: React.FC = () => {
     }
   }, [logs]);
 
+  if (logs.length === 0) {
+    return null;
+  }
+
   return (
-    <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t  bottom-0 w-full">
+    <div className="absolute dark:border-gray-700 bg-white dark:bg-gray-95 border-t bottom-0 w-full">
       <div className="flex justify-between">
-        <div className="flex items-center p-1">
-          <div onClick={() => toggleConsole(!showConsole)}>
-            <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
-          </div>
-          <span className="pl-1 text-sm font-mono">
-            Console ({logs.length})
+        <button
+          className="flex items-center p-1"
+          onClick={() => toggleConsole(!showConsole)}>
+          <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
+          <span className="pl-1 text-sm">
+            Console{logs.length > 0 ? ' (' + logs.length + ')' : ''}
           </span>
-        </div>
+        </button>
         <button
           className="p-1"
           onClick={() => {

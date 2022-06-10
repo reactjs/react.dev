@@ -11,7 +11,6 @@ import {
   SandpackThemeProvider,
   SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
-import {SandpackConsole} from './Console';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 
@@ -27,12 +26,10 @@ const emptyArray: Array<any> = [];
 export function CustomPreset({
   isSingleFile,
   showDevTools,
-  showConsole,
   onDevToolsLoad,
   devToolsLoaded,
 }: {
   isSingleFile: boolean;
-  showConsole: boolean;
   showDevTools: boolean;
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
@@ -73,14 +70,11 @@ export function CustomPreset({
               extensions={lintExtensions}
               extensionsKeymap={emptyArray}
             />
-            <div className="sp-stack h-full">
-              <Preview
-                className="h-full"
-                isExpanded={isExpanded}
-                lintErrors={lintErrors}
-              />
-              {showConsole && <SandpackConsole />}
-            </div>
+            <Preview
+              className="order-last xl:order-2"
+              isExpanded={isExpanded}
+              lintErrors={lintErrors}
+            />
             {isExpandable && (
               <button
                 translate="yes"

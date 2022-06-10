@@ -36,9 +36,7 @@ export const SandpackConsole = () => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    console.log('subscribing');
     const unsubscribe = listen((message) => {
-      console.log(message);
       if (
         (message.type === 'start' && message.firstLoad) ||
         message.type === 'refresh'
@@ -58,7 +56,7 @@ export const SandpackConsole = () => {
     return unsubscribe;
   }, [listen]);
 
-  const [showConsole, toggleConsole] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(false);
 
   React.useEffect(() => {
     if (wrapperRef.current) {
@@ -75,17 +73,15 @@ export const SandpackConsole = () => {
       <div className="flex justify-between">
         <button
           className="flex items-center p-1"
-          onClick={() => toggleConsole(!showConsole)}>
-          <IconChevron displayDirection={showConsole ? 'down' : 'right'} />
-          <span className="pl-1 text-sm">
-            Console{logs.length > 0 ? ' (' + logs.length + ')' : ''}
-          </span>
+          onClick={() => setIsExpanded(!isExpanded)}>
+          <IconChevron displayDirection={isExpanded ? 'down' : 'right'} />
+          <span className="pl-1 text-sm">Console ({logs.length})</span>
         </button>
         <button
           className="p-1"
           onClick={() => {
             setLogs([]);
-            toggleConsole(false);
+            setIsExpanded(false);
           }}>
           <svg
             viewBox="0 0 24 24"
@@ -101,7 +97,7 @@ export const SandpackConsole = () => {
           </svg>
         </button>
       </div>
-      {showConsole && (
+      {isExpanded && (
         <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 dark:text-white min-h-[28px] console">
           <div className="max-h-52 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {

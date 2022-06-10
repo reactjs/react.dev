@@ -300,8 +300,7 @@ yarn add --dev @types/react
 npm i --save-dev @types/react
 ```
 
-__Local Declarations__
-Sometimes the package that you want to use doesn't bundle declarations nor is it available on DefinitelyTyped. In that case, we can have a local declaration file. To do this, create a `declarations.d.ts` file in the root of your source directory. A simple declaration could look like this:
+__Local Declarations__ - Sometimes the package that you want to use doesn't bundle declarations nor is it available on DefinitelyTyped. In that case, we can have a local declaration file. To do this, create a `declarations.d.ts` file in the root of your source directory. A simple declaration could look like this:
 
 ```typescript
 declare module 'querystring' {

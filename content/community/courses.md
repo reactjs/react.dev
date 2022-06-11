@@ -14,6 +14,8 @@ permalink: community/courses.html
 
 - [Egghead.io: Start Learning React](https://egghead.io/courses/start-learning-react) - This series will explore the basic fundamentals of React to get you started.
 
+- [freeCodeCamp: Front End Development Libraries - React](https://www.freecodecamp.org/learn/front-end-development-libraries/react/) - A free course with interactive code examples that will help you learn how to create a Single Page Application (SPA) with React.
+
 - [React Crash Course 2018](https://www.youtube.com/watch?v=Ke90Tje7VS0) - A beginner-friendly crash course through the most important React topics.
 
 - [Frontend Armory: React Fundamentals](https://frontarm.com/courses/react-fundamentals/) - Learn React without the buzzwords.

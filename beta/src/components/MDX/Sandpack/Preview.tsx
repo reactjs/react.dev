@@ -7,6 +7,7 @@ import * as React from 'react';
 import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 import {Error} from './Error';
+import {SandpackConsole} from './Console';
 import type {LintDiagnostic} from './useSandpackLint';
 
 const generateRandomId = (): string =>
@@ -209,6 +210,7 @@ export function Preview({
           loading={!isReady && iframeComputedHeight === null}
         />
       </div>
+      <SandpackConsole />
     </div>
   );
 }

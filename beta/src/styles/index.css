@@ -225,6 +225,10 @@ html.dark .code-step * {
   /* Space for the anchor */
   padding-right: 1em;
 }
+[dir='rtl'] .mdx-heading {
+  padding-left: 1em;
+  padding-right: 0;
+}
 .mdx-heading:before {
   height: 6rem;
   margin-top: -6rem;
@@ -265,6 +269,7 @@ html.dark .code-step * {
   align-items: stretch;
   gap: 42px;
 }
+
 ol.mdx-illustration-block {
   gap: 60px;
 }
@@ -296,6 +301,11 @@ ol.mdx-illustration-block {
   width: 60px;
   height: 49px;
   background: center / contain no-repeat url('/images/g_arrow.png');
+}
+[dir='rtl'] .mdx-illustration-block li:after {
+  transform: rotate(180deg);
+  right: auto;
+  left: 100%;
 }
 .mdx-illustration-block li:first-child:after {
   content: ' ';

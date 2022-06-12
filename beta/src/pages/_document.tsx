@@ -8,7 +8,7 @@ import {Html, Head, Main, NextScript} from 'next/document';
 const MyDocument = () => {
   //  @todo specify language in HTML?
   return (
-    <Html lang="en">
+    <Html lang="ar" dir="rtl">
       <Head />
       <body className="font-sans antialiased text-lg bg-wash dark:bg-wash-dark text-secondary dark:text-secondary-dark leading-base">
         <script

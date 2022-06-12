@@ -2,15 +2,271 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+const plugin = require('tailwindcss/plugin');
+
+const RTLUtils = {
+  '[dir="rtl"] .text-left': {
+    'text-align': 'right',
+  },
+  '[dir="ltr"] .text-left': {
+    'text-align': 'left',
+  },
+
+  '[dir="rtl"] .text-right': {
+    'text-align': 'left',
+  },
+  '[dir="ltr"] .text-right': {
+    'text-align': 'right',
+  },
+
+  '[dir="rtl"] .-rotate-90': {
+    '--tw-rotate': '90deg',
+  },
+  '[dir="ltr"] .-rotate-90': {
+    '--tw-rotate': '-90deg',
+  },
+  '[dir="rtl"] .rotate-90': {
+    '--tw-rotate': '-90deg',
+  },
+  '[dir="ltr"] .rotate-90': {
+    '--tw-rotate': '90deg',
+  },
+};
+
+const generatePaddingUtils = (spacing) => {
+  const spacingUtils = [{}, {}, {}, {}, {}];
+  for (const psize in spacing) {
+    let size = psize;
+    if (size.includes('.')) size = psize.replace('.', `\\.`);
+
+    if (size.toString() !== 'px') {
+      spacingUtils[0][`[dir='rtl'] .pr-${size}`] = {
+        'padding-left': spacing[psize],
+      };
+      spacingUtils[0][`[dir='rtl'] .-pr-${size}`] = {
+        'padding-left': '-' + spacing[psize],
+      };
+
+      spacingUtils[0][`[dir='rtl'] .pl-${size}`] = {
+        'padding-right': spacing[psize],
+      };
+      spacingUtils[0][`[dir='rtl'] .-pl-${size}`] = {
+        'padding-right': '-' + spacing[psize],
+      };
+
+      spacingUtils[0][`[dir='ltr'] .pr-${size}`] = {
+        'padding-right': spacing[psize],
+      };
+      spacingUtils[0][`[dir='ltr'] .-pr-${size}`] = {
+        'padding-right': '-' + spacing[psize],
+      };
+
+      spacingUtils[0][`[dir='ltr'] .pl-${size}`] = {
+        'padding-left': spacing[psize],
+      };
+      spacingUtils[0][`[dir='ltr'] .-pl-${size}`] = {
+        'padding-left': '-' + spacing[psize],
+      };
+
+      spacingUtils[1][`.p-${size}`] = {padding: spacing[psize]};
+      spacingUtils[1][`.-p-${size}`] = {padding: '-' + spacing[psize]};
+
+      spacingUtils[2][`.py-${size}`] = {
+        'padding-top': spacing[psize],
+        'padding-bottom': spacing[psize],
+      };
+      spacingUtils[2][`.-py-${size}`] = {
+        'padding-top': '-' + spacing[psize],
+        'padding-bottom': '-' + spacing[psize],
+      };
+      spacingUtils[2][`.px-${size}`] = {
+        'padding-right': spacing[psize],
+        'padding-left': spacing[psize],
+      };
+      spacingUtils[2][`.-px-${size}`] = {
+        'padding-right': '-' + spacing[psize],
+        'padding-left': '-' + spacing[psize],
+      };
+
+      spacingUtils[3][`.pt-${size}`] = {'padding-top': spacing[psize]};
+      spacingUtils[3][`.-pt-${size}`] = {'padding-top': '-' + spacing[psize]};
+      spacingUtils[3][`.pb-${size}`] = {'padding-bottom': spacing[psize]};
+      spacingUtils[3][`.-pb-${size}`] = {
+        'padding-bottom': '-' + spacing[psize],
+      };
+
+      spacingUtils[4][`.p-auto`] = {padding: 'auto'};
+      spacingUtils[4][`[dir="rtl"] .pr-auto`] = {'padding-left': 'auto'};
+      spacingUtils[4][`[dir="ltr"] .pr-auto`] = {'padding-right': 'auto'};
+      spacingUtils[4][`[dir="rtl"] .pl-auto`] = {'padding-right': 'auto'};
+      spacingUtils[4][`[dir="ltr"] .pl-auto`] = {'padding-left': 'auto'};
+      spacingUtils[4][`.pt-auto`] = {'padding-top': 'auto'};
+      spacingUtils[4][`.pb-auto`] = {'padding-bottom': 'auto'};
+    }
+  }
+  return spacingUtils;
+};
+const generateMarginUtils = (spacing) => {
+  const spacingUtils = [{}, {}, {}, {}, {}];
+  for (const psize in spacing) {
+    let size = psize;
+    if (size.includes('.')) size = psize.replace('.', `\\.`);
+
+    if (size.toString() !== 'px') {
+      spacingUtils[0][`[dir='rtl'] .mr-${size}`] = {
+        'margin-left': spacing[psize],
+      };
+      spacingUtils[0][`[dir='rtl'] .-mr-${size}`] = {
+        'margin-left': '-' + spacing[psize],
+      };
+
+      spacingUtils[0][`[dir='rtl'] .ml-${size}`] = {
+        'margin-right': spacing[psize],
+      };
+      spacingUtils[0][`[dir='rtl'] .-ml-${size}`] = {
+        'margin-right': '-' + spacing[psize],
+      };
+
+      spacingUtils[0][`[dir='ltr'] .mr-${size}`] = {
+        'margin-right': spacing[psize],
+      };
+      spacingUtils[0][`[dir='ltr'] .-mr-${size}`] = {
+        'margin-right': '-' + spacing[psize],
+      };
+
+      spacingUtils[0][`[dir='ltr'] .ml-${size}`] = {
+        'margin-left': spacing[psize],
+      };
+      spacingUtils[0][`[dir='ltr'] .-ml-${size}`] = {
+        'margin-left': '-' + spacing[psize],
+      };
+
+      spacingUtils[1][`.m-${size}`] = {margin: spacing[psize]};
+      spacingUtils[1][`.-m-${size}`] = {margin: '-' + spacing[psize]};
+
+      spacingUtils[2][`.my-${size}`] = {
+        'margin-top': spacing[psize],
+        'margin-bottom': spacing[psize],
+      };
+      spacingUtils[2][`.-my-${size}`] = {
+        'margin-top': '-' + spacing[psize],
+        'margin-bottom': '-' + spacing[psize],
+      };
+      spacingUtils[2][`.mx-${size}`] = {
+        'margin-right': spacing[psize],
+        'margin-left': spacing[psize],
+      };
+      spacingUtils[2][`.-mx-${size}`] = {
+        'margin-right': '-' + spacing[psize],
+        'margin-left': '-' + spacing[psize],
+      };
+
+      spacingUtils[3][`.mt-${size}`] = {'margin-top': spacing[psize]};
+      spacingUtils[3][`.-mt-${size}`] = {'margin-top': '-' + spacing[psize]};
+      spacingUtils[3][`.mb-${size}`] = {'margin-bottom': spacing[psize]};
+      spacingUtils[3][`.-mb-${size}`] = {'margin-bottom': '-' + spacing[psize]};
+
+      spacingUtils[4][`.m-auto`] = {margin: 'auto'};
+      spacingUtils[4][`[dir="rtl"] .mr-auto`] = {'margin-left': 'auto'};
+      spacingUtils[4][`[dir="ltr"] .mr-auto`] = {'margin-right': 'auto'};
+      spacingUtils[4][`[dir="rtl"] .ml-auto`] = {'margin-right': 'auto'};
+      spacingUtils[4][`[dir="ltr"] .ml-auto`] = {'margin-left': 'auto'};
+      spacingUtils[4][`.mt-auto`] = {'margin-top': 'auto'};
+      spacingUtils[4][`.mb-auto`] = {'margin-bottom': 'auto'};
+    }
+  }
+  return spacingUtils;
+};
+
+const generateRadiusUtils = (radius) => {
+  const utils = {};
+  Object.keys(radius).forEach((size) => {
+    let sizeSuffix = `-${size}`;
+    if (size === 'DEFAULT') sizeSuffix = '';
+    utils[`.rounded${sizeSuffix}`] = {
+      'border-radius': radius[size],
+    };
+    utils[`.rounded-t${sizeSuffix}`] = {
+      'border-top-left-radius': radius[size],
+      'border-top-right-radius': radius[size],
+    };
+    utils[`.rounded-b${sizeSuffix}`] = {
+      'border-bottom-right-radius': radius[size],
+      'border-bottom-left-radius': radius[size],
+    };
+    utils[`[dir="rtl"] .rounded-r${sizeSuffix}`] = {
+      'border-top-left-radius': radius[size],
+      'border-bottom-left-radius': radius[size],
+    };
+    utils[`[dir="ltr"] .rounded-r${sizeSuffix}`] = {
+      'border-top-right-radius': radius[size],
+      'border-bottom-right-radius': radius[size],
+    };
+
+    utils[`[dir="rtl"] .rounded-l${sizeSuffix}`] = {
+      'border-top-right-radius': radius[size],
+      'border-bottom-right-radius': radius[size],
+    };
+    utils[`[dir="ltr"] .rounded-l${sizeSuffix}`] = {
+      'border-top-left-radius': radius[size],
+      'border-bottom-left-radius': radius[size],
+    };
+
+    utils[`[dir="rtl"] .rounded-tl${sizeSuffix}`] = {
+      'border-top-right-radius': radius[size],
+    };
+    utils[`[dir="rtl"] .rounded-tr${sizeSuffix}`] = {
+      'border-top-left-radius': radius[size],
+    };
+
+    utils[`[dir="ltr"] .rounded-tl${sizeSuffix}`] = {
+      'border-top-left-radius': radius[size],
+    };
+    utils[`[dir="ltr"] .rounded-tr${sizeSuffix}`] = {
+      'border-top-right-radius': radius[size],
+    };
+
+    utils[`[dir="rtl"] .rounded-bl${sizeSuffix}`] = {
+      'border-bottom-right-radius': radius[size],
+    };
+    utils[`[dir="rtl"] .rounded-br${sizeSuffix}`] = {
+      'border-bottom-left-radius': radius[size],
+    };
+
+    utils[`[dir="ltr"] .rounded-bl${sizeSuffix}`] = {
+      'border-bottom-left-radius': radius[size],
+    };
+    utils[`[dir="ltr"] .rounded-br${sizeSuffix}`] = {
+      'border-bottom-right-radius': radius[size],
+    };
+  });
+  return utils;
+};
+const pluginFn = ({matchUtilities, addUtilities, theme, variants, e}) => {
+  const spacingValues = theme('spacing');
+  addUtilities(RTLUtils);
+  addUtilities(generateRadiusUtils(theme('borderRadius')));
+  addUtilities(generatePaddingUtils(spacingValues));
+  addUtilities(generateMarginUtils(spacingValues));
+};
+
+const autoRTL = plugin(pluginFn);
+
 const defaultTheme = require('tailwindcss/defaultTheme');
 const colors = require('./colors');
 
 module.exports = {
+  corePlugins: {
+    margin: false,
+    padding: false,
+    borderRadius: false,
+  },
   content: [
     './src/components/**/*.{js,ts,jsx,tsx}',
     './src/pages/**/*.{js,ts,jsx,tsx}',
     './src/styles/**/*.{js,ts,jsx,tsx}',
   ],
+
   darkMode: 'class',
   theme: {
     // Override base screen sizes
@@ -70,5 +326,5 @@ module.exports = {
       colors,
     },
   },
-  plugins: [],
+  plugins: [autoRTL],
 };

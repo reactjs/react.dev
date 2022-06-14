@@ -1021,7 +1021,14 @@ export default function Form() {
               onChange={e => setName(e.target.value)}
             />
           </label>
-
+          <label>
+            <input
+              type="checkbox"
+              checked={upper}
+              onChange={e => setUpper(e.target.checked)}
+            />
+            Make it uppercase
+          </label>
           <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
         </>
       )}

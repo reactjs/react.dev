@@ -887,7 +887,7 @@ When [Strict Mode](/apis/strictmode) is on, React remounts every component once 
 
 <Challenges>
 
-### Run some code on mount {/*run-some-code-on-mount*/}
+### Focus a field on mount {/*focus-a-field-on-mount*/}
 
 In this example, the form renders a `<MyInput />` component.
 
@@ -1046,7 +1046,7 @@ body {
 
 </Solution>
 
-### Run an effect conditionally {/*run-an-effect-conditionally*/}
+### Focus a field conditionally {/*focus-a-field-conditionally*/}
 
 This form renders two `<MyInput />` components.
 
@@ -1225,7 +1225,7 @@ body {
 
 </Solution>
 
-### Fix an effect that needs cleanup {/*fix-an-effect-that-needs-cleanup*/}
+### Fix an interval that fires twice {/*fix-an-interval-that-fires-twice*/}
 
 This `Counter` component displays a counter that should increment every second. On mount, it calls [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval). This causes `onTick` to run every second. The `onTick` function increments the counter.
 
@@ -1352,7 +1352,7 @@ In development, React will still remount your component once to verify that you'
 
 </Solution>
 
-### Fix an async effect {/*fix-an-async-effect*/}
+### Fix fetching inside an effect {/*fix-fetching-inside-an-effect*/}
 
 This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
 
@@ -1410,7 +1410,7 @@ Why does this happen? Fix the bug inside this effect.
 
 <Hint>
 
-If an effect does something asynchronously, it always needs cleanup.
+If an effect fetches something asynchronously, it usually needs cleanup.
 
 </Hint>
 
@@ -1427,7 +1427,8 @@ To trigger the bug, things need to happen in this order:
 
 This is why you see Bob's bio even though Taylor is selected. Bugs like this are called [race conditions](https://en.wikipedia.org/wiki/Race_condition) because two asynchronous operations are "racing" with each other, and they might arrive in an unexpected order.
 
-The easiest way to fix the bug is to add a cleanup function:
+To fix this race condition, add a cleanup function:
+
 <Sandpack>
 
 ```js App.js
@@ -1437,17 +1438,14 @@ import { fetchBio } from './api.js';
 export default function Page() {
   const [person, setPerson] = useState('Alice');
   const [bio, setBio] = useState(null);
-
   useEffect(() => {
     let ignore = false;
-
     setBio(null);
     fetchBio(person).then(result => {
       if (!ignore) {
         setBio(result);
       }
     });
-
     return () => {
       ignore = true;
     }
@@ -1483,9 +1481,16 @@ export async function fetchBio(person) {
 
 </Sandpack>
 
-Each render's effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`.
+Each render's effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`:
 
-In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable to fix this type of problems.
+- Selecting `'Bob'` triggers `fetchBio('Bob')`
+- Selecting `'Taylor'` triggers `fetchBio('Taylor')` **and cleans up the previous (Bob's) effect**
+- Fetching `'Taylor'` completes *before* fetching `'Bob'`
+- The effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
+- Fetching `'Bob'` completes
+- The effect from the `'Bob'` render **does not do anything because its `ignore` flag was set to `true`**
+
+In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable way to fix this type of problems.
 
 </Solution>
 

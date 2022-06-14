@@ -83,7 +83,6 @@ export const SandpackConsole = () => {
           className="p-1"
           onClick={() => {
             setLogs([]);
-            setIsExpanded(false);
           }}>
           <svg
             viewBox="0 0 24 24"

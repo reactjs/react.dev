@@ -65,7 +65,7 @@ September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 ### React Alicante 2022 {#react-alicante-2022}
 September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
 
-[Website](http://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
 
 ### RemixConf 2023 {#remixconf-2023}
 May, 2023. Salt Lake City, UT

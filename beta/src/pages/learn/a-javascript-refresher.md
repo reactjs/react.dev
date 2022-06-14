@@ -3,12 +3,12 @@ title: A JavaScript Refresher
 ---
 
 <Intro>
-To understand React code you need some familiarity with JavaScript. This page describes the most common JavaScript features used throughout the documentation and, typically, in React codebases.
+To work efficiently with React, you need some familiarity with JavaScript. This page describes the most common JavaScript features used throughout this documentation and, typically, in React codebases.
 </Intro>
 
 ## Arrow functions {/*arrow-functions*/}
 
-Arrow functions are a succinct alternative to the traditional JavaScript function syntax. The name 'arrow function' refers to the arrow (`=>`) that separates the function's name and parameters from its body. Compare the arrow syntax with the traditional function syntax:
+Arrow functions are a succinct alternative to the traditional JavaScript function syntax. The name 'arrow function' refers to the arrow (`=>`) that separates the function name and its parameters from its body. Compare the arrow syntax with the traditional function syntax:
 
 ```js
 // arrow syntax:
@@ -25,7 +25,7 @@ function worldPandaPopulation() {
 };
 ```
 
-When written in one line, arrow functions return implicitly, which means that you don't have to use the `return` keyword. However, the `return` keyword as well as the brackets (`{}`) need to be included in multi-line functions:
+When written in one line, arrow functions return implicitly, which means that you don't have to use the `return` keyword. However, the `return` keyword, as well as the brackets (`{}`), need to be included in multi-line functions:
 
 ```js
 // arrow syntax:
@@ -45,7 +45,7 @@ Read more about [arrow functions on MDN](https://developer.mozilla.org/en-US/doc
 
 ## Array Methods {/*array-methods*/}
 
-Array iteration is one of the key building blocks of developing applications with React. Let's see some of the things you can do with an array:
+Array iteration is one of the key building blocks of developing applications with React. Below are some of the operations you can do with an array:
 
 ```js
 const people = [{
@@ -87,11 +87,11 @@ Explore [array methods on MDN](https://developer.mozilla.org/en-US/docs/Web/Java
 
 ## Destructuring {/*destructuring*/}
 
-Sometimes there is too much unnecessary information included in an object. Sometimes it is helpful to save the elements of an array to a variable. Destructuring makes both possible. It allows you to "unpack" properties of an object (or elements of an array) into their own variables. Check examples below to see it in action.
+Sometimes there is too much information included in an object. Sometimes it is helpful to save the elements of an array to variables. Destructuring is a handy tool that makes both possible. It allows you to "unpack" properties of an object (or elements of an array) into their own variables. Check examples below to see it in action.
 
 ### Destructuring objects {/*destructuring-objects*/}
 
-Below is a `person` object with a lot of keys. However, in your code you only need `name` and `profession`. You can use destructuring to only work with these two keys by saving them to their own variables.
+Below is a `person` object with a lot of keys. Imagine that in your code you only need `name` and `profession`. You can use destructuring to only work with these two keys by saving them to their own variables.
 
 ```js
 const person =  {
@@ -190,18 +190,6 @@ In short, spread operator allows for copying elements of an array or properties 
 
 ### Spreading arrays {/*spreading-arrays*/}
 
-You can join two arrays together:
-
-```js
-const painters = ['Frida Kahlo', 'Lili Elbe']
-const sculptors = ['Niki de Saint Phalle', 'John Woodrow Wilson']
-
-const artists = [...painters, ...sculptors]
-
-console.log(artists)
-// ['Frida Kahlo', 'Lili Elbe', 'Niki de Saint Phalle', 'John Woodrow Wilson']
-```
-
 You can create a copy of an array:
 
 ```js
@@ -215,6 +203,18 @@ paintersCopy;
 // [ 'Frida Kahlo', 'Lili Elbe' ]
 painters;
 // [ 'Lili Elbe', 'Frida Kahlo' ]
+```
+
+You can join two arrays together:
+
+```js
+const painters = ['Frida Kahlo', 'Lili Elbe']
+const sculptors = ['Niki de Saint Phalle', 'John Woodrow Wilson']
+
+const artists = [...painters, ...sculptors]
+
+console.log(artists)
+// ['Frida Kahlo', 'Lili Elbe', 'Niki de Saint Phalle', 'John Woodrow Wilson']
 ```
 
 You can add an element to a copy of an array:
@@ -236,7 +236,7 @@ const addPainter = (newPainter) => {
 addPainterToEnd('Jean-Michel Basquiat') 
 // ['Frida Kahlo', 'Lili Elbe', 'Jean-Michel Basquiat']
 
-// to the beginning and the end
+// to the beginning and to the end
 const addPainters = (newPainter1, newPainter2) => {
   return [newPainter1, ...painters, newPainter2]
 }
@@ -271,28 +271,28 @@ You can join two objects together:
 ```js
 const disgustingFoodMuseum = {
   name: 'Disgusting Food Museum',
-  description: 'Do you dare smell the world’s stinkiest cheese? Or taste sweets made with metal cleansing chemicals?',
+  description: 'Do you dare smell the world’s stinkiest cheese?',
   location: 'Malmö, Sweden',
   rating: '4.6/5'
 };
 
 const quote = {
-  sampleReview: 'The coolest place I've been to so far. The multitude of taste experiences was exceptional. If you have a strong stomach, I recommend the tasting area.'
+  sampleReview: 'If you have a strong stomach, I recommend the tasting area.'
 };
 
 const addReviewToProfile = (museum, review) => {
-    return {...museum, ...review}
+    return {...museum, ...review};
 };
 
 addReviewToProfile(disgustingFoodMuseum, quote);
-// {name: 'Disgusting Food Museum', description: 'Do you dare smell the world’s stinkiest cheese? Or taste sweets made with metal cleansing chemicals?', location: 'Malmö, Sweden', rating: '4.6/5', sampleReview: 'The coolest place I've been to so far. The multitude of taste experiences was exceptional. If you have a strong stomach, I recommend the tasting area.'}
+// {name: 'Disgusting Food Museum', description: 'Do you dare smell the world’s stinkiest cheese?', location: 'Malmö, Sweden', rating: '4.6/5', sampleReview: 'If you have a strong stomach, I recommend the tasting area.'}
 ```
 
 Read more about [spread operator on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).
 
 ## Ternary (conditional) operator {/*ternary-conditional-operator*/}
 
-Ternary operator is an alternative to 'if/else' syntax for handling conditionals. It consists of three parts:
+A ternary operator is an alternative to 'if/else' syntax for handling conditionals. It consists of three parts:
 
 * a condition followed by:
   * question mark (`?`) and an expression to execute if condition is truthy,
@@ -323,4 +323,4 @@ isEven(42);
 // 'The number is even'
 ```
 
-Read more about [ternary operator on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
+Read more about the [ternary operator on MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).

@@ -885,3 +885,609 @@ When [Strict Mode](/apis/strictmode) is on, React remounts every component once 
 
 </Recap>
 
+<Challenges>
+
+### Run some code on mount {/*run-some-code-on-mount*/}
+
+In this example, the form renders a `<MyInput />` component.
+
+Use the input's [`focus()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/focus) method to make `MyInput` automatically focus when it appears on the screen. There is already a commented out implementation, but it doesn't quite work. Figure out why it doesn't work, and fix it. (If you're familiar with the `autoFocus` attribute, pretend that it does not exist: we are reimplementing the same functionality from scratch.)
+
+<Sandpack>
+
+```js MyInput.js active
+import { useEffect, useRef } from 'react';
+
+export default function MyInput({ value, onChange }) {
+  const ref = useRef(null);
+
+  // TODO: This doesn't quite work. Fix it.
+  // ref.current.focus()    
+
+  return (
+    <input
+      ref={ref}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+```
+
+```js App.js hidden
+import { useState } from 'react';
+import MyInput from './MyInput.js';
+
+export default function Form() {
+  const [show, setShow] = useState(false);
+  const [name, setName] = useState('Taylor');
+  const [upper, setUpper] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <br />
+      <hr />
+      {show && (
+        <>
+          <label>
+            Enter your name:
+            <MyInput
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={upper}
+              onChange={e => setUpper(e.target.checked)}
+            />
+            Make it uppercase
+          </label>
+          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+        </>
+      )}
+    </>
+  );
+}
+```
+
+```css
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  min-height: 150px;
+}
+```
+
+</Sandpack>
+
+
+To verify that your solution works, press "Show form" and verify that the input receives focus (becomes highlighted and the cursor is placed inside). Press "Hide form" and "Show form" again. Verify the input is highlighted again.
+
+`MyInput` should only focus _on mount_ rather than after every render. To verify that the behavior is right, press "Show form" and then repeatedly press the "Make it uppercase" checkbox. Clicking the checkbox should _not_ focus the input above it.
+
+<Solution>
+
+Calling `ref.current.focus()` during render is wrong because it is a *side effect*. Side effects should either be placed inside an event handler or be declared with `useEffect`. In this case, the side effect is _caused_ by the component appearing rather than by any specific interaction, so it makes sense to declare it with `useEffect`.
+
+To fix the mistake, wrap the `ref.current.focus()` call into an effect declaration. Then, to ensure that this effect runs only on mount rather than after every render, add the empty `[]` dependencies to it.
+
+<Sandpack>
+
+```js MyInput.js active
+import { useEffect, useRef } from 'react';
+
+export default function MyInput({ value, onChange }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  return (
+    <input
+      ref={ref}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+```
+
+```js App.js hidden
+import { useState } from 'react';
+import MyInput from './MyInput.js';
+
+export default function Form() {
+  const [show, setShow] = useState(false);
+  const [name, setName] = useState('Taylor');
+  const [upper, setUpper] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <br />
+      <hr />
+      {show && (
+        <>
+          <label>
+            Enter your name:
+            <MyInput
+              value={name}
+              onChange={e => setName(e.target.value)}
+            />
+          </label>
+
+          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+        </>
+      )}
+    </>
+  );
+}
+```
+
+```css
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  min-height: 150px;
+}
+```
+
+</Sandpack>
+
+</Solution>
+
+### Run an effect conditionally {/*run-an-effect-conditionally*/}
+
+This form renders two `<MyInput />` components.
+
+Press "Show form" and notice that the second field automatically gets focused. This is because both of the `<MyInput />` components try to focus the field inside. When you call `focus()` for two input fields in a row, the last one always "wins."
+
+Let's say you want to focus the first field. The first `MyInput` component now receives a boolean `shouldFocus` prop set to `true`. Change the logic so that `focus()` is only called if the `shouldFocus` prop received by `MyInput` is `true`.
+
+<Sandpack>
+
+```js MyInput.js active
+import { useEffect, useRef } from 'react';
+
+export default function MyInput({ shouldFocus, value, onChange }) {
+  const ref = useRef(null);
+
+  // TODO: call focus() only if shouldFocus is true.
+  useEffect(() => {
+    ref.current.focus();
+  }, []);
+
+  return (
+    <input
+      ref={ref}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+```
+
+```js App.js hidden
+import { useState } from 'react';
+import MyInput from './MyInput.js';
+
+export default function Form() {
+  const [show, setShow] = useState(false);
+  const [firstName, setFirstName] = useState('Taylor');
+  const [lastName, setLastName] = useState('Swift');
+  const [upper, setUpper] = useState(false);
+  const name = firstName + ' ' + lastName;
+  return (
+    <>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <br />
+      <hr />
+      {show && (
+        <>
+          <label>
+            Enter your first name:
+            <MyInput
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+              shouldFocus={true}
+            />
+          </label>
+          <label>
+            Enter your last name:
+            <MyInput
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+              shouldFocus={false}
+            />
+          </label>
+          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+        </>
+      )}
+    </>
+  );
+}
+```
+
+```css
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  min-height: 150px;
+}
+```
+
+</Sandpack>
+
+To verify your solution, press "Show form" and "Hide form" repeatedly. When the form appears, only the *first* input should get focused. This is because the parent component renders the first input with `shouldFocus={true}` and the second input with `shouldFocus={false}`. Also check that both inputs still work and you can type into both of them.
+
+<Hint>
+
+You can't declare an effect conditionally, but your effect can include conditional logic.
+
+</Hint>
+
+<Solution>
+
+Put the conditional logic inside the effect. You will need to specify `shouldFocus` as a dependency because you are using it inside the effect. (This means that if some input's `shouldFocus` changes from `false` to `true`, it will focus after mount.)
+
+<Sandpack>
+
+```js MyInput.js active
+import { useEffect, useRef } from 'react';
+
+export default function MyInput({ shouldFocus, value, onChange }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (shouldFocus) {
+      ref.current.focus();
+    }
+  }, [shouldFocus]);
+
+  return (
+    <input
+      ref={ref}
+      value={value}
+      onChange={onChange}
+    />
+  );
+}
+```
+
+```js App.js hidden
+import { useState } from 'react';
+import MyInput from './MyInput.js';
+
+export default function Form() {
+  const [show, setShow] = useState(false);
+  const [firstName, setFirstName] = useState('Taylor');
+  const [lastName, setLastName] = useState('Swift');
+  const [upper, setUpper] = useState(false);
+  const name = firstName + ' ' + lastName;
+  return (
+    <>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} form</button>
+      <br />
+      <hr />
+      {show && (
+        <>
+          <label>
+            Enter your first name:
+            <MyInput
+              value={firstName}
+              onChange={e => setFirstName(e.target.value)}
+              shouldFocus={true}
+            />
+          </label>
+          <label>
+            Enter your last name:
+            <MyInput
+              value={lastName}
+              onChange={e => setLastName(e.target.value)}
+              shouldFocus={false}
+            />
+          </label>
+          <p>Hello, <b>{upper ? name.toUpperCase() : name}</b></p>
+        </>
+      )}
+    </>
+  );
+}
+```
+
+```css
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  min-height: 150px;
+}
+```
+
+</Sandpack>
+
+</Solution>
+
+### Fix an effect that needs cleanup {/*fix-an-effect-that-needs-cleanup*/}
+
+This `Counter` component displays a counter that should increment every second. On mount, it calls [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval). This causes `onTick` to run every second. The `onTick` function increments the counter.
+
+However, instead of incrementing once per second, it increments twice. Why is that? Find the cause of the bug and fix it.
+
+<Hint>
+
+Keep in mind that `setInterval` returns an interval ID, which you can pass to [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval) to stop the interval.
+
+</Hint>
+
+<Sandpack>
+
+```js Counter.js active
+import { useState, useEffect } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    function onTick() {
+      setCount(c => c + 1);
+    }
+
+    setInterval(onTick, 1000);
+  }, []);
+
+  return <h1>{count}</h1>;
+}
+```
+
+```js App.js hidden
+import { useState } from 'react';
+import Counter from './Counter.js';
+
+export default function Form() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} counter</button>
+      <br />
+      <hr />
+      {show && <Counter />}
+    </>
+  );
+}
+```
+
+```css
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  min-height: 150px;
+}
+```
+
+</Sandpack>
+
+<Solution>
+
+When [Strict Mode](/apis/strictmode) is on (like in the sandboxes on this site), React remounts each component once in development. This causes the interval to be set up twice, and this is why each second the counter increments twice.
+
+However, React's behavior is not the *cause* of the bug: the bug already exists in the code. React's behavior makes the bug more noticeable. The real cause is that this effect starts a process but doesn't provide a way to clean it up.
+
+To fix this code, save the interval ID returned by `setInterval`, and implement a cleanup function with [`clearInterval`](https://developer.mozilla.org/en-US/docs/Web/API/clearInterval):
+
+<Sandpack>
+
+```js Counter.js active
+import { useState, useEffect } from 'react';
+
+export default function Counter() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    function onTick() {
+      setCount(c => c + 1);
+    }
+
+    const intervalId = setInterval(onTick, 1000);
+    return () => clearInterval(intervalId);
+  }, []);
+
+  return <h1>{count}</h1>;
+}
+```
+
+```js App.js hidden
+import { useState } from 'react';
+import Counter from './Counter.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(s => !s)}>{show ? 'Hide' : 'Show'} counter</button>
+      <br />
+      <hr />
+      {show && <Counter />}
+    </>
+  );
+}
+```
+
+```css
+label {
+  display: block;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+body {
+  min-height: 150px;
+}
+```
+
+</Sandpack>
+
+In development, React will still remount your component once to verify that you've implemented cleanup well. So there will be a `setInterval` call, immediately followed by `clearInterval`, and `setInterval` again. In production, there will be only one `setInterval` call. The user-visible behavior in both cases is the same: the counter increments once per second.
+
+</Solution>
+
+### Fix an async effect {/*fix-an-async-effect*/}
+
+This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
+
+<Sandpack>
+
+```js App.js
+import { useState, useEffect } from 'react';
+import { fetchBio } from './api.js';
+
+export default function Page() {
+  const [person, setPerson] = useState('Alice');
+  const [bio, setBio] = useState(null);
+
+  useEffect(() => {
+    setBio(null);
+    fetchBio(person).then(result => {
+      setBio(result);
+    });
+  }, [person]);
+
+  return (
+    <>
+      <select value={person} onChange={e => {
+        setPerson(e.target.value);
+      }}>
+        <option value="Alice">Alice</option>
+        <option value="Bob">Bob</option>
+        <option value="Taylor">Taylor</option>
+      </select>
+      <hr />
+      <p><i>{bio ?? 'Loading...'}</i></p>
+    </>
+  );
+}
+```
+
+```js api.js hidden
+export async function fetchBio(person) {
+  const delay = person === 'Bob' ? 2000 : 200;
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('This is ' + person + '’s bio.');
+    }, delay);
+  })
+}
+
+```
+
+</Sandpack>
+
+
+There is a bug in this code. Start by selecting "Alice". Then select "Bob" and then immediately after that select "Taylor". If you do this fast enough, you will notice that bug: Taylor is selected, but the paragraph below says "This is Bob's bio."
+
+Why does this happen? Fix the bug inside this effect.
+
+<Hint>
+
+If an effect does something asynchronously, it always needs cleanup.
+
+</Hint>
+
+<Solution>
+
+To trigger the bug, things need to happen in this order:
+
+- Selecting `'Bob'` triggers `fetchBio('Bob')`
+- Selecting `'Taylor'` triggers `fetchBio('Taylor')`
+- **Fetching `'Taylor'` completes *before* fetching `'Bob'`**
+- The effect from the `'Taylor'` render calls `setBio('This is Taylor’s bio')`
+- Fetching `'Bob'` completes
+- The effect from the `'Bob'` render calls `setBio('This is Bob’s bio')`
+
+This is why you see Bob's bio even though Taylor is selected. Bugs like this are called [race conditions](https://en.wikipedia.org/wiki/Race_condition) because two asynchronous operations are "racing" with each other, and they might arrive in an unexpected order.
+
+The easiest way to fix the bug is to add a cleanup function:
+<Sandpack>
+
+```js App.js
+import { useState, useEffect } from 'react';
+import { fetchBio } from './api.js';
+
+export default function Page() {
+  const [person, setPerson] = useState('Alice');
+  const [bio, setBio] = useState(null);
+
+  useEffect(() => {
+    let ignore = false;
+
+    setBio(null);
+    fetchBio(person).then(result => {
+      if (!ignore) {
+        setBio(result);
+      }
+    });
+
+    return () => {
+      ignore = true;
+    }
+  }, [person]);
+
+  return (
+    <>
+      <select value={person} onChange={e => {
+        setPerson(e.target.value);
+      }}>
+        <option value="Alice">Alice</option>
+        <option value="Bob">Bob</option>
+        <option value="Taylor">Taylor</option>
+      </select>
+      <hr />
+      <p><i>{bio ?? 'Loading...'}</i></p>
+    </>
+  );
+}
+```
+
+```js api.js hidden
+export async function fetchBio(person) {
+  const delay = person === 'Bob' ? 2000 : 200;
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('This is ' + person + '’s bio.');
+    }, delay);
+  })
+}
+
+```
+
+</Sandpack>
+
+Each render's effect has its own `ignore` variable. Initially, the `ignore` variable is set to `false`. However, if an effect gets cleaned up (such as when you select a different person), its `ignore` variable becomes `true`. So now it doesn't matter in which order the requests complete. Only the last person's effect will have `ignore` set to `false`, so it will call `setBio(result)`. Past effects have been cleaned up, so the `if (!ignore)` check will prevent them from calling `setBio`.
+
+In addition to ignoring the result of an outdated API call, you can also use [`AbortController`](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) to cancel the requests that are no longer needed. However, by itself this is not enough to protect against race conditions. More asynchronous steps could be chained after the fetch, so using an explicit flag like `ignore` is the most reliable to fix this type of problems.
+
+</Solution>
+
+</Challenges>
+

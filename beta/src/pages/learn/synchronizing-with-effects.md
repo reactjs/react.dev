@@ -765,6 +765,76 @@ Buying is not caused by rendering; it's caused by a specific interaction. It onl
 
 ## Putting it all together {/*putting-it-all-together*/}
 
+This playground can help you "get a feel" for how Effects work in practice.
+
+This example uses [`setTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/setTimeout) to schedule a console log with the input text to appear three seconds after the Effect runs. The cleanup function cancels the pending timeout. Start by pressing "Mount the component":
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+
+function Playground() {
+  const [text, setText] = useState('a');
+
+  useEffect(() => {
+    function onTimeout() {
+      console.log('⏰ ' + text);
+    }
+
+    console.log('🔵 Schedule "' + text + '" log');
+    const timeoutId = setTimeout(onTimeout, 3000);
+
+    return () => {
+      console.log('🟡 Cancel "' + text + '" log');
+      clearTimeout(timeoutId);
+    };
+  }, [text]);
+
+  return (
+    <>
+      <label>
+        What to log:{' '}
+        <input
+          value={text}
+          onChange={e => setText(e.target.value)}
+        />
+      </label>
+      <h1>{text}</h1>
+    </>
+  );
+}
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Unmount' : 'Mount'} the component
+      </button>
+      {show && <hr />}
+      {show && <Playground />}
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+Expand the console panel in the sandbox above.
+
+You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Schedule "a" log` again. Three second later there will also be a log saying `a`. As you learned earlier on this page, the extra schedule/cancel pair is because **React remounts the component once in development to verify that you've implemented cleanup well.**
+
+Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why you even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
+
+Type something into the input and then immediately press "Unmount the component." **Notice how unmounting cleans up the last render's Effect.** In this example, it clears the last timeout before it has a chance to fire.
+
+Finally, edit the component above and **comment out the cleanup function** so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intution!
+
+Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`, and `abcde`) rather than five `abcde` logs. **Each Effect "captures" the `text` value from its corresponding render**.  It doesn't matter that the `text` state changed: an Effect from the render with `text = 'ab'` will always see `'ab'`. In other words, Effects from each render are isolated from each other. If you're curious how this works, you can read about [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
+
+<DeepDive title="Each render has its own Effects">
+
 You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this Effect:
 
 ```js
@@ -781,7 +851,7 @@ export default function ChatRoom({ roomId }) {
 
 Let's see what exactly happens as the user navigates around the app.
 
-### Initial render {/*initial-render*/}
+#### Initial render {/*initial-render*/}
 
 The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `roomId` with `'general'`:
 
@@ -805,7 +875,7 @@ The user visits `<ChatRoom roomId="general" />`. Let's [mentally substitute](/le
 
 React runs this Effect, which connects to the `'general'` chat room.
 
-### Re-render with same dependencies {/*re-render-with-same-dependencies*/}
+#### Re-render with same dependencies {/*re-render-with-same-dependencies*/}
 
 Let's say `<ChatRoom roomId="general" />` re-renders. The JSX output is the same:
 
@@ -831,7 +901,7 @@ The Effect from the second render looks like this:
 
 React compares `['general']` from the second render with `['general']` from the first render. **Because all dependencies are the same, React *ignores* the Effect from the second render.** It never gets called.
 
-### Re-render with different dependencies {/*re-render-with-different-dependencies*/}
+#### Re-render with different dependencies {/*re-render-with-different-dependencies*/}
 
 Then, the user visits `<ChatRoom roomId="travel" />`. This time, the component returns different JSX:
 
@@ -855,21 +925,21 @@ The Effect from the third render looks like this:
   ['travel']
 ```
 
-React compares `['travel']` from the third render with `['general']` from the second render. This time, one dependency is different: `Object.is('travel', 'general')` is `false`. The Effect can't be skipped.
+React compares `['travel']` from the third render with `['general']` from the second render. One dependency is different: `Object.is('travel', 'general')` is `false`. The Effect can't be skipped.
 
-**Before React can apply the Effect from the third render, it needs to clean up the last Effect that _did_ run.** Effect from the second render was skipped, so the Effect React needs to clean up is from the first render. If you scroll up to the first render, you'll see that its cleanup calls `connection.disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
+**Before React can apply the Effect from the third render, it needs to clean up the last Effect that _did_ run.** The second render's Effect was skipped, so React needs to clean up the first render's Effect. If you scroll up to the first render, you'll see that its cleanup calls `disconnect()` on the connection that was created with `createConnection('general')`. This disconnects the app from the `'general'` chat room.
 
-After the last Effect is cleaned up, React runs the third render's Effect. It connects to the `'travel'` chat room.
+After that, React runs the third render's Effect. It connects to the `'travel'` chat room.
 
-### Unmount {/*unmount*/}
+#### Unmount {/*unmount*/}
 
-Finally, let's say the user navigates away, and the `ChatRoom` component unmounts.
+Finally, let's say the user navigates away, and the `ChatRoom` component unmounts. React runs the last Effect's cleanup function. The last Effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
 
-React run the last Effect's cleanup function. The last Effect was from the third render. The third render's cleanup destroys the `createConnection('travel')` connection. So the app disconnects from the `'travel'` room.
-
-### Development-only behaviors {/*development-only-behaviors*/}
+#### Development-only behaviors {/*development-only-behaviors*/}
 
 When [Strict Mode](/apis/strictmode) is on, React remounts every component once after mount (state and DOM are preserved). This [helps you find Effects that need cleanup](#step-3-add-cleanup-if-needed) and exposes bugs like race conditions early. Additionally, React will remount the Effects whenever you save a file in development. Both of these behaviors are development-only.
+
+</DeepDive>
 
 <Recap>
 

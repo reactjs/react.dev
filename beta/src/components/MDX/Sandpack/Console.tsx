@@ -45,10 +45,12 @@ export const SandpackConsole = () => {
       }
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
-          const messages = [...prev, ...message.log];
-          messages.slice(Math.max(0, messages.length - MAX_MESSAGE_COUNT));
-
-          return messages.filter(({method}) => method === 'log');
+          const newLogs = message.log.filter(({method}) => method === 'log');
+          let messages = [...prev, ...newLogs];
+          while (messages.length > MAX_MESSAGE_COUNT) {
+            messages.shift();
+          }
+          return messages;
         });
       }
     });
@@ -56,7 +58,7 @@ export const SandpackConsole = () => {
     return unsubscribe;
   }, [listen]);
 
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(true);
 
   React.useEffect(() => {
     if (wrapperRef.current) {
@@ -99,7 +101,7 @@ export const SandpackConsole = () => {
       </div>
       {isExpanded && (
         <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
-          <div className="max-h-52 h-auto overflow-auto" ref={wrapperRef}>
+          <div className="max-h-40 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
                 <div

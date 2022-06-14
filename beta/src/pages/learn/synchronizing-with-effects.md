@@ -233,7 +233,7 @@ By default, Effects run after *every* render. Often, this is **not what you want
 - Sometimes, it's slow. Synchronizing with an external system is not always instant, so you might want to skip doing it unless it's necessary. For example, you don't want to reconnect to the chat server on every keystroke.
 - Sometimes, it's wrong. For example, you don't want to trigger a component fade-in animation on every keystroke. The animation should only play once when the component appears for the first time.
 
-To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Open the console and notice how typing causes the Effect to re-run:
+To demonstrate the issue, here is the previous example with a few `console.log` calls and a text input that updates the parent component's state. Notice how typing causes the Effect to re-run:
 
 <Sandpack>
 
@@ -820,8 +820,6 @@ export default function App() {
 ```
 
 </Sandpack>
-
-Expand the console panel in the sandbox above.
 
 You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Schedule "a" log` again. Three second later there will also be a log saying `a`. As you learned earlier on this page, the extra schedule/cancel pair is because **React remounts the component once in development to verify that you've implemented cleanup well.**
 

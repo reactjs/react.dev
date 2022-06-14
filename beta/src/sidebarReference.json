@@ -30,6 +30,10 @@
             {
               "title": "useState()",
               "path": "/apis/usestate"
+            },
+            {
+              "title": "useImperativeHandle()",
+              "path": "/apis/useimperativehandle"
             }
           ]
         },

@@ -32,7 +32,7 @@ Sometimes this isn't enough. Consider a `ChatRoom` component that must connect t
 
 <Note>
 
-Here and later in this text, capitalized "Effect" refer to the React-specific definition above, i.e. a side effect caused by rendering. To refer to the broader programming concept, we'll say "side effect".
+Here and later in this text, capitalized "Effect" refers to the React-specific definition above, i.e. a side effect caused by rendering. To refer to the broader programming concept, we'll say "side effect".
 
 </Note>
 

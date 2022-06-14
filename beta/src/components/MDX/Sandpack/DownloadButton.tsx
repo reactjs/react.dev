@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import {useSandpack} from '@codesandbox/sandpack-react';
-import {IconArrowSmall} from '../../Icon/IconArrowSmall';
+import {IconDownload} from '../../Icon/IconDownload';
 export interface DownloadButtonProps {}
 
 let supportsImportMap: boolean | void;
@@ -92,11 +92,7 @@ ${css}
       onClick={downloadHTML}
       title="Download Sandbox"
       type="button">
-      <IconArrowSmall
-        displayDirection="down"
-        className="inline mb-0.5 mr-1 mt-1"
-      />{' '}
-      Download
+      <IconDownload className="inline mr-1" /> Download
     </button>
   );
 };

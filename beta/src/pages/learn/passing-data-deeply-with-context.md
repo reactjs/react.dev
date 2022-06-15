@@ -106,7 +106,7 @@ export default function Heading({ level, children }) {
 
 </Sandpack>
 
-Let's say you want multiple headers within the same `Section` to always have the same size:
+Let's say you want multiple headings within the same `Section` to always have the same size:
 
 <Sandpack>
 
@@ -442,7 +442,7 @@ export const LevelContext = createContext(1);
 
 </Sandpack>
 
-Notice this example doesn't quite work, yet! All the headers have the same size because **even though you're *using* the context, you have not *provided* it yet.** React doesn't know where to get it!
+Notice this example doesn't quite work, yet! All the headings have the same size because **even though you're *using* the context, you have not *provided* it yet.** React doesn't know where to get it!
 
 If you don't provide the context, React will use the default value you've specified in the previous step. In this example, you specified `1` as the argument to `createContext`, so `useContext(LevelContext)` returns `1`, setting all those headings to `<h1>`. Let's fix this problem by having each `Section` provide its own context.
 
@@ -568,7 +568,7 @@ It's the same result as the original code, but you did not need to pass the `lev
 
 1. You pass a `level` prop to the `<Section>`.
 2. `Section` wraps its children into `<LevelContext.Provider value={level}>`.
-3. `Header` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
+3. `Heading` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
 
 ## Using and providing context from the same component {/*using-and-providing-context-from-the-same-component*/}
 

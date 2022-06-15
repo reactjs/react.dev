@@ -49,7 +49,7 @@ Offscreen is a low level capability that unlocks high level features. Similar to
 * **Instant transitions.** Some routing frameworks already prefetch data to speed up subsequent navigations, like when hovering over a link. With Offscreen, they'll also be able to prerender the next screen in the background.
 * **Reusable state.** Similarly, when navigating between routes or tabs, you can use Offscreen to preserve the state of the previous screen so you can switch back and pick up where you left off.
 * **Virtualized list rendering.** When displaying large lists of items, virtualized list frameworks will prerender more rows than are currently visible. You can use Offscreen to prerender the hidden rows at a lower priority than the visible items in the list.
-**Backgrounded content.** We're also exploring a related feature for deprioritizing content in the background without hiding it, like when displaying a modal overlay.
+* **Backgrounded content.** We're also exploring a related feature for deprioritizing content in the background without hiding it, like when displaying a modal overlay.
 
 ## Transition Tracing {#transition-tracing}
 

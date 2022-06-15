@@ -1051,7 +1051,7 @@ export default function App() {
   )
 }
 
-function List({ imageSize }) {
+function List() {
   const listItems = places.map(place =>
     <li key={place.id}>
       <Place place={place} />

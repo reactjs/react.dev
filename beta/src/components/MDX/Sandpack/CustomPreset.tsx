@@ -1,10 +1,9 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-import React from 'react';
+import React, {lazy, Suspense} from 'react';
 // @ts-ignore
 import {flushSync} from 'react-dom';
-import dynamic from 'next/dynamic';
 import {
   useSandpack,
   useActiveCode,
@@ -12,12 +11,8 @@ import {
   SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 
-const SandpackReactDevTools = dynamic(
-  () =>
-    import('@codesandbox/sandpack-react').then(
-      (mod) => mod.SandpackReactDevTools
-    ) as any
-);
+const ReactDevTools = lazy(() => import('../DevTools'));
+
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 
@@ -111,8 +106,9 @@ export function CustomPreset({
           </div>
 
           {showDevTools && (
-            // @ts-ignore
-            <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
+            <Suspense fallback={<h1>loading</h1>}>
+              <ReactDevTools onLoadModule={onDevToolsLoad} />
+            </Suspense>
           )}
         </SandpackThemeProvider>
       </div>

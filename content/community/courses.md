@@ -8,6 +8,8 @@ permalink: community/courses.html
 
 ## Free Courses {#free-courses}
 
+- [Bitovi Academy: Learn React](https://www.bitovi.com/academy/learn-react.html) - By the end of this course, you will have mastered functional components, hooks, and component optimization.
+
 - [Glitch: React Starter Kit](https://glitch.com/glimmer/post/react-starter-kit) - A free, 5-part video course with interactive code examples that will help you learn React.
 
 - [Codecademy: React 101](https://www.codecademy.com/learn/react-101) - Codecademy's introductory course for React.

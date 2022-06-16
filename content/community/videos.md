@@ -40,6 +40,10 @@ A playlist of videos from React.js Conf 2016.
 A playlist of videos from React.js Conf 2015.
 <iframe title="React.js Conf 2015" width="650" height="366" src="https://www.youtube-nocookie.com/embed/playlist?list=PLb0IAmt7-GS1cbw4qonlQztYV1TAW0sCr" frameborder="0" allowfullscreen></iframe>
 
+### An Introductory Guide to working with Hooks in React
+
+<iframe title="An Introductory Guide to working with Hooks in React" width="650" height="336" src="https://www.youtube-nocookie.com/embed/videoseries?list=PL--xV5crGpX8DFhgUzQxuFz48c4ghQhK_" frameborder="0" allowfullscreen></iframe>
+
 ### Secrets of the Virtual DOM {#secrets-of-the-virtual-dom}
 
 Pete Hunt at Mountain West JavaScript 2014 discusses why a virtual DOM was built for React, how it compares to other systems, and its relevance to the future of browser technologies - (2014 - 0h44m).

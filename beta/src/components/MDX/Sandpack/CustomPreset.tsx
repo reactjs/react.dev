@@ -21,6 +21,7 @@ import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
 import {useSandpackLint} from './useSandpackLint';
+import {SandpackReactDevTools} from '@codesandbox/sandpack-react';
 
 // Workaround for https://github.com/reactjs/reactjs.org/issues/4686#issuecomment-1137402613.
 const emptyArray: Array<any> = [];
@@ -106,9 +107,7 @@ export function CustomPreset({
           </div>
 
           {showDevTools && (
-            <Suspense fallback={<h1>loading</h1>}>
-              <ReactDevTools onLoadModule={onDevToolsLoad} />
-            </Suspense>
+            <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
           )}
         </SandpackThemeProvider>
       </div>

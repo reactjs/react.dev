@@ -4,13 +4,20 @@
 import React from 'react';
 // @ts-ignore
 import {flushSync} from 'react-dom';
+import dynamic from 'next/dynamic';
 import {
   useSandpack,
   useActiveCode,
   SandpackCodeEditor,
   SandpackThemeProvider,
-  SandpackReactDevTools,
 } from '@codesandbox/sandpack-react';
+
+const SandpackReactDevTools = dynamic(
+  () =>
+    import('@codesandbox/sandpack-react').then(
+      (mod) => mod.SandpackReactDevTools
+    ) as any
+);
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 
@@ -104,6 +111,7 @@ export function CustomPreset({
           </div>
 
           {showDevTools && (
+            // @ts-ignore
             <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
           )}
         </SandpackThemeProvider>

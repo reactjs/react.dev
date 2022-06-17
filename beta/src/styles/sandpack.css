@@ -58,6 +58,7 @@ html.dark .sp-wrapper {
 .sp-tabs .sp-tab-button {
   color: #087ea4;
   padding: 0 4px;
+  border-bottom: 2px solid transparent;
 }
 
 html.dark .sp-tabs .sp-tab-button {

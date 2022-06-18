@@ -20,7 +20,7 @@ In this document, we’ll discuss why render props are useful, and how to write 
 
 ## Use Render Props for Cross-Cutting Concerns {#use-render-props-for-cross-cutting-concerns}
 
-Components are the primary unit of code reuse in React, but it's not always obvious how to share the state or behavior that one component encapsulates to other components that need that same state.
+Components are the primary unit of code reuse in React, but it's not always obvious how to share the state or behavior that one component encapsulates with other components that need that same state.
 
 For example, the following component tracks the mouse position in a web app:
 
@@ -155,7 +155,7 @@ class MouseTracker extends React.Component {
 
 This approach will work for our specific use case, but we haven't achieved the objective of truly encapsulating the behavior in a reusable way. Now, every time we want the mouse position for a different use case, we have to create a new component (i.e. essentially another `<MouseWithCat>`) that renders something specifically for that use case.
 
-Here's where the render prop comes in: Instead of hard-coding a `<Cat>` inside a `<Mouse>` component, and effectively changing its rendered output, we can provide `<Mouse>` with a function prop that it uses to dynamically determine what to render–a render prop.
+Here's where the render prop comes in: Instead of hard-coding a `<Cat>` inside a `<Mouse>` component, and effectively changing its rendered output, we can provide `<Mouse>` with a function prop that it uses to dynamically determine what to render -- a `render` prop.
 
 ```js
 class Cat extends React.Component {

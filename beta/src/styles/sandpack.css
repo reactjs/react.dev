@@ -58,6 +58,7 @@ html.dark .sp-wrapper {
 .sp-tabs .sp-tab-button {
   color: #087ea4;
   padding: 0 4px;
+  border-bottom: 2px solid transparent;
 }
 
 html.dark .sp-tabs .sp-tab-button {
@@ -154,6 +155,13 @@ html.dark .sp-code-editor .cm-diagnostic {
   overflow: auto !important;
   padding: 18px 0 !important;
 }
+
+.console .sp-cm,
+.console .sp-cm .cm-scroller,
+.console .sp-cm .cm-line {
+  padding: 0px !important;
+}
+
 .sp-cm .cm-gutters {
   background-color: var(--sp-colors-bg-default);
   z-index: 1;

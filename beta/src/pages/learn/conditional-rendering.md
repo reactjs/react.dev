@@ -1,24 +1,24 @@
 ---
-title: Conditional Rendering
+title: Ehdollinen renderöinti
 ---
 
 <Intro>
 
-Your components will often need to display different things depending on different conditions. In React, you can conditionally render JSX using JavaScript syntax like `if` statements, `&&`, and `? :` operators.
+Komponenttiesi täytyy usein näyttää eri asioita eri tilanteissa. Reactissa voit ehdollisesti renderöidä JSX:ää käyttämällä JavaScript syntaksia kuten `if` lauseita, `&&` ja `? :` operaattoreita.
 
 </Intro>
 
 <YouWillLearn>
 
-* How to return different JSX depending on a condition
-* How to conditionally include or exclude a piece of JSX
-* Common conditional syntax shortcuts you’ll encounter in React codebases
+* Miten palauttaa eri JSX:ää riippuen ehdoista
+* Miten sisällyttää tai poissulkea JSX:ää ehdollisesti
+* Yleisiä ehtolauseiden syntakseja, joita kohtaat React-koodipohjissa
 
 </YouWillLearn>
 
-## Conditionally returning JSX {/*conditionally-returning-jsx*/}
+## JSX:n palauttaminen ehdollisesti {/*conditionally-returning-jsx*/}
 
-Let’s say you have a `PackingList` component rendering several `Item`s, which can be marked as packed or not:
+Sanotaan, että sinulla on `PackagingList` komponentti renderöimässä useita `Item` komponentteja, jotka voidaan merkitä pakatuiksi tai ei:
 
 <Sandpack>
 
@@ -52,9 +52,9 @@ export default function PackingList() {
 
 </Sandpack>
 
-Notice that some of the `Item` components have their `isPacked` prop set to `true` instead of `false`. You want to add a checkmark (✔) to packed items if `isPacked={true}`.
+Huomaa, että joillain `Item` komponenteilla on niiden `isPacked` proppi asetettu arvoon `true` eikä `false`. Haluat kuitenkin lisätä valintamerkin (✔) pakattuihin itemeihin jos `isPacked={true}`.
 
-You can write this as an [`if`/`else` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) like so:
+Voit kirjoittaa tämän [`if`/`else` lauseena](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) seuraavasti:
 
 ```js
 if (isPacked) {
@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree**. With this change, some of the items get a checkmark at the end:
+Jos `isPacked` propsi on `true`, tämä koodi **palauttaa eri JSX puun**. Tällä muutoksella, jotkin kohteista saavat valintamerkin loppuun:
 
 <Sandpack>
 
@@ -100,13 +100,13 @@ export default function PackingList() {
 
 </Sandpack>
 
-Try editing what gets returned in either case, and see how the result changes!
+Kokeile muokata mitä palautuu kummassakin tilassa ja katso miten lopputulos muuttuu!
 
-Notice how you're creating branching logic with JavaScript's `if` and `return` statements. In React, control flow (like conditions) is handled by JavaScript.
+Huomaa miten luot haaralogiikkaa JavaScriptin `if` ja `return` lauseilla. Reactissa ohjausvirtaa (kuten ehtoja) käsittelee JavaScript.
 
-### Conditionally returning nothing with `null` {/*conditionally-returning-nothing-with-null*/}
+### Ehdollisesti tyhjän palauttaminen käyttämällä `null` {/*conditionally-returning-nothing-with-null*/}
 
-In some situations, you won't want to render anything at all. For example, say you don't want to show packed items at all. A component must return something. In this case, you can return `null`:
+Jossain tilanteissa et halua renderöidä yhtään mitään. Esimerkiksi sanotaan, että et halua näyttää pakattuja kohteita ollenkaan. Komponentin täytyy kuitenkin palauttaa jotain. Tässä tilanteessa, voit palauttaa `null`:
 
 ```js
 if (isPacked) {
@@ -115,7 +115,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If `isPacked` is true, the component will return nothing, `null`. Otherwise, it will return JSX to render.
+Jos `isPacked` on tosi, komponentti ei palauta mitään, `null`:n. Muussa tapauksessa se palauttaa JSX:n renderöitäväksi.
 
 <Sandpack>
 
@@ -152,23 +152,23 @@ export default function PackingList() {
 
 </Sandpack>
 
-In practice, returning `null` from a component isn't common because it might surprise a developer trying to render it. More often, you would conditionally include or exclude the component in the parent component's JSX. Here's how to do that!
+Käytännössä `null`:n palauttaminen komponentista ei ole yleistä, sillä se voi yllättää kehittäjää, joka yrittää renderöidä sitä. Useammin sisällytät tai poissuljet komponentin ehdollisesti pääkomponentin JSX:ssä. Tässä miten se tehdään!
 
-## Conditionally including JSX {/*conditionally-including-jsx*/}
+## JSX:n sisällyttäminen ehdollisesti {/*conditionally-including-jsx*/}
 
-In the previous example, you controlled which (if any!) JSX tree would be returned by the component. You may already have noticed some duplication in the render output:
+Aikaisemmassa esimerkissä hallitsit kumpi (jos kumpikaan!) JSX puu tulisi komponentin palauttaa. Saatoit huomata hieman toistoa renderöinnin ulostulossa:
 
 ```js
 <li className="item">{name} ✔</li>
 ```
 
-is very similar to
+on hyvin samanlainen kuin
 
 ```js
 <li className="item">{name}</li>
 ```
 
-Both of the conditional branches return `<li className="item">...</li>`:
+Molemmat ehtohaarat palauttavat `<li className="item">...</li>`:
 
 ```js
 if (isPacked) {
@@ -177,13 +177,13 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-While this duplication isn't harmful, it could make your code harder to maintain. What if you want to change the `className`? You'd have to do it in two places in your code! In such a situation, you could conditionally include a little JSX to make your code more [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).
+Vaikka toisto ei ole haitallista, se voi tehdä koodistasi hankalempaa ylläpitää. Entä jos haluat muuttaa `className`:n? Sinun täytyisi tehdä se kahdessa paikassa koodissasi! Tällaisessa tilanteessa voisit ehdollisesti sisällyttää vähän JSX tehdäksesi koodistasi enemmän kuivaa (engl. [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself).)
 
-### Conditional (ternary) operator (`? :`) {/*conditional-ternary-operator--*/}
+### Ehdollinen (ternary) operaattori (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator."
+JavaScriptissa on kompakti tapa kirjoittaa ehtolauseke -- [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) taikka "ternary operaattori."
 
-Instead of this:
+Tämän sijaan:
 
 ```js
 if (isPacked) {
@@ -192,7 +192,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-You can write this:
+Voit kirjoittaa tämän:
 
 ```js
 return (
@@ -202,15 +202,15 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`."*)
+Voit lukea sen kuin *"jos `isPacked` on tosi, sitten (`?`) renderöi `name + ' ✔'`, muussa tapauksessa (`:`) renderöi `nimi`."*)
 
-<DeepDive title="Are these two examples fully equivalent?">
+<DeepDive title="Vastaavatko nämä kaksi esimerkkiä toisiaan täysin?">
 
-If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
+Jos sinulla on taustaa olio-ohjelmoinnista, saatat olettaa, että kaksi yllä olevaa esimerkkiä ovat hienovaraisesti erilaisia, koska yksi niistä voi luoda kaksi erilaista "instanssia" `<li>` elementistä. Mutta JSX elementit eivät ole "instansseja", sillä ne eivät ylläpidä sisäistä tilaa eivätkä ne ole aitoja DOM-solmuja. Ne ovat kevyitä kuvauksia, kuten pohjapiirustuksia. Joten nämä kaksi esimerkkiä *ovat* itse asiassa täysin toisiaan vastaavia. [Tilan säilyttäminen ja nollaus](/learn/preserving-and-resetting-state) menee syvemmälle siihen miten kaikki tämä toimii.
 
 </DeepDive>
 
-Now let's say you want to wrap the completed item's text into another HTML tag, like `<del>` to strike it out. You can add even more newlines and parentheses so that it's easier to nest more JSX each of the cases:
+Sanotaan, että haluat kääriä lopullisen kohteen tekstin toiseen HTML tagiin, kuten `<del>`:iin yliviivataksesi sen. Voit lisätä enemmän rivinvaihtoja ja sulkeita, jotta on helpompi upottaa enemmän JSX koodia kussakin tapauksessa:
 
 <Sandpack>
 
@@ -254,11 +254,11 @@ export default function PackingList() {
 
 </Sandpack>
 
-This style works well for simple conditions, but use it in moderation. If your components get messy with too much nested conditional markup, consider extracting child components to clean things up. In React, markup is a part of your code, so you can use tools like variables and functions to tidy up complex expressions.
+Tämä tyyli toimii hyvin yksinkertaisiin ehtolauseisiin, mutta käytä sitä maltillisesti. Jos komponenttisi sotkeutuvat liian monen sisäkkäisen ehdollisten merintöjen kanssa, hatkitse niiden irroittaminen lapsikomponenteiksi, koodin siistimiseksi. Reactissa merkintäkoodi on osa koodiasi, joten voit käyttää ominaisuuksia kuten muuttujia ja funktioita sekavien lausekkeiden siistimiseksi.
 
-### Logical AND operator (`&&`) {/*logical-and-operator-*/}
+### Looginen AND operaattori (`&&`) {/*logical-and-operator-*/}
 
-Another common shortcut you'll encounter is the [JavaScript logical AND (`&&`) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.). Inside React components, it often comes up when you want to render some JSX when the condition is true, **or render nothing otherwise.** With `&&`, you could conditionally render the checkmark only if `isPacked` is `true`:
+Toinen yleinen lyhytoperaatio, johon törmään on [JavaScriptin looginen AND (`&&`) operaattori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.). React komponenttien sisällä tulee usein tilainteita, joissa haluat renderöidä jotain JSX:ää kun ehto on tosi, **tai jättää renderöimättä muutoin.** Käyttämällä `&&` operaattoria voit ehdollisesti renderöidä valintamerkin vain jos `isPacked` on `true`:
 
 ```js
 return (
@@ -268,9 +268,9 @@ return (
 );
 ```
 
-You can read this as *“if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing.”*
+Voit lukea tämän kuin *"jos `isPacked`, sitten (`&&`) renderöi valintamerkki, muussa tapauksessa, älä renderöi mitään."*
 
-Here it is in action:
+Tässä se toiminnassa:
 
 <Sandpack>
 
@@ -308,30 +308,30 @@ export default function PackingList() {
 
 </Sandpack>
 
-A [JavaScript && expression](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) returns the value of its right side (in our case, the checkmark) if the left side (our condition) is `true`. But if the condition is `false`, the whole expression becomes `false`. React considers `false` as a "hole" in the JSX tree, just like `null` or `undefined`, and doesn't render anything in its place.
+[JavaScriptin && lauseke](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) palauttaa oikean puolimmaisen arvon (tässä tapauksessa valintamerkin) jos vasen puoli (ehtomme) on `true`. Mutta jos ehto on `false`, koko lausekkeesta tulee `false`. React käsittää `false`:n kuin "aukon" JSX puussa, juuri kuten `null` tai `undefined`, eikä se renderöi mitään sen kohdalle.
 
 
 <Gotcha>
 
-**Don't put numbers on the left side of `&&`.**
+**Älä aseta numeroita `&&` lausekkeen vasemmalle puolelle.**
 
-To test the condition, JavaScript converts the left side to a boolean automatically. However, if the left side is `0`, then the whole expression gets that value (`0`), and React will happily render `0` rather than nothing.
+Testatakseen ehtolausetta, JavaScript automaattisesti muuttaa vasemman puolen totuusarvoksi. Kuitenkin, jos vasen puoli on `0`, niin silloin koko lauseke saa sen arvokseen (`0`), ja React mielellään renderöi `0`:n tyhjän tilalle.
 
-For example, a common mistake is to write code like `messageCount && <p>New messages</p>`. It's easy to assume that it renders nothing when `messageCount` is `0`, but it really renders the `0` itself!
+Yleinen väärinkäsitys on kirjoittaa koodia kuten `messageCount && <p>New messages</p>`. On helppoa olettaa, ettei se renderöi mitään kun `messageCount` on `0`, mutta se oikeasti renderöi luvun `0` itsessään!
 
-To fix it, make the left side a boolean: `messageCount > 0 && <p>New messages</p>`.
+Tämän korjataksesi, tee vasemmasta puolesta totuusarvo: `messageCount > 0 && <p>New messages</p>`.
 
 </Gotcha>
 
-### Conditionally assigning JSX to a variable {/*conditionally-assigning-jsx-to-a-variable*/}
+### JSX:n määrittäminen muuttujaan ehdollisesti {/*conditionally-assigning-jsx-to-a-variable*/}
 
-When the shortcuts get in the way of writing plain code, try using an `if` statement and a variable. You can reassign variables defined with [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), so start by providing the default content you want to display, the name:
+Kun lyhytoperaatiot astuvat koodin kirjoittamisen eteen, kokeile käyttää `if` lausetta ja muuttujaa. Voit uudelleenmääritellä muuttujia, jotka on esitelty käytten [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let):iä, joten voit aloittaa tarjoamalla oletussisällön, jota haluat näyttää:
 
 ```js
 let itemContent = name;
 ```
 
-Use an `if` statement to reassign a JSX expression to `itemContent` if `isPacked` is `true`:
+Käytä `if` lausetta uudelleenmärittelemään JSX-lause muotoon `itemContent` jos `isPacked` on `true`:
 
 ```js
 if (isPacked) {
@@ -339,7 +339,7 @@ if (isPacked) {
 }
 ```
 
-[Curly braces open the "window into JavaScript".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Embed the variable with curly braces in the returned JSX tree, nesting the previously calculated expression inside of JSX:
+[Aaltosulkeet avaavat "ikkunan takaisin JavaScriptiin".](/learn/javascript-in-jsx-with-curly-braces#using-curly-braces-a-window-into-the-javascript-world) Upota muuttuja aaltosulkeilla palautetussa JSX puussa,sisentäen aiemmin laskettu lause JSX:n sisässä:
 
 ```js
 <li className="item">
@@ -347,7 +347,7 @@ if (isPacked) {
 </li>
 ```
 
-This style is the most verbose, but it's also the most flexible. Here it is in action:
+Tämä tyyli on kaikista monisanainen, mutta se on myös joustavin. Tässä se vielä toiminnassa:
 
 <Sandpack>
 
@@ -389,7 +389,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Like before, this works not only for text, but for arbitrary JSX too:
+Kuten aiemmin, tämä toimii sekä teksteille, mutta myös mielivaltaiselle JSX:lle:
 
 <Sandpack>
 
@@ -435,16 +435,16 @@ export default function PackingList() {
 
 </Sandpack>
 
-If you're not familiar with JavaScript, this variety of styles might seem overwhelming at first. However, learning them will help you read and write any JavaScript code -- and not just React components! Pick the one you prefer for a start, and then consult this reference again if you forget how the other ones work.
+Mikäli JavaScript ei ole tuttua, nämä tyylit voivat tuntua ylivoimaisilta aluksi. Kuitenkin niiden oppiminen helpottavat sinua lukemaan ja kirjoittamaan mitä tahansa JavaScript koodia -- eikä vain React komponentteja! Valitse aluksi yksi jota suosit ja sitten viittaa takaisin tähän oppaaseen mikäli unohdat miten muut toimivatkaan.
 
 <Recap>
 
-* In React, you control branching logic with JavaScript.
-* You can return a JSX expression conditionally with an `if` statement.
-* You can conditionally save some JSX to a variable and then include it inside other JSX by using the curly braces.
-* In JSX, `{cond ? <A /> : <B />}` means *"if `cond`, render `<A />`, otherwise `<B />`"*.
-* In JSX, `{cond && <A />}` means *"if `cond`, render `<A />`, otherwise nothing"*.
-* The shortcuts are common, but you don't have to use them if you prefer plain `if`.
+* Reactissa ohjaat haaralogiikkaa JavaScriptilla.
+* Voit palauttaa JSX-lauseen ehdollisesti käyttäen `if`-lausetta.
+* Voit ehdollisesti tallentaa jotain JSX:ää muuttujaan ja sisällyttää sen toisen JSX:n sisään käyttäen aaltosulkeita.
+* JSX:ssä, `{cond ? <A /> : <B />}` tarkoittaa *"jos `cond`, renderöi `<A />`, muutoin `<B />`"*.
+* JSX:ssä, `{cond && <A />}` tarkoittaa *"jos `cond`, renderöi `<A />`, muutoin ei mitään"*.
+* Lyhytoperaatiot ovat yleisiä, mutta sinunu ei tarvitse käyttää niitä jos suosit tavallista `if` lausetta.
 
 </Recap>
 
@@ -452,9 +452,9 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+### Näytä kuvake keskeneräisille kohteille hyödyntämällä `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
-Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
+Käytä ehdollista operaattoria (`cond ? a : b`) renderöidäksesi ❌ jos `isPacked` ei ole `true`.
 
 <Sandpack>
 
@@ -532,15 +532,15 @@ export default function PackingList() {
 
 </Solution>
 
-### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+### Näytä kohteen tärkeys hyödyntämällä `&&` {/*show-the-item-importance-with-*/}
 
-In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
+Tässä esimerkissä jokainen `Item` vastaanottaa numeerisen `importance` propin. Käytä `&&` lyhytoperaatiota renderöidäksesi "_(Importance: X)_" kursivoituna, mutta vain kohteille joiden tärkeys on suurempi kuin nolla. Listauksen pitäisi päätyä näyttämään seuraavanlaiselta:
 
 * Space suit _(Importance: 9)_
 * Helmet with a golden leaf
 * Photo of Tam _(Importance: 6)_
 
-Don't forget to add a space between the two labels!
+Älä unohda lisätä välilyöntiä kohteiden väliin!
 
 <Sandpack>
 
@@ -622,15 +622,15 @@ export default function PackingList() {
 
 </Sandpack>
 
-Note that you must write `importance > 0 && ...` rather than `importance && ...` so that if the `importance` is `0`, `0` isn't rendered as the result!
+Huomaa, että sinun täytyy kirjoittaa `importance > 0 && ...` ennemmin kuin `importance && ...`, sillä jos `importance` on `0`, `0`:aa ei renderöidä pelkkänä vastauksena!
 
-In this solution, two separate conditions are used to insert a space between then name and the importance label. Alternatively, you could use a fragment with a leading space: `importance > 0 && <> <i>...</i></>` or add a space immediately inside the `<i>`:  `importance > 0 && <i> ...</i>`.
+Tässä ratkaisussa kahta erillistä ehtolausetta käytetään asettamaan välilyönti nimen ja tärkeyden väliin. Vaihtoehtoisesti voit käyttää fragmentia: `importance > 0 && <> <i>...</i></>` tai lisätä välilyönnin suoraan `<i>`:n sisään:  `importance > 0 && <i> ...</i>`.
 
 </Solution>
 
-### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
+### Refaktoroi sarja `? :` käyttämään `if`-lausetta ja muuttujia {/*refactor-a-series-of---to-if-and-variables*/}
 
-This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
+Tämä `Drink` komponentti käyttää sarjan `= :` ehtolauseita näyttääkseen erilaista tietoa riippuen onko `name` proppi `"tea"` tai `"coffee"`. Ongelmana on, että tiedot jokaisesta juomasta on hajautettuna usesiin ehtoihin. Refaktoroi koodi käyttämään yhtä `if` lausetta kolmen `? :`-ehdon sijaan.
 
 <Sandpack>
 
@@ -663,11 +663,11 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Once you've refactored the code to use `if`, do you have further ideas on how to simplify it?
+Kun olet saanut refaktoroitua koodin käyttämään `if`-lausetta, onko sinulla muita ideoita miten voisit yksinkertaistaa sitä?
 
 <Solution>
 
-There are multiple ways you could go about this, but here is one starting point:
+Voit tehdä tämän monella eri tavalla, mutta tässä yksi lähtökohta:
 
 <Sandpack>
 
@@ -710,9 +710,9 @@ export default function DrinkList() {
 
 </Sandpack>
 
-Here the information about each drink is grouped together instead of being spread across multiple conditions. This makes it easier to add more drinks in the future.
+Tässä informaatio jokaisesta juomasta on ryhmitetty yhteen sen sijaan, että ne olisi jaettu useisiin ehtoihin. Tämän avulla on helpompi lisätä muita juomia tulevaisuudessa.
 
-Another solution would be to remove the condition altogether by moving the information into objects:
+Toinen ratkaisu voisi olla poistaa ehto kokonaan siirtämällä informaatio olioon:
 
 <Sandpack>
 

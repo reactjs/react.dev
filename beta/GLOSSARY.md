@@ -3,14 +3,19 @@
 ## React specific
 
 - **React hook**: React hookki, koukku
-- **props**: proppi, propit
+- **props**: propsit, proppi, propit
 - **prop drilling**: proppien poraus
 - **reducer**: reducer
 - **dispatch**: dispatch, lähettää
 - **pure component**: puhdas komponentti
+- **fragment**: fragment
 
 ## General
 
+- **branching logic**: haaralogiikka
+- **control flow**: ohjausvirta
+- **shortcut**: lyhytoperaatio
+- **expression**: lause
 - **linting**: lintteri
 - **frontend**: frontend
 - **backend**: backend, taustajärjestelmä

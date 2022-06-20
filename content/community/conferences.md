@@ -70,7 +70,7 @@ September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid ev
 ### RemixConf 2023 {#remixconf-2023}
 May, 2023. Salt Lake City, UT
 
-[Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run))
+[Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run)
 
 ## Past Conferences {#past-conferences}
 

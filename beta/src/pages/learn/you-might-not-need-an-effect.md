@@ -93,7 +93,7 @@ function TodoList({ todos, filter }) {
 
 In many cases, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated state variable like `newTodo` has changed.
 
-You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it [`useMemo`](/apis/usememo) Hook:
+You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/apis/usememo) Hook:
 
 ```js {5-8}
 import { useMemo, useState } from 'react';

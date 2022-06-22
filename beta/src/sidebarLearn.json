@@ -166,6 +166,10 @@
             {
               "title": "Synchronizing with Effects",
               "path": "/learn/synchronizing-with-effects"
+            },
+            {
+              "title": "You Might Not Need an Effect",
+              "path": "/learn/you-might-not-need-an-effect"
             }
           ]
         }

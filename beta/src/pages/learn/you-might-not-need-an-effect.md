@@ -250,7 +250,7 @@ Now there is no need to "adjust" the state at all. If the item with the selected
 
 ### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
 
-Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification [toast](https://uxdesign.cc/toasts-or-snack-bars-design-organic-system-notifications-1236f2883023) whenever the user puts the product in the cart. Adding the `showToast()` call to both button's click handlers feels repetitive so you might be tempted to place this logic in an Effect:
+Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification [toast](https://uxdesign.cc/toasts-or-snack-bars-design-organic-system-notifications-1236f2883023) whenever the user puts the product in the cart. Adding the `showToast()` call to both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
 
 ```js {2-7}
 function ProductPage({ product, addToCart }) {
@@ -358,7 +358,7 @@ When you choose whether to put some logic into an event handler or an Effect, th
 
 ### Initializing the application {/*initializing-the-application*/}
 
-Some logic should only runs once when the app loads. You might place it in an Effect in the top-level component:
+Some logic should only run once when the app loads. You might place it in an Effect in the top-level component:
 
 ```js {2-6}
 function App() {

@@ -8,7 +8,11 @@ import {
   createVirtualTypeScriptEnvironment,
 } from '@typescript/vfs';
 import type {Diagnostic} from '@codemirror/lint';
-import {CONFIG} from './config';
+import {
+  CONFIG as CONFIG,
+  DiagnosticFilter,
+  getConfigForFilePath,
+} from './config';
 import type {TSServerRender} from './TypescriptServerProvider';
 
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
@@ -172,6 +176,19 @@ const fetchDependencyTypesFromCDN = async (
   return requiredTypeFiles;
 };
 
+function isDiagnosticAllowed(
+  diagnostic: ts.Diagnostic,
+  filter: DiagnosticFilter
+): boolean {
+  const isFiltered = filter.codes.has(diagnostic.code);
+  switch (filter.type) {
+    case 'deny':
+      return !isFiltered;
+    case 'allow':
+      return isFiltered;
+  }
+}
+
 class TSServerWorker {
   envs = new Map<number, VirtualTypeScriptEnvironment>();
 
@@ -306,6 +323,7 @@ class TSServerWorker {
 
   lintSystem = (args: {envId: number; filePath: string}) => {
     const {envId, filePath} = args;
+    const config = getConfigForFilePath(filePath);
     const env = this.getEnv(envId);
     if (!env) {
       return undefined;
@@ -315,14 +333,10 @@ class TSServerWorker {
       env.languageService.getSyntacticDiagnostics(filePath);
     const SemanticDiagnostic = env.languageService
       .getSemanticDiagnostics(filePath)
-      .filter((semantic) => {
-        if (CONFIG.semanticDiagnosticsAllowList) {
-          return CONFIG.semanticDiagnosticsAllowList.has(semantic.code);
-        } else {
-          return true;
-        }
-      });
-    const SuggestionDiagnostics = CONFIG.showSuggestionDiagnostics
+      .filter((semantic) =>
+        isDiagnosticAllowed(semantic, config.semanticDiagnosticFilter)
+      );
+    const SuggestionDiagnostics = config.showSuggestionDiagnostics
       ? env.languageService.getSuggestionDiagnostics(filePath)
       : [];
     type Diagnostics = typeof SyntacticDiagnostics &
@@ -378,7 +392,7 @@ class TSServerWorker {
       ];
 
       messagesErrors(result.messageText).forEach((message) => {
-        const finalMessage = CONFIG.showDiagnosticCodeNumber
+        const finalMessage = config.showDiagnosticCodeNumber
           ? `${message} (${result.code})`
           : message;
         acc.push({
@@ -433,6 +447,8 @@ class TSServerWorker {
     if (!env) {
       return undefined;
     }
+    const config = getConfigForFilePath(args.filePath);
+
     const triggerCharacters = new Set<string | undefined>([
       '.',
       '"',
@@ -477,7 +493,7 @@ class TSServerWorker {
             return true;
           }
 
-          if (CONFIG.showAmbientDeclareCompletions === false) {
+          if (config.showAmbientDeclareCompletions === false) {
             if (entry.kindModifiers?.includes('deprecated')) {
               return false;
             }

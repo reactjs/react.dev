@@ -2,6 +2,7 @@ import {hoverTooltip} from '@codemirror/tooltip';
 import {EditorView} from '@codemirror/view';
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {useContext, useEffect, useMemo, useState} from 'react';
+import {getConfigForFilePath} from './config';
 import {
   ensureAllPathsStartWithSlash,
   ensurePathStartsWithSlash,
@@ -74,6 +75,7 @@ export const useTypescriptExtension = () => {
       envId,
       client: tsServer.workerClient,
       filePath: activePath,
+      config: getConfigForFilePath(activePath),
     });
   }, [
     tsServer,

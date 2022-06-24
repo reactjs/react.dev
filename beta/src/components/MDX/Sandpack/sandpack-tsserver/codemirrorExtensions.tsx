@@ -22,7 +22,7 @@ import {renderToStaticMarkup} from 'react-dom/server';
 import type ts from 'typescript';
 import type {SymbolDisplayPart, SymbolDisplayPartKind} from 'typescript';
 import {ChannelClient} from './ChannelBridge';
-import {CONFIG} from './config';
+import {TypescriptExtensionConfig} from './config';
 import {ensurePathStartsWithSlash} from './ensurePathBeginsWithSlash';
 import type {TSServerWorker} from './tsserver.worker';
 
@@ -30,6 +30,7 @@ interface ExtensionEnv {
   envId: number;
   client: ChannelClient<TSServerWorker>;
   filePath: string | undefined;
+  config: TypescriptExtensionConfig;
 }
 
 export function codemirrorTypescriptExtensions(env: ExtensionEnv) {
@@ -287,7 +288,12 @@ function diagnosticExtension({client, envId, filePath}: ExtensionEnv) {
   ];
 }
 
-function autocompleteExtension({client, envId, filePath}: ExtensionEnv) {
+function autocompleteExtension({
+  client,
+  envId,
+  filePath,
+  config,
+}: ExtensionEnv) {
   return autocompletion({
     activateOnTyping: true,
     override: [
@@ -368,7 +374,7 @@ function autocompleteExtension({client, envId, filePath}: ExtensionEnv) {
                       }
                     : undefined,
                   info:
-                    details || CONFIG.debugCompletions
+                    details || config.debugCompletions
                       ? function () {
                           const container = document.createElement('div');
                           renderIntoNode(
@@ -382,12 +388,13 @@ function autocompleteExtension({client, envId, filePath}: ExtensionEnv) {
                               )}
                               {details && (
                                 <QuickInfo
+                                  {...config}
                                   state={ctx.state}
                                   info={details}
                                   truncateDisplayParts={true}
                                 />
                               )}
-                              {CONFIG.debugCompletions && (
+                              {config.debugCompletions && (
                                 <pre>{JSON.stringify(c, null, 2)}</pre>
                               )}
                             </>
@@ -412,7 +419,12 @@ function autocompleteExtension({client, envId, filePath}: ExtensionEnv) {
   });
 }
 
-function hoverTooltipExtension({client, envId, filePath}: ExtensionEnv) {
+function hoverTooltipExtension({
+  client,
+  envId,
+  filePath,
+  config,
+}: ExtensionEnv) {
   return hoverTooltip(
     async (_: EditorView, pos: number): Promise<Tooltip | null> => {
       const allInfo = filePath
@@ -431,9 +443,9 @@ function hoverTooltipExtension({client, envId, filePath}: ExtensionEnv) {
       if (!quickInfo) return null;
 
       if (
-        CONFIG.showTypes ||
+        config.showTypes ||
         quickInfo.documentation?.length ||
-        (CONFIG.showDocTags && quickInfo.tags?.length)
+        (config.showDocTags && quickInfo.tags?.length)
       ) {
         return {
           pos,
@@ -442,7 +454,7 @@ function hoverTooltipExtension({client, envId, filePath}: ExtensionEnv) {
             // dom.setAttribute('class', 'cm-diagnostic cm-diagnostic-info');
             renderIntoNode(
               dom,
-              <QuickInfo state={view.state} info={quickInfo} />
+              <QuickInfo {...config} state={view.state} info={quickInfo} />
             );
             return {dom};
           },
@@ -618,14 +630,24 @@ function QuickInfo(props: {
   state: EditorState;
   truncateDisplayParts?: boolean;
   info: Omit<ts.QuickInfo, 'textSpan'>;
+  showBetaDocsLinks: boolean;
+  showTypes: boolean;
+  showDocTags: boolean;
 }) {
-  const {state, info, truncateDisplayParts} = props;
+  const {
+    state,
+    info,
+    truncateDisplayParts,
+    showBetaDocsLinks,
+    showTypes,
+    showDocTags,
+  } = props;
   const {displayParts, documentation, tags} = info;
-  const betaDocsLink = CONFIG.showBetaDocsLinks && getBetaDocsLink(tags);
+  const betaDocsLink = showBetaDocsLinks && getBetaDocsLink(tags);
 
   return (
     <>
-      {CONFIG.showTypes && displayParts && (
+      {showTypes && displayParts && (
         <div
           className={`cm-tooltip-section quickinfo-documentation quickinfo-monospace  ${
             truncateDisplayParts ? 'quickinfo-truncate quickinfo-small' : ''
@@ -638,7 +660,7 @@ function QuickInfo(props: {
           {documentation && (
             <SymbolDisplayParts state={state} parts={documentation} />
           )}
-          {CONFIG.showDocTags &&
+          {showDocTags &&
             tags?.map((tag, i) => (
               <div className="quickinfo-tsdoc-tag" key={i}>
                 <CodeMirrorTag

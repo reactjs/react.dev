@@ -63,6 +63,20 @@ ul {
 }
 `.trim();
 
+const TSCONFIG = {
+  include: ['./**/*'],
+  compilerOptions: {
+    target: 'es2021',
+    module: 'es2020',
+    lib: ['es2021', 'es2020', 'dom', 'dom.iterable'],
+    esModuleInterop: true,
+    allowJs: true,
+    checkJs: true,
+    jsx: 'react-jsx',
+  },
+};
+const TSCONFIG_AS_JSON = JSON.stringify(TSCONFIG, null, '  ');
+
 function SandpackRoot(props: SandpackProps) {
   let {children, setup, autorun = true, showDevTools = false} = props;
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
@@ -70,16 +84,26 @@ function SandpackRoot(props: SandpackProps) {
   let isSingleFile = true;
 
   const files = createFileMap(codeSnippets);
+  const template = files['/App.tsx'] ? 'react-ts' : 'react';
 
   files['/styles.css'] = {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
     hidden: true,
   };
 
+  // Always add a tsconfig that supports JS, so we can use TS superpowers like
+  // imports & tab completion in JS examples.
+  if (!files['/tsconfig.json']) {
+    files['/tsconfig.json'] = {
+      code: TSCONFIG_AS_JSON,
+      hidden: true,
+    };
+  }
+
   return (
     <div className="sandpack-container my-8" translate="no">
       <SandpackProvider
-        template="react"
+        template={template}
         customSetup={{...setup, files: files}}
         autorun={autorun}
         initMode="user-visible"

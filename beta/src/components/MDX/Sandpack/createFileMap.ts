@@ -29,6 +29,8 @@ export const createFileMap = (codeSnippets: any) => {
           filePath = '/App.js';
         } else if (props.className === 'language-css') {
           filePath = '/styles.css';
+        } else if (props.className === 'language-tsx') {
+          filePath = '/App.tsx';
         } else {
           throw new Error(
             `Code block is missing a filename: ${props.children}`

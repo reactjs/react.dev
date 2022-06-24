@@ -49,7 +49,7 @@ export default React.memo(function SandpackWrapper(props: any): any {
   const codeSnippet = createFileMap(React.Children.toArray(props.children));
 
   // To set the active file in the fallback we have to find the active file first.
-  // If there are no active files we fallback to App.js as default.
+  // If there are no active files we fallback to App.{js,tsx} as default.
   let activeCodeSnippet = Object.keys(codeSnippet).filter(
     (fileName) =>
       codeSnippet[fileName]?.active === true &&
@@ -57,7 +57,8 @@ export default React.memo(function SandpackWrapper(props: any): any {
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet['/App.js'].code;
+    const defaultActiveFile = codeSnippet['/App.js'] || codeSnippet['/App.tsx'];
+    activeCode = defaultActiveFile.code;
   } else {
     activeCode = codeSnippet[activeCodeSnippet[0]].code;
   }

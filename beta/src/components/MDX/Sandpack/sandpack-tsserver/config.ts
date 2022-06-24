@@ -68,9 +68,14 @@ export const CONFIG = {
 
 export type TypescriptExtensionConfig = typeof CONFIG;
 
+/**
+ * Config customized for Typescript files.
+ */
 export const CONFIG_FOR_TYPESCRIPT: TypescriptExtensionConfig = {
   ...CONFIG,
+  /** In typescript files, we are happy to show the user type errors. */
   semanticDiagnosticFilter: AllowAllDiagnostics,
+  /** In typescript files, we are happy to show the user type-level information. */
   showTypes: true,
 };
 

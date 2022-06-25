@@ -8,6 +8,7 @@ import {
   ensurePathStartsWithSlash,
 } from './ensurePathBeginsWithSlash';
 import {TypescriptServerContext} from './TypescriptServerProvider';
+import {useTypescriptCompiler} from './useTypescriptCompiler';
 
 let globalEnvironmentIdCounter = 0;
 
@@ -20,6 +21,7 @@ export const useTypescriptExtension = () => {
   const [envId] = useState(() => globalEnvironmentIdCounter++);
   const {sandpack} = useSandpack();
   const [interacted, setInteracted] = useState(false);
+  const [hasEnv, setHasEnv] = useState(false);
 
   const activePath = sandpack.activePath;
   const isVisible = sandpack.status !== 'initial' && sandpack.status !== 'idle';
@@ -31,15 +33,19 @@ export const useTypescriptExtension = () => {
       return;
     }
 
-    tsServer.workerClient.call('createEnv', {
-      envId,
-      files: ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
-      entry: ensurePathStartsWithSlash(sandpack.activePath),
-    });
+    tsServer!.workerClient
+      .call('createEnv', {
+        envId,
+        files: ensureAllPathsStartWithSlash(sandpack.files) as any /* TODO */,
+        entry: ensurePathStartsWithSlash(sandpack.activePath),
+      })
+      .then(() => setHasEnv(true));
 
     return () => {
-      tsServer.workerClient.call('deleteEnv', envId);
       setInteracted(false);
+      tsServer.workerClient
+        .call('deleteEnv', envId)
+        .then(() => setHasEnv(true));
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
@@ -86,7 +92,10 @@ export const useTypescriptExtension = () => {
     setUpGlobalWorker,
   ]);
 
-  return extensions;
+  return {
+    extension: extensions,
+    envId: hasEnv ? envId : undefined,
+  };
 };
 
 /**

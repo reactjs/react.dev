@@ -72,7 +72,9 @@ const TSCONFIG = {
     esModuleInterop: true,
     allowJs: true,
     checkJs: true,
-    jsx: 'react-jsx',
+    resolveJsonModule: true,
+    // jsx: 'react-jsx',
+    jsx: 'preserve',
   },
 };
 const TSCONFIG_AS_JSON = JSON.stringify(TSCONFIG, null, '  ');
@@ -111,6 +113,7 @@ function SandpackRoot(props: SandpackProps) {
         bundlerURL="https://3f1bb162.sandpack-bundler.pages.dev"
         logLevel={SandpackLogLevel.None}>
         <CustomPreset
+          showJsForTsxFiles={template === 'react-ts'}
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}
           onDevToolsLoad={() => setDevToolsLoaded(true)}

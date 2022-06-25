@@ -29,7 +29,7 @@ export const TypescriptServerContext = createContext<TSServerContext>({
   setup: () => {},
 });
 
-class TSServer {
+export class TSServer {
   worker = new Worker(new URL('./tsserver.worker.ts', import.meta.url), {
     name: 'ts-server',
   });

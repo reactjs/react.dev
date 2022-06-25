@@ -318,6 +318,9 @@ class TSServerWorker {
   }
 
   getEnv(envId: number): VirtualTypeScriptEnvironment | undefined {
+    if (!this.envs.has(envId)) {
+      console.warn('unknown env', envId);
+    }
     return this.envs.get(envId);
   }
 
@@ -544,6 +547,20 @@ class TSServerWorker {
       }
     }
   };
+
+  transpileFile(envId: number, filePath: string, content: string) {
+    const env = this.getEnv(envId);
+    if (!env) {
+      return;
+    }
+
+    this.updateFile(envId, filePath, content);
+    const emitted = env.languageService.getEmitOutput(filePath, false, false);
+    console.warn('emit:', envId, filePath, emitted);
+    // TODO: multi file output
+    const requested = emitted.outputFiles.at(0);
+    return requested?.text;
+  }
 
   applyCodeAction(envId: number, action: ts.CodeActionCommand) {
     const env = this.getEnv(envId);

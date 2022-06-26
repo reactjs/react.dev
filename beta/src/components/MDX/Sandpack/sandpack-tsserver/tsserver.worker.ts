@@ -529,11 +529,29 @@ class TSServerWorker {
     };
   };
 
-  updateFile = (envId: number, filePath: string, content: string) => {
+  /**
+   * When `content` is a string, update `filePath` to have that content. It
+   * will be created if it doesn't exist.
+   *
+   * When content is undefined, delete the file.
+   */
+  updateFile = (
+    envId: number,
+    filePath: string,
+    content: string | undefined
+  ) => {
     const env = this.getEnv(envId);
     if (!env) {
       return;
     }
+
+    if (content === undefined) {
+      if (env.sys.fileExists(filePath)) {
+        env.sys.deleteFile?.(filePath);
+      }
+      return;
+    }
+
     try {
       env.updateFile(filePath, content);
     } catch (error) {
@@ -555,11 +573,31 @@ class TSServerWorker {
     }
 
     this.updateFile(envId, filePath, content);
-    const emitted = env.languageService.getEmitOutput(filePath, false, false);
-    console.warn('emit:', envId, filePath, emitted);
-    // TODO: multi file output
-    const requested = emitted.outputFiles.at(0);
-    return requested?.text;
+    const emitOutput = env.languageService.getEmitOutput(
+      filePath,
+      false,
+      false
+    );
+    const emittedFile = emitOutput.outputFiles.at(0);
+
+    // Format the emitted file before we return it, so it's as pretty as
+    // possible before the user sees it.
+    if (emittedFile) {
+      const restoreContents = env.getSourceFile(emittedFile.name)?.getText();
+      try {
+        this.updateFile(envId, emittedFile.name, emittedFile.text);
+        const edits = env.languageService
+          .getFormattingEditsForDocument(emittedFile.name, FormatCodeSettings)
+          .slice()
+          .reverse();
+        for (const edit of edits) {
+          env.updateFile(emittedFile.name, edit.newText, edit.span);
+        }
+        return env.getSourceFile(emittedFile.name)?.getText();
+      } finally {
+        this.updateFile(envId, emittedFile.name, restoreContents);
+      }
+    }
   }
 
   applyCodeAction(envId: number, action: ts.CodeActionCommand) {
@@ -601,11 +639,7 @@ class TSServerWorker {
       filePath,
       FormatCodeSettings
     );
-    if (restoreContents === undefined) {
-      env.sys.deleteFile?.(filePath);
-    } else {
-      this.updateFile(args.envId, filePath, restoreContents);
-    }
+    this.updateFile(args.envId, filePath, restoreContents);
     return edits;
   }
 }

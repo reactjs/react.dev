@@ -37,7 +37,7 @@ export function CustomPreset({
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
   const {extension: typescriptExtensions, envId: typescriptEnvId} =
-    useTypescriptExtension();
+    useTypescriptExtension(showJsForTsxFiles ? 'visible' : 'interaction');
   const {reset: resetTsToJs} = useTypescriptCompiler(
     showJsForTsxFiles,
     typescriptEnvId

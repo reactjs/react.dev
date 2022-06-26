@@ -1,7 +1,7 @@
 import {hoverTooltip} from '@codemirror/tooltip';
 import {EditorView} from '@codemirror/view';
 import {useSandpack} from '@codesandbox/sandpack-react';
-import {useContext, useEffect, useMemo, useState} from 'react';
+import {useContext, useDebugValue, useEffect, useMemo, useState} from 'react';
 import {getConfigForFilePath} from './config';
 import {
   ensureAllPathsStartWithSlash,
@@ -12,7 +12,9 @@ import {useTypescriptCompiler} from './useTypescriptCompiler';
 
 let globalEnvironmentIdCounter = 0;
 
-export const useTypescriptExtension = () => {
+type InitOn = 'interaction' | 'visible';
+
+export const useTypescriptExtension = (initOn: InitOn) => {
   const {
     tsServer,
     codemirrorExtensions,
@@ -20,16 +22,19 @@ export const useTypescriptExtension = () => {
   } = useContext(TypescriptServerContext);
   const [envId] = useState(() => globalEnvironmentIdCounter++);
   const {sandpack} = useSandpack();
-  const [interacted, setInteracted] = useState(false);
+  const [shouldHaveEnv, setShouldHaveEnv] = useState(false);
   const [hasEnv, setHasEnv] = useState(false);
 
   const activePath = sandpack.activePath;
-  const isVisible = sandpack.status !== 'initial' && sandpack.status !== 'idle';
 
-  // Set up the environment for this hook once the tsServer is available and the
-  // user interacted with the editor.
+  // Set up the Typescript compiler & create the environment.
   useEffect(() => {
-    if (!tsServer || !interacted || !isVisible) {
+    if (!shouldHaveEnv) {
+      return;
+    }
+
+    if (!tsServer) {
+      setUpGlobalWorker();
       return;
     }
 
@@ -42,33 +47,28 @@ export const useTypescriptExtension = () => {
       .then(() => setHasEnv(true));
 
     return () => {
-      setInteracted(false);
-      tsServer.workerClient
-        .call('deleteEnv', envId)
-        .then(() => setHasEnv(true));
+      setHasEnv(false);
+      tsServer.workerClient.call('deleteEnv', envId);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    // other dependencies intentionally omitted - we should initialize once, then do incremental updates.
-    envId,
-    tsServer,
-    interacted,
-    // Destroy the environment when the user scrolls away and Sandpack stops
-    // rendering.
-    isVisible,
-  ]);
+  }, [envId, tsServer, shouldHaveEnv, setUpGlobalWorker]);
 
-  const extensions = useMemo(() => {
-    if (!tsServer) {
-      return onceOnInteractionExtension(() => {
-        setUpGlobalWorker();
-        setInteracted(true);
-      });
+  // Handle editor visibility change
+  const isVisible = sandpack.status !== 'initial' && sandpack.status !== 'idle';
+  useEffect(() => {
+    if (initOn === 'visible' && isVisible && !shouldHaveEnv) {
+      setShouldHaveEnv(true);
     }
 
-    if (!interacted) {
+    if (shouldHaveEnv && !isVisible) {
+      setShouldHaveEnv(false);
+    }
+  }, [isVisible, initOn, shouldHaveEnv]);
+
+  const extensions = useMemo(() => {
+    if (!shouldHaveEnv && initOn === 'interaction') {
       return onceOnInteractionExtension(() => {
-        setInteracted(true);
+        setShouldHaveEnv(true);
       });
     }
 
@@ -84,13 +84,15 @@ export const useTypescriptExtension = () => {
       config: getConfigForFilePath(activePath),
     });
   }, [
-    tsServer,
-    interacted,
+    shouldHaveEnv,
+    initOn,
     codemirrorExtensions,
     envId,
+    tsServer?.workerClient,
     activePath,
-    setUpGlobalWorker,
   ]);
+
+  useDebugValue(`envId: ${envId}, alive: ${hasEnv}`);
 
   return {
     extension: extensions,

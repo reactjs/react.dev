@@ -52,7 +52,7 @@ type TranspilerAction =
   | {type: 'sandpackUpdate'; sandpack: SandpackState}
   | {type: 'reset'};
 
-function FileReducer(
+function fileReducer(
   state: TypescriptFileState,
   action: TranspilerAction
 ): TypescriptFileState {
@@ -128,7 +128,7 @@ function FileReducer(
  * - If the JS version of a file was the last to be active, ensure it's used
  *   instead of the TS variant of that file.
  */
-function TranspilerReducer(state: FilesState = {}, action: TranspilerAction) {
+function allFilesReducer(state: FilesState = {}, action: TranspilerAction) {
   console.log('transpiler:', action, state);
   if (action.type === 'reset') {
     return {};
@@ -142,7 +142,7 @@ function TranspilerReducer(state: FilesState = {}, action: TranspilerAction) {
       return state;
     }
 
-    const nextState = FileReducer(prevFileState, action);
+    const nextState = fileReducer(prevFileState, action);
     if (nextState !== prevFileState) {
       return {
         ...state,
@@ -169,7 +169,7 @@ function TranspilerReducer(state: FilesState = {}, action: TranspilerAction) {
       prefer: 'ts',
       filePath,
     };
-    nextFileState = FileReducer(nextFileState, action);
+    nextFileState = fileReducer(nextFileState, action);
 
     if (nextFileState !== currentFileState) {
       draft[filePath] = nextFileState;
@@ -180,10 +180,7 @@ function TranspilerReducer(state: FilesState = {}, action: TranspilerAction) {
 }
 
 /**
- * When `enabled`, compile each .tsx file to .js using the typescript worker.
- * @param enabled
- * @param envId
- * @returns
+ * When `enabled` and envId !== undefined, compile each .tsx file to .js using the typescript worker.
  */
 export function useTypescriptCompiler(
   shouldEnable: boolean,
@@ -196,7 +193,7 @@ export function useTypescriptCompiler(
   const firstActivePath = useRef(sandpack.activePath);
   const prevActivePath = useRef(sandpack.activePath);
   const {tsServer} = useContext(TypescriptServerContext);
-  const [tsToBuildStatus, dispatch] = useReducer(TranspilerReducer, {});
+  const [tsToBuildStatus, dispatch] = useReducer(allFilesReducer, {});
   useDebugValue(tsToBuildStatus);
 
   // Update state as Sandpack changes

@@ -65,13 +65,13 @@ export const useTypescriptExtension = (initOn: InitOn) => {
     }
   }, [isVisible, initOn, shouldHaveEnv]);
 
-  const extensions = useMemo(() => {
-    if (!shouldHaveEnv && initOn === 'interaction') {
-      return onceOnInteractionExtension(() => {
-        setShouldHaveEnv(true);
-      });
-    }
+  const onInteractionExtension = useMemo(() => {
+    return onceOnInteractionExtension(() => {
+      setShouldHaveEnv(true);
+    });
+  }, []);
 
+  const featuresExtension = useMemo(() => {
     if (!codemirrorExtensions) {
       // Waiting for dependency to load.
       return [];
@@ -83,19 +83,30 @@ export const useTypescriptExtension = (initOn: InitOn) => {
       filePath: activePath,
       config: getConfigForFilePath(activePath),
     });
+  }, [codemirrorExtensions, envId, tsServer?.workerClient, activePath]);
+
+  const extension = useMemo(() => {
+    if (!shouldHaveEnv && initOn === 'interaction') {
+      return onInteractionExtension;
+    }
+
+    if (!hasEnv) {
+      return [];
+    }
+
+    return featuresExtension;
   }, [
-    shouldHaveEnv,
+    featuresExtension,
+    hasEnv,
     initOn,
-    codemirrorExtensions,
-    envId,
-    tsServer?.workerClient,
-    activePath,
+    onInteractionExtension,
+    shouldHaveEnv,
   ]);
 
   useDebugValue(`envId: ${envId}, alive: ${hasEnv}`);
 
   return {
-    extension: extensions,
+    extension,
     envId: hasEnv ? envId : undefined,
   };
 };

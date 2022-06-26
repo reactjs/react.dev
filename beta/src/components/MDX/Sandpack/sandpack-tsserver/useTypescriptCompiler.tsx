@@ -129,7 +129,6 @@ function fileReducer(
  *   instead of the TS variant of that file.
  */
 function allFilesReducer(state: FilesState = {}, action: TranspilerAction) {
-  console.log('transpiler:', action, state);
   if (action.type === 'reset') {
     return {};
   }

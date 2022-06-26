@@ -45,33 +45,55 @@ export class TSServer {
   );
 }
 
+// Cache structure:
+// ts-lib:${version}:list - list of all files that should be in the cache, as JSON
+// ts-lib:${version}:file:${filePath} - a file in the cache
+function getFileListKey(version: string) {
+  return `ts-lib:${version}:list`;
+}
+function getFileCachePrefix(version: string) {
+  return `ts-lib:${version}:file:`;
+}
+function getFileCacheKey(version: string, filePath: string) {
+  return getFileCachePrefix(version) + filePath;
+}
+
 export class TSServerRender {
   constructor(private storage: Storage | undefined) {}
 
-  loadTypescriptCache() {
-    const cache = new Map<string, string>();
+  loadTypescriptCache(version: string) {
     const storage = this.storage;
+    if (!storage) {
+      return undefined;
+    }
 
-    if (storage) {
-      const keys = Object.keys(storage);
+    const cache = new Map<string, string>();
+    const listJSON = storage.getItem(getFileListKey(version));
+    if (listJSON === null) {
+      return undefined;
+    }
 
-      keys.forEach((key) => {
-        if (key.startsWith('ts-lib-')) {
-          const item = storage.getItem(key);
-          if (item) {
-            cache.set(key, item);
-          }
-        }
-      });
+    const list = JSON.parse(listJSON);
+    for (const fileName of list) {
+      const item = storage.getItem(getFileCacheKey(version, fileName));
+      if (item !== null) {
+        cache.set(fileName, item);
+      } else {
+        // Cache missing some files, can't use it.
+        console.warn('Typescript libraries cache missing file:', fileName);
+        return undefined;
+      }
     }
 
     return cache;
   }
 
   saveTypescriptCache(version: string, fsMap: Map<string, string>) {
-    fsMap.forEach((file, lib) => {
-      const cacheKey = 'ts-lib-' + version + '-' + lib;
-      this.storage?.setItem(cacheKey, file);
+    const list = Array.from(fsMap.keys());
+    this.storage?.setItem(getFileListKey(version), JSON.stringify(list));
+    fsMap.forEach((content, fileName) => {
+      const cacheKey = getFileCacheKey(version, fileName);
+      this.storage?.setItem(cacheKey, content);
     });
   }
 }

@@ -99,24 +99,6 @@ const getCompileOptions = (
   return defaultValue;
 };
 
-const processTypescriptCacheFromStorage = (
-  fsMapCached: Map<string, string>
-): Map<string, string> => {
-  const cache = new Map();
-  const matchVersion = Array.from(fsMapCached.keys()).every((file) =>
-    file.startsWith(`ts-lib-${ts.version}`)
-  );
-
-  if (!matchVersion) cache;
-
-  fsMapCached.forEach((value, key) => {
-    const cleanLibName = key.replace(`ts-lib-${ts.version}-`, '');
-    cache.set(cleanLibName, value);
-  });
-
-  return cache;
-};
-
 /**
  * Fetch dependencies types from Sandpack's CDN.
  * If a package has no types, discover them from DefinitelyTyped.
@@ -241,8 +223,9 @@ class TSServerWorker {
     /**
      * Process cache or get a fresh one
      */
-    const fsMapCached = await this.renderer.call('loadTypescriptCache');
-    let fsMap = processTypescriptCacheFromStorage(fsMapCached);
+    let fsMap: Map<string, string> =
+      (await this.renderer.call('loadTypescriptCache', ts.version)) ||
+      new Map();
     if (fsMap.size === 0) {
       fsMap = await createDefaultMapFromCDN(
         compilerOpts,

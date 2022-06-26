@@ -65,12 +65,6 @@ export const useTypescriptExtension = (initOn: InitOn) => {
     }
   }, [isVisible, initOn, shouldHaveEnv]);
 
-  const onInteractionExtension = useMemo(() => {
-    return onceOnInteractionExtension(() => {
-      setShouldHaveEnv(true);
-    });
-  }, []);
-
   const featuresExtension = useMemo(() => {
     if (!codemirrorExtensions) {
       // Waiting for dependency to load.
@@ -87,7 +81,9 @@ export const useTypescriptExtension = (initOn: InitOn) => {
 
   const extension = useMemo(() => {
     if (!shouldHaveEnv && initOn === 'interaction') {
-      return onInteractionExtension;
+      return onceOnInteractionExtension(() => {
+        setShouldHaveEnv(true);
+      });
     }
 
     if (!hasEnv) {
@@ -95,13 +91,7 @@ export const useTypescriptExtension = (initOn: InitOn) => {
     }
 
     return featuresExtension;
-  }, [
-    featuresExtension,
-    hasEnv,
-    initOn,
-    onInteractionExtension,
-    shouldHaveEnv,
-  ]);
+  }, [featuresExtension, hasEnv, initOn, shouldHaveEnv]);
 
   useDebugValue(`envId: ${envId}, alive: ${hasEnv}`);
 
@@ -114,29 +104,25 @@ export const useTypescriptExtension = (initOn: InitOn) => {
 /**
  * Call `setup` if the user interacts with the editor
  */
-function onceOnInteractionExtension(setup: () => void) {
+function onceOnInteractionExtension(onInteraction: () => void) {
   let triggered = false;
+  function trigger() {
+    if (!triggered) {
+      triggered = true;
+      onInteraction();
+    }
+  }
+
   return [
     // Trigger on edit intent
     EditorView.updateListener.of((update) => {
-      if (triggered) {
-        return;
-      }
-
       if (update.view.hasFocus) {
-        triggered = true;
-        setup();
+        trigger();
       }
     }),
     // Trigger on tooltip intent
     hoverTooltip(() => {
-      if (triggered) {
-        return null;
-      }
-
-      triggered = true;
-      setup();
-
+      trigger();
       return null;
     }),
   ];

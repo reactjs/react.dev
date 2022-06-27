@@ -34,6 +34,7 @@ function tsNameToJsName(filePath: string) {
   if (filePath.endsWith('.tsx')) {
     return filePath.slice(0, -4) + '.js';
   }
+  return undefined;
 }
 
 type TranspilerAction =

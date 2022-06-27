@@ -3,45 +3,54 @@
  */
 import React from 'react';
 // @ts-ignore
-import {flushSync} from 'react-dom';
 import {
-  useSandpack,
-  useActiveCode,
   SandpackCodeEditor,
-  SandpackThemeProvider,
   SandpackReactDevTools,
+  SandpackThemeProvider,
+  useActiveCode,
+  useSandpack,
 } from '@codesandbox/sandpack-react';
-import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
+import {flushSync} from 'react-dom';
+import scrollIntoView from 'scroll-into-view-if-needed';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
+import {useTypescriptExtension} from './sandpack-tsserver/useTypescriptExtension';
 import {CustomTheme} from './Themes';
 import {useSandpackLint} from './useSandpackLint';
-
-// Workaround for https://github.com/reactjs/reactjs.org/issues/4686#issuecomment-1137402613.
-const emptyArray: Array<any> = [];
+import {useTypescriptCompiler} from './sandpack-tsserver/useTypescriptCompiler';
 
 export function CustomPreset({
   isSingleFile,
   showDevTools,
+  showJsForTsxFiles,
   onDevToolsLoad,
   devToolsLoaded,
 }: {
   isSingleFile: boolean;
   showDevTools: boolean;
+  showJsForTsxFiles: boolean;
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
+  const {extension: typescriptExtensions, envId: typescriptEnvId} =
+    useTypescriptExtension(showJsForTsxFiles ? 'visible' : 'interaction');
+  const {reset: resetTsToJs} = useTypescriptCompiler(
+    showJsForTsxFiles,
+    typescriptEnvId
+  );
+
   const lineCountRef = React.useRef<{[key: string]: number}>({});
   const containerRef = React.useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
-  const {code} = useActiveCode();
   const [isExpanded, setIsExpanded] = React.useState(false);
 
   const {activePath} = sandpack;
+  const code = sandpack.files[activePath]?.code || '';
+
   if (!lineCountRef.current[activePath]) {
     lineCountRef.current[activePath] = code.split('\n').length;
   }
@@ -53,7 +62,7 @@ export function CustomPreset({
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar showDownload={isSingleFile} />
+        <NavigationBar showDownload={isSingleFile} onReset={resetTsToJs} />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}
@@ -67,8 +76,7 @@ export function CustomPreset({
               showInlineErrors
               showTabs={false}
               showRunButton={false}
-              extensions={lintExtensions}
-              extensionsKeymap={emptyArray}
+              extensions={[lintExtensions, typescriptExtensions]}
             />
             <Preview
               className="order-last xl:order-2"

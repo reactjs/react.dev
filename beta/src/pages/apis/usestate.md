@@ -86,7 +86,7 @@ In this example, the `count` state variable holds a number. Clicking the button 
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function Counter() {
@@ -114,7 +114,7 @@ In this example, the `text` state variable holds a string. When you type, `handl
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function MyInput() {
@@ -146,7 +146,7 @@ In this example, the `liked` state variable holds a boolean. When you click the 
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function MyCheckbox() {
@@ -182,7 +182,7 @@ You can declare more than one state variable in the same component. Each state v
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function Form() {
@@ -274,7 +274,7 @@ This example passes the updater function, so the "+3" button works.
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function Counter() {
@@ -315,7 +315,7 @@ This example **does not** pass the updater function, so the "+3" button **doesn'
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function Counter() {
@@ -383,7 +383,7 @@ In this example, the `form` state variable holds an object. Each input has a cha
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function Form() {
@@ -456,7 +456,7 @@ In this example, the state is more nested. When you update nested state, you nee
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 export default function Form() {
@@ -568,7 +568,7 @@ In this example, the `todos` state variable holds an array. Each button handler 
 
 <Sandpack>
 
-```js App.js
+```tsx App.tsx
 import { useState } from 'react';
 import AddTodo from './AddTodo.js';
 import TaskList from './TaskList.js';
@@ -735,7 +735,7 @@ If updating arrays and objects without mutation feels tedious, you can use a lib
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 import { useImmer } from 'use-immer';
 
@@ -852,7 +852,7 @@ This example passes the initializer function, so the `createInitialTodos` functi
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 function createInitialTodos() {
@@ -905,7 +905,7 @@ This example **does not** pass the initializer function, so the `createInitialTo
 
 <Sandpack>
 
-```js
+```tsx
 import { useState } from 'react';
 
 function createInitialTodos() {
@@ -966,7 +966,7 @@ Read [preserving and resetting state](/learn/preserving-and-resetting-state) to 
 
 <Sandpack>
 
-```js App.js
+```tsx App.tsx
 import { useState } from 'react';
 
 export default function App() {
@@ -1031,7 +1031,7 @@ Say you want to show whether the counter has *increased or decreased* since the 
 
 <Sandpack>
 
-```js App.js
+```tsx App.tsx
 import { useState } from 'react';
 import CountLabel from './CountLabel.js';
 

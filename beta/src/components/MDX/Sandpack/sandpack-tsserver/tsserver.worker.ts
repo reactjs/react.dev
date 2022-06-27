@@ -14,6 +14,8 @@ import {
   getConfigForFilePath,
 } from './config';
 import type {TSServerRender} from './TypescriptServerProvider';
+import {formatWithCursor} from 'prettier/standalone';
+import babelParser from 'prettier/parser-babel';
 
 const BUCKET_URL = 'https://prod-packager-packages.codesandbox.io/v1/typings';
 const TYPES_REGISTRY = 'https://unpkg.com/types-registry@latest/index.json';
@@ -549,7 +551,12 @@ class TSServerWorker {
     }
   };
 
-  transpileFile(envId: number, filePath: string, content: string) {
+  transpileFile(
+    envId: number,
+    filePath: string,
+    content: string,
+    formatOutput: 'prettier' | 'typescript'
+  ) {
     const env = this.getEnv(envId);
     if (!env) {
       return;
@@ -563,9 +570,15 @@ class TSServerWorker {
     );
     const emittedFile = emitOutput.outputFiles.at(0);
 
+    if (!emittedFile) {
+      return undefined;
+    }
+
     // Format the emitted file before we return it, so it's as pretty as
     // possible before the user sees it.
-    if (emittedFile) {
+    if (formatOutput === 'prettier') {
+      return this.formatWithPrettier(emittedFile.text, 0).formatted;
+    } else if (formatOutput === 'typescript') {
       const restoreContents = env.getSourceFile(emittedFile.name)?.getText();
       try {
         this.updateFile(envId, emittedFile.name, emittedFile.text);
@@ -580,6 +593,8 @@ class TSServerWorker {
       } finally {
         this.updateFile(envId, emittedFile.name, restoreContents);
       }
+    } else {
+      return emittedFile.text;
     }
   }
 
@@ -617,13 +632,25 @@ class TSServerWorker {
     }
 
     const restoreContents = env.getSourceFile(filePath)?.getText();
-    this.updateFile(args.envId, filePath, fileContents);
-    const edits = env.languageService.getFormattingEditsForDocument(
-      filePath,
-      FormatCodeSettings
-    );
-    this.updateFile(args.envId, filePath, restoreContents);
-    return edits;
+    try {
+      this.updateFile(args.envId, filePath, fileContents);
+      const edits = env.languageService.getFormattingEditsForDocument(
+        filePath,
+        FormatCodeSettings
+      );
+      return edits;
+    } finally {
+      this.updateFile(args.envId, filePath, restoreContents);
+    }
+  }
+
+  formatWithPrettier(fileContents: string, cursorOffset: number) {
+    return formatWithCursor(fileContents, {
+      cursorOffset,
+      parser: 'babel-ts',
+      plugins: [babelParser],
+      printWidth: 40,
+    });
   }
 }
 

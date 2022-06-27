@@ -218,7 +218,7 @@ export function useTypescriptCompiler(
       const fileState = tsToBuildStatus[filePath];
       if (fileState && fileState.buildingTs !== code) {
         const promise = tsServer.workerClient
-          .call('transpileFile', envId, filePath, code)
+          .call('transpileFile', envId, filePath, code, 'prettier')
           .then((maybeJs) => {
             dispatch({
               type: 'buildFinished',

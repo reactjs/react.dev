@@ -31,6 +31,12 @@ flarnie:
 gaearon:
   name: Dan Abramov
   url: https://twitter.com/dan_abramov
+gsathya:
+  name: Sathya Gunasekaran
+  url: https://twitter.com/_gsathya
+huxpro:
+  name: Xuan Huang
+  url: https://twitter.com/Huxpro
 jaredly:
   name: Jared Forsyth
   url: https://twitter.com/jaredforsyth
@@ -46,9 +52,15 @@ jingc:
 josephsavona:
   name: Joseph Savona
   url: https://twitter.com/en_JS
+joshcstory:
+  name: Josh Story
+  url: https://twitter.com/joshcstory
 jtannady:
   name: Jesslyn Tannady
   url: https://twitter.com/jtannady
+kassens:
+  name: Jan Kassens
+  url: https://twitter.com/kassens
 keyanzhang:
   name: Keyan Zhang
   url: https://twitter.com/keyanzhang
@@ -64,6 +76,9 @@ LoukaN:
 lunaruan:
   name: Luna Ruan
   url: https://twitter.com/lunaruan
+mengdichen:
+  name: Mengdi Chen
+  url: https://twitter.com/mengdi_en
 matthewjohnston4:
   name: Matthew Johnston
   url: https://github.com/matthewathome
@@ -82,6 +97,9 @@ reactteam:
 rickhanlonii:
   name: Rick Hanlon
   url: https://twitter.com/rickhanlonii
+robertzhang:
+  name: Robert Zhang
+  url: https://twitter.com/jiaxuanzhang01
 schrockn:
   name: Nick Schrock
   url: https://twitter.com/schrockn

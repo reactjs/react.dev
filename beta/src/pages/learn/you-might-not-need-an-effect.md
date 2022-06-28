@@ -232,9 +232,13 @@ function List({ items }) {
 }
 ```
 
-**This pattern can be hard to understand, but it’s better than updating state in an Effect.** In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. By that point, React hasn't rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value. [Read more about using this pattern correctly.](/apis/usestate#storing-information-from-previous-renders)
+[Storing information from previous renders](/apis/usestate#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. By that point, React hasn't rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
 
-Before moving on, consider whether you can further simplify the requirements to calculate everything during rendering. For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
+In the rare cases where you need this pattern, you should only update the state of the _same_ component during a render. Make sure to do it in a condition like above to avoid a loop. You still [should not cause any side effects](/learn/keeping-components-pure) (like changing the DOM or setting a timeout) during rendering. Side effects should remain in event handlers or Effects.
+
+**Even without Effects, it's hard to debug the data flow when you adjust the state based on props or other state.** Always check whether you can [reset all state with a key](#resetting-all-state-when-a-prop-changes) or [calculate everything during rendering](#updating-state-based-on-props-or-state) instead!
+
+For example, instead of storing (and resetting) the selected *item*, you can store the selected *item ID:*
 
 ```js {3-5}
 function List({ items }) {

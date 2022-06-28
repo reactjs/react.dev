@@ -522,6 +522,38 @@ Absolutely! Event handlers are the best place for side effects.
 
 Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory](/learn/state-a-components-memory). You will learn all about it on the next page.
 
+
+<DeepDive title="Nature of events">
+
+<!--
+// TODO Illo
+-->
+
+All event handlers will receive an instance of `SyntheticEvent`. It is a warpper around the browser's native event and it has the same interface.
+If for any case you find yourself needing to use the browser's native event for any reason simply access the `nativeEvent` property. Every `SyntheticEvent` object has the following attributes:
+
+<!-- This needs to be showed in a better readable way -->
+
+```js
+boolean bubbles
+boolean cancelable
+DOMEventTarget currentTarget
+boolean defaultPrevented
+number eventPhase
+boolean isTrusted
+DOMEvent nativeEvent
+void preventDefault()
+boolean isDefaultPrevented()
+void stopPropagation()
+boolean isPropagationStopped()
+void persist()
+DOMEventTarget target
+number timeStamp
+string type
+```
+
+</DeepDive>
+
 <Recap>
 
 * You can handle events by passing a function as a prop to an element like `<button>`.

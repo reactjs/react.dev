@@ -346,7 +346,7 @@ In the above example, if `userId` changes from `3` to `4`, `ChatAPI.unsubscribeF
 
 Other times, you might need to **adjust state based on a change in props or other state**. This is rarely needed and is usually a sign you have some duplicate or redundant state. However, in the rare case that you need this pattern, you can [store previous state or props in state and update them during rendering](#how-do-i-implement-getderivedstatefromprops).
 
-We have previously suggested a custom Hook called `usePrevious` to hold the previous value. However, we've found that most use cases fall into the two patterns described above. If your use case is different, you can [hold a value in a ref](l#is-there-something-like-instance-variables) and manually update it when needed. Avoid reading and updating refs during rendering because this makes your component's behavior difficult to predict and understand.
+We have previously suggested a custom Hook called `usePrevious` to hold the previous value. However, we've found that most use cases fall into the two patterns described above. If your use case is different, you can [hold a value in a ref](#is-there-something-like-instance-variables) and manually update it when needed. Avoid reading and updating refs during rendering because this makes your component's behavior difficult to predict and understand.
 
 ### Why am I seeing stale props or state inside my function? {#why-am-i-seeing-stale-props-or-state-inside-my-function}
 

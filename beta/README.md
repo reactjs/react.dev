@@ -1,6 +1,6 @@
 # reactjs.org
 
-This repo contains the source code and documentation powering [reactjs.org](https://reactjs.org/).
+This repo contains the source code and documentation powering [beta.reactjs.org](https://beta.reactjs.org/).
 
 
 ## Getting started

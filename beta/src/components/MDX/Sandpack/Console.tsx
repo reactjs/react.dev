@@ -112,9 +112,7 @@ export const SandpackConsole = () => {
                   <span className={cn('console-message')}>
                     {data.map((msg, index) => {
                       if (typeof msg === 'string') {
-                        return msg.trim().length ? (
-                          <span key={`${msg}-${index}`}>{msg}</span>
-                        ) : undefined;
+                        return <span key={`${msg}-${index}`}>{msg}</span>;
                       }
 
                       let children;

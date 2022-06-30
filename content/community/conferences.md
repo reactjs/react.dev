@@ -12,37 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-
-### render(ATL) 2022 🍑 {#render-atlanta-2022} 
-June 1 - 4, 2022. Atlanta, GA, USA
-
-[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
-
-### React Day Bangalore 2022 {#reactday-bangalore-2022}
-June 8 - 9, 2022.  Remote
-
-[Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
-
-### App.js Conf 2022 {#appjs-conf-2022}
-June 8 - 10, 2022. In-person in Kraków, Poland + remote
-
-[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
-
-### React Summit 2022 {#react-summit-2022}
-June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
-
-[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
-
-### React Norway 2022 {#react-norway-2022}
-June 24, 2022. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
-
-[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
-
-### ReactNext 2022 {#react-next-2022}
-June 28, 2022. Tel-Aviv, Israel
-
-[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/c/ReactNext)
-
 ### React Native EU 2022: Powered by {callstack} {#react-native-eu-2022-powered-by-callstack}
 September 1-2, 2022 - Remote event
 
@@ -73,6 +42,36 @@ May, 2023. Salt Lake City, UT
 [Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run)
 
 ## Past Conferences {#past-conferences}
+
+### ReactNext 2022 {#react-next-2022}
+June 28, 2022. Tel-Aviv, Israel
+
+[Website](https://react-next.com) - [Twitter](https://twitter.com/ReactNext) - [Videos](https://www.youtube.com/c/ReactNext)
+
+### React Norway 2022 {#react-norway-2022}
+June 24, 2022. In-person at Farris Bad Hotel in Larvik, Norway and online (hybrid event).
+
+[Website](https://reactnorway.com/) - [Twitter](https://twitter.com/ReactNorway)
+
+### React Summit 2022 {#react-summit-2022}
+June 17 & 21, 2022. In-person in Amsterdam, Netherlands + remote first interactivity (hybrid event)
+
+[Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
+
+### App.js Conf 2022 {#appjs-conf-2022}
+June 8 - 10, 2022. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
+### React Day Bangalore 2022 {#reactday-bangalore-2022}
+June 8 - 9, 2022.  Remote
+
+[Website](https://reactday.in/) - [Twitter](https://twitter.com/ReactDayIn) - [Linkedin](https://www.linkedin.com/company/react-day/) - [YouTube](https://www.youtube.com/reactify_in)
+
+### render(ATL) 2022 🍑 {#render-atlanta-2022} 
+June 1 - 4, 2022. Atlanta, GA, USA
+
+[Website](https://renderatl.com) - [Discord](https://www.renderatl.com/discord) - [Twitter](https://twitter.com/renderATL) - [Instagram](https://www.instagram.com/renderatl/) - [Facebook](https://www.facebook.com/renderatl/) - [LinkedIn](https://www.linkedin.com/company/renderatl) - [Podcast](https://www.renderatl.com/culture-and-code#/)
 
 ### RemixConf 2022 {#remixconf-2022}
 May 24 - 25, 2022. Salt Lake City, UT

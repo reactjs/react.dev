@@ -106,10 +106,10 @@ export const SandpackConsole = () => {
                 <div
                   key={id}
                   className={cn(
-                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono',
+                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px]',
                     `console-${getType(method)}`
                   )}>
-                  <span className={cn('console-message')}>
+                  <span className="console-message">
                     {data.map((msg, index) => {
                       if (typeof msg === 'string') {
                         return <span key={`${msg}-${index}`}>{msg}</span>;

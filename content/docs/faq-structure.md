@@ -65,10 +65,8 @@ Some people also prefer to go further, and separate components into different fo
 
 There are many pain points associated with deep directory nesting in JavaScript projects. It becomes harder to write relative imports between them, or to update those imports when the files are moved. Unless you have a very compelling reason to use a deep folder structure, consider limiting yourself to a maximum of three or four nested folders within a single project. Of course, this is only a recommendation, and it may not be relevant to your project.
 
-#### Don't overthink it {#dont-overthink-it}
+#### Think about it {#Think-about-it}
 
-If you're just starting a project, [don't spend more than five minutes](https://en.wikipedia.org/wiki/Analysis_paralysis) on choosing a file structure. Pick any of the above approaches (or come up with your own) and start writing code! You'll likely want to rethink it anyway after you've written some real code.
+How files are structured is critically important to projects and development more generally. Be sure to give the organization of your project the time and attention it deserves. This is especially true if your projet is open source because new developers and contributors will likely need to be able to learn your file structure to work with the code. Moreover, having a clear and well documented file structure will make the code more efficient to audit in the future. A good way to blueprint a repo is to build out a file structure that clearly illustrates the conventions and organization you've chosen.
 
-If you feel completely stuck, start by keeping all files in a single folder. Eventually it will grow large enough that you will want to separate some files from the rest. By that time you'll have enough knowledge to tell which files you edit together most often. In general, it is a good idea to keep files that often change together close to each other. This principle is called "colocation".
 
-As projects grow larger, they often use a mix of both of the above approaches in practice. So choosing the "right" one in the beginning isn't very important.

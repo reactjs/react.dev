@@ -34,7 +34,7 @@ We call this a "root" DOM node because everything inside it will be managed by R
 
 Applications built with just React usually have a single root DOM node. If you are integrating React into an existing app, you may have as many isolated root DOM nodes as you like.
 
-To render a React element, first pass the DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
+To render a React element, first pass the root DOM element to [`ReactDOM.createRoot()`](/docs/react-dom-client.html#createroot), then pass the React element to `root.render()`:
 
 `embed:rendering-elements/render-an-element.js`
 

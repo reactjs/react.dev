@@ -49,7 +49,7 @@ export function SidebarLink({
   }, [ref, selected, isMobile]);
 
   return (
-    <Link href={href}>
+    <Link href={href} prefetch={false}>
       <a
         ref={ref}
         title={title}

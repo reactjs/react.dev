@@ -203,7 +203,7 @@ When you "think in lifecycles," you might say that this Effect connects to the r
 When you "think in Effects," you might say that this Effect connects to the room, **depends on the `roomId` prop**, and *cleans up* by disconnecting. When you added the new dependency, the rest happened automatically:
 
 1. **The bug you introduced was caught right away.** You didn't need to "remember" `roomId` can change.
-2. **There was no need duplication of code between "mounting" and "updating."** The existing logic was reused.
+2. **There was no duplication of code between "mounting" and "updating."** The existing logic was reused.
 3. **Describing the Effect did not become more complex** when you added a feature, unlike with lifecycles.
 
 This is why in React, you will write Effects instead of splitting code into phases like mount, update, and unmount.

@@ -13,6 +13,7 @@ import {MobileNav} from '../Nav/MobileNav';
 import {Feedback} from '../Feedback';
 
 const SIDEBAR_BREAKPOINT = 1023;
+const SM_BREAKPOINT = 640;
 
 export function Sidebar() {
   const {menuRef, isOpen} = React.useContext(MenuContext);
@@ -20,10 +21,19 @@ export function Sidebar() {
   let routeTree = React.useContext(SidebarContext);
   const isHidden = isMobileSidebar ? !isOpen : false;
 
+  const bannerHeight = useMediaQuery(SM_BREAKPOINT) ? 72 : 40;
+  let navMarginTop = bannerHeight;
+  if (typeof window !== 'undefined') {
+    const scrollAmount = document.documentElement.scrollTop;
+    const isSocialBannerShowing = scrollAmount < bannerHeight;
+    navMarginTop = isSocialBannerShowing ? bannerHeight - scrollAmount : 0;
+  }
+
   // HACK. Fix up the data structures instead.
   if ((routeTree as any).routes.length === 1) {
     routeTree = (routeTree as any).routes[0];
   }
+
   return (
     <aside
       className={cn(
@@ -31,14 +41,16 @@ export function Sidebar() {
         isOpen ? 'block z-40' : 'hidden lg:block'
       )}
       aria-hidden={isHidden}>
-      <div className="px-5 pt-16 sm:pt-10 lg:pt-0">
+      <div className="px-5 pt-0">
         <Search />
       </div>
       <nav
         role="navigation"
         ref={menuRef}
-        style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
-        className="w-full h-screen lg:h-auto grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
+        style={
+          {'--bg-opacity': '.2', marginTop: navMarginTop} as React.CSSProperties
+        } // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+        className="w-full h-screen lg:h-auto grow lg:!mt-0 pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
         {isMobileSidebar ? (
           <MobileNav />
         ) : (

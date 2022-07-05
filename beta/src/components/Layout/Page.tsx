@@ -20,8 +20,8 @@ export function Page({routeTree, children}: PageProps) {
       <SocialBanner />
       <MenuProvider>
         <SidebarContext.Provider value={routeTree}>
-          <div className="h-auto lg:h-screen flex flex-row">
-            <div className="no-bg-scrollbar h-auto lg:h-[calc(100%-40px)] lg:overflow-y-scroll fixed flex flex-row lg:flex-col py-0 top-16 sm:top-10 left-0 right-0 lg:max-w-xs w-full shadow lg:shadow-none z-50">
+          <div className="h-auto lg:h-screen flex flex-col lg:flex-row">
+            <div className="no-bg-scrollbar h-auto lg:h-[calc(100%-40px)] lg:overflow-y-scroll sticky lg:fixed flex flex-row lg:flex-col py-0 top-0 lg:top-10 left-0 right-0 lg:max-w-xs w-full shadow lg:shadow-none z-50">
               <Nav />
               <Sidebar />
             </div>
@@ -30,7 +30,7 @@ export function Page({routeTree, children}: PageProps) {
             <React.Suspense fallback={null}>
               <div className="flex flex-1 w-full h-full self-stretch">
                 <div className="w-full min-w-0">
-                  <main className="flex flex-1 self-stretch mt-16 sm:mt-10 flex-col items-end justify-around">
+                  <main className="flex flex-1 self-stretch mt-0 lg:mt-16 flex-col items-end justify-around">
                     {children}
                     <Footer />
                   </main>

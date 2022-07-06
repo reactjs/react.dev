@@ -164,14 +164,18 @@ export async function getScreenshot(
 
 export default async function handler(req, res) {
   console.log(req.query);
-  const file = await getScreenshot(req.query, 'png', false);
+  let file;
+  try {
+    file = await getScreenshot(req.query, 'png', false);
+  } catch (e) {
+    res.status(500).json({error: e.message});
+  }
 
   res.setHeader('Content-Type', `image/png`);
   res.setHeader(
     'Cache-Control',
     `public, immutable, no-transform, s-maxage=31536000, max-age=31536000`
   );
-
-  // res.status(200).json({name: 'john doe'});
   res.end(file);
+  // res.status(200).json({name: 'john doe'});
 }

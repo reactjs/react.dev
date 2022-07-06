@@ -205,7 +205,7 @@ But how can the `<Heading>` component know the level of its closest `<Section>`?
 You can't do it with props alone. This is where context comes into play. You will do it in three steps:
 
 1. **Create** a context. (You can call it `LevelContext`, since it's for the heading level.)
-2. **Use** that context from the component that needs the data. (`Header` will use `LevelContext`.)
+2. **Use** that context from the component that needs the data. (`Heading` will use `LevelContext`.)
 3. **Provide** that context from the component that specifies the data. (`Section` will provide `LevelContext`.)
 
 Context lets a parent--even a distant one!--provide some data to the entire tree inside of it.
@@ -568,7 +568,7 @@ It's the same result as the original code, but you did not need to pass the `lev
 
 1. You pass a `level` prop to the `<Section>`.
 2. `Section` wraps its children into `<LevelContext.Provider value={level}>`.
-3. `Header` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
+3. `Heading` asks the closest value of `LevelContext` above with `useContext(LevelContext)`.
 
 ## Using and providing context from the same component {/*using-and-providing-context-from-the-same-component*/}
 

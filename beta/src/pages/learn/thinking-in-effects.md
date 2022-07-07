@@ -56,7 +56,7 @@ function ChatRoom({ roomId }) {
 
 *(If this syntax looks unfamiliar, you might want to read [Synchronizing with Effects](/learn/synchronizing-with-effects) before reading this page.)*
 
-Let's ask a simliar question: when does this Effect run?
+Let's ask a similar question: when does this Effect run?
 
 The `[roomId]` dependency array specifies that this Effect *depends* on the `roomId`. In other words, it "reacts" to every value of the `roomId` prop. It runs when the component is added to the screen. Later, whenever the `roomId` prop changes, the previous Effect cleans up (and disconnects from the previous room), while the next Effect connects to the next room. This keeps the active connection synchronized with the value of the `roomId` prop.
 

@@ -1,41 +1,41 @@
 ---
-title: Keeping Components Pure
+title: Komponenttien pitäminen puhtaina
 ---
 
 <Intro>
 
-Some JavaScript functions are *pure.* Pure functions only perform a calculation and nothing more. By strictly only writing your components as pure functions, you can avoid an entire class of baffling bugs and unpredictable behavior as your codebase grows. To get these benefits, though, there are a few rules you must follow.
+Jotkin JavaScript funktiot ovat *puhtaita.* Puhtaat funktiot suorittavat ainoastaan laskelman eikä mitään muuta. Kirjoittamalla komponenttisi puhtaina funktioina voit välttää kokonaisen luokan hämmentäviä bugeja ja arvaamatonta toimintaa koodipohjasi kasvaessa. Saadaksesi nämä hyödyt, on muutamia sääntöjä joita seurata.
 
 </Intro>
 
 <YouWillLearn>
 
-* What purity is and how it helps you avoid bugs
-* How to keep components pure by keeping changes out of the render phase
-* How to use Strict Mode to find mistakes in your components
+* Mitä puhtaus on ja miten se auttaa bugien välttämisessä
+* Miten komponentteja pidetään puhtaina pitämällä muutokset poissa renderöintivaiheesta
+* Miten käyttää Strcit Modea etsimään virheitä komponenteistasi
 
 </YouWillLearn>
 
-## Purity: Components as formulas {/*purity-components-as-formulas*/}
+## Puhtaus: Komponenttisi kaavoina {/*purity-components-as-formulas*/}
 
-In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
+Tietojenkäsittelytieteessä (ja etenkin funktionaalisen ohjelmoinnin maailmassa), [puhdas funktio](https://wikipedia.org/wiki/Pure_function) on funktio seuraavilla ominaisuuksilla:
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
-* **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
+* **Huolehtii omista asioistaan.** Se ei muuta yhtään oliota tai muuttujaa joka oli olemassa ennen kuin sitä kutsuttiin.
+* **Samat sisääntulot, samat ulostulot.** Annettaen samat lähtötiedot, puhtaan funktion tulisi aina palauttaa sama lopputulos.
 
-You might already be familiar with one example of pure functions: formulas in math.
+Saatat ehkä jo tietää yhden esimerkin puhtaista funktioista: kaavat matematiikassa.
 
-Consider this math formula: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
+Harkitse tätä matemaattista kaavaa: <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>.
 
-If <Math><MathI>x</MathI> = 2</Math> then <Math><MathI>y</MathI> = 4</Math>. Always. 
+Jos <Math><MathI>x</MathI> = 2</Math> silloin <Math><MathI>y</MathI> = 4</Math>. Aina. 
 
-If <Math><MathI>x</MathI> = 3</Math> then <Math><MathI>y</MathI> = 6</Math>. Always. 
+Jos <Math><MathI>x</MathI> = 3</Math> silloin <Math><MathI>y</MathI> = 6</Math>. Aina. 
 
-If <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> won't sometimes be <Math>9</Math> or <Math>–1</Math> or <Math>2.5</Math> depending on the time of day or the state of the stock market. 
+Jos <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> ei joskus ole <Math>9</Math> tai <Math>–1</Math> tai <Math>2.5</Math> riippuen kellonajasta taikka markkinatalouden tilasta. 
 
-If <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> and <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> will _always_ be <Math>6</Math>. 
+Jos <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> ja <Math><MathI>x</MathI> = 3</Math>, <MathI>y</MathI> on _aina_ <Math>6</Math>. 
 
-If we made this into a JavaScript function, it would look like this:
+Jos tästä tehtäisiin JavaScript funktio, se voisi näyttää tältä:
 
 ```js
 function double(number) {
@@ -43,9 +43,9 @@ function double(number) {
 }
 ```
 
-In the above example, `double()` is a **pure function.** If you pass it `3`, it will return `6`. Always.
+Yllä olevassa esimerkissä `double()` on **puhdas funktio.** Jos välität sille `3`, se palauttaa `6`. Aina.
 
-React is designed around this concept. **React assumes that every component you write is a pure function.** This means that React components you write must always return the same JSX given the same inputs:
+React on suunniteltu tämän konseptin ympärille. **React olettaa, että jokainen komponentti jonka kirjoitat on puhdas funktio.** Tämä tarkoittaa, että kirjoittamasi React komponenttien täytyy palauttaa aina sama JSX:n kun annetaan samat lähtötiedot:
 
 <Sandpack>
 
@@ -75,21 +75,22 @@ export default function App() {
 
 </Sandpack>
 
-When you pass `drinkers={1}` to `Recipe`, it will return JSX containing `1 cups of milk`. Always. 
+Kun välität `drinkers={1}` komponentille `Recipe`, se palauttaa JSX:n sisältäen `1 cups of milk`. Aina. 
 
-If you pass `drinkers={4}`, it will return JSX containing `4 cups of milk`. Always. 
+Kun välität `drinkers={4}`, se palauttaa JSX:n sisältäen `4 cups of milk`. Aina. 
 
-Just like a math formula. 
+Juuri kuten matemaattinen kaava.
 
-You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render](render-and-commit).
 
-<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add 2x spoons of spices, and x spoons of tea!" />
+Voit ajatella komponenttisi reseptinä: jos seuraat sitä, etkä esittele uusia ainesosia kesken ruoanlaiton aikana, saat saman aterian joka kerta. Tuo "ateria" on JSX jonka komponentti tarjoaa Reactille [renderöitäväksi](render-and-commit).
 
-## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
+<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="Tee resepti x määrälle henkilöitä: ota x kuppia vettä, lisää 2x lusikallista mausteita, ja x lusikallista teetä!" />
 
-React's rendering process must always be pure. Components should only *return* their JSX, and not *change* any objects or variables that existed before rendering—that would make them impure!
+## Sivuvaikutukset: (ei-)toivotut seuraukset {/*side-effects-unintended-consequences*/}
 
-Here is a component that breaks this rule:
+Reactin renderöintiprosessin on aina oltava puhdas. Komponenttien täytyisi *palauttaa* vain niiden JSX eikä *muuttaa* yhtään oliota tai muuttujia, jotka olivat olemassa ennen renderöintiä—se tekisi niistä epäpuhtaita!
+
+Tässä komponentti joka rikkoo tätä sääntöä:
 
 <Sandpack>
 
@@ -97,7 +98,7 @@ Here is a component that breaks this rule:
 let guest = 0;
 
 function Cup() {
-  // Bad: changing a preexisting variable!
+  // Huonoa: muuttaa olemassa olevaa muuttujaa!
   guest = guest + 1;
   return <h2>Tea cup for guest #{guest}</h2>;
 }
@@ -115,11 +116,11 @@ export default function TeaSet() {
 
 </Sandpack>
 
-This component is reading and writing a `guest` variable declared outside of it. This means that **calling this component multiple times will produce different JSX!** And what's more, if _other_ components read `guest`, they will produce different JSX, too, depending on when they were rendered! That's not predictable.
+Tämä komponentti lukee ja kirjoittaa `guest` muuttujaan, joka on määritelty sen ulkopuolella. Tämä tarkoittaa, että **komponentin kutsuminen useita kertoja tuottaa eri JSX:ää!** Lisäksi jos _muut_ komponentit lukevat `guest` muuttujaa, nekin tuottavat eri JSX:ää myös, riippuen milloin ne renderöitiin. Tämä ei ole ennustettavissa.
 
-Going back to our formula <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, now even if <Math><MathI>x</MathI> = 2</Math>, we cannot trust that <Math><MathI>y</MathI> = 4</Math>. Our tests could fail, our users would be baffled, planes would fall out of the sky—you can see how this would lead to confusing bugs!
+Palataan kaavaamme <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, nyt jos <Math><MathI>x</MathI> = 2</Math>, emme voi luottaa, että <Math><MathI>y</MathI> = 4</Math>. Testimme epäonnistuisi, käyttäjämme olisivat hämillään, lentokoneita tippuisi taivaalta—näet miten tämä voisi johtaa sekaviin bugeihin!
 
-You can fix this component by [passing `guest` as a prop instead](/learn/passing-props-to-a-component):
+Voit korjata tämän komponentin [välittämällä `guest` muuttujan proppina](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
@@ -141,29 +142,29 @@ export default function TeaSet() {
 
 </Sandpack>
 
-Now your component is pure, as the JSX it returns only depends on the `guest` prop.
+Nyt komponenttisi on puhdas, sillä JSX joka palautetaan riippuu ainoastaan `guest` propista.
 
-In general, you should not expect your components to be rendered in any particular order. It doesn't matter if you call <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> before or after <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: both formulas will resolve independently of each other. In the same way, each component should only "think for itself," and not attempt to coordinate with or depend upon others during rendering. Rendering is like a school exam: each component should calculate JSX on their own!
+Yleisesti ottaen sinun ei tarvitse olettaa komponenttien renderöitävän missään tietyssä järjestyksessä. Sillä ei ole väliä kutsutko <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> ennen vai jälkeen <Math><MathI>y</MathI> = 5<MathI>x</MathI></Math>: molemmat kaavat toimivat erikseen toisistaan. Samalla tavalla, jokaisen komponentin tulisi "miettiä itselleen", eikä koordinoida tai riippua muista renderöinnin aikana. Renderöinti on kuin koulun koe: jokaisen komponentin tulisi laskea JSX itsekseen!
 
-<DeepDive title="Detecting impure calculations with StrictMode">
+<DeepDive title="Epäpuhtaiden laskelmien tunnistaminen StrictModella">
 
-Although you might not have used them all yet, in React there are three kinds of inputs that you can read while rendering: [props](/learn/passing-props-to-a-component), [state](/learn/state-a-components-memory), and [context](/learn/passing-data-deeply-with-context). You should always treat these inputs as read-only.
+Vaikka et välttämättä ole käyttänyt niitä kaikkia vielä, Reactissa on kolmenlaista syötettä jota lukea renderöinnin aikana: [propsit](/learn/passing-props-to-a-component), [tila](/learn/state-a-components-memory), ja [konteksti](/learn/passing-data-deeply-with-context). Kannattaa aina kohdella näitä arvoja vain-luku muodossa.
 
-When you want to *change* something in response to user input, you should [set state](/learn/state-a-components-memory) instead of writing to a variable. You should never change preexisting variables or objects while your component is rendering.
+Kun haluat *muuttaa* jotain vastauksena käyttäjän syötteeseen, tulisi [asettaa tila](/learn/state-a-components-memory) muuttujan kirjoittamisen sijaan. Sinun ei tulisi koskaan muuttaa olemassa olevia muuttujia tai olioita kun komponenttisi renderöityy.
 
-React offers a "Strict Mode" in which it calls each component's function twice during development. **By calling the component functions twice, Strict Mode helps find components that break these rules.**
+React tarjoaa "Strict Mode":n jolloin se kutsuu jokaisen komponentin funktiota kahdesti kehityksen aikana. **Kutsumalla komponentin funktiota kahdesti, Strict Mode auttaa etsimään komponentteja, jotka rikkovat näitä sääntöjä.**
 
-Notice how the original example displayed "Guest #2", "Guest #4", and "Guest #6" instead of "Guest #1", "Guest #2", and "Guest #3". The original function was impure, so calling it twice broke it. But the fixed pure version works even if the function is called twice every time. **Pure functions only calculate, so calling them twice won't change anything**--just like calling `double(2)` twice doesn't change what's returned, and solving <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> twice doesn't change what <MathI>y</MathI> is. Same inputs, same outputs. Always.
+Huoma miten alkuperäinen esimerkki näytti "Guest #2", "Guest #4", ja "Guest #6" seuraavien "Guest #1", "Guest #2", ja "Guest #3" sijasta. Alkuperäinen funktio oli epäpuhdas, joten sen kahdesti kutsuminen rikkoi sen. Korjattu puhdas versio toimii vaikka jos funktiota kutsuttaisiin kahdesti joka kerta. **Puhtaat funktiot vain laskevat, joten niiden kutsuminen kahdesti ei muuta yhtään mitään**--juuri kuten `double(2)` kutsuminen kahdesti ei muuta mitä palautetaan, eikä kaavan ratkaisu <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math> kahdesti muuta mitä <MathI>y</MathI> on. Samat lähtötiedot, samat lopputiedot. Aina.
 
-Strict Mode has no effect in production, so it won't slow down the app for your users. To opt into Strict Mode, you can wrap your root component into `<React.StrictMode>`. Some frameworks do this by default.
+Strict Modella ei ole vaikutusta tuotannossa, joten se ei hidasta sovellusta käyttäjillesi. Ottaaksesi Strict Moden käyttöön, voit kääriä pääkomponenttisi `<React.StrictMode>` sisään. Jotkin kehykset tekevät tämän oletuksena.
 
 </DeepDive>
 
-### Local mutation: Your component's little secret {/*local-mutation-your-components-little-secret*/}
+### Paikallinen mutaatio: Komponenttisi pieni salaisuus {/*local-mutation-your-components-little-secret*/}
 
-In the above example, the problem was that the component changed a *preexisting* variable while rendering. This is often called a **"mutation"** to make it sound a bit scarier. Pure functions don't mutate variables outside of the function's scope or objects that were created before the call—that makes them impure!
+Yllä olevassa esimerkissä, ongelma oli, että komponentti muutti *olemass olevaa* muuttujaa kesken renderöinnin. Tätä kutsutaan usein **"mutaatioksi"** kuulostaakseen pelottavemmalta. Puhtaat funktiot eivät mutatoi muuttujia funktion käyttöalueen ulkopuolella tai olioita jotka olivat luotuna ennen kutsua—se tekee niistä epäpuhtaita!
 
-However, **it's completely fine to change variables and objects that you've *just* created while rendering.** In this example, you create an `[]` array, assign it to a `cups` variable, and then `push` a dozen cups into it:
+Kuitenkin, **on täysin sallittua muuttaa muuttujia ja olioita, joita olet *juuri* luonut renderöinnin aikana.** Tässä esimerkissä, luot `[]` taulukon ja määrität sen `cups` muuttujaan ja sitten `push` metodia käyttäen lisäät tusinan kuppia siihen:
 
 <Sandpack>
 
@@ -183,41 +184,41 @@ export default function TeaGathering() {
 
 </Sandpack>
 
-If the `cups` variable or the `[]` array were created outside the `TeaGathering` function, this would be a huge problem! You would be changing a *preexisting* object by pushing items into that array.
+Jos `cups` muuttuja tai `[]` taulukko olivat luotuna `TeaGathering` funktion ulkopuolella, tämä olisi iso ongelma! Muuttaisit *olemassa olevaa* oliota sijoittamalla kohteita siihen taulukkoon.
 
-However, it's fine because you've created them *during the same render*, inside `TeaGathering`. No code outside of `TeaGathering` will ever know that this happened. This is called **"local mutation"**—it's like your component's little secret.
+Kuitenkin se on sallittua, koska olet luonut ne *saman renderöinnin aikana* `TeaGathering`:n sisällä. Koodi `TeaGathering`:n ulkopuolla ei koskaan tiedä tämän tapahtuneen. Tätä kutsutaan **"paikalliseksi mutaatioksi"**—se on kuin komponenttisi pieni salaisuus.
 
-## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
+## Missä _voit_ aiheuttaa sivuvaikutuksia {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects**. They're things that happen _"on the side,"_ not during rendering.
+Vaikka funktionaalinen ohjelmointi nojaa pitkälti puhtauteen, jossain vaiheessa, jossain, _jonkin_ on muututtava. Tämähän on koodauksen koko pointti! Nämä muutokset—ruudunpäivitykset, animaation aloitukset, datan muuttaminen—ovat **sivuvaikutuksia**. Ne ovat asioita, jotka tapahtuvat _"siinä sivussa,"_ ei kesken renderöinnin.
 
-In React, **side effects usually belong inside [event handlers](/learn/responding-to-events).** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
+Reactissa, **sivuvaikutukset useimmiten kuuluvat [tapahtumakäsittelijöiden](/learn/responding-to-events) sisään.** Tapahtumakäsittelijät ovat funktioita, joita React suorittaa kun teet jotain toimintoja—esimerkiksi painat nappia. Vaikka tapahtumakäsittelijät on määritelty komponentin *sisällä*, niitä ei suoriteta renderöinnin *aikana*! **Joten tapahtumakäsittelijöiden ei tarvitse olla puhtaita.**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/apis/useeffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+Jos olet olet käyttänyt kaikki vaihtoehdot, etkä löydä oikeaa tapahtumakäsittelijää sivuvaikutuksellesi, voit silti kiinnittää sen palautettuun JSX:ään käyttäen [`useEffect`](/apis/useeffect) kutsua komponentissasi. Tämä kertoo Reactille, että kutsuu sitä myöhemmin renderöinnin jälkeen, jolloin sivuvaikutukset ovat sallittuja. **Huomaa, että tämän tavan pitäisi olla sinun viimeinen keino.**
 
-When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
+Kun mahdollista, kokeile muotoilla logiikkasi vain renderöinnillä. Yllätyt miten pitkälle sillä pääsee!
 
-<DeepDive title="Why does React care about purity?">
+<DeepDive title="Miksi React välittää puhtaudesta?">
 
-Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
+Puhtaiden funktioiden kirjoittaminen vaatii tottumusta ja itsekuria. Mutta se avaa mahtavia mahdollisuuksia:
 
-* Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/learn/skipping-unchanged-trees) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
-* If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
+* Komponenttisi voidaan suorittaa eri ympäristössä—esimerkiksi palvelinpuolella. Sillä ne palauttaa saman tuloksen samoista lähtötiedoista, yksi komponentti voi palvella monta käyttäjäpyyntöä.
+* Voit parantaa tehokkuutta [ohittamalla renderöinnin](/learn/skipping-unchanged-trees) komponenteille, joiden lähtötiedot eivät ole muuttuneet. Tämä on turvallista koska puhtaat funktiot palauttavat aina saman lopputuloksen, joten ne on turvallista tallentaa.
+* Jos jokin data muuttuu kesken renderöinnin syvällä komponenttipuussa, React voi aloittaa renderöinnin uudelleen hukkaamatta aikaa keskeneräiseen renderöintiin. Puhtaus tekee keskeyttämisestä turvallista.
 
-Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.
+Jokainen uusi Reactin ominaisuus joita rakennamme hyödyntää puhtautta. Tiedonhausta animaatioihin ja tehokkuuteen, komponenttien pitäminen puhtaina avaa tehokkaan React paradigman.
 
 </DeepDive>
 
 <Recap>
 
-* A component must be pure, meaning:
-  * **Mind its own business.** It should not change any objects or variables that existed before rendering.
-  * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
-* Rendering can happen at any time, so components should not depend on each others' rendering sequence.
-* You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](reacting-to-input-with-state) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things," you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
-* Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
+* Komponentin on oltava puhdas, tarkoittaen:
+  * **Pitää huoli sen omista asioistaan.** It should not change any objects or variables that existed before rendering.
+  * **Samat sisääntulot, sama ulostulo.** Annettaen sama syöte, komponentin tulisi aina palauttaa sama JSX. 
+* Renderöinti voi tapahtua koska vain, joten komponenttien ei tulisi riippua toistensa renderöintijärjestyksestä.
+* Sinun ei pitäisi muuttaa lähtötietoja, joita komponenttisi käyttää renderöintiin. Tämä sisältää propsit, tilan sekä kontekstin. Ruudun päivittämiseksi ["aseta" tila](reacting-to-input-with-state) olemassaolevien olioiden muuttamisen sijaan.
+* Pyri ilmaisemaan komponenttisi logiikka JSX:ssä jota palautat. Kun täytyy "muuttaa asioita", useimiten teet sen tapahtumakäsittelijässä. Viimeisenä keinona voit käyttää `useEffect`:ia.
+* Puhtaiden funktioiden kirjoittaminen vaatii hieman harjoittelua, mutta se avaa Reactin paradigman voiman.
 
 </Recap>
 
@@ -225,15 +226,15 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-### Fix a broken clock {/*fix-a-broken-clock*/}
+### Korjaa rikkinäinen kello {/*fix-a-broken-clock*/}
 
-This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
+Tämä komponentti yrittää asettaa `<h1>`:n CSS luokan arvoksi `"night"` keskiyöstä aamu kuuteen ja arvoksi `"day"` muina aikoina. Se ei kuitenkaan toimi. Voitko korjata tämän komponentin?
 
-You can verify whether your solution works by temporarily changing the computer's timezone. When the current time is between midnight and six in the morning, the clock should have inverted colors!
+Voit tarkistaa onko ratkaisusi toimiva tilapäisesti muuttamalla tietokoneesi aikavyöhykettä. Kun nykyinen aika on keskiyön ja aamu kuuden välillä, kellon tulisi omata käänteiset värit!
 
 <Hint>
 
-Rendering is a *calculation*, it shouldn't try to "do" things. Can you express the same idea differently?
+Renderöinti on *laskenta*, sen ei tulisi "tehdä" asioita. Voitko ilmaista saman idean eri tavalla?
 
 </Hint>
 
@@ -297,7 +298,7 @@ body > * {
 
 <Solution>
 
-You can fix this component by calculating the `className` and including it in the render output:
+Voit korjata tämän komponentin laskemalla `className`:n ja sisällyttämällä sen renderöinnin lopputuloksessa:
 
 <Sandpack>
 
@@ -358,19 +359,19 @@ body > * {
 
 </Sandpack>
 
-In this example, the side effect (modifying the DOM) was not necessary at all. You only needed to return JSX.
+Tässä esimerkissä sivuvaikutus (DOM:n muuttaminen) ei ole tarpeellista ollenkaan. Täytyy vain palauttaa JSX.
 
 </Solution>
 
-### Fix a broken profile {/*fix-a-broken-profile*/}
+### Korjaa rikkinäinen profiili {/*fix-a-broken-profile*/}
 
-Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
+Kaksi `Profile` komponenttia on renderöity vierekkäin eri tiedoilla. Paina "Collapse" ensimmäisessä profiilissa ja sitten "Expand":ia. Huomaat, että molemmat profiilit näyttävät saman henkilön. Tämä on bugi.
 
-Find the cause of the bug and fix it.
+Etsi bugin syy ja korjaa se.
 
 <Hint>
 
-The buggy code is in `Profile.js`. Make sure you read it all from top to bottom!
+Buginen koodi on `Profile.js` tiedostossa. Luithan koko tiedoston?
 
 </Hint>
 
@@ -471,9 +472,9 @@ h1 { margin: 5px; font-size: 18px; }
 
 <Solution>
 
-The problem is that the `Profile` component writes to a preexisting variable called `currentPerson`, and the `Header` and `Avatar` components read from it. This makes *all three of them* impure and difficult to predict.
+Ongelma on, että `Profile` komponentti kirjoittaa olemassa olevaan `currentPerson` muuttujaan ja `Header` sekä `Avatar` komponentit lukevat siitä. Tämä tekee *kaikista niistä* epäpuhtaita ja hankalia ennustaa.
 
-To fix the bug, remove the `currentPerson` variable. Instead, pass all information from `Profile` to `Header` and `Avatar` via props. You'll need to add a `person` prop to both components and pass it all the way down.
+Bugin korjaamiseksi poista `currentPerson` muuttuja. Sen sijaan välitä kaikki tieto `Profile` komponentista `Header`:lle sekä `Avatar`:lle propseilla. Lisää `person` propsi molempiin komponentteihin ja välitä se alas asti.
 
 <Sandpack>
 
@@ -567,15 +568,15 @@ h1 { margin: 5px; font-size: 18px; }
 
 </Sandpack>
 
-Remember that React does not guarantee that component functions will execute in any particular order, so you can't communicate between them by setting variables. All communication must happen through props.
+Muista, että React ei takaa komponenttien suorittamista missään tietyssä järjestyksessä, joten et voi kommunikoida niiden välillä asettamalla muuttujia. Kaiken kommunikoinnin tulee tapahtua propsien kautta.
 
 </Solution>
 
 ### Fix a broken story tray {/*fix-a-broken-story-tray*/}
 
-The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
+Yrityksesi toimitusjohtaja pyytää sinua lisäämään "stories" ominaisuuden kello sovellukseen, etkä voi sanoa "ei". Olet kirjoittanut `StoryTray` komponentin, joka hyväksyy listan `stories`, ja lopussa on "Create Story" paikanpitäjä.
 
-You implemented the "Create Story" placeholder by pushing one more fake story at the end of the `stories` array that you receive as a prop. But for some reason, "Create Story" appears more than once. Fix the issue.
+Olet toteuttanut "Create Story" paikanpitäjän lisäämällä yhden teko-stooryn `stories` listan loppuun, jonka vastaanotat propsina. Mutta jostain syystä, "Create Story" näkyy useamman kerran. Korjaa ongelma.
 
 <Sandpack>
 
@@ -671,11 +672,11 @@ li {
 
 <Solution>
 
-Notice how whenever the clock updates, "Create Story" is added *twice*. This serves as a hint that we have a mutation during rendering--Strict Mode calls components twice to make these issues more noticeable.
+Huomaa miten joka kerta kun kello päivittyy, "Create Story" lisätään *kahdesti*. Tämä toimii vinkkinä, että tässä on mutaatio renderöinnin aikana--Strict Mode kutsuu komponenttia kahdesti tehdäkseen nämä ongelmat huomattavemmiksi.
 
-`StoryTray` function is not pure. By calling `push` on the received `stories` array (a prop!), it is mutating an object that was created *before* `StoryTray` started rendering. This makes it buggy and very difficult to predict.
+`StoryTray` funktio ei ole puhdas. Kutsumalla vastaanotettua `stories` (propsi) listaa `push` funktiolla, se muuttaa oliota, joka oli luotuna *ennen* kuin `StoryTray` alkoi renderöimään. Tämä tekee siitä bugisen ja erittäin vaikean ennustaa.
 
-The simplest fix is to not touch the array at all, and render "Create Story" separately:
+Yksinkertaisin ratkaisu on olla koskematta listaan ollenkaan, ja renderöindä "Create Story":n erikseen:
 
 <Sandpack>
 
@@ -759,7 +760,7 @@ li {
 
 </Sandpack>
 
-Alternatively, you could create a _new_ array (by copying the existing one) before you push an item into it:
+Vaihtoehtoisesti, voit luoda _uuden_ listan (kopioimalla edellisen) ennen kuin lisäät kohteita siihen:
 
 <Sandpack>
 
@@ -851,9 +852,9 @@ li {
 
 </Sandpack>
 
-This keeps your mutation local and your rendering function pure. However, you still need to be careful: for example, if you tried to change any of the array's existing items, you'd have to clone those items too.
+Tämä pitää muutokset paikallisina ja funktion puhtaana. Kuitenkin sinun täytyy olla silti varovainen: esimerkiksi, jos yritit muuttaa yhtäkään listan kohdetta, täytyisi sinun kopioida nekin kohteet myös.
 
-It is useful to remember which operations on arrays mutate them, and which don't. For example, `push`, `pop`, `reverse`, and `sort` will mutate the original array, but `slice`, `filter`, and `map` will create a new one.
+On helppo muistaa mitkä operaatiot muuttavat listaa ja mitkä eivät. Esimerkiksi,  `push`, `pop`, `reverse`, ja `sort` muuttavat alkuperäistä listaa, mutta `slice`, `filter`, ja `map` luovat uuden.
 
 </Solution>
 

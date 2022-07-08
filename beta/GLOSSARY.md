@@ -9,6 +9,7 @@
 - **dispatch**: dispatch, lähettää
 - **pure component**: puhdas komponentti
 - **fragment**: fragment
+- **Strict Mode**: strict mode
 
 ## General
 
@@ -37,3 +38,4 @@
 - **framework**: ohjelmistokehys
 - **codebase**: koodipohja
 - **property**: en keksinyt järkevää suomennosta, property
+- **scope**: käyttöalue

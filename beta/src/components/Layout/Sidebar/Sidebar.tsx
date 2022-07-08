@@ -5,11 +5,11 @@
 import * as React from 'react';
 import cn from 'classnames';
 import dynamic from "next/dynamic";
-import {SidebarContext} from 'components/Layout/useRouteMeta';
-import {MenuContext} from 'components/useMenu';
-import {useMediaQuery} from '../useMediaQuery';
-import {Search} from 'components/Search';
-import {Feedback} from '../Feedback';
+import { SidebarContext } from 'components/Layout/useRouteMeta';
+import { MenuContext } from 'components/useMenu';
+import { useMediaQuery } from '../useMediaQuery';
+import { Search } from 'components/Search';
+import { Feedback } from '../Feedback';
 
 const MobileNav = dynamic(() => import("../Nav/MobileNav").then(reactComp => reactComp.MobileNav))
 const SidebarRouteTree = dynamic(() => import("./SidebarRouteTree").then(reactComp => reactComp.SidebarRouteTree), {
@@ -19,7 +19,7 @@ const SidebarRouteTree = dynamic(() => import("./SidebarRouteTree").then(reactCo
 const SIDEBAR_BREAKPOINT = 1023;
 
 export function Sidebar() {
-  const {menuRef, isOpen} = React.useContext(MenuContext);
+  const { menuRef, isOpen } = React.useContext(MenuContext);
   const isMobileSidebar = useMediaQuery(SIDEBAR_BREAKPOINT);
   let routeTree = React.useContext(SidebarContext);
   const isHidden = isMobileSidebar ? !isOpen : false;
@@ -41,7 +41,7 @@ export function Sidebar() {
       <nav
         role="navigation"
         ref={menuRef}
-        style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+        style={{ '--bg-opacity': '.2' } as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
         className="w-full h-screen lg:h-auto grow pr-0 lg:pr-5 pt-6 pb-44 lg:pb-0 lg:py-6 md:pt-4 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
         {isMobileSidebar ? (
           <MobileNav />

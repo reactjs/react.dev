@@ -26,7 +26,7 @@ export const Seo = withRouter(
       {/* DEFAULT */}
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color"content={(typeof window !== "undefined") ? window?.__theme : "#23272F"} />
+      <meta name="theme-color" content={(typeof window !== "undefined") ? window?.__theme === "dark" ? '#23272F' : '#F6F7F9' : "#23272F"} />
 
       {title != null && <title key="title">{title}</title>}
       {description != null && (

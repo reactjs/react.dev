@@ -4,7 +4,7 @@
 
 import React from 'react';
 import Head from 'next/head';
-import {withRouter, Router} from 'next/router';
+import { withRouter, Router } from 'next/router';
 
 export interface SeoProps {
   title: string;
@@ -21,11 +21,12 @@ export const Seo = withRouter(
     image = '/logo-og.png',
     router,
     children,
-  }: SeoProps & {router: Router}) => (
+  }: SeoProps & { router: Router }) => (
     <Head>
       {/* DEFAULT */}
 
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta name="theme-color"content={(typeof window !== "undefined") ? window?.__theme : "#23272F"} />
 
       {title != null && <title key="title">{title}</title>}
       {description != null && (

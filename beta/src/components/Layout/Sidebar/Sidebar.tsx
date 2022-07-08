@@ -4,13 +4,17 @@
 
 import * as React from 'react';
 import cn from 'classnames';
+import dynamic from "next/dynamic";
 import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {MenuContext} from 'components/useMenu';
 import {useMediaQuery} from '../useMediaQuery';
-import {SidebarRouteTree} from './SidebarRouteTree';
 import {Search} from 'components/Search';
-import {MobileNav} from '../Nav/MobileNav';
 import {Feedback} from '../Feedback';
+
+const MobileNav = dynamic(() => import("../Nav/MobileNav").then(reactComp => reactComp.MobileNav))
+const SidebarRouteTree = dynamic(() => import("./SidebarRouteTree").then(reactComp => reactComp.SidebarRouteTree), {
+  suspense: true
+})
 
 const SIDEBAR_BREAKPOINT = 1023;
 

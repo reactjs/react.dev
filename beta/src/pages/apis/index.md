@@ -30,7 +30,7 @@ import * as React from 'react';
 
 </PackageImport>
 
-If you use React on the web, you'll also need the same version of [ReactDOM](/api/reactdom).
+If you use React on the web, you'll also need the same version of [ReactDOM](/apis/reactdom).
 
 ## Exports {/*exports*/}
 

@@ -290,7 +290,7 @@ html.dark .sp-devtools > div {
   min-width: 431px;
   /* Keep preview a fixed size on mobile to avoid jumps. */
   /* This is because we don't know its content in advance. */
-  min-height: 40vh;
+  min-height: fit-content;
   max-height: 40vh;
 }
 .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {

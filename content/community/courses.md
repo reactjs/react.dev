@@ -49,10 +49,10 @@ permalink: community/courses.html
 
 - [Tyler McGinnis](https://ui.dev/) - Tyler McGinnis provides access to his courses for a monthly fee. Courses include "React Fundamentals" and "Universal React".
 
-- [Mastering React](https://codewithmosh.com/p/mastering-react/) - Build professional interactive apps with React.
+- [Mastering React](https://codewithmosh.com/p/mastering-react) - Build professional interactive apps with React.
 
 - [React Tutorial](https://react-tutorial.app) - Learn React step by step in an interactive environment with flashcards.
 
-- [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
+- [Road to React](https://www.roadtoreact.com) - Your journey to master React in JavaScript.
 
 - [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro

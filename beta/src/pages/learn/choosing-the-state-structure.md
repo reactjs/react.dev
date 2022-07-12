@@ -1079,7 +1079,7 @@ export const initialTravelPlan = {
   },
   41: {
     id: 41,
-    title: 'New Zeland',
+    title: 'New Zealand',
     childIds: []
   },
   42: {
@@ -1422,7 +1422,7 @@ export const initialTravelPlan = {
   },
   41: {
     id: 41,
-    title: 'New Zeland',
+    title: 'New Zealand',
     childIds: []
   },
   42: {
@@ -1766,7 +1766,7 @@ export const initialTravelPlan = {
   },
   41: {
     id: 41,
-    title: 'New Zeland',
+    title: 'New Zealand',
     childIds: []
   },
   42: {

@@ -42,7 +42,7 @@ If you prefer to use your own text editor, you can also [download this HTML file
 
 ### Add React to a Website {#add-react-to-a-website}
 
-You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence, or keep it contained to a few dynamic widgets.
+You can [add React to an HTML page in one minute](/docs/add-react-to-a-website.html). You can then either gradually expand its presence or keep it contained to a few dynamic widgets.
 
 ### Create a New React App {#create-a-new-react-app}
 
@@ -75,7 +75,7 @@ If you're coming from a design background, [these resources](https://reactfordes
 
 The React documentation assumes some familiarity with programming in the JavaScript language. You don't have to be an expert, but it's harder to learn both React and JavaScript at the same time.
 
-We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour but you will feel more confident learning React.
+We recommend going through [this JavaScript overview](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript) to check your knowledge level. It will take you between 30 minutes and an hour, but you will feel more confident learning React.
 
 >Tip
 >
@@ -87,11 +87,11 @@ If you prefer to **learn by doing,** check out our [practical tutorial](/tutoria
 
 ### Step-by-Step Guide {#step-by-step-guide}
 
-If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters so you won't miss anything as you go along.
+If you prefer to **learn concepts step by step,** our [guide to main concepts](/docs/hello-world.html) is the best place to start. Every next chapter in it builds on the knowledge introduced in the previous chapters, so you won't miss anything as you go along.
 
 ### Thinking in React {#thinking-in-react}
 
-Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough but it's still just as relevant.
+Many React users credit reading [Thinking in React](/docs/thinking-in-react.html) as the moment React finally "clicked" for them. It's probably the oldest React walkthrough, but it's still just as relevant.
 
 ### Recommended Courses {#recommended-courses}
 
@@ -99,11 +99,11 @@ Sometimes people find third-party books and video courses more helpful than the 
 
 ### Advanced Concepts {#advanced-concepts}
 
-Once you're comfortable with the [main concepts](/docs/hello-world.html) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful, but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
+Once you're comfortable with the [main concepts](/docs/hello-world.html) and played with React a little bit, you might be interested in more advanced topics. This section will introduce you to the powerful but less commonly used React features like [context](/docs/context.html) and [refs](/docs/refs-and-the-dom.html).
 
 ### API Reference {#api-reference}
 
-This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works, and what different lifecycle methods are useful for.
+This documentation section is useful when you want to learn more details about a particular React API. For example, [`React.Component` API reference](/docs/react-component.html) can provide you with details on how `setState()` works and what different lifecycle methods are useful for.
 
 ### Glossary and FAQ {#glossary-and-faq}
 
@@ -119,7 +119,7 @@ Not every React release deserves its own blog post, but you can find a detailed 
 
 ## Versioned Documentation {#versioned-documentation}
 
-This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation on a [separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release, and isn't being continuously updated.
+This documentation always reflects the latest stable version of React. Since React 16, you can find older versions of the documentation on a [separate page](/versions). Note that documentation for past versions is snapshotted at the time of the release and isn't being continuously updated.
 
 ## Something Missing? {#something-missing}
 

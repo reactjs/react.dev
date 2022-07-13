@@ -219,24 +219,16 @@ This example shows how you can use this approach to scroll to an arbitrary node 
 import { useRef } from 'react';
 
 export default function CatFriends() {
-  const itemsRef = useRef(null);
+  const itemsRef = useRef(new Map());
 
   function scrollToId(itemId) {
-    const map = getMap();
+    const map = itemsRef.current;
     const node = map.get(itemId);
     node.scrollIntoView({
       behavior: 'smooth',
       block: 'nearest',
       inline: 'center'
     });
-  }
-
-  function getMap() {
-    if (!itemsRef.current) {
-      // Initialize the Map on first usage.
-      itemsRef.current = new Map();
-    }
-    return itemsRef.current;
   }
 
   return (
@@ -258,7 +250,7 @@ export default function CatFriends() {
             <li
               key={cat.id}
               ref={(node) => {
-                const map = getMap();
+                const map = itemsRef.current;
                 if (node) {
                   map.set(cat.id, node);
                 } else {

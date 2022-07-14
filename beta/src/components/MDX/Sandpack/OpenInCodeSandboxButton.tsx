@@ -10,13 +10,13 @@ export const OpenInCodeSandboxButton = () => {
   return (
     <UnstyledOpenInCodeSandboxButton
       className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1 ml-2 md:ml-1"
-      title="Open in CodeSandbox">
+      title="Avaa CodeSandbox:ssa">
       <IconNewPage
         className="inline ml-1 mr-1 relative"
         width="1em"
         height="1em"
       />
-      <span className="hidden md:block">Fork</span>
+      <span className="hidden md:block">Forkkaa</span>
     </UnstyledOpenInCodeSandboxButton>
   );
 };

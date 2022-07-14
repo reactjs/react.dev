@@ -17,9 +17,9 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
   {as: Comp = 'div', className, children, id, isPageAnchor = true, ...props},
   ref
 ) {
-  let label = 'Link for this heading';
+  let label = 'Linkki tähän otsikkoon';
   if (typeof children === 'string') {
-    label = 'Link for ' + children;
+    label = 'Linkki otsikkoon ' + children;
   }
 
   return (

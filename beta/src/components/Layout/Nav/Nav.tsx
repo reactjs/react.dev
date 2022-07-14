@@ -134,7 +134,7 @@ export default function Nav() {
       <div className="xl:w-full xl:max-w-xs flex items-center">
         <button
           type="button"
-          aria-label="Menu"
+          aria-label="Valikko"
           onClick={toggleOpen}
           className={cn('flex lg:hidden items-center h-full px-4', {
             'text-link dark:text-link-dark mr-0': isOpen,
@@ -155,7 +155,7 @@ export default function Nav() {
         <div className="block dark:hidden">
           <button
             type="button"
-            aria-label="Use Dark Mode"
+            aria-label="Käytä tummaa tilaa"
             onClick={() => {
               window.__setPreferredTheme('dark');
             }}
@@ -166,7 +166,7 @@ export default function Nav() {
         <div className="hidden dark:block">
           <button
             type="button"
-            aria-label="Use Light Mode"
+            aria-label="Käytä vaaleaa tilaa"
             onClick={() => {
               window.__setPreferredTheme('light');
             }}
@@ -177,10 +177,10 @@ export default function Nav() {
       </div>
       <div className="px-0 pt-2 w-full 2xl:max-w-xs hidden lg:flex items-center self-center border-b-0 lg:border-b border-border dark:border-border-dark">
         <NavLink href="/" isActive={section === 'home'}>
-          Home
+          Koti
         </NavLink>
         <NavLink href="/learn" isActive={section === 'learn'}>
-          Learn
+          Opi
         </NavLink>
         <NavLink href="/apis" isActive={section === 'apis'}>
           API
@@ -189,7 +189,7 @@ export default function Nav() {
       <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end lg:max-w-sm">
         <Search />
         <button
-          aria-label="Give feedback"
+          aria-label="Anna palautetta"
           type="button"
           className={cn(
             'inline-flex lg:hidden items-center rounded-full px-1.5 ml-4 lg:ml-6 relative top-px',
@@ -203,7 +203,7 @@ export default function Nav() {
         <div className="block dark:hidden">
           <button
             type="button"
-            aria-label="Use Dark Mode"
+            aria-label="Käytä tummaa tilaa"
             onClick={() => {
               window.__setPreferredTheme('dark');
             }}
@@ -229,7 +229,7 @@ export default function Nav() {
         <div className="hidden dark:block">
           <button
             type="button"
-            aria-label="Use Light Mode"
+            aria-label="Käytä vaaleaa tilaa"
             onClick={() => {
               window.__setPreferredTheme('light');
             }}

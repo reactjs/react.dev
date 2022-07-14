@@ -44,12 +44,12 @@ export function MobileNav() {
         <TabButton
           isActive={section === 'home'}
           onClick={() => setSection('home')}>
-          Home
+          Koti
         </TabButton>
         <TabButton
           isActive={section === 'learn'}
           onClick={() => setSection('learn')}>
-          Learn
+          Opi
         </TabButton>
         <TabButton
           isActive={section === 'apis'}

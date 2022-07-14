@@ -72,7 +72,7 @@ const parseChallengeContents = (
 export function Challenges({
   children,
   isRecipes,
-  titleText = isRecipes ? 'Try out some examples' : 'Try out some challenges',
+  titleText = isRecipes ? 'Kokeile esimerkkejä' : 'Kokeile haasteita',
   titleId = isRecipes ? 'examples' : 'challenges',
 }: ChallengesProps) {
   const challenges = parseChallengeContents(children);
@@ -143,8 +143,8 @@ export function Challenges({
           <div key={activeChallenge}>
             <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
               <div className="font-bold block md:inline">
-                {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order}{' '}
-                of {challenges.length}
+                {isRecipes ? 'Esimerkki' : 'Haaste'} {currentChallenge.order} /{' '}
+                {challenges.length}
                 <span className="text-primary dark:text-primary-dark">: </span>
               </div>
               {currentChallenge.name}
@@ -156,14 +156,14 @@ export function Challenges({
               <div>
                 <Button className="mr-2" onClick={toggleHint} active={showHint}>
                   <IconHint className="mr-1.5" />{' '}
-                  {showHint ? 'Hide hint' : 'Show hint'}
+                  {showHint ? 'Piilota vinkki' : 'Näytä vinkki'}
                 </Button>
                 <Button
                   className="mr-2"
                   onClick={toggleSolution}
                   active={showSolution}>
                   <IconSolution className="mr-1.5" />{' '}
-                  {showSolution ? 'Hide solution' : 'Show solution'}
+                  {showSolution ? 'Piilota ratkaisu' : 'Näytä ratkaisu'}
                 </Button>
               </div>
             ) : (
@@ -173,7 +173,7 @@ export function Challenges({
                   onClick={toggleSolution}
                   active={showSolution}>
                   <IconSolution className="mr-1.5" />{' '}
-                  {showSolution ? 'Hide solution' : 'Show solution'}
+                  {showSolution ? 'Piilota ratkaisu' : 'Näytä ratkaisu'}
                 </Button>
               )
             )}
@@ -190,7 +190,7 @@ export function Challenges({
                   setShowSolution(false);
                 }}
                 active>
-                Next {isRecipes ? 'Example' : 'Challenge'}
+                Seuraava {isRecipes ? 'esimerkki' : 'haaste'}
                 <IconArrowSmall
                   displayDirection="right"
                   className="block ml-1.5"
@@ -203,12 +203,12 @@ export function Challenges({
           {showSolution && (
             <div className="mt-6">
               <h3 className="text-2xl font-bold text-primary dark:text-primary-dark">
-                Solution
+                Ratkaisu
               </h3>
               {currentChallenge.solution}
               <div className="flex justify-between items-center mt-4">
                 <Button onClick={() => setShowSolution(false)}>
-                  Close solution
+                  Sulje ratkaisu
                 </Button>
                 {nextChallenge && (
                   <Button
@@ -226,7 +226,7 @@ export function Challenges({
                       }
                     }}
                     active>
-                    Next Challenge
+                    Seuraava haaste
                     <IconArrowSmall
                       displayDirection="right"
                       className="block ml-1.5"

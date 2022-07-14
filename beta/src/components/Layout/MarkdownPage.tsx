@@ -45,14 +45,14 @@ export function MarkdownPage<
         return {
           url: '#challenges',
           depth: 0,
-          text: 'Challenges',
+          text: 'Haasteet',
         };
       }
       if (child.props.mdxType === 'Recap') {
         return {
           url: '#recap',
           depth: 0,
-          text: 'Recap',
+          text: 'Kertaus',
         };
       }
       return {
@@ -67,7 +67,7 @@ export function MarkdownPage<
   if (anchors.length > 0) {
     anchors.unshift({
       depth: 1,
-      text: 'Overview',
+      text: 'Aloitus',
       url: '#',
     });
   }

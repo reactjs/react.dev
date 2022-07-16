@@ -1,5 +1,5 @@
 ---
-title: "State: A Component's Memory"
+title: "Tila: Komponentin muisti"
 ---
 
 <Intro>
@@ -10,16 +10,16 @@ Components often need to change what's on the screen as a result of an interacti
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/apis/usestate) Hook
-* What pair of values the `useState` Hook returns
-* How to add more than one state variable
-* Why state is called local
+* Miten lisätä tilamuuttuja [`useState`](/apis/usestate) hookilla
+* Minkä arvoparin `useState` hookki palauttaa
+* Miten lisätä useampi tilamuuttuja
+* Miksi tilaa sanotaan paikalliseksi
 
 </YouWillLearn>
 
-## When a regular variable isn’t enough {/*when-a-regular-variable-isnt-enough*/}
+## Kun tavallinen muuttuja ei riitä {/*when-a-regular-variable-isnt-enough*/}
 
-Here's a component that renders a sculpture image. Clicking the "Next" button should show the next sculpture by changing the `index` to `1`, then `2`, and so on. However, this **won't work** (you can try it!):
+Tässä on komponentti, joka renderöi kuvan veistoksesta. Klikkaamalla "Next" painiketta pitäisi seuraavan veistoksen näkyä, muuttamalla `index` lukua `1`:een, `2`:een ja niin edelleen. Kuitenkaan tämä **ei toimi** (voit kokeilla!):
 
 <Sandpack>
 
@@ -151,46 +151,46 @@ button {
 
 </Sandpack>
 
-The `handleClick()` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+`handleClick()` tapahtumakäsittelijä päivittää paikallista `index` muuttujaa. Kaksi asiaa kuitenkin estävät muutoksen näkymistä:
 
-1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
-2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
+1. **Paikalliset muuttujat eivät pysy voimassa renderien välillä.** Kun React renderöi tämän komponentin toiseen kertaan, se luo sen alusta. Se ei ota huomioon paikallisten muuttujien muutoksia.
+2. **Muutokset paikallisiin muuttujiin eivät triggeröi uutta renderöintiä.** React ei huomaa, että sen täytyy renderöidä komponentti uudelleen uusien tietojen kanssa.
 
-To update a component with new data, two things need to happen:
+Päivittääksesi komponentti uudella datalla, kaksi asiaa täytyy tapahtua:
 
-1. **Retain** the data between renders.
-2. **Trigger** React to render the component with new data (re-rendering).
+1. **Säilyttää** data renderien välillä.
+2. **Triggeröidä** React renderöimään komponenttin uudella datalla (uudelleenrenderöinti).
 
-The [`useState`](/apis/usestate) Hook provides those two things:
+[`useState`](/apis/usestate) hookki tarjoaa molemmat näistä:
 
-1. A **state variable** to retain the data between renders.
-2. A **state setter function** to update the variable and trigger React to render the component again.
+1. **Tilamuuttujan** ylläpitämään data renderien välillä.
+2. **Tilan asettajafunktio** päivittämään muuttujaa ja triggeröimään komponentin uudelleenrenderöinti.
 
-## Adding a state variable {/*adding-a-state-variable*/}
+## Tilamuuttujan lisääminen {/*adding-a-state-variable*/}
 
-To add a state variable, import `useState` from React at the top of the file:
+Lisätäksesi tilamuuttuja, importtaa `useState` Reactista tiedoston alussa:
 
 ```js
 import { useState } from 'react';
 ```
 
-Then, replace this line:
+Sitten, korvaa tämä rivi:
 
 ```js
 let index = 0;
 ```
 
-with
+tällä
 
 ```js
 const [index, setIndex] = useState(0);
 ````
 
-`index` is a state variable and `setIndex` is the setter function.
+`index` on tilamuuttuja ja `setIndex` on tilan asettajafunktio.
 
-> The `[` and `]` syntax here is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> Aaltosulkeilla `[` ja `]` oleva syntaksi on nimeltään [array destructuring](/learn/a-javascript-refresher#array-destructuring) ja sen avulla voit lukea arvoja listasta. `useState` palauttaa aina listan, jossa on kaksi kohdetta.
 
-This is how they work together in `handleClick()`:
+Tässä miten ne toimii yhdessä `handleClick()` funktiossa:
 
 ```js
 function handleClick() {
@@ -198,7 +198,7 @@ function handleClick() {
 }
 ```
 
-Now clicking the "Next" button switches the current sculpture:
+Nyt klikkaamalla "Next" painiketta, kuva veistoksesta vaihtuu:
 
 <Sandpack>
 
@@ -331,53 +331,53 @@ button {
 
 </Sandpack>
 
-### Meet your first Hook {/*meet-your-first-hook*/}
+### Tapaa ensimmäinen hookkisi {/*meet-your-first-hook*/}
 
-In React, `useState`, as well as any other function starting with "`use`," is called a Hook.
+Reactissa `useState`, kuten muutkin funktiot jotka alkavat sanalla "`use`", ovat hookkeja.
 
-*Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
+*Hookit* ovat erityisiä funktioita, jotka ovat saatavilla vain kun React [renderöi](/learn/render-and-commit#step-1-trigger-a-render) (aihe, johon perehdymme enemmän seuraavalla sivulla page). Näillä voit "koukata" erilaisiin Reactin toimintoihin.
 
-State is just one of those features, but you will meet the other Hooks later.
+Tila on vain yksi näistä toiminnoista, mutta tulet tapaamaan toiset hookit myöhemmin.
 
 <Gotcha>
 
-**Hooks—functions starting with `use`—can only be called at the top level of your components or [your own Hooks](/learn/reusing-logic-with-custom-hooks).** You can't call Hooks inside conditions, loops, or other nested functions. Hooks are functions, but it's helpful to think of them as unconditional declarations about your component's needs. You "use" React features at the top of your component similar to how you "import" modules at the top of your file.
+**Hookit, eli `use`-sanalla alkavat funktiot, ovat kutsuttavissa ainoastaan komponenttisi ylätasossa tai [omista hookeistasi](/learn/reusing-logic-with-custom-hooks).** Et voi kutsua hookkeja ehtojen, silmukoiden tai muiden sisennettyjen funktioiden sisällä. Hookit ovat funktioita, mutta on hyödyllistä ajatella niitä kuin ehdottomina määräyksinä komponenttisi tarpeista. Sinä käytät ("use") Reactin ominaisuuksia komponentin yläosassa samalla tavalla kuin "importtaat" moduuleja tiedoston yläosassa.
 
 </Gotcha>
 
-### Anatomy of `useState` {/*anatomy-of-usestate*/}
+### `useState`:n anatomia {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/apis/usestate), you are telling React that you want this component to remember something:
-
-```js
-const [index, setIndex] = useState(0);
-```
-
-In this case, you want React to remember `index`.
-
-> The convention is to name this pair like `const [something, setSomething]`. You could name it anything you like, but conventions make things easier to understand across projects.
-
-The only argument to `useState` is the **initial value** of your state variable. In this example, the `index`'s initial value is set to `0` with `useState(0)`. 
-
-Every time your component renders, `useState` gives you an array containing two values:
-
-1. The **state variable** (`index`) with the value you stored.
-2. The **state setter function** (`setIndex`) which can update the state variable and trigger React to render the component again.
-
-Here's how that happens in action:
+Kun kutsut [`useState`](/apis/usestate):a, sanot Reactille, että haluat tämän komponentin muistavan jotain:
 
 ```js
 const [index, setIndex] = useState(0);
 ```
 
-1. **Your component renders the first time.** Because you passed `0` to `useState` as the initial value for `index`, it will return `[0, setIndex]`. React remembers `0` is the latest state value.
-2. **You update the state.** When a user clicks the button, it calls `setIndex(index + 1)`. `index` is `0`, so it's `setIndex(1)`. This tells React to remember `index` is `1` now and triggers another render.
-3. **Your component's second render.** React still sees `useState(0)`, but because React *remembers* that you set `index` to `1`, it returns `[1, setIndex]` instead.
-4. And so on!
+Tässä tapauksessa haluat Reactin muistavan `index`:n.
 
-## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
+> Yleinen tapa on nimetä tämä pari kuten `const [jotain, setJotain]`. Voit nimetä sen miten haluat, mutta yleisien tapojen avulla koodia on helpompi ymmärtää projektien välillä.
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+Ainoa argumentti `useState`:lle on tilamuuttujan **aloitusarvo**. Tässä esimerkissä `index`:n aloitusarvo on `0` kun käytimme `useState(0)`.
+
+Joka kerta kun komponenttisi renderöityy, `useState` palauttaa listan sisältäen kaksi kohdetta:
+
+1. **Tilamuuttujan** (`index`) missä on arvo, jonka tallensit.
+2. **Tilan asettajafunktion** (`setIndex`) joka voi piäivittää tilamuuttujaa ja triggeröidä komponentin uudelleenrenderöinnin.
+
+Tässä miten se tapahtuu toiminnassa:
+
+```js
+const [index, setIndex] = useState(0);
+```
+
+1. **Your component renders the first time.** Koska välitit arvon `0`, `useState`-arvon `index` alkuarvoksi, se palauttaa arvon `[0, setIndex]`. React muistaa, että `0` on viimeisin tila-arvo.
+2. **Päivität tilan.** Kun käyttäjä klikkaa painiketta, se kutsuu `setIndex(index + 1)`. `index` on `0`, joten se on `setIndex(1)`. Tämä käskee Reactia muistamaan, että `index` on nyt `1` ja triggeröimään toisen renderöinnin.
+3. **Komponenttisi toinen renderöinti.** React näkee silti `useState(0)`, mutta koska React *muistaa*, että asetit `index`:n aroon `1`, se palauttaa `[1, setIndex]` kuitenkin.
+4. Ja niin edelleen!
+
+## Useiden tilamuuttujien antaminen komponentille {/*giving-a-component-multiple-state-variables*/}
+
+Voit lisätä niin monta tilamuuttujaa niin monessa eri tyypissä kuin haluat komponentin sisälle. Tällä komponentilla on kaksi tilamuuttujaa, `index` numero sekä `showMore` totuusarvo, jota vaihdetaan kun klikkaat "Show details":
 
 <Sandpack>
 
@@ -516,17 +516,17 @@ button {
 
 </Sandpack>
 
-It is a good idea to have multiple state variables if their state is unrelated, like `index` and `showMore` in this example. But if you find that you often change two state variables together, it might be better to combine them into a single one. For example, if you have a form with many fields, it's more convenient to have a single state variable that holds an object than state variable per field. [Choosing the State Structure](/learn/choosing-the-state-structure) has more tips on this.
+Hyvä idea on tehdä useita tilamuuttujia jos ne eivät liity toisiinsa, kuten `index` ja `showMore` tässä esimerkissä. Mutta jos löydät itsesi usein vaihtamassa kahta tilamuuttujaa yhdessä, saattaa olla parempi vaihtoehto yhdistää ne yhteen. Esimerkiksi, jos sinulla on lomake monilla kentillä, se voi olla kätevää pitää tila yhdessä oliossa ennemin kuin yksi tilamuuttuja per kenttä. [Tilarakenteen päättäminen](/learn/choosing-the-state-structure) -sivulla on enemmän vinkkejä tähän.
 
-<DeepDive title="How does React know which state to return?">
+<DeepDive title="Miten React tietää minkä tilan palauttaa?">
 
-You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
+Olet saattanut huomata, että `useState` kutsu ei vastaanota tietoa siitä *mitä* tilamuuttujaa se vastaa. Ei ole mitään "tunnistetta", joka välitettäisiin `useState`:lle, joten miten se tietää minkä tilamuuttujan palauttaa? Nojaako se johonkin taikaan kuten funktioiden parsimiseen? Ei.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component**. This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+Sen sijaan, mahdollistaakseen niiden tiiviin syntaksin, hookit **turvautuvat vakaaseen kutsujärjestykseen saman komponentin jokaisella renderöinnillä**. Tämä toimii hyvin käytännössä, koska jos seuraat ylhäällä mainittua sääntöä ("kutsu hookkeja vain ylätasossa"), hookit tullaan kutsumaan aina samassa järjestyksessä. Lisäksi, [lintteri-lisäosa](https://www.npmjs.com/package/eslint-plugin-react-hooks) huomaa suurimman osan virheistä.
 
-Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e).
+Sisäisesti, React pitää yllään listan tilamuuttujapareista jokaiselle komponentille. Se pitää yllään myös sen hetkistä indeksiä, joka on asetettu `0`:ksi ennen renderöintiä. Joka kerta kun kutsut `useState`:a, React antaa sinulle seuraavan tilaparin ja kasvattaa indeksiä. Voit lukea lisää tästä mekanismista linkistä: [React Hooks: Not Magic, Just Arrays](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e).
 
-This example **doesn't use React** but it gives you an idea of how `useState` works internally:
+Tämä esimerkki **ei käytä Reactia**, mutta antaa idean siitä miten `useState` toimii sisäisesti:
 
 <Sandpack>
 
@@ -718,15 +718,15 @@ button { display: block; margin-bottom: 10px; }
 
 </Sandpack>
 
-You don't have to understand it to use React, but you might find this a helpful mental model.
+Sinun ei tarvitse ymmärtää tätä käyttääksesi Reactia, mutta saatat kokea sen hyödyllisenä.
 
 </DeepDive>
 
-## State is isolated and private {/*state-is-isolated-and-private*/}
+## Tila on eristetty ja yksityinen {/*state-is-isolated-and-private*/}
 
-State is local to a component instance on the screen. In other words, **if you render the same component twice, each copy will have completely isolated state!** Changing one of them will not affect the other.
+Tila on paikallinen kussakin komponentissa. Toisin sanoen, **jos renderöit saman komponentin kahdesti, kummallakin on niiden oma eristetty tila!** Yhden muuttaminen ei vaikuta toiseen.
 
-In this example, the `Gallery` component from earlier is rendered twice with no changes to its logic. Try clicking the buttons inside each of the galleries. Notice that their state is independent:
+Tässä esimerkissä, aiempi `Gallery` komponetti renderöidään kahdesti ilman muutoksia sen logiikkaan. Kokeile klikata painikkeita kummassakin galleriassa. Huomaat, että niiden tilat ovat itsenäisiä:
 
 <Sandpack>
 
@@ -885,21 +885,21 @@ button {
 
 </Sandpack>
 
-This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
+Tämä tekee tilasta erilaisen kuin tavalliset muuttujat, joita saatat määritellä moduulisi yläosassa. Tilaa ei ole yhdistetty tiettyyn funktiokutsuun tai paikkaan koodissa, mutta se on "paikallinen" siinä kohtaa ruutua. Renderöit kaksi `<Gallery />` komponenttia, joten niiden tila on tallennettu erillään.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it**. The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Huomaa myös kuinka `Page` komponentti ei "tiedä" mitään `Gallery`:n tilasta tai edes onko sillä tilaa. Toisin kuin propsit, **tila on täysin yksityinen komponentille, joka sen määrittelee**. Yläkomponetti ei voi muuttaa sitä. Tämän avulla voit lisätä tilan mihin tahansa komponenttiin tai poistaa sen vaikuttamatta muihin komponentteihin.
 
-What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components](/learn/sharing-state-between-components).
+Entä jos haluaisit molempien gallerioiden pitäbän niiden tilan synkronisoituna? Oikea tapa tehdä tämä Reactissa on *poistamalla* tila alakomponenteista ja listätä se niiden lähimpään jaettuun yläkomponenttiin. Seuraavat muutamat sivut keskittyvät yhden komponentin tilan järjestämiseen , mutta palaamme tähän aiheeseen [Sharing State Between Components](/learn/sharing-state-between-components) -sivulla.
 
 <Recap>
 
-* Use a state variable when a component needs to "remember" some information between renders.
-* State variables are declared by calling the `useState` Hook.
-* Hooks are special functions that start with `use`. They let you "hook into" React features like state.
-* Hooks might remind you of imports: they need to be called unconditionally. Calling Hooks, including `useState`, is only valid at the top level of a component or another Hook.
-* The `useState` Hook returns a pair of values: the current state and the function to update it.
-* You can have more than one state variable. Internally, React matches them up by their order.
-* State is private to the component. If you render it in two places, each copy gets its own state.
+* Käytä tilamuuttujaa kun komponentin täytyy "muistaa" jotain tietoa renderien välillä.
+* Tilamuuttujat määritellään kutsumalla `useState` hookkia.
+* Hookit ovat erityisiä funktioita, jotka alkavat sanalla `use`. Niiden avulla voit "koukata" Reactin toimintoihin kuten tilaan.
+* Hookit saattavat muistuttaa sinua importeista: ne pitää kutsua ilman ehtoja. Hookkien kutsuminen, `useState` mukaanlukien, on sallittua vain komponentin yläosassa tai toisessa hookissa.
+* `useState` hookki palauttaa arvoparin: nykyisen tilan ja funktion jolla päivittää sitä.
+* Voit tehdä useita tilamuuttujia. Sisäisesti, React yhdistää ne järjestyksen perusteella.
+* Tila on yksityistä komponentille. Jos renderöit niitä kahdessa paikassa, kukin saa oman tilan.
 
 </Recap>
 
@@ -907,11 +907,11 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 <Challenges>
 
-### Complete the gallery {/*complete-the-gallery*/}
+### Viimeistele galleria {/*complete-the-gallery*/}
 
-When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
+Kun painat "Next" painiketta viimesellä veistoksella, koodi kaatuu. Korjaa logiikka joka estää kaatumista. Voit tehdä tämän lisäämällä logiikkaa tapahtumakäsittelijään tai poistamalla painikkeen käytöstä kun toimintoa ei ole mahdollista tehdä.
 
-After fixing the crash, add a "Previous" button that shows the previous sculpture. It shouldn't crash on the first sculpture.
+Korjaamisen jälkeen, lisää "Previous" painike, joka näyttää edellisen veistoksen. Sen ei tulisi kaatua ensimmäisessä veistoksessa.
 
 <Sandpack>
 
@@ -1053,7 +1053,7 @@ img { width: 120px; height: 120px; }
 
 <Solution>
 
-This adds a guarding condition inside both event handlers and disables the buttons when needed:
+Tämä lisää suojaavan ehdon molempiin tapahtumakäsittelijöihin sekä poistaa painikkeen käytöstä tarvittaessa:
 
 <Sandpack>
 
@@ -1213,13 +1213,13 @@ img { width: 120px; height: 120px; }
 
 </Sandpack>
 
-Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and inside the event handlers! This handy pattern works because event handler functions ["close over"](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) any variables declared while rendering.
+Huomaa miten `hasPrev` ja `hasNext` ovat käytössä *sekä* palautetussa JSX koodissa että tapahtumakäsittelijöissä! Tämä kätevä tapa toimii koska tapahtumakäsittelijäfunktiot ["sulkevat" (engl. "close over")](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) kaikki määritellyt muuttujat renderöinnin aikana.
 
 </Solution>
 
-### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+### Korjaa lomakkeen tukkiutuneet syöttökentät {/*fix-stuck-form-inputs*/}
 
-When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
+Kun kirjoitat syöttökenttiin, mitään ei tapahdu. Aivan kuin kenttien arvot ovat "jumissa" tyhjillä merkkijonoilla. Ensimmäisen `<input>` elementin `value` on asetettu aina vastaamaan `firstName` muuttujaa ja toisen `<input>` elementin `value` vastaamaan `lastName` muuttujaa. Tämä on tarkoituksenmukaista. Molemmilla kentillä on `onChange` tapahtumakäsittelijä, joka pyrkii päivittämään muuttujia käyttäjän syötteen (`e.target.value`) perusteella. Kuitenkaan, muuttujat eivät näytä "muistavan" niiden arvoja renderöintien välillä. Korjaa tämä käyttämällä tilamuuttujia tavallisten muuttujien sijaan.
 
 <Sandpack>
 
@@ -1268,7 +1268,7 @@ h1 { margin-top: 10px; }
 
 <Solution>
 
-First, import `useState` from React. Then replace `firstName` and `lastName` with state variables declared by calling `useState`. Finally, replace every `firstName = ...` assignment with `setFirstName(...)`, and do the same for `lastName`. Don't forget to update `handleReset` too so that the reset button works.
+Ensiksi, importtaa `useState` Reactista. Sitten korvaa `firstName` ja `lastName` tilamuuttujilla, jotka määritellään kutsumalla `useState` funktiota. Lopuksi, korvaa jokainen `firstName = ...` määrittely `setFirstName(...)` kutsulla, ja tee sama `lastName`:lle. Älä unohda päivittää `handleReset` funktiota myös, jotta reset painike toimii myöskin.
 
 <Sandpack>
 
@@ -1319,13 +1319,13 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-### Fix a crash {/*fix-a-crash*/}
+### Korjaa kaatuminen {/*fix-a-crash*/}
 
-Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
+Tässä on pieni lomake, jonka olisi tarkoitus antaa käyttäjän jättää palautetta. Kun palaute lähetetään, sen olisi tarkoitus näyttää kiitosviesti. Kuitenkin, se kaatuu virheellä "Rendered fewer hooks than expected". Huomaatko virheen ja pystytkö korjaamaan sen?
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules?
+Onko mitään rajoituksia _missä_ hookkeja voidaan kutsua? Rikkooko tämä komponentti mitään sääntöjä?
 
 </Hint>
 
@@ -1363,7 +1363,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition. Move it out of the condition to fix the issue:
+Hookkeja voidaan kutsua vain komponentin ylätasossa. Tässä, ensimmäinen `isSent` määrittely noudattaa tätä sääntöä, mutta `message` määrittely on tehty ehtolauseen sisällä. Siirrä se pois ehtolauseesta korjataksesi ongelman:
 
 <Sandpack>
 
@@ -1398,9 +1398,9 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Remember, Hooks must be called unconditionally and always in the same order!
+Muista, hookit täytyy kutsua ilman ehtoja ja aina samassa järjestyksessä!
 
-You could also remove the unnecessary `else` branch to reduce the nesting. However, it's still important that all calls to Hooks happen *before* the first `return`.
+Voit myös poistaa tarpeettoman `else` haaran sisennyksen vähentämiseksi. Kuitenkin on silti tärkeää, että kaikki kutsut hookkeihin tapahtuvat *ennen* ensimmäistä `return` lausetta.
 
 <Sandpack>
 
@@ -1435,19 +1435,19 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
+Kokeile siirtää toinen `useState` kutsu `if` lauseen jälkeen ja huomaat miten tämä hajoaa uudelleen.
 
-In general, these types of mistakes are caught by the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) linter rule. If you don't see an error when you try the faulty code locally, you need to set it up in your build tooling configuration.
+Tavallisesti [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) lintteri-lisäosa huomaa tämänkaltaiset virheet. Jos et näe virhettä kun kokeilet viallista koodia paikallisesti, sinun täytyy määritellä se käännöstyökaluusi.
 
 </Solution>
 
-### Remove unnecessary state {/*remove-unnecessary-state*/}
+### Poista tarpeeton tila {/*remove-unnecessary-state*/}
 
-When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
+Kun painiketta painetaan, tämän esimerkin tulisi kysyä käyttäjän nimeä ja sitten tervehtiä ilmoituksella. Yritit tallentaa nimen tilaan, mutta jostain syystä se näyttää "Hello, !".
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/troubleshooting-state-updates#setting-state-does-not-update-variables) later.)
+Korjataksesi tämän koodin, poista tarpeeton tilamuuttuja. (Katsotaan myöhemmin [miksi tämä ei toiminut](/learn/troubleshooting-state-updates#setting-state-does-not-update-variables).)
 
-Can you explain why this state variable was unnecessary?
+Pystytkö selittämään miksi tilamuuttuja on tarpeeton?
 
 <Sandpack>
 
@@ -1474,7 +1474,7 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Here is a fixed version that uses a regular `name` variable declared in the function that needs it:
+Tässä on korjattu versio, joka käyttää tavallista `name` muuttujaa määriteltynä funktiossa joka sitä tarvitsee:
 
 <Sandpack>
 
@@ -1497,7 +1497,7 @@ export default function FeedbackForm() {
 
 </Sandpack>
 
-A state variable is only necessary to keep information between re-renders of a component. Within a single event handler, a regular variable will do fine. Don't introduce state variables when a regular variable works well.
+Tilamuuttuja on tarpeellinen pitämään tietoa komponentin renderien välillä. Yksittäisen tapahtumamuuttujan sisällä tavallinen muuttuja riittää. Älä esittele tilamuuttujia kun tavalliset muuttujat toimivat hyvin.
 
 </Solution>
 

@@ -38,8 +38,8 @@
           "path": "/apis/reactdom",
           "routes": [
             {
-              "title": "render()",
-              "path": "/apis/render"
+              "title": "createRoot()",
+              "path": "/apis/createroot"
             }
           ]
         }

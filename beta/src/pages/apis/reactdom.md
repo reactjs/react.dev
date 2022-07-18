@@ -38,12 +38,13 @@ ReactDOM supports all popular browsers, including Internet Explorer 9 and above.
 
 ## Exports {/*exports*/}
 
-<YouWillLearnCard title="render" path="/apis/render">
+<YouWillLearnCard title="createRoot" path="/apis/createroot">
 
-Displays a React component inside a browser DOM node.
+Create a React root for the supplied container and return the root.
 
 ```js
-render(<App />, document.getElementById('root'));
+const root = createRoot(container);
+// ...
 ```
 
 </YouWillLearnCard>

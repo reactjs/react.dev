@@ -646,7 +646,7 @@ If you were to mutate `obj3.artwork.city`, it would affect both `obj2.artwork.ci
 
 ### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
 
-If your state is deeply nested, you might want to consider [flattening it](/learn/choosing-the-state-structure#avoid-deeply-nested-state). But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
+If your state is deeply nested, you might want to consider [flattening it](/learn/choosing-the-state-structure#avoid-deeply-nested-state). But, if you don't want to change your state structure, you might prefer a shortcut to nested spreads. [Immer](https://github.com/immerjs/use-immer) is a popular library that lets you write to immutable data structures using the convenient but mutating syntax and takes care of producing the copies for you. With Immer, the code you write looks like you are "breaking the rules" and mutating an object:
 
 ```js
 updatePerson(draft => {

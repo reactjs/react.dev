@@ -569,10 +569,10 @@ function ChatRoom({ roomId }) {
     }
 
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId, messages]); // ✅ All dependencies declared
@@ -595,10 +595,10 @@ function ChatRoom({ roomId }) {
     }
 
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId]); // ✅ All dependencies declared
@@ -629,10 +629,10 @@ function ChatRoom({ roomId }) {
     }
 
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId]); // 🔴 React Hook useEffect has a missing dependency: 'isMuted'
@@ -664,10 +664,10 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId]); // ✅ All dependencies declared
@@ -693,10 +693,10 @@ function ChatRoom({ roomId, onMessage }) {
 
   useEffect(() => {
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId]); // ✅ All dependencies declared
@@ -1214,10 +1214,10 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId, handleMessage]); // ✅ All dependencies declared
@@ -1248,10 +1248,10 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
     const connection = createConnection(roomId);
-    connection.on('message', handleMessage);
+    connection.addListener('message', handleMessage);
     connection.connect();
     return () => {
-      connection.on('message', handleMessage);
+      connection.removeListener('message', handleMessage);
       connection.disconnect();
     };
   }, [roomId]); // ✅ All dependencies declared

@@ -358,6 +358,98 @@ function Form() {
 
 When you choose whether to put some logic into an event handler or an Effect, the main question you need to answer is _what kind of logic_ it is from the user's perspective. If this logic is caused by a particular interaction, keep it in the event handler. If it's caused by the user _seeing_ the component on the screen, keep it in the Effect.
 
+### Chains of computations {/*chains-of-computations*/}
+
+Sometimes you might feel tempted to chain Effects that each adjust a piece of state based on other state:
+
+```js {7-29}
+function Game() {
+  const [card, setCard] = useState(null);
+  const [goldCardCount, setGoldCardCount] = useState(0);
+  const [round, setRound] = useState(1);
+  const [isGameOver, setIsGameOver] = useState(false);
+
+  // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
+  useEffect(() => {
+    if (card !== null && card.gold) {
+      setGoldCardCount(c => c + 1);
+    }
+  }, [card]);
+
+  useEffect(() => {
+    if (goldCardCount > 3) {
+      setRound(r => r + 1)
+      setGoldCardCount(0);
+    }
+  }, [goldCardCount]);
+
+  useEffect(() => {
+    if (round > 5) {
+      setIsGameOver(true);
+    }
+  }, [round]);
+
+  useEffect(() => {
+    alert('Good game!');
+  }, [isGameOver]);
+
+  function handlePlaceCard(nextCard) {
+    if (isGameOver) {
+      throw Error('Game already ended.');
+    } else {
+      setCard(nextCard);
+    }
+  }
+
+  // ...
+```
+
+There are two problems with this code.
+
+One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+
+Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Code like this is often rigid and fragile.
+
+In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
+
+```js {6-7,14-26}
+function Game() {
+  const [card, setCard] = useState(null);
+  const [goldCardCount, setGoldCardCount] = useState(0);
+  const [round, setRound] = useState(1);
+
+  // ✅ Calculate what you can during rendering
+  const isGameOver = round > 5;
+
+  function handlePlaceCard(nextCard) {
+    if (isGameOver) {
+      throw Error('Game already ended.');
+    }
+
+    // ✅ Calculate all the next state in the event handler
+    setCard(nextCard);
+    if (nextCard.gold) {
+      if (goldCardCount <= 3) {
+        setGoldCardCount(goldCardCount + 1);
+      } else {
+        setGoldCardCount(0);
+        setRound(round + 1);
+        if (round === 5) {
+          alert('Good game!');
+        }
+      }
+    }
+  }
+
+  // ...
+```
+
+This is a lot more efficient. Also, if you implement a way to view game history, now you will be able to set each state variable to a move from the past without triggering the Effect chain that adjusts every other value. If you need to reuse logic between several event handlers, you can [extract a function](#sharing-logic-between-event-handlers) and call it from those handlers.
+
+Remember that inside event handlers, [state behaves like a snapshot](/learn/state-as-a-snapshot). For example, even after you call `setRound(rount + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
+
+In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of each next dropdown depend on the selected value of the previous dropdown. Then, [a chain of Effects fetching data](/learn/adjusting-effect-dependencies#splitting-an-effect-in-two) is appropriate because you are synchronizing with network.
+
 ### Initializing the application {/*initializing-the-application*/}
 
 Some logic should only run once when the app loads. You might place it in an Effect in the top-level component:
@@ -651,7 +743,7 @@ This ensures that when your Effect fetches data, all responses except the last r
 
 Handling race conditions is not the only difficulty with implementing data fetching. You might also want to think about how to cache the responses (so that the user can click Back and see the previous screen instantly instead of a spinner), how to fetch them on the server (so that the initial server-rendered HTML contains the fetched content instead of a spinner), and how to avoid network waterfalls (so that a child component that needs to fetch data doesn't have to wait for every parent above it to finish fetching their data before it can start). **These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#building-with-a-full-featured-framework) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.**
 
-If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting your fetching logic into a custom Hook like in this example:
+If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting [your fetching logic into a custom Hook](/learn/adjusting-effect-dependencies#wrapping-an-effect-into-a-custom-hook) like in this example:
 
 ```js {4}
 function SearchResults({ query }) {
@@ -666,21 +758,21 @@ function SearchResults({ query }) {
 }
 
 function useData(url) {
-  const [result, setResult] = useState(null);
+  const [data, setData] = useState(null);
   useEffect(() => {
     let ignore = false;
     fetch(url)
       .then(response => response.json())
       .then(json => {
         if (!ignore) {
-          setResult(json);
+          setData(json);
         }
       });
     return () => {
       ignore = true;
     };
   }, [url]);
-  return result;
+  return data;
 }
 ```
 

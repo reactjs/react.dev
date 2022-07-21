@@ -170,6 +170,10 @@
             {
               "title": "You Might Not Need an Effect",
               "path": "/learn/you-might-not-need-an-effect"
+            },
+            {
+              "title": "Adjusting Effect Dependencies",
+              "path": "/learn/adjusting-effect-dependencies"
             }
           ]
         }

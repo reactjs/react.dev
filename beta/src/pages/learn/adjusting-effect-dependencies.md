@@ -858,7 +858,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Notice that the `object` is not in the list of dependencies anymore. By moving it outside your component, you have "proven" to React that the `options` object doesn't depend on props, state, or context. In other words, it isn't [reactive](#every-reactive-value-becomes-a-dependency), and so there is no need for your Effect to "react" to it. It doesn't participate in the data flow.
+Notice that `options` is not in the list of dependencies anymore. By moving it outside your component, you have "proven" to React that the `options` object doesn't depend on props, state, or context. In other words, it isn't [reactive](#every-reactive-value-becomes-a-dependency), and so there is no need for your Effect to "react" to it. It doesn't participate in the data flow.
 
 #### Solution 2: Move the object inside the Effect {/*solution-2-move-the-object-inside-the-effect*/}
 

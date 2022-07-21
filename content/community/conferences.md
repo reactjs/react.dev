@@ -21,6 +21,11 @@ September 1-2, 2022 - Remote event
 [Facebook](https://www.facebook.com/reactnativeeu/) - 
 [Instagram](https://www.instagram.com/reactnative_eu/)
 
+### React Day New York
+September 9, 2022 - In person at Brooklyn Bowl, New York
+
+[Website](https://www.reactnewyork.com/) - [Twitter](https://twitter.com/reactnewyork)
+
 ### React Finland 2022 {#react-finland-2022}
 September 12 - 16, 2022. In-person in Helsinki, Finland
 

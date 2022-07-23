@@ -462,13 +462,13 @@ useImperativeHandle(ref, createHandle, [deps])
 
 ```js
 function FancyInput(props, ref) {
-  const inputRef = useRef();
+  const realInputRef = useRef();
   useImperativeHandle(ref, () => ({
     focus: () => {
       inputRef.current.focus();
     }
   }));
-  return <input ref={inputRef} ... />;
+  return <input ref={realInputRef} ... />;
 }
 FancyInput = forwardRef(FancyInput);
 ```

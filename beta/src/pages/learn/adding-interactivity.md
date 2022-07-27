@@ -313,7 +313,7 @@ Read **[State as a Snapshot](/learn/state-as-a-snapshot)** to learn why state ap
 
 </LearnMore>
 
-## Queueing a series of state changes {/*queueing-a-series-of-state-changes*/}
+## Queueing a series of state updates {/*queueing-a-series-of-state-updates*/}
 
 This component is buggy: clicking "+3" increments the score only once.
 
@@ -395,9 +395,9 @@ button { display: inline-block; margin: 10px; font-size: 20px; }
 
 </Sandpack>
 
-<LearnMore path="/learn/queueing-a-series-of-state-changes">
+<LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Read **[Queueing a Series of State Changes](/learn/queueing-a-series-of-state-changes)** to learn how to queue multiple updates before the next render.
+Read **[Queueing a Series of State Updates](/learn/queueing-a-series-of-state-updates)** to learn how to queue multiple updates before the next render.
 
 </LearnMore>
 

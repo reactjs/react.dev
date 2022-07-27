@@ -89,7 +89,7 @@ The core team is monitoring for pull requests. We will review your pull request 
 3. If you've fixed a bug or added code that should be tested, add tests!
 4. Ensure the test suite passes (`yarn test`). Tip: `yarn test --watch TestName` is helpful in development.
 5. Run `yarn test --prod` to test in the production environment.
-6. If you need a debugger, run `yarn debug-test --watch TestName`, open `chrome://inspect`, and press "Inspect".
+6. If you need a debugger, run `yarn test --debug --watch TestName`, open `chrome://inspect`, and press "Inspect".
 7. Format your code with [prettier](https://github.com/prettier/prettier) (`yarn prettier`).
 8. Make sure your code lints (`yarn lint`). Tip: `yarn linc` to only check changed files.
 9. Run the [Flow](https://flowtype.org/) typechecks (`yarn flow`).
@@ -119,7 +119,7 @@ Then, you can run several commands:
 * `yarn test --watch` runs an interactive test watcher.
 * `yarn test --prod` runs tests in the production environment.
 * `yarn test <pattern>` runs tests with matching filenames.
-* `yarn debug-test` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
+* `yarn test --debug` is just like `yarn test` but with a debugger. Open `chrome://inspect` and press "Inspect".
 * `yarn flow` runs the [Flow](https://flowtype.org/) typechecks.
 * `yarn build` creates a `build` folder with all the packages.
 * `yarn build react/index,react-dom/index --type=UMD` creates UMD builds of just React and ReactDOM.

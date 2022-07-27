@@ -206,6 +206,7 @@ export function Preview({
           </div>
         )}
         <LoadingOverlay
+          showOpenInCodeSandbox
           clientId={clientId.current}
           loading={!isReady && iframeComputedHeight === null}
         />

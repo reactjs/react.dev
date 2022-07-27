@@ -41,11 +41,11 @@ export function CustomPreset({
   const {code} = useActiveCode();
   const [isExpanded, setIsExpanded] = React.useState(false);
 
-  const {activePath} = sandpack;
-  if (!lineCountRef.current[activePath]) {
-    lineCountRef.current[activePath] = code.split('\n').length;
+  const {activeFile} = sandpack;
+  if (!lineCountRef.current[activeFile]) {
+    lineCountRef.current[activeFile] = code.split('\n').length;
   }
-  const lineCount = lineCountRef.current[activePath];
+  const lineCount = lineCountRef.current[activeFile];
   const isExpandable = lineCount > 16 || isExpanded;
 
   return (

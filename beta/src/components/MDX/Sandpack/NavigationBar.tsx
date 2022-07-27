@@ -16,7 +16,7 @@ import {FilesDropdown} from './FilesDropdown';
 export function NavigationBar({showDownload}: {showDownload: boolean}) {
   const {sandpack} = useSandpack();
   const [dropdownActive, setDropdownActive] = React.useState(false);
-  const {openPaths, clients} = sandpack;
+  const {visibleFiles, clients} = sandpack;
   const clientId = Object.keys(clients)[0];
   const {refresh} = useSandpackNavigation(clientId);
 
@@ -31,7 +31,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
   }, [dropdownActive]);
 
   React.useEffect(() => {
-    if (openPaths.length > 1) {
+    if (visibleFiles.length > 1) {
       resizeHandler();
       window.addEventListener('resize', resizeHandler);
       return () => {
@@ -39,7 +39,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
       };
     }
     return;
-  }, [openPaths.length, resizeHandler]);
+  }, [visibleFiles.length, resizeHandler]);
 
   const handleReset = () => {
     sandpack.resetAllFiles();

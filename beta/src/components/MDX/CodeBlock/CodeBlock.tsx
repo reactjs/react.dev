@@ -68,6 +68,7 @@ const CodeBlock = function CodeBlock({
   return (
     <div
       className={cn(
+        'sandpack sandpack--codeblock',
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
         !noMargin && 'my-8'
       )}>

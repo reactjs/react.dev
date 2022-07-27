@@ -4,7 +4,11 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
-import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
+import {
+  useSandpack,
+  LoadingOverlay,
+  SandpackStack,
+} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 import {Error} from './Error';
 import {SandpackConsole} from './Console';
@@ -149,8 +153,8 @@ export function Preview({
   // The best way to test it is to actually go through some challenges.
 
   return (
-    <div
-      className={cn('sp-stack', className)}
+    <SandpackStack
+      className={className}
       style={{
         // TODO: clean up this mess.
         ...customStyle,
@@ -212,6 +216,6 @@ export function Preview({
         />
       </div>
       <SandpackConsole />
-    </div>
+    </SandpackStack>
   );
 }

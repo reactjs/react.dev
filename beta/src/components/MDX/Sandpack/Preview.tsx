@@ -14,6 +14,9 @@ import {Error} from './Error';
 import {SandpackConsole} from './Console';
 import type {LintDiagnostic} from './useSandpackLint';
 
+/**
+ * TODO: can we use React.useId?
+ */
 const generateRandomId = (): string =>
   Math.floor(Math.random() * 10000).toString();
 
@@ -176,7 +179,7 @@ export function Preview({
               : isExpanded
               ? 'sticky'
               : undefined,
-            top: isExpanded ? '2rem' : undefined,
+            top: isExpanded ? '4rem' : undefined,
           }}>
           <iframe
             ref={iframeRef}

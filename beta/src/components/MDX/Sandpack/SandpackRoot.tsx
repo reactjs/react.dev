@@ -77,7 +77,7 @@ function SandpackRoot(props: SandpackProps) {
   };
 
   return (
-    <div className="sandpack-container my-8" translate="no">
+    <div className="sandpack sandpack--playground sandbox my-8">
       <SandpackProvider
         template="react"
         files={files}

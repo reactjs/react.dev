@@ -17,6 +17,7 @@ import cn from 'classnames';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
+
 import {useSandpackLint} from './useSandpackLint';
 
 export function CustomPreset({
@@ -50,10 +51,11 @@ export function CustomPreset({
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
         <NavigationBar showDownload={isSingleFile} />
+
         <SandpackLayout
           className={cn(
-            'sp-layout sp-custom-layout',
             showDevTools && devToolsLoaded && 'sp-layout-devtools',
+            !isExpandable && 'rounded-b-lg overflow-hidden',
             isExpanded && 'sp-layout-expanded'
           )}>
           <SandpackCodeEditor
@@ -71,7 +73,7 @@ export function CustomPreset({
           {isExpandable && (
             <button
               translate="yes"
-              className="flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 rounded-t-none p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
+              className="sandpack-expand flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
               onClick={() => {
                 const nextIsExpanded = !isExpanded;
                 flushSync(() => {

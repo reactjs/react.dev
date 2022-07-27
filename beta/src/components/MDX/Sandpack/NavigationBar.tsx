@@ -47,7 +47,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
   };
 
   return (
-    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
+    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg text-lg">
       <div className="px-4 lg:px-6">
         {dropdownActive ? <FilesDropdown /> : <FileTabs />}
       </div>

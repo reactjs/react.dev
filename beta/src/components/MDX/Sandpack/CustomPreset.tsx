@@ -20,9 +20,6 @@ import {Preview} from './Preview';
 import {CustomTheme} from './Themes';
 import {useSandpackLint} from './useSandpackLint';
 
-// Workaround for https://github.com/reactjs/reactjs.org/issues/4686#issuecomment-1137402613.
-const emptyArray: Array<any> = [];
-
 export function CustomPreset({
   isSingleFile,
   showDevTools,
@@ -68,7 +65,6 @@ export function CustomPreset({
               showTabs={false}
               showRunButton={false}
               extensions={lintExtensions}
-              extensionsKeymap={emptyArray}
             />
             <Preview
               className="order-last xl:order-2"
@@ -104,6 +100,7 @@ export function CustomPreset({
           </div>
 
           {showDevTools && (
+            // @ts-ignore TODO(@danilowoz): support devtools
             <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
           )}
         </SandpackThemeProvider>

@@ -67,7 +67,6 @@ const CodeBlock = function CodeBlock({
   const decorators = getDecoratedLineInfo();
   return (
     <div
-      translate="no"
       className={cn(
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
         !noMargin && 'my-8'

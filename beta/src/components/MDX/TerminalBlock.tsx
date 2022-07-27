@@ -47,6 +47,15 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
     }
   }, [copied]);
 
+  async function handleCopyClick() {
+    if (copied) return;
+
+    try {
+      await navigator.clipboard.writeText(message ?? '');
+      setCopied(true);
+    } catch {}
+  }
+
   return (
     <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full">
       <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
@@ -57,10 +66,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
           <div>
             <button
               className="w-full text-left text-primary-dark dark:text-primary-dark "
-              onClick={() => {
-                window.navigator.clipboard.writeText(message ?? '');
-                setCopied(true);
-              }}>
+              onClick={handleCopyClick}>
               <IconCopy className="inline-flex mr-2 self-center" />{' '}
               {copied ? 'Copied' : 'Copy'}
             </button>

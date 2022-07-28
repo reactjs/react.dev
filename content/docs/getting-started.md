@@ -20,7 +20,9 @@ redirect_from:
 
 This page is an overview of the React documentation and related resources.
 
-**React** is a JavaScript library for building user interfaces. Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
+**React** is a one of the greatest JavaScript library for building user interfaces, Where you allow to make UI pages in the form of the components and this components we can call everyone using tag and the name of the compoent this is the magic of react js. React is popular for creating single page applications which means we can directing to any page in the application without reloading the current page.
+
+ Learn what React is all about on [our homepage](/) or [in the tutorial](/tutorial/tutorial.html).
 
 ---
 

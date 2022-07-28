@@ -8,7 +8,7 @@ import {
   useSandpack,
   useActiveCode,
   SandpackCodeEditor,
-  SandpackReactDevTools,
+  // SandpackReactDevTools,
   SandpackLayout,
 } from '@codesandbox/sandpack-react';
 import scrollIntoView from 'scroll-into-view-if-needed';
@@ -98,10 +98,10 @@ export function CustomPreset({
           )}
         </SandpackLayout>
 
-        {showDevTools && (
+        {/* {showDevTools && (
           // @ts-ignore TODO(@danilowoz): support devtools
           <SandpackReactDevTools onLoadModule={onDevToolsLoad} />
-        )}
+        )} */}
       </div>
     </>
   );

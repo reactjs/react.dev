@@ -20,15 +20,15 @@ Imagine that we already have a JSON API and a mock from our designer. The mock l
 
 Our JSON API returns some data that looks like this:
 
-```
+```json
 [
-  {category: "Sporting Goods", price: "$49.99", stocked: true, name: "Football"},
-  {category: "Sporting Goods", price: "$9.99", stocked: true, name: "Baseball"},
-  {category: "Sporting Goods", price: "$29.99", stocked: false, name: "Basketball"},
-  {category: "Electronics", price: "$99.99", stocked: true, name: "iPod Touch"},
-  {category: "Electronics", price: "$399.99", stocked: false, name: "iPhone 5"},
-  {category: "Electronics", price: "$199.99", stocked: true, name: "Nexus 7"}
-];
+    {"category": "Sporting Goods", "price": "$49.99", "stocked": true, "name": "Football"},
+    {"category": "Sporting Goods", "price": "$9.99", "stocked": true, "name": "Baseball"},
+    {"category": "Sporting Goods", "price": "$29.99", "stocked": false, "name": "Basketball"},
+    {"category": "Electronics", "price": "$99.99", "stocked": true, "name": "iPod Touch"},
+    {"category": "Electronics", "price": "$399.99", "stocked": false, "name": "iPhone 5"},
+    {"category": "Electronics", "price": "$199.99", "stocked": true, "name": "Nexus 7"}
+]
 ```
 
 ## Step 1: Break The UI Into A Component Hierarchy {#step-1-break-the-ui-into-a-component-hierarchy}

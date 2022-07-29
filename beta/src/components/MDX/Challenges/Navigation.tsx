@@ -74,9 +74,10 @@ export function Navigation({
 
   React.useEffect(() => {
     handleResize();
-    window.addEventListener('resize', debounce(handleResize, 200));
+    const debouncedHandleResize = debounce(handleResize, 200);
+    window.addEventListener('resize', debouncedHandleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', debouncedHandleResize);
     };
   }, [handleResize]);
 

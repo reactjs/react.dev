@@ -42,6 +42,16 @@
               "path": "/apis/render"
             }
           ]
+        },
+        {
+          "title": "ReactDOM Attributes",
+          "path": "/apis/domattributes",
+          "routes": [
+            {
+              "title": "aria",
+              "path": "/apis/aria"
+            }
+          ]
         }
       ]
     }

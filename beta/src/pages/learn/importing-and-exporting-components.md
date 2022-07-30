@@ -233,7 +233,7 @@ On this page you learned:
 * What a root component file is
 * How to import and export a component
 * When and how to use default and named imports and exports
-* How to export multiple components from the same file
+* How to import and export multiple components from the same file
 
 </Recap>
 

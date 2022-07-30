@@ -119,7 +119,9 @@ const todoItems = todos.map((todo, index) =>
 );
 ```
 
-We don't recommend using indexes for keys if the order of items may change. This can negatively impact performance and may cause issues with component state. Check out Robin Pokorny's article for an [in-depth explanation on the negative impacts of using an index as a key](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318). If you choose not to assign an explicit key to list items then React will default to using indexes as keys.
+We don't recommend using indexes for keys if the order of items may change, or if items can be added to or removed from the array: this can cause issues with component state, leading to elements being rendered in the incorrect order, and to your application displaying incorrect data. (This can happen if such an array is ever filtered, sorted, or has elements added to / removed from it.)
+
+If you choose not to assign an explicit key to list items then React will default to using indexes as keys, though if your specific use case suits using the array index as the item key, it is better to do this explicitly, as it will serve to document this decision in your code, and will avoid linting warnings.
 
 Here is an [in-depth explanation about why keys are necessary](/docs/reconciliation.html#recursing-on-children) if you're interested in learning more.
 

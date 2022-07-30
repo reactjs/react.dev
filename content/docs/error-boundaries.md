@@ -21,6 +21,8 @@ Error boundaries are React components that **catch JavaScript errors anywhere in
 > * Asynchronous code (e.g. `setTimeout` or `requestAnimationFrame` callbacks)
 > * Server side rendering
 > * Errors thrown in the error boundary itself (rather than its children)
+>
+> (!) Error boundaries re-throw errors in react's [development mode](/docs/optimizing-performance.html).
 
 A class component becomes an error boundary if it defines either (or both) of the lifecycle methods [`static getDerivedStateFromError()`](/docs/react-component.html#static-getderivedstatefromerror) or [`componentDidCatch()`](/docs/react-component.html#componentdidcatch). Use `static getDerivedStateFromError()` to render a fallback UI after an error has been thrown. Use `componentDidCatch()` to log error information.
 

@@ -1,4 +1,4 @@
-import core from 'puppeteer-core';
+import core from 'puppeteer';
 let _page;
 import chrome from 'chrome-aws-lambda';
 const exePath =

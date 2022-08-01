@@ -50,6 +50,18 @@
             {
               "title": "aria",
               "path": "/apis/aria"
+            },
+            {
+              "title": "checked",
+              "path": "/apis/checked"
+            },
+            {
+              "title": "className",
+              "path": "/apis/classname"
+            },
+            {
+              "title": "dangerouslySetInnerHTML",
+              "path": "/apis/dangerouslysetinnerhtml"
             }
           ]
         }

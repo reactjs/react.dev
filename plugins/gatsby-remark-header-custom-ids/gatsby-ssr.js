@@ -21,6 +21,7 @@ exports.onRenderBody = ({setHeadComponents}, pluginOptions) => {
       float: left;
       padding-right: 4px;
       margin-left: -20px;
+      visibility: hidden;
     }
     h1 .${className} svg,
     h2 .${className} svg,
@@ -41,7 +42,19 @@ exports.onRenderBody = ({setHeadComponents}, pluginOptions) => {
     h3 .${className}:focus svg,
     h4 .${className}:focus svg,
     h5 .${className}:focus svg,
-    h6 .${className}:focus svg {
+    h6 .${className}:focus svg,
+    h1:hover .${className},
+    h2:hover .${className},
+    h3:hover .${className},
+    h4:hover .${className},
+    h5:hover .${className},
+    h6:hover .${className},
+    h1 .${className}:focus,
+    h2 .${className}:focus,
+    h3 .${className}:focus,
+    h4 .${className}:focus,
+    h5 .${className}:focus,
+    h6 .${className}:focus {
       visibility: visible;
     }
   `;

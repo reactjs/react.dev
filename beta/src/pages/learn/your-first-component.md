@@ -4,7 +4,7 @@ title: Your First Component
 
 <Intro>
 
-Components are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
+*Components* are one of the core concepts of React. They are the foundation upon which you build user interfaces (UI), which makes them the perfect place to start your React journey!
 
 </Intro>
 
@@ -398,7 +398,7 @@ img { margin: 0 10px 10px 0; }
 
 ### Your own component {/*your-own-component*/}
 
-Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component thats shows `<h1>Good job!</h1>`. Don't forget to export it!
+Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
 
 <Sandpack>
 

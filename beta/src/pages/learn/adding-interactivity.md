@@ -4,7 +4,7 @@ title: Adding Interactivity
 
 <Intro>
 
-Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called state. You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
+Some things on the screen update in response to user input. For example, clicking an image gallery switches the active image. In React, data that changes over time is called *state.* You can add state to any component, and update it as needed. In this chapter, you'll learn how to write components that handle interactions, update their state, and display different output over time.
 
 </Intro>
 
@@ -22,7 +22,7 @@ Some things on the screen update in response to user input. For example, clickin
 
 ## Responding to events {/*responding-to-events*/}
 
-React lets you add event handlers to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
+React lets you add *event handlers* to your JSX. Event handlers are your own functions that will be triggered in response to user interactions like clicking, hovering, focusing on form inputs, and so on.
 
 Built-in components like `<button>` only support built-in browser events like `onClick`. However, you can also create your own components, and give their event handler props any application-specific names that you like.
 
@@ -74,9 +74,9 @@ Read **[Responding to Events](/learn/responding-to-events)** to learn how to add
 
 ## State: a component's memory {/*state-a-components-memory*/}
 
-Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called state.
+Components often need to change what's on the screen as a result of an interaction. Typing into the form should update the input field, clicking "next" on an image carousel should change which image is displayed, clicking "buy" puts a product in the shopping cart. Components need to "remember" things: the current input value, the current image, the shopping cart. In React, this kind of component-specific memory is called *state.*
 
-You can add state to a component with a [`useState`](/apis/usestate) Hook. Hooks are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
+You can add state to a component with a [`useState`](/apis/usestate) Hook. *Hooks* are special functions that let your components use React features (state is one of those features). The `useState` Hook lets you declare a state variable. It takes the initial state and returns a pair of values: the current state, and a state setter function that lets you update it.
 
 ```js
 const [index, setIndex] = useState(0);
@@ -235,7 +235,7 @@ Before your components are displayed on the screen, they must be rendered by Rea
 Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
 
 1. **Triggering** a render (delivering the diner's order to the kitchen)
-2. **Rendering** the component (getting the order from the kitchen)
+2. **Rendering** the component (preparing the order in the kitchen)
 3. **Committing** to the DOM (placing the order on the table)
 
 <IllustrationBlock sequential>

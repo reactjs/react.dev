@@ -8,6 +8,12 @@ Use React Developer Tools to inspect React [components](/learn/your-first-compon
 
 </Intro>
 
+<YouWillLearn>
+
+* How to install React Developer Tools
+
+</YouWillLearn>
+
 ## Browser extension {/*browser-extension*/}
 
 The easiest way to debug websites built with React is to install the React Developer Tools browser extension. It is available for several popular browsers:

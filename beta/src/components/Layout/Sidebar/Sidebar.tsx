@@ -42,7 +42,10 @@ export function Sidebar() {
         {isMobileSidebar ? (
           <MobileNav />
         ) : (
-          <SidebarRouteTree routeTree={routeTree} />
+          /* No fallback UI so need to be careful not to suspend directly inside. */
+          <React.Suspense fallback={null}>
+            <SidebarRouteTree routeTree={routeTree} />
+          </React.Suspense>
         )}
       </nav>
       <div className="sticky bottom-0 hidden lg:block">

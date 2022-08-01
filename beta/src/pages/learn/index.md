@@ -21,14 +21,14 @@ Welcome to the React documentation! This page will give you an introduction to t
 
 ## Creating and nesting components {/*components*/}
 
-React apps are made out of components. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
+React apps are made out of *components*. A component is a piece of the UI (user interface) that has its own logic and appearance. A component can be as small as a button, or as large as an entire page.
 
 React components are JavaScript functions that return markup:
 
 ```js
 function MyButton() {
   return (
-    <button>Click me</button>
+    <button>I'm a button</button>
   );
 }
 ```
@@ -56,7 +56,7 @@ Have a look at the result:
 function MyButton() {
   return (
     <button>
-      Click me
+      I'm a button
     </button>
   );
 }
@@ -77,7 +77,7 @@ The `export default` keywords specify the main component in the file. If you're 
 
 ## Writing markup with JSX {/*writing-markup-with-jsx*/}
 
-The markup syntax you've seen above is called JSX. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
+The markup syntax you've seen above is called *JSX*. It is optional, but most React projects use JSX for its convenience. All of the [tools we recommend for local development](/learn/installation) support JSX out of the box.
 
 JSX is stricter than HTML. You have to close tags like `<br />`. Your component also can't return multiple JSX tags. You have to wrap them into a shared parent, like a `<div>...</div>` or an empty `<>...</>` wrapper:
 
@@ -280,7 +280,7 @@ export default function ShoppingList() {
 
 ## Responding to events {/*responding-to-events*/}
 
-You can respond to events by declaring event handler functions inside your components:
+You can respond to events by declaring *event handler* functions inside your components:
 
 ```js {2-4,7}
 function MyButton() {
@@ -382,7 +382,7 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 
 ## Using Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called Hooks. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis). You can also write your own Hooks by combining the existing ones.
+Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis). You can also write your own Hooks by combining the existing ones.
 
 Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to `useState` in a condition or a loop, extract a new component and put it there.
 
@@ -392,15 +392,15 @@ In the previous example, each `MyButton` had its own independent `count`, and wh
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_child" height={734} width={814} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
+<Diagram name="sharing_data_child" height={367} width={407} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. Both MyButton components contain a count with value zero.">
 
-Before clicking, each MyButton has a count value set to zero.
+Initially, each `MyButton`'s `count` state is `0`
 
 </Diagram>
 
-<Diagram name="sharing_data_child_clicked" height={734} width={814} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
+<Diagram name="sharing_data_child_clicked" height={367} width={407} alt="The same diagram as the previous, with the count of the first child MyButton component highlighted indicating a click with the count value incremented to one. The second MyButton component still contains value zero." >
 
-After clicking, only one MyButton count value has updated.
+The first `MyButton` updates its `count` to `1`
 
 </Diagram>
 
@@ -414,15 +414,15 @@ In this example, it is `MyApp`:
 
 <DiagramGroup>
 
-<Diagram name="sharing_data_parent" height={770} width={820} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
+<Diagram name="sharing_data_parent" height={385} width={410} alt="Diagram showing a tree of three components, one parent labeled MyApp and two children labeled MyButton. MyApp contains a count value of zero which is passed down to both of the MyButton components, which also show value zero." >
 
-Before clicking, count is stored in MyApp and passed down to both children as props.
+Initially, `MyApp`'s `count` state is `0` and is passed down to both children
 
 </Diagram>
 
-<Diagram name="sharing_data_parent_clicked" height={770} width={820} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
+<Diagram name="sharing_data_parent_clicked" height={385} width={410} alt="The same diagram as the previous, with the count of the parent MyApp component highlighted indicating a click with the value incremented to one. The flow to both of the children MyButton components is also highlighted, and the count value in each child is set to one indicating the value was passed down." >
 
-After clicking, count updates in MyApp and the new value is passed to both children as props.
+On click, `MyApp` updates its `count` state to `1` and passes it down to both children
 
 </Diagram>
 

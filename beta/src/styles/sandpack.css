@@ -58,6 +58,7 @@ html.dark .sp-wrapper {
 .sp-tabs .sp-tab-button {
   color: #087ea4;
   padding: 0 4px;
+  border-bottom: 2px solid transparent;
 }
 
 html.dark .sp-tabs .sp-tab-button {
@@ -104,6 +105,19 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   line-height: 20px;
   color: #ff3d3d;
 }
+.sp-code-editor .cm-tooltip {
+  border: 0;
+  max-width: 200px;
+}
+html.dark .sp-code-editor .cm-diagnostic {
+  color: var(--sp-colors-bg-default);
+}
+.sp-code-editor .cm-diagnostic-error {
+  @apply border-red-40;
+}
+.sp-code-editor .cm-diagnostic-warning {
+  border-left: 5px solid orange;
+}
 
 /*
  * These are manually adjusted to match the final
@@ -141,6 +155,13 @@ html.dark .sp-tabs .sp-tab-button[data-active='true'] {
   overflow: auto !important;
   padding: 18px 0 !important;
 }
+
+.console .sp-cm,
+.console .sp-cm .cm-scroller,
+.console .sp-cm .cm-line {
+  padding: 0px !important;
+}
+
 .sp-cm .cm-gutters {
   background-color: var(--sp-colors-bg-default);
   z-index: 1;
@@ -301,4 +322,10 @@ html.dark .sp-devtools > div {
   .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
     max-height: unset;
   }
+}
+
+.expandable-callout .sp-stack:nth-child(2) {
+  min-width: 431px;
+  min-height: 40vh;
+  max-height: 40vh;
 }

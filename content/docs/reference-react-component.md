@@ -147,7 +147,7 @@ constructor(props)
 
 The constructor for a React component is called before it is mounted. When implementing the constructor for a `React.Component` subclass, you should call `super(props)` before any other statement. Otherwise, `this.props` will be undefined in the constructor, which can lead to bugs.
 
-Typically, in React constructors are only used for two purposes:
+Typically, in React, constructors are only used for two purposes:
 
 * Initializing [local state](/docs/state-and-lifecycle.html) by assigning an object to `this.state`.
 * Binding [event handler](/docs/handling-events.html) methods to an instance.

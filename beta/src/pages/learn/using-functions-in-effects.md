@@ -34,7 +34,9 @@ const SearchPage = () => {
 };
 ```
 
-The first thing you will encounter is a warning telling you that `useEffect` has a missing dependency `getFetchUrl`. That's because our Effect depends on it but it is not specified in the deps array. If we do not include it, the Effect will not re-run when `query` changes but If we include it, we will run into a problem since our Effect now depends on `getFetchUrl` which is different in each render casuing an infinite loop.
+The first thing you will encounter is a warning telling you that `useEffect` has a missing dependency `getFetchUrl`. That's because our Effect depends on it but it is not specified in the deps array.
+
+If we do not include it, the Effect will not re-run when `query` changes but If we include it, we will run into a problem since our Effect now depends on `getFetchUrl` which is different in each render because on each render our component runs again, therefore, the `getFetchUrl` get created again every render, so including it in the deps array will cause an infinite loop.
 
 ```js {4-7,11}
 const SearchPage = () => {
@@ -96,12 +98,12 @@ const SearchPage = () => {
 };
 ```
 
-The `useCallback` hook takes a function and a dependency array. The purpose of this hook is to return the same function on each render (Perserve its identity) unless one of the dependencies change. To further understand, React will always return the original function but when `query` changes, React will return a different function that captures the new value of `query`. That makes `getFetchUrl` a usable dependency since it only changes when the query changes. 
+The `useCallback` hook takes a function and a dependency array. The purpose of this hook is to prevent the function from changing on each render (Perserving its identity) unless one of the dependencies change. To further understand, React will not change `getFetchUrl` but when `query` changes, React will change `getFetchUrl`. That makes `getFetchUrl` a usable dependency now since it only changes when the query changes. 
 
 To summerize, `getFetchUrl` will only change when `query` changes and when `getFetchUrl` changes our Effect will re-run
 
-<Note>
-the `useCallback` hook is not for optimization. It is for perserving functions' identity. Do not use it everywhere. To unnderstand, ponder at the two examples below.
+<DeepDive title="useCallback is not for optimization">
+the `useCallback` hook is not for optimization. It is for perserving functions' identity. Do not use it everywhere. To unnderstand, ponder at the two examples below:
 
 ```js {4-6}
 const getFetchUrl = useCallback(() => {
@@ -112,6 +114,5 @@ const getFetchUrl = useCallback(() => {
 const getFetchUrl = () => "https://hn.algolia.com/api/v1/search?query=" + query
 const getFetchUrlCallback = useCallback(getFetchUrl, [])
 ```
-They are identical!
-the `getFetchUrl` gets re-created on each render no matter what! Actually the second example does more work so you are better off without useCallback.
-</Note>
+They are identical! The `getFetchUrl` gets re-created on each render no matter what! When using `useCallback`, React just holds on `getFetchUrl` and throws any other instances of it unless one of the dependencies changed. Applying this, the second example does more work so you are better off without `useCallback` in this case.
+</DeepDive>

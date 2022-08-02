@@ -143,7 +143,10 @@ Keyboard focus refers to the current element in the DOM that is selected to acce
 
 <img src="../images/docs/keyboard-focus.png" alt="Blue keyboard focus outline around a selected link." />
 
-Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation.
+Only ever use CSS that removes this outline, for example by setting `outline: 0`, if you are replacing it with another focus outline implementation. It is however possible to provide different styling based on the user's input modality (i.e. mouse clicking and keyboard tabbing) with :focus and :focus-visible pseudo-classes respectively.
+
+- [CSS :focus-visible pseudo-class](https://developer.mozilla.org/en-US/docs/Web/CSS/:focus-visible)
+- [browser compatibility](https://caniuse.com/?search=focus-visible)
 
 ### Mechanisms to skip to desired content {#mechanisms-to-skip-to-desired-content}
 

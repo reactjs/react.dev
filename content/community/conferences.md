@@ -39,7 +39,7 @@ September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid ev
 ### React Brussels 2022 {#react-brussels-2022} 
 October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
 
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6805708233819336704/) - [Facebook](https://www.facebook.com/events/756038281737514) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
 
 ### React Advanced 2022 {#react-advanced-2022}
 October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)

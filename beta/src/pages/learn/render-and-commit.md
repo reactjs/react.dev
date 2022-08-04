@@ -1,44 +1,58 @@
 ---
-title: Render and Commit
+title: Renderöi ja kommitoi
 ---
 
 <Intro>
 
-Before your components are displayed on screen, they must be rendered by React. Understanding the steps in this process will help you think about how your code executes and explain its behavior.
+Ennen kuin komponenttisi näkyvät ruudulla, Reactin näytyy renderöidä ne. Tämän
+prosessin vaiheiden ymmärtäminen auttaa sinua miettimään miten koodisi suoritetaan ja
+selittämään sen käyttäytymistä.
 
 </Intro>
 
 <YouWillLearn>
 
-* What rendering means in React
-* When and why React renders a component
-* The steps involved in displaying a component on screen
-* Why rendering does not always produce a DOM update
+- Mitä renderöinti tarkoittaa Reactissa
+- Milloin ja miksi React renderöi komponentin
+- Vaaditut vaiheet komponentin näyttämiseksi näytöllä
+- Miksi renderöinti ei aina tuota DOM päivitystä
 
 </YouWillLearn>
 
-Imagine that your components are cooks in the kitchen, assembling tasty dishes from ingredients. In this scenario, React is the waiter who puts in requests from customers and brings them their orders. This process of requesting and serving UI has three steps:
+Kuvittele, että komponenttisi ovat kokkeja keittiössä kasaamassa maukkaita ruokia raaka-aineista. Tässä skenaariossa React on tarjoilija, joka tuo ja vie asiakkaiden tilaukset. Tässä käyttöliittymän pyyntö- ja käyttöprosessissa on kolme vaihetta:
 
-1. **Triggering** a render (delivering the guest's order to the kitchen)
-2. **Rendering** the component (preparing the order in the kitchen)
-3. **Committing** to the DOM (placing the order on the table)
+1. **Triggeröidä** renderöinti (tuoda vierailijan tilaus keittiölle)
+2. **Renderöidä** komponentti (tilauksen valmistelu keittiössä)
+3. **Kommitoida** DOM:iin (tilauksen asettaminen pöydälle)
 
 <IllustrationBlock sequential>
-  <Illustration caption="Trigger" alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen." src="/images/docs/illustrations/i_render-and-commit1.png" />
-  <Illustration caption="Render" alt="The Card Chef gives React a fresh Card component." src="/images/docs/illustrations/i_render-and-commit2.png" />
-  <Illustration caption="Commit" alt="React delivers the Card to the user at their table." src="/images/docs/illustrations/i_render-and-commit3.png" />
+  <Illustration
+    caption="Trigger"
+    alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen."
+    src="/images/docs/illustrations/i_render-and-commit1.png"
+  />
+  <Illustration
+    caption="Render"
+    alt="The Card Chef gives React a fresh Card component."
+    src="/images/docs/illustrations/i_render-and-commit2.png"
+  />
+  <Illustration
+    caption="Commit"
+    alt="React delivers the Card to the user at their table."
+    src="/images/docs/illustrations/i_render-and-commit3.png"
+  />
 </IllustrationBlock>
 
-## Step 1: Trigger a render {/*step-1-trigger-a-render*/}
+## 1. Vaihe: Triggeröi renderöinti {/* step-1-trigger-a-render */}
 
-There are two reasons for a component to render:
+On kaksi syytä miksi komponentti renderöidään:
 
-1. It's the component's **initial render.**
-2. The component's **state has been updated.**
+1. Se on komponentin **ensimmäinen renderöinti.**
+2. Komponentin **tila on päivittynyt.**
 
-### Initial render {/*initial-render*/}
+### Ensimmäinen renderöinti {/* initial-render */}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling `ReactDOM.render` with your root component and the target DOM node:
+Kun sovelluksesi käynnistyy, sinun täytyy triggeröidä ensimmäinen renderöinti. Ohjelmistokehykset ja hiekkalaatikot usein piilottavat tämän koodin, mutta se tehdään kutsumalla `ReactDOM.render` juurikomponenttisi ja kohde DOM-node:n kanssa:
 
 <Sandpack>
 
@@ -46,10 +60,7 @@ When your app starts, you need to trigger the initial render. Frameworks and san
 import Image from './Image.js';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <Image />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Image />, document.getElementById('root'));
 ```
 
 ```js Image.js
@@ -65,28 +76,40 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `ReactDOM.render` call and see the component disappear!
+Kokeile kommentoida `ReactDOM.render` kutsu ja näet komponentin katoavan!
 
-### Re-renders when state updates {/*re-renders-when-state-updates*/}
+### Uudelleenrenderöityy tilan päivittyessä {/* re-renders-when-state-updates */}
 
-Once the component has been initially rendered, you can trigger further renders by updating its state with the [`set` function](/apis/usestate#setstate). Updating your component's state automatically queues a render. (You can imagine these as a restaurant guest ordering tea, dessert, and all sorts of things after putting in their first order, depending on the state of their thirst or hunger.)
+Kun komponentti on renderöity aluksi, voit triggeröidä uusia renderöintejä päivittämällä sen tilaa [`set` funktiolla](/apis/usestate#setstate). Komponentin tilan päivittäminen automaattisesti lisää renderöinnin jonoon. (Voit kuvitella tätä ravintolan vieraana tilaamassa teetä, jälkiruokaa, ja kaikkea muuta alkuperäisen tilauksen jälkeen, janon tai nälän tilasta riippuen.)
 
 <IllustrationBlock sequential>
-  <Illustration caption="State update..." alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!" src="/images/docs/illustrations/i_rerender1.png" />
-  <Illustration caption="...triggers..." alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card." src="/images/docs/illustrations/i_rerender2.png" />
-  <Illustration caption="...render!" alt="The Card Chef gives React the pink Card." src="/images/docs/illustrations/i_rerender3.png" />
+  <Illustration
+    caption="State update..."
+    alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!"
+    src="/images/docs/illustrations/i_rerender1.png"
+  />
+  <Illustration
+    caption="...triggers..."
+    alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card."
+    src="/images/docs/illustrations/i_rerender2.png"
+  />
+  <Illustration
+    caption="...render!"
+    alt="The Card Chef gives React the pink Card."
+    src="/images/docs/illustrations/i_rerender3.png"
+  />
 </IllustrationBlock>
 
-## Step 2: React renders your components {/*step-2-react-renders-your-components*/}
+## 2. Vaihe: React renderöi komponenttisi {/* step-2-react-renders-your-components */}
 
-After you trigger a render, React calls your components to figure out what to display on screen. **"Rendering" is React calling your components.**
+Sen jälkeen kun olet triggeröinyt renderin, React kutsuu komponenttejasi päätelläkseen mitä näyttää ruudulla. **"Renderöinti" on React kutsumassa komponenttejasi.**
 
-* **On initial render,** React will call the root component.
-* **For subsequent renders,** React will call the function component whose state update triggered the render.
+- **Ensimmäisen renderöinnin** yhteydessä React kutsuu juurikomponenttiasi.
+- **Seuraavissa renderöinneissä** React kutsuu komponenttia, jonka tila triggeröi renderöinnin.
 
-This process is recursive: if the updated component returns some other component, React will render _that_ component next, and if that component also returns something, it will render _that_ component next, and so on. The process will continue until there are no more nested components and React knows exactly what should be displayed on screen.
+Tämä prosessi on rekursiivinen: jos päivitetty komponentti palauttaa jonkin toisen komponentin, React kutsuu _sen_ komponentin seuraavaksi, ja jos se komponentti myös palauttaa jotain, se renderöi _sen_ komponentin seuraavaksi, ja niin edelleen. Tämä prosessi jatkuu kunnes ei ole enempää sisennettyjä komponentteja ja React tietää tarkalleen mitä ruudulla tulisi näkyä.
 
-In the following example, React will call `Gallery()` and  `Image()` several times:
+Seuraavassa esimerkissä, React kutsuu `Gallery()` ja `Image()` komponentteja useita kertoja:
 
 <Sandpack>
 
@@ -116,51 +139,50 @@ function Image() {
 import Gallery from './Gallery.js';
 import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <Gallery />,
-  document.getElementById('root')
-);
+ReactDOM.render(<Gallery />, document.getElementById('root'));
 ```
 
 ```css
-img { margin: 0 10px 10px 0; }
+img {
+  margin: 0 10px 10px 0;
+}
 ```
 
 </Sandpack>
 
-* **During the initial render,** React will [create the DOM nodes](https://developer.mozilla.org/docs/Web/API/Document/createElement) for `<section>`, `<h1>`, and three `<img>` tags. 
-* **During a re-render,** React will calculate which of their properties, if any, have changed since the previous render. It won't do anything with that information until the next step, the commit phase.
+- **Ensimmäisen renderöinnin aikana** React [luo DOM nodet](https://developer.mozilla.org/docs/Web/API/Document/createElement) `<section>`, `<h1>`, ja kolmelle `<img>` tagille.
+- **Uudelleenrenderöinnin aikana,** React laskee mitkä niiden propertyistä, jos mitkään, ovat muuttuneet sitten aiemman renderöinnin. Se ei tee näillä tiedoilla mitään ennen seuraavaa commit-vaihetta.
 
 <Gotcha>
 
-Rendering must always be a [pure calculation](/learn/keeping-components-pure):
+Renderöinnin on oltava aina [puhdas laskelma](/learn/keeping-components-pure):
 
-* **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. (When someone orders a salad with tomatoes, they should not receive a salad with onions!)
-* **Mind its own business.** It should not change any objects or variables that existed before rendering. (One order should not change anyone else's order.)
+- **Samat sisääntulot, samat ulostulot.** Annettaen samat lähtötiedot, puhtaan funktion tulisi aina palauttaa sama lopputulos. (Kun joku tilaa salaatin tomaateilla, sen ei tulisi saada salaatti sipulilla!)
+- **Huolehtii omista asioistaan.** Se ei muuta yhtään oliota tai muuttujaa joka oli olemassa ennen kuin se renderöitiin. (Toisen tilaus ei pitäisi muuttaa kenenkään muun tilausta.)
 
-Otherwise, you can encounter confusing bugs and unpredictable behavior as your codebase grows in complexity. When developing in "Strict Mode," React calls each component's function twice, which can help surface mistakes caused by impure functions.
+Muutoin saatat kohdata hämmentäviä bugeja ja arvaamatonta käyttäytymistä kun koodipohjasi monimutkaisuuden kasvaessa. Kehittäessä "Strict Modessa," React kutsuu jokaisen komponentin funktiota kahdesti, joka nostaa pintaan epäpuhtaiden funktioiden virheitä.
 
 </Gotcha>
 
-<DeepDive title="Optimizing performance">
+<DeepDive title="Tehokkuuden optimointi">
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](/learn/performance) section. **Don't optimize prematurely!**
+Päivitetyn komponentin sisäkkäisten komponenttien renderöinti oletuksena ei ole optimaalinen suorituskyvyn kannalta, jos päivittynyt komoponentti on todella korkealla puussa. Jos törmäät ongelmiin suorituskyvyssä, on useita tapoja ratkaista niitä jälkeenpäin. Näitä käydään läpi [Suorituskyky](/learn/performance) osiossa. **Älä optimoi ennenaikaisesti!**
 
 </DeepDive>
 
-## Step 3: React commits changes to the DOM {/*step-3-react-commits-changes-to-the-dom*/}
+## 3. Vaihe: React committaa muutokset DOM:iin {/* step-3-react-commits-changes-to-the-dom */}
 
-After rendering (calling) your components, React will modify the DOM. 
+Komponenttisi renderöinnin (kutsumisen) jälkeen React muuttaa DOM:ia.
 
-* **For the initial render,** React will use the [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API to put all the DOM nodes it has created on screen. 
-* **For re-renders,** React will apply the minimal necessary operations (calculated while rendering!) to make the DOM match the latest rendering output.
+- **Ensimmäisen renderöinnin jälkeen** React käyttää [`appendChild()`](https://developer.mozilla.org/docs/Web/API/Node/appendChild) DOM API:a asettaakseen luomansa DOM nodet ruudulle.
+- **Uudelleenrenderöinteihin** React käyttää minimaalisen verran vaadittuja operaatioita (jotka lasketaan renderöinnin aikana!), jotta DOM vastaa viimeisintä renderöintitulosta.
 
-**React only changes the DOM nodes if there's a difference between renders.** For example, here is a component that re-renders with different props passed from its parent every second. Notice how you can add some text into the `<input>`, updating its `value`, but the text doesn't disappear when the component re-renders:
+**React muuttaa DOM nodeja vain jos renderöintien välissä on eroja.** Esimerkiksi, tässä on komponentti, joka uudelleenrenderöityy eri propseilla joka sekunti. Huomaa miten voit lisätä tekstiä `<input>` kenttään, päivittäen sen `value`:ta, mutta teksti ei poistu kun komponentti uudelleenrenderöityy:
 
 <Sandpack>
 
 ```js Clock.js active
-export default function Clock({ time }) {
+export default function Clock({time}) {
   return (
     <>
       <h1>{time}</h1>
@@ -171,7 +193,7 @@ export default function Clock({ time }) {
 ```
 
 ```js App.js hidden
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import Clock from './Clock.js';
 
 function useTime() {
@@ -187,29 +209,30 @@ function useTime() {
 
 export default function App() {
   const time = useTime();
-  return (
-    <Clock time={time.toLocaleTimeString()} />
-  );
+  return <Clock time={time.toLocaleTimeString()} />;
 }
 ```
 
 </Sandpack>
 
-This works because during this last step, React only updates the content of `<h1>` with the new `time`. It sees that the `<input>` appears in the JSX in the same place as last time, so React doesn't touch the `<input>`—or its `value`!
-## Epilogue: Browser paint {/*epilogue-browser-paint*/}
+Tämä toimii koska viimeisen vaiheen aikana, React päivittää vain `<h1>` tagin sisällön `time`:n arvolla. Se näkee, että `<input>` JSX:ssä on samassa paikassa kuin viimeksi, joten React ei koske `<input>` kenttään tai sen `value`:n!
 
-After rendering is done and React updated the DOM, the browser will repaint the screen. Although this process is known as "browser rendering", we'll refer to it as "painting" to avoid confusion in the rest of these docs.
+## Epilogi: Selaimen maalaus {/* epilogue-browser-paint */}
 
-<Illustration alt="A browser painting 'still life with card element'." src="/images/docs/illustrations/i_browser-paint.png" />
+Kun renderöinti on valmis ja React on päivittänyt DOM:in, selain uudelleenmaalaa ruudun. Vaikka tämä prosessi tunnetaan "selaimen renderöintinä", viittaamme siihen "maalaamisena" sekaannuksien välttämiseksi tässä dokumentaatiossa.
+
+<Illustration
+  alt="A browser painting 'still life with card element'."
+  src="/images/docs/illustrations/i_browser-paint.png"
+/>
 
 <Recap>
 
-* Any screen update in a React app happens in three steps:
-  1. Trigger
-  2. Render
+- Mikä tahansa ruudunpäivitys React sovelluksessa tapahtuu kolmessa vaiheessa:
+  1. Triggeröinti
+  2. Renderöinti
   3. Commit
-* You can use Strict Mode to find mistakes in your components
-* React does not touch the DOM if the rendering result is the same as last time
+- Voit käyttää Strict Modea löytääksesi virheitä komponenteistasi
+- React ei koske DOM:iin jos renderöinnin tulos on sama kuin viimeksi
 
 </Recap>
-

@@ -71,11 +71,14 @@ html.dark .sp-wrapper {
   width: 100%;
 }
 .sandpack .sp-layout {
-  overflow: hidden;
+  overflow: visible;
   -webkit-mask-image: -webkit-radial-gradient(
     var(--sp-colors-surface1),
     var(--sp-colors-surface1)
   ); /* safest way to make all corner rounded */
+
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
 }
 .sandpack .sp-layout > .sp-stack {
   flex: 1 1 0px;

@@ -1,3 +1,0 @@
----
-title: 'Removing Effect Dependencies'
----

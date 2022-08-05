@@ -170,6 +170,10 @@
             {
               "title": "You Might Not Need an Effect",
               "path": "/learn/you-might-not-need-an-effect"
+            },
+            {
+              "title": "Lifecycle of Reactive Effects",
+              "path": "/learn/lifecycle-of-reactive-effects"
             }
           ]
         }

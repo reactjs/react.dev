@@ -448,7 +448,7 @@ This is a lot more efficient. Also, if you implement a way to view game history,
 
 Remember that inside event handlers, [state behaves like a snapshot](/learn/state-as-a-snapshot). For example, even after you call `setRound(rount + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
 
-In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of each next dropdown depend on the selected value of the previous dropdown. Then, [a chain of Effects fetching data](/learn/adjusting-effect-dependencies#splitting-an-effect-in-two) is appropriate because you are synchronizing with network.
+In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of each next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects fetching data is appropriate because you are synchronizing with network.
 
 ### Initializing the application {/*initializing-the-application*/}
 
@@ -743,7 +743,7 @@ This ensures that when your Effect fetches data, all responses except the last r
 
 Handling race conditions is not the only difficulty with implementing data fetching. You might also want to think about how to cache the responses (so that the user can click Back and see the previous screen instantly instead of a spinner), how to fetch them on the server (so that the initial server-rendered HTML contains the fetched content instead of a spinner), and how to avoid network waterfalls (so that a child component that needs to fetch data doesn't have to wait for every parent above it to finish fetching their data before it can start). **These issues apply to any UI library, not just React. Solving them is not trivial, which is why modern [frameworks](/learn/start-a-new-react-project#building-with-a-full-featured-framework) provide more efficient built-in data fetching mechanisms than writing Effects directly in your components.**
 
-If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting [your fetching logic into a custom Hook](/learn/adjusting-effect-dependencies#wrapping-an-effect-into-a-custom-hook) like in this example:
+If you don't use a framework (and don't want to build your own) but would like to make data fetching from Effects more ergonomic, consider extracting your fetching logic into a custom Hook like in this example:
 
 ```js {4}
 function SearchResults({ query }) {

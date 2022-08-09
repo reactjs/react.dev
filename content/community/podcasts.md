@@ -26,5 +26,6 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 
 - [CodeWinds Episode 4](https://codewinds.com/podcast/004.html) - Pete Hunt talks with Jeff Barczewski about React.
 
+- [Fundamentals of ReactJS](https://podtail.com/podcast/tea-n-tech/fundamentals-of-reactjs) - Chinthaka Dasanayak talks about Essential concepts that every developer should know in ReactJS.
 
 - [JavaScript Jabber 73](https://devchat.tv/js-jabber/073-jsj-react-with-pete-hunt-and-jordan-walke) - Pete Hunt and Jordan Walke talk about React.

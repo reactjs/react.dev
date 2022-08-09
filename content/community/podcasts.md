@@ -21,6 +21,7 @@ Podcasts dedicated to React and individual podcast episodes with React discussio
 - [React Wednesdays](https://www.telerik.com/react-wednesdays) - Weekly live streams with the best and brightest in the React world
 
 - [The React Native Show](https://callstack.com/podcast-react-native-show) - Discuss everything React Native, hosted by [Callstack](https://callstack.com/?utm_campaign=Podcast&utm_source=reactjs_org&utm_medium=community_podcasts)
+- [The 20MinJS Podcast](https://podcast.20minjs.com/) - JavaScript focused podcast with weekly interview to members and developers of the JavaScript community. 
 
 ## Episodes {#episodes}
 

@@ -7,7 +7,7 @@
 import * as React from 'react';
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconNavArrow} from 'components/Icon';
 import Link from 'next/link';
 import {useIsMobile} from '../useMediaQuery';
 

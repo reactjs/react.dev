@@ -14,7 +14,7 @@ import {
 import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 
-import {IconChevron} from 'components/Icon/IconChevron';
+import {IconChevron} from 'components/Icon';
 import {NavigationBar} from './NavigationBar';
 import {Preview} from './Preview';
 import {CustomTheme} from './Themes';

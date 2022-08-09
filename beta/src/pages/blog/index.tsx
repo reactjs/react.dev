@@ -1,6 +1,6 @@
 import blogIndexRecentRouteTree from 'blogIndexRecent.json';
 import {ExternalLink} from 'components/ExternalLink';
-import {IconRss} from 'components/Icon/IconRss';
+import {IconRss} from 'components/Icon';
 import {Page} from 'components/Layout/Page';
 import styles from 'components/MDX/MDXComponents.module.css';
 import {Seo} from 'components/Seo';

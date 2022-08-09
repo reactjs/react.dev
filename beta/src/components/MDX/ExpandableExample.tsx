@@ -4,9 +4,9 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {IconChevron} from '../Icon/IconChevron';
-import {IconDeepDive} from '../Icon/IconDeepDive';
-import {IconCodeBlock} from '../Icon/IconCodeBlock';
+import {IconChevron} from '../Icon';
+import {IconDeepDive} from '../Icon';
+import {IconCodeBlock} from '../Icon';
 import {Button} from '../Button';
 
 interface ExpandableExampleProps {

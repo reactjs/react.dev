@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import {useSandpack} from '@codesandbox/sandpack-react';
-import {IconDownload} from '../../Icon/IconDownload';
+import {IconDownload} from '../../Icon';
 export interface DownloadButtonProps {}
 
 let supportsImportMap: boolean | void;

@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {IconChevron} from '../../Icon/IconChevron';
+import {IconChevron} from '../../Icon';
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {Listbox} from '@headlessui/react';
 

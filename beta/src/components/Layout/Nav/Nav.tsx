@@ -7,8 +7,8 @@ import cn from 'classnames';
 import NextLink from 'next/link';
 import {useRouter} from 'next/router';
 
-import {IconClose} from 'components/Icon/IconClose';
-import {IconHamburger} from 'components/Icon/IconHamburger';
+import {IconClose} from 'components/Icon';
+import {IconHamburger} from 'components/Icon';
 import {Search} from 'components/Search';
 import {MenuContext} from 'components/useMenu';
 

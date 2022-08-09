@@ -4,8 +4,8 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {IconWarning} from '../Icon/IconWarning';
-import {IconError} from '../Icon/IconError';
+import {IconWarning} from '../Icon';
+import {IconError} from '../Icon';
 
 type LogLevel = 'info' | 'warning' | 'error';
 

@@ -6,7 +6,7 @@ import NextLink from 'next/link';
 import * as React from 'react';
 import cn from 'classnames';
 import {removeFromLast} from 'utils/removeFromLast';
-import {IconNavArrow} from './Icon/IconNavArrow';
+import {IconNavArrow} from './Icon';
 import {RouteMeta} from './Layout/useRouteMeta';
 
 export type DocsPageFooterProps = Pick<

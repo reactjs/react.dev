@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import ButtonLink from 'components/ButtonLink';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconNavArrow} from 'components/Icon';
 
 interface YouWillLearnCardProps {
   title: string;

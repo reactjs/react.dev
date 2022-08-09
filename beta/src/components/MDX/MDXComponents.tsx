@@ -25,7 +25,7 @@ import SimpleCallout from './SimpleCallout';
 import TerminalBlock from './TerminalBlock';
 import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
-import {IconNavArrow} from '../Icon/IconNavArrow';
+import {IconNavArrow} from '../Icon';
 import ButtonLink from 'components/ButtonLink';
 
 function CodeStep({children, step}: {children: any; step: number}) {

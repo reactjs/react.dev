@@ -3,7 +3,7 @@
  */
 
 // @ts-ignore
-import {IconSearch} from 'components/Icon/IconSearch';
+import {IconSearch} from 'components/Icon';
 import Head from 'next/head';
 import Link from 'next/link';
 import Router from 'next/router';

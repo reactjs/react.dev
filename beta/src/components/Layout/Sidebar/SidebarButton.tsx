@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {IconNavArrow} from 'components/Icon/IconNavArrow';
+import {IconNavArrow} from 'components/Icon';
 
 interface SidebarButtonProps {
   title: string;

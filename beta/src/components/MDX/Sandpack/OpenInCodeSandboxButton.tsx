@@ -4,7 +4,7 @@
 
 import * as React from 'react';
 import {UnstyledOpenInCodeSandboxButton} from '@codesandbox/sandpack-react';
-import {IconNewPage} from '../../Icon/IconNewPage';
+import {IconNewPage} from '../../Icon';
 
 export const OpenInCodeSandboxButton = () => {
   return (

@@ -4,8 +4,8 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {IconNote} from '../Icon/IconNote';
-import {IconGotcha} from '../Icon/IconGotcha';
+import {IconNote} from '../Icon';
+import {IconGotcha} from '../Icon';
 
 type CalloutVariants = 'gotcha' | 'note';
 

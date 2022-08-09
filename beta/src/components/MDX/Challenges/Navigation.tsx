@@ -4,7 +4,7 @@
 
 import React, {createRef} from 'react';
 import cn from 'classnames';
-import {IconChevron} from 'components/Icon/IconChevron';
+import {IconChevron} from 'components/Icon';
 import {ChallengeContents} from './Challenges';
 import {debounce} from 'debounce';
 

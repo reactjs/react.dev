@@ -3,7 +3,7 @@
  */
 
 import * as React from 'react';
-import {IconRestart} from '../../Icon/IconRestart';
+import {IconRestart} from '../../Icon';
 export interface ResetButtonProps {
   onReset: () => void;
 }

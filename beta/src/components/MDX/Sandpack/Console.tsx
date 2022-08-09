@@ -3,7 +3,7 @@
  */
 import cn from 'classnames';
 import * as React from 'react';
-import {IconChevron} from 'components/Icon/IconChevron';
+import {IconChevron} from 'components/Icon';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
 import type {SandpackMessageConsoleMethods} from '@codesandbox/sandpack-client';

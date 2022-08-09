@@ -8,9 +8,9 @@ import {Button} from 'components/Button';
 import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Navigation} from './Navigation';
-import {IconHint} from '../../Icon/IconHint';
-import {IconSolution} from '../../Icon/IconSolution';
-import {IconArrowSmall} from '../../Icon/IconArrowSmall';
+import {IconHint} from '../../Icon';
+import {IconSolution} from '../../Icon';
+import {IconArrowSmall} from '../../Icon';
 
 interface ChallengesProps {
   children: React.ReactElement[];

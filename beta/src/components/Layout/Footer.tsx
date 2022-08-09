@@ -6,8 +6,8 @@ import * as React from 'react';
 import NextLink from 'next/link';
 import cn from 'classnames';
 import {ExternalLink} from 'components/ExternalLink';
-import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
-import {IconTwitter} from 'components/Icon/IconTwitter';
+import {IconFacebookCircle} from 'components/Icon';
+import {IconTwitter} from 'components/Icon';
 
 export function Footer() {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';

@@ -2042,7 +2042,6 @@ const initialItems = [
 ];
 
 export default function TravelPlan() {
-  const [title, setTitle] = useState('');
   const [items, setItems] = useState(initialItems);
   const [total, setTotal] = useState(3);
   const [packed, setPacked] = useState(1);
@@ -2182,7 +2181,6 @@ const initialItems = [
 ];
 
 export default function TravelPlan() {
-  const [title, setTitle] = useState('');
   const [items, setItems] = useState(initialItems);
 
   const total = items.length;

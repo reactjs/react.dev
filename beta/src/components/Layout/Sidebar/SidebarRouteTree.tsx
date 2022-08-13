@@ -12,6 +12,7 @@ import {SidebarLink} from './SidebarLink';
 import useCollapse from 'react-collapsed';
 import {useLayoutEffect} from 'react';
 import usePendingRoute from 'hooks/usePendingRoute';
+import {isBrowser} from 'utils/isBrowser';
 
 interface SidebarRouteTreeProps {
   isMobile?: boolean;
@@ -37,7 +38,7 @@ function CollapseWrapper({
 
   // Disable pointer events while animating.
   const isExpandedRef = React.useRef(isExpanded);
-  if (typeof window !== 'undefined') {
+  if (isBrowser()) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {
       const wasExpanded = isExpandedRef.current;

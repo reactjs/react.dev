@@ -6,6 +6,7 @@ import * as React from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {ga} from '../utils/analytics';
+import {isBrowser} from 'utils/isBrowser';
 import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
@@ -16,7 +17,7 @@ const EmptyAppShell = ({children}: {children: React.ReactNode}) => (
   <>{children}</>
 );
 
-if (typeof window !== 'undefined') {
+if (isBrowser()) {
   if (process.env.NODE_ENV === 'production') {
     ga('create', process.env.NEXT_PUBLIC_GA_TRACKING_ID, 'auto');
   }

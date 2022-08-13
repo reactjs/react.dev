@@ -21,7 +21,7 @@ var update = require('react-addons-update'); // ES5 with npm
 
 React lets you use whatever style of data management you want, including mutation. However, if you can use immutable data in performance-critical parts of your application it's easy to implement a fast [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate) method to significantly speed up your app.
 
-Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like [Clojure](https://clojure.org/). However, we've provided a simple immutability helper, `update()`, that makes dealing with this type of data much easier, *without* fundamentally changing how your data is represented. You can also take a look at Facebook's [Immutable-js](https://facebook.github.io/immutable-js/docs/) and the [Advanced Performance](/docs/advanced-performance.html) section for more detail on Immutable-js.
+Dealing with immutable data in JavaScript is more difficult than in languages designed for it, like [Clojure](https://clojure.org/). However, we've provided a simple immutability helper, `update()`, that makes dealing with this type of data much easier, *without* fundamentally changing how your data is represented. You can also take a look at Facebook's [Immutable-js](https://immutable-js.com/docs/latest@main/) and the [Advanced Performance](/docs/advanced-performance.html) section for more detail on Immutable-js.
 
 ### The Main Idea {#the-main-idea}
 

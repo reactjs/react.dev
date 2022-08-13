@@ -142,6 +142,13 @@ const Language = ({code, name, status, translatedName}) => {
         {status > 0 && (
           <a
             href={`https://${prefix}reactjs.org/`}
+            onClick={(e) => {
+              e.preventDefault();
+              history.back();
+              setTimeout(() => {
+                location.host = `${prefix}reactjs.org`;
+              }, 100);
+            }}
             rel="nofollow"
             lang={code}
             hrefLang={code}>

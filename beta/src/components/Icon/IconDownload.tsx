@@ -5,7 +5,7 @@
 import * as React from 'react';
 
 export const IconDownload = React.memo<JSX.IntrinsicElements['svg']>(
-  function IconArrowSmall({className}) {
+  function IconDownload({className}) {
     return (
       <svg
         width="1em"

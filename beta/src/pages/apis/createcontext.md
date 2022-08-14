@@ -53,7 +53,7 @@ function Profile() {
 }
 ```
 
-By default, the values they receive will be the <CodeStep step={3}>the default values</CodeStep> you have specified when creating the contexts. However, by itself this isn't useful because the default values never change.
+By default, the values they receive will be the <CodeStep step={3}>default values</CodeStep> you have specified when creating the contexts. However, by itself this isn't useful because the default values never change.
 
 Context is useful because you can **provide other, dynamic values from your components:**
 

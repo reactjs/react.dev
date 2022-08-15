@@ -4,7 +4,7 @@ title: onChange
 
 <Intro>
 
-The `onChange` event fires everytime there is a change in there is a change in a `form` field.
+The `onChange` event fires everytime there is a change in a `form` field.
 
 We intentionally do not use the existing browser behavior, because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
 

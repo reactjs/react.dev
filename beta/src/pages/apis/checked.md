@@ -4,7 +4,9 @@ title: checked
 
 <Intro>
 
-`checked` attribute can be used to indicate whether an `<input>` element of the type `checkbox` and `radiobutton` is checked. This is useful for building controlled components. `defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+`checked` attribute can be used to indicate whether an `<input>` element of the type `checkbox` and `radio button` is checked. This is useful for building controlled components.
+
+`defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
 
 </Intro>
 
@@ -17,7 +19,7 @@ title: checked
 
 Let's see some examples of using `checked` attribute while rendering a component in React.
 
-In the following example, you can see that we are rendering an `input` of the type `checkbox` with the attribute `checked` set to `false` using the `useState` hook.
+In the following example, you can see that we are rendering an `<input>` of the type `checkbox` with the attribute `checked` set to `false` using the `useState` hook.
 
 <Sandpack>
 
@@ -42,7 +44,7 @@ export default function Checkbox() {
 </Sandpack>
 
 
-Here, in the example below, the `Checkbox` component is rendering an `input` of the type `checkbox` with the attribute `defaultChecked` set to `true` using the `useState` hook.
+Here, in the example below, the `Checkbox` component is rendering an `<input>` of the type `checkbox` with the attribute `defaultChecked` set to `true` using the `useState` hook.
 
 <Sandpack>
 

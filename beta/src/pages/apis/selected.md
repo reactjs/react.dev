@@ -4,7 +4,7 @@ title: selected
 
 <Intro>
 
-While creating a drop down list using the `<select>` tag, if you want to mark an `<option>` as selected, then **reference the value of that option in the `value` of its `<select>` instead**.
+While creating a drop down list using the `<select>` tag, if you want to mark an `<option>` as selected, then **reference the value of that option in the `value` attribute of its `<select>` instead**.
 
 </Intro>
 
@@ -15,8 +15,7 @@ While creating a drop down list using the `<select>` tag, if you want to mark an
 
 ### Using `selected` in `<select>` tag {/*using-selected-property*/}
 
-
-
+In this example, we are rendering a `Dropdown` component. Here, to mark the value `selected` in the dropdown, the 'value' attribute is being set with the refernced value of `mypet`. Hence, every time the value of `mypet` changes it is set as the `value` of `<select>` tag.
 
 <Sandpack>
 
@@ -25,7 +24,7 @@ While creating a drop down list using the `<select>` tag, if you want to mark an
 import React from 'react';
 import { useState } from 'react';
 
-export default function MyPet() {
+export default function Dropdown() {
   const [myPet, setMyPet] = useState("Dog");
 
   const handleChange = (event) => {

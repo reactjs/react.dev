@@ -12,9 +12,9 @@ In React, the `style` attribute accepts a `JavaScript` object with camelCased pr
 
 `style` is used in some examples of this documentaion for demonstration purpose. Using the style attribute as the primary means of styling elements is not recommended.
 
-In most cases, `className` should be used to reference classes defined in an external CSS stylesheet. style is most often used in React applications to add dynamically-computed styles at render time.
+In most cases, `className` should be used to reference classes defined in an external CSS stylesheet. `style` is most often used in React applications to add dynamically-computed styles at render time.
 
-`style` attribute, can only be passed to the built-in DOM elements only.
+`style` attribute, can only be passed to the built-in DOM elements.
 
 </Note>
 

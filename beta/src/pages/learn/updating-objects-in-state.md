@@ -84,7 +84,7 @@ export default function MovingDot() {
         height: 20,
       }} />
     </div>
-  )
+  );
 }
 ```
 
@@ -156,7 +156,7 @@ export default function MovingDot() {
         height: 20,
       }} />
     </div>
-  )
+  );
 }
 ```
 

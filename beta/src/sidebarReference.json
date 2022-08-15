@@ -62,6 +62,30 @@
             {
               "title": "dangerouslySetInnerHTML",
               "path": "/apis/dangerouslysetinnerhtml"
+            },
+            {
+              "title": "htmlFor",
+              "path": "/apis/htmlfor"
+            },
+            {
+              "title": "onChange",
+              "path": "/apis/onchange"
+            },
+            {
+              "title": "selected",
+              "path": "/apis/selected"
+            },
+            {
+              "title": "style",
+              "path": "/apis/style"
+            },
+            {
+              "title": "suppressContentEditableWarning",
+              "path": "/apis/suppresscontenteditablewarning"
+            },
+            {
+              "title": "suppressHydrationWarning",
+              "path": "/apis/suppresshydrationwarning"
             }
           ]
         }

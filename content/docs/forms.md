@@ -70,6 +70,8 @@ Since the `value` attribute is set on our form element, the displayed value will
 
 With a controlled component, the input's value is always driven by the React state. While this means you have to type a bit more code, you can now pass the value to other UI elements too, or reset it from other event handlers.
 
+Note that the React `onChange` event behaves like the `input` native event, and not like the `change` native event; in particular, the `onChange` React event runs on every keystroke, while the `change` native event does not.
+
 ## The textarea Tag {#the-textarea-tag}
 
 In HTML, a `<textarea>` element defines its text by its children:

@@ -56,8 +56,11 @@ MyComponent.propTypes = {
   // (or fragment) containing these types.
   optionalNode: PropTypes.node,
 
-  // A React element.
+  // A React element (i.e: <ReactElement />).
   optionalElement: PropTypes.element,
+  
+  // A React element type (i.e: ReactElement)
+  optionalElementType: PropTypes.elementType,
 
   // A React element type (ie. MyComponent).
   optionalElementType: PropTypes.elementType,

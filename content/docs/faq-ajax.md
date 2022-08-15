@@ -35,7 +35,7 @@ class MyComponent extends React.Component {
     super(props);
     this.state = {
       error: null,
-      isLoaded: false,
+      isLoaded: true,
       items: []
     };
   }
@@ -46,7 +46,7 @@ class MyComponent extends React.Component {
       .then(
         (result) => {
           this.setState({
-            isLoaded: true,
+            isLoaded: false,
             items: result.items
           });
         },
@@ -66,7 +66,7 @@ class MyComponent extends React.Component {
     const { error, isLoaded, items } = this.state;
     if (error) {
       return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
+    } else if (isLoaded) {
       return <div>Loading...</div>;
     } else {
       return (
@@ -88,7 +88,7 @@ Here is the equivalent with [Hooks](https://reactjs.org/docs/hooks-intro.html):
 ```js
 function MyComponent() {
   const [error, setError] = useState(null);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(true);
   const [items, setItems] = useState([]);
 
   // Note: the empty deps array [] means
@@ -99,7 +99,7 @@ function MyComponent() {
       .then(res => res.json())
       .then(
         (result) => {
-          setIsLoaded(true);
+          setIsLoaded(false);
           setItems(result);
         },
         // Note: it's important to handle errors here
@@ -114,7 +114,7 @@ function MyComponent() {
 
   if (error) {
     return <div>Error: {error.message}</div>;
-  } else if (!isLoaded) {
+  } else if (isLoaded) {
     return <div>Loading...</div>;
   } else {
     return (

@@ -47,6 +47,8 @@ There are two common kinds of side effects in React components: those that don't
 
 Sometimes, we want to **run some additional code after React has updated the DOM.** Network requests, manual DOM mutations, and logging are common examples of effects that don't require a cleanup. We say that because we can run them and immediately forget about them. Let's compare how classes and Hooks let us express such side effects.
 
+**Warning: An Effect function must not return anything besides a function, which is used for clean-up.**
+
 ### Example Using Classes {#example-using-classes}
 
 In React class components, the `render` method itself shouldn't cause side effects. It would be too early -- we typically want to perform our effects *after* React has updated the DOM.

@@ -252,14 +252,14 @@ Now there is no need to "adjust" the state at all. If the item with the selected
 
 ### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
 
-Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification [toast](https://uxdesign.cc/toasts-or-snack-bars-design-organic-system-notifications-1236f2883023) whenever the user puts the product in the cart. Adding the `showToast()` call to both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
+Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification whenever the user puts the product in the cart. Adding the `showNotification()` call to both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
 
 ```js {2-7}
 function ProductPage({ product, addToCart }) {
   // 🔴 Avoid: Event-specific logic inside an Effect
   useEffect(() => {
     if (product.isInCart) {
-      showToast(`Added ${product.name} to the shopping cart!`);
+      showNotification(`Added ${product.name} to the shopping cart!`);
     }
   }, [product]);
 
@@ -275,16 +275,16 @@ function ProductPage({ product, addToCart }) {
 }
 ```
 
-This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification toast will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showToast()`.
+This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
 
-**When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the toast should appear because the user *pressed the button*, not because the product page was displayed! Delete the Effect and put the shared logic into a function that you call from both event handlers:
+**When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function that you call from both event handlers:
 
 ```js {2-6,9,13}
 function ProductPage({ product, addToCart }) {
   // ✅ Good: Event-specific logic is called from event handlers
   function buyProduct() {
     addToCart(product);
-    showToast(`Added ${product.name} to the shopping cart!`);    
+    showNotification(`Added ${product.name} to the shopping cart!`);    
   }
 
   function handleBuyClick() {

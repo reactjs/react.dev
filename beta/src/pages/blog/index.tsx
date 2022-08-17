@@ -33,7 +33,7 @@ export default function RecentPosts() {
                 RSS
               </a>
             </div>
-            <p className="text-primary dark:text-primary-dark text-xl text-primary dark:text-primary-dark leading-large">
+            <p className="text-primary dark:text-primary-dark text-xl leading-large">
               Offical React.js news, announcements, and release notes.
             </p>
           </header>

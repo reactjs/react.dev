@@ -43,12 +43,12 @@ If you use ES6 promises, you may need to wrap your promise in order to make it c
 
 ```js
 const cancelablePromise = makeCancelable(
-  new Promise(r => component.setState({...}))
+  new Promise(r => setTimeout(() => r({data: 'newVal'}), 1000))
 );
 
 cancelablePromise
   .promise
-  .then(() => console.log('resolved'))
+  .then(update => component.setState(update))
   .catch((reason) => console.log('isCanceled', reason.isCanceled));
 
 cancelablePromise.cancel(); // Cancel the promise

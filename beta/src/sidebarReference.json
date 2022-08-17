@@ -42,6 +42,20 @@
               "path": "/apis/render"
             }
           ]
+        },
+        {
+          "title": "ReactDOM Client APIs",
+          "path": "/apis/reactdomclient",
+          "routes": [
+            {
+              "title": "createRoot()",
+              "path": "/apis/createRoot"
+            },
+            {
+              "title": "hydrateRoot()",
+              "path": "/apis/hydrateRoot"
+            }
+          ]
         }
       ]
     }

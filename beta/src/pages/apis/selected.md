@@ -25,7 +25,7 @@ import React from 'react';
 import { useState } from 'react';
 
 export default function Dropdown() {
-  const [myPet, setMyPet] = useState("Dog");
+  const [myPet, setMyPet] = useState("Tarantula");
 
   const handleChange = (event) => {
     setMyPet(event.target.value)
@@ -35,9 +35,9 @@ export default function Dropdown() {
     <form>
     <label> Which is your favourite pet?
       <select value={myPet} onChange={handleChange}>
-        <option value="Dog">Dog</option>
-        <option value="Cat">Cat</option>
-        <option value="Hamster">Hamster</option>
+        <option value="Tarantula">Tarantula</option>
+        <option value="Ants">Ants</option>
+        <option value="Parrot">Parrot</option>
       </select>
       </label>
 

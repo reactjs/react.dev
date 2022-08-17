@@ -64,6 +64,14 @@
               "path": "/apis/dangerouslysetinnerhtml"
             },
             {
+              "title": "defaultChecked",
+              "path": "/apis/defaultchecked"
+            },
+            {
+              "title": "defaultValue",
+              "path": "/apis/defaultvalue"
+            },
+            {
               "title": "htmlFor",
               "path": "/apis/htmlfor"
             },
@@ -86,6 +94,10 @@
             {
               "title": "suppressHydrationWarning",
               "path": "/apis/suppresshydrationwarning"
+            },
+            {
+              "title": "value",
+              "path": "/apis/value"
             }
           ]
         }

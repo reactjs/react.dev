@@ -4,7 +4,7 @@ title: ReactDOM Client APIs
 
 <Intro>
 
-The ReactDOM client APIs let you render a React application in the browser.
+The ReactDOM client APIs allow you render React in a browser.
 
 </Intro>
 

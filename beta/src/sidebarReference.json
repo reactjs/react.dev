@@ -12,8 +12,78 @@
           "path": "/apis",
           "routes": [
             {
+              "title": "Children",
+              "path": "/apis/children",
+              "wip": true
+            },
+            {
+              "title": "cloneElement()",
+              "path": "/apis/cloneelement",
+              "wip": true
+            },
+            {
+              "title": "Component",
+              "path": "/apis/component",
+              "wip": true
+            },
+            {
               "title": "createContext()",
               "path": "/apis/createcontext"
+            },
+            {
+              "title": "createElement()",
+              "path": "/apis/createelement",
+              "wip": true
+            },
+            {
+              "title": "createFactory()",
+              "path": "/apis/createfactory",
+              "wip": true
+            },
+            {
+              "title": "createRef()",
+              "path": "/apis/createref",
+              "wip": true
+            },
+            {
+              "title": "forwardRef",
+              "path": "/apis/forwardref",
+              "wip": true
+            },
+            {
+              "title": "Fragment",
+              "path": "/apis/fragment",
+              "wip": true
+            },
+            {
+              "title": "isValidElement()",
+              "path": "/apis/isvalidelement",
+              "wip": true
+            },
+            {
+              "title": "lazy",
+              "path": "/apis/lazy",
+              "wip": true
+            },
+            {
+              "title": "memo",
+              "path": "/apis/memo",
+              "wip": true
+            },
+            {
+              "title": "PureComponent",
+              "path": "/apis/purecomponent",
+              "wip": true
+            },
+            {
+              "title": "startTransition",
+              "path": "/apis/startTransition",
+              "wip": true
+            },
+            {
+              "title": "Suspense",
+              "path": "/apis/suspense",
+              "wip": true
             },
             {
               "title": "useContext()",

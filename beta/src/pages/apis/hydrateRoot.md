@@ -7,7 +7,7 @@ title: hydrateRoot
 `hydrateRoot` is the client-side method to hydrate a container whose HTML contents were rendered by `react-dom/server`.
 
 ```js
-hydrateRoot(domNode, reactNode, options);
+hydrateRoot(domNode, reactNode, options?);
 ```
 
 </Intro>

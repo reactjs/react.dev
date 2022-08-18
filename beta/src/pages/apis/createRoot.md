@@ -40,10 +40,14 @@ root.render(<App />);
 
 Using `createRoot()` to hydrate a server-rendered container is not supported. Use [hydrateRoot()](/apis/hydrateRoot) instead.
 
+<Note>
+
+In apps fully built with React, **you will usually only create one "root", once at startup for your entire app**. If you use a framework, it might do this call for you.
+
+</Note>
+
 ### Rendering a root component {/*rendering-a-root-component*/}
 A React "root" is an object that wraps a DOM node and allows you to display a "root component" inside it.
-
-In apps fully built with React, **you will usually only create one "root", once at startup for your entire app**.
 
 Once a root is created, you can use it to display a root component using `root.render`.
 

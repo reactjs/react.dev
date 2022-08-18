@@ -7,8 +7,7 @@ title: createRoot
 `createRoot` creates an object ("React root") that is able to render a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into a browser DOM node.
 
 ```js
-const root = createRoot(domNode, options);
-root.render(<App />);
+const root = createRoot(domNode, options?)
 ```
 
 </Intro>

@@ -24,7 +24,7 @@ hydrateRoot(domNode, reactNode, options?);
 
 ## Usage {/*usage*/}
 
-Call `hydrateRoot` to hydrate a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={1}>browser DOM node</CodeStep>.
+Call `hydrateRoot` to hydrate a <CodeStep step={2}>React component</CodeStep> into a server-rendered <CodeStep step={1}>browser DOM node</CodeStep>.
 
 ```js [[1, 3, "document.getElementById('root')"], [2, 3, "<App />"]]
 import {hydrateRoot} from 'react-dom/client';
@@ -34,11 +34,15 @@ hydrateRoot(document.getElementById('root'), <App />);
 
 Using `hydrateRoot()` to render a client-only app (an app without server-rendered HTML) is not supported. Use [createRoot()](/apis/createRoot) instead.
 
+<Note>
+
+In apps fully built with React, **you will usually only hydrate one "root", once at startup for your entire app**. If you use a framework, it might do this call for you.
+
+</Note>
+
 ### Hydrating server-rendered HTML {/*hydrating-server-rendered-html*/}
 
 In React, "hydration" is how React "attaches" to existing HTML that was already rendered by React in a server environment. During hydration, React will attempt to attach event listeners to the existing markup and take over rendering the app on the client.
-
-In apps fully built with React, **you will usually only hydrate one "root", once at startup for your entire app**.
 
 <Sandpack>
 
@@ -64,7 +68,6 @@ export default function App() {
 </Sandpack>
 
 Usually you shouldn't need to call `hydrateRoot` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/usestate).
-
 
 ### Updating a hydrated root component {/*updating-a-hydrated-root-component*/}
 

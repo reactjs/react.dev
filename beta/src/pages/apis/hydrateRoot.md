@@ -56,7 +56,7 @@ import './styles.css';
 import {hydrateRoot} from 'react-dom/client';
 import App from './App.js';
 
-hydrateRoot(document.getElementById('root'), App);
+hydrateRoot(document.getElementById('root'), <App />);
 ```
 
 ```js App.js
@@ -88,8 +88,8 @@ import './styles.css';
 import App from './App.js';
 
 const root = hydrateRoot(
-    document.getElementById('root'),
-    <App counter={0} />
+  document.getElementById('root'),
+  <App counter={0} />
 );
 
 let i = 0;

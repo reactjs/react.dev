@@ -38,7 +38,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ````
 
-Using `createRoot()` to hydrate a server-rendered container is not supported. Use [hydrateRoot()](/apis/hydrateRoot) instead.
+Using `createRoot()` to hydrate a server-rendered container is not supported. Use [`hydrateRoot()`](/apis/hydrateRoot) instead.
 
 <Note>
 

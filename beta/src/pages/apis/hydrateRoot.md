@@ -32,7 +32,7 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ````
 
-Using `hydrateRoot()` to render a client-only app (an app without server-rendered HTML) is not supported. Use [createRoot()](/apis/createRoot) instead.
+Using `hydrateRoot()` to render a client-only app (an app without server-rendered HTML) is not supported. Use [`createRoot()`](/apis/createRoot) instead.
 
 <Note>
 
@@ -67,7 +67,7 @@ export default function App() {
 
 </Sandpack>
 
-Usually you shouldn't need to call `hydrateRoot` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/usestate).
+Usually, you shouldn't need to call `hydrateRoot` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/usestate).
 
 ### Updating a hydrated root component {/*updating-a-hydrated-root-component*/}
 
@@ -151,7 +151,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 * `hydrateRoot()` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
 * In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
 * You'll likely have only one `hydrateRoot` call in your app. If you use a framework, it might do this call for you.
-* If your app is client-rendered with no HTML rendered already, using `hydrateRoot()` is not supported. Use [createRoot()](/apis/createRoot) instead.
+* If your app is client-rendered with no HTML rendered already, using `hydrateRoot()` is not supported. Use [`createRoot()`](/apis/createRoot) instead.
 
 ---
 
@@ -169,7 +169,7 @@ React will update `<App />` in the hydrated `root`.
 
 #### Parameters {/*parameters*/}
 
-* `reactNode`: A "React node" that you want to update. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/TODO), a string, a number, `null`, or `undefined`.
+* `reactNode`: A "React node" that you want to update. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/apis/react/createElement), a string, a number, `null`, or `undefined`.
 
 
 #### Returns {/*returns*/}

@@ -25,10 +25,12 @@ In most cases, `className` should be used to reference classes defined in an ext
 
 ### Using `style` attribute {/*using-style-attribute*/}
 
-Here is an example that demonstrates the usage of `style` attribute with `<div>` element. You can observe that `backgroundColor` property is camelCased as opposed to the usual hypenated way.
+Here is an example that demonstrates the usage of `style` attribute with `<div>` element. `MovingDot` component renders the `<div>` where we capture the cursor movement and **dynamically** add the styling.
+
+Observe that `backgroundColor` property is camelCased as opposed to the usual hypenated way.
 
 <Note>
-If you want to apply inline style, then observe the above example. Here, the `style` attribute has the styling properties passed within the **two sets of curly braces**.
+If you want to apply inline style, then observe the example. Here, the `style` attribute has the styling properties passed within the **two sets of curly braces**.
 </Note>
 
 <Sandpack>

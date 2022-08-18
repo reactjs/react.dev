@@ -4,9 +4,9 @@ title: onChange
 
 <Intro>
 
-The `onChange` event fires everytime there is a change in a `form` field.
+The `onChange` event fires every time there is a change in a `form` field.
 
-We intentionally do not use the existing browser behavior, because `onChange` is a misnomer for its behavior and React relies on this event to handle user input in real time.
+We intentionally do not use the existing browser behavior, because `onChange` is a misnomer for its behavior, and React relies on this event to handle user input in real-time.
 
 </Intro>
 
@@ -20,7 +20,7 @@ We intentionally do not use the existing browser behavior, because `onChange` is
 
 
 
-In the example below, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field and corresponding function is executed.
+In the example below, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field, and the corresponding function is executed.
 
 <Recipes titleText="Examples of onChange property for various type of <input> element" titleId="examples-basic">
 

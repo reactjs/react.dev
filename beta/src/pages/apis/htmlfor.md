@@ -4,7 +4,7 @@ title: htmlFor
 
 <Intro>
 
-In React, `htmlFor` attribute is used to specify which `form` element a `<label>` corresponds to.
+In React, the `htmlFor` attribute is used to specify which `form` element a `<label>` corresponds to.
 
 `htmlFor` attribute is used instead of the HTML attribute `for`, which is a reserved word in JavaScript.
 

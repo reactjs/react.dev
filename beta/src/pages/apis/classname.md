@@ -4,9 +4,9 @@ title: className
 
 <Intro>
 
-In React, to access a `CSS` class, use `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<p>`, `<a>`, and others. If you use React with Web Components (which is uncommon), use the class attribute instead.
+In React, to access a `CSS` class, use the `className` attribute. This applies to all regular DOM and SVG elements like `<div>`, `<p>`, `<a>`, and others. If you use React with Web Components (which is uncommon), use the class attribute instead.
 
-Note: In JavaScript the `class` keyword id reserved for creating a class, which is why React diffrentiates the `CSS` sepecific class as `className`.
+Note: In JavaScript, the `class` keyword is reserved for creating a class, which is why React differentiates the `CSS` specific class as `className`.
 
 </Intro>
 

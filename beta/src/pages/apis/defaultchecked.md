@@ -4,7 +4,7 @@ title: defaultChecked
 
 <Intro>
 
-`defaultChecked` is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+`defaultChecked` is the uncontrolled equivalent, which sets an element as checked or unchecked when it is first mounted.
 
 </Intro>
 

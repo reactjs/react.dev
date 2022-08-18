@@ -10,11 +10,11 @@ In React, the `style` attribute accepts a `JavaScript` object with camelCased pr
 
 <Note>
 
-`style` is used in some examples of this documentaion for demonstration purpose. Using the style attribute as the primary means of styling elements is not recommended.
+`style` is used in some examples of this documentation for demonstration purposes. Using the style attribute as the primary means of styling elements is not recommended.
 
 In most cases, `className` should be used to reference classes defined in an external CSS stylesheet. `style` attribute is most often used in React applications to add **dynamically-computed** styles at render time.
 
-`style` attribute, can only be passed to the built-in DOM elements.
+The `style` attribute can only be passed to the built-in DOM elements.
 
 </Note>
 

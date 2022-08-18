@@ -4,7 +4,7 @@ title: value
 
 <Intro>
 
-The `value` attribute is supported by <input>, <select> and <textarea> components. You can use it to set the value of the component. This is useful for building controlled components.
+The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` elements. You can use it to set the value of an element. This is useful for building controlled components.
 
 </Intro>
 
@@ -15,7 +15,7 @@ The `value` attribute is supported by <input>, <select> and <textarea> component
 
 ### Using `value` attribute {/*using-value-attributes*/}
 
-In the example below, `<input>` elment of the `type="radio"`is being rendered. To set the selection `value` attribute is used.
+In the example below, `<input>` element of the `type="radio"`is being rendered. To set the selection, the `value` attribute is used.
 
 <Sandpack>
 

@@ -4,7 +4,7 @@ title: defaultValue
 
 <Intro>
 
-`defaultValue` is the uncontrolled version of `value` attribute, which sets the value of a input.
+`defaultValue` is the uncontrolled version of the `value` attribute, which sets the value of an input when it mounts.
 
 </Intro>
 
@@ -15,7 +15,7 @@ title: defaultValue
 
 ### Using `defaultValue` attribute {/*using-defaultValue-attributes*/}
 
-Here, in the example below, the `MyComponent` component is rendering an `<textarea>` with the attribute `defaultValue` set. Hence, the `<textarea>` has default text when the components mounts.
+Here, in the example below, the `MyComponent` component is rendering a `<textarea>` with the attribute `defaultValue` set. Hence, the `<textarea>` has default text when the component mounts.
 
 <Sandpack>
 

@@ -4,7 +4,7 @@ title: suppressContentEditableWarning
 
 <Intro>
 
-When an element with children is also marked as `contentEditable` a warning is generated. You can suppress that warning by setting `suppressContentEditableWarning` attribute to `true`.
+When an element with children is also marked as `contentEditable`, a warning is generated. You can suppress that warning by setting `suppressContentEditableWarning` attribute to `true`.
 
 </Intro>
 
@@ -20,9 +20,9 @@ Don’t use `suppressContentEditableWarning` unless you are building a library l
 
 ### Using `suppressContentEditableWarning` attribute {/*using-style-suppressContentEditableWarning*/}
 
-In the example below, the `<div>` is editable because `contentEditable` attribute is set to true, and you get a warning when this happens.
+In the example below, the `<div>` is editable because the `contentEditable` attribute is set to true, and you get a warning when this happens.
 
-To make the code warning free, `suppressContentEditableWarning` is set to true.
+Make the code warning-free by setting`suppressContentEditableWarning` to true.
 
 <Sandpack>
 

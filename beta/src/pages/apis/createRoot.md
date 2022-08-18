@@ -7,9 +7,8 @@ title: createRoot
 `createRoot` creates an object ("React root") that is able to render a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into a browser DOM node.
 
 ```js
-const root = createRoot(domNode, options?);
-root.render(reactNode);
-root.unmount();
+const root = createRoot(domNode, options);
+root.render(<App />);
 ```
 
 </Intro>
@@ -19,9 +18,9 @@ root.unmount();
   - [Rendering multiple roots](#rendering-multiple-roots)
   - [Updating a root component](#updating-a-root-component)
 - [Reference](#reference)
-  - [`createRoot(domNode[, options])`](#create-root)
-  - [`root.render(reactNode)`](#render-root)
-  - [`root.unmount()`](#unmount-root)
+  - [`createRoot(domNode, options?)`](#create-root)
+  - [`root.render(reactNode)`](#root-render)
+  - [`root.unmount()`](#root-unmount)
 
 ---
 
@@ -49,7 +48,7 @@ In apps fully built with React, **you will usually only create one "root", once 
 ### Rendering a root component {/*rendering-a-root-component*/}
 A React "root" is an object that wraps a DOM node and allows you to display a "root component" inside it.
 
-Once a root is created, you can use it to display a root component using `root.render`.
+Once a root is created, you can use it to display a root component using [`root.render`](#root-render).
 
 <Sandpack>
 
@@ -71,13 +70,13 @@ export default function App() {
 
 </Sandpack>
 
-Usually, you shouldn't need to call `root.render` again or to call it in more places. From this point on, React will manage the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/usestate).
+Usually, you shouldn't need to call [`root.render`](#root-render) again or to call it in more places. From this point on, React will manage the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/usestate).
 
 ---
 
 ### Rendering multiple roots {/*rendering-multiple-roots*/}
 
-If your page [isn't fully built with React](/learn/add-react-to-a-website), you can call `createRoot` multiple times to create a root for each top-level piece of UI managed by React. You can display different content in each root by calling `root.render`.
+If your page [isn't fully built with React](/learn/add-react-to-a-website), you can call `createRoot` multiple times to create a root for each top-level piece of UI managed by React. You can display different content in each root by calling [`root.render`](#root-render).
 
 <Sandpack>
 
@@ -145,7 +144,7 @@ nav ul li { display: inline-block; margin-right: 20px; }
 
 </Sandpack>
 
-You can destroy the rendered trees with [`root.unmount`](#unmount-root).
+You can destroy the rendered trees with [`root.unmount`](#root-unmount).
 
 ---
 
@@ -187,7 +186,7 @@ It is uncommon to call `render` multiple times. Usually, you'll [update state](/
 ---
 ## Reference {/*reference*/}
 
-### `createRoot(domNode[, options])` {/*create-root*/}
+### `createRoot(domNode, options?)` {/*create-root*/}
 
 Call `createRoot` to create a React root for displaying content inside a browser DOM element.
 
@@ -214,7 +213,7 @@ An app fully built with React will usually only have one `createRoot` call with 
 
 #### Returns {/*returns*/}
 
-`createRoot` returns an object containing two functions `render` and `unmount` (see below).
+`createRoot` returns an object with two methods: [`render`](#root-render) and [`unmount`](#root-unmount).
 
 #### Caveats {/*caveats*/}
 * `createRoot()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when render is called. Later calls use React’s DOM diffing algorithm for efficient updates.
@@ -225,7 +224,7 @@ An app fully built with React will usually only have one `createRoot` call with 
 
 ---
 
-### `root.render(reactNode)` {/*render-root*/}
+### `root.render(reactNode)` {/*root-render*/}
 
 Call `root.render` to display a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into the React root's browser DOM node.
 
@@ -256,7 +255,7 @@ React will display `<App />` in the `root`, and take over managing the DOM insid
 
 ---
 
-### `root.unmount()` {/*unmount-root*/}
+### `root.unmount()` {/*root-unmount*/}
 
 Call `root.unmount` to destroy a rendered tree inside a React root.
 

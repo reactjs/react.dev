@@ -222,4 +222,7 @@ From the user's prespective, **a change to the `roomId` *does* mean that they wa
 
 Effects are reactive, so `createConnection(serverUrl, roomId)` and `connection.connect()` will run for every distinct value of `roomId`. Your Effect keeps the chat connection synchronized to the currently selected room.
 
-### Yo {/*yo*/}
+### Blargh {/*blargh*/}
+
+
+

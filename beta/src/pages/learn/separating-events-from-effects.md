@@ -435,11 +435,11 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // ✅ All dependencies are specified
+  }, [roomId]); // ✅ All dependencies are specified
   // ...
 ```
 
-This solves the problem. Similar to the `set` functions returned from `useState`, all Event functions are *stable:* they never change on a re-render. Specifying `onConnected` as a dependency doesn't cause the Effect to re-fire.
+This solves the problem. Similar to the `set` functions returned from `useState`, all Event functions are *stable:* they never change on a re-render. This is why you can skip them in the dependency list. They are not reactive.
 
 Verify that the new behavior works as you would expect:
 
@@ -482,7 +482,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]);
+  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -597,7 +597,155 @@ You can think of Event functions as being very similar to event handlers. The ma
 
 ### Reading latest props and state with Event functions {/*reading-latest-props-and-state-with-event-functions*/}
 
-TODO
+<Gotcha>
+
+This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
+
+</Gotcha>
+
+Event functions let you fix many patterns where you might be tempted to suppress the dependency linter.
+
+For example, say you have an Effect to log the page visits:
+
+```js
+function Page() {
+  useEffect(() => {
+    logVisit();
+  }, []);
+  // ...
+}
+```
+
+Later, you add multiple routes to your site. Now your `Page` component receives a `url` prop with the current path. You want to pass the `url` as a part of your `logVisit` call, but the dependency linter complains:
+
+```js {1,3}
+function Page({ url }) {
+  useEffect(() => {
+    logVisit(url);
+  }, []); // 🔴 React Hook useEffect has a missing dependency: 'url'
+  // ...
+}
+```
+
+Think about what you want the code to do. You *want* to log a separate visit for different URLs since each URL represents a different page. In other words, this `logVisit` call *should* be reactive with respect to the `url`. This is why, in this case, it makes sense to follow the dependency linter, and add `url` as a dependency:
+
+```js {4}
+function Page({ url }) {
+  useEffect(() => {
+    logVisit(url);
+  }, [url]); // ✅ All dependencies are specified
+  // ...
+}
+```
+
+Now let's say you want to include the number of items in the shopping cart together with every page visit:
+
+```js {2-3,6}
+function Page({ url }) {
+  const { items } = useContext(ShoppingCartContext);
+  const numberOfItems = items.length;
+
+  useEffect(() => {
+    logVisit(url, numberOfItems);
+  }, [url]); 🔴 React Hook useEffect has a missing dependency: 'numberOfItems'
+  // ...
+}
+```
+
+You used `numberOfItems` inside the Effect, so the linter asks you to add it as a dependency. However, you *don't* want the `logVisit` call to be reactive with respect to `numberOfItems`. If the user puts something into the shopping cart, and the `numberOfItems` changes, this *does not mean* that the user visited the page again. In other words, *visiting the page* feels similar to an event. You want to be very precise about *when* you say it's happened.
+
+Split the code in two parts:
+
+```js {5-7,10}
+function Page({ url }) {
+  const { items } = useContext(ShoppingCartContext);
+  const numberOfItems = items.length;
+
+  const onVisit = useEvent((visitedUrl) => {
+    logVisit(url, numberOfItems);
+  });
+
+  useEffect(() => {
+    onVisit(url);
+  }, [url]); // ✅ All dependencies are specified
+  // ...
+}
+```
+
+Here, `onVisit` is an Event function. The code inside it isn't reactive. This is why you can use `numberOfItems` (or any other reactive value!) without worrying that it will cause the surrounding code to re-execute on changes.
+
+On the other hand, the Effect itself remains reactive. Code inside the Effect uses the `url` prop, so the Effect will re-run after every re-render with a different `url`. This, in turn, will call the `onVisit` event function.
+
+As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
+
+### Limitations of Event functions {/*limitations-of-event-functions*/}
+
+<Gotcha>
+
+This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
+
+</Gotcha>
+
+At the moment, Event functions are very limited in how you can use them:
+
+* **Only call them from inside Effects.**
+* **Never pass them to other components or Hooks.**
+
+For example, don't declare and pass an Event function like this:
+
+```js {4-6,8}
+function Timer() {
+  const [count, setCount] = useState(0);
+
+  const onTick = useEvent(() => {
+    setCount(count + 1);
+  });
+
+  useTimer(onTick, 1000); // 🔴 Avoid: Passing event functions
+
+  return <h1>{count}</h1>
+}
+
+function useTimer(callback, delay) {
+  useEffect(() => {
+    const id = setInterval(() => {
+      callback();
+    }, delay);
+    return () => {
+      clearInterval(id);
+    };
+  }, [delay, callback]); // Need to specify "callback" in dependencies
+}
+```
+
+Instead, always declare Event functions directly next to the Effects that use them:
+
+```js {10-12,16,21}
+function Timer() {
+  const [count, setCount] = useState(0);
+  useTimer(() => {
+    setCount(count + 1);
+  }, 1000);
+  return <h1>{count}</h1>
+}
+
+function useTimer(callback, delay) {
+  const onTick = useEvent(() => {
+    callback();
+  });
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      onTick(); // ✅ Good: Only called locally inside an Effect
+    }, delay);
+    return () => {
+      clearInterval(id);
+    };
+  }, [delay]); // No need to specify "onTick" (an Event function) as a dependency
+}
+```
+
+It's possible that in the future, some of these restrictions will be lifted. But for now, you can think of Event functions as non-reactive "pieces" of your Effect code, so they should be close to the Effect using them.
 
 ## Recap {/*recap*/}
 

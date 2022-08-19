@@ -747,10 +747,14 @@ function useTimer(callback, delay) {
 
 It's possible that in the future, some of these restrictions will be lifted. But for now, you can think of Event functions as non-reactive "pieces" of your Effect code, so they should be close to the Effect using them.
 
-## Recap {/*recap*/}
+<Recap>
 
-TODO
+- Event handlers run in response to specific interactions
+- Effects run whenever synchronization is needed
+- Logic inside event handlers is not reactive
+- Logic inside Effects is reactive
+- You can move non-reactive logic from Effects into Event functions
+- Only call Event functions from inside Effects
+- Don't pass Event functions to other components or Hooks
 
-## Challenges {/*challenges*/}
-
-TODO
+</Recap>

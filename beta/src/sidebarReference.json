@@ -81,6 +81,11 @@
               "wip": true
             },
             {
+              "title": "StrictMode",
+              "path": "/apis/react/StrictMode",
+              "wip": true
+            },
+            {
               "title": "Suspense",
               "path": "/apis/react/Suspense",
               "wip": true

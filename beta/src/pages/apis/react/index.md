@@ -402,6 +402,16 @@ const id = useId();
 
 ### Debugging {/*devtools*/}
 
+<YouWillLearnCard title="StrictMode" path="/apis/react/StrictMode">
+
+Eagerly highlight potential problems.
+
+```js
+<StrictMode>{...}</StrictMode>
+```
+
+</YouWillLearnCard>
+
 <YouWillLearnCard title="useDebugValue" path="/apis/react/useDebugValue">
 
 Display a label for custom hooks.

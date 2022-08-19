@@ -14,7 +14,7 @@ This section is incomplete, please see the old docs for [hydrate](https://reactj
 Same as `render()`, but is used to hydrate a container whose HTML contents were rendered by `react-dom/server`. React will attempt to attach event listeners to the existing markup.
 
 ```js
-hydrate(element, container[, callback])
+hydrate(element, container, callback?)
 ```
 
 </Intro>

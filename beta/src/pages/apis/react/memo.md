@@ -13,7 +13,7 @@ This section is incomplete, please see the old docs for [React.memo](https://rea
 
 ```js
 const MyComponent = React.memo(function MyComponent(props) {
-    /* render using props */
+  /* render using props */
 });
 ```
 

@@ -15,9 +15,9 @@ This section is incomplete, please see the old docs for [forwardRef](https://rea
 
 ```js
 const FancyButton = React.forwardRef((props, ref) => (
-    <button ref={ref} className="FancyButton">
-        {props.children}
-    </button>
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
 ));
 ```
 

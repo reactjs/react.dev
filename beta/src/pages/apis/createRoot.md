@@ -208,7 +208,7 @@ This is mostly useful if your React components are inside an app written in a di
 
 ### Updating a root component {/*updating-a-root-component*/}
 
-You can call `render` more than once on the same root object. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state](/learn/preserving-and-resetting-state). Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
+You can call `render` more than once on the same root. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state](/learn/preserving-and-resetting-state). Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
 
 <Sandpack>
 

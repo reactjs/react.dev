@@ -20,6 +20,10 @@ const root = createRoot(domNode, options?)
   - [`createRoot(domNode, options?)`](#create-root)
   - [`root.render(reactNode)`](#root-render)
   - [`root.unmount()`](#root-unmount)
+- [Troubleshooting](#troubleshooting)
+  - [I've created a root, but nothing is displayed](#ive-created-a-root-but-nothing-is-displayed)
+  - [I'm getting an error: "Target container is not a DOM element"](#im-getting-an-error-target-container-is-not-a-dom-element)
+  - [My server-rendered HTML gets re-created from scratch](#my-server-rendered-html-gets-re-created-from-scratch)
 
 ---
 
@@ -344,7 +348,7 @@ root.render(<App />);
 
 Until you do that, nothing is displayed.
 
-### I'm getting an error: "Target container is not a DOM element." {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+### I'm getting an error: "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
 This error means that whatever you're passing to `createRoot` is not a DOM node.
 

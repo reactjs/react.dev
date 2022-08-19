@@ -34,10 +34,7 @@ import {hydrateRoot} from 'react-dom/client';
 hydrateRoot(document.getElementById('root'), <App />);
 ````
 
-Usually, you only need to run this code once at startup. It will:
-
-1. Find the <CodeStep step={1}>browser DOM node</CodeStep> defined in your HTML.
-2. Hydrate it with the <CodeStep step={2}>React component</CodeStep> for your app.
+This will hydrate the server HTML inside the <CodeStep step={1}>browser DOM node</CodeStep> with the <CodeStep step={2}>React component</CodeStep> for your app. Usually, you will do it once at startup. If you use a framework, it might do this behind the scenes for you.
 
 To hydrate your app, React will "attach" your components' logic to the initial generated HTML from the server. Hydration turns the initial HTML snapshot from the server into a fully interactive app that runs in the browser.
 

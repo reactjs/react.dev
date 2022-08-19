@@ -732,7 +732,7 @@ function ChatRoom() {
 
 * **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Event function_). [Read more about opting out of reactivity with Events.](/learn/opting-out-of-reactivity-with-events)
+* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Event function_). [Read more about separating Events from Effects.](/learn/separating-events-from-effects)
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies)
 
@@ -750,7 +750,7 @@ useEffect(() => {
 }, []);
 ```
 
-On the [next](/learn/opting-out-of-reactivity-with-events) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
+On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
 
 </Gotcha>
 
@@ -1305,7 +1305,7 @@ body {
 
 Try adding `console.log('Resubscribing')` inside the Effect body and notice that now it only resubscribes when you toggle the checkbox (`canMove` changes) or edit the code. This makes it better than the previous approach that always resubscribed.
 
-You'll learn a more general approach to this type of problem in [Opting Out of Reactivity with Events](/learn/opting-out-of-reactivity-with-events).
+You'll learn a more general approach to this type of problem in [Separating Events from Effects](/learn/separating-events-from-effects).
 
 </Solution>
 

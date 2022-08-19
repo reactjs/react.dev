@@ -4,7 +4,7 @@ title: createRoot
 
 <Intro>
 
-`createRoot` creates an object ("React root") that is able to render a piece of [JSX](/learn/writing-markup-with-jsx) ("React node") into a browser DOM node.
+`createRoot` lets you display React components inside a browser DOM node.
 
 ```js
 const root = createRoot(domNode, options?)
@@ -13,8 +13,8 @@ const root = createRoot(domNode, options?)
 </Intro>
 
 - [Usage](#usage)
-  - [Rendering a root component](#rendering-a-root-component)
-  - [Rendering multiple roots](#rendering-multiple-roots)
+  - [Rendering an app fully built with React](#rendering-an-app-fully-built-with-react)
+  - [Rendering a page partially built with React](#rendering-a-page-partially-built-with-react)
   - [Updating a root component](#updating-a-root-component)
 - [Reference](#reference)
   - [`createRoot(domNode, options?)`](#create-root)
@@ -25,57 +25,98 @@ const root = createRoot(domNode, options?)
 
 ## Usage {/*usage*/}
 
-Call `createRoot` to create a React root for a <CodeStep step={1}>browser DOM node</CodeStep>.
+### Rendering an app fully built with React {/*rendering-an-app-fully-built-with-react*/}
 
-Then call `render` to display a <CodeStep step={2}>React component</CodeStep>.
+If your app is fully built with React, create a single root for your entire app.
 
-```js [[1, 3, "document.getElementById('root')"], [2, 4, "<App />"]]
-import {createRoot} from 'react-dom/client';
+```js [[1, 4, "document.getElementById('root')"], [2, 5, "<App />"]]
+import { createRoot } from 'react-dom/client';
+import App from './App.js';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ````
 
-Using `createRoot()` to hydrate a server-rendered container is not supported. Use [`hydrateRoot()`](/apis/hydrateRoot) instead.
+You only need to run this code once at startup. It will:
 
-<Note>
+1. Find the <CodeStep step={1}>browser DOM node</CodeStep> defined in your HTML.
+2. Display the <CodeStep step={2}>React component</CodeStep> for your app inside.
 
-In apps fully built with React, **you will usually only create one "root", once at startup for your entire app**. If you use a framework, it might do this call for you.
-
-</Note>
-
-### Rendering a root component {/*rendering-a-root-component*/}
-A React "root" is an object that wraps a DOM node and allows you to display a "root component" inside it.
-
-Once a root is created, you can use it to display a root component using [`root.render`](#root-render).
+Depending on your setup, this code may be in an entry point like `src/index.js`, or even inside a framework.
 
 <Sandpack>
 
-```js index.js active
-import './styles.css';
-import {createRoot} from 'react-dom/client';
-import App from './App.js';
+```html index.html
+<!DOCTYPE html>
+<html>
+  <head><title>My app</title></head>
+  <body>
+    <!-- This is the DOM node -->
+    <div id="root"></div>
+  </body>
+</html>
+```
 
-const domNode = document.getElementById('root');
-const root = createRoot(domNode);
+```js index.js active
+import { createRoot } from 'react-dom/client';
+import App from './App.js';
+import './styles.css';
+
+const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ```
 
 ```js App.js
+import { useState } from 'react';
+
 export default function App() {
-  return <h1>Hello, world!</h1>;
+  return (
+    <>
+      <h1>Hello, world!</h1>
+      <Counter />
+    </>
+  );
+}
+
+function Counter() {
+  const [count, setCount] = useState(0);
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      You clicked me {count} times
+    </button>
+  );
 }
 ```
 
 </Sandpack>
 
-Usually, you shouldn't need to call [`root.render`](#root-render) again or to call it in more places. From this point on, React will manage the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/usestate).
+**If your app is fully built with React, you shouldn't need to create any more roots, or to call [`root.render`](#root-render) again.** 
+
+From this point on, React will manage the DOM of your entire app. To add more components, [nest them inside the `App` component.](/learn/importing-and-exporting-components) When you need to update the UI, each of your components can do this by [using state](/apis/usestate). When you need to display extra content like a modal or a tooltip outside the DOM node, [render it with a portal.](/apis/createportal)
+
+<Gotcha>
+
+In the above example, the DOM node inside `index.html` had no initial HTML content inside it:
+
+```html
+<div id="root"></div>
+```
+
+Unfortunately, this means the user will see a blank page until all of your JavaScript code loads.
+
+**This can feel very slow!** To solve this, you can generate the initial HTML from your components [on the server or during the build.](/apis/reactdomserver) Then your visitors can read text, see images, and click links before any of the JavaScript code loads. We recommend to [use a framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework) that does this optimization out of the box. Depending on when it runs, this is called *server-side rendering (SSR)* or *static site generation (SSG).*
+
+**If you upgrade to server rendering or static generation, switch to [`hydrateRoot`](/apis/hydrateRoot) instead of `createRoot`.** It will reuse the initial generated HTML and attach the logic to it without re-creating the DOM nodes.
+
+</Gotcha>
 
 ---
 
-### Rendering multiple roots {/*rendering-multiple-roots*/}
+### Rendering a page partially built with React {/*rendering-a-page-partially-built-with-react*/}
 
 If your page [isn't fully built with React](/learn/add-react-to-a-website), you can call `createRoot` multiple times to create a root for each top-level piece of UI managed by React. You can display different content in each root by calling [`root.render`](#root-render).
+
+Here, two different React components are rendered into two DOM nodes defined in the `index.html` file:
 
 <Sandpack>
 
@@ -143,18 +184,18 @@ nav ul li { display: inline-block; margin-right: 20px; }
 
 </Sandpack>
 
-You can destroy the rendered trees with [`root.unmount`](#root-unmount).
+You can destroy the rendered trees later with [`root.unmount`](#root-unmount).
 
 ---
 
 ### Updating a root component {/*updating-a-root-component*/}
 
-You can call `render` more than once on the same root. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state](/learn/preserving-and-resetting-state). Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
+You can call `render` more than once on the same root object. As long as the component tree structure matches up with what was previously rendered, React will [preserve the state](/learn/preserving-and-resetting-state). Notice how you can type in the input, which means that the updates from repeated `render` calls every second in this example are not destructive:
 
 <Sandpack>
 
 ```js index.js active
-import {createRoot} from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import './styles.css';
 import App from './App.js';
 
@@ -194,9 +235,13 @@ const domNode = document.getElementById('root');
 const root = createRoot(domNode);
 ```
 
-React will create a root for the `domNode`, and take over managing the DOM inside it.
+React will create a root for the `domNode`, and take over managing the DOM inside it. After you've created a root, you need to call [`root.render`](#root-render) to display a React component inside of it:
 
-An app fully built with React will usually only have one `createRoot` call with its root component.  A page that uses "sprinkles" of React for parts of the page may have as many `render` calls as needed.
+```js
+root.render(<App />);
+```
+
+An app fully built with React will usually only have one `createRoot` call for its root component. A page that uses "sprinkles" of React for parts of the page may have as many separate roots as needed.
 
 [See examples above.](#usage)
 
@@ -208,15 +253,12 @@ An app fully built with React will usually only have one `createRoot` call with 
 * **optional** `options`: A object contain options for this React root.
 
   * `onRecoverableError`: optional callback called when React automatically recovers from errors.
-  * `identifierPrefix`: optional prefix React uses for ids generated by `React.useId`. Useful to avoid conflicts when using multiple roots on the same page. Must be the same prefix used on the server.
-
+  * `identifierPrefix`: optional prefix React uses for IDs generated by [`useId`](/apis/useid). Useful to avoid conflicts when using multiple roots on the same page.
 #### Returns {/*returns*/}
 
 `createRoot` returns an object with two methods: [`render`](#root-render) and [`unmount`](#root-unmount).
 
 #### Caveats {/*caveats*/}
-* `createRoot()` controls the contents of the container node you pass in. Any existing DOM elements inside are replaced when render is called. Later calls use React’s DOM diffing algorithm for efficient updates.
-* `createRoot()` does not modify the container node (only modifies the children of the container). It may be possible to insert a component to an existing DOM node without overwriting the existing children.
 * If your app is server-rendered, using `createRoot()` is not supported. Use [`hydrateRoot()`](/apis/react-dom/client/hydrateRoot) instead.
 * You'll likely have only one `createRoot` call in your app. If you use a framework, it might do this call for you.
 * When you want to render a piece of JSX in a different part of the DOM tree that isn't a child of your component (for example, a modal or a tooltip), use [`createPortal`](/apis/react-dom/createPortal) instead of `createRoot`.
@@ -264,7 +306,7 @@ root.unmount();
 
 An app fully built with React will usually not have any calls to `root.unmount`.
 
-For pages that use React for parts of the page, it may be necessary to remove DOM nodes that React controls from the page. When removing those DOM nodes, you need to tell React to "stop" managing the content inside it by calling `root.unmount`.
+This is mostly useful if your React root's DOM node (or any of its ancestors) may get removed from the DOM by some other code. For example, imagine a jQuery tab panel that removes inactive tabs from the DOM. If a tab gets removed, everything inside it (including the React roots inside) would get removed from the DOM as well. In that case, you need to tell React to "stop" managing the removed root's content by calling `root.unmount`. Otherwise, the components inside the removed root won't know to clean up and free up global resources like subscriptions.
 
 Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree. 
 
@@ -276,12 +318,68 @@ Calling `root.unmount` will unmount all the components in the root and "detach" 
 
 #### Returns {/*returns*/}
 
-`render` returns `null`.
+`root.unmount` returns `undefined`.
 
 #### Caveats {/*caveats*/}
 
 * Calling `root.unmount` will unmount all the components in the tree and "detach" React from the root DOM node.
 
-* Once you call `root.unmount` you cannot call `root.render` again on the root. Attempting to call `root.render` on an unmounted root will throw a "Cannot update an unmounted root" error.
+* Once you call `root.unmount` you cannot call `root.render` again on the same root. Attempting to call `root.render` on an unmounted root will throw a "Cannot update an unmounted root" error. However, you can create a new root for the same DOM node after the previous root for that node has been unmounted.
 
 ---
+
+## Troubleshooting {/*troubleshooting*/}
+
+### I've created a root, but nothing is displayed {/*ive-created-a-root-but-nothing-is-displayed*/}
+
+Make sure you haven't forgotten to actually *render* your app into the root:
+
+```js {5}
+import { createRoot } from 'react-dom/client';
+import App from './App.js';
+
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
+````
+
+Until you do that, nothing is displayed.
+
+### I'm getting an error: "Target container is not a DOM element." {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
+
+This error means that whatever you're passing to `createRoot` is not a DOM node.
+
+If you're not sure what's happening, try logging it:
+
+```js {2}
+const domNode = document.getElementById('root');
+console.log(domNode); // ???
+const root = createRoot(domNode);
+root.render(<App />);
+````
+
+For example, if `domNode` is `null`, it means that [`getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) returned `null`. This will happen if there is no node in the document with the given ID at the time of your call. There may be a few reasons for it:
+
+1. The ID you're looking for might differ from the ID you used in the HTML file. Check for typos!
+2. Your bundle's `<script>` tag cannot "see" any DOM nodes that appear *after* it in the HTML.
+
+If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
+
+Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
+
+### My server-rendered HTML gets re-created from scratch {/*my-server-rendered-html-gets-re-created-from-scratch*/}
+
+If your app is server-rendered and includes the initial HTML generated by React, you might notice that creating a root and calling `root.render` deletes all that HTML, and then re-creates all the DOM nodes from scratch. This can be slower, resets focus and scroll positions, and may lose other user input.
+
+Server-rendered apps must use [`hydrateRoot`](/apis/hydrateroot) instead of `createRoot`:
+
+```js {1,4-7}
+import { hydrateRoot } from 'react-dom/client';
+import App from './App.js';
+
+hydrateRoot(
+  document.getElementById('root'),
+  <App />
+);
+```
+
+Note that its API is different. In particular, usually there will be no further `root.render` call.

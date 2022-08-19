@@ -11,7 +11,7 @@ This section is incomplete, please see the old docs for [useInsertionEffect](htt
 
 <Intro>
 
-The signature is identical to `useEffect`, but it fires synchronously before all DOM mutations. Use this to inject styles into the DOM before reading layout in `useLayoutEffect`. Since this hook is limited in scope, this hook does not have access to refs and cannot schedule updates.
+The signateure is identical to `useEffect`, but it fires synchronously before all DOM mutations. Use this to inject styles into the DOM before reading layout in `useLayoutEffect`. Since this hook is limited in scope, this hook does not have access to refs and cannot schedule updates.
 
 ```js
 useInsertionEffect(didUpdate);

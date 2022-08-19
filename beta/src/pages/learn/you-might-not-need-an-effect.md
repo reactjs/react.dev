@@ -93,7 +93,7 @@ function TodoList({ todos, filter }) {
 
 In many cases, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated state variable like `newTodo` has changed.
 
-You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/apis/react/usememo) Hook:
+You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/apis/react/useMemo) Hook:
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -123,7 +123,7 @@ function TodoList({ todos, filter }) {
 
 **This tells React that you don't want the inner function to re-run unless either `todos` or `filter` have changed.** React will remember the return value of `getFilteredTodos()` during the initial render. During the next renders, it will check if `todos` or `filter` are different. If they're the same as last time, `useMemo` will return the last result it has stored. But if they are different, React will call the wrapped function again (and store _that_ result instead).
 
-The function you wrap in [`useMemo`](/apis/react/usememo) runs during rendering, so this only works for [pure calculations](/learn/keeping-components-pure).
+The function you wrap in [`useMemo`](/apis/react/useMemo) runs during rendering, so this only works for [pure calculations](/learn/keeping-components-pure).
 
 <DeepDive title="How to tell if a calculation is expensive?">
 
@@ -149,7 +149,7 @@ console.timeEnd('filter array');
 
 Keep in mind that your machine is probably faster than your users' so it's a good idea to test the performance with an artificial slowdown. For example, Chrome offers a [CPU Throttling](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) option for this.
 
-Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/apis/react/strictmode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
+Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/apis/react/StrictMode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
 
 </DeepDive>
 

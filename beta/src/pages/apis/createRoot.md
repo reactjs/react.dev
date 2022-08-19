@@ -41,7 +41,7 @@ const root = createRoot(document.getElementById('root'));
 root.render(<App />);
 ````
 
-You only need to run this code once at startup. It will:
+Usually, you only need to run this code once at startup. It will:
 
 1. Find the <CodeStep step={1}>browser DOM node</CodeStep> defined in your HTML.
 2. Display the <CodeStep step={2}>React component</CodeStep> for your app inside.
@@ -188,7 +188,22 @@ nav ul li { display: inline-block; margin-right: 20px; }
 
 </Sandpack>
 
-You can destroy the rendered trees later with [`root.unmount`](#root-unmount).
+You could also create a new DOM node with [`document.createElement()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/createElement) and add it to the document manually.
+
+```js
+const domNode = document.createElement('div');
+const root = createRoot(domNode); 
+root.render(<Comment />);
+document.body.appendChild(domNode); // You can add it anywhere in the document
+```
+
+To remove the React tree from the DOM node and clean up all the resources used by it, call [`root.unmount`](#root-unmount).
+
+```js
+root.unmount();
+```
+
+This is mostly useful if your React components are inside an app written in a different framework.
 
 ---
 
@@ -252,7 +267,7 @@ An app fully built with React will usually only have one `createRoot` call for i
 #### Parameters {/*parameters*/}
 
 
-* `domNode`: A [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element). React will create a root for this DOM element and allow you to call functions on it such as `render` to display rendered React content.
+* `domNode`: A [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element). React will create a root for this DOM element and allow you to call functions on the root, such as `render` to display rendered React content.
 
 * **optional** `options`: A object contain options for this React root.
 

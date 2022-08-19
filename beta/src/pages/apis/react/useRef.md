@@ -39,7 +39,7 @@ function Stopwatch() {
 
 `useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
 
-On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/apis/usestate), but there is an important difference.
+On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/apis/react/useState), but there is an important difference.
 
 **Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
 
@@ -195,7 +195,7 @@ function MyComponent() {
 }
 ```
 
-If you *have to* read [or write](/apis/usestate#storing-information-from-previous-renders) something during rendering, [use state](/apis/usestate) instead.
+If you *have to* read [or write](/apis/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/apis/react/useState) instead.
 
 When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure](/learn/keeping-components-pure#where-you-can-cause-side-effects).
 
@@ -417,7 +417,7 @@ button { display: block; margin-bottom: 20px; }
 
 ### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
 
-Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/apis/forwardref) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
+Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/apis/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
 
 <Sandpack>
 
@@ -578,7 +578,7 @@ export default function MyInput({ value, onChange }) {
 }
 ```
 
-And then wrap it in [`forwardRef`](/apis/forwardref) like this:
+And then wrap it in [`forwardRef`](/apis/react/forwardRef) like this:
 
 ```js {3,8}
 import { forwardRef } from 'react';

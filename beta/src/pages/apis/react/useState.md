@@ -1013,7 +1013,7 @@ Usually, you will update state in event handlers. However, in rare cases you mig
 
 In most cases, you don't need this:
 
-* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether](/learn/choosing-the-state-structure#avoid-redundant-state).** If you're worried about recomputing too often, the [`useMemo` Hook](/apis/usememo) can help.
+* **If the value you need can be computed entirely from the current props or other state, [remove that redundant state altogether](/learn/choosing-the-state-structure#avoid-redundant-state).** If you're worried about recomputing too often, the [`useMemo` Hook](/apis/react/usememo) can help.
 * If you want to reset the entire component tree's state, [pass a different `key` to your component.](#resetting-state-with-a-key)
 * If you can, update all the relevant state in the event handlers.
 
@@ -1149,7 +1149,7 @@ function handleClick() {
 
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. Although in some cases React may still need to call your component before skipping the children, it shouldn't affect your code.
 
-* React [batches state updates](/learn/queueing-a-series-of-state-updates). It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`](/apis/flushsync).
+* React [batches state updates](/learn/queueing-a-series-of-state-updates). It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`](/apis/react-dom/flushsync).
 
 * Calling the `set` function *during rendering* is only allowed from within the currently rendering component. React will discard its output and immediately attempt to render it again with the new state. This pattern is rarely needed, but you can use it to **store information from the previous renders**. [See an example above.](#storing-information-from-previous-renders)
 
@@ -1232,7 +1232,7 @@ If you can't find the cause of this error, click on the arrow next to the error 
 
 ### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
 
-In [Strict Mode](/apis/strictmode), React will call some of your functions twice instead of once:
+In [Strict Mode](/apis/react/strictmode), React will call some of your functions twice instead of once:
 
 ```js {2,5-6,11-12}
 function TodoList() {

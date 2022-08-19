@@ -67,7 +67,9 @@ const UL = (p: JSX.IntrinsicElements['ul']) => (
 const Divider = () => (
   <hr className="my-6 block border-b border-border dark:border-border-dark" />
 );
-
+const Wip = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="wip">{children}</ExpandableCallout>
+);
 const Gotcha = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="gotcha">{children}</ExpandableCallout>
 );
@@ -296,6 +298,7 @@ export const MDXComponents = {
   Diagram,
   DiagramGroup,
   Gotcha,
+  Wip,
   HomepageHero,
   Illustration,
   IllustrationBlock,

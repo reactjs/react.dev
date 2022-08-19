@@ -19,8 +19,10 @@ hydrate(reactNode, domNode, callback?)
 
 - [Usage](#usage)
     - [Hydrating server-rendered HTML](#hydrating-server-rendered-html)
+    - [Unavoidable hydration mismatches](#avoiding-unavoidable-hydration-mismatches)
+    - [Handling different client and server content](#handling-different-client-and-server-content)
 - [Reference](#reference)
-    - [`hydrateRoot(domNode, reactNode, options?)`](#hydrate-root)
+    - [`hydrateRoot(domNode, reactNode, callback?)`](#hydrate-root)
     - [`root.render(reactNode)`](#render-root)
     - [`root.unmount()`](#unmount-root)
 
@@ -76,9 +78,103 @@ For more information on hydration, see the docs for [`hydrateRoot`](/apis/react-
 
 ---
 
+### Unavoidable hydration mismatches {/*avoiding-unavoidable-hydration-mismatches*/}
+
+If a single element’s attribute or text content is unavoidably different between the server and the client (for example, a timestamp), you may silence the hydration mismatch warning.
+
+To silence hydration warnings on an element, add `suppresshydrationWarning={true}`:
+
+<Sandpack>
+
+```html public/index.html
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><h1>Current Date: 01/01/2020</h1></div>
+```
+
+```js index.js
+import './styles.css';
+import {hydrate} from 'react-dom';
+import App from './App.js';
+
+hydrate(<App />, document.getElementById('root'));
+```
+
+```js App.js active
+export default function App() {
+  return (
+    <>
+      <h1 suppressHydrationWarning={true}>
+        Current Date: {new Date().toLocaleDateString()}
+      </h1>
+    </>
+  );
+}
+```
+
+</Sandpack>
+
+This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates.
+
+### Handling different client and server content {/*handling-different-client-and-server-content*/}
+
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/apis/react/useState) like `isClient`, which you can set to `true` in an [effect](/apis/react/useEffect):
+
+<Sandpack>
+
+```html public/index.html
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><h1>Is Server</h1></div>
+```
+
+```js index.js
+import './styles.css';
+import {hydrate} from 'react-dom';
+import App from './App.js';
+
+hydrate(<App />, document.getElementById('root'));
+```
+
+```js App.js active
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return (
+    <h1>
+      {isClient ? 'Is Client' : 'Is Server'}
+    </h1>
+  );
+}
+```
+
+</Sandpack>
+
+This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
+
+<Gotcha>
+
+This approach will make your components slower because they have to render twice, so use it with caution.
+
+Remember to be mindful of user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so if you render something different in the client-only pass, the transition can be jarring. However, if executed well, it may be beneficial to render a “shell” of the application on the server, and only show some of the extra widgets on the client. To learn how to do this without getting the markup mismatch issues, refer to the explanation in the previous paragraph.
+
+</Gotcha>
+
+
+
 ## Reference {/*reference*/}
 
-### `hydrate(reactNode, domNode, options?)` {/*hydrate-root*/}
+### `hydrate(reactNode, domNode, callback?)` {/*hydrate-root*/}
 
 Call `hydrate` in React 17 and below to “attach” React to existing HTML that was already rendered by React in a server environment.
 
@@ -96,14 +192,16 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 
 * `domNode`: A [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element) that was rendered as the root element on the server.
 
+* **optional**: `callback`: A function. If passed, React will call it after your component is hydrated.
+
 #### Returns {/*returns*/}
 
-`hydrateRoot` returns null.
+`hydrate` returns null.
 
 #### Caveats {/*caveats*/}
-* `hydrate()` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
+* `hydrate` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
 * In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
-* You'll likely have only one `hydrateRoot` call in your app. If you use a framework, it might do this call for you.
-* If your app is client-rendered with no HTML rendered already, using `hydrateRoot()` is not supported. Use [createRoot()](/apis/createRoot) instead.
+* You'll likely have only one `hydrate` call in your app. If you use a framework, it might do this call for you.
+* If your app is client-rendered with no HTML rendered already, using `hydrate()` is not supported. Use [render()](/apis/react-dom/render) (for React 17 and below) or [createRoot()](/apis/react-dom/client/createRoot) (for React 18+) instead.
 
 ---

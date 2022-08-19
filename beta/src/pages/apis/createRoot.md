@@ -4,7 +4,7 @@ title: createRoot
 
 <Intro>
 
-`createRoot` lets you display React components inside a browser DOM node.
+`createRoot` lets you create a root to display React components inside a browser DOM node.
 
 ```js
 const root = createRoot(domNode, options?)
@@ -23,6 +23,7 @@ const root = createRoot(domNode, options?)
 - [Troubleshooting](#troubleshooting)
   - [I've created a root, but nothing is displayed](#ive-created-a-root-but-nothing-is-displayed)
   - [I'm getting an error: "Target container is not a DOM element"](#im-getting-an-error-target-container-is-not-a-dom-element)
+  - [I'm getting an error: "Functions are not valid as a React child."](#im-getting-an-error-functions-are-not-valid-as-a-react-child)
   - [My server-rendered HTML gets re-created from scratch](#my-server-rendered-html-gets-re-created-from-scratch)
 
 ---
@@ -383,6 +384,32 @@ For example, if `domNode` is `null`, it means that [`getElementById`](https://de
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
 
 Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
+
+### I'm getting an error: "Functions are not valid as a React child." {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
+
+This error means that whatever you're passing to `root.render` is not a React component.
+
+This may happen if you call `root.render` with `Component` instead of `<Component />`:
+
+```js {2,5}
+// 🚩 Wrong: App is a function, not a Component.
+root.render(App);
+
+// ✅ Correct: <App /> is a component.
+root.render(<App />);
+````
+
+Or if you pass a function to `root.render`, instead of the result of calling it:
+
+```js {2,5}
+// 🚩 Wrong: createApp is a function, not a component.
+root.render(createApp);
+
+// ✅ Correct: call createApp to return a component.
+root.render(createApp());
+```
+
+If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
 
 ### My server-rendered HTML gets re-created from scratch {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 

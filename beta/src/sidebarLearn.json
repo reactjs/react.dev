@@ -176,8 +176,8 @@
               "path": "/learn/lifecycle-of-reactive-effects"
             },
             {
-              "title": "Extracting Events out of Effects",
-              "path": "/learn/extracting-events-out-of-effects"
+              "title": "Separating Events from Effects",
+              "path": "/learn/separating-events-from-effects"
             }
           ]
         }

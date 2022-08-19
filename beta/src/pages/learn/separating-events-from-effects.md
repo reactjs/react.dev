@@ -1,10 +1,10 @@
 ---
-title: 'Extracting Events out of Effects'
+title: 'Separating Events from Effects'
 ---
 
 <Intro>
 
-When your Effect's code reads a prop or another reactive value, you must add it to the Effect's dependencies. This ensures that if the component re-renders with a changed value, your Effect will re-synchronize. For example, if your Effect connects to a chat server, it makes sense for it to re-connect every time the user picks a different server. However, sometimes you'll need to read a value from your Effect's code without "reacting" to its changes. You can't do it from inside the Effect, but you can extract an *Event function* out of your Effect's code, and read the value there.
+Event handlers only run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
 
 </Intro>
 
@@ -396,7 +396,7 @@ In other words, you *don't* want this line to be reactive, even though it is ins
       // ...
 ````
 
-You need a way to separate this logic from the reactive Effect around it.
+You need a way to separate this non-reactive logic from the reactive Effect around it.
 
 ### Declaring an Event function {/*declaring-an-event-function*/}
 
@@ -439,7 +439,7 @@ function ChatRoom({ roomId, theme }) {
   // ...
 ```
 
-This solves the problem. Similar to the `set` functions returned from `useState`, all Event functions are *stable:* they never change on a re-render. This is why they won't cause the Effect to re-synchronize.
+This solves the problem. Similar to the `set` functions returned from `useState`, all Event functions are *stable:* they never change on a re-render. Specifying `onConnected` as a dependency doesn't cause the Effect to re-fire.
 
 Verify that the new behavior works as you would expect:
 

@@ -661,8 +661,8 @@ function Page({ url }) {
   const { items } = useContext(ShoppingCartContext);
   const numberOfItems = items.length;
 
-  const onVisit = useEvent((visitedUrl) => {
-    logVisit(url, numberOfItems);
+  const onVisit = useEvent(visitedUrl => {
+    logVisit(visitedUrl, numberOfItems);
   });
 
   useEffect(() => {

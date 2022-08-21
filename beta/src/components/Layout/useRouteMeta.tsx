@@ -30,6 +30,8 @@ export interface RouteItem {
   path?: string;
   /** Whether the entry is a heading */
   heading?: boolean;
+  /** Whether the page is under construction */
+  wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
 }

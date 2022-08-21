@@ -6,7 +6,7 @@ title: checked
 
 `checked` attribute can be used to indicate whether an `<input>` element of the type `checkbox` and `radio button` is checked. This is useful for building controlled components.
 
-[`defaultChecked`](/apis/defaultchecked) is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
+[`defaultChecked`](/apis/dom-attributes/defaultchecked) is the uncontrolled equivalent, which sets whether the component is checked when it is first mounted.
 
 </Intro>
 

@@ -34,11 +34,11 @@ As demonstrated, it is important not to forget to **pass an object with a `__htm
 ``` js App.js
 import React from 'react';
 import { useState } from 'react';
-import ReactMardown from "react-markdown";
+import ReactMarkdown from "react-markdown";
 
 export default function MyComponent() {
   const [value, setValue] = useState("Hello, **world**!");
-  const md = new ReactMardown();
+  const md = new ReactMarkdown();
 
   const handleChange = (event) => {
     setValue(event.target.value)

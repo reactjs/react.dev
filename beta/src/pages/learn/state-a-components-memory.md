@@ -10,7 +10,7 @@ Components often need to change what's on the screen as a result of an interacti
 
 <YouWillLearn>
 
-* How to add a state variable with the [`useState`](/apis/usestate) Hook
+* How to add a state variable with the [`useState`](/apis/react/useState) Hook
 * What pair of values the `useState` Hook returns
 * How to add more than one state variable
 * Why state is called local
@@ -161,7 +161,7 @@ To update a component with new data, two things need to happen:
 1. **Retain** the data between renders.
 2. **Trigger** React to render the component with new data (re-rendering).
 
-The [`useState`](/apis/usestate) Hook provides those two things:
+The [`useState`](/apis/react/useState) Hook provides those two things:
 
 1. A **state variable** to retain the data between renders.
 2. A **state setter function** to update the variable and trigger React to render the component again.
@@ -347,7 +347,7 @@ State is just one of those features, but you will meet the other Hooks later.
 
 ### Anatomy of `useState` {/*anatomy-of-usestate*/}
 
-When you call [`useState`](/apis/usestate), you are telling React that you want this component to remember something:
+When you call [`useState`](/apis/react/useState), you are telling React that you want this component to remember something:
 
 ```js
 const [index, setIndex] = useState(0);

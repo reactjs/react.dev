@@ -579,7 +579,7 @@ Mutable values (including global variables) aren't reactive.
 
 **A mutable value like [`location.pathname`](https://developer.mozilla.org/en-US/docs/Web/API/Location/pathname) can't be a dependency.** It's mutable, so it can change at any time completely outside of the React rendering data flow. Changing it wouldn't trigger a re-render of your component. Therefore, even if you specified it in the dependencies, React *wouldn't know* to re-synchronize the Effect when it changes. This also breaks the rules of React because reading mutable data during rendering (which is when you calculate the dependencies) breaks [purity of rendering.](/learn/keeping-components-pure) Instead, you should read and subscribe to an external mutable value with [`useSyncExternalStore`](/learn/you-might-not-need-an-effect#subscribing-to-an-external-store).
 
-**A mutable value like [`ref.current`](/apis/useref#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
+**A mutable value like [`ref.current`](/apis/react/useRef#reference) or things you read from it also can't be a dependency.** The ref object returned by `useRef` itself can be a dependency, but its `current` property is intentionally mutable. It lets you [keep track of something without triggering a re-render.](/learn/referencing-values-with-refs) But since changing it doesn't trigger a re-render, it's not a reactive value, and React won't know to re-run your Effect when it changes.
 
 As you'll learn below on this page, a linter will check for these issues automatically.
 
@@ -683,7 +683,7 @@ Try this fix in the sandbox above. Verify that the linter error is gone, and tha
 
 <Note>
 
-In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/apis/usestate#setstate) returned from `useState` and the ref object returned by [`useRef`](/apis/useref) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so the linter lets you omit them from the list. However, including them is allowed: they won't change, so it doesn't matter.
+In some cases, React *knows* that a value never changes even though it's declared inside the component. For example, the [`set` function](/apis/react/useState#setstate) returned from `useState` and the ref object returned by [`useRef`](/apis/react/useRef) are *stable*--they are guaranteed to not change on a re-render. Stable values aren't reactive, so the linter lets you omit them from the list. However, including them is allowed: they won't change, so it doesn't matter.
 
 </Note>
 
@@ -732,7 +732,7 @@ function ChatRoom() {
 
 * **Check that your Effect represents an independent synchronization process.** If your Effect doesn't synchronize anything, [it might be unnecessary.](/learn/you-might-not-need-an-effect) If it synchronizes several independent things, [split it up.](#each-effect-represents-a-separate-synchronization-process)
 
-* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Event function_). [Read more about opting out of reactivity with Events.](/learn/opting-out-of-reactivity-with-events)
+* **If you want to read the latest value of props or state without "reacting" to it and re-synchronizing the Effect,** you can split your Effect into a reactive part (which you'll keep in the Effect) and a non-reactive part (which you'll extract into something called an _Event function_). [Read more about separating Events from Effects.](/learn/separating-events-from-effects)
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies)
 
@@ -750,7 +750,7 @@ useEffect(() => {
 }, []);
 ```
 
-On the [next](/learn/opting-out-of-reactivity-with-events) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
+On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
 
 </Gotcha>
 
@@ -1305,7 +1305,7 @@ body {
 
 Try adding `console.log('Resubscribing')` inside the Effect body and notice that now it only resubscribes when you toggle the checkbox (`canMove` changes) or edit the code. This makes it better than the previous approach that always resubscribed.
 
-You'll learn a more general approach to this type of problem in [Opting Out of Reactivity with Events](/learn/opting-out-of-reactivity-with-events).
+You'll learn a more general approach to this type of problem in [Separating Events from Effects](/learn/separating-events-from-effects).
 
 </Solution>
 

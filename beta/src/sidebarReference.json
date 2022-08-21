@@ -9,37 +9,225 @@
       "routes": [
         {
           "title": "React APIs",
-          "path": "/apis",
+          "path": "/apis/react",
           "routes": [
             {
-              "title": "createContext()",
-              "path": "/apis/createcontext"
+              "title": "Children",
+              "path": "/apis/react/Children",
+              "wip": true
             },
             {
-              "title": "useContext()",
-              "path": "/apis/usecontext"
+              "title": "cloneElement",
+              "path": "/apis/react/cloneElement",
+              "wip": true
             },
             {
-              "title": "useReducer()",
-              "path": "/apis/usereducer"
+              "title": "Component",
+              "path": "/apis/react/Component",
+              "wip": true
             },
             {
-              "title": "useRef()",
-              "path": "/apis/useref"
+              "title": "createContext",
+              "path": "/apis/react/createContext"
             },
             {
-              "title": "useState()",
-              "path": "/apis/usestate"
+              "title": "createElement",
+              "path": "/apis/react/createElement",
+              "wip": true
+            },
+            {
+              "title": "createFactory",
+              "path": "/apis/react/createFactory",
+              "wip": true
+            },
+            {
+              "title": "createRef",
+              "path": "/apis/react/createRef",
+              "wip": true
+            },
+            {
+              "title": "forwardRef",
+              "path": "/apis/react/forwardRef",
+              "wip": true
+            },
+            {
+              "title": "Fragment",
+              "path": "/apis/react/Fragment",
+              "wip": true
+            },
+            {
+              "title": "isValidElement",
+              "path": "/apis/react/isValidElement",
+              "wip": true
+            },
+            {
+              "title": "lazy",
+              "path": "/apis/react/lazy",
+              "wip": true
+            },
+            {
+              "title": "memo",
+              "path": "/apis/react/memo",
+              "wip": true
+            },
+            {
+              "title": "PureComponent",
+              "path": "/apis/react/PureComponent",
+              "wip": true
+            },
+            {
+              "title": "startTransition",
+              "path": "/apis/react/startTransition",
+              "wip": true
+            },
+            {
+              "title": "StrictMode",
+              "path": "/apis/react/StrictMode",
+              "wip": true
+            },
+            {
+              "title": "Suspense",
+              "path": "/apis/react/Suspense",
+              "wip": true
+            },
+            {
+              "title": "useCallback",
+              "path": "/apis/react/useCallback",
+              "wip": true
+            },
+            {
+              "title": "useContext",
+              "path": "/apis/react/useContext"
+            },
+            {
+              "title": "useDebugValue",
+              "path": "/apis/react/useDebugValue",
+              "wip": true
+            },
+            {
+              "title": "useDeferredValue",
+              "path": "/apis/react/useDeferredValue",
+              "wip": true
+            },
+            {
+              "title": "useEffect",
+              "path": "/apis/react/useEffect",
+              "wip": true
+            },
+            {
+              "title": "useId",
+              "path": "/apis/react/useId",
+              "wip": true
+            },
+            {
+              "title": "useImperativeHandle",
+              "path": "/apis/react/useImperativeHandle",
+              "wip": true
+            },
+            {
+              "title": "useInsertionEffect",
+              "path": "/apis/react/useInsertionEffect",
+              "wip": true
+            },
+            {
+              "title": "useMemo",
+              "path": "/apis/react/useMemo",
+              "wip": true
+            },
+            {
+              "title": "useReducer",
+              "path": "/apis/react/useReducer"
+            },
+            {
+              "title": "useRef",
+              "path": "/apis/react/useRef"
+            },
+            {
+              "title": "useState",
+              "path": "/apis/react/useState"
+            },
+            {
+              "title": "useSyncExternalStore",
+              "path": "/apis/react/useSyncExternalStore",
+              "wip": true
+            },
+            {
+              "title": "useTransition",
+              "path": "/apis/react/useTransition",
+              "wip": true
             }
           ]
         },
         {
           "title": "ReactDOM APIs",
-          "path": "/apis/reactdom",
+          "path": "/apis/react-dom",
           "routes": [
             {
-              "title": "render()",
-              "path": "/apis/render"
+              "title": "createRoot",
+              "path": "/apis/react-dom/client/createRoot"
+            },
+            {
+              "title": "createPortal",
+              "path": "/apis/react-dom/createPortal",
+              "wip": true
+            },
+            {
+              "title": "findDOMNode",
+              "path": "/apis/react-dom/findDOMNode",
+              "wip": true
+            },
+            {
+              "title": "flushSync",
+              "path": "/apis/react-dom/flushSync",
+              "wip": true
+            },
+            {
+              "title": "hydrate",
+              "path": "/apis/react-dom/hydrate",
+              "wip": true
+            },
+            {
+              "title": "hydrateRoot",
+              "path": "/apis/react-dom/client/hydrateRoot"
+            },
+            {
+              "title": "render",
+              "path": "/apis/react-dom/render"
+            },
+            {
+              "title": "renderToNodeStream",
+              "path": "/apis/react-dom/server/renderToNodeStream",
+              "wip": true
+            },
+            {
+              "title": "renderToPipeableStream",
+              "path": "/apis/react-dom/server/renderToPipeableStream",
+              "wip": true
+            },
+            {
+              "title": "renderToReadableStream",
+              "path": "/apis/react-dom/server/renderToReadableStream",
+              "wip": true
+            },
+            {
+              "title": "renderToStaticMarkup",
+              "path": "/apis/react-dom/server/renderToStaticMarkup",
+              "wip": true
+            },
+            {
+              "title": "renderToStaticNodeStream",
+              "path": "/apis/react-dom/server/renderToStaticNodeStream",
+              "wip": true
+            },
+            {
+              "title": "renderToString",
+              "path": "/apis/react-dom/server/renderToString",
+              "wip": true
+            },
+            {
+              "title": "unmountComponentAtNode",
+              "path": "/apis/react-dom/unmountComponentAtNode",
+              "wip": true
             }
           ]
         }

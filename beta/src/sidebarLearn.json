@@ -174,6 +174,10 @@
             {
               "title": "Lifecycle of Reactive Effects",
               "path": "/learn/lifecycle-of-reactive-effects"
+            },
+            {
+              "title": "Separating Events from Effects",
+              "path": "/learn/separating-events-from-effects"
             }
           ]
         }

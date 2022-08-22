@@ -2,6 +2,12 @@
 title: dangerouslySetInnerHTML
 ---
 
+<Wip>
+
+This section is incomplete, please see the old docs for [dangerouslySetInnerHTML](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml).
+
+</Wip>
+
 <Intro>
 
 `dangerouslySetInnerHTML` is used in React as replacement for using `innerHTML` property for DOM elements.

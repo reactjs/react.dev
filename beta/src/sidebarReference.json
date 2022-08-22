@@ -233,59 +233,61 @@
         },
         {
           "title": "ReactDOM Attributes",
-          "path": "/apis/domattributes",
+          "path": "/apis/dom-attributes/domattributes",
           "routes": [
             {
               "title": "aria",
-              "path": "/apis/aria"
+              "path": "/apis/dom-attributes/aria"
             },
             {
               "title": "checked",
-              "path": "/apis/checked"
+              "path": "/apis/dom-attributes/checked"
             },
             {
               "title": "className",
-              "path": "/apis/classname"
+              "path": "/apis/dom-attributes/classname"
             },
             {
               "title": "dangerouslySetInnerHTML",
-              "path": "/apis/dangerouslysetinnerhtml"
+              "path": "/apis/dom-attributes/dangerouslysetinnerhtml",
+              "wip": true
             },
             {
               "title": "defaultChecked",
-              "path": "/apis/defaultchecked"
+              "path": "/apis/dom-attributes/defaultchecked"
             },
             {
               "title": "defaultValue",
-              "path": "/apis/defaultvalue"
+              "path": "/apis/dom-attributes/defaultvalue"
             },
             {
               "title": "htmlFor",
-              "path": "/apis/htmlfor"
+              "path": "/apis/dom-attributes/htmlfor"
             },
             {
               "title": "onChange",
-              "path": "/apis/onchange"
+              "path": "/apis/dom-attributes/onchange"
             },
             {
               "title": "selected",
-              "path": "/apis/selected"
+              "path": "/apis/dom-attributes/selected"
             },
             {
               "title": "style",
-              "path": "/apis/style"
+              "path": "/apis/dom-attributes/style"
             },
             {
               "title": "suppressContentEditableWarning",
-              "path": "/apis/suppresscontenteditablewarning"
+              "path": "/apis/dom-attributes/suppresscontenteditablewarning"
             },
             {
               "title": "suppressHydrationWarning",
-              "path": "/apis/suppresshydrationwarning"
+              "path": "/apis/dom-attributes/suppresshydrationwarning",
+              "wip": true
             },
             {
               "title": "value",
-              "path": "/apis/value"
+              "path": "/apis/dom-attributes/value"
             }
           ]
         }

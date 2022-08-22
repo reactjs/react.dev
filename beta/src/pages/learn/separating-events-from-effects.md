@@ -4,7 +4,7 @@ title: 'Separating Events from Effects'
 
 <Intro>
 
-Event handlers only run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
+Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was during the last render. Sometimes, you also want a mix of both behaviors: an Effect that re-runs in response to some values but not others. This page will teach you how to do that.
 
 </Intro>
 
@@ -647,7 +647,7 @@ function Page({ url }) {
 
   useEffect(() => {
     logVisit(url, numberOfItems);
-  }, [url]); 🔴 React Hook useEffect has a missing dependency: 'numberOfItems'
+  }, [url]); // 🔴 React Hook useEffect has a missing dependency: 'numberOfItems'
   // ...
 }
 ```
@@ -677,6 +677,175 @@ Here, `onVisit` is an Event function. The code inside it isn't reactive. This is
 On the other hand, the Effect itself remains reactive. Code inside the Effect uses the `url` prop, so the Effect will re-run after every re-render with a different `url`. This, in turn, will call the `onVisit` event function.
 
 As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
+
+<DeepDive title="Is it okay to suppress the dependency linter instead?">
+
+In the existing codebases, you may sometimes see the lint rule suppressed like this:
+
+```js {7,8}
+function Page({ url }) {
+  const { items } = useContext(ShoppingCartContext);
+  const numberOfItems = items.length;
+
+  useEffect(() => {
+    logVisit(url, numberOfItems);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [url]);
+  // ...
+}
+```
+
+After `useEvent` becomes a stable part of React, we recommend to **never suppress the linter** like this.
+
+The first downside of suppressing the rule is that React will no longer warn you when your Effect needs to "react" to a new reactive dependency you've introduced to your code. For example, in the earlier example, you added `url` to the dependencies *because* React reminded you to do it. You will no longer get such reminders for any future edits to that Effect if you disable the linter. This leads to bugs.
+
+Here is an example of a confusing bug caused by suppressing the linter. In this example, the `handleMove` function is supposed to read the current `canMove` state variable value in order to decide whether the dot should follow the cursor. However, `canMove` is always `true` inside `handleMove`. Can you see why?
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+
+export default function App() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [canMove, setCanMove] = useState(true);
+
+  function handleMove(e) {
+    if (canMove) {
+      setPosition({ x: e.clientX, y: e.clientY });
+    }
+  }
+
+  useEffect(() => {
+    window.addEventListener('pointermove', handleMove);
+    return () => window.removeEventListener('pointermove', handleMove);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <>
+      <label>
+        <input type="checkbox"
+          checked={canMove}
+          onChange={e => setCanMove(e.target.checked)} 
+        />
+        The dot is allowed to move
+      </label>
+      <hr />
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'pink',
+        borderRadius: '50%',
+        opacity: 0.6,
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        pointerEvents: 'none',
+        left: -20,
+        top: -20,
+        width: 40,
+        height: 40,
+      }} />
+    </>
+  );
+}
+```
+
+```css
+body {
+  height: 200px;
+}
+```
+
+</Sandpack>
+
+
+The problem with the this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a depedency, or it can potentially get stale over time!
+
+The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
+
+**If you never suppress the linter, you will never see problems with stale values.** 
+
+With `useEvent`, there is no need to "lie" to the linter, and the code works as you would expect:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js'; // Temporary
+
+export default function App() {
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [canMove, setCanMove] = useState(true);
+
+  const onMove = useEvent(e => {
+    if (canMove) {
+      setPosition({ x: e.clientX, y: e.clientY });
+    }
+  });
+
+  useEffect(() => {
+    window.addEventListener('pointermove', onMove);
+    return () => window.removeEventListener('pointermove', onMove);
+  }, [onMove]); // TODO: Linter will allow [] in the future
+
+  return (
+    <>
+      <label>
+        <input type="checkbox"
+          checked={canMove}
+          onChange={e => setCanMove(e.target.checked)} 
+        />
+        The dot is allowed to move
+      </label>
+      <hr />
+      <div style={{
+        position: 'absolute',
+        backgroundColor: 'pink',
+        borderRadius: '50%',
+        opacity: 0.6,
+        transform: `translate(${position.x}px, ${position.y}px)`,
+        pointerEvents: 'none',
+        left: -20,
+        top: -20,
+        width: 40,
+        height: 40,
+      }} />
+    </>
+  );
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+body {
+  height: 200px;
+}
+```
+
+</Sandpack>
+
+This doesn't mean that `useEvent` is *always* the correct solution. You should only apply it to the lines of code that you don't want to be reactive. For example, in the above sandbox, you didn't want the Effect's code to be reactive with regards to `canMove`. That's why it made sense to extract an Event function.
+
+Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for other correct alternatives to suppressing the linter.
+
+</DeepDive>
 
 ### Limitations of Event functions {/*limitations-of-event-functions*/}
 
@@ -749,12 +918,12 @@ It's possible that in the future, some of these restrictions will be lifted. But
 
 <Recap>
 
-- Event handlers run in response to specific interactions
-- Effects run whenever synchronization is needed
-- Logic inside event handlers is not reactive
-- Logic inside Effects is reactive
-- You can move non-reactive logic from Effects into Event functions
-- Only call Event functions from inside Effects
-- Don't pass Event functions to other components or Hooks
+- Event handlers run in response to specific interactions.
+- Effects run whenever synchronization is needed.
+- Logic inside event handlers is not reactive.
+- Logic inside Effects is reactive.
+- You can move non-reactive logic from Effects into Event functions.
+- Only call Event functions from inside Effects.
+- Don't pass Event functions to other components or Hooks.
 
 </Recap>

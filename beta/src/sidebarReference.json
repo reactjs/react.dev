@@ -183,8 +183,7 @@
             },
             {
               "title": "hydrate",
-              "path": "/apis/react-dom/hydrate",
-              "wip": true
+              "path": "/apis/react-dom/hydrate"
             },
             {
               "title": "hydrateRoot",

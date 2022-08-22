@@ -4,7 +4,7 @@ title: suppressHydrationWarning
 
 <Wip>
 
-This section is incomplete, please see the old docs for [dangerouslySetInnerHTML](https://reactjs.org/docs/dom-elements.html#suppresshydrationwarning).
+This section is incomplete, please see the old docs for [suppressHydrationWarning](https://reactjs.org/docs/dom-elements.html#suppresshydrationwarning).
 
 </Wip>
 

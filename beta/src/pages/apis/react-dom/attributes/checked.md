@@ -11,11 +11,11 @@ title: checked
 </Intro>
 
 - [Usage](#usage)
-  - [Using `checked` attribute](#using-checked-attribute)
+  - [Using the `checked` attribute](#using-the-checked-attribute)
 
 ## Usage {/*usage*/}
 
-### Using `checked` attribute {/*using-checked-attributes*/}
+### Using the `checked` attribute {/*using-the-checked-attributes*/}
 
 Let's see some examples of using `checked` attribute while rendering a component in React.
 

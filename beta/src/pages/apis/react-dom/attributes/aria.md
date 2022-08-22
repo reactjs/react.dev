@@ -10,11 +10,11 @@ In React, the `aria-*` attributes are an exception to the rule that attributes m
 </Intro>
 
 - [Usage](#usage)
-  - [Using `aria-*` attributes](#using-aria-attributes)
+  - [Using the `aria-*` attributes](#using-the-aria-attributes)
 
 ## Usage {/*usage*/}
 
-### Using `aria-*` attributes {/*using-aria-attributes*/}
+### Using the `aria-*` attributes {/*using-the-aria-attributes*/}
 
 Lets see an examples of using `aria-*` attributes while rendering a component in React.
 

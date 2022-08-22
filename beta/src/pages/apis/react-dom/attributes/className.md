@@ -15,7 +15,7 @@ Note: In JavaScript, the `class` keyword is reserved for creating a class, which
 
 ## Usage {/*usage*/}
 
-### Using `className` attribute {/*using-classname-attributes*/}
+### Using the `className` attribute {/*using-classname-attributes*/}
 
 The example below demonstrates the usage of`className` attribute with React. Here, a component called `Button`is being rendered. It returns a `<button>` element that has an attribute `className` specified. This `className` attribute refers to the CSS style `.buttonStyle`, which defines styles for `button`.
 

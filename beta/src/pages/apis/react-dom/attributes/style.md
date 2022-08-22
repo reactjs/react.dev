@@ -19,11 +19,11 @@ The `style` attribute can only be passed to the built-in DOM elements.
 </Note>
 
 - [Usage](#usage)
-  - [Using `style` attribute](#using-style-attribute)
+  - [Using the `style` attribute](#using-the-style-attribute)
 
 ## Usage {/*usage*/}
 
-### Using `style` attribute {/*using-style-attribute*/}
+### Using the `style` attribute {/*using-the-style-attribute*/}
 
 Here is an example that demonstrates the usage of `style` attribute with `<div>` element. `MovingDot` component renders the `<div>` where we capture the cursor movement and **dynamically** add the styling.
 

@@ -233,61 +233,61 @@
         },
         {
           "title": "ReactDOM Attributes",
-          "path": "/apis/dom-attributes/domattributes",
+          "path": "/apis/react-dom",
           "routes": [
             {
               "title": "aria",
-              "path": "/apis/dom-attributes/aria"
+              "path": "/apis/react-dom/attributes/aria"
             },
             {
               "title": "checked",
-              "path": "/apis/dom-attributes/checked"
+              "path": "/apis/react-dom/attributes/checked"
             },
             {
               "title": "className",
-              "path": "/apis/dom-attributes/classname"
+              "path": "/apis/react-dom/attributes/className"
             },
             {
               "title": "dangerouslySetInnerHTML",
-              "path": "/apis/dom-attributes/dangerouslysetinnerhtml",
+              "path": "/apis/react-dom/attributes/dangerouslySetInnerHTML",
               "wip": true
             },
             {
               "title": "defaultChecked",
-              "path": "/apis/dom-attributes/defaultchecked"
+              "path": "/apis/react-dom/attributes/defaultChecked"
             },
             {
               "title": "defaultValue",
-              "path": "/apis/dom-attributes/defaultvalue"
+              "path": "/apis/react-dom/attributes/defaultValue"
             },
             {
               "title": "htmlFor",
-              "path": "/apis/dom-attributes/htmlfor"
+              "path": "/apis/react-dom/attributes/htmlFor"
             },
             {
               "title": "onChange",
-              "path": "/apis/dom-attributes/onchange"
+              "path": "/apis/react-dom/attributes/onChange"
             },
             {
               "title": "selected",
-              "path": "/apis/dom-attributes/selected"
+              "path": "/apis/react-dom/attributes/selected"
             },
             {
               "title": "style",
-              "path": "/apis/dom-attributes/style"
+              "path": "/apis/react-dom/attributes/style"
             },
             {
               "title": "suppressContentEditableWarning",
-              "path": "/apis/dom-attributes/suppresscontenteditablewarning"
+              "path": "/apis/react-dom/attributes/suppressContentEditableWarning"
             },
             {
               "title": "suppressHydrationWarning",
-              "path": "/apis/dom-attributes/suppresshydrationwarning",
+              "path": "/apis/react-dom/attributes/suppressHydrationWarning",
               "wip": true
             },
             {
               "title": "value",
-              "path": "/apis/dom-attributes/value"
+              "path": "/apis/react-dom/attributes/value"
             }
           ]
         }

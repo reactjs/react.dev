@@ -11,14 +11,11 @@ We intentionally do not use the existing browser behavior, because `onChange` is
 </Intro>
 
 - [Usage](#usage)
-  - [Using `onChange` property](#using-onChange-property)
+  - [Using the `onChange` property](#using-the-onChange-property)
 
 ## Usage {/*usage*/}
 
-### Using `onChange` property {/*using-onChange-property*/}
-
-
-
+### Using `onChange` property {/*using-the-onChange-property*/}
 
 In the example below, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field, and the corresponding function is executed.
 

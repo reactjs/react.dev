@@ -14,15 +14,15 @@ Don’t use `suppressContentEditableWarning` unless you are building a library l
 </Note>
 
 - [Usage](#usage)
-  - [Using `suppressContentEditableWarning` attribute](#using-style-suppressContentEditableWarning)
+  - [Using the `suppressContentEditableWarning` attribute](#using-the-style-suppressContentEditableWarning)
 
 ## Usage {/*usage*/}
 
-### Using `suppressContentEditableWarning` attribute {/*using-style-suppressContentEditableWarning*/}
+### Using the `suppressContentEditableWarning` attribute {/*using-the-style-suppressContentEditableWarning*/}
 
-In the example below, the `<div>` is editable because the `contentEditable` attribute is set to true, and you get a warning when this happens.
+In the example below, the `<div>` is editable because the `contentEditable` attribute is set to `true`, and you get a warning when this happens.
 
-Make the code warning-free by setting`suppressContentEditableWarning` to true.
+Make the code warning-free by setting`suppressContentEditableWarning` to `true`.
 
 <Sandpack>
 

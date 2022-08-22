@@ -9,11 +9,11 @@ title: defaultValue
 </Intro>
 
 - [Usage](#usage)
-  - [Using `defaultValue` attribute](#using-defaultValue-attribute)
+  - [Using the `defaultValue` attribute](#using-the-defaultValue-attribute)
 
 ## Usage {/*usage*/}
 
-### Using `defaultValue` attribute {/*using-defaultValue-attributes*/}
+### Using the `defaultValue` attribute {/*using-the-defaultValue-attributes*/}
 
 Here, in the example below, the `MyComponent` component is rendering a `<textarea>` with the attribute `defaultValue` set. Hence, the `<textarea>` has default text when the component mounts.
 

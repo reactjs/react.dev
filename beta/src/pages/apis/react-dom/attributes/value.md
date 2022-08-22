@@ -9,11 +9,11 @@ The `value` attribute is supported by `<input>`, `<select>` and `<textarea>` ele
 </Intro>
 
 - [Usage](#usage)
-  - [Using `value` attribute](#using-value-attribute)
+  - [Using `value` attribute](#using-the-value-attribute)
 
 ## Usage {/*usage*/}
 
-### Using `value` attribute {/*using-value-attributes*/}
+### Using the `value` attribute {/*using-the-value-attributes*/}
 
 In the example below, `<input>` element of the `type="radio"`is being rendered. To set the selection, the `value` attribute is used.
 

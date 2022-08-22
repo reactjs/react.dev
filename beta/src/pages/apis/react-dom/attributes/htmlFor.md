@@ -11,11 +11,11 @@ In React, the `htmlFor` attribute is used to specify which `form` element a `<la
 </Intro>
 
 - [Usage](#usage)
-  - [Using `htmlFor` property](#using-htmlFor-property)
+  - [Using the `htmlFor` property](#using-the-htmlFor-property)
 
 ## Usage {/*usage*/}
 
-### Using `htmlFor` property {/*using-htmlFor-property*/}
+### Using `htmlFor` property {/*using-the-htmlFor-property*/}
 
 In the example below, a `<label>` is bound to `<input>` element, who has an `id` attribute. The `<label>` has a `htmlFor` attribute with its value same as the `id` of `<input>` element to denote the relation.
 

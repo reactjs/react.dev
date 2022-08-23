@@ -932,7 +932,7 @@ It's possible that in the future, some of these restrictions will be lifted. But
 
 ### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` vairable with the plus and minus buttons.
+This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
 
 However, no matter how many times you click the plus button, the counter is still incremented by one every second. What's wrong with this code? Why is `increment` always equal to `1` inside the Effect's code? Find the mistake and fix it.
 
@@ -1561,7 +1561,7 @@ Inside your Event function, `roomId` is the value *at the time Event function wa
 
 Your Event function is called with a two second delay. If you're quickly switching from the travel to the music room, by the time the travel room's notification shows, `roomId` is already `"music"`. This is why both notifications say "Welcome to music".
 
-To fix the issue, instead of reading the *latest* `roomId` inside the Event function, make it an parameter of your Event function, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
+To fix the issue, instead of reading the *latest* `roomId` inside the Event function, make it a parameter of your Event function, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
 
 <Sandpack>
 

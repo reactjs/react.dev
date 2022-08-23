@@ -1360,7 +1360,6 @@ export default function Timer() {
 }
 ```
 
-
 ```js useEvent.js
 import { useRef, useInsertionEffect, useCallback } from 'react';
 
@@ -1385,6 +1384,8 @@ button { margin: 10px; }
 ```
 
 </Sandpack>
+
+In general, you should be suspicious of functions like `onMount` that focus on the *timing* rather than the *purpose* of a piece of code. It may feel "more descriptive" at first but it obscures your intent. As a rule of thumb, Event functions should correspond to something that happens from the *user's* perspective. For example, `onMessage`, `onTick`, `onVisit`, or `onConnected` are good Event function names. Code inside them would likely not need to be reactive. On the other hand, `onMount`, `onUpdate`, `onUnmount`, or `onAfterRender` are so generic that it's easy to accidentally put code that *should* be reactive into them. This is why you should name your Event functions after *what the user thinks has happened,* not when some code happened to run.
 
 </Solution>
 

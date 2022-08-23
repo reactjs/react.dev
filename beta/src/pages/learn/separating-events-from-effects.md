@@ -692,7 +692,7 @@ You might be wondering if you could call `onVisit()` with no arguments, and read
   }, [url]);
 ```
 
-Although this would work too, it is better to pass the `url` that the user visited to the Event function explicitly. **By making `url` an argument to your Event function, you are saying that visiting a page with a different `url` constitutes a separate event from the user's perspective.** It's a part of your "event":
+This would work, but it's better to pass this `url` to the Event function explicitly. **By passing `url` as an argument to your Event function, you are saying that visiting a page with a different `url` constitutes a separate "event" from the user's perspective.** The `visitedUrl` is a *part* of the "event" that happened:
 
 ```js {1-2,6}
   const onVisit = useEvent(visitedUrl => {
@@ -704,7 +704,7 @@ Although this would work too, it is better to pass the `url` that the user visit
   }, [url]);
 ```
 
-This makes it less likely that someone will remove `url` as a dependency of your Effect, resulting in all the different page visits being counted as a single visit. Your Event function explicitly "asks" for the `visitedUrl`. This communicates to the reader that, from the user's perspective, `onVisit` calls with different `visitedUrl` values are distinct "events". The user has *visited a page with a certain URL.* Page visits should be reactive with respect to `url`, so you pass the `url` from the reactive code in your Effect.
+Since your Event function explicitly "asks" for the `visitedUrl`, now you can't accidentally remove `url` from the Effect's dependencies. If you remove the `url` dependency (causing distinct page visits to be counted as one), the linter will warn you about it. You want `onVisit` to be reactive with regards to the `url`, so instead of reading the `url` inside (where it wouldn't be reactive), you pass it *from* your Effect.
 
 This becomes especially important if there is some asynchronous logic inside the Effect:
 

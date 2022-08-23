@@ -464,7 +464,7 @@ Verify that the new behavior works as you would expect:
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js'; // Temporary
+import { useEvent } from './useEvent.js';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -770,7 +770,7 @@ With `useEvent`, there is no need to "lie" to the linter, and the code works as 
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js'; // Temporary
+import { useEvent } from './useEvent.js';
 
 export default function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -927,3 +927,796 @@ It's possible that in the future, some of these restrictions will be lifted. But
 - Don't pass Event functions to other components or Hooks.
 
 </Recap>
+
+<Challenges>
+
+### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
+
+This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` vairable with the plus and minus buttons.
+
+However, no matter how many times you click the plus button, the counter is still incremented by one every second. What's wrong with this code? Why is `increment` always equal to `1` inside the Effect's code? Find the mistake and fix it.
+
+<Hint>
+
+To fix this code, it's enough to follow the rules.
+
+</Hint>
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+  const [increment, setIncrement] = useState(1);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(c => c + increment);
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  return (
+    <>
+      <h1>
+        Counter: {count}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </h1>
+      <hr />
+      <p>
+        Every second, increment by:
+        <button disabled={increment === 0} onClick={() => {
+          setIncrement(i => i - 1);
+        }}>–</button>
+        <b>{increment}</b>
+        <button onClick={() => {
+          setIncrement(i => i + 1);
+        }}>+</button>
+      </p>
+    </>
+  );
+}
+```
+
+```css
+button { margin: 10px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+As usual, when you're looking for bugs in Effects, start by searching for linter suppressions.
+
+If you remove the suppression comment, React will tell you that this Effect's code depends on `increment`, but you "lied" to React by claiming that this Effect does not depend on any reactive values (`[]`). Add `increment` to the dependency array:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+  const [increment, setIncrement] = useState(1);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(c => c + increment);
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [increment]);
+
+  return (
+    <>
+      <h1>
+        Counter: {count}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </h1>
+      <hr />
+      <p>
+        Every second, increment by:
+        <button disabled={increment === 0} onClick={() => {
+          setIncrement(i => i - 1);
+        }}>–</button>
+        <b>{increment}</b>
+        <button onClick={() => {
+          setIncrement(i => i + 1);
+        }}>+</button>
+      </p>
+    </>
+  );
+}
+```
+
+```css
+button { margin: 10px; }
+```
+
+</Sandpack>
+
+Now, when `increment` changes, React will re-synchronize your Effect, which will restart the interval.
+
+</Solution>
+
+### Fix a freezing counter {/*fix-a-freezing-counter*/}
+
+This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases by ten (rather than by one) after every next second.
+
+There is a small issue with this user interface. You might notice that if you keep pressing the plus or minus buttons faster than once per second, the timer itself seems to pause. It only resumes after a second passes since the last time you've pressed either button. Find why this is happening, and fix the issue so that the timer ticks on *every* second without interruptions.
+
+<Hint>
+
+It seems like the Effect which sets up the timer "reacts" to the `increment` value. Does the line that uses the current `increment` value in order to call `setCount` really need to be reactive?
+
+</Hint>
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+  const [increment, setIncrement] = useState(1);
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setCount(c => c + increment);
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [increment]);
+
+  return (
+    <>
+      <h1>
+        Counter: {count}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </h1>
+      <hr />
+      <p>
+        Every second, increment by:
+        <button disabled={increment === 0} onClick={() => {
+          setIncrement(i => i - 1);
+        }}>–</button>
+        <b>{increment}</b>
+        <button onClick={() => {
+          setIncrement(i => i + 1);
+        }}>+</button>
+      </p>
+    </>
+  );
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+button { margin: 10px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+The issue is that the code inside the Effect uses the `increment` state variable. Since it's a dependency of your Effect, every change to `increment` causes the Effect to re-synchronize, which causes the interval to clear. If you keep clearing the interval every time before it has a chance to fire, it will appear as if the timer has stalled.
+
+To solve the issue, extract an `onTick` Event function from the Effect:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+  const [increment, setIncrement] = useState(1);
+
+  const onTick = useEvent(() => {
+    setCount(c => c + increment);
+  });
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      onTick();
+    }, 1000);
+    return () => {
+      clearInterval(id);
+    };
+  }, [onTick]); // TODO: Linter will allow [] in the future
+
+  return (
+    <>
+      <h1>
+        Counter: {count}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </h1>
+      <hr />
+      <p>
+        Every second, increment by:
+        <button disabled={increment === 0} onClick={() => {
+          setIncrement(i => i - 1);
+        }}>–</button>
+        <b>{increment}</b>
+        <button onClick={() => {
+          setIncrement(i => i + 1);
+        }}>+</button>
+      </p>
+    </>
+  );
+}
+```
+
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+button { margin: 10px; }
+```
+
+</Sandpack>
+
+Since `onTick` is an Event function, the code inside it isn't reactive. The change to `increment` does not trigger any Effects.
+
+</Solution>
+
+### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
+
+In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
+
+<Hint>
+
+Code inside Event functions is not reactive. Are there cases in which you would _want_ the `setInterval` call to re-run?
+
+</Hint>
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+  const [increment, setIncrement] = useState(1);
+  const [delay, setDelay] = useState(100);
+
+  const onTick = useEvent(() => {
+    setCount(c => c + increment);
+  });
+
+  const onMount = useEvent(() => {
+    return setInterval(() => {
+      onTick();
+    }, delay);
+  });
+
+  useEffect(() => {
+    const id = onMount();
+    return () => {
+      clearInterval(id);
+    }
+  }, [onMount]);
+
+  return (
+    <>
+      <h1>
+        Counter: {count}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </h1>
+      <hr />
+      <p>
+        Increment by:
+        <button disabled={increment === 0} onClick={() => {
+          setIncrement(i => i - 1);
+        }}>–</button>
+        <b>{increment}</b>
+        <button onClick={() => {
+          setIncrement(i => i + 1);
+        }}>+</button>
+      </p>
+      <p>
+        Increment delay:
+        <button disabled={delay === 100} onClick={() => {
+          setDelay(d => d - 100);
+        }}>–100 ms</button>
+        <b>{delay} ms</b>
+        <button onClick={() => {
+          setDelay(d => d + 100);
+        }}>+100 ms</button>
+      </p>
+    </>
+  );
+}
+```
+
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+button { margin: 10px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+The problem with the above example is that it extracted an Event function called `onMount` without considering what the code should actually be doing. You should only extract Event functions for a specific reason: when you want to make a part of your code non-reactive. However, the `setInterval` call *should* be reactive with respect to the `delay` state variable. If the `delay` changes, you want to set up the interval from scratch! To fix this code, pull all the reactive code back inside the Effect:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+  const [increment, setIncrement] = useState(1);
+  const [delay, setDelay] = useState(100);
+
+  const onTick = useEvent(() => {
+    setCount(c => c + increment);
+  });
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      onTick();
+    }, delay);
+    return () => {
+      clearInterval(id);
+    }
+  }, [delay, onTick]); // TODO: Linter will allow [delay] in the future
+
+  return (
+    <>
+      <h1>
+        Counter: {count}
+        <button onClick={() => setCount(0)}>Reset</button>
+      </h1>
+      <hr />
+      <p>
+        Increment by:
+        <button disabled={increment === 0} onClick={() => {
+          setIncrement(i => i - 1);
+        }}>–</button>
+        <b>{increment}</b>
+        <button onClick={() => {
+          setIncrement(i => i + 1);
+        }}>+</button>
+      </p>
+      <p>
+        Increment delay:
+        <button disabled={delay === 100} onClick={() => {
+          setDelay(d => d - 100);
+        }}>–100 ms</button>
+        <b>{delay} ms</b>
+        <button onClick={() => {
+          setDelay(d => d + 100);
+        }}>+100 ms</button>
+      </p>
+    </>
+  );
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+button { margin: 10px; }
+```
+
+</Sandpack>
+
+In general, you should be suspicious of functions like `onMount` that focus on the *timing* rather than the *purpose* of a piece of code. It may feel "more descriptive" at first but it obscures your intent. As a rule of thumb, Event functions should correspond to something that happens from the *user's* perspective. For example, `onMessage`, `onTick`, `onVisit`, or `onConnected` are good Event function names. Code inside them would likely not need to be reactive. On the other hand, `onMount`, `onUpdate`, `onUnmount`, or `onAfterRender` are so generic that it's easy to accidentally put code that *should* be reactive into them. This is why you should name your Event functions after *what the user thinks has happened,* not when some code happened to run.
+
+</Solution>
+
+### Fix a delayed notification {/*fix-a-delayed-notification*/}
+
+When you join a chat room, this component shows a notification. However, it doesn't show the notification immediately. Instead, the notification is artificially delayed by two seconds so that the user has a chance to look around the UI.
+
+This almost works, but there is a bug. Try changing the dropdown from "general" to "travel" and then to "music" very quickly. If you do it fast enough, you will see two notifications (as expected!) but they will *both* say "Welcome to music".
+
+Fix it so that when you switch from "general" to "travel" and then to "music" very quickly, you see two notifications, the first one being "Welcome to travel" and the second one being "Welcome to music".
+
+<Hint>
+
+Your Effect knows which room it connected to. Is there any information that you might want to pass to your Event function?
+
+</Hint>
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+import { createConnection, sendMessage } from './chat.js';
+import { showNotification } from './notifications.js';
+
+const serverUrl = 'https://localhost:1234';
+
+function ChatRoom({ roomId, theme }) {
+  const onConnected = useEvent(() => {
+    showNotification('Welcome to ' + roomId, theme);
+  });
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    connection.on('connected', () => {
+      setTimeout(() => {
+        onConnected();
+      }, 2000);
+    });
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+
+  return <h1>Welcome to the {roomId} room!</h1>
+}
+
+export default function App() {
+  const [roomId, setRoomId] = useState('general');
+  const [isDark, setIsDark] = useState(false);
+  return (
+    <>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={isDark}
+          onChange={e => setIsDark(e.target.checked)}
+        />
+        Use dark theme
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+        theme={isDark ? 'dark' : 'light'} 
+      />
+    </>
+  );
+}
+```
+
+```js chat.js
+export function createConnection(serverUrl, roomId) {
+  // A real implementation would actually connect to the server
+  let connectedCallback;
+  let timeout;
+  return {
+    connect() {
+      timeout = setTimeout(() => {
+        if (connectedCallback) {
+          connectedCallback();
+        }
+      }, 100);
+    },
+    on(event, callback) {
+      if (connectedCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'connected') {
+        throw Error('Only "connected" event is supported.');
+      }
+      connectedCallback = callback;
+    },
+    disconnect() {
+      clearTimeout(timeout);
+    }
+  };
+}
+```
+
+```js notifications.js hidden
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
+export function showNotification(message, theme) {
+  Toastify({
+    text: message,
+    duration: 2000,
+    gravity: 'top',
+    position: 'right',
+    style: {
+      background: theme === 'dark' ? 'black' : 'white',
+      color: theme === 'dark' ? 'white' : 'black',
+    },
+  }).showToast();
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label { display: block; margin-top: 10px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+Inside your Event function, `roomId` is the value *at the time Event function was called.*
+
+Your Event function is called with a two second delay. If you're quickly switching from the travel to the music room, by the time the travel room's notification shows, `roomId` is already `"music"`. This is why both notifications say "Welcome to music".
+
+To fix the issue, instead of reading the *latest* `roomId` inside the Event function, make it an parameter of your Event function, like `connectedRoomId` below. Then pass `roomId` from your Effect by calling `onConnected(roomId)`:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+import { createConnection, sendMessage } from './chat.js';
+import { showNotification } from './notifications.js';
+
+const serverUrl = 'https://localhost:1234';
+
+function ChatRoom({ roomId, theme }) {
+  const onConnected = useEvent(connectedRoomId => {
+    showNotification('Welcome to ' + connectedRoomId, theme);
+  });
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    connection.on('connected', () => {
+      setTimeout(() => {
+        onConnected(roomId);
+      }, 2000);
+    });
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+
+  return <h1>Welcome to the {roomId} room!</h1>
+}
+
+export default function App() {
+  const [roomId, setRoomId] = useState('general');
+  const [isDark, setIsDark] = useState(false);
+  return (
+    <>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={isDark}
+          onChange={e => setIsDark(e.target.checked)}
+        />
+        Use dark theme
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+        theme={isDark ? 'dark' : 'light'} 
+      />
+    </>
+  );
+}
+```
+
+```js chat.js
+export function createConnection(serverUrl, roomId) {
+  // A real implementation would actually connect to the server
+  let connectedCallback;
+  let timeout;
+  return {
+    connect() {
+      timeout = setTimeout(() => {
+        if (connectedCallback) {
+          connectedCallback();
+        }
+      }, 100);
+    },
+    on(event, callback) {
+      if (connectedCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'connected') {
+        throw Error('Only "connected" event is supported.');
+      }
+      connectedCallback = callback;
+    },
+    disconnect() {
+      clearTimeout(timeout);
+    }
+  };
+}
+```
+
+```js notifications.js hidden
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
+export function showNotification(message, theme) {
+  Toastify({
+    text: message,
+    duration: 2000,
+    gravity: 'top',
+    position: 'right',
+    style: {
+      background: theme === 'dark' ? 'black' : 'white',
+      color: theme === 'dark' ? 'white' : 'black',
+    },
+  }).showToast();
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label { display: block; margin-top: 10px; }
+```
+
+</Sandpack>
+
+The Effect that had `roomId` set to `"travel"` (so it connected to the `"travel"` room) will show the notification for `"travel"`. The Effect that had `roomId` set to `"music"` (so it connected to the `"music"` room) will show the notification for `"music"`. In other words, `connectedRoomId` comes from your Effect (which is reactive), while `theme` always uses the latest value.
+
+</Solution>
+
+</Challenges>

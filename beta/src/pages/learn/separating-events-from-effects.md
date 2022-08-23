@@ -678,6 +678,52 @@ On the other hand, the Effect itself remains reactive. Code inside the Effect us
 
 As a result, you will call `logVisit` for every change to the `url`, and always read the latest `numberOfItems`. However, if `numberOfItems` changes on its own, this will not cause any of the code to re-run.
 
+<Note>
+
+You might be wondering if you could call `onVisit()` with no arguments, and read the `url` inside it:
+
+```js {2,6}
+  const onVisit = useEvent(() => {
+    logVisit(url, numberOfItems);
+  });
+
+  useEffect(() => {
+    onVisit();
+  }, [url]);
+```
+
+Although this would work too, it is better to pass the `url` that the user visited to the Event function explicitly. **By making `url` an argument to your Event function, you are saying that visiting a page with a different `url` constitutes a separate event from the user's perspective.** It's a part of your "event":
+
+```js {1-2,6}
+  const onVisit = useEvent(visitedUrl => {
+    logVisit(visitedUrl, numberOfItems);
+  });
+
+  useEffect(() => {
+    onVisit(url);
+  }, [url]);
+```
+
+This makes it less likely that someone will remove `url` as a dependency of your Effect, resulting in all the different page visits being counted as a single visit. Your Event function explicitly "asks" for the `visitedUrl`. This communicates to the reader that, from the user's perspective, `onVisit` calls with different `visitedUrl` values are distinct "events". The user has *visited a page with a certain URL.* Page visits should be reactive with respect to `url`, so you pass the `url` from the reactive code in your Effect.
+
+This becomes especially important if there is some asynchronous logic inside the Effect:
+
+```js {6,8}
+  const onVisit = useEvent(visitedUrl => {
+    logVisit(visitedUrl, numberOfItems);
+  });
+
+  useEffect(() => {
+    setTimeout(() => {
+      onVisit(url);
+    }, 5000); // Delay logging visits
+  }, [url]);
+```
+
+In this example, `url` inside `onVisit` corresponds to the *latest* `url` (which could have already changed), but `visitedUrl` corresponds to the `url` that originally caused this Effect (and this `onVisit` call) to run.
+
+</Note>
+
 <DeepDive title="Is it okay to suppress the dependency linter instead?">
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
@@ -1395,7 +1441,7 @@ When you join a chat room, this component shows a notification. However, it does
 
 This almost works, but there is a bug. Try changing the dropdown from "general" to "travel" and then to "music" very quickly. If you do it fast enough, you will see two notifications (as expected!) but they will *both* say "Welcome to music".
 
-Fix it so that when you switch from "general" to "travel" and then to "music" very quickly, you see two notifications, the first one being "Welcome to travel" and the second one being "Welcome to music".
+Fix it so that when you switch from "general" to "travel" and then to "music" very quickly, you see two notifications, the first one being "Welcome to travel" and the second one being "Welcome to music". (For an additional challenge, assuming you've *already* made the notifications show the correct rooms, change the code so that only the latter notification is displayed.)
 
 <Hint>
 
@@ -1716,6 +1762,168 @@ label { display: block; margin-top: 10px; }
 </Sandpack>
 
 The Effect that had `roomId` set to `"travel"` (so it connected to the `"travel"` room) will show the notification for `"travel"`. The Effect that had `roomId` set to `"music"` (so it connected to the `"music"` room) will show the notification for `"music"`. In other words, `connectedRoomId` comes from your Effect (which is reactive), while `theme` always uses the latest value.
+
+To solve the additional challenge, save the notification timeout ID and clear it in the cleanup function of your Effect:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+import { createConnection, sendMessage } from './chat.js';
+import { showNotification } from './notifications.js';
+
+const serverUrl = 'https://localhost:1234';
+
+function ChatRoom({ roomId, theme }) {
+  const onConnected = useEvent(connectedRoomId => {
+    showNotification('Welcome to ' + connectedRoomId, theme);
+  });
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    let notificationTimeoutId;
+    connection.on('connected', () => {
+      notificationTimeoutId = setTimeout(() => {
+        onConnected(roomId);
+      }, 2000);
+    });
+    connection.connect();
+    return () => {
+      connection.disconnect();
+      if (notificationTimeoutId !== undefined) {
+        clearTimeout(notificationTimeoutId);
+      }
+    };
+  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+
+  return <h1>Welcome to the {roomId} room!</h1>
+}
+
+export default function App() {
+  const [roomId, setRoomId] = useState('general');
+  const [isDark, setIsDark] = useState(false);
+  return (
+    <>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={isDark}
+          onChange={e => setIsDark(e.target.checked)}
+        />
+        Use dark theme
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+        theme={isDark ? 'dark' : 'light'} 
+      />
+    </>
+  );
+}
+```
+
+```js chat.js
+export function createConnection(serverUrl, roomId) {
+  // A real implementation would actually connect to the server
+  let connectedCallback;
+  let timeout;
+  return {
+    connect() {
+      timeout = setTimeout(() => {
+        if (connectedCallback) {
+          connectedCallback();
+        }
+      }, 100);
+    },
+    on(event, callback) {
+      if (connectedCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'connected') {
+        throw Error('Only "connected" event is supported.');
+      }
+      connectedCallback = callback;
+    },
+    disconnect() {
+      clearTimeout(timeout);
+    }
+  };
+}
+```
+
+```js notifications.js hidden
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
+export function showNotification(message, theme) {
+  Toastify({
+    text: message,
+    duration: 2000,
+    gravity: 'top',
+    position: 'right',
+    style: {
+      background: theme === 'dark' ? 'black' : 'white',
+      color: theme === 'dark' ? 'white' : 'black',
+    },
+  }).showToast();
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label { display: block; margin-top: 10px; }
+```
+
+</Sandpack>
+
+This ensures that already scheduled (but not yet displayed) notifications get cancelled when you change rooms.
 
 </Solution>
 

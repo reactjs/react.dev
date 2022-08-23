@@ -34,18 +34,21 @@ For each test, we usually want to render our React tree to a DOM element that's 
 A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
 
 ```jsx
-import { unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client';
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
 });
@@ -96,42 +99,45 @@ export default function Hello(props) {
 
 We can write a test for this component:
 
-```jsx{24-27}
+```jsx{27-30}
 // hello.test.js
 
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client'
 import { act } from "react-dom/test-utils";
 
 import Hello from "./hello";
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
 });
 
 it("renders with or without a name", () => {
   act(() => {
-    render(<Hello />, container);
+    root.render(<Hello />);
   });
   expect(container.textContent).toBe("Hey, stranger");
 
   act(() => {
-    render(<Hello name="Jenny" />, container);
+    root.render(<Hello name="Jenny" />);
   });
   expect(container.textContent).toBe("Hello, Jenny!");
 
   act(() => {
-    render(<Hello name="Margaret" />, container);
+    root.render(<Hello name="Margaret" />);
   });
   expect(container.textContent).toBe("Hello, Margaret!");
 });
@@ -177,24 +183,27 @@ export default function User(props) {
 
 We can write tests for it:
 
-```jsx{23-33,44-45}
+```jsx{26-36,47-48}
 // user.test.js
 
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { act } from "react-dom/test-utils";
 import User from "./user";
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
 });
@@ -214,7 +223,7 @@ it("renders user data", async () => {
 
   // Use the asynchronous version of act to apply resolved promises
   await act(async () => {
-    render(<User id="123" />, container);
+    root.render(<User id="123" />);
   });
 
   expect(container.querySelector("summary").textContent).toBe(fakeUser.name);
@@ -277,7 +286,7 @@ If we don't want to load this component in our tests, we can mock out the depend
 // contact.test.js
 
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { act } from "react-dom/test-utils";
 
 import Contact from "./contact";
@@ -293,16 +302,19 @@ jest.mock("./map", () => {
   };
 });
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
 });
@@ -310,14 +322,13 @@ afterEach(() => {
 it("should render contact information", () => {
   const center = { lat: 0, long: 0 };
   act(() => {
-    render(
+    root.render(
       <Contact
         name="Joni Baez"
         email="test@example.com"
         site="http://test.com"
         center={center}
-      />,
-      container
+      />
     );
   });
 
@@ -364,25 +375,28 @@ export default function Toggle(props) {
 
 We could write tests for it:
 
-```jsx{13-14,35,43}
+```jsx{13-14,37,45}
 // toggle.test.js
 
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { act } from "react-dom/test-utils";
 
 import Toggle from "./toggle";
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
 });
@@ -390,7 +404,7 @@ afterEach(() => {
 it("changes value when clicked", () => {
   const onChange = jest.fn();
   act(() => {
-    render(<Toggle onChange={onChange} />, container);
+    root.render(<Toggle onChange={onChange} />);
   });
 
   // get a hold of the button element, and trigger some clicks on it
@@ -456,26 +470,29 @@ export default function Card(props) {
 
 We can write tests for this component by leveraging [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), and testing the different states it can be in.
 
-```jsx{7,31,37,49,59}
+```jsx{7,34,40,42,62}
 // card.test.js
 
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
   jest.useFakeTimers();
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
   jest.useRealTimers();
@@ -484,7 +501,7 @@ afterEach(() => {
 it("should select null after timing out", () => {
   const onSelect = jest.fn();
   act(() => {
-    render(<Card onSelect={onSelect} />, container);
+    root.render(<Card onSelect={onSelect} />);
   });
 
   // move ahead in time by 100ms
@@ -503,7 +520,7 @@ it("should select null after timing out", () => {
 it("should cleanup on being removed", () => {
   const onSelect = jest.fn();
   act(() => {
-    render(<Card onSelect={onSelect} />, container);
+    root.render(<Card onSelect={onSelect} />);
   });
 
   act(() => {
@@ -513,7 +530,7 @@ it("should cleanup on being removed", () => {
 
   // unmount the app
   act(() => {
-    render(null, container);
+    root.render(null);
   });
 
   act(() => {
@@ -525,7 +542,7 @@ it("should cleanup on being removed", () => {
 it("should accept selections", () => {
   const onSelect = jest.fn();
   act(() => {
-    render(<Card onSelect={onSelect} />, container);
+    root.render(<Card onSelect={onSelect} />);
   });
 
   act(() => {
@@ -548,33 +565,36 @@ Frameworks like Jest also let you save "snapshots" of data with [`toMatchSnapsho
 
 In this example, we render a component and format the rendered HTML with the [`pretty`](https://www.npmjs.com/package/pretty) package, before saving it as an inline snapshot:
 
-```jsx{29-31}
+```jsx{32-34}
 // hello.test.js, again
 
 import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from 'react-dom/client';
 import { act } from "react-dom/test-utils";
 import pretty from "pretty";
 
 import Hello from "./hello";
 
+let root = null;
 let container = null;
 beforeEach(() => {
   // setup a DOM element as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container);
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => root.unmount());
+  root = null;
   container.remove();
   container = null;
 });
 
 it("should render a greeting", () => {
   act(() => {
-    render(<Hello />, container);
+    root.render(<Hello />);
   });
 
   expect(
@@ -582,7 +602,7 @@ it("should render a greeting", () => {
   ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
 
   act(() => {
-    render(<Hello name="Jenny" />, container);
+    root.render(<Hello name="Jenny" />);
   });
 
   expect(
@@ -590,7 +610,7 @@ it("should render a greeting", () => {
   ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
 
   act(() => {
-    render(<Hello name="Margaret" />, container);
+    root.render(<Hello name="Margaret" />);
   });
 
   expect(

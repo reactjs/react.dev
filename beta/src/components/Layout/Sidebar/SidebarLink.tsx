@@ -16,6 +16,7 @@ interface SidebarLinkProps {
   selected?: boolean;
   title: string;
   level: number;
+  wip: boolean | undefined;
   icon?: React.ReactNode;
   heading?: boolean;
   isExpanded?: boolean;
@@ -28,6 +29,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
+  wip,
   level,
   heading = false,
   isExpanded,
@@ -74,7 +76,12 @@ export function SidebarLink({
           }
         )}>
         {/* This here needs to be refactored ofc */}
-        {title}
+        <span
+          className={cn({
+            'text-gray-400 dark:text-gray-500': wip,
+          })}>
+          {title}
+        </span>
         {isExpanded != null && !heading && !hideArrow && (
           <span
             className={cn('pr-1', {

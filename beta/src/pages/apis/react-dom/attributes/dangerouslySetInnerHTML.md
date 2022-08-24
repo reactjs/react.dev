@@ -36,39 +36,57 @@ As demonstrated, it is important not to forget to **pass an object with a `__htm
 
 <Sandpack>
 
-``` js App.js
+```json package.json
+{
+  "dependencies": {
+    "immer": "1.7.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "remarkable": "2.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js App.js
 import React from 'react';
 import { useState } from 'react';
-import ReactMarkdown from "react-markdown";
+import { Remarkable } from 'remarkable';
+
+const md = new Remarkable();
 
 export default function MyComponent() {
   const [value, setValue] = useState("Hello, **world**!");
-  const md = new ReactMarkdown();
 
   const handleChange = (event) => {
     setValue(event.target.value)
+  };
 
-  const getRawMarkup = {__html: md.render(value)};
-
-    return (
-      <div className="MarkdownEditor">
-        <h3>Input</h3>
-        <label htmlFor="markdown-content">
-          Enter some markdown
-        </label>
-        <textarea
-          id="markdown-content"
-          onChange={handleChange}
-          defaultValue={value}
-        />
-        <h3>Output</h3>
-        <div
-          className="content"
-          dangerouslySetInnerHTML={getRawMarkup}
-        />
-      </div>
-    );
-  }
+  return (
+    <div className="MarkdownEditor">
+      <h3>Input</h3>
+      <label htmlFor="markdown-content">
+        Enter some markdown
+      </label>
+      <br />
+      <textarea
+        id="markdown-content"
+        onChange={handleChange}
+        defaultValue={value}
+      />
+      <h3>Output</h3>
+      <div
+        className="content"
+        dangerouslySetInnerHTML={{__html: md.render(value)}}
+      />
+    </div>
+  );
 }
 
 ```

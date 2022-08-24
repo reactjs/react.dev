@@ -176,8 +176,7 @@
             },
             {
               "title": "flushSync",
-              "path": "/apis/react-dom/flushSync",
-              "wip": true
+              "path": "/apis/react-dom/flushSync"
             },
             {
               "title": "hydrate",

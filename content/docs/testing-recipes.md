@@ -34,7 +34,7 @@ For each test, we usually want to render our React tree to a DOM element that's 
 A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
 
 ```jsx
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 
 let root = null;
 let container = null;
@@ -187,7 +187,7 @@ We can write tests for it:
 // user.test.js
 
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import User from "./user";
 
@@ -286,7 +286,7 @@ If we don't want to load this component in our tests, we can mock out the depend
 // contact.test.js
 
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Contact from "./contact";
@@ -379,7 +379,7 @@ We could write tests for it:
 // toggle.test.js
 
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Toggle from "./toggle";
@@ -474,7 +474,7 @@ We can write tests for this component by leveraging [Jest's timer mocks](https:/
 // card.test.js
 
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Card from "./card";
@@ -569,7 +569,7 @@ In this example, we render a component and format the rendered HTML with the [`p
 // hello.test.js, again
 
 import React from "react";
-import { createRoot } from 'react-dom/client';
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import pretty from "pretty";
 

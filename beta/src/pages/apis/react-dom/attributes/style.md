@@ -27,7 +27,7 @@ The `style` attribute can only be passed to the built-in DOM elements.
 
 Here is an example that demonstrates the usage of `style` attribute with `<div>` element. `MovingDot` component renders the `<div>` where we capture the cursor movement and **dynamically** add the styling.
 
-Observe that `backgroundColor` property is camelCased as opposed to the usual hypenated way.
+Observe that `backgroundColor` property is camelCased as opposed to the usual hyphenated way.
 
 <Note>
 If you want to apply inline style, then observe the example. Here, the `style` attribute has the styling properties passed within the **two sets of curly braces**.

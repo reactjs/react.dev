@@ -6,7 +6,7 @@ title: ReactDOM Attributes
 
 React implements a browser-independent DOM system for performance and cross-browser compatibility.
 
-The ReactDOM attributes work diffrently from HTML DOM attributes. In React, all DOM properties and attributes (including event handlers) should be camelCased.
+The ReactDOM attributes work differently from HTML DOM attributes. In React, all DOM properties and attributes (including event handlers) should be camelCased.
 
 </Intro>
 

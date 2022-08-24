@@ -9,13 +9,13 @@ While creating a drop down list using the `<select>` tag, if you want to mark an
 </Intro>
 
 - [Usage](#usage)
-  - [Using the `selected` property for `<select>`](#using-the-selected-property)
+  - [Using `selected` property for `<select>`](#using-the-selected-property)
 
 ## Usage {/*usage*/}
 
-### Using the `selected` property in `<select>` tag {/*using-the-selected-property*/}
+### Using `selected` property in `<select>` tag {/*using-the-selected-property*/}
 
-In this example, we are rendering a `Dropdown` component. Here, to mark the value `selected` in the dropdown, the 'value' attribute is being set with the refernced value of `mypet`. Hence, every time the value of `mypet` changes it is set as the `value` of `<select>` tag.
+In this example, we are rendering a `Dropdown` component. Here, to mark the value `selected` in the dropdown, the 'value' attribute is being set with the referenced value of `mypet`. Hence, every time the value of `mypet` changes it is set as the `value` of `<select>` tag.
 
 <Sandpack>
 

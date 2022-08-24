@@ -248,8 +248,7 @@
             },
             {
               "title": "dangerouslySetInnerHTML",
-              "path": "/apis/react-dom/attributes/dangerouslySetInnerHTML",
-              "wip": true
+              "path": "/apis/react-dom/attributes/dangerouslySetInnerHTML"
             },
             {
               "title": "defaultChecked",

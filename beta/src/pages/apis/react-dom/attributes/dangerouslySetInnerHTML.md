@@ -2,12 +2,6 @@
 title: dangerouslySetInnerHTML
 ---
 
-<Wip>
-
-This section is incomplete, please see the old docs for [dangerouslySetInnerHTML](https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml).
-
-</Wip>
-
 <Intro>
 
 `dangerouslySetInnerHTML` is used in React as replacement for using `innerHTML` property for DOM elements.
@@ -30,7 +24,7 @@ You can use `dangerouslySetInnerHTML` and pass an object with a `__html` key.
 
 ### Using the `dangerouslySetInnerHTML` property {/*using-the-dangerouslysetinnerhtml-property*/}
 
-In the example below, `MyComponent` is being rendered that returns a `<textarea>` where you can enter a text in Markdown. The converted output is to be returned in the `<div>` whose innterHTML text is being set using the `dangerouslySetInnerHTML` property. Here, we trust the HTML as we are entering it in the input area.
+In the example below, `MyComponent` is being rendered that returns a `<textarea>` where you can enter a text in Markdown. The converted output is to be returned in the `<div>` whose innerHTML text is being set using the `dangerouslySetInnerHTML` property. Here, we trust the HTML as we are entering it in the input area.
 
 As demonstrated, it is important not to forget to **pass an object with a `__html` key**.
 

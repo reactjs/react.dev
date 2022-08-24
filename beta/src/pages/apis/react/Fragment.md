@@ -2,30 +2,109 @@
 title: React.Fragment
 ---
 
-<Wip>
-
-This section is incomplete, please see the old docs for [React.Fragment](https://reactjs.org/docs/react-api.html#reactfragment).
-
-</Wip>
-
-
 <Intro>
 
-The `React.Fragment` component lets you return multiple elements without creating an additional DOM element:
+The `React.Fragment` component, which can be used with a special `<></>` syntax, lets you use multiple elements in place of one, without wrapping them in any other container element:
 
 ```
 function Component() {
   return (
-    <React.Fragment>
-      Some text.
-      <h2>A heading</h2>
+    <>
+      <OneChild />
+      <AnotherChild />
+    </>
+  );
+}
+```
+
+Fragment is useful because grouping elements with Fragment has no effect on layout or styles, unlike if you wrapped the elements in some other container such as a DOM element.
+
+</Intro>
+
+- [Usage](#usage)
+  - [Returning multiple elements](#returning-multiple)
+  - [Assigning multiple elements to a variable](#assigning-multiple)
+  - [Grouping elements with text](#text)
+  - [Rendering a list of Fragments](#list)
+- [Reference](#reference)
+
+---
+
+## Usage {/*usage*/}
+
+### Returning multiple elements {/*returning-multiple*/}
+
+Use Fragment to group multiple elements together. You can use it to put multiple elements in any place where a single element can go. For example, a component can only return one element, but by using Fragment you can group multiple elements together and then return them as a group:
+
+```
+function Notification() {
+  return (
+    <>
+      <NotificationTitle />
+      <NotificationBody />
+    </>
+  );
+}
+```
+
+You usually use Fragment with a special syntax, the empty JSX tag `<></>`, that is equivalent to writing `<React.Fragment></React.Fragment>`.
+
+### Assigning multiple elements to a variable {/*assigning-multiple*/}
+
+Like any other element, you can assign Fragment elements to variables, pass them as props, and so on:
+
+```
+function CloseDialog() {
+  const buttons = (
+    <>
+      <OKButton />
+      <CancelButton />
+    </>
+  );
+  return (
+    <AlertDialog buttons={buttons}>
+      Are you sure you want to leave this page?
+    </AlertDialog>
+  );
+}
+```
+
+### Grouping elements with text {/*text*/}
+
+You can use Fragment to group text together with components:
+
+```
+function DateRangePicker({start, end}) {
+  return (
+    <>
+      From
+      <DatePicker date={start} />
+      to
+      <DatePicker date={end} />
+    </>
+  );
+}
+```
+
+### Rendering a list of Fragments {/*list*/}
+
+Here's a situation where you need to write `React.Fragment` explicitly instead of using the `<></>` syntax: When you [render multiple elements in a loop](/learn/rendering-lists), you need to assign a `key` to each element. If the elements within the loop are Fragments, you need to use the normal JSX element syntax in order to provide the `key` attribute:
+
+```
+function BlogPosts(posts) {
+  return posts.map(() =>
+    <React.Fragment key={post.id}>
+      <Heading>{post.title}</Heading>
+      <BlogPostBody post={post} />
     </React.Fragment>
   );
 }
 ```
 
-You can also use it with the shorthand `<></>` syntax.
+## Reference {/*reference*/}
 
-For more information, see [React v16.2.0: Improved Support for Fragments](https://reactjs.org/blog/2017/11/28/react-v16.2.0-fragment-support.html).
+Wrap elements in Fragment to group them together in situations where you need a single element. Grouping elements in Fragment has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag `<></>` is equivalent to `<React.Fragment></React.Fragment>`.
 
-</Intro>
+#### Props {/*reference-props*/}
+
+None

@@ -18,8 +18,7 @@ const memoizedValue = useMemo(callback, [...dependencies])
 - [Reference](#reference)
   - [`useMemo(() => computeExpensiveFunction(a, b), [a, b])`](#usememo)
 - [Troubleshooting](#troubleshooting)
-  - [Everytime my component renders `useMemo` is triggered](#everytime-my-component-renders-useMemo-is-triggered)
-
+  - [Every time my component renders `useMemo` is triggered](#every-time-my-component-renders-useMemo-is-triggered)
 
 ---
 
@@ -69,7 +68,7 @@ Often you would want to skip re-render of components when not necessary.
 
 `useMemo` helps in skipping the re-render of the components. Avoiding component re-renders can boost the overall performance.
 
-In the example below, you can see that the `TodoList` component is rendered every time there is a change in the `input` field. Also, `visibleTodos` are calculated on every render. The change in the input should ideally have no effect on the `visibleTodos`.
+The example below shows that the `TodoList` component is rendered every time there is a change in the `input` field. Also, `visibleTodos` are calculated on every render, and the change in the input should ideally not effect the `visibleTodos`.
 
 ```js {30-31,53-57,60}
 import React, { useState, useCallback } from "react";
@@ -137,7 +136,7 @@ export default function App() {
 }
 ```
 
-Wrap the `getVisibleTodos` in the useMemo hook to avoid the re-render of the `TodoList` component.
+Wrap the `getVisibleTodos` in the useMemo hook to avoid re-rendering the `TodoList` component.
 
 ```js {7}
 //...
@@ -157,9 +156,9 @@ To verify whether the `TodoList` is re-rendering on each stroke of input, check 
 
 ### A todolist {/*a-todolist*/}
 
-The following example uses a combination of hooks such as, `useState`, `useCallback`, and `useMemo`. `todos`, `tab`, and `draft` are state variables as they are used to track and set the state.
+The following example uses a combination of hooks such as `useState`, `useCallback`, and `useMemo`. `todos`, `tab`, and `draft` are state variables used to track and set the state.
 
-Here, there are two tabs named `All` and `Completed`. The todolist is popoulated in the `All` tab initially. When a todo item is checked as completed, that item can now be listed in the `Completed` tab.
+Here, there are two tabs named `All` and `Completed`. The todolist is populated in the `All` tab initially. When a todo item is checked as completed, that item can now be listed in the `Completed` tab.
 
 Using `useMemo` hook you can skip the expensive recalculation of `getVisibleTodos` function. Also, it skips the re-render of the components when you enter something in the input field.
 
@@ -269,13 +268,13 @@ export default function TodoList({ visibleTodos, toggleTodo }) {
 <DeepDive title="Pros and Cons of using `useMemo`">
 Pros
 
-`useMemo` only recomputes the memoized value when one of the dependencies has changed. So, the re-computation of an expensive function on every render is not necessary.
+`useMemo` only recomputes the memoized value when one of the dependencies has changed. So, re-computing an expensive function on every render is unnecessary.
 
 Cons
 
 Every time a component is rendered:
 * an extra call is made to `useMemo`, thus creating performance overhead
-* memory is being allocated to hold the memoized variable value, thus creating memory overhead
+* memory gets allocated to hold the memoized variable value, thus creating memory overhead
 
 </DeepDive>
 
@@ -304,14 +303,14 @@ import {useMemo} from 'react';
 
 ## Troubleshooting {/*troubleshooting*/}
 
-### Everytime my component renders `useMemo` is triggered {/*everytime-my-component-renders-useMemo-is-triggered*/}
+### Every time my component renders `useMemo` is triggered {/*every-time-my-component-renders-useMemo-is-triggered*/}
 
-There can be scenarios where the `useMemo` calculates the expensive function on each render:
+`useMemo` calculates the expensive function on each render when:
 
-1. You have dependencies that change on each render. To debug the issue, try to Console log the dependencies and check if they are changing or are the same on every render.
+1. you have dependencies that change on each render. To debug the issue, `console.log` the dependencies and check if they are changing or remain same on every render.
 
 
-2. You might have missed specifying the dependencies with `useMemo`, which basically forces the memoized value to be recalculated every time.
+2. you might have missed specifying the dependencies with `useMemo`, which forces the memoized value to be recalculated every time.
 
 ```js {11}
 // 🚩 Doesn't work: no dependencies

@@ -30,7 +30,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Then, if you leave the Effect dependencies empty (`[]`), and the linter will suggest the correct dependencies:
+Then, if you leave the Effect dependencies empty (`[]`), the linter will suggest the correct dependencies:
 
 <Sandpack>
 
@@ -340,11 +340,11 @@ button { margin: 10px; }
 
 </Sandpack>
 
-The author of this code wanted to run the Effect "only on mount." They've read that empty (`[]`) dependencies correspond to that, and so they've decided to ignore the linter, and to forcefully specify `[]` as the dependencies of this Effect. However, the Effect does not work as they intended.
+Let's say that you wanted to run the Effect "only on mount." You've read that [empty (`[]`) dependencies](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) do that, so you've decided to ignore the linter, and forcefully specified `[]` as the dependencies.
 
-This counter is supposed to increment every second by the amount configurable with the two buttons.
+This counter was supposed to increment every second by the amount configurable with the two buttons. However, since you "lied" to React that this Effect doesn't depend on anything, React forever keeps using the `onTick` function from the initial render. [During that render,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` was `0` and `increment` was `1`. This is why `onTick` from that render always calls `setCount(0 + 1)` every second, and you always see `1`. Bugs like this are harder to fix when they're spread across multiple components.
 
-However, since you "lied" to React that this Effect doesn't depend on anything, React forever keeps using the `onTick` function from the initial render. [During that render,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` was `0` and `increment` was `1`. This is why `onTick` from that render always calls `setCount(0 + 1)` every second, and you always see `1`. Bugs like this get much harder to find and fix when they're spread across multiple components.
+There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Event function.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-event-functions))
 
 **We recommend to treat the dependency lint error as a compilation error. If you don't suppress it, you will never see bugs like this.** The rest of this page documents the alternatives for this and other cases.
 
@@ -429,7 +429,7 @@ Now that the code is in an event handler, it's not reactive--so it will only run
 
 ### Is your Effect doing several unrelated things? {/*is-your-effect-doing-several-unrelated-things*/}
 
-The next question you should ask yourself is whether your Effect is trying to do too much.
+The next question you should ask yourself is whether your Effect is doing several unrelated things.
 
 Imagine you're creating a shipping form where the user needs to choose their city and area. You fetch the list of `cities` from the server according to the selected `country` so that you can show them as dropdown options:
 

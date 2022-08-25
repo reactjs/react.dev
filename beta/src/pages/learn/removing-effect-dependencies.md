@@ -8,6 +8,12 @@ When you write an Effect, the linter will verify that you've included every reac
 
 </Intro>
 
+<YouWillLearn>
+
+TODO
+
+</YouWillLearn>
+
 ## Dependencies should match the code {/*dependencies-should-match-the-code*/}
 
 When you write an Effect, you first specify how to [start and stop](/learn/lifecycle-of-reactive-effects#the-lifecycle-of-an-effect) whatever you want your Effect to be doing:
@@ -354,7 +360,7 @@ Every time you adjust the Effect's dependencies to reflect the code, look at the
 
 To find the right solution, you'll need to answer a few questions about your Effect. Let's walk through them.
 
-### Should this code be reactive at all? {/*should-this-code-be-reactive-at-all*/}
+### Should this code be an Effect at all? {/*should-this-code-be-an-effect-at-all*/}
 
 The first thing you should think about is whether this code should be an Effect at all. For example, suppose you have a form thats submits a POST request and shows a notification. You trigger the Effect by setting state:
 
@@ -419,7 +425,7 @@ function Form() {
 }
 ```
 
-[Now the code is inside the event handler, it's not reactive](/learn/separating-events-from-effects#logic-inside-event-handlers-is-not-reactive)--so it will only run when the user submits the form. 
+Now that the code is in an event handler, it's not reactive--so it will only run when the user submits the form. Read more about [choosing between event handlers and Effects](/learn/separating-events-from-effects#reactive-values-and-reactive-logic) and [how to delete unnecessary Effects.](/learn/you-might-not-need-an-effect)
 
 ### Should the Effect be split into several? {/*should-the-effect-be-split-into-several*/}
 

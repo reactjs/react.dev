@@ -67,6 +67,7 @@ const Header = ({location}: {location: Location}) => (
           },
         }}>
         <Link
+          translate="no"
           css={{
             display: 'flex',
             marginRight: 10,

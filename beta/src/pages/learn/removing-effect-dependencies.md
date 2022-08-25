@@ -1236,7 +1236,7 @@ The logic gets a little repetitive (you read some values from an object outside 
 
 #### Calculate primitive values from functions
 
-The same approach can work functions. For example, suppose the parent component passes a function:
+The same approach can work for functions. For example, suppose the parent component passes a function:
 
 ```js {3-8}
 <ChatRoom

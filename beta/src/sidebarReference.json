@@ -52,8 +52,7 @@
             },
             {
               "title": "Fragment",
-              "path": "/apis/react/Fragment",
-              "wip": true
+              "path": "/apis/react/Fragment"
             },
             {
               "title": "isValidElement",

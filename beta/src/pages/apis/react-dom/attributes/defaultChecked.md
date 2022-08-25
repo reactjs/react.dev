@@ -4,18 +4,20 @@ title: defaultChecked
 
 <Intro>
 
-`defaultChecked` is the uncontrolled equivalent, which sets an element as checked or unchecked when it is first mounted.
+The `defaultChecked` attribute is supported by the `<input>` components of type `checkbox` or `radio button`. You can use it set whether the component is checked when it is first mounted.
+
+`defaultChecked` is the uncontrolled equivalent of the [`checked`](/apis/react-dom/attributes/checked) attribute.
 
 </Intro>
 
 - [Usage](#usage)
-  - [Using the `defaultChecked` attribute](#using-the-defaultChecked-attribute)
+  - [Using the the `defaultChecked` attribute](#using-the-the-defaultChecked-attribute)
 
 ## Usage {/*usage*/}
 
-### Using the `defaultChecked` attribute {/*using-the-defaultChecked-attributes*/}
+### Using the `defaultChecked` attribute {/*using-the-defaultChecked-attribute*/}
 
-Here, in the example below, the `Checkbox` component is rendering an `<input>` of the type `checkbox` with the attribute `defaultChecked` set to `true` using the `useState` hook. Hence, the checkbox is checked when the component loads.
+In this example, an `<input>` of the type `checkbox` is being rendered. We set the `defaultChecked` attribute to `true` using the [`useState`](/apis/react/useState) hook. Hence, the checkbox is checked when the component loads.
 
 <Sandpack>
 

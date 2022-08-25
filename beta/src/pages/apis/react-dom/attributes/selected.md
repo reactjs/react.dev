@@ -4,18 +4,18 @@ title: selected
 
 <Intro>
 
-While creating a drop down list using the `<select>` tag, if you want to mark an `<option>` as selected, then **reference the value of that option in the `value` attribute of its `<select>` instead**.
+When creating a drop down list using the `<select>` tag, to mark an `<option>` as selected, **reference the value of that option in the `value` attribute of its `<select>` tag**.
 
 </Intro>
 
 - [Usage](#usage)
-  - [Using `selected` property for `<select>`](#using-the-selected-property)
+  - [Using the `selected` property in the `<select>` tag](#using-selected-property)
 
 ## Usage {/*usage*/}
 
-### Using `selected` property in `<select>` tag {/*using-the-selected-property*/}
+### Using the `selected` property in the `<select>` tag {/*using-selected-property*/}
 
-In this example, we are rendering a `Dropdown` component. Here, to mark the value `selected` in the dropdown, the 'value' attribute is being set with the referenced value of `mypet`. Hence, every time the value of `mypet` changes it is set as the `value` of `<select>` tag.
+In this example, we are rendering a `Dropdown` component. Here, to mark the value of `selected` in the dropdown, the `value` attribute is set with the reference value `mypet`. Hence, every time the value of `mypet` changes, the change is set as the `value` of the `<select>` tag.
 
 <Sandpack>
 
@@ -33,7 +33,7 @@ export default function Dropdown() {
 
   return (
     <form>
-    <label> Which is your favourite pet?
+    <label> Which is your favorite pet?
       <select value={myPet} onChange={handleChange}>
         <option value="Tarantula">Tarantula</option>
         <option value="Ants">Ants</option>

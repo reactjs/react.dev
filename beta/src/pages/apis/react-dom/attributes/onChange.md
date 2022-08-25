@@ -6,20 +6,23 @@ title: onChange
 
 The `onChange` event fires every time there is a change in a `form` field.
 
-We intentionally do not use the existing browser behavior, because `onChange` is a misnomer for its behavior, and React relies on this event to handle user input in real-time.
+We intentionally do not use the existing browser behavior because `onChange` is a misnomer for its behavior. React relies on this event to handle user input in real-time.
 
 </Intro>
 
 - [Usage](#usage)
-  - [Using the `onChange` property](#using-the-onChange-property)
+  - [Using the the `onChange` property](#using-the-the-onChange-property)
 
 ## Usage {/*usage*/}
 
-### Using `onChange` property {/*using-the-onChange-property*/}
+### Using the `onChange` property {/*using-the-onChange-property*/}
 
-In the example below, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field, and the corresponding function is executed.
 
-<Recipes titleText="Examples of onChange property for various type of <input> element" titleId="examples-basic">
+
+
+In the following examples, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field, and then the corresponding function is executed.
+
+<Recipes titleText="onChange property examples for various types of <input> elements" titleId="examples-basic">
 
 ### `onChange` for input type `text` {/*onChange-for-input-type-text*/}
 
@@ -98,7 +101,7 @@ export default function MyForm() {
     <h2>Which of the following do you like?</h2>
     <label>
     <input type="checkbox" onChange={setMySelection} />
-    Ice-cream
+    Ice cream
     </label>
     <label>
     <input type="checkbox" onChange={setMySelection} />
@@ -173,7 +176,9 @@ export default function MyForm() {
 
 </Recipes>
 
-<Recipes titleText="Examples of onChange property for <select> elements" titleId="examples-select">
+In this example, a form field with the `<select>` element is being rendered. The onChange event fires when there is a change in the `value` field, and then the corresponding function is executed.
+
+<Recipes titleText="onChange property example for <select> elements" titleId="examples-select">
 
 ### `onChange` for `<select>` element {/*onChange-for-select-element*/}
 

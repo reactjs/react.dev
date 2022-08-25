@@ -4,9 +4,9 @@ title: aria-*
 
 <Intro>
 
-Accessible Rich Internet Applications in short-- [ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) facilitate the access of web content to differently abled individuals.
+Accessible Rich Internet Applications ([ARIA attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA)) make web content and web applications more accessible for differently abled individuals.
 
-In React, the `aria-*` attributes are an exception to the rule that attributes must be camelCased. These attributes should be lower cased with hyphen.
+In React, the `aria-*` attributes are an exception to the rule that attributes must be camelCased. These attributes should be lower cased with a hyphen.
 </Intro>
 
 - [Usage](#usage)
@@ -16,11 +16,9 @@ In React, the `aria-*` attributes are an exception to the rule that attributes m
 
 ### Using the `aria-*` attributes {/*using-the-aria-attributes*/}
 
-Lets see an examples of using `aria-*` attributes while rendering a component in React.
+In this example, a `button` with the label **Send** is rendered. [`aria-label`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) is set to **send message**, which becomes the alt text for the button.
 
-In the following example, a button with the label **Send** is being rendered. For this button the accessibility lable [`aria-lable`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-label) is being set to **send message**, a label text that becomes the alternate text in an accessblity scenario.
-
-Also, [`aria-pressed`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) is being set to `false`, which means the button is not pressed. If the button is pressed then the value is set to `true`.
+Also, [`aria-pressed`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-pressed) is set to `false`, which means that the button is not pressed. `aria-pressed` indicates the current "pressed" state of a `button`.
 
 <Sandpack>
 
@@ -29,7 +27,7 @@ Also, [`aria-pressed`](https://developer.mozilla.org/en-US/docs/Web/Accessibilit
 export default function Button() {
 
   return (
-      <button aria-lable="send message" aria-pressesd="false" >
+      <button aria-label="send message" aria-pressed="false" >
         Send
       </button>
   );

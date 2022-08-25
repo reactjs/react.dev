@@ -6,18 +6,22 @@ title: htmlFor
 
 In React, the `htmlFor` attribute is used to specify which `form` element a `<label>` corresponds to.
 
-`htmlFor` attribute is used instead of the HTML attribute `for`, which is a reserved word in JavaScript.
+<Note>
+
+Since `for` is a reserved word in JavaScript, `htmlFor` is used instead of the HTML attribute `for` in React.
+
+</Note>
 
 </Intro>
 
 - [Usage](#usage)
-  - [Using the `htmlFor` property](#using-the-htmlFor-property)
+  - [Using the the `htmlFor` property](#using-the-the-htmlFor-property)
 
 ## Usage {/*usage*/}
 
-### Using `htmlFor` property {/*using-the-htmlFor-property*/}
+### Using the `htmlFor` property {/*using-the-htmlFor-property*/}
 
-In the example below, a `<label>` is bound to `<input>` element, who has an `id` attribute. The `<label>` has a `htmlFor` attribute with its value same as the `id` of `<input>` element to denote the relation.
+In this example, a `<label>` is bound to an `<input>` element with the `id` attribute. To denote the relation, the `htmlFor` and the `id` attributes are given the same value.
 
 <Sandpack>
 

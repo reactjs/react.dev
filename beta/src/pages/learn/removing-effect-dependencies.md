@@ -360,7 +360,7 @@ Every time you adjust the Effect's dependencies to reflect the code, look at the
 
 To find the right solution, you'll need to answer a few questions about your Effect. Let's walk through them.
 
-### Should this code be an Effect at all? {/*should-this-code-be-an-effect-at-all*/}
+### Should this code move to an event handler? {/*should-this-code-move-to-an-event-handler*/}
 
 The first thing you should think about is whether this code should be an Effect at all. For example, suppose you have a form thats submits a POST request and shows a notification. You trigger the Effect by setting state:
 
@@ -427,7 +427,9 @@ function Form() {
 
 Now that the code is in an event handler, it's not reactive--so it will only run when the user submits the form. Read more about [choosing between event handlers and Effects](/learn/separating-events-from-effects#reactive-values-and-reactive-logic) and [how to delete unnecessary Effects.](/learn/you-might-not-need-an-effect)
 
-### Should the Effect be split into several? {/*should-the-effect-be-split-into-several*/}
+### Is your Effect doing several unrelated things? {/*is-your-effect-doing-several-unrelated-things*/}
+
+The next question you should ask yourself is whether your Effect is trying to do too much.
 
 Imagine you're creating a shipping form where the user needs to choose their city and area. You fetch the list of `cities` from the server according to the selected `country` so that you can show them as dropdown options:
 
@@ -663,7 +665,7 @@ function ChatRoom({ roomId }) {
 
 </DeepDive>
 
-### Are you reading some state so that you can update it? {/*are-you-reading-some-state-so-that-you-can-update-it*/}
+### Are you reading some state to calculate the next state? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
 This Effect updates the `messages` state variable with a newly created array every time a new message arrives:
 
@@ -697,7 +699,7 @@ function ChatRoom({ roomId }) {
 
 And making `messages` a dependency introduces a problem.
 
-Every time you receive a message, `setMessages()` causes the component to re-render with a new `messages` array that includes the received message. However, since this Effect now depends on `messages`, this will *also* re-synchronize the Effect. So each new message will force the chat room to re-connect. This is not great! It doesn't seem to make sense for an Effect connecting to the chat to depend on `messages`, so something isn't quite right.
+Every time you receive a message, `setMessages()` causes the component to re-render with a new `messages` array that includes the received message. However, since this Effect now depends on `messages`, this will *also* re-synchronize the Effect. So every new message will make the chat re-connect. The user would not like that!
 
 To fix the issue, don't read `messages` inside the Effect. Instead, pass an [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) to `setMessages`:
 

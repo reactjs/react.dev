@@ -193,7 +193,7 @@ While functional programming relies heavily on purity, at some point, somewhere,
 
 In React, **side effects usually belong inside [event handlers](/learn/responding-to-events).** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
 
-If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/apis/useeffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
+If you've exhausted all other options and can't find the right event handler for your side effect, you can still attach it to your returned JSX with a [`useEffect`](/apis/react/useEffect) call in your component. This tells React to execute it later, after rendering, when side effects are allowed. **However, this approach should be your last resort.**
 
 When possible, try to express your logic with rendering alone. You'll be surprised how far this can take you!
 
@@ -216,7 +216,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
 * Rendering can happen at any time, so components should not depend on each others' rendering sequence.
 * You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](reacting-to-input-with-state) instead of mutating preexisting objects.
-* Strive to express your component's logic in the JSX you return. When you need to "change things," you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
+* Strive to express your component's logic in the JSX you return. When you need to "change things", you'll usually want to do it in an event handler. As a last resort, you can `useEffect`.
 * Writing pure functions takes a bit of practice, but it unlocks the power of React's paradigm.
 
 </Recap>

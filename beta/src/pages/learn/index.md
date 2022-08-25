@@ -302,7 +302,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
 
-First, import [`useState`](/apis/usestate) from React:
+First, import [`useState`](/apis/react/useState) from React:
 
 ```js {1,4}
 import { useState } from 'react';
@@ -382,9 +382,9 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 
 ## Using Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis). You can also write your own Hooks by combining the existing ones.
+Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis/react). You can also write your own Hooks by combining the existing ones.
 
-Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to `useState` in a condition or a loop, extract a new component and put it there.
+Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
 
 ## Sharing data between components {/*sharing-data-between-components*/}
 

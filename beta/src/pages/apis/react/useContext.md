@@ -155,7 +155,7 @@ function Button({ children }) {
 
 ### Updating data passed via context {/*updating-data-passed-via-context*/}
 
-Often, you'll want the context to change over time. To update context, you need to combine it with [state](/apis/usestate). Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
+Often, you'll want the context to change over time. To update context, you need to combine it with [state](/apis/react/useState). Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
 
 ```js {2} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
 function MyPage() {
@@ -717,7 +717,7 @@ label {
 
 ### Scaling up with context and a reducer {/*scaling-up-with-context-and-a-reducer*/}
 
-In larger apps, it is common to combine context with a [reducer](/apis/usereducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
+In larger apps, it is common to combine context with a [reducer](/apis/react/useReducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
 
 Read a [full walkthrough](/learn/scaling-up-with-reducer-and-context) of this example.
 
@@ -927,7 +927,7 @@ ul, li { margin: 0; padding: 0; }
 
 ### Specifying a fallback default value {/*specifying-a-fallback-default-value*/}
 
-If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/api/createcontext):
+If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/apis/react/useContext):
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "null"]]
 const ThemeContext = createContext(null);
@@ -1289,7 +1289,7 @@ function MyApp() {
 
 Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
 
-In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/usecallback) and wrap the object creation into [`useMemo`](/apis/usememo). This is a performance optimization:
+In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/react/usecallback) and wrap the object creation into [`useMemo`](/apis/usememo). This is a performance optimization:
 
 ```js {1,6-9,11-14}
 import { useCallback, useMemo } from 'react';
@@ -1337,11 +1337,11 @@ function MyComponent() {
 
 #### Parameters {/*parameters*/}
 
-* `SomeContext`: The context that you've previously created with [`createContext`](/api/createcontext). The context itself does not hold the information, it only represents the kind of information you can provide or read from components.
+* `SomeContext`: The context that you've previously created with [`createContext`](/apis/react/useContext). The context itself does not hold the information, it only represents the kind of information you can provide or read from components.
 
 #### Returns {/*returns*/}
 
-`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext.Provider` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/api/createcontext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
+`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext.Provider` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/apis/react/useContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
 
 #### Caveats {/*caveats*/}
 

@@ -16,7 +16,7 @@ This is a [good summary](https://medium.com/@kvosswinkel/coding-like-a-journalis
 
 **Different sections intentionally have different styles.**
 
-The documentation is divided into sections to cater to different learning styles and use cases. When editing an article, try to match the surrounding text in tone and style. When creating a new article, try to match the tone of the other articles in the same section. Learn about the motivation behind each section below.
+The documentation is divided into sections to provide you different learning styles and use cases. When editing an article, try to match the surrounding text in tone and style. When creating a new article, try to match the tone of the other articles in the same section. Learn about the motivation behind each section below.
 
 **[Installation](https://reactjs.org/docs/getting-started.html)** gives an overview of the docs, and demonstrates two different ways to use it: either as a simple `<script>` tag on the page, or as part of a complex JavaScript toolchain.
 

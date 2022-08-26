@@ -170,7 +170,7 @@ export const SandpackConsole = () => {
                   className={cn(
                     'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
                     `console-${getType(method)}`,
-                    `${getColor(method)}`
+                    getColor(method)
                   )}>
                   <span className="console-message">
                     {data.map((msg, index) => {

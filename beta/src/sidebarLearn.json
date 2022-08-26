@@ -178,6 +178,10 @@
             {
               "title": "Separating Events from Effects",
               "path": "/learn/separating-events-from-effects"
+            },
+            {
+              "title": "Removing Effect Dependencies",
+              "path": "/learn/removing-effect-dependencies"              
             }
           ]
         }

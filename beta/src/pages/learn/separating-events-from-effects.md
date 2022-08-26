@@ -254,7 +254,7 @@ function ChatRoom({ roomId, theme }) {
     return () => {
       connection.disconnect()
     };
-  }, [roomId, theme]); // ✅ All dependencies are specified
+  }, [roomId, theme]); // ✅ All dependencies declared
   // ...
 ````
 
@@ -435,7 +435,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ All dependencies are specified
+  }, [roomId]); // ✅ All dependencies declared
   // ...
 ```
 
@@ -633,7 +633,7 @@ Think about what you want the code to do. You *want* to log a separate visit for
 function Page({ url }) {
   useEffect(() => {
     logVisit(url);
-  }, [url]); // ✅ All dependencies are specified
+  }, [url]); // ✅ All dependencies declared
   // ...
 }
 ```
@@ -667,7 +667,7 @@ function Page({ url }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ All dependencies are specified
+  }, [url]); // ✅ All dependencies declared
   // ...
 }
 ```
@@ -728,13 +728,14 @@ In this example, `url` inside `onVisit` corresponds to the *latest* `url` (which
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
 
-```js {7,8}
+```js {7-9}
 function Page({ url }) {
   const { items } = useContext(ShoppingCartContext);
   const numberOfItems = items.length;
 
   useEffect(() => {
     logVisit(url, numberOfItems);
+    // 🔴 Avoid suppressing the linter like this:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
   // ...

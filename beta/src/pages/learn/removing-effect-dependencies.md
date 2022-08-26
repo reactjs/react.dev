@@ -354,7 +354,7 @@ There's always a better solution than ignoring the linter! To fix this code, you
 
 </DeepDive>
 
-## Removing unnecesary dependencies {/*removing-unnecesary-dependencies*/}
+## Removing unnecessary dependencies {/*removing-unnecessary-dependencies*/}
 
 Every time you adjust the Effect's dependencies to reflect the code, look at the dependency list. Does it make sense for the Effect to re-run when any of these dependencies change? Sometimes, the answer is "no":
 
@@ -388,7 +388,7 @@ function Form() {
 }
 ```
 
-Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the component body, it is a reactive value, and you must declare it as a depedency:
+Later, you want to style the notification message according to the current theme, so you read the current theme. Since `theme` is declared in the component body, it is a reactive value, and you must declare it as a dependency:
 
 ```js {3,9,11}
 function Form() {

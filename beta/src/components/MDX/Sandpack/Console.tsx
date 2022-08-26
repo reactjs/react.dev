@@ -4,6 +4,7 @@
 import cn from 'classnames';
 import * as React from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
+import {formatStr} from 'utils/formatStr';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
 import type {SandpackMessageConsoleMethods} from '@codesandbox/sandpack-client';
@@ -20,6 +21,18 @@ const getType = (
   }
 
   return 'error';
+};
+
+const getColor = (
+  message: SandpackMessageConsoleMethods
+): 'text-red-500' | 'text-white' | 'text-yellow-400' => {
+  if (message === 'warn') {
+    return 'text-yellow-400';
+  } else if (message === 'error') {
+    return 'text-red-500';
+  } else {
+    return 'text-white';
+  }
 };
 
 type ConsoleData = Array<{
@@ -45,7 +58,12 @@ export const SandpackConsole = () => {
       }
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
-          const newLogs = message.log.filter(({method}) => method === 'log');
+          const newLogs = message.log.map((consoleData) => {
+            return {
+              ...consoleData,
+              data: [formatStr(...consoleData.data)],
+            };
+          });
           let messages = [...prev, ...newLogs];
           while (messages.length > MAX_MESSAGE_COUNT) {
             messages.shift();
@@ -106,8 +124,9 @@ export const SandpackConsole = () => {
                 <div
                   key={id}
                   className={cn(
-                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px]',
-                    `console-${getType(method)}`
+                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
+                    `console-${getType(method)}`,
+                    `${getColor(method)}`
                   )}>
                   <span className="console-message">
                     {data.map((msg, index) => {

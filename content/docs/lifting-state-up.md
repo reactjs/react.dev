@@ -201,7 +201,7 @@ Now, when the `TemperatureInput` wants to update its temperature, it calls `this
 
 >Note:
 >
->There is no special meaning to either `temperature` or `onTemperatureChange` prop names in custom components. We could have called them anything else, like name them `value` and `onChange` which is a common convention.
+>There is no special meaning to either `temperature` or `onTemperatureChange` prop names in custom components. We could have called them anything else. For instance, `value` and `onChange` is a common convention. 
 
 The `onTemperatureChange` prop will be provided together with the `temperature` prop by the parent `Calculator` component. It will handle the change by modifying its own local state, thus re-rendering both inputs with the new values. We will look at the new `Calculator` implementation very soon.
 

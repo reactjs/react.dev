@@ -44,12 +44,10 @@ When your app starts, you need to trigger the initial render. Frameworks and san
 
 ```js index.js active
 import Image from './Image.js';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
-  <Image />,
-  document.getElementById('root')
-);
+const root = createRoot(document.getElementById('root'));
+root.render(<Image />);
 ```
 
 ```js Image.js
@@ -114,12 +112,10 @@ function Image() {
 
 ```js index.js
 import Gallery from './Gallery.js';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
-  <Gallery />,
-  document.getElementById('root')
-);
+const root = createRoot(document.getElementById('root'));
+root.render(<Gallery />);
 ```
 
 ```css

@@ -38,18 +38,16 @@ There are two reasons for a component to render:
 
 ### Initial render {/*initial-render*/}
 
-When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling `ReactDOM.render` with your root component and the target DOM node:
+When your app starts, you need to trigger the initial render. Frameworks and sandboxes sometimes hide this code, but it's done by calling [`createRoot`](https://beta.reactjs.org/apis/react-dom/client/createRoot) with the target DOM node, and then calling its `render` method with your component:
 
 <Sandpack>
 
 ```js index.js active
 import Image from './Image.js';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
-  <Image />,
-  document.getElementById('root')
-);
+const root = createRoot(document.getElementById('root'))
+root.render(<Image />);
 ```
 
 ```js Image.js
@@ -65,7 +63,7 @@ export default function Image() {
 
 </Sandpack>
 
-Try commenting out the `ReactDOM.render` call and see the component disappear!
+Try commenting out the `root.render()` call and see the component disappear!
 
 ### Re-renders when state updates {/*re-renders-when-state-updates*/}
 
@@ -114,12 +112,10 @@ function Image() {
 
 ```js index.js
 import Gallery from './Gallery.js';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 
-ReactDOM.render(
-  <Gallery />,
-  document.getElementById('root')
-);
+const root = createRoot(document.getElementById('root'))
+root.render(<Gallery />);
 ```
 
 ```css

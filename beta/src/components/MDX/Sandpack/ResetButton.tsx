@@ -15,7 +15,8 @@ export const ResetButton: React.FC<ResetButtonProps> = ({onReset}) => {
       onClick={onReset}
       title="Reset Sandbox"
       type="button">
-      <IconRestart className="inline ml-1 mr-1 relative" /> Reset
+      <IconRestart className="inline ml-1 mr-1 relative" />
+      <span className="hidden md:block">Reset</span>
     </button>
   );
 };

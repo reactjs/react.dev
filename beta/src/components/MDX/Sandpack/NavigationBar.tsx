@@ -5,6 +5,7 @@
 import * as React from 'react';
 import {
   FileTabs,
+  useActiveCode,
   useSandpack,
   useSandpackNavigation,
 } from '@codesandbox/sandpack-react';
@@ -12,9 +13,11 @@ import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {FilesDropdown} from './FilesDropdown';
+import {CopyButton} from './CopyButton';
 
 export function NavigationBar({showDownload}: {showDownload: boolean}) {
   const {sandpack} = useSandpack();
+  const {code} = useActiveCode();
   const [dropdownActive, setDropdownActive] = React.useState(false);
   const {openPaths, clients} = sandpack;
   const clientId = Object.keys(clients)[0];
@@ -54,6 +57,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
       <div
         className="px-3 flex items-center justify-end grow text-right"
         translate="yes">
+        <CopyButton text={code} />
         {showDownload && <DownloadButton />}
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />

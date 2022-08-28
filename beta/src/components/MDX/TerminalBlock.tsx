@@ -5,6 +5,7 @@
 import * as React from 'react';
 import {IconTerminal} from '../Icon/IconTerminal';
 import {IconCopy} from 'components/Icon/IconCopy';
+import {CopyButton} from './Sandpack/CopyButton';
 
 type LogLevel = 'info' | 'warning' | 'error';
 
@@ -35,18 +36,6 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
     message = children.props.children;
   }
 
-  const [copied, setCopied] = React.useState(false);
-  React.useEffect(() => {
-    if (!copied) {
-      return;
-    } else {
-      const timer = setTimeout(() => {
-        setCopied(false);
-      }, 2000);
-      return () => clearTimeout(timer);
-    }
-  }, [copied]);
-
   return (
     <div className="rounded-lg bg-secondary dark:bg-gray-50 h-full">
       <div className="bg-gray-90 dark:bg-gray-60 w-full rounded-t-lg">
@@ -55,15 +44,7 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
             <IconTerminal className="inline-flex mr-2 self-center" /> Terminal
           </div>
           <div>
-            <button
-              className="w-full text-left text-primary-dark dark:text-primary-dark "
-              onClick={() => {
-                window.navigator.clipboard.writeText(message ?? '');
-                setCopied(true);
-              }}>
-              <IconCopy className="inline-flex mr-2 self-center" />{' '}
-              {copied ? 'Copied' : 'Copy'}
-            </button>
+            <CopyButton text={message} />
           </div>
         </div>
       </div>

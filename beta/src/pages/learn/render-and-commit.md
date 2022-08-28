@@ -34,7 +34,7 @@ Imagine that your components are cooks in the kitchen, assembling tasty dishes f
 There are two reasons for a component to render:
 
 1. It's the component's **initial render.**
-2. The component's **state has been updated.**
+2. The component's (or one of its ancestors') **state has been updated.**
 
 ### Initial render {/*initial-render*/}
 

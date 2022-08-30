@@ -186,8 +186,7 @@ export function Challenges({
                     : 'bg-link dark:bg-link-dark'
                 )}
                 onClick={() => {
-                  setActiveChallenge(nextChallenge.id);
-                  setShowSolution(false);
+                  handleChallengeChange(nextChallenge.id);
                 }}
                 active>
                 Next {isRecipes ? 'Example' : 'Challenge'}

@@ -7,7 +7,7 @@ import {SandpackProvider} from '@codesandbox/sandpack-react';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
-
+import {CustomTheme} from './Themes';
 import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
@@ -77,15 +77,19 @@ function SandpackRoot(props: SandpackProps) {
   };
 
   return (
-    <div className="sandpack-container my-8" translate="no">
+    <div className="sandpack sandpack--playground sandbox my-8">
       <SandpackProvider
         template="react"
-        customSetup={{...setup, files: files}}
-        autorun={autorun}
-        initMode="user-visible"
-        initModeObserverOptions={{rootMargin: '1400px 0px'}}
-        bundlerURL="https://6b760a26.sandpack-bundler.pages.dev"
-        logLevel={SandpackLogLevel.None}>
+        files={files}
+        customSetup={setup}
+        theme={CustomTheme}
+        options={{
+          autorun,
+          initMode: 'user-visible',
+          initModeObserverOptions: {rootMargin: '1400px 0px'},
+          bundlerURL: 'https://6b760a26.sandpack-bundler.pages.dev',
+          logLevel: SandpackLogLevel.None,
+        }}>
         <CustomPreset
           isSingleFile={isSingleFile}
           showDevTools={showDevTools}

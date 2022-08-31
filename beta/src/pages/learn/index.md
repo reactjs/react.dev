@@ -304,7 +304,7 @@ Often, you'll want your component to "remember" some information and display it.
 
 First, import [`useState`](/apis/react/useState) from React:
 
-```js {1,4}
+```js
 import { useState } from 'react';
 ```
 

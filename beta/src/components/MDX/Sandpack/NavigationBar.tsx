@@ -16,7 +16,7 @@ import {FilesDropdown} from './FilesDropdown';
 export function NavigationBar({showDownload}: {showDownload: boolean}) {
   const {sandpack} = useSandpack();
   const [dropdownActive, setDropdownActive] = React.useState(false);
-  const {openPaths, clients} = sandpack;
+  const {visibleFiles, clients} = sandpack;
   const clientId = Object.keys(clients)[0];
   const {refresh} = useSandpackNavigation(clientId);
 
@@ -31,7 +31,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
   }, [dropdownActive]);
 
   React.useEffect(() => {
-    if (openPaths.length > 1) {
+    if (visibleFiles.length > 1) {
       resizeHandler();
       window.addEventListener('resize', resizeHandler);
       return () => {
@@ -39,7 +39,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
       };
     }
     return;
-  }, [openPaths.length, resizeHandler]);
+  }, [visibleFiles.length, resizeHandler]);
 
   const handleReset = () => {
     sandpack.resetAllFiles();
@@ -47,7 +47,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
   };
 
   return (
-    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
+    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg text-lg">
       <div className="px-4 lg:px-6">
         {dropdownActive ? <FilesDropdown /> : <FileTabs />}
       </div>

@@ -8,4 +8,6 @@ The invalid-aria-prop warning will fire if you attempt to render a DOM element w
 
 1. If you feel that you are using a valid prop, check the spelling carefully. `aria-labelledby` and `aria-activedescendant` are often misspelled.
 
-2. React does not yet recognize the attribute you specified. This will likely be fixed in a future version of React.
+2. If you wrote `aria-role`, you may have meant `role`.
+
+3. Otherwise, if you're on the latest version of React DOM and verified that you're using a valid property name listed in the ARIA specification, please [report a bug](https://github.com/facebook/react/issues/new/choose).

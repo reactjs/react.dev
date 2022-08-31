@@ -22,6 +22,63 @@ const getType = (
   return 'error';
 };
 
+const getColor = (message: SandpackMessageConsoleMethods): string => {
+  if (message === 'warn') {
+    return 'text-yellow-50';
+  } else if (message === 'error') {
+    return 'text-red-40';
+  } else {
+    return 'text-primary';
+  }
+};
+
+// based on https://github.com/tmpfs/format-util/blob/0e62d430efb0a1c51448709abd3e2406c14d8401/format.js#L1
+// based on https://developer.mozilla.org/en-US/docs/Web/API/console#Using_string_substitutions
+// Implements s, d, i and f placeholders
+function formatStr(...inputArgs: any[]): any[] {
+  const maybeMessage = inputArgs[0];
+  if (typeof maybeMessage !== 'string') {
+    return inputArgs;
+  }
+  // If the first argument is a string, check for substitutions.
+  const args = inputArgs.slice(1);
+  let formatted: string = String(maybeMessage);
+  if (args.length) {
+    const REGEXP = /(%?)(%([jds]))/g;
+
+    formatted = formatted.replace(REGEXP, (match, escaped, ptn, flag) => {
+      let arg = args.shift();
+      switch (flag) {
+        case 's':
+          arg += '';
+          break;
+        case 'd':
+        case 'i':
+          arg = parseInt(arg, 10).toString();
+          break;
+        case 'f':
+          arg = parseFloat(arg).toString();
+          break;
+      }
+      if (!escaped) {
+        return arg;
+      }
+      args.unshift(arg);
+      return match;
+    });
+  }
+
+  // Arguments that remain after formatting.
+  if (args.length) {
+    for (let i = 0; i < args.length; i++) {
+      formatted += ' ' + String(args[i]);
+    }
+  }
+
+  // Update escaped %% values.
+  return [formatted.replace(/%{2,2}/g, '%')];
+}
+
 type ConsoleData = Array<{
   data: Array<string | Record<string, string>>;
   id: string;
@@ -45,7 +102,12 @@ export const SandpackConsole = () => {
       }
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
-          const newLogs = message.log.filter(({method}) => method === 'log');
+          const newLogs = message.log.map((consoleData) => {
+            return {
+              ...consoleData,
+              data: formatStr(...consoleData.data),
+            };
+          });
           let messages = [...prev, ...newLogs];
           while (messages.length > MAX_MESSAGE_COUNT) {
             messages.shift();
@@ -106,8 +168,9 @@ export const SandpackConsole = () => {
                 <div
                   key={id}
                   className={cn(
-                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px]',
-                    `console-${getType(method)}`
+                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
+                    `console-${getType(method)}`,
+                    getColor(method)
                   )}>
                   <span className="console-message">
                     {data.map((msg, index) => {

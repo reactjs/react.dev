@@ -93,7 +93,7 @@ function TodoList({ todos, filter }) {
 
 In many cases, this code is fine! But maybe `getFilteredTodos()` is slow or you have a lot of `todos`. In that case you don't want to recalculate `getFilteredTodos()` if some unrelated state variable like `newTodo` has changed.
 
-You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/apis/usememo) Hook:
+You can cache (or ["memoize"](https://en.wikipedia.org/wiki/Memoization)) an expensive calculation by wrapping it in a [`useMemo`](/apis/react/useMemo) Hook:
 
 ```js {5-8}
 import { useMemo, useState } from 'react';
@@ -123,7 +123,7 @@ function TodoList({ todos, filter }) {
 
 **This tells React that you don't want the inner function to re-run unless either `todos` or `filter` have changed.** React will remember the return value of `getFilteredTodos()` during the initial render. During the next renders, it will check if `todos` or `filter` are different. If they're the same as last time, `useMemo` will return the last result it has stored. But if they are different, React will call the wrapped function again (and store _that_ result instead).
 
-The function you wrap in [`useMemo`](/apis/usememo) runs during rendering, so this only works for [pure calculations](/learn/keeping-components-pure).
+The function you wrap in [`useMemo`](/apis/react/useMemo) runs during rendering, so this only works for [pure calculations](/learn/keeping-components-pure).
 
 <DeepDive title="How to tell if a calculation is expensive?">
 
@@ -149,7 +149,7 @@ console.timeEnd('filter array');
 
 Keep in mind that your machine is probably faster than your users' so it's a good idea to test the performance with an artificial slowdown. For example, Chrome offers a [CPU Throttling](https://developer.chrome.com/blog/new-in-devtools-61/#throttling) option for this.
 
-Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/apis/strictmode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
+Also note that measuring performance in development will not give you the most accurate results. (For example, when [Strict Mode](/apis/react/StrictMode) is on, you will see each component render twice rather than once.) To get the most accurate timings, build your app for production and test it on a device like your users have.
 
 </DeepDive>
 
@@ -232,7 +232,7 @@ function List({ items }) {
 }
 ```
 
-[Storing information from previous renders](/apis/usestate#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. By that point, React hasn't rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
+[Storing information from previous renders](/apis/react/useState#storing-information-from-previous-renders) like this can be hard to understand, but it’s better than updating the same state in an Effect. In the above example, `setSelection` is called directly during a render. React will re-render the `List` *immediately* after it exits with a `return` statement. By that point, React hasn't rendered the `List` children or updated the DOM yet, so this lets the `List` children skip rendering the stale `selection` value.
 
 When you update a component during rendering, React throws away the returned JSX and immediately retries rendering. To avoid very slow cascading retries, React only lets you update the *same* component's state during a render. If you update another component's state during a render, you'll see an error. A condition like `items !== prevItems` is necessary to avoid loops. You may adjust state like this, but any other side effects (like changing the DOM or setting a timeout) should remain in event handlers or Effects to [keep your components predictable](/learn/keeping-components-pure).
 
@@ -252,14 +252,14 @@ Now there is no need to "adjust" the state at all. If the item with the selected
 
 ### Sharing logic between event handlers {/*sharing-logic-between-event-handlers*/}
 
-Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification [toast](https://uxdesign.cc/toasts-or-snack-bars-design-organic-system-notifications-1236f2883023) whenever the user puts the product in the cart. Adding the `showToast()` call to both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
+Let's say you have a product page with two buttons (Buy and Checkout) that both let you buy that product. You want to show a notification whenever the user puts the product in the cart. Adding the `showNotification()` call to both buttons' click handlers feels repetitive so you might be tempted to place this logic in an Effect:
 
 ```js {2-7}
 function ProductPage({ product, addToCart }) {
   // 🔴 Avoid: Event-specific logic inside an Effect
   useEffect(() => {
     if (product.isInCart) {
-      showToast(`Added ${product.name} to the shopping cart!`);
+      showNotification(`Added ${product.name} to the shopping cart!`);
     }
   }, [product]);
 
@@ -275,16 +275,16 @@ function ProductPage({ product, addToCart }) {
 }
 ```
 
-This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification toast will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showToast()`.
+This Effect is unnecessary. It will also most likely cause bugs. For example, let's say that your app "remembers" the shopping cart between the page reloads. If you add a product to the cart once and refresh the page, the notification will appear again. It will keep appearing every time you refresh that product's page. This is because `product.isInCart` will already be `true` on the page load, so the Effect above will call `showNotification()`.
 
-**When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the toast should appear because the user *pressed the button*, not because the product page was displayed! Delete the Effect and put the shared logic into a function that you call from both event handlers:
+**When you're not sure whether some code should be in an Effect or in an event handler, ask yourself *why* this code needs to run. Use Effects only for code that should run *because* the component was displayed to the user.** In this example, the notification should appear because the user *pressed the button*, not because the page was displayed! Delete the Effect and put the shared logic into a function that you call from both event handlers:
 
 ```js {2-6,9,13}
 function ProductPage({ product, addToCart }) {
   // ✅ Good: Event-specific logic is called from event handlers
   function buyProduct() {
     addToCart(product);
-    showToast(`Added ${product.name} to the shopping cart!`);    
+    showNotification(`Added ${product.name} to the shopping cart!`);    
   }
 
   function handleBuyClick() {
@@ -357,6 +357,98 @@ function Form() {
 ```
 
 When you choose whether to put some logic into an event handler or an Effect, the main question you need to answer is _what kind of logic_ it is from the user's perspective. If this logic is caused by a particular interaction, keep it in the event handler. If it's caused by the user _seeing_ the component on the screen, keep it in the Effect.
+
+### Chains of computations {/*chains-of-computations*/}
+
+Sometimes you might feel tempted to chain Effects that each adjust a piece of state based on other state:
+
+```js {7-29}
+function Game() {
+  const [card, setCard] = useState(null);
+  const [goldCardCount, setGoldCardCount] = useState(0);
+  const [round, setRound] = useState(1);
+  const [isGameOver, setIsGameOver] = useState(false);
+
+  // 🔴 Avoid: Chains of Effects that adjust the state solely to trigger each other
+  useEffect(() => {
+    if (card !== null && card.gold) {
+      setGoldCardCount(c => c + 1);
+    }
+  }, [card]);
+
+  useEffect(() => {
+    if (goldCardCount > 3) {
+      setRound(r => r + 1)
+      setGoldCardCount(0);
+    }
+  }, [goldCardCount]);
+
+  useEffect(() => {
+    if (round > 5) {
+      setIsGameOver(true);
+    }
+  }, [round]);
+
+  useEffect(() => {
+    alert('Good game!');
+  }, [isGameOver]);
+
+  function handlePlaceCard(nextCard) {
+    if (isGameOver) {
+      throw Error('Game already ended.');
+    } else {
+      setCard(nextCard);
+    }
+  }
+
+  // ...
+```
+
+There are two problems with this code.
+
+One problem is that it is very inefficient: the component (and its children) have to re-render between each `set` call in the chain. In the example above, in the worst case (`setCard` → render → `setGoldCardCount` → render → `setRound` → render → `setIsGameOver` → render) there are three unnecessary re-renders of the tree below.
+
+Even if it weren't slow, as your code evolves, you will run into cases where the "chain" you wrote doesn't fit the new requirements. Imagine you are adding a way to step through the history of the game moves. You'd do it by updating each state variable to a value from the past. However, setting the `card` state to a value from the past would trigger the Effect chain again and change the data you're showing. Code like this is often rigid and fragile.
+
+In this case, it's better to calculate what you can during rendering, and adjust the state in the event handler:
+
+```js {6-7,14-26}
+function Game() {
+  const [card, setCard] = useState(null);
+  const [goldCardCount, setGoldCardCount] = useState(0);
+  const [round, setRound] = useState(1);
+
+  // ✅ Calculate what you can during rendering
+  const isGameOver = round > 5;
+
+  function handlePlaceCard(nextCard) {
+    if (isGameOver) {
+      throw Error('Game already ended.');
+    }
+
+    // ✅ Calculate all the next state in the event handler
+    setCard(nextCard);
+    if (nextCard.gold) {
+      if (goldCardCount <= 3) {
+        setGoldCardCount(goldCardCount + 1);
+      } else {
+        setGoldCardCount(0);
+        setRound(round + 1);
+        if (round === 5) {
+          alert('Good game!');
+        }
+      }
+    }
+  }
+
+  // ...
+```
+
+This is a lot more efficient. Also, if you implement a way to view game history, now you will be able to set each state variable to a move from the past without triggering the Effect chain that adjusts every other value. If you need to reuse logic between several event handlers, you can [extract a function](#sharing-logic-between-event-handlers) and call it from those handlers.
+
+Remember that inside event handlers, [state behaves like a snapshot](/learn/state-as-a-snapshot). For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
+
+In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of each next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects fetching data is appropriate because you are synchronizing with network.
 
 ### Initializing the application {/*initializing-the-application*/}
 
@@ -564,7 +656,7 @@ function ChatIndicator() {
 
 Here, the component subscribes to an external data store (in this case, the browser `navigator.onLine` API). Since this API does not exist on the server (so it can't be used to generate the initial HTML), initially the state is set to `true`. Whenever the value of that data store changes in the browser, the component updates its state.
 
-Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/apis/usesyncexternalstore):
+Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/apis/react/usesyncexternalstore):
 
 ```js {11-16}
 function subscribe(callback) {
@@ -666,21 +758,21 @@ function SearchResults({ query }) {
 }
 
 function useData(url) {
-  const [result, setResult] = useState(null);
+  const [data, setData] = useState(null);
   useEffect(() => {
     let ignore = false;
     fetch(url)
       .then(response => response.json())
       .then(json => {
         if (!ignore) {
-          setResult(json);
+          setData(json);
         }
       });
     return () => {
       ignore = true;
     };
   }, [url]);
-  return result;
+  return data;
 }
 ```
 

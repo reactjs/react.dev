@@ -28,7 +28,7 @@ const getColor = (message: SandpackMessageConsoleMethods): string => {
   } else if (message === 'error') {
     return 'text-red-40';
   } else {
-    return 'text-primary';
+    return 'text-secondary dark:text-secondary-dark';
   }
 };
 

@@ -1474,7 +1474,7 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+You can nest state as much as you like thanks to [recursion](https://developer.mozilla.org/en-US/docs/Glossary/Recursion), but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
 
 <DeepDive title="Improving memory usage">
 

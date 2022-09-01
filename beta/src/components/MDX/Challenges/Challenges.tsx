@@ -75,13 +75,15 @@ export function Challenges({
   const challenges = parseChallengeContents(children);
   const totalChallenges = challenges.length;
   const scrollAnchorRef = React.useRef<HTMLDivElement>(null);
+  const [activeChallengeHasChanged, setActiveChallengeHasChanged] =
+    React.useState(false);
 
   const [activeChallenge, setActiveChallenge] = React.useState(
     challenges[0].id
   );
 
   React.useEffect(() => {
-    if (scrollAnchorRef.current) {
+    if (scrollAnchorRef.current && activeChallengeHasChanged) {
       scrollAnchorRef.current.scrollIntoView({
         block: 'start',
         behavior: 'smooth',
@@ -92,6 +94,7 @@ export function Challenges({
   const handleChallengeChange = (challengeId: string | undefined) => {
     if (challengeId) {
       setActiveChallenge(challengeId);
+      setActiveChallengeHasChanged(true);
     }
   };
 
@@ -138,7 +141,8 @@ export function Challenges({
           hasNextChallenge={!!nextChallenge}
           handleClickNextChallenge={() =>
             handleChallengeChange(nextChallenge?.id)
-          }></Challenge>
+          }
+        />
       </div>
     </div>
   );

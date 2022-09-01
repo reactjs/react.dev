@@ -53,7 +53,7 @@ export function Challenge({
           </div>
           {currentChallenge.name}
         </h3>
-        <>{currentChallenge.content}</>
+        {currentChallenge.content}
       </div>
       <div className="flex justify-between items-center mt-4">
         {currentChallenge.hint ? (

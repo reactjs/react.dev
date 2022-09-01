@@ -86,7 +86,7 @@
             {
               "title": "Suspense",
               "path": "/apis/react/Suspense",
-              "wip": true
+              "wip": false
             },
             {
               "title": "useCallback",

@@ -366,9 +366,11 @@ To find the right solution, you'll need to answer a few questions about your Eff
 
 ### Should this code move to an event handler? {/*should-this-code-move-to-an-event-handler*/}
 
-The first thing you should think about is whether this code should be an Effect at all. For example, suppose you have a form thats submits a POST request and shows a notification. You trigger the Effect by setting state:
+The first thing you should think about is whether this code should be an Effect at all.
 
-```js {4-10}
+Imagine a form. On submit, you set the `submitted` state variable to `true`. You need to send a POST request and show a notification. You've decided to put this logic inside an Effect that "reacts" to `submitted` being `true`:
+
+```js {6-8}
 function Form() {
   const [submitted, setSubmitted] = useState(false);
 
@@ -378,11 +380,11 @@ function Form() {
       post('/api/register');
       showNotification('Successfully registered!');
     }
-  }, [submitted]); // ✅ All dependencies declared
+  }, [submitted]);
 
   function handleSubmit() {
     setSubmitted(true);
-  }  
+  }
 
   // ...
 }
@@ -543,131 +545,9 @@ function ShippingForm({ country }) {
   // ...
 ```
 
-Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two separate Effects synchronize two different things.
+Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they will no longer trigger each other unintentionally.
 
-The final code is longer than the original, but splitting these Effects is still correct. **Each Effect should represent an independent synchronization process.** [If there is one thing being synchronized, there should be one Effect.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) If there are two different things being synchronized independently from each other, then there should be two Effects. You should split Effects according to their purpose, not whether the code is shorter or "feels cleaner."
-
-In the above example, deleting one Effect wouldn't break the other Effect's logic. This is a good indication that they synchronize different things, and so it made sense to split them up. On the other hand, if you can't delete one Effect without breaking the other, it's usually a sign that [your Effects are unnecessarily granular and fragile.](/learn/you-might-not-need-an-effect#chains-of-computations)
-
-<DeepDive title="Extracting repetitive code into a custom Hook">
-
-After you split up Effects so that each Effect is independent, the next logical step is often to wrap the Effect into a custom Hook. This will make your components more readable and express your intent more clearly. In the above example, the two Effects are independent but share a lot of repetitive code. You can simplify the `ShippingForm` component above by extracting the Effect into your own `useData` Hook:
-
-```js {1}
-function useData(url) {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    if (url) {
-      let ignore = false;
-      fetch(url)
-        .then(response => response.json())
-        .then(json => {
-          if (!ignore) {
-            setData(json);
-          }
-        });
-      return () => {
-        ignore = true;
-      };
-    }
-  }, [url]); // ✅ All dependencies declared
-  return data;
-}
-```
-
-Now you can replace both Effects in the `ShippingForm` components with calls to `useData`:
-
-```js {2,4}
-function ShippingForm({ country }) {
-  const cities = useData(`/api/cities?country=${country}`);
-  const [city, setCity] = useState(null);
-  const areas = useData(city ? `/api/areas?city=${city}` : null);
-  // ...
-```
-
-When your Effect was doing multiple unrelated things, it was hard to tell how the data flowed in and out. After you've split it in two, the data flow became easier to follow. Extracting a custom Hook makes the data flow even more explicit: you feed the `url` in and you get the `data` out. By "hiding" your Effect inside `useData`, you also prevent someone working on the `ShippingForm` component from adding unnecessary dependencies to it. Ideally, with time, most of your app's Effects will be in custom Hooks.
-
-</DeepDive>
-
-<DeepDive title="When is extracting a custom Hook a good idea?">
-
-Start by choosing your custom Hook's name. If you struggle to pick a clear name, it might mean that your Effect is too coupled to the rest of your component's logic, and is not yet ready to be extracted.
-
-Ideally, your custom Hook's name should be clear enough that even a person who doesn't write code often could have a good guess about what your custom Hook does, what it takes, and what it returns:
-
-* ✅ `useData(url)`
-* ✅ `useImpressionLog(eventName, extraData)`
-* ✅ `useChatConnection(roomId)`
-
-When you synchronize with an external system, your custom Hook name may be more technical and use jargon specific to that system. It's good as long as it would be clear to a person familiar with that system:
-
-* ✅ `useMediaQuery(query)`
-* ✅ `useSocket(url)`
-* ✅ `useIntersectionObserver(ref, options)`
-
-**Keep custom Hooks focused on concrete high-level use cases.** Avoid creating and using custom "lifecycle" Hooks that act as alternatives and convenience wrappers for the `useEffect` API itself:
-
-* 🔴 `useMount(fn)`
-* 🔴 `useEffectOnce(fn)`
-* 🔴 `useUpdateEffect(fn)`
-
-For example, this `useMount` Hook tries to ensure some code only runs "on mount":
-
-```js {2-3,12-13}
-function ChatRoom() {
-  // 🔴 Avoid: using custom "lifecycle" Hooks
-  useMount(() => {
-    const connection = createConnection();
-    connection.connect();
-
-    post('/analytics/event', { eventName: 'visit_chat' });
-  });
-  // ...
-}
-
-// 🔴 Avoid: creating custom "lifecycle" Hooks
-function useMount(fn) {
-  useEffect(() => {
-    fn();
-  }, []); // 🔴 React Hook useEffect has a missing dependency: 'fn'
-}
-```
-
-**Custom "lifecycle" Hooks like `useMount` don't fit well into the React paradigm.** For example, if you used this `useMount` Hook instead of a raw `useEffect` in the earlier [chat room example](#dependencies-should-match-the-code), the linter wouldn't find the mistake in your code when you forgot to "react" to `roomId` changes.
-
-If you're writing an Effect, start by using the React API directly:
-
-```js
-// ✅ Good: raw Effects separated by purpose
-function ChatRoom({ roomId }) {
-  useEffect(() => {
-    const connection = createConnection();
-    connection.connect();
-    return () => connection.disconnect();
-  }, [roomId]);
-
-  useEffect(() => {
-    post('/analytics/event', { eventName: 'visit_chat', roomId });
-  }, [roomId]);
-
-  // ...
-}
-```
-
-Then, you can (but don't have to) extract custom Hooks for different high-level use cases:
-
-```js
-// ✅ Great: custom Hooks named after their purpose
-function ChatRoom({ roomId }) {
-  useChatConnection(roomId);
-  useImpressionLog('visit_chat', { roomId });
-  // ...
-}
-```
-
-**A good custom Hook makes the calling code more declarative by constraining what it does.** For example, `useChatConnection(roomId)` can only connect to the chat room, while `useImpressionLog(eventName, extraData)` can only send an impression log to the analytics. If your custom Hook API doesn't constrain the use cases and is very abstract, in the long run it's likely to introduce more problems than it solves.
-
-</DeepDive>
+The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This is a good indication that they *synchronize different things,* and it made sense to split them up.
 
 ### Are you reading some state to calculate the next state? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 
@@ -1284,3 +1164,1209 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 - Try to avoid object and function dependencies. Move them outside the component or inside the Effect.
 
 </Recap>
+
+<Challenges>
+
+### Fix a resetting interval
+
+This Effect sets up an interval that ticks every second. You've noticed something strange happening: it seems like the interval gets destroyed and re-created every time it ticks. Fix the code so that the interval doesn't get constantly re-created.
+
+<Hint>
+
+It seems like this Effect's code depends on `count`. Is there some way to not need this dependency? There should be a way to update the `count` state based on its previous value without adding a dependency on that value.
+
+</Hint>
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('✅ Creating an interval');
+    const id = setInterval(() => {
+      console.log('⏰ Interval tick');
+      setCount(count + 1);
+    }, 1000);
+    return () => {
+      console.log('❌ Clearing an interval');
+      clearInterval(id);
+    };
+  }, [count]);
+
+  return <h1>Counter: {count}</h1>
+}
+```
+
+</Sandpack>
+
+<Solution>
+
+You want to update the `count` state to be `count + 1` from inside the Effect. However, this makes your Effect depend on `count`, which changes with every tick, and that's why your interval gets re-created on every tick.
+
+To solve this, use the [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) and write `setCount(c => c + 1)` instead of `setCount(count + 1)`:
+
+<Sandpack>
+
+```js
+import { useState, useEffect } from 'react';
+
+export default function Timer() {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log('✅ Creating an interval');
+    const id = setInterval(() => {
+      console.log('⏰ Interval tick');
+      setCount(c => c + 1);
+    }, 1000);
+    return () => {
+      console.log('❌ Clearing an interval');
+      clearInterval(id);
+    };
+  }, []);
+
+  return <h1>Counter: {count}</h1>
+}
+```
+
+</Sandpack>
+
+Instead of reading `count` inside the Effect, you pass a `c => c + 1` instruction ("increment this number!") to React. React will apply it on the next render. And since you don't need to read the value of `count` inside your Effect anymore, so you can keep your Effect's dependencies empty (`[]`). This prevents your Effect from re-creating the interval on every tick.
+
+</Solution>
+
+### Fix a retriggering animation
+
+In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
+
+This code already works, but there is something you want to change. Currently, when you move the slider that controls the `duration` state variable, it retriggers the animation. Change the behavior so that the Effect does not "react" to the `duration` variable. When you press "Show", the Effect should use the current `duration` on the slider. However, moving the slider itself should not by itself retrigger the animation.
+
+<Hint>
+
+Is there a line of code inside the Effect that should not be reactive? How can you move non-reactive code out of the Effect?
+
+</Hint>
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+import { FadeInAnimation } from './animation.js';
+import { useEvent } from './useEvent.js';
+
+function Welcome({ duration }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const animation = new FadeInAnimation(ref.current);
+    animation.start(duration);
+    return () => {
+      animation.stop();
+    };
+  }, [duration]);
+
+  return (
+    <h1
+      ref={ref}
+      style={{
+        opacity: 0,
+        color: 'white',
+        padding: 50,
+        textAlign: 'center',
+        fontSize: 50,
+        backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
+      }}
+    >
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [duration, setDuration] = useState(1000);
+  const [show, setShow] = useState(false);
+
+  return (
+    <>
+      <label>
+        <input
+          type="range"
+          min="100"
+          max="3000"
+          value={duration}
+          onChange={e => setDuration(Number(e.target.value))}
+        />
+        <br />
+        Fade in duration: {duration} ms
+      </label>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome duration={duration} />}
+    </>
+  );
+}
+```
+
+```js animation.js
+export class FadeInAnimation {
+  constructor(node) {
+    this.node = node;
+  }
+  start(duration) {
+    this.duration = duration;
+    if (this.duration === 0) {
+      // Jump to end immediately
+      this.onProgress(1);
+    } else {
+      this.onProgress(0);
+      // Start animating
+      this.startTime = performance.now();
+      this.frameId = requestAnimationFrame(() => this.onFrame());
+    }
+  }
+  onFrame() {
+    const timePassed = performance.now() - this.startTime;
+    const progress = Math.min(timePassed / this.duration, 1);
+    this.onProgress(progress);
+    if (progress < 1) {
+      // We still have more frames to paint
+      this.frameId = requestAnimationFrame(() => this.onFrame());
+    }
+  }
+  onProgress(progress) {
+    this.node.style.opacity = progress;
+  }
+  stop() {
+    cancelAnimationFrame(this.frameId);
+    this.startTime = null;
+    this.frameId = null;
+    this.duration = 0;
+  }
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+Your Effect needs to read the latest value of `duration`, but you don't want it to "react" to changes in `duration`. You use `duration` to start the animation, but starting animation isn't reactive. Extract the non-reactive line of code into an Event function, and call that function from your Effect.
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+import { FadeInAnimation } from './animation.js';
+import { useEvent } from './useEvent.js';
+
+function Welcome({ duration }) {
+  const ref = useRef(null);
+
+  const onAppear = useEvent(animation => {
+    animation.start(duration);
+  });
+
+  useEffect(() => {
+    const animation = new FadeInAnimation(ref.current);
+    onAppear(animation);
+    return () => {
+      animation.stop();
+    };
+  }, [onAppear]); // TODO: Linter will allow [] in the future
+
+  return (
+    <h1
+      ref={ref}
+      style={{
+        opacity: 0,
+        color: 'white',
+        padding: 50,
+        textAlign: 'center',
+        fontSize: 50,
+        backgroundImage: 'radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)'
+      }}
+    >
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [duration, setDuration] = useState(1000);
+  const [show, setShow] = useState(false);
+
+  return (
+    <>
+      <label>
+        <input
+          type="range"
+          min="100"
+          max="3000"
+          value={duration}
+          onChange={e => setDuration(Number(e.target.value))}
+        />
+        <br />
+        Fade in duration: {duration} ms
+      </label>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome duration={duration} />}
+    </>
+  );
+}
+```
+
+```js animation.js
+export class FadeInAnimation {
+  constructor(node) {
+    this.node = node;
+  }
+  start(duration) {
+    this.duration = duration;
+    this.onProgress(0);
+    this.startTime = performance.now();
+    this.frameId = requestAnimationFrame(() => this.onFrame());
+  }
+  onFrame() {
+    const timePassed = performance.now() - this.startTime;
+    const progress = Math.min(timePassed / this.duration, 1);
+    this.onProgress(progress);
+    if (progress < 1) {
+      // We still have more frames to paint
+      this.frameId = requestAnimationFrame(() => this.onFrame());
+    }
+  }
+  onProgress(progress) {
+    this.node.style.opacity = progress;
+  }
+  stop() {
+    cancelAnimationFrame(this.frameId);
+    this.startTime = null;
+    this.frameId = null;
+    this.duration = 0;
+  }
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+```
+
+</Sandpack>
+
+Event functions like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
+
+</Solution>
+
+### Fix a reconnecting chat
+
+In this example, every time you press "Toggle theme", the chat re-connects. Why does this happen? Fix the mistake so that the chat re-connects only when you edit Server URL or choose a different the chat room.
+
+Treat `chat.js` as an external third-party library: you can consult it to check its API, but don't edit it.
+
+<Hint>
+
+There's more than one way to fix this, but ultimately you want to avoid having an object as your dependency.
+
+</Hint>
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [roomId, setRoomId] = useState('general');
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
+
+  const options = {
+    serverUrl: serverUrl,
+    roomId: roomId
+  };
+
+  return (
+    <div className={isDark ? 'dark' : 'light'}>
+      <button onClick={() => setIsDark(!isDark)}>
+        Toggle theme
+      </button>
+      <label>
+        Server URL:{' '}
+        <input
+          value={serverUrl}
+          onChange={e => setServerUrl(e.target.value)}
+        />
+      </label>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom options={options} />
+    </div>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom({ options }) {
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [options]);
+
+  return <h1>Welcome to the {options.roomId} room!</h1>;
+}
+```
+
+```js chat.js
+export function createConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  return {
+    connect() {
+      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+    },
+    disconnect() {
+      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+    }
+  };
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 5px; }
+.dark { background: #222; color: #eee; }
+```
+
+</Sandpack>
+
+<Solution>
+
+Your Effect is re-running because it depends on the `options` object. Objects can be re-created unintentionally, you should try to avoid them as dependencies of your Effects whenever possible.
+
+The least invasive fix is to read `roomId` and `serverUrl` right outside the Effect, and then make the Effect depend on those primitive values (which can't change unintentionally). Inside the Effect, create an object and it pass to `createConnnection`:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [roomId, setRoomId] = useState('general');
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
+
+  const options = {
+    serverUrl: serverUrl,
+    roomId: roomId
+  };
+
+  return (
+    <div className={isDark ? 'dark' : 'light'}>
+      <button onClick={() => setIsDark(!isDark)}>
+        Toggle theme
+      </button>
+      <label>
+        Server URL:{' '}
+        <input
+          value={serverUrl}
+          onChange={e => setServerUrl(e.target.value)}
+        />
+      </label>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom options={options} />
+    </div>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom({ options }) {
+  const { roomId, serverUrl } = options;
+  useEffect(() => {
+    const connection = createConnection({
+      roomId: roomId,
+      serverUrl: serverUrl
+    });
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId, serverUrl]);
+
+  return <h1>Welcome to the {options.roomId} room!</h1>;
+}
+```
+
+```js chat.js
+export function createConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  return {
+    connect() {
+      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+    },
+    disconnect() {
+      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+    }
+  };
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 5px; }
+.dark { background: #222; color: #eee; }
+```
+
+</Sandpack>
+
+It would be even better to replace the object `options` prop with the more specific `roomId` and `serverUrl` props:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [roomId, setRoomId] = useState('general');
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
+
+  return (
+    <div className={isDark ? 'dark' : 'light'}>
+      <button onClick={() => setIsDark(!isDark)}>
+        Toggle theme
+      </button>
+      <label>
+        Server URL:{' '}
+        <input
+          value={serverUrl}
+          onChange={e => setServerUrl(e.target.value)}
+        />
+      </label>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+        serverUrl={serverUrl}
+      />
+    </div>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom({ roomId, serverUrl }) {
+  useEffect(() => {
+    const connection = createConnection({
+      roomId: roomId,
+      serverUrl: serverUrl
+    });
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId, serverUrl]);
+
+  return <h1>Welcome to the {roomId} room!</h1>;
+}
+```
+
+```js chat.js
+export function createConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  return {
+    connect() {
+      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+    },
+    disconnect() {
+      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+    }
+  };
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 5px; }
+.dark { background: #222; color: #eee; }
+```
+
+</Sandpack>
+
+Sticking to primitive props where possible makes it easier to optimize your components later.
+
+</Solution>
+
+### Fix a reconnecting chat, again
+
+This example connects to the chat either with or without encryption. Toggle the checkbox and notice the different messages in the console when the encryption is on and off. Try changing the room. Then, try toggling the theme. When you're connected to a chat room, you will receive new messages every few seconds. Verify that their color matches the theme you've picked.
+
+In this example, the chat re-connects every time you try to change the theme. Fix this. After the fix, changing the theme should not re-connect the chat, but toggling encryption settings or changing the room should re-connect.
+
+Don't change any code in `chat.js`. Other than that, you can change any code as long as it results in the same behavior. For example, you may find it helpful to change which props are being passed down.
+
+<Hint>
+
+You're passing down two functions: `onMessage` and `createConnection`. Both of them are created from scratch every time `App` re-renders. They are considered to be new values every time, which is why they re-trigger your Effect.
+
+One of these functions is an event handler. Do you know some way to call an event handler an Effect without "reacting" to the new values of the event handler function? That would come in handy!
+
+Another of these functions only exists to pass some state to an imported API method. Is this function really necessary? What is the essential information that's being passed down? You might need to move some imports from `App.js` to `ChatRoom.js`.
+
+</Hint>
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+import {
+  createEncryptedConnection,
+  createUnencryptedConnection,
+} from './chat.js';
+import { showNotification } from './notifications.js';
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [roomId, setRoomId] = useState('general');
+  const [isEncrypted, setIsEncrypted] = useState(false);
+
+  return (
+    <>
+      <label>
+        <input
+          type="checkbox"
+          checked={isDark}
+          onChange={e => setIsDark(e.target.checked)}
+        />
+        Use dark theme
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={isEncrypted}
+          onChange={e => setIsEncrypted(e.target.checked)}
+        />
+        Enable encryption
+      </label>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+        onMessage={msg => {
+          showNotification('New message: ' + msg, isDark ? 'dark' : 'light');
+        }}
+        createConnection={() => {
+          const options = {
+            serverUrl: 'https://localhost:1234',
+            roomId: roomId
+          };
+          if (isEncrypted) {
+            return createEncryptedConnection(options);
+          } else {
+            return createUnencryptedConnection(options);
+          }
+        }}
+      />
+    </>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+
+export default function ChatRoom({ roomId, createConnection, onMessage }) {
+  useEffect(() => {
+    const connection = createConnection();
+    connection.on('message', (msg) => onMessage(msg));
+    connection.connect();
+    return () => connection.disconnect();
+  }, [createConnection, onMessage]);
+
+  return <h1>Welcome to the {roomId} room!</h1>;
+}
+```
+
+```js chat.js
+export function createEncryptedConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  let intervalId;
+  let messageCallback;
+  return {
+    connect() {
+      console.log('✅ 🔐 Connecting to "' + roomId + '" room... (encrypted)');
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (messageCallback) {
+          if (Math.random() > 0.5) {
+            messageCallback('hey')
+          } else {
+            messageCallback('lol');
+          }
+        }
+      }, 3000);
+    },
+    disconnect() {
+      clearInterval(intervalId);
+      messageCallback = null;
+      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+    },
+    on(event, callback) {
+      if (messageCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'message') {
+        throw Error('Only "message" event is supported.');
+      }
+      messageCallback = callback;
+    },
+  };
+}
+
+export function createUnencryptedConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  let intervalId;
+  let messageCallback;
+  return {
+    connect() {
+      console.log('✅ Connecting to "' + roomId + '" room (unencrypted)...');
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (messageCallback) {
+          if (Math.random() > 0.5) {
+            messageCallback('hey')
+          } else {
+            messageCallback('lol');
+          }
+        }
+      }, 3000);
+    },
+    disconnect() {
+      clearInterval(intervalId);
+      messageCallback = null;
+      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+    },
+    on(event, callback) {
+      if (messageCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'message') {
+        throw Error('Only "message" event is supported.');
+      }
+      messageCallback = callback;
+    },
+  };
+}
+```
+
+```js notifications.js
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
+export function showNotification(message, theme) {
+  Toastify({
+    text: message,
+    duration: 2000,
+    gravity: 'top',
+    position: 'right',
+    style: {
+      background: theme === 'dark' ? 'black' : 'white',
+      color: theme === 'dark' ? 'white' : 'black',
+    },
+  }).showToast();
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 5px; }
+```
+
+</Sandpack>
+
+<Solution>
+
+There's more than one correct way to solve this, but the here is one possible solution.
+
+In the original example, toggling the theme caused different `onMessage` and `createConnection` functions to be created and passed down. Since the Effect depended on these functions, the chat would re-connect every time you toggle the theme.
+
+To fix the problem with `onMessage`, you needed to wrap it into an Event function:
+
+```js {1,2,6}
+export default function ChatRoom({ roomId, createConnection, onMessage }) {
+  const onReceiveMessage = useEvent(onMessage);
+
+  useEffect(() => {
+    const connection = createConnection();
+    connection.on('message', (msg) => onReceiveMessage(msg));
+    // ...
+```
+
+Unlike the `onMessage` prop, the `onReceiveMessage` Event function is not reactive. This is why it doesn't need to be a dependency of your Effect. As a result, changes to `onMessage` won't cause the chat to re-connect.
+
+You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
+
+```js {2-3}
+      <ChatRoom
+        roomId={roomId}
+        isEncrypted={isEncrypted}
+        onMessage={msg => {
+          showNotification('New message: ' + msg, isDark ? 'dark' : 'light');
+        }}
+      />
+```
+
+Now you can move the `createConnection` function *inside* the Effect instead of passing it down from the `App`:
+
+```js {1-4,6,10-20}
+import {
+  createEncryptedConnection,
+  createUnencryptedConnection,
+} from './chat.js';
+
+export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
+  const onReceiveMessage = useEvent(onMessage);
+
+  useEffect(() => {
+    function createConnection() {
+      const options = {
+        serverUrl: 'https://localhost:1234',
+        roomId: roomId
+      };
+      if (isEncrypted) {
+        return createEncryptedConnection(options);
+      } else {
+        return createUnencryptedConnection(options);
+      }
+    }
+    // ...
+```
+
+After these two changes, your Effect no longer depends on any function values:
+
+```js {1,8,10,21}
+export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reactive values
+  const onReceiveMessage = useEvent(onMessage); // Not reactive
+
+  useEffect(() => {
+    function createConnection() {
+      const options = {
+        serverUrl: 'https://localhost:1234',
+        roomId: roomId // Reading a reactive value
+      };
+      if (isEncrypted) { // Reading a reactive value
+        return createEncryptedConnection(options);
+      } else {
+        return createUnencryptedConnection(options);
+      }
+    }
+
+    const connection = createConnection();
+    connection.on('message', (msg) => onReceiveMessage(msg));
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId, isEncrypted]); // ✅ All dependencies declared
+```
+
+As a result, the chat re-connects only when something meaningful (`roomId` or `isEncrypted`) changes:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "toastify-js": "1.12.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+
+import { showNotification } from './notifications.js';
+
+export default function App() {
+  const [isDark, setIsDark] = useState(false);
+  const [roomId, setRoomId] = useState('general');
+  const [isEncrypted, setIsEncrypted] = useState(false);
+
+  return (
+    <>
+      <label>
+        <input
+          type="checkbox"
+          checked={isDark}
+          onChange={e => setIsDark(e.target.checked)}
+        />
+        Use dark theme
+      </label>
+      <label>
+        <input
+          type="checkbox"
+          checked={isEncrypted}
+          onChange={e => setIsEncrypted(e.target.checked)}
+        />
+        Enable encryption
+      </label>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <hr />
+      <ChatRoom
+        roomId={roomId}
+        isEncrypted={isEncrypted}
+        onMessage={msg => {
+          showNotification('New message: ' + msg, isDark ? 'dark' : 'light');
+        }}
+      />
+    </>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+import {
+  createEncryptedConnection,
+  createUnencryptedConnection,
+} from './chat.js';
+
+export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
+  const onReceiveMessage = useEvent(onMessage);
+
+  useEffect(() => {
+    function createConnection() {
+      const options = {
+        serverUrl: 'https://localhost:1234',
+        roomId: roomId
+      };
+      if (isEncrypted) {
+        return createEncryptedConnection(options);
+      } else {
+        return createUnencryptedConnection(options);
+      }
+    }
+
+    const connection = createConnection();
+    connection.on('message', (msg) => onReceiveMessage(msg));
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId, isEncrypted, onReceiveMessage]); // TODO: Linter will allow [roomId, isEncrypted] in the future
+
+  return <h1>Welcome to the {roomId} room!</h1>;
+}
+```
+
+```js chat.js
+export function createEncryptedConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  let intervalId;
+  let messageCallback;
+  return {
+    connect() {
+      console.log('✅ 🔐 Connecting to "' + roomId + '" room... (encrypted)');
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (messageCallback) {
+          if (Math.random() > 0.5) {
+            messageCallback('hey')
+          } else {
+            messageCallback('lol');
+          }
+        }
+      }, 3000);
+    },
+    disconnect() {
+      clearInterval(intervalId);
+      messageCallback = null;
+      console.log('❌ 🔐 Disconnected from "' + roomId + '" room (encrypted)');
+    },
+    on(event, callback) {
+      if (messageCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'message') {
+        throw Error('Only "message" event is supported.');
+      }
+      messageCallback = callback;
+    },
+  };
+}
+
+export function createUnencryptedConnection({ serverUrl, roomId }) {
+  // A real implementation would actually connect to the server
+  if (typeof serverUrl !== 'string') {
+    throw Error('Expected serverUrl to be a string. Received: ' + serverUrl);
+  }
+  if (typeof roomId !== 'string') {
+    throw Error('Expected roomId to be a string. Received: ' + roomId);
+  }
+  let intervalId;
+  let messageCallback;
+  return {
+    connect() {
+      console.log('✅ Connecting to "' + roomId + '" room (unencrypted)...');
+      clearInterval(intervalId);
+      intervalId = setInterval(() => {
+        if (messageCallback) {
+          if (Math.random() > 0.5) {
+            messageCallback('hey')
+          } else {
+            messageCallback('lol');
+          }
+        }
+      }, 3000);
+    },
+    disconnect() {
+      clearInterval(intervalId);
+      messageCallback = null;
+      console.log('❌ Disconnected from "' + roomId + '" room (unencrypted)');
+    },
+    on(event, callback) {
+      if (messageCallback) {
+        throw Error('Cannot add the handler twice.');
+      }
+      if (event !== 'message') {
+        throw Error('Only "message" event is supported.');
+      }
+      messageCallback = callback;
+    },
+  };
+}
+```
+
+```js notifications.js
+import Toastify from 'toastify-js';
+import 'toastify-js/src/toastify.css';
+
+export function showNotification(message, theme) {
+  Toastify({
+    text: message,
+    duration: 2000,
+    gravity: 'top',
+    position: 'right',
+    style: {
+      background: theme === 'dark' ? 'black' : 'white',
+      color: theme === 'dark' ? 'white' : 'black',
+    },
+  }).showToast();
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 5px; }
+```
+
+</Sandpack>
+
+</Solution>
+
+</Challenges>

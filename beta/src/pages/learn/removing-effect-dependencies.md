@@ -547,7 +547,7 @@ function ShippingForm({ country }) {
 
 Now the first Effect only re-runs if the `country` changes, while the second Effect re-runs when the `city` changes. You've separated them by purpose: two different things are synchronized by two separate Effects. Two separate Effects have two separate dependency lists, so they will no longer trigger each other unintentionally.
 
-The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This is a good indication that they *synchronize different things,* and it made sense to split them up.
+The final code is longer than the original, but splitting these Effects is still correct. [Each Effect should represent an independent synchronization process.](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) In this example, deleting one Effect doesn't break the other Effect's logic. This is a good indication that they *synchronize different things,* and it made sense to split them up. If the duplication feels concerning, you can further improve this code by [extracting repetitive logic into a custom Hook.](/learn/reusing-logic-with-custom-hooks#when-to-use-custom-hooks)
 
 ### Are you reading some state to calculate the next state? {/*are-you-reading-some-state-to-calculate-the-next-state*/}
 

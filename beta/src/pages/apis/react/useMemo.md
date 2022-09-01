@@ -12,11 +12,17 @@ const memoizedValue = useMemo(callback, [...dependencies])
 
 </Intro>
 
+<Note>
+
+The difference between `useMemo` and [`useCallback`](apis/react/useCallback) is that `useMemo` returns a memoized value, and `useCallback` returns a memoized callback.
+
+</Note>
+
 - [Usage](#usage)
   - [Skip expensive recalculations](#skip-expensive-recalculations)
   - [Skip re-render](#skip-re-render)
 - [Reference](#reference)
-  - [`useMemo(() => computeExpensiveFunction(a, b), [a, b])`](#usememo)
+  - [`const memoizedValue = useMemo(callback, [...dependencies])`](#usememo)
 - [Troubleshooting](#troubleshooting)
   - [Every time my component renders `useMemo` is triggered](#every-time-my-component-renders-useMemo-is-triggered)
 
@@ -26,30 +32,30 @@ const memoizedValue = useMemo(callback, [...dependencies])
 
 ### Skip expensive recalculations {/*skip-expensive-recalculations*/}
 
-Call `useMemo` at the top level of your component to declare one or more memoized variables.
+Call <CodeStep step={1}>useMemo</CodeStep> at the top level of your component to create one or more memoized variables.
 
-```js {5}
-import {useMemo} from 'react';
+```js [1,4,"useMemo"]
+import { useMemo } from "react";
 
-export default function App(){
-
-const visibleTodos = useMemo(() => getVisibleTodos(todos, tab), [todos, tab]);
-
+export default function App() {
+  const visibleTodos =useMemo (() =>
+    getVisibleTodos(todos, tab), [todos, tab]);
 //...
+}
 ```
 
-Wrap the function that has the expensive calculations with `useMemo`, so that when the dependencies are unchanged, the calculation of the expensive function is skipped.
+Wrap the function that has the expensive calculations with `useMemo`, so that the expensive calculation is only performed when one or more dependencies change. If the dependencies have not changed, then the previously computed value is used.
 
-In the example below, the function `getVisibleTodos` runs only when either one of the dependencies, i.e., `todos` or `tab` change, and the memoized value gets stored in `visibleTodos`.
+In the example below, the function <CodeStep step={1}>getVisibleTodos</CodeStep> runs only when either one `todos` or `tab` change. The memoized value gets stored in `visibleTodos`.
 
-``` js {4}
+``` js [1,5,"getVisibleTodos"] {4,5}
 //...
 const [todos, setTodos] = useState(createInitialTodos);
 const [tab, setTab] = useState("all");
-const visibleTodos = useMemo(() => getVisibleTodos(todos, tab), [todos, tab]);
+const visibleTodos = useMemo(() =>
+  getVisibleTodos(todos, tab), [todos, tab]);
 
 function getVisibleTodos(todos, tab) {
-  console.log("Running getVisibleTodos for " + todos.length + " todos");
   return todos.filter((t) => {
     if (tab === "completed") {
       return t.completed;
@@ -57,16 +63,18 @@ function getVisibleTodos(todos, tab) {
     return true;
   });
 }
-
 //...
 
 ```
 
 ### Skip re-render of components {/*skip-re-render-of-components*/}
 
-Often you would want to skip re-render of components when not necessary.
+`useMemo` helps in skipping the re-render of the components. Avoiding component re-renders can help with optimization.
 
-`useMemo` helps in skipping the re-render of the components. Avoiding component re-renders can boost the overall performance.
+<Note>
+
+**You may rely on `useMemo` as a performance optimization, not as a semantic guarantee**. In the future, React may choose to “forget” some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo`— and then add it to optimize performance.
+</Note>
 
 The example below shows that the `TodoList` component is rendered every time there is a change in the `input` field. Also, `visibleTodos` are calculated on every render, and the change in the input should ideally not effect the `visibleTodos`.
 
@@ -80,14 +88,13 @@ function createInitialTodos() {
     initialTodos.push({
       id: i,
       text: "Item " + (i + 1),
-      completed: false
+      completed: false,
     });
   }
   return initialTodos;
 }
 
 function getVisibleTodos(todos, tab) {
-  console.log("Running getVisibleTodos for " + todos.length + " todos");
   return todos.filter((t) => {
     if (tab === "completed") {
       return t.completed;
@@ -109,7 +116,7 @@ export default function App() {
         if (t.id === id) {
           return {
             ...t,
-            completed: !t.completed
+            completed: !t.completed,
           };
         } else {
           return t;
@@ -120,8 +127,10 @@ export default function App() {
 
   return (
     <>
-      <button onClick={() => setTab("all")}>All</button>
-      <button onClick={() => setTab("completed")}>Completed</button>
+      <button onClick={() =>
+        setTab("all")}>All</button>
+      <button onClick={() =>
+        setTab("completed")}>Completed</button>
       <hr />
       <input
         value={draft}
@@ -130,10 +139,12 @@ export default function App() {
         }}
       />
       <hr />
-      <TodoList visibleTodos={visibleTodos} toggleTodo={toggleTodo} />
+      <TodoList visibleTodos={visibleTodos}
+          toggleTodo={toggleTodo} />
     </>
   );
 }
+
 ```
 
 Wrap the `getVisibleTodos` in the useMemo hook to avoid re-rendering the `TodoList` component.
@@ -145,7 +156,8 @@ export default function App() {
   const [todos, setTodos] = useState(createInitialTodos);
   const [tab, setTab] = useState("all");
   const [draft, setDraft] = useState("");
-  const visibleTodos = useMemo(() => getVisibleTodos(todos, tab), [todos, tab]);
+  const visibleTodos = useMemo(() =>
+    getVisibleTodos(todos, tab), [todos, tab]);
 
   //...
 
@@ -182,7 +194,6 @@ function createInitialTodos() {
 }
 
 function getVisibleTodos(todos, tab) {
-  console.log("Running getVisibleTodos for " + todos.length + " todos");
   return todos.filter((t) => {
     if (tab === "completed") {
       return t.completed;
@@ -214,8 +225,10 @@ export default function App() {
 
   return (
     <>
-      <button onClick={() => setTab("all")}>All</button>
-      <button onClick={() => setTab("completed")}>Completed</button>
+      <button onClick={() =>
+        setTab("all")}>All</button>
+      <button onClick={() =>
+        setTab("completed")}>Completed</button>
       <hr />
       <input
         value={draft}
@@ -224,39 +237,38 @@ export default function App() {
         }}
       />
       <hr />
-      <TodoList visibleTodos={visibleTodos} toggleTodo={toggleTodo} />
+      <TodoList visibleTodos={visibleTodos}
+        toggleTodo={toggleTodo} />
     </>
   );
 }
 
 ```
 ```js TodolistComponent.js
-
 import { memo } from "react";
 
 export default function TodoList({ visibleTodos, toggleTodo }) {
-    console.log("TodoList re-render");
-    return (
-      <ul>
-        {visibleTodos.map((item) => (
-          <li key={item.id}>
-            <label>
-              <input
-                type="checkbox"
-                checked={item.completed}
-                onChange={(e) => {
-                  toggleTodo(item.id);
-                }}
-              />
-              {item.text}
-            </label>
-          </li>
-        ))}
-      </ul>
-    );
-  }
-  TodoList = memo(TodoList);
-
+  console.log("TodoList re-render");
+  return (
+    <ul>
+      {visibleTodos.map((item) => (
+        <li key={item.id}>
+          <label>
+            <input
+              type="checkbox"
+              checked={item.completed}
+              onChange={(e) => {
+                toggleTodo(item.id);
+              }}
+            />
+            {item.text}
+          </label>
+        </li>
+      ))}
+    </ul>
+  );
+}
+TodoList = memo(TodoList);
 ```
 
 </Sandpack>
@@ -281,9 +293,9 @@ Every time a component is rendered:
 
 ## Reference {/*reference*/}
 
-### `useMemo(() => computeExpensiveValue(a, b), [a, b])` {/*usememo*/}
+### `const memoizedValue = useMemo(callback, [...dependencies])` {/*usememo*/}
 
-Call `useMemo` at the top level of your component to declare one or more memoized variables.
+Call `useMemo` at the top level of your component to create one or more memoized variables.
 
 ```js
 import {useMemo} from 'react';
@@ -294,11 +306,11 @@ import {useMemo} from 'react';
 
 * `computeExpensiveValue`: The parameter is the expensive computational function that requires memoization.
 
-* `[a,b]`: This value represents the dependency on which the recompute of the `computeExpensiveValue` rests. There can be an array of dependencies or a single value.
+* `dependencies`: This value represents the dependency on which the recompute of the `computeExpensiveValue` rests. There can be an array of dependencies or a single value.
 
 #### Returns {/*returns*/}
 
-`useMemo` returns a value or object depending on the computed value:
+`useMemo` returns a memoized value for the result of `computeExpensiveValue`.
 
 
 ## Troubleshooting {/*troubleshooting*/}

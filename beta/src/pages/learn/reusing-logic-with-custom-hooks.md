@@ -1682,13 +1682,14 @@ function useAnimationLoop(isRunning, drawFrame) {
       return;
     }
 
+    const startTime = performance.now();
+
     function tick(now) {
       const timePassed = now - startTime;
       onFrame(timePassed);
       frameId = requestAnimationFrame(tick);
     }
 
-    const startTime = performance.now();
     tick();
     return () => cancelAnimationFrame(frameId);
   }, [isRunning, onFrame]); // TODO: Linter will allow [isRunning] in the future
@@ -1729,9 +1730,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-There's no one best way to do it. As with regular functions, ultimately you decide where to draw the boundaries between different parts of your code. Keep in mind that no abstraction at all is better than a wrong abstraction.
-
-For example, you could also take a very different approach, and move the imperative logic into a JavaScript [class:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+However, you didn't *have to* do that. As with regular functions, ultimately you decide where to draw the boundaries between different parts of your code. For example, you could also take a very different approach. Instead of keeping the logic in the Effect, you could move most of the imperative logic inside a JavaScript [class:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
 
 <Sandpack>
 
@@ -1829,7 +1828,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-Effects let you connect React to external systems. The more coordination between Effects is needed (for example, to combine many animations), the more it makes sense to extract that logic out of Effects and Hooks *completely* like in the sandbox above. Then, the code you extracted *becomes* the "external system." This lets your Effects stay simple because they only need to send messages to the system you've moved outside React.
+Effects let you connect React to external systems. The more coordination between Effects is needed (for example, to chain multiple animations), the more it makes sense to extract that logic out of Effects and Hooks *completely* like in the sandbox above. Then, the code you extracted *becomes* the "external system." This lets your Effects stay simple because they only need to send messages to the system you've moved outside React.
 
 The examples above assume that the fade-in logic needs to be written in JavaScript. However, this particular fade-in animation is both simpler and much more efficient to implement with a plain [CSS Animation:](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
 
@@ -1886,7 +1885,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-If you can do something with CSS, don't write a Hook. Let the browser handle it!
+Sometimes, you don't even need a Hook!
 
 <Recap>
 

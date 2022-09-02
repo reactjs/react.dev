@@ -37,6 +37,12 @@ Here is a step-by-step explanation of what happens in the above example:
 >
 >Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too.
 
+>Note
+>
+>Always remember that, the Functional components cannot be given refs and Attempts to access the ref inside them will fail. Refs can be attached only to the Class based components, so the above solution will work only when `FancyButton` component is converted to a Class based component.
+>
+>Ref forwarding is not limited to DOM components. You can forward refs to class component instances, too
+>
 ## Note for component library maintainers {#note-for-component-library-maintainers}
 
 **When you start using `forwardRef` in a component library, you should treat it as a breaking change and release a new major version of your library.** This is because your library likely has an observably different behavior (such as what refs get assigned to, and what types are exported), and this can break apps and other libraries that depend on the old behavior.

@@ -234,6 +234,61 @@ If your linter is [configured for React](/learn/editor-setup#linting), it will e
 
 </Note>
 
+<DeepDive title="Should all functions called during rendering start with the use prefix?">
+
+No. Functions that don't *call* Hooks don't need to *be* Hooks.
+
+If your function doesn't call any Hooks, avoid the `use` prefix. Instead, write it as a regular function *without* the `use` prefix. For example, `useSorted` below doesn't call Hooks, so call it `getSorted` instead:
+
+```js
+// 🔴 Avoid: A Hook that doesn't use Hooks
+function useSorted(items) {
+  return items.slice().sort();
+}
+
+// ✅ Good: A regular function that doesn't use Hooks
+function getSorted(items) {
+  return items.slice().sort();
+}
+```
+
+This ensures that your code can call this regular function anywhere, including conditions:
+
+```js
+function List({ items, shouldSort }) {
+  let displayedItems = items;
+  if (shouldSort) {
+    // ✅ It's ok to call getSorted() conditionally because it's not a Hook
+    displayedItems = getSorted(items);
+  }
+  // ...
+}
+```
+
+You should give `use` prefix to a function (and thus make it a Hook) if it uses at least one Hook inside of it:
+
+```js
+// ✅ Good: A Hook that uses other Hooks
+function useAuth() {
+  return useContext(Auth);
+}
+```
+
+Technically, this isn't enforced by React. In principle, you could make a Hook that doesn't call other Hooks. This is often confusing and limiting so it's best to avoid that pattern. However, there may be rare cases where it is helpful. For example, maybe your function doesn't use any Hooks right now, but you plan to add some Hook calls to it in the future. Then it makes sense to name it with the `use` prefix:
+
+```js {3-4}
+// ✅ Good: A Hook that will likely some other Hooks later
+function useAuth() {
+  // TODO: Replace with this line when authentication is implemented:
+  // return useContext(Auth);
+  return TEST_USER;
+}
+```
+
+Then components won't be able to call it conditionally. This will become important when you actually add Hook calls inside. If you don't plan to use Hooks inside it (now or later), don't make it a Hook.
+
+</DeepDive>
+
 ### Custom Hooks let you share stateful logic, not state itself {/*custom-hooks-let-you-share-stateful-logic-not-state-itself*/}
 
 In the earlier example, when you turned the network on and off, both components updated together. However, it's wrong to think that a single `isOnline` state variable is shared between them. Look at this code:
@@ -1393,6 +1448,446 @@ If you use custom Hooks like `useData` above in your app, it will require fewer 
 
 </DeepDive>
 
+### There is more than one way to do it {/*there-is-more-than-one-way-to-do-it*/}
+
+Let's say you want to implement a fade-in animation *from scratch* using the browser [`requestAnimationFrame`](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) API. You might start with an Effect that sets up an animation loop. During each frame of the animation, you could change the opacity of the DOM node you [hold in a ref](/learn/manipulating-the-dom-with-refs) until it reaches `1`. Your code might start like this:
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+
+function Welcome() {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const duration = 1000;
+    const node = ref.current;
+
+    let startTime = performance.now();
+    let frameId = null;
+
+    function onFrame(now) {
+      const timePassed = now - startTime;
+      const progress = Math.min(timePassed / duration, 1);
+      onProgress(progress);
+      if (progress < 1) {
+        // We still have more frames to paint
+        frameId = requestAnimationFrame(onFrame);
+      }
+    }
+
+    function onProgress(progress) {
+      node.style.opacity = progress;
+    }
+
+    function start() {
+      onProgress(0);
+      startTime = performance.now();
+      frameId = requestAnimationFrame(onFrame);
+    }
+
+    function stop() {
+      cancelAnimationFrame(frameId);
+      startTime = null;
+      frameId = null;
+    }
+
+    start();
+    return () => stop();
+  }, []);
+
+  return (
+    <h1 className="welcome" ref={ref}>
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome />}
+    </>
+  );
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+.welcome {
+  opacity: 0;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  font-size: 50px;
+  background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+```
+
+</Sandpack>
+
+To make the component more readable, you might extract the logic into a `useFadeIn` custom Hook:
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+import { useFadeIn } from './useFadeIn.js';
+
+function Welcome() {
+  const ref = useRef(null);
+
+  useFadeIn(ref, 1000);
+
+  return (
+    <h1 className="welcome" ref={ref}>
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome />}
+    </>
+  );
+}
+```
+
+```js useFadeIn.js
+import { useEffect } from 'react';
+
+export function useFadeIn(ref, duration) {
+  useEffect(() => {
+    const node = ref.current;
+
+    let startTime = performance.now();
+    let frameId = null;
+
+    function onFrame(now) {
+      const timePassed = now - startTime;
+      const progress = Math.min(timePassed / duration, 1);
+      onProgress(progress);
+      if (progress < 1) {
+        // We still have more frames to paint
+        frameId = requestAnimationFrame(onFrame);
+      }
+    }
+
+    function onProgress(progress) {
+      node.style.opacity = progress;
+    }
+
+    function start() {
+      onProgress(0);
+      startTime = performance.now();
+      frameId = requestAnimationFrame(onFrame);
+    }
+
+    function stop() {
+      cancelAnimationFrame(frameId);
+      startTime = null;
+      frameId = null;
+    }
+
+    start();
+    return () => stop();
+  }, [ref, duration]);
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+.welcome {
+  opacity: 0;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  font-size: 50px;
+  background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+```
+
+</Sandpack>
+
+You could keep the `useFadeIn` code as is, but you could also refactor it more. For example, you could extract the logic for setting up the animation loop out of `useFadeIn` into a new custom Hook called `useAnimationLoop`:
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+import { useFadeIn } from './useFadeIn.js';
+
+function Welcome() {
+  const ref = useRef(null);
+
+  useFadeIn(ref, 1000);
+
+  return (
+    <h1 className="welcome" ref={ref}>
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome />}
+    </>
+  );
+}
+```
+
+```js useFadeIn.js active
+import { useState, useEffect } from 'react';
+import { useEvent } from './useEvent.js';
+
+export function useFadeIn(ref, duration) {
+  const [isRunning, setIsRunning] = useState(true);
+
+  useAnimationLoop(isRunning, (timePassed) => {
+    const progress = Math.min(timePassed / duration, 1);
+    ref.current.style.opacity = progress;
+    if (progress === 1) {
+      setIsRunning(false);
+    }
+  });
+}
+
+function useAnimationLoop(isRunning, drawFrame) {
+  const onFrame = useEvent(drawFrame);
+
+  useEffect(() => {
+    if (!isRunning) {
+      return;
+    }
+
+    function tick(now) {
+      const timePassed = now - startTime;
+      onFrame(timePassed);
+      frameId = requestAnimationFrame(tick);
+    }
+
+    const startTime = performance.now();
+    tick();
+    return () => cancelAnimationFrame(frameId);
+  }, [isRunning, onFrame]); // TODO: Linter will allow [isRunning] in the future
+}
+```
+
+```js useEvent.js
+import { useRef, useInsertionEffect, useCallback } from 'react';
+
+// The useEvent API has not yet been added to React,
+// so this is a temporary shim to make this sandbox work.
+// You're not expected to write code like this yourself.
+
+export function useEvent(fn) {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args) => {
+    const f = ref.current;
+    return f(...args);
+  }, []);
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+.welcome {
+  opacity: 0;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  font-size: 50px;
+  background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+```
+
+</Sandpack>
+
+There's no one best way to do it. As with regular functions, ultimately you decide where to draw the boundaries between different parts of your code. Keep in mind that no abstraction at all is better than a wrong abstraction.
+
+For example, you could also take a very different approach, and move the imperative logic into a JavaScript [class:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes)
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+import { useFadeIn } from './useFadeIn.js';
+
+function Welcome() {
+  const ref = useRef(null);
+
+  useFadeIn(ref, 1000);
+
+  return (
+    <h1 className="welcome" ref={ref}>
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome />}
+    </>
+  );
+}
+```
+
+```js useFadeIn.js active
+import { useState, useEffect } from 'react';
+import { FadeInAnimation } from './animation.js';
+
+export function useFadeIn(ref, duration) {
+  useEffect(() => {
+    const animation = new FadeInAnimation(ref.current);
+    animation.start(duration);
+    return () => {
+      animation.stop();
+    };
+  }, [ref, duration]);
+}
+```
+
+```js animation.js
+export class FadeInAnimation {
+  constructor(node) {
+    this.node = node;
+  }
+  start(duration) {
+    this.duration = duration;
+    this.onProgress(0);
+    this.startTime = performance.now();
+    this.frameId = requestAnimationFrame(() => this.onFrame());
+  }
+  onFrame() {
+    const timePassed = performance.now() - this.startTime;
+    const progress = Math.min(timePassed / this.duration, 1);
+    this.onProgress(progress);
+    if (progress === 1) {
+      this.stop();
+    } else {
+      // We still have more frames to paint
+      this.frameId = requestAnimationFrame(() => this.onFrame());
+    }
+  }
+  onProgress(progress) {
+    this.node.style.opacity = progress;
+  }
+  stop() {
+    cancelAnimationFrame(this.frameId);
+    this.startTime = null;
+    this.frameId = null;
+    this.duration = 0;
+  }
+}
+```
+
+```css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+.welcome {
+  opacity: 0;
+  color: white;
+  padding: 50px;
+  text-align: center;
+  font-size: 50px;
+  background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+}
+```
+
+</Sandpack>
+
+Effects let you connect React to external systems. The more coordination between Effects is needed (for example, to combine many animations), the more it makes sense to extract that logic out of Effects and Hooks *completely* like in the sandbox above. Then, the code you extracted *becomes* the "external system." This lets your Effects stay simple because they only need to send messages to the system you've moved outside React.
+
+The examples above assume that the fade-in logic needs to be written in JavaScript. However, this particular fade-in animation is both simpler and much more efficient to implement with a plain [CSS Animation:](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations)
+
+<Sandpack>
+
+```js
+import { useState, useEffect, useRef } from 'react';
+import './welcome.css';
+
+function Welcome() {
+  return (
+    <h1 className="welcome">
+      Welcome
+    </h1>
+  );
+}
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Remove' : 'Show'}
+      </button>
+      <hr />
+      {show && <Welcome />}
+    </>
+  );
+}
+```
+
+```css styles.css
+label, button { display: block; margin-bottom: 20px; }
+html, body { min-height: 300px; }
+```
+
+```css welcome.css active
+.welcome {
+  color: white;
+  padding: 50px;
+  text-align: center;
+  font-size: 50px;
+  background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+
+  animation: fadeIn 1000ms; 
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+```
+
+</Sandpack>
+
+If you can do something with CSS, don't write a Hook. Let the browser handle it!
+
 <Recap>
 
 - Custom Hooks let you share logic between components.
@@ -1403,5 +1898,6 @@ If you use custom Hooks like `useData` above in your app, it will require fewer 
 - The code of your custom Hooks should be pure, like your component's code.
 - Wrap event handlers received by custom Hooks into Event functions.
 - Don't create custom Hooks like `useMount`. Keep their purpose specific.
+- It's up to you how and where to choose the boundaries of your code.
 
 </Recap>

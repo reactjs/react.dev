@@ -10,6 +10,7 @@ import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
+import '@codesandbox/sandpack-react/dist/index.css';
 
 const EmptyAppShell = ({children}: {children: React.ReactNode}) => (
   <>{children}</>

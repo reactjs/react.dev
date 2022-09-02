@@ -50,7 +50,7 @@ export default function StatusBar() {
     };
   }, []);
 
-  return <h1>You are {isOnline ? 'online' : 'offline'}!</h1>;
+  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
 }
 ```
 
@@ -109,7 +109,7 @@ Imagine for a moment that, similar to [`useState`](/apis/react/useState) and [`u
 ```js {2,7}
 function StatusBar() {
   const isOnline = useOnlineStatus();
-  return <h1>You are {isOnline ? 'online' : 'offline'}!</h1>;
+  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
 }
 
 function SaveButton() {
@@ -159,7 +159,7 @@ import { useOnlineStatus } from './useOnlineStatus.js';
 
 function StatusBar() {
   const isOnline = useOnlineStatus();
-  return <h1>You are {isOnline ? 'online' : 'offline'}!</h1>;
+  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
 }
 
 function SaveButton() {
@@ -1294,7 +1294,7 @@ import { useOnlineStatus } from './useOnlineStatus.js';
 
 function StatusBar() {
   const isOnline = useOnlineStatus();
-  return <h1>You are {isOnline ? 'online' : 'offline'}!</h1>;
+  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
 }
 
 function SaveButton() {
@@ -1357,7 +1357,7 @@ import { useOnlineStatus } from './useOnlineStatus.js';
 
 function StatusBar() {
   const isOnline = useOnlineStatus();
-  return <h1>You are {isOnline ? 'online' : 'offline'}!</h1>;
+  return <h1>{isOnline ? '✅ Online' : '❌ Disconnected'}</h1>;
 }
 
 function SaveButton() {

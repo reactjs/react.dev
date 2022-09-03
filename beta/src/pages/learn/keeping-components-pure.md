@@ -20,7 +20,7 @@ Some JavaScript functions are *pure.* Pure functions only perform a calculation 
 
 In computer science (and especially the world of functional programming), [a pure function](https://wikipedia.org/wiki/Pure_function) is a function with the following characteristics:
 
-* **Minds its own business.** It does not change any objects or variables that existed before it was called.
+* **It minds its own business.** It does not change any objects or variables that existed before it was called.
 * **Same inputs, same output.** Given the same inputs, a pure function should always return the same result.
 
 You might already be familiar with one example of pure functions: formulas in math.
@@ -212,7 +212,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
 <Recap>
 
 * A component must be pure, meaning:
-  * **Mind its own business.** It should not change any objects or variables that existed before rendering.
+  * **It minds its own business.** It should not change any objects or variables that existed before rendering.
   * **Same inputs, same output.** Given the same inputs, a component should always return the same JSX. 
 * Rendering can happen at any time, so components should not depend on each others' rendering sequence.
 * You should not mutate any of the inputs that your components use for rendering. That includes props, state, and context. To update the screen, ["set" state](reacting-to-input-with-state) instead of mutating preexisting objects.

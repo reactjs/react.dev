@@ -210,7 +210,7 @@ Now let's return to these lines:
     // ...
 ```
 
-From the user's prespective, **a change to the `roomId` *does* mean that they want to connect to a different room.** In other words, the logic for connecting to the room should be reactive. You *want* these lines of code to "keep up" with the <CodeStep step={2}>reactive value</CodeStep>, and to run again if that value is different. That's why you put this logic inside an Effect:
+From the user's perspective, **a change to the `roomId` *does* mean that they want to connect to a different room.** In other words, the logic for connecting to the room should be reactive. You *want* these lines of code to "keep up" with the <CodeStep step={2}>reactive value</CodeStep>, and to run again if that value is different. That's why you put this logic inside an Effect:
 
 ```js {2-3}
   useEffect(() => {
@@ -254,7 +254,7 @@ function ChatRoom({ roomId, theme }) {
     return () => {
       connection.disconnect()
     };
-  }, [roomId, theme]); // ✅ All dependencies are specified
+  }, [roomId, theme]); // ✅ All dependencies declared
   // ...
 ````
 
@@ -435,7 +435,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId]); // ✅ All dependencies are specified
+  }, [roomId]); // ✅ All dependencies declared
   // ...
 ```
 
@@ -633,7 +633,7 @@ Think about what you want the code to do. You *want* to log a separate visit for
 function Page({ url }) {
   useEffect(() => {
     logVisit(url);
-  }, [url]); // ✅ All dependencies are specified
+  }, [url]); // ✅ All dependencies declared
   // ...
 }
 ```
@@ -667,7 +667,7 @@ function Page({ url }) {
 
   useEffect(() => {
     onVisit(url);
-  }, [url]); // ✅ All dependencies are specified
+  }, [url]); // ✅ All dependencies declared
   // ...
 }
 ```
@@ -728,13 +728,14 @@ In this example, `url` inside `onVisit` corresponds to the *latest* `url` (which
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
 
-```js {7,8}
+```js {7-9}
 function Page({ url }) {
   const { items } = useContext(ShoppingCartContext);
   const numberOfItems = items.length;
 
   useEffect(() => {
     logVisit(url, numberOfItems);
+    // 🔴 Avoid suppressing the linter like this:
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url]);
   // ...
@@ -804,7 +805,7 @@ body {
 </Sandpack>
 
 
-The problem with the this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a depedency, or it can potentially get stale over time!
+The problem with the this code is in suppressing the dependency linter. If you remove the suppression, you'll see that this Effect should depend on the `handleMove` function. This makes sense: `handleMove` is declared inside the component body, which makes it a reactive value. Every reactive value must be specified as a dependency, or it can potentially get stale over time!
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 

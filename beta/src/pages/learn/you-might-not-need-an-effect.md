@@ -714,7 +714,7 @@ This might seem like a contradiction with the earlier examples where you needed 
 
 However, the code above has a bug. Imagine you type `"hello"` fast. Then the `query` will change from `"h"`, to `"he"`, `"hel"`, `"hell"`, and `"hello"`. This will kick off separate fetches, but there is no guarantee about which order the responses will arrive in. For example, the `"hell"` response may arrive *after* the `"hello"` response. Since it will call `setResults()` last, you will be displaying the wrong search results. This is called a ["race condition"](https://en.wikipedia.org/wiki/Race_condition): two different requests "raced" against each other and came in a different order than you expected.
 
-**To fix the race condition, you need to [add a cleanup function](learn/synchronizing-with-effects#fetching-data) to ignore stale responses:**
+**To fix the race condition, you need to [add a cleanup function](/learn/synchronizing-with-effects#fetching-data) to ignore stale responses:**
 
 ```js {5,7,9,11-13}
 function SearchResults({ query }) {

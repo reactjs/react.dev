@@ -11,7 +11,7 @@ React comes with several built-in Hooks like `useState`, `useContext`, and `useE
 <YouWillLearn>
 
 - What custom Hooks are, and how to write your own
-- How to use reuse logic between components
+- How to reuse logic between components
 - How to name and structure your custom Hooks
 - When and why to extract custom Hooks
 
@@ -2464,6 +2464,7 @@ export default function Canvas() {
     </>
   );
 }
+
 function Dot({ position, opacity }) {
   return (
     <div style={{

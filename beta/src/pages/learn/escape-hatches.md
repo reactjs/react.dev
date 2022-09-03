@@ -772,7 +772,6 @@ In this example, the `usePointerPosition` custom Hook tracks the cursor position
 <Sandpack>
 
 ```js
-import { useState, useEffect } from 'react';
 import { usePointerPosition } from './usePointerPosition.js';
 import { useDelayedValue } from './useDelayedValue.js';
 

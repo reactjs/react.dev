@@ -4,13 +4,10 @@
 
 import * as React from 'react';
 import cn from 'classnames';
-import {Button} from 'components/Button';
 import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
+import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
-import {IconHint} from '../../Icon/IconHint';
-import {IconSolution} from '../../Icon/IconSolution';
-import {IconArrowSmall} from '../../Icon/IconArrowSmall';
 
 interface ChallengesProps {
   children: React.ReactElement[];
@@ -76,41 +73,25 @@ export function Challenges({
   titleId = isRecipes ? 'examples' : 'challenges',
 }: ChallengesProps) {
   const challenges = parseChallengeContents(children);
+  const totalChallenges = challenges.length;
   const scrollAnchorRef = React.useRef<HTMLDivElement>(null);
+  const queuedScrollRef = React.useRef<boolean>(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const currentChallenge = challenges[activeIndex];
 
-  const [showHint, setShowHint] = React.useState(false);
-  const [showSolution, setShowSolution] = React.useState(false);
-  const [activeChallenge, setActiveChallenge] = React.useState(
-    challenges[0].id
-  );
-
-  const handleChallengeChange = (challengeId: string) => {
-    setShowHint(false);
-    setShowSolution(false);
-    setActiveChallenge(challengeId);
-  };
-
-  const toggleHint = () => {
-    if (showSolution && !showHint) {
-      setShowSolution(false);
+  React.useEffect(() => {
+    if (queuedScrollRef.current === true) {
+      queuedScrollRef.current = false;
+      scrollAnchorRef.current!.scrollIntoView({
+        block: 'start',
+        behavior: 'smooth',
+      });
     }
-    setShowHint((hint) => !hint);
-  };
-
-  const toggleSolution = () => {
-    if (showHint && !showSolution) {
-      setShowHint(false);
-    }
-    setShowSolution((solution) => !solution);
-  };
-
-  const currentChallenge = challenges.find(({id}) => id === activeChallenge);
-  if (currentChallenge === undefined) {
-    throw new TypeError('currentChallenge should always exist');
-  }
-  const nextChallenge = challenges.find(({order}) => {
-    return order === currentChallenge.order + 1;
   });
+
+  const handleChallengeChange = (index: number) => {
+    setActiveIndex(index);
+  };
 
   const Heading = isRecipes ? H4 : H2;
   return (
@@ -130,7 +111,7 @@ export function Challenges({
             )}>
             {titleText}
           </Heading>
-          {challenges.length > 1 && (
+          {totalChallenges > 1 && (
             <Navigation
               currentChallenge={currentChallenge}
               challenges={challenges}
@@ -139,104 +120,17 @@ export function Challenges({
             />
           )}
         </div>
-        <div className="p-5 sm:py-8 sm:px-8">
-          <div key={activeChallenge}>
-            <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
-              <div className="font-bold block md:inline">
-                {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order}{' '}
-                of {challenges.length}
-                <span className="text-primary dark:text-primary-dark">: </span>
-              </div>
-              {currentChallenge.name}
-            </h3>
-            <>{currentChallenge.content}</>
-          </div>
-          <div className="flex justify-between items-center mt-4">
-            {currentChallenge.hint ? (
-              <div>
-                <Button className="mr-2" onClick={toggleHint} active={showHint}>
-                  <IconHint className="mr-1.5" />{' '}
-                  {showHint ? 'Hide hint' : 'Show hint'}
-                </Button>
-                <Button
-                  className="mr-2"
-                  onClick={toggleSolution}
-                  active={showSolution}>
-                  <IconSolution className="mr-1.5" />{' '}
-                  {showSolution ? 'Hide solution' : 'Show solution'}
-                </Button>
-              </div>
-            ) : (
-              !isRecipes && (
-                <Button
-                  className="mr-2"
-                  onClick={toggleSolution}
-                  active={showSolution}>
-                  <IconSolution className="mr-1.5" />{' '}
-                  {showSolution ? 'Hide solution' : 'Show solution'}
-                </Button>
-              )
-            )}
-
-            {nextChallenge && (
-              <Button
-                className={cn(
-                  isRecipes
-                    ? 'bg-purple-50 border-purple-50 hover:bg-purple-50 focus:bg-purple-50 active:bg-purple-50'
-                    : 'bg-link dark:bg-link-dark'
-                )}
-                onClick={() => {
-                  setActiveChallenge(nextChallenge.id);
-                  setShowSolution(false);
-                }}
-                active>
-                Next {isRecipes ? 'Example' : 'Challenge'}
-                <IconArrowSmall
-                  displayDirection="right"
-                  className="block ml-1.5"
-                />
-              </Button>
-            )}
-          </div>
-          {showHint && currentChallenge.hint}
-
-          {showSolution && (
-            <div className="mt-6">
-              <h3 className="text-2xl font-bold text-primary dark:text-primary-dark">
-                Solution
-              </h3>
-              {currentChallenge.solution}
-              <div className="flex justify-between items-center mt-4">
-                <Button onClick={() => setShowSolution(false)}>
-                  Close solution
-                </Button>
-                {nextChallenge && (
-                  <Button
-                    className={cn(
-                      isRecipes ? 'bg-purple-50' : 'bg-link dark:bg-link-dark'
-                    )}
-                    onClick={() => {
-                      setActiveChallenge(nextChallenge.id);
-                      setShowSolution(false);
-                      if (scrollAnchorRef.current) {
-                        scrollAnchorRef.current.scrollIntoView({
-                          block: 'start',
-                          behavior: 'smooth',
-                        });
-                      }
-                    }}
-                    active>
-                    Next Challenge
-                    <IconArrowSmall
-                      displayDirection="right"
-                      className="block ml-1.5"
-                    />
-                  </Button>
-                )}
-              </div>
-            </div>
-          )}
-        </div>
+        <Challenge
+          key={currentChallenge.id}
+          isRecipes={isRecipes}
+          currentChallenge={currentChallenge}
+          totalChallenges={totalChallenges}
+          hasNextChallenge={activeIndex < totalChallenges - 1}
+          handleClickNextChallenge={() => {
+            setActiveIndex((i) => i + 1);
+            queuedScrollRef.current = true;
+          }}
+        />
       </div>
     </div>
   );

@@ -75,36 +75,23 @@ export function Challenges({
   const challenges = parseChallengeContents(children);
   const totalChallenges = challenges.length;
   const scrollAnchorRef = React.useRef<HTMLDivElement>(null);
-  const [activeChallengeHasChanged, setActiveChallengeHasChanged] =
-    React.useState(false);
-
-  const [activeChallenge, setActiveChallenge] = React.useState(
-    challenges[0].id
-  );
+  const queuedScrollRef = React.useRef<boolean>(false);
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const currentChallenge = challenges[activeIndex];
 
   React.useEffect(() => {
-    if (scrollAnchorRef.current && activeChallengeHasChanged) {
-      scrollAnchorRef.current.scrollIntoView({
+    if (queuedScrollRef.current === true) {
+      queuedScrollRef.current = false;
+      scrollAnchorRef.current!.scrollIntoView({
         block: 'start',
         behavior: 'smooth',
       });
     }
-  }, [activeChallenge]);
-
-  const handleChallengeChange = (challengeId: string | undefined) => {
-    if (challengeId) {
-      setActiveChallenge(challengeId);
-      setActiveChallengeHasChanged(true);
-    }
-  };
-
-  const currentChallenge = challenges.find(({id}) => id === activeChallenge);
-  if (currentChallenge === undefined) {
-    throw new TypeError('currentChallenge should always exist');
-  }
-  const nextChallenge = challenges.find(({order}) => {
-    return order === currentChallenge.order + 1;
   });
+
+  const handleChallengeChange = (index: number) => {
+    setActiveIndex(index);
+  };
 
   const Heading = isRecipes ? H4 : H2;
   return (
@@ -134,14 +121,15 @@ export function Challenges({
           )}
         </div>
         <Challenge
-          key={activeChallenge}
+          key={currentChallenge.id}
           isRecipes={isRecipes}
           currentChallenge={currentChallenge}
           totalChallenges={totalChallenges}
-          hasNextChallenge={!!nextChallenge}
-          handleClickNextChallenge={() =>
-            handleChallengeChange(nextChallenge?.id)
-          }
+          hasNextChallenge={activeIndex < totalChallenges - 1}
+          handleClickNextChallenge={() => {
+            setActiveIndex((i) => i + 1);
+            queuedScrollRef.current = true;
+          }}
         />
       </div>
     </div>

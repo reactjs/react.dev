@@ -31,7 +31,9 @@ export function Page({routeTree, children}: PageProps) {
               <div className="flex flex-1 w-full h-full self-stretch">
                 <div className="w-full min-w-0">
                   <main className="flex flex-1 self-stretch mt-16 sm:mt-10 flex-col items-end justify-around">
-                    {children}
+                    <article className="h-full mx-auto relative w-full min-w-0">
+                      {children}
+                    </article>
                     <Footer />
                   </main>
                 </div>

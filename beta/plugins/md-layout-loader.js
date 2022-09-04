@@ -20,19 +20,11 @@ module.exports = async function (src) {
     .dirname(path.relative('./src/pages', this.resourcePath))
     .split(path.sep)
     .shift();
-  const layoutMap = {
-    blog: 'Post',
-    learn: 'Learn',
-    apis: 'API',
-  };
-  const layout = layoutMap[pageParentDir] || 'Home';
   const code =
-    `import withLayout from 'components/Layout/Layout${layout}';
-
-export default withLayout(${JSON.stringify(data)})
-
-
+    `export const layout = {
+  section: '${pageParentDir}',
+  meta: ${JSON.stringify(data)}
+};\n
 ` + content;
-
   return callback(null, code);
 };

@@ -21,11 +21,10 @@ module.exports = async function (src) {
     .split(path.sep)
     .shift();
   const code =
-    `
-export const layout = {
+    `export const layout = {
   section: '${pageParentDir}',
   meta: ${JSON.stringify(data)}
-};
+};\n
 ` + content;
   return callback(null, code);
 };

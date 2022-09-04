@@ -5,16 +5,18 @@
 import * as React from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
+import {MarkdownPage} from 'components/Layout/MarkdownPage';
+import {Page} from 'components/Layout/Page';
 import {ga} from '../utils/analytics';
+import sidebarHome from '../sidebarHome.json';
+import sidebarLearn from '../sidebarLearn.json';
+import sidebarReference from '../sidebarReference.json';
+
 import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
 import '@codesandbox/sandpack-react/dist/index.css';
-
-const EmptyAppShell = ({children}: {children: React.ReactNode}) => (
-  <>{children}</>
-);
 
 if (typeof window !== 'undefined') {
   if (process.env.NODE_ENV === 'production') {
@@ -39,16 +41,28 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  let AppShell = (Component as any).appShell || EmptyAppShell;
-  // In order to make sidebar scrolling between pages work as expected
-  // we need to access the underlying MDX component.
-  if ((Component as any).isMDXComponent) {
-    AppShell = (Component as any)({}).props.originalType.appShell;
+  if (!Component.isMDXComponent) {
+    // TODO: Deal with other cases. For now this is true.
+    throw Error('Expected all pages to be MDX components.');
+  }
+  const mdxContent = Component({}); // HACK: Extract MDX out of the generated wrapper
+  const {section, meta} = mdxContent.props.layout; // Injected by md-layout-loader.js
+  let routeTree;
+  switch (section) {
+    case 'apis':
+      routeTree = sidebarReference;
+      break;
+    case 'learn':
+      routeTree = sidebarLearn;
+      break;
+    default:
+      routeTree = sidebarHome;
+      break;
   }
 
   return (
-    <AppShell>
-      <Component {...pageProps} />
-    </AppShell>
+    <Page routeTree={routeTree}>
+      <MarkdownPage meta={meta}>{mdxContent.props.children}</MarkdownPage>
+    </Page>
   );
 }

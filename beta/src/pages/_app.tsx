@@ -55,10 +55,111 @@ export default function MyApp({Component, pageProps}: AppProps) {
         routeTree = sidebarLearn as RouteItem;
         break;
     }
+
+    const rawChildren = mdxContent.props.children;
+    const toc = getTableOfContents(rawChildren);
+    const children = wrapChildrenInMaxWidthContainers(rawChildren);
     content = (
-      <MarkdownPage meta={meta}>{mdxContent.props.children}</MarkdownPage>
+      <MarkdownPage toc={toc} meta={meta}>
+        {children}
+      </MarkdownPage>
     );
   }
 
   return <Page routeTree={routeTree}>{content}</Page>;
+}
+
+function MaxWidth({children}: {children: any}) {
+  return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
+}
+
+function wrapChildrenInMaxWidthContainers(
+  children: React.ReactNode
+): React.ReactNode {
+  // Auto-wrap everything except a few types into
+  // <MaxWidth> wrappers. Keep reusing the same
+  // wrapper as long as we can until we meet
+  // a full-width section which interrupts it.
+  let fullWidthTypes = [
+    'Sandpack',
+    'FullWidth',
+    'Illustration',
+    'IllustrationBlock',
+    'Challenges',
+    'Recipes',
+  ];
+  let wrapQueue: React.ReactNode[] = [];
+  let finalChildren: React.ReactNode[] = [];
+  function flushWrapper(key: string | number) {
+    if (wrapQueue.length > 0) {
+      finalChildren.push(<MaxWidth key={key}>{wrapQueue}</MaxWidth>);
+      wrapQueue = [];
+    }
+  }
+  function handleChild(child: any, key: string | number) {
+    if (child == null) {
+      return;
+    }
+    if (typeof child !== 'object') {
+      wrapQueue.push(child);
+      return;
+    }
+    if (fullWidthTypes.includes(child.props.mdxType)) {
+      flushWrapper(key);
+      finalChildren.push(child);
+    } else {
+      wrapQueue.push(child);
+    }
+  }
+  React.Children.forEach(children, handleChild);
+  flushWrapper('last');
+  return finalChildren;
+}
+
+function getTableOfContents(children: React.ReactNode): Array<{
+  url: string;
+  text: React.ReactNode;
+  depth: number;
+}> {
+  const anchors = React.Children.toArray(children)
+    .filter((child: any) => {
+      if (child.props?.mdxType) {
+        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(
+          child.props.mdxType
+        );
+      }
+      return false;
+    })
+    .map((child: any) => {
+      if (child.props.mdxType === 'Challenges') {
+        return {
+          url: '#challenges',
+          depth: 0,
+          text: 'Challenges',
+        };
+      }
+      if (child.props.mdxType === 'Recap') {
+        return {
+          url: '#recap',
+          depth: 0,
+          text: 'Recap',
+        };
+      }
+      return {
+        url: '#' + child.props.id,
+        depth:
+          (child.props?.mdxType &&
+            parseInt(child.props.mdxType.replace('h', ''), 0)) ??
+          0,
+        text: child.props.children,
+      };
+    });
+  if (anchors.length > 0) {
+    anchors.unshift({
+      depth: 1,
+      text: 'Overview',
+      url: '#',
+    });
+  }
+  return anchors;
 }

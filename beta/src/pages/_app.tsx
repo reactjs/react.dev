@@ -8,6 +8,7 @@ import {useRouter} from 'next/router';
 import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
 import {ga} from '../utils/analytics';
+import type {RouteItem} from 'components/Layout/useRouteMeta';
 import sidebarHome from '../sidebarHome.json';
 import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
@@ -41,22 +42,22 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  if (!Component.isMDXComponent) {
+  if (!(Component as any).isMDXComponent) {
     // TODO: Deal with other cases. For now this is true.
     throw Error('Expected all pages to be MDX components.');
   }
-  const mdxContent = Component({}); // HACK: Extract MDX out of the generated wrapper
+  const mdxContent = (Component as any)({}); // HACK: Extract MDX out of the generated wrapper
   const {section, meta} = mdxContent.props.layout; // Injected by md-layout-loader.js
   let routeTree;
   switch (section) {
     case 'apis':
-      routeTree = sidebarReference;
+      routeTree = sidebarReference as RouteItem;
       break;
     case 'learn':
-      routeTree = sidebarLearn;
+      routeTree = sidebarLearn as RouteItem;
       break;
     default:
-      routeTree = sidebarHome;
+      routeTree = sidebarHome as RouteItem;
       break;
   }
 

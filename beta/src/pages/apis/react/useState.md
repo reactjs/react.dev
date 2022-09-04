@@ -1232,7 +1232,7 @@ If you can't find the cause of this error, click on the arrow next to the error 
 
 ### My initializer or updater function runs twice {/*my-initializer-or-updater-function-runs-twice*/}
 
-In [Strict Mode](/apis/react/strictmode), React will call some of your functions twice instead of once:
+In [Strict Mode](/apis/react/StrictMode), React will call some of your functions twice instead of once:
 
 ```js {2,5-6,11-12}
 function TodoList() {

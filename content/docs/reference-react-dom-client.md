@@ -74,7 +74,27 @@ root.unmount();
 hydrateRoot(container, element[, options])
 ```
 
-Same as [`createRoot()`](#createroot), but is used to hydrate a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
+Same as [`createRoot()`](#createroot), but is used to [hydrate](https://en.wikipedia.org/wiki/Hydration_(web_development)) a container whose HTML contents were rendered by [`ReactDOMServer`](/docs/react-dom-server.html). React will attempt to attach event listeners to the existing markup.
+
+```html
+<!-- index.html -->
+
+<html>
+  <body>
+    <!-- The contents of the container element should match exactly what `ReactDOMServer.renderToString(reactElement)` would return -->
+    <div id="container"><h1>Hello World!</h1></div>
+  </body>
+</html>
+```
+
+```jsx
+// index.jsx
+
+const App = () => <h1 onClick={() => alert('Click!')}>Hello World!</h1>;
+const containerElement = document.getElementById('container');
+// The alert won't appear after clicking "Hello world!" if you clicked it before the 5 seconds timeout.
+setTimeout(() => hydrateRoot(containerElement, <App />), 5_000);
+```
 
 `hydrateRoot` accepts two options:
 - `onRecoverableError`: optional callback called when React automatically recovers from errors.

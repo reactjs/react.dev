@@ -42,28 +42,23 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  if (!(Component as any).isMDXComponent) {
-    // TODO: Deal with other cases. For now this is true.
-    throw Error('Expected all pages to be MDX components.');
-  }
-  const mdxContent = (Component as any)({}); // HACK: Extract MDX out of the generated wrapper
-  const {section, meta} = mdxContent.props.layout; // Injected by md-layout-loader.js
-  let routeTree;
-  switch (section) {
-    case 'apis':
-      routeTree = sidebarReference as RouteItem;
-      break;
-    case 'learn':
-      routeTree = sidebarLearn as RouteItem;
-      break;
-    default:
-      routeTree = sidebarHome as RouteItem;
-      break;
+  let routeTree = sidebarHome as RouteItem;
+  let content = <Component {...pageProps} />;
+  if ((Component as any).isMDXComponent) {
+    const mdxContent = (Component as any)({}); // HACK: Extract MDX out of the generated wrapper
+    const {section, meta} = mdxContent.props.layout; // Injected by md-layout-loader.js
+    switch (section) {
+      case 'apis':
+        routeTree = sidebarReference as RouteItem;
+        break;
+      case 'learn':
+        routeTree = sidebarLearn as RouteItem;
+        break;
+    }
+    content = (
+      <MarkdownPage meta={meta}>{mdxContent.props.children}</MarkdownPage>
+    );
   }
 
-  return (
-    <Page routeTree={routeTree}>
-      <MarkdownPage meta={meta}>{mdxContent.props.children}</MarkdownPage>
-    </Page>
-  );
+  return <Page routeTree={routeTree}>{content}</Page>;
 }

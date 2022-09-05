@@ -9,7 +9,7 @@ index c055b66..a2f749c 100755
 -          app.server.hotReloader.send('reloadPage')
 +          app.server.hotReloader.send({
 +            event: 'serverOnlyChanges',
-+            pages: ['/[[...file]]']
++            pages: ['/[[...markdownPath]]']
 +          });
          }
        )

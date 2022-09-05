@@ -50,12 +50,12 @@ export async function getStaticProps(context) {
   const rootDir = process.cwd() + '/src/content/';
 
   // Read MDX and make JS out of it
-  let file = (context.params.file || []).join('/') || 'index';
+  let path = (context.params.markdownPath || []).join('/') || 'index';
   let mdxWithFrontmatter;
   try {
-    mdxWithFrontmatter = fs.readFileSync(rootDir + file + '.md', 'utf8');
+    mdxWithFrontmatter = fs.readFileSync(rootDir + path + '.md', 'utf8');
   } catch {
-    mdxWithFrontmatter = fs.readFileSync(rootDir + file + '/index.md', 'utf8');
+    mdxWithFrontmatter = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
   const {content: mdx, data: meta} = fm(mdxWithFrontmatter);
   const jsx = await compileMdx(mdx, {
@@ -91,6 +91,7 @@ export async function getStaticPaths() {
   const stat = promisify(fs.stat);
   const rootDir = process.cwd() + '/src/content';
 
+  // Find all MD files recursively.
   async function getFiles(dir) {
     const subdirs = await readdir(dir);
     const files = await Promise.all(
@@ -104,6 +105,8 @@ export async function getStaticPaths() {
     return files.flat().filter((file) => file.endsWith('.md'));
   }
 
+  // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
+  // 'foo/bar/qux/index.md' -> ['foo', 'bar', 'qux']
   function getSegments(file) {
     let segments = file.slice(0, -3).split('/');
     if (segments[segments.length - 1] === 'index') {
@@ -114,7 +117,11 @@ export async function getStaticPaths() {
 
   const files = await getFiles(rootDir);
   const paths = files.map((file) => ({
-    params: {file: getSegments(file)},
+    params: {
+      /* DO NOT RENAME --> */ markdownPath /* <-- */: getSegments(file),
+      // If you rename markdownPath, update patches/next-remote-watch.patch too.
+      // Otherwise you'll break Fast Refresh for all MD files.
+    },
   }));
 
   return {

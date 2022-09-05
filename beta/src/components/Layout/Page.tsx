@@ -7,6 +7,7 @@ import * as React from 'react';
 import {useRouter} from 'next/router';
 import {Nav} from './Nav';
 import {RouteItem, SidebarContext} from './useRouteMeta';
+import {useActiveSection} from 'hooks/useActiveSection';
 import {Sidebar} from './Sidebar';
 import {Footer} from './Footer';
 import SocialBanner from '../SocialBanner';
@@ -18,20 +19,10 @@ interface PageProps {
   children: React.ReactNode;
 }
 
-function inferSection(path: Array<string>): 'learn' | 'apis' | 'home' {
-  if (path[0] === 'learn') {
-    return 'learn';
-  } else if (path[0] === 'apis') {
-    return 'apis';
-  } else {
-    return 'home';
-  }
-}
-
 export function Page({children}: PageProps) {
   const {query, asPath} = useRouter();
+  const section = useActiveSection();
   let routeTree = sidebarHome as RouteItem;
-  const section = inferSection(query.file || ([] as any));
   switch (section) {
     case 'apis':
       routeTree = sidebarReference as RouteItem;

@@ -66,7 +66,11 @@ export default function MyApp({Component, pageProps}: AppProps) {
     );
   }
 
-  return <Page routeTree={routeTree}>{content}</Page>;
+  return (
+    <Page routeTree={routeTree}>
+      <React.Fragment key={router.pathname}>{content}</React.Fragment>
+    </Page>
+  );
 }
 
 function MaxWidth({children}: {children: any}) {

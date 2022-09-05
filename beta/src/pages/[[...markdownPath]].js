@@ -11,7 +11,10 @@ import {prepareMDX} from '../utils/prepareMDX';
 
 export default function Layout({content, meta}) {
   const decoded = useMemo(() => JSON.parse(content, reviveMDX), [content]);
-  const {toc, children} = prepareMDX(decoded.props.children);
+  const {toc, children} = useMemo(
+    () => prepareMDX(decoded.props.children),
+    [decoded]
+  );
   return (
     <Page>
       <MarkdownPage meta={meta} toc={toc}>
@@ -21,13 +24,13 @@ export default function Layout({content, meta}) {
   );
 }
 
-// Creates a React tree from server JSON.
+// Create a React tree from server JSON.
 function reviveMDX(key, val) {
   if (val && val.$m) {
     // This is an MDX node we need to revive.
     let args = val.$m;
     if (args[0] == null) {
-      // First argument to createElement() is type.
+      // First argument to createElement() is a type.
       // If it didn't serialize, this is a custom MDX component.
       args[0] = MDXComponents[args[1].mdxType];
       if (args[0] == null) {
@@ -40,7 +43,7 @@ function reviveMDX(key, val) {
   }
 }
 
-// Puts MDX output into JSON for client.
+// Put MDX output into JSON for client.
 export async function getStaticProps(context) {
   const fs = require('fs');
   const compileMdx = require('@mdx-js/mdx');
@@ -82,7 +85,7 @@ export async function getStaticProps(context) {
   };
 }
 
-// Collects all MDX files for static generation.
+// Collect all MDX files for static generation.
 export async function getStaticPaths() {
   const {promisify} = require('util');
   const {resolve} = require('path');
@@ -118,7 +121,8 @@ export async function getStaticPaths() {
   const files = await getFiles(rootDir);
   const paths = files.map((file) => ({
     params: {
-      /* DO NOT RENAME --> */ markdownPath /* <-- */: getSegments(file),
+      markdownPath: getSegments(file),
+      // ^^^ CAREFUL HERE.
       // If you rename markdownPath, update patches/next-remote-watch.patch too.
       // Otherwise you'll break Fast Refresh for all MD files.
     },

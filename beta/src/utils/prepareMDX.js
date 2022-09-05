@@ -3,6 +3,9 @@
  */
 
 import {Children} from 'react';
+import {MDXComponents} from 'components/MDX/MDXComponents';
+
+const {MaxWidth} = MDXComponents;
 
 // TODO: This logic should be in MDX plugins instead.
 
@@ -10,10 +13,6 @@ export function prepareMDX(rawChildren) {
   const toc = getTableOfContents(rawChildren);
   const children = wrapChildrenInMaxWidthContainers(rawChildren);
   return {toc, children};
-}
-
-function MaxWidth({children}) {
-  return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
 }
 
 function wrapChildrenInMaxWidthContainers(children) {

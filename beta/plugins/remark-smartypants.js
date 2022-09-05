@@ -1,3 +1,7 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const visit = require('unist-util-visit');
 const retext = require('retext');
 const smartypants = require('retext-smartypants');

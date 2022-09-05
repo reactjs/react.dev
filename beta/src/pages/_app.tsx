@@ -46,8 +46,8 @@ export default function MyApp({Component, pageProps}: AppProps) {
   let content = <Component {...pageProps} />;
   if ((Component as any).isMDXComponent) {
     const mdxContent = (Component as any)({}); // HACK: Extract MDX out of the generated wrapper
-    const {section, meta} = mdxContent.props.layout; // Injected by md-layout-loader.js
-    switch (section) {
+    const {layout, toc, children} = mdxContent.props;
+    switch (layout.section) {
       case 'apis':
         routeTree = sidebarReference as RouteItem;
         break;
@@ -56,12 +56,10 @@ export default function MyApp({Component, pageProps}: AppProps) {
         break;
     }
 
-    const rawChildren = mdxContent.props.children;
-    const toc = getTableOfContents(rawChildren);
-    const children = wrapChildrenInMaxWidthContainers(rawChildren);
+    const wrappedChildren = wrapChildrenInMaxWidthContainers(children);
     content = (
-      <MarkdownPage toc={toc} meta={meta}>
-        {children}
+      <MarkdownPage toc={toc} meta={layout.meta}>
+        {wrappedChildren}
       </MarkdownPage>
     );
   }
@@ -118,52 +116,4 @@ function wrapChildrenInMaxWidthContainers(
   React.Children.forEach(children, handleChild);
   flushWrapper('last');
   return finalChildren;
-}
-
-function getTableOfContents(children: React.ReactNode): Array<{
-  url: string;
-  text: React.ReactNode;
-  depth: number;
-}> {
-  const anchors = React.Children.toArray(children)
-    .filter((child: any) => {
-      if (child.props?.mdxType) {
-        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(
-          child.props.mdxType
-        );
-      }
-      return false;
-    })
-    .map((child: any) => {
-      if (child.props.mdxType === 'Challenges') {
-        return {
-          url: '#challenges',
-          depth: 0,
-          text: 'Challenges',
-        };
-      }
-      if (child.props.mdxType === 'Recap') {
-        return {
-          url: '#recap',
-          depth: 0,
-          text: 'Recap',
-        };
-      }
-      return {
-        url: '#' + child.props.id,
-        depth:
-          (child.props?.mdxType &&
-            parseInt(child.props.mdxType.replace('h', ''), 0)) ??
-          0,
-        text: child.props.children,
-      };
-    });
-  if (anchors.length > 0) {
-    anchors.unshift({
-      depth: 1,
-      text: 'Overview',
-      url: '#',
-    });
-  }
-  return anchors;
 }

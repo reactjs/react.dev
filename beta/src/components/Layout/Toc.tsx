@@ -9,7 +9,7 @@ import {useTocHighlight} from './useTocHighlight';
 export function Toc({
   headings,
 }: {
-  headings: Array<{url: string; text: React.ReactNode; depth: number}>;
+  headings: Array<{url: string; jsx: React.ReactNode; depth: number}>;
 }) {
   const {currentIndex} = useTocHighlight();
   // TODO: We currently have a mismatch between the headings in the document
@@ -58,7 +58,7 @@ export function Toc({
                       'block hover:text-link dark:hover:text-link-dark leading-normal py-2'
                     )}
                     href={h.url}>
-                    {h.text}
+                    {h.jsx}
                   </a>
                 </li>
               );

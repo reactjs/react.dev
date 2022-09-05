@@ -1,9 +1,14 @@
+/**
+ * Copyright (c) Facebook, Inc. and its affiliates.
+ */
+
 const remark = require('remark');
 const externalLinks = require('remark-external-links'); // Add _target and rel to external links
 const customHeaders = require('./remark-header-custom-ids'); // Custom header id's for i18n
 const images = require('remark-images'); // Improved image syntax
 const unrwapImages = require('remark-unwrap-images'); // Removes <p> wrapper around images
 const smartyPants = require('./remark-smartypants'); // Cleans up typography
+const toc = require('./rehype-toc'); // Adds table of contents metadata
 const html = require('remark-html');
 
 module.exports = {
@@ -14,6 +19,7 @@ module.exports = {
     unrwapImages,
     smartyPants,
   ],
+  rehypePlugins: [toc],
   markdownToHtml,
 };
 

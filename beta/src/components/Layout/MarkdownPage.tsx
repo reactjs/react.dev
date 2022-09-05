@@ -17,7 +17,7 @@ export interface MarkdownProps<Frontmatter> {
   children?: React.ReactNode;
   toc: Array<{
     url: string;
-    text: React.ReactNode;
+    jsx: React.ReactNode;
     depth: number;
   }>;
 }

@@ -3,7 +3,7 @@
  */
 
 const path = require('path');
-const {remarkPlugins} = require('./plugins/markdownToHtml');
+const {remarkPlugins, rehypePlugins} = require('./plugins/markdownToHtml');
 const redirects = require('./src/redirects.json');
 
 /**
@@ -74,6 +74,7 @@ const nextConfig = {
           loader: '@mdx-js/loader',
           options: {
             remarkPlugins,
+            rehypePlugins,
           },
         },
         path.join(__dirname, './plugins/md-layout-loader'),

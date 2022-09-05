@@ -441,7 +441,7 @@ function Form() {
 
 This is why it works like declaring two separate state variables!
 
-**Custom Hooks let you share *stateful logic* but not *state itself.* Each call to a Hook is completely independent from every other other call to the same Hook.** This is why the two sandboxes above are completely equivalent. If you'd like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
+**Custom Hooks let you share *stateful logic* but not *state itself.* Each call to a Hook is completely independent from every other call to the same Hook.** This is why the two sandboxes above are completely equivalent. If you'd like, scroll back up and compare them. The behavior before and after extracting a custom Hook is identical.
 
 When you need to share the state itself between multiple components, [lift it up and pass it down](/learn/sharing-state-between-components) instead.
 

@@ -300,7 +300,7 @@ You can point a ref to any value. However, the most common use case for a ref is
 
 <Challenges>
 
-### Fix a broken chat input {/*fix-a-broken-chat-input*/}
+#### Fix a broken chat input {/*fix-a-broken-chat-input*/}
 
 Type a message and click "Send". You will notice there is a three second delay before you see the "Sent!" alert. During this delay, you can see an "Undo" button. Click it. This "Undo" button is supposed to stop the "Sent!" message from appearing. It does this by calling [`clearTimeout`](https://developer.mozilla.org/en-US/docs/Web/API/clearTimeout) for the timeout ID saved during `handleSend`. However, even after "Undo" is clicked, the "Sent!" message still appears. Find why it doesn't work, and fix it.
 
@@ -411,7 +411,7 @@ export default function Chat() {
 </Solution>
 
 
-### Fix a component failing to re-render {/*fix-a-component-failing-to-re-render*/}
+#### Fix a component failing to re-render {/*fix-a-component-failing-to-re-render*/}
 
 This button is supposed to toggle between showing "On" and "Off". However, it always shows "Off". What is wrong with this code? Fix it.
 
@@ -461,7 +461,7 @@ export default function Toggle() {
 
 </Solution>
 
-### Fix debouncing {/*fix-debouncing*/}
+#### Fix debouncing {/*fix-debouncing*/}
 
 In this example, all button click handlers are ["debounced"](https://redd.one/blog/debounce-vs-throttle). To see what this means, press one of the buttons. Notice how the message appears a second later. If you press the button while waiting for the message, the timer will reset. So if you keep clicking the same button fast many times, the message won't appear until a second *after* you stop clicking. Debouncing lets you delay some action until the user "stops doing things".
 
@@ -578,7 +578,7 @@ button { display: block; margin: 10px; }
 
 </Solution>
 
-### Read the latest state {/*read-the-latest-state*/}
+#### Read the latest state {/*read-the-latest-state*/}
 
 In this example, after you press "Send", there is a small delay before the message is shown. Type "hello", press Send, and then quickly edit the input again. Despite your edits, the alert would still show "hello" (which was the value of state [at the time](/learn/state-as-a-snapshot#state-over-time) the button was clicked).
 

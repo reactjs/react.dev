@@ -51,7 +51,7 @@ const parseChallengeContents = (
         challenge.hint = child;
         break;
       }
-      case 'h3': {
+      case 'h4': {
         challenge.order = contents.length + 1;
         challenge.name = props.children;
         challenge.id = props.id;

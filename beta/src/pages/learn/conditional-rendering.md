@@ -452,7 +452,7 @@ If you're not familiar with JavaScript, this variety of styles might seem overwh
 
 <Challenges>
 
-### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### Show an icon for incomplete items with `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
 Use the conditional operator (`cond ? a : b`) to render a ❌ if `isPacked` isn’t `true`.
 
@@ -532,7 +532,7 @@ export default function PackingList() {
 
 </Solution>
 
-### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
+#### Show the item importance with `&&` {/*show-the-item-importance-with-*/}
 
 In this example, each `Item` receives a numerical `importance` prop. Use the `&&` operator to render "_(Importance: X)_" in italics, but only for items that have non-zero importance. Your item list should end up looking like this:
 
@@ -628,7 +628,7 @@ In this solution, two separate conditions are used to insert a space between the
 
 </Solution>
 
-### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
+#### Refactor a series of `? :` to `if` and variables {/*refactor-a-series-of---to-if-and-variables*/}
 
 This `Drink` component uses a series of `? :` conditions to show different information depending on whether the `name` prop is `"tea"` or `"coffee"`. The problem is that the information about each drink is spread across multiple conditions. Refactor this code to use a single `if` statement instead of three `? :` conditions.
 

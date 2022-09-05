@@ -205,7 +205,7 @@ You've just gotten your first taste of React! Let's recap some key points.
 
 <Challenges>
 
-### Export the component {/*export-the-component*/}
+#### Export the component {/*export-the-component*/}
 
 This sandbox doesn't work because the root component is not exported:
 
@@ -257,7 +257,7 @@ You might be wondering why writing `export` alone is not enough to fix this exam
 
 </Solution>
 
-### Fix the return statement {/*fix-the-return-statement*/}
+#### Fix the return statement {/*fix-the-return-statement*/}
 
 Something isn't right about this `return` statement. Can you fix it?
 
@@ -324,7 +324,7 @@ img { height: 180px; }
 
 </Solution>
 
-### Spot the mistake {/*spot-the-mistake*/}
+#### Spot the mistake {/*spot-the-mistake*/}
 
 Something's wrong with how the `Profile` component is declared and used. Can you spot the mistake? (Try to remember how React distinguishes components from the regular HTML tags!)
 
@@ -396,7 +396,7 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-### Your own component {/*your-own-component*/}
+#### Your own component {/*your-own-component*/}
 
 Write a component from scratch. You can give it any valid name and return any markup. If you're out of ideas, you can write a `Congratulations` component that shows `<h1>Good job!</h1>`. Don't forget to export it!
 

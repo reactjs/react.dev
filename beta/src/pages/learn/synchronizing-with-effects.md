@@ -955,7 +955,7 @@ When [Strict Mode](/apis/react/StrictMode) is on, React remounts every component
 
 <Challenges>
 
-### Focus a field on mount {/*focus-a-field-on-mount*/}
+#### Focus a field on mount {/*focus-a-field-on-mount*/}
 
 In this example, the form renders a `<MyInput />` component.
 
@@ -1121,7 +1121,7 @@ body {
 
 </Solution>
 
-### Focus a field conditionally {/*focus-a-field-conditionally*/}
+#### Focus a field conditionally {/*focus-a-field-conditionally*/}
 
 This form renders two `<MyInput />` components.
 
@@ -1300,7 +1300,7 @@ body {
 
 </Solution>
 
-### Fix an interval that fires twice {/*fix-an-interval-that-fires-twice*/}
+#### Fix an interval that fires twice {/*fix-an-interval-that-fires-twice*/}
 
 This `Counter` component displays a counter that should increment every second. On mount, it calls [`setInterval`](https://developer.mozilla.org/en-US/docs/Web/API/setInterval). This causes `onTick` to run every second. The `onTick` function increments the counter.
 
@@ -1427,7 +1427,7 @@ In development, React will still remount your component once to verify that you'
 
 </Solution>
 
-### Fix fetching inside an Effect {/*fix-fetching-inside-an-effect*/}
+#### Fix fetching inside an Effect {/*fix-fetching-inside-an-effect*/}
 
 This component shows the biography for the selected person. It loads the biography by calling an asynchronous function `fetchBio(person)` on mount and whenever `person` changes. That asynchronous function returns a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) which eventually resolves to a string. When fetching is done, it calls `setBio` to display that string under the select box.
 

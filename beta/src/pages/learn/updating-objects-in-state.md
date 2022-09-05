@@ -813,7 +813,7 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
+#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
 
 This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
 
@@ -961,7 +961,7 @@ The problem with `handleLastNameChange` was that it did not copy the existing `.
 
 </Solution>
 
-### Find and fix the mutation {/*find-and-fix-the-mutation*/}
+#### Find and fix the mutation {/*find-and-fix-the-mutation*/}
 
 There is a draggable box on a static background. You can change the box's color using the select input.
 
@@ -1276,7 +1276,7 @@ select { margin-bottom: 10px; }
 
 </Solution>
 
-### Update an object with Immer {/*update-an-object-with-immer*/}
+#### Update an object with Immer {/*update-an-object-with-immer*/}
 
 This is the same buggy example as in the previous challenge. This time, fix the mutation by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `shape` state variable to use it.
 

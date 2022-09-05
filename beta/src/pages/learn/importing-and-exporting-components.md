@@ -241,7 +241,7 @@ On this page you learned:
 
 <Challenges>
 
-### Split the components further {/*split-the-components-further*/}
+#### Split the components further {/*split-the-components-further*/}
 
 Currently, `Gallery.js` exports both `Profile` and `Gallery`, which is a bit confusing.
 

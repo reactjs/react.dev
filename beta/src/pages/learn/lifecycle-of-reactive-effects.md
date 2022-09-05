@@ -769,7 +769,7 @@ On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-eff
 
 <Challenges>
 
-### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
+#### Fix reconnecting on every keystroke {/*fix-reconnecting-on-every-keystroke*/}
 
 In this example, the `ChatRoom` component connects to the chat room when the component mounts, disconnects when it unmounts, and reconnects when you select a different chat room. This behavior is correct, so you need to keep it working.
 
@@ -929,7 +929,7 @@ button { margin-left: 10px; }
 
 </Solution>
 
-### Switch synchronization on and off {/*switch-synchronization-on-and-off*/}
+#### Switch synchronization on and off {/*switch-synchronization-on-and-off*/}
 
 In this example, an Effect subscribes to the window [`pointermove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event) event to move a pink dot on the screen. Try hovering over the preview area (or touching the screen if you're on a mobile device), and see how the pink dot follows your movement.
 
@@ -1111,7 +1111,7 @@ In both of these cases, `canMove` is a reactive variable that you read inside th
 
 </Solution>
 
-### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
+#### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
 
 In this example, the pink dot should move when the checkbox if on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
 
@@ -1309,7 +1309,7 @@ You'll learn a more general approach to this type of problem in [Separating Even
 
 </Solution>
 
-### Fix a connection switch {/*fix-a-connection-switch*/}
+#### Fix a connection switch {/*fix-a-connection-switch*/}
 
 In this example, the chat service in `chat.js` exposes two different APIs: `createEncryptedConnection` and `createUnencryptedConnection`. The root `App` component lets the user choose whether to use encryption or not, and then passes down the corresponding API method to the child `ChatRoom` component as the `createConnection` prop.
 
@@ -1611,7 +1611,7 @@ In this version, the `App` component passes a boolean prop instead of a function
 
 </Solution>
 
-### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
+#### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
 
 In this example, there are two select boxes. One select box lets the user picks a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
 

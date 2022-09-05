@@ -907,7 +907,7 @@ What if you wanted both galleries to keep their states in sync? The right way to
 
 <Challenges>
 
-### Complete the gallery {/*complete-the-gallery*/}
+#### Complete the gallery {/*complete-the-gallery*/}
 
 When you press "Next" on the last sculpture, the code crashes. Fix the logic to prevent the crash. You may do this by adding extra logic to event handler or by disabling the button when the action is not possible.
 
@@ -1217,7 +1217,7 @@ Notice how `hasPrev` and `hasNext` are used *both* for the returned JSX and insi
 
 </Solution>
 
-### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
+#### Fix stuck form inputs {/*fix-stuck-form-inputs*/}
 
 When you type into the input fields, nothing appears. It's like the input values are "stuck" with empty strings. The `value` of the first `<input>` is set to always match the `firstName` variable, and the `value` for the second `<input>` is set to always match the `lastName` variable. This is correct. Both inputs have `onChange` event handlers, which try to update the variables based on the latest user input (`e.target.value`). However, the variables don't seem to "remember" their values between re-renders. Fix this by using state variables instead.
 
@@ -1319,7 +1319,7 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-### Fix a crash {/*fix-a-crash*/}
+#### Fix a crash {/*fix-a-crash*/}
 
 Here is a small form that is supposed to let the user leave some feedback. When the feedback is submitted, it's supposed to display a thank-you message. However, it crashes with an error message saying "Rendered fewer hooks than expected". Can you spot the mistake and fix it?
 
@@ -1441,7 +1441,7 @@ In general, these types of mistakes are caught by the [`eslint-plugin-react-hook
 
 </Solution>
 
-### Remove unnecessary state {/*remove-unnecessary-state*/}
+#### Remove unnecessary state {/*remove-unnecessary-state*/}
 
 When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
 

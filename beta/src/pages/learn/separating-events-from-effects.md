@@ -977,7 +977,7 @@ It's possible that in the future, some of these restrictions will be lifted. But
 
 <Challenges>
 
-### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
+#### Fix a variable that doesn't update {/*fix-a-variable-that-doesnt-update*/}
 
 This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable. You can control the `increment` variable with the plus and minus buttons.
 
@@ -1092,7 +1092,7 @@ Now, when `increment` changes, React will re-synchronize your Effect, which will
 
 </Solution>
 
-### Fix a freezing counter {/*fix-a-freezing-counter*/}
+#### Fix a freezing counter {/*fix-a-freezing-counter*/}
 
 This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases by ten (rather than by one) after every next second.
 
@@ -1251,7 +1251,7 @@ Since `onTick` is an Event function, the code inside it isn't reactive. The chan
 
 </Solution>
 
-### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
+#### Fix a non-adjustable delay {/*fix-a-non-adjustable-delay*/}
 
 In this example, you can customize the interval delay. It's stored in a `delay` state variable which is updated by two buttons. However, even if you press the "plus 100 ms" button until the `delay` is 1000 milliseconds (that is, a second), you'll notice that the timer still increments very fast (every 100 ms). It's as if your changes to the `delay` are ignored. Find and fix the bug.
 
@@ -1436,7 +1436,7 @@ In general, you should be suspicious of functions like `onMount` that focus on t
 
 </Solution>
 
-### Fix a delayed notification {/*fix-a-delayed-notification*/}
+#### Fix a delayed notification {/*fix-a-delayed-notification*/}
 
 When you join a chat room, this component shows a notification. However, it doesn't show the notification immediately. Instead, the notification is artificially delayed by two seconds so that the user has a chance to look around the UI.
 

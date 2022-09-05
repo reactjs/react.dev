@@ -792,7 +792,7 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
 
 Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
 
@@ -919,7 +919,7 @@ button { margin: 5px; }
 
 </Solution>
 
-### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
 
 This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
 
@@ -1080,7 +1080,7 @@ button { margin: 5px; }
 
 </Solution>
 
-### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
 
 In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
 
@@ -1413,7 +1413,7 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
 
 This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
 

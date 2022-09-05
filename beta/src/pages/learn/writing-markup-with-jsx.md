@@ -268,7 +268,7 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
+#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
 
 This HTML was pasted into a component, but it's not valid JSX. Fix it:
 

@@ -795,7 +795,7 @@ In general, whenever you have to resort to writing Effects, keep an eye out for 
 
 <Challenges>
 
-### Transform data without Effects {/*transform-data-without-effects*/}
+#### Transform data without Effects {/*transform-data-without-effects*/}
 
 The `TodoList` below displays a list of todos. When the "Show only active todos" checkbox is ticked, completed todos are not displayed in the list. Regardless of which todos are visible, the footer displays the count of todos that are not yet completed.
 
@@ -992,7 +992,7 @@ input { margin-top: 10px; }
 
 </Solution>
 
-### Cache a calculation without Effects {/*cache-a-calculation-without-effects*/}
+#### Cache a calculation without Effects {/*cache-a-calculation-without-effects*/}
 
 In this example, filtering the todos was extracted into a separate function called `getVisibleTodos()`. This function contains a `console.log()` call inside of it which helps you notice when it's being called. Toggle "Show only active todos" and notice that it causes `getVisibleTodos()` to re-run. This is expected because visible todos change when you toggle which ones to display.
 
@@ -1260,7 +1260,7 @@ This approach satisfies the requirements too. When you type into the input, only
 
 </Solution>
 
-### Reset state without Effects {/*reset-state-without-effects*/}
+#### Reset state without Effects {/*reset-state-without-effects*/}
 
 This `EditContact` component receives a contact object with shaped like `{ id, name, email }` as the `savedContact` prop. Try editing the name and email input fields. When you press Save, the contact's button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
 
@@ -1590,7 +1590,7 @@ button {
 
 </Solution>
 
-### Submit a form without Effects {/*submit-a-form-without-effects*/}
+#### Submit a form without Effects {/*submit-a-form-without-effects*/}
 
 This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` state variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
 

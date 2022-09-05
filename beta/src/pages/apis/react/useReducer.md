@@ -191,7 +191,7 @@ Read [updating objects in state](/learn/updating-objects-in-state) and [updating
 
 <Recipes titleText="Basic useReducer examples" titleId="examples-basic">
 
-### Form (object) {/*form-object*/}
+#### Form (object) {/*form-object*/}
 
 In this example, the reducer manages a state object with two fields: `name` and `age`.
 
@@ -257,7 +257,7 @@ button { display: block; margin-top: 10px; }
 
 <Solution />
 
-### Todo list (array) {/*todo-list-array*/}
+#### Todo list (array) {/*todo-list-array*/}
 
 In this example, the reducer manages an array of tasks. The array needs to be updated [without mutation](/learn/updating-arrays-in-state).
 
@@ -450,7 +450,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
 
 If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer#useimmerreducer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
 
@@ -698,7 +698,7 @@ In the above example, `createInitialState` takes a `username` argument. If your 
 
 <Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
 
-### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Passing the initializer function {/*passing-the-initializer-function*/}
 
 This example passes the initializer function, so the `createInitialState` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
 
@@ -786,7 +786,7 @@ export default function TodoList({ username }) {
 
 <Solution />
 
-### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
 
 This example **does not** pass the initializer function, so the `createInitialState` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
 

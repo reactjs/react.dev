@@ -255,7 +255,9 @@ export default function ShapeEditor() {
         Move circles down!
       </button>
       {shapes.map(shape => (
-        <div style={{
+        <div
+          key={shape.id}
+          style={{
           background: 'purple',
           position: 'absolute',
           left: shape.x,
@@ -974,7 +976,7 @@ export default function ShoppingCart() {
             +
           </button>
           <button>
-            –            
+            –
           </button>
         </li>
       ))}
@@ -1063,7 +1065,7 @@ export default function ShoppingCart() {
           <button onClick={() => {
             handleDecreaseClick(product.id);
           }}>
-            –            
+            –
           </button>
         </li>
       ))}
@@ -1127,7 +1129,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1294,7 +1296,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1461,7 +1463,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1649,7 +1651,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1834,7 +1836,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />

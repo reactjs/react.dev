@@ -11,6 +11,7 @@ import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {Search} from 'components/Search';
 import {MenuContext} from 'components/useMenu';
+import {useActiveSection} from 'hooks/useActiveSection';
 
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
@@ -86,22 +87,11 @@ const lightIcon = (
   </svg>
 );
 
-function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
-  if (pathname.startsWith('/learn')) {
-    return 'learn';
-  } else if (pathname.startsWith('/apis')) {
-    return 'apis';
-  } else {
-    return 'home';
-  }
-}
-
 export default function Nav() {
-  const {pathname} = useRouter();
   const {isOpen, toggleOpen} = React.useContext(MenuContext);
   const [showFeedback, setShowFeedback] = React.useState(false);
   const feedbackAutohideRef = React.useRef<any>(null);
-  const section = inferSection(pathname);
+  const section = useActiveSection();
   const feedbackPopupRef = React.useRef<null | HTMLDivElement>(null);
 
   React.useEffect(() => {

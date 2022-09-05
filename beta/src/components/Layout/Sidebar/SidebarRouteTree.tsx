@@ -77,10 +77,10 @@ export function SidebarRouteTree({
   level = 0,
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
-  const {pathname} = useRouter();
+  const cleanedPath = useRouter().asPath.split('?')[0];
   const pendingRoute = usePendingRoute();
 
-  const slug = pathname;
+  const slug = cleanedPath;
   const currentRoutes = routeTree.routes as RouteItem[];
   const expandedPath = currentRoutes.reduce(
     (acc: string | undefined, curr: RouteItem) => {
@@ -89,8 +89,8 @@ export function SidebarRouteTree({
       if (breadcrumb) {
         return curr.path;
       }
-      if (curr.path === pathname) {
-        return pathname;
+      if (curr.path === cleanedPath) {
+        return cleanedPath;
       }
       return undefined;
     },

@@ -297,6 +297,12 @@ export const MDXComponents = {
   }) => <ExpandableExample {...props} type="DeepDive" />,
   Diagram,
   DiagramGroup,
+  FullWidth({children}: {children: any}) {
+    return children;
+  },
+  MaxWidth({children}: {children: any}) {
+    return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
+  },
   Gotcha,
   Wip,
   HomepageHero,

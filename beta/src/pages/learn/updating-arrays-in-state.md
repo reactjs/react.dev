@@ -452,7 +452,7 @@ nextList[0].seen = true; // Problem: mutates list[0]
 setList(nextList);
 ```
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object**. So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](docs/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object**. So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
 
 ## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
 
@@ -974,7 +974,7 @@ export default function ShoppingCart() {
             +
           </button>
           <button>
-            –            
+            –
           </button>
         </li>
       ))}
@@ -1063,7 +1063,7 @@ export default function ShoppingCart() {
           <button onClick={() => {
             handleDecreaseClick(product.id);
           }}>
-            –            
+            –
           </button>
         </li>
       ))}
@@ -1127,7 +1127,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1294,7 +1294,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1461,7 +1461,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1649,7 +1649,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />
@@ -1834,7 +1834,7 @@ export default function TaskApp() {
   }
 
   return (
-    <>  
+    <>
       <AddTodo
         onAddTodo={handleAddTodo}
       />

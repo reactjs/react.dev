@@ -2,15 +2,17 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {createElement, Children, useMemo} from 'react';
+import {createElement, Children, Fragment, useMemo} from 'react';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
-import {mdx} from '@mdx-js/react';
 import {prepareMDX} from '../utils/prepareMDX';
 
 export default function Layout({content, meta}) {
-  const decoded = useMemo(() => JSON.parse(content, reviveMDX), [content]);
+  const decoded = useMemo(
+    () => JSON.parse(content, reviveNodeOnClient),
+    [content]
+  );
   const {toc, children} = useMemo(
     () => prepareMDX(decoded.props.children),
     [decoded]
@@ -24,20 +26,48 @@ export default function Layout({content, meta}) {
   );
 }
 
-// Create a React tree from server JSON.
-function reviveMDX(key, val) {
-  if (val && val.$m) {
-    // This is an MDX node we need to revive.
-    let args = val.$m;
-    if (args[0] == null) {
-      // First argument to createElement() is a type.
-      // If it didn't serialize, this is a custom MDX component.
-      args[0] = MDXComponents[args[1].mdxType];
-      if (args[0] == null) {
-        throw Error('Unknown type: ' + args[1].mdxType);
-      }
+// Deserialize a client React tree from JSON.
+function reviveNodeOnClient(key, val) {
+  if (Array.isArray(val) && val[0] == '$r') {
+    // Assume it's a React element.
+    let type = val[1];
+    let key = val[2];
+    let props = val[3];
+    if (type === 'wrapper') {
+      type = Fragment;
+      props = {children: props.children};
     }
-    return mdx.apply(null, args);
+    if (MDXComponents[type]) {
+      type = MDXComponents[type];
+    }
+    if (!type) {
+      console.error('Unknown type: ' + type);
+      type = Fragment;
+    }
+    return {
+      $$typeof: Symbol.for('react.element'),
+      type: type,
+      key: key,
+      ref: null,
+      props: props,
+      _owner: null,
+    };
+  } else {
+    return val;
+  }
+}
+
+// Serialize a server React tree node to JSON.
+function stringifyNodeOnServer(key, val) {
+  if (val != null && val.$$typeof === Symbol.for('react.element')) {
+    // Remove fake MDX props.
+    const {mdxType, originalType, parentName, ...cleanProps} = val.props;
+    return [
+      '$r',
+      typeof val.type === 'string' ? val.type : mdxType,
+      val.key,
+      cleanProps,
+    ];
   } else {
     return val;
   }
@@ -72,14 +102,11 @@ export async function getStaticProps(context) {
   // Run it to get JSON for render output
   const run = new Function('exports', 'mdx', js);
   let outputExports = {};
-  function createJSONNode(...args) {
-    return {$m: args}; // Marker to turn this into createElement on the client
-  }
-  run(outputExports, createJSONNode);
-  const json = outputExports.default({});
+  run(outputExports, createElement);
+  const reactTree = outputExports.default({});
   return {
     props: {
-      content: JSON.stringify(json),
+      content: JSON.stringify(reactTree, stringifyNodeOnServer),
       meta,
     },
   };

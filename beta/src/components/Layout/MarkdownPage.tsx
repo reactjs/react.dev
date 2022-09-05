@@ -3,8 +3,6 @@
  */
 
 import * as React from 'react';
-// @ts-ignore
-import {MDXContext} from '@mdx-js/react';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Seo} from 'components/Seo';
@@ -45,11 +43,7 @@ export function MarkdownPage<
           />
         )}
         <div className="px-5 sm:px-12">
-          <div className="max-w-7xl mx-auto">
-            <MDXContext.Provider value={MDXComponents}>
-              {children}
-            </MDXContext.Provider>
-          </div>
+          <div className="max-w-7xl mx-auto">{children}</div>
           <DocsPageFooter
             route={route}
             nextRoute={nextRoute}

@@ -255,7 +255,9 @@ export default function ShapeEditor() {
         Move circles down!
       </button>
       {shapes.map(shape => (
-        <div style={{
+        <div
+          key={shape.id}
+          style={{
           background: 'purple',
           position: 'absolute',
           left: shape.x,

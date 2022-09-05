@@ -44,7 +44,7 @@ function wrapChildrenInMaxWidthContainers(children) {
       wrapQueue.push(child);
       return;
     }
-    if (fullWidthTypes.includes(child.props.mdxType)) {
+    if (fullWidthTypes.includes(child.type.mdxName)) {
       flushWrapper(key);
       finalChildren.push(child);
     } else {
@@ -59,22 +59,22 @@ function wrapChildrenInMaxWidthContainers(children) {
 function getTableOfContents(children) {
   const anchors = Children.toArray(children)
     .filter((child) => {
-      if (child.props?.mdxType) {
+      if (child.type?.mdxName) {
         return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(
-          child.props.mdxType
+          child.type.mdxName
         );
       }
       return false;
     })
     .map((child) => {
-      if (child.props.mdxType === 'Challenges') {
+      if (child.type.mdxName === 'Challenges') {
         return {
           url: '#challenges',
           depth: 0,
           text: 'Challenges',
         };
       }
-      if (child.props.mdxType === 'Recap') {
+      if (child.type.mdxName === 'Recap') {
         return {
           url: '#recap',
           depth: 0,
@@ -84,8 +84,8 @@ function getTableOfContents(children) {
       return {
         url: '#' + child.props.id,
         depth:
-          (child.props?.mdxType &&
-            parseInt(child.props.mdxType.replace('h', ''), 0)) ??
+          (child.type?.mdxName &&
+            parseInt(child.type.mdxName.replace('h', ''), 0)) ??
           0,
         text: child.props.children,
       };

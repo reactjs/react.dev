@@ -325,3 +325,10 @@ export const MDXComponents = {
   Solution,
   CodeStep,
 };
+
+for (let key in MDXComponents) {
+  if (MDXComponents.hasOwnProperty(key)) {
+    const MDXComponent: any = (MDXComponents as any)[key];
+    MDXComponent.mdxName = key;
+  }
+}

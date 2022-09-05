@@ -135,7 +135,7 @@ function withSubscription(WrappedComponent, selectData) {
       super(props);
       this.handleChange = this.handleChange.bind(this);
       this.state = {
-        data: selectData(DataSource, props)
+        data: selectData(DataSource, this.props)
       };
     }
 

@@ -151,7 +151,7 @@ button {
 
 </Sandpack>
 
-The `handleClick()` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
+The `handleClick` event handler is updating a local variable, `index`. But two things prevent that change from being visible:
 
 1. **Local variables don't persist between renders.** When React renders this component a second time, it renders it from scratch—it doesn't consider any changes to the local variables.
 2. **Changes to local variables won't trigger renders.** React doesn't realize it needs to render the component again with the new data.
@@ -190,7 +190,7 @@ const [index, setIndex] = useState(0);
 
 > The `[` and `]` syntax here is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
 
-This is how they work together in `handleClick()`:
+This is how they work together in `handleClick`:
 
 ```js
 function handleClick() {

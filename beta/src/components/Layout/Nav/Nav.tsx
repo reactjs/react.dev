@@ -86,10 +86,10 @@ const lightIcon = (
   </svg>
 );
 
-function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
-  if (pathname.startsWith('/learn')) {
+function inferSection(path: Array<string>): 'learn' | 'apis' | 'home' {
+  if (path[0] === 'learn') {
     return 'learn';
-  } else if (pathname.startsWith('/apis')) {
+  } else if (path[0] === 'apis') {
     return 'apis';
   } else {
     return 'home';
@@ -97,11 +97,11 @@ function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
 }
 
 export default function Nav() {
-  const {pathname} = useRouter();
+  const {query} = useRouter();
   const {isOpen, toggleOpen} = React.useContext(MenuContext);
   const [showFeedback, setShowFeedback] = React.useState(false);
   const feedbackAutohideRef = React.useRef<any>(null);
-  const section = inferSection(pathname);
+  const section = inferSection(query.file || ([] as any));
   const feedbackPopupRef = React.useRef<null | HTMLDivElement>(null);
 
   React.useEffect(() => {

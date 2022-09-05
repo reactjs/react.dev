@@ -11,10 +11,10 @@ import sidebarHome from '../../../sidebarHome.json';
 import sidebarLearn from '../../../sidebarLearn.json';
 import sidebarReference from '../../../sidebarReference.json';
 
-function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
-  if (pathname.startsWith('/learn')) {
+function inferSection(path: Array<string>): 'learn' | 'apis' | 'home' {
+  if (path[0] === 'learn') {
     return 'learn';
-  } else if (pathname.startsWith('/apis')) {
+  } else if (path[0] === 'apis') {
     return 'apis';
   } else {
     return 'home';
@@ -22,8 +22,10 @@ function inferSection(pathname: string): 'learn' | 'apis' | 'home' {
 }
 
 export function MobileNav() {
-  const {pathname} = useRouter();
-  const [section, setSection] = React.useState(() => inferSection(pathname));
+  const {query} = useRouter();
+  const [section, setSection] = React.useState(() =>
+    inferSection(query.file || ([] as any))
+  );
 
   let tree = null;
   switch (section) {

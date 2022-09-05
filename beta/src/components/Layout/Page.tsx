@@ -4,17 +4,42 @@
 
 import {MenuProvider} from 'components/useMenu';
 import * as React from 'react';
+import {useRouter} from 'next/router';
 import {Nav} from './Nav';
 import {RouteItem, SidebarContext} from './useRouteMeta';
 import {Sidebar} from './Sidebar';
 import {Footer} from './Footer';
 import SocialBanner from '../SocialBanner';
+import sidebarHome from '../../sidebarHome.json';
+import sidebarLearn from '../../sidebarLearn.json';
+import sidebarReference from '../../sidebarReference.json';
+
 interface PageProps {
   children: React.ReactNode;
-  routeTree: RouteItem;
 }
 
-export function Page({routeTree, children}: PageProps) {
+function inferSection(path: Array<string>): 'learn' | 'apis' | 'home' {
+  if (path[0] === 'learn') {
+    return 'learn';
+  } else if (path[0] === 'apis') {
+    return 'apis';
+  } else {
+    return 'home';
+  }
+}
+
+export function Page({children}: PageProps) {
+  const {query, asPath} = useRouter();
+  let routeTree = sidebarHome as RouteItem;
+  const section = inferSection(query.file || ([] as any));
+  switch (section) {
+    case 'apis':
+      routeTree = sidebarReference as RouteItem;
+      break;
+    case 'learn':
+      routeTree = sidebarLearn as RouteItem;
+      break;
+  }
   return (
     <>
       <SocialBanner />
@@ -31,7 +56,9 @@ export function Page({routeTree, children}: PageProps) {
               <div className="flex flex-1 w-full h-full self-stretch">
                 <div className="w-full min-w-0">
                   <main className="flex flex-1 self-stretch mt-16 sm:mt-10 flex-col items-end justify-around">
-                    <article className="h-full mx-auto relative w-full min-w-0">
+                    <article
+                      key={asPath}
+                      className="h-full mx-auto relative w-full min-w-0">
                       {children}
                     </article>
                     <Footer />

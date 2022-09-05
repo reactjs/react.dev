@@ -297,6 +297,9 @@ export const MDXComponents = {
   }) => <ExpandableExample {...props} type="DeepDive" />,
   Diagram,
   DiagramGroup,
+  FullWidth({children}: {children: any}) {
+    return children;
+  },
   Gotcha,
   Wip,
   HomepageHero,

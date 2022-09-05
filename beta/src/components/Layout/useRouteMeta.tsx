@@ -57,7 +57,7 @@ export function useRouteMeta(rootRoute?: RouteItem) {
   const sidebarContext = React.useContext(SidebarContext);
   const routeTree = rootRoute || sidebarContext;
   const router = useRouter();
-  const cleanedPath = router.pathname;
+  const cleanedPath = router.asPath; // TODO: remove search
   if (cleanedPath === '/404') {
     return {
       breadcrumbs: [],

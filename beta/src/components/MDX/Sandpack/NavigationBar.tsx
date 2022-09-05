@@ -22,6 +22,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
 
   const resizeHandler = React.useCallback(() => {
     const width = window.innerWidth || document.documentElement.clientWidth;
+    console.log('width : ', width);
     if (!dropdownActive && width < 640) {
       setDropdownActive(true);
     }

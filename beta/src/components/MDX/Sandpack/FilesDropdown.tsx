@@ -38,7 +38,7 @@ export function FilesDropdown() {
             key={filePath}
             value={filePath}
             className={cn(
-              'text-md mx-2 my-4 cursor-pointer',
+              'text-sm mx-2 my-4 cursor-pointer',
               filePath === activePath && 'text-link dark:text-link-dark'
             )}>
             {getFileName(filePath)}

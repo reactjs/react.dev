@@ -202,7 +202,7 @@ return (
 );
 ```
 
-You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`."*)
+You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
 
 <DeepDive title="Are these two examples fully equivalent?">
 
@@ -268,7 +268,7 @@ return (
 );
 ```
 
-You can read this as *“if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing.”*
+You can read this as *"if `isPacked`, then (`&&`) render the checkmark, otherwise, render nothing"*.
 
 Here it is in action:
 

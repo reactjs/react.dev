@@ -11,7 +11,7 @@ export interface ResetButtonProps {
 export const ResetButton: React.FC<ResetButtonProps> = ({onReset}) => {
   return (
     <button
-      className="text-sm text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
+      className="text-xs text-primary dark:text-primary-dark inline-flex items-center hover:text-link duration-100 ease-in transition mx-1"
       onClick={onReset}
       title="Reset Sandbox"
       type="button">

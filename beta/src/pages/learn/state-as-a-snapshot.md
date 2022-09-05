@@ -64,7 +64,7 @@ label, textarea { margin-bottom: 10px; display: block; }
 Here's what happens when you click the button:
 
 1. The `onSubmit` event handler executes.
-2. `setIsSent(true)` sets `isSent` to `true`and queues a new render.
+2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
 3. React re-renders the component according to the new `isSent` value.
 
 Let's take a closer look at the relationship between state and rendering.

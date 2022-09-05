@@ -540,7 +540,7 @@ Unlike rendering functions, event handlers don't need to be [pure](/learn/keepin
 
 <Challenges>
 
-### Fix an event handler {/*fix-an-event-handler*/}
+#### Fix an event handler {/*fix-an-event-handler*/}
 
 Clicking this button is supposed to switch the page background between white and black. However, nothing happens when you click it. Fix the problem. (Don't worry about the logic inside `handleClick`—that part is fine.)
 
@@ -621,7 +621,7 @@ export default function LightSwitch() {
 
 </Solution>
 
-### Wire up the events {/*wire-up-the-events*/}
+#### Wire up the events {/*wire-up-the-events*/}
 
 This `ColorSwitch` component renders a button. It's supposed to change the page color. Wire it up to the `onChangeColor` event handler prop it receives from the parent so that clicking the button changes the color.
 

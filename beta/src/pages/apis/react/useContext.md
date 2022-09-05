@@ -177,7 +177,7 @@ Now any `Button` inside of the provider will receive the current `theme` value. 
 
 <Recipes titleText="Examples of updating context" titleId="examples-basic">
 
-### Updating a value via context {/*updating-a-value-via-context*/}
+#### Updating a value via context {/*updating-a-value-via-context*/}
 
 In this example, the `MyApp` component holds a state variable which is then passed to the `ThemeContext` provider. Checking the "Dark mode" checkbox updates the state. Changing the provided value re-renders all the components using that context.
 
@@ -281,7 +281,7 @@ Note that `value="dark"` passes the `"dark"` string, but `value={theme}` passes 
 
 <Solution />
 
-### Updating an object via context {/*updating-an-object-via-context*/}
+#### Updating an object via context {/*updating-an-object-via-context*/}
 
 In this example, there is a `currentUser` state variable which holds an object. You combine `{ currentUser, setCurrentUser }` into a single object and pass it down through the context inside the `value={}`. This lets any component below, such as `LoginButton`, read both `currentUser` and `setCurrentUser`, and then call `setCurrentUser` when needed.
 
@@ -373,7 +373,7 @@ label {
 
 <Solution />
 
-### Multiple contexts {/*multiple-contexts*/}
+#### Multiple contexts {/*multiple-contexts*/}
 
 In this example, there are two independent contexts. `ThemeContext` provides the current theme, which is a string, while `CurrentUserContext` holds the object representing the current user.
 
@@ -540,7 +540,7 @@ label {
 
 <Solution />
 
-### Extracting providers to a component {/*extracting-providers-to-a-component*/}
+#### Extracting providers to a component {/*extracting-providers-to-a-component*/}
 
 As your app grows, it is expected that you'll have a "pyramid" of contexts closer to the root of your app. There is nothing wrong with that. However, if you dislike the nesting aesthetically, you can extract the providers into a single component. In this example, `MyProviders` hides the "plumbing" and renders the children passed to it inside the necessary providers. Note that the `theme` and `setTheme` state is needed in `MyApp` itself, so `MyApp` still owns that piece of the state.
 
@@ -715,7 +715,7 @@ label {
 
 <Solution />
 
-### Scaling up with context and a reducer {/*scaling-up-with-context-and-a-reducer*/}
+#### Scaling up with context and a reducer {/*scaling-up-with-context-and-a-reducer*/}
 
 In larger apps, it is common to combine context with a [reducer](/apis/react/useReducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
 
@@ -1058,7 +1058,7 @@ You can nest and override providers as many times as you need.
 
 <Recipes title="Examples of overriding context">
 
-### Overriding a theme {/*overriding-a-theme*/}
+#### Overriding a theme {/*overriding-a-theme*/}
 
 Here, the button *inside* the `Footer` receives a different context value (`"light"`) than the buttons outside (`"dark"`).
 
@@ -1164,7 +1164,7 @@ footer {
 
 <Solution />
 
-### Automatically nested headings {/*automatically-nested-headings*/}
+#### Automatically nested headings {/*automatically-nested-headings*/}
 
 You can "accumulate" information when you nest context providers. In this example, the `Section` component keeps track of the `LevelContext` which specifies the depth of the section nesting. It reads the `LevelContext` from the parent section, and provides the `LevelContext` number increased by one to its children. As a result, the `Heading` component can automatically decide which of the `<h1>`, `<h2>`, `<h3>`, ..., tags to use based on how many `Section` components it is nested inside of.
 

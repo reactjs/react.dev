@@ -245,7 +245,7 @@ Now you know almost everything about JSX:
 
 <Challenges>
 
-### Fix the mistake {/*fix-the-mistake*/}
+#### Fix the mistake {/*fix-the-mistake*/}
 
 This code crashes with an error saying `Objects are not valid as a React child`:
 
@@ -337,7 +337,7 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-### Extract information into an object {/*extract-information-into-an-object*/}
+#### Extract information into an object {/*extract-information-into-an-object*/}
 
 Extract the image URL into the `person` object.
 
@@ -424,7 +424,7 @@ body > div > div { padding: 20px; }
 
 </Solution>
 
-### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
+#### Write an expression inside JSX curly braces {/*write-an-expression-inside-jsx-curly-braces*/}
 
 In the object below, the full image URL is split into four parts: base URL,  `imageId`, `imageSize`, and file extension.
 

@@ -694,7 +694,7 @@ However, this doesn't mean that you can't do it at all. It requires caution. **Y
 
 <Challenges>
 
-### Play and pause the video {/*play-and-pause-the-video*/}
+#### Play and pause the video {/*play-and-pause-the-video*/}
 
 In this example, the button toggles a state variable to switch between a playing and a paused state. However, in order to actually play or pause the video, toggling state is not enough. You also need to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on the DOM element for the `<video>`. Add a ref to it, and make the button work.
 
@@ -790,7 +790,7 @@ In order to handle the built-in browser controls, you can add `onPlay` and `onPa
 
 </Solution>
 
-### Focus the search field {/*focus-the-search-field*/}
+#### Focus the search field {/*focus-the-search-field*/}
 
 Make it so that clicking the "Search" button puts focus into the field.
 
@@ -854,7 +854,7 @@ button { display: block; margin-bottom: 10px; }
 
 </Solution>
 
-### Scrolling an image carousel {/*scrolling-an-image-carousel*/}
+#### Scrolling an image carousel {/*scrolling-an-image-carousel*/}
 
 This image carousel has a "Next" button that switches the active image. Make the gallery scroll horizontally to the active image on click. You will want to call [`scrollIntoView()`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) on the DOM node of the active image:
 
@@ -1080,7 +1080,7 @@ img {
 
 </Solution>
 
-### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}
+#### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}
 
 Make it so that clicking the "Search" button puts focus into the field. Note that each component is defined in a separate file and shouldn't be moved out of it. How do you connect them together?
 

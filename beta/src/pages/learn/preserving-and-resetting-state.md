@@ -1258,7 +1258,7 @@ No matter which strategy you pick, a chat _with Alice_ is conceptually distinct 
 
 <Challenges>
 
-### Fix disappearing input text {/*fix-disappearing-input-text*/}
+#### Fix disappearing input text {/*fix-disappearing-input-text*/}
 
 This example shows a message when you press the button. However, pressing the button also accidentally resets the input. Why does this happen? Fix it so that pressing the button does not reset the input text.
 
@@ -1409,7 +1409,7 @@ This way, `Form` is always the second child, so it stays in the same position an
 
 </Solution>
 
-### Swap two form fields {/*swap-two-form-fields*/}
+#### Swap two form fields {/*swap-two-form-fields*/}
 
 This form lets you enter first and last name. It also has a checkbox controlling which field goes first. When you tick the checkbox, the "Last name" field will appear before the "First name" field.
 
@@ -1543,7 +1543,7 @@ label { display: block; margin: 10px 0; }
 
 </Solution>
 
-### Reset a detail form {/*reset-a-detail-form*/}
+#### Reset a detail form {/*reset-a-detail-form*/}
 
 This is an editable contact list. You can edit the selected contact's details and then either press "Save" to update it, or "Reset" to undo your changes.
 
@@ -1852,7 +1852,7 @@ button {
 
 </Solution>
 
-### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
+#### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
 
 When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next," the previous image immediately clears.
 
@@ -1996,7 +1996,7 @@ img { width: 150px; height: 150px; }
 
 </Solution>
 
-### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
+#### Fix misplaced state in the list {/*fix-misplaced-state-in-the-list*/}
 
 In this list, each `Contact` has state that determines whether "Show email" has been pressed for it. Press "Show email" for Alice, and then tick the "Show in reverse order" checkbox. You will notice that it's _Taylor's_ email that is expanded now, but Alice's--which has moved to the bottom--appears collapsed.
 

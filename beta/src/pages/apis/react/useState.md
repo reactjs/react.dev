@@ -80,7 +80,7 @@ It only affects what `useState` will return starting from the *next* render.
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
-### Counter (number) {/*counter-number*/}
+#### Counter (number) {/*counter-number*/}
 
 In this example, the `count` state variable holds a number. Clicking the button increments it.
 
@@ -108,7 +108,7 @@ export default function Counter() {
 
 <Solution />
 
-### Text field (string) {/*text-field-string*/}
+#### Text field (string) {/*text-field-string*/}
 
 In this example, the `text` state variable holds a string. When you type, `handleChange` reads the latest input value from the browser input DOM element, and calls `setText` to update the state. This allows you to display the current `text` below.
 
@@ -140,7 +140,7 @@ export default function MyInput() {
 
 <Solution />
 
-### Checkbox (boolean) {/*checkbox-boolean*/}
+#### Checkbox (boolean) {/*checkbox-boolean*/}
 
 In this example, the `liked` state variable holds a boolean. When you click the input, `setLiked` updates the `liked` state variable with whether the browser checkbox input is checked. The `liked` variable is used to render the text below the checkbox.
 
@@ -176,7 +176,7 @@ export default function MyCheckbox() {
 
 <Solution />
 
-### Form (two variables) {/*form-two-variables*/}
+#### Form (two variables) {/*form-two-variables*/}
 
 You can declare more than one state variable in the same component. Each state variable is completely independent.
 
@@ -268,7 +268,7 @@ If you prefer consistency over slightly more verbose syntax, it's reasonable to 
 
 <Recipes titleText="The difference between passing an updater and passing the next state directly" titleId="examples-updater">
 
-### Passing the updater function {/*passing-the-updater-function*/}
+#### Passing the updater function {/*passing-the-updater-function*/}
 
 This example passes the updater function, so the "+3" button works.
 
@@ -309,7 +309,7 @@ h1 { display: block; margin: 10px; }
 
 <Solution />
 
-### Passing the next state directly {/*passing-the-next-state-directly*/}
+#### Passing the next state directly {/*passing-the-next-state-directly*/}
 
 This example **does not** pass the updater function, so the "+3" button **doesn't work as intended**.
 
@@ -377,7 +377,7 @@ Read [updating objects in state](/learn/updating-objects-in-state) and [updating
 
 <Recipes titleText="Examples of objects and arrays in state" titleId="examples-objects">
 
-### Form (object) {/*form-object*/}
+#### Form (object) {/*form-object*/}
 
 In this example, the `form` state variable holds an object. Each input has a change handler that calls `setForm` with the next state of the entire form. The `{ ...form }` spread syntax ensures that the state object is replaced rather than mutated.
 
@@ -450,7 +450,7 @@ input { margin-left: 5px; }
 
 <Solution />
 
-### Form (nested object) {/*form-nested-object*/}
+#### Form (nested object) {/*form-nested-object*/}
 
 In this example, the state is more nested. When you update nested state, you need to create a copy of the object you're updating, as well as any objects "containing" it on the way upwards. Read [updating a nested object](/learn/updating-objects-in-state#updating-a-nested-object) to learn more.
 
@@ -562,7 +562,7 @@ img { width: 200px; height: 200px; }
 
 <Solution />
 
-### List (array) {/*list-array*/}
+#### List (array) {/*list-array*/}
 
 In this example, the `todos` state variable holds an array. Each button handler calls `setTodos` with the next version of that array. The `[...todos]` spread syntax, `todos.map()` and `todos.filter()` ensure the state array is replaced rather than mutated.
 
@@ -729,7 +729,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution />
 
-### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
+#### Writing concise update logic with Immer {/*writing-concise-update-logic-with-immer*/}
 
 If updating arrays and objects without mutation feels tedious, you can use a library like [Immer](https://github.com/immerjs/use-immer) to reduce repetitive code. Immer lets you write concise code as if you were mutating objects, but under the hood it performs immutable updates:
 
@@ -846,7 +846,7 @@ React may [call your initializers twice](#my-initializer-or-updater-function-run
 
 <Recipes titleText="The difference between passing an initializer and passing the initial state directly" titleId="examples-initializer">
 
-### Passing the initializer function {/*passing-the-initializer-function*/}
+#### Passing the initializer function {/*passing-the-initializer-function*/}
 
 This example passes the initializer function, so the `createInitialTodos` function only runs during initialization. It does not run when component re-renders, such as when you type into the input.
 
@@ -899,7 +899,7 @@ export default function TodoList() {
 
 <Solution />
 
-### Passing the initial state directly {/*passing-the-initial-state-directly*/}
+#### Passing the initial state directly {/*passing-the-initial-state-directly*/}
 
 This example **does not** pass the initializer function, so the `createInitialTodos` function runs on every render, such as when you type into the input. There is no observable difference in behavior, but this code is less efficient.
 

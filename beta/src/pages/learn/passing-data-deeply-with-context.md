@@ -873,7 +873,7 @@ In general, if some information is needed by distant components in different par
 
 <Challenges>
 
-### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
+#### Replace prop drilling with context {/*replace-prop-drilling-with-context*/}
 
 In this example, toggling the checkbox changes the `imageSize` prop passed to each `<PlaceImage>`. The checkbox state is held in the top-level `App` component, but each `<PlaceImage>` needs to be aware of it.
 

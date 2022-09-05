@@ -495,7 +495,7 @@ Although this code is longer than the original imperative example, it is much le
 
 <Challenges>
 
-### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+#### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
 
 Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
 
@@ -693,7 +693,7 @@ Keep in mind that if two different JSX chunks describe the same tree, their nest
 
 </Solution>
 
-### Profile editor {/*profile-editor*/}
+#### Profile editor {/*profile-editor*/}
 
 Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
 
@@ -895,7 +895,7 @@ Compare this solution to the original imperative code. How are they different?
 
 </Solution>
 
-### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+#### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
 
 Here is the original sandbox from the previous challenge, written imperatively without React:
 

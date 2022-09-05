@@ -1115,7 +1115,7 @@ Reducers must be pure, so they shouldn't mutate state. But Immer provides you wi
 
 <Challenges>
 
-### Dispatch actions from event handlers {/*dispatch-actions-from-event-handlers*/}
+#### Dispatch actions from event handlers {/*dispatch-actions-from-event-handlers*/}
 
 Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
 
@@ -1467,7 +1467,7 @@ textarea {
 
 </Solution>
 
-### Clear the input on sending a message {/*clear-the-input-on-sending-a-message*/}
+#### Clear the input on sending a message {/*clear-the-input-on-sending-a-message*/}
 
 Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
 
@@ -1970,7 +1970,7 @@ With either solution, it's important that you **don't** place the `alert` inside
 
 </Solution>
 
-### Restore input values when switching between tabs {/*restore-input-values-when-switching-between-tabs*/}
+#### Restore input values when switching between tabs {/*restore-input-values-when-switching-between-tabs*/}
 
 In this example, switching between different recipients always clears the text input:
 
@@ -2385,7 +2385,7 @@ Notably, you didn't need to change any of the event handlers to implement this d
 
 </Solution>
 
-### Implement `useReducer` from scratch {/*implement-usereducer-from-scratch*/}
+#### Implement `useReducer` from scratch {/*implement-usereducer-from-scratch*/}
 
 In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement *the `useReducer` Hook itself!* Here is a stub to get your started. It shouldn't take more than 10 lines of code.
 

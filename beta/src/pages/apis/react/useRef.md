@@ -71,7 +71,7 @@ Changing a ref does not trigger a re-render, so refs are not appropriate for sto
 
 <Recipes titleText="Examples of referencing a value with useRef" titleId="examples-value">
 
-### Click counter {/*click-counter*/}
+#### Click counter {/*click-counter*/}
 
 This component uses a ref to keep track of how many times the button was clicked. Note that it's okay to use a ref instead of state here because the click count is only read and written in an event handler.
 
@@ -102,7 +102,7 @@ If you show `{ref.current}` in the JSX, the number won't update on click. This i
 
 <Solution />
 
-### A stopwatch {/*a-stopwatch*/}
+#### A stopwatch {/*a-stopwatch*/}
 
 This example uses a combination of state and refs. Both `startTime` and `now` are state variables because they are used for rendering. But we also need to hold an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) so that we can stop the interval on button press. Since the interval ID is not used for rendering, it's appropriate to keep it in a ref, and manually update it.
 
@@ -238,7 +238,7 @@ Read more about [manipulating the DOM with refs](/learn/manipulating-the-dom-wit
 
 <Recipes titleText="Examples of manipulating the DOM with useRef" titleId="examples-dom">
 
-### Focusing a text input {/*focusing-a-text-input*/}
+#### Focusing a text input {/*focusing-a-text-input*/}
 
 In this example, clicking the button will focus the input:
 
@@ -269,7 +269,7 @@ export default function Form() {
 
 <Solution />
 
-### Scrolling an image into view {/*scrolling-an-image-into-view*/}
+#### Scrolling an image into view {/*scrolling-an-image-into-view*/}
 
 In this example, clicking the button will scroll an image into view. It uses a ref to the list DOM node, and then calls DOM [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) API to find the image we want to scroll to.
 
@@ -362,7 +362,7 @@ li {
 
 <Solution />
 
-### Playing and pausing a video {/*playing-and-pausing-a-video*/}
+#### Playing and pausing a video {/*playing-and-pausing-a-video*/}
 
 This example uses a ref to call [`play()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play) and [`pause()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/pause) on a `<video>` DOM node.
 
@@ -415,7 +415,7 @@ button { display: block; margin-bottom: 20px; }
 
 <Solution />
 
-### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
+#### Exposing a ref to your own component {/*exposing-a-ref-to-your-own-component*/}
 
 Sometimes, you may want to let the parent component manipulate the DOM inside of your component. For example, maybe you're writing a `MyInput` component, but you want the parent to be able to focus the input (which the parent has no access to). You can use a combination of `useRef` to hold the input and [`forwardRef`](/apis/react/forwardRef) to expose it to the parent component. Read a [detailed walkthrough](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes) here.
 

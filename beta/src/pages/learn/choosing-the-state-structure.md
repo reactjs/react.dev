@@ -1854,7 +1854,7 @@ Sometimes, you can also reduce state nesting by moving some of the nested state 
 
 <Challenges>
 
-### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
 
 This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
 
@@ -2017,7 +2017,7 @@ export default function App() {
 
 </Solution>
 
-### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
 
 This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
 
@@ -2301,7 +2301,7 @@ Notice how the event handlers are only concerned with calling `setItems` after t
 
 </Solution>
 
-### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
 
 There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
 
@@ -2521,7 +2521,7 @@ li { border-radius: 5px; }
 
 </Solution>
 
-### Implement multiple selection {/*implement-multiple-selection*/}
+#### Implement multiple selection {/*implement-multiple-selection*/}
 
 In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
 

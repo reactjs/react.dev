@@ -225,7 +225,7 @@ Every new React feature we're building takes advantage of purity. From data fetc
   
 <Challenges>
 
-### Fix a broken clock {/*fix-a-broken-clock*/}
+#### Fix a broken clock {/*fix-a-broken-clock*/}
 
 This component tries to set the `<h1>`'s CSS class to `"night"` during the time from midnight to six hours in the morning, and `"day"` at all other times. However, it doesn't work. Can you fix this component?
 
@@ -362,7 +362,7 @@ In this example, the side effect (modifying the DOM) was not necessary at all. Y
 
 </Solution>
 
-### Fix a broken profile {/*fix-a-broken-profile*/}
+#### Fix a broken profile {/*fix-a-broken-profile*/}
 
 Two `Profile` components are rendered side by side with different data. Press "Collapse" on the first profile, and then "Expand" it. You'll notice that both profiles now show the same person. This is a bug.
 
@@ -571,7 +571,7 @@ Remember that React does not guarantee that component functions will execute in 
 
 </Solution>
 
-### Fix a broken story tray {/*fix-a-broken-story-tray*/}
+#### Fix a broken story tray {/*fix-a-broken-story-tray*/}
 
 The CEO of your company is asking you to add "stories" to your online clock app, and you can't say no. You've written a `StoryTray` component that accepts a list of `stories`, followed by a "Create Story" placeholder.
 

@@ -319,7 +319,7 @@ To see what this feels like in practice with a few more components, read [Thinki
 
 <Challenges>
 
-### Synced inputs {/*synced-inputs*/}
+#### Synced inputs {/*synced-inputs*/}
 
 These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
 
@@ -425,7 +425,7 @@ label { display: block; }
 
 </Solution>
 
-### Filtering a list {/*filtering-a-list*/}
+#### Filtering a list {/*filtering-a-list*/}
 
 In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
 

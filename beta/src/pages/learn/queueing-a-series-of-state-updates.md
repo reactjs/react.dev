@@ -268,7 +268,7 @@ If you prefer more verbose code, another common convention is to repeat the full
 
 <Challenges>
 
-### Fix a request counter {/*fix-a-request-counter*/}
+#### Fix a request counter {/*fix-a-request-counter*/}
 
 You're working on an art marketplace app that lets the user submit multiple orders for an art item at the same time. Each time the user presses the "Buy" button, the "Pending" counter should increase by one. After three seconds, the "Pending" counter should decrease, and the "Completed" counter should increase.
 
@@ -364,7 +364,7 @@ This ensures that when you increment or decrement a counter, you do it in relati
 
 </Solution>
 
-### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
+#### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
 
 In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
 

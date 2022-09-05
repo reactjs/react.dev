@@ -1903,7 +1903,7 @@ Sometimes, you don't even need a Hook!
 
 <Challenges>
 
-### Extract a `useCounter` Hook {/*extract-a-usecounter-hook*/}
+#### Extract a `useCounter` Hook {/*extract-a-usecounter-hook*/}
 
 This component uses a state variable and an Effect to display a number that increments every second. Extract this logic into a custom Hook called `useCounter`. Your goal is to make the `Counter` component implementation look exactly like this:
 
@@ -1975,7 +1975,7 @@ Notice that `App.js` doesn't need to import `useState` or `useEffect` anymore.
 
 </Solution>
 
-### Make the counter delay configurable {/*make-the-counter-delay-configurable*/}
+#### Make the counter delay configurable {/*make-the-counter-delay-configurable*/}
 
 In this example, there is a `delay` state variable controlled by a slider, but its value is not used. Pass the `delay` value to your custom `useCounter` Hook, and change the `useCounter` Hook to use the passed `delay` instead of hardcoding `1000` ms.
 
@@ -2077,7 +2077,7 @@ export function useCounter(delay) {
 
 </Solution>
 
-### Extract `useInterval` out of `useCounter` {/*extract-useinterval-out-of-usecounter*/}
+#### Extract `useInterval` out of `useCounter` {/*extract-useinterval-out-of-usecounter*/}
 
 Currently, your `useCounter` Hook does two things. It sets up an interval, and it also increments a state variable on every interval tick. Split out the logic that sets up the interval into a separate Hook called `useInterval`. It should take two arguments: the `onTick` callback, and the `delay`. After this change, your `useCounter` implementation should look like this:
 
@@ -2171,7 +2171,7 @@ Note that there is a bit of a problem with this solution, which you'll solve in 
 
 </Solution>
 
-### Fix a resetting interval {/*fix-a-resetting-interval*/}
+#### Fix a resetting interval {/*fix-a-resetting-interval*/}
 
 In this example, there are *two* separate intervals.
 
@@ -2341,7 +2341,7 @@ export function useEvent(fn) {
 
 </Solution>
 
-### Implement a staggering movement {/*implement-a-staggering-movement*/}
+#### Implement a staggering movement {/*implement-a-staggering-movement*/}
 
 In this example, the `usePointerPosition()` Hook tracks the current pointer position. Try moving your cursor or your finger over the preview area and see the red dot follow your movement. Its position is saved in the `pos1` variable.
 

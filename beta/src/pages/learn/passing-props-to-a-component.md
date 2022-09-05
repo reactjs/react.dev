@@ -425,7 +425,7 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)â€
 
 <Challenges>
 
-### Extract a component {/*extract-a-component*/}
+#### Extract a component {/*extract-a-component*/}
 
 This `Gallery` component contains some very similar markup for two profiles. Extract a `Profile` component out of it to reduce the duplication. You'll need to choose what props to pass to it.
 
@@ -727,7 +727,7 @@ Although the syntax looks slightly different because you're describing propertie
 
 </Solution>
 
-### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
+#### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
 
 In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
 
@@ -919,7 +919,7 @@ Props let you encapsulate logic like this inside the `Avatar` component (and cha
 
 </Solution>
 
-### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
+#### Passing JSX in a `children` prop {/*passing-jsx-in-a-children-prop*/}
 
 Extract a `Card` component from the markup below, and use the `children` prop to pass different JSX to it:
 

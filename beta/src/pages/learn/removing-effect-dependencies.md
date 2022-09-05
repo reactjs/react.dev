@@ -1167,7 +1167,7 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 
 <Challenges>
 
-### Fix a resetting interval
+#### Fix a resetting interval
 
 This Effect sets up an interval that ticks every second. You've noticed something strange happening: it seems like the interval gets destroyed and re-created every time it ticks. Fix the code so that the interval doesn't get constantly re-created.
 
@@ -1239,7 +1239,7 @@ Instead of reading `count` inside the Effect, you pass a `c => c + 1` instructio
 
 </Solution>
 
-### Fix a retriggering animation
+#### Fix a retriggering animation
 
 In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame). You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
 
@@ -1509,7 +1509,7 @@ Event functions like `onAppear` are not reactive, so you can read `duration` ins
 
 </Solution>
 
-### Fix a reconnecting chat
+#### Fix a reconnecting chat
 
 In this example, every time you press "Toggle theme", the chat re-connects. Why does this happen? Fix the mistake so that the chat re-connects only when you edit Server URL or choose a different the chat room.
 
@@ -1802,7 +1802,7 @@ Sticking to primitive props where possible makes it easier to optimize your comp
 
 </Solution>
 
-### Fix a reconnecting chat, again
+#### Fix a reconnecting chat, again
 
 This example connects to the chat either with or without encryption. Toggle the checkbox and notice the different messages in the console when the encryption is on and off. Try changing the room. Then, try toggling the theme. When you're connected to a chat room, you will receive new messages every few seconds. Verify that their color matches the theme you've picked.
 

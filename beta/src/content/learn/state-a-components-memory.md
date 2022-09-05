@@ -924,7 +924,7 @@ export default function Gallery() {
   const [showMore, setShowMore] = useState(false);
 
   function handleNextClick() {
-    setIndex(index + 1);
+    setIndex(index + 1000);
   }
 
   function handleMoreClick() {

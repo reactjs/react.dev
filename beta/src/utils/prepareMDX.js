@@ -7,7 +7,7 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 
 const {MaxWidth} = MDXComponents;
 
-// TODO: This logic should be in MDX plugins instead.
+// TODO: This logic could be in MDX plugins instead.
 
 export function prepareMDX(rawChildren) {
   const toc = getTableOfContents(rawChildren);
@@ -32,7 +32,8 @@ function wrapChildrenInMaxWidthContainers(children) {
   let finalChildren = [];
   function flushWrapper(key) {
     if (wrapQueue.length > 0) {
-      finalChildren.push(<MaxWidth key={key}>{wrapQueue}</MaxWidth>);
+      const Wrapper = 'MaxWidth';
+      finalChildren.push(<Wrapper key={key}>{wrapQueue}</Wrapper>);
       wrapQueue = [];
     }
   }
@@ -44,7 +45,7 @@ function wrapChildrenInMaxWidthContainers(children) {
       wrapQueue.push(child);
       return;
     }
-    if (fullWidthTypes.includes(child.type.mdxName)) {
+    if (fullWidthTypes.includes(child.type)) {
       flushWrapper(key);
       finalChildren.push(child);
     } else {
@@ -59,22 +60,20 @@ function wrapChildrenInMaxWidthContainers(children) {
 function getTableOfContents(children) {
   const anchors = Children.toArray(children)
     .filter((child) => {
-      if (child.type?.mdxName) {
-        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(
-          child.type.mdxName
-        );
+      if (child.type) {
+        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(child.type);
       }
       return false;
     })
     .map((child) => {
-      if (child.type.mdxName === 'Challenges') {
+      if (child.type === 'Challenges') {
         return {
           url: '#challenges',
           depth: 0,
           text: 'Challenges',
         };
       }
-      if (child.type.mdxName === 'Recap') {
+      if (child.type === 'Recap') {
         return {
           url: '#recap',
           depth: 0,
@@ -83,10 +82,7 @@ function getTableOfContents(children) {
       }
       return {
         url: '#' + child.props.id,
-        depth:
-          (child.type?.mdxName &&
-            parseInt(child.type.mdxName.replace('h', ''), 0)) ??
-          0,
+        depth: (child.type && parseInt(child.type.replace('h', ''), 0)) ?? 0,
         text: child.props.children,
       };
     });

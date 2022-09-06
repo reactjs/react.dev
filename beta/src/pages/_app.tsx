@@ -6,14 +6,12 @@ import * as React from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {ga} from '../utils/analytics';
+
 import '@docsearch/css';
 import '../styles/algolia.css';
 import '../styles/index.css';
 import '../styles/sandpack.css';
-
-const EmptyAppShell = ({children}: {children: React.ReactNode}) => (
-  <>{children}</>
-);
+import '@codesandbox/sandpack-react/dist/index.css';
 
 if (typeof window !== 'undefined') {
   if (process.env.NODE_ENV === 'production') {
@@ -38,16 +36,5 @@ export default function MyApp({Component, pageProps}: AppProps) {
     };
   }, [router.events]);
 
-  let AppShell = (Component as any).appShell || EmptyAppShell;
-  // In order to make sidebar scrolling between pages work as expected
-  // we need to access the underlying MDX component.
-  if ((Component as any).isMDXComponent) {
-    AppShell = (Component as any)({}).props.originalType.appShell;
-  }
-
-  return (
-    <AppShell>
-      <Component {...pageProps} />
-    </AppShell>
-  );
+  return <Component {...pageProps} />;
 }

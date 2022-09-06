@@ -1,0 +1,16 @@
+diff --git a/node_modules/next-remote-watch/bin/next-remote-watch b/node_modules/next-remote-watch/bin/next-remote-watch
+index c055b66..a2f749c 100755
+--- a/node_modules/next-remote-watch/bin/next-remote-watch
++++ b/node_modules/next-remote-watch/bin/next-remote-watch
+@@ -66,7 +66,10 @@ app.prepare().then(() => {
+             }
+           }
+ 
+-          app.server.hotReloader.send('reloadPage')
++          app.server.hotReloader.send({
++            event: 'serverOnlyChanges',
++            pages: ['/[[...markdownPath]]']
++          });
+         }
+       )
+   }

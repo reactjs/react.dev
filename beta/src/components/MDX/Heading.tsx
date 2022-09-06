@@ -71,6 +71,7 @@ export const H2 = ({className, ...props}: HeadingProps) => (
     {...props}
   />
 );
+
 export const H3 = ({className, ...props}: HeadingProps) => (
   <Heading
     as="h3"

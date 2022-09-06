@@ -5,11 +5,9 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import * as React from 'react';
-import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import Link from 'next/link';
-import {useIsMobile} from '../useMediaQuery';
 
 interface SidebarLinkProps {
   href: string;
@@ -38,17 +36,16 @@ export function SidebarLink({
   isPending,
 }: SidebarLinkProps) {
   const ref = React.useRef<HTMLAnchorElement>(null);
-  const isMobile = useIsMobile();
 
   React.useEffect(() => {
-    if (ref && ref.current && !!selected && !isMobile) {
-      scrollIntoView(ref.current, {
-        scrollMode: 'if-needed',
-        block: 'center',
-        inline: 'nearest',
-      });
+    if (selected && ref && ref.current) {
+      // @ts-ignore
+      if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {
+        // @ts-ignore
+        ref.current.scrollIntoViewIfNeeded();
+      }
     }
-  }, [ref, selected, isMobile]);
+  }, [ref, selected]);
 
   return (
     <Link href={href}>

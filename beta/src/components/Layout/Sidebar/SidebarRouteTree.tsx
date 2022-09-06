@@ -14,7 +14,7 @@ import {useLayoutEffect} from 'react';
 import usePendingRoute from 'hooks/usePendingRoute';
 
 interface SidebarRouteTreeProps {
-  isMobile?: boolean;
+  isForceExpanded: boolean;
   routeTree: RouteItem;
   level?: number;
 }
@@ -72,7 +72,7 @@ function CollapseWrapper({
 }
 
 export function SidebarRouteTree({
-  isMobile,
+  isForceExpanded,
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
@@ -109,7 +109,7 @@ export function SidebarRouteTree({
           return (
             <SidebarRouteTree
               level={level + 1}
-              isMobile={isMobile}
+              isForceExpanded={isForceExpanded}
               routeTree={{title, routes}}
             />
           );
@@ -117,7 +117,7 @@ export function SidebarRouteTree({
 
         // if route has a path and child routes, treat it as an expandable sidebar item
         if (routes) {
-          const isExpanded = isMobile || expanded === path;
+          const isExpanded = isForceExpanded || expanded === path;
           return (
             <li key={`${title}-${path}-${level}-heading`}>
               <SidebarLink
@@ -130,11 +130,11 @@ export function SidebarRouteTree({
                 wip={wip}
                 isExpanded={isExpanded}
                 isBreadcrumb={expandedPath === path}
-                hideArrow={isMobile}
+                hideArrow={isForceExpanded}
               />
               <CollapseWrapper duration={250} isExpanded={isExpanded}>
                 <SidebarRouteTree
-                  isMobile={isMobile}
+                  isForceExpanded={isForceExpanded}
                   routeTree={{title, routes}}
                   level={level + 1}
                 />

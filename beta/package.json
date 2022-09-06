@@ -37,8 +37,7 @@
     "parse-numeric-range": "^1.2.0",
     "react": "0.0.0-experimental-82c64e1a4-20220520",
     "react-collapsed": "3.1.0",
-    "react-dom": "0.0.0-experimental-82c64e1a4-20220520",
-    "scroll-into-view-if-needed": "^2.2.25"
+    "react-dom": "0.0.0-experimental-82c64e1a4-20220520"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

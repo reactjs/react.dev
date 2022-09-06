@@ -107,14 +107,18 @@ export async function getStaticProps(context) {
     presets: ['@babel/preset-react'],
   }).code;
 
-  // Prepare environment for MDX and then eval it.
+  // Prepare environment for MDX.
   let fakeExports = {};
   // For each fake MDX import, give back the string component name.
   // It will get serialized later.
   const fakeRequire = (key) => key;
   const evalJSCode = new Function('require', 'exports', 'mdx', jsCode);
   const createElement = require('react').createElement;
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // THIS IS A BUILD-TIME EVAL. NEVER DO THIS WITH UNTRUSTED MDX (LIKE FROM CMS)!!!
+  // In this case it's okay because anyone who can edit our MDX can also edit this file.
   evalJSCode(fakeRequire, fakeExports, createElement);
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const reactTree = fakeExports.default({});
 
   // Pre-process MDX output and serialize it.

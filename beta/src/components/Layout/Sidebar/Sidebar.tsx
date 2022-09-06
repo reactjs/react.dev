@@ -8,12 +8,10 @@ import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {MenuContext} from 'components/useMenu';
 import {useMediaQuery} from '../useMediaQuery';
 import {Search} from 'components/Search';
+import {MobileNav} from '../Nav/MobileNav';
 import {Feedback} from '../Feedback';
 import dynamic from 'next/dynamic';
 
-const MobileNav = dynamic(() =>
-  import("../Nav/MobileNav").then((mod) => mod.MobileNav)
-);
 const SidebarRouteTree = dynamic(() =>
   import("./SidebarRouteTree").then((mod) => mod.SidebarRouteTree)
 );

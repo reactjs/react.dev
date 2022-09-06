@@ -2,25 +2,21 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {createElement, Children, Fragment, useMemo} from 'react';
+import {Fragment, useMemo} from 'react';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
-import {prepareMDX} from '../utils/prepareMDX';
 
-export default function Layout({content, meta}) {
-  const decoded = useMemo(
+export default function Layout({content, toc, meta}) {
+  const parsedContent = useMemo(
     () => JSON.parse(content, reviveNodeOnClient),
     [content]
   );
-  const {toc, children} = useMemo(
-    () => prepareMDX(decoded.props.children),
-    [decoded]
-  );
+  const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
   return (
     <Page>
-      <MarkdownPage meta={meta} toc={toc}>
-        {children}
+      <MarkdownPage meta={meta} toc={parsedToc}>
+        {parsedContent}
       </MarkdownPage>
     </Page>
   );
@@ -82,7 +78,7 @@ export async function getStaticProps(context) {
   const {remarkPlugins} = require('../../plugins/markdownToHtml');
   const rootDir = process.cwd() + '/src/content/';
 
-  // Read MDX and make JS out of it
+  // Read MDX from the file. Parse Frontmatter data out of it.
   let path = (context.params.markdownPath || []).join('/') || 'index';
   let mdxWithFrontmatter;
   try {
@@ -91,22 +87,43 @@ export async function getStaticProps(context) {
     mdxWithFrontmatter = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
   const {content: mdx, data: meta} = fm(mdxWithFrontmatter);
-  const jsx = await compileMdx(mdx, {
+
+  // Turn the MDX we just read into some JS we can execute.
+  let mdxWithFakeImports = '';
+  for (let key in MDXComponents) {
+    if (MDXComponents.hasOwnProperty(key)) {
+      // If we don't add these fake imports, the MDX compiler
+      // will insert a bunch of opaque components we can't introspect.
+      // This will break the prepareMDX() call below.
+      mdxWithFakeImports += 'import ' + key + ' from "' + key + '";\n';
+    }
+  }
+  mdxWithFakeImports += '\n' + mdx;
+  const jsxCode = await compileMdx(mdxWithFakeImports, {
     remarkPlugins,
   });
-  const js = transform(jsx, {
+  const jsCode = transform(jsxCode, {
     plugins: ['@babel/plugin-transform-modules-commonjs'],
     presets: ['@babel/preset-react'],
   }).code;
 
-  // Run it to get JSON for render output
-  const run = new Function('exports', 'mdx', js);
-  let outputExports = {};
-  run(outputExports, createElement);
-  const reactTree = outputExports.default({});
+  // Prepare environment for MDX and then eval it.
+  let fakeExports = {};
+  // For each fake MDX import, give back the string component name.
+  // It will get serialized later.
+  const fakeRequire = (key) => key;
+  const evalJSCode = new Function('require', 'exports', 'mdx', jsCode);
+  const createElement = require('react').createElement;
+  evalJSCode(fakeRequire, fakeExports, createElement);
+  const reactTree = fakeExports.default({});
+
+  // Pre-process MDX output and serialize it.
+  const {prepareMDX} = require('../utils/prepareMDX');
+  const {toc, children} = prepareMDX(reactTree.props.children);
   return {
     props: {
-      content: JSON.stringify(reactTree, stringifyNodeOnServer),
+      content: JSON.stringify(children, stringifyNodeOnServer),
+      toc: JSON.stringify(toc, stringifyNodeOnServer),
       meta,
     },
   };

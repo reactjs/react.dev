@@ -60,7 +60,7 @@ The state starts as `{ count: 0 }`, and we increment `state.count` when the user
 
 >Note
 >
->You might be wondering why we're using a counter here instead of a more realistic example. This is to help us focus on the API while we're still making our first steps with Hooks.
+>You might be wondering why we're using a counter here instead of a more realistic example. This is to help us focus on the API while we're still making our first steps with Hooks. It's also worth noting, that the above example is simple setState for contrast. If the next state depends on the current state, we recommend using the updater function form of `setState`, instead.
 
 ## Hooks and Function Components {#hooks-and-function-components}
 

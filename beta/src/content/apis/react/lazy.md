@@ -19,3 +19,5 @@ const SomeComponent = React.lazy(() => import('./SomeComponent'));
 ```
 
 </Intro>
+
+<InlineToc />

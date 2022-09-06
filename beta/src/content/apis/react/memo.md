@@ -18,3 +18,5 @@ const MyComponent = React.memo(function MyComponent(props) {
 ```
 
 </Intro>
+
+<InlineToc />

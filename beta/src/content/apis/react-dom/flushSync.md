@@ -19,3 +19,5 @@ flushSync(callback)
 ```
 
 </Intro>
+
+<InlineToc />

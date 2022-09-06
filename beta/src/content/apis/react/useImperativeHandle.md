@@ -16,3 +16,5 @@ useImperativeHandle(ref, createHandle, [deps])
 ```
 
 </Intro>
+
+<InlineToc />

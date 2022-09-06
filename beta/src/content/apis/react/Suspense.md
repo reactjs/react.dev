@@ -16,3 +16,5 @@ This section is incomplete, please see the old docs for [Suspense](https://react
 ```
 
 </Intro>
+
+<InlineToc />

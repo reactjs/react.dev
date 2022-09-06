@@ -12,22 +12,7 @@ const [state, setState] = useState(initialState)
 
 </Intro>
 
-- [Usage](#usage)
-  - [Adding state to a component](#adding-state-to-a-component)
-  - [Updating state based on the previous state](#updating-state-based-on-the-previous-state)
-  - [Updating objects and arrays in state](#updating-objects-and-arrays-in-state)
-  - [Avoiding recreating the initial state](#avoiding-recreating-the-initial-state)
-  - [Resetting state with a key](#resetting-state-with-a-key)
-  - [Storing information from previous renders](#storing-information-from-previous-renders)
-- [Reference](#reference)
-  - [`useState(initialState)`](#usestate)
-  - [`set` functions, like `setSomething(nextState)`](#setstate)
-- [Troubleshooting](#troubleshooting)
-  - [I’ve updated the state, but logging gives me the old value](#ive-updated-the-state-but-logging-gives-me-the-old-value)
-  - [I've updated the state, but the screen doesn't update](#ive-updated-the-state-but-the-screen-doesnt-update)
-  - [I'm getting an error: "Too many re-renders"](#im-getting-an-error-too-many-re-renders)
-  - [My initializer or updater function runs twice](#my-initializer-or-updater-function-runs-twice)
-  - [I'm trying to set state to a function, but it gets called instead](#im-trying-to-set-state-to-a-function-but-it-gets-called-instead)
+<InlineToc />
 
 ---
 

@@ -17,14 +17,7 @@ hydrate(reactNode, domNode, callback?)
 
 </Intro>
 
-- [Usage](#usage)
-    - [Hydrating server-rendered HTML](#hydrating-server-rendered-html)
-    - [Unavoidable hydration mismatches](#avoiding-unavoidable-hydration-mismatches)
-    - [Handling different client and server content](#handling-different-client-and-server-content)
-- [Reference](#reference)
-    - [`hydrateRoot(domNode, reactNode, callback?)`](#hydrate-root)
-    - [`root.render(reactNode)`](#render-root)
-    - [`root.unmount()`](#unmount-root)
+<InlineToc />
 
 ---
 

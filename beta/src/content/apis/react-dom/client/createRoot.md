@@ -12,19 +12,7 @@ const root = createRoot(domNode, options?)
 
 </Intro>
 
-- [Usage](#usage)
-  - [Rendering an app fully built with React](#rendering-an-app-fully-built-with-react)
-  - [Rendering a page partially built with React](#rendering-a-page-partially-built-with-react)
-  - [Updating a root component](#updating-a-root-component)
-- [Reference](#reference)
-  - [`createRoot(domNode, options?)`](#create-root)
-  - [`root.render(reactNode)`](#root-render)
-  - [`root.unmount()`](#root-unmount)
-- [Troubleshooting](#troubleshooting)
-  - [I've created a root, but nothing is displayed](#ive-created-a-root-but-nothing-is-displayed)
-  - [I'm getting an error: "Target container is not a DOM element"](#im-getting-an-error-target-container-is-not-a-dom-element)
-  - [I'm getting an error: "Functions are not valid as a React child."](#im-getting-an-error-functions-are-not-valid-as-a-react-child)
-  - [My server-rendered HTML gets re-created from scratch](#my-server-rendered-html-gets-re-created-from-scratch)
+<InlineToc />
 
 ---
 

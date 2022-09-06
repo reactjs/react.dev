@@ -18,3 +18,5 @@ React.isValidElement(object)
 ```
 
 </Intro>
+
+<InlineToc />

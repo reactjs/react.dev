@@ -71,7 +71,7 @@ function CollapseWrapper({
   );
 }
 
-export function SidebarRouteTree({
+function SidebarRouteTree({
   isMobile,
   routeTree,
   level = 0,
@@ -160,3 +160,5 @@ export function SidebarRouteTree({
     </ul>
   );
 }
+
+export default SidebarRouteTree;

@@ -12,9 +12,7 @@ import {MobileNav} from '../Nav/MobileNav';
 import {Feedback} from '../Feedback';
 import dynamic from 'next/dynamic';
 
-const SidebarRouteTree = dynamic(() =>
-  import("./SidebarRouteTree").then((mod) => mod.SidebarRouteTree)
-);
+const SidebarRouteTree = dynamic(() => import("./SidebarRouteTree"));
 
 const SIDEBAR_BREAKPOINT = 1023;
 

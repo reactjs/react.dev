@@ -49,7 +49,7 @@ async function handleFormSubmit(e) {
   } catch (err) {
     show(errorMessage);
     errorMessage.textContent = err.message;
-  } finally {  
+  } finally {
     hide(loadingMessage);
     enable(textarea);
     enable(button);
@@ -373,7 +373,7 @@ You want to avoid duplication in the state content so you're only tracking what 
 
 Here are some questions you can ask about your state variables:
 
-* **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`. 
+* **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`.
 * **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `answer.length === 0`.
 * **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
 
@@ -572,7 +572,7 @@ export default function Picture() {
   } else {
     backgroundClassName += ' background--active';
   }
-  
+
   return (
     <div
       className={backgroundClassName}
@@ -702,14 +702,14 @@ Here is a small form implemented with plain JavaScript and DOM. Play with it to 
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (button.textContent === 'Edit Profile') {
-    button.textContent = 'Save Profile';
+  if (editButton.textContent === 'Edit Profile') {
+    editButton.textContent = 'Save Profile';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    button.textContent = 'Edit Profile';
+    editButton.textContent = 'Edit Profile';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -744,11 +744,11 @@ function show(el) {
 }
 
 let form = document.getElementById('form');
-let profile = document.getElementById('profile');
 let editButton = document.getElementById('editButton');
 let firstNameInput = document.getElementById('firstNameInput');
 let firstNameText = document.getElementById('firstNameText');
 let lastNameInput = document.getElementById('lastNameInput');
+let lastNameText = document.getElementById('lastNameText');
 let helloText = document.getElementById('helloText');
 form.onsubmit = handleFormSubmit;
 firstNameInput.oninput = handleFirstNameChange;
@@ -764,7 +764,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -772,14 +772,14 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="button">Edit Profile</button>
+  <button type="submit" id="editButton">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
@@ -904,14 +904,14 @@ Here is the original sandbox from the previous challenge, written imperatively w
 ```js index.js active
 function handleFormSubmit(e) {
   e.preventDefault();
-  if (button.textContent === 'Edit Profile') {
-    button.textContent = 'Save Profile';
+  if (editButton.textContent === 'Edit Profile') {
+    editButton.textContent = 'Save Profile';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    button.textContent = 'Edit Profile';
+    editButton.textContent = 'Edit Profile';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -946,11 +946,11 @@ function show(el) {
 }
 
 let form = document.getElementById('form');
-let profile = document.getElementById('profile');
 let editButton = document.getElementById('editButton');
 let firstNameInput = document.getElementById('firstNameInput');
 let firstNameText = document.getElementById('firstNameText');
 let lastNameInput = document.getElementById('lastNameInput');
+let lastNameText = document.getElementById('lastNameText');
 let helloText = document.getElementById('helloText');
 form.onsubmit = handleFormSubmit;
 firstNameInput.oninput = handleFirstNameChange;
@@ -966,7 +966,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -974,14 +974,14 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="button">Edit Profile</button>
+  <button type="submit" id="editButton">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
@@ -1035,10 +1035,10 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    button.textContent = 'Save Profile';
+    editButton.textContent = 'Save Profile';
     // TODO: show inputs, hide content
   } else {
-    button.textContent = 'Edit Profile';
+    editButton.textContent = 'Edit Profile';
     // TODO: hide inputs, show content
   }
   // TODO: update text labels
@@ -1053,11 +1053,11 @@ function show(el) {
 }
 
 let form = document.getElementById('form');
-let profile = document.getElementById('profile');
 let editButton = document.getElementById('editButton');
 let firstNameInput = document.getElementById('firstNameInput');
 let firstNameText = document.getElementById('firstNameText');
 let lastNameInput = document.getElementById('lastNameInput');
+let lastNameText = document.getElementById('lastNameText');
 let helloText = document.getElementById('helloText');
 form.onsubmit = handleFormSubmit;
 firstNameInput.oninput = handleFirstNameChange;
@@ -1073,7 +1073,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -1081,14 +1081,14 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="button">Edit Profile</button>
+  <button type="submit" id="editButton">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 
@@ -1142,13 +1142,13 @@ function setIsEditing(value) {
 
 function updateDOM() {
   if (isEditing) {
-    button.textContent = 'Save Profile';
+    editButton.textContent = 'Save Profile';
     hide(firstNameText);
     hide(lastNameText);
     show(firstNameInput);
     show(lastNameInput);
   } else {
-    button.textContent = 'Edit Profile';
+    editButton.textContent = 'Edit Profile';
     hide(firstNameInput);
     hide(lastNameInput);
     show(firstNameText);
@@ -1172,11 +1172,11 @@ function show(el) {
 }
 
 let form = document.getElementById('form');
-let profile = document.getElementById('profile');
 let editButton = document.getElementById('editButton');
 let firstNameInput = document.getElementById('firstNameInput');
 let firstNameText = document.getElementById('firstNameText');
 let lastNameInput = document.getElementById('lastNameInput');
+let lastNameText = document.getElementById('lastNameText');
 let helloText = document.getElementById('helloText');
 form.onsubmit = handleFormSubmit;
 firstNameInput.oninput = handleFirstNameChange;
@@ -1192,7 +1192,7 @@ lastNameInput.oninput = handleLastNameChange;
 ```html public/index.html
 <form id="form">
   <label>
-    First name: 
+    First name:
     <b id="firstNameText">Jane</b>
     <input
       id="firstNameInput"
@@ -1200,14 +1200,14 @@ lastNameInput.oninput = handleLastNameChange;
       style="display: none">
   </label>
   <label>
-    Last name: 
+    Last name:
     <b id="lastNameText">Jacobs</b>
     <input
       id="lastNameInput"
       value="Jacobs"
       style="display: none">
   </label>
-  <button type="submit" id="button">Edit Profile</button>
+  <button type="submit" id="editButton">Edit Profile</button>
   <p><i id="helloText">Hello, Jane Jacobs!</i></p>
 </form>
 

@@ -182,6 +182,10 @@
             {
               "title": "Removing Effect Dependencies",
               "path": "/learn/removing-effect-dependencies"              
+            },
+            {
+              "title": "Reusing Logic with Custom Hooks",
+              "path": "/learn/reusing-logic-with-custom-hooks"
             }
           ]
         }

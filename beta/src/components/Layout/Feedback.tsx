@@ -7,9 +7,9 @@ import {useRouter} from 'next/router';
 import {ga} from '../../utils/analytics';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
-  const {pathname} = useRouter();
+  const {asPath} = useRouter();
   // Reset on route changes.
-  return <SendFeedback key={pathname} onSubmit={onSubmit} />;
+  return <SendFeedback key={asPath} onSubmit={onSubmit} />;
 }
 
 const thumbsUpIcon = (

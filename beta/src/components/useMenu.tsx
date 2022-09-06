@@ -48,7 +48,7 @@ export const useMenu = () => {
     return () => {
       clearAllBodyScrollLocks();
     };
-  }, [router.pathname, hideSidebar]);
+  }, [router.asPath, hideSidebar]);
 
   // Avoid top-level context re-renders
   return React.useMemo(

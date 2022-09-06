@@ -6,6 +6,7 @@ import cn from 'classnames';
 import {
   SandpackCodeViewer,
   SandpackProvider,
+  SandpackThemeProvider,
 } from '@codesandbox/sandpack-react';
 import rangeParser from 'parse-numeric-range';
 import {CustomTheme} from '../Sandpack/Themes';
@@ -67,29 +68,27 @@ const CodeBlock = function CodeBlock({
   const decorators = getDecoratedLineInfo();
   return (
     <div
+      translate="no"
       className={cn(
-        'sandpack sandpack--codeblock',
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
         !noMargin && 'my-8'
       )}>
       <SandpackProvider
-        files={{
-          [filename]: {
-            code: children.trimEnd(),
-          },
-        }}
         customSetup={{
           entry: filename,
-        }}
-        options={{
-          initMode: 'immediate',
-        }}
-        theme={CustomTheme}>
-        <SandpackCodeViewer
-          key={children.trimEnd()}
-          showLineNumbers={false}
-          decorators={decorators}
-        />
+          files: {
+            [filename]: {
+              code: children.trimEnd(),
+            },
+          },
+        }}>
+        <SandpackThemeProvider theme={CustomTheme}>
+          <SandpackCodeViewer
+            key={children.trimEnd()}
+            showLineNumbers={false}
+            decorators={decorators}
+          />
+        </SandpackThemeProvider>
       </SandpackProvider>
     </div>
   );

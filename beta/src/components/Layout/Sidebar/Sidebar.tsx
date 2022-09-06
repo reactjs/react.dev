@@ -14,9 +14,8 @@ import dynamic from 'next/dynamic';
 const MobileNav = dynamic(() =>
   import("../Nav/MobileNav").then((mod) => mod.MobileNav)
 );
-const SidebarRouteTree = dynamic(
-  () => import("./SidebarRouteTree").then((mod) => mod.SidebarRouteTree),
-  { suspense: true }
+const SidebarRouteTree = dynamic(() =>
+  import("./SidebarRouteTree").then((mod) => mod.SidebarRouteTree)
 );
 
 const SIDEBAR_BREAKPOINT = 1023;

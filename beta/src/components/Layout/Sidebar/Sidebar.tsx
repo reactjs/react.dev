@@ -7,10 +7,12 @@ import cn from 'classnames';
 import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {MenuContext} from 'components/useMenu';
 import {useMediaQuery} from '../useMediaQuery';
-import {SidebarRouteTree} from './SidebarRouteTree';
 import {Search} from 'components/Search';
-import {MobileNav} from '../Nav/MobileNav';
 import {Feedback} from '../Feedback';
+import dynamic from 'next/dynamic';
+
+const SidebarRouteTree = dynamic(() => import('./SidebarRouteTree'));
+const MobileNav = dynamic(() => import('../Nav/MobileNav'));
 
 const SIDEBAR_BREAKPOINT = 1023;
 

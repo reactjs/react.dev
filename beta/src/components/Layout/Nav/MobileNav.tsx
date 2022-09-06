@@ -12,7 +12,7 @@ import sidebarHome from '../../../sidebarHome.json';
 import sidebarLearn from '../../../sidebarLearn.json';
 import sidebarReference from '../../../sidebarReference.json';
 
-export function MobileNav() {
+function MobileNav() {
   // This is where we actually are according to the router.
   const section = useActiveSection();
 
@@ -77,3 +77,5 @@ function TabButton({
     </button>
   );
 }
+
+export default MobileNav;

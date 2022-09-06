@@ -19,3 +19,5 @@ createPortal(child, container)
 ```
 
 </Intro>
+
+<InlineToc />

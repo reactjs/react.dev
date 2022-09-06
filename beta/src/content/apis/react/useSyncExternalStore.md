@@ -18,3 +18,5 @@ const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?);
 ```
 
 </Intro>
+
+<InlineToc />

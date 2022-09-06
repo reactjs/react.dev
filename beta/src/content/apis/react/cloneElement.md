@@ -16,3 +16,5 @@ React.cloneElement(element, [config], [...children])
 ```
 
 </Intro>
+
+<InlineToc />

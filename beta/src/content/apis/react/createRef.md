@@ -16,3 +16,5 @@ React.createRef();
 ```
 
 </Intro>
+
+<InlineToc />

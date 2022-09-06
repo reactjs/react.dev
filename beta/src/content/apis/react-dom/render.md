@@ -19,14 +19,7 @@ render(reactNode, domNode, callback?)
 
 </Intro>
 
-
-
-- [Usage](#usage)
-  - [Rendering the root component](#rendering-the-root-component)
-  - [Rendering multiple roots](#rendering-multiple-roots)
-  - [Updating the rendered tree](#updating-the-rendered-tree)
-- [Reference](#reference)
-  - [`render(reactNode, domNode, callback?)`](#render)
+<InlineToc />
 
 ---
 

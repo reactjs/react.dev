@@ -12,15 +12,7 @@ const SomeContext = createContext(defaultValue)
 
 </Intro>
 
-- [Usage](#usage)
-  - [Creating context](#creating-context)
-  - [Importing and exporting context from a file](#importing-and-exporting-context-from-a-file)
-- [Reference](#reference)
-  - [`createContext(defaultValue)`](#createcontext)
-  - [`SomeContext.Provider`](#provider)
-  - [`SomeContext.Consumer`](#consumer)
-- [Troubleshooting](#troubleshooting)
-  - [I can't find a way to change the context value](#troubleshooting)
+<InlineToc />
 
 ---
 

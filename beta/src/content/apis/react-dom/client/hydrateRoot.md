@@ -12,13 +12,7 @@ const root = hydrateRoot(domNode, reactNode, options?)
 
 </Intro>
 
-- [Usage](#usage)
-  - [Hydrating server-rendered HTML](#hydrating-server-rendered-html)
-  - [Updating a hydrated root component](#updating-a-hydrated-root-component)
-- [Reference](#reference)
-  - [`hydrateRoot(domNode, reactNode, options?)`](#hydrate-root)
-  - [`root.render(reactNode)`](#root-render)
-  - [`root.unmount()`](#root-unmount)
+<InlineToc />
 
 ---
 

@@ -19,3 +19,5 @@ renderToReadableStream(element, options);
 ```
 
 </Intro>
+
+<InlineToc />

@@ -24,3 +24,5 @@ class Welcome extends React.Component {
 The only method you must define in a `React.Component` subclass is called `render()`. All the other methods described on are optional. Please see the old [React.Component](https://reactjs.org/docs/react-component.html) docs for more info.
 
 </Intro>
+
+<InlineToc />

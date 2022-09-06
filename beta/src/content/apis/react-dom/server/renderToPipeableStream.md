@@ -19,3 +19,5 @@ renderToPipeableStream(element, options)
 ```
 
 </Intro>
+
+<InlineToc />

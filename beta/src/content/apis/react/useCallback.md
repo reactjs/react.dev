@@ -16,3 +16,5 @@ const memoizedCallback = useCallback(callback, [...dependencies])
 ```
 
 </Intro>
+
+<InlineToc />

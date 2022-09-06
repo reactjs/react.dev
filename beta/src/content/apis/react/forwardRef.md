@@ -22,3 +22,5 @@ const FancyButton = React.forwardRef((props, ref) => (
 ```
 
 </Intro>
+
+<InlineToc />

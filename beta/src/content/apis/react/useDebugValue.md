@@ -18,3 +18,5 @@ useDebugValue(value)
 ```
 
 </Intro>
+
+<InlineToc />

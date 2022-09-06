@@ -16,3 +16,5 @@ const memoizedValue = useMemo(callback, [...dependencies])
 ```
 
 </Intro>
+
+<InlineToc />

@@ -16,3 +16,5 @@ React.startTransition(callback);
 ```
 
 </Intro>
+
+<InlineToc />

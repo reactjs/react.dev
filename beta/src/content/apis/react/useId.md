@@ -19,6 +19,8 @@ const id = useId();
 
 </Intro>
 
+<InlineToc />
+
 <Gotcha>
 
 `useId` is not for generating keys in a list. Keys should be generated from your data.

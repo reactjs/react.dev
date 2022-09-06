@@ -24,3 +24,5 @@ class Welcome extends React.PureComponent {
 ```
 
 </Intro>
+
+<InlineToc />

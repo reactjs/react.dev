@@ -27,6 +27,8 @@ import YouWillLearnCard from './YouWillLearnCard';
 import {Challenges, Hint, Solution} from './Challenges';
 import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
+import {TocContext} from './TocContext';
+import type {Toc, TocItem} from './TocContext';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -270,6 +272,56 @@ function IllustrationBlock({
   );
 }
 
+type NestedTocRoot = {
+  item: null;
+  children: Array<NestedTocNode>;
+};
+
+type NestedTocNode = {
+  item: TocItem;
+  children: Array<NestedTocNode>;
+};
+
+function calculateNestedToc(toc: Toc): NestedTocRoot {
+  const currentAncestors = new Map<number, NestedTocNode | NestedTocRoot>();
+  const root: NestedTocRoot = {
+    item: null,
+    children: [],
+  };
+  const startIndex = 1; // Skip "Overview"
+  for (let i = startIndex; i < toc.length; i++) {
+    const item = toc[i];
+    const currentParent: NestedTocNode | NestedTocRoot =
+      currentAncestors.get(item.depth - 1) || root;
+    const node: NestedTocNode = {
+      item,
+      children: [],
+    };
+    currentParent.children.push(node);
+    currentAncestors.set(item.depth, node);
+  }
+  return root;
+}
+
+function InlineToc() {
+  const toc = React.useContext(TocContext);
+  const root = React.useMemo(() => calculateNestedToc(toc), [toc]);
+  return <InlineTocItem items={root.children} />;
+}
+
+function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
+  return (
+    <UL>
+      {items.map((node) => (
+        <LI key={node.item.url}>
+          <Link href={node.item.url}>{node.item.text}</Link>
+          {node.children.length > 0 && <InlineTocItem items={node.children} />}
+        </LI>
+      ))}
+    </UL>
+  );
+}
+
 export const MDXComponents = {
   p: P,
   strong: Strong,
@@ -309,6 +361,7 @@ export const MDXComponents = {
   Illustration,
   IllustrationBlock,
   Intro,
+  InlineToc,
   LearnMore,
   Math,
   MathI,

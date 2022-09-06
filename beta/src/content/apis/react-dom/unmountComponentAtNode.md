@@ -18,3 +18,5 @@ unmountComponentAtNode(container)
 ```
 
 </Intro>
+
+<InlineToc />

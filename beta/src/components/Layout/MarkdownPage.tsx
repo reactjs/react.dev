@@ -8,6 +8,7 @@ import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
+import {TocContext} from '../MDX/TocContext';
 import {Toc} from './Toc';
 
 export interface MarkdownProps<Frontmatter> {
@@ -43,7 +44,9 @@ export function MarkdownPage<
           />
         )}
         <div className="px-5 sm:px-12">
-          <div className="max-w-7xl mx-auto">{children}</div>
+          <div className="max-w-7xl mx-auto">
+            <TocContext.Provider value={toc}>{children}</TocContext.Provider>
+          </div>
           <DocsPageFooter
             route={route}
             nextRoute={nextRoute}

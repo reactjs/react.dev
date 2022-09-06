@@ -8,3 +8,4 @@ This section is incomplete, please see the old docs for [StrictMode](https://rea
 
 </Wip>
 
+<InlineToc />

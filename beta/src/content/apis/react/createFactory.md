@@ -16,3 +16,5 @@ React.createFactory(type)
 ```
 
 </Intro>
+
+<InlineToc />

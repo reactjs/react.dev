@@ -16,3 +16,5 @@ useLayoutEffect(callback, [...dependencies])
 ```
 
 </Intro>
+
+<InlineToc />

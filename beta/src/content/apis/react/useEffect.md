@@ -16,3 +16,5 @@ useEffect(callback, [...dependencies])
 ```
 
 </Intro>
+
+<InlineToc />

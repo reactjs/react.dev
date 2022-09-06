@@ -5,12 +5,9 @@
 import cx from 'classnames';
 import * as React from 'react';
 import {useTocHighlight} from './useTocHighlight';
+import type {Toc} from '../MDX/TocContext';
 
-export function Toc({
-  headings,
-}: {
-  headings: Array<{url: string; text: React.ReactNode; depth: number}>;
-}) {
+export function Toc({headings}: {headings: Toc}) {
   const {currentIndex} = useTocHighlight();
   // TODO: We currently have a mismatch between the headings in the document
   // and the headings we find in MarkdownPage (i.e. we don't find Recap or Challenges).

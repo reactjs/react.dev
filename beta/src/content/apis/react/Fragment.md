@@ -21,13 +21,7 @@ function Component() {
 
 </Intro>
 
-- [Usage](#usage)
-  - [Returning multiple elements](#returning-multiple-elements)
-  - [Assigning multiple elements to a variable](#assigning-multiple-elements-to-a-variable)
-  - [Grouping elements with text](#grouping-elements-with-text)
-  - [Rendering a list of Fragments](#rendering-a-list-of-fragments)
-- [Reference](#reference)
-  - [React.Fragment](#react-fragment) 
+<InlineToc />
 
 ---
 

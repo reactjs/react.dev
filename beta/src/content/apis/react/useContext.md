@@ -12,17 +12,7 @@ const value = useContext(SomeContext)
 
 </Intro>
 
-- [Usage](#usage)
-  - [Passing data deeply into the tree](#passing-data-deeply-into-the-tree)
-  - [Updating data passed via context](#updating-data-passed-via-context)
-  - [Specifying a fallback default value](#specifying-a-fallback-default-value)
-  - [Overriding context for a part of the tree](#overriding-context-for-a-part-of-the-tree)
-  - [Optimizing re-renders when passing objects and functions](#optimizing-re-renders-when-passing-objects-and-functions)
-- [Reference](#reference)
-  - [`useContext(SomeContext)`](#usecontext)
-- [Troubleshooting](#troubleshooting)
-  - [My component doesn't see the value from my provider](#my-component-doesnt-see-the-value-from-my-provider)
-  - [I am always getting undefined from my context although the default value is different](#i-am-always-getting-undefined-from-my-context-although-the-default-value-is-different)
+<InlineToc />
 
 ---
 

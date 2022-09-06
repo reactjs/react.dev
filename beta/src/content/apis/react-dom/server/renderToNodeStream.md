@@ -19,3 +19,5 @@ renderToNodeStream(element)
 ```
 
 </Intro>
+
+<InlineToc />

@@ -16,3 +16,5 @@ React.createElement(type, [props], [...children])
 ```
 
 </Intro>
+
+<InlineToc />

@@ -69,14 +69,14 @@ function getTableOfContents(children) {
       if (child.type === 'Challenges') {
         return {
           url: '#challenges',
-          depth: 0,
+          depth: 2,
           text: 'Challenges',
         };
       }
       if (child.type === 'Recap') {
         return {
           url: '#recap',
-          depth: 0,
+          depth: 2,
           text: 'Recap',
         };
       }
@@ -88,9 +88,9 @@ function getTableOfContents(children) {
     });
   if (anchors.length > 0) {
     anchors.unshift({
-      depth: 1,
-      text: 'Overview',
       url: '#',
+      text: 'Overview',
+      depth: 2,
     });
   }
   return anchors;

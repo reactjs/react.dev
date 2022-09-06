@@ -19,3 +19,5 @@ renderToStaticNodeStream(element)
 ```
 
 </Intro>
+
+<InlineToc />

@@ -18,3 +18,5 @@ const deferredValue = useDeferredValue(value);
 ```
 
 </Intro>
+
+<InlineToc />

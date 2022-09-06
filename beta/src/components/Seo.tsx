@@ -31,16 +31,7 @@ export const Seo = withRouter(
       {description != null && (
         <meta name="description" key="description" content={description} />
       )}
-      <meta
-        name="theme-color"
-        content={
-          typeof window !== 'undefined'
-            ? window?.__theme === 'dark'
-              ? '#23272F'
-              : '#F6F7F9'
-            : '#23272F'
-        }
-      />
+      <meta name="theme-color" key="theme-color" content="#087ea4" />
       {/* <link rel="icon" type="image/x-icon" href={favicon} />
       <link rel="apple-touch-icon" href={favicon} />  @todo favicon */}
       <meta property="fb:app_id" content="623268441017527" />

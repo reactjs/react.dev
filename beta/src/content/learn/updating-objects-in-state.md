@@ -25,7 +25,7 @@ You can store any kind of JavaScript value in state.
 const [x, setX] = useState(0);
 ```
 
-So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable," meaning unchangeable or "read-only". You can trigger a re-render to _replace_ a value:
+So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable", meaning unchangeable or "read-only". You can trigger a re-render to _replace_ a value:
 
 ```js
 setX(5);

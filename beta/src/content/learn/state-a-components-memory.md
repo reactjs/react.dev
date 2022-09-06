@@ -333,7 +333,7 @@ button {
 
 ### Meet your first Hook {/*meet-your-first-hook*/}
 
-In React, `useState`, as well as any other function starting with "`use`," is called a Hook.
+In React, `useState`, as well as any other function starting with "`use`", is called a Hook.
 
 *Hooks* are special functions that are only available while React is [rendering](/learn/render-and-commit#step-1-trigger-a-render) (which we'll get into in more detail on the next page). They let you "hook into" different React features.
 

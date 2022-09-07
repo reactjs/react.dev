@@ -1305,7 +1305,7 @@ function MyApp() {
 }
 ```
 
-The `login` function does not use any information from the render scope, so you can specify an empty array of dependencies. The `contextValue` object consists of `currentUser` and `login`, so it needs to list both as dependencies. As a result of this change, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` changes. Read more about [skipping re-renders with memoization](TODO).
+The `login` function does not use any information from the render scope, so you can specify an empty array of dependencies. The `contextValue` object consists of `currentUser` and `login`, so it needs to list both as dependencies. As a result of this change, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` changes. Read more about [skipping re-renders with memoization](TODO:/learn/skipping-unchanged-trees).
 
 ---
 

@@ -3,11 +3,13 @@
  */
 
 import {Children} from 'react';
-import {MDXComponents} from 'components/MDX/MDXComponents';
-
-const {MaxWidth} = MDXComponents;
 
 // TODO: This logic could be in MDX plugins instead.
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export const PREPARE_MDX_CACHE_BREAKER = 2;
+// !!! IMPORTANT !!! Bump this if you change any logic.
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export function prepareMDX(rawChildren) {
   const toc = getTableOfContents(rawChildren);

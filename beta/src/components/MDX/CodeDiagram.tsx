@@ -12,7 +12,7 @@ interface CodeDiagramProps {
 
 export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
   const illustration = React.Children.toArray(children).filter((child: any) => {
-    return child.type?.mdxName === 'img';
+    return child.type === 'img';
   });
   const content = React.Children.toArray(children).map((child: any) => {
     if (child.type?.mdxName === 'pre') {
@@ -23,7 +23,7 @@ export function CodeDiagram({children, flip = false}: CodeDiagramProps) {
           noMarkers={true}
         />
       );
-    } else if (child.type?.mdxName === 'img') {
+    } else if (child.type === 'img') {
       return null;
     } else {
       return child;

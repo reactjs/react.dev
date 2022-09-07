@@ -36,9 +36,8 @@
     "next-remote-watch": "^1.0.0",
     "parse-numeric-range": "^1.2.0",
     "react": "0.0.0-experimental-82c64e1a4-20220520",
-    "react-collapsed": "3.1.0",
-    "react-dom": "0.0.0-experimental-82c64e1a4-20220520",
-    "scroll-into-view-if-needed": "^2.2.25"
+    "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
+    "react-dom": "0.0.0-experimental-82c64e1a4-20220520"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
@@ -74,6 +73,7 @@
     "is-ci": "^3.0.1",
     "lint-staged": ">=10",
     "mdast-util-to-string": "^1.1.0",
+    "metro-cache": "0.72.2",
     "npm-run-all": "^4.1.5",
     "patch-package": "^6.2.2",
     "postcss": "^8.4.5",

@@ -626,7 +626,7 @@ for (let i = 0; i < 20; i++) {
 
 ## Best practices for DOM manipulation with refs {/*best-practices-for-dom-manipulation-with-refs*/}
 
-Refs are an escape hatch. You should only use them when you have to "step outside React." Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
+Refs are an escape hatch. You should only use them when you have to "step outside React". Common examples of this include managing focus, scroll position, or calling browser APIs that React does not expose.
 
 If you stick to non-destructive actions like focusing and scrolling, you shouldn't encounter any problems. However, if you try to **modify** the DOM manually, you can risk conflicting with the changes React is making.
 

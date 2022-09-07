@@ -502,7 +502,7 @@ Read **[Preserving and Resetting State](/learn/preserving-and-resetting-state)**
 
 ## Extracting state logic into a reducer {/*extracting-state-logic-into-a-reducer*/}
 
-Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer." Your event handlers become concise because they only specify the user "actions." At the bottom of the file, the reducer function specifies how the state should update in response to each action!
+Components with many state updates spread across many event handlers can get overwhelming. For these cases, you can consolidate all the state update logic outside your component in a single function, called "reducer". Your event handlers become concise because they only specify the user "actions". At the bottom of the file, the reducer function specifies how the state should update in response to each action!
 
 <Sandpack>
 

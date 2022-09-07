@@ -47,7 +47,7 @@ To write an Effect, follow these three steps:
 
 1. **Declare an Effect.** By default, your Effect will run after every render.
 2. **Specify the Effect dependencies.** Most Effects should only re-run *when needed* rather than after every render. For example, a fade-in animation should only trigger when a component appears. Connecting and disconnecting to a chat room should only happen when the component appears and disappears, or when the chat room changes. You will learn how to control this by specifying *dependencies.*
-3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect," "subscribe" needs "unsubscribe," and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
+3. **Add cleanup if needed.** Some Effects need to specify how to stop, undo, or clean up whatever they were doing. For example, "connect" needs "disconnect", "subscribe" needs "unsubscribe", and "fetch" needs either "cancel" or "ignore". You will learn how to do this by returning a *cleanup function*.
 
 Let's look at each of these steps in detail.
 
@@ -481,7 +481,7 @@ useEffect(() => {
 }, []);
 ```
 
-**The code inside the Effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts," i.e. appears on the screen for the first time.**
+**The code inside the Effect does not use any props or state, so your dependency array is `[]` (empty). This tells React to only run this code when the component "mounts", i.e. appears on the screen for the first time.**
 
 Let's try running this code:
 
@@ -588,7 +588,7 @@ Now you get three console logs in development:
 
 ## How to handle the Effect firing twice in development? {/*how-to-handle-the-effect-firing-twice-in-development*/}
 
-React intentionally remounts your components in development to help you find bugs like in the last example. **The right question isn't "how to run an Effect once," but "how to fix my Effect so that it works after remounting".**
+React intentionally remounts your components in development to help you find bugs like in the last example. **The right question isn't "how to run an Effect once", but "how to fix my Effect so that it works after remounting".**
 
 Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the Effect running once (as in production) and an _effect → cleanup → effect_ sequence (as you'd see in development).
 
@@ -825,7 +825,7 @@ You will see three logs at first: `Schedule "a" log`, `Cancel "a" log`, and `Sch
 
 Now edit the input to say `abc`. If you do it fast enough, you'll see `Schedule "ab" log` immediately followed by `Cancel "ab" log` and `Schedule "abc" log`. **React always cleans up the previous render's Effect before the next render's Effect.** This is why even if you type into the input fast, there is at most one timeout scheduled at a time. Edit the input a few times and watch the console to get a feel for how Effects get cleaned up.
 
-Type something into the input and then immediately press "Unmount the component." **Notice how unmounting cleans up the last render's Effect.** In this example, it clears the last timeout before it has a chance to fire.
+Type something into the input and then immediately press "Unmount the component". **Notice how unmounting cleans up the last render's Effect.** In this example, it clears the last timeout before it has a chance to fire.
 
 Finally, edit the component above and **comment out the cleanup function** so that the timeouts don't get cancelled. Try typing `abcde` fast. What do you expect to happen in three seconds? Will `console.log(text)` inside the timeout print the *latest* `text` and produce five `abcde` logs? Give it a try to check your intution!
 

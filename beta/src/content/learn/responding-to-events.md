@@ -363,7 +363,7 @@ All events propagate in React except `onScroll`, which only works on the JSX tag
 
 ### Stopping propagation {/*stopping-propagation*/}
 
-Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event." You can use this object to read information about the event.
+Event handlers receive an **event object** as their only argument. By convention, it's usually called `e`, which stands for "event". You can use this object to read information about the event.
 
 That event object also lets you stop the propagation. If you want to prevent an event from reaching parent components, you need to call `e.stopPropagation()` like this `Button` component does:
 

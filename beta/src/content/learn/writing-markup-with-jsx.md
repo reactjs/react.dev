@@ -60,7 +60,7 @@ Each React component is a JavaScript function that may contain some markup that 
 
 <Note>
 
-[JSX and React are two separate things](/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) you _can_ use independently of each other.
+[JSX and React are two separate things](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) you _can_ use independently of each other.
 
 </Note>
 
@@ -169,7 +169,7 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[React fragment](TODO)*. React fragments let you group things without leaving any trace in the browser HTML tree.
+This empty tag is called a *[React fragment](/apis/react/Fragment)*. React fragments let you group things without leaving any trace in the browser HTML tree.
 
 <DeepDive title="Why do multiple JSX tags need to be wrapped?">
 

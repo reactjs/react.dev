@@ -68,7 +68,7 @@ export function SidebarLink({
               !selected && !heading,
             'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               selected,
-            'dark:bg-gray-60 bg-gray-3 dark:hover:bg-gray-60 hover:bg-gray-3':
+            'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
               isPending,
           }
         )}>

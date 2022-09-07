@@ -244,7 +244,7 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-      <IMG
+        <IMG
           src={info.src}
           alt={info.alt}
           height={info.height}

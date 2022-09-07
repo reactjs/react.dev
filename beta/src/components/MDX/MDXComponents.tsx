@@ -248,7 +248,7 @@ function IllustrationBlock({
           src={info.src}
           alt={info.alt}
           height={info.height}
-          loading={index > 0 && "lazy"}
+          loading={index > 0 ? "lazy" : undefined}
         />
       </div>
       {info.caption ? (

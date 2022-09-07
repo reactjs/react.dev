@@ -85,6 +85,16 @@ li { margin-bottom: 10px; }
 
 </Sandpack>
 
+Notice the sandbox above displays a console error:
+
+<ConsoleBlock level="error">
+
+Warning: Each child in a list should have a unique "key" prop.
+
+</ConsoleBlock>
+
+You'll learn how to fix this error later on this page. Before we get to that, let's add some structure to your data.
+
 ## Filtering arrays of items {/*filtering-arrays-of-items*/}
 
 This data can be structured even more.
@@ -256,7 +266,7 @@ Arrow functions containing `=> {` are said to have a ["block body"](https://deve
 
 ## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
 
-If you open any of the sandboxes above in a new tab, you'll see an error in the console:
+Notice that all the sandboxes above show an error in the console:
 
 <ConsoleBlock level="error">
 

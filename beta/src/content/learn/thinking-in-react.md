@@ -435,6 +435,14 @@ td {
 
 </Sandpack>
 
+Notice that editing the form doesn't work yet. There is a console error in the sandbox above explaining why:
+
+<ConsoleBlock level="error">
+
+You provided a \`value\` prop to a form field without an \`onChange\` handler. This will render a read-only field.
+
+</ConsoleBlock>
+
 In the sandbox above, `ProductTable` and `SearchBar` read the `filterText` and `inStockOnly` props to render the table, the input, and the checkbox. For example, here is how `SearchBar` populates the input value:
 
 ```js {1,6}
@@ -447,8 +455,8 @@ function SearchBar({ filterText, inStockOnly }) {
         placeholder="Search..."/>
 ```
 
+However, you haven't added any code to respond to the user actions like typing yet. This wil be your final step.
 
-Refer to the [Managing State](/learn/managing-state) to dive deeper into how React uses state and how you can organize your app with it.
 
 ## Step 5: Add inverse data flow {/*step-5-add-inverse-data-flow*/}
 

@@ -373,7 +373,7 @@ export default function MyForm() {
 
 </Sandpack>
 
-Clicking the button will print an error message to the console:
+To help you notice the issue, React also prints an error to the console:
 
 <ConsoleBlock level="error">
 

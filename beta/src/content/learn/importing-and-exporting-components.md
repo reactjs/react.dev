@@ -126,7 +126,7 @@ Either `'./Gallery.js'` or `'./Gallery'` will work with React, though the former
 
 </Note>
 
-<DeepDive title="Default vs Named Exports">
+<DeepDive title="Default vs named exports">
 
 There are two primary ways to export values with JavaScript: default exports and named exports. So far, our examples have only used default exports. But you can use one or both of them in the same file. **A file can have no more than one _default_ export, but it can have as many _named_ exports as you like.**
 

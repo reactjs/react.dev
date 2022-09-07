@@ -108,6 +108,11 @@ export async function getStaticProps(context) {
       );
       return cached;
     }
+    if (process.ENV.NODE_ENV === 'production') {
+      console.log(
+        'Cache miss for MDX for /' + path + ' from ./node_modules/.cache/'
+      );
+    }
     const output = await compileMdxToJs(mdxContent, mdxComponentNames);
     await store.set(hash, output);
     return output;

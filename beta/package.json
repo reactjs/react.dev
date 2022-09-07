@@ -27,6 +27,7 @@
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.3.0",
     "body-scroll-lock": "^3.1.3",
+    "chrome-aws-lambda": "^10.1.0",
     "classnames": "^2.2.6",
     "date-fns": "^2.16.1",
     "debounce": "^1.2.1",
@@ -35,6 +36,7 @@
     "next": "12.1.7-canary.11",
     "next-remote-watch": "^1.0.0",
     "parse-numeric-range": "^1.2.0",
+    "puppeteer": "^17.1.1",
     "react": "0.0.0-experimental-82c64e1a4-20220520",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
     "react-dom": "0.0.0-experimental-82c64e1a4-20220520"

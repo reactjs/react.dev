@@ -6,6 +6,15 @@ import React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 
+interface Process {
+  env: {VERCEL_URL: string};
+}
+declare var process: Process;
+
+console.log(process.env);
+const apiURL = process.env.VERCEL_URL
+  ? 'https://' + process.env?.VERCEL_URL
+  : 'http://localhost:3000';
 export interface SeoProps {
   title: string;
   description?: string;
@@ -54,10 +63,8 @@ export const Seo = withRouter(
 
       <meta
         property="og:image"
-        key="og:image"
-        content={`https://beta.reactjs.org${image}`}
+        content={`${apiURL}/api?description=${description}&title=${title}`}
       />
-
       {/* TWITTER */}
       <meta
         name="twitter:card"

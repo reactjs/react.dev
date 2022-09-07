@@ -4,6 +4,7 @@
   "private": true,
   "license": "CC",
   "scripts": {
+    "preinstall": "yum -y install chromium",
     "analyze": "ANALYZE=true next build",
     "dev": "next-remote-watch ./src/content",
     "build": "next build && node ./scripts/generateRSS.js && node ./scripts/generateRedirects.js && node ./scripts/downloadFonts.js",

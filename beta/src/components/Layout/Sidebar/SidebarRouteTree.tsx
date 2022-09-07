@@ -148,7 +148,7 @@ export function SidebarRouteTree({
           <li key={`${title}-${path}-${level}-link`}>
             <SidebarLink
               isPending={pendingRoute === pagePath}
-              href={pagePath}
+              href={path.startsWith('https://') ? path : pagePath}
               selected={selected}
               level={level}
               title={title}

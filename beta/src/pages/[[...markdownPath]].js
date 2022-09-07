@@ -86,26 +86,60 @@ export async function getStaticProps(context) {
   } catch {
     mdxWithFrontmatter = fs.readFileSync(rootDir + path + '/index.md', 'utf8');
   }
-  const {content: mdx, data: meta} = fm(mdxWithFrontmatter);
+
+  const DISK_CACHE_BREAKER = 1; // <-- Bump to reset the cache
+  async function compileMdxToJs_FROM_DISK_CACHE(mdxContent, mdxComponentNames) {
+    const {FileStore, stableHash} = require('metro-cache');
+    const store = new FileStore({
+      root: process.cwd() + '/node_modules/.cache/react-docs-mdx/',
+    });
+    const hash = Buffer.from(
+      stableHash({
+        mdxContent,
+        mdxComponentNames,
+        lockfile: fs.readFileSync(process.cwd() + '/yarn.lock', 'utf8'),
+        DISK_CACHE_BREAKER,
+      })
+    );
+    const cached = await store.get(hash);
+    if (cached) {
+      console.log(
+        'Reading compiled MDX for /' + path + ' from ./node_modules/.cache/'
+      );
+      return cached;
+    }
+    if (process.ENV.NODE_ENV === 'production') {
+      console.log(
+        'Cache miss for MDX for /' + path + ' from ./node_modules/.cache/'
+      );
+    }
+    const output = await compileMdxToJs(mdxContent, mdxComponentNames);
+    await store.set(hash, output);
+    return output;
+  }
+
+  // IMPORTANT: Keep this a pure function. Its output gets cached on disk.
+  async function compileMdxToJs(mdxContent, mdxComponentNames) {
+    // If we don't add these fake imports, the MDX compiler
+    // will insert a bunch of opaque components we can't introspect.
+    // This will break the prepareMDX() call below.
+    let mdxWithFakeImports = mdxComponentNames
+      .map((key) => 'import ' + key + ' from "' + key + '";\n')
+      .join('\n');
+    mdxWithFakeImports += '\n' + mdxContent;
+    const jsxCode = await compileMdx(mdxWithFakeImports, {
+      remarkPlugins,
+    });
+    return transform(jsxCode, {
+      plugins: ['@babel/plugin-transform-modules-commonjs'],
+      presets: ['@babel/preset-react'],
+    }).code;
+  }
 
   // Turn the MDX we just read into some JS we can execute.
-  let mdxWithFakeImports = '';
-  for (let key in MDXComponents) {
-    if (MDXComponents.hasOwnProperty(key)) {
-      // If we don't add these fake imports, the MDX compiler
-      // will insert a bunch of opaque components we can't introspect.
-      // This will break the prepareMDX() call below.
-      mdxWithFakeImports += 'import ' + key + ' from "' + key + '";\n';
-    }
-  }
-  mdxWithFakeImports += '\n' + mdx;
-  const jsxCode = await compileMdx(mdxWithFakeImports, {
-    remarkPlugins,
-  });
-  const jsCode = transform(jsxCode, {
-    plugins: ['@babel/plugin-transform-modules-commonjs'],
-    presets: ['@babel/preset-react'],
-  }).code;
+  const {content: mdx, data: meta} = fm(mdxWithFrontmatter);
+  const mdxComponentNames = Object.keys(MDXComponents);
+  const jsCode = await compileMdxToJs_FROM_DISK_CACHE(mdx, mdxComponentNames);
 
   // Prepare environment for MDX.
   let fakeExports = {};

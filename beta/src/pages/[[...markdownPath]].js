@@ -163,6 +163,7 @@ export async function getStaticProps(context) {
   function stringifyNodeOnServer(key, val) {
     if (val != null && val.$$typeof === Symbol.for('react.element')) {
       // Remove fake MDX props.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {mdxType, originalType, parentName, ...cleanProps} = val.props;
       return [
         '$r',

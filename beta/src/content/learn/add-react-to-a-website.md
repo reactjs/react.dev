@@ -106,8 +106,8 @@ root.render(React.createElement(LikeButton));
 
 You might want to display React components in multiple places on the same HTML page. This is useful if React-powered parts of your page are separate from each other. You can do this by putting multiple root tags in your HTML and then rendering React components inside each of them with `ReactDOM.createRoot()`. For example:
 
-1. In **`index.html`**, add an additional container element `<div id="another-root"></div>`.
-2. In **`like-button.js`**, add three more lines at the end:
+1. In **`index.html`,** add an additional container element `<div id="another-root"></div>`.
+2. In **`like-button.js`,** add three more lines at the end:
 
 ```js {6,7,8,9}
 const anotherRootNode = document.getElementById('another-root');
@@ -149,7 +149,7 @@ These two code snippets are equivalent. JSX is popular syntax for describing mar
 
 ### Try JSX {/*try-jsx*/}
 
-The quickest way to try JSX is to add the Babel compiler as a `<script>` tag to the page. Put it before **`like-button.js`**, and then add `type="text/babel"` attribute to the `<script>` tag for **`like-button.js`**:
+The quickest way to try JSX is to add the Babel compiler as a `<script>` tag to the page. Put it before **`like-button.js`,** and then add `type="text/babel"` attribute to the `<script>` tag for **`like-button.js`**:
 
 ```html {3,4}
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -257,7 +257,7 @@ It accepts several arguments: `React.createElement(component, props, ...children
 
 Here's how they work:
 
-1. A **component**, which can be a string representing an HTML element or a function component
+1. A **component,** which can be a string representing an HTML element or a function component
 2. An object of any [**props** you want to pass](/learn/passing-props-to-a-component)
 3. The rest are **children** the component might have, such as text strings or other elements
 

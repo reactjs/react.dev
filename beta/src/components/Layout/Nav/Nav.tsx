@@ -6,11 +6,7 @@ import * as React from 'react';
 import cn from 'classnames';
 import NextLink from 'next/link';
 import {useRouter} from 'next/router';
-import {
-  clearAllBodyScrollLocks,
-  disableBodyScroll,
-  enableBodyScroll,
-} from 'body-scroll-lock';
+import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';

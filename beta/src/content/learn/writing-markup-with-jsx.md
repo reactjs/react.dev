@@ -134,7 +134,7 @@ Most of the times, React's on-screen error messages will help you find where the
 
 ### 1. Return a single root element {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag**.
+To return multiple elements from a component, **wrap them with a single parent tag.**
 
 For example, you can use a `<div>`:
 

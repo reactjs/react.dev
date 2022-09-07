@@ -189,7 +189,7 @@ However, it's fine because you've created them *during the same render*, inside 
 
 ## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects**. They're things that happen _"on the side"_, not during rendering.
+While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
 
 In React, **side effects usually belong inside [event handlers](/learn/responding-to-events).** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
 

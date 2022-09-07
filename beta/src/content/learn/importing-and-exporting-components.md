@@ -108,10 +108,10 @@ Notice how this example is broken down into two component files now:
 
 1. `Gallery.js`:
      - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export**.
+     - Exports the `Gallery` component as a **default export.**
 2. `App.js`:
      - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export**.
+     - Exports the root `App` component as a **default export.**
 
 
 <Note>
@@ -219,12 +219,12 @@ img { margin: 0 10px 10px 0; height: 90px; }
 Now you're using a mix of default and named exports:
 
 * `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`**.
-  - Exports the `Gallery` component as a **default export**.
+  - Exports the `Profile` component as a **named export called `Profile`.**
+  - Exports the `Gallery` component as a **default export.**
 * `App.js`:
   - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
   - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export**.
+  - Exports the root `App` component as a **default export.**
 
 <Recap>
 

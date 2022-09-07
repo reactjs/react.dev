@@ -432,7 +432,7 @@ On this page you learned:
 
 This example shows a list of all people.
 
-Change it to show two separate lists one after another: **Chemists** and **Everyone Else**. Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
+Change it to show two separate lists one after another: **Chemists** and **Everyone Else.** Like previously, you can determine whether a person is a chemist by checking if `person.profession === 'chemist'`.
 
 <Sandpack>
 

@@ -89,7 +89,7 @@ function LikeButton() {
 
 ### Step 4: Add your React component to the page {/*step-4-add-your-react-component-to-the-page*/}
 
-Lastly, add three lines to the bottom of **`like-button.js`**. These lines of code find the `<div>` you added to the HTML in the first step, create a React root, and then display the "Like" button React component inside of it:
+Lastly, add three lines to the bottom of **`like-button.js`.** These lines of code find the `<div>` you added to the HTML in the first step, create a React root, and then display the "Like" button React component inside of it:
 
 ```js
 const rootNode = document.getElementById('like-button-root');
@@ -106,8 +106,8 @@ root.render(React.createElement(LikeButton));
 
 You might want to display React components in multiple places on the same HTML page. This is useful if React-powered parts of your page are separate from each other. You can do this by putting multiple root tags in your HTML and then rendering React components inside each of them with `ReactDOM.createRoot()`. For example:
 
-1. In **`index.html`**, add an additional container element `<div id="another-root"></div>`.
-2. In **`like-button.js`**, add three more lines at the end:
+1. In **`index.html`,** add an additional container element `<div id="another-root"></div>`.
+2. In **`like-button.js`,** add three more lines at the end:
 
 ```js {6,7,8,9}
 const anotherRootNode = document.getElementById('another-root');
@@ -149,7 +149,7 @@ These two code snippets are equivalent. JSX is popular syntax for describing mar
 
 ### Try JSX {/*try-jsx*/}
 
-The quickest way to try JSX is to add the Babel compiler as a `<script>` tag to the page. Put it before **`like-button.js`**, and then add `type="text/babel"` attribute to the `<script>` tag for **`like-button.js`**:
+The quickest way to try JSX is to add the Babel compiler as a `<script>` tag to the page. Put it before **`like-button.js`,** and then add `type="text/babel"` attribute to the `<script>` tag for **`like-button.js`**:
 
 ```html {3,4}
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
@@ -185,7 +185,7 @@ It may feel a bit unusual at first to mix JS with markup, but it will grow on yo
 
 <Gotcha>
 
-The Babel `<script>` compiler is fine for learning and creating simple demos. However, **it makes your website slow and isn't suitable for production**. When you're ready to move forward, remove the Babel `<script>` tag and remove the `type="text/babel"` attribute you've added in this step. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags from JSX to JS.
+The Babel `<script>` compiler is fine for learning and creating simple demos. However, **it makes your website slow and isn't suitable for production.** When you're ready to move forward, remove the Babel `<script>` tag and remove the `type="text/babel"` attribute you've added in this step. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags from JSX to JS.
 
 </Gotcha>
 
@@ -206,7 +206,7 @@ Congratulations! You just added a **production-ready JSX setup** to your project
 
 You can preprocess JSX so that every time you save a file with JSX in it, the transform will be re-run, converting the JSX file into a new, plain JavaScript file that the browser can understand. Here's how to set this up:
 
-1. Create a folder called **`src`**.
+1. Create a folder called **`src`.**
 2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for edits to JSX inside `src`.)
 3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) to the new **`src`** folder.
 
@@ -257,7 +257,7 @@ It accepts several arguments: `React.createElement(component, props, ...children
 
 Here's how they work:
 
-1. A **component**, which can be a string representing an HTML element or a function component
+1. A **component,** which can be a string representing an HTML element or a function component
 2. An object of any [**props** you want to pass](/learn/passing-props-to-a-component)
 3. The rest are **children** the component might have, such as text strings or other elements
 

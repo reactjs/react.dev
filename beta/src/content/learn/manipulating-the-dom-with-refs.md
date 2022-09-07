@@ -209,7 +209,7 @@ This is because **Hooks must only be called at the top-level of your component.*
 
 One possible way around this is to get a single ref to their parent element, and then use DOM manipulation methods like [`querySelectorAll`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelectorAll) to "find" the individual child nodes from it. However, this is brittle and can break if your DOM structure changes.
 
-Another solution is to **pass a function to the `ref` attribute**. This is called a "ref callback". React will call your ref callback with the DOM node when it's time to set the ref, and with `null` when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
+Another solution is to **pass a function to the `ref` attribute.** This is called a "ref callback". React will call your ref callback with the DOM node when it's time to set the ref, and with `null` when it's time to clear it. This lets you maintain your own array or a [Map](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map), and access any ref by its index or some kind of ID.
 
 This example shows how you can use this approach to scroll to an arbitrary node in a long list:
 

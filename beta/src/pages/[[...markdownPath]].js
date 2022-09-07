@@ -108,7 +108,7 @@ export async function getStaticProps(context) {
       );
       return cached;
     }
-    if (process.ENV.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       console.log(
         'Cache miss for MDX for /' + path + ' from ./node_modules/.cache/'
       );

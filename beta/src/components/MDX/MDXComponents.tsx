@@ -66,7 +66,7 @@ const UL = (p: JSX.IntrinsicElements['ul']) => (
   <ul className="ml-6 my-3 list-disc" {...p} />
 );
 const IMG = (p: JSX.IntrinsicElements['img']) => (
-  <img {...p} decoding="async" loading="lazy" />
+  <img {...p} decoding="async" />
 );
 
 const Divider = () => (
@@ -244,7 +244,7 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <IMG src={info.src} alt={info.alt} height={info.height} loading={index > 0 ? "lazy": "auto"} />
+        <IMG src={info.src} alt={info.alt} height={info.height} loading={index > 0 ? "lazy": undefined} />
       </div>
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">

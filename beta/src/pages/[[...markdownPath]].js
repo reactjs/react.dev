@@ -68,7 +68,7 @@ export async function getStaticProps(context) {
   const rootDir = process.cwd() + '/src/content/';
   const mdxComponentNames = Object.keys(MDXComponents);
 
-  // Read MDX from the file. Parse Frontmatter data out of it.
+  // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
   let mdxWithFrontmatter;
   try {

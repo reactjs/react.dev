@@ -322,6 +322,18 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   );
 }
 
+function LinkWithTodo({href, children, ...props}: JSX.IntrinsicElements['a']) {
+  if (href?.startsWith('TODO')) {
+    return children;
+  }
+
+  return (
+    <Link href={href} {...props}>
+      {children}
+    </Link>
+  );
+}
+
 export const MDXComponents = {
   p: P,
   strong: Strong,
@@ -335,7 +347,7 @@ export const MDXComponents = {
   h4: H4,
   inlineCode: InlineCode,
   hr: Divider,
-  a: Link,
+  a: LinkWithTodo,
   code: CodeBlock,
   // The code block renders <pre> so we just want a div here.
   pre: (p: JSX.IntrinsicElements['div']) => <div {...p} />,

@@ -21,7 +21,7 @@ Usually, you will pass information from a parent component to a child component 
 
 [Passing props](/learn/passing-props-to-a-component) is a great way to explicitly pipe data through your UI tree to the components that use it.
 
-But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation sometimes called "prop drilling."
+But passing props can become verbose and inconvenient when you need to pass some prop deeply through the tree, or if many components need the same prop. The nearest common ancestor could be far removed from the components that need data, and [lifting state up](/learn/sharing-state-between-components) that high can lead to a situation sometimes called "prop drilling".
 
 <DiagramGroup>
 
@@ -866,7 +866,7 @@ In general, if some information is needed by distant components in different par
   2. Pass it to the `useContext(MyContext)` Hook to read it in any child component, no matter how deep.
   3. Wrap children into `<MyContext.Provider value={...}>` to provide it from a parent.
 * Context passes through any components in the middle.
-* Context lets you write components that "adapt to their surroundings."
+* Context lets you write components that "adapt to their surroundings".
 * Before you use context, try passing props or passing JSX as `children`.
 
 </Recap>
@@ -1110,7 +1110,7 @@ export const places = [{
 }, {
   id: 3, 
   name: 'Selarón Staircase in Rio de Janeiro, Brazil',
-  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people".',
   imageId: 'aeO3rpI'
 }, {
   id: 4, 

@@ -132,7 +132,7 @@ nav ul li { display: inline-block; margin-right: 20px; }
 
 </Sandpack>
 
-You can destroy the rendered trees with [`unmountComponentAtNode()`](TODO).
+You can destroy the rendered trees with [`unmountComponentAtNode()`](/apis/react-dom/unmountComponentAtNode).
 
 ---
 
@@ -212,6 +212,6 @@ An app fully built with React will usually only have one `render` call with its 
 
 * If you call `render` on the same `domNode` more than once, React will update the DOM as necessary to reflect the latest JSX you passed. React will decide which parts of the DOM can be reused and which need to be recreated by ["matching it up"](/learn/preserving-and-resetting-state) with the previously rendered tree. Calling `render` on the same `domNode` again is similar to calling the [`set` function](/apis/react/useState#setstate) on the root component: React avoids unnecessary DOM updates.
 
-* If your app is fully built with React, you'll likely have only one `render` call in your app. (If you use a framework, it might do this call for you.) When you want to render a piece of JSX in a different part of the DOM tree that isn't a child of your component (for example, a modal or a tooltip), use [`createPortal`](TODO) instead of `render`.
+* If your app is fully built with React, you'll likely have only one `render` call in your app. (If you use a framework, it might do this call for you.) When you want to render a piece of JSX in a different part of the DOM tree that isn't a child of your component (for example, a modal or a tooltip), use [`createPortal`](/apis/react-dom/createPortal) instead of `render`.
 
 ---

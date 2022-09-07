@@ -276,7 +276,7 @@ Deleting a component
 
 </DiagramGroup>
 
-When you tick "Render the second counter," a second `Counter` and its state are initialized from scratch (`score = 0`) and added to the DOM.
+When you tick "Render the second counter", a second `Counter` and its state are initialized from scratch (`score = 0`) and added to the DOM.
 
 <DiagramGroup>
 
@@ -1854,7 +1854,7 @@ button {
 
 #### Clear an image while it's loading {/*clear-an-image-while-its-loading*/}
 
-When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next," the previous image immediately clears.
+When you press "Next", the browser starts loading the next image. However, because it's displayed in the same `<img>` tag, by default you would still see the previous image until the next one loads. This may be undesirable if it's important for the text to always match the image. Change it so that the moment you press "Next", the previous image immediately clears.
 
 <Hint>
 

@@ -181,7 +181,7 @@ While this duplication isn't harmful, it could make your code harder to maintain
 
 ### Conditional (ternary) operator (`? :`) {/*conditional-ternary-operator--*/}
 
-JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator."
+JavaScript has a compact syntax for writing a conditional expression -- the [conditional operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) or "ternary operator".
 
 Instead of this:
 

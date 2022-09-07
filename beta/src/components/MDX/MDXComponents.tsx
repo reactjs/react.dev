@@ -66,7 +66,7 @@ const UL = (p: JSX.IntrinsicElements['ul']) => (
   <ul className="ml-6 my-3 list-disc" {...p} />
 );
 const IMG = (p: JSX.IntrinsicElements['img']) => (
-  <img {...p} decoding="async" />
+  <img decoding="async" {...p} />
 );
 
 const Divider = () => (

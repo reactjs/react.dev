@@ -319,7 +319,7 @@ Pages like this are often called "living styleguides" or "storybooks."
 You can trigger state updates in response to two kinds of inputs:
 
 * **Human inputs**, like clicking a button, typing in a field, navigating a link.
-* **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
+* **Computer inputs**, like a network response arriving, a timeout completing, an image loading.
 
 In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI**. For the form you're developing, you will need to change state in response to a few different inputs:
 

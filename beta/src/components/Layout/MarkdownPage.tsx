@@ -34,7 +34,7 @@ export function MarkdownPage<
   const isHomePage = route?.path === '/';
   return (
     <>
-      <div className="lg:pt-0 pt-20 pl-0 lg:pl-80 2xl:px-80 ">
+      <div className="pl-0">
         <Seo title={title} />
         {!isHomePage && (
           <PageHeading
@@ -53,9 +53,6 @@ export function MarkdownPage<
             prevRoute={prevRoute}
           />
         </div>
-      </div>
-      <div className="w-full lg:max-w-xs hidden 2xl:block">
-        {!isHomePage && toc.length > 0 && <Toc headings={toc} />}
       </div>
     </>
   );

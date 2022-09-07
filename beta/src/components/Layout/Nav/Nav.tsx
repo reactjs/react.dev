@@ -99,7 +99,7 @@ const lightIcon = (
 export default function Nav() {
   const [isOpen, setIsOpen] = React.useState(false);
   const [showFeedback, setShowFeedback] = React.useState(false);
-  const menuRef = React.useRef<HTMLDivElement>(null);
+  const scrollParentRef = React.useRef<HTMLDivElement>(null);
   const feedbackAutohideRef = React.useRef<any>(null);
   const section = useActiveSection();
   const {asPath} = useRouter();
@@ -136,7 +136,7 @@ export default function Nav() {
   // While the overlay is open, disable body scroll.
   React.useEffect(() => {
     if (isOpen) {
-      const preferredScrollParent = menuRef.current!;
+      const preferredScrollParent = scrollParentRef.current!;
       disableBodyScroll(preferredScrollParent);
       return () => enableBodyScroll(preferredScrollParent);
     } else {
@@ -190,9 +190,14 @@ export default function Nav() {
         capture: true,
       });
   }, [showFeedback]);
+
   return (
-    <>
-      <nav className="lg:sticky top-0 items-center w-full flex lg:block justify-between bg-wash dark:bg-wash-dark pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
+    <div
+      className={cn(
+        'sticky top-0 lg:bottom-0 lg:h-screen flex flex-col',
+        isOpen && 'h-screen'
+      )}>
+      <nav className="items-center w-full flex lg:block justify-between bg-wash dark:bg-wash-dark pt-0 lg:pt-4 pr-5 lg:px-5 z-50">
         <div className="xl:w-full xl:max-w-xs flex items-center">
           <button
             type="button"
@@ -316,37 +321,41 @@ export default function Nav() {
         </div>
       )}
 
-      <aside
-        className={cn(
-          `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs bg-wash dark:bg-wash-dark z-10`,
-          isOpen ? 'block z-40' : 'hidden lg:block'
-        )}>
-        {!isOpen && (
-          <div className="px-5 sm:pt-10 lg:pt-4">
-            <Search />
+      <div
+        ref={scrollParentRef}
+        className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
+        <aside
+          className={cn(
+            `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,
+            isOpen ? 'block z-40' : 'hidden lg:block'
+          )}>
+          {!isOpen && (
+            <div className="px-5 sm:pt-10 lg:pt-4">
+              <Search />
+            </div>
+          )}
+          <nav
+            role="navigation"
+            style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)
+            className="w-full lg:h-auto grow pr-0 lg:pr-5 pt-6 lg:py-6 md:pt-4 lg:pt-4 scrolling-touch scrolling-gpu">
+            {/* No fallback UI so need to be careful not to suspend directly inside. */}
+            <React.Suspense fallback={null}>
+              <SidebarRouteTree
+                // Don't share state between the desktop and mobile versions.
+                // This avoids unnecessary animations and visual flicker.
+                key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
+                routeTree={routeTree}
+                isForceExpanded={isOpen}
+              />
+            </React.Suspense>
+            <div className="h-20" />
+          </nav>
+          <div className="fixed bottom-0 hidden lg:block">
+            <Feedback />
           </div>
-        )}
-        <nav
-          role="navigation"
-          ref={menuRef}
-          style={{'--bg-opacity': '.2'} as React.CSSProperties}
-          className="w-full h-screen lg:h-auto grow pr-0 lg:pr-5 pt-2 pb-44 lg:pb-0 lg:py-6 md:pt-2 lg:pt-4 overflow-y-scroll lg:overflow-y-auto scrolling-touch scrolling-gpu">
-          {/* No fallback UI so need to be careful not to suspend directly inside. */}
-          <React.Suspense fallback={null}>
-            <SidebarRouteTree
-              // Don't share state between the desktop and mobile versions.
-              // This avoids unnecessary animations and visual flicker.
-              key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
-              routeTree={routeTree}
-              isForceExpanded={isOpen}
-            />
-          </React.Suspense>
-        </nav>
-        <div className="sticky bottom-0 hidden lg:block">
-          <Feedback />
-        </div>
-      </aside>
-    </>
+        </aside>
+      </div>
+    </div>
   );
 }
 

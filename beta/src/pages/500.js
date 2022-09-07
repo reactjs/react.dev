@@ -10,8 +10,8 @@ const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
 export default function NotFound() {
   return (
-    <Page>
-      <MarkdownPage meta={{title: 'Something Went Wrong'}} toc={[]}>
+    <Page toc={[]}>
+      <MarkdownPage meta={{title: 'Something Went Wrong'}}>
         <MaxWidth>
           <Intro>
             <P>Something went very wrong.</P>

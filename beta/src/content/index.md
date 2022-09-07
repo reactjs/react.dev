@@ -18,7 +18,7 @@ This beta website contains the current draft of the new docs.
 
 ## This is a work in progress! {/*this-is-a-work-in-progress*/}
 
-This is a **beta website**. There will be bugs, performance issues, and missing content.
+This is a **beta website.** There will be bugs, performance issues, and missing content.
 
 ## How much content is ready? {/*how-much-content-is-ready*/}
 

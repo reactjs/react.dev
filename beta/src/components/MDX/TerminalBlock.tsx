@@ -33,6 +33,8 @@ function TerminalBlock({level = 'info', children}: TerminalBlockProps) {
     typeof children.props.children === 'string'
   ) {
     message = children.props.children;
+  } else {
+    throw Error('Expected TerminalBlock children to be a plain string.');
   }
 
   const [copied, setCopied] = React.useState(false);

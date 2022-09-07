@@ -16,9 +16,8 @@ import TitleAndMetaTags from 'components/TitleAndMetaTags';
 import FeedbackForm from 'components/FeedbackForm';
 import findSectionForPath from 'utils/findSectionForPath';
 import toCommaSeparatedList from 'utils/toCommaSeparatedList';
-import {sharedStyles} from 'theme';
 import createCanonicalUrl from 'utils/createCanonicalUrl';
-import {colors, media} from 'theme';
+import {sharedStyles, colors, media, fonts} from 'theme';
 
 import type {Node} from 'types';
 
@@ -75,11 +74,10 @@ const MarkdownPage = ({
         position: 'relative',
         zIndex: 0,
         '& h1, & h2, & h3, & h4, & h5, & h6': {
-          scrollMarginTop:
-            'calc(var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
-          [media.lessThan('small')]: {
-            scrollMarginTop:
-              'calc(var(--survey-banner-height-small) + var(--social-banner-height-small))',
+          scrollMarginTop: fonts.header.fontSize,
+
+          [media.lessThan('medium')]: {
+            scrollMarginTop: fonts.header[media.lessThan('medium')].fontSize,
           },
         },
       }}>

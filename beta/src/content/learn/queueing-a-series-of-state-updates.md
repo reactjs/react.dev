@@ -99,7 +99,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here, `n => n + 1` is called an **updater function**. When you pass it to a state setter:
+Here, `n => n + 1` is called an **updater function.** When you pass it to a state setter:
 
 1. React queues this function to be processed after all the other code in the event handler has run.
 2. During the next render, React goes through the queue and gives you the final updated state.
@@ -368,7 +368,7 @@ This ensures that when you increment or decrement a counter, you do it in relati
 
 In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
 
-Scroll through the sandbox preview. Notice that it shows **four test cases**. They correspond to the examples you've seen earlier on this page. Your task is to implement the `getFinalState` function so that it returns the correct result for each of those cases. If you implement it correctly, all four tests should pass.
+Scroll through the sandbox preview. Notice that it shows **four test cases.** They correspond to the examples you've seen earlier on this page. Your task is to implement the `getFinalState` function so that it returns the correct result for each of those cases. If you implement it correctly, all four tests should pass.
 
 You will receive two arguments: `baseState` is the initial state (like `0`), and the `queue` is an array which contains a mix of numbers (like `5`) and updater functions (like `n => n + 1`) in the order they were added.
 

@@ -22,7 +22,7 @@ The easiest way to debug websites built with React is to install the React Devel
 * [Install for **Firefox**](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/)
 * [Install for **Edge**](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil)
 
-Now, if you visit a website **built with React**, you will see the _Components_ and _Profiler_ panels.
+Now, if you visit a website **built with React,** you will see the _Components_ and _Profiler_ panels.
 
 ![React Developer Tools extension](/images/docs/react-devtools-extension.png)
 

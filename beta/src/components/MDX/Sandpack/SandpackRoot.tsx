@@ -66,9 +66,7 @@ ul {
 function SandpackRoot(props: SandpackProps) {
   let {children, setup, autorun = true, showDevTools = false} = props;
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
-  let codeSnippets = React.Children.toArray(children) as React.ReactElement[];
-  let isSingleFile = true;
-
+  const codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
   files['/styles.css'] = {
@@ -87,10 +85,10 @@ function SandpackRoot(props: SandpackProps) {
         bundlerURL="https://6b760a26.sandpack-bundler.pages.dev"
         logLevel={SandpackLogLevel.None}>
         <CustomPreset
-          isSingleFile={isSingleFile}
           showDevTools={showDevTools}
           onDevToolsLoad={() => setDevToolsLoaded(true)}
           devToolsLoaded={devToolsLoaded}
+          providedFiles={Object.keys(files)}
         />
       </SandpackProvider>
     </div>

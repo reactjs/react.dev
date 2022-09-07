@@ -10,8 +10,8 @@ const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
 export default function NotFound() {
   return (
-    <Page>
-      <MarkdownPage meta={{title: 'Not Found'}} toc={[]}>
+    <Page toc={[]}>
+      <MarkdownPage meta={{title: 'Not Found'}}>
         <MaxWidth>
           <Intro>
             <P>This page doesn’t exist.</P>

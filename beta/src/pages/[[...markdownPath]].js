@@ -14,7 +14,7 @@ export default function Layout({content, toc, meta}) {
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
   return (
-    <Page>
+    <Page toc={parsedToc}>
       <MarkdownPage meta={meta} toc={parsedToc}>
         {parsedContent}
       </MarkdownPage>
@@ -123,7 +123,10 @@ export async function getStaticProps(context) {
 
   // Pre-process MDX output and serialize it.
   const {prepareMDX} = require('../utils/prepareMDX');
-  const {toc, children} = prepareMDX(reactTree.props.children);
+  let {toc, children} = prepareMDX(reactTree.props.children);
+  if (path === 'index') {
+    toc = [];
+  }
   return {
     props: {
       content: JSON.stringify(children, stringifyNodeOnServer),

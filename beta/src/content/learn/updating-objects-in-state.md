@@ -25,7 +25,7 @@ You can store any kind of JavaScript value in state.
 const [x, setX] = useState(0);
 ```
 
-So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable," meaning unchangeable or "read-only." You can trigger a re-render to _replace_ a value:
+So far you've been working with numbers, strings, and booleans. These kinds of JavaScript values are "immutable", meaning unchangeable or "read-only". You can trigger a re-render to _replace_ a value:
 
 ```js
 setX(5);
@@ -193,7 +193,7 @@ setPosition({
 });
 ```
 
-Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation." You can even do local mutation [while rendering](/learn/keeping-components-pure#local-mutation-your-components-little-secret). Very convenient and completely okay!
+Mutation is only a problem when you change *existing* objects that are already in state. Mutating an object you've just created is okay because *no other code references it yet.* Changing it isn't going to accidentally impact something that depends on it. This is called a "local mutation". You can even do local mutation [while rendering](/learn/keeping-components-pure#local-mutation-your-components-little-secret). Very convenient and completely okay!
 
 </DeepDive>  
 

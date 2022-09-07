@@ -13,7 +13,7 @@ import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {FilesDropdown} from './FilesDropdown';
 
-export function NavigationBar({showDownload}: {showDownload: boolean}) {
+export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   const {sandpack} = useSandpack();
   const [dropdownActive, setDropdownActive] = React.useState(false);
   const {openPaths, clients} = sandpack;
@@ -54,7 +54,7 @@ export function NavigationBar({showDownload}: {showDownload: boolean}) {
       <div
         className="px-3 flex items-center justify-end grow text-right"
         translate="yes">
-        {showDownload && <DownloadButton />}
+        <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />
       </div>

@@ -22,15 +22,15 @@ import {useSandpackLint} from './useSandpackLint';
 const emptyArray: Array<any> = [];
 
 export function CustomPreset({
-  isSingleFile,
   showDevTools,
   onDevToolsLoad,
   devToolsLoaded,
+  providedFiles,
 }: {
-  isSingleFile: boolean;
   showDevTools: boolean;
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
+  providedFiles: Array<string>;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
   const lineCountRef = React.useRef<{[key: string]: number}>({});
@@ -51,7 +51,7 @@ export function CustomPreset({
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar showDownload={isSingleFile} />
+        <NavigationBar providedFiles={providedFiles} />
         <SandpackThemeProvider theme={CustomTheme}>
           <div
             ref={sandpack.lazyAnchorRef}

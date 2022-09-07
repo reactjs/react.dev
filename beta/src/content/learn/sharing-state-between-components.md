@@ -284,7 +284,7 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 </DiagramGroup>
 
-<DeepDive title="Controlled and Uncontrolled Components">
+<DeepDive title="Controlled and uncontrolled components">
 
 It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
 
@@ -475,13 +475,15 @@ function SearchBar() {
 
 function List({ items }) {
   return (
-    <table> 
-      {items.map(food => (
-        <tr key={food.id}>
-          <td>{food.name}</td>
-          <td>{food.description}</td>
-        </tr>
-      ))}
+    <table>
+      <tbody>
+        {items.map(food => (
+          <tr key={food.id}>
+            <td>{food.name}</td>
+            <td>{food.description}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }
@@ -566,13 +568,15 @@ function SearchBar({ query, onChange }) {
 
 function List({ items }) {
   return (
-    <table> 
-      {items.map(food => (
-        <tr key={food.id}>
-          <td>{food.name}</td>
-          <td>{food.description}</td>
-        </tr>
-      ))}
+    <table>
+      <tbody> 
+        {items.map(food => (
+          <tr key={food.id}>
+            <td>{food.name}</td>
+            <td>{food.description}</td>
+          </tr>
+        ))}
+      </tbody>
     </table>
   );
 }

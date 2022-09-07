@@ -1325,7 +1325,7 @@ Here is a small form that is supposed to let the user leave some feedback. When 
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules?
+Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
 
 </Hint>
 
@@ -1339,6 +1339,7 @@ export default function FeedbackForm() {
   if (isSent) {
     return <h1>Thank you!</h1>;
   } else {
+    // eslint-disable-next-line
     const [message, setMessage] = useState('');
     return (
       <form onSubmit={e => {
@@ -1363,7 +1364,9 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition. Move it out of the condition to fix the issue:
+Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+
+Move it out of the condition to fix the issue:
 
 <Sandpack>
 
@@ -1437,7 +1440,7 @@ export default function FeedbackForm() {
 
 Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
 
-In general, these types of mistakes are caught by the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) linter rule. If you don't see an error when you try the faulty code locally, you need to set it up in your build tooling configuration.
+If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project. 
 
 </Solution>
 

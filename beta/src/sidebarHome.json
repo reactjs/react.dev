@@ -12,6 +12,10 @@
           "path": "/"
         },
         {
+          "title": "Blog",
+          "path": "https://reactjs.org/blog"
+        },
+        {
           "title": "Community",
           "path": "/community",
           "routes": [{

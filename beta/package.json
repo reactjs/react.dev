@@ -4,7 +4,6 @@
   "private": true,
   "license": "CC",
   "scripts": {
-    "preinstall": "apt-get install -yq gconf-service libasound2 libatk1.0-0 libc6 libcairo2 libcups2 libdbus-1-3 libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates fonts-liberation libnss3 lsb-release xdg-utils wget",
     "analyze": "ANALYZE=true next build",
     "dev": "next-remote-watch ./src/content",
     "build": "next build && node ./scripts/generateRSS.js && node ./scripts/generateRedirects.js && node ./scripts/downloadFonts.js",
@@ -38,6 +37,7 @@
     "next-remote-watch": "^1.0.0",
     "parse-numeric-range": "^1.2.0",
     "puppeteer": "^17.1.1",
+    "puppeteer-core": "4.0.1",
     "react": "0.0.0-experimental-82c64e1a4-20220520",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
     "react-dom": "0.0.0-experimental-82c64e1a4-20220520"

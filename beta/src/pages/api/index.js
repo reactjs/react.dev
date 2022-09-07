@@ -121,6 +121,7 @@ export async function getOptions(isDev) {
     };
   } else {
     options = {
+      ignoreDefaultArgs: ['--disable-extensions'],
       args: chrome.args,
       executablePath: await chrome.executablePath,
       headless: chrome.headless,

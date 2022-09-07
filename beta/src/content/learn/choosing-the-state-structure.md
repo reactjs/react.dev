@@ -47,7 +47,7 @@ Or this?
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable**. Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
 
 <Sandpack>
 
@@ -816,7 +816,7 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-and-arrays-in-state#updating-nested-objects-and-arrays) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
 
 **If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then you can store a mapping from each place ID to the corresponding place.
 

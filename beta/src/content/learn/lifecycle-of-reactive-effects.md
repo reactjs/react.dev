@@ -95,7 +95,7 @@ function ChatRoom({ roomId /* "general" */ }) {
 }
 ```
 
-After the UI is displayed, React will run your Effect to **start synchronizing**. It connects to the `"general"` room:
+After the UI is displayed, React will run your Effect to **start synchronizing.** It connects to the `"general"` room:
 
 ```js {3,4}
 function ChatRoom({ roomId /* "general" */ }) {

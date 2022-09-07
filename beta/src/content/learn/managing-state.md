@@ -344,7 +344,7 @@ export default function ContactList({
     <section className="contact-list">
       <ul>
         {contacts.map(contact =>
-          <li key={contact}>
+          <li key={contact.email}>
             <button onClick={() => {
               onSelect(contact);
             }}>
@@ -439,7 +439,7 @@ export default function ContactList({
     <section className="contact-list">
       <ul>
         {contacts.map(contact =>
-          <li key={contact}>
+          <li key={contact.email}>
             <button onClick={() => {
               onSelect(contact);
             }}>

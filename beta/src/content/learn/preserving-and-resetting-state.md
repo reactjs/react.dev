@@ -599,7 +599,7 @@ When switching back, the `p` is deleted and the `Counter` is added
 
 </DiagramGroup>
 
-Also, **when you render a different component in the same position, it resets the state of its entire subtree**. To see how this works, increment the counter and then tick the checkbox:
+Also, **when you render a different component in the same position, it resets the state of its entire subtree.** To see how this works, increment the counter and then tick the checkbox:
 
 <Sandpack>
 

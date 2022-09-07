@@ -107,6 +107,9 @@ export default class HTML extends React.Component<Props> {
                   };
 
                   function updateStyles() {
+                    document.documentElement.style.setProperty('--header-height-large', '60px');
+                    document.documentElement.style.setProperty('--header-height-normal', '50px');
+                    document.documentElement.style.setProperty('--header-height-small', '40px');
                     if (activeSurveyBanner) {
                       document.documentElement.style.setProperty('--survey-banner-display', 'block');
                       document.documentElement.style.setProperty('--survey-banner-height-normal', activeSurveyBanner.normalHeight + 'px');

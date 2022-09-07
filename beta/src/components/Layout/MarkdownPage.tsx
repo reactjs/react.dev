@@ -4,12 +4,10 @@
 
 import * as React from 'react';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
 import {TocContext} from '../MDX/TocContext';
-import {Toc} from './Toc';
 
 export interface MarkdownProps<Frontmatter> {
   meta: Frontmatter & {description?: string};

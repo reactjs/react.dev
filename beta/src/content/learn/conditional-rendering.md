@@ -63,7 +63,7 @@ if (isPacked) {
 return <li className="item">{name}</li>;
 ```
 
-If the `isPacked` prop is `true`, this code **returns a different JSX tree**. With this change, some of the items get a checkmark at the end:
+If the `isPacked` prop is `true`, this code **returns a different JSX tree.** With this change, some of the items get a checkmark at the end:
 
 <Sandpack>
 

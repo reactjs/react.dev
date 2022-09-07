@@ -188,7 +188,7 @@ const [index, setIndex] = useState(0);
 
 `index` is a state variable and `setIndex` is the setter function.
 
-> The `[` and `]` syntax here is called [array destructuring](/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> The `[` and `]` syntax here is called [array destructuring](TODO:/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
 
 This is how they work together in `handleClick`:
 
@@ -522,7 +522,7 @@ It is a good idea to have multiple state variables if their state is unrelated, 
 
 You might have noticed that the `useState` call does not receive any information about *which* state variable it refers to. There is no "identifier" that is passed to `useState`, so how does it know which of the state variables to return? Does it rely on some magic like parsing your functions? The answer is no.
 
-Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component**. This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
+Instead, to enable their concise syntax, Hooks **rely on a stable call order on every render of the same component.** This works well in practice because if you follow the rule above ("only call Hooks at the top level"), Hooks will always be called in the same order. Additionally, a [linter plugin](https://www.npmjs.com/package/eslint-plugin-react-hooks) catches most mistakes.
 
 Internally, React holds an array of state pairs for every component. It also maintains the current pair index, which is set to `0` before rendering. Each time you call `useState`, React gives you the next state pair and increments the index. You can read more about this mechanism in [React Hooks: Not Magic, Just Arrays.](https://medium.com/@ryardley/react-hooks-not-magic-just-arrays-cd4f1857236e)
 
@@ -887,7 +887,7 @@ button {
 
 This is what makes state different from regular variables that you might declare at the top of your module. State is not tied to a particular function call or a place in the code, but it's "local" to the specific place on the screen. You rendered two `<Gallery />` components, so their state is stored separately.
 
-Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it**. The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
+Also notice how the `Page` component doesn't "know" anything about the `Gallery` state or even whether it has any. Unlike props, **state is fully private to the component declaring it.** The parent component can't change it. This lets you add state to any component or remove it without impacting the rest of the components.
 
 What if you wanted both galleries to keep their states in sync? The right way to do it in React is to *remove* state from child components and add it to their closest shared parent. The next few pages will focus on organizing state of a single component, but we will return to this topic in [Sharing State Between Components.](/learn/sharing-state-between-components)
 
@@ -1325,7 +1325,7 @@ Here is a small form that is supposed to let the user leave some feedback. When 
 
 <Hint>
 
-Are there any limitations on _where_ Hooks may be called? Does this component break any rules?
+Are there any limitations on _where_ Hooks may be called? Does this component break any rules? Check if there are any comments disabling the linter checks--this is where the bugs often hide!
 
 </Hint>
 
@@ -1339,6 +1339,7 @@ export default function FeedbackForm() {
   if (isSent) {
     return <h1>Thank you!</h1>;
   } else {
+    // eslint-disable-next-line
     const [message, setMessage] = useState('');
     return (
       <form onSubmit={e => {
@@ -1363,7 +1364,9 @@ export default function FeedbackForm() {
 
 <Solution>
 
-Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition. Move it out of the condition to fix the issue:
+Hooks can only be called at the top level of the component function. Here, the first `isSent` definition follows this rule, but the `message` definition is nested in a condition.
+
+Move it out of the condition to fix the issue:
 
 <Sandpack>
 
@@ -1437,7 +1440,7 @@ export default function FeedbackForm() {
 
 Try moving the second `useState` call after the `if` condition and notice how this breaks it again.
 
-In general, these types of mistakes are caught by the [`eslint-plugin-react-hooks`](https://www.npmjs.com/package/eslint-plugin-react-hooks) linter rule. If you don't see an error when you try the faulty code locally, you need to set it up in your build tooling configuration.
+If your linter is [configured for React](/learn/editor-setup#linting), you should see a lint error when you make a mistake like this. If you don't see an error when you try the faulty code locally, you need to set up linting for your project. 
 
 </Solution>
 

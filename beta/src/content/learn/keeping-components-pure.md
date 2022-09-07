@@ -189,7 +189,7 @@ However, it's fine because you've created them *during the same render*, inside 
 
 ## Where you _can_ cause side effects {/*where-you-_can_-cause-side-effects*/}
 
-While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects**. They're things that happen _"on the side"_, not during rendering.
+While functional programming relies heavily on purity, at some point, somewhere, _something_ has to change. That's kind of the point of programming! These changes—updating the screen, starting an animation, changing the data—are called **side effects.** They're things that happen _"on the side"_, not during rendering.
 
 In React, **side effects usually belong inside [event handlers.](/learn/responding-to-events)** Event handlers are functions that React runs when you perform some action—for example, when you click a button. Even though event handlers are defined *inside* your component, they don't run *during* rendering! **So event handlers don't need to be pure.**
 
@@ -202,7 +202,7 @@ When possible, try to express your logic with rendering alone. You'll be surpris
 Writing pure functions takes some habit and discipline. But it also unlocks marvelous opportunities:
 
 * Your components could run in a different environment—for example, on the server! Since they return the same result for the same inputs, one component can serve many user requests.
-* You can improve performance by [skipping rendering](/learn/skipping-unchanged-trees) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
+* You can improve performance by [skipping rendering](TODO:/learn/skipping-unchanged-trees) components whose inputs have not changed. This is safe because pure functions always return the same results, so they are safe to cache.
 * If some data changes in the middle of rendering a deep component tree, React can restart rendering without wasting time to finish the outdated render. Purity makes it safe to stop calculating at any time.
 
 Every new React feature we're building takes advantage of purity. From data fetching to animations to performance, keeping components pure unlocks the power of the React paradigm.

@@ -89,7 +89,7 @@ function LikeButton() {
 
 ### Step 4: Add your React component to the page {/*step-4-add-your-react-component-to-the-page*/}
 
-Lastly, add three lines to the bottom of **`like-button.js`**. These lines of code find the `<div>` you added to the HTML in the first step, create a React root, and then display the "Like" button React component inside of it:
+Lastly, add three lines to the bottom of **`like-button.js`.** These lines of code find the `<div>` you added to the HTML in the first step, create a React root, and then display the "Like" button React component inside of it:
 
 ```js
 const rootNode = document.getElementById('like-button-root');
@@ -185,7 +185,7 @@ It may feel a bit unusual at first to mix JS with markup, but it will grow on yo
 
 <Gotcha>
 
-The Babel `<script>` compiler is fine for learning and creating simple demos. However, **it makes your website slow and isn't suitable for production**. When you're ready to move forward, remove the Babel `<script>` tag and remove the `type="text/babel"` attribute you've added in this step. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags from JSX to JS.
+The Babel `<script>` compiler is fine for learning and creating simple demos. However, **it makes your website slow and isn't suitable for production.** When you're ready to move forward, remove the Babel `<script>` tag and remove the `type="text/babel"` attribute you've added in this step. Instead, in the next section you will set up a JSX preprocessor to convert all your `<script>` tags from JSX to JS.
 
 </Gotcha>
 
@@ -206,7 +206,7 @@ Congratulations! You just added a **production-ready JSX setup** to your project
 
 You can preprocess JSX so that every time you save a file with JSX in it, the transform will be re-run, converting the JSX file into a new, plain JavaScript file that the browser can understand. Here's how to set this up:
 
-1. Create a folder called **`src`**.
+1. Create a folder called **`src`.**
 2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for edits to JSX inside `src`.)
 3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) to the new **`src`** folder.
 

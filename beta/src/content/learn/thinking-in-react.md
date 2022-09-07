@@ -228,7 +228,7 @@ What's left is probably state.
 
 Let's go through them one by one again:
 
-1. The original list of products is **passed in as props, so it's not state**. 
+1. The original list of products is **passed in as props, so it's not state.** 
 2. The search text seems to be state since it changes over time and can't be computed from anything.
 3. The value of the checkbox seems to be state since it changes over time and can't be computed from anything.
 4. The filtered list of products **isn't state because it can be computed** by taking the original list of products and filtering it according to the search text and value of the checkbox.

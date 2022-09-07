@@ -233,7 +233,7 @@ In a small example like this, this works well, but if you have tens or hundreds 
 
 <!--(TODO: illustration of prop drilling)-->
 
-This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context](/learn/passing-data-deeply-with-context). **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
+This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context.](/learn/passing-data-deeply-with-context) **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
 
 <!--(TODO: illustration of context)-->
 
@@ -1346,7 +1346,7 @@ ul, li { margin: 0; padding: 0; }
 
 You can think of `TasksProvider` as a part of the screen that knows how to deal with tasks, `useTasks` as a way to read them, and `useTasksDispatch` as a way to update them from any component below in the tree.
 
-> Functions like `useTasks` and `useTasksDispatch` are called **[Custom Hooks](/learn/reusing-logic-with-custom-hooks).** Your function is considered a custom Hook if its name starts with `use`. This lets you use other Hooks, like `useContext`, inside it.
+> Functions like `useTasks` and `useTasksDispatch` are called **[Custom Hooks.](/learn/reusing-logic-with-custom-hooks)** Your function is considered a custom Hook if its name starts with `use`. This lets you use other Hooks, like `useContext`, inside it.
 
 As your app grows, you may have many context-reducer pairs like this. This is a powerful way to scale your app and [lift state up](/learn/sharing-state-between-components) without too much work whenever you want to access the data deep in the tree.
 

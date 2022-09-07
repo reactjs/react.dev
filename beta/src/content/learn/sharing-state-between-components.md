@@ -115,7 +115,7 @@ And instead, add `isActive` to the `Panel`'s list of props:
 function Panel({ title, children, isActive }) {
 ```
 
-Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop](/learn/passing-props-to-a-component). Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
+Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
 
 ### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
@@ -306,7 +306,7 @@ In a React application, many components will have their own state. Some state ma
 
 Your app will change as you work on it. It is common that you will move state down or back up while you're still figuring out where each piece of the state "lives". This is all part of the process!
 
-To see what this feels like in practice with a few more components, read [Thinking in React](/learn/thinking-in-react).
+To see what this feels like in practice with a few more components, read [Thinking in React.](/learn/thinking-in-react)
 
 <Recap>
 

@@ -943,7 +943,7 @@ This solution is convenient when you only have a few independent components rend
 
 There is also another, more generic, way to reset a component's state.
 
-You might have seen `key`s when [rendering lists](/learn/rendering-lists#keeping-list-items-in-order-with-key). Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
+You might have seen `key`s when [rendering lists.](/learn/rendering-lists#keeping-list-items-in-order-with-key) Keys aren't just for lists! You can use keys to make React distinguish between any components. By default, React uses order within the parent ("first counter", "second counter") to discern between components. But keys let you tell React that this is not just a *first* counter, or a *second* counter, but a specific counter--for example, *Taylor's* counter. This way, React will know *Taylor's* counter wherever it appears in the tree!
 
 In this example, the two `<Counter />`s don't share state even though they appear in the same place in JSX:
 

@@ -175,7 +175,7 @@ function ChatRoom({ roomId }) {
 Reactive values like these can change due to a re-render. For example, the user may edit the `message` or choose a different `roomId` in a dropdown. Event handlers and Effects are different in how they respond to changes:
 
 - **Logic inside event handlers is *not reactive.*** It will not run again unless the user performs the same interaction (for example, a click) again. Event handlers can read reactive values, but they don't "react" to their changes.
-- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values). Then, if a re-render causes that value to change, React will re-run your Effect's logic again with the new value.
+- **Logic inside Effects is *reactive.*** If your Effect reads a reactive value, [you have to specify it as a dependency.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) Then, if a re-render causes that value to change, React will re-run your Effect's logic again with the new value.
 
 Let's revisit the previous example to illustrate this difference.
 

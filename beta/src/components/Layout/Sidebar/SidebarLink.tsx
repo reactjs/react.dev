@@ -47,11 +47,16 @@ export function SidebarLink({
     }
   }, [ref, selected]);
 
+  let target = '';
+  if (href.startsWith('https://')) {
+    target = '_blank';
+  }
   return (
     <Link href={href}>
       <a
         ref={ref}
         title={title}
+        target={target}
         aria-current={selected ? 'page' : undefined}
         className={cn(
           'p-2 pr-2 w-full rounded-none lg:rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',

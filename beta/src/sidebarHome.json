@@ -12,10 +12,6 @@
           "path": "/"
         },
         {
-          "title": "Blog",
-          "path": "https://reactjs.org/blog"
-        },
-        {
           "title": "Community",
           "path": "/community",
           "routes": [{
@@ -25,6 +21,10 @@
             "title": "Meet the Team",
             "path": "/community/meet-the-team"
           }]
+        },
+        {
+          "title": "Blog",
+          "path": "https://reactjs.org/blog"
         }
       ]
     }

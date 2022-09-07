@@ -62,7 +62,7 @@ export function useRouteMeta(rootRoute?: RouteItem) {
       breadcrumbs: [],
     };
   }
-  const cleanedPath = router.asPath.split('?')[0];
+  const cleanedPath = router.asPath.split(/[\?\#]/)[0];
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
   return {
     ...getRouteMeta(cleanedPath, routeTree),

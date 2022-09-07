@@ -77,7 +77,7 @@ export function SidebarRouteTree({
   level = 0,
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
-  const cleanedPath = useRouter().asPath.split('?')[0];
+  const cleanedPath = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
 
   const slug = cleanedPath;

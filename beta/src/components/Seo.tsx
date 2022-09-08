@@ -5,7 +5,8 @@
 import React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
-import {slug} from 'github-slugger';
+const {slug} = require('github-slugger');
+
 export interface SeoProps {
   title: string;
   description?: string;

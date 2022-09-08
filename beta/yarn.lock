@@ -4822,10 +4822,10 @@ punycode@^2.1.0:
   resolved "https://registry.yarnpkg.com/punycode/-/punycode-2.1.1.tgz#b58b010ac40c22c5657616c8d2c2c02c7bf479ec"
   integrity sha512-XRsRjdf+j5ml+y/6GKHPZbrF/8p2Yga0JPtdqTIY2Xe5ohJPD9saDJJLPvp9+NSBprVvevdXZybnj2cv8OEd0A==
 
-puppeteer-core@^17.1.2:
-  version "17.1.2"
-  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-17.1.2.tgz#fdf109fa2d805fdb007b5abfc83728c545ac9ac0"
-  integrity sha512-mUndfkp581aFC9Tj0NQzoQ4kBEiYszvubkAovAfA72cO2VgiAnk4RTeQhgPekdL50+7bvU1JZp+10y2xOBOy0g==
+puppeteer-core@17.1.1:
+  version "17.1.1"
+  resolved "https://registry.yarnpkg.com/puppeteer-core/-/puppeteer-core-17.1.1.tgz#189c3c245cc36ff3e43da526a23e9d1322f391a3"
+  integrity sha512-9gQ3V4Ph0oZznPqNXOXTzXpPtBRk0r2izMTjW9wVqmrysk3sUcbpj0MCE7l4x2nlO/VakDt7VWwHvMaMDGxRRg==
   dependencies:
     cross-fetch "3.1.5"
     debug "4.3.4"
@@ -5650,7 +5650,7 @@ tailwindcss@^3.0.22:
     quick-lru "^5.1.1"
     resolve "^1.22.0"
 
-tar-fs@*, tar-fs@2.1.1:
+tar-fs@2.1.1, tar-fs@^2.1.1:
   version "2.1.1"
   resolved "https://registry.yarnpkg.com/tar-fs/-/tar-fs-2.1.1.tgz#489a15ab85f1f0befabb370b7de4f9eb5cbe8784"
   integrity sha512-V0r2Y9scmbDRLCNex/+hYzvp/zyYjvFbHPNgVTKfQvVrb6guiE/fxP+XblDNR011utopbkex2nM4dHNV6GDsng==

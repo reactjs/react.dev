@@ -82,7 +82,10 @@ export const Seo = withRouter(
         key="twitter:image"
         content={`https://beta.reactjs.org${image}`}
       />
-      <meta name="google-site-verification" content="j1duf8XRaKuZyGvhPd8GkYXHG7LI4GYbIvAXBsqTC9U" />
+      <meta
+        name="google-site-verification"
+        content="j1duf8XRaKuZyGvhPd8GkYXHG7LI4GYbIvAXBsqTC9U"
+      />
       <link
         rel="preload"
         href="/fonts/Source-Code-Pro-Regular.woff2"

@@ -5,7 +5,7 @@
 import React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
-
+import {slug} from 'github-slugger';
 export interface SeoProps {
   title: string;
   description?: string;
@@ -55,7 +55,7 @@ export const Seo = withRouter(
       <meta
         property="og:image"
         key="og:image"
-        content={`https://beta.reactjs.org${image}`}
+        content={`/images/ogassets/${slug(title, false)}.png`}
       />
 
       {/* TWITTER */}

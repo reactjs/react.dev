@@ -60,7 +60,7 @@ Each React component is a JavaScript function that may contain some markup that 
 
 <Note>
 
-[JSX and React are two separate things](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) you _can_ use independently of each other.
+JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
 
 </Note>
 
@@ -134,7 +134,7 @@ Most of the times, React's on-screen error messages will help you find where the
 
 ### 1. Return a single root element {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag**.
+To return multiple elements from a component, **wrap them with a single parent tag.**
 
 For example, you can use a `<div>`:
 

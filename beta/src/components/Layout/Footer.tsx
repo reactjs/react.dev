@@ -108,6 +108,7 @@ export function Footer() {
               <FooterLink href="/community/meet-the-team">
                 Meet the Team
               </FooterLink>
+              <FooterLink href="https://reactjs.org/blog">Blog</FooterLink>
               {/* <FooterLink href="/">Community Resources</FooterLink> */}
             </div>
             <div className="flex flex-col">

@@ -21,7 +21,7 @@ interface PageProps {
 }
 
 export function Page({children, toc}: PageProps) {
-  const {query, asPath} = useRouter();
+  const {asPath} = useRouter();
   const section = useActiveSection();
   let routeTree = sidebarHome as RouteItem;
   switch (section) {

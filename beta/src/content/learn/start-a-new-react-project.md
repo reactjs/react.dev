@@ -21,7 +21,7 @@ If you're starting a new project, we recommend to use a toolchain or a framework
 
 React is a library that lets you organize UI code by breaking it apart into pieces called components. React doesn't take care of routing or data management. This means there are several ways to start a new React project:
 
-* [Start with an **HTML file and a script tag**.](/learn/add-react-to-a-website) This doesn't require Node.js setup but offers limited features.
+* [Start with an **HTML file and a script tag.**](/learn/add-react-to-a-website) This doesn't require Node.js setup but offers limited features.
 * Start with a **minimal toolchain,** adding more features to your project as you go. (Great for learning!)
 * Start with an **opinionated framework** that has common features like data fetching and routing built-in.
 

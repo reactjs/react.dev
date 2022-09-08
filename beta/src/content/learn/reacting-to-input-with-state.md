@@ -20,12 +20,12 @@ React uses a declarative way to manipulate the UI. Instead of manipulating indiv
 
 When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
 
-* When you type something into a form, the "Submit" button **becomes enabled**.
-* When you press "Submit", both form and the button **become disabled**, and a spinner **appears**.
-* If the network request succeeds, the form **gets hidden**, and the "Thank you" message **appears**.
-* If the network request fails, an error message **appears**, and the form **becomes enabled** again.
+* When you type something into a form, the "Submit" button **becomes enabled.**
+* When you press "Submit", both form and the button **become disabled,** and a spinner **appears.**
+* If the network request succeeds, the form **gets hidden,** and the "Thank you" message **appears.**
+* If the network request fails, an error message **appears,** and the form **becomes enabled** again.
 
-In **imperative programming**, the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
+In **imperative programming,** the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
 
 <Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
 
@@ -135,7 +135,7 @@ Manipulating the UI imperatively works well enough for isolated examples, but it
 
 React was built to solve this problem.
 
-In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show**, and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
+In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
 
 <Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
 
@@ -318,10 +318,10 @@ Pages like this are often called "living styleguides" or "storybooks."
 
 You can trigger state updates in response to two kinds of inputs:
 
-* **Human inputs**, like clicking a button, typing in a field, navigating a link.
+* **Human inputs,** like clicking a button, typing in a field, navigating a link.
 * **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
 
-In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI**. For the form you're developing, you will need to change state in response to a few different inputs:
+In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
 
 * **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
 * **Clicking the Submit button** (human) should switch it to the *Submitting* state.
@@ -344,7 +344,7 @@ Form states
 
 ### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
-Next you'll need to represent the visual states of your component in memory with [`useState`](/apis/react/useState). Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible**. More complexity leads to more bugs!
+Next you'll need to represent the visual states of your component in memory with [`useState`](/apis/react/useState). Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
 
 Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
 

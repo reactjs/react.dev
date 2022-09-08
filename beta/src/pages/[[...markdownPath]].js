@@ -68,7 +68,7 @@ export async function getStaticProps(context) {
   const rootDir = process.cwd() + '/src/content/';
   const mdxComponentNames = Object.keys(MDXComponents);
 
-  // Read MDX from the file. Parse Frontmatter data out of it.
+  // Read MDX from the file.
   let path = (context.params.markdownPath || []).join('/') || 'index';
   let mdxWithFrontmatter;
   try {
@@ -163,6 +163,7 @@ export async function getStaticProps(context) {
   function stringifyNodeOnServer(key, val) {
     if (val != null && val.$$typeof === Symbol.for('react.element')) {
       // Remove fake MDX props.
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const {mdxType, originalType, parentName, ...cleanProps} = val.props;
       return [
         '$r',

@@ -1139,7 +1139,7 @@ export function useTasksDispatch() {
 
 When a component needs to read context, it can do it through these functions:
 
-```js {5-7}
+```js
 const tasks = useTasks();
 const dispatch = useTasksDispatch();
 ```

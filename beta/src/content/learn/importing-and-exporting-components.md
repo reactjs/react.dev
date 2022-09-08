@@ -108,10 +108,10 @@ Notice how this example is broken down into two component files now:
 
 1. `Gallery.js`:
      - Defines the `Profile` component which is only used within the same file and is not exported.
-     - Exports the `Gallery` component as a **default export**.
+     - Exports the `Gallery` component as a **default export.**
 2. `App.js`:
      - Imports `Gallery` as a **default import** from `Gallery.js`.
-     - Exports the root `App` component as a **default export**.
+     - Exports the root `App` component as a **default export.**
 
 
 <Note>
@@ -126,7 +126,7 @@ Either `'./Gallery.js'` or `'./Gallery'` will work with React, though the former
 
 </Note>
 
-<DeepDive title="Default vs Named Exports">
+<DeepDive title="Default vs named exports">
 
 There are two primary ways to export values with JavaScript: default exports and named exports. So far, our examples have only used default exports. But you can use one or both of them in the same file. **A file can have no more than one _default_ export, but it can have as many _named_ exports as you like.**
 
@@ -219,12 +219,12 @@ img { margin: 0 10px 10px 0; height: 90px; }
 Now you're using a mix of default and named exports:
 
 * `Gallery.js`:
-  - Exports the `Profile` component as a **named export called `Profile`**.
-  - Exports the `Gallery` component as a **default export**.
+  - Exports the `Profile` component as a **named export called `Profile`.**
+  - Exports the `Gallery` component as a **default export.**
 * `App.js`:
   - Imports `Profile` as a **named import called `Profile`** from `Gallery.js`.
   - Imports `Gallery` as a **default import** from `Gallery.js`.
-  - Exports the root `App` component as a **default export**.
+  - Exports the root `App` component as a **default export.**
 
 <Recap>
 

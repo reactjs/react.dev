@@ -17,23 +17,15 @@ const MarkdownHeader = ({title}: {title: string}) => {
         css={{
           color: colors.dark,
           marginBottom: 0,
-          marginTop:
-            'calc(40px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+          marginTop: 80,
           ...fonts.header,
 
-          [media.lessThan('small')]: {
-            marginTop:
-              'calc(40px + var(--survey-banner-height-small) + var(--social-banner-height-small))',
-          },
-
           [media.size('medium')]: {
-            marginTop:
-              'calc(60px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+            marginTop: 60,
           },
 
-          [media.greaterThan('large')]: {
-            marginTop:
-              'calc(80px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+          [media.lessThan('small')]: {
+            marginTop: 40,
           },
         }}>
         {title}

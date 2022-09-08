@@ -6,7 +6,14 @@ import React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 const {slug} = require('github-slugger');
+interface Process {
+  env: {VERCEL_URL: string};
+}
+declare var process: Process;
 
+const apiURL = process.env.VERCEL_URL
+  ? 'https://' + process.env?.VERCEL_URL
+  : 'http://localhost:3000';
 export interface SeoProps {
   title: string;
   description?: string;
@@ -56,7 +63,7 @@ export const Seo = withRouter(
       <meta
         property="og:image"
         key="og:image"
-        content={`/images/ogassets/${slug(title, false)}.png`}
+        content={`${apiURL}/images/ogassets/${slug(title, false)}.png`}
       />
 
       {/* TWITTER */}

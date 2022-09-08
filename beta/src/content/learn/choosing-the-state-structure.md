@@ -581,8 +581,8 @@ import { initialTravelPlan } from './places.js';
 function PlaceTree({ place }) {
   const childPlaces = place.childPlaces;
   return (
-    <>
-      <li>{place.title}</li>
+    <li>
+      {place.title}
       {childPlaces.length > 0 && (
         <ol>
           {childPlaces.map(place => (
@@ -590,7 +590,7 @@ function PlaceTree({ place }) {
           ))}
         </ol>
       )}
-    </>
+    </li>
   );
 }
 
@@ -832,8 +832,8 @@ function PlaceTree({ id, placesById }) {
   const place = placesById[id];
   const childIds = place.childIds;
   return (
-    <>
-      <li>{place.title}</li>
+    <li>
+      {place.title}
       {childIds.length > 0 && (
         <ol>
           {childIds.map(childId => (
@@ -845,7 +845,7 @@ function PlaceTree({ id, placesById }) {
           ))}
         </ol>
       )}
-    </>
+    </li>
   );
 }
 
@@ -1186,15 +1186,13 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
   const place = placesById[id];
   const childIds = place.childIds;
   return (
-    <>
-      <li>
-        {place.title}
-        <button onClick={() => {
-          onComplete(parentId, id);
-        }}>
-          Complete
-        </button>
-      </li>
+    <li>
+      {place.title}
+      <button onClick={() => {
+        onComplete(parentId, id);
+      }}>
+        Complete
+      </button>
       {childIds.length > 0 &&
         <ol>
           {childIds.map(childId => (
@@ -1208,7 +1206,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
           ))}
         </ol>
       }
-    </>
+    </li>
   );
 }
 ```
@@ -1530,15 +1528,13 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
   const place = placesById[id];
   const childIds = place.childIds;
   return (
-    <>
-      <li>
-        {place.title}
-        <button onClick={() => {
-          onComplete(parentId, id);
-        }}>
-          Complete
-        </button>
-      </li>
+    <li>
+      {place.title}
+      <button onClick={() => {
+        onComplete(parentId, id);
+      }}>
+        Complete
+      </button>
       {childIds.length > 0 &&
         <ol>
           {childIds.map(childId => (
@@ -1552,7 +1548,7 @@ function PlaceTree({ id, parentId, placesById, onComplete }) {
           ))}
         </ol>
       }
-    </>
+    </li>
   );
 }
 ```

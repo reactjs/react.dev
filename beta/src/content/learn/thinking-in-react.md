@@ -455,7 +455,7 @@ function SearchBar({ filterText, inStockOnly }) {
         placeholder="Search..."/>
 ```
 
-However, you haven't added any code to respond to the user actions like typing yet. This wil be your final step.
+However, you haven't added any code to respond to the user actions like typing yet. This will be your final step.
 
 
 ## Step 5: Add inverse data flow {/*step-5-add-inverse-data-flow*/}

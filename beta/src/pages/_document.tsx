@@ -14,7 +14,6 @@ const MyDocument = () => {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-            "use strict";
 (function () {
     var reacjsThemeColorMeta = document.querySelector('meta[name="theme-color"]');
     function setTheme(newTheme) {

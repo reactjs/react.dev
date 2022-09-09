@@ -22,7 +22,6 @@ function ExpandableExample({
   excerpt,
   type,
 }: ExpandableExampleProps) {
-  const ref = React.useRef<null | HTMLDetailsElement>(null);
   const [isExpanded, setIsExpanded] = React.useState(false);
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
@@ -37,7 +36,6 @@ function ExpandableExample({
         // We toggle using a button instead of this whole area.
         e.preventDefault();
       }}
-      ref={ref}
       className={cn('my-12 rounded-lg shadow-inner relative', {
         'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
         'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,

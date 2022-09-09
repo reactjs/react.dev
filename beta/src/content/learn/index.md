@@ -92,7 +92,7 @@ function AboutPage() {
 }
 ```
 
-If you have a lot of HTML to port to JSX, you can use an [online converter](https://transform.tools/html-to-jsx).
+If you have a lot of HTML to port to JSX, you can use an [online converter.](https://transform.tools/html-to-jsx)
 
 ## Adding styles {/*adding-styles*/}
 
@@ -197,7 +197,7 @@ return (
 );
 ```
 
-If you prefer more compact code, you can use the [conditional `?` operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator). Unlike `if`, it works inside JSX:
+If you prefer more compact code, you can use the [conditional `?` operator.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) Unlike `if`, it works inside JSX:
 
 ```js
 <div>
@@ -382,7 +382,7 @@ Notice how each button "remembers" its own `count` state and doesn't affect othe
 
 ## Using Hooks {/*using-hooks*/}
 
-Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference](/apis/react). You can also write your own Hooks by combining the existing ones.
+Functions starting with `use` are called *Hooks*. `useState` is a built-in Hook provided by React. You can find other built-in Hooks in the [React API reference.](/apis/react) You can also write your own Hooks by combining the existing ones.
 
 Hooks are more restrictive than regular functions. You can only call Hooks *at the top level* of your components (or other Hooks). If you want to use `useState` in a condition or a loop, extract a new component and put it there.
 

@@ -520,7 +520,7 @@ Don't confuse `e.stopPropagation()` and `e.preventDefault()`. They are both usef
 
 Absolutely! Event handlers are the best place for side effects.
 
-Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory](/learn/state-a-components-memory). You will learn all about it on the next page.
+Unlike rendering functions, event handlers don't need to be [pure](/learn/keeping-components-pure), so it's a great place to *change* something—for example, change an input's value in response to typing, or change a list in response to a button press. However, in order to change some information, you first need some way to store it. In React, this is done by using [state, a component's memory.](/learn/state-a-components-memory) You will learn all about it on the next page.
 
 <Recap>
 

@@ -569,7 +569,7 @@ setMyList(myList.map(artwork => {
 });
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax).
+Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
 
 With this approach, none of the existing state items are being mutated, and the bug is fixed:
 

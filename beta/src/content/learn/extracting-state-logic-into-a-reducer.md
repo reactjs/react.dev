@@ -2800,7 +2800,7 @@ function dispatch(action) {
 }
 ```
 
-This is because the dispatched actions are queued until the next render, [similar to the updater functions](/learn/queueing-a-series-of-state-updates).
+This is because the dispatched actions are queued until the next render, [similar to the updater functions.](/learn/queueing-a-series-of-state-updates)
 
 </Solution>
 

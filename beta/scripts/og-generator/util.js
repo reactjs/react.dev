@@ -1,93 +1,100 @@
 const getCss = () => {
   return `
 <style>
-  @font-face {
-    font-family: "Source Code Pro";
-    font-style: normal;
-    font-weight: 400;
-    font-display: swap;
-    src: url("/fonts/Source-Code-Pro-Regular.woff2") format("woff2");
-  }
-  @font-face {
-    font-family: "Optimistic Display";
-    src: url("https://conf.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2")
-      format("woff2");
-    font-weight: 300;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Optimistic Display";
-    src: url("https://conf.reactjs.org/fonts/Optimistic_Display_W_Md.woff2")
-      format("woff2");
-    font-weight: 500;
-    font-style: normal;
-    font-display: swap;
-  }
-  @font-face {
-    font-family: "Optimistic Display";
-    src: url("https://conf.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2")
-      format("woff2");
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
-  }
-  * {
-    margin: 0;
-    padding: 0;
-  }
-  .background-wrapper {
-    display: flex;
-    justify-content: start;
-    position: relative;
-    width: 100%;
-    height: 100%;
-  }
-  .og-image-wrapper {
-    width: 800px;
-    height: 400;
-    color: rgb(35, 39, 47);
-    overflow: hidden;
-    background-color: #f3f4f6;
-    font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui,
-      BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans,
-      sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/Source-Code-Pro-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Optimistic Display";
+  src: url("https://conf.reactjs.org/fonts/Optimistic_Display_W_Lt.woff2") format("woff2");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Optimistic Display";
+  src: url("https://conf.reactjs.org/fonts/Optimistic_Display_W_Md.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Optimistic Display";
+  src: url("https://conf.reactjs.org/fonts/Optimistic_Display_W_Bd.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+.background-wrapper {
+  display: flex;
+  justify-content: start;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.og-image-wrapper {
+  width: 800px;
+  height: 400;
+  color: rgb(35, 39, 47);
+  overflow: hidden;
+  background-color: #f3f4f6;
+  font-family: Optimistic Display, -apple-system, ui-sans-serif, system-ui, BlinkMacSystemFont, Segoe UI, Roboto,
+      Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
       Noto Color Emoji;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  .content-wrapper {
-    padding: 20px 40px 0px;
-  }
-  .sections {
-    font-weight: 800;
-    padding: 20px 0px;
-    color: rgb(8, 126, 164);
-  }
-  .page-title {
-    padding: 5px 0px;
-  }
-  .description {
-    padding-top: 10px;
-    min-height: 180px;
-    font-size: 18px;
-  }
-  .logo-container {
-    display: flex;
-    padding: 0px 0px 50px;
-  }
-  .logo {
-    color: rgb(8, 126, 164);
-    height: 60px;
-    width: 60px;
-  }
-  .logo-text {
-    font-size: 40px;
-    padding-left: 10px;
-  }
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content-wrapper {
+  max-width: calc(800px - 80px);
+
+  padding: 20px 40px 0px;
+}
+.sections {
+  font-weight: 800;
+  padding: 20px 0px;
+  color: rgb(8, 126, 164);
+}
+.page-title {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px 0px;
+}
+.description {
+  min-height: 168px;
+  font-size: 18px;
+  height: 168px;
+  display: -webkit-box;
+  -webkit-line-clamp: 7;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.logo-container {
+  display: flex;
+  padding: 0px 0px 50px;
+}
+.logo {
+  color: rgb(8, 126, 164);
+  height: 60px;
+  width: 60px;
+}
+.logo-text {
+  font-size: 40px;
+  padding-left: 10px;
+}
 </style>`;
 };
 

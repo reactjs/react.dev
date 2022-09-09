@@ -21,6 +21,46 @@ const getPage = async (isDev) => {
   return {page: _page, browser};
 };
 
+const getDescription = async (path) => {
+  mdxContents = fs.readFileSync(path, 'utf8');
+  const compileMdx = require('@mdx-js/mdx');
+  const {remarkPlugins} = require('../../plugins/markdownToHtml');
+  const jsxCode = await compileMdx(mdxContents, {
+    remarkPlugins,
+  });
+  const {transform} = require('@babel/core');
+
+  const jsCode = await transform(jsxCode, {
+    plugins: ['@babel/plugin-transform-modules-commonjs'],
+    presets: ['@babel/preset-react'],
+  }).code;
+
+  let fakeExports = {};
+  // For each fake MDX import, give back the string component name.
+  // It will get serialized later.
+  const fakeRequire = (key) => key;
+  const evalJSCode = new Function('require', 'exports', 'mdx', jsCode);
+  const createElement = require('react').createElement;
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  // THIS IS A BUILD-TIME EVAL. NEVER DO THIS WITH UNTRUSTED MDX (LIKE FROM CMS)!!!
+  // In this case it's okay because anyone who can edit our MDX can also edit this file.
+  evalJSCode(fakeRequire, fakeExports, createElement);
+  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  const reactTree = fakeExports.default({});
+
+  const {Children} = require('react');
+
+  const ReactServerDOM = require('react-dom/server');
+  const introContent = Children.toArray(reactTree.props.children)
+    .filter((child) => {
+      return child.props?.mdxType === 'Intro';
+    })
+    .map((child) => child.props)
+    .map(({children}) => ReactServerDOM.renderToString(children))[0];
+
+  return introContent;
+};
+
 (async () => {
   const markdownPages = await globby('src/content/**/*.{md,mdx}');
   //   launch browser
@@ -32,7 +72,13 @@ const getPage = async (isDev) => {
     const {
       data: {title, description},
     } = fm(rawStr);
-    await page.setContent(getHTML(title, description ? description : ''));
+
+    await page.setContent(
+      getHTML(
+        title,
+        description ? description : (await getDescription(filepath)) ?? ''
+      )
+    );
     await page.screenshot({
       type: 'png',
       path: `./public/images/ogassets/${slugs.slug(title, false)}.png`,

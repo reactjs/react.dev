@@ -130,8 +130,7 @@
             },
             {
               "title": "useMemo",
-              "path": "/apis/react/useMemo",
-              "wip": true
+              "path": "/apis/react/useMemo"
             },
             {
               "title": "useReducer",

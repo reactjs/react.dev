@@ -218,7 +218,7 @@ html.dark .code-step * {
 }
 
 .mdx-heading {
-  scroll-margin-top: 3em;
+  scroll-margin-top: 3.5em;
   /* Space for the anchor */
   padding-right: 1em;
 }

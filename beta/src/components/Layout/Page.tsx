@@ -37,9 +37,11 @@ export function Page({children, toc}: PageProps) {
       <SocialBanner />
       <SidebarContext.Provider value={routeTree}>
         <div className="h-auto flex flex-col lg:flex-row">
-          <div className="sticky top-0 py-0 lg:w-80 flex-none lg:static shadow lg:shadow-none z-50">
+          <div className="fixed lg:sticky top-0 left-0 right-0 py-0 lg:w-80 flex-none lg:static shadow lg:shadow-none z-50">
             <Nav />
           </div>
+
+          <div className="lg:hidden h-16 mb-2" />
 
           {/* No fallback UI so need to be careful not to suspend directly inside. */}
           <React.Suspense fallback={null}>

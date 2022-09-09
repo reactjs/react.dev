@@ -349,7 +349,9 @@ useInsertionEffect(() => {
 Return a memoized callback.
 
 ```js
-const memoizedCallback = useCallback(callback, [...deps]);
+const handleClick = useCallback(() => {
+  doSomething(a, b);
+}, [a, b]);
 ```
 
 </YouWillLearnCard>
@@ -359,7 +361,9 @@ const memoizedCallback = useCallback(callback, [...deps]);
 Return a memoized value.
 
 ```js
-const memoizedValue = useMemo(() => value, [...deps]);
+const value = useMemo(() => {
+  return calculateValue(a, b);
+}, [a, b]);
 ```
 
 </YouWillLearnCard>

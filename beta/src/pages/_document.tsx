@@ -14,46 +14,51 @@ const MyDocument = () => {
         <script
           dangerouslySetInnerHTML={{
             __html: `
-            (function() {
-              var setTheme = function setTheme(newTheme) {
-                  window.__theme = newTheme;
-                  if (newTheme === "dark") {
-                      document.documentElement.classList.add("dark");
-                      reacjsThemeColorMeta == null ? void 0 : reacjsThemeColorMeta.setAttribute("content", "#23272F");
-                  } else if (newTheme === "light") {
-                      document.documentElement.classList.remove("dark");
-                      reacjsThemeColorMeta == null ? void 0 : reacjsThemeColorMeta.setAttribute("content", "#F5F5F5");
-                  }
-              };
-              var reacjsThemeColorMeta = document.querySelector('meta[name="theme-color"]');
-              var preferredTheme;
-              try {
-                  preferredTheme = localStorage.getItem("theme");
-              } catch (err) {}
-              window.__setPreferredTheme = function(newTheme) {
-                  preferredTheme = newTheme;
-                  setTheme(newTheme);
-                  try {
-                      localStorage.setItem("theme", newTheme);
-                  } catch (err) {}
-              };
-              var initialTheme = preferredTheme;
-              var darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
-              if (!initialTheme) {
-                  initialTheme = darkQuery.matches ? "dark" : "light";
-              }
-              setTheme(initialTheme);
-              if (initialTheme === "dark") {
-                  reacjsThemeColorMeta == null ? void 0 : reacjsThemeColorMeta.setAttribute("content", "#23272F");
-              } else {
-                  reacjsThemeColorMeta == null ? void 0 : reacjsThemeColorMeta.setAttribute("content", "#F5F5F5");
-              }
-              darkQuery.addEventListener("change", function(e) {
-                  if (!preferredTheme) {
-                      setTheme(e.matches ? "dark" : "light");
-                  }
-              });
-          })();          
+            "use strict";
+(function () {
+    var reacjsThemeColorMeta = document.querySelector('meta[name="theme-color"]');
+    function setTheme(newTheme) {
+        window.__theme = newTheme;
+        if (newTheme === 'dark') {
+            document.documentElement.classList.add('dark');
+            reacjsThemeColorMeta === null || reacjsThemeColorMeta === void 0 ? void 0 : reacjsThemeColorMeta.setAttribute('content', '#23272F');
+        }
+        else if (newTheme === 'light') {
+            document.documentElement.classList.remove('dark');
+            reacjsThemeColorMeta === null || reacjsThemeColorMeta === void 0 ? void 0 : reacjsThemeColorMeta.setAttribute('content', '#F5F5F5');
+        }
+    }
+    var preferredTheme;
+    try {
+        preferredTheme = localStorage.getItem('theme');
+    }
+    catch (err) { }
+    window.__setPreferredTheme = function (newTheme) {
+        preferredTheme = newTheme;
+        setTheme(newTheme);
+        try {
+            localStorage.setItem('theme', newTheme);
+        }
+        catch (err) { }
+    };
+    var initialTheme = preferredTheme;
+    var darkQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    if (!initialTheme) {
+        initialTheme = darkQuery.matches ? 'dark' : 'light';
+    }
+    setTheme(initialTheme);
+    if (initialTheme === 'dark') {
+        reacjsThemeColorMeta === null || reacjsThemeColorMeta === void 0 ? void 0 : reacjsThemeColorMeta.setAttribute('content', '#23272F');
+    }
+    else {
+        reacjsThemeColorMeta === null || reacjsThemeColorMeta === void 0 ? void 0 : reacjsThemeColorMeta.setAttribute('content', '#F5F5F5');
+    }
+    darkQuery.addEventListener('change', function (e) {
+        if (!preferredTheme) {
+            setTheme(e.matches ? 'dark' : 'light');
+        }
+    });
+})();       
               `,
           }}
         />

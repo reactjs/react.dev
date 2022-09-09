@@ -500,7 +500,7 @@ You can think of them as having the same "address": the first child of the first
 
 ## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
 
-In this example, ticking the checkbox will replace `<Counter>` with a `<p>`:
+In this example, ticking the checkbox will replace `<Counter />` with a `<p>`:
 
 <Sandpack>
 
@@ -1033,7 +1033,7 @@ Specifying a `key` tells React to use the `key` itself as part of the position, 
 
 Resetting state with a key is particularly useful when dealing with forms.
 
-In this chat app, the `<Chat>` component contains the text input state:
+In this chat app, the `<Chat />` component contains the text input state:
 
 <Sandpack>
 
@@ -1128,7 +1128,7 @@ textarea {
 
 </Sandpack>
 
-Try entering something into the input, and then press "Alice" or "Bob" to choose a different recipient. You will notice that the input state is preserved because the `<Chat>` is rendered at the same position in the tree.
+Try entering something into the input, and then press "Alice" or "Bob" to choose a different recipient. You will notice that the input state is preserved because the `<Chat />` is rendered at the same position in the tree.
 
 **In many apps, this may be the desired behavior, but not in a chat app!** You don't want to let the user send a message they already typed to a wrong person due to an accidental click. To fix it, add a `key`:
 
@@ -1241,7 +1241,7 @@ In a real chat app, you'd probably want to recover the input state when the user
 - You could [lift the state up](/learn/sharing-state-between-components) and hold the pending message for each recipient in the parent component. This way, when the child components get removed, it doesn't matter, because it's the parent that keeps the important information. This is the most common solution.
 - You might also use a different source in addition to React state. For example, you probably want a message draft to persist even if the user accidentally closes the page. To implement this, you could have the `Chat` component initialize its state by reading from the [`localStorage`](https://developer.mozilla.org/en-US/docs/Web/API/Window/localStorage), and save the drafts there too.
 
-No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat>` tree based on the current recipient.
+No matter which strategy you pick, a chat _with Alice_ is conceptually distinct from a chat _with Bob_, so it makes sense to give a `key` to the `<Chat />` tree based on the current recipient.
 
 </DeepDive>
 

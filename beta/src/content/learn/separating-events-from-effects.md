@@ -406,7 +406,7 @@ This section describes an **experimental API that has not yet been added to Reac
 
 </Gotcha>
 
-Use a special Hook called [`useEvent`](/apis/useEvent) to extract this non-reactive logic out of your Effect:
+Use a special Hook called [`useEvent`](/apis/react/useEvent) to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
 import { useEffect, useEvent } from 'react';

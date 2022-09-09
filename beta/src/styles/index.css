@@ -143,6 +143,10 @@
     max-width: calc(min(700px, 100%));
   }
 
+  summary::-webkit-details-marker {
+    display: none;
+  }
+
   @keyframes nav-fadein {
     from {
       opacity: 0.5;

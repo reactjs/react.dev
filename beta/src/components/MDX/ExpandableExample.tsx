@@ -3,6 +3,7 @@
  */
 
 import * as React from 'react';
+import {flushSync} from 'react-dom';
 import cn from 'classnames';
 import {IconChevron} from '../Icon/IconChevron';
 import {IconDeepDive} from '../Icon/IconDeepDive';
@@ -23,11 +24,38 @@ function ExpandableExample({
   type,
 }: ExpandableExampleProps) {
   const [isExpanded, setIsExpanded] = React.useState(false);
+  const ref = React.useRef<HTMLDivElement | null>(null);
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
 
+  // Try our best to detect in-page search and auto-expand.
+  React.useEffect(() => {
+    if (isExpanded) {
+      return;
+    }
+    function handleKeyDown(e: KeyboardEvent) {
+      if (e.code === 'KeyF' && (e.ctrlKey || e.metaKey)) {
+        const prevRect = ref.current!.getBoundingClientRect();
+        const prevHeight = prevRect.height;
+        flushSync(() => {
+          setIsExpanded(true);
+        });
+        // If the deep dive is somewhere above, compensate the shift.
+        if (prevRect.bottom < window.innerHeight / 2) {
+          const nextRect = ref.current!.getBoundingClientRect();
+          const nextHeight = nextRect.height;
+          const dY = nextHeight - prevHeight;
+          window.scrollTo(window.scrollX, window.scrollY + dY);
+        }
+      }
+    }
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [isExpanded]);
+
   return (
     <div
+      ref={ref}
       className={cn('my-12 rounded-lg shadow-inner relative', {
         'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
         'dark:bg-opacity-20 dark:bg-yellow-60 bg-yellow-5': isExample,

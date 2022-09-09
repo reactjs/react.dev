@@ -250,7 +250,7 @@ function handleDeleteTask(taskId) {
 }
 ```
 
-The object you pass to `dispatch` is called an "action:"
+The object you pass to `dispatch` is called an "action":
 
 ```js {3-7}
 function handleDeleteTask(taskId) {

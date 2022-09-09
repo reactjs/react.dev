@@ -104,7 +104,7 @@ These two components work fine, but the duplication in logic between them is unf
 
 ### Extracting your own custom Hook from a component {/*extracting-your-own-custom-hook-from-a-component*/}
 
-Imagine for a moment that, similar to [`useState`](/apis/react/useState) and [`useEffect`](/apis/useEffect), there was a built-in `useOnlineStatus` Hook. Then both of these components could be simplified and you could remove the duplication between them:
+Imagine for a moment that, similar to [`useState`](/apis/react/useState) and [`useEffect`](/apis/react/useEffect), there was a built-in `useOnlineStatus` Hook. Then both of these components could be simplified and you could remove the duplication between them:
 
 ```js {2,7}
 function StatusBar() {

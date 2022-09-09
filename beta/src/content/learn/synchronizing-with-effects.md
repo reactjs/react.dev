@@ -53,7 +53,7 @@ Let's look at each of these steps in detail.
 
 ### Step 1: Declare an Effect {/*step-1-declare-an-effect*/}
 
-To declare an Effect in your component, import the [`useEffect` Hook](/api/useeffect) from React:
+To declare an Effect in your component, import the [`useEffect` Hook](/apis/react/useEffect) from React:
 
 ```js
 import { useEffect } from 'react';
@@ -1365,7 +1365,7 @@ body {
 
 <Solution>
 
-When [Strict Mode](/apis/StrictMode) is on (like in the sandboxes on this site), React remounts each component once in development. This causes the interval to be set up twice, and this is why each second the counter increments twice.
+When [Strict Mode](/apis/react/StrictMode) is on (like in the sandboxes on this site), React remounts each component once in development. This causes the interval to be set up twice, and this is why each second the counter increments twice.
 
 However, React's behavior is not the *cause* of the bug: the bug already exists in the code. React's behavior makes the bug more noticeable. The real cause is that this Effect starts a process but doesn't provide a way to clean it up.
 

@@ -31,7 +31,7 @@ export const Seo = withRouter(
       {description != null && (
         <meta name="description" key="description" content={description} />
       )}
-      <meta name="theme-color" key="theme-color" content="#087ea4" />
+      <meta name="theme-color" key="theme-color" content="#23272F" />
       {/* <link rel="icon" type="image/x-icon" href={favicon} />
       <link rel="apple-touch-icon" href={favicon} />  @todo favicon */}
       <meta property="fb:app_id" content="623268441017527" />

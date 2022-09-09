@@ -1,0 +1,80 @@
+diff --git a/node_modules/next/dist/client/index.js b/node_modules/next/dist/client/index.js
+index 8541301..e020783 100644
+--- a/node_modules/next/dist/client/index.js
++++ b/node_modules/next/dist/client/index.js
+@@ -471,7 +471,11 @@ function renderError(renderErrorProps) {
+ let reactRoot = null;
+ // On initial render a hydrate should always happen
+ let shouldHydrate = true;
+-function renderReactElement(domEl, fn) {
++function renderReactElement(domEl, fn
++// ~~~~~~~~~ MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++, REACT_DOCS_IS_POPSTATE // Added this argument
++// ~~~~~~~~~ /MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++) {
+     // mark start of hydrate/render
+     if (_utils.ST) {
+         performance.mark('beforeRender');
+@@ -484,10 +488,16 @@ function renderReactElement(domEl, fn) {
+             // TODO: Remove shouldHydrate variable when React 18 is stable as it can depend on `reactRoot` existing
+             shouldHydrate = false;
+         } else {
+-            const startTransition = _react.default.startTransition;
+-            startTransition(()=>{
++            // ~~~~~~~~~ MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++            if (REACT_DOCS_IS_POPSTATE) { // Added this branch
+                 reactRoot.render(reactEl);
+-            });
++            } else { // The else block contents is the original code
++                const startTransition = _react.default.startTransition;
++                startTransition(()=>{
++                    reactRoot.render(reactEl);
++                });
++            }
++            // ~~~~~~~~~ /MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         }
+     } else {
+         // The check for `.hydrate` is there to support React alternatives like preact
+@@ -796,7 +806,11 @@ function doRender(input) {
+             });
+         }
+         if (input.scroll) {
+-            window.scrollTo(input.scroll.x, input.scroll.y);
++            // ~~~~~~~~~ MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++            if (!input.scroll.REACT_DOCS_IS_POPSTATE) { // Added this condition
++              window.scrollTo(input.scroll.x, input.scroll.y);
++            }
++            // ~~~~~~~~~ /MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+         }
+     }
+     function onRootCommit() {
+@@ -815,6 +829,9 @@ function doRender(input) {
+                 onRootCommit
+             ]
+         }, process.env.__NEXT_STRICT_MODE ? /*#__PURE__*/ _react.default.createElement(_react.default.StrictMode, null, elem) : elem)
++    // ~~~~~~~~~ MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++    , input.scroll && input.scroll.REACT_DOCS_IS_POPSTATE // Added this argument
++    // ~~~~~~~~~ /MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+     );
+     return renderPromise;
+ }
+diff --git a/node_modules/next/dist/shared/lib/router/router.js b/node_modules/next/dist/shared/lib/router/router.js
+index 572e21b..538091f 100644
+--- a/node_modules/next/dist/shared/lib/router/router.js
++++ b/node_modules/next/dist/shared/lib/router/router.js
+@@ -416,6 +416,15 @@ class Router {
+                     }
+                 }
+             }
++            // ~~~~~~~~~ MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++            // I don't want Next.js to do anythnig on scroll for Back/Forward buttons.
++            // Instead I want to let the browser take care of it with auto scroll restoration.
++            // Unfortunately, Next.js still tries to scroll to top on Back, so let's not do that.
++            forcedScroll = {
++              REACT_DOCS_IS_POPSTATE: true
++            };
++            // ~~~~~~~~~ /MANUAL EDIT FOR REACT DOCS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
++
+             this._key = key;
+             const { pathname  } = (0, _parseRelativeUrl).parseRelativeUrl(url);
+             // Make sure we don't re-render on initial load,

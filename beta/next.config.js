@@ -13,7 +13,6 @@ const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
   experimental: {
     plugins: true,
-    scrollRestoration: true,
     legacyBrowsers: false,
     browsersListForSwc: true,
   },

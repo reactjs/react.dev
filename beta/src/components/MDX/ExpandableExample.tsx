@@ -30,11 +30,7 @@ function ExpandableExample({
     <details
       open={isExpanded}
       onToggle={(e: any) => {
-        setIsExpanded(e.target!.open);
-      }}
-      onClick={(e) => {
-        // We toggle using a button instead of this whole area.
-        e.preventDefault();
+        setIsExpanded(e.currentTarget!.open);
       }}
       className={cn('my-12 rounded-lg shadow-inner relative', {
         'dark:bg-opacity-20 dark:bg-purple-60 bg-purple-5': isDeepDive,
@@ -42,7 +38,11 @@ function ExpandableExample({
       })}>
       <summary
         className="list-none p-8"
-        tabIndex={-1 /* there's a button instead */}>
+        tabIndex={-1 /* there's a button instead */}
+        onClick={(e) => {
+          // We toggle using a button instead of this whole area.
+          e.preventDefault();
+        }}>
         <h5
           className={cn('mb-4 uppercase font-bold flex items-center text-sm', {
             'dark:text-purple-30 text-purple-50': isDeepDive,

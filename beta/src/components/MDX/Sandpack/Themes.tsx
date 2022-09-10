@@ -5,32 +5,39 @@
 import tailwindConfig from '../../../../tailwind.config';
 
 export const CustomTheme = {
-  palette: {
-    activeText: 'inherit',
-    defaultText: 'inherit',
-    inactiveText: 'inherit',
-    activeBackground: 'inherit',
-    defaultBackground: 'inherit',
-    inputBackground: 'inherit',
+  colors: {
     accent: 'inherit',
-    errorBackground: 'inherit',
-    errorForeground: 'inherit',
+    base: 'inherit',
+    clickable: 'inherit',
+    disabled: 'inherit',
+    error: 'inherit',
+    errorSurface: 'inherit',
+    hover: 'inherit',
+    surface1: 'inherit',
+    surface2: 'inherit',
+    surface3: 'inherit',
+    warning: 'inherit',
+    warningSurface: 'inherit',
   },
   syntax: {
-    plain: 'var(--theme-plain)',
-    comment: 'var(--theme-comment)',
-    keyword: 'var(--theme-keyword)',
-    tag: 'var(--theme-tag)',
-    punctuation: 'var(--theme-punctuation)',
-    definition: 'var(--theme-definition)',
-    property: 'var(--theme-property)',
-    static: 'var(--theme-static)',
-    string: 'var(--theme-string)',
+    plain: 'inherit',
+    comment: 'inherit',
+    keyword: 'inherit',
+    tag: 'inherit',
+    punctuation: 'inherit',
+    definition: 'inherit',
+    property: 'inherit',
+    static: 'inherit',
+    string: 'inherit',
   },
-  typography: {
-    bodyFont: tailwindConfig.theme.extend.fontFamily.sans.join(', '),
-    monoFont: tailwindConfig.theme.extend.fontFamily.mono.join(', '),
-    fontSize: tailwindConfig.theme.extend.fontSize.code,
+  font: {
+    body: tailwindConfig.theme.extend.fontFamily.sans
+      .join(', ')
+      .replace(/"/gm, ''),
+    mono: tailwindConfig.theme.extend.fontFamily.mono
+      .join(', ')
+      .replace(/"/gm, ''),
+    size: tailwindConfig.theme.extend.fontSize.code,
     lineHeight: '24px',
   },
 };

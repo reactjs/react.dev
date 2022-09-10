@@ -394,7 +394,7 @@ In other words, you *don't* want this line to be reactive, even though it is ins
       // ...
       showNotification('Connected!', theme);
       // ...
-````
+```
 
 You need a way to separate this non-reactive logic from the reactive Effect around it.
 

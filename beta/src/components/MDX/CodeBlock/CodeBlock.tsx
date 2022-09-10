@@ -67,6 +67,11 @@ const CodeBlock = function CodeBlock({
   const decorators = getDecoratedLineInfo();
   return (
     <div
+      key={
+        // HACK: There seems to be a bug where the rendered result
+        // "lags behind" the edits to it. For now, force it to reset.
+        process.env.NODE_ENV === 'development' ? children : ''
+      }
       className={cn(
         'sandpack sandpack--codeblock',
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',

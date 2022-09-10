@@ -114,6 +114,7 @@ html.dark .sp-wrapper {
 
 .sandpack .sp-cm:focus-visible {
   box-shadow: inset 0 0 0 4px rgba(20, 158, 202, 0.4);
+  padding-left: 12px;
 }
 
 /**

@@ -79,6 +79,7 @@ html.dark .sp-wrapper {
 
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  overflow: initial;
 }
 @media screen and (max-width: 768px) {
   .sp-layout > .sp-stack {
@@ -259,7 +260,6 @@ html.dark .sandpack--playground .sp-overlay {
 
 .sp-layout {
   min-height: 216px;
-  overflow: initial !important;
 }
 
 .sp-layout > .sp-stack:nth-child(1) {

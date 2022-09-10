@@ -88,6 +88,10 @@ export function Preview({
     }
   }
 
+  if (rawError != null && rawError.title === 'Runtime Exception') {
+    rawError.title = 'Runtime Error';
+  }
+
   // It changes too fast, causing flicker.
   const error = useDebounced(rawError);
 
@@ -179,7 +183,7 @@ export function Preview({
               : isExpanded
               ? 'sticky'
               : undefined,
-            top: isExpanded ? '4rem' : undefined,
+            top: isExpanded ? '2rem' : undefined,
           }}>
           <iframe
             ref={iframeRef}

@@ -70,8 +70,8 @@ html.dark .sp-wrapper {
 .sandpack .sp-wrapper {
   width: 100%;
 }
+
 .sandpack .sp-layout {
-  overflow: visible;
   -webkit-mask-image: -webkit-radial-gradient(
     var(--sp-colors-surface1),
     var(--sp-colors-surface1)
@@ -79,6 +79,12 @@ html.dark .sp-wrapper {
 
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+}
+@media screen and (max-width: 768px) {
+  .sp-layout > .sp-stack {
+    height: auto;
+    min-width: 100% !important;
+  }
 }
 .sandpack .sp-layout > .sp-stack {
   flex: 1 1 0px;

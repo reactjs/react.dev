@@ -40,10 +40,10 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   // By default, show the dropdown because all tabs may not fit.
   // We don't know whether they'll fit or not until after hydration:
   const [showDropdown, setShowDropdown] = React.useState(true);
-  const {openPaths, clients, setActiveFile, activePath} = sandpack;
+  const {activeFile, setActiveFile, visibleFiles, clients} = sandpack;
   const clientId = Object.keys(clients)[0];
   const {refresh} = useSandpackNavigation(clientId);
-  const isMultiFile = openPaths.length > 1;
+  const isMultiFile = visibleFiles.length > 1;
   const hasJustToggledDropdown = React.useRef(false);
 
   // Keep track of whether we can show all tabs or just the dropdown.
@@ -88,9 +88,9 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   };
 
   return (
-    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
+    <div className="bg-wash dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg text-lg">
       <div className="flex-1 grow min-w-0 px-4 lg:px-6">
-        <Listbox value={activePath} onChange={setActiveFile}>
+        <Listbox value={activeFile} onChange={setActiveFile}>
           <div ref={containerRef}>
             <div className="relative overflow-hidden">
               <div
@@ -120,7 +120,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                         'h-full py-2 px-1 mt-px -mb-px flex border-b text-link dark:text-link-dark border-link dark:border-link-dark items-center text-md leading-tight truncate'
                       )}
                       style={{maxWidth: '160px'}}>
-                      {getFileName(activePath)}
+                      {getFileName(activeFile)}
                       {isMultiFile && (
                         <span className="ml-2">
                           <IconChevron
@@ -136,13 +136,13 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
           </div>
           {isMultiFile && showDropdown && (
             <Listbox.Options className="absolute mt-0.5 bg-card dark:bg-card-dark px-2 left-0 right-0 mx-0 rounded-b-lg border-1 border-border dark:border-border-dark rounded-sm shadow-md">
-              {openPaths.map((filePath: string) => (
+              {visibleFiles.map((filePath: string) => (
                 <Listbox.Option
                   key={filePath}
                   value={filePath}
                   className={cn(
                     'text-md mx-2 my-4 cursor-pointer',
-                    filePath === activePath && 'text-link dark:text-link-dark'
+                    filePath === activeFile && 'text-link dark:text-link-dark'
                   )}>
                   {getFileName(filePath)}
                 </Listbox.Option>

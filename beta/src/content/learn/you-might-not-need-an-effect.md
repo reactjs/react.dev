@@ -656,7 +656,7 @@ function ChatIndicator() {
 
 Here, the component subscribes to an external data store (in this case, the browser `navigator.onLine` API). Since this API does not exist on the server (so it can't be used to generate the initial HTML), initially the state is set to `true`. Whenever the value of that data store changes in the browser, the component updates its state.
 
-Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/apis/react/usesyncexternalstore):
+Although it's common to use Effects for this, React has a purpose-built Hook for subscribing to an external store that is preferred instead. Delete the Effect and replace it with a call to [`useSyncExternalStore`](/apis/react/useSyncExternalStore):
 
 ```js {11-16}
 function subscribe(callback) {

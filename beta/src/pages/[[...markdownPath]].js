@@ -55,7 +55,7 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 2;
+const DISK_CACHE_BREAKER = 3;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Put MDX output into JSON for client.
@@ -207,7 +207,7 @@ export async function getStaticPaths() {
   // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
   // 'foo/bar/qux/index.md' -> ['foo', 'bar', 'qux']
   function getSegments(file) {
-    let segments = file.slice(0, -3).split('/');
+    let segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
     if (segments[segments.length - 1] === 'index') {
       segments.pop();
     }

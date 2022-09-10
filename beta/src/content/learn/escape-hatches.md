@@ -602,7 +602,7 @@ Read **[Separating Events from Effects](/learn/separating-events-from-effects)**
 
 </LearnMore>
 
-## Removing effect dependencies {/*removing-effect-dependencies*/}
+## Removing Effect dependencies {/*removing-effect-dependencies*/}
 
 When you write an Effect, the linter will verify that you've included every reactive value (like props and state) that the Effect reads in the list of your Effect's dependencies. This ensures that your Effect remains synchronized with the latest props and state of your component. Unnecessary dependencies may cause your Effect to run too often, or even create an infinite loop. The way you remove them depends on the case.
 

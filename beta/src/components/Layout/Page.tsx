@@ -47,7 +47,9 @@ export function Page({children, toc}: PageProps) {
           <React.Suspense fallback={null}>
             <div className="flex flex-1 w-full h-full self-stretch min-w-0">
               <main className="w-full self-stretch h-full mx-auto relative w-full min-w-0">
-                <article key={asPath}>{children}</article>
+                <article className="break-words" key={asPath}>
+                  {children}
+                </article>
                 <Footer />
               </main>
             </div>

@@ -11,7 +11,7 @@ This section is incomplete, please see the RFC doc for [useEvent](https://github
 
 <Intro>
 
-`useEvent` is a Hook to define an event handler with an always-stable function identity.
+`useEvent` is a React Hook that lets you extract non-reactive Effect logic into an [Event function.](/learn/separating-events-from-effects#declaring-an-event-function)
 
 ```js
 useEvent(callback)

@@ -153,6 +153,11 @@
               "title": "useTransition",
               "path": "/apis/react/useTransition",
               "wip": true
+            },
+            {
+              "title": "useEvent",
+              "path": "/apis/react/useEvent",
+              "wip": true
             }
           ]
         },

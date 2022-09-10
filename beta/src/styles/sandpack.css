@@ -401,11 +401,13 @@ html.dark .sp-devtools > div {
 }
 
 /** 
- * For iOS: prevent browser zoom when clicking on sandbox
+ * For iOS: prevent browser zoom when clicking on sandbox.
+ * Does NOT apply to code blocks.
  */
 @media screen and (max-width: 768px) {
   @supports (-webkit-overflow-scrolling: touch) {
-    .cm-content {
+    .sandbox .cm-content,
+    .sandbox .sp-code-editor .sp-pre-placeholder {
       font-size: initial;
     }
     .DocSearch-Input {

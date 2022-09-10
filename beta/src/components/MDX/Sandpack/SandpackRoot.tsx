@@ -74,6 +74,7 @@ function SandpackRoot(props: SandpackProps) {
     hidden: true,
   };
 
+  debugger;
   return (
     <div className="sandpack sandpack--playground sandbox my-8">
       <SandpackProvider

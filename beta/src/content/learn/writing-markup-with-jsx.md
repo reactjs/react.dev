@@ -169,7 +169,7 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[React fragment](/apis/react/Fragment)*. React fragments let you group things without leaving any trace in the browser HTML tree.
+This empty tag is called a *[React fragment.](/apis/react/Fragment)* React fragments let you group things without leaving any trace in the browser HTML tree.
 
 <DeepDive title="Why do multiple JSX tags need to be wrapped?">
 

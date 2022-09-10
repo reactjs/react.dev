@@ -36,27 +36,22 @@ export function Page({children, toc}: PageProps) {
     <>
       <SocialBanner />
       <SidebarContext.Provider value={routeTree}>
-        <div className="h-auto flex flex-col lg:flex-row">
-          <div className="fixed lg:sticky top-0 left-0 right-0 py-0 lg:w-80 flex-none lg:static shadow lg:shadow-none z-50">
+        <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
+          <div className="fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none z-50">
             <Nav />
           </div>
-
-          <div className="lg:hidden h-16 mb-2" />
-
           {/* No fallback UI so need to be careful not to suspend directly inside. */}
           <React.Suspense fallback={null}>
-            <div className="flex flex-1 w-full h-full self-stretch min-w-0">
-              <main className="w-full self-stretch h-full mx-auto relative w-full min-w-0">
-                <article className="break-words" key={asPath}>
-                  {children}
-                </article>
-                <Footer />
-              </main>
-            </div>
+            <main className="min-w-0">
+              <div className="lg:hidden h-16 mb-2" />
+              <article className="break-words" key={asPath}>
+                {children}
+              </article>
+              <Footer />
+            </main>
           </React.Suspense>
-
-          <div className="lg:w-80 flex-none lg:max-w-xs hidden 2xl:block">
-            {toc.length > 0 && <Toc headings={toc} />}
+          <div className="hidden lg:max-w-xs 2xl:block">
+            {toc.length > 0 && <Toc headings={toc} key={asPath} />}
           </div>
         </div>
       </SidebarContext.Provider>

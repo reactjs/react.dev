@@ -30,42 +30,28 @@ This is also **the easiest way to integrate React into an existing website.** Yo
 
 The React team primarily recommends these solutions:
 
-- If you're **learning React** or **creating a new [single-page](/docs/glossary.html#single-page-application) app,** use [Create React App](#create-react-app).
-- If you're building a **server-rendered website with Node.js,** try [Next.js](#nextjs).
-- If you're building a **static content-oriented website,** try [Gatsby](#gatsby).
+- If you're building a **static or server-rendered application,** use [Next.js](#nextjs).
+- If you're building a **static content-oriented website,** use [Gatsby](#gatsby).
+- If you're building a **[single-page app](/docs/glossary.html#single-page-application)**, use [Create React App](#create-react-app).
 - If you're building a **component library** or **integrating with an existing codebase**, try [More Flexible Toolchains](#more-flexible-toolchains).
-
-### Create React App {#create-react-app}
-
-[Create React App](https://github.com/facebookincubator/create-react-app) is a comfortable environment for **learning React**, and is the best way to start building **a new [single-page](/docs/glossary.html#single-page-application) application** in React.
-
-It sets up your development environment so that you can use the latest JavaScript features, provides a nice developer experience, and optimizes your app for production. You’ll need to have [Node >= 14.0.0 and npm >= 5.6](https://nodejs.org/en/) on your machine. To create a project, run:
-
-```bash
-npx create-react-app my-app
-cd my-app
-npm start
-```
-
->Note
->
->`npx` on the first line is not a typo -- it's a [package runner tool that comes with npm 5.2+](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b).
-
-Create React App doesn't handle backend logic or databases; it just creates a frontend build pipeline, so you can use it with any backend you want. Under the hood, it uses [Babel](https://babeljs.io/) and [webpack](https://webpack.js.org/), but you don't need to know anything about them.
-
-When you're ready to deploy to production, running `npm run build` will create an optimized build of your app in the `build` folder. You can learn more about Create React App [from its README](https://github.com/facebookincubator/create-react-app#create-react-app--) and the [User Guide](https://facebook.github.io/create-react-app/).
 
 ### Next.js {#nextjs}
 
-[Next.js](https://nextjs.org/) is a popular and lightweight framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box, and assumes that you're using [Node.js](https://nodejs.org/) as the server environment.
+[Next.js](https://nextjs.org/) is a framework for **static and server‑rendered applications** built with React. It includes **styling and routing solutions** out of the box and uses [Node.js](https://nodejs.org/) as the server environment.
 
 Learn Next.js from [its official guide](https://nextjs.org/learn/).
 
 ### Gatsby {#gatsby}
 
-[Gatsby](https://www.gatsbyjs.org/) is the best way to create **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
+[Gatsby](https://www.gatsbyjs.org/) is a framework for creating **static websites** with React. It lets you use React components, but outputs pre-rendered HTML and CSS to guarantee the fastest load time.
 
 Learn Gatsby from [its official guide](https://www.gatsbyjs.org/docs/) and a [gallery of starter kits](https://www.gatsbyjs.org/docs/gatsby-starters/).
+
+### Create React App {#create-react-app}
+
+[Create React App](https://github.com/facebookincubator/create-react-app) is framework for **small, [single-page](/docs/glossary.html#single-page-application) applications** in React.
+
+Learn Create React App from [its official guide](https://create-react-app.dev/).
 
 ### More Flexible Toolchains {#more-flexible-toolchains}
 
@@ -78,6 +64,8 @@ The following toolchains offer more flexibility and choice. We recommend them to
 - **[Parcel](https://parceljs.org/)** is a fast, zero configuration web application bundler that [works with React](https://parceljs.org/recipes/react/).
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
+
+- **[Vite](https://vitejs.dev/)** is a build tool that aims to provide a faster and leaner development experience for modern web projects.
 
 ## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
 

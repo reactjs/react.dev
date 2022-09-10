@@ -77,6 +77,12 @@
     overflow-x: hidden;
   }
 
+  @media screen and (max-width: 768px) {
+    body {
+      overflow-x: hidden;
+    }
+  }
+
   /* Start purging... */
   /* Force GPU Accelerated scrolling, credit: Twitter Lite */
   .scrolling-gpu {

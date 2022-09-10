@@ -259,6 +259,7 @@ html.dark .sandpack--playground .sp-overlay {
 
 .sp-layout {
   min-height: 216px;
+  overflow: initial !important;
 }
 
 .sp-layout > .sp-stack:nth-child(1) {

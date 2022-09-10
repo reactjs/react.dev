@@ -207,7 +207,7 @@ export async function getStaticPaths() {
   // 'foo/bar/baz.md' -> ['foo', 'bar', 'baz']
   // 'foo/bar/qux/index.md' -> ['foo', 'bar', 'qux']
   function getSegments(file) {
-    let segments = file.slice(0, -3).replaceAll('\\', '/').split('/');
+    let segments = file.slice(0, -3).replace(/\\/g, '/').split('/');
     if (segments[segments.length - 1] === 'index') {
       segments.pop();
     }

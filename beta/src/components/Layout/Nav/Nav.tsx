@@ -187,6 +187,11 @@ export default function Nav() {
       });
   }, [showFeedback]);
 
+  function selectTab(nextTab) {
+    setTab(nextTab);
+    scrollParentRef.current!.scrollTop = 0;
+  }
+
   return (
     <div
       className={cn(
@@ -305,13 +310,19 @@ export default function Nav() {
 
       {isOpen && (
         <div className="bg-wash dark:bg-wash-dark px-5 flex justify-end border-b border-border dark:border-border-dark items-center self-center w-full z-10">
-          <TabButton isActive={tab === 'home'} onClick={() => setTab('home')}>
+          <TabButton
+            isActive={tab === 'home'}
+            onClick={() => selectTab('home')}>
             Home
           </TabButton>
-          <TabButton isActive={tab === 'learn'} onClick={() => setTab('learn')}>
+          <TabButton
+            isActive={tab === 'learn'}
+            onClick={() => selectTab('learn')}>
             Learn
           </TabButton>
-          <TabButton isActive={tab === 'apis'} onClick={() => setTab('apis')}>
+          <TabButton
+            isActive={tab === 'apis'}
+            onClick={() => selectTab('apis')}>
             API
           </TabButton>
         </div>

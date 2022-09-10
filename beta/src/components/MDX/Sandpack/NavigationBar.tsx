@@ -53,7 +53,11 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
       hasJustToggledDropdown.current = false;
       return;
     }
-    const tabsWidth = tabsRef.current!.getBoundingClientRect().width;
+    if (tabsRef.current === null) {
+      // Some ResizeObserver calls come after unmount.
+      return;
+    }
+    const tabsWidth = tabsRef.current.getBoundingClientRect().width;
     const needsDropdown = tabsWidth >= containerWidth;
     if (needsDropdown !== showDropdown) {
       hasJustToggledDropdown.current = true;

@@ -394,7 +394,7 @@ In other words, you *don't* want this line to be reactive, even though it is ins
       // ...
       showNotification('Connected!', theme);
       // ...
-````
+```
 
 You need a way to separate this non-reactive logic from the reactive Effect around it.
 
@@ -406,7 +406,7 @@ This section describes an **experimental API that has not yet been added to Reac
 
 </Gotcha>
 
-Use a special Hook called [`useEvent`](/apis/react/useEvent) to extract this non-reactive logic out of your Effect:
+Use a special Hook called `useEvent` to extract this non-reactive logic out of your Effect:
 
 ```js {1,4-6}
 import { useEffect, useEvent } from 'react';

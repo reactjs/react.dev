@@ -127,7 +127,7 @@ function SaveButton() {
 }
 ```
 
-Although there is no such built-in Hook, you can write it yourself. Declare a function called `useOnlineStatus()` and move all the duplicated code into it from the components you wrote earlier:
+Although there is no such built-in Hook, you can write it yourself. Declare a function called `useOnlineStatus` and move all the duplicated code into it from the components you wrote earlier:
 
 ```js {2-16}
 function useOnlineStatus() {
@@ -230,7 +230,7 @@ This convention guarantees that you can always look at a component and know wher
 
 <Note>
 
-If your linter is [configured for React](/learn/editor-setup#linting), it will enforce this naming convention. Scroll up to the sandbox above and rename `useOnlineStatus` to `getOnlineStatus`. Notice that the linter won't allow you to call `useState` or `useEffect` inside of it anymore. Only Hooks and components can call other Hooks!
+If your linter is [configured for React,](/learn/editor-setup#linting) it will enforce this naming convention. Scroll up to the sandbox above and rename `useOnlineStatus` to `getOnlineStatus`. Notice that the linter won't allow you to call `useState` or `useEffect` inside of it anymore. Only Hooks and components can call other Hooks!
 
 </Note>
 

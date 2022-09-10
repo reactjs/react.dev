@@ -76,6 +76,12 @@
     margin: 0;
   }
 
+  @media screen and (max-width: 1023px) {
+    body {
+      overflow-x: hidden;
+    }
+  }
+
   /* Start purging... */
   /* Force GPU Accelerated scrolling, credit: Twitter Lite */
   .scrolling-gpu {

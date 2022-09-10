@@ -52,8 +52,7 @@
             },
             {
               "title": "Fragment",
-              "path": "/apis/react/Fragment",
-              "wip": true
+              "path": "/apis/react/Fragment"
             },
             {
               "title": "isValidElement",
@@ -131,8 +130,7 @@
             },
             {
               "title": "useMemo",
-              "path": "/apis/react/useMemo",
-              "wip": true
+              "path": "/apis/react/useMemo"
             },
             {
               "title": "useReducer",

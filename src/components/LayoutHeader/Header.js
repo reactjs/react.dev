@@ -58,12 +58,12 @@ const Header = ({location}: {location: Location}) => (
           display: 'flex',
           flexDirection: 'row',
           alignItems: 'center',
-          height: 60,
-          [media.between('small', 'large')]: {
-            height: 50,
+          height: 'var(--header-height-large)',
+          [media.size('medium')]: {
+            height: 'var(--header-height-normal)',
           },
           [media.lessThan('small')]: {
-            height: 40,
+            height: 'var(--header-height-small)',
           },
         }}>
         <Link

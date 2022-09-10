@@ -105,12 +105,12 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                 )}>
                 <FileTabs />
               </div>
-              <Listbox.Button className="contents">
+              <Listbox.Button as={React.Fragment}>
                 {({open}) => (
                   // If tabs don't fit, display the dropdown instead.
                   // The dropdown is absolutely positioned inside the
                   // space that's taken by the (invisible) tab list.
-                  <div
+                  <button
                     className={cn(
                       'absolute top-0 left-0',
                       !showDropdown && 'invisible'
@@ -129,7 +129,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                         </span>
                       )}
                     </span>
-                  </div>
+                  </button>
                 )}
               </Listbox.Button>
             </div>
@@ -140,11 +140,16 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                 <Listbox.Option
                   key={filePath}
                   value={filePath}
-                  className={cn(
-                    'text-md mx-2 my-4 cursor-pointer',
-                    filePath === activeFile && 'text-link dark:text-link-dark'
-                  )}>
-                  {getFileName(filePath)}
+                  as={React.Fragment}>
+                  {({active}) => (
+                    <li
+                      className={cn(
+                        'text-md mx-2 my-4 cursor-pointer',
+                        active && 'text-link dark:text-link-dark'
+                      )}>
+                      {getFileName(filePath)}
+                    </li>
+                  )}
                 </Listbox.Option>
               ))}
             </Listbox.Options>

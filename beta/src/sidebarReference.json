@@ -114,6 +114,11 @@
               "wip": true
             },
             {
+              "title": "useEvent",
+              "path": "/apis/react/useEvent",
+              "wip": true
+            },
+            {
               "title": "useId",
               "path": "/apis/react/useId",
               "wip": true

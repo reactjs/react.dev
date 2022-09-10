@@ -25,6 +25,15 @@ if (typeof window !== 'undefined') {
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
+
+  React.useEffect(() => {
+    // This is kind of a lie.
+    // We still rely on the manual Next.js scrollRestoration logic.
+    // However, we *also* don't want Safari grey screen during the back swipe gesture.
+    // Seems like it doesn't hurt to enable auto restore *and* Next.js logic at the same time.
+    history.scrollRestoration = 'auto';
+  }, []);
+
   React.useEffect(() => {
     const handleRouteChange = (url: string) => {
       ga('set', 'page', url);

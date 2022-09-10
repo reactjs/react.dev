@@ -275,7 +275,7 @@ button { margin-left: 10px; }
 Notice that when the component mounts for the first time, you see three logs:
 
 1. `✅ Connecting to "general" room at https://localhost:1234...` *(development-only)*
-1. `❌ Disconnected from "general" room at https://localhost:1234.` *(development-only)*
+1. `❌ Disconnected from "general" room at https://localhost:1234...` *(development-only)*
 1. `✅ Connecting to "general" room at https://localhost:1234...`
 
 The first two logs are development-only. In development, React always remounts each component once. **In other words, React verifies that your Effect can re-synchronize by forcing it to do that immediately in development.** This might remind you how you might open the door and close it an extra time to check that the door lock works. React starts and stops your Effect one extra time in development to check [you've implemented its cleanup well.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)

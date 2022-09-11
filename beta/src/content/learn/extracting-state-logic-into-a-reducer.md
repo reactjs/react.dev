@@ -1794,7 +1794,7 @@ textarea {
 
 </Sandpack>
 
-This works and clears the input when you hit "Send."
+This works and clears the input when you hit "Send".
 
 However, *from the user's perspective*, sending a message is a different action than editing the field. To reflect that, you could instead create a *new* action called `sent_message`, and handle it separately in the reducer:
 

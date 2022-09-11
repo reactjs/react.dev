@@ -305,7 +305,7 @@ body { margin: 0; }
 
 </Sandpack>
 
-Pages like this are often called "living styleguides" or "storybooks."
+Pages like this are often called "living styleguides" or "storybooks".
 
 </DeepDive>
 

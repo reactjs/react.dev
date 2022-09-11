@@ -283,7 +283,7 @@ setPerson({
 });
 ```
 
-You can use the `...` [object spread](a-javascript-refresher#object-spread) syntax so that you don't need to copy every property separately.
+You can use the `...` [object spread](TODO:/learn/a-javascript-refresher#object-spread) syntax so that you don't need to copy every property separately.
 
 ```js
 setPerson({

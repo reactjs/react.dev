@@ -126,7 +126,7 @@ In both cases, what you want to pass is a function:
 * `<button onClick={handleClick}>` passes the `handleClick` function.
 * `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
 
-> Check out the [JavaScript Refresher](a-javascript-refresher#arrow-functions) for more on arrow functions.
+> Check out the [JavaScript Refresher](TODO:/learn/a-javascript-refresher#arrow-functions) for more on arrow functions.
 
 </Gotcha>
 
@@ -231,7 +231,7 @@ If you use a [design system](https://uxdesign.cc/everything-you-need-to-know-abo
 
 ### Naming event handler props {/*naming-event-handler-props*/}
 
-Built-in components like `<button>` and `<div>` only support [browser event names](/apis/react-dom/events) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
+Built-in components like `<button>` and `<div>` only support [browser event names](TODO:/apis/react-dom/events) like `onClick`. However, when you're building your own components, you can name their event handler props any way that you like.
 
 > By convention, event handler props should start with `on`, followed by a capital letter.
 

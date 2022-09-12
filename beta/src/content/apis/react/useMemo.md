@@ -51,23 +51,9 @@ On the initial render, the <CodeStep step={3}>value</CodeStep> you'll get from `
 
 On every next render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the last render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` will return the value you already calculated on the last render. Otherwise, React will re-run your calculation and return the new value.
 
-**You should only rely on this feature as a performance optimization.** If your code doesn't work at all without it, find the underlying problem and fix the code first, and only then add memoization to improve the performance.
-
 <Note>
 
-If your calculation doesn't fit on a single line, add curly braces and an explicit `return` statement:
-
-```js {2-5}
-function TodoList({ todos, tab, theme }) {
-  const visibleTodos = useMemo(() => {
-    const filtered = filterTodos(todos, tab);
-    return filtered;
-  }, [todos, tab]);
-  // ...
-}
-```
-
-This code is equivalent to the previous example.
+**You should only rely on `useMemo` as a performance optimization.** If your code doesn't work without it, find the underlying problem and fix it first. Then you may add memoization to improve performance.
 
 </Note>
 

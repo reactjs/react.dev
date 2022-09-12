@@ -184,7 +184,7 @@ with
 
 ```js
 const [index, setIndex] = useState(0);
-````
+```
 
 `index` is a state variable and `setIndex` is the setter function.
 
@@ -1448,7 +1448,7 @@ If your linter is [configured for React](/learn/editor-setup#linting), you shoul
 
 When the button is clicked, this example should ask for the user's name and then display an alert greeting them. You tried to use state to keep the name, but for some reason it always shows "Hello, !".
 
-To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/troubleshooting-state-updates#setting-state-does-not-update-variables) later.)
+To fix this code, remove the unnecessary state variable. (We will discuss about [why this didn't work](/learn/state-as-a-snapshot) later.)
 
 Can you explain why this state variable was unnecessary?
 

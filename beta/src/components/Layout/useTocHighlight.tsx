@@ -3,7 +3,6 @@
  */
 
 import React from 'react';
-import {siteConfig} from 'siteConfig';
 
 const TOP_OFFSET = 75;
 

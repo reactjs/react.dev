@@ -14,7 +14,7 @@ import {useLayoutEffect} from 'react';
 import usePendingRoute from 'hooks/usePendingRoute';
 
 interface SidebarRouteTreeProps {
-  isMobile?: boolean;
+  isForceExpanded: boolean;
   routeTree: RouteItem;
   level?: number;
 }
@@ -72,15 +72,15 @@ function CollapseWrapper({
 }
 
 export function SidebarRouteTree({
-  isMobile,
+  isForceExpanded,
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
   const {breadcrumbs} = useRouteMeta(routeTree);
-  const {pathname} = useRouter();
+  const cleanedPath = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
 
-  const slug = pathname;
+  const slug = cleanedPath;
   const currentRoutes = routeTree.routes as RouteItem[];
   const expandedPath = currentRoutes.reduce(
     (acc: string | undefined, curr: RouteItem) => {
@@ -89,8 +89,8 @@ export function SidebarRouteTree({
       if (breadcrumb) {
         return curr.path;
       }
-      if (curr.path === pathname) {
-        return pathname;
+      if (curr.path === cleanedPath) {
+        return cleanedPath;
       }
       return undefined;
     },
@@ -100,7 +100,7 @@ export function SidebarRouteTree({
   const expanded = expandedPath;
   return (
     <ul>
-      {currentRoutes.map(({path, title, routes, heading}) => {
+      {currentRoutes.map(({path, title, routes, wip, heading}) => {
         const pagePath = path && removeFromLast(path, '.');
         const selected = slug === pagePath;
 
@@ -109,7 +109,7 @@ export function SidebarRouteTree({
           return (
             <SidebarRouteTree
               level={level + 1}
-              isMobile={isMobile}
+              isForceExpanded={isForceExpanded}
               routeTree={{title, routes}}
             />
           );
@@ -117,7 +117,7 @@ export function SidebarRouteTree({
 
         // if route has a path and child routes, treat it as an expandable sidebar item
         if (routes) {
-          const isExpanded = isMobile || expanded === path;
+          const isExpanded = isForceExpanded || expanded === path;
           return (
             <li key={`${title}-${path}-${level}-heading`}>
               <SidebarLink
@@ -127,13 +127,14 @@ export function SidebarRouteTree({
                 selected={selected}
                 level={level}
                 title={title}
+                wip={wip}
                 isExpanded={isExpanded}
                 isBreadcrumb={expandedPath === path}
-                hideArrow={isMobile}
+                hideArrow={isForceExpanded}
               />
               <CollapseWrapper duration={250} isExpanded={isExpanded}>
                 <SidebarRouteTree
-                  isMobile={isMobile}
+                  isForceExpanded={isForceExpanded}
                   routeTree={{title, routes}}
                   level={level + 1}
                 />
@@ -147,10 +148,11 @@ export function SidebarRouteTree({
           <li key={`${title}-${path}-${level}-link`}>
             <SidebarLink
               isPending={pendingRoute === pagePath}
-              href={pagePath}
+              href={path.startsWith('https://') ? path : pagePath}
               selected={selected}
               level={level}
               title={title}
+              wip={wip}
             />
           </li>
         );

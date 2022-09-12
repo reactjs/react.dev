@@ -30,6 +30,8 @@ export interface RouteItem {
   path?: string;
   /** Whether the entry is a heading */
   heading?: boolean;
+  /** Whether the page is under construction */
+  wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
 }
@@ -55,12 +57,12 @@ export function useRouteMeta(rootRoute?: RouteItem) {
   const sidebarContext = React.useContext(SidebarContext);
   const routeTree = rootRoute || sidebarContext;
   const router = useRouter();
-  const cleanedPath = router.pathname;
-  if (cleanedPath === '/404') {
+  if (router.pathname === '/404') {
     return {
       breadcrumbs: [],
     };
   }
+  const cleanedPath = router.asPath.split(/[\?\#]/)[0];
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
   return {
     ...getRouteMeta(cleanedPath, routeTree),

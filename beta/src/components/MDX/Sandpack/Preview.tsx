@@ -4,12 +4,19 @@
 
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from 'react';
-import {useSandpack, LoadingOverlay} from '@codesandbox/sandpack-react';
+import {
+  useSandpack,
+  LoadingOverlay,
+  SandpackStack,
+} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
 import {Error} from './Error';
 import {SandpackConsole} from './Console';
 import type {LintDiagnostic} from './useSandpackLint';
 
+/**
+ * TODO: can we use React.useId?
+ */
 const generateRandomId = (): string =>
   Math.floor(Math.random() * 10000).toString();
 
@@ -81,6 +88,10 @@ export function Preview({
     }
   }
 
+  if (rawError != null && rawError.title === 'Runtime Exception') {
+    rawError.title = 'Runtime Error';
+  }
+
   // It changes too fast, causing flicker.
   const error = useDebounced(rawError);
 
@@ -149,8 +160,8 @@ export function Preview({
   // The best way to test it is to actually go through some challenges.
 
   return (
-    <div
-      className={cn('sp-stack', className)}
+    <SandpackStack
+      className={className}
       style={{
         // TODO: clean up this mess.
         ...customStyle,
@@ -158,7 +169,7 @@ export function Preview({
       }}>
       <div
         className={cn(
-          'p-0 sm:p-2 md:p-4 lg:p-8 md:bg-card md:dark:bg-wash-dark h-full relative md:rounded-b-lg lg:rounded-b-none',
+          'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative md:rounded-b-lg lg:rounded-b-none',
           // Allow content to be scrolled if it's too high to fit.
           // Note we don't want this in the expanded state
           // because it breaks position: sticky (and isn't needed anyway).
@@ -206,11 +217,12 @@ export function Preview({
           </div>
         )}
         <LoadingOverlay
+          showOpenInCodeSandbox
           clientId={clientId.current}
           loading={!isReady && iframeComputedHeight === null}
         />
       </div>
-      <SandpackConsole />
-    </div>
+      {!error && <SandpackConsole />}
+    </SandpackStack>
   );
 }

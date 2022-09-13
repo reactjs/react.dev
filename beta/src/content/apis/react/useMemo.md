@@ -1365,7 +1365,7 @@ function ReportList({ items }) {
     <article>
       {items.map(item => {
         // 🔴 You can't call useMemo in a loop like this:
-        const data = calculateReport(item);
+        const data = useMemo(() => calculateReport(item), [item]);
         return (
           <figure key={data.id}>
             <Chart data={data} />
@@ -1392,7 +1392,7 @@ function ReportList({ items }) {
 
 function Report({ item }) {
   // ✅ Call useMemo at the top level:
-  const data = calculateReport(item);
+  const data = useMemo(() => calculateReport(item), [item]);
   return (
     <figure>
       <Chart data={data} />

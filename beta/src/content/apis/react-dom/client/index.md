@@ -30,7 +30,7 @@ import * as ReactDOMClient from 'react-dom/client';
 
 </PackageImport>
 
-You'll also need to install the same version of [React](/apis/react).
+You'll also need to install the same version of [React.](/apis/react)
 
 ## Browser Support {/*browser-support*/}
 

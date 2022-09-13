@@ -4,19 +4,19 @@ title: React APIs
 
 <Wip>
 
-This section is incomplete, please see the old docs for [React](https://reactjs.org/docs/react-api.html).
+This section is incomplete, please see the old docs for [React.](https://reactjs.org/docs/react-api.html)
 
 </Wip>
 
 <Intro>
 
-The React package contains all the APIs necessary to define and use [components](/learn/your-first-component).
+The React package contains all the APIs necessary to define and use [components.](/learn/your-first-component)
 
 </Intro>
 
 ## Installation {/*installation*/}
 
-It is available as [`react`](https://www.npmjs.com/package/react) on npm. You can also [add React to the page as a `<script>` tag](/learn/add-react-to-a-website).
+It is available as [`react`](https://www.npmjs.com/package/react) on npm. You can also [add React to the page as a `<script>` tag.](/learn/add-react-to-a-website)
 
 <PackageImport>
 
@@ -36,7 +36,7 @@ import * as React from 'react';
 
 </PackageImport>
 
-If you use React on the web, you'll also need the same version of [ReactDOM](/apis/react-dom).
+If you use React on the web, you'll also need the same version of [ReactDOM.](/apis/react-dom)
 
 ## Exports {/*exports*/}
 

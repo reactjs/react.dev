@@ -104,4 +104,4 @@ Wrap elements in `<React.Fragment>` to group them together in situations where y
 
 #### Props {/*reference-props*/}
 
-- **optional** `key`: Fragments declared with the explicit `<React.Fragment>` syntax may have [keys](https://beta.reactjs.org/learn/rendering-lists#keeping-list-items-in-order-with-key).
+- **optional** `key`: Fragments declared with the explicit `<React.Fragment>` syntax may have [keys.](https://beta.reactjs.org/learn/rendering-lists#keeping-list-items-in-order-with-key)

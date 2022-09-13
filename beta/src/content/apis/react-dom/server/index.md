@@ -4,7 +4,7 @@ title: ReactDOMServer APIs
 
 <Wip>
 
-This section is incomplete, please see the old docs for [ReactDOM](https://reactjs.org/docs/react-dom.html).
+This section is incomplete, please see the old docs for [ReactDOM.](https://reactjs.org/docs/react-dom.html)
 
 </Wip>
 
@@ -37,7 +37,7 @@ import * as ReactDOMServer from 'react-dom/server';
 
 </PackageImport>
 
-You'll also need to install the same version of [React](/apis/react).
+You'll also need to install the same version of [React.](/apis/react)
 
 ## Exports {/*exports*/}
 

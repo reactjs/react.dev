@@ -4,7 +4,7 @@ title: renderToNodeStream
 
 <Wip>
 
-This section is incomplete, please see the old docs for [renderToNodeStream](https://reactjs.org/docs/react-dom-server.html#rendertonodestream).
+This section is incomplete, please see the old docs for [renderToNodeStream.](https://reactjs.org/docs/react-dom-server.html#rendertonodestream)
 
 </Wip>
 

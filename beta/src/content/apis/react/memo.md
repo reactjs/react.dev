@@ -4,7 +4,7 @@ title: React.memo
 
 <Wip>
 
-This section is incomplete, please see the old docs for [React.memo](https://reactjs.org/docs/react-api.html#reactmemo).
+This section is incomplete, please see the old docs for [React.memo.](https://reactjs.org/docs/react-api.html#reactmemo)
 
 </Wip>
 

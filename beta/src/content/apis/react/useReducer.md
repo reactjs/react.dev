@@ -20,7 +20,7 @@ const [state, dispatch] = useReducer(reducer, initialArg, init)
 
 ### Adding a reducer to a component {/*adding-a-reducer-to-a-component*/}
 
-Call `useReducer` at the top level of your component to manage state with a [reducer](/learn/extracting-state-logic-into-a-reducer).
+Call `useReducer` at the top level of your component to manage state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js [[1, 8, "state"], [2, 8, "dispatch"], [4, 8, "reducer"], [3, 8, "{ age: 42 }"]]
 import { useReducer } from 'react';
@@ -85,7 +85,7 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-`useReducer` is very similar to [`useState`](/apis/react/useState), but it lets you move the state update logic from event handlers into a single function outside of your component. Read more about [choosing between `useState` and `useReducer`](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer).
+`useReducer` is very similar to [`useState`](/apis/react/useState), but it lets you move the state update logic from event handlers into a single function outside of your component. Read more about [choosing between `useState` and `useReducer`.](/learn/extracting-state-logic-into-a-reducer#comparing-usestate-and-usereducer)
 
 ---
 
@@ -99,7 +99,7 @@ function reducer(state, action) {
 }
 ```
 
-Then you need to fill in the code that will calculate and return the next state. By convention, it is common to write it as a [`switch` statement](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch). For each `case` in the `switch`, you need to calculate and return some next state.
+Then you need to fill in the code that will calculate and return the next state. By convention, it is common to write it as a [`switch` statement.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch) For each `case` in the `switch`, you need to calculate and return some next state.
 
 ```js {4-7,10-13}
 function reducer(state, action) {
@@ -140,7 +140,7 @@ function Form() {
   // ...
 ```
 
-The action type names are local to your component. [Each action describes a single interaction, even if that leads to multiple changes in data](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well). The shape of the state is arbitrary, but usually it'll be an object or an array.
+The action type names are local to your component. [Each action describes a single interaction, even if that leads to multiple changes in data.](/learn/extracting-state-logic-into-a-reducer#writing-reducers-well) The shape of the state is arbitrary, but usually it'll be an object or an array.
 
 Read [extracting state logic into a reducer](/learn/extracting-state-logic-into-a-reducer) to learn more.
 
@@ -246,7 +246,7 @@ button { display: block; margin-top: 10px; }
 
 #### Todo list (array) {/*todo-list-array*/}
 
-In this example, the reducer manages an array of tasks. The array needs to be updated [without mutation](/learn/updating-arrays-in-state).
+In this example, the reducer manages an array of tasks. The array needs to be updated [without mutation.](/learn/updating-arrays-in-state)
 
 <Sandpack>
 
@@ -868,7 +868,7 @@ export default function TodoList({ username }) {
 
 ### `useReducer(reducer, initialArg, init?)` {/*usereducer*/}
 
-Call `useReducer` at the top level of your component to manage its state with a [reducer](/learn/extracting-state-logic-into-a-reducer).
+Call `useReducer` at the top level of your component to manage its state with a [reducer.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 import { useReducer } from 'react';
@@ -900,7 +900,7 @@ function MyComponent() {
 #### Caveats {/*caveats*/}
 
 * `useReducer` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities](#my-initializer-or-updater-function-runs-twice). This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect the logic of your component. The result from one of the calls is ignored.
+* In Strict Mode, React will **call your reducer and initializer twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your reducer and initializer are pure (as they should be), this should not affect the logic of your component. The result from one of the calls is ignored.
 
 ---
 
@@ -932,7 +932,7 @@ React will set the next state to the result of calling the `reducer` function yo
 
 * If the new value you provide is identical to the current `state`, as determined by an [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison, React will **skip re-rendering the component and its children.** This is an optimization. React may still need to call your component before ignoring the result, but it shouldn't affect your code.
 
-* React [batches state updates](/learn/queueing-a-series-of-state-updates). It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`](/apis/react-dom/flushsync).
+* React [batches state updates.](/learn/queueing-a-series-of-state-updates) It updates the screen **after all the event handlers have run** and have called their `set` functions. This prevents multiple re-renders during a single event. In the rare case that you need to force React to update the screen earlier, for example to access the DOM, you can use [`flushSync`.](/apis/react-dom/flushsync)
 
 ---
 
@@ -955,7 +955,7 @@ function handleClick() {
 }
 ```
 
-This is because [states behaves like a snapshot](/learn/state-as-a-snapshot). Updating state requests another render with the new state value, but does not affect the `state` JavaScript variable in your already-running event handler.
+This is because [states behaves like a snapshot.](/learn/state-as-a-snapshot) Updating state requests another render with the new state value, but does not affect the `state` JavaScript variable in your already-running event handler.
 
 If you need to guess the next state value, you can calculate it manually by calling the reducer yourself:
 
@@ -1083,7 +1083,7 @@ If you can't find the cause of this error, click on the arrow next to the error 
 
 In [Strict Mode](/apis/react/strictmode), React will call your reducer and initializer functions twice. This shouldn't break your code.
 
-This **development-only** behavior helps you [keep components pure](/learn/keeping-components-pure). React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and reducer functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes and fix it.
+This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and reducer functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes and fix it.
 
 For example, this impure reducer function mutates an array in state:
 

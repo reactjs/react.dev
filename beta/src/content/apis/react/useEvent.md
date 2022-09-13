@@ -4,7 +4,7 @@ title: useEvent
 
 <Wip>
 
-This section is incomplete, please see the RFC doc for [useEvent](https://github.com/reactjs/rfcs/blob/useevent/text/0000-useevent.md).
+This section is incomplete, please see the RFC doc for [useEvent.](https://github.com/reactjs/rfcs/blob/useevent/text/0000-useevent.md)
 
 </Wip>
 

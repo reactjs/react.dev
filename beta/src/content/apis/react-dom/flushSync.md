@@ -4,7 +4,7 @@ title: flushSync
 
 <Wip>
 
-This section is incomplete, please see the old docs for [flushSync](https://reactjs.org/docs/react-dom.html#flushsync).
+This section is incomplete, please see the old docs for [flushSync.](https://reactjs.org/docs/react-dom.html#flushsync)
 
 </Wip>
 

@@ -4,7 +4,7 @@ title: createPortal
 
 <Wip>
 
-This section is incomplete, please see the old docs for [createPortal](https://reactjs.org/docs/react-dom.html#createportal).
+This section is incomplete, please see the old docs for [createPortal.](https://reactjs.org/docs/react-dom.html#createportal)
 
 </Wip>
 

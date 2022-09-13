@@ -4,7 +4,7 @@ title: useDeferredValue
 
 <Wip>
 
-This section is incomplete, please see the old docs for [useDeferredValue](https://reactjs.org/docs/hooks-reference.html#usedeferredvalue).
+This section is incomplete, please see the old docs for [useDeferredValue.](https://reactjs.org/docs/hooks-reference.html#usedeferredvalue)
 
 </Wip>
 

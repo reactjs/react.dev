@@ -4,7 +4,7 @@ title: cloneElement
 
 <Wip>
 
-This section is incomplete, please see the old docs for [cloneElement](https://reactjs.org/docs/react-api.html#cloneelement).
+This section is incomplete, please see the old docs for [cloneElement.](https://reactjs.org/docs/react-api.html#cloneelement)
 
 </Wip>
 

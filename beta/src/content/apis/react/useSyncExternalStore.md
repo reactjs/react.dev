@@ -4,7 +4,7 @@ title: useSyncExternalStore
 
 <Wip>
 
-This section is incomplete, please see the old docs for [useSyncExternalStore](https://reactjs.org/docs/hooks-reference.html#usesyncexternalstore).
+This section is incomplete, please see the old docs for [useSyncExternalStore.](https://reactjs.org/docs/hooks-reference.html#usesyncexternalstore)
 
 </Wip>
 

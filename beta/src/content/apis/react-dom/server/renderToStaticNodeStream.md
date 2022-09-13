@@ -15,7 +15,7 @@ Similar to renderToNodeStream, except this doesn’t create extra DOM attributes
 
 
 ```js
-renderToStaticNodeStream(element)
+renderToStaticNodeStream(element);
 ```
 
 </Intro>

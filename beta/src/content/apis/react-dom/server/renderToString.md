@@ -15,7 +15,7 @@ Render a React element to its initial HTML. React will return an HTML string. Yo
 
 
 ```js
-renderToString(element)
+renderToString(element);
 ```
 
 </Intro>

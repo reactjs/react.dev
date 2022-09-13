@@ -15,7 +15,7 @@ Similar to renderToString, except this doesn’t create extra DOM attributes tha
 
 
 ```js
-renderToStaticMarkup(element)
+renderToStaticMarkup(element);
 ```
 
 If you plan to use React on the client to make the markup interactive, do not use this method. Instead, use renderToString on the server and ReactDOM.hydrateRoot() on the client.

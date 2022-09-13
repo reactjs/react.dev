@@ -15,7 +15,7 @@ Render a React element to a stream.
 
 
 ```js
-renderToPipeableStream(element, options)
+renderToPipeableStream(element, options);
 ```
 
 </Intro>

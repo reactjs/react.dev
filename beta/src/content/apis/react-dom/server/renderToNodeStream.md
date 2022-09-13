@@ -15,7 +15,7 @@ Render a React element to its initial HTML.
 
 
 ```js
-renderToNodeStream(element)
+renderToNodeStream(element);
 ```
 
 </Intro>

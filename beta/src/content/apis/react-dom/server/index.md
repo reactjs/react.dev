@@ -46,7 +46,7 @@ You'll also need to install the same version of [React.](/apis/react)
 Render a React element to a pipeable stream.
 
 ```js
-renderToPipeableStream(element, options)
+renderToPipeableStream(element, options);
 ```
 
 </YouWillLearnCard>
@@ -56,7 +56,7 @@ renderToPipeableStream(element, options)
 Render a React element to a Readable stream.
 
 ```js
-renderToReadableStream(element, options)
+renderToReadableStream(element, options);
 ```
 
 </YouWillLearnCard>
@@ -66,7 +66,7 @@ renderToReadableStream(element, options)
 Render a React element to a Node stream.
 
 ```js
-renderToNodeStream(element)
+renderToNodeStream(element);
 ```
 
 </YouWillLearnCard>
@@ -76,7 +76,7 @@ renderToNodeStream(element)
 Render a React element to a static Node stream.
 
 ```js
-renderToStaticNodeStream(element)
+renderToStaticNodeStream(element);
 ```
 
 </YouWillLearnCard>
@@ -86,7 +86,7 @@ renderToStaticNodeStream(element)
 Render a React element to a string.
 
 ```js
-renderToString(element)
+renderToString(element);
 ```
 
 </YouWillLearnCard>
@@ -96,7 +96,7 @@ renderToString(element)
 Render a React element to static markup.
 
 ```js
-renderToStaticMarkup(element)
+renderToStaticMarkup(element);
 ```
 
 </YouWillLearnCard>

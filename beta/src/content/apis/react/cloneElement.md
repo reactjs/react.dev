@@ -12,7 +12,7 @@ This section is incomplete, please see the old docs for [cloneElement](https://r
 <Intro>
 
 ```js
-React.cloneElement(element, [config], [...children])
+React.cloneElement(element, [config], [...children]);
 ```
 
 </Intro>

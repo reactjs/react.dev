@@ -12,7 +12,7 @@ This section is incomplete, please see the old docs for [createElement](https://
 <Intro>
 
 ```js
-React.createElement(type, [props], [...children])
+React.createElement(type, [props], [...children]);
 ```
 
 </Intro>

@@ -14,7 +14,7 @@ This section is incomplete, please see the old docs for [isValidElement](https:/
 Verifies the object is a React element. Returns true or false.
 
 ```js
-React.isValidElement(object)
+React.isValidElement(object);
 ```
 
 </Intro>

@@ -12,7 +12,7 @@ This section is incomplete, please see the old docs for [useEffect](https://reac
 <Intro>
 
 ```js
-useEffect(callback, [...dependencies])
+useEffect(callback, [...dependencies]);
 ```
 
 </Intro>

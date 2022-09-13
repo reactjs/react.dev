@@ -14,7 +14,7 @@ This section is incomplete, please see the RFC doc for [useEvent](https://github
 `useEvent` is a React Hook that lets you extract non-reactive Effect logic into an [Event function.](/learn/separating-events-from-effects#declaring-an-event-function)
 
 ```js
-useEvent(callback)
+useEvent(callback);
 ```
 
 </Intro>

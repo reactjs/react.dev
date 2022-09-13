@@ -7,7 +7,7 @@ title: useRef
 `useRef` is a React Hook that lets you reference a value that's not needed for rendering.
 
 ```js
-const ref = useRef(initialValue)
+const ref = useRef(initialValue);
 ```
 
 </Intro>
@@ -545,7 +545,7 @@ If you try to pass a `ref` to your own component like this:
 ```js
 const inputRef = useRef(null);
 
-return <MyInput ref={inputRef} />
+return <MyInput ref={inputRef} />;
 ```
 
 You might get an error in the console:

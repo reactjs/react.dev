@@ -12,7 +12,7 @@ This section is incomplete, please see the old docs for [useImperativeHandle](ht
 <Intro>
 
 ```js
-useImperativeHandle(ref, createHandle, [deps])
+useImperativeHandle(ref, createHandle, [deps]);
 ```
 
 </Intro>

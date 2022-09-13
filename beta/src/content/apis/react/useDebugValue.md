@@ -14,7 +14,7 @@ This section is incomplete, please see the old docs for [useDebugValue](https://
 `useDebugValue` can be used to display a label for custom hooks in React DevTools.
 
 ```js
-useDebugValue(value)
+useDebugValue(value);
 ```
 
 </Intro>

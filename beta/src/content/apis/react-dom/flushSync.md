@@ -15,7 +15,7 @@ Force React to flush any updates inside the provided callback synchronously. Thi
 
 
 ```js
-flushSync(callback)
+flushSync(callback);
 ```
 
 </Intro>

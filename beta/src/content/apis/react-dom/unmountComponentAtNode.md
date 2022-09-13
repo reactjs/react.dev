@@ -4,7 +4,7 @@ title: unmountComponentAtNode
 
 <Wip>
 
-This section is incomplete, please see the old docs for [unmountComponentAtNode](https://reactjs.org/docs/react-dom.html#unmountcomponentatnode).
+This section is incomplete, please see the old docs for [unmountComponentAtNode.](https://reactjs.org/docs/react-dom.html#unmountcomponentatnode)
 
 </Wip>
 

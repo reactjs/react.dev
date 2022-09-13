@@ -1035,7 +1035,7 @@ You can use a similar approach to prevent [`useEffect`](/api/react/useEffect) fr
 
 ### Memoizing a function {/*memoizing-a-function*/}
 
-Suppose the `Form` component is wrapped in [`memo`](/api/react/memo). You want to pass a function to it as a prop:
+Suppose the `Form` component is wrapped in [`memo`.](/api/react/memo) You want to pass a function to it as a prop:
 
 ```js {2-4}
 export default function Page({ productId }) {
@@ -1081,7 +1081,7 @@ The two examples above are completely equivalent. The only benefit to `useCallba
 
 Wrapping an object in `useMemo` or a function in `useCallback` is only strictly necessary in two cases:
 
-- You pass it as a prop to a component wrapped in [`memo`](/apis/react/memo). You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies are the same.
+- You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies are the same.
 - The value you're passing is later used as a dependency of some Hook. For example, maybe another `useMemo` calculation value depends on it. Or maybe you are depending on this value from [`useEffect.`](/apis/react/useEffect)
 
 There is no benefit to wrapping in `useMemo` and `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component. This approach is mostly useful for apps that update state many times per second or show a lot of data.
@@ -1135,7 +1135,7 @@ During subsequent renders, it will either return an already stored value from th
 #### Caveats {/*caveats*/}
 
 * `useMemo` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* In Strict Mode, React will **call your calculation function twice** in order to [help you find accidental impurities](#my-calculation-runs-twice-on-every-re-render). This is development-only behavior and does not affect production. If your calculation function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+* In Strict Mode, React will **call your calculation function twice** in order to [help you find accidental impurities.](#my-calculation-runs-twice-on-every-re-render) This is development-only behavior and does not affect production. If your calculation function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
 * React **will not throw away the cached value unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useMemo` solely as a performance optimization. Otherwise, a [state variable](apis/react/useState#avoiding-recreating-the-initial-state) or a [ref](/apis/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 
 ---
@@ -1160,7 +1160,7 @@ function TodoList({ todos, tab }) {
 
 This is expected and shouldn't break your code.
 
-This **development-only** behavior helps you [keep components pure](/learn/keeping-components-pure). React uses the result of one of the calls, and ignores the result of the other call. As long as your component and calculation functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes and fix it.
+This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component and calculation functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes and fix it.
 
 For example, this impure calculation function mutates an array you received as a prop:
 

@@ -4,7 +4,7 @@ title: useId
 
 <Wip>
 
-This section is incomplete, please see the old docs for [useId](https://reactjs.org/docs/hooks-reference.html#useid).
+This section is incomplete, please see the old docs for [useId.](https://reactjs.org/docs/hooks-reference.html#useid)
 
 </Wip>
 

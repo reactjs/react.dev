@@ -426,6 +426,3 @@ useDebugValue('Custom Label');
 
 </YouWillLearnCard>
 
-
-This section is incomplete and is still being written!
-

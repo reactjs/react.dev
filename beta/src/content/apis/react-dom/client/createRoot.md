@@ -7,7 +7,7 @@ title: createRoot
 `createRoot` lets you create a root to display React components inside a browser DOM node.
 
 ```js
-const root = createRoot(domNode, options?);
+const root = createRoot(domNode, options?)
 ```
 
 </Intro>

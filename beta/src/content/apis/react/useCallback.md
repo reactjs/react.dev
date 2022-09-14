@@ -12,7 +12,7 @@ This section is incomplete, please see the old docs for [useCallback.](https://r
 <Intro>
 
 ```js
-const memoizedCallback = useCallback(callback, [...dependencies]);
+const memoizedCallback = useCallback(callback, [...dependencies])
 ```
 
 </Intro>

@@ -7,7 +7,7 @@ title: useMemo
 `useMemo` is a React Hook that lets you skip recalculating a value on a re-render.
 
 ```js
-const value = useMemo(calculateValue, dependencies);
+const value = useMemo(calculateValue, dependencies)
 ```
 
 </Intro>

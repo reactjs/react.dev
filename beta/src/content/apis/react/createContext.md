@@ -7,7 +7,7 @@ title: createContext
 `createContext` lets you create a [context](/learn/passing-data-deeply-with-context) that components can provide or read.
 
 ```js
-const SomeContext = createContext(defaultValue);
+const SomeContext = createContext(defaultValue)
 ```
 
 </Intro>

@@ -12,7 +12,7 @@ This section is incomplete, please see the old docs for [createFactory.](https:/
 <Intro>
 
 ```js
-React.createFactory(type);
+React.createFactory(type)
 ```
 
 </Intro>

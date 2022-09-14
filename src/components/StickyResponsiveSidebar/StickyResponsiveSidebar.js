@@ -118,21 +118,18 @@ class StickyResponsiveSidebar extends Component<Props, State> {
               transition: 'transform 0.5s ease',
             }}
             css={{
-              marginTop:
-                'calc(60px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+              marginTop: 60,
 
               [media.size('xsmall')]: {
                 marginTop: 40,
               },
 
               [media.between('small', 'medium')]: {
-                marginTop:
-                  'calc(20px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+                marginTop: 20,
               },
 
               [media.between('medium', 'large')]: {
-                marginTop:
-                  'calc(50px + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+                marginTop: 50,
               },
 
               [media.greaterThan('small')]: {

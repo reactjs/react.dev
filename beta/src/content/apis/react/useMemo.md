@@ -49,7 +49,7 @@ You need to pass two things to `useMemo`:
 
 On the initial render, the <CodeStep step={3}>value</CodeStep> you'll get from `useMemo` will be the result of calling your <CodeStep step={1}>calculation</CodeStep>.
 
-On every next render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the last render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` will return the value you already calculated on the last render. Otherwise, React will re-run your calculation and return the new value.
+On every subsequent render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the last render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` will return the value you already calculated on the last render. Otherwise, React will re-run your calculation and return the new value.
 
 In other words, `useMemo` will cache your function's result, and return it on re-renders until the dependencies change. If both `todos` and `tab` are the same as before, the `TodoList` won't have to recalculate `visibleTodos`.
 
@@ -552,7 +552,7 @@ Manually wrapping JSX nodes into `useMemo` is not convenient. For example, you c
 
 In this example, the `List` component is **artificially slowed down** so that you can see what happens when a React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
 
-When you switch the tabs, `<List />` gets re-rendered. Changing the `tab` causes the `visibleTodos` to be recreated. Since the `items` passed to the `List` are a different array from the `items` passed to `List` on last render, the `List` must re-render. 
+When you switch the tabs, `<List />` gets re-rendered. Changing the `tab` causes the `visibleTodos` to be recreated. Since the `items` passed to the `List` are a different array from the `items` passed to `List` on last render, the `List` must re-render.
 
 However, when you switch the theme toggle, `<List />` *does not* re-render. This is because both `todos` and `tab` (which you pass as dependencies to `useMemo`) are the same as they were during the last render. This makes the `visibleTodos` the same as on the last render. In `List.js`, the `List` component is wrapped in [`memo`](/apis/react/memo), so it skips re-rendering for the same `items`.
 
@@ -1389,6 +1389,3 @@ function Report({ item }) {
 }
 Report = memo(Report); // ✅ Memoize individual items
 ```
-
-
-

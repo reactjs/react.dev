@@ -67,13 +67,7 @@ function ProductPage({ product, referrerId, theme }) {
       referrerId
     });
   }, [product, referrerId]);
-
-  return (
-    <div className={theme}>
-      <ShippingForm onSubmit={handleSubmit} />
-    </div>
-  );
-}
+  // ...
 ```
 
 

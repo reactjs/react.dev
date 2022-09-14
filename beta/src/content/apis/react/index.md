@@ -111,7 +111,7 @@ Create a component that forward the ref attribute:
 
 ```js
 const Component = forwardRef((props, ref) => {
-    // ...
+  // ...
 });
 ```
 
@@ -134,7 +134,7 @@ useImperativeHandle(ref, () => {
 Create a ref (typically for class components):
 
 ```js
-this.ref = createRef(); 
+this.ref = createRef();
 ```
 
 </YouWillLearnCard>
@@ -159,7 +159,7 @@ Define a pure component as a class:
 
 ```js
 class MyComponent extends React.PureComponent {
-    // ...
+  // ...
 }
 ```
 
@@ -173,12 +173,12 @@ Return multiple elements:
 
 ```js
 function MyComponent() {
-    return (
-        <>
-            <h1>Title</h1>
-            <h2>Subtitle</h2>
-        </>
-    );
+  return (
+    <>
+      <h1>Title</h1>
+      <h2>Subtitle</h2>
+    </>
+  );
 }
 ```
 
@@ -237,7 +237,7 @@ React.cloneElement(element, props);
 Verifies the object is a React element:
 
 ```js
-React.isValidElement(object)
+React.isValidElement(object);
 ```
 
 </YouWillLearnCard>
@@ -313,7 +313,7 @@ useEffect(() => {
   return () => {
     unsubscribe();
   }
-}, [props.userId])
+}, [props.userId]);
 ```
 
 </YouWillLearnCard>
@@ -325,7 +325,7 @@ Read layout DOM state:
 ```js
 useLayoutEffect(() => {
   // Read DOM layout
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -337,7 +337,7 @@ Insert styles into the DOM.
 ```js
 useInsertionEffect(() => {
   // Insert styles
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -374,7 +374,7 @@ Return a memoized component.
 
 ```js
 const MyComponent = React.memo(function MyComponent(props) {
-    // ...
+  // ...
 });
 ```
 

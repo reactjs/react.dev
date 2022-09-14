@@ -545,7 +545,7 @@ If you try to pass a `ref` to your own component like this:
 ```js
 const inputRef = useRef(null);
 
-return <MyInput ref={inputRef} />
+return <MyInput ref={inputRef} />;
 ```
 
 You might get an error in the console:

@@ -34,7 +34,7 @@ You'll also need to install the same version of [React.](/apis/react)
 
 ## Browser Support {/*browser-support*/}
 
-ReactDOM supports all popular browsers, including Internet Explorer 9 and above. [Some polyfills are required](http://todo%20link%20to%20js%20environment%20requirements/) for older browsers such as IE 9 and IE 10.
+ReactDOM supports all popular browsers, including Internet Explorer 9 and above. [Some polyfills are required](TODO:/link-to-js-environment-requirements) for older browsers such as IE 9 and IE 10.
 
 
 ## Exports {/*exports*/}

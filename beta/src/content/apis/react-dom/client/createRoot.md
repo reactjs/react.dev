@@ -347,7 +347,7 @@ import App from './App.js';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
-````
+```
 
 Until you do that, nothing is displayed.
 
@@ -362,7 +362,7 @@ const domNode = document.getElementById('root');
 console.log(domNode); // ???
 const root = createRoot(domNode);
 root.render(<App />);
-````
+```
 
 For example, if `domNode` is `null`, it means that [`getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) returned `null`. This will happen if there is no node in the document with the given ID at the time of your call. There may be a few reasons for it:
 

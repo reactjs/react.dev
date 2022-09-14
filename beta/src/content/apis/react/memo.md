@@ -7,23 +7,14 @@ title: React.memo
 `memo` lets you avoid re-rendering a component when its props are unchanged.
 
 ```
-export default memo(function Button({title}) {
+const Button = memo(({title}) => {
   return <button>{title}</button>
 });
 ```
 
 </Intro>
 
-- [Usage](#usage)
-  - [Avoiding re-rendering when props are unchanged](#avoiding-rerendering-when-props-are-unchanged)
-  - [Updating a memoized component using state](#updating-a-memoized-component-using-state)
-  - [Updating a memoized component using a context](#updating-a-memoized-component-using-state)
-  - [Minimizing props changes](#minimizng-props-changes)
-  - [Specifying a custom comparison function](#specifying-a-custom-comparison-function)
-- [Reference](#reference)
-- [Troubleshooting](#troubleshooting)
-  - [My component re-renders when a prop is an object or array](#my-component-rerenders-when-a-prop-is-an-object-or-array)
-  - [My component re-renders when a prop is a function](#my-component-rerenders-when-a-prop-is-a-function)
+<InlineToc />
 
 ---
 
@@ -36,21 +27,22 @@ React normally re-renders a component whenever its parent re-renders. With `memo
 `memo` is a function: you use it by wrapping your component in a call to `memo` and using the value that it returns in place of your original component:
 
 ```
-export default memo(function Greeting({name}) {
+const Greeting = memo(({name}) => {
   return <>Hello, {name}!</>;
 });
+export default Greeting;
 ```
 
-A React component should always render the same output if its props, state, and context haven't changed. By using `memo`, you are telling React that your component complies with this requirement, so React doesn't need to re-render as long as none of those things have changed. When you use `memo`, your component will still re-render if its own state changes or if a context that it's using changes.
+A React component should always render the same output if its props, state, and context haven't changed. By using `memo`, you are telling React that your component complies with this requirement, so React doesn't need to re-render as long as its props haven't changed. When you use `memo`, your component will still re-render if its own state changes or if a context that it's using changes.
 
 <Gotcha>
 
 Use `memo` only as a performance optimization, not to guarantee that a re-render
 will not happen. React may choose to re-render anyway in some situations, such as to save
-memory when a component is off-screen.
+memory when a component is off-screen. Components [should always be pure](/learn/keeping-components-pure)
+and will then be unfazed by extra re-renders.
 
 </Gotcha>
-
 
 In this example, notice that the `Greeting` component re-renders whenever `name` is changed (because that's one of its props), but not when `address` is changed (because it's not a prop):
 
@@ -77,10 +69,8 @@ export default function MyApp() {
   );
 }
 
-const Greeting = memo(function Greeting({name}) {
-  useEffect(() => {
-    console.log("Greeting was rendered");
-  });
+const Greeting = memo(({name}) => {
+  console.log("Greeting was rendered at", new Date().toLocaleTimeString());
   return <h3>Hello{name && ', '}{name}!</h3>;
 });
 ```
@@ -121,10 +111,8 @@ export default function MyApp() {
   );
 }
 
-const Greeting = memo(function Greeting({name}) {
-  useEffect(() => {
-    console.log("Greeting was rendered");
-  });
+const Greeting = memo(({name}) => {
+  console.log("Greeting was rendered at", new Date().toLocaleTimeString());
   const [greeting, setGreeting] = useState('Hello');
   return (
     <>
@@ -192,10 +180,8 @@ export default function MyApp() {
   );
 }
 
-const Greeting = memo(function Greeting({name}) {
-  useEffect(() => {
-    console.log("Greeting was rendered");
-  });
+const Greeting = memo(({name}) => {
+  console.log("Greeting was rendered at", new Date().toLocaleTimeString());
   const theme = useContext(ThemeContext);
   return (
     <h3 className={theme}>Hello!</h3>
@@ -226,6 +212,10 @@ label {
 When you use `memo`, your component re-renders whenever any prop is not shallow-equal to what it was previously. To get the most out of `memo`, minimize the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using `useMemo`:
 
 ```
+const PersonProfile = memo(({person}) => {
+  ...
+});
+
 function ParentComponent() {
   const [name, setName] = useState(...);
   const [age, setAge] = useState(...);
@@ -237,23 +227,19 @@ function ParentComponent() {
 
   return <PersonProfile person={person} />;
 }
-
-const PersonProfile = memo(function PersonProfile({person}) {
-  ...
-});
 ```
 
 Another way to minimize props changes is to make sure the component accepts the minimum necessary information in its props. For example, it could accept individual values instead of a whole object. Even individual values can sometimes be projected to ones that change less frequently — for example, here a component accepts a boolean indicating the presence of a value rather than the value itself:
 
 ```
+const JoinAGroupCallToAction = memo(({hasGroups}) => {
+  ...
+});
+
 function ParentComponent({person}) {
   const hasGroups = person.groups != null;
   return <JoinAGroupCallToAction hasGroups={hasGroups} />;
 }
-
-const JoinAGroupCallToAction = memo(function JoinAGroupCallToAction({hasGroups}) {
-  ...
-});
 ```
 
 ### Specifying a custom comparison function {/*specifying-a-custom-comparison-function*/}
@@ -261,6 +247,13 @@ const JoinAGroupCallToAction = memo(function JoinAGroupCallToAction({hasGroups})
 In rare cases it may be infeasible to minimize the props changes of a memoized component. In that case, you can provide a custom comparison function, which React will use to compare the old and new props instead of using shallow equality. This function is passed as a second argument to `memo`. It should return `true` only if the new props would result in the same output as the old props; otherwise it should return `false`.
 
 ```
+const ScatterChart = memo(
+  ({dataPoints}) => {
+    ...
+  },
+  arePropsEqual,
+);
+
 function arePropsEqual(oldProps, newProps) {
   return oldProps.dataPoints.length === newProps.dataPoints.length &&
     oldProps.dataPoints.every((oldPoint, index) => {
@@ -268,13 +261,6 @@ function arePropsEqual(oldProps, newProps) {
       return oldPoint.x === newPoint.x && oldPoint.y === newPoint.y;
     });
 }
-
-const ScatterChart = memo(
-  function ScatterChart({dataPoints}) {
-    ...
-  },
-  arePropsEqual,
-);
 ```
 
 If you do this, use the [React Profiler](/learn/react-developer-tools) to make sure that your comparison function is actually faster than re-rendering the component. You might be surprised.

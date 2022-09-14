@@ -85,7 +85,7 @@ function MyComponent() {
 Creates a context that components can provide or read.
 
 ```js
-const ThemeContext = createContext('light')
+const ThemeContext = createContext('light');
 ```
 
 </YouWillLearnCard>
@@ -111,8 +111,8 @@ Create a component that forward the ref attribute:
 
 ```js
 const Component = forwardRef((props, ref) => {
-    // ...
-})
+  // ...
+});
 ```
 
 </YouWillLearnCard>
@@ -124,7 +124,7 @@ Customize instance value exposed to parent refs:
 ```js
 useImperativeHandle(ref, () => {
   // ...        
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -134,7 +134,7 @@ useImperativeHandle(ref, () => {
 Create a ref (typically for class components):
 
 ```js
-this.ref = createRef()
+this.ref = createRef();
 ```
 
 </YouWillLearnCard>
@@ -207,7 +207,7 @@ React.Children.toArray(children);
 Create a React element:
 
 ```js
-React.createElement('div', { title: 'Element'})
+React.createElement('div', { title: 'Element'});
 ```
 
 </YouWillLearnCard>
@@ -217,7 +217,7 @@ React.createElement('div', { title: 'Element'})
 Create a factory for React elements of a given type:
 
 ```js
-React.createFactory('div')
+React.createFactory('div');
 ```
 
 </YouWillLearnCard>
@@ -227,7 +227,7 @@ React.createFactory('div')
 Clone a React element:
 
 ```js
-React.cloneElement(element, props)
+React.cloneElement(element, props);
 ```
 
 </YouWillLearnCard>
@@ -237,7 +237,7 @@ React.cloneElement(element, props)
 Verifies the object is a React element:
 
 ```js
-React.isValidElement(object)
+React.isValidElement(object);
 ```
 
 </YouWillLearnCard>
@@ -275,7 +275,7 @@ Mark updates as transitions:
 ```js
 startTransition(() => {
   setState(c => c + 1);
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -285,7 +285,7 @@ startTransition(() => {
 Mark updates as transitions with pending flags:
 
 ```js
-const [isPending, startTransition] = useTransition()
+const [isPending, startTransition] = useTransition();
 ```
 
 </YouWillLearnCard>
@@ -295,7 +295,7 @@ const [isPending, startTransition] = useTransition()
 Defer to more urgent updates:
 
 ```js
-const deferredValue = useDeferredValue(value)
+const deferredValue = useDeferredValue(value);
 ```
 
 </YouWillLearnCard>
@@ -313,7 +313,7 @@ useEffect(() => {
   return () => {
     unsubscribe();
   }
-}, [props.userId])
+}, [props.userId]);
 ```
 
 </YouWillLearnCard>
@@ -325,7 +325,7 @@ Read layout DOM state:
 ```js
 useLayoutEffect(() => {
   // Read DOM layout
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -337,7 +337,7 @@ Insert styles into the DOM.
 ```js
 useInsertionEffect(() => {
   // Insert styles
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -351,7 +351,7 @@ Return a memoized callback.
 ```js
 const handleClick = useCallback(() => {
   doSomething(a, b);
-}, [a, b])
+}, [a, b]);
 ```
 
 </YouWillLearnCard>
@@ -363,7 +363,7 @@ Return a memoized value.
 ```js
 const value = useMemo(() => {
   return calculateValue(a, b);
-}, [a, b])
+}, [a, b]);
 ```
 
 </YouWillLearnCard>
@@ -375,7 +375,7 @@ Return a memoized component.
 ```js
 const MyComponent = React.memo(function MyComponent(props) {
   // ...
-})
+});
 ```
 
 </YouWillLearnCard>
@@ -387,7 +387,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 Subscribe to external state.
 
 ```js
-const state = useSyncExternalStore(subscribe, getSnapshot)
+const state = useSyncExternalStore(subscribe, getSnapshot);
 ```
 
 </YouWillLearnCard>
@@ -399,7 +399,7 @@ const state = useSyncExternalStore(subscribe, getSnapshot)
 Generate unique IDs across the server and client:
 
 ```js
-const id = useId()
+const id = useId();
 ```
 
 </YouWillLearnCard>
@@ -421,7 +421,7 @@ Eagerly highlight potential problems.
 Display a label for custom hooks.
 
 ```js
-useDebugValue('Custom Label')
+useDebugValue('Custom Label');
 ```
 
 </YouWillLearnCard>

@@ -70,7 +70,6 @@ function ProductPage({ product, referrerId, theme }) {
 
   return (
     <div className={theme}>
-      <ThemeSwitcher value={theme} onChange={setTheme} />
       <ShippingForm onSubmit={handleSubmit} />
     </div>
   );

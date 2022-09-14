@@ -1,23 +1,23 @@
 ---
-title: Queueing a Series of State Updates
+title: Tilapäivitysten lisääminen jonoon
 ---
 
 <Intro>
 
-Setting a state variable will queue another render. But sometimes you might want to perform multiple operations on the value before queueing the next render. To do this, it helps to understand how React batches state updates.
+Tilamuuttujan asettaminen lisää toisen renderöinnin jonoon. Toisinaan saatat haluta suorittaa useita operaatioita arvolla ennen seuraavan renderöinnin lisäämistä jonoon. Tätä varten on hyvä ymmärtää, miten React erittelee tilapäivitykset.
 
 </Intro>
 
 <YouWillLearn>
 
-* What "batching" is and how React uses it to process multiple state updates
-* How to apply several updates to the same state variable in a row
+* Mitä "niputtaminen" on ja kuinka React käyttää sitä prosessoidessaan useita tilapäivityksiä
+* Useiden päivitysten soveltaminen samaan tilamuuttujaan peräkkäin
 
 </YouWillLearn>
 
-## React batches state updates {/*react-batches-state-updates*/}
+## React niputtaa tilapäivitykset {/*react-batches-state-updates*/}
 
-You might expect that clicking the "+3" button will increment the counter three times because it calls `setNumber(number + 1)` three times:
+Saatat olettaa, että painamalla "+3"-painiketta laskurin lukuu kasvaa kolme kertaa, koska se kutsuu `setNumber(number + 1)` kolmesti:
 
 <Sandpack>
 
@@ -47,7 +47,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-However, as you might recall from the previous section, [each render's state values are fixed](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), so the value of `number` inside the first render's event handler is always `0`, no matter how many times you call `setNumber(1)`:
+Kuitenkin saatat muistaa edellisestä osasta, [kunkin renderin tila-arvot ovat kiinteät](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time), joten `number` muuttujan arvo ensimmäisen renderöinnin tapahtumakäsittelijässä on aina `0`, riippumatta siitä miten monesti kutsut `setNumber(1)` funktiota:
 
 ```js
 setNumber(0 + 1);
@@ -55,21 +55,21 @@ setNumber(0 + 1);
 setNumber(0 + 1);
 ```
 
-But there is one other factor at work here to discuss. **React waits until *all* code in the event handlers has run before processing your state updates.** This is why the re-render only happens *after* all these `setNumber()` calls.
+Mutta tässä on yksi muukin tekijä, joka käydään läpi. **React odottaa kunnes *kaikki* koodi tapahtumakäsittelijässä on suoritettu ennen tilapäivitysten laskentaa.** Tämän vuoksi uudelleen renderöinti tapahtuu kaikkien `setNumber()` kutsujen *jälkeen*.
 
-This might remind you of a waiter taking an order at the restaurant. A waiter doesn't run to the kitchen at the mention of your first dish! Instead, they let you finish your order, let you make changes to it, and even take orders from other people at the table.
+Tämä saattaa muistuttaa tarjoilijasta ottamassa tilauksia vastaan ravintolassa. Tarjoilija ei juokse keittiöön heti kun mainitset ensimmäisen aterian. Sen sijaan hän antaa sinun tehdä tilauksesi loppuun asti, tehdä siihen muutoksia ja sitten ottaa tilauksia vastaan muilta henkilöiltä pöydässä.
 
 <Illustration src="/images/docs/illustrations/i_react-batching.png"  alt="An elegant cursor at a restaurant places and order multiple times with React, playing the part of the waiter. After she calls setState() multiple times, the waiter writes down the last one she requested as her final order." />
 
-This lets you update multiple state variables--even from multiple components--without triggering too many [re-renders.](/learn/render-and-commit#re-renders-when-state-updates) But this also means that the UI won't be updated until _after_ your event handler, and any code in it, completes. This behavior, also known as **batching,** makes your React app run much faster. It also avoids dealing with confusing "half-finished" renders where only some of the variables have been updated.
+Tämän avulla voit päivittää useita tilamuuttujia--jopa useista komponenteista--ilman ylimääräisten [uudelleen renderöintien.](/learn/render-and-commit#re-renders-when-state-updates) triggeröintiä. Tämä tarkoittaa kuitenkin myös sitä, että käyttöliittymä päivittyy vasta _jälkeen_, kun tapahtumankäsittelijäsi ja siinä oleva koodi on suoritettu. Tämä käyttäytyminen, joka tunnetaan myös nimellä **niputtaminen** (engl. batching), ja se saa React-sovelluksesi toimimaan paljon nopeammin. Sen avulla vältetään myös sekavat "puolivalmiit" renderöinnit, joissa vain osa muuttujista on päivitetty.
 
-**React does not batch across *multiple* intentional events like clicks**--each click is handled separately. Rest assured that React only does batching when it's generally safe to do. This ensures that, for example, if the first button click disables a form, the second click would not submit it again.
+**React ei niputa *useita* tarkoituksellisia tapahtumia kuten klikkauksia**--jokainen klikkaus käsitellään erikseen. Voit olla varma, että React tekee niputtamista vain silloin, kun se on yleisesti ottaen turvallista. Näin varmistetaan, että jos esimerkiksi ensimmäinen painikkeen napsautus poistaa lomakkeen käytöstä, toinen napsautus ei lähetä lomaketta uudelleen.
 
-## Updating the same state variable multiple times before the next render {/*updating-the-same-state-variable-multiple-times-before-the-next-render*/}
+## Saman tilamuuttujan päivittäminen useita kertoja ennen seuraavaa renderöintiä {/*updating-the-same-state-variable-multiple-times-before-the-next-render*/}
 
-It is an uncommon use case, but if you would like to update the same state variable multiple times before the next render, instead of passing the *next state value* like `setNumber(number + 1)`, you can pass a *function* that calculates the next state based on the previous one in the queue, like `setNumber(n => n + 1)`. It is a way to tell React to "do something with the state value" instead of just replacing it.
+Tämä on harvinainen käyttötapaus, mutta jos haluat päivittää saman tilamuuttujan useita kertoja ennen seuraavaa renderöintiä, sen sijaan, että välittäisit *seuraavan tilan arvon* kuten `setNumber(number + 1)`, voit välittää *funktion*, joka laskee seuraavan tilan jonon edellisen tilan perusteella, kuten `setNumber(n => n + 1)`. Se on tapa käskeä Reactia "tekemään jotain tila-arvolla" sen sijaan, että se vain korvaisi sen.
 
-Try incrementing the counter now:
+Kokeile kasvattaa laskuria nyt:
 
 <Sandpack>
 
@@ -99,10 +99,10 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here, `n => n + 1` is called an **updater function.** When you pass it to a state setter:
+Tässä, `n => n + 1` on**päivitysfunktio.** Kun välität sen tila-asettajalle:
 
-1. React queues this function to be processed after all the other code in the event handler has run.
-2. During the next render, React goes through the queue and gives you the final updated state.
+1. React lisää tämän funktion jonoon prosessoitavaksi kun kaikki muut koodi tapahtumakäsittelijässä on suoritettu.
+2. Seuraavan renderöinnin aikana React käy jonon läpi ja antaa sinulle lopullisen päivitetyn tilan.
 
 ```js
 setNumber(n => n + 1);
@@ -110,26 +110,26 @@ setNumber(n => n + 1);
 setNumber(n => n + 1);
 ```
 
-Here's how React works through these lines of code while executing the event handler:
+Näin React käy läpi nämä rivit koodia tapahtumakäsittelijää suoritettaessa:
 
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
-1. `setNumber(n => n + 1)`: `n => n + 1` is a function. React adds it to a queue.
+1. `setNumber(n => n + 1)`: `n => n + 1` on funktio. React lisää sen jonoon.
+1. `setNumber(n => n + 1)`: `n => n + 1` on funktio. React lisää sen jonoon.
+1. `setNumber(n => n + 1)`: `n => n + 1` on funktio. React lisää sen jonoon.
 
-When you call `useState` during the next render, React goes through the queue. The previous `number` state was `0`, so that's what React passes to the first updater function as the `n` argument. Then React takes the return value of your previous updater function and passes it to the next updater as `n`, and so on:
+Kun kutsut `useState` funktiota renderöinnin aikana, React käy jonon läpi. Edellinen `number`:n tila oli `0`, joten React välittää sen ensimmäiselle päivitysfunktiolle argumenttina `n`. Sitten React ottaa edellisen päivitysfunktion paluuarvon ja siirtää sen seuraavalle päivitysfunktiolle `n` muuttujana, ja niin edelleen:
 
-|  queued update | `n` | returns |
+|  päivitys jonossa | `n` | palauttaa |
 |--------------|---------|-----|
 | `n => n + 1` | `0` | `0 + 1 = 1` |
 | `n => n + 1` | `1` | `1 + 1 = 2` |
 | `n => n + 1` | `2` | `2 + 1 = 3` |
 
-React stores `3` as the final result and returns it from `useState`.
+React tallentaa `3` lopulliseksi tulokseksi ja palauttaa sen `useState`:sta.
 
-This is why clicking "+3" in the above example correctly increments the value by 3.
-### What happens if you update state after replacing it {/*what-happens-if-you-update-state-after-replacing-it*/}
+Tämän vuoksi napsauttamalla "+3" yllä olevassa esimerkissä arvo kasvaa oikein 3:lla.
+### Mitä tapahtuu, jos päivität tilan sen korvaamisen jälkeen? {/*what-happens-if-you-update-state-after-replacing-it*/}
 
-What about this event handler? What do you think `number` will be in the next render?
+Entä tämä tapahtumankäsittelijä? Mitä luulet, että `number` on seuraavassa renderöinnissä?
 
 ```js
 <button onClick={() => {
@@ -165,25 +165,25 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here's what this event handler tells React to do:
+Tämä tapahtumankäsittelijä käskee Reactia tekemään seuraavaa:
 
-1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
-2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
+1. `setNumber(number + 5)`: `number` on `0`, joten `setNumber(0 + 5)`. React lisää *"korvaa arvolla `5`"* sen jonoon.
+2. `setNumber(n => n + 1)`: `n => n + 1` on päivitysfunktio. React lisää *tuon funktion* sen jonoon.
 
-During the next render, React goes through the state queue:
+Seuraavan renderöinnin aikana React käy läpi tilajonon:
 
-|   queued update       | `n` | returns |
+|   päivitys jonossa       | `n` | palauttaa |
 |--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
+| "replace with `5`" | `0` (käyttämätön) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
 
-React stores `6` as the final result and returns it from `useState`. 
+React tallentaa `6` lopulliseksi tulokseksi ja palauttaa sen `useState`:sta.
 
-> You may have noticed that `setState(x)` actually works like `setState(n => x)`, but `n` is unused!
+> Olet ehkä huomannut, että `setState(x)` toimii kuten `setState(n => x)`, mutta `n` on käyttämätön!
 
-### What happens if you replace state after updating it {/*what-happens-if-you-replace-state-after-updating-it*/}
+### Mitä tapahtuu, jos korvaat tilan sen päivittämisen jälkeen? {/*what-happens-if-you-replace-state-after-updating-it*/}
 
-Let's try one more example. What do you think `number` will be in the next render?
+Kokeillaan vielä yhtä esimerkkiä. Mitä luulet, että `number` on seuraavassa renderöinnissä?
 
 ```js
 <button onClick={() => {
@@ -221,32 +221,32 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Here's how React works through these lines of code while executing this event handler:
+Näin React käy läpi nämä rivit koodia tapahtumakäsittelijää suoritettaessa:
 
-1. `setNumber(number + 5)`: `number` is `0`, so `setNumber(0 + 5)`. React adds *"replace with `5`"* to its queue.
-2. `setNumber(n => n + 1)`: `n => n + 1` is an updater function. React adds *that function* to its queue.
-3. `setNumber(42)`: React adds *"replace with `42`"* to its queue.
+1. `setNumber(number + 5)`: `number` on `0`, joten `setNumber(0 + 5)`. React lisää *"korvaa arvolla `5`"* sen jonoon.
+2. `setNumber(n => n + 1)`: `n => n + 1` on päivitysfunktio. React lisää *tuon funktion* sen jonoon.
+3. `setNumber(42)`: React lisää *"korvaa arvolla `42`"* sen jonoon.
 
-During the next render, React goes through the state queue:
+Seuraavan renderöinnin aikana React käy läpi tilajonon:
 
-|   queued update       | `n` | returns |
+|   päivitys jonossa       | `n` | palauttaa |
 |--------------|---------|-----|
-| "replace with `5`" | `0` (unused) | `5` |
+| "korvaa arvolla `5`" | `0` (käyttämätön) | `5` |
 | `n => n + 1` | `5` | `5 + 1 = 6` |
-| "replace with `42`" | `6` (unused) | `42` |
+| "korvaa arvolla `42`" | `6` (käyttämätön) | `42` |
 
-Then React stores `42` as the final result and returns it from `useState`.
+Sitten React tallentaa `42` lopulliseksi tulokseksi ja palauttaa sen `useState`:sta.
 
-To summarize, here's how you can think of what you're passing to the `setNumber` state setter:
+Yhteenvetona voit ajatella näin, mitä välität `setNumber` tila-asettimeen:
 
-* **An updater function** (e.g. `n => n + 1`) gets added to the queue.
-* **Any other value** (e.g. number `5`) adds "replace with `5`" to the queue, ignoring what's already queued.
+* **Päivitysfunktion** (esim. `n => n + 1`) lisätään jonoon.
+* **Minkä tahansa arvon** (esim. numero `5`) lisää "korvaa arvolla `5`" jonoon, huomioimatta sitä, mikä on jo jonossa.
 
-After the event handler completes, React will trigger a re-render. During the re-render, React will process the queue. Updater functions run during rendering, so **updater functions must be [pure](/learn/keeping-components-pure)** and only *return* the result. Don't try to set state from inside of them or run other side effects. In Strict Mode, React will run each updater function twice (but discard the second result) to help you find mistakes.
+Tapahtumankäsittelijän päätyttyä React käynnistää uuden renderöinnin. Uudelleen renderöinnin aikana React käsittelee jonon. Päivitysfunktiot suoritetaan renderöinnin aikana, joten **päivitysfunktioiden on oltava [puhtaita](/learn/keeping-components-pure)** ja *palauttavat* vain tuloksen. Älä yritä asettaa tilaa niiden sisältä tai suorittaa muita sivuvaikutuksia. Strict Modessa, React suorittaa jokaisen päivitysfunktion kahdesti (mutta hylkää toisen tuloksen) auttaakseen sinua löytämään virheitä.
 
-### Naming conventions {/*naming-conventions*/}
+### Nimeämiskäytännöt {/*naming-conventions*/}
 
-It's common to name the updater function argument by the first letters of the corresponding state variable:
+On tavallista nimetä päivitysfunktion argumentti vastaavan tilamuuttujan alkukirjaimilla:
 
 ```js
 setEnabled(e => !e);
@@ -254,13 +254,13 @@ setLastName(ln => ln.reverse());
 setFriendCount(fc => fc * 2);
 ```
 
-If you prefer more verbose code, another common convention is to repeat the full state variable name, like `setEnabled(enabled => !enabled)`, or to use a prefix like `setEnabled(prevEnabled => !prevEnabled)`.
+Jos haluat yksityiskohtaisempaa koodia, toinen yleinen käytäntö on toistaa koko tilamuuttujan nimi, kuten `setEnabled(enabled => !enabled)`, tai käyttää etuliitettä kuten `setEnabled(prevEnabled => !prevEnabled)`.
 
 <Recap>
 
-* Setting state does not change the variable in the existing render, but it requests a new render.
-* React processes state updates after event handlers have finished running. This is called batching.
-* To update some state multiple times in one event, you can use `setNumber(n => n + 1)` updater function.
+* Tilan asettaminen ei muuta tilamuuttujaa olemassa olevassa renderöinnissä, vaan pyytää uutta renderöintiä.
+* React käsittelee tilapäivitykset sen jälkeen, kun tapahtumakäsittelijät ovat lopettaneet suorituksensa. Tätä kutsutaan niputtamiseksi.
+* Jos haluat päivittää jonkin tilan useita kertoja yhdessä tapahtumassa, voit käyttää `setNumber(n => n + 1)`-päivitysfunktiota.
 
 </Recap>
 
@@ -268,13 +268,13 @@ If you prefer more verbose code, another common convention is to repeat the full
 
 <Challenges>
 
-#### Fix a request counter {/*fix-a-request-counter*/}
+#### Korjaa pyyntöjen laskuri {/*fix-a-request-counter*/}
 
-You're working on an art marketplace app that lets the user submit multiple orders for an art item at the same time. Each time the user presses the "Buy" button, the "Pending" counter should increase by one. After three seconds, the "Pending" counter should decrease, and the "Completed" counter should increase.
+Olet kehittämässä taiteen markkinapaikkasovellusta, jonka avulla käyttäjä voi tehdä useita tilauksia taide-esineestä samanaikaisesti. Joka kertan, kun käyttäjä painaa "Osta"-painiketta, "Vireillä"-laskurin pitäisi kasvaa yhdellä. Kolmen sekuntin kuluttua "Vireillä"-laskurin pitäisi pienentyä ja "Toteutunut" laskurin pitäisi kasvaaa.
 
-However, the "Pending" counter does not behave as intended. When you press "Buy", it decreases to `-1` (which should not be possible!). And if you click fast twice, both counters seem to behave unpredictably.
+Vireillä -laskuri ei kuitenkaan käyttäydy tarkoitetulla tavalla. Kun painat "Osta", se laskee arvoon `-1` (minkä ei pitäisi olla mahdollista!). Ja jos painat nopeasti kahdesti, molemmat laskurit näyttävät käyttäytyvän arvaamattomasti.
 
-Why does this happen? Fix both counters.
+Miksi näin tapahtuu? Korjaa molemmat laskurit.
 
 <Sandpack>
 
@@ -295,13 +295,13 @@ export default function RequestTracker() {
   return (
     <>
       <h3>
-        Pending: {pending}
+        Vireillä: {pending}
       </h3>
       <h3>
-        Completed: {completed}
+        Toteutunut: {completed}
       </h3>
       <button onClick={handleClick}>
-        Buy     
+        Osta
       </button>
     </>
   );
@@ -318,7 +318,7 @@ function delay(ms) {
 
 <Solution>
 
-Inside the `handleClick` event handler, the values of `pending` and `completed` correspond to what they were at the time of the click event. For the first render, `pending` was `0`, so `setPending(pending - 1)` becomes `setPending(-1)`, which is wrong. Since you want to *increment* or *decrement* the counters, rather than set them to a concrete value determined during the click, you can instead pass the updater functions:
+`handleClick`-tapahtumankäsittelijän sisällä `pending` ja `completed` arvot vastaavat arvoja, jotka ne olivat klikkaustapahtuman aikaan. Ensimmäisessä renderöinnissä `pending` oli `0`, joten `setPending(pending - 1)` muuttuu `setPending(-1)`, mikä on väärin. Koska haluat *kasvattaa* tai *vähentää* laskureita sen sijaan, että asettaisit ne klikkauksen aikana määritettyyn konkreettiseen arvoon, voit sen sijaan välittää niille päivitysfunktiot:
 
 <Sandpack>
 
@@ -360,23 +360,23 @@ function delay(ms) {
 
 </Sandpack>
 
-This ensures that when you increment or decrement a counter, you do it in relation to its *latest* state rather than what the state was at the time of the click.
+Näin varmistetaan, että kun kasvatat tai vähennät laskuria, se tehdään suhteessa sen *viimeisimpään* tilaan eikä siihen, mikä tila oli napsautushetkellä.
 
 </Solution>
 
-#### Implement the state queue yourself {/*implement-the-state-queue-yourself*/}
+#### Toteuta tilajono itse {/*implement-the-state-queue-yourself*/}
 
-In this challenge, you will reimplement a tiny part of React from scratch! It's not as hard as it sounds.
+Tässä haasteessa toteutat pienen osan Reactista alusta alkaen! Se ei ole niin vaikeaa kuin miltä se kuulostaa.
 
-Scroll through the sandbox preview. Notice that it shows **four test cases.** They correspond to the examples you've seen earlier on this page. Your task is to implement the `getFinalState` function so that it returns the correct result for each of those cases. If you implement it correctly, all four tests should pass.
+Selaa hiekkalaatikon esikatselua. Huomaa, että siinä näkyy **neljä testitapausta.** Ne vastaavat aiemmin tällä sivulla näkemiäsi esimerkkejä. Tehtävänäsi on toteuttaa `getFinalState`-funktio niin, että se palauttaa oikean tuloksen jokaisessa näistä tapauksista. Jos toteutat sen oikein, kaikkien neljän testin pitäisi mennä läpi.
 
-You will receive two arguments: `baseState` is the initial state (like `0`), and the `queue` is an array which contains a mix of numbers (like `5`) and updater functions (like `n => n + 1`) in the order they were added.
+Saat kaksi argumenttia: `baseState` on aloitustila, joka sisältää numeroita (kuten `0`) ja `queue`, joka on taulukko, joka sisältää sekoituksen numeroita (kuten `5`) ja päivitysfunktioita (kuten `n => n + 1`) siinä järjestyksessä kuin ne on lisätty.
 
-Your task is to return the final state, just like the tables on this page show!
+Tehtäväsi on palauttaa lopullinen tila, aivan kuten tämän sivun taulukot osoittavat!
 
 <Hint>
 
-If you're feeling stuck, start with this code structure:
+Jos tunnet olevasi jumissa, aloita tästä koodirakenteesta:
 
 ```js
 export function getFinalState(baseState, queue) {
@@ -394,7 +394,7 @@ export function getFinalState(baseState, queue) {
 }
 ```
 
-Fill out the missing lines!
+Täytä puuttuvat rivit!
 
 </Hint>
 
@@ -491,7 +491,7 @@ function TestCase({
 
 <Solution>
 
-This is the exact algorithm described on this page that React uses to calculate the final state:
+Tämä on täsmälleen tällä sivulla kuvattu algoritmi, jota React käyttää lopullisen tilan laskemiseen:
 
 <Sandpack>
 
@@ -592,7 +592,7 @@ function TestCase({
 
 </Sandpack>
 
-Now you know how this part of React works!
+Nyt tiedät, miten tämä osa Reactia toimii!
 
 </Solution>
 

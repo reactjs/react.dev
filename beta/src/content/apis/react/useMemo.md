@@ -4,7 +4,7 @@ title: useMemo
 
 <Intro>
 
-`useMemo` is a React Hook that lets you reuse a calculation from a past render.
+`useMemo` is a React Hook that lets you cache the result of a calculation between re-renders.
 
 ```js
 const memoizedValue = useMemo(calculateValue, dependencies)

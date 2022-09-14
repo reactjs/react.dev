@@ -4,7 +4,7 @@ title: useCallback
 
 <Intro>
 
-`useCallback` is a React Hook that lets you reuse a function definition from a past render.
+`useCallback` is a React Hook that lets you cache a function definition between re-renders.
 
 ```js
 const memoizedFn = useCallback(fn, dependencies)

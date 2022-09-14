@@ -184,7 +184,7 @@ tällä
 
 ```js
 const [index, setIndex] = useState(0);
-````
+```
 
 `index` on tilamuuttuja ja `setIndex` on tilan asettajafunktio.
 
@@ -1448,7 +1448,7 @@ Jos lintterisi on [määritelty Reactille](/learn/editor-setup#linting), pitäis
 
 Kun painiketta painetaan, tämän esimerkin tulisi kysyä käyttäjän nimeä ja sitten tervehtiä ilmoituksella. Yritit tallentaa nimen tilaan, mutta jostain syystä se näyttää "Hello, !".
 
-Korjataksesi tämän koodin, poista tarpeeton tilamuuttuja. (Katsotaan myöhemmin [miksi tämä ei toiminut](/learn/troubleshooting-state-updates#setting-state-does-not-update-variables).)
+Korjataksesi tämän koodin, poista tarpeeton tilamuuttuja. (Katsotaan myöhemmin [miksi tämä ei toiminut](/learn/state-as-a-snapshot).)
 
 Pystytkö selittämään miksi tilamuuttuja on tarpeeton?
 

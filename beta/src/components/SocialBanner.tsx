@@ -18,7 +18,7 @@ export default function SocialBanner() {
       if (y === 0) {
         // We're trying to reset scroll.
         // If we already scrolled past the banner, consider it as y = 0.
-        const bannerHeight = ref.current!.offsetHeight; // Could be zero (e.g. mobile)
+        const bannerHeight = ref.current?.offsetHeight ?? 0; // Could be zero (e.g. mobile)
         y = Math.min(window.scrollY, bannerHeight);
       }
       return realScrollTo(x, y);

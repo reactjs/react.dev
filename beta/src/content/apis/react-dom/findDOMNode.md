@@ -4,7 +4,7 @@ title: findDOMNode
 
 <Wip>
 
-This section is incomplete, please see the old docs for [findDOMNode](https://reactjs.org/docs/react-dom.html#finddomnode).
+This section is incomplete, please see the old docs for [findDOMNode.](https://reactjs.org/docs/react-dom.html#finddomnode)
 
 </Wip>
 
@@ -23,6 +23,6 @@ findDOMNode(component)
 
 <Gotcha>
 
-`findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction. [It has been deprecated in StrictMode](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage).
+`findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction. [It has been deprecated in StrictMode.](https://reactjs.org/docs/strict-mode.html#warning-about-deprecated-finddomnode-usage)
 
 </Gotcha>

@@ -4,7 +4,7 @@ title: renderToString
 
 <Wip>
 
-This section is incomplete, please see the old docs for [renderToString](https://reactjs.org/docs/react-dom-server.html#rendertostring).
+This section is incomplete, please see the old docs for [renderToString.](https://reactjs.org/docs/react-dom-server.html#rendertostring)
 
 </Wip>
 

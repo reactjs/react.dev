@@ -126,7 +126,7 @@ Molemmissa tilanteissa välität funktion:
 * `<button onClick={handleClick}>` välittää `handleClick` funktion.
 * `<button onClick={() => alert('...')}>` välittää `() => alert('...')` funktion.
 
-> Tutustu [JavaScript Refresheriin](a-javascript-refresher#arrow-functions) saadaksesi lisätietoa nuolifunktioista.
+> Tutustu [JavaScript Refresheriin](TODO:/learn/a-javascript-refresher#arrow-functions) saadaksesi lisätietoa nuolifunktioista.
 
 </Gotcha>
 
@@ -232,7 +232,7 @@ Jos käytät [design system:iä](https://uxdesign.cc/everything-you-need-to-know
 
 ### Tapahtumakäsittelijän propsien nimeäminen {/*naming-event-handler-props*/}
 
-Sisäänrakennetut elementit kuten `<button>` ja `<div>` tukevat ainoastaan [selaimen tapahtumien nimiä](/apis/react-dom/events) kuten `onClick`. Kuitenkin, kun rakennat omia komponenttejasi, voit nimetä niiden tapahtumakäsittelijöiden propsit miten haluat.
+Sisäänrakennetut elementit kuten `<button>` ja `<div>` tukevat ainoastaan [selaimen tapahtumien nimiä](TODO:/apis/react-dom/events) kuten `onClick`. Kuitenkin, kun rakennat omia komponenttejasi, voit nimetä niiden tapahtumakäsittelijöiden propsit miten haluat.
 
 > Tavanomaisesti, tapahtumakäsittelijän propsien kuuluisi alkaa sanalla `on`, ja jatkua isolla kirjaimella.
 

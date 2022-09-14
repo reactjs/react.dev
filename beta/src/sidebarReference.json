@@ -91,8 +91,7 @@
             },
             {
               "title": "useCallback",
-              "path": "/apis/react/useCallback",
-              "wip": true
+              "path": "/apis/react/useCallback"
             },
             {
               "title": "useContext",
@@ -166,10 +165,6 @@
           "path": "/apis/react-dom",
           "routes": [
             {
-              "title": "createRoot",
-              "path": "/apis/react-dom/client/createRoot"
-            },
-            {
               "title": "createPortal",
               "path": "/apis/react-dom/createPortal",
               "wip": true
@@ -189,13 +184,34 @@
               "path": "/apis/react-dom/hydrate"
             },
             {
-              "title": "hydrateRoot",
-              "path": "/apis/react-dom/client/hydrateRoot"
-            },
-            {
               "title": "render",
               "path": "/apis/react-dom/render"
             },
+            {
+              "title": "unmountComponentAtNode",
+              "path": "/apis/react-dom/unmountComponentAtNode",
+              "wip": true
+            }
+          ]
+        },
+        {
+          "title": "ReactDOMClient APIs",
+          "path": "/apis/react-dom/client",
+          "routes": [
+            {
+              "title": "createRoot",
+              "path": "/apis/react-dom/client/createRoot"
+            },
+            {
+              "title": "hydrateRoot",
+              "path": "/apis/react-dom/client/hydrateRoot"
+            }
+          ]
+        },
+        {
+          "title": "ReactDOMServer APIs",
+          "path": "/apis/react-dom/server",
+          "routes": [
             {
               "title": "renderToNodeStream",
               "path": "/apis/react-dom/server/renderToNodeStream",
@@ -224,11 +240,6 @@
             {
               "title": "renderToString",
               "path": "/apis/react-dom/server/renderToString",
-              "wip": true
-            },
-            {
-              "title": "unmountComponentAtNode",
-              "path": "/apis/react-dom/unmountComponentAtNode",
               "wip": true
             }
           ]

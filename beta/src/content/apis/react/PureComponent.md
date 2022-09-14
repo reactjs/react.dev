@@ -4,7 +4,7 @@ title: React.PureComponent
 
 <Wip>
 
-This section is incomplete, please see the old docs for [React.PureComponent](https://reactjs.org/docs/react-api.html#reactpurecomponent).
+This section is incomplete, please see the old docs for [React.PureComponent.](https://reactjs.org/docs/react-api.html#reactpurecomponent)
 
 </Wip>
 

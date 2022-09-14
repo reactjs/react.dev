@@ -3,7 +3,7 @@ title: hydrate
 ---
 <Gotcha>
 
-In React 18, `hydrate` was replaced by [`hydrateRoot`](/apis/react-dom/client/hydrateRoot). Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis).
+In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
 
 </Gotcha>
 
@@ -65,9 +65,9 @@ export default function App() {
 
 </Sandpack>
 
-Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state](/apis/react/useState).
+Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/apis/react/useState)
 
-For more information on hydration, see the docs for [`hydrateRoot`](/apis/react-dom/client/hydrateRoot).
+For more information on hydration, see the docs for [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot)
 
 ---
 

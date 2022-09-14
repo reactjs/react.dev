@@ -4,7 +4,7 @@ title: React.Children
 
 <Wip>
 
-This section is incomplete, please see the old docs for [React.Children](https://reactjs.org/docs/react-api.html#reactchildren).
+This section is incomplete, please see the old docs for [React.Children.](https://reactjs.org/docs/react-api.html#reactchildren)
 
 </Wip>
 

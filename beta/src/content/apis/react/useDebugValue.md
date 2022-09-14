@@ -4,7 +4,7 @@ title: useDebugValue
 
 <Wip>
 
-This section is incomplete, please see the old docs for [useDebugValue](https://reactjs.org/docs/hooks-reference.html#usedebugvalue).
+This section is incomplete, please see the old docs for [useDebugValue.](https://reactjs.org/docs/hooks-reference.html#usedebugvalue)
 
 </Wip>
 

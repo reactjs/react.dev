@@ -20,7 +20,7 @@ const ref = useRef(initialValue)
 
 ### Referencing a value with a ref {/*referencing-a-value-with-a-ref*/}
 
-Call `useRef` at the top level of your component to declare one or more [refs](/learn/referencing-values-with-refs).
+Call `useRef` at the top level of your component to declare one or more [refs.](/learn/referencing-values-with-refs)
 
 ```js [[1, 4, "intervalRef"], [3, 4, "0"]]
 import { useRef } from 'react';
@@ -60,7 +60,7 @@ By using a ref, you ensure that:
 - Changing it **does not trigger a re-render** (unlike state variables, which trigger a re-render).
 - The **information is local** to each copy of your component (unlike the variables outside, which are shared).
 
-Changing a ref does not trigger a re-render, so refs are not appropriate for storing information that you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`](/learn/referencing-values-with-refs#differences-between-refs-and-state).
+Changing a ref does not trigger a re-render, so refs are not appropriate for storing information that you want to display on the screen. Use state for that instead. Read more about [choosing between `useRef` and `useState`.](/learn/referencing-values-with-refs#differences-between-refs-and-state)
 
 <Recipes titleText="Examples of referencing a value with useRef" titleId="examples-value">
 
@@ -190,7 +190,7 @@ function MyComponent() {
 
 If you *have to* read [or write](/apis/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/apis/react/useState) instead.
 
-When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure](/learn/keeping-components-pure#where-you-can-cause-side-effects).
+When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
 
 </Gotcha>
 
@@ -198,7 +198,7 @@ When you break these rules, your component might still work, but most of the new
 
 ### Manipulating the DOM with a ref {/*manipulating-the-dom-with-a-ref*/}
 
-It's particularly common to use a ref to manipulate the [DOM](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API). React has built-in support for this.
+It's particularly common to use a ref to manipulate the [DOM.](https://developer.mozilla.org/en-US/docs/Web/API/HTML_DOM_API) React has built-in support for this.
 
 First, declare a <CodeStep step={1}>ref object</CodeStep> with an <CodeStep step={3}>initial value</CodeStep> of `null`:
 
@@ -227,7 +227,7 @@ After React creates the DOM node and puts it on the screen, React will set the <
 
 React will set the `current` property back to `null` when the node is removed from the screen.
 
-Read more about [manipulating the DOM with refs](/learn/manipulating-the-dom-with-refs).
+Read more about [manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
 
 <Recipes titleText="Examples of manipulating the DOM with useRef" titleId="examples-dom">
 
@@ -502,7 +502,7 @@ Here, the `playerRef` itself is nullable. However, you should be able to convinc
 
 ### `useRef(initialValue)` {/*useref*/}
 
-Call `useRef` at the top level of your component to declare a [ref](/learn/referencing-values-with-refs).
+Call `useRef` at the top level of your component to declare a [ref.](/learn/referencing-values-with-refs)
 
 ```js
 import { useRef } from 'react';
@@ -513,7 +513,7 @@ function MyComponent() {
   // ...
 ```
 
-See examples of [referencing values](#examples-value) and [DOM manipulation](#examples-dom).
+See examples of [referencing values](#examples-value) and [DOM manipulation.](#examples-dom)
 
 #### Parameters {/*parameters*/}
 
@@ -531,8 +531,8 @@ On the next renders, `useRef` will return the same object.
 
 * You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
 * When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
-* Do not write _or read_ `ref.current` during rendering, except for [initialization](#avoiding-recreating-the-ref-contents). This makes your component's behavior unpredictable.
-* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities](#my-initializer-or-updater-function-runs-twice). This is development-only behavior and does not affect production. This means that each ref object will be created twice, and one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the logic of your component.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
+* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. This means that each ref object will be created twice, and one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the logic of your component.
 
 ---
 
@@ -591,4 +591,4 @@ export default MyInput;
 
 Then the parent component can get a ref to it.
 
-Read more about [accessing another component's DOM nodes](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes).
+Read more about [accessing another component's DOM nodes.](/learn/manipulating-the-dom-with-refs#accessing-another-components-dom-nodes)

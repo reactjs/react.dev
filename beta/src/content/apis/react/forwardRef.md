@@ -4,7 +4,7 @@ title: forwardRef
 
 <Wip>
 
-This section is incomplete, please see the old docs for [forwardRef](https://reactjs.org/docs/react-api.html#reactforwardref).
+This section is incomplete, please see the old docs for [forwardRef.](https://reactjs.org/docs/react-api.html#reactforwardref)
 
 </Wip>
 

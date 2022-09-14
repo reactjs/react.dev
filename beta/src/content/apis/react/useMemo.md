@@ -486,6 +486,8 @@ function List({ items }) {
 export default memo(List);
 ```
 
+**This is a performance optimization. The `useMemo` and [`useCallback`](/apis/react/useCallback) Hooks are often needed to make it work.**
+
 For this optimization to work, the parent component that renders this `<List />` needs to ensure that, if it doesn't want `List` to re-render, every prop it passes to the `List` must be the same as on the last render.
 
 Let's say the parent `TodoList` component looks like this:
@@ -1007,13 +1009,13 @@ function Dropdown({ allItems, text }) {
 ```
 
 **Now your calculation depends on `text` directly (which is a string and can't "accidentally" be new like an object).**
- You can use a similar approach to prevent [`useEffect`](/api/react/useEffect) from firing again unnecessarily. Before you try to optimize dependencies with `useMemo`, see if you can make them unnecessary. [Read about removing Effect dependencies.](/learn/removing-effect-dependencies)
+ You can use a similar approach to prevent [`useEffect`](/apis/react/useEffect) from firing again unnecessarily. Before you try to optimize dependencies with `useMemo`, see if you can make them unnecessary. [Read about removing Effect dependencies.](/learn/removing-effect-dependencies)
 
 ---
 
 ### Memoizing a function {/*memoizing-a-function*/}
 
-Suppose the `Form` component is wrapped in [`memo`.](/api/react/memo) You want to pass a function to it as a prop:
+Suppose the `Form` component is wrapped in [`memo`.](/apis/react/memo) You want to pass a function to it as a prop:
 
 ```js {2-7}
 export default function ProductPage({ product, referrerId }) {

@@ -32,6 +32,8 @@ function ShippingForm({ onSubmit }) {
 export default memo(ShippingForm);
 ```
 
+**This is a performance optimization. The `useCallback` and [`useMemo`](/apis/react/useMemo) Hooks are often needed to make it work.**
+
 Let's say the `ProductPage` component passes a `handleSubmit` function to that `ShippingForm` component:
 
 ```js {2-7,11}
@@ -788,4 +790,4 @@ Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the 
 Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
-When you find which dependency is breaking memoization, either find a way to remove it, or [memoize it as well.](/api/react/useMemo#memoizing-a-dependency-of-another-hook)
+When you find which dependency is breaking memoization, either find a way to remove it, or [memoize it as well.](/apis/react/useMemo#memoizing-a-dependency-of-another-hook)

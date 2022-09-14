@@ -200,6 +200,7 @@ export const SandpackConsole = () => {
                           key={`${msg}-${index}`}>
                           <SandpackCodeViewer
                             initMode="user-visible"
+                            showTabs={false}
                             // fileType="js"
                             code={children}
                           />

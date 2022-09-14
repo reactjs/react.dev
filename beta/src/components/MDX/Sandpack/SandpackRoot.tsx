@@ -58,6 +58,10 @@ h6 {
   font-size: 12px;
 }
 
+code {
+  font-size: 1.2em;
+}
+
 ul {
   padding-left: 20px;
 }

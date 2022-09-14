@@ -93,7 +93,12 @@ export const SandpackConsole = () => {
   const wrapperRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
+    let isActive = true;
     const unsubscribe = listen((message) => {
+      if (!isActive) {
+        console.warn('Received an unexpected log from Sandpack.');
+        return;
+      }
       if (
         (message.type === 'start' && message.firstLoad) ||
         message.type === 'refresh'
@@ -117,7 +122,10 @@ export const SandpackConsole = () => {
       }
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      isActive = false;
+    };
   }, [listen]);
 
   const [isExpanded, setIsExpanded] = React.useState(true);

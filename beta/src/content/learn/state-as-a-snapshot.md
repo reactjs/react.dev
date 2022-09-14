@@ -1,27 +1,29 @@
 ---
-title: State as a Snapshot
+title: Tila tilannekuvana
 ---
 
 <Intro>
 
-State variables might look like regular JavaScript variables that you can read and write to. However, state behaves more like a snapshot. Setting it does not change the state variable you already have, but instead triggers a re-render.
+Tilamuuttujat saattavat näyttää tavallisilta JavaScript muuttujilta, joita voit
+lukea ja joihin voit kirjoittaa. Tilamuuttujat käyttäytyvät enemmän kuin tilannekuvana. Tilannemuuttujan asettaminen ei muuta muuttujaa, joka sinulla jo
+on, vaan sen sijaan triggeröi uudelleenrenderöinnin.
 
 </Intro>
 
 <YouWillLearn>
 
-* How setting state triggers re-renders
-* When and how state updates
-* Why state does not update immediately after you set it
-* How event handlers access a "snapshot" of the state
+* Miten tilamuuttujan asettaminen triggeröi uudelleenrenderöintejä
+* Milloin ja miten tila päivittyy
+* Miksi tila eo päivity heti kun asetat sen
+* Miten tapahtumakäsittelijät saavat "tilannekuvan" tilasta
 
 </YouWillLearn>
 
-## Setting state triggers renders {/*setting-state-triggers-renders*/}
+## Tilan asettaminen triggeröi renderöintejä {/*setting-state-triggers-renders*/}
 
-You might think of your user interface as changing directly in response to the user event like a click. In React, it works a little differently from this mental model. On the previous page, you saw that [setting state requests a re-render](/learn/render-and-commit#step-1-trigger-a-render) from React. This means that for an interface to react to the event, you need to *update the state*.
+Saatat ajatella käyttöliittymäsi muuttuvan suoraan vastauksena käyttäjän tapahtumiin kuten klikkaukseen. Reactissa se poikkeaa hieman tästä ajattelutavasta. Edellisellä sivulla näit, että [tilan asettaminen pyytää uudelleenrenderöintiä](/learn/render-and-commit#step-1-trigger-a-render) Reactilta. Tämä tarkoittaa, että jotta käyttöliittymä voi reagoida tapahtumaan, sinun tulee *päivittää tilaa*.
 
-In this example, when you press "send", `setIsSent(true)` tells React to re-render the UI:
+Tässä esimerkissä kun painat "send":ä, `setIsSent(true)` käskee Reactia renderöimään käyttöliittymä uudelleen:
 
 <Sandpack>
 
@@ -61,25 +63,25 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-Here's what happens when you click the button:
+Tässä mitä tapahtuu kun klikkaat painiketta:
 
-1. The `onSubmit` event handler executes.
-2. `setIsSent(true)` sets `isSent` to `true` and queues a new render.
-3. React re-renders the component according to the new `isSent` value.
+1. `onSubmit` tapahtumakäsittelijä suoritetaan.
+2. `setIsSent(true)` asettaa `isSent` arvoksi `true` ja lisää renderöinnin jonoon.
+3. React renderöi uudelleen komponentin uuden `isSent` arvon mukaan.
 
-Let's take a closer look at the relationship between state and rendering.
+Otetaan tarkempi katse tilan ja renderöinnin suhteeseen.
 
-## Rendering takes a snapshot in time {/*rendering-takes-a-snapshot-in-time*/}
+## Renderöinti ottaa tilannekuvan ajasta {/*rendering-takes-a-snapshot-in-time*/}
 
-["Rendering"](/learn/render-and-commit#step-2-react-renders-your-components) means that React is calling your component, which is a function. The JSX you return from that function is like a snapshot of the UI in time. Its props, event handlers, and local variables were all calculated **using its state at the time of the render.**
+["Renderöinti"](/learn/render-and-commit#step-2-react-renders-your-components) tarkoittaa, että React kutsuu komponenttiasi, joka on funktio. Funktion palauttama JSX on kuten käyttöliittymän tilannekuva ajasta. Sen propsit, tapahtumakäsittelijät sekä paikalliset muuttujat laskettiin **käyttämällä sen tilaa renderöintihetkellä.**
 
-Unlike a photograph or a movie frame, the UI "snapshot" you return is interactive. It includes logic like event handlers that specify what happens in response to inputs. React then updates the screen to match this snapshot and connects the event handlers. As a result, pressing a button will trigger the click handler from your JSX.
+Toisin kuin valokuva tai elokuvan kehys, UI "tilannekuva", jonka palautat on interaktiivinen. Se sisältää logiikkaa kuten tapahtumakäsittelijöitä, jotka määrittävät mitä tapahtuu vastauksena syötteeseen. React sitten päivittää ruudun vastaamaan tätä tilannekuvaa ja yhdistää tapahtumakäsittelijät. Lopputuloksena painikkeen painaminen triggeröi JSX koodisi tapahtumakäsittelijän.
 
-When React re-renders a component:
+Kun React renderöi komponentin uudelleen:
 
-1. React calls your function again.
-2. Your function returns a new JSX snapshot.
-3. React then updates the screen to match the snapshot you've returned.
+1. React kutsuu funktiotasi uudelleen.
+2. Funktiosi palauttaa uuden JSX tilannekuvan.
+3. React sitten päivittää ruudun vastaamaan tilannekuvaa, jonka palautit.
 
 <IllustrationBlock title="Re-rendering" sequential>
     <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
@@ -87,7 +89,7 @@ When React re-renders a component:
     <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
-As a component's memory, state is not like a regular variable that disappears after your function returns. State actually "lives" in React itself--as if on a shelf!--outside of your function. When React calls your component, it gives you a snapshot of the state for that particular render. Your component returns a snapshot of the UI with a fresh set of props and event handlers in its JSX, all calculated **using the state values from that render!**
+Komponentin muistina, tila ei ole kuten tavalliset muuttujat, jotka katoavat kun komponenttisi palautuu. Itse asiassa tila "asuu" itse Reactissa--kuten hyllyllä--komponenttisi ulkopuolella. Kun React kutsuu komponenttiasi, se antaa tilannekuvan tilasta tälle kyseiselle renderöinnille. Komponenttisi palauttaa tilannekuvan käyttöliittymästä uudella joukolla propseja ja tapahtumankäsittelijöitä JSX:ssä, jotka kaikki on laskettu **käyttämällä kyseisen renderöinnin tila-arvoja!**
 
 <IllustrationBlock sequential>
   <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
@@ -95,9 +97,9 @@ As a component's memory, state is not like a regular variable that disappears af
   <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
-Here's a little experiment to show you how this works. In this example, you might expect that clicking the "+3" button would increment the counter three times because it calls `setNumber(number + 1)` three times.
+Tässä pieni kokeilu, joka näyttää miten tämä toimii. Tässä esimerkissä saatat olettaa, että "+3" painikkeen painaminen kasvattaa numera kolme kertaa, koska se kutsuu `setNumber(number + 1)` kolmesti.
 
-See what happens when you click the "+3" button:
+Katso mitä tapahtuu, kun napsautat "+3"-painiketta:
 
 <Sandpack>
 
@@ -127,9 +129,9 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Notice that `number` only increments once per click!
+Huomaa, että `number` kasvaa vain kerran per klikkaus!
 
-**Setting state only changes it for the *next* render.** During the first render, `number` was `0`. This is why, in *that render's* `onClick` handler, the value of `number` is still `0` even after `setNumber(number + 1)` was called:
+**Tilan asettaminen muuttaa sen *seuraavalle* renderille.** Ensimmäisen renderöinnin aikana, `number` oli arvoltaan `0`. Sen takia *tuossa renderöinnissä* `onClick` käsittelijän `number` arvo oli silti `0` jopa sen jälkeen, kun `setNumber(number + 1)` oli kutsuttu:
 
 ```js
 <button onClick={() => {
@@ -139,18 +141,18 @@ Notice that `number` only increments once per click!
 }}>+3</button>
 ```
 
-Here is what this button's click handler tells React to do:
+Tämän painikkeen tapahtumakäsittelijä kertoo Reactille toimimaan seuraavasti:
 
-1. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-2. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
-3. `setNumber(number + 1)`: `number` is `0` so `setNumber(0 + 1)`.
-    - React prepares to change `number` to `1` on the next render.
+1. `setNumber(number + 1)`: `number` on `0` joten `setNumber(0 + 1)`.
+    - React valmistelee muuttamaan `number` arvoksi `1` seuraavalle renderöinnille.
+2. `setNumber(number + 1)`: `number` on `0` joten `setNumber(0 + 1)`.
+    - React valmistelee muuttamaan `number` arvoksi `1` seuraavalle renderöinnille.
+3. `setNumber(number + 1)`: `number` on `0` joten `setNumber(0 + 1)`.
+    - React valmistelee muuttamaan `number` arvoksi `1` seuraavalle renderöinnille.
 
-Even though you called `setNumber(number + 1)` three times, in *this render's* event handler `number` is always `0`, so you set the state to `1` three times. This is why, after your event handler finishes, React re-renders the component with `number` equal to `1` rather than `3`.
+Vaikka kutsuit `setNumber(number + 1)` kolme kertaa, *tämän renderin* tapahtumakäsittelijän `number` on aina `0`, joten asetit tilan arvoksi `1` kolme kertaa. Tämän vuoksi React renderöi komponentin uudelleen `number` muuttujan ollen `1` eikä `3`.
 
-You can also visualize this by mentally substituting state variables with their values in your code. Since the `number` state variable is `0` for *this render*, its event handler looks like this:
+Voit myös havainnollistaa tämän myös korvaamalla tilamuuttujat niiden arovilla koodissa. Koska tilamuuttuja `number` on `0` *tässä renderöinnissä*, sen tapahtumakäsittelijä näyttää tältä:
 
 ```js
 <button onClick={() => {
@@ -160,7 +162,7 @@ You can also visualize this by mentally substituting state variables with their 
 }}>+3</button>
 ```
 
-For the next render, `number` is `1`, so *that render's* click handler looks like this:
+Seuraavassa renderöinnissä `number` on `1`, joten *tämän renderöinnin* tapahtumakäsittelijä näyttää tältä:
 
 ```js
 <button onClick={() => {
@@ -170,11 +172,11 @@ For the next render, `number` is `1`, so *that render's* click handler looks lik
 }}>+3</button>
 ```
 
-This is why clicking the button again will set the counter to `2`, then to `3` on the next click, and so on.
+Tämän vuoksi painikkeen klikkaaminen asettaa laskurin arvoksi `2`, ja sitten seuraavalla klikkauksella `3` ja niin edelleen.
 
-## State over time {/*state-over-time*/}
+## Tila ajan myötä {/*state-over-time*/}
 
-Well, that was fun. Try to guess what clicking this button will alert:
+Noh, se oli hauskaa. Kokeile veikata mitä painikkeen klikkaaminen ilmoittaa:
 
 <Sandpack>
 
@@ -203,14 +205,14 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-If you use the substitution method from before, you can guess that the alert shows "0":
+Jos sovellat aiemmin mainittua korvausmenetelmää, voit veikata, että ilmoituksessa lukee "0":
 
 ```js
 setNumber(0 + 5);
 alert(0);
 ```
 
-But what if you put a timer on the alert, so it only fires _after_ the component re-rendered? Would it say "0" or "5"? Have a guess!
+Mutta entä jos laitat ajastimen ilmoitukseen, jotta sitä kutsutaan komponentin uudelleen renderöinnin _jälkeen_? Lukisiko siinä "0" vai "5"? Koita veikata!
 
 <Sandpack>
 
@@ -241,7 +243,7 @@ h1 { display: inline-block; margin: 10px; width: 30px; text-align: center; }
 
 </Sandpack>
 
-Surprised? If you use the substitution method, you can see the "snapshot" of the state passed to the alert.
+Yllätyitkö? Jos sovellat aiemmin mainittua korvausmenetelmää, näet, että "tilannekuva" tilasta välitettiin ilmoitukseen.
 
 ```js
 setNumber(0 + 5);
@@ -250,16 +252,16 @@ setTimeout(() => {
 }, 3000);
 ```
 
-The state stored in React may have changed by the time the alert runs, but it was scheduled using a snapshot of the state at the time the user interacted with it!
+Reactiin tallennettu tila on saattanut muuttua, kun ilmoitus suoritetaan, mutta se ajoitettiin käyttämällä tilannekuvaa tilasta sillä hetkellä, kun käyttäjä oli vuorovaikutuksessa sen kanssa!
 
-**A state variable's value never changes within a render,** even if its event handler's code is asynchronous. Inside *that render's* `onClick`, the value of `number` continues to be `0` even after `setNumber(number + 5)` was called. Its value was "fixed" when React "took the snapshot" of the UI by calling your component.
+**Tilamuuttujan arvo ei koskaan muutu renderöinnin aikana,** vaikka sen tapahtumakäsittelijän koodi olisi asynkroninen. *Tuon renderöinnin* `onClick`:n sisällä `number`:n arvo on edelleen `0`, vaikka `setNumber(number + 5)` kutsuttiin. Sen arvo "kiinnitettiin", kun React "otti tilannekuvan" käyttöliittymästä kutsumalla komponenttiasi.
 
-Here is an example of how that makes your event handlers less prone to timing mistakes. Below is a form that sends a message with a five-second delay. Imagine this scenario:
+Tässä on esimerkki siitä, miten tämä tekee tapahtumankäsittelijöistäsi vähemmän alttiita ajoitusvirheille. Alla on lomake, joka lähettää viestin viiden sekunnin viiveellä. Kuvittele tämä skenaario:
 
-1. You press the "Send" button, sending "Hello" to Alice.
-2. Before the five-second delay ends, you change the value of the "To" field to "Bob".
+1. Painat "Send"-painiketta, lähettäen "Hello" Aliisalle.
+2. Ennen viiden sekunnin viiveen päättymistä, muutat "To" kentän arvoksi "Bob".
 
-What do you expect the `alert` to display? Would it display, "You said Hello to Alice"? Or would it display, "You said Hello to Bob"? Make a guess based on what you know, and then try it:
+Mitä odotat, että `alert` näyttää? Näyttäisikö se, "You said Hello to Alice"? Vai, "You said Hello to Bob"? Tee arvaus sen perusteella mitä tiedät ja kokeile sitten:
 
 <Sandpack>
 
@@ -305,19 +307,19 @@ label, textarea { margin-bottom: 10px; display: block; }
 
 </Sandpack>
 
-**React keeps the state values "fixed" within one render's event handlers.** You don't need to worry whether the state has changed while the code is running.
+**React pitää tilan arvot "kiinteinä" renderöinnin tapahtumakäsittelijöiden sisällä.** Sinun ei tarvitse huolehtia siitä, onko tila muuttunut koodin suorituksen aikana.
 
-But what if you wanted to read the latest state before a re-render? You'll want to use a [state updater function](/learn/queueing-a-series-of-state-updates), covered on the next page!
+Entä jos haluat lukea viimeisimmän tilan ennen uudelleen renderöintiä? Haluat käyttää [tilapäivitysfunktiota](/learn/queueing-a-series-of-state-updates), jota käsitellään seuraavalla sivulla!
 
 <Recap>
 
-* Setting state requests a new render.
-* React stores state outside of your component, as if on a shelf.
-* When you call `useState`, React gives you a snapshot of the state *for that render*.
-* Variables and event handlers don't "survive" re-renders. Every render has its own event handlers.
-* Every render (and functions inside it) will always "see" the snapshot of the state that React gave to *that* render.
-* You can mentally substitute state in event handlers, similarly to how you think about the rendered JSX.
-* Event handlers created in the past have the state values from the render in which they were created.
+* Tilan asettaminen pyytää uutta renderöintiä.
+* React tallentaa tilan komponenttisi ulkopuolelle, ikään kuin hyllyyn.
+* Kun kutsut `useState`:a, React antaa sinulle tilannekuvan tilasta *tässä renderöinnissä*.
+* Muuttujat ja tapahtumankäsittelijät eivät "selviä" uudelleenlatauksista. Jokaisella renderöinnillä on omat tapahtumankäsittelijänsä.
+* Jokainen renderöinti (ja sen sisällä olevat funktiot) "näkevät" aina tilannekuvan tilasta, jonka React antoi *tälle* renderöinnille.
+* Voit havainnollistaa tilan tapahtumankäsittelijöissä samalla tavalla kuin ajattelet renderöidystä JSX:stä.
+* Aikaisemmin luoduilla tapahtumankäsittelijöillä on sen renderöinnin tila-arvot, jossa ne luotiin.
 
 </Recap>
 
@@ -325,16 +327,16 @@ But what if you wanted to read the latest state before a re-render? You'll want 
 
 <Challenges>
 
-#### Implement a traffic light {/*implement-a-traffic-light*/}
+#### Toteuta liikennevalot {/*implement-a-traffic-light*/}
 
-Here is a crosswalk light component that toggles on when the button is pressed:
+Tässä on suojatievalo-komponentti, joka kytkeytyy päälle kun painiketta painetaan:
 
 <Sandpack>
 
 ```js
 import { useState } from 'react';
 
-export default function TrafficLight() {
+export default function Liikennevalo() {
   const [walk, setWalk] = useState(true);
 
   function handleClick() {
@@ -344,12 +346,12 @@ export default function TrafficLight() {
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Vaihda: {walk ? 'Pysähdy' : 'Kävele'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Kävele' : 'Pysähdy'}
       </h1>
     </>
   );
@@ -362,13 +364,13 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Add an `alert` to the click handler. When the light is green and says "Walk", clicking the button should say "Stop is next". When the light is red and says "Stop", clicking the button should say "Walk is next".
+Lisää `alert` klikkauksen tapahtumakäsittelijään. Kun valo on vihreä se ja sanoo "Kävele", painikkeen painamisen tulisi ilmoittaa "Seuraavaksi pysähdytään". Kun valo on punainen ja sanoo "Pysähdy", painikkeen painamisen tulisi ilmoittaa "Seuraavaksi kävellään".
 
-Does it make a difference whether you put the `alert` before or after the `setWalk` call?
+Onko sillä merkitystä laitatko `alert`:n enne vai jälkeen `setWalk` kutsua?
 
 <Solution>
 
-Your `alert` should look like this:
+Sinun `alert`:n pitäisi näyttää tältä:
 
 <Sandpack>
 
@@ -380,18 +382,18 @@ export default function TrafficLight() {
 
   function handleClick() {
     setWalk(!walk);
-    alert(walk ? 'Stop is next' : 'Walk is next');
+    alert(walk ? 'Seuraavaksi pysähdytään' : 'Seuraavaksi kävellään');
   }
 
   return (
     <>
       <button onClick={handleClick}>
-        Change to {walk ? 'Stop' : 'Walk'}
+        Vaihda: {walk ? 'Pysähdy' : 'Kävele'}
       </button>
       <h1 style={{
         color: walk ? 'darkgreen' : 'darkred'
       }}>
-        {walk ? 'Walk' : 'Stop'}
+        {walk ? 'Kävele' : 'Pysähdy'}
       </h1>
     </>
   );
@@ -404,31 +406,30 @@ h1 { margin-top: 20px; }
 
 </Sandpack>
 
-Whether you put it before or after the `setWalk` call makes no difference. That render's value of `walk` is fixed. Calling `setWalk` will only change it for the *next* render, but will not affect the event handler from the previous render.
+Riippumatta siitä laitatko sen ennen vai jälkeen `setWalk` kutsun, sillä ei merkitystä. Tämän renderin `walk` tilan arvo on "kiinteä". `setWalk` kutsuminen muuttaa sen vain *seuraavalle* renderöinnille, mutta se ei vaikuta aikaisempien renderien tapahtumakäsittelijöihin.
 
-This line might seem counter-intuitive at first:
+Tämä rivi saattaa vaikuttaa epäintuitiiviselta aluksi:
 
 ```js
-alert(walk ? 'Stop is next' : 'Walk is next');
+alert(walk ? 'Seuraavaksi pysähdytään' : 'Seuraavaksi kävellään');
 ```
 
-But it makes sense if you read it as: "If the traffic light shows 'Walk now', the message should say 'Stop is next.'" The `walk` variable inside your event handler matches that render's value of `walk` and does not change.
+Mutta siinä on järkeä, kun luet sen seuraavasti: "Jos liikennevalon väri sanoo 'Kävele', ilmoituksen tulisi olla 'Seuraavaksi pysähdytään.'" Tapahtumakäsittelijässäsi oleva `walk` -muuttuja vastaa kyseisen renderöinnin `walk`-arvoa, eikä se muutu.
 
-You can verify that this is correct by applying the substitution method. When `walk` is `true`, you get:
+Voit tarkistaa, että tämä on oikein soveltamalla korvausmenetelmää. Kun `walk` on `true`, saat:
 
 ```js
 <button onClick={() => {
   setWalk(false);
-  alert('Stop is next');
+  alert('Seuraavaksi pysähdytään');
 }}>
-  Change to Stop
+  Vaihda: Pysähdy
 </button>
 <h1 style={{color: 'darkgreen'}}>
-  Walk
+  Kävele
 </h1>
 ```
-
-So clicking "Change to Stop" queues a render with `walk` set to `false`, and alerts "Stop is next".
+Joten klikkaamalla "Vaihda pysähdykseen" jonotetaan renderöinti, jossa `walk` muuttujan arvoksi on asetettu `false`, ja näytetään ilmoitus "Seuraavaksi pysähdytään".
 
 </Solution>
 

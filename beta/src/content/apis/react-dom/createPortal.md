@@ -15,7 +15,7 @@ Portals provide a way to render children into a DOM node that exists outside the
 
 
 ```js
-createPortal(child, container);
+createPortal(child, container)
 ```
 
 </Intro>

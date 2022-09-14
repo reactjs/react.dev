@@ -14,7 +14,7 @@ This section is incomplete, please see the old docs for [findDOMNode.](https://r
 If this component has been mounted into the DOM, this returns the corresponding native browser DOM element. This method is useful for reading values out of the DOM, such as form field values and performing DOM measurements. **In most cases, you can attach a ref to the DOM node and avoid using findDOMNode at all.**
 
 ```js
-findDOMNode(component);
+findDOMNode(component)
 ```
 
 </Intro>

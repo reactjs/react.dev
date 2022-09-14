@@ -48,7 +48,7 @@ You'll also need to install the same version of [React.](/apis/react)
 Create a portal.
 
 ```js
-createPortal(child, container);
+createPortal(child, container)
 ```
 
 </YouWillLearnCard>
@@ -62,7 +62,7 @@ Flush in progress updates.
 ```js
 flushSync(() => {
   // ...
-});
+})
 ```
 
 </YouWillLearnCard>
@@ -74,7 +74,7 @@ flushSync(() => {
 Displays a React component inside a browser DOM node (deprecated).
 
 ```js
-render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('root'))
 ```
 
 </YouWillLearnCard>
@@ -84,7 +84,7 @@ render(<App />, document.getElementById('root'));
 Hydrate server-rendered HTMl (deprecated).
 
 ```js
-hydrate(<App />, document.getElementById('root'));
+hydrate(<App />, document.getElementById('root'))
 ```
 
 </YouWillLearnCard>

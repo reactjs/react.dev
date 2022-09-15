@@ -95,6 +95,8 @@ Usually you won't need this unless you need to [pass a `key` to your `Fragment`.
 
 </DeepDive>
 
+---
+
 ### Assigning multiple elements to a variable {/*assigning-multiple-elements-to-a-variable*/}
 
 Like any other element, you can assign Fragment elements to variables, pass them as props, and so on:
@@ -115,6 +117,8 @@ function CloseDialog() {
 }
 ```
 
+---
+
 ### Grouping elements with text {/*grouping-elements-with-text*/}
 
 You can use `Fragment` to group text together with components:
@@ -131,6 +135,8 @@ function DateRangePicker({ start, end }) {
   );
 }
 ```
+
+---
 
 ### Rendering a list of Fragments {/*rendering-a-list-of-fragments*/}
 
@@ -182,6 +188,8 @@ function PostBody({ body }) {
 ```
 
 </Sandpack>
+
+---
 
 ## Reference {/*reference*/}
 

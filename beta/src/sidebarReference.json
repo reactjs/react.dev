@@ -60,8 +60,7 @@
             },
             {
               "title": "lazy",
-              "path": "/apis/react/lazy",
-              "wip": true
+              "path": "/apis/react/lazy"
             },
             {
               "title": "memo",

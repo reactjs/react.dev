@@ -807,7 +807,7 @@ Make sure you've specified the dependency array as a second argument!
 If you forget the dependency array, `useCallback` will return a new function every time:
 
 ```js {7}
-function ProductPage({ product, referrerId }) {
+function ProductPage({ productId, referrer }) {
   const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
       referrer,
@@ -820,7 +820,7 @@ function ProductPage({ product, referrerId }) {
 This is the corrected version passing the dependency array as a second argument:
 
 ```js {7}
-function ProductPage({ product, referrerId }) {
+function ProductPage({ productId, referrer }) {
   const handleSubmit = useCallback((orderDetails) => {
     post('/product/' + productId + '/buy', {
       referrer,
@@ -837,7 +837,7 @@ If this doesn't help, then the problem is that at least one of your dependencies
     // ..
   }, [productId, referrer]);
 
-  console.log([product, referrerId]);
+  console.log([productId, referrer]);
 ```
 
 You can then right-click on the arrays from different re-renders in the console and select "Store as a global variable" for both of them. Assuming the first one got saved as `temp1` and the second one got saved as `temp2`, you can then use the browser console to check whether each dependency in both arrays is the same:

@@ -376,7 +376,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 What do you do when each item needs to render not one, but several DOM nodes?
 
-The short `<> </>` fragment syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and more explicit `<Fragment>` syntax:
+The short [`<>...</>` Fragment](/apis/react/Fragment) syntax won't let you pass a key, so you need to either group them into a single `<div>`, or use the slightly longer and [more explicit `<Fragment>` syntax:](/apis/react/Fragment#rendering-a-list-of-fragments)
 
 ```js
 import { Fragment } from 'react';
@@ -1206,7 +1206,7 @@ hr {
 
 Using the original line index as a `key` doesn't work anymore because each separator and paragraph are now in the same array. However, you can give each of them a distinct key using a suffix, e.g. `key={i + '-text'}`.
 
-Alternatively, you could render a collection of fragments which contain `<hr />` and `<p>...</p>`. However, the `<> </>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
+Alternatively, you could render a collection of fragments which contain `<hr />` and `<p>...</p>`. However, the `<>...</>` shorthand syntax doesn't support passing keys, so you'd have to write `<Fragment>` explicitly:
 
 <Sandpack>
 

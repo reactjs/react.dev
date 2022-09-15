@@ -2,6 +2,12 @@
 title: flushSync
 ---
 
+<Gotcha>
+
+Using `flushSync` is uncommon and can hurt the performance of your app.
+
+</Gotcha>
+
 <Intro>
 
 Force React to flush any updates inside the provided callback synchronously. This ensures that the DOM is updated immediately.
@@ -9,8 +15,6 @@ Force React to flush any updates inside the provided callback synchronously. Thi
 ```js
 flushSync(callback)
 ```
-
-Using `flushSync` is uncommon and can impact the performance of your app.
 
 </Intro>
 
@@ -20,38 +24,30 @@ Using `flushSync` is uncommon and can impact the performance of your app.
 
 ## Usage {/*usage*/}
 
-Use `flushSync` to force React to flush any <CodeStep step={1}>updates</CodeStep> inside the callback synchronously:
+### Flushing updates for third-party integrations {/*flushing-updates-for-third-party-integrations*/}
+
+When integrating with third-party code such as browser APIs or UI libraries, it may be necessary to force React to flush updates. Use `flushSync` to force React to flush any <CodeStep step={1}>state updates</CodeStep> inside the callback synchronously:
 
 ```js [[1, 2, "setState(true)"]]
 flushSync(() => {
   setState(true);
-})
-````
+});
+// By this line, the DOM is updated.
+```
 
-Using `flushSync` is uncommon and can impact the performance of your app. If your app only uses React APIs, and does not integrate with third-party libraries, `flushSync` should be unnecessary.
+This ensures that, by the time the next line of code runs, React has already updated the DOM.
 
-### Flushing updates for third-party integrations {/*flushing-updates-for-third-party-integrations*/}
+**Using `flushSync` is uncommon, and using it often can significantly hurt the performance of your app.** If your app only uses React APIs, and does not integrate with third-party libraries, `flushSync` should be unnecessary.
 
-When integrating with third-party code such as browser APIs or UI libraries, it may be necessary to force React to flush updates synchronously.
+However, it can be helpful for integrating with third-party code like browser APIs.
 
-For example, some browser APIs expect results inside of callbacks to be written to the DOM synchronously, by the end of the callback, so the browser can do something with the rendered DOM.
-
-In most cases, React handles this for you automatically. But in some cases it may be necessary to break outside of React and force a synchronous update.
+Some browser APIs expect results inside of callbacks to be written to the DOM synchronously, by the end of the callback, so the browser can do something with the rendered DOM. In most cases, React handles this for you automatically. But in some cases it may be necessary to break outside of React and force a synchronous update.
 
 For example, the browser `onbeforeprint` API allows you to change the page immediately before the print dialog opens. This is useful for applying custom print styles that allow the document to display better for printing.
 
-In the example below, we use `flushSync` inside of the `onbeforeprint` callback to immediately "flush" the React state to the DOM. By doing this, when the print dialog opens, the state has been updated in `isPrinting` is "yes":   
+In the example below, you use `flushSync` inside of the `onbeforeprint` callback to immediately "flush" the React state to the DOM. By doing this, when the print dialog opens, the state has been updated in `isPrinting` is "yes":   
 
 <Sandpack>
-
-```js index.js
-import { createRoot } from 'react-dom/client';
-import App from './App.js';
-import './styles.css';
-
-const root = createRoot(document.getElementById('root'));
-root.render(<App />);
-```
 
 ```js App.js active
 import { useState, useEffect } from 'react';
@@ -61,19 +57,21 @@ export default function PrintApp() {
   const [isPrinting, setIsPrinting] = useState(false);
   
   useEffect(() => {
-    window.onbeforeprint = () => {
+    function handleBeforePrint() {
       flushSync(() => {
         setIsPrinting(true);
       })
     }
     
-    window.onafterprint = () => {
+    function handleAfterPrint() {
       setIsPrinting(false);
     }
 
+    window.addEventListener('beforeprint', handleBeforePrint);
+    window.addEventListener('afterprint', handleAfterPrint);
     return () => {
-      window.onbeforeprint = null;
-      window.onafterprint = null;
+      window.removeEventListener('beforeprint', handleBeforePrint);
+      window.removeEventListener('afterprint', handleAfterPrint);
     }
   }, []);
   
@@ -111,7 +109,7 @@ Call `flushSync` to force React to flush any pending work and update the DOM syn
 ```js
 flushSync(() => {
   setState(true);
-})
+});
 ```
 
 Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
@@ -121,7 +119,7 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 #### Parameters {/*parameters*/}
 
 
-* `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or effects, or updates inside of effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
+* `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
 
 #### Returns {/*returns*/}
 

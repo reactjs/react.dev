@@ -549,7 +549,7 @@ const MyInput = forwardRef((props, ref) => {
 
 #### Returns {/*returns*/}
 
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is also able to receive a `ref` prop.
+`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
 
 #### Caveats {/*caveats*/}
 
@@ -564,11 +564,10 @@ const MyInput = forwardRef((props, ref) => {
 
 ```js
 const MyInput = forwardRef((props, ref) => {
-  const { label, ...otherProps } = props;
   return (
     <label>
-      {label}
-      <input {...otherProps} />
+      {props.label}
+      <input ref={ref} />
     </label>
   );
 });

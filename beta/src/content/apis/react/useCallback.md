@@ -706,14 +706,14 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-This ensures that the `createOptions` function is the same between re-renders if the `roomId` is the same. **However, it's even better to remove the need for a function dependency** by pulling the function *inside* the Effect:
+This ensures that the `createOptions` function is the same between re-renders if the `roomId` is the same. **However, it's even better to remove the need for a function dependency.** Move your function *inside* the Effect:
 
 ```js {5-10,16}
 function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    function createOptions() {
+    function createOptions() { // No need for useCallback or function dependencies!
       return {
         serverUrl: 'https://localhost:1234',
         roomId: roomId
@@ -728,7 +728,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-[Read more about removing unnecessary Effect dependencies.](/learn/removing-effect-dependencies)
+**When possible, avoid function dependencies.** [Read more about removing unnecessary Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 ---
 

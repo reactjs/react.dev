@@ -516,6 +516,8 @@ export default AddComment;
 
 </Sandpack>
 
+[Read more about using imperative handles.](/apis/react/useImperativeHandle)
+
 <Gotcha>
 
 **Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.

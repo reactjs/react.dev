@@ -64,8 +64,7 @@
             },
             {
               "title": "memo",
-              "path": "/apis/react/memo",
-              "wip": true
+              "path": "/apis/react/memo"
             },
             {
               "title": "PureComponent",

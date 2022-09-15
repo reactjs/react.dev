@@ -369,7 +369,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed.** Give it a try! Does it feel fast despite no `useMemo`?
+However, here is the same code **with the artificial slowdown removed.** Does the lack of `useMemo` feel noticeable or not?
 
 <Sandpack>
 
@@ -850,7 +850,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed.** Give it a try! Does it feel fast without `useMemo`?
+However, here is the same code **with the artificial slowdown removed.** Does the lack of `useMemo` feel noticeable or not?
 
 <Sandpack>
 

@@ -478,7 +478,7 @@ button[type="button"] {
 </Sandpack>
 
 
-However, here is the same code **with the artificial slowdown removed:**
+However, here is the same code **with the artificial slowdown removed.** Does the lack of `useCallback` feel noticeable or not?
 
 <Sandpack>
 

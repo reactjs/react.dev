@@ -116,7 +116,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders (as long as the dependencies have not changed). Note that you don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`.](/api/react/memo) There are a few other reasons you might want to do this, which are described further on this page.
+By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/api/react/memo) and this lets it skip re-rendering. There are a few other reasons you might need `useCallback` which are described further on this page.
 
 <Note>
 

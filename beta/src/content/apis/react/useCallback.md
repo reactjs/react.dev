@@ -744,8 +744,8 @@ function useRouter() {
     dispatch({ type: 'navigate', url });
   }, [dispatch]);
 
-  const goBack = useCallback((url) => {
-    dispatch({ type: 'back', url });
+  const goBack = useCallback(() => {
+    dispatch({ type: 'back' });
   }, [dispatch]);
 
   return {

@@ -47,11 +47,10 @@
             },
             {
               "title": "forwardRef",
-              "path": "/apis/react/forwardRef",
-              "wip": true
+              "path": "/apis/react/forwardRef"
             },
             {
-              "title": "Fragment",
+              "title": "Fragment (<>...</>)",
               "path": "/apis/react/Fragment"
             },
             {
@@ -61,8 +60,7 @@
             },
             {
               "title": "lazy",
-              "path": "/apis/react/lazy",
-              "wip": true
+              "path": "/apis/react/lazy"
             },
             {
               "title": "memo",
@@ -85,13 +83,11 @@
             },
             {
               "title": "Suspense",
-              "path": "/apis/react/Suspense",
-              "wip": true
+              "path": "/apis/react/Suspense"
             },
             {
               "title": "useCallback",
-              "path": "/apis/react/useCallback",
-              "wip": true
+              "path": "/apis/react/useCallback"
             },
             {
               "title": "useContext",
@@ -176,8 +172,7 @@
             },
             {
               "title": "flushSync",
-              "path": "/apis/react-dom/flushSync",
-              "wip": true
+              "path": "/apis/react-dom/flushSync"
             },
             {
               "title": "hydrate",

@@ -347,9 +347,11 @@ import App from './App.js';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
-````
+```
 
 Until you do that, nothing is displayed.
+
+---
 
 ### I'm getting an error: "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
@@ -362,7 +364,7 @@ const domNode = document.getElementById('root');
 console.log(domNode); // ???
 const root = createRoot(domNode);
 root.render(<App />);
-````
+```
 
 For example, if `domNode` is `null`, it means that [`getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) returned `null`. This will happen if there is no node in the document with the given ID at the time of your call. There may be a few reasons for it:
 
@@ -372,6 +374,8 @@ For example, if `domNode` is `null`, it means that [`getElementById`](https://de
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
 
 Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
+
+---
 
 ### I'm getting an error: "Functions are not valid as a React child." {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
@@ -398,6 +402,8 @@ root.render(createApp());
 ```
 
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
+
+---
 
 ### My server-rendered HTML gets re-created from scratch {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 

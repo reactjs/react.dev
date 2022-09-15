@@ -917,7 +917,7 @@ ul, li { margin: 0; padding: 0; }
 
 ### Specifying a fallback default value {/*specifying-a-fallback-default-value*/}
 
-If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/apis/react/useContext):
+If React can't find any providers of that particular <CodeStep step={1}>context</CodeStep> in the parent tree, the context value returned by `useContext()` will be equal to the <CodeStep step={3}>default value</CodeStep> that you specified when you [created that context](/apis/react/createContext):
 
 ```js [[1, 1, "ThemeContext"], [3, 1, "null"]]
 const ThemeContext = createContext(null);
@@ -1279,7 +1279,7 @@ function MyApp() {
 
 Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
 
-In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/react/usecallback) and wrap the object creation into [`useMemo`.](/apis/usememo) This is a performance optimization:
+In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/react/useCallback) and wrap the object creation into [`useMemo`](/apis/react/useMemo). This is a performance optimization:
 
 ```js {1,6-9,11-14}
 import { useCallback, useMemo } from 'react';
@@ -1327,16 +1327,16 @@ function MyComponent() {
 
 #### Parameters {/*parameters*/}
 
-* `SomeContext`: The context that you've previously created with [`createContext`.](/apis/react/useContext) The context itself does not hold the information, it only represents the kind of information you can provide or read from components.
+* `SomeContext`: The context that you've previously created with [`createContext`](/apis/react/createContext). The context itself does not hold the information, it only represents the kind of information you can provide or read from components.
 
 #### Returns {/*returns*/}
 
-`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext.Provider` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/apis/react/useContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
+`useContext` returns the context value for the calling component. It is determined as the `value` passed to the closest `SomeContext.Provider` above the calling component in the tree. If there is no such provider, then the returned value will be the `defaultValue` you have passed to [`createContext`](/apis/react/createContext) for that context. The returned value is always up-to-date. React automatically re-renders components that read some context if it changes.
 
 #### Caveats {/*caveats*/}
 
 * `useContext()` call in a component is not affected by providers returned from the *same* component. The corresponding `<Context.Provider>` **needs to be *above*** the component doing the `useContext()` call.
-* React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/apis/memo) does not prevent the children receiving fresh context values from above.
+* React **automatically re-renders** all the children that use a particular context starting from the provider that receives a different `value`. The previous and the next values are compared with the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Skipping re-renders with [`memo`](/apis/react/memo) does not prevent the children receiving fresh context values from above.
 * If your build system produces duplicates modules in the output (which can happen if you use symlinks), this can break context. Passing something via context only works if `SomeContext` that you use to provide context and `SomeContext` that you use to read it are ***exactly* the same object**, as determined by a `===` comparison.
 
 ---

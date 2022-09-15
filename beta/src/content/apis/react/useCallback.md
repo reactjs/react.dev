@@ -153,8 +153,8 @@ function ProductPage({ productId, referrer }) {
 
 The difference is in *what* they're letting you cache:
 
-* **[`useMemo`](/apis/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `product` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
-* **`useCallback` caches *the function itself.*** Unlike `useMemo`, it does not call the function you provide. Instead, it caches the function you provided so that `handleSubmit` *itself* doesn't change unless `product` or `referrerId` has changed. This lets you pass the `handleSubmit` function down without unnecessarily re-rendering `ShippingForm`. Your code won't be called until the user submits the form.
+* **[`useMemo`](/apis/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `productId` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
+* **`useCallback` caches *the function itself.*** Unlike `useMemo`, it does not call the function you provide. Instead, it caches the function you provided so that `handleSubmit` *itself* doesn't change unless `productId` or `referrer` has changed. This lets you pass the `handleSubmit` function down without unnecessarily re-rendering `ShippingForm`. Your code won't be called until the user submits the form.
 
 If you're already familiar with [`useMemo`,](/apis/react/useMemo) you might find it helpful to think of `useCallback` as this:
 
@@ -200,7 +200,9 @@ If a specific interaction still feels laggy, [use the React Developer Tools prof
 
 In this example, the `ShippingForm` component is **artificially slowed down** so that you can see what happens when a React component you're rendering is genuinely slow. Try incrementing the counter and toggling the theme.
 
-When you increment the counter, the `ShippingForm` re-renders. Since its rendering is artificially slowed down, the interaction feels slow. Then try toggling the theme. You'll notice that toggling the theme is fast because the slowed-down `ShippingForm` component skips re-rendering. It is able to skip re-rendering because it's wrapped in [`memo`](/apis/react/memo) *and* the props passed to it are the same as during the last render. Specifically, the `handleSubmit` function does not change between the re-renders thanks to `useCallback`. Its dependencies (`product` and `referrerId`) have not changed, so `useCallback` returns a cached function.
+Incrementing the counter feels slow because it forces the slowed down `ShippingForm` to re-render. That's expected because the counter has changed, and so you need to reflect the user's new choice on the screen.
+
+Next, try toggling the theme. **Thanks to `useCallback` together with [`memo`](/apis/react/memo), it’s fast despite the artificial slowdown!** `ShippingForm` skipped re-rendering because the `handleSubmit` function has not changed. The `handleSubmit` function has not changed because both `productId` and `referral` (your `useCallback` dependencies) haven't changed since last render.
 
 <Sandpack>
 
@@ -338,11 +340,9 @@ button[type="button"] {
 
 #### Always re-rendering a component {/*always-re-rendering-a-component*/}
 
-This example is the same as the previous one, but it doesn't have a `useCallback` call.
+In this example, the `ShoppingForm` implementation is also **artificially slowed down** so that you can see what happens when some React component you're rendering is genuinely slow. Try incrementing the counter and toggling the theme.
 
-Try switching the theme in this example. It should feel much slower than the first one!
-
-When you toggle the theme, the `App` component re-renders. The `ProductPage` component re-renders too and creates a new `handleSubmit` function. Creating a function by itself is not a problem, but it passes this function down to the **artificially slowed down** `ShippingForm` component. Although `ShippingForm` is wrapped in [`memo`,](/apis/react/memo) it can't skip re-rendering because its `onSubmit` prop is different from the last time. Toggling the theme feels slow even though `ShippingForm` doesn't use `theme`.
+Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so `handleSubmit` is always a new function, and the slowed down `ShoppingForm` component can't skip re-rendering.
 
 <Sandpack>
 

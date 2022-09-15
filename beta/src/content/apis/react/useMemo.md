@@ -117,9 +117,9 @@ If a specific interaction still feels laggy, [use the React Developer Tools prof
 
 In this example, the `filterTodos` implementation is **artificially slowed down** so that you can see what happens when some JavaScript function you're calling during rendering is genuinely slow. Try switching the tabs and toggling the theme.
 
-When you switch the tabs, `filterTodos` gets called. That's expected because the `tab` has changed. (It also gets called twice in development, but you should ignore this. React calls your components twice during development to help [find impure code.](/learn/keeping-components-pure))
+Switching the tabs feels slow because it forces the slowed down `filterTodos` to re-execute. That's expected because the `tab` has changed, and so the entire calculation *needs* to re-run. (If you're curious why it runs twice, it's explained [here.](#my-calculation-runs-twice-on-every-re-render))
 
-Notice that when you switch the theme toggle, `filterTodos` *does not* get called. This is because both `todos` and `tab` (which you pass as dependencies to `useMemo`) are the same as they were during the last render. This is what `useMemo` enables.
+Next, try toggling the theme. **Thanks to `useMemo`, it's fast despite the artificial slowdown!** The slow `filterTodos` call was skipped because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
 
 <Sandpack>
 
@@ -247,11 +247,9 @@ label {
 
 #### Always recalculating a value {/*always-recalculating-a-value*/}
 
-This example is the same as the previous one, but it doesn't have a `useMemo` call.
+In this example, the `filterTodos` implementation is also **artificially slowed down** so that you can see what happens when some JavaScript function you're calling during rendering is genuinely slow. Try switching the tabs and toggling the theme.
 
-Try switching the theme in this example. It should feel much slower than the first one!
-
-When you toggle the theme, the `App` component re-renders. The `TodoList` component re-renders too and receives the next props with the updated `theme`. You haven't wrapped the `filterTodos` call in `useMemo`, so you call `filterTodos` every time.
+Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so the artificially slowed down `filterTodos` gets called on every re-render. It is called even if only `theme` has changed.
 
 <Sandpack>
 
@@ -371,7 +369,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed:**
+However, here is the same code **with the artificial slowdown removed.** Give it a try! Does it feel fast despite no `useMemo`?
 
 <Sandpack>
 
@@ -576,9 +574,9 @@ Manually wrapping JSX nodes into `useMemo` is not convenient. For example, you c
 
 In this example, the `List` component is **artificially slowed down** so that you can see what happens when a React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
 
-When you switch the tabs, `<List />` gets re-rendered. Changing the `tab` causes the `visibleTodos` to be recreated. Since the `items` passed to the `List` are a different array from the `items` passed to `List` on last render, the `List` must re-render.
+Switching the tabs feels slow because it forces the slowed down `List` to re-render. That's expected because the `tab` has changed, and so you need to reflect the user's new choice on the screen.
 
-However, when you switch the theme toggle, `<List />` *does not* re-render. This is because both `todos` and `tab` (which you pass as dependencies to `useMemo`) are the same as they were during the last render. This makes the `visibleTodos` the same as on the last render. In `List.js`, the `List` component is wrapped in [`memo`](/apis/react/memo), so it skips re-rendering for the same `items`.
+Next, try toggling the theme. **Thanks to `useMemo` together with [`memo`](/apis/react/memo), it’s fast despite the artificial slowdown!** The `List` skipped re-rendering because the `visibleItems` array has not changed since the last render. The `visibleItems` array has not changed because both `todos` and `tab` (which you pass as dependencies to `useMemo`) haven't changed since the last render.
 
 <Sandpack>
 
@@ -718,11 +716,9 @@ label {
 
 #### Always re-rendering a component {/*always-re-rendering-a-component*/}
 
-This example is the same as the previous one, but it doesn't have a `useMemo` call.
+In this example, the `List` implementation is also **artificially slowed down** so that you can see what happens when some React component you're rendering is genuinely slow. Try switching the tabs and toggling the theme.
 
-Try switching the theme in this example. It should feel much slower than the first one!
-
-When you toggle the theme, the `App` component re-renders. The `TodoList` component re-renders too and receives the next props with the updated theme. You haven’t wrapped the `filterTodos` call in `useMemo`, so `visibleTodos` is a different array on a re-render. When you pass the always-different `visibleTodos` to the `List` component, it has to re-render every time.
+Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so the `visibleTodos` is always a different array, and the slowed down `List` component can't skip re-rendering.
 
 <Sandpack>
 
@@ -854,7 +850,7 @@ label {
 
 </Sandpack>
 
-However, here is the same code **with the artificial slowdown removed:**
+However, here is the same code **with the artificial slowdown removed.** Give it a try! Does it feel fast without `useMemo`?
 
 <Sandpack>
 

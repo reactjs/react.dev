@@ -48,6 +48,8 @@ On the following renders, React will compare the <CodeStep step={2}>dependencies
 
 In other words, `useCallback` caches a function between re-renders until its dependencies change.
 
+---
+
 **To see how caching a function can help you optimize rendering, let's walk through an example.** Let's say that you're passing a `handleSubmit` function down from the `ProductPage` to the child `ShippingForm` component:
 
 ```js {5}

@@ -25,7 +25,7 @@ By default, each component's DOM nodes are private. However, sometimes it's usef
 ```js {3,11}
 import { forwardRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   const { label, ...otherProps } = props;
   return (
     <label>
@@ -41,7 +41,7 @@ You will receive a <CodeStep step={1}>ref</CodeStep> as the second argument afte
 ```js {8} [[1, 3, "ref"], [1, 8, "ref", 30]]
 import { forwardRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   const { label, ...otherProps } = props;
   return (
     <label>
@@ -110,7 +110,7 @@ export default function Form() {
 ```js MyInput.js
 import { forwardRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   const { label, ...otherProps } = props;
   return (
     <label>
@@ -168,7 +168,7 @@ export default function App() {
 ```js MyVideoPlayer.js
 import { forwardRef } from 'react';
 
-const VideoPlayer = forwardRef(({ src, type, width }, ref) => {
+const VideoPlayer = forwardRef(function VideoPlayer({ src, type, width }, ref) {
   return (
     <video width={width} ref={ref}>
       <source
@@ -199,7 +199,7 @@ button { margin-bottom: 10px; margin-right: 10px; }
 Instead of forwarding a `ref` to a DOM node, you can forward it to your own component like `MyInput`:
 
 ```js {1,5}
-const FormField = forwardRef((props, ref) => {
+const FormField = forwardRef(function FormField(props, ref) {
   // ...
   return (
     <>
@@ -262,7 +262,7 @@ export default function Form() {
 import { forwardRef, useState } from 'react';
 import MyInput from './MyInput.js';
 
-const FormField = forwardRef(({ label, isRequired }, ref) => {
+const FormField = forwardRef(function FormField({ label, isRequired }, ref) {
   const [value, setValue] = useState('');
   return (
     <>
@@ -314,7 +314,7 @@ input, button {
 Instead of exposing an entire DOM node, you can expose a custom object, called an *imperative handle,* with a more constrained set of methods. To do this, you'd need to define a separate ref to hold the DOM node:
 
 ```js {2,6}
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   const inputRef = useRef(null);
 
   // ...
@@ -328,7 +328,7 @@ Then pass the `ref` you received to [`useImperativeHandle`](/apis/react/useImper
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   const inputRef = useRef(null);
 
   useImperativeHandle(ref, () => {
@@ -377,7 +377,7 @@ export default function Form() {
 ```js MyInput.js
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   const inputRef = useRef(null);
 
   useImperativeHandle(ref, () => {
@@ -467,7 +467,7 @@ export default Post;
 ```js CommentList.js
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
-const CommentList = forwardRef((props, ref) => {
+const CommentList = forwardRef(function CommentList(props, ref) {
   const divRef = useRef(null);
 
   useImperativeHandle(ref, () => {
@@ -497,7 +497,7 @@ export default CommentList;
 ```js AddComment.js
 import { forwardRef, useRef, useImperativeHandle } from 'react';
 
-const AddComment = forwardRef((props, ref) => {
+const AddComment = forwardRef(function AddComment(props, ref) {
   return <input placeholder="Add comment..." ref={ref} />;
 });
 
@@ -537,7 +537,7 @@ Call `forwardRef()` to let your component receive a ref and forward it to a chil
 ```js
 import { forwardRef } from 'react';
 
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   // ...
 });
 
@@ -563,7 +563,7 @@ const MyInput = forwardRef((props, ref) => {
 `forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
 
 ```js
-const MyInput = forwardRef((props, ref) => {
+const MyInput = forwardRef(function MyInput(props, ref) {
   return (
     <label>
       {props.label}
@@ -594,7 +594,7 @@ This usually means that you forgot to actually use the `ref` that you received.
 For example, this component doesn't do anything with its `ref`:
 
 ```js {1}
-const MyInput = forwardRef(({ label }, ref) => {
+const MyInput = forwardRef(function MyInput({ label }, ref) {
   return (
     <label>
       {label}
@@ -607,7 +607,7 @@ const MyInput = forwardRef(({ label }, ref) => {
 To fix it, pass the `ref` down to a DOM node or another component that can accept a ref:
 
 ```js {1,5}
-const MyInput = forwardRef(({ label }, ref) => {
+const MyInput = forwardRef(function MyInput({ label }, ref) {
   return (
     <label>
       {label}
@@ -620,7 +620,7 @@ const MyInput = forwardRef(({ label }, ref) => {
 The `ref` to `MyInput` could also be `null` if some of the logic is conditional:
 
 ```js {1,5}
-const MyInput = forwardRef(({ label, showInput }, ref) => {
+const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
   return (
     <label>
       {label}
@@ -633,7 +633,7 @@ const MyInput = forwardRef(({ label, showInput }, ref) => {
 If `showInput` is `false`, then the ref won't be forwarded to any node, and a ref to `MyInput` will remain empty. This is particularly easy to miss if the condition is hidden inside another component, like `Panel` in this example:
 
 ```js {5,7}
-const MyInput = forwardRef(({ label, showInput }, ref) => {
+const MyInput = forwardRef(function MyInput({ label, showInput }, ref) {
   return (
     <label>
       {label}

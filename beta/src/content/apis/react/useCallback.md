@@ -80,7 +80,7 @@ You need to pass two things to `useCallback`:
 
 On the initial render, the <CodeStep step={3}>returned function</CodeStep> you'll get from `useCallback` will be the function you passed.
 
-On every next render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the last render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useCallback` will return the function you passed on the *last* render. Otherwise, React will return the function you passed on *this* render.
+On every render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the previous render. If this is the first render, or any of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useCallback` will return the function you passed on *this* render. Otherwise, `useCallback` will return the function you passed on the *previous* render.
 
 In other words, `useCallback` will cache your function, and return it on re-renders until the dependencies change. If both `product` and `referrerId` are the same as before, the `ProductPage` will pass the *same* `handleSubmit` function to the `ShippingForm`. The `ShippingForm` is wrapped in [`memo`](/apis/react/memo), so it will skip a render with same props.
 

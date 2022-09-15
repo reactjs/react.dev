@@ -46,7 +46,7 @@ export default function StatusBar() {
     window.addEventListener('offline', handleOffline);
     return () => {
       window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);      
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
 
@@ -80,7 +80,7 @@ export default function SaveButton() {
     window.addEventListener('offline', handleOffline);
     return () => {
       window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);      
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
 
@@ -143,7 +143,7 @@ function useOnlineStatus() {
     window.addEventListener('offline', handleOffline);
     return () => {
       window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);      
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
   return isOnline;
@@ -202,7 +202,7 @@ export function useOnlineStatus() {
     window.addEventListener('offline', handleOffline);
     return () => {
       window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);      
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
   return isOnline;
@@ -628,7 +628,7 @@ export default function ChatRoom({ roomId }) {
 
   useChatRoom({
     roomId: roomId,
-    serverUrl: serverUrl 
+    serverUrl: serverUrl
   });
 
   return (
@@ -686,7 +686,7 @@ export default function ChatRoom({ roomId }) {
 
   useChatRoom({
     roomId: roomId,
-    serverUrl: serverUrl 
+    serverUrl: serverUrl
   });
 
   return (
@@ -815,7 +815,7 @@ export default function ChatRoom({ roomId }) {
 
   useChatRoom({
     roomId: roomId,
-    serverUrl: serverUrl 
+    serverUrl: serverUrl
   });
   // ...
 ```
@@ -828,7 +828,7 @@ export default function ChatRoom({ roomId }) {
 
   useChatRoom({
     roomId: roomId,
-    serverUrl: serverUrl 
+    serverUrl: serverUrl
   });
   // ...
 ```
@@ -1337,7 +1337,7 @@ export function useOnlineStatus() {
     window.addEventListener('offline', handleOffline);
     return () => {
       window.removeEventListener('online', handleOnline);
-      window.removeEventListener('offline', handleOffline);      
+      window.removeEventListener('offline', handleOffline);
     };
   }, []);
   return isOnline;
@@ -1873,7 +1873,7 @@ html, body { min-height: 300px; }
   font-size: 50px;
   background-image: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 
-  animation: fadeIn 1000ms; 
+  animation: fadeIn 1000ms;
 }
 
 @keyframes fadeIn {
@@ -2161,7 +2161,7 @@ export function useInterval(onTick, delay) {
   useEffect(() => {
     const id = setInterval(onTick, delay);
     return () => clearInterval(id);
-  }, [onTick, delay]); 
+  }, [onTick, delay]);
 }
 ```
 
@@ -2187,7 +2187,7 @@ For some reason, the callback that updates the page background never runs. Add s
       console.log('❌ Clearing an interval with delay ', delay)
       clearInterval(id);
     };
-  }, [onTick, delay]); 
+  }, [onTick, delay]);
 ```
 
 Do the logs match what you expect to happen? If some of your Effects seem to re-synchronize unnecessarily, can you guess which dependency is causing that to happen? Is there some way to [remove that dependency](/learn/removing-effect-dependencies) from your Effect?
@@ -2241,7 +2241,7 @@ export function useInterval(onTick, delay) {
     return () => {
       clearInterval(id);
     };
-  }, [onTick, delay]); 
+  }, [onTick, delay]);
 }
 ```
 
@@ -2345,7 +2345,7 @@ export function useEvent(fn) {
 
 In this example, the `usePointerPosition()` Hook tracks the current pointer position. Try moving your cursor or your finger over the preview area and see the red dot follow your movement. Its position is saved in the `pos1` variable.
 
-In fact, there are five (!) different red dots being rendered. You don't see them because currently they all appear at the same position. This is what you need to fix. What you want to implement instead is a "staggered" movement: each next dot should "follow" the previous dot's path. For example, if you quickly move your cursor, the first dot should follow it immediately, the second dot should follow the first dot with a small delay, the third dot should follow the second dot, and so on.
+In fact, there are five (!) different red dots being rendered. You don't see them because currently they all appear at the same position. This is what you need to fix. What you want to implement instead is a "staggered" movement: each dot should "follow" the previous dot's path. For example, if you quickly move your cursor, the first dot should follow it immediately, the second dot should follow the first dot with a small delay, the third dot should follow the second dot, and so on.
 
 You need to implement the `useDelayedValue` custom Hook. Its current implementation returns the `value` provided to it. Instead, you want to return the value back from `delay` milliseconds ago. You might need some state and an Effect to do this.
 

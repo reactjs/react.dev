@@ -177,7 +177,7 @@ Instead, you can tell React that each user's profile is conceptually a _differen
 export default function ProfilePage({ userId }) {
   return (
     <Profile
-      userId={userId} 
+      userId={userId}
       key={userId}
     />
   );
@@ -284,7 +284,7 @@ function ProductPage({ product, addToCart }) {
   // ✅ Good: Event-specific logic is called from event handlers
   function buyProduct() {
     addToCart(product);
-    showNotification(`Added ${product.name} to the shopping cart!`);    
+    showNotification(`Added ${product.name} to the shopping cart!`);
   }
 
   function handleBuyClick() {
@@ -448,7 +448,7 @@ This is a lot more efficient. Also, if you implement a way to view game history,
 
 Remember that inside event handlers, [state behaves like a snapshot.](/learn/state-as-a-snapshot) For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
 
-In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of each next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects fetching data is appropriate because you are synchronizing with network.
+In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of the next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects fetching data is appropriate because you are synchronizing with network.
 
 ### Initializing the application {/*initializing-the-application*/}
 
@@ -719,7 +719,7 @@ However, the code above has a bug. Imagine you type `"hello"` fast. Then the `qu
 ```js {5,7,9,11-13}
 function SearchResults({ query }) {
   const [results, setResults] = useState([]);
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
   useEffect(() => {
     let ignore = false;
     fetchResults(query, page).then(json => {
@@ -747,7 +747,7 @@ If you don't use a framework (and don't want to build your own) but would like t
 
 ```js {4}
 function SearchResults({ query }) {
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
   const params = new URLSearchParams({ query, page });
   const results = useData(`/api/search?${params}`);
 
@@ -1518,7 +1518,7 @@ export default function EditContact(props) {
   return (
     <EditForm
       {...props}
-      key={props.savedContact.id} 
+      key={props.savedContact.id}
     />
   );
 }
@@ -1726,4 +1726,3 @@ Notice how in this version, only _submitting the form_ (which is an event) cause
 </Solution>
 
 </Challenges>
-

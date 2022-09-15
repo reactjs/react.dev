@@ -351,6 +351,8 @@ root.render(<App />);
 
 Until you do that, nothing is displayed.
 
+---
+
 ### I'm getting an error: "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
 This error means that whatever you're passing to `createRoot` is not a DOM node.
@@ -372,6 +374,8 @@ For example, if `domNode` is `null`, it means that [`getElementById`](https://de
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
 
 Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
+
+---
 
 ### I'm getting an error: "Functions are not valid as a React child." {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
@@ -398,6 +402,8 @@ root.render(createApp());
 ```
 
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
+
+---
 
 ### My server-rendered HTML gets re-created from scratch {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 

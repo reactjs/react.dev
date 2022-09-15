@@ -48,9 +48,9 @@ On the following renders, React will compare the <CodeStep step={2}>dependencies
 
 In other words, `useCallback` caches a function between re-renders until its dependencies change.
 
----
+**Let's walk through an example to see when this is useful.**
 
-**To see how caching a function can help you optimize rendering, let's walk through an example.** Let's say that you're passing a `handleSubmit` function down from the `ProductPage` to the child `ShippingForm` component:
+Say you're passing a `handleSubmit` function down from the `ProductPage` to the `ShippingForm` component:
 
 ```js {5}
 function ProductPage({ productId, referrer, theme }) {
@@ -64,7 +64,7 @@ function ProductPage({ productId, referrer, theme }) {
 
 You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<ShippingForm />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `ShippingForm` component.
 
-**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `ProductPage` re-renders with a different `theme`, the `ShippingForm` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you've verified that a re-render is slow, you can tell `ShippingForm` to *skip re-rendering when its props are the same as on last render* by wrapping it in [`memo`](/apis/react/memo):
+**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `ProductPage` re-renders with a different `theme`, the `ShippingForm` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you've verified that a re-render is slow, you can tell `ShippingForm` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`](/apis/react/memo):
 
 ```js {1,7}
 import { memo } from 'react';

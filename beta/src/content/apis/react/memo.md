@@ -7,7 +7,7 @@ title: memo
 `memo` lets you skip re-rendering a component when its props are unchanged.
 
 ```
-const MemoizedComponent = memo(SomeComponent)
+const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 ```
 
 </Intro>

@@ -47,8 +47,7 @@
             },
             {
               "title": "forwardRef",
-              "path": "/apis/react/forwardRef",
-              "wip": true
+              "path": "/apis/react/forwardRef"
             },
             {
               "title": "Fragment (<>...</>)",

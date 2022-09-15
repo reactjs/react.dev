@@ -396,7 +396,7 @@ export default function VideoPlayer() {
         />
       </video>
     </>
-  )
+  );
 }
 ```
 

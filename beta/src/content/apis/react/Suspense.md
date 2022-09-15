@@ -95,11 +95,11 @@ The sequence will be:
 
 ---
 
-### Lazy loading components with Suspense {/*suspense-for-code-splitting*/}
+### Lazy-loading components with Suspense {/*lazy-loading-components-with-suspense*/}
 
 The [`lazy`](/apis/react/lazy) API is powered by Suspense. When you render a component imported with `lazy`, it will suspend if it hasn't loaded yet. This allows you to display a loading indicator while your component's code is loading.
 
-```js {3,12-14}
+```js {3,12-15}
 import { lazy, Suspense, useState } from 'react';
 
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
@@ -112,6 +112,7 @@ function MarkdownEditor() {
       ...
       {showPreview && (
         <Suspense fallback={<Loading />}>
+          <h2>Preview</h2>
           <MarkdownPreview />
         </Suspense>
       )}
@@ -143,6 +144,7 @@ export default function MarkdownEditor() {
       <hr />
       {showPreview && (
         <Suspense fallback={<Loading />}>
+          <h2>Preview</h2>
           <MarkdownPreview markdown={markdown} />
         </Suspense>
       )}

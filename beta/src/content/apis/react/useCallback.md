@@ -713,7 +713,7 @@ function ChatRoom({ roomId }) {
   const [message, setMessage] = useState('');
 
   useEffect(() => {
-    function createOptions() { // No need for useCallback or function dependencies!
+    function createOptions() { // ✅ No need for useCallback or function dependencies!
       return {
         serverUrl: 'https://localhost:1234',
         roomId: roomId

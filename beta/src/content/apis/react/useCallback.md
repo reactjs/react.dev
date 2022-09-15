@@ -128,10 +128,12 @@ By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* fun
 
 You will often see [`useMemo`](/apis/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
 
-```js {4-6,8-13,17}
+```js {6-8,10-15,19}
 import { useMemo, useCallback } from 'react';
 
 function ProductPage({ productId, referrer }) {
+  const product = useData('/product/' + productId);
+
   const requirements = useMemo(() => { // Calls your function and caches its result
     return computeRequirements(product);
   }, [product]);
@@ -153,7 +155,7 @@ function ProductPage({ productId, referrer }) {
 
 The difference is in *what* they're letting you cache:
 
-* **[`useMemo`](/apis/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `productId` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
+* **[`useMemo`](/apis/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `product` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
 * **`useCallback` caches *the function itself.*** Unlike `useMemo`, it does not call the function you provide. Instead, it caches the function you provided so that `handleSubmit` *itself* doesn't change unless `productId` or `referrer` has changed. This lets you pass the `handleSubmit` function down without unnecessarily re-rendering `ShippingForm`. Your code won't be called until the user submits the form.
 
 If you're already familiar with [`useMemo`,](/apis/react/useMemo) you might find it helpful to think of `useCallback` as this:

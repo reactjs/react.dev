@@ -1088,7 +1088,7 @@ function PlaceImage({ place }) {
 ```js Context.js
 import { createContext } from 'react';
 
-export const ImageSizeContext = createContext(500);
+export const ImageSizeContext = createContext(100);
 ```
 
 ```js data.js

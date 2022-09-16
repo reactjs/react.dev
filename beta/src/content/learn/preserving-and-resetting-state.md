@@ -494,7 +494,7 @@ label {
 
 You might expect the state to reset when you tick checkbox, but it doesn't! This is because **both of these `<Counter />` tags are rendered at the same position.** React doesn't know where you place the conditions in your function. All it "sees" is the tree you return. In both cases, the `App` component returns a `<div>` with `<Counter />` as a first child. This is why React considers them as _the same_ `<Counter />`.
 
-You can think of them as having the same "address": the first child of the first child (`div`) of the root (`App`). This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
+And this is how React matches them up between the previous and next renders, regardless of how you structure your logic.
 
 </Gotcha>
 

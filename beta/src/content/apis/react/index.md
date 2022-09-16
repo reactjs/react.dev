@@ -107,7 +107,7 @@ function MyComponent() {
 
 <YouWillLearnCard title="forwardRef" path="/apis/react/forwardRef">
 
-Create a component that forward the ref attribute:
+Create a component that forwards the ref attribute:
 
 ```js
 const Component = forwardRef((props, ref) => {

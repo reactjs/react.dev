@@ -12,11 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### React Day Berlin 2022 {#react-day-berlin-2022}
-December 2, 2022 in Berlin, Germany
-
-[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
-
 ### React Finland 2022 {#react-finland-2022}
 September 12 - 16, 2022. In-person in Helsinki, Finland
 
@@ -41,6 +36,11 @@ October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
 October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://www.youtube.com/c/ReactConferences)
+
+### React Day Berlin 2022 {#react-day-berlin-2022}
+December 2, 2022 in Berlin, Germany
+
+[Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
 
 ### RemixConf 2023 {#remixconf-2023}
 May, 2023. Salt Lake City, UT

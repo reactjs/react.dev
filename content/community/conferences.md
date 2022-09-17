@@ -37,6 +37,11 @@ October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://www.youtube.com/c/ReactConferences)
 
+### React Day Berlin 2022 {#react-day-berlin-2022}
+December 9, 2022. In-person in Berlin, Germany + remote (hybrid event)
+
+[Website](https://www.reactday.berlin/) - [Twitter](https://twitter.com/ReactDayBerlin) - [Facebook](https://www.facebook.com/ReactDayBerlin) - [Videos](https://www.youtube.com/c/ReactConferences)
+
 ### RemixConf 2023 {#remixconf-2023}
 May, 2023. Salt Lake City, UT
 

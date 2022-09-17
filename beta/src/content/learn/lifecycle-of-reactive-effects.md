@@ -517,7 +517,7 @@ export default function App() {
         {show ? 'Close chat' : 'Open chat'}
       </button>
       {show && <hr />}
-      {show && <ChatRoom roomId={roomId} />}
+      {show && <ChatRoom />}
     </>
   );
 }

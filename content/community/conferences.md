@@ -32,6 +32,11 @@ October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
 
 [Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
 
+### ReactJS Day 2022 {#reactjs-day-2022}
+October 21, 2022 in Verona, Italy
+
+[Website](https://2022.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [Facebook](https://www.facebook.com/reactjsday/) - [Videos](https://www.youtube.com/c/grusp)
+
 ### React Advanced 2022 {#react-advanced-2022}
 October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
 

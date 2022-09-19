@@ -12,11 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### React Finland 2022 {#react-finland-2022}
-September 12 - 16, 2022. In-person in Helsinki, Finland
-
-[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [Schedule](https://react-finland.fi/schedule/) - [Speakers](https://react-finland.fi/speakers/)
-
 ### React India 2022 {#react-india-2022}
 September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
 
@@ -42,6 +37,11 @@ October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://www.youtube.com/c/ReactConferences)
 
+### Remix Conf Europe 2022 {#remixconfeu-2022}
+November 18, 2022, 7am PST / 10am EST / 4pm CET - remote event
+
+[Website](https://remixconf.eu/) - [Twitter](https://twitter.com/remixconfeu)
+
 ### React Day Berlin 2022 {#react-day-berlin-2022}
 December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)
 
@@ -58,6 +58,11 @@ June 2 & 6, 2023. In-person in Amsterdam, Netherlands + remote first interactivi
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ## Past Conferences {#past-conferences}
+
+### React Finland 2022 {#react-finland-2022}
+September 12 - 16, 2022. In-person in Helsinki, Finland
+
+[Website](https://react-finland.fi/) - [Twitter](https://twitter.com/ReactFinland) - [Schedule](https://react-finland.fi/schedule/) - [Speakers](https://react-finland.fi/speakers/)
 
 ### React Native EU 2022: Powered by {callstack} {#react-native-eu-2022-powered-by-callstack}
 September 1-2, 2022 - Remote event

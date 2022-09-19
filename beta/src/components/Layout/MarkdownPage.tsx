@@ -3,14 +3,11 @@
  */
 
 import * as React from 'react';
-// @ts-ignore
-import {MDXContext} from '@mdx-js/react';
 import {DocsPageFooter} from 'components/DocsFooter';
-import {MDXComponents} from 'components/MDX/MDXComponents';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
-import {Toc} from './Toc';
+import {TocContext} from '../MDX/TocContext';
 
 export interface MarkdownProps<Frontmatter> {
   meta: Frontmatter & {description?: string};
@@ -35,7 +32,7 @@ export function MarkdownPage<
   const isHomePage = route?.path === '/';
   return (
     <>
-      <div className="lg:pt-0 pt-20 pl-0 lg:pl-80 2xl:px-80 ">
+      <div className="pl-0">
         <Seo title={title} />
         {!isHomePage && (
           <PageHeading
@@ -46,9 +43,7 @@ export function MarkdownPage<
         )}
         <div className="px-5 sm:px-12">
           <div className="max-w-7xl mx-auto">
-            <MDXContext.Provider value={MDXComponents}>
-              {children}
-            </MDXContext.Provider>
+            <TocContext.Provider value={toc}>{children}</TocContext.Provider>
           </div>
           <DocsPageFooter
             route={route}
@@ -56,9 +51,6 @@ export function MarkdownPage<
             prevRoute={prevRoute}
           />
         </div>
-      </div>
-      <div className="w-full lg:max-w-xs hidden 2xl:block">
-        {!isHomePage && toc.length > 0 && <Toc headings={toc} />}
       </div>
     </>
   );

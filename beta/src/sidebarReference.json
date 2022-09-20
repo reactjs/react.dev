@@ -47,11 +47,10 @@
             },
             {
               "title": "forwardRef",
-              "path": "/apis/react/forwardRef",
-              "wip": true
+              "path": "/apis/react/forwardRef"
             },
             {
-              "title": "Fragment",
+              "title": "Fragment (<>...</>)",
               "path": "/apis/react/Fragment"
             },
             {
@@ -61,13 +60,11 @@
             },
             {
               "title": "lazy",
-              "path": "/apis/react/lazy",
-              "wip": true
+              "path": "/apis/react/lazy"
             },
             {
               "title": "memo",
-              "path": "/apis/react/memo",
-              "wip": true
+              "path": "/apis/react/memo"
             },
             {
               "title": "PureComponent",
@@ -86,13 +83,11 @@
             },
             {
               "title": "Suspense",
-              "path": "/apis/react/Suspense",
-              "wip": true
+              "path": "/apis/react/Suspense"
             },
             {
               "title": "useCallback",
-              "path": "/apis/react/useCallback",
-              "wip": true
+              "path": "/apis/react/useCallback"
             },
             {
               "title": "useContext",
@@ -114,6 +109,11 @@
               "wip": true
             },
             {
+              "title": "useEvent",
+              "path": "/apis/react/useEvent",
+              "wip": true
+            },
+            {
               "title": "useId",
               "path": "/apis/react/useId",
               "wip": true
@@ -130,8 +130,7 @@
             },
             {
               "title": "useMemo",
-              "path": "/apis/react/useMemo",
-              "wip": true
+              "path": "/apis/react/useMemo"
             },
             {
               "title": "useReducer",
@@ -162,10 +161,6 @@
           "path": "/apis/react-dom",
           "routes": [
             {
-              "title": "createRoot",
-              "path": "/apis/react-dom/client/createRoot"
-            },
-            {
               "title": "createPortal",
               "path": "/apis/react-dom/createPortal",
               "wip": true
@@ -177,21 +172,41 @@
             },
             {
               "title": "flushSync",
-              "path": "/apis/react-dom/flushSync",
-              "wip": true
+              "path": "/apis/react-dom/flushSync"
             },
             {
               "title": "hydrate",
               "path": "/apis/react-dom/hydrate"
             },
             {
-              "title": "hydrateRoot",
-              "path": "/apis/react-dom/client/hydrateRoot"
-            },
-            {
               "title": "render",
               "path": "/apis/react-dom/render"
             },
+            {
+              "title": "unmountComponentAtNode",
+              "path": "/apis/react-dom/unmountComponentAtNode",
+              "wip": true
+            }
+          ]
+        },
+        {
+          "title": "ReactDOMClient APIs",
+          "path": "/apis/react-dom/client",
+          "routes": [
+            {
+              "title": "createRoot",
+              "path": "/apis/react-dom/client/createRoot"
+            },
+            {
+              "title": "hydrateRoot",
+              "path": "/apis/react-dom/client/hydrateRoot"
+            }
+          ]
+        },
+        {
+          "title": "ReactDOMServer APIs",
+          "path": "/apis/react-dom/server",
+          "routes": [
             {
               "title": "renderToNodeStream",
               "path": "/apis/react-dom/server/renderToNodeStream",
@@ -220,11 +235,6 @@
             {
               "title": "renderToString",
               "path": "/apis/react-dom/server/renderToString",
-              "wip": true
-            },
-            {
-              "title": "unmountComponentAtNode",
-              "path": "/apis/react-dom/unmountComponentAtNode",
               "wip": true
             }
           ]

@@ -87,7 +87,7 @@ A JavaScript build toolchain typically consists of:
 
 * A **bundler**, such as [webpack](https://webpack.js.org/) or [Parcel](https://parceljs.org/). It lets you write modular code and bundle it together into small packages to optimize load time.
 
-* A **compiler** such as [Babel](https://babeljs.io/). It lets you write modern JavaScript code that still works in older browsers.
+* A **transcompiler** such as [Babel](https://babeljs.io/). It lets you write modern JavaScript code that still works in older browsers.
 
 If you prefer to set up your own JavaScript toolchain from scratch, [check out this guide](https://blog.usejournal.com/creating-a-react-app-from-scratch-f3c693b84658) that re-creates some of the Create React App functionality.
 

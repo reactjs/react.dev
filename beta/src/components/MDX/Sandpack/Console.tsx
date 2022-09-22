@@ -107,12 +107,24 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
       }
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
-          const newLogs = message.log.map((consoleData) => {
-            return {
-              ...consoleData,
-              data: formatStr(...consoleData.data),
-            };
-          });
+          const newLogs = message.log
+            .filter((consoleData) => {
+              if (
+                typeof consoleData.data[0] === 'string' &&
+                consoleData.data[0].indexOf('The above error occurred') !== -1
+              ) {
+                // Don't show React error addendum because
+                // we have a custom error overlay.
+                return false;
+              }
+              return true;
+            })
+            .map((consoleData) => {
+              return {
+                ...consoleData,
+                data: formatStr(...consoleData.data),
+              };
+            });
           let messages = [...prev, ...newLogs];
           while (messages.length > MAX_MESSAGE_COUNT) {
             messages.shift();

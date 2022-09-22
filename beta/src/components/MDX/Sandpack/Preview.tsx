@@ -222,7 +222,7 @@ export function Preview({
           loading={!isReady && iframeComputedHeight === null}
         />
       </div>
-      {!error && <SandpackConsole />}
+      <SandpackConsole visible={!error} />
     </SandpackStack>
   );
 }

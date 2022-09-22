@@ -87,7 +87,7 @@ type ConsoleData = Array<{
 
 const MAX_MESSAGE_COUNT = 100;
 
-export const SandpackConsole = () => {
+export const SandpackConsole = ({visible}: {visible: boolean}) => {
   const {listen} = useSandpack();
   const [logs, setLogs] = React.useState<ConsoleData>([]);
   const wrapperRef = React.useRef<HTMLDivElement>(null);
@@ -136,7 +136,7 @@ export const SandpackConsole = () => {
     }
   }, [logs]);
 
-  if (logs.length === 0) {
+  if (!visible || logs.length === 0) {
     return null;
   }
 

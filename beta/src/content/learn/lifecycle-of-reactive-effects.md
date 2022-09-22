@@ -1661,7 +1661,7 @@ export default function Page() {
         }}>
           {planetList.map(planet =>
             <option key={planet.id} value={planet.id}>{planet.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <label>
@@ -1671,7 +1671,7 @@ export default function Page() {
         }}>
           {placeList.map(place =>
             <option key={place.id} value={place.id}>{place.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <hr />
@@ -1829,7 +1829,7 @@ export default function Page() {
         }}>
           {planetList.map(planet =>
             <option key={planet.id} value={planet.id}>{planet.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <label>
@@ -1839,7 +1839,7 @@ export default function Page() {
         }}>
           {placeList.map(place =>
             <option key={place.id} value={place.id}>{place.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <hr />
@@ -1965,7 +1965,7 @@ export default function Page() {
         }}>
           {planetList?.map(planet =>
             <option key={planet.id} value={planet.id}>{planet.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <label>
@@ -1975,7 +1975,7 @@ export default function Page() {
         }}>
           {placeList?.map(place =>
             <option key={place.id} value={place.id}>{place.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <hr />

@@ -7,7 +7,7 @@ title: useCallback
 `useCallback` is a React Hook that lets you cache a function definition between re-renders.
 
 ```js
-const memoizedFn = useCallback(fn, dependencies)
+const cachedFn = useCallback(fn, dependencies)
 ```
 
 </Intro>
@@ -64,16 +64,14 @@ function ProductPage({ productId, referrer, theme }) {
 
 You've noticed that toggling the `theme` prop freezes the app for a moment, but if you remove `<ShippingForm />` from your JSX, it feels fast. This tells you that it's worth trying to optimize the `ShippingForm` component.
 
-**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `ProductPage` re-renders with a different `theme`, the `ShippingForm` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you've verified that a re-render is slow, you can tell `ShippingForm` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`](/apis/react/memo):
+**By default, when a component re-renders, React re-renders all of its children recursively.** This is why, when `ProductPage` re-renders with a different `theme`, the `ShippingForm` component *also* re-renders. This is fine for components that don't require much calculation to re-render. But if you've verified that a re-render is slow, you can tell `ShippingForm` to skip re-rendering when its props are the same as on last render by wrapping it in [`memo`:](/apis/react/memo)
 
-```js {1,7}
+```js {3,5}
 import { memo } from 'react';
 
-function ShippingForm({ onSubmit }) {
+const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   // ...
-}
-
-export default memo(ShippingForm);
+});
 ```
 
 **With this change, `ShippingForm` will skip re-rendering if all of its props are the *same* as on the last render.** This is where caching a function becomes important! Imagine that you defined `handleSubmit` without `useCallback`:
@@ -97,7 +95,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-**In JavaScript, a `function () {}` or `() => {}` always creates a _different_ function,** similar to how the `{}` object literal always creates a new object. Normally, this wouldn't be a problem, but it means that **`ShippingForm` props will never be the same, and your [`memo`](/apis/react/memo) optimization won't work.** This is where `useCallback` comes in handy:
+**In JavaScript, a `function () {}` or `() => {}` always creates a _different_ function,** similar to how the `{}` object literal always creates a new object. Normally, this wouldn't be a problem, but it means that `ShippingForm` props will never be the same, and your [`memo`](/apis/react/memo) optimization won't work. This is where `useCallback` comes in handy:
 
 ```js {2,3,8,12-13}
 function ProductPage({ productId, referrer, theme }) {
@@ -118,7 +116,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/api/react/memo) and this lets it skip re-rendering. There are a few other reasons you might need `useCallback` which are described further on this page.
+**By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders** (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/api/react/memo) and this lets it skip re-rendering. There are a few other reasons you might need `useCallback` which are described further on this page.
 
 <Note>
 
@@ -266,7 +264,7 @@ function post(url, data) {
 ```js ShippingForm.js
 import { memo, useState } from 'react';
 
-function ShippingForm({ onSubmit }) {
+const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   const [count, setCount] = useState(1);
 
   console.log('[ARTIFICIALLY SLOW] Rendering <ShippingForm />');
@@ -309,9 +307,9 @@ function ShippingForm({ onSubmit }) {
       <button type="submit">Submit</button>
     </form>
   );
-}
+});
 
-export default memo(ShippingForm);
+export default ShippingForm;
 ```
 
 ```css
@@ -405,7 +403,7 @@ function post(url, data) {
 ```js ShippingForm.js
 import { memo, useState } from 'react';
 
-function ShippingForm({ onSubmit }) {
+const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   const [count, setCount] = useState(1);
 
   console.log('[ARTIFICIALLY SLOW] Rendering <ShippingForm />');
@@ -448,9 +446,9 @@ function ShippingForm({ onSubmit }) {
       <button type="submit">Submit</button>
     </form>
   );
-}
+});
 
-export default memo(ShippingForm);
+export default ShippingForm;
 ```
 
 ```css
@@ -539,7 +537,7 @@ function post(url, data) {
 ```js ShippingForm.js
 import { memo, useState } from 'react';
 
-function ShippingForm({ onSubmit }) {
+const ShippingForm = memo(function ShippingForm({ onSubmit }) {
   const [count, setCount] = useState(1);
 
   console.log('Rendering <ShippingForm />');
@@ -577,9 +575,9 @@ function ShippingForm({ onSubmit }) {
       <button type="submit">Submit</button>
     </form>
   );
-}
+});
 
-export default memo(ShippingForm);
+export default ShippingForm;
 ```
 
 ```css
@@ -636,7 +634,7 @@ function TodoList() {
   // ...
 ```
 
-You'll usually want your memoized functions to have as few dependencies as possible. **When you read some state only to calculate the next state, you can remove that dependency by passing an [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) instead:**
+You'll usually want your memoized functions to have as few dependencies as possible. When you read some state only to calculate the next state, you can remove that dependency by passing an [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) instead:
 
 ```js {6,7}
 function TodoList() {
@@ -645,7 +643,7 @@ function TodoList() {
   const handleAddTodo = useCallback((text) => {
     const newTodo = { id: nextId++, text };
     setTodos(todos => [...todos, newTodo]);
-  }, []); // No need for the todos dependency
+  }, []); // ✅ No need for the todos dependency
   // ...
 ```
 
@@ -732,7 +730,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-**When possible, avoid function dependencies.** [Read more about removing unnecessary Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
+Now your code is simpler and doesn't need `useCallback`. [Learn more about removing Effect dependencies.](/learn/removing-effect-dependencies#move-dynamic-objects-and-functions-inside-your-effect)
 
 ---
 
@@ -853,3 +851,57 @@ Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
 When you find which dependency is breaking memoization, either find a way to remove it, or [memoize it as well.](/apis/react/useMemo#memoizing-a-dependency-of-another-hook)
+
+---
+
+### I need to call `useCallback` for each list item in a loop, but it's not allowed {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
+
+You can't call `useCallback` in a loop:
+
+```js {5-14}
+function ReportList({ items }) {
+  return (
+    <article>
+      {items.map(item => {
+        // 🔴 You can't call useCallback in a loop like this:
+        const handleClick = useCallback(() => {
+          sendReport(item)
+        }, [item]);
+
+        return (
+          <figure key={item.id}>
+            <Chart onClick={handleClick} />
+          </figure>
+        );
+      })}
+    </article>
+  );
+}
+```
+
+Instead, extract a component for each item and memoize data for individual items:
+
+```js {5,12-21}
+function ReportList({ items }) {
+  return (
+    <article>
+      {items.map(item =>
+        <Report key={item.id} item={item} />
+      )}
+    </article>
+  );
+}
+
+function Report({ item }) {
+  // ✅ Call useCallback at the top level:
+  const handleClick = useCallback(() => {
+    sendReport(item)
+  }, [item]);
+
+  return (
+    <figure>
+      <Chart onClick={handleClick} />
+    </figure>
+  );
+}
+```

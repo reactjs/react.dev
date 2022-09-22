@@ -37,7 +37,7 @@ October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
 
 [Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://www.youtube.com/c/ReactConferences)
 
-### < React Global > Online Summit 22.2 by Geekle {#react-global-v2-2022}
+### React Global Online Summit 22.2 by Geekle {#react-global-v2-2022}
 November 8 - 9, 2022 - Online Summit
 
 [Website](https://events.geekle.us/react3/) - [LinkedIn](https://www.linkedin.com/posts/geekle-us_event-react-reactjs-activity-6964904611207864320-gpDx?utm_source=share&utm_medium=member_desktop)

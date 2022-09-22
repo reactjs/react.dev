@@ -915,7 +915,7 @@ function ReportList({ items }) {
 
 const Report = memo(function Report({ item }) {
   function handleClick() {
-    sendReport(item)
+    sendReport(item);
   }
 
   return (

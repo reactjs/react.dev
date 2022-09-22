@@ -48,12 +48,15 @@ class Template extends Component<Props> {
           valign="stretch"
           css={{
             flex: '1 0 auto',
-            marginTop: 60,
-            [media.between('medium', 'large')]: {
-              marginTop: 50,
+            marginTop:
+              'calc(var(--header-height-large) + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
+            [media.size('medium')]: {
+              marginTop:
+                'calc(var(--header-height-normal) + var(--survey-banner-height-normal) + var(--social-banner-height-normal))',
             },
-            [media.lessThan('medium')]: {
-              marginTop: 40,
+            [media.lessThan('small')]: {
+              marginTop:
+                'calc(var(--header-height-small) + var(--survey-banner-height-small) + var(--social-banner-height-small))',
             },
           }}>
           {children}

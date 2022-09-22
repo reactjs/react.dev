@@ -21,6 +21,10 @@
             "title": "Meet the Team",
             "path": "/community/meet-the-team"
           }]
+        },
+        {
+          "title": "Blog",
+          "path": "https://reactjs.org/blog"
         }
       ]
     }

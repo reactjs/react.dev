@@ -8,7 +8,7 @@ import {createFileMap} from './createFileMap';
 const SandpackRoot = React.lazy(() => import('./SandpackRoot'));
 
 const SandpackGlimmer = ({code}: {code: string}) => (
-  <div className="sandpack-container my-8">
+  <div className="sandpack my-8">
     <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
       <div className="bg-wash h-10 dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">
         <div className="px-4 lg:px-6">

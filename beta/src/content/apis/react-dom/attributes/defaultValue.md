@@ -10,8 +10,7 @@ The `defaultValue` attribute is supported by the `<input>`, `<select>`, and `<te
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the the `defaultValue` attribute](#using-the-the-defaultValue-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

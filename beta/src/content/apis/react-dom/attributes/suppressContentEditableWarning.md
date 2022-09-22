@@ -13,8 +13,7 @@ When an element with children is marked as `contentEditable`, a warning is gener
 Don’t use `suppressContentEditableWarning` unless you are building a library like [Draft.js](https://draftjs.org/) that manages `contentEditable` manually.
 </Note>
 
-- [Usage](#usage)
-  - [Using the `suppressContentEditableWarning` attribute](#using-the-suppressContentEditableWarning-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

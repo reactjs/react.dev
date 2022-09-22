@@ -10,8 +10,7 @@ The `defaultChecked` attribute is supported by the `<input>` components of type 
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the the `defaultChecked` attribute](#using-the-the-defaultChecked-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

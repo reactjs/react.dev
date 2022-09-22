@@ -14,8 +14,7 @@ Since the `class` keyword is reserved for creating a class in JavaScript, `class
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the `className` attribute](#using-the-classname-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

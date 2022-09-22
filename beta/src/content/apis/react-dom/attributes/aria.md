@@ -9,8 +9,7 @@ Accessible Rich Internet Applications ([ARIA attributes](https://developer.mozil
 In React, the `aria-*` attributes are an exception to the rule that attributes must be camelCased. These attributes should be lower cased with a hyphen.
 </Intro>
 
-- [Usage](#usage)
-  - [Using the `aria-*` attributes](#using-the-aria-attributes)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

@@ -18,8 +18,7 @@ The `style` attribute can only be passed to the built-in DOM elements.
 
 </Note>
 
-- [Usage](#usage)
-  - [Using the the `style` attribute](#using-the-the-style-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

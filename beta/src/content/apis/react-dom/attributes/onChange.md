@@ -10,21 +10,17 @@ We intentionally do not use the existing browser behavior because `onChange` is 
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the the `onChange` property](#using-the-the-onChange-property)
+<InlineToc />
 
 ## Usage {/*usage*/}
 
 ### Using the `onChange` property {/*using-the-onChange-property*/}
 
-
-
-
 In the following examples, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field, and then the corresponding function is executed.
 
 <Recipes titleText="onChange property examples for various types of <input> elements" titleId="examples-basic">
 
-### `onChange` for input type `text` {/*onChange-for-input-type-text*/}
+#### `onChange` for input type `text` {/*onChange-for-input-type-text*/}
 
 <Sandpack>
 
@@ -50,7 +46,7 @@ export default function MyForm() {
 
 <Solution />
 
-### `onChange` for input type `radio` {/*onChange-for-input-type-radio*/}
+#### `onChange` for input type `radio` {/*onChange-for-input-type-radio*/}
 
 <Sandpack>
 
@@ -84,7 +80,7 @@ export default function MyForm() {
 
 <Solution />
 
-### `onChange` for input type `checkbox` {/*onChange-for-input-type-checkbox*/}
+#### `onChange` for input type `checkbox` {/*onChange-for-input-type-checkbox*/}
 
 <Sandpack>
 
@@ -120,7 +116,7 @@ export default function MyForm() {
 
 <Solution />
 
-### `onChange` for input type `date` {/*onChange-for-input-type-date*/}
+#### `onChange` for input type `date` {/*onChange-for-input-type-date*/}
 
 <Sandpack>
 
@@ -147,7 +143,7 @@ export default function MyForm() {
 
 <Solution />
 
-### `onChange` for input type `file` {/*onChange-for-input-type-file*/}
+#### `onChange` for input type `file` {/*onChange-for-input-type-file*/}
 
 <Sandpack>
 
@@ -180,7 +176,7 @@ In this example, a form field with the `<select>` element is being rendered. The
 
 <Recipes titleText="onChange property example for <select> elements" titleId="examples-select">
 
-### `onChange` for `<select>` element {/*onChange-for-select-element*/}
+#### `onChange` for `<select>` element {/*onChange-for-select-element*/}
 
 <Sandpack>
 

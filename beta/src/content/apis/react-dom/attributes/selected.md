@@ -8,8 +8,7 @@ When creating a drop down list using the `<select>` tag, to mark an `<option>` a
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the `selected` property in the `<select>` tag](#using-selected-property)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

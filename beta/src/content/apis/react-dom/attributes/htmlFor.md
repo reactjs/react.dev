@@ -14,8 +14,7 @@ Since `for` is a reserved word in JavaScript, `htmlFor` is used instead of the H
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the the `htmlFor` property](#using-the-the-htmlFor-property)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

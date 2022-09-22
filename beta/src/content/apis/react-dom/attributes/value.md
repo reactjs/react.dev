@@ -10,8 +10,7 @@ The `value` attribute is supported by the `<input>`, `<select>`, and `<textarea>
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the `value` attribute](#using-the-value-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

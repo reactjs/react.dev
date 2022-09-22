@@ -10,8 +10,7 @@ The `checked` attribute is supported by the `<input>` components of type `checkb
 
 </Intro>
 
-- [Usage](#usage)
-  - [Using the `checked` attribute](#using-the-checked-attribute)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

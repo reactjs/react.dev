@@ -14,8 +14,7 @@ In general, setting HTML from code is risky because it’s easy to inadvertently
 
 </Note>
 
-- [Usage](#usage)
-  - [Using the `dangerouslySetInnerHTML` property](#using-the-dangerouslysetinnerhtml-property)
+<InlineToc />
 
 ## Usage {/*usage*/}
 

@@ -241,7 +241,7 @@
         },
         {
           "title": "ReactDOM Attributes",
-          "path": "/apis/react-dom",
+          "path": "/apis/react-dom/attributes",
           "routes": [
             {
               "title": "aria",

@@ -289,8 +289,7 @@
             },
             {
               "title": "suppressHydrationWarning",
-              "path": "/apis/react-dom/attributes/suppressHydrationWarning",
-              "wip": true
+              "path": "/apis/react-dom/attributes/suppressHydrationWarning"
             },
             {
               "title": "value",

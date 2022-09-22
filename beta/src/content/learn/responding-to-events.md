@@ -126,7 +126,7 @@ In both cases, what you want to pass is a function:
 * `<button onClick={handleClick}>` passes the `handleClick` function.
 * `<button onClick={() => alert('...')}>` passes the `() => alert('...')` function.
 
-> Check out the [JavaScript Refresher](TODO:/learn/a-javascript-refresher#arrow-functions) for more on arrow functions.
+> [Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
 
 </Gotcha>
 

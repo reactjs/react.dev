@@ -31,7 +31,7 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](TODO:/learn/a-javascript-refresher#array-destructuring)
+  The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
 
 `useState` returns an array with exactly two items:
 
@@ -1083,7 +1083,7 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](TODO:/learn/a-javascript-refresher#array-destructuring)
+The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
 
 [See more examples above.](#examples-basic)
 

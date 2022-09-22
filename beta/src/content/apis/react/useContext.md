@@ -1281,7 +1281,7 @@ Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object wit
 
 In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/react/useCallback) and wrap the object creation into [`useMemo`](/apis/react/useMemo). This is a performance optimization:
 
-```js {1,6-9,11-14}
+```js {6,9,11,14,17}
 import { useCallback, useMemo } from 'react';
 
 function MyApp() {
@@ -1305,7 +1305,7 @@ function MyApp() {
 }
 ```
 
-The `login` function does not use any information from the render scope, so you can specify an empty array of dependencies. The `contextValue` object consists of `currentUser` and `login`, so it needs to list both as dependencies. As a result of this change, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` changes. Read more about [skipping re-renders with memoization.](TODO:/learn/skipping-unchanged-trees)
+As a result of this change, even if `MyApp` needs to re-render, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` has changed. Read more about [`useMemo`](/apis/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`.](/apis/react/useCallback#skipping-re-rendering-of-components)
 
 ---
 

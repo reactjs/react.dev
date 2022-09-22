@@ -188,7 +188,7 @@ const [index, setIndex] = useState(0);
 
 `index` is a state variable and `setIndex` is the setter function.
 
-> The `[` and `]` syntax here is called [array destructuring](TODO:/learn/a-javascript-refresher#array-destructuring) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
+> The `[` and `]` syntax here is called [array destructuring](https://javascript.info/destructuring-assignment) and it lets you read values from an array. The array returned by `useState` always has exactly two items.
 
 This is how they work together in `handleClick`:
 

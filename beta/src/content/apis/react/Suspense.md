@@ -38,7 +38,7 @@ Suppose that `Comments` takes longer to load than `Post`. Without a Suspense bou
 
 Because of the Suspense boundary, `Post` doesn't need to wait for `Comments`. React renders `LoadingSpinner` in its place. Once `Comments` finishes loading, React replaces `LoadingSpinner` with `Comments`.
 
-Suspense will never show unintentional "holes" in your content. For example, if `PhotoAlbums` has loaded but `Notes` have not, with the structure below, it will still show a `LoadingIndicator` instead of the entire `Grid`:
+Suspense will never show unintentional "holes" in your content. For example, if `PhotoAlbums` has loaded but `Notes` have not, with the structure below, it will still show a `LoadingSpinner` instead of the entire `Grid`:
 
 ```js {4-7}
 <>

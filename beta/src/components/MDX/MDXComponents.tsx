@@ -65,6 +65,9 @@ const LI = (p: JSX.IntrinsicElements['li']) => (
 const UL = (p: JSX.IntrinsicElements['ul']) => (
   <ul className="ml-6 my-3 list-disc" {...p} />
 );
+const IMG = (p: JSX.IntrinsicElements['img']) => (
+  <img decoding="async" {...p} />
+);
 
 const Divider = () => (
   <hr className="my-6 block border-b border-border dark:border-border-dark" />
@@ -204,11 +207,12 @@ function Illustration({
   return (
     <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
-        <img
+        <IMG
           src={src}
           alt={alt}
           style={{maxHeight: 300}}
           className="bg-white rounded-lg"
+          loading="lazy"
         />
         {caption ? (
           <figcaption className="text-center leading-tight mt-4">
@@ -240,7 +244,12 @@ function IllustrationBlock({
   const images = imageInfos.map((info, index) => (
     <figure key={index}>
       <div className="bg-white rounded-lg p-4 flex-1 flex xl:p-6 justify-center items-center my-4">
-        <img src={info.src} alt={info.alt} height={info.height} />
+        <IMG
+          src={info.src}
+          alt={info.alt}
+          height={info.height}
+          loading={index > 0 ? "lazy" : undefined}
+        />
       </div>
       {info.caption ? (
         <figcaption className="text-secondary dark:text-secondary-dark text-center leading-tight mt-4">
@@ -345,6 +354,7 @@ export const MDXComponents = {
   h2: H2,
   h3: H3,
   h4: H4,
+  img: IMG,
   inlineCode: InlineCode,
   hr: Divider,
   a: LinkWithTodo,

@@ -21,6 +21,8 @@ module.exports = {
   'border-dark': '#343A46', // gray-80
   'secondary-button': '#EBECF0', // gray-10
   'secondary-button-dark': '#404756', // gray-70
+  'text-link': '#07779c' /* Accessibility home page link color */,
+  'text-link-dark': '#2ABAEA',
 
   // Gray
   'gray-95': '#16181D',
@@ -83,6 +85,8 @@ module.exports = {
   // MISC
   'code-block': '#99a1b30f', // gray-30 @ 6%
   'gradient-blue': '#58C4DC', // Only used for the landing gradient for now.
+  'link-blue': '#07779c' /* Accessibility home page link color */,
+  'link-blue-dark': '#2ABAEA',
   github: {
     highlight: '#fffbdd',
   },

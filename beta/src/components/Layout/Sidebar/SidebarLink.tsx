@@ -71,7 +71,7 @@ export function SidebarLink({
             'dark:text-primary-dark text-primary': heading,
             'text-base text-secondary dark:text-secondary-dark':
               !selected && !heading,
-            'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
+            'text-base text-link-blue dark:text-link-blue-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:link-blue dark:hover:bg-highlight-dark dark:hover:link-blue-dark':
               selected,
             'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
               isPending,

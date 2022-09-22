@@ -1274,7 +1274,7 @@ When you find which dependency is breaking memoization, either find a way to rem
 
 ### I need to call `useMemo` for each list item in a loop, but it's not allowed {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
 
-You can't call `useMemo` in a loop:
+Suppose the `Chart` component is wrapped in [`memo`](/api/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useMemo` in a loop:
 
 ```js {5-11}
 function ReportList({ items }) {
@@ -1316,4 +1316,21 @@ function Report({ item }) {
     </figure>
   );
 }
+```
+
+Alternatively, you could remove `useMemo` and instead wrap `Report` itself in [`memo`.](/api/react/memo) If the `item` prop does not change, `Report` will skip re-rendering, so `Chart` will skip re-rendering too:
+
+```js {5,6,12}
+function ReportList({ items }) {
+  // ...
+}
+
+const Report = memo(function Report({ item }) {
+  const data = calculateReport(item);
+  return (
+    <figure>
+      <Chart data={data} />
+    </figure>
+  );
+});
 ```

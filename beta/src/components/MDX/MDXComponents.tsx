@@ -41,9 +41,9 @@ function CodeStep({children, step}: {children: any; step: number}) {
             step === 1,
           'bg-yellow-40 border-yellow-40 text-yellow-60 dark:text-yellow-30':
             step === 2,
-          'bg-green-40 border-green-40 text-green-60 dark:text-green-30':
-            step === 3,
           'bg-purple-40 border-purple-40 text-purple-60 dark:text-purple-30':
+            step === 3,
+          'bg-green-40 border-green-40 text-green-60 dark:text-green-30':
             step === 4,
         }
       )}>

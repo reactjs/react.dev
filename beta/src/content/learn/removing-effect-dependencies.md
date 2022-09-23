@@ -605,11 +605,11 @@ function ChatRoom({ roomId }) {
 
 ### Do you want to read a value without "reacting" to its changes? {/*do-you-want-to-read-a-value-without-reacting-to-its-changes*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 Suppose that you want to play a sound when the user receives a new message unless `isMuted` is `true`:
 

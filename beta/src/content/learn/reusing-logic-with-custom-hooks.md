@@ -837,11 +837,11 @@ Every time your `ChatRoom` component re-renders, it passes the latest `roomId` a
 
 ### Passing event handlers to custom Hooks {/*passing-event-handlers-to-custom-hooks*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 As you start using `useChatRoom` in more components, you might want to let different components customize its behavior. For example, currently, the logic for what to do when a message arrives is hardcoded inside the Hook:
 

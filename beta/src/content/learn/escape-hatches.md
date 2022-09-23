@@ -312,6 +312,12 @@ Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to
 
 ## Separating events from Effects {/*separating-events-from-effects*/}
 
+<Wip>
+
+This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
+
+</Wip>
+
 Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was on last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
 
 All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed after interaction:

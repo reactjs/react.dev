@@ -400,11 +400,11 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 ### Declaring an Event function {/*declaring-an-event-function*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 Use a special Hook called [`useEvent`](/apis/react/useEvent) to extract this non-reactive logic out of your Effect:
 
@@ -597,11 +597,11 @@ You can think of Event functions as being very similar to event handlers. The ma
 
 ### Reading latest props and state with Event functions {/*reading-latest-props-and-state-with-event-functions*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 Event functions let you fix many patterns where you might be tempted to suppress the dependency linter.
 
@@ -896,11 +896,11 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 
 ### Limitations of Event functions {/*limitations-of-event-functions*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 At the moment, Event functions are very limited in how you can use them:
 

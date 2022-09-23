@@ -324,7 +324,7 @@ All code inside Effects is *reactive.* It will run again if some reactive value 
 
 <Sandpack>
 
-```json package.json
+```json package.json hidden
 {
   "dependencies": {
     "react": "latest",

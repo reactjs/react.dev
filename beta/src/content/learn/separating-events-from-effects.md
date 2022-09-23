@@ -262,7 +262,7 @@ Play with this example and see if you can spot the problem with this user experi
 
 <Sandpack>
 
-```json package.json
+```json package.json hidden
 {
   "dependencies": {
     "react": "latest",

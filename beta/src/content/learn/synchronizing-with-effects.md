@@ -488,7 +488,7 @@ Let's try running this code:
 <Sandpack>
 
 ```js
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 export default function ChatRoom() {

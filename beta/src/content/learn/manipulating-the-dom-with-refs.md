@@ -1078,6 +1078,102 @@ img {
 
 </Sandpack>
 
+Alternatively, you can assign a ref to the list itself, and rely on the DOM API to highlight the selected kitty.
+
+<Sandpack>
+
+```js
+import { useRef, useState } from 'react';
+import { flushSync } from 'react-dom';
+
+export default function CatFriends() {
+  const listRef = useRef(null);
+  const [index, setIndex] = useState(0);
+
+  return (
+    <>
+      <nav>
+        <button onClick={() => {
+          const nextIndex = index < catList.length - 1 ? index + 1 : 0;
+          setIndex(nextIndex);
+          listRef.current.children.item(nextIndex).scrollIntoView({
+            behavior: "smooth",
+            block: "nearest",
+            inline: "center"
+          });
+        }}>
+          Next
+        </button>
+      </nav>
+      <div>
+        <ul ref={listRef}>
+          {catList.map((cat, i) => (
+            <li key={cat.id}>
+              <img
+                className={
+                  index === i ?
+                    'active'
+                    : ''
+                }
+                src={cat.imageUrl}
+                alt={'Cat #' + cat.id}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
+  );
+}
+
+const catList = [];
+for (let i = 0; i < 10; i++) {
+  catList.push({
+    id: i,
+    imageUrl: 'https://placekitten.com/250/200?image=' + i
+  });
+}
+
+```
+
+```css
+div {
+  width: 100%;
+  overflow: hidden;
+}
+
+nav {
+  text-align: center;
+}
+
+button {
+  margin: .25rem;
+}
+
+ul,
+li {
+  list-style: none;
+  white-space: nowrap;
+}
+
+li {
+  display: inline;
+  padding: 0.5rem;
+}
+
+img {
+  padding: 10px;
+  margin: -10px;
+  transition: background 0.2s linear;
+}
+
+.active {
+  background: rgba(0, 100, 150, 0.4);
+}
+```
+
+</Sandpack>
+
 </Solution>
 
 #### Focus the search field with separate components {/*focus-the-search-field-with-separate-components*/}

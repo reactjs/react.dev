@@ -1,2 +1,1 @@
-src/pages/docs/**/*.md
-src/pages/blog/**/*.md
+src/content/**/*.md

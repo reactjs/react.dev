@@ -13,7 +13,6 @@ import type {SandpackSetup} from '@codesandbox/sandpack-react';
 type SandpackProps = {
   children: React.ReactNode;
   autorun?: boolean;
-  setup?: SandpackSetup;
   showDevTools?: boolean;
 };
 
@@ -68,7 +67,7 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, setup, autorun = true, showDevTools = false} = props;
+  let {children, autorun = true, showDevTools = false} = props;
   const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
   const codeSnippets = React.Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
@@ -77,6 +76,13 @@ function SandpackRoot(props: SandpackProps) {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
     hidden: true,
   };
+
+  let setup;
+  if (files['/package.json']) {
+    setup = {
+      dependencies: JSON.parse(files['/package.json'].code).dependencies,
+    };
+  }
 
   return (
     <div className="sandpack sandpack--playground sandbox my-8">

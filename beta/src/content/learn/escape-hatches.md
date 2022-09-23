@@ -455,8 +455,8 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -471,7 +471,7 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -572,25 +572,6 @@ export function showNotification(message, theme) {
       color: theme === 'dark' ? 'white' : 'black',
     },
   }).showToast();
-}
-```
-
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
 }
 ```
 

@@ -1253,10 +1253,26 @@ Is there a line of code inside the Effect that should not be reactive? How can y
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect, useRef } from 'react';
+import { experimental_useEvent as useEvent } from 'react';
 import { FadeInAnimation } from './animation.js';
-import { useEvent } from './useEvent.js';
 
 function Welcome({ duration }) {
   const ref = useRef(null);
@@ -1351,25 +1367,6 @@ export class FadeInAnimation {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 label, button { display: block; margin-bottom: 20px; }
 html, body { min-height: 300px; }
@@ -1383,10 +1380,26 @@ Your Effect needs to read the latest value of `duration`, but you don't want it 
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { FadeInAnimation } from './animation.js';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 function Welcome({ duration }) {
   const ref = useRef(null);
@@ -1476,25 +1489,6 @@ export class FadeInAnimation {
     this.frameId = null;
     this.duration = 0;
   }
-}
-```
-
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
 }
 ```
 
@@ -1825,8 +1819,8 @@ Another of these functions only exists to pass some state to an imported API met
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1907,7 +1901,7 @@ export default function App() {
 
 ```js ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
   useEffect(() => {
@@ -2023,25 +2017,6 @@ export function showNotification(message, theme) {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 label, button { display: block; margin-bottom: 5px; }
 ```
@@ -2139,8 +2114,8 @@ As a result, the chat re-connects only when something meaningful (`roomId` or `i
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -2208,7 +2183,7 @@ export default function App() {
 
 ```js ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
@@ -2339,25 +2314,6 @@ export function showNotification(message, theme) {
       color: theme === 'dark' ? 'white' : 'black',
     },
   }).showToast();
-}
-```
-
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
 }
 ```
 

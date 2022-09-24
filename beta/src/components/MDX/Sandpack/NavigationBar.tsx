@@ -6,7 +6,6 @@ import {
   useRef,
   useState,
   useEffect,
-  // @ts-ignore
   experimental_useEvent as useEvent,
   Fragment,
 } from 'react';

@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
 import Breadcrumbs from 'components/Breadcrumbs';
 import Tag from 'components/Tag';
 import {RouteTag} from './Layout/useRouteMeta';

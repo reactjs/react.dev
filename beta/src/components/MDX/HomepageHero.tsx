@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
 import {Logo} from 'components/Logo';
 import YouWillLearnCard from 'components/MDX/YouWillLearnCard';
 

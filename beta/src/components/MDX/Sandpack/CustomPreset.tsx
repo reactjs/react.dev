@@ -1,7 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-import React from 'react';
+import {useRef, useState} from 'react';
 import {flushSync} from 'react-dom';
 import {
   useSandpack,
@@ -30,11 +30,11 @@ export function CustomPreset({
   providedFiles: Array<string>;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
-  const lineCountRef = React.useRef<{[key: string]: number}>({});
-  const containerRef = React.useRef<HTMLDivElement>(null);
+  const lineCountRef = useRef<{[key: string]: number}>({});
+  const containerRef = useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
   const {code} = useActiveCode();
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const {activeFile} = sandpack;
   if (!lineCountRef.current[activeFile]) {

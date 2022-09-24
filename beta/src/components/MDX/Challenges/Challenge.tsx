@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useState} from 'react';
 import cn from 'classnames';
 import {Button} from 'components/Button';
 import {ChallengeContents} from './Challenges';
@@ -25,8 +25,8 @@ export function Challenge({
   hasNextChallenge,
   handleClickNextChallenge,
 }: ChallengeProps) {
-  const [showHint, setShowHint] = React.useState(false);
-  const [showSolution, setShowSolution] = React.useState(false);
+  const [showHint, setShowHint] = useState(false);
+  const [showSolution, setShowSolution] = useState(false);
 
   const toggleHint = () => {
     if (showSolution && !showHint) {

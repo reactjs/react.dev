@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconCodeBlock = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconCodeBlock = memo<JSX.IntrinsicElements['svg']>(
   function IconCodeBlock({className}) {
     return (
       <svg

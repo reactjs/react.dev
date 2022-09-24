@@ -3,7 +3,7 @@
  */
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import * as React from 'react';
+import {useRef, useState, useEffect, useMemo} from 'react';
 import {
   useSandpack,
   LoadingOverlay,
@@ -28,9 +28,9 @@ type CustomPreviewProps = {
 };
 
 function useDebounced(value: any): any {
-  const ref = React.useRef<any>(null);
-  const [saved, setSaved] = React.useState(value);
-  React.useEffect(() => {
+  const ref = useRef<any>(null);
+  const [saved, setSaved] = useState(value);
+  useEffect(() => {
     clearTimeout(ref.current);
     ref.current = setTimeout(() => {
       setSaved(value);
@@ -46,10 +46,10 @@ export function Preview({
   lintErrors,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
-  const [isReady, setIsReady] = React.useState(false);
-  const [iframeComputedHeight, setComputedAutoHeight] = React.useState<
-    number | null
-  >(null);
+  const [isReady, setIsReady] = useState(false);
+  const [iframeComputedHeight, setComputedAutoHeight] = useState<number | null>(
+    null
+  );
 
   let {
     error: rawError,
@@ -70,7 +70,7 @@ export function Preview({
   }
 
   // Memoized because it's fed to debouncing.
-  const firstLintError = React.useMemo(() => {
+  const firstLintError = useMemo(() => {
     if (lintErrors.length === 0) {
       return null;
     } else {
@@ -95,8 +95,8 @@ export function Preview({
   // It changes too fast, causing flicker.
   const error = useDebounced(rawError);
 
-  const clientId = React.useRef<string>(generateRandomId());
-  const iframeRef = React.useRef<HTMLIFrameElement | null>(null);
+  const clientId = useRef<string>(generateRandomId());
+  const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   // SandpackPreview immediately registers the custom screens/components so the bundler does not render any of them
   // TODO: why are we doing this during render?
@@ -104,7 +104,7 @@ export function Preview({
   errorScreenRegisteredRef.current = true;
   loadingScreenRegisteredRef.current = true;
 
-  React.useEffect(function createBundler() {
+  useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
     registerBundler(iframeElement, clientId.current);
 
@@ -113,7 +113,7 @@ export function Preview({
     };
   }, []);
 
-  React.useEffect(
+  useEffect(
     function bundlerListener() {
       const unsubscribe = listen((message: any) => {
         if (message.type === 'resize') {

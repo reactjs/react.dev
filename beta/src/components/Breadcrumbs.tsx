@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {Fragment} from 'react';
 import {useRouteMeta} from 'components/Layout/useRouteMeta';
 import Link from 'next/link';
 
@@ -15,7 +15,7 @@ function Breadcrumbs() {
         (crumb, i) =>
           crumb.path && (
             <div className="flex mb-3 mt-0.5 items-center" key={i}>
-              <React.Fragment key={crumb.path}>
+              <Fragment key={crumb.path}>
                 <Link href={crumb.path}>
                   <a className="text-link dark:text-link-dark text-sm tracking-wide font-bold uppercase mr-1 hover:underline">
                     {crumb.title}
@@ -34,7 +34,7 @@ function Breadcrumbs() {
                     />
                   </svg>
                 </span>
-              </React.Fragment>
+              </Fragment>
             </div>
           )
       )}

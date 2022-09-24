@@ -6,7 +6,7 @@
  * Ported from gatsby-plugin-twitter
  * https://github.com/gatsbyjs/gatsby/tree/master/packages/gatsby-plugin-twitter
  */
-import * as React from 'react';
+import {useEffect} from 'react';
 
 const injectTwitterScript = function injectTwitterScript() {
   function addJS(jsCode: any) {
@@ -30,7 +30,7 @@ const embedClasses = [
 ].join(',');
 
 export function useTwitter() {
-  React.useEffect(() => {
+  useEffect(() => {
     if (document.querySelector(embedClasses) !== null) {
       if (!injectedTwitterScript) {
         injectTwitterScript();

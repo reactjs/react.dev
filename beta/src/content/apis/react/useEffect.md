@@ -22,7 +22,7 @@ useEffect(setup, dependencies)
 
 There are two kinds of logic in your React components. Code that only calculates something is called *pure.* For example, transforming some data into JSX is a [pure calculation.](https://en.wikipedia.org/wiki/Pure_function) The rest of your logic *does* something: for example, it may send a network request in response to a button click. That kind of logic is called a ["side effect".](https://en.wikipedia.org/wiki/Side_effect_(computer_science))
 
-Most of your side effects will be inside [event handlers](/learn/responding-to-events) like `onClick`. However, when a component needs to run some code *in response to being displayed* rather than to any particular interaction, you need to [declare an Effect with `useEffect`.](/learn/synchronizing-with-effects#how-to-write-an-effect) For example, you may want to connect to the network, some browser API, or a third-party library, while the component is on the page. These systems aren't controlled by React, so they are called *external.*
+Most of your side effects will be inside [event handlers](/learn/responding-to-events) like `onClick`. However, when a component needs to run some code *in response to being displayed* rather than to any particular interaction, you need to [declare an Effect.](/learn/synchronizing-with-effects#how-to-write-an-effect) For example, your component might need to stay connected to the network, some browser API, or a third-party library, while it is displayed on the page. These systems aren't controlled by React, so they are called *external.*
 
 To connect your component to some external system, call `useEffect` at the top level of your component:
 

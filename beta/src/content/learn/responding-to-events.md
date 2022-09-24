@@ -316,10 +316,6 @@ Notice how the `App` component does not need to know *what* `Toolbar` will do wi
 
 ## Event propagation {/*event-propagation*/}
 
-<!--
-// TODO illo
--->
-
 Event handlers will also catch events from any children your component might have. We say that an event "bubbles" or "propagates" up the tree: it starts with where the event happened, and then goes up the tree.
 
 This `<div>` contains two buttons. Both the `<div>` *and* each button have their own `onClick` handlers. Which handlers do you think will fire when you click a button?
@@ -419,10 +415,6 @@ When you click on a button:
 As a result of `e.stopPropagation()`, clicking on the buttons now only shows a single alert (from the `<button>`) rather than the two of them (from the `<button>` and the parent toolbar `<div>`). Clicking a button is not the same thing as clicking the surrounding toolbar, so stopping the propagation makes sense for this UI.
 
 <DeepDive title="Capture phase events">
-
-<!--
-// TODO Illo
--->
 
 In rare cases, you might need to catch all events on child elements, *even if they stopped propagation*. For example, maybe you want to log every click to analytics, regardless of the propagation logic. You can do this by adding `Capture` at the end of the event name:
 

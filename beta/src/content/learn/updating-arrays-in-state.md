@@ -460,8 +460,6 @@ Although `nextList` and `list` are two different arrays, **`nextList[0]` and `li
 
 Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
 
-<!-- TODOODLE -->
-
 **When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
 
 In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:

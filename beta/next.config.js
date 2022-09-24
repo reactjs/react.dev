@@ -3,7 +3,6 @@
  */
 
 const path = require('path');
-const {remarkPlugins} = require('./plugins/markdownToHtml');
 const redirects = require('./src/redirects.json');
 
 /**

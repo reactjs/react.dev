@@ -27,10 +27,6 @@ Areeb Malik, from Facebook, talks about his experience using React. "On paper, a
 
 [![](/images/blog/skills-matter.png)](https://skillsmatter.com/skillscasts/5429-going-big-with-react)
 
-<!--
-<iframe allowfullscreen="" data-progress="true" frameborder="0" height="390" id="vimeo-player" mozallowfullscreen="" src="//player.vimeo.com/video/100245392?api=1&amp;title=0" webkitallowfullscreen="" width="640"></iframe>
--->
-
 ## What is React? {/*what-is-react*/}
 
 [Craig McKeachie](http://www.funnyant.com/author/admin/) author of [JavaScript Framework Guide](http://www.funnyant.com/javascript-framework-guide/) wrote an excellent news named ["What is React.js? Another Template Library?](http://www.funnyant.com/reactjs-what-is-it/)

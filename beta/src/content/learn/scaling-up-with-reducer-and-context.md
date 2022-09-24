@@ -231,11 +231,7 @@ And `TaskList` passes the event handlers to `Task`:
 
 In a small example like this, this works well, but if you have tens or hundreds of components in the middle, passing down all state and functions can be quite frustrating!
 
-<!--(TODO: illustration of prop drilling)-->
-
 This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context.](/learn/passing-data-deeply-with-context) **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
-
-<!--(TODO: illustration of context)-->
 
 Here is how you can combine a reducer with context:
 

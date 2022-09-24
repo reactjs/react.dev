@@ -18,7 +18,7 @@ export function PackageImport({children}: PackageImportProps) {
     if (child.type?.mdxName === 'pre') {
       return (
         <CodeBlock
-          {...child.props.children.props}
+          {...child.props}
           isFromPackageImport
           key={i}
           noMargin={true}

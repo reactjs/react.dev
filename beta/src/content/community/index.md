@@ -16,7 +16,7 @@ Before participating in React's communities, [please read our Code of Conduct.](
 
 Stack Overflow is a popular forum to ask code-level questions or if you're stuck with a specific error. Read through the [existing questions](https://stackoverflow.com/questions/tagged/reactjs) tagged with **reactjs** or [ask your own](https://stackoverflow.com/questions/ask?tags=reactjs)!
 
-<!--
+{/*
 
 TODO: decide on the criteria for inclusion before uncommenting. (Change Popular Discussion Forums into heading while un-commenting)
 
@@ -31,7 +31,7 @@ Each community consists of many thousands of React users.
 * [Reactiflux online chat](https://discord.gg/reactiflux)
 * [Reddit's React community](https://www.reddit.com/r/reactjs/)
 
--->
+*/}
 
 ## News {/*news*/}
 

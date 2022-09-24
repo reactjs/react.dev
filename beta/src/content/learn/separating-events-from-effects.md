@@ -482,7 +482,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -813,7 +813,7 @@ export default function App() {
   useEffect(() => {
     window.addEventListener('pointermove', onMove);
     return () => window.removeEventListener('pointermove', onMove);
-  }, [onMove]); // TODO: Linter will allow [] in the future
+  }, []);
 
   return (
     <>
@@ -1172,7 +1172,7 @@ export default function Timer() {
     return () => {
       clearInterval(id);
     };
-  }, [onTick]); // TODO: Linter will allow [] in the future
+  }, []);
 
   return (
     <>
@@ -1342,7 +1342,7 @@ export default function Timer() {
     return () => {
       clearInterval(id);
     }
-  }, [delay, onTick]); // TODO: Linter will allow [delay] in the future
+  }, [delay]);
 
   return (
     <>
@@ -1441,7 +1441,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -1582,7 +1582,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -1725,7 +1725,7 @@ function ChatRoom({ roomId, theme }) {
         clearTimeout(notificationTimeoutId);
       }
     };
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }

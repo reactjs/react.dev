@@ -1414,7 +1414,7 @@ function Welcome({ duration }) {
     return () => {
       animation.stop();
     };
-  }, [onAppear]); // TODO: Linter will allow [] in the future
+  }, []);
 
   return (
     <h1
@@ -2209,7 +2209,7 @@ export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
     connection.on('message', (msg) => onReceiveMessage(msg));
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, isEncrypted, onReceiveMessage]); // TODO: Linter will allow [roomId, isEncrypted] in the future
+  }, [roomId, isEncrypted]);
 
   return <h1>Welcome to the {roomId} room!</h1>;
 }

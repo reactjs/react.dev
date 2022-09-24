@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconHamburger = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconHamburger = memo<JSX.IntrinsicElements['svg']>(
   function IconHamburger(props) {
     return (
       <svg
@@ -24,5 +24,3 @@ export const IconHamburger = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconHamburger.displayName = 'IconHamburger';

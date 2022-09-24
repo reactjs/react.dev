@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 
@@ -238,7 +239,7 @@ function IllustrationBlock({
   sequential: boolean;
   children: any;
 }) {
-  const imageInfos = React.Children.toArray(children).map(
+  const imageInfos = Children.toArray(children).map(
     (child: any) => child.props
   );
   const images = imageInfos.map((info, index) => (
@@ -308,8 +309,8 @@ function calculateNestedToc(toc: Toc): NestedTocRoot {
 }
 
 function InlineToc() {
-  const toc = React.useContext(TocContext);
-  const root = React.useMemo(() => calculateNestedToc(toc), [toc]);
+  const toc = useContext(TocContext);
+  const root = useMemo(() => calculateNestedToc(toc), [toc]);
   return <InlineTocItem items={root.children} />;
 }
 

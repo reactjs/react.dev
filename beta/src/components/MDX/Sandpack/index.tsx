@@ -2,10 +2,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {lazy, memo, Children, Suspense} from 'react';
 import {createFileMap} from './createFileMap';
 
-const SandpackRoot = React.lazy(() => import('./SandpackRoot'));
+const SandpackRoot = lazy(() => import('./SandpackRoot'));
 
 const SandpackGlimmer = ({code}: {code: string}) => (
   <div className="sandpack my-8">
@@ -45,8 +45,8 @@ const SandpackGlimmer = ({code}: {code: string}) => (
   </div>
 );
 
-export default React.memo(function SandpackWrapper(props: any): any {
-  const codeSnippet = createFileMap(React.Children.toArray(props.children));
+export default memo(function SandpackWrapper(props: any): any {
+  const codeSnippet = createFileMap(Children.toArray(props.children));
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
@@ -63,8 +63,8 @@ export default React.memo(function SandpackWrapper(props: any): any {
   }
 
   return (
-    <React.Suspense fallback={<SandpackGlimmer code={activeCode} />}>
+    <Suspense fallback={<SandpackGlimmer code={activeCode} />}>
       <SandpackRoot {...props} />
-    </React.Suspense>
+    </Suspense>
   );
 });

@@ -4,6 +4,7 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import {useRef, useEffect} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
@@ -35,9 +36,9 @@ export function SidebarLink({
   hideArrow,
   isPending,
 }: SidebarLinkProps) {
-  const ref = React.useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLAnchorElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (selected && ref && ref.current) {
       // @ts-ignore
       if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {

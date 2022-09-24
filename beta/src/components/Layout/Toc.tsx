@@ -3,7 +3,6 @@
  */
 
 import cx from 'classnames';
-import * as React from 'react';
 import {useTocHighlight} from './useTocHighlight';
 import type {Toc} from '../MDX/TocContext';
 

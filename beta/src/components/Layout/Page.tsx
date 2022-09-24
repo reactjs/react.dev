@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {Suspense} from 'react';
 import * as React from 'react';
 import {useRouter} from 'next/router';
 import {Nav} from './Nav';
@@ -41,7 +42,7 @@ export function Page({children, toc}: PageProps) {
             <Nav />
           </div>
           {/* No fallback UI so need to be careful not to suspend directly inside. */}
-          <React.Suspense fallback={null}>
+          <Suspense fallback={null}>
             <main className="min-w-0">
               <div className="lg:hidden h-16 mb-2" />
               <article className="break-words" key={asPath}>
@@ -49,7 +50,7 @@ export function Page({children, toc}: PageProps) {
               </article>
               <Footer />
             </main>
-          </React.Suspense>
+          </Suspense>
           <div className="hidden lg:max-w-xs 2xl:block">
             {toc.length > 0 && <Toc headings={toc} key={asPath} />}
           </div>

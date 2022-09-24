@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 import cn from 'classnames';
-import * as React from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
@@ -89,10 +89,10 @@ const MAX_MESSAGE_COUNT = 100;
 
 export const SandpackConsole = ({visible}: {visible: boolean}) => {
   const {listen} = useSandpack();
-  const [logs, setLogs] = React.useState<ConsoleData>([]);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [logs, setLogs] = useState<ConsoleData>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let isActive = true;
     const unsubscribe = listen((message) => {
       if (!isActive) {
@@ -140,9 +140,9 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
     };
   }, [listen]);
 
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (wrapperRef.current) {
       wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
     }

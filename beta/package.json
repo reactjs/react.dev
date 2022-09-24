@@ -37,13 +37,14 @@
     "parse-numeric-range": "^1.2.0",
     "react": "0.0.0-experimental-cb5084d1c-20220924",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
-    "react-dom": "0.0.0-experimental-cb5084d1c-20220924"
+    "react-dom": "0.0.0-experimental-cb5084d1c-20220924",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
-    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/mdx": "^2.1.3",
     "@types/body-scroll-lock": "^2.6.1",
     "@types/classnames": "^2.2.10",
     "@types/debounce": "^1.2.1",

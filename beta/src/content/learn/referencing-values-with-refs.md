@@ -33,7 +33,6 @@ const ref = useRef(0);
 
 `useRef` returns an object like this:
 
-<!-- prettier-ignore -->
 ```js
 { 
   current: 0 // The value you passed to useRef

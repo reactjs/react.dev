@@ -41,14 +41,6 @@ module.exports = ({
         if (tail && tail.type === 'emphasis') {
           // Use custom ID instead.
           id = toString(tail);
-          // Until we're on MDX 2, we need to "cut off" the comment syntax.
-          tail = children[children.length - 3];
-          if (tail && tail.type === 'text' && tail.value.endsWith('{/')) {
-            // Remove the emphasis and trailing `/}`
-            children.splice(children.length - 2, 2);
-            // Remove the `{/`
-            tail.value = tail.value.replace(/[ \t]*\{\/$/, '');
-          }
         }
       }
 

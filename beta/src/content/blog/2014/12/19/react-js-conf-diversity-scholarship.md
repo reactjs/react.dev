@@ -16,7 +16,7 @@ Beginning today, those studying or working in computer science or a related fiel
 At Facebook, we believe that anyone anywhere can make a positive impact by developing products to make the world more open and connected to the people and things they care about. Given the current realities of the tech industry and the lack of representation of communities we seek to serve, applicants currently under-represented in Computer Science and related fields are strongly encouraged to apply.
 Facebook will make determinations on scholarship recipients in its sole discretion. Facebook complies with all equal opportunity laws.
 
-To apply for the scholarship, please visit the Application Page: <https://www.surveymonkey.com/s/XVJGK6R>
+To apply for the scholarship, please visit the Application Page: https://www.surveymonkey.com/s/XVJGK6R
 
 ## Award Includes {/*award-includes*/}
 

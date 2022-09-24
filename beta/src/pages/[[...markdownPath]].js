@@ -55,7 +55,7 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 3;
+const DISK_CACHE_BREAKER = 4;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Put MDX output into JSON for client.
@@ -121,9 +121,22 @@ export async function getStaticProps(context) {
 
   // Turn the MDX we just read into some JS we can execute.
   const {remarkPlugins} = require('../../plugins/markdownToHtml');
-  const compileMdx = require('@mdx-js/mdx');
+  const {compile: compileMdx} = await import('@mdx-js/mdx');
+  const visit = (await import('unist-util-visit')).default;
   const jsxCode = await compileMdx(mdxWithFakeImports, {
-    remarkPlugins,
+    remarkPlugins: [...remarkPlugins, (await import('remark-gfm')).default],
+    rehypePlugins: [
+      // Support stuff like ```js App.js {1-5} active by passing it through.
+      function rehypeMetaAsAttributes() {
+        return (tree) => {
+          visit(tree, 'element', (node) => {
+            if (node.tagName === 'code' && node.data && node.data.meta) {
+              node.properties.meta = node.data.meta;
+            }
+          });
+        };
+      },
+    ],
   });
   const {transform} = require('@babel/core');
   const jsCode = await transform(jsxCode, {
@@ -133,15 +146,20 @@ export async function getStaticProps(context) {
 
   // Prepare environment for MDX.
   let fakeExports = {};
-  // For each fake MDX import, give back the string component name.
-  // It will get serialized later.
-  const fakeRequire = (key) => key;
-  const evalJSCode = new Function('require', 'exports', 'mdx', jsCode);
-  const createElement = require('react').createElement;
+  const fakeRequire = (name) => {
+    if (name === 'react/jsx-runtime') {
+      return require('react/jsx-runtime');
+    } else {
+      // For each fake MDX import, give back the string component name.
+      // It will get serialized later.
+      return name;
+    }
+  };
+  const evalJSCode = new Function('require', 'exports', jsCode);
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // THIS IS A BUILD-TIME EVAL. NEVER DO THIS WITH UNTRUSTED MDX (LIKE FROM CMS)!!!
   // In this case it's okay because anyone who can edit our MDX can also edit this file.
-  evalJSCode(fakeRequire, fakeExports, createElement);
+  evalJSCode(fakeRequire, fakeExports);
   // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   const reactTree = fakeExports.default({});
 

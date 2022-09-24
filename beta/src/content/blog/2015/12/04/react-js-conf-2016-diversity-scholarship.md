@@ -23,7 +23,7 @@ React opens a world of new possibilities such as server-side rendering, real-tim
 
 At Facebook, we believe that anyone anywhere can make a positive impact by developing products to make the world more open and connected to the people and things they care about. Given the current realities of the tech industry and the lack of representation of communities we seek to serve, applicants currently under-represented in Computer Science and related fields are strongly encouraged to apply. Facebook will make determinations on scholarship recipients in its sole discretion. Facebook complies with all equal opportunity laws.
 
-To apply for the scholarship, please visit the application page: **<http://goo.gl/forms/PEmKj8oUp4>**
+To apply for the scholarship, please visit the application page: **http://goo.gl/forms/PEmKj8oUp4**
 
 ## Award Includes {/*award-includes*/}
 

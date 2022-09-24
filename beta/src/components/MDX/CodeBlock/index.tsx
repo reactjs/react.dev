@@ -1,15 +1,21 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
+
+import * as React from 'react';
 import cn from 'classnames';
 import {lazy, memo, Suspense} from 'react';
 const CodeBlock = lazy(() => import('./CodeBlock'));
 
 export default memo(function CodeBlockWrapper(props: {
+  children: React.ReactNode & {
+    props: {
+      className: string;
+      children: string;
+      meta?: string;
+    };
+  };
   isFromPackageImport: boolean;
-  children: string;
-  className?: string;
-  metastring: string;
   noMargin?: boolean;
   noMarkers?: boolean;
 }): any {

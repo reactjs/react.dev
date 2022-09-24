@@ -4,9 +4,10 @@
 
 import {
   useRef,
+  useInsertionEffect,
+  useCallback,
   useState,
   useEffect,
-  experimental_useEvent as useEvent,
   Fragment,
 } from 'react';
 import cn from 'classnames';
@@ -20,6 +21,19 @@ import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
+
+// TODO: Replace with real useEvent.
+export function useEvent(fn: any): any {
+  const ref = useRef(null);
+  useInsertionEffect(() => {
+    ref.current = fn;
+  }, [fn]);
+  return useCallback((...args: any) => {
+    const f = ref.current!;
+    // @ts-ignore
+    return f(...args);
+  }, []);
+}
 
 const getFileName = (filePath: string): string => {
   const lastIndexOfSlash = filePath.lastIndexOf('/');

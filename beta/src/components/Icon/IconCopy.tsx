@@ -30,5 +30,3 @@ export const IconCopy = memo<JSX.IntrinsicElements['svg']>(function IconCopy({
     </svg>
   );
 });
-
-IconCopy.displayName = 'IconCopy';

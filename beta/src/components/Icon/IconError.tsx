@@ -20,5 +20,3 @@ export const IconError = memo<JSX.IntrinsicElements['svg']>(function IconError({
     </svg>
   );
 });
-
-IconError.displayName = 'IconError';

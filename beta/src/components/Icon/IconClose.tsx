@@ -24,5 +24,3 @@ export const IconClose = memo<JSX.IntrinsicElements['svg']>(function IconClose(
     </svg>
   );
 });
-
-IconClose.displayName = 'IconClose';

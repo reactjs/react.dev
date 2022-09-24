@@ -16,6 +16,4 @@ function Intro({children}: IntroProps) {
   );
 }
 
-Intro.displayName = 'Intro';
-
 export default Intro;

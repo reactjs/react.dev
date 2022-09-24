@@ -89,5 +89,3 @@ function FooterLink({
     </NextLink>
   );
 }
-
-DocsPageFooter.displayName = 'DocsPageFooter';

@@ -22,5 +22,3 @@ export const IconHint = memo<JSX.IntrinsicElements['svg']>(function IconHint({
     </svg>
   );
 });
-
-IconHint.displayName = 'IconHint';

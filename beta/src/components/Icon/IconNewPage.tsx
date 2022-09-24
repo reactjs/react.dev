@@ -26,5 +26,3 @@ export const IconNewPage = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconNewPage.displayName = 'IconNewPage';

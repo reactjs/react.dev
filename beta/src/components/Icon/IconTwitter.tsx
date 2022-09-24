@@ -20,5 +20,3 @@ export const IconTwitter = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconTwitter.displayName = 'IconTwitter';

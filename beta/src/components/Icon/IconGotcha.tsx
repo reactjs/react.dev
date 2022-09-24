@@ -22,5 +22,3 @@ export const IconGotcha = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconGotcha.displayName = 'IconGotcha';

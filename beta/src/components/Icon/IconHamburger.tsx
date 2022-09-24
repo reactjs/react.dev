@@ -24,5 +24,3 @@ export const IconHamburger = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconHamburger.displayName = 'IconHamburger';

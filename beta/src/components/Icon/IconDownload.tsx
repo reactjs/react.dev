@@ -26,5 +26,3 @@ export const IconDownload = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconDownload.displayName = 'IconDownload';

@@ -22,5 +22,3 @@ export const IconNote = memo<JSX.IntrinsicElements['svg']>(function IconNote({
     </svg>
   );
 });
-
-IconNote.displayName = 'IconNote';

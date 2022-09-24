@@ -14,5 +14,3 @@ export function ExternalLink({
     </a>
   );
 }
-
-ExternalLink.displayName = 'ExternalLink';

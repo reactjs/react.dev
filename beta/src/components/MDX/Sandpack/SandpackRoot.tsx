@@ -110,6 +110,4 @@ function SandpackRoot(props: SandpackProps) {
   );
 }
 
-SandpackRoot.displayName = 'Sandpack';
-
 export default SandpackRoot;

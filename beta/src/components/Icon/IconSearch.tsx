@@ -20,5 +20,3 @@ export const IconSearch = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconSearch.displayName = 'IconSearch';

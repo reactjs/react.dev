@@ -22,5 +22,3 @@ export const IconCodeBlock = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconCodeBlock.displayName = 'IconCodeBlock';

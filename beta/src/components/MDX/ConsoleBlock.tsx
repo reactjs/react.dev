@@ -28,7 +28,6 @@ const Box = ({
 }) => (
   <div className={className} style={{width, height, ...customStyles}}></div>
 );
-Box.displayName = 'Box';
 
 function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   let message: React.ReactNode | null;

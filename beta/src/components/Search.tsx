@@ -193,5 +193,3 @@ export function Search({
     </>
   );
 }
-
-Search.displayName = 'Search';

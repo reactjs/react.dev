@@ -25,6 +25,4 @@ function InlineCode({
   );
 }
 
-InlineCode.displayName = 'InlineCode';
-
 export default InlineCode;

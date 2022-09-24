@@ -22,5 +22,3 @@ export const IconTerminal = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconTerminal.displayName = 'IconTerminal';

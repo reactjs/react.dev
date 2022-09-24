@@ -22,5 +22,3 @@ export const IconDeepDive = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconDeepDive.displayName = 'IconDeepDive';

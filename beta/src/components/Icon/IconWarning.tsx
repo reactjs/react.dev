@@ -24,5 +24,3 @@ export const IconWarning = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconWarning.displayName = 'IconWarning';

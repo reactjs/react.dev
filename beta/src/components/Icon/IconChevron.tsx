@@ -38,5 +38,3 @@ export const IconChevron = memo<
     </svg>
   );
 });
-
-IconChevron.displayName = 'IconChevron';

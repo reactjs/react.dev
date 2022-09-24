@@ -18,5 +18,3 @@ export const IconGitHub = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconGitHub.displayName = 'IconGitHub';

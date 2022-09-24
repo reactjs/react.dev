@@ -22,5 +22,3 @@ export const IconRestart = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconRestart.displayName = 'IconRestart';

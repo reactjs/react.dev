@@ -52,6 +52,4 @@ function Link({
   );
 }
 
-Link.displayName = 'Link';
-
 export default Link;

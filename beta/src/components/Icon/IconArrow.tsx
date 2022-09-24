@@ -26,5 +26,3 @@ export const IconArrow = memo<
     </svg>
   );
 });
-
-IconArrow.displayName = 'IconArrow';

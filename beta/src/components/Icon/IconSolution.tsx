@@ -22,5 +22,3 @@ export const IconSolution = memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconSolution.displayName = 'IconSolution';

@@ -25,5 +25,3 @@ export const IconRss = memo<JSX.IntrinsicElements['svg']>(function IconRss(
     </svg>
   );
 });
-
-IconRss.displayName = 'IconLogo';

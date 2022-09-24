@@ -489,7 +489,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }

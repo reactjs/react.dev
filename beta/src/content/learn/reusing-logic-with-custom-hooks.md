@@ -1002,7 +1002,7 @@ export function useChatRoom({ serverUrl, roomId, onReceiveMessage }) {
       onMessage(msg);
     });
     return () => connection.disconnect();
-  }, [roomId, serverUrl, onMessage]); // TODO: Linter will allow [roomId, serverUrl]
+  }, [roomId, serverUrl]);
 }
 ```
 
@@ -1673,7 +1673,7 @@ function useAnimationLoop(isRunning, drawFrame) {
 
     tick();
     return () => cancelAnimationFrame(frameId);
-  }, [isRunning, onFrame]); // TODO: Linter will allow [isRunning] in the future
+  }, [isRunning]);
 }
 ```
 
@@ -2306,7 +2306,7 @@ export function useInterval(callback, delay) {
   useEffect(() => {
     const id = setInterval(onTick, delay);
     return () => clearInterval(id);
-  }, [delay, onTick]); // TODO: Linter will allow [delay] in the future
+  }, [delay]);
 }
 ```
 

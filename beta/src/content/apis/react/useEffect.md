@@ -4,7 +4,7 @@ title: useEffect
 
 <Intro>
 
-`useEffect` is a React Hook that lets you synchronize a component with some external system.
+`useEffect` is a React Hook that lets you [synchronize a component with an external system.](/learn/synchronizing-with-effects)
 
 ```js
 useEffect(setup, dependencies)
@@ -20,9 +20,13 @@ useEffect(setup, dependencies)
 
 ### Connecting to an external system {/*connecting-to-an-external-system*/}
 
+There are two kinds of logic in your React components. Code that only calculates something is called *pure.* For example, transforming some data into JSX is a [pure calculation.](https://en.wikipedia.org/wiki/Pure_function) The rest of your logic *does* something: for example, it may send a network request in response to a button click. That kind of logic is called a ["side effect".](https://en.wikipedia.org/wiki/Side_effect_(computer_science))
+
+Most of your side effects will be inside [event handlers](/learn/responding-to-events) like `onClick`. However, when a component needs to run some code *in response to being displayed* rather than to any particular interaction, you need to [declare an Effect with `useEffect`.](/learn/synchronizing-with-effects#how-to-write-an-effect) For example, you may want to connect to the network, some browser API, or a third-party library, while the component is on the page. These systems aren't controlled by React, so they are called *external.*
+
 To connect your component to some external system, call `useEffect` at the top level of your component:
 
-```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [2, 10, "connection.disconnect();"], [3, 12, "[serverUrl, roomId]"]]
+```js [[1, 8, "const connection = createConnection(serverUrl, roomId);"], [1, 9, "connection.connect();"], [2, 11, "connection.disconnect();"], [3, 13, "[serverUrl, roomId]"]]
 import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
@@ -31,6 +35,7 @@ function ChatRoom({ roomId }) {
 
   useEffect(() => {
   	const connection = createConnection(serverUrl, roomId);
+    connection.connect();
   	return () => {
       connection.disconnect();
   	};
@@ -57,7 +62,7 @@ You need to pass two arguments to `useEffect`:
 
 When the `ChatRoom` component above gets added to the page, it will connect to the chat room with the initial `serverUrl` and `roomId`. If either `serverUrl` or `roomId` change as a result of a re-render (say, if the user picks a different chat room in a dropdown), your Effect will *disconnect from the previous room, and connect to the next one.* When the `ChatRoom` component is finally removed from the page, your Effect will disconnect one last time.
 
-**To help you find bugs, in development React runs <CodeStep step={1}>setup</CodeStep> and <CodeStep step={2}>cleanup</CodeStep> one extra time before the actual <CodeStep step={1}>setup</CodeStep>.** This is a stress-test that verifies your Effect's logic is implemented correctly. If this causes visible issues, you need to implement the cleanup function. The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn’t be able to distinguish between the Effect running once (as in production) and a *setup* → *cleanup* → *setup* sequence (as in development). [Read how to fix Effects firing twice.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
+**To help you find bugs, in development React runs <CodeStep step={1}>setup</CodeStep> and <CodeStep step={2}>cleanup</CodeStep> one extra time before the actual <CodeStep step={1}>setup</CodeStep>.** This is a stress-test that verifies your Effect's logic is implemented correctly. If this causes visible issues, your cleanup function is missing some logic. The cleanup function should stop or undo whatever the setup function was doing. The rule of thumb is that the user shouldn't be able to distinguish between the setup being called once (as in production) and a *setup* → *cleanup* → *setup* sequence (as in development). [See common solutions.](/learn/synchronizing-with-effects#how-to-handle-the-effect-firing-twice-in-development)
 
 **Try to [write every Effect as an independent process](/learn/lifecycle-of-reactive-effects#each-effect-represents-a-separate-synchronization-process) and [only think about a single setup/cleanup cycle at a time.](/learn/lifecycle-of-reactive-effects#thinking-from-the-effects-perspective)** It shouldn't matter whether your component is mounting, updating, or unmounting. When your cleanup logic correctly "mirrors" the setup logic, your Effect will be resilient to running setup and cleanup as often as needed.
 

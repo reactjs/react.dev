@@ -58,13 +58,11 @@ function reviveNodeOnClient(key, val) {
 const DISK_CACHE_BREAKER = 4;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+import {prepareMDX, PREPARE_MDX_CACHE_BREAKER} from '../utils/prepareMDX';
+
 // Put MDX output into JSON for client.
 export async function getStaticProps(context) {
   const fs = require('fs');
-  const {
-    prepareMDX,
-    PREPARE_MDX_CACHE_BREAKER,
-  } = require('../utils/prepareMDX');
   const rootDir = process.cwd() + '/src/content/';
   const mdxComponentNames = Object.keys(MDXComponents);
 

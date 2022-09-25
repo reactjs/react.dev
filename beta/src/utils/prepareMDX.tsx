@@ -2,12 +2,162 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import * as React from 'react';
+import {Children, isValidElement, cloneElement} from 'react';
 import cn from 'classnames';
 import {highlightTree} from '@codemirror/highlight';
 import {javascript} from '@codemirror/lang-javascript';
 import {HighlightStyle, tags} from '@codemirror/highlight';
 import rangeParser from 'parse-numeric-range';
-import {CustomTheme} from '../Sandpack/Themes';
+import {CustomTheme} from 'components/MDX/Sandpack/Themes';
+
+if (typeof window !== 'undefined') {
+  document.body.innerHTML = '';
+  throw Error('This should never run on the client.');
+}
+
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+export const PREPARE_MDX_CACHE_BREAKER = 3;
+// !!! IMPORTANT !!! Bump this if you change any logic.
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+export function prepareMDX(rawChildren: any): {
+  toc: Array<{
+    url: string;
+    text: string;
+    depth: number;
+  }>;
+  children: any;
+} {
+  const toc = getTableOfContents(rawChildren);
+  const children = processAndWrapInMaxWidthContainers(rawChildren);
+  return {toc, children};
+}
+
+function processAndWrapInMaxWidthContainers(children: any): any {
+  // Auto-wrap everything except a few types into
+  // <MaxWidth> wrappers. Keep reusing the same
+  // wrapper as long as we can until we meet
+  // a full-width section which interrupts it.
+  let fullWidthTypes = [
+    'Sandpack',
+    'FullWidth',
+    'Illustration',
+    'IllustrationBlock',
+    'Challenges',
+    'Recipes',
+  ];
+  let wrapQueue: any[] = [];
+  let finalChildren: any[] = [];
+  function flushWrapper(key: number | string) {
+    if (wrapQueue.length > 0) {
+      const Wrapper = 'MaxWidth';
+      // @ts-ignore
+      finalChildren.push(<Wrapper key={key}>{wrapQueue}</Wrapper>);
+      wrapQueue = [];
+    }
+  }
+  function handleChild(child: any, key: number | string) {
+    if (child == null) {
+      return;
+    }
+    if (typeof child !== 'object') {
+      wrapQueue.push(child);
+      return;
+    }
+    if (fullWidthTypes.includes((child as any).type)) {
+      flushWrapper(key);
+      finalChildren.push(highlightCodeBlocksRecursively(child, []));
+    } else {
+      wrapQueue.push(highlightCodeBlocksRecursively(child, []));
+    }
+  }
+  Children.forEach(children, handleChild);
+  flushWrapper('last');
+  return finalChildren;
+}
+
+function highlightCodeBlocksRecursively(
+  child: any,
+  parentPath: Array<string>
+): any {
+  if (!isValidElement(child)) {
+    return child;
+  }
+  const props: any = child.props;
+  const newParentPath = [...parentPath, child.type as string];
+  const overrideProps: any = {
+    children: Array.isArray(props.children)
+      ? Children.map(props.children, (grandchild: any) =>
+          highlightCodeBlocksRecursively(grandchild, newParentPath)
+        )
+      : highlightCodeBlocksRecursively(props.children, newParentPath),
+  };
+  if (
+    child.type === 'code' &&
+    // @ts-ignore
+    parentPath.at(-1) === 'pre' && // Don't highlight inline text
+    // @ts-ignore
+    parentPath.at(-2) !== 'Sandpack' // Interactive snippets highlight on the client
+  ) {
+    overrideProps.highlightedCode = prepareCodeBlockChildren(
+      props.children,
+      props.meta
+    );
+  }
+  return cloneElement(child, overrideProps);
+}
+
+// --------------------------------------------------------
+// TOC
+// --------------------------------------------------------
+
+function getTableOfContents(children: any): Array<{
+  url: string;
+  text: string;
+  depth: number;
+}> {
+  const anchors = Children.toArray(children)
+    .filter((child: any) => {
+      if (child.type) {
+        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(child.type);
+      }
+      return false;
+    })
+    .map((child: any) => {
+      if (child.type === 'Challenges') {
+        return {
+          url: '#challenges',
+          depth: 2,
+          text: 'Challenges',
+        };
+      }
+      if (child.type === 'Recap') {
+        return {
+          url: '#recap',
+          depth: 2,
+          text: 'Recap',
+        };
+      }
+      return {
+        url: '#' + child.props.id,
+        depth: (child.type && parseInt(child.type.replace('h', ''), 0)) ?? 0,
+        text: child.props.children,
+      };
+    });
+  if (anchors.length > 0) {
+    anchors.unshift({
+      url: '#',
+      text: 'Overview',
+      depth: 2,
+    });
+  }
+  return anchors;
+}
+
+// --------------------------------------------------------
+// CodeBlock
+// --------------------------------------------------------
 
 interface InlineHiglight {
   step: number;
@@ -16,23 +166,11 @@ interface InlineHiglight {
   endColumn: number;
 }
 
-const CodeBlock = function CodeBlock({
-  children: {
-    props: {className = 'language-js', children: code = '', meta},
-  },
-  noMargin,
-}: {
-  children: React.ReactNode & {
-    props: {
-      className: string;
-      children?: string;
-      meta?: string;
-    };
-  };
-  className?: string;
-  noMargin?: boolean;
-}) {
-  code = code.trimEnd();
+function prepareCodeBlockChildren(
+  rawChildren: string = '',
+  meta: string
+): React.ReactNode {
+  const code = rawChildren.trimEnd();
   const tree = language.language.parser.parse(code);
   let tokenStarts = new Map();
   let tokenEnds = new Map();
@@ -165,28 +303,8 @@ const CodeBlock = function CodeBlock({
       {lineOutput}
     </div>
   );
-
-  return (
-    <div
-      className={cn(
-        'sandpack sandpack--codeblock',
-        'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
-        !noMargin && 'my-8'
-      )}>
-      <div className="sp-wrapper">
-        <div className="sp-stack">
-          <div className="sp-code-editor">
-            <pre className="sp-cm sp-pristine sp-javascript flex align-start">
-              <code className="sp-pre-placeholder grow-[2]">{finalOutput}</code>
-            </pre>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-export default CodeBlock;
+  return finalOutput;
+}
 
 const language = javascript({jsx: true, typescript: false});
 

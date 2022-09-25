@@ -17,7 +17,7 @@ if (typeof window !== 'undefined') {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export const PREPARE_MDX_CACHE_BREAKER = 3;
+export const PREPARE_MDX_CACHE_BREAKER = 4;
 // !!! IMPORTANT !!! Bump this if you change any logic.
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -95,10 +95,8 @@ function highlightCodeBlocksRecursively(
   };
   if (
     child.type === 'code' &&
-    // @ts-ignore
-    parentPath.at(-1) === 'pre' && // Don't highlight inline text
-    // @ts-ignore
-    parentPath.at(-2) !== 'Sandpack' // Interactive snippets highlight on the client
+    parentPath[parentPath.length - 1] === 'pre' && // Don't highlight inline text
+    parentPath[parentPath.length - 2] !== 'Sandpack' // Interactive snippets highlight on the client
   ) {
     overrideProps.highlightedCode = prepareCodeBlockChildren(
       props.children,

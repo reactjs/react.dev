@@ -17,7 +17,7 @@ if (typeof window !== 'undefined') {
 }
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-export const PREPARE_MDX_CACHE_BREAKER = 4;
+export const PREPARE_MDX_CACHE_BREAKER = 5;
 // !!! IMPORTANT !!! Bump this if you change any logic.
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -98,6 +98,7 @@ function highlightCodeBlocksRecursively(
     parentPath[parentPath.length - 1] === 'pre' && // Don't highlight inline text
     parentPath[parentPath.length - 2] !== 'Sandpack' // Interactive snippets highlight on the client
   ) {
+    overrideProps.children = undefined;
     overrideProps.highlightedCode = prepareCodeBlockChildren(
       props.children,
       props.meta
@@ -217,7 +218,7 @@ function prepareCodeBlockChildren(
   let buffer = '';
   let lineIndex = 0;
   let lineOutput = [];
-  let finalOutput = [];
+  let finalOutput: Array<React.ReactNode> = [];
   for (let i = 0; i < code.length; i++) {
     if (tokenEnds.has(i)) {
       if (!currentToken) {
@@ -277,16 +278,19 @@ function prepareCodeBlockChildren(
       }
     }
     if (code[i] === '\n') {
-      lineOutput.push(buffer);
+      lineOutput.push(buffer, <br />);
       buffer = '';
-      finalOutput.push(
-        <div
-          key={lineIndex}
-          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
-          {lineOutput}
-          <br />
-        </div>
-      );
+      if (highlightedLines.has(lineIndex)) {
+        finalOutput.push(
+          <div
+            key={lineIndex + 'l'}
+            className={highlightedLines.get(lineIndex)}>
+            {lineOutput}
+          </div>
+        );
+      } else {
+        finalOutput = [...finalOutput, ...lineOutput];
+      }
       lineOutput = [];
       lineIndex++;
     } else {
@@ -294,13 +298,15 @@ function prepareCodeBlockChildren(
     }
   }
   lineOutput.push(buffer);
-  finalOutput.push(
-    <div
-      key={lineIndex}
-      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
-      {lineOutput}
-    </div>
-  );
+  if (highlightedLines.has(lineIndex)) {
+    finalOutput.push(
+      <div key={lineIndex + 'l'} className={highlightedLines.get(lineIndex)}>
+        {lineOutput}
+      </div>
+    );
+  } else {
+    finalOutput = [...finalOutput, ...lineOutput];
+  }
   return finalOutput;
 }
 
@@ -371,7 +377,7 @@ function getLineDecorators(
   const linesToHighlight = getHighlightLines(meta);
   const highlightedLineConfig = linesToHighlight.map((line) => {
     return {
-      className: 'bg-github-highlight dark:bg-opacity-10',
+      className: 'hl-line',
       line,
     };
   });

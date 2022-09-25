@@ -173,14 +173,11 @@ const CodeBlock = function CodeBlock({
         'rounded-lg h-full w-full overflow-x-auto flex items-center bg-wash dark:bg-gray-95 shadow-lg',
         !noMargin && 'my-8'
       )}>
-      {/* These classes are fragile and depend on Sandpack. TODO: some better way. */}
-      <div className="sp-wrapper sp-121717251 sp-c-fVPbOs sp-c-fVPbOs-LrWkf-variant-dark">
-        <div className="sp-stack sp-c-kLppIp">
-          <div className="sp-code-editor sp-c-bNbSGz">
-            <pre className="sp-cm sp-pristine sp-javascript sp-c-jcgexo sp-c-jkvvao flex align-start">
-              <code className="sp-pre-placeholder sp-c-fWymNx grow-[2]">
-                {finalOutput}
-              </code>
+      <div className="sp-wrapper">
+        <div className="sp-stack">
+          <div className="sp-code-editor">
+            <pre className="sp-cm sp-pristine sp-javascript flex align-start">
+              <code className="sp-pre-placeholder grow-[2]">{finalOutput}</code>
             </pre>
           </div>
         </div>

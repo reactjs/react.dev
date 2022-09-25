@@ -155,6 +155,12 @@ html.dark .sp-wrapper {
 /**
  * Editor
  */
+.sandpack .sp-code-editor {
+  flex: 1 1;
+  position: relative;
+  overflow: auto;
+  background: var(--sp-colors-surface1);
+}
 .sandpack .sp-code-editor .cm-content,
 .sandpack .sp-code-editor .cm-gutters,
 .sandpack .sp-code-editor .cm-gutterElement {
@@ -255,6 +261,94 @@ html.dark .sandpack--playground .sp-overlay {
 .text-xl .sp-pre-placeholder {
   font-size: 16px !important;
   line-height: 24px !important;
+}
+
+/* We can't rely on Sandpack styles because our placeholders
+   no longer wait for Sandpack to load. */
+html {
+  --sp-space-1: 4px;
+  --sp-space-2: 8px;
+  --sp-space-3: 12px;
+  --sp-space-4: 16px;
+  --sp-space-5: 20px;
+  --sp-space-6: 24px;
+  --sp-space-7: 28px;
+  --sp-space-8: 32px;
+  --sp-space-9: 36px;
+  --sp-space-10: 40px;
+  --sp-space-11: 44px;
+  --sp-border-radius: 4px;
+  --sp-layout-height: 300px;
+  --sp-layout-headerHeight: 40px;
+  --sp-transitions-default: 150ms ease;
+  --sp-zIndices-base: 1;
+  --sp-zIndices-overlay: 2;
+  --sp-zIndices-top: 3;
+  --sp-colors-surface1: inherit;
+  --sp-colors-surface2: inherit;
+  --sp-colors-surface3: inherit;
+  --sp-colors-disabled: inherit;
+  --sp-colors-base: inherit;
+  --sp-colors-clickable: inherit;
+  --sp-colors-hover: inherit;
+  --sp-colors-accent: inherit;
+  --sp-colors-error: inherit;
+  --sp-colors-errorSurface: inherit;
+  --sp-colors-warning: inherit;
+  --sp-colors-warningSurface: inherit;
+  --sp-font-body: Optimistic Display, -apple-system, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+  --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, Liberation Mono, Courier New, monospace;
+  --sp-font-size: calc(1em - 20%);
+  --sp-font-lineHeight: 24px;
+  --sp-syntax-color-plain: inherit;
+  --sp-syntax-color-comment: inherit;
+  --sp-syntax-color-keyword: inherit;
+  --sp-syntax-color-tag: inherit;
+  --sp-syntax-color-punctuation: inherit;
+  --sp-syntax-color-definition: inherit;
+  --sp-syntax-color-property: inherit;
+  --sp-syntax-color-static: inherit;
+  --sp-syntax-color-string: inherit;
+}
+.sp-pre-placeholder .sp-syntax-string {
+  color: var(--sp-syntax-color-string);
+  font-style: var(--sp-syntax-fontStyle-string);
+}
+.sp-pre-placeholder .sp-syntax-plain {
+  color: var(--sp-syntax-color-plain);
+  font-style: var(--sp-syntax-fontStyle-plain);
+}
+.sp-pre-placeholder .sp-syntax-comment {
+  color: var(--sp-syntax-color-comment);
+  font-style: var(--sp-syntax-fontStyle-comment);
+}
+.sp-pre-placeholder .sp-syntax-keyword {
+  color: var(--sp-syntax-color-keyword);
+  font-style: var(--sp-syntax-fontStyle-keyword);
+}
+.sp-pre-placeholder .sp-syntax-definition {
+  color: var(--sp-syntax-color-definition);
+  font-style: var(--sp-syntax-fontStyle-definition);
+}
+.sp-pre-placeholder .sp-syntax-punctuation {
+  color: var(--sp-syntax-color-punctuation);
+  font-style: var(--sp-syntax-fontStyle-punctuation);
+}
+.sp-pre-placeholder .sp-syntax-property {
+  color: var(--sp-syntax-color-property);
+  font-style: var(--sp-syntax-fontStyle-property);
+}
+.sp-pre-placeholder .sp-syntax-tag {
+  color: var(--sp-syntax-color-tag);
+  font-style: var(--sp-syntax-fontStyle-tag);
+}
+.sp-pre-placeholder .sp-syntax-static {
+  color: var(--sp-syntax-color-static);
+  font-style: var(--sp-syntax-fontStyle-static);
 }
 
 /**

@@ -1,7 +1,7 @@
 /*
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
-import {useRef, useState} from 'react';
+import {memo, useRef, useState} from 'react';
 import {flushSync} from 'react-dom';
 import {
   useSandpack,
@@ -18,7 +18,7 @@ import {Preview} from './Preview';
 
 import {useSandpackLint} from './useSandpackLint';
 
-export function CustomPreset({
+export const CustomPreset = memo(function CustomPreset({
   showDevTools,
   onDevToolsLoad,
   devToolsLoaded,
@@ -30,19 +30,47 @@ export function CustomPreset({
   providedFiles: Array<string>;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
-  const lineCountRef = useRef<{[key: string]: number}>({});
-  const containerRef = useRef<HTMLDivElement>(null);
   const {sandpack} = useSandpack();
   const {code} = useActiveCode();
-  const [isExpanded, setIsExpanded] = useState(false);
-
   const {activeFile} = sandpack;
+  const lineCountRef = useRef<{[key: string]: number}>({});
   if (!lineCountRef.current[activeFile]) {
     lineCountRef.current[activeFile] = code.split('\n').length;
   }
   const lineCount = lineCountRef.current[activeFile];
-  const isExpandable = lineCount > 16 || isExpanded;
+  const isExpandable = lineCount > 16;
+  return (
+    <SandboxShell
+      showDevTools={showDevTools}
+      onDevToolsLoad={onDevToolsLoad}
+      devToolsLoaded={devToolsLoaded}
+      providedFiles={providedFiles}
+      lintErrors={lintErrors}
+      lintExtensions={lintExtensions}
+      isExpandable={isExpandable}
+    />
+  );
+});
 
+const SandboxShell = memo(function SandboxShell({
+  showDevTools,
+  onDevToolsLoad,
+  devToolsLoaded,
+  providedFiles,
+  lintErrors,
+  lintExtensions,
+  isExpandable,
+}: {
+  showDevTools: boolean;
+  devToolsLoaded: boolean;
+  onDevToolsLoad: () => void;
+  providedFiles: Array<string>;
+  lintErrors: Array<any>;
+  lintExtensions: Array<any>;
+  isExpandable: boolean;
+}) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [isExpanded, setIsExpanded] = useState(false);
   return (
     <>
       <div
@@ -52,22 +80,16 @@ export function CustomPreset({
         <SandpackLayout
           className={cn(
             showDevTools && devToolsLoaded && 'sp-layout-devtools',
-            !isExpandable && 'rounded-b-lg overflow-hidden',
+            !(isExpandable || isExpanded) && 'rounded-b-lg overflow-hidden',
             isExpanded && 'sp-layout-expanded'
           )}>
-          <SandpackCodeEditor
-            showLineNumbers
-            showInlineErrors
-            showTabs={false}
-            showRunButton={false}
-            extensions={lintExtensions}
-          />
+          <Editor lintExtensions={lintExtensions} />
           <Preview
             className="order-last xl:order-2"
             isExpanded={isExpanded}
             lintErrors={lintErrors}
           />
-          {isExpandable && (
+          {(isExpandable || isExpanded) && (
             <button
               translate="yes"
               className="sandpack-expand flex text-base justify-between dark:border-card-dark bg-wash dark:bg-card-dark items-center z-10 p-1 w-full order-2 xl:order-last border-b-1 relative top-0"
@@ -107,4 +129,20 @@ export function CustomPreset({
       </div>
     </>
   );
-}
+});
+
+const Editor = memo(function Editor({
+  lintExtensions,
+}: {
+  lintExtensions: Array<any>;
+}) {
+  return (
+    <SandpackCodeEditor
+      showLineNumbers
+      showInlineErrors
+      showTabs={false}
+      showRunButton={false}
+      extensions={lintExtensions}
+    />
+  );
+});

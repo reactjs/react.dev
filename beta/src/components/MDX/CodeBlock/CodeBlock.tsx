@@ -146,7 +146,7 @@ const CodeBlock = function CodeBlock({
       finalOutput.push(
         <div
           key={lineIndex}
-          className={'cm-line ' + highlightedLines.get(lineIndex)}>
+          className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
           {lineOutput}
           <br />
         </div>
@@ -161,7 +161,7 @@ const CodeBlock = function CodeBlock({
   finalOutput.push(
     <div
       key={lineIndex}
-      className={'cm-line ' + highlightedLines.get(lineIndex)}>
+      className={'cm-line ' + (highlightedLines.get(lineIndex) ?? '')}>
       {lineOutput}
     </div>
   );
@@ -177,8 +177,8 @@ const CodeBlock = function CodeBlock({
       <div className="sp-wrapper sp-121717251 sp-c-fVPbOs sp-c-fVPbOs-LrWkf-variant-dark">
         <div className="sp-stack sp-c-kLppIp">
           <div className="sp-code-editor sp-c-bNbSGz">
-            <pre className="sp-cm sp-pristine sp-javascript sp-c-jcgexo sp-c-jkvvao">
-              <code className="sp-pre-placeholder sp-c-fWymNx">
+            <pre className="sp-cm sp-pristine sp-javascript sp-c-jcgexo sp-c-jkvvao flex align-start">
+              <code className="sp-pre-placeholder sp-c-fWymNx grow-[2]">
                 {finalOutput}
               </code>
             </pre>

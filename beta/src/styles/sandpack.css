@@ -227,8 +227,9 @@ html.dark .sandpack--playground .sp-overlay {
   padding: 0;
 }
 
-.sandpack--codeblock .cm-content.cm-readonly .cm-line {
-  padding: 0 var(--sp-space-3);
+.sandpack--codeblock .cm-line {
+  margin-left: -20px;
+  padding-left: 20px;
 }
 
 /**
@@ -239,6 +240,7 @@ html.dark .sandpack--playground .sp-overlay {
   font-size: 13.6px;
   line-height: 24px;
   padding: 18px 0;
+  -webkit-font-smoothing: auto;
 }
 
 .sandpack--codeblock .sp-code-editor .sp-pre-placeholder {

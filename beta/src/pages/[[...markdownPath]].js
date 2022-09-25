@@ -55,7 +55,7 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 4;
+const DISK_CACHE_BREAKER = 5;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 import {prepareMDX, PREPARE_MDX_CACHE_BREAKER} from '../utils/prepareMDX';

@@ -29,7 +29,9 @@ const CodeBlock = function CodeBlock({
         <div className="sp-stack">
           <div className="sp-code-editor">
             <pre className="sp-cm sp-pristine sp-javascript flex align-start">
-              <code className="sp-pre-placeholder grow-[2]">{highlightedCode}</code>
+              <code className="sp-pre-placeholder grow-[2]">
+                {highlightedCode}
+              </code>
             </pre>
           </div>
         </div>

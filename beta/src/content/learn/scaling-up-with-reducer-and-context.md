@@ -696,7 +696,7 @@ export default function TaskList() {
 To update the task list, any component can read the `dispatch` function from context and call it:
 
 ```js {3,9-13}
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
   // ...
@@ -785,7 +785,7 @@ export const TasksDispatchContext = createContext(null);
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
   return (
@@ -1009,7 +1009,7 @@ const initialTasks = [
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
   return (
@@ -1228,7 +1228,7 @@ const initialTasks = [
 import { useState } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
   return (

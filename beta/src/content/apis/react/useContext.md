@@ -797,7 +797,7 @@ const initialTasks = [
 import { useState, useContext } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
   return (

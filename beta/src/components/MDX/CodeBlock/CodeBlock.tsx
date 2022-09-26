@@ -5,6 +5,8 @@
 import cn from 'classnames';
 import {highlightTree} from '@codemirror/highlight';
 import {javascript} from '@codemirror/lang-javascript';
+import {html} from '@codemirror/lang-html';
+import {css} from '@codemirror/lang-css';
 import {HighlightStyle, tags} from '@codemirror/highlight';
 import rangeParser from 'parse-numeric-range';
 import {CustomTheme} from '../Sandpack/Themes';
@@ -15,6 +17,10 @@ interface InlineHiglight {
   startColumn: number;
   endColumn: number;
 }
+
+const jsxLang = javascript({jsx: true, typescript: false});
+const cssLang = css();
+const htmlLang = html();
 
 const CodeBlock = function CodeBlock({
   children: {
@@ -33,7 +39,13 @@ const CodeBlock = function CodeBlock({
   noMargin?: boolean;
 }) {
   code = code.trimEnd();
-  const tree = language.language.parser.parse(code);
+  let lang = jsxLang;
+  if (className === 'language-css') {
+    lang = cssLang;
+  } else if (className === 'language-html') {
+    lang = htmlLang;
+  }
+  const tree = lang.language.parser.parse(code);
   let tokenStarts = new Map();
   let tokenEnds = new Map();
   const highlightTheme = getSyntaxHighlight(CustomTheme);
@@ -157,7 +169,21 @@ const CodeBlock = function CodeBlock({
       buffer += code[i];
     }
   }
-  lineOutput.push(buffer);
+  if (currentDecorator) {
+    lineOutput.push(
+      <span key={'end/d'} className={currentDecorator}>
+        {buffer}
+      </span>
+    );
+  } else if (currentToken) {
+    lineOutput.push(
+      <span key={'end/t'} className={currentToken}>
+        {buffer}
+      </span>
+    );
+  } else {
+    lineOutput.push(buffer);
+  }
   finalOutput.push(
     <div
       key={lineIndex}
@@ -187,8 +213,6 @@ const CodeBlock = function CodeBlock({
 };
 
 export default CodeBlock;
-
-const language = javascript({jsx: true, typescript: false});
 
 function classNameToken(name: string): string {
   return `sp-syntax-${name}`;

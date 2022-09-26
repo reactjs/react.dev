@@ -40,7 +40,7 @@ On the initial render, the <CodeStep step={3}>value</CodeStep> you'll get from `
 
 On every subsequent render, React will compare the <CodeStep step={2}>dependencies</CodeStep> with the dependencies you passed during the last render. If none of the dependencies have changed (compared with [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), `useMemo` will return the value you already calculated before. Otherwise, React will re-run your calculation and return the new value.
 
-In other words, `useCallback` caches a calculation result between re-renders until its dependencies change.
+In other words, `useMemo` caches a calculation result between re-renders until its dependencies change.
 
 **Let's walk through an example to see when this is useful.**
 

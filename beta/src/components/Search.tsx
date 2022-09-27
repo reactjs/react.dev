@@ -180,6 +180,14 @@ export function Search({
             transformItems={(items: any[]) => {
               return items.map((item) => {
                 const url = new URL(item.url);
+
+                Object.keys(item._highlightResult.hierarchy).forEach((key) => {
+                  item._highlightResult.hierarchy[key].value =
+                    item._highlightResult.hierarchy[key].value
+                      .replaceAll('&lt;', '<')
+                      .replaceAll('&gt;', '>');
+                });
+
                 return {
                   ...item,
                   url: item.url.replace(url.origin, '').replace('#__next', ''),

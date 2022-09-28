@@ -11,16 +11,16 @@ React components use *props* to communicate with each other. Every parent compon
 <YouWillLearn>
 
 * How to pass props to a component
-* How to read props from a component
+* How to read props in a component
 * How to specify default values for props
 * How to pass some JSX to a component
 * How props change over time
 
 </YouWillLearn>
 
-## Familiar props {/*familiar-props*/}
+## Familiar-looking props {/*familiar-props*/}
 
-Props are the information that you pass to a JSX tag. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `<img>`:
+Props are the information that you pass to a React element. For example, `className`, `src`, `alt`, `width`, and `height` are some of the props you can pass to an `img` element:
 
 <Sandpack>
 
@@ -51,7 +51,7 @@ body { min-height: 120px; }
 
 </Sandpack>
 
-The props you can pass to an `<img>` tag are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `<Avatar>`, to customize them. Here's how!
+The props you can pass to an `img` element are predefined (ReactDOM conforms to [the HTML standard](https://www.w3.org/TR/html52/semantics-embedded-content.html#the-img-element)). But you can pass any props to *your own* components, such as `Avatar`, to customize them. Here's how!
 
 ## Passing props to a component {/*passing-props-to-a-component*/}
 
@@ -267,7 +267,7 @@ Sometimes you'll want to nest your own components the same way:
 </Card>
 ```
 
-When you nest content inside a JSX tag, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop set to `<Avatar />` and render it in a wrapper div:
+When you nest content inside a JSX element, the parent component will receive that content in a prop called `children`. For example, the `Card` component below will receive a `children` prop including the `Avatar` element and render it in a wrapper `div`:
 
 <Sandpack>
 
@@ -343,7 +343,7 @@ export function getImageUrl(person, size = 's') {
 
 </Sandpack>
 
-Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
+Try replacing the `Avatar` element inside the `Card` element with some text to see how the `Card` component can wrap any nested content. It doesn't need to "know" what's being rendered inside of it. You will see this flexible pattern in many places.
 
 You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on.
 
@@ -415,7 +415,7 @@ However, props are [immutable](https://en.wikipedia.org/wiki/Immutable_object)â€
 * To read props, use the `function Avatar({ person, size })` destructuring syntax.
 * You can specify a default value like `size = 100`, which is used for missing and `undefined` props.
 * You can forward all props with `<Avatar {...props} />` JSX spread syntax, but don't overuse it!
-* Nested JSX like `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
+* Nested JSX: `<Avatar />` within `<Card><Avatar /></Card>` will appear as `Card` component's `children` prop.
 * Props are read-only snapshots in time: every render receives a new version of props.
 * You can't change props. When you need interactivity, you'll need to set state.
 
@@ -729,7 +729,7 @@ Although the syntax looks slightly different because you're describing propertie
 
 #### Adjust the image size based on a prop {/*adjust-the-image-size-based-on-a-prop*/}
 
-In this example, `Avatar` receives a numeric `size` prop which determines the `<img>` width and height. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
+In this example, `Avatar` receives a numeric `size` prop which determines the width and height of the `img` element. The `size` prop is set to `40` in this example. However, if you open the image in a new tab, you'll notice that the image itself is larger (`160` pixels). The real image size is determined by which thumbnail size you're requesting.
 
 Change the `Avatar` component to request the closest image size based on the `size` prop. Specifically, if the `size` is less than `90`, pass `'s'` ("small") rather than `'b'` ("big") to the `getImageUrl` function. Verify that your changes work by rendering avatars with different values of the `size` prop and opening images in a new tab.
 
@@ -915,7 +915,7 @@ export function getImageUrl(person, size) {
 
 </Sandpack>
 
-Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `<Avatar>` component without thinking about how the images are requested and resized.
+Props let you encapsulate logic like this inside the `Avatar` component (and change it later if needed) so that everyone can use the `Avatar` component without thinking about how the images are requested and resized.
 
 </Solution>
 

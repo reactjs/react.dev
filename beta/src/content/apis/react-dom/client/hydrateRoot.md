@@ -196,16 +196,16 @@ React will update `<App />` in the hydrated `root`.
 
 [See examples above.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-render-parameters*/}
 
 * `reactNode`: A "React node" that you want to update. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/apis/react/createElement), a string, a number, `null`, or `undefined`.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-render-returns*/}
 
 `root.render` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-render-caveats*/}
 
 * If you call `root.render` before the root has finished hydrating, React will clear the existing server-rendered HTML content and switch the entire root to client rendering.
 
@@ -226,16 +226,16 @@ This is mostly useful if your React root's DOM node (or any of its ancestors) ma
 Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree. 
 
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-unmount-parameters*/}
 
 `root.unmount` does not accept any parameters.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-unmount-returns*/}
 
 `render` returns `null`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-unmount-caveats*/}
 
 * Calling `root.unmount` will unmount all the components in the tree and "detach" React from the root DOM node.
 

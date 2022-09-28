@@ -85,7 +85,7 @@ If you can’t use `npm` yet, we provide pre-built browser builds for your conve
 
 ### Breaking changes {/*breaking-changes*/}
 
-- #### No more extra `<span>`s
+- #### No extra `<span>`s
 
   It’s worth calling out the DOM structure changes above again, in particular the change from `<span>`s. In the course of updating the Facebook codebase, we found a very small amount of code that was depending on the markup that React generated. Some of these cases were integration tests like WebDriver which were doing very specific XPath queries to target nodes. Others were simply tests using `ReactDOM.renderToStaticMarkup` and comparing markup. Again, there were a very small number of changes that had to be made, but we don’t want anybody to be blindsided. We encourage everybody to run their test suites when upgrading and consider alternative approaches when possible. One approach that will work for some cases is to explicitly use `<span>`s in your `render` method.
 

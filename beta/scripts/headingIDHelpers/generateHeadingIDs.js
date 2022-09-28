@@ -82,7 +82,7 @@ function addHeaderIDs(lines) {
 }
 
 async function main(paths) {
-  paths = paths.length === 0 ? ['src/pages'] : paths;
+  paths = paths.length === 0 ? ['src/content'] : paths;
 
   const [unifiedMod, remarkParseMod, remarkSlugMod] = await Promise.all([
     import('unified'),

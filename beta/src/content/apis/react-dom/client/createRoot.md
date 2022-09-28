@@ -284,16 +284,16 @@ React will display `<App />` in the `root`, and take over managing the DOM insid
 
 [See examples above.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-render-parameters*/}
 
 * `reactNode`: A *React node* that you want to display. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/apis/react/createElement), a string, a number, `null`, or `undefined`.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-render-returns*/}
 
 `root.render` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-render-caveats*/}
 
 * The first time you call `root.render`, React will clear all the existing HTML content inside the React root before rendering the React component into it.
 
@@ -318,16 +318,16 @@ This is mostly useful if your React root's DOM node (or any of its ancestors) ma
 Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree. 
 
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-unmount-parameters*/}
 
 `root.unmount` does not accept any parameters.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-unmount-returns*/}
 
 `root.unmount` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-unmount-caveats*/}
 
 * Calling `root.unmount` will unmount all the components in the tree and "detach" React from the root DOM node.
 

@@ -9,7 +9,6 @@ import cn from 'classnames';
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
 import ConsoleBlock from './ConsoleBlock';
-import Convention from './Convention';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
@@ -356,7 +355,6 @@ export const MDXComponents = {
   pre: CodeBlock,
   CodeDiagram,
   ConsoleBlock,
-  Convention,
   DeepDive: (props: {
     children: React.ReactNode;
     title: string;

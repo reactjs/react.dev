@@ -745,16 +745,16 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
-"@codesandbox/sandpack-client@https://pkg.csb.dev/codesandbox/sandpack/commit/cbb9052e/@codesandbox/sandpack-client":
+"@codesandbox/sandpack-client@https://pkg.csb.dev/codesandbox/sandpack/commit/414a5bff/@codesandbox/sandpack-client":
   version "1.7.0"
-  resolved "https://pkg.csb.dev/codesandbox/sandpack/commit/cbb9052e/@codesandbox/sandpack-client#41630a73925c359ea64264cd1c4b223084f59225"
+  resolved "https://pkg.csb.dev/codesandbox/sandpack/commit/414a5bff/@codesandbox/sandpack-client#41630a73925c359ea64264cd1c4b223084f59225"
   dependencies:
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@https://pkg.csb.dev/codesandbox/sandpack/commit/cbb9052e/@codesandbox/sandpack-react":
+"@codesandbox/sandpack-react@https://pkg.csb.dev/codesandbox/sandpack/commit/414a5bff/@codesandbox/sandpack-react":
   version "1.8.2"
-  resolved "https://pkg.csb.dev/codesandbox/sandpack/commit/cbb9052e/@codesandbox/sandpack-react#fd90b146986c56e9ea4b08dde7bed592d7d1a670"
+  resolved "https://pkg.csb.dev/codesandbox/sandpack/commit/414a5bff/@codesandbox/sandpack-react#101802a6904d0e763f2735453d58750098fce33b"
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"
@@ -771,7 +771,7 @@
     "@codemirror/matchbrackets" "^0.19.3"
     "@codemirror/state" "^0.19.6"
     "@codemirror/view" "^0.19.32"
-    "@codesandbox/sandpack-client" "https://pkg.csb.dev/codesandbox/sandpack/commit/cbb9052e/@codesandbox/sandpack-client"
+    "@codesandbox/sandpack-client" "https://pkg.csb.dev/codesandbox/sandpack/commit/414a5bff/@codesandbox/sandpack-client"
     "@react-hook/intersection-observer" "^3.1.1"
     "@stitches/core" "^1.2.6"
     clean-set "^1.1.2"

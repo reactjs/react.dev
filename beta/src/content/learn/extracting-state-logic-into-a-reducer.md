@@ -268,9 +268,11 @@ function handleDeleteTask(taskId) {
 
 It is a regular JavaScript object. You decide what to put in it, but generally it should contain the minimal information about _what happened_. (You will add the `dispatch` function itself in a later step.)
 
-<Convention conventionFor="action objects">
+<Note>
 
-An action object can have any shape. By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
+An action object can have any shape.
+
+By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
 
 ```js
 dispatch({
@@ -280,7 +282,7 @@ dispatch({
 });
 ```
 
-</Convention>
+</Note>
 
 ### Step 2: Write a reducer function {/*step-2-write-a-reducer-function*/}
 
@@ -331,9 +333,11 @@ function tasksReducer(tasks, action) {
 
 > Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
 
-<Convention conventionFor="reducer functions">
+<Note>
 
-The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance. We'll be using them throughout the rest of this documentation like so:
+The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance.
+
+We'll be using them throughout the rest of this documentation like so:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -371,7 +375,7 @@ We recommend to wrap each `case` block into the `{` and `}` curly braces so that
 
 If you're not yet comfortable with switch statements, using if/else is completely fine.
 
-</Convention>
+</Note>
 
 <DeepDive title="Why are reducers called this way?">
 

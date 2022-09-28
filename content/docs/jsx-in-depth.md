@@ -13,7 +13,7 @@ redirect_from:
   - "docs/jsx-in-depth-ko-KR.html"
 ---
 
-Fundamentally, JSX just provides syntactic sugar for the `React.createElement(component, props, ...children)` function. The JSX code:
+Fundamentally, JSX just provides syntactic sugar for the `jsx(component, props)` function. The JSX code:
 
 ```js
 <MyButton color="blue" shadowSize={2}>
@@ -24,10 +24,12 @@ Fundamentally, JSX just provides syntactic sugar for the `React.createElement(co
 compiles into:
 
 ```js
-React.createElement(
+// Inserted by a compiler (don't import it yourself!)
+import {jsx as _jsx} from 'react/jsx-runtime';
+
+_jsx(
   MyButton,
-  {color: 'blue', shadowSize: 2},
-  'Click Me'
+  {color: 'blue', shadowSize: 2, children: 'Click Me'}
 )
 ```
 
@@ -40,13 +42,13 @@ You can also use the self-closing form of the tag if there are no children. So:
 compiles into:
 
 ```js
-React.createElement(
+_jsx(
   'div',
   {className: 'sidebar'}
 )
 ```
 
-If you want to test out how some specific JSX is converted into JavaScript, you can try out [the online Babel compiler](babel://jsx-simple-example).
+You can read more about [JSX Transform](/blog/2020/09/22/introducing-the-new-jsx-transform.html)
 
 ## Specifying The React Element Type {#specifying-the-react-element-type}
 
@@ -54,31 +56,11 @@ The first part of a JSX tag determines the type of the React element.
 
 Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
 
-### React Must Be in Scope {#react-must-be-in-scope}
-
-Since JSX compiles into calls to `React.createElement`, the `React` library must also always be in scope from your JSX code.
-
-For example, both of the imports are necessary in this code, even though `React` and `CustomButton` are not directly referenced from JavaScript:
-
-```js{1,2,5}
-import React from 'react';
-import CustomButton from './CustomButton';
-
-function WarningButton() {
-  // return React.createElement(CustomButton, {color: 'red'}, null);
-  return <CustomButton color="red" />;
-}
-```
-
-If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
-
 ### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
 
 You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:
 
 ```js{10}
-import React from 'react';
-
 const MyComponents = {
   DatePicker: function DatePicker(props) {
     return <div>Imagine a {props.color} datepicker here.</div>;
@@ -99,8 +81,6 @@ We recommend naming components with a capital letter. If you do have a component
 For example, this code will not run as expected:
 
 ```js{3,4,10,11}
-import React from 'react';
-
 // Wrong! This is a component and should have been capitalized:
 function hello(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
@@ -116,8 +96,6 @@ function HelloWorld() {
 To fix this, we will rename `hello` to `Hello` and use `<Hello />` when referring to it:
 
 ```js{3,4,10,11}
-import React from 'react';
-
 // Correct! This is a component and should be capitalized:
 function Hello(props) {
   // Correct! This use of <div> is legitimate because div is a valid HTML tag:
@@ -135,7 +113,6 @@ function HelloWorld() {
 You cannot use a general expression as the React element type. If you do want to use a general expression to indicate the type of the element, just assign it to a capitalized variable first. This often comes up when you want to render a different component based on a prop:
 
 ```js{10,11}
-import React from 'react';
 import { PhotoStory, VideoStory } from './stories';
 
 const components = {
@@ -152,7 +129,6 @@ function Story(props) {
 To fix this, we will assign the type to a capitalized variable first:
 
 ```js{10-12}
-import React from 'react';
 import { PhotoStory, VideoStory } from './stories';
 
 const components = {

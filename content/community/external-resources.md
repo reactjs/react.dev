@@ -21,3 +21,5 @@ There are many wonderful curated resources the React community has put together.
 - [Awesome React Videos](https://www.awesomereact.com) - A website highlighting the best React videos.
 
 - [Hero35 React Hub](https://hero35.com/topic/react) - A website with _all_ React conferences and talks, categorized & curated.
+- 
+- [Horizon UI JS](https://github.com/horizon-ui/horizon-ui-chakra) - Trendiest admin dashboard template for React (JS)

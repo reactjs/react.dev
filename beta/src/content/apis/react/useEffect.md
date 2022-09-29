@@ -1856,4 +1856,4 @@ Your cleanup logic should be "symmetrical" to the setup logic, and should stop o
 
 ### My Effect does something visual, and I see a flicker before it runs {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
 
-If your Effect must block the browser from painting the screen, replace `useEffect` with [`useLayoutEffect`](/apis/react/useLayoutEffect).
+If your Effect must block the browser from [painting the screen,](/learn/render-and-commit#epilogue-browser-paint) replace `useEffect` with [`useLayoutEffect`](/apis/react/useLayoutEffect). Note that **this shouldn't be needed for the vast majority of Effects.** You'll only need this if it's crucial to run your Effect before the browser paint: for example, to measure and position a tooltip before the user sees it for the first time.

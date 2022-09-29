@@ -15,7 +15,7 @@ const linkProps = {
   rel: 'noopener',
 };
 
-const bannerText = "Try out a preview of the new React Docs";
+const bannerText = 'Try out a preview of the new React Docs';
 const bannerLink = '👉 beta.reactjs.org';
 
 export default function SocialBanner() {
@@ -58,7 +58,7 @@ export default function SocialBanner() {
 
           <a
             css={{
-              color: colors.brand
+              color: colors.brand,
             }}
             {...linkProps}
             target="_blank"

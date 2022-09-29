@@ -716,7 +716,7 @@ export function useIntersectionObserver(ref) {
     return () => {
       observer.disconnect();
     }
-  }, []);
+  }, [ref]);
 
   return isIntersecting;
 }

@@ -180,9 +180,32 @@ export function Search({
             transformItems={(items: any[]) => {
               return items.map((item) => {
                 const url = new URL(item.url);
+                // patch duplicated fragment links e.g. `some-heading` will be picked up by Algolia as `#some-heading-some-heading`
+                if (url.hash.length > 0) {
+                  // always starts with `#`
+                  const fragment = url.hash.slice(1);
+                  // "fragment-fragment" will always have length 2n + 1 (+ 1 is the `-` separator)
+                  if (fragment.length % 2 === 1) {
+                    const left = fragment.slice(
+                      0,
+                      Math.floor(fragment.length / 2)
+                    );
+                    const right = fragment.slice(
+                      Math.floor(fragment.length / 2) + 1
+                    );
+                    const actualFragmentIsDuplicated = left === right;
+                    if (actualFragmentIsDuplicated) {
+                      // Fragments are also sometimes picked up with a trailing `-`.
+                      url.hash = `#${left.replace(/-$/, '')}`;
+                    }
+                  }
+                }
                 return {
                   ...item,
-                  url: item.url.replace(url.origin, '').replace('#__next', ''),
+                  url: url
+                    .toString()
+                    .replace(url.origin, '')
+                    .replace('#__next', ''),
                 };
               });
             }}

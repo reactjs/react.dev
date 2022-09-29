@@ -20,7 +20,7 @@ export function Footer() {
           <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
           <div className="flex flex-col items-center m-4 p-4">
             <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
-              How is your experience?
+              How do you like these docs?
             </p>
             <div>
               <ButtonLink

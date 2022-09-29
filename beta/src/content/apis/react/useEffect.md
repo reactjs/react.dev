@@ -1377,7 +1377,9 @@ function Counter() {
 }
 ```
 
-Since `count` is a reactive value, it must be as a dependency. But this causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal. To fix this, [pass a `c => c + 1` state updater](/apis/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
+Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal. 
+
+To fix this, [pass the `c => c + 1` state updater](/apis/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
 
 <Sandpack>
 
@@ -1745,7 +1747,7 @@ function ChatRoom({ roomId }) {
 
 * If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](#removing-unnecessary-object-dependencies) and [function](#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
 
-* If your Effect wasn't caused by an interaction (like a click), React will let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), you need to substite `useEffect` with [`useLayoutEffect`.](/apis/react/useLayoutEffect)
+* If your Effect wasn't caused by an interaction (like a click), React will let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), you need to replace `useEffect` with [`useLayoutEffect`.](/apis/react/useLayoutEffect)
 
 * Effects **only run on the client.** They don't run during server rendering.
 

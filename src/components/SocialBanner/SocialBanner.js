@@ -10,13 +10,13 @@ import React from 'react';
 import {colors, media} from 'theme';
 
 const linkProps = {
-  href: 'https://opensource.fb.com/support-ukraine',
+  href: 'https://beta.reactjs.org',
   target: '_blank',
   rel: 'noopener',
 };
 
-const bannerText = 'Support Ukraine 🇺🇦 ';
-const bannerLink = 'Help Provide Humanitarian Aid to Ukraine.';
+const bannerText = 'Try out a preview of the new React Docs';
+const bannerLink = '👉 beta.reactjs.org';
 
 export default function SocialBanner() {
   return (
@@ -58,11 +58,7 @@ export default function SocialBanner() {
 
           <a
             css={{
-              color: '#ddd',
-              transition: 'color 200ms ease-out',
-              ':hover': {
-                color: colors.white,
-              },
+              color: colors.brand,
             }}
             {...linkProps}
             target="_blank"

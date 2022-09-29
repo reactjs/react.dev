@@ -15,7 +15,7 @@ const linkProps = {
   rel: 'noopener',
 };
 
-const bannerText = 'Try out a preview of the new React Docs';
+const bannerText = 'Try out a preview of the new React Docs!';
 const bannerLink = '👉 beta.reactjs.org';
 
 export default function SocialBanner() {
@@ -25,6 +25,7 @@ export default function SocialBanner() {
         display: 'var(--social-banner-display)',
         height: 'var(--social-banner-height-normal)',
         fontSize: 18,
+        fontWeight: 'bold',
         [media.lessThan('large')]: {
           fontSize: 16,
         },

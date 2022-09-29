@@ -79,9 +79,6 @@ const Header = ({location}: {location: Location}) => (
               color: colors.white,
             },
 
-            [media.greaterThan('small')]: {
-              width: 'calc(100% / 6)',
-            },
             [media.lessThan('small')]: {
               flex: '0 0 auto',
             },
@@ -125,6 +122,7 @@ const Header = ({location}: {location: Location}) => (
             overflowY: 'hidden',
             WebkitOverflowScrolling: 'touch',
             height: '100%',
+            justifyContent: 'flex-end',
 
             // Hide horizontal scrollbar
             scrollbarWidth: 'none',

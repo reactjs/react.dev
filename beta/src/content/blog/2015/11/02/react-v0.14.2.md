@@ -8,14 +8,14 @@ We have a quick update following the release of 0.14.1 last week. It turns out w
 The release is now available for download:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.14.2.js>  
-  Minified build for production: <https://fb.me/react-0.14.2.min.js>
+  Dev build with warnings: https://fb.me/react-0.14.2.js  
+  Minified build for production: https://fb.me/react-0.14.2.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.14.2.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.14.2.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.14.2.js  
+  Minified build for production: https://fb.me/react-with-addons-0.14.2.min.js
 - **React DOM** (include React in the page before React DOM)  
-  Dev build with warnings: <https://fb.me/react-dom-0.14.2.js>  
-  Minified build for production: <https://fb.me/react-dom-0.14.2.min.js>
+  Dev build with warnings: https://fb.me/react-dom-0.14.2.js  
+  Minified build for production: https://fb.me/react-dom-0.14.2.min.js
 
 We've also published version `0.14.2` of the `react`, `react-dom`, and addons packages on npm and the `react` package on bower.
 

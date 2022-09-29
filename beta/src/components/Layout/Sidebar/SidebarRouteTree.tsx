@@ -2,7 +2,8 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useRef, useLayoutEffect} from 'react';
+
 import cn from 'classnames';
 import {RouteItem} from 'components/Layout/useRouteMeta';
 import {useRouter} from 'next/router';
@@ -10,7 +11,6 @@ import {removeFromLast} from 'utils/removeFromLast';
 import {useRouteMeta} from '../useRouteMeta';
 import {SidebarLink} from './SidebarLink';
 import useCollapse from 'react-collapsed';
-import {useLayoutEffect} from 'react';
 import usePendingRoute from 'hooks/usePendingRoute';
 
 interface SidebarRouteTreeProps {
@@ -28,15 +28,15 @@ function CollapseWrapper({
   duration: number;
   children: any;
 }) {
-  const ref = React.useRef<HTMLDivElement | null>(null);
-  const timeoutRef = React.useRef<number | null>(null);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const timeoutRef = useRef<number | null>(null);
   const {getCollapseProps} = useCollapse({
     isExpanded,
     duration,
   });
 
   // Disable pointer events while animating.
-  const isExpandedRef = React.useRef(isExpanded);
+  const isExpandedRef = useRef(isExpanded);
   if (typeof window !== 'undefined') {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     useLayoutEffect(() => {

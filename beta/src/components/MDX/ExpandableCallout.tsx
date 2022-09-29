@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {useRef} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
@@ -43,7 +44,7 @@ const variantMap = {
 };
 
 function ExpandableCallout({children, type}: ExpandableCalloutProps) {
-  const contentRef = React.useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
   const variant = variantMap[type];
 
   return (

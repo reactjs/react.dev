@@ -35,7 +35,7 @@ function Button() {
 
 To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider:
 
-```js [[1, 3, "ThemeContext"], [2, 3, "\"dark\""], [1, 5, "ThemeContext"]]
+```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {
   return (
     <ThemeContext.Provider value="dark">
@@ -797,7 +797,7 @@ const initialTasks = [
 import { useState, useContext } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
   return (

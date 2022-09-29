@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React, {createRef} from 'react';
+import {useRef, useCallback, useEffect, createRef} from 'react';
 import cn from 'classnames';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {ChallengeContents} from './Challenges';
@@ -19,8 +19,8 @@ export function Navigation({
   currentChallenge: ChallengeContents;
   isRecipes?: boolean;
 }) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const challengesNavRef = React.useRef(
+  const containerRef = useRef<HTMLDivElement>(null);
+  const challengesNavRef = useRef(
     challenges.map(() => createRef<HTMLButtonElement>())
   );
   const scrollPos = currentChallenge.order - 1;
@@ -61,7 +61,7 @@ export function Navigation({
     handleChange(index);
   };
 
-  const handleResize = React.useCallback(() => {
+  const handleResize = useCallback(() => {
     if (containerRef.current) {
       const el = containerRef.current;
       el.scrollLeft =
@@ -69,7 +69,7 @@ export function Navigation({
     }
   }, [containerRef, challengesNavRef, scrollPos]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleResize();
     window.addEventListener('resize', debounce(handleResize, 200));
     return () => {

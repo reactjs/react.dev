@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import * as React from 'react';
 export {Challenges} from './Challenges';
 
 export function Hint({children}: {children: React.ReactNode}) {

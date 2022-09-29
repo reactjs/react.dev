@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconGotcha = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconGotcha = memo<JSX.IntrinsicElements['svg']>(
   function IconGotcha({className}) {
     return (
       <svg
@@ -22,5 +22,3 @@ export const IconGotcha = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconGotcha.displayName = 'IconGotcha';

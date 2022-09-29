@@ -579,7 +579,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/apis/react/useImperativeHandle)
 
-#### Returns {/*returns*/}
+#### Returns {/*render-returns*/}
 
 `forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
 

@@ -231,11 +231,7 @@ And `TaskList` passes the event handlers to `Task`:
 
 In a small example like this, this works well, but if you have tens or hundreds of components in the middle, passing down all state and functions can be quite frustrating!
 
-<!--(TODO: illustration of prop drilling)-->
-
 This is why, as an alternative to passing them through props, you might want to put both the `tasks` state and the `dispatch` function [into context.](/learn/passing-data-deeply-with-context) **This way, any component below `TaskApp` in the tree can read the tasks and dispatch actions without the repetitive "prop drilling".**
-
-<!--(TODO: illustration of context)-->
 
 Here is how you can combine a reducer with context:
 
@@ -700,7 +696,7 @@ export default function TaskList() {
 To update the task list, any component can read the `dispatch` function from context and call it:
 
 ```js {3,9-13}
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
   // ...
@@ -789,7 +785,7 @@ export const TasksDispatchContext = createContext(null);
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
   return (
@@ -1013,7 +1009,7 @@ const initialTasks = [
 import { useState, useContext } from 'react';
 import { TasksDispatchContext } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useContext(TasksDispatchContext);
   return (
@@ -1232,7 +1228,7 @@ const initialTasks = [
 import { useState } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
   return (

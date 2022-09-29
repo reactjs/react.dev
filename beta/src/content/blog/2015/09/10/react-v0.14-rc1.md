@@ -19,14 +19,14 @@ Remember that by default, React runs extra checks and provides helpful warnings 
 If you can’t use `npm` yet, we also provide pre-built browser builds for your convenience:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.14.0-rc1.js>  
-  Minified build for production: <https://fb.me/react-0.14.0-rc1.min.js>
+  Dev build with warnings: https://fb.me/react-0.14.0-rc1.js  
+  Minified build for production: https://fb.me/react-0.14.0-rc1.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.14.0-rc1.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.14.0-rc1.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.14.0-rc1.js  
+  Minified build for production: https://fb.me/react-with-addons-0.14.0-rc1.min.js
 - **React DOM** (include React in the page before React DOM)  
-  Dev build with warnings: <https://fb.me/react-dom-0.14.0-rc1.js>  
-  Minified build for production: <https://fb.me/react-dom-0.14.0-rc1.min.js>
+  Dev build with warnings: https://fb.me/react-dom-0.14.0-rc1.js  
+  Minified build for production: https://fb.me/react-dom-0.14.0-rc1.min.js
 
 These builds are also available in the `react` package on bower.
 

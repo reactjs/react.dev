@@ -312,13 +312,19 @@ Read **[Lifecycle of Reactive Events](/learn/lifecycle-of-reactive-effects)** to
 
 ## Separating events from Effects {/*separating-events-from-effects*/}
 
+<Wip>
+
+This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
+
+</Wip>
+
 Event handlers only re-run when you perform the same interaction again. Unlike event handlers, Effects re-synchronize if some value they read, like a prop or a state variable, is different from what it was on last render. Sometimes, you want a mix of both behaviors: an Effect that re-runs in response to some values but not others.
 
 All code inside Effects is *reactive.* It will run again if some reactive value it reads has changed due to a re-render. For example, this Effect will re-connect to the chat if either `roomId` or `theme` have changed after interaction:
 
 <Sandpack>
 
-```json package.json
+```json package.json hidden
 {
   "dependencies": {
     "react": "latest",
@@ -449,8 +455,8 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -465,7 +471,7 @@ This is not ideal. You want to re-connect to the chat only if the `roomId` has c
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -483,7 +489,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -566,25 +572,6 @@ export function showNotification(message, theme) {
       color: theme === 'dark' ? 'white' : 'black',
     },
   }).showToast();
-}
-```
-
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
 }
 ```
 

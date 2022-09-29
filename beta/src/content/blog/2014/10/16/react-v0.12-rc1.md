@@ -8,13 +8,13 @@ We are finally ready to share the work we've been doing over the past couple mon
 The release candidate is available for download:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.12.0-rc1.js>  
-  Minified build for production: <https://fb.me/react-0.12.0-rc1.min.js>
+  Dev build with warnings: https://fb.me/react-0.12.0-rc1.js  
+  Minified build for production: https://fb.me/react-0.12.0-rc1.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.12.0-rc1.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.12.0-rc1.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.12.0-rc1.js  
+  Minified build for production: https://fb.me/react-with-addons-0.12.0-rc1.min.js
 - **In-Browser JSX transformer**  
-  <https://fb.me/JSXTransformer-0.12.0-rc1.js>
+  https://fb.me/JSXTransformer-0.12.0-rc1.js
 
 We've also published version `0.12.0-rc1` of the `react` and `react-tools` packages on npm and the `react` package on bower.
 

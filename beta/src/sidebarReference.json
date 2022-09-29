@@ -105,8 +105,7 @@
             },
             {
               "title": "useEffect",
-              "path": "/apis/react/useEffect",
-              "wip": true
+              "path": "/apis/react/useEffect"
             },
             {
               "title": "useEvent",
@@ -126,6 +125,11 @@
             {
               "title": "useInsertionEffect",
               "path": "/apis/react/useInsertionEffect",
+              "wip": true
+            },
+            {
+              "title": "useLayoutEffect",
+              "path": "/apis/react/useLayoutEffect",
               "wip": true
             },
             {

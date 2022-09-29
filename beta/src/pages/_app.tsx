@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useEffect} from 'react';
 import {AppProps} from 'next/app';
 import {useRouter} from 'next/router';
 import {ga} from '../utils/analytics';
@@ -20,12 +20,14 @@ if (typeof window !== 'undefined') {
   window.addEventListener(terminationEvent, function () {
     ga('send', 'timing', 'JS Dependencies', 'unload');
   });
+
+  disableAllRuntimeStyleInjection();
 }
 
 export default function MyApp({Component, pageProps}: AppProps) {
   const router = useRouter();
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Taken from StackOverflow. Trying to detect both Safari desktop and mobile.
     const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
     if (isSafari) {
@@ -40,7 +42,7 @@ export default function MyApp({Component, pageProps}: AppProps) {
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleRouteChange = (url: string) => {
       ga('set', 'page', url);
       ga('send', 'pageview');
@@ -52,4 +54,38 @@ export default function MyApp({Component, pageProps}: AppProps) {
   }, [router.events]);
 
   return <Component {...pageProps} />;
+}
+
+// HACK(css-in-js): We use Sandpack, which uses Stitches (css-in-js lib).
+// This causes style recalc during hydration which is bad for perf.
+// Instead, let's rely on the SSR'd <style> tag defined in _document.tsx.
+// This is obviously quite fragile but hopefully it'll be solved upstream.
+let didWarn = false;
+function disableAllRuntimeStyleInjection() {
+  // Prevent Stitches from finding the <style> tag from the server:
+  Object.defineProperty(document, 'styleSheets', {
+    get() {
+      return [];
+    },
+  });
+  // It will try to create a new <style> tag and insert stuff there...
+  const realInsertRule = CSSStyleSheet.prototype.insertRule;
+  CSSStyleSheet.prototype.insertRule = function () {
+    if (process.env.NODE_ENV !== 'production') {
+      if (!didWarn) {
+        console.warn(
+          'Something is trying to inject runtime CSS-in-JS.\n' +
+            'All <style> insertions will be ignored.',
+          arguments
+        );
+      }
+      didWarn = true;
+    }
+    // ... but we'll prevent it from affecting the document:
+    this.disabled = true;
+    // @ts-ignore
+    return realInsertRule.apply(this, arguments);
+  };
+  // We're not supposed to use any other library that inserts <style> tags.
+  // In longer term, ideally, Sandpack should offer a zero-runtime option.
 }

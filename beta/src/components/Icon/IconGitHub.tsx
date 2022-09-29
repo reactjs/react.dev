@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconGitHub = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconGitHub = memo<JSX.IntrinsicElements['svg']>(
   function IconGitHub(props) {
     return (
       <svg
@@ -18,5 +18,3 @@ export const IconGitHub = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconGitHub.displayName = 'IconGitHub';

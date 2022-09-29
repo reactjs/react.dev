@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconSearch = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconSearch = memo<JSX.IntrinsicElements['svg']>(
   function IconSearch(props) {
     return (
       <svg width="1em" height="1em" viewBox="0 0 20 20" {...props}>
@@ -20,5 +20,3 @@ export const IconSearch = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconSearch.displayName = 'IconSearch';

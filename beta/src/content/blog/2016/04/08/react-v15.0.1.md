@@ -14,14 +14,14 @@ We apologize if you installed 15.0.0 and have encountered these issues yourselve
 As usual, you can get install the `react` package via npm or download a browser bundle.
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-15.0.1.js>  
-  Minified build for production: <https://fb.me/react-15.0.1.min.js>
+  Dev build with warnings: https://fb.me/react-15.0.1.js  
+  Minified build for production: https://fb.me/react-15.0.1.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-15.0.1.js>  
-  Minified build for production: <https://fb.me/react-with-addons-15.0.1.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-15.0.1.js  
+  Minified build for production: https://fb.me/react-with-addons-15.0.1.min.js
 - **React DOM** (include React in the page before React DOM)  
-  Dev build with warnings: <https://fb.me/react-dom-15.0.1.js>  
-  Minified build for production: <https://fb.me/react-dom-15.0.1.min.js>
+  Dev build with warnings: https://fb.me/react-dom-15.0.1.js  
+  Minified build for production: https://fb.me/react-dom-15.0.1.min.js
 
 ## Changelog {/*changelog*/}
 

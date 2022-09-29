@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {isValidElement} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconWarning} from '../Icon/IconWarning';
@@ -27,13 +28,12 @@ const Box = ({
 }) => (
   <div className={className} style={{width, height, ...customStyles}}></div>
 );
-Box.displayName = 'Box';
 
 function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   let message: React.ReactNode | null;
   if (typeof children === 'string') {
     message = children;
-  } else if (React.isValidElement(children)) {
+  } else if (isValidElement(children)) {
     message = children.props.children;
   }
 

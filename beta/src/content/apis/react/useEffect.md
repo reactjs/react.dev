@@ -1723,11 +1723,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-Effects let you [connect to an external system](#connecting-to-an-external-system), including [controlling non-React widgets](#controlling-a-non-react-widget) and [fetching data](#fetching-data-with-effects).
-
 [See more examples above.](##examples-connecting)
-
----
 
 #### Parameters {/*parameters*/}
 

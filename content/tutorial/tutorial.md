@@ -473,9 +473,11 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-    const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({squares: squares});
+    this.setState(state => {
+      const squares = state.squares.slice();
+      squares[i] = 'X';
+      return {squares: squares};
+    });
   }
 
   renderSquare(i) {
@@ -519,6 +521,8 @@ class Board extends React.Component {
 After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
 
 Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
+
+In our previous usage of `setState`, we use it to define new state directly (`this.setState({value: 'X'})`). Notice how we call `setState` slightly differently here in `handleClick`, by passing a function callback that receives the current state. This is best practice because setState is asynchronous and state updates can be batched together for performance. You can [read more about this here](https://reactjs.org/docs/state-and-lifecycle.html#state-updates-may-be-asynchronous).
 
 Note how in `handleClick`, we call `.slice()` to create a copy of the `squares` array to modify instead of modifying the existing array. We will explain why we create a copy of the `squares` array in the next section.
 
@@ -611,11 +615,13 @@ Each time a player moves, `xIsNext` (a boolean) will be flipped to determine whi
 
 ```javascript{3,6}
   handleClick(i) {
-    const squares = this.state.squares.slice();
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
+    this.setState(state => {
+      const squares = state.squares.slice();
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return {
+        squares: squares,
+        xIsNext: !state.xIsNext,
+      };
     });
   }
 ```
@@ -645,11 +651,13 @@ class Board extends React.Component {
   }
 
   handleClick(i) {
-    const squares = this.state.squares.slice();
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
+    this.setState(state => {
+      const squares = state.squares.slice();
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return {
+        squares: squares,
+        xIsNext: !state.xIsNext,
+      };
     });
   }
 
@@ -739,14 +747,16 @@ We can now change the Board's `handleClick` function to return early by ignoring
 
 ```javascript{3-5}
   handleClick(i) {
-    const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
+    this.setState(state => {
+      const squares = state.squares.slice();
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return {
+        squares: squares,
+        xIsNext: !state.xIsNext,
+      };
     });
   }
 ```
@@ -846,14 +856,16 @@ The Board component now looks like this:
 ```javascript{17,18}
 class Board extends React.Component {
   handleClick(i) {
-    const squares = this.state.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      squares: squares,
-      xIsNext: !this.state.xIsNext,
+    this.setState(state => {
+      const squares = state.squares.slice();
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return {
+        squares: squares,
+        xIsNext: !state.xIsNext,
+      };
     });
   }
 
@@ -961,19 +973,22 @@ Finally, we need to move the `handleClick` method from the Board component to th
 
 ```javascript{2-4,10-12}
   handleClick(i) {
-    const history = this.state.history;
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares,
-      }]),
-      xIsNext: !this.state.xIsNext,
+    this.setState(state => {
+      const history = state.history;
+      const current = history[history.length - 1];
+      const squares = current.squares.slice();
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return {
+        history: history.concat([{
+          squares: squares,
+        }]),
+        xIsNext: !state.xIsNext,
+      };
     });
+
   }
 ```
 
@@ -1158,19 +1173,21 @@ We will also replace reading `this.state.history` with `this.state.history.slice
 
 ```javascript{2,13}
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
-    const current = history[history.length - 1];
-    const squares = current.squares.slice();
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    squares[i] = this.state.xIsNext ? 'X' : 'O';
-    this.setState({
-      history: history.concat([{
-        squares: squares
-      }]),
-      stepNumber: history.length,
-      xIsNext: !this.state.xIsNext,
+    this.setState(state => {
+      const history = state.history.slice(0, state.stepNumber + 1);
+      const current = history[history.length - 1];
+      const squares = current.squares.slice();
+      if (calculateWinner(squares) || squares[i]) {
+        return;
+      }
+      squares[i] = state.xIsNext ? 'X' : 'O';
+      return {
+        history: history.concat([{
+          squares: squares
+        }]),
+        stepNumber: history.length,
+        xIsNext: !state.xIsNext,
+      };
     });
   }
 ```

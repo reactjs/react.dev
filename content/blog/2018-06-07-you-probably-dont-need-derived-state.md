@@ -155,8 +155,8 @@ If `key` doesn't work for some reason (perhaps the component is very expensive t
 ```js
 class EmailInput extends Component {
   state = {
-    email: this.props.defaultEmail,
-    prevPropsUserID: this.props.userID
+    email: null,
+    prevPropsUserID: null
   };
 
   static getDerivedStateFromProps(props, state) {

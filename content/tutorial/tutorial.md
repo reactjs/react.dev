@@ -1158,7 +1158,7 @@ We will also replace reading `this.state.history` with `this.state.history.slice
 
 ```javascript{2,13}
   handleClick(i) {
-    const history = this.state.history.slice(0, this.state.stepNumber + 1);
+    const history = this.state.history;
     const current = history[history.length - 1];
     const squares = current.squares.slice();
     if (calculateWinner(squares) || squares[i]) {

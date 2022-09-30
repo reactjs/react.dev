@@ -670,7 +670,7 @@ The following Hooks are provided for library authors to integrate libraries deep
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
 ```js
-const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
+const state = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?);
 ```
 
 `useSyncExternalStore` is a hook recommended for reading and subscribing from external data sources in a way that's compatible with concurrent rendering features like selective hydration and time slicing.

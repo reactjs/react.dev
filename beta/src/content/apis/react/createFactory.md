@@ -4,9 +4,9 @@ title: createFactory
 
 <Intro>
 
-`createFactory` lets you create a function that creates React element of a given `type`. The `type` argument can be either a tag name string (such as `div` or `span`), a React component type (a class or a function), or a React fragment type.
+`createFactory` lets you create a function that creates a React element of a given `type`. The `type` argument can be either a tag name string (such as `div` or `span`), a React component type (a class or a function), or a React fragment type.
 
-You may typically invoke createFactory, if you are using [React without JSX].(https://beta.reactjs.org/learn/add-react-to-a-website#run-the-jsx-preprocessor)
+`createFactory` is typically invoked if you are using [React without JSX.](https://beta.reactjs.org/learn/add-react-to-a-website#run-the-jsx-preprocessor)
 
 ```js
 React.createFactory(type)
@@ -60,7 +60,7 @@ render(<App />, document.getElementById('root'));
 
 ### `createFactory(type)` {/*createFactory*/}
 
-Call `createFactory(type)` to create a function that creates React element of a given `type`.
+Call `createFactory(type)` to create a function that creates a React element of a given `type`.
 
 ```js
 const myElement= React.createFactory(type)
@@ -73,4 +73,4 @@ const myElement= React.createFactory(type)
 
 #### Returns {/*returns*/}
 
- Returns a function that can be used to create React element of the given `type`.
+ Returns a function that can be used to create a React element of the given `type`.

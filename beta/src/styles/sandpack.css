@@ -92,6 +92,7 @@ html.dark .sp-wrapper {
   align-items: center;
   font-size: var(--sp-font-size);
   font-family: var(--sp-font-body);
+  line-height: var(--sp-font-lineHeight);
   transition: color var(--sp-transitions-default),
     background var(--sp-transitions-default);
   cursor: pointer;
@@ -161,8 +162,13 @@ html.dark .sp-wrapper {
 /**
  * Navigation
  */
-.sandpack--playground .sp-tabs-scrollable-container {
-  padding: 0;
+.sandpack .sp-tabs-scrollable-container {
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-height: 40px;
+  margin-bottom: -1px;
 }
 
 .sp-tabs .sp-tab-button {
@@ -233,6 +239,7 @@ html.dark .sp-wrapper {
   position: relative;
   overflow: auto;
   background: var(--sp-colors-surface1);
+  padding-left: var(--sp-space-2);
 }
 
 .sandpack .sp-code-editor .cm-content,

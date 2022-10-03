@@ -111,7 +111,10 @@ const SandboxShell = memo(function SandboxShell({
                   }
                 }
               }}>
-              <span className="flex p-2 focus:outline-none text-primary dark:text-primary-dark">
+              <span
+                className="flex p-2 focus:outline-none text-primary dark:text-primary-dark"
+                style={{lineHeight: '20px'}}>
+                {/* Turn it into tailwind */}
                 <IconChevron
                   className="inline mr-1.5 text-xl"
                   displayDirection={isExpanded ? 'up' : 'down'}

@@ -306,8 +306,23 @@ html.dark .sp-wrapper {
   border-radius: var(--sp-border-radius);
 }
 
+.sandpack--playground .sp-button {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.sandpack--playground .sp-button svg {
+  min-width: var(--sp-space-5);
+  width: var(--sp-space-5);
+  height: var(--sp-space-5);
+  margin: auto;
+}
+
 .sandpack--playground .sp-cube-wrapper .sp-cube {
-  display: block;
+  display: flex;
 }
 
 .sandpack--playground .sp-cube-wrapper .sp-button {
@@ -413,19 +428,6 @@ html.dark .sp-wrapper {
 
 html.dark .sandpack--playground .sp-overlay {
   @apply bg-wash-dark;
-}
-
-/**
- * CodeBlock
- */
-.sandpack--codeblock .cm-content {
-  padding: 0;
-}
-
-.sandpack--codeblock .cm-line {
-  margin-left: -20px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 /**

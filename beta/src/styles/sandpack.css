@@ -293,14 +293,122 @@ html.dark .sp-wrapper {
 }
 
 /**
- * Loading component
+ * Loading & error overlay component
  */
 .sandpack--playground .sp-cube-wrapper {
   background-color: var(--sp-colors-surface1);
+  position: absolute;
+  right: var(--sp-space-2);
+  bottom: var(--sp-space-2);
+  z-index: var(--sp-zIndices-top);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sp-border-radius);
+}
+
+.sandpack--playground .sp-cube-wrapper .sp-cube {
+  display: block;
+}
+
+.sandpack--playground .sp-cube-wrapper .sp-button {
+  display: none;
+}
+
+.sandpack--playground .sp-cube-wrapper:hover .sp-button {
+  display: block;
+}
+
+.sandpack--playground .sp-cube-wrapper:hover .sp-cube {
+  display: none;
+}
+
+.sandpack .sp-cube {
+  transform: translate(-4px, 9px) scale(0.13, 0.13);
+}
+
+.sandpack .sp-cube * {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+}
+
+@keyframes cubeRotate {
+  0% {
+    transform: rotateX(-25.5deg) rotateY(45deg);
+  }
+
+  100% {
+    transform: rotateX(-25.5deg) rotateY(405deg);
+  }
+}
+
+.sandbox .sp-sides {
+  animation: cubeRotate 1s linear infinite;
+  animation-fill-mode: forwards;
+  transform-style: preserve-3d;
+  transform: rotateX(-25.5deg) rotateY(45deg);
+}
+
+.sandbox .sp-sides * {
+  border: 10px solid var(--sp-colors-clickable);
+  border-radius: 8px;
+  background: var(--sp-colors-surface1);
+}
+
+.sandbox .sp-sides .top {
+  transform: rotateX(90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandbox .sp-sides .bottom {
+  transform: rotateX(-90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandbox .sp-sides .front {
+  transform: rotateY(0deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandbox .sp-sides .back {
+  transform: rotateY(-180deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandbox .sp-sides .left {
+  transform: rotateY(-90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandbox .sp-sides .right {
+  transform: rotateY(90deg) translateZ(44px);
+  transform-origin: 50% 50%;
 }
 
 .sandpack--playground .sp-overlay {
   @apply bg-card;
+  position: absolute;
+  inset: 0;
+  z-index: var(--sp-zIndices-top);
+}
+
+.sandpack--playground .sp-error {
+  padding: var(--sp-space-4);
+  white-space: pre-wrap;
+  font-family: var(--sp-font-mono);
+  background-color: var(--sp-colors-error-surface);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sandpack--playground .sp-error-message {
+  animation: fadeIn 150ms ease;
+  color: var(--sp-colors-error);
 }
 
 html.dark .sandpack--playground .sp-overlay {

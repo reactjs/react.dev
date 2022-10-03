@@ -32,8 +32,8 @@ In this example, we can render a React element of the `type` `button`.
 import React from 'react';
 import { render } from 'react-dom';
 
-const MyButton = (reactElement = 'button') =>
-  (React.createFactory(reactElement))({
+const MyButton = () =>
+  (React.createFactory("button"))({
     onClick: (evt) => {
       evt.preventDefault();
       alert("I was created by createFactory()");
@@ -50,15 +50,16 @@ export default function App(){
 ```
 ``` js index.js
 
-import {render} from 'react-dom';
+import {createRoot} from 'react-dom/client';
 import App from './App.js';
 
-render(<App />, document.getElementById('root'));
+const root = createRoot(document.getElementById('root'));
+root.render(<App />);
 
 ```
 </Sandpack>
 
-### `createFactory(type)` {/*createFactory*/}
+### `createFactory(type)` {/*createfactory*/}
 
 Call `createFactory(type)` to create a function that creates a React element of a given `type`.
 

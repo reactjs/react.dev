@@ -30,7 +30,6 @@ In this example, we can render a React element of the `type` `button`.
 
 ``` js App.js
 import React from 'react';
-import { render } from 'react-dom';
 
 const MyButton = () =>
   (React.createFactory("button"))({

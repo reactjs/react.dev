@@ -113,8 +113,7 @@
             },
             {
               "title": "useId",
-              "path": "/apis/react/useId",
-              "wip": true
+              "path": "/apis/react/useId"
             },
             {
               "title": "useImperativeHandle",

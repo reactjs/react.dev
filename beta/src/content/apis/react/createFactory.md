@@ -2,75 +2,143 @@
 title: createFactory
 ---
 
+<Deprecated>
+
+This API will be removed in a future major version of React. Use [JSX](/learn/writing-markup-with-jsx) or [`createElement`](/api/react/createElement) instead.
+
+</Deprecated>
+
 <Intro>
 
-`createFactory` lets you create a function that creates a React element of a given `type`. The `type` argument can be either a tag name string (such as `div` or `span`), a React component type (a class or a function), or a React fragment type.
-
-`createFactory` is typically invoked if you are using [React without JSX.](https://beta.reactjs.org/learn/add-react-to-a-website#run-the-jsx-preprocessor)
+`createFactory` lets you create a function that produces React elements of a given type.
 
 ```js
-React.createFactory(type)
+const factory = createFactory(type)
 ```
+
 </Intro>
 
-<Note>
-
-`createFactory` is considered legacy, and we encourage you to either use **JSX** or use `React.createElement()` directly instead.
-</Note>
-
 <InlineToc />
+
+---
 
 ## Usage {/*usage*/}
 
 ### Creating React elements {/*creating-react-elements*/}
 
-In this example, we can render a React element of the `type` `button`.
+You shouldn't use `createFactory` in new code. In the existing code, it's typically used as an alternative to [JSX:](/learn/writing-markup-with-jsx)
 
 <Sandpack>
 
-``` js App.js
-import React from 'react';
+```js App.js
+import { createFactory } from 'react';
 
-const MyButton = () =>
-  (React.createFactory("button"))({
-    onClick: (evt) => {
-      evt.preventDefault();
-      alert("I was created by createFactory()");
+const button = createFactory('button');
+
+export default function App() {
+  return button({
+    onClick: () => {
+      alert('Clicked!')
     }
-  }, 'Click');
+  }, 'Click me');
+}
+```
 
-export default function App(){
-    return (
-        <div>
-            {MyButton()}
-        </div>
-    )
+</Sandpack>
+
+Since `createFactory` has been deprecated, you need to remove it from your project's code.
+
+For example, you can convert it to use [`createElement`](/api/react/createElement) instead of `createFactory` like this:
+
+<Sandpack>
+
+```js App.js
+import { createElement } from 'react';
+
+export default function App() {
+  return createElement('button', {
+    onClick: () => {
+      alert('Clicked!')
+    }
+  }, 'Click me');
 };
 ```
-``` js index.js
 
-import {createRoot} from 'react-dom/client';
-import App from './App.js';
-
-const root = createRoot(document.getElementById('root'));
-root.render(<App />);
-
-```
 </Sandpack>
+
+Alternatively, you can convert it to use [JSX:](/learn/writing-markup-with-jsx)
+
+<Sandpack>
+
+```js App.js
+export default function App() {
+  return (
+    <button onClick={() => {
+      alert('Clicked!');
+    }}>
+      Click me
+    </button>
+  );
+};
+```
+
+</Sandpack>
+
+Every pattern that uses `createFactory` can be converted to either of the two styles above.
+
+<DeepDive title="How is createFactory implemented?">
+
+The full implementation of `createFactory` looks like this:
+
+```js
+import { createElement } from 'react';
+
+function createFactory(type) {
+  return createElement.bind(null, type);
+}
+```
+
+If your project uses `createFactory` a lot, you may copy this helper into your project or publish it on npm.
+
+</DeepDive>
+
+---
+
+## Reference {/*reference*/}
 
 ### `createFactory(type)` {/*createfactory*/}
 
-Call `createFactory(type)` to create a function that creates a React element of a given `type`.
+
+<Deprecated>
+
+This API will be removed in a future major version of React. Use [JSX](/learn/writing-markup-with-jsx) or [`createElement`](/api/react/createElement) instead.
+
+</Deprecated>
+
+Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
 
 ```js
-const myElement= React.createFactory(type)
+import { createFactory } from 'react';
 
+const button = createFactory('button');
+```
+
+Then you can use it to create React elements without JSX:
+
+```js
+export default function App() {
+  return button({
+    onClick: () => {
+      alert('Clicked!')
+    }
+  }, 'Click me');
+}
 ```
 
 #### Parameters {/*parameters*/}
 
-* `type`: The `type` argument can be either a tag name string (such as `div` or `span`), a React component type (a class or a function), or a React fragment type.
+* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/apis/react/Fragment)).
 
 #### Returns {/*returns*/}
 
- Returns a function that can be used to create a React element of the given `type`.
+Returns a factory function. That factory function receives a `props` object as the first argument, followed by a list of `...children` arguments, and returns a React element with the given `type`, `props` and `children`.

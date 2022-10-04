@@ -47,7 +47,7 @@ You can then pass the <CodeStep step={1}>generated ID</CodeStep> to different at
 
 **Let's walk through an example to see when this is useful.**
 
-[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that a certain element (like a button) is described by another element (like a paragraph).
+[HTML accessibility attributes](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA) like [`aria-describedby`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-describedby) let you specify that two tags are related to each other. For example, you can specify that a certain element (like an input) is described by another element (like a paragraph).
 
 In regular HTML, you would write it like this:
 

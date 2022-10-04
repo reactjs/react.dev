@@ -571,18 +571,6 @@
     "@codemirror/state" "^0.19.0"
     "@codemirror/view" "^0.19.23"
 
-"@codemirror/highlight@^0.19.0":
-  version "0.19.8"
-  resolved "https://registry.yarnpkg.com/@codemirror/highlight/-/highlight-0.19.8.tgz#a95aee8ae4389b01f820aa79c48f7b4388087d92"
-  integrity sha512-v/lzuHjrYR8MN2mEJcUD6fHSTXXli9C1XGYpr+ElV6fLBIUhMTNKR3qThp611xuWfXfwDxeL7ppcbkM/MzPV3A==
-  dependencies:
-    "@codemirror/language" "^0.19.0"
-    "@codemirror/rangeset" "^0.19.0"
-    "@codemirror/state" "^0.19.3"
-    "@codemirror/view" "^0.19.39"
-    "@lezer/common" "^0.15.0"
-    style-mod "^4.0.0"
-
 "@codemirror/highlight@^0.19.6", "@codemirror/highlight@^0.19.7":
   version "0.19.7"
   resolved "https://registry.yarnpkg.com/@codemirror/highlight/-/highlight-0.19.7.tgz#91a0c9994c759f5f153861e3aae74ff9e7c7c35b"
@@ -614,7 +602,7 @@
     "@codemirror/state" "^0.19.0"
     "@lezer/css" "^0.15.2"
 
-"@codemirror/lang-html@^0.19.0", "@codemirror/lang-html@^0.19.4":
+"@codemirror/lang-html@^0.19.4":
   version "0.19.4"
   resolved "https://registry.yarnpkg.com/@codemirror/lang-html/-/lang-html-0.19.4.tgz#e6eec28462f18842a0e108732a214a7416b5e333"
   integrity sha512-GpiEikNuCBeFnS+/TJSeanwqaOfNm8Kkp9WpVNEPZCLyW1mAMCuFJu/3xlWYeWc778Hc3vJqGn3bn+cLNubgCA==
@@ -640,19 +628,6 @@
     "@codemirror/state" "^0.19.0"
     "@codemirror/view" "^0.19.0"
     "@lezer/javascript" "^0.15.1"
-
-"@codemirror/lang-markdown@^0.19.3":
-  version "0.19.6"
-  resolved "https://registry.yarnpkg.com/@codemirror/lang-markdown/-/lang-markdown-0.19.6.tgz#761301d276fcfbdf88440f0333785efd71c2a4f5"
-  integrity sha512-ojoHeLgv1Rfu0GNGsU0bCtXAIp5dy4VKjndHScITQdlCkS/+SAIfuoeowEx+nMAQwTxI+/9fQZ3xdZVznGFYug==
-  dependencies:
-    "@codemirror/highlight" "^0.19.0"
-    "@codemirror/lang-html" "^0.19.0"
-    "@codemirror/language" "^0.19.0"
-    "@codemirror/state" "^0.19.3"
-    "@codemirror/view" "^0.19.0"
-    "@lezer/common" "^0.15.0"
-    "@lezer/markdown" "^0.15.0"
 
 "@codemirror/language@^0.19.0", "@codemirror/language@^0.19.7":
   version "0.19.7"
@@ -734,29 +709,18 @@
     style-mod "^4.0.0"
     w3c-keyname "^2.2.4"
 
-"@codemirror/view@^0.19.39":
-  version "0.19.48"
-  resolved "https://registry.yarnpkg.com/@codemirror/view/-/view-0.19.48.tgz#1c657e2b0f8ed896ac6448d6e2215ab115e2a0fc"
-  integrity sha512-0eg7D2Nz4S8/caetCTz61rK0tkHI17V/d15Jy0kLOT8dTLGGNJUponDnW28h2B6bERmPlVHKh8MJIr5OCp1nGw==
-  dependencies:
-    "@codemirror/rangeset" "^0.19.5"
-    "@codemirror/state" "^0.19.3"
-    "@codemirror/text" "^0.19.0"
-    style-mod "^4.0.0"
-    w3c-keyname "^2.2.4"
-
-"@codesandbox/sandpack-client@^1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-1.7.0.tgz#cae07db91da3ef2893f20c0d11d58641e7af2a33"
-  integrity sha512-13nL7+OX7iefVXeO+cvEntZD/hBuXLPjv72e5tiCjwuq/oor8jR2NGxzJ0pozUfZmJhvDIAxw5isJvhiIdgcWA==
+"@codesandbox/sandpack-client@^1.10.1":
+  version "1.10.1"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-client/-/sandpack-client-1.10.1.tgz#c1dfd59c853fb9b6532a3dfdfe14736df36e6f4b"
+  integrity sha512-BZAfseNTO2a3AFZfGH+zKkbg6nMMy2bjg43trgGVdZyuu6mC7X/VBEdHF3ULl3AsEM5CsrSmu3SbDCNitmUHQQ==
   dependencies:
     codesandbox-import-utils "^1.2.3"
     lodash.isequal "^4.5.0"
 
-"@codesandbox/sandpack-react@1.7.2":
-  version "1.7.2"
-  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-1.7.2.tgz#5559797f2d405a7fb59577d92097c88628f79d20"
-  integrity sha512-oOaGzzqcFcDgoHMZ1cuQKYGTdQPgtmMHNgingSbzxcxTCIsA0hkwm+2ilVH1d1AZSgbIPoLqbYVjrdtsO4lJJg==
+"@codesandbox/sandpack-react@1.11.0":
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/@codesandbox/sandpack-react/-/sandpack-react-1.11.0.tgz#ce58b754dd4105bfc568878ba23336479163ef73"
+  integrity sha512-0kzMFhO1MUFJv69kuuJmdTKq1xZVTdXVxFW7lEON+42lxIctQJuzo5ooCJnjWU6QhSvKRQQ7NLrtJrDXYLP2Kg==
   dependencies:
     "@code-hike/classer" "^0.0.0-aa6efee"
     "@codemirror/closebrackets" "^0.19.0"
@@ -768,12 +732,11 @@
     "@codemirror/lang-css" "^0.19.3"
     "@codemirror/lang-html" "^0.19.4"
     "@codemirror/lang-javascript" "^0.19.3"
-    "@codemirror/lang-markdown" "^0.19.3"
     "@codemirror/language" "^0.19.7"
     "@codemirror/matchbrackets" "^0.19.3"
     "@codemirror/state" "^0.19.6"
     "@codemirror/view" "^0.19.32"
-    "@codesandbox/sandpack-client" "^1.7.0"
+    "@codesandbox/sandpack-client" "^1.10.1"
     "@react-hook/intersection-observer" "^3.1.1"
     "@stitches/core" "^1.2.6"
     clean-set "^1.1.2"
@@ -907,13 +870,6 @@
   version "0.15.7"
   resolved "https://registry.yarnpkg.com/@lezer/lr/-/lr-0.15.7.tgz#e7e6a8a106c6474b4586a66a3e60ba85f1faf368"
   integrity sha512-rmUukgyKSm6xzXO4cK5hkpX3+ZTHF+bHDkEuhofAVUTS3J23YytUxGWsrDwBVvGbhvxW87kheb2mRYHRwKacDQ==
-  dependencies:
-    "@lezer/common" "^0.15.0"
-
-"@lezer/markdown@^0.15.0":
-  version "0.15.6"
-  resolved "https://registry.yarnpkg.com/@lezer/markdown/-/markdown-0.15.6.tgz#2a826a507399b32176efdc35554397f05227d2aa"
-  integrity sha512-1XXLa4q0ZthryUEfO47ipvZHxNb+sCKoQIMM9dKs5vXZOBbgF2Vah/GL3g26BFIAEc2uCv4VQnI+lSrv58BT3g==
   dependencies:
     "@lezer/common" "^0.15.0"
 

@@ -38,6 +38,7 @@
     "react": "0.0.0-experimental-cb5084d1c-20220924",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
     "react-dom": "0.0.0-experimental-cb5084d1c-20220924",
+    "remark-frontmatter": "^4.0.1",
     "remark-gfm": "^3.0.1"
   },
   "devDependencies": {

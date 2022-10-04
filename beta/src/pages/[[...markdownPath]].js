@@ -55,7 +55,7 @@ function reviveNodeOnClient(key, val) {
 
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // ~~~~ IMPORTANT: BUMP THIS IF YOU CHANGE ANY CODE BELOW ~~~
-const DISK_CACHE_BREAKER = 6;
+const DISK_CACHE_BREAKER = 7;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 // Put MDX output into JSON for client.
@@ -112,7 +112,7 @@ export async function getStaticProps(context) {
   // This will break the prepareMDX() call below.
   let mdxWithFakeImports =
     mdx +
-    '\n' +
+    '\n\n' +
     mdxComponentNames
       .map((key) => 'import ' + key + ' from "' + key + '";\n')
       .join('\n');

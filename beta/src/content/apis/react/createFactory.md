@@ -190,7 +190,7 @@ function Heading({ isSubheading, ...props }) {
 To do the same in JSX, you need to rename your variable to start with an uppercase letter like `Type`:
 
 ```js {2,3}
-function Heading({ size, ...props }) {
+function Heading({ isSubheading, ...props }) {
   let Type = isSubheading ? 'h2' : 'h1';
   return <Type {...props} />;
 }

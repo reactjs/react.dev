@@ -181,7 +181,7 @@ Sometimes, your existing code might pass some variable as a `type` instead of a 
 
 ```js {3}
 function Heading({ isSubheading, ...props }) {
-  let type = isSubheading ? 'h2' : 'h1';
+  const type = isSubheading ? 'h2' : 'h1';
   const factory = createFactory(type);
   return factory(props);
 }
@@ -191,7 +191,7 @@ To do the same in JSX, you need to rename your variable to start with an upperca
 
 ```js {2,3}
 function Heading({ isSubheading, ...props }) {
-  let Type = isSubheading ? 'h2' : 'h1';
+  const Type = isSubheading ? 'h2' : 'h1';
   return <Type {...props} />;
 }
 ```

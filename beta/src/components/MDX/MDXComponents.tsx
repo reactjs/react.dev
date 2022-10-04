@@ -79,6 +79,9 @@ const Wip = ({children}: {children: React.ReactNode}) => (
 const Gotcha = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="gotcha">{children}</ExpandableCallout>
 );
+const Deprecated = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="deprecated">{children}</ExpandableCallout>
+);
 const Note = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
 );
@@ -369,6 +372,7 @@ export const MDXComponents = {
     return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
   },
   Gotcha,
+  Deprecated,
   Wip,
   HomepageHero,
   Illustration,

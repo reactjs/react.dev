@@ -37,8 +37,7 @@
             },
             {
               "title": "createFactory",
-              "path": "/apis/react/createFactory",
-              "wip": true
+              "path": "/apis/react/createFactory"
             },
             {
               "title": "createRef",

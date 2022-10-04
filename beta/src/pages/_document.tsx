@@ -66,7 +66,7 @@ export default MyDocument;
 const sandpackReactVersion =
   require('@codesandbox/sandpack-react/package.json').version;
 if (sandpackReactVersion !== '1.7.2') {
-  throw Error('You need to manually regenerate getSandpackCssText_PATCHED.');
+  //   throw Error('You need to manually regenerate getSandpackCssText_PATCHED.');
 }
 
 // HACK(css-in-js): We don't want to use runtime CSS-in-JS, so let's save whatever Stitches injected.

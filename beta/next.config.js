@@ -46,12 +46,8 @@ const nextConfig = {
     // Don't bundle the shim unnecessarily.
     config.resolve.alias['use-sync-external-store/shim'] = 'react';
 
-    const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
+    const {IgnorePlugin} = require('webpack');
     config.plugins.push(
-      new NormalModuleReplacementPlugin(
-        /@codemirror\/lang-markdown/,
-        require.resolve('./src/utils/codemirrorMarkdownShim.js')
-      ),
       new IgnorePlugin({
         checkResource(resource, context) {
           if (

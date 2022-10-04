@@ -54,8 +54,7 @@
             },
             {
               "title": "isValidElement",
-              "path": "/apis/react/isValidElement",
-              "wip": true
+              "path": "/apis/react/isValidElement"
             },
             {
               "title": "lazy",

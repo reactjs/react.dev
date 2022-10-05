@@ -115,8 +115,7 @@
             },
             {
               "title": "useImperativeHandle",
-              "path": "/apis/react/useImperativeHandle",
-              "wip": true
+              "path": "/apis/react/useImperativeHandle"
             },
             {
               "title": "useInsertionEffect",

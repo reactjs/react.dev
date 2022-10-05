@@ -188,6 +188,23 @@
               "path": "/learn/reusing-logic-with-custom-hooks"
             }
           ]
+        },
+        {
+          "title": "Testing",
+          "path": "/learn/testing",
+          "tags": [
+            "advanced"
+          ],
+          "routes": [
+            {
+              "title": "Testing Recipes",
+              "path": "/learn/testing-recipes"
+            },
+            {
+              "title": "Testing Environments",
+              "path": "/learn/testing-environments"
+            }
+          ]
         }
       ]
     }

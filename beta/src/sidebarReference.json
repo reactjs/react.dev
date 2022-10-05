@@ -32,8 +32,7 @@
             },
             {
               "title": "createElement",
-              "path": "/apis/react/createElement",
-              "wip": true
+              "path": "/apis/react/createElement"
             },
             {
               "title": "createFactory",

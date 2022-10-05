@@ -8,7 +8,7 @@ import {createFileMap} from './createFileMap';
 const SandpackRoot = lazy(() => import('./SandpackRoot'));
 
 const SandpackGlimmer = ({code}: {code: string}) => (
-  <div className="sandpack sandpack--playground sandbox my-8">
+  <div className="sandpack sandpack--playground my-8">
     <div className="sp-wrapper">
       <div className="shadow-lg dark:shadow-lg-dark rounded-lg">
         <div className="bg-wash h-10 dark:bg-card-dark flex justify-between items-center relative z-10 border-b border-border dark:border-border-dark rounded-t-lg rounded-b-none">

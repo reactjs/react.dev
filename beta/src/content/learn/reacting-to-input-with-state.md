@@ -27,7 +27,7 @@ When you design UI interactions, you probably think about how the UI *changes* i
 
 In **imperative programming,** the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
 
-<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
+<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png" width="487.523" height="299" alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
 
 They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
 
@@ -137,7 +137,7 @@ React was built to solve this problem.
 
 In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
 
-<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
+<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" width="700" height="407.312" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
 
 ## Thinking about UI declaratively {/*thinking-about-ui-declaratively*/}
 
@@ -312,8 +312,8 @@ Pages like this are often called "living styleguides" or "storybooks".
 ### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
 
 <IllustrationBlock title="Types of inputs">
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" width="244.508" height="249.992" />
+  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" width="264.281" height="249.992" />
 </IllustrationBlock>
 
 You can trigger state updates in response to two kinds of inputs:

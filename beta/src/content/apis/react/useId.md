@@ -135,7 +135,7 @@ input { margin: 5px; }
 
 <Gotcha>
 
-If you use [server rendering,](/apis/react-dom/server) you must render an identical component tree on the server and the client. If the trees you render on the server and the client don't match exactly, the generated IDs won't match up.
+**`useId` requires an identical component tree on the server and the client** when you use [server rendering](/apis/react-dom/server). If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
 
 </Gotcha>
 
@@ -146,6 +146,8 @@ You might be wondering why `useId` is better than incrementing a global variable
 The primary benefit of `useId` is that React ensures that it works with [server rendering.](/apis/react-dom/server) During server rendering, your components generate HTML output. Later, on the client, [hydration](/apis/react-dom/client/hydrateRoot) attaches your event handlers to the generated HTML. For hydration to work, the client output must match the server HTML.
 
 This is very difficult to guarantee with an incrementing counter because the order in which the client components are hydrated may not match the order in which the server HTML was emitted. By calling `useId`, you ensure that hydration will work, and the output will match between the server and the client.
+
+Inside React, `useId` is generated from the "parent path" of the calling component. This is why, if the client and the server tree are the same, the "parent path" will match up regardless of rendering order.
 
 </DeepDive>
 

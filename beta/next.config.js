@@ -48,8 +48,12 @@ const nextConfig = {
     // Don't bundle the shim unnecessarily.
     config.resolve.alias['use-sync-external-store/shim'] = 'react';
 
-    const {IgnorePlugin} = require('webpack');
+    const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
+      new NormalModuleReplacementPlugin(
+        /@stitches\/core/,
+        require.resolve('./src/utils/emptyShim.js')
+      ),
       new IgnorePlugin({
         checkResource(resource, context) {
           if (

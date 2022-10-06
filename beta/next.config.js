@@ -45,8 +45,16 @@ const nextConfig = {
     // Don't bundle the shim unnecessarily.
     config.resolve.alias['use-sync-external-store/shim'] = 'react';
 
-    const {IgnorePlugin} = require('webpack');
+    const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
+      new NormalModuleReplacementPlugin(
+        /^raf$/,
+        require.resolve('./src/utils/rafShim.js')
+      ),
+      new NormalModuleReplacementPlugin(
+        /^process$/,
+        require.resolve('./src/utils/processShim.js')
+      ),
       new IgnorePlugin({
         checkResource(resource, context) {
           if (

@@ -14,7 +14,7 @@ If a single element’s attribute or text content is unavoidably different betwe
 
 ## Usage {/*usage*/}
 
-### Using the `suppressHydrationWarning` attribute {/*using-the-suppressHydrationWarning-attribute*/}
+### Using the `suppressHydrationWarning` attribute {/*using-the-suppresshydrationwarning-attribute*/}
 
 In this example, the `Current Date` is different between the server and the client. In this situation you may get [hydration mismatch warning.](/apis/react-dom/hydrate#avoiding-unavoidable-hydration-mismatches)
 

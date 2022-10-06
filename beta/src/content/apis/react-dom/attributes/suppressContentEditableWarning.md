@@ -17,7 +17,7 @@ Don’t use `suppressContentEditableWarning` unless you are building a library l
 
 ## Usage {/*usage*/}
 
-### Using the `suppressContentEditableWarning` attribute {/*using-the-suppressContentEditableWarning-attribute*/}
+### Using the `suppressContentEditableWarning` attribute {/*using-the-suppresscontenteditablewarning-attribute*/}
 
 In this example, the `<div>` is editable because the `contentEditable` attribute is set to true. Typically you would you get a warning, but this example is warning-free because the `suppressContentEditableWarning` attribute is set to true.
 

@@ -18,7 +18,7 @@ Since `for` is a reserved word in JavaScript, `htmlFor` is used instead of the H
 
 ## Usage {/*usage*/}
 
-### Using the `htmlFor` property {/*using-the-htmlFor-property*/}
+### Using the `htmlFor` property {/*using-the-htmlfor-property*/}
 
 In this example, a `<label>` is bound to an `<input>` element with the `id` attribute. To denote the relation, the `htmlFor` and the `id` attributes are given the same value.
 

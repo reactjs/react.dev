@@ -14,13 +14,13 @@ We intentionally do not use the existing browser behavior because `onChange` is 
 
 ## Usage {/*usage*/}
 
-### Using the `onChange` property {/*using-the-onChange-property*/}
+### Using the `onChange` property {/*using-the-onchange-property*/}
 
 In the following examples, a form field with the `<input>` element is being rendered. The `onChange` event fires when there is a change in the `<input>` field, and then the corresponding function is executed.
 
 <Recipes titleText="onChange property examples for various types of <input> elements" titleId="examples-basic">
 
-#### `onChange` for input type `text` {/*onChange-for-input-type-text*/}
+#### `onChange` for input type `text` {/*onchange-for-input-type-text*/}
 
 <Sandpack>
 
@@ -46,7 +46,7 @@ export default function MyForm() {
 
 <Solution />
 
-#### `onChange` for input type `radio` {/*onChange-for-input-type-radio*/}
+#### `onChange` for input type `radio` {/*onchange-for-input-type-radio*/}
 
 <Sandpack>
 
@@ -80,7 +80,7 @@ export default function MyForm() {
 
 <Solution />
 
-#### `onChange` for input type `checkbox` {/*onChange-for-input-type-checkbox*/}
+#### `onChange` for input type `checkbox` {/*onchange-for-input-type-checkbox*/}
 
 <Sandpack>
 
@@ -116,7 +116,7 @@ export default function MyForm() {
 
 <Solution />
 
-#### `onChange` for input type `date` {/*onChange-for-input-type-date*/}
+#### `onChange` for input type `date` {/*onchange-for-input-type-date*/}
 
 <Sandpack>
 
@@ -143,7 +143,7 @@ export default function MyForm() {
 
 <Solution />
 
-#### `onChange` for input type `file` {/*onChange-for-input-type-file*/}
+#### `onChange` for input type `file` {/*onchange-for-input-type-file*/}
 
 <Sandpack>
 
@@ -176,7 +176,7 @@ In this example, a form field with the `<select>` element is being rendered. The
 
 <Recipes titleText="onChange property example for <select> elements" titleId="examples-select">
 
-#### `onChange` for `<select>` element {/*onChange-for-select-element*/}
+#### `onChange` for `<select>` element {/*onchange-for-select-element*/}
 
 <Sandpack>
 

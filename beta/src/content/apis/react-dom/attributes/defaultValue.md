@@ -14,7 +14,7 @@ The `defaultValue` attribute is supported by the `<input>`, `<select>`, and `<te
 
 ## Usage {/*usage*/}
 
-### Using the `defaultValue` attribute {/*using-the-defaultValue-attribute*/}
+### Using the `defaultValue` attribute {/*using-the-defaultvalue-attribute*/}
 
 In this example, `MyComponent` is rendering a `<textarea>` component with the `defaultValue` set. Hence, the `<textarea>` has default text when the component mounts.
 

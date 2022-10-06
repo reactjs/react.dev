@@ -51,8 +51,16 @@ const nextConfig = {
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
       new NormalModuleReplacementPlugin(
-        /@stitches\/core/,
+        /^@stitches\/core$/,
         require.resolve('./src/utils/emptyShim.js')
+      ),
+      new NormalModuleReplacementPlugin(
+        /^raf$/,
+        require.resolve('./src/utils/rafShim.js')
+      ),
+      new NormalModuleReplacementPlugin(
+        /^process$/,
+        require.resolve('./src/utils/processShim.js')
       ),
       new IgnorePlugin({
         checkResource(resource, context) {

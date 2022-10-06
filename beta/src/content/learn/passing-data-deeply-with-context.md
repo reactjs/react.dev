@@ -1157,4 +1157,502 @@ Note how components in the middle don't need to pass `imageSize` anymore.
 
 </Solution>
 
+#### Dark mode with context {/*dark-mode-with-context*/}
+
+As a continuation of previous example we are going to add dark mode to the same example, currently we are passing `darkMode` prop to `<List>` and `<PlaceImage />` component.
+
+Assuming `<List>` component is deeper in component hierarchy, pass `isDarkMode` state to `<List>` and `<PlaceImage />` components using context.
+
+Do not worry about `useDarkMode` custom hook for now.
+
+<Sandpack>
+
+```js App.js
+import { useState, useContext } from "react";
+import { places } from "./data.js";
+import { getImageUrl } from "./utils.js";
+import { ImageSizeContext } from "./Context.js";
+import { useDarkMode } from "./useDarkMode.js";
+
+export default function App() {
+  const [isLarge, setIsLarge] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const imageSize = isLarge ? 150 : 100;
+
+  useDarkMode(isDarkMode);
+
+  return (
+    <ImageSizeContext.Provider value={imageSize}>
+      <label>
+        <input
+          type="checkbox"
+          checked={isLarge}
+          onChange={(e) => {
+            setIsLarge(e.target.checked);
+          }}
+        />
+        Use large images
+      </label>
+      {"  "}
+      <label>
+        <input
+          type="checkbox"
+          checked={isDarkMode}
+          onChange={(e) => {
+            setIsDarkMode(e.target.checked);
+          }}
+        />
+        Use dark theme
+      </label>
+      <hr />
+      <List darkMode={isDarkMode} />
+    </ImageSizeContext.Provider>
+  );
+}
+
+function List({ darkMode }) {
+  const listItems = places.map((place) => (
+    <li
+      key={place.id}
+      style={{ backgroundColor: darkMode ? "#2d2d2d" : "#efefef" }}
+    >
+      <Place place={place} darkMode={darkMode} />
+    </li>
+  ));
+
+  return <ul>{listItems}</ul>;
+}
+
+function Place({ place, darkMode }) {
+  return (
+    <>
+      <PlaceImage place={place} darkMode={darkMode} />
+      <p>
+        <b>{place.name}</b>
+        {": " + place.description}
+      </p>
+    </>
+  );
+}
+
+function PlaceImage({ place, darkMode }) {
+  const imageSize = useContext(ImageSizeContext);
+  const [onHovered, setOnHovered] = useState(false);
+
+  const hoverOnDarkMode = onHovered && darkMode;
+
+  function handleMouseEnter() {
+    setOnHovered(true);
+  }
+
+  function handleMouseLeave() {
+    setOnHovered(false);
+  }
+
+  return (
+    <img
+      src={getImageUrl(place)}
+      alt={place.name}
+      width={imageSize}
+      height={imageSize}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ opacity: hoverOnDarkMode ? "100%" : "80%" }}
+    />
+  );
+}
+```
+
+```js Context.js
+import { createContext } from "react";
+
+export const ImageSizeContext = createContext(500);
+
+// TODO:  create dark mode context here
+```
+
+```js useDarkMode.js
+import { useEffect } from "react";
+
+export function useDarkMode(isDarkMode) {
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.style.backgroundColor = "#121212";
+      document.body.style.color = "white";
+      document.body.style.opacity = "80%";
+    } else {
+      document.body.style.backgroundColor = "white";
+      document.body.style.color = "black";
+      document.body.style.opacity = "100%";
+    }
+  }, [isDarkMode]);
+}
+```
+
+```js data.js
+export const places = [{
+  id: 0,
+  name: 'Bo-Kaap in Cape Town, South Africa',
+  description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
+  imageId: 'K9HVAGH'
+}, {
+  id: 1, 
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
+}, {
+  id: 2, 
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
+}, {
+  id: 3, 
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  imageId: 'aeO3rpI'
+}, {
+  id: 4, 
+  name: 'Burano, Italy',
+  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  imageId: 'kxsph5C'
+}, {
+  id: 5, 
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repells mosquitos or that it symbolizes sky and heaven.',
+  imageId: 'rTqKo46'
+}, {
+  id: 6,
+  name: 'Gamcheon Culture Village in Busan, South Korea',
+  description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
+  imageId: 'ZfQOOzf'
+}];
+```
+
+```js utils.js
+export function getImageUrl(place) {
+  return (
+    'https://i.imgur.com/' +
+    place.imageId +
+    'l.jpg'
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px 10px;
+}
+li {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+```
+
+</Sandpack>
+
+<Solution>
+
+Remove `darkMode` prop from `<List>, <Place>, <PlaceImage>` components and wrap the existing `<ImageSizeContext.Provider>` with `<DarkModeContext.Provider value={isDarkMode}>` to pass down the value `isDarkMode` state to `<List>` and `<PlaceImage>` components and `useContext(DarkModeContext)` to read in the `<List>` and `<PlaceImage>` components.
+
+<Sandpack>
+
+```js App.js
+import { useState, useContext } from "react";
+import { places } from "./data.js";
+import { getImageUrl } from "./utils.js";
+import { DarkModeContext, ImageSizeContext } from "./Context.js";
+import { useDarkMode } from "./useDarkMode.js";
+
+export default function App() {
+  const [isLarge, setIsLarge] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const imageSize = isLarge ? 150 : 100;
+
+  useDarkMode(isDarkMode);
+
+  return (
+    <DarkModeContext.Provider value={isDarkMode}>
+      <ImageSizeContext.Provider value={imageSize}>
+        <label>
+          <input
+            type="checkbox"
+            checked={isLarge}
+            onChange={(e) => {
+              setIsLarge(e.target.checked);
+            }}
+          />
+          Use large images
+        </label>
+        {"  "}
+        <label>
+          <input
+            type="checkbox"
+            checked={isDarkMode}
+            onChange={(e) => {
+              setIsDarkMode(e.target.checked);
+            }}
+          />
+          Use dark theme
+        </label>
+        <hr />
+        <List />
+      </ImageSizeContext.Provider>
+    </DarkModeContext.Provider>
+  );
+}
+
+function List() {
+  const isDarkMode = useContext(DarkModeContext);
+  const listItems = places.map((place) => (
+    <li
+      key={place.id}
+      style={
+        isDarkMode
+          ? { backgroundColor: "#2d2d2d" }
+          : { backgroundColor: "#efefef" }
+      }
+    >
+      <Place place={place} />
+    </li>
+  ));
+  return <ul>{listItems}</ul>;
+}
+
+function Place({ place }) {
+  return (
+    <>
+      <PlaceImage place={place} />
+      <p>
+        <b>{place.name}</b>
+        {": " + place.description}
+      </p>
+    </>
+  );
+}
+
+function PlaceImage({ place }) {
+  const imageSize = useContext(ImageSizeContext);
+  const isDarkMode = useContext(DarkModeContext);
+  const [onHovered, setOnHovered] = useState(false);
+
+  const hoverOnDarkMode = onHovered && isDarkMode;
+
+  function handleMouseEnter() {
+    setOnHovered(true);
+  }
+
+  function handleMouseLeave() {
+    setOnHovered(false);
+  }
+
+  return (
+    <img
+      src={getImageUrl(place)}
+      alt={place.name}
+      width={imageSize}
+      height={imageSize}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+      style={{ opacity: hoverOnDarkMode ? "100%" : "80%" }}
+    />
+  );
+}
+```
+
+```js Context.js
+import { createContext } from 'react';
+
+export const ImageSizeContext = createContext(500);
+export const DarkModeContext = createContext(false);
+```
+
+```js useDarkMode.js
+import { useEffect } from "react";
+
+export function useDarkMode(isDarkMode) {
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.style.backgroundColor = "#121212";
+      document.body.style.color = "white";
+      document.body.style.opacity = "80%";
+    } else {
+      document.body.style.backgroundColor = "white";
+      document.body.style.color = "black";
+      document.body.style.opacity = "100%";
+    }
+  }, [isDarkMode]);
+}
+```
+
+```js data.js
+export const places = [{
+  id: 0,
+  name: 'Bo-Kaap in Cape Town, South Africa',
+  description: 'The tradition of choosing bright colors for houses began in the late 20th century.',
+  imageId: 'K9HVAGH'
+}, {
+  id: 1, 
+  name: 'Rainbow Village in Taichung, Taiwan',
+  description: 'To save the houses from demolition, Huang Yung-Fu, a local resident, painted all 1,200 of them in 1924.',
+  imageId: '9EAYZrt'
+}, {
+  id: 2, 
+  name: 'Macromural de Pachuca, Mexico',
+  description: 'One of the largest murals in the world covering homes in a hillside neighborhood.',
+  imageId: 'DgXHVwu'
+}, {
+  id: 3, 
+  name: 'Selarón Staircase in Rio de Janeiro, Brazil',
+  description: 'This landmark was created by Jorge Selarón, a Chilean-born artist, as a "tribute to the Brazilian people."',
+  imageId: 'aeO3rpI'
+}, {
+  id: 4, 
+  name: 'Burano, Italy',
+  description: 'The houses are painted following a specific color system dating back to 16th century.',
+  imageId: 'kxsph5C'
+}, {
+  id: 5, 
+  name: 'Chefchaouen, Marocco',
+  description: 'There are a few theories on why the houses are painted blue, including that the color repells mosquitos or that it symbolizes sky and heaven.',
+  imageId: 'rTqKo46'
+}, {
+  id: 6,
+  name: 'Gamcheon Culture Village in Busan, South Korea',
+  description: 'In 2009, the village was converted into a cultural hub by painting the houses and featuring exhibitions and art installations.',
+  imageId: 'ZfQOOzf'
+}];
+```
+
+```js utils.js
+export function getImageUrl(place) {
+  return (
+    'https://i.imgur.com/' +
+    place.imageId +
+    'l.jpg'
+  );
+}
+```
+
+```css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+h1 {
+  margin-top: 0;
+  font-size: 22px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+}
+
+h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+h4 {
+  margin-top: 0;
+  font-size: 16px;
+}
+
+h5 {
+  margin-top: 0;
+  font-size: 14px;
+}
+
+h6 {
+  margin-top: 0;
+  font-size: 12px;
+}
+
+code {
+  font-size: 1.2em;
+}
+
+ul {
+  padding-left: 20px;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0px 10px;
+}
+li {
+  margin-bottom: 10px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 20px;
+  align-items: center;
+}
+```
+
+</Sandpack>
+
+In real world application just background and text colors does not give an optimized dark mode, we have to make subtle styling changes to components which may be deeper in component hierarchy to provide user with better UX when using dark mode, in such cases context can be really helpful instead of cumbersome prop drilling.
+
+</Solution>
+
 </Challenges>

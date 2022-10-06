@@ -9,6 +9,8 @@ import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
 import {TocContext} from '../MDX/TocContext';
 
+import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
+
 export interface MarkdownProps<Frontmatter> {
   meta: Frontmatter & {description?: string};
   children?: React.ReactNode;

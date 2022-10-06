@@ -177,7 +177,7 @@ If you set a state variable to its current value, React will skip re-rendering y
 
 ---
 
-### Updating a memoized component using a context {/*updating-a-memoized-component-using-state*/}
+### Updating a memoized component using a context {/*updating-a-memoized-component-using-a-context*/}
 
 Even when a component is memoized, it will still re-render when a context that it's using changes. Memoization only has to do with props that are passed to the component from its parent.
 

@@ -1113,7 +1113,7 @@ In both of these cases, `canMove` is a reactive variable that you read inside th
 
 #### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox if on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
 
 However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
 
@@ -1613,7 +1613,7 @@ In this version, the `App` component passes a boolean prop instead of a function
 
 #### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
 
-In this example, there are two select boxes. One select box lets the user picks a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
+In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
 
 Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
 

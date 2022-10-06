@@ -32,13 +32,11 @@
             },
             {
               "title": "createElement",
-              "path": "/apis/react/createElement",
-              "wip": true
+              "path": "/apis/react/createElement"
             },
             {
               "title": "createFactory",
-              "path": "/apis/react/createFactory",
-              "wip": true
+              "path": "/apis/react/createFactory"
             },
             {
               "title": "createRef",
@@ -55,8 +53,7 @@
             },
             {
               "title": "isValidElement",
-              "path": "/apis/react/isValidElement",
-              "wip": true
+              "path": "/apis/react/isValidElement"
             },
             {
               "title": "lazy",
@@ -105,8 +102,7 @@
             },
             {
               "title": "useEffect",
-              "path": "/apis/react/useEffect",
-              "wip": true
+              "path": "/apis/react/useEffect"
             },
             {
               "title": "useEvent",
@@ -115,17 +111,20 @@
             },
             {
               "title": "useId",
-              "path": "/apis/react/useId",
-              "wip": true
+              "path": "/apis/react/useId"
             },
             {
               "title": "useImperativeHandle",
-              "path": "/apis/react/useImperativeHandle",
-              "wip": true
+              "path": "/apis/react/useImperativeHandle"
             },
             {
               "title": "useInsertionEffect",
               "path": "/apis/react/useInsertionEffect",
+              "wip": true
+            },
+            {
+              "title": "useLayoutEffect",
+              "path": "/apis/react/useLayoutEffect",
               "wip": true
             },
             {

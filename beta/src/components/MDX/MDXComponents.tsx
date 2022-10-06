@@ -9,7 +9,6 @@ import cn from 'classnames';
 import CodeBlock from './CodeBlock';
 import {CodeDiagram} from './CodeDiagram';
 import ConsoleBlock from './ConsoleBlock';
-import Convention from './Convention';
 import ExpandableCallout from './ExpandableCallout';
 import ExpandableExample from './ExpandableExample';
 import {H1, H2, H3, H4} from './Heading';
@@ -79,6 +78,9 @@ const Wip = ({children}: {children: React.ReactNode}) => (
 );
 const Gotcha = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="gotcha">{children}</ExpandableCallout>
+);
+const Deprecated = ({children}: {children: React.ReactNode}) => (
+  <ExpandableCallout type="deprecated">{children}</ExpandableCallout>
 );
 const Note = ({children}: {children: React.ReactNode}) => (
   <ExpandableCallout type="note">{children}</ExpandableCallout>
@@ -356,7 +358,6 @@ export const MDXComponents = {
   pre: CodeBlock,
   CodeDiagram,
   ConsoleBlock,
-  Convention,
   DeepDive: (props: {
     children: React.ReactNode;
     title: string;
@@ -371,6 +372,7 @@ export const MDXComponents = {
     return <div className="max-w-4xl ml-0 2xl:mx-auto">{children}</div>;
   },
   Gotcha,
+  Deprecated,
   Wip,
   HomepageHero,
   Illustration,

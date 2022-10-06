@@ -405,117 +405,6 @@ input {
 
 </Sandpack>
 
-The methods you expose via an imperative handle don't have to match the DOM methods exactly. For example, the `Post` component in the example below exposes a `scrollAndFocusAddComment` method via an imperative handle. This lets the parent `Page` scroll the list of comments *and* focus the input field when you click the button:
-
-<Sandpack>
-
-```js
-import { useRef } from 'react';
-import Post from './Post.js';
-
-export default function Page() {
-  const postRef = useRef(null);
-
-  function handleClick() {
-    postRef.current.scrollAndFocusAddComment();
-  }
-
-  return (
-    <>
-      <button onClick={handleClick}>
-        Write a comment
-      </button>
-      <Post ref={postRef} />
-    </>
-  );
-}
-```
-
-```js Post.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
-import CommentList from './CommentList.js';
-import AddComment from './AddComment.js';
-
-const Post = forwardRef((props, ref) => {
-  const commentsRef = useRef(null);
-  const addCommentRef = useRef(null);
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollAndFocusAddComment() {
-        commentsRef.current.scrollToBottom();
-        addCommentRef.current.focus();
-      }
-    };
-  }, []);
-
-  return (
-    <>
-      <article>
-        <p>Welcome to my blog!</p>
-      </article>
-      <CommentList ref={commentsRef} />
-      <AddComment ref={addCommentRef} />
-    </>
-  );
-});
-
-export default Post;
-```
-
-
-```js CommentList.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
-
-const CommentList = forwardRef(function CommentList(props, ref) {
-  const divRef = useRef(null);
-
-  useImperativeHandle(ref, () => {
-    return {
-      scrollToBottom() {
-        const node = divRef.current;
-        node.scrollTop = node.scrollHeight;
-      }
-    };
-  }, []);
-
-  let comments = [];
-  for (let i = 0; i < 50; i++) {
-    comments.push(<p key={i}>Comment #{i}</p>);
-  }
-
-  return (
-    <div className="CommentList" ref={divRef}>
-      {comments}
-    </div>
-  );
-});
-
-export default CommentList;
-```
-
-```js AddComment.js
-import { forwardRef, useRef, useImperativeHandle } from 'react';
-
-const AddComment = forwardRef(function AddComment(props, ref) {
-  return <input placeholder="Add comment..." ref={ref} />;
-});
-
-export default AddComment;
-```
-
-```css
-.CommentList {
-  height: 100px;
-  overflow: scroll;
-  border: 1px solid black;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-```
-
-</Sandpack>
-
 [Read more about using imperative handles.](/apis/react/useImperativeHandle)
 
 <Gotcha>
@@ -579,7 +468,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/apis/react/useImperativeHandle)
 
-#### Returns {/*returns*/}
+#### Returns {/*render-returns*/}
 
 `forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
 

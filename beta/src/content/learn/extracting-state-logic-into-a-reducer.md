@@ -17,7 +17,7 @@ Components with many state updates spread across many event handlers can get ove
 
 </YouWillLearn>
 
-## Consolidate state logic with a reducer {/* consolidate-state-logic-with-a-reducer */}
+## Consolidate state logic with a reducer {/*consolidate-state-logic-with-a-reducer*/}
 
 As your components grow in complexity, it can get harder to see at a glance all the different ways in which a component's state gets updated. For example, the `TaskApp` component below holds an array of `tasks` in state and uses three different event handlers to add, remove, and edit tasks:
 
@@ -187,7 +187,7 @@ Reducers are a different way to handle state. You can migrate from `useState` to
 2. **Write** a reducer function.
 3. **Use** the reducer from your component.
 
-### Step 1: Move from setting state to dispatching actions {/* step-1-move-from-setting-state-to-dispatching-actions */}
+### Step 1: Move from setting state to dispatching actions {/*step-1-move-from-setting-state-to-dispatching-actions*/}
 
 Your event handlers currently specify _what to do_ by setting state:
 
@@ -268,9 +268,11 @@ function handleDeleteTask(taskId) {
 
 It is a regular JavaScript object. You decide what to put in it, but generally it should contain the minimal information about _what happened_. (You will add the `dispatch` function itself in a later step.)
 
-<Convention conventionFor="action objects">
+<Note>
 
-An action object can have any shape. By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
+An action object can have any shape.
+
+By convention, it is common to give it a string `type` that describes what happened, and pass any additional information in other fields. The `type` is specific to a component, so in this example either `'added'` or `'added_task'` would be fine. Choose a name that says what happened!
 
 ```js
 dispatch({
@@ -280,9 +282,9 @@ dispatch({
 });
 ```
 
-</Convention>
+</Note>
 
-### Step 2: Write a reducer function {/* step-2-write-a-reducer-function */}
+### Step 2: Write a reducer function {/*step-2-write-a-reducer-function*/}
 
 A reducer function is where you will put your state logic. It takes two arguments, the current state and the action object, and it returns the next state:
 
@@ -331,9 +333,11 @@ function tasksReducer(tasks, action) {
 
 > Because the reducer function takes state (`tasks`) as an argument, you can **declare it outside of your component.** This decreases the indentation level and can make your code easier to read.
 
-<Convention conventionFor="reducer functions">
+<Note>
 
-The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance. We'll be using them throughout the rest of this documentation like so:
+The code above uses if/else statements, but it's a convention to use [switch statements](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Statements/switch) inside reducers. The result is the same, but it can be easier to read switch statements at a glance.
+
+We'll be using them throughout the rest of this documentation like so:
 
 ```js
 function tasksReducer(tasks, action) {
@@ -371,7 +375,7 @@ We recommend to wrap each `case` block into the `{` and `}` curly braces so that
 
 If you're not yet comfortable with switch statements, using if/else is completely fine.
 
-</Convention>
+</Note>
 
 <DeepDive title="Why are reducers called this way?">
 
@@ -451,7 +455,7 @@ You probably won't need to do this yourself, but this is similar to what React d
 
 </DeepDive>
 
-### Step 3: Use the reducer from your component {/* step-3-use-the-reducer-from-your-component */}
+### Step 3: Use the reducer from your component {/*step-3-use-the-reducer-from-your-component*/}
 
 Finally, you need to hook up the `tasksReducer` to your component. Make sure to import the `useReducer` Hook from React:
 
@@ -858,7 +862,7 @@ li {
 
 Component logic can be easier to read when you separate concerns like this. Now the event handlers only specify _what happened_ by dispatching actions, and the reducer function determines _how the state updates_ in response to them.
 
-## Comparing `useState` and `useReducer` {/* comparing-usestate-and-usereducer */}
+## Comparing `useState` and `useReducer` {/*comparing-usestate-and-usereducer*/}
 
 Reducers are not without downsides! Here's a few ways you can compare them:
 
@@ -870,14 +874,14 @@ Reducers are not without downsides! Here's a few ways you can compare them:
 
 We recommend using a reducer if you often encounter bugs due to incorrect state updates in some component, and want to introduce more structure to its code. You don't have to use reducers for everything: feel free to mix and match! You can even `useState` and `useReducer` in the same component.
 
-## Writing reducers well {/* writing-reducers-well */}
+## Writing reducers well {/*writing-reducers-well*/}
 
 Keep these two tips in mind when writing reducers:
 
 - **Reducers must be pure.** Similar to [state updater functions](/learn/queueing-a-series-of-state-updates), reducers run during rendering! (Actions are queued until the next render.) This means that reducers [must be pure](/learn/keeping-components-pure)—same inputs always result in the same output. They should not send requests, schedule timeouts, or perform any side effects (operations that impact things outside the component). They should update [objects](/learn/updating-objects-in-state) and [arrays](/learn/updating-arrays-in-state) without mutations.
 - **Each action describes a single user interaction, even if that leads to multiple changes in the data.** For example, if a user presses "Reset" on a form with five fields managed by a reducer, it makes more sense to dispatch one `reset_form` action rather than five separate `set_field` actions. If you log every action in a reducer, that log should be clear enough for you to reconstruct what interactions or responses happened in what order. This helps with debugging!
 
-## Writing concise reducers with Immer {/* writing-concise-reducers-with-immer */}
+## Writing concise reducers with Immer {/*writing-concise-reducers-with-immer*/}
 
 Just like with [updating objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) and [arrays](/learn/updating-arrays-in-state#write-concise-update-logic-with-immer) in regular state, you can use the Immer library to make reducers more concise. Here, [`useImmerReducer`](https://github.com/immerjs/use-immer#useimmerreducer) lets you mutate the state with `push` or `arr[i] =` assignment:
 
@@ -1093,7 +1097,7 @@ Reducers must be pure, so they shouldn't mutate state. But Immer provides you wi
 
 <Challenges>
 
-#### Dispatch actions from event handlers {/* dispatch-actions-from-event-handlers */}
+#### Dispatch actions from event handlers {/*dispatch-actions-from-event-handlers*/}
 
 Currently, the event handlers in `ContactList.js` and `Chat.js` have `// TODO` comments. This is why typing into the input doesn't work, and clicking on the buttons doesn't change the selected recipient.
 
@@ -1405,7 +1409,7 @@ textarea {
 
 </Solution>
 
-#### Clear the input on sending a message {/* clear-the-input-on-sending-a-message */}
+#### Clear the input on sending a message {/*clear-the-input-on-sending-a-message*/}
 
 Currently, pressing "Send" doesn't do anything. Add an event handler to the "Send" button that will:
 
@@ -1854,7 +1858,7 @@ With either solution, it's important that you **don't** place the `alert` inside
 
 </Solution>
 
-#### Restore input values when switching between tabs {/* restore-input-values-when-switching-between-tabs */}
+#### Restore input values when switching between tabs {/*restore-input-values-when-switching-between-tabs*/}
 
 In this example, switching between different recipients always clears the text input:
 
@@ -2235,7 +2239,7 @@ Notably, you didn't need to change any of the event handlers to implement this d
 
 </Solution>
 
-#### Implement `useReducer` from scratch {/* implement-usereducer-from-scratch */}
+#### Implement `useReducer` from scratch {/*implement-usereducer-from-scratch*/}
 
 In the earlier examples, you imported the `useReducer` Hook from React. This time, you will implement _the `useReducer` Hook itself!_ Here is a stub to get you started. It shouldn't take more than 10 lines of code.
 

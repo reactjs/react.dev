@@ -307,13 +307,13 @@ function getInlineDecorators(
       className: cn(
         'code-step bg-opacity-10 dark:bg-opacity-20 relative rounded px-1 py-[1.5px] border-b-[2px] border-opacity-60',
         {
-          'bg-blue-40 border-blue-40 text-blue-60 dark:text-blue-30 font-bold':
+          'bg-blue-40 border-blue-40 text-blue-60 dark:text-blue-30':
             line.step === 1,
-          'bg-yellow-40 border-yellow-40 text-yellow-60 dark:text-yellow-30 font-bold':
+          'bg-yellow-40 border-yellow-40 text-yellow-60 dark:text-yellow-30':
             line.step === 2,
-          'bg-purple-40 border-purple-40 text-purple-60 dark:text-purple-30 font-bold':
+          'bg-purple-40 border-purple-40 text-purple-60 dark:text-purple-30':
             line.step === 3,
-          'bg-green-40 border-green-40 text-green-60 dark:text-green-30 font-bold':
+          'bg-green-40 border-green-40 text-green-60 dark:text-green-30':
             line.step === 4,
         }
       ),

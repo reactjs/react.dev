@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-const path = require('path');
 const redirects = require('./src/redirects.json');
 
 /**

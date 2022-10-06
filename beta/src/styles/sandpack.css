@@ -595,8 +595,8 @@ html.dark .sp-devtools > div {
  */
 @media screen and (max-width: 768px) {
   @supports (-webkit-overflow-scrolling: touch) {
-    .sandpack .cm-content,
-    .sandpack .sp-code-editor .sp-pre-placeholder {
+    .sandpack--playground .cm-content,
+    .sandpack--playground .sp-code-editor .sp-pre-placeholder {
       font-size: initial;
     }
     .DocSearch-Input {

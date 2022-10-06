@@ -181,14 +181,14 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
         </button>
       </div>
       {isExpanded && (
-        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
+        <div className="w-full h-full border-t bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
           <div className="max-h-40 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
                 <div
                   key={id}
                   className={cn(
-                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
+                    'first:border-none border-t dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
                     `console-${getType(method)}`,
                     getColor(method)
                   )}>

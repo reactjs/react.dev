@@ -16,6 +16,9 @@ const nextConfig = {
     legacyBrowsers: false,
     browsersListForSwc: true,
   },
+  env: {
+    SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
+  },
   async redirects() {
     return redirects.redirects;
   },
@@ -47,6 +50,10 @@ const nextConfig = {
 
     const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
+      new NormalModuleReplacementPlugin(
+        /^@stitches\/core$/,
+        require.resolve('./src/utils/emptyShim.js')
+      ),
       new NormalModuleReplacementPlugin(
         /^raf$/,
         require.resolve('./src/utils/rafShim.js')

@@ -2,13 +2,41 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-/** 
-  * Theme
-  */
-html .sp-wrapper {
+.sandpack {
   color-scheme: inherit;
   -webkit-font-smoothing: antialiased;
 
+  --sp-space-1: 4px;
+  --sp-space-2: 8px;
+  --sp-space-3: 12px;
+  --sp-space-4: 16px;
+  --sp-space-5: 20px;
+  --sp-space-6: 24px;
+  --sp-space-7: 28px;
+  --sp-space-8: 32px;
+  --sp-space-9: 36px;
+  --sp-space-10: 40px;
+  --sp-space-11: 44px;
+  --sp-border-radius: 4px;
+  --sp-layout-height: 300px;
+  --sp-layout-headerHeight: 40px;
+  --sp-transitions-default: 150ms ease;
+  --sp-zIndices-base: 1;
+  --sp-zIndices-overlay: 2;
+  --sp-zIndices-top: 3;
+
+  --sp-font-body: Optimistic Display, -apple-system, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+  --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, Liberation Mono, Courier New, monospace;
+  --sp-font-size: calc(1em - 20%);
+  --sp-font-lineHeight: 24px;
+}
+
+/* Default theme */
+html .sandpack {
   --sp-colors-accent: #087ea4;
   --sp-colors-clickable: #959da5;
   --sp-colors-disabled: #24292e;
@@ -28,6 +56,7 @@ html .sp-wrapper {
   --sp-syntax-color-string: #032f62;
 }
 
+/* Dark theme */
 html.dark .sp-wrapper {
   --sp-colors-accent: #149eca;
   --sp-colors-clickable: #999;
@@ -51,27 +80,23 @@ html.dark .sp-wrapper {
 /**
  * Reset
  */
-.sandpack--playground .sp-layout,
-.sandpack--playground .sp-tabs,
-.sandpack--playground .cm-activeLine,
-.sandpack .cm-editor,
-.sandpack--playground .cm-editor .cm-matchingBracket {
-  border: none;
-  background-color: transparent;
-}
+.sandpack .sp-wrapper {
+  width: 100%;
 
-.sandpack--playground .cm-content {
-  caret-color: initial;
+  font-size: var(--sp-font-size);
+  font-family: var(--sp-font-body);
+  line-height: var(--sp-font-lineHeight);
 }
 
 /**
  * Layout
  */
-.sandpack .sp-wrapper {
-  width: 100%;
-}
-
 .sandpack .sp-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  background-color: var(--sp-colors-surface2);
+
   -webkit-mask-image: -webkit-radial-gradient(
     var(--sp-colors-surface1),
     var(--sp-colors-surface1)
@@ -80,28 +105,27 @@ html.dark .sp-wrapper {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   overflow: initial;
+
+  gap: 1px;
 }
+
+.sandpack .sp-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
 @media screen and (max-width: 768px) {
-  .sp-layout > .sp-stack {
+  .sandpack .sp-layout > .sp-stack {
     height: auto;
     min-width: 100% !important;
   }
 }
+
 .sandpack .sp-layout > .sp-stack {
   flex: 1 1 0px;
   height: var(--sp-layout-height);
-}
-
-.sandpack .sp-layout > :not(:first-child) {
-  border-left: 1px solid var(--sp-colors-surface2);
-  border-top: 1px solid var(--sp-colors-surface2);
-  margin-left: -1px;
-  margin-top: -1px;
-  position: relative;
-}
-
-.sandpack .sp-cm {
-  padding-left: 8px;
 }
 
 /**
@@ -127,8 +151,13 @@ html.dark .sp-wrapper {
 /**
  * Navigation
  */
-.sandpack--playground .sp-tabs-scrollable-container {
-  padding: 0;
+.sandpack .sp-tabs-scrollable-container {
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-height: 40px;
+  margin-bottom: -1px;
 }
 
 .sp-tabs .sp-tab-button {
@@ -160,7 +189,9 @@ html.dark .sp-wrapper {
   position: relative;
   overflow: auto;
   background: var(--sp-colors-surface1);
+  padding-left: var(--sp-space-2);
 }
+
 .sandpack .sp-code-editor .cm-content,
 .sandpack .sp-code-editor .cm-gutters,
 .sandpack .sp-code-editor .cm-gutterElement {
@@ -212,31 +243,180 @@ html.dark .sp-wrapper {
 }
 
 /**
- * Loading component
+ * Syntax highlight (code editor + code block)
  */
-.sandpack--playground .sp-cube-wrapper {
-  background-color: var(--sp-colors-surface1);
+.sandpack .sp-syntax-string {
+  color: var(--sp-syntax-color-string);
 }
 
-.sandpack--playground .sp-overlay {
+.sandpack .sp-syntax-plain {
+  color: var(--sp-syntax-color-plain);
+}
+
+.sandpack .sp-syntax-comment {
+  color: var(--sp-syntax-color-comment);
+}
+
+.sandpack .sp-syntax-keyword {
+  color: var(--sp-syntax-color-keyword);
+}
+
+.sandpack .sp-syntax-definition {
+  color: var(--sp-syntax-color-definition);
+}
+
+.sandpack .sp-syntax-punctuation {
+  color: var(--sp-syntax-color-punctuation);
+}
+
+.sandpack .sp-syntax-property {
+  color: var(--sp-syntax-color-property);
+}
+
+.sandpack .sp-syntax-tag {
+  color: var(--sp-syntax-color-tag);
+}
+
+.sandpack .sp-syntax-static {
+  color: var(--sp-syntax-color-static);
+}
+
+/**
+ * Loading & error overlay component
+ */
+.sandpack .sp-cube-wrapper {
+  background-color: var(--sp-colors-surface1);
+  position: absolute;
+  right: var(--sp-space-2);
+  bottom: var(--sp-space-2);
+  z-index: var(--sp-zIndices-top);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sp-border-radius);
+}
+
+.sandpack .sp-button {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.sandpack .sp-button svg {
+  min-width: var(--sp-space-5);
+  width: var(--sp-space-5);
+  height: var(--sp-space-5);
+  margin: auto;
+}
+
+.sandpack .sp-cube-wrapper .sp-cube {
+  display: flex;
+}
+
+.sandpack .sp-cube-wrapper .sp-button {
+  display: none;
+}
+
+.sandpack .sp-cube-wrapper:hover .sp-button {
+  display: block;
+}
+
+.sandpack .sp-cube-wrapper:hover .sp-cube {
+  display: none;
+}
+
+.sandpack .sp-cube {
+  transform: translate(-4px, 9px) scale(0.13, 0.13);
+}
+
+.sandpack .sp-cube * {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+}
+
+@keyframes cubeRotate {
+  0% {
+    transform: rotateX(-25.5deg) rotateY(45deg);
+  }
+
+  100% {
+    transform: rotateX(-25.5deg) rotateY(405deg);
+  }
+}
+
+.sandpack .sp-sides {
+  animation: cubeRotate 1s linear infinite;
+  animation-fill-mode: forwards;
+  transform-style: preserve-3d;
+  transform: rotateX(-25.5deg) rotateY(45deg);
+}
+
+.sandpack .sp-sides * {
+  border: 10px solid var(--sp-colors-clickable);
+  border-radius: 8px;
+  background: var(--sp-colors-surface1);
+}
+
+.sandpack .sp-sides .top {
+  transform: rotateX(90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .bottom {
+  transform: rotateX(-90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .front {
+  transform: rotateY(0deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .back {
+  transform: rotateY(-180deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .left {
+  transform: rotateY(-90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .right {
+  transform: rotateY(90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+
+.sandpack .sp-overlay {
   @apply bg-card;
+  position: absolute;
+  inset: 0;
+  z-index: var(--sp-zIndices-top);
+}
+
+.sandpack .sp-error {
+  padding: var(--sp-space-4);
+  white-space: pre-wrap;
+  font-family: var(--sp-font-mono);
+  background-color: var(--sp-colors-error-surface);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sandpack .sp-error-message {
+  animation: fadeIn 150ms ease;
+  color: var(--sp-colors-error);
 }
 
 html.dark .sandpack--playground .sp-overlay {
   @apply bg-wash-dark;
-}
-
-/**
- * CodeBlock
- */
-.sandpack--codeblock .cm-content {
-  padding: 0;
-}
-
-.sandpack--codeblock .cm-line {
-  margin-left: -20px;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 /**
@@ -263,103 +443,14 @@ html.dark .sandpack--playground .sp-overlay {
   line-height: 24px !important;
 }
 
-/* We can't rely on Sandpack styles because our placeholders
-   no longer wait for Sandpack to load. */
-html {
-  --sp-space-1: 4px;
-  --sp-space-2: 8px;
-  --sp-space-3: 12px;
-  --sp-space-4: 16px;
-  --sp-space-5: 20px;
-  --sp-space-6: 24px;
-  --sp-space-7: 28px;
-  --sp-space-8: 32px;
-  --sp-space-9: 36px;
-  --sp-space-10: 40px;
-  --sp-space-11: 44px;
-  --sp-border-radius: 4px;
-  --sp-layout-height: 300px;
-  --sp-layout-headerHeight: 40px;
-  --sp-transitions-default: 150ms ease;
-  --sp-zIndices-base: 1;
-  --sp-zIndices-overlay: 2;
-  --sp-zIndices-top: 3;
-  --sp-colors-surface1: inherit;
-  --sp-colors-surface2: inherit;
-  --sp-colors-surface3: inherit;
-  --sp-colors-disabled: inherit;
-  --sp-colors-base: inherit;
-  --sp-colors-clickable: inherit;
-  --sp-colors-hover: inherit;
-  --sp-colors-accent: inherit;
-  --sp-colors-error: inherit;
-  --sp-colors-errorSurface: inherit;
-  --sp-colors-warning: inherit;
-  --sp-colors-warningSurface: inherit;
-  --sp-font-body: Optimistic Display, -apple-system, ui-sans-serif, system-ui,
-    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
-    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
-    Noto Color Emoji;
-  --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
-    Consolas, Liberation Mono, Courier New, monospace;
-  --sp-font-size: calc(1em - 20%);
-  --sp-font-lineHeight: 24px;
-  --sp-syntax-color-plain: inherit;
-  --sp-syntax-color-comment: inherit;
-  --sp-syntax-color-keyword: inherit;
-  --sp-syntax-color-tag: inherit;
-  --sp-syntax-color-punctuation: inherit;
-  --sp-syntax-color-definition: inherit;
-  --sp-syntax-color-property: inherit;
-  --sp-syntax-color-static: inherit;
-  --sp-syntax-color-string: inherit;
-}
-.sp-pre-placeholder .sp-syntax-string {
-  color: var(--sp-syntax-color-string);
-  font-style: var(--sp-syntax-fontStyle-string);
-}
-.sp-pre-placeholder .sp-syntax-plain {
-  color: var(--sp-syntax-color-plain);
-  font-style: var(--sp-syntax-fontStyle-plain);
-}
-.sp-pre-placeholder .sp-syntax-comment {
-  color: var(--sp-syntax-color-comment);
-  font-style: var(--sp-syntax-fontStyle-comment);
-}
-.sp-pre-placeholder .sp-syntax-keyword {
-  color: var(--sp-syntax-color-keyword);
-  font-style: var(--sp-syntax-fontStyle-keyword);
-}
-.sp-pre-placeholder .sp-syntax-definition {
-  color: var(--sp-syntax-color-definition);
-  font-style: var(--sp-syntax-fontStyle-definition);
-}
-.sp-pre-placeholder .sp-syntax-punctuation {
-  color: var(--sp-syntax-color-punctuation);
-  font-style: var(--sp-syntax-fontStyle-punctuation);
-}
-.sp-pre-placeholder .sp-syntax-property {
-  color: var(--sp-syntax-color-property);
-  font-style: var(--sp-syntax-fontStyle-property);
-}
-.sp-pre-placeholder .sp-syntax-tag {
-  color: var(--sp-syntax-color-tag);
-  font-style: var(--sp-syntax-fontStyle-tag);
-}
-.sp-pre-placeholder .sp-syntax-static {
-  color: var(--sp-syntax-color-static);
-  font-style: var(--sp-syntax-fontStyle-static);
-}
-
 /**
  * Expand button
  */
-
-.sp-layout {
+.sandpack .sp-layout {
   min-height: 216px;
 }
 
-.sp-layout > .sp-stack:nth-child(1) {
+.sandpack .sp-layout > .sp-stack:nth-child(1) {
   /* Force vertical if there isn't enough space. */
   min-width: 431px;
   /* No min height on mobile because we know code in advance. */
@@ -367,7 +458,7 @@ html {
   max-height: 40vh;
 }
 
-.sp-layout > .sp-stack:nth-child(2) {
+.sandpack .sp-layout > .sp-stack:nth-child(2) {
   /* Force vertical if there isn't enough space. */
   min-width: 431px;
   /* Keep preview a fixed size on mobile to avoid jumps. */
@@ -375,40 +466,40 @@ html {
   min-height: 40vh;
   max-height: 40vh;
 }
-.sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+.sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
   /* Clicking "show more" lets mobile editor go full height. */
   max-height: unset;
   height: auto;
 }
 
-.sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+.sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
   /* Clicking "show more" lets mobile preview go full height. */
   max-height: unset;
   height: auto;
 }
 
 @media (min-width: 1280px) {
-  .sp-layout > .sp-stack:nth-child(1) {
+  .sandpack .sp-layout > .sp-stack:nth-child(1) {
     /* On desktop, clamp height by pixels instead. */
     height: auto;
     min-height: unset;
     max-height: 406px;
   }
-  .sp-layout > .sp-stack:nth-child(2) {
+  .sandpack .sp-layout > .sp-stack:nth-child(2) {
     /* On desktop, clamp height by pixels instead. */
     height: auto;
     min-height: unset;
     max-height: 406px;
   }
-  .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+  .sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
     max-height: unset;
   }
-  .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+  .sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
     max-height: unset;
   }
 }
 
-.sandpack--playground .sp-layout .sandpack-expand {
+.sandpack .sp-layout .sandpack-expand {
   border-left: none;
   margin-left: 0;
 }
@@ -422,29 +513,29 @@ html {
 /**
  * Integrations: console
  */
-.console .sp-cm,
-.console .sp-cm .cm-scroller,
-.console .sp-cm .cm-line {
+.sandpack .console .sp-cm,
+.sandpack .console .sp-cm .cm-scroller,
+.sandpack .console .sp-cm .cm-line {
   padding: 0px !important;
 }
 
 /**
  * Integrations: eslint
  */
-.sp-code-editor .cm-diagnostic {
+.sandpack .sp-code-editor .cm-diagnostic {
   @apply text-secondary;
 }
 
 /**
  * Integrations: React devtools inline
  */
-.sp-devtools {
+.sandpack .sp-devtools {
   border-bottom-left-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
   overflow: hidden;
 }
 
-.sp-wrapper .sp-layout-devtools {
+.sandpack .sp-wrapper .sp-layout-devtools {
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
 }
@@ -452,7 +543,7 @@ html {
 /**
  * Overwrite inline sty
  */
-.sp-devtools > div {
+.sandpack .sp-devtools > div {
   --color-background: var(--sp-colors-surface1) !important;
   --color-background-inactive: var(--sp-colors-surface2) !important;
   --color-background-selected: var(--sp-colors-accent) !important;
@@ -482,7 +573,7 @@ html.dark .sp-devtools > div {
   --color-modal-background: #16181de0 !important;
 }
 
-.sp-devtools table td {
+.sandpack .sp-devtools table td {
   border: 1px solid var(--sp-colors-surface2);
 }
 
@@ -504,8 +595,8 @@ html.dark .sp-devtools > div {
  */
 @media screen and (max-width: 768px) {
   @supports (-webkit-overflow-scrolling: touch) {
-    .sandbox .cm-content,
-    .sandbox .sp-code-editor .sp-pre-placeholder {
+    .sandpack--playground .cm-content,
+    .sandpack--playground .sp-code-editor .sp-pre-placeholder {
       font-size: initial;
     }
     .DocSearch-Input {

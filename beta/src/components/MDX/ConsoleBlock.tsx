@@ -38,7 +38,7 @@ function ConsoleBlock({level = 'error', children}: ConsoleBlockProps) {
   }
 
   return (
-    <div className="mb-4" translate="no">
+    <div className="mb-4 text-secondary" translate="no">
       <div className="flex w-full rounded-t-lg bg-gray-200 dark:bg-gray-80">
         <div className="px-4 py-2 border-gray-300 dark:border-gray-90 border-r">
           <Box className="bg-gray-300 dark:bg-gray-90" width="15px" />

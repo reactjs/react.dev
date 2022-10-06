@@ -125,7 +125,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
                   // space that's taken by the (invisible) tab list.
                   <button
                     className={cn(
-                      'absolute top-0 left-0',
+                      'absolute top-0 left-[2px]',
                       !showDropdown && 'invisible'
                     )}>
                     <span

@@ -6,9 +6,10 @@ import {useRef} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
+import {IconWarning} from '../Icon/IconWarning';
 import {IconGotcha} from '../Icon/IconGotcha';
 
-type CalloutVariants = 'gotcha' | 'note' | 'wip';
+type CalloutVariants = 'deprecated' | 'gotcha' | 'note' | 'wip';
 
 interface ExpandableCalloutProps {
   children: React.ReactNode;
@@ -16,6 +17,14 @@ interface ExpandableCalloutProps {
 }
 
 const variantMap = {
+  deprecated: {
+    title: 'Deprecated',
+    Icon: IconWarning,
+    containerClasses: 'bg-red-5 dark:bg-red-60 dark:bg-opacity-20',
+    textColor: 'text-red-50 dark:text-red-40',
+    overlayGradient:
+      'linear-gradient(rgba(249, 247, 243, 0), rgba(249, 247, 243, 1)',
+  },
   note: {
     title: 'Note',
     Icon: IconNote,

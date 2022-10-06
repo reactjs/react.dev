@@ -9,7 +9,6 @@ import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
   children: React.ReactNode;
@@ -78,19 +77,11 @@ function SandpackRoot(props: SandpackProps) {
     hidden: true,
   };
 
-  let setup: SandpackSetup | undefined;
-  if (files['/package.json']) {
-    setup = {
-      dependencies: JSON.parse(files['/package.json'].code).dependencies,
-    };
-  }
-
   return (
     <div className="sandpack sandpack--playground sandbox my-8">
       <SandpackProvider
         template="react"
         files={files}
-        customSetup={setup}
         theme={CustomTheme}
         options={{
           autorun,

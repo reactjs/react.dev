@@ -121,7 +121,7 @@ If you need to render the same component in many places, you can assign a CSS `c
 
 Unminified JavaScript can significantly slow down page load times for your users. Before deploying your website to production, it's a good idea to minify its scripts.
 
-- **If you don't have a minification step** for your scripts, [here's one way to set it up.](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3)
+- **If you don't have a minification step** for your scripts, [here's one way to set it up.](https://gist.github.com/gaearon/ee0201910608f15df3f8cd66aa83f98e)
 - **If you already minify** your application scripts, your site will be production-ready if you ensure that the deployed HTML loads the versions of React ending in `production.min.js` like so:
 
 ```html
@@ -208,7 +208,7 @@ You can preprocess JSX so that every time you save a file with JSX in it, the tr
 
 1. Create a folder called **`src`.**
 2. In your terminal, run this command: `npx babel --watch src --out-dir . --presets react-app/prod ` (Don't wait for it to finish! This command starts an automated watcher for edits to JSX inside `src`.)
-3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) to the new **`src`** folder.
+3. Move your JSX-ified **`like-button.js`** ([it should look like this!](https://gist.githubusercontent.com/gaearon/be5ae0fbf563d6c5fe5c1563907b13d2/raw/4c0d0b8c7f4fcb341720424c28c72059f8174c62/like-button.js)) to the new **`src`** folder.
 
 The watcher will create a preprocessed **`like-button.js`** with the plain JavaScript code suitable for the browser.
 

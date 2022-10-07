@@ -145,7 +145,8 @@ html.dark .sp-wrapper {
 
 .sandpack .sp-cm:focus-visible {
   box-shadow: inset 0 0 0 4px rgba(20, 158, 202, 0.4);
-  padding-left: 12px;
+  outline: none;
+  height: 100%;
 }
 
 /**
@@ -182,6 +183,13 @@ html.dark .sp-wrapper {
 }
 
 /**
+ * Code block
+ */
+.cm-line {
+  padding-left: var(--sp-space-5);
+}
+
+/**
  * Editor
  */
 .sandpack .sp-code-editor {
@@ -189,7 +197,11 @@ html.dark .sp-wrapper {
   position: relative;
   overflow: auto;
   background: var(--sp-colors-surface1);
-  padding-left: var(--sp-space-2);
+}
+
+.sandpack .sp-code-editor .cm-editor,
+.sandpack .sp-code-editor .cm-editor .cm-gutters {
+  background-color: transparent;
 }
 
 .sandpack .sp-code-editor .cm-content,
@@ -204,7 +216,7 @@ html.dark .sp-wrapper {
 }
 
 .sandpack--playground .sp-code-editor .cm-lineNumbers {
-  padding-left: var(--sp-space-1);
+  padding-left: var(--sp-space-3);
   padding-right: var(--sp-space-1);
   font-size: 13.6px;
 }
@@ -430,12 +442,9 @@ html.dark .sandpack--playground .sp-overlay {
   -webkit-font-smoothing: auto;
 }
 
-.sandpack--codeblock .sp-code-editor .sp-pre-placeholder {
-  margin-left: var(--sp-space-3) !important; /* override inline style */
-}
-
 .sandpack--playground .sp-code-editor .sp-pre-placeholder {
-  margin-left: var(--sp-space-10) !important; /* override inline style */
+  padding-left: 48px !important;
+  margin-left: 0px !important;
 }
 
 .text-xl .sp-pre-placeholder {

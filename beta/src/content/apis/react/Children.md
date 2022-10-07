@@ -13,13 +13,12 @@ Using `Children` is uncommon and can lead to fragile code. [See common alternati
 `Children` lets you manipulate and transform the JSX you received as the [`children` prop.](/learn/passing-props-to-a-component#passing-jsx-as-children)
 
 ```js
-<div className="RowList">
-  {Children.map(children, child =>
-    <div className="Row">
-      {child}
-    </div>
-  )}
-</div>
+const mappedChildren = Children.map(children, child =>
+  <div className="Row">
+    {child}
+  </div>
+);
+
 ```
 
 </Intro>
@@ -209,7 +208,7 @@ export default function RowList({ children }) {
 
 ---
 
-### Iterating over children {/*iterating-over-children*/}
+### Running some code for each child {/*running-some-code-for-each-child*/}
 
 Call `Children.forEach` to iterate over each child in the `children` data structure. It does not return any value and is similar to the [array `forEach` method.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) You can use it to run custom logic like constructing your own array.
 
@@ -247,7 +246,7 @@ export default function SeparatorList({ children }) {
 
 <Gotcha>
 
-As explained earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
 </Gotcha>
 
@@ -318,7 +317,7 @@ export default function RowList({ children }) {
 
 <Gotcha>
 
-As explained earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
 </Gotcha>
 
@@ -358,7 +357,7 @@ export default function ReversedList({ children }) {
 
 <Gotcha>
 
-As explained earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
 </Gotcha>
 
@@ -761,26 +760,180 @@ This is another example of how parent and child components can cooperate without
 
 ### `Children.count(children)` {/*children-count*/}
 
-TODO
+Call `Children.count(children)` to count the number of children in the `children` data structure.
 
-### `Children.forEach(children, fn)` {/*children-foreach*/}
+```js RowList.js active
+import { Children } from 'react';
 
-TODO
+function RowList({ children }) {
+  return (
+    <>
+      <h1>Total rows: {Children.count(children)}</h1>
+      ...
+    </>
+  );
+}
+```
 
-### `Children.map(children, fn)` {/*children-map*/}
+[See more examples above.](#counting-children)
 
-TODO
+#### Parameters {/*children-count-parameters*/}
+
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+
+#### Returns {/*children-count-returns*/}
+
+The number of nodes inside these `children`.
+
+#### Caveats {/*children-count-caveats*/}
+
+- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/apis/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/apis/react/Fragment) don't get traversed.
+
+---
+
+### `Children.forEach(children, fn, thisArg?)` {/*children-foreach*/}
+
+Call `Children.forEach(children, fn, thisArg?)` to run some code for each child in the `children` data structure.
+
+```js RowList.js active
+import { Children } from 'react';
+
+function SeparatorList({ children }) {
+  const result = [];
+  Children.forEach(children, (child, index) => {
+    result.push(child);
+    result.push(<hr key={index} />);
+  });
+  // ...
+```
+
+[See more examples above.](#running-some-code-for-each-child)
+
+#### Parameters {/*children-foreach-parameters*/}
+
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `fn`: The function you want to run for each child, similar to the [array `forEach` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call.
+* **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
+
+#### Returns {/*children-foreach-returns*/}
+
+`Children.forEach` returns `undefined`.
+
+#### Caveats {/*children-foreach-caveats*/}
+
+- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/apis/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/apis/react/Fragment) don't get traversed.
+
+---
+
+### `Children.map(children, fn, thisArg?)` {/*children-map*/}
+
+Call `Children.map(children, fn, thisArg?)` to map or transform each child in the `children` data structure.
+
+```js RowList.js active
+import { Children } from 'react';
+
+function RowList({ children }) {
+  return (
+    <div className="RowList">
+      {Children.map(children, child =>
+        <div className="Row">
+          {child}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+[See more examples above.](#transforming-children)
+
+#### Parameters {/*children-map-parameters*/}
+
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+* `fn`: The mapping function, similar to the [array `map` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) callback. It will be called with the child as the first argument and its index as the second argument. The index starts at `0` and increments on each call. You need to return a React node from this function. This may be an empty node (`null`, `undefined`, or a Boolean), a string, a number, a React element, or an array of other React nodes.
+* **optional** `thisArg`: The [`this` value](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/this) with which the `fn` function should be called. If omitted, it's `undefined`.
+
+#### Returns {/*children-map-returns*/}
+
+If `children` is `null` or `undefined`, returns the same value.
+
+Otherwise, returns a flat array consisting of the nodes you've returned from the `fn` function. The returned array will contain all nodes you returned except for `null` and `undefined`.
+
+#### Caveats {/*children-map-caveats*/}
+
+- Empty nodes (`null`, `undefined`, and Booleans), strings, numbers, and [React elements](/apis/react/createElement) count as individual nodes. Arrays don't count as individual nodes, but their children do. **The traversal does not go deeper than React elements:** they don't get rendered, and their children aren't traversed. [Fragments](/apis/react/Fragment) don't get traversed.
+
+- If you return an element or an array of elements with keys from `fn`, **the returned elements' keys will be automatically combined with the key of the corresponding original item from `children`.** When you return multiple elements from `fn` in an array, their keys only need to be unique locally amongst each other.
+
+---
 
 ### `Children.only(children)` {/*children-only*/}
 
-TODO
+
+Call `Children.only(children)` to assert that `children` represent a single React element.
+
+```js
+function Box({ children }) {
+  const element = Children.only(children);
+  // ...
+```
+
+#### Parameters {/*children-only-parameters*/}
+
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+
+#### Returns {/*children-only-returns*/}
+
+If `children` [is a valid element,](/apis/react/isValidElement) returns that element.
+
+Otherwise, throws an error.
+
+#### Caveats {/*children-only-caveats*/}
+
+- This method always **throws if you pass an array (such as the return value of `Children.map`) as `children`.** In other words, it enforces that `children` is a single React element, not that it's an array with a single element.
+
+---
 
 ### `Children.toArray(children)` {/*children-toarray*/}
 
-TODO
+Call `Children.toArray(children)` to create an array out of the `children` data structure.
+
+```js ReversedList.js active
+import { Children } from 'react';
+
+export default function ReversedList({ children }) {
+  const result = Children.toArray(children);
+  result.reverse();
+  // ...
+```
+
+#### Parameters {/*children-toarray-parameters*/}
+
+* `children`: The value of the [`children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) received by your component.
+
+#### Returns {/*children-toarray-returns*/}
+
+Returns a flat array of elements in `children`.
+
+#### Caveats {/*children-toarray-caveats*/}
+
+- Empty nodes (`null`, `undefined`, and Booleans) will be omitted in the returned array. **The returned elements' keys will be calculated from the original elements' keys and their level of nesting and position.** This ensures that flattening the array does not introduce changes in behavior.
 
 ---
 
 ## Troubleshooting {/*troubleshooting*/}
 
-TODO
+### I pass a custom component, but the `Children` methods don't show its render result {/*i-pass-a-custom-component-but-the-children-methods-dont-show-its-render-result*/}
+
+Suppose you pass two children to `RowList` like this:
+
+```js
+<RowList>
+  <p>First item</p>
+  <MoreRows />
+</RowList>
+```
+
+If you do `Children.count(children)` inside `RowList`, you will get `2`. Even if `MoreRows` renders 10 different items, or if it returns `null`, `Children.count(children)` will still be `2`. From the `RowList`'s perspective, it only "sees" the JSX it has received. It does not "see" the internals of the `MoreRows` component.
+
+The limitation makes it hard to extract a component. This is why [alternatives](#alternatives) are preferred to using `Children`.

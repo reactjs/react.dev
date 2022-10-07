@@ -32,12 +32,6 @@ Using `Children` is uncommon and can lead to fragile code. [See common alternati
 
 ### Transforming children {/*transforming-children*/}
 
-<Gotcha>
-
-Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
-
-</Gotcha>
-
 To transform the children JSX that your component [receives as the `children` prop,](/learn/passing-props-to-a-component#passing-jsx-as-children) call `Children.map`:
 
 ```js {6,10}
@@ -143,15 +137,79 @@ Even when `children` is an array, `Children.map` has useful special behavior. Fo
 
 </DeepDive>
 
+<Gotcha>
+
+The `children` data structure **does not include rendered output** of the components you pass as JSX. In the example below, the `children` received by the `RowList` only contains two items rather than three:
+
+1. `<p>This is the first item.</p>`
+2. `<MoreRows />`
+
+This is why only two row wrappers are generated in this example:
+
+<Sandpack>
+
+```js
+import RowList from './RowList.js';
+
+export default function App() {
+  return (
+    <RowList>
+      <p>This is the first item.</p>
+      <MoreRows />
+    </RowList>
+  );
+}
+
+function MoreRows() {
+  return (
+    <>
+      <p>This is the second item.</p>
+      <p>This is the third item.</p>
+    </>
+  );
+}
+```
+
+```js RowList.js
+import { Children } from 'react';
+
+export default function RowList({ children }) {
+  return (
+    <div className="RowList">
+      {Children.map(children, child =>
+        <div className="Row">
+          {child}
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
+```css
+.RowList {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid grey;
+  padding: 5px;
+}
+
+.Row {
+  border: 2px dashed black;
+  padding: 5px;
+  margin: 5px;
+}
+```
+
+</Sandpack>
+
+**There is no way to get the rendered output of an inner component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+
+</Gotcha>
+
 ---
 
 ### Iterating over children {/*iterating-over-children*/}
-
-<Gotcha>
-
-Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
-
-</Gotcha>
 
 Call `Children.forEach` to iterate over each child in the `children` data structure. It does not return any value and is similar to the [array `forEach` method.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach) You can use it to run custom logic like constructing your own array.
 
@@ -187,15 +245,15 @@ export default function SeparatorList({ children }) {
 
 </Sandpack>
 
+<Gotcha>
+
+As explained earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+
+</Gotcha>
+
 ---
 
 ### Counting children {/*counting-children*/}
-
-<Gotcha>
-
-Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
-
-</Gotcha>
 
 Call `Children.count(children)` to calculate the number of children.
 
@@ -258,15 +316,15 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
+<Gotcha>
+
+As explained earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+
+</Gotcha>
+
 ---
 
 ### Converting children to an array {/*converting-children-to-an-array*/}
-
-<Gotcha>
-
-Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
-
-</Gotcha>
 
 Call `Children.toArray(children)` to turn the `children` data structure into a regular JavaScript array. This lets you manipulate the array with built-in array methods like [`filter`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter), [`sort`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort), or [`reverse`.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/reverse) 
 
@@ -297,6 +355,12 @@ export default function ReversedList({ children }) {
 ```
 
 </Sandpack>
+
+<Gotcha>
+
+As explained earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
+
+</Gotcha>
 
 ---
 

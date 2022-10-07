@@ -222,7 +222,8 @@ export function Preview({
           loading={!isReady && iframeComputedHeight === null}
         />
       </div>
-      <SandpackConsole visible={!error} />
+      {/* TODO: temp */}
+      {/* <SandpackConsole visible={!error} /> */}
     </SandpackStack>
   );
 }

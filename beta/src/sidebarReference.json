@@ -13,8 +13,7 @@
           "routes": [
             {
               "title": "Children",
-              "path": "/apis/react/Children",
-              "wip": true
+              "path": "/apis/react/Children"
             },
             {
               "title": "cloneElement",

@@ -394,8 +394,6 @@ export default function App() {
 ```
 
 ```js RowList.js
-import { Children } from 'react';
-
 export function RowList({ children }) {
   return (
     <div className="RowList">
@@ -463,8 +461,6 @@ function MoreRows() {
 ```
 
 ```js RowList.js
-import { Children } from 'react';
-
 export function RowList({ children }) {
   return (
     <div className="RowList">

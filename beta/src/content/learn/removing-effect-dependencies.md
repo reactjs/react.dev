@@ -961,7 +961,7 @@ const roomId1 = 'music';
 const roomId2 = 'music';
 
 // These two strings are the same!
-console.log(Object.is(options1, options2)); // true
+console.log(Object.is(roomId1, roomId2)); // true
 ````
 
 Thanks to this fix, the chat no longer re-connects if you edit the input:

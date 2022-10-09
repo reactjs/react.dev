@@ -54,7 +54,7 @@ Suspense will never show unintentional "holes" in your content. For example, if 
 
 To reveal nested content as it loads, you need to [add more Suspense boundaries.](#revealing-nested-content-as-it-loads)
 
-<Gotcha>
+<Pitfall>
 
 **Only Suspense-enabled data sources will activate a Suspense boundary.** These data sources are said to *suspend* when the data needed to render has not yet loaded. Currently, Suspense is only supported for:
 
@@ -65,7 +65,7 @@ Suspense-enabled data fetching without the use of an opinionated framework is no
 
 Suspense does not detect when data is fetched inside an Effect or event handler.
 
-</Gotcha>
+</Pitfall>
 
 ---
 

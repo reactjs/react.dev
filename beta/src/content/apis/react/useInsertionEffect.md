@@ -21,8 +21,8 @@ useInsertionEffect(didUpdate);
 
 <InlineToc />
 
-<Gotcha>
+<Pitfall>
 
 `useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](/apis/react/useEffect) or [`useLayoutEffect`](/apis/react/useLayoutEffect) instead.
 
-</Gotcha>
+</Pitfall>

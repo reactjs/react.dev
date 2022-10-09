@@ -178,7 +178,7 @@ function Avatar(props) {
 
 Usually you don't need the whole `props` object itself, so you destructure it into individual props.
 
-<Gotcha>
+<Pitfall>
 
 **Don't miss the pair of `{` and `}` curlies** inside of `(` and `)` when declaring props:
 
@@ -198,7 +198,7 @@ function Avatar(props) {
 }
 ```
 
-</Gotcha>
+</Pitfall>
 
 ## Specifying a default value for a prop {/*specifying-a-default-value-for-a-prop*/}
 

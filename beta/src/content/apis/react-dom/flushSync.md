@@ -2,11 +2,11 @@
 title: flushSync
 ---
 
-<Gotcha>
+<Pitfall>
 
 Using `flushSync` is uncommon and can hurt the performance of your app.
 
-</Gotcha>
+</Pitfall>
 
 <Intro>
 
@@ -90,13 +90,13 @@ export default function PrintApp() {
 
 If you remove the call to `flushSync`, then when the print dialog will display `isPrinting` as "no". This is because React batches the updates asynchronously and the print dialog is displayed before the state is updated.
 
-<Gotcha>
+<Pitfall>
 
 `flushSync` can significantly hurt performance, and may unexpectedly force pending Suspense boundaries to show their fallback state.
 
 Most of the time, `flushSync` can be avoided, so use `flushSync` as last resort.
 
-</Gotcha>
+</Pitfall>
 
 ---
 

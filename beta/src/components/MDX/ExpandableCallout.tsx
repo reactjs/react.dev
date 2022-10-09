@@ -7,9 +7,9 @@ import * as React from 'react';
 import cn from 'classnames';
 import {IconNote} from '../Icon/IconNote';
 import {IconWarning} from '../Icon/IconWarning';
-import {IconGotcha} from '../Icon/IconGotcha';
+import {IconPitfall} from '../Icon/IconPitfall';
 
-type CalloutVariants = 'deprecated' | 'gotcha' | 'note' | 'wip';
+type CalloutVariants = 'deprecated' | 'pitfall' | 'note' | 'wip';
 
 interface ExpandableCalloutProps {
   children: React.ReactNode;
@@ -34,9 +34,9 @@ const variantMap = {
     overlayGradient:
       'linear-gradient(rgba(245, 249, 248, 0), rgba(245, 249, 248, 1)',
   },
-  gotcha: {
+  pitfall: {
     title: 'Pitfall',
-    Icon: IconGotcha,
+    Icon: IconPitfall,
     containerClasses: 'bg-yellow-5 dark:bg-yellow-60 dark:bg-opacity-20',
     textColor: 'text-yellow-50 dark:text-yellow-40',
     overlayGradient:
@@ -55,6 +55,8 @@ const variantMap = {
 function ExpandableCallout({children, type}: ExpandableCalloutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const variant = variantMap[type];
+
+  console.log('v,', variant);
 
   return (
     <div

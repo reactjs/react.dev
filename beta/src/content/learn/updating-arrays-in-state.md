@@ -24,16 +24,16 @@ Instead, every time you want to update an array, you'll want to pass a *new* arr
 
 Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
 
-|         | avoid (mutates the array) | prefer (returns a new array) |
-|---------|----------------|-------------------|
-| adding    | `push`, `unshift` | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array))|
-| removing | `pop`, `shift`, `splice` | `filter`, `slice` ([example](#removing-from-an-array))
-|replacing| `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))          |
-|sorting| `reverse`, `sort` | copy the array first ([example](#making-other-changes-to-an-array)) |
+|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
+| --------- | ----------------------------------- | ------------------------------------------------------------------- |
+| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
+| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
+| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
+| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
 
 Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
 
-<Gotcha>
+<Pitfall>
 
 Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
 
@@ -42,7 +42,7 @@ Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 
 In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
 
-</Gotcha>
+</Pitfall>
 
 ### Adding to an array {/*adding-to-an-array*/}
 

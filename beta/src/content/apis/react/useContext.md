@@ -51,11 +51,11 @@ function Form() {
 
 It doesn't matter how many layers of components there are between the provider and the `Button`. When a `Button` *anywhere* inside of `Form` calls `useContext(ThemeContext)`, it will receive `"dark"` as the value.
 
-<Gotcha>
+<Pitfall>
 
 `useContext()` always looks for the closest provider *above* the component that calls it. It searches upwards and **does not** consider providers in the component from which you're calling `useContext()`.
 
-</Gotcha>
+</Pitfall>
 
 <Sandpack>
 

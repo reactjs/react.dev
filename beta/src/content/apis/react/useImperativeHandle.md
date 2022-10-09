@@ -245,13 +245,13 @@ export default AddComment;
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 **Do not overuse refs.** You should only use refs for *imperative* behaviors that you can't express as props: for example, scrolling to a node, focusing a node, triggering an animation, selecting text, and so on.
 
 **If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
 
-</Gotcha>
+</Pitfall>
 
 ---
 

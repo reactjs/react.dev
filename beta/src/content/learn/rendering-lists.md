@@ -242,7 +242,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 Arrow functions implicitly return the expression right after `=>`, so you didn't need a `return` statement:
 
@@ -262,7 +262,7 @@ const listItems = chemists.map(person => { // Curly brace
 
 Arrow functions containing `=> {` are said to have a ["block body".](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) They let you write more than a single line of code, but you *have to* write a `return` statement yourself. If you forget it, nothing gets returned!
 
-</Gotcha>
+</Pitfall>
 
 ## Keeping list items in order with `key` {/*keeping-list-items-in-order-with-key*/}
 
@@ -413,7 +413,7 @@ Imagine that files on your desktop didn't have names. Instead, you'd refer to th
 
 File names in a folder and JSX keys in an array serve a similar purpose. They let us uniquely identify an item between its siblings. A well-chosen key provides more information than the position within the array. Even if the _position_ changes due to reordering, the `key` lets React identify the item throughout its lifetime.
 
-<Gotcha>
+<Pitfall>
 
 You might be tempted to use an item's index in the array as its key. In fact, that's what React will use if you don't specify a `key` at all. But the order in which you render items will change over time if an item is inserted, deleted, or if the array gets reordered. Index as a key often leads to subtle and confusing bugs.
 
@@ -421,7 +421,7 @@ Similarly, do not generate keys on the fly, e.g. with `key={Math.random()}`. Thi
 
 Note that your components won't receive `key` as a prop. It's only used as a hint by React itself. If your component needs an ID, you have to pass it as a separate prop: `<Profile key={id} userId={id} />`.
 
-</Gotcha>
+</Pitfall>
 
 <Recap>
 

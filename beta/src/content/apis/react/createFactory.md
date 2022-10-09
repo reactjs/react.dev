@@ -175,7 +175,7 @@ export default function App() {
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 Sometimes, your existing code might pass some variable as a `type` instead of a constant like `'button'`:
 
@@ -198,7 +198,7 @@ function Heading({ isSubheading, ...props }) {
 
 Otherwise React will interpret `<type>` as a built-in HTML tag because it is lowercase.
 
-</Gotcha>
+</Pitfall>
 
 ---
 

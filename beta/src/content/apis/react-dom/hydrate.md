@@ -1,11 +1,11 @@
 ---
 title: hydrate
 ---
-<Gotcha>
+<Pitfall>
 
 In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
 
-</Gotcha>
+</Pitfall>
 
 <Intro>
 
@@ -155,13 +155,13 @@ export default function App() {
 
 This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
 
-<Gotcha>
+<Pitfall>
 
 This approach will make your components slower because they have to render twice, so use it with caution.
 
 Remember to be mindful of user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so if you render something different in the client-only pass, the transition can be jarring. However, if executed well, it may be beneficial to render a “shell” of the application on the server, and only show some of the extra widgets on the client. To learn how to do this without getting the markup mismatch issues, refer to the explanation in the previous paragraph.
 
-</Gotcha>
+</Pitfall>
 
 
 

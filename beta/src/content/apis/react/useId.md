@@ -18,11 +18,11 @@ const id = useId()
 
 ## Usage {/*usage*/}
 
-<Gotcha>
+<Pitfall>
 
 **Do not call `useId` to generate keys in a list.** [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
 
-</Gotcha>
+</Pitfall>
 
 ### Generating unique IDs for accessibility attributes {/*generating-unique-ids-for-accessibility-attributes*/}
 
@@ -133,11 +133,11 @@ input { margin: 5px; }
 
 [Watch this video](https://www.youtube.com/watch?v=0dNzNcuEuOo) to see the difference in the user experience with assistive technologies.
 
-<Gotcha>
+<Pitfall>
 
 **`useId` requires an identical component tree on the server and the client** when you use [server rendering](/apis/react-dom/server). If the trees you render on the server and the client don't match exactly, the generated IDs won't match.
 
-</Gotcha>
+</Pitfall>
 
 <DeepDive title="Why is useId better than an incrementing counter?">
 

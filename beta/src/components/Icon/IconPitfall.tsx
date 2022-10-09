@@ -4,8 +4,8 @@
 
 import {memo} from 'react';
 
-export const IconGotcha = memo<JSX.IntrinsicElements['svg']>(
-  function IconGotcha({className}) {
+export const IconPitfall = memo<JSX.IntrinsicElements['svg']>(
+  function IconPitfall({className}) {
     return (
       <svg
         className={className}

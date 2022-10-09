@@ -2,11 +2,11 @@
 title: Children
 ---
 
-<Gotcha>
+<Pitfall>
 
 Using `Children` is uncommon and can lead to fragile code. [See common alternatives.](#alternatives)
 
-</Gotcha>
+</Pitfall>
 
 <Intro>
 
@@ -136,7 +136,7 @@ Even when `children` is an array, `Children.map` has useful special behavior. Fo
 
 </DeepDive>
 
-<Gotcha>
+<Pitfall>
 
 The `children` data structure **does not include rendered output** of the components you pass as JSX. In the example below, the `children` received by the `RowList` only contains two items rather than three:
 
@@ -204,7 +204,7 @@ export default function RowList({ children }) {
 
 **There is no way to get the rendered output of an inner component** like `<MoreRows />` when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
-</Gotcha>
+</Pitfall>
 
 ---
 
@@ -244,11 +244,11 @@ export default function SeparatorList({ children }) {
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
-</Gotcha>
+</Pitfall>
 
 ---
 
@@ -315,11 +315,11 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
-</Gotcha>
+</Pitfall>
 
 ---
 
@@ -355,11 +355,11 @@ export default function ReversedList({ children }) {
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 As mentioned earlier, there is no way to get the rendered output of an inner component when manipulating `children`. This is why [it's usually better to use one of the alternative solutions.](#alternatives)
 
-</Gotcha>
+</Pitfall>
 
 ---
 

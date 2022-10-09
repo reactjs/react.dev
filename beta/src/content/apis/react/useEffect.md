@@ -1066,7 +1066,7 @@ function ChatRoom() {
 
 [An Effect with empty dependencies](/learn/lifecycle-of-reactive-effects#what-an-effect-with-empty-dependencies-means) doesn't re-run when any of your component's props or state change.
 
-<Gotcha>
+<Pitfall>
 
 If you have an existing codebase, you might have some Effects that suppress the linter like this:
 
@@ -1080,7 +1080,7 @@ useEffect(() => {
 
 **When dependencies don't match the code, there is a high risk of introducing bugs.** By suppressing the linter, you "lie" to React about the values your Effect depends on. [Instead, prove they're unnecessary.](/learn/removing-effect-dependencies#removing-unnecessary-dependencies)
 
-</Gotcha>
+</Pitfall>
 
 <Recipes titleText="Examples of passing reactive dependencies" titleId="examples-dependencies">
 

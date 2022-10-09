@@ -95,11 +95,11 @@ body { margin: 0; padding: 0; height: 250px; }
 
 Another case where you'll group data into an object or an array is when you don't know how many different pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
 
-<Gotcha>
+<Pitfall>
 
 If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
 
-</Gotcha>
+</Pitfall>
 
 ## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
 

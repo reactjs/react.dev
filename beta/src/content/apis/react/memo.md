@@ -317,13 +317,13 @@ If you do this, use the Performance panel in your browser developer tools to mak
 
 When you do performance measurements, make sure that React is running in the production mode.
 
-<Gotcha>
+<Pitfall>
 
 If you provide a custom `arePropsEqual` implementation, **you must compare every prop, including functions.** Functions often [close over](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) the props and state of parent components. If you return `true` when `oldProps.onClick !== newProps.onClick`, your component will keep "seeing" the props and state from a previous render inside its `onClick` handler, leading to very confusing bugs.
 
 Avoid doing deep equality checks inside `arePropsEqual` unless you are 100% sure that the data structure you're working with has a known limited depth. **Deep equality checks can become incredibly slow** and can freeze your app for many seconds if someone changes the data structure later.
 
-</Gotcha>
+</Pitfall>
 
 ---
 

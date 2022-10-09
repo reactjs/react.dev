@@ -148,7 +148,7 @@ export default function Stopwatch() {
 
 </Recipes>
 
-<Gotcha>
+<Pitfall>
 
 **Do not write _or read_ `ref.current` during rendering.**
 
@@ -192,7 +192,7 @@ If you *have to* read [or write](/apis/react/useState#storing-information-from-p
 
 When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
 
-</Gotcha>
+</Pitfall>
 
 ---
 

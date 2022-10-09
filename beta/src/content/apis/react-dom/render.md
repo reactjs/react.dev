@@ -2,11 +2,11 @@
 title: render
 ---
 
-<Gotcha>
+<Pitfall>
 
 In React 18, `render` was replaced by [`createRoot`.](/apis/react-dom/client/createRoot) Using `render` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
 
-</Gotcha>
+</Pitfall>
 
 
 <Intro>

@@ -86,11 +86,11 @@ The `export default` prefix is a [standard JavaScript syntax](https://developer.
 
 With `function Profile() { }` you define a JavaScript function with the name `Profile`.
 
-<Gotcha>
+<Pitfall>
 
 React components are regular JavaScript functions, but **their names must start with a capital letter** or they won't work!
 
-</Gotcha>
+</Pitfall>
 
 ### Step 3: Add markup {/*step-3-add-markup*/}
 
@@ -112,11 +112,11 @@ return (
 );
 ```
 
-<Gotcha>
+<Pitfall>
 
 Without parentheses, any code on the lines after `return` [will be ignored](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
-</Gotcha>
+</Pitfall>
 
 ## Using a component {/*using-a-component*/}
 
@@ -176,7 +176,7 @@ Components are regular JavaScript functions, so you can keep multiple components
 
 Because the `Profile` components are rendered inside `Gallery`—even several times!—we can say that `Gallery` is a **parent component,** rendering each `Profile` as a "child". This is part of the magic of React: you can define a component once, and then use it in as many places and as many times as you like.
 
-<Gotcha>
+<Pitfall>
 
 Components can render other components, but **you must never nest their definitions:**
 
@@ -205,7 +205,7 @@ function Profile() {
 
 When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
 
-</Gotcha>
+</Pitfall>
 
 <DeepDive title="Components all the way down">
 

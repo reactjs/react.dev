@@ -392,7 +392,7 @@ Updating the `App` state does not reset the `Counter` because `Counter` stays in
 
 It's the same component at the same position, so from React's perspective, it's the same counter.
 
-<Gotcha>
+<Pitfall>
 
 Remember that **it's the position in the UI tree--not in the JSX markup--that matters to React!** This component has two `return` clauses with different `<Counter />` JSX tags inside and outside the `if`:
 
@@ -496,7 +496,7 @@ You might expect the state to reset when you tick checkbox, but it doesn't! This
 
 You can think of them as having the same "address": the first child of the first child of the root. This is how React matches them up between the previous and next renders, regardless of how you structure your logic.
 
-</Gotcha>
+</Pitfall>
 
 ## Different components at the same position reset state {/*different-components-at-the-same-position-reset-state*/}
 
@@ -712,7 +712,7 @@ When switching back, the `div` is deleted and the new `section` is added
 
 As a rule of thumb, **if you want to preserve the state between re-renders, the structure of your tree needs to "match up"** from one render to another. If the structure is different, the state gets destroyed because React destroys state when it removes a component from the tree.
 
-<Gotcha>
+<Pitfall>
 
 This is why you should not nest component function definitions.
 
@@ -753,7 +753,7 @@ export default function MyComponent() {
 
 Every time you click the button, the input state disappears! This is because a *different* `MyTextField` function is created for every render of `MyComponent`. You're rendering a *different* component in the same position, so React resets all state below. This leads to bugs and performance problems. To avoid this problem, **always declare component functions at the top level, and don't nest their definitions.**
 
-</Gotcha>
+</Pitfall>
 
 ## Resetting state at the same position {/*resetting-state-at-the-same-position*/}
 

@@ -736,7 +736,7 @@ function ChatRoom() {
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies)
 
-<Gotcha>
+<Pitfall>
 
 The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. It means you need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
 
@@ -752,7 +752,7 @@ useEffect(() => {
 
 On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
 
-</Gotcha>
+</Pitfall>
 
 <Recap>
 

@@ -87,12 +87,12 @@ Or, more concisely, using an arrow function:
 
 All of these styles are equivalent. Inline event handlers are convenient for short functions.
 
-<Gotcha>
+<Pitfall>
 
 Functions passed to event handlers must be passed, not called. For example:
 
-| passing a function (correct)           | calling a function (incorrect) |
-|----------------------------------------|--------------------------------|
+| passing a function (correct)     | calling a function (incorrect)     |
+| -------------------------------- | ---------------------------------- |
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
 The difference is subtle. In the first example, the `handleClick` function is passed as an `onClick` event handler. This tells React to remember it and only call your function when the user clicks the button.
@@ -101,8 +101,8 @@ In the second example, the `()` at the end of `handleClick()` fires the function
 
 When you write code inline, the same pitfall presents itself in a different way:
 
-| passing a function (correct)           | calling a function (incorrect) |
-|----------------------------------------|--------------------------------|
+| passing a function (correct)            | calling a function (incorrect)    |
+| --------------------------------------- | --------------------------------- |
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
@@ -128,7 +128,7 @@ In both cases, what you want to pass is a function:
 
 > [Read more about arrow functions.](https://javascript.info/arrow-functions-basics)
 
-</Gotcha>
+</Pitfall>
 
 ### Reading props in event handlers {/*reading-props-in-event-handlers*/}
 
@@ -351,11 +351,11 @@ button { margin: 5px; }
 
 If you click on either button, its `onClick` will run first, followed by the parent `<div>`'s `onClick`. So two messages will appear. If you click the toolbar itself, only the parent `<div>`'s `onClick` will run.
 
-<Gotcha>
+<Pitfall>
 
 All events propagate in React except `onScroll`, which only works on the JSX tag you attach it to.
 
-</Gotcha>
+</Pitfall>
 
 ### Stopping propagation {/*stopping-propagation*/}
 

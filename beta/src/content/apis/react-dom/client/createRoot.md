@@ -96,11 +96,11 @@ This can feel very slow! To solve this, you can generate the initial HTML from y
 
 </Note>
 
-<Gotcha>
+<Pitfall>
 
 **Apps using server rendering or static generation must call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) instead of `createRoot`.** React will then *hydrate* (reuse) the DOM nodes from your HTML instead of destroying and re-creating them.
 
-</Gotcha>
+</Pitfall>
 
 ---
 

@@ -199,11 +199,11 @@ td {
 
 After building your components, you'll have a library of reusable components that render your data model. Because this is a static app, the components will only return JSX. The component at the top of the hierarchy (`FilterableProductTable`) will take your data model as a prop. This is called _one-way data flow_ because the data flows down from the top-level component to the ones at the bottom of the tree.
 
-<Gotcha>
+<Pitfall>
 
 At this point, you should not be using any state values. That’s for the next step!
 
-</Gotcha>
+</Pitfall>
 
 ## Step 3: Find the minimal but complete representation of UI state {/*step-3-find-the-minimal-but-complete-representation-of-ui-state*/}
 

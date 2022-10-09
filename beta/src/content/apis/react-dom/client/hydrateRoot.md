@@ -79,7 +79,7 @@ function Counter() {
 
 You shouldn't need to call `hydrateRoot` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/apis/react/useState)
 
-<Gotcha>
+<Pitfall>
 
 The React tree you pass to `hydrateRoot` needs to produce **the same output** as it did on the server.
 
@@ -94,7 +94,7 @@ The most common causes leading to hydration errors include:
 
 React can recover from some hydration errors, but **you must fix them like other bugs.** In the best case, they'll lead to a slower app; in the worst case, event handlers would get attached to the wrong elements.
 
-</Gotcha>
+</Pitfall>
 
 ### Updating a hydrated root component {/*updating-a-hydrated-root-component*/}
 

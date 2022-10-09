@@ -209,7 +209,7 @@ In this example, the "external system" you synchronized to React state was the b
 
 Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.
 
-<Gotcha>
+<Pitfall>
 
 By default, Effects run after *every* render. This is why code like this will **produce an infinite loop:**
 
@@ -224,7 +224,7 @@ Effects run as a *result* of rendering. Setting state *triggers* rendering. Sett
 
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 
-</Gotcha>
+</Pitfall>
 
 ### Step 2: Specify the Effect dependencies {/*step-2-specify-the-effect-dependencies*/}
 
@@ -401,7 +401,7 @@ The dependency array can contain multiple dependencies. React will only skip re-
 
 **Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your Effect. This helps catch many bugs in your code. If your Effect uses some value but you *don't* want to re-run the Effect when it changes, you'll need to [*edit the Effect code itself* to not "need" that dependency.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
 
-<Gotcha>
+<Pitfall>
 
 The behaviors *without* the dependency array and with an *empty* `[]` dependency array are very different:
 
@@ -421,7 +421,7 @@ useEffect(() => {
 
 We'll take a close look at what "mount" means in the next step.
 
-</Gotcha>
+</Pitfall>
 
 <DeepDive title="Why was the ref omitted from the dependency array?">
 

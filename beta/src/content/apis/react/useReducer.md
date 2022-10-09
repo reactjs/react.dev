@@ -144,7 +144,7 @@ The action type names are local to your component. [Each action describes a sing
 
 Read [extracting state logic into a reducer](/learn/extracting-state-logic-into-a-reducer) to learn more.
 
-<Gotcha>
+<Pitfall>
 
 State is read-only. Don't modify any objects or arrays in state:
 
@@ -174,7 +174,7 @@ function reducer(state, action) {
 
 Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
 
-</Gotcha>
+</Pitfall>
 
 <Recipes titleText="Basic useReducer examples" titleId="examples-basic">
 

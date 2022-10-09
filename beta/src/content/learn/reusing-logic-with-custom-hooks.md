@@ -645,6 +645,28 @@ export default function ChatRoom({ roomId }) {
 
 This looks much simpler! (But it does the same thing.)
 
+<Pitfall>
+
+The custom hook uses destructuring to access `serverUrl` and `roomId`. For example, you may use a regular parameter called `options`. Let's imagine your hook looks like this:
+
+```js {1,9}
+export function useChatRoom(options) { // 🚩 No destructuring
+  useEffect(() => {
+    const connection = createConnection(options);
+    connection.connect();
+    connection.on('message', (msg) => {
+      showNotification('New message: ' + msg);
+    });
+    return () => connection.disconnect();
+  }, [options]); // 🚩 Uses whole options object as a dependency
+}
+```
+
+This may seem fine but will in this case unnecessarily run every time `ChatRoom` re-renders. See [Removing unnecessary object dependencies](apis/react/useEffect#removing-unnecessary-object-dependencies).
+
+</Pitfall>
+
+
 Notice that the logic *still responds* to prop and state changes. Try editing the server URL or the selected room:
 
 <Sandpack>

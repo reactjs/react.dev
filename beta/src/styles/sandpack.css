@@ -199,9 +199,12 @@ html.dark .sp-wrapper {
   background: var(--sp-colors-surface1);
 }
 
-.sandpack .sp-code-editor .cm-editor,
-.sandpack .sp-code-editor .cm-editor .cm-gutters {
+.sandpack .sp-code-editor .cm-editor {
   background-color: transparent;
+}
+
+.sandpack .sp-code-editor .cm-editor .cm-gutters {
+  background-color: var(--sp-colors-surface1);
 }
 
 .sandpack .sp-code-editor .cm-content,

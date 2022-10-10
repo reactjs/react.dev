@@ -347,7 +347,7 @@ Try replacing the `<Avatar>` inside `<Card>` with some text to see how the `Card
 
 You can think of a component with a `children` prop as having a "hole" that can be "filled in" by its parent components with arbitrary JSX. You will often use the `children` prop for visual wrappers: panels, grids, and so on.
 
-<Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
+<Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' width="591.883" height="354.797" />
 
 ## How props change over time {/*how-props-change-over-time*/}
 

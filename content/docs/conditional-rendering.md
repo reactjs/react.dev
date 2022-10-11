@@ -160,6 +160,8 @@ render() {
 }
 ```
 
+To avoid the problem, you can use double negation: `{!!count && <h1>Messages: {count}</h1>}`. This will return `<div></div>`, because double negation always returns the boolean `false` for falsy expressions.
+
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
 Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).

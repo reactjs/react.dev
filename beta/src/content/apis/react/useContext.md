@@ -33,7 +33,7 @@ function Button() {
 
 `useContext` returns the <CodeStep step={2}>context value</CodeStep> for the <CodeStep step={1}>context</CodeStep> you passed. To determine the context value, React searches the component tree and finds **the closest context provider above** for that particular context.
 
-To pass context to a `Button`, wrap it or one of its parent components into the corresponding context provider:
+To pass context to a `Button`, wrap it(`Button`) or one of its parent components(`Form`) into the corresponding context provider:
 
 ```js [[1, 3, "ThemeContext"], [2, 3, "\\"dark\\""], [1, 5, "ThemeContext"]]
 function MyPage() {

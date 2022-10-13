@@ -33,7 +33,11 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
                 <FooterLink
                   type="Previous"
                   title={prevRoute.title}
-                  href={removeFromLast(prevRoute.path, '.')}
+                  href={
+                    prevRoute.path.startsWith('https://')
+                      ? prevRoute.path
+                      : removeFromLast(prevRoute.path, '.')
+                  }
                 />
               ) : (
                 <div />

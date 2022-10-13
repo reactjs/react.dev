@@ -69,7 +69,7 @@ function FooterLink({
   title: string;
   type: 'Previous' | 'Next';
 }) {
-  let target = '';
+  let target = undefined;
   if (href.startsWith('https://')) {
     target = '_blank';
   }

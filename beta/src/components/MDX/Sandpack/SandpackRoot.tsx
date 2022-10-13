@@ -87,7 +87,7 @@ function SandpackRoot(props: SandpackProps) {
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
-          bundlerURL: 'https://sandpack-bundler.pages.dev',
+          bundlerURL: 'https://71008268.sandpack-bundler.pages.dev/?babel=minimal',
           logLevel: SandpackLogLevel.Debug, // TODO: temp
         }}>
         <CustomPreset

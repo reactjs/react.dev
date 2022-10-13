@@ -94,9 +94,9 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   }, [isMultiFile]);
 
   const handleReset = () => {
-    if (confirm('Reset all your edits too?')) {
+    // if (confirm('Reset all your edits too?')) {
       sandpack.resetAllFiles();
-    }
+    // }
     refresh();
   };
 

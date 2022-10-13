@@ -48,7 +48,7 @@ export function SidebarLink({
     }
   }, [ref, selected]);
 
-  let target = undefined;
+  let target;
   if (href.startsWith('https://')) {
     target = '_blank';
   }

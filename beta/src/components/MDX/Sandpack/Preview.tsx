@@ -16,6 +16,10 @@ type CustomPreviewProps = {
   className?: string;
   isExpanded: boolean;
   lintErrors: LintDiagnostic;
+
+  start: any;
+  pause: any;
+  time: number;
 };
 
 function useDebounced(value: any): any {
@@ -34,6 +38,9 @@ export function Preview({
   isExpanded,
   className,
   lintErrors,
+  start,
+  pause,
+  time,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
   const [bundlerIsReady, setBundlerIsReady] = useState(false);
@@ -108,7 +115,7 @@ export function Preview({
     function bundlerListener() {
       let timeout: ReturnType<typeof setTimeout>;
 
-      const unsubscribe = listen((message: any) => {
+      const unsubscribe = listen((message) => {
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
         } else if (message.type === 'start') {
@@ -122,12 +129,15 @@ export function Preview({
           }, 1000);
 
           if (message.firstLoad) {
+            start();
             setBundlerIsReady(false);
           }
         } else if (message.type === 'done') {
           setBundlerIsReady(true);
           setShowLoading(false);
           clearTimeout(timeout);
+
+          pause();
         }
       }, clientId);
 
@@ -172,6 +182,7 @@ export function Preview({
 
   return (
     <SandpackStack className={className}>
+      <h1>{time}</h1>
       <div
         className={cn(
           'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative md:rounded-b-lg lg:rounded-b-none',
@@ -189,7 +200,7 @@ export function Preview({
             <iframe
               ref={iframeRef}
               className={cn(
-                'w-full max-w-full rounded-t-none sm:rounded-lg transition-opacity duration-150',
+                'w-full max-w-full rounded-t-none sm:rounded-lg transition-opacity',
                 // We can't *actually* hide content because that would
                 // break calculating the computed height in the iframe
                 // (which we're using for autosizing). This is noticeable
@@ -198,7 +209,9 @@ export function Preview({
                 error && 'absolute',
 
                 // Transition between start/refresh and done state
-                bundlerIsReady ? 'opacity-100' : 'opacity-0 pointer-events-none'
+                bundlerIsReady
+                  ? 'opacity-100 duration-150'
+                  : 'opacity-0 pointer-events-none duration-75'
               )}
               title="Sandbox Preview"
               style={{
@@ -226,8 +239,7 @@ export function Preview({
           forceLoading={showLoading}
         />
       </div>
-      {/* TODO: temp */}
-      {/* <SandpackConsole visible={!error} /> */}
+      <SandpackConsole visible={!error} />
     </SandpackStack>
   );
 }

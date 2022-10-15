@@ -22,7 +22,6 @@ import {DownloadButton} from './DownloadButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
 
-// TODO: Replace with real useEvent.
 export function useEvent(fn: any): any {
   const ref = useRef(null);
   useInsertionEffect(() => {
@@ -40,7 +39,15 @@ const getFileName = (filePath: string): string => {
   return filePath.slice(lastIndexOfSlash + 1);
 };
 
-export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
+export function NavigationBar({
+  providedFiles,
+  reset,
+  start,
+}: {
+  providedFiles: Array<string>;
+  reset: any;
+  start: any;
+}) {
   const {sandpack} = useSandpack();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -107,7 +114,8 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
     ) {
       sandpack.resetAllFiles();
     }
-
+    reset();
+    start();
     refresh();
   };
 

@@ -94,9 +94,20 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   }, [isMultiFile]);
 
   const handleReset = () => {
-    // if (confirm('Reset all your edits too?')) {
+    /**
+     * resetAllFiles must come first, otherwise
+     * the previous content will appears for a second
+     * when the iframe loads.
+     *
+     * Plus, it should only prompts if there's any file changes
+     */
+    if (
+      sandpack.editorState === 'dirty' &&
+      confirm('Reset all your edits too?')
+    ) {
       sandpack.resetAllFiles();
-    // }
+    }
+
     refresh();
   };
 

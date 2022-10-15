@@ -3,26 +3,17 @@
  */
 
 /* eslint-disable react-hooks/exhaustive-deps */
-import {useRef, useState, useEffect, useMemo} from 'react';
-import {
-  useSandpack,
-  LoadingOverlay,
-  SandpackStack,
-} from '@codesandbox/sandpack-react';
+import {useRef, useState, useEffect, useMemo, useId} from 'react';
+import {useSandpack, SandpackStack} from '@codesandbox/sandpack-react';
 import cn from 'classnames';
-import {Error} from './Error';
+import {ErrorMessage} from './ErrorMessage';
 import {SandpackConsole} from './Console';
 import type {LintDiagnostic} from './useSandpackLint';
-
-/**
- * TODO: can we use React.useId?
- */
-const generateRandomId = (): string =>
-  Math.floor(Math.random() * 10000).toString();
+import {CSSProperties} from 'react';
+import {LoadingOverlay} from './LoadingOverlay';
 
 type CustomPreviewProps = {
   className?: string;
-  customStyle?: Record<string, unknown>;
   isExpanded: boolean;
   lintErrors: LintDiagnostic;
 };
@@ -40,13 +31,13 @@ function useDebounced(value: any): any {
 }
 
 export function Preview({
-  customStyle,
   isExpanded,
   className,
   lintErrors,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
-  const [isReady, setIsReady] = useState(false);
+  const [bundlerIsReady, setBundlerIsReady] = useState(false);
+  const [showLoading, setShowLoading] = useState(false);
   const [iframeComputedHeight, setComputedAutoHeight] = useState<number | null>(
     null
   );
@@ -95,7 +86,7 @@ export function Preview({
   // It changes too fast, causing flicker.
   const error = useDebounced(rawError);
 
-  const clientId = useRef<string>(generateRandomId());
+  const clientId = useId();
   const iframeRef = useRef<HTMLIFrameElement | null>(null);
 
   // SandpackPreview immediately registers the custom screens/components so the bundler does not render any of them
@@ -106,29 +97,43 @@ export function Preview({
 
   useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
-    registerBundler(iframeElement, clientId.current);
+    registerBundler(iframeElement, clientId);
 
     return () => {
-      unregisterBundler(clientId.current);
+      unregisterBundler(clientId);
     };
   }, []);
 
   useEffect(
     function bundlerListener() {
+      let timeout: ReturnType<typeof setTimeout>;
+
       const unsubscribe = listen((message: any) => {
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
         } else if (message.type === 'start') {
+          /**
+           * The spinner component transition might be longer than
+           * the bundler loading, so we only show the spinner if
+           * it takes more than 1s to load the bundler.
+           */
+          timeout = setTimeout(() => {
+            setShowLoading(true);
+          }, 1000);
+
           if (message.firstLoad) {
-            setIsReady(false);
+            setBundlerIsReady(false);
           }
         } else if (message.type === 'done') {
-          setIsReady(true);
+          setBundlerIsReady(true);
+          setShowLoading(false);
+          clearTimeout(timeout);
         }
-      }, clientId.current);
+      }, clientId);
 
       return () => {
-        setIsReady(false);
+        clearTimeout(timeout);
+        setBundlerIsReady(false);
         setComputedAutoHeight(null);
         unsubscribe();
       };
@@ -136,13 +141,7 @@ export function Preview({
     [status === 'idle']
   );
 
-  const overrideStyle = error
-    ? {
-        // Don't collapse errors
-        maxHeight: undefined,
-      }
-    : null;
-  const hideContent = !isReady || error;
+  // const hideContent = !bundlerIsReady || error;
 
   // WARNING:
   // The layout and styling here is convoluted and really easy to break.
@@ -159,67 +158,72 @@ export function Preview({
   // - It should work on mobile.
   // The best way to test it is to actually go through some challenges.
 
+  const iframeWrapperPosition = (): CSSProperties => {
+    if (!bundlerIsReady || error) {
+      return {position: 'relative'};
+    }
+
+    if (isExpanded) {
+      return {position: 'sticky', top: '2em'};
+    }
+
+    return {};
+  };
+
   return (
-    <SandpackStack
-      className={className}
-      style={{
-        // TODO: clean up this mess.
-        ...customStyle,
-        ...overrideStyle,
-      }}>
+    <SandpackStack className={className}>
       <div
         className={cn(
           'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative md:rounded-b-lg lg:rounded-b-none',
           // Allow content to be scrolled if it's too high to fit.
           // Note we don't want this in the expanded state
           // because it breaks position: sticky (and isn't needed anyway).
-          !isExpanded && (error || isReady) ? 'overflow-auto' : null
+          !isExpanded && (error || bundlerIsReady) ? 'overflow-auto' : null
         )}>
         <div
-          style={{
-            padding: 'initial',
-            position: hideContent
-              ? 'relative'
-              : isExpanded
-              ? 'sticky'
-              : undefined,
-            top: isExpanded ? '2rem' : undefined,
-          }}>
-          <iframe
-            ref={iframeRef}
-            className={cn(
-              'rounded-t-none bg-white md:shadow-md sm:rounded-lg w-full max-w-full',
-              // We can't *actually* hide content because that would
-              // break calculating the computed height in the iframe
-              // (which we're using for autosizing). This is noticeable
-              // if you make a compiler error and then fix it with code
-              // that expands the content. You want to measure that.
-              hideContent
-                ? 'absolute opacity-0 pointer-events-none'
-                : 'opacity-100'
-            )}
-            title="Sandbox Preview"
-            style={{
-              height: iframeComputedHeight || '100%',
-              zIndex: isExpanded ? 'initial' : -1,
-            }}
-          />
-        </div>
-        {error && (
-          <div
-            className={cn(
-              'p-2',
-              // This isn't absolutely positioned so that
-              // the errors can also expand the parent height.
-              isExpanded ? 'sticky top-8' : null
-            )}>
-            <Error error={error} />
+          className={cn(
+            'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full',
+            error && 'border-2 border-red-40'
+          )}>
+          <div style={iframeWrapperPosition()}>
+            <iframe
+              ref={iframeRef}
+              className={cn(
+                'w-full max-w-full rounded-t-none sm:rounded-lg transition-opacity duration-150',
+                // We can't *actually* hide content because that would
+                // break calculating the computed height in the iframe
+                // (which we're using for autosizing). This is noticeable
+                // if you make a compiler error and then fix it with code
+                // that expands the content. You want to measure that.
+                error && 'absolute',
+
+                // Transition between start/refresh and done state
+                bundlerIsReady ? 'opacity-100' : 'opacity-0 pointer-events-none'
+              )}
+              title="Sandbox Preview"
+              style={{
+                height: iframeComputedHeight || '100%',
+                zIndex: isExpanded ? 'initial' : -1,
+              }}
+            />
           </div>
-        )}
+
+          {error && (
+            <div
+              className={cn(
+                // This isn't absolutely positioned so that
+                // the errors can also expand the parent height.
+                isExpanded ? 'sticky top-8' : null
+              )}>
+              <ErrorMessage error={error} />
+            </div>
+          )}
+        </div>
+
         <LoadingOverlay
-          showOpenInCodeSandbox
-          clientId={clientId.current}
-          loading={!isReady && iframeComputedHeight === null}
+          clientId={clientId}
+          dependenciesLoading={!bundlerIsReady && iframeComputedHeight === null}
+          forceLoading={showLoading}
         />
       </div>
       {/* TODO: temp */}

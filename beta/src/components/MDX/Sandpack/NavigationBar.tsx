@@ -39,15 +39,7 @@ const getFileName = (filePath: string): string => {
   return filePath.slice(lastIndexOfSlash + 1);
 };
 
-export function NavigationBar({
-  providedFiles,
-  reset,
-  start,
-}: {
-  providedFiles: Array<string>;
-  reset: any;
-  start: any;
-}) {
+export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   const {sandpack} = useSandpack();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -114,8 +106,7 @@ export function NavigationBar({
     ) {
       sandpack.resetAllFiles();
     }
-    reset();
-    start();
+
     refresh();
   };
 

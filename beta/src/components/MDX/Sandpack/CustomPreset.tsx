@@ -11,7 +11,6 @@ import {
   SandpackLayout,
 } from '@codesandbox/sandpack-react';
 import cn from 'classnames';
-import {useTimer} from 'use-timer';
 
 import {IconChevron} from 'components/Icon/IconChevron';
 import {NavigationBar} from './NavigationBar';
@@ -70,7 +69,6 @@ const SandboxShell = memo(function SandboxShell({
   lintExtensions: Array<any>;
   isExpandable: boolean;
 }) {
-  const {start, pause, time, reset} = useTimer({interval: 0});
   const containerRef = useRef<HTMLDivElement>(null);
   const [isExpanded, setIsExpanded] = useState(false);
   return (
@@ -78,11 +76,7 @@ const SandboxShell = memo(function SandboxShell({
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar
-          reset={reset}
-          start={start}
-          providedFiles={providedFiles}
-        />
+        <NavigationBar providedFiles={providedFiles} />
         <SandpackLayout
           className={cn(
             showDevTools && devToolsLoaded && 'sp-layout-devtools',
@@ -91,9 +85,6 @@ const SandboxShell = memo(function SandboxShell({
           )}>
           <Editor lintExtensions={lintExtensions} />
           <Preview
-            start={start}
-            pause={pause}
-            time={time}
             className="order-last xl:order-2"
             isExpanded={isExpanded}
             lintErrors={lintErrors}

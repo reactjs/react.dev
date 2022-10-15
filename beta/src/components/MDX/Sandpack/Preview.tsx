@@ -16,10 +16,6 @@ type CustomPreviewProps = {
   className?: string;
   isExpanded: boolean;
   lintErrors: LintDiagnostic;
-
-  start: any;
-  pause: any;
-  time: number;
 };
 
 function useDebounced(value: any): any {
@@ -38,9 +34,6 @@ export function Preview({
   isExpanded,
   className,
   lintErrors,
-  start,
-  pause,
-  time,
 }: CustomPreviewProps) {
   const {sandpack, listen} = useSandpack();
   const [bundlerIsReady, setBundlerIsReady] = useState(false);
@@ -129,15 +122,12 @@ export function Preview({
           }, 1000);
 
           if (message.firstLoad) {
-            start();
             setBundlerIsReady(false);
           }
         } else if (message.type === 'done') {
           setBundlerIsReady(true);
           setShowLoading(false);
           clearTimeout(timeout);
-
-          pause();
         }
       }, clientId);
 
@@ -182,7 +172,6 @@ export function Preview({
 
   return (
     <SandpackStack className={className}>
-      <h1>{time}</h1>
       <div
         className={cn(
           'p-0 sm:p-2 md:p-4 lg:p-8 bg-card dark:bg-wash-dark h-full relative md:rounded-b-lg lg:rounded-b-none',

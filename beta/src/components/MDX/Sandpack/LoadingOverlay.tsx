@@ -109,7 +109,6 @@ const useLoadingOverlayState = (
     return (): void => {
       unsubscribe();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [clientId, sandpack.status === 'idle']);
 
   /**

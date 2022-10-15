@@ -141,8 +141,6 @@ export function Preview({
     [status === 'idle']
   );
 
-  // const hideContent = !bundlerIsReady || error;
-
   // WARNING:
   // The layout and styling here is convoluted and really easy to break.
   // If you make changes to it, you need to test different cases:

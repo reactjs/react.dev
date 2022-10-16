@@ -114,7 +114,7 @@ const useLoadingOverlayState = (
    * Fading transient state
    */
   useEffect(() => {
-    let fadeTimeout: NodeJS.Timer;
+    let fadeTimeout: ReturnType<typeof setTimeout>;
 
     if (state === 'PRE_FADING' && !dependenciesLoading) {
       setState('FADING');

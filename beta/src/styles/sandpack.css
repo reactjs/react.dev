@@ -211,8 +211,14 @@ html.dark .sp-wrapper {
   -webkit-font-smoothing: auto; /* Improve the legibility */
 }
 
+.sandpack .sp-code-editor .cm-content {
+  overflow-x: auto;
+  padding-bottom: 18px;
+}
+
 .sandpack--playground .sp-code-editor .cm-line {
   padding: 0 var(--sp-space-3);
+  width: max-content;
 }
 
 .sandpack--playground .sp-code-editor .cm-lineNumbers {
@@ -250,8 +256,9 @@ html.dark .sp-wrapper {
 }
 
 .sp-code-editor .sp-cm .cm-scroller {
-  overflow: auto;
-  padding: 18px 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 18px;
 }
 
 /**

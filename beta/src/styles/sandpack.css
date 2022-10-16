@@ -249,6 +249,12 @@ html.dark .sp-wrapper {
   @apply border-red-40;
 }
 
+.sandpack .sp-cm {
+  margin: 0px;
+  outline: none;
+  height: 100%;
+}
+
 .sp-code-editor .sp-cm .cm-scroller {
   overflow: auto;
   padding: 18px 0;

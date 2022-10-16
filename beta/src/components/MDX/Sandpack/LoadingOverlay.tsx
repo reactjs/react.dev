@@ -95,9 +95,8 @@ const useLoadingOverlayState = (
   /**
    * Sandpack listener
    */
+  const sandpackIdle = sandpack.status === 'idle';
   useEffect(() => {
-    sandpack.loadingScreenRegisteredRef.current = true;
-
     const unsubscribe = listen((message) => {
       if (message.type === 'done') {
         setState((prev) => {
@@ -106,10 +105,10 @@ const useLoadingOverlayState = (
       }
     }, clientId);
 
-    return (): void => {
+    return () => {
       unsubscribe();
     };
-  }, [clientId, sandpack.status === 'idle']);
+  }, [listen, clientId, sandpackIdle]);
 
   /**
    * Fading transient state
@@ -126,7 +125,7 @@ const useLoadingOverlayState = (
       );
     }
 
-    return (): void => {
+    return () => {
       clearTimeout(fadeTimeout);
     };
   }, [state, dependenciesLoading]);

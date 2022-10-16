@@ -157,7 +157,7 @@ export function Preview({
   // The best way to test it is to actually go through some challenges.
 
   const iframeWrapperPosition = (): CSSProperties => {
-    if (!bundlerIsReady || error) {
+    if (!bundlerIsReady) {
       return {position: 'relative'};
     }
 
@@ -182,42 +182,32 @@ export function Preview({
           className={cn(
             'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full',
             error && 'border-2 border-red-40'
-          )}>
-          <div style={iframeWrapperPosition()}>
-            <iframe
-              ref={iframeRef}
-              className={cn(
-                'w-full max-w-full rounded-t-none sm:rounded-lg transition-opacity',
-                // We can't *actually* hide content because that would
-                // break calculating the computed height in the iframe
-                // (which we're using for autosizing). This is noticeable
-                // if you make a compiler error and then fix it with code
-                // that expands the content. You want to measure that.
-                error && 'absolute',
-
-                // Transition between start/refresh and done state
-                bundlerIsReady
-                  ? 'opacity-100 duration-150'
-                  : 'opacity-0 pointer-events-none duration-75'
-              )}
-              title="Sandbox Preview"
-              style={{
-                height: iframeComputedHeight || '100%',
-                zIndex: isExpanded ? 'initial' : -1,
-              }}
-            />
-          </div>
-
-          {error && (
-            <div
-              className={cn(
-                // This isn't absolutely positioned so that
-                // the errors can also expand the parent height.
-                isExpanded ? 'sticky top-8' : null
-              )}>
-              <ErrorMessage error={error} />
-            </div>
           )}
+          style={iframeWrapperPosition()}>
+          <iframe
+            ref={iframeRef}
+            className={cn(
+              'w-full max-w-full rounded-t-none sm:rounded-lg transition-opacity',
+              // We can't *actually* hide content because that would
+              // break calculating the computed height in the iframe
+              // (which we're using for autosizing). This is noticeable
+              // if you make a compiler error and then fix it with code
+              // that expands the content. You want to measure that.
+              error && 'absolute',
+
+              // Transition between start/refresh and done state
+              !bundlerIsReady || error
+                ? 'opacity-0 pointer-events-none duration-75'
+                : 'opacity-100 duration-150'
+            )}
+            title="Sandbox Preview"
+            style={{
+              height: iframeComputedHeight || '100%',
+              zIndex: isExpanded ? 'initial' : -1,
+            }}
+          />
+
+          {error && <ErrorMessage error={error} />}
         </div>
 
         <LoadingOverlay

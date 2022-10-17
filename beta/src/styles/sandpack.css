@@ -35,6 +35,10 @@
   --sp-font-lineHeight: 24px;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 /* Default theme */
 html .sandpack {
   --sp-colors-accent: #087ea4;

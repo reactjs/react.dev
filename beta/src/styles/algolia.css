@@ -19,6 +19,9 @@
   --fds-animation-fade-in: cubic-bezier(0, 0, 1, 1);
   --fds-animation-fade-out: cubic-bezier(0, 0, 1, 1);
 }
+html {
+  scroll-behavior: smooth;
+}
 html.dark {
   --docsearch-modal-background: #23272f;
   --docsearch-hit-background: #23272f;

@@ -45,9 +45,9 @@
   /* Write your own custom base styles here */
   html {
     color-scheme: light;
-
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
     -webkit-tap-highlight-color: transparent;
+    scroll-behavior: smooth;
   }
 
   html.dark {

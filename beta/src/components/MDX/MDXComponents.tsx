@@ -181,7 +181,7 @@ function AuthorCredit({
 }) {
   return (
     <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
-      <p className="absolute left-1/2 -bottom-2 -translate-x-1/2 translate-y-full text-center text-secondary dark:text-secondary-dark text-base leading-tight">
+      <p className="absolute left-1/2 -top-2 -translate-x-1/2 -translate-y-full text-center text-secondary dark:text-secondary-dark text-base leading-tight">
         <cite>
           Illustrated by{' '}
           {authorLink ? (

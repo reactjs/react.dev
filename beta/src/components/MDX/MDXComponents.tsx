@@ -173,27 +173,35 @@ function Recipes(props: any) {
 }
 
 function AuthorCredit({
-  author,
-  authorLink,
+  author = 'Rachel Lee Nabors',
+  authorLink = 'http://rachelnabors.com/',
 }: {
   author: string;
   authorLink: string;
 }) {
   return (
-    <p className="text-center text-secondary dark:text-secondary-dark text-base mt-2">
-      <cite>
-        Illustrated by{' '}
-        {authorLink ? (
-          <a className="text-link dark:text-link-dark" href={authorLink}>
-            {author}
-          </a>
-        ) : (
-          author
-        )}
-      </cite>
-    </p>
+    <div className="sr-only group-hover:not-sr-only group-focus-within:not-sr-only hover:sr-only">
+      <p className="absolute left-1/2 -bottom-2 -translate-x-1/2 translate-y-full text-center text-secondary dark:text-secondary-dark text-base leading-tight">
+        <cite>
+          Illustrated by{' '}
+          {authorLink ? (
+            <a className="text-link dark:text-link-dark" href={authorLink}>
+              {author}
+            </a>
+          ) : (
+            author
+          )}
+        </cite>
+      </p>
+    </div>
   );
 }
+
+const IllustrationContext = React.createContext<{
+  isInBlock?: boolean;
+}>({
+  isInBlock: false,
+});
 
 function Illustration({
   caption,
@@ -208,8 +216,10 @@ function Illustration({
   author: string;
   authorLink: string;
 }) {
+  const {isInBlock} = React.useContext(IllustrationContext);
+
   return (
-    <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+    <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
       <figure className="my-8 flex justify-center">
         <img
           src={src}
@@ -223,7 +233,7 @@ function Illustration({
           </figcaption>
         ) : null}
       </figure>
-      {author ? <AuthorCredit author={author} authorLink={authorLink} /> : null}
+      {!isInBlock && <AuthorCredit author={author} authorLink={authorLink} />}
     </div>
   );
 }
@@ -257,25 +267,28 @@ function IllustrationBlock({
     </figure>
   ));
   return (
-    <div className="my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-      {title ? (
-        <h3 className="text-center text-xl font-bold leading-9 mb-4">
-          {title}
-        </h3>
-      ) : null}
-      {sequential ? (
-        <ol className="mdx-illustration-block flex">
-          {images.map((x: any, i: number) => (
-            <li className="flex-1" key={i}>
-              {x}
-            </li>
-          ))}
-        </ol>
-      ) : (
-        <div className="mdx-illustration-block">{images}</div>
-      )}
-      {author ? <AuthorCredit author={author} authorLink={authorLink} /> : null}
-    </div>
+    <IllustrationContext.Provider value={{isInBlock: true}}>
+      <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
+        {title ? (
+          <h3 className="text-center text-xl font-bold leading-9 mb-4">
+            {title}
+          </h3>
+        ) : null}
+        {sequential ? (
+          <ol className="mdx-illustration-block flex">
+            {images.map((x: any, i: number) => (
+              <li className="flex-1" key={i}>
+                {x}
+              </li>
+            ))}
+          </ol>
+        ) : (
+          <div className="mdx-illustration-block">{images}</div>
+        )}
+
+        <AuthorCredit author={author} authorLink={authorLink} />
+      </div>
+    </IllustrationContext.Provider>
   );
 }
 

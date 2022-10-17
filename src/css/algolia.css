@@ -4,10 +4,6 @@
  * Customized Algolia search result styles.
  */
 
-html {
-  scroll-behavior: smooth;
-}
-
 .searchbox {
   display: inline-block;
   position: relative;

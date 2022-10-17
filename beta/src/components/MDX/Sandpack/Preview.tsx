@@ -180,7 +180,7 @@ export function Preview({
         )}>
         <div
           className={cn(
-            'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full',
+            'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full p-0',
             error && 'border-2 border-red-40'
           )}
           style={iframeWrapperPosition()}>
@@ -202,7 +202,7 @@ export function Preview({
             )}
             title="Sandbox Preview"
             style={{
-              height: iframeComputedHeight || '100%',
+              height: iframeComputedHeight || '100px',
               zIndex: isExpanded ? 'initial' : -1,
             }}
           />

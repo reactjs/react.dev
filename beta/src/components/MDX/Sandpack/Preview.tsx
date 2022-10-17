@@ -202,7 +202,12 @@ export function Preview({
             )}
             title="Sandbox Preview"
             style={{
-              height: iframeComputedHeight || '100px',
+              /**
+               * This initial height value is kind of arbitrary,
+               * but it's based on the average height of the sandboxes,
+               * to make the load state smoother
+               */
+              height: iframeComputedHeight || '180px',
               zIndex: isExpanded ? 'initial' : -1,
             }}
           />

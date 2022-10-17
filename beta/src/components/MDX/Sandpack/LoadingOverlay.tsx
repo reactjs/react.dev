@@ -86,7 +86,7 @@ const useLoadingOverlayState = (
   forceLoading: boolean
 ): LoadingOverlayState => {
   const {sandpack, listen} = useSandpack();
-  const [state, setState] = useState<LoadingOverlayState>('LOADING');
+  const [state, setState] = useState<LoadingOverlayState>('HIDDEN');
 
   if (state !== 'LOADING' && forceLoading) {
     setState('LOADING');

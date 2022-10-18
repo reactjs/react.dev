@@ -251,7 +251,7 @@ The methods in this section correspond to uncommon use cases. They're handy once
 ### `shouldComponentUpdate()` {#shouldcomponentupdate}
 
 ```javascript
-shouldComponentUpdate(nextProps, nextState)
+shouldComponentUpdate(nextProps, nextState, nextContext)
 ```
 
 Use `shouldComponentUpdate()` to let React know if a component's output is not affected by the current change in state or props. The default behavior is to re-render on every state change, and in the vast majority of cases you should rely on the default behavior.

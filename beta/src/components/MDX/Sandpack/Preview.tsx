@@ -121,9 +121,7 @@ export function Preview({
             setShowLoading(true);
           }, 1000);
 
-          if (message.firstLoad) {
-            setBundlerIsReady(false);
-          }
+          setBundlerIsReady(false);
         } else if (message.type === 'done') {
           setBundlerIsReady(true);
           setShowLoading(false);
@@ -156,8 +154,10 @@ export function Preview({
   // - It should work on mobile.
   // The best way to test it is to actually go through some challenges.
 
+  const hideContent = !iframeComputedHeight || !bundlerIsReady || error;
+
   const iframeWrapperPosition = (): CSSProperties => {
-    if (!bundlerIsReady) {
+    if (hideContent) {
       return {position: 'relative'};
     }
 
@@ -178,42 +178,38 @@ export function Preview({
           // because it breaks position: sticky (and isn't needed anyway).
           !isExpanded && (error || bundlerIsReady) ? 'overflow-auto' : null
         )}>
-        <div
-          className={cn(
-            'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full p-0',
-            error && 'border-2 border-red-40'
-          )}
-          style={iframeWrapperPosition()}>
+        <div style={iframeWrapperPosition()}>
           <iframe
             ref={iframeRef}
             className={cn(
-              'w-full max-w-full rounded-t-none sm:rounded-lg transition-opacity',
+              'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full p-0 transition-opacity duration-150',
               // We can't *actually* hide content because that would
               // break calculating the computed height in the iframe
               // (which we're using for autosizing). This is noticeable
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
-              error && 'absolute',
-
-              // Transition between start/refresh and done state
-              !bundlerIsReady || error
-                ? 'opacity-0 pointer-events-none duration-75'
-                : 'opacity-100 duration-150'
+              hideContent
+                ? 'absolute opacity-0 pointer-events-none'
+                : 'opacity-100 '
             )}
             title="Sandbox Preview"
             style={{
-              /**
-               * This initial height value is kind of arbitrary,
-               * but it's based on the average height of the sandboxes,
-               * to make the load state smoother
-               */
-              height: iframeComputedHeight || '180px',
+              height: iframeComputedHeight || '15px',
               zIndex: isExpanded ? 'initial' : -1,
             }}
           />
-
-          {error && <ErrorMessage error={error} />}
         </div>
+
+        {error && (
+          <div
+            className={cn(
+              // This isn't absolutely positioned so that
+              // the errors can also expand the parent height.
+              isExpanded ? 'sticky top-8' : ''
+            )}>
+            <ErrorMessage error={error} />
+          </div>
+        )}
 
         <LoadingOverlay
           clientId={clientId}

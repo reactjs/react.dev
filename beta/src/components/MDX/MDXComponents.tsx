@@ -239,13 +239,11 @@ function Illustration({
 }
 
 function IllustrationBlock({
-  title,
   sequential,
   author,
   authorLink,
   children,
 }: {
-  title: string;
   author: string;
   authorLink: string;
   sequential: boolean;
@@ -269,11 +267,6 @@ function IllustrationBlock({
   return (
     <IllustrationContext.Provider value={{isInBlock: true}}>
       <div className="relative group before:absolute before:-inset-y-16 before:inset-x-0 my-16 mx-0 2xl:mx-auto max-w-4xl 2xl:max-w-6xl">
-        {title ? (
-          <h3 className="text-center text-xl font-bold leading-9 mb-4">
-            {title}
-          </h3>
-        ) : null}
         {sequential ? (
           <ol className="mdx-illustration-block flex">
             {images.map((x: any, i: number) => (

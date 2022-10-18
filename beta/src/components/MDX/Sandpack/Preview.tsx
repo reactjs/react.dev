@@ -182,15 +182,15 @@ export function Preview({
           <iframe
             ref={iframeRef}
             className={cn(
-              'rounded-t-none sm:rounded-lg bg-white md:shadow-md w-full max-w-full p-0 transition-opacity duration-150',
+              'rounded-t-none bg-white md:shadow-md sm:rounded-lg w-full max-w-full transition-opacity',
               // We can't *actually* hide content because that would
               // break calculating the computed height in the iframe
               // (which we're using for autosizing). This is noticeable
               // if you make a compiler error and then fix it with code
               // that expands the content. You want to measure that.
               hideContent
-                ? 'absolute opacity-0 pointer-events-none'
-                : 'opacity-100 '
+                ? 'absolute opacity-0 pointer-events-none duration-75'
+                : 'opacity-100 duration-150'
             )}
             title="Sandbox Preview"
             style={{
@@ -205,7 +205,7 @@ export function Preview({
             className={cn(
               // This isn't absolutely positioned so that
               // the errors can also expand the parent height.
-              isExpanded ? 'sticky top-8' : ''
+              isExpanded ? 'sticky top-8' : null
             )}>
             <ErrorMessage error={error} />
           </div>

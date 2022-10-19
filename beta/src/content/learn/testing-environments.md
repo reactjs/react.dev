@@ -27,7 +27,7 @@ If you're writing a library that tests mostly browser-specific behavior, and req
 
 In an environment where you _can't_ simulate a DOM (e.g. testing React Native components on Node.js), you could use [event simulation helpers](/docs/test-utils.html#simulate) to simulate interactions with elements. Alternately, you could use the `fireEvent` helper from [`@testing-library/react-native`](https://testing-library.com/docs/react-native-testing-library/intro).
 
-Frameworks like [Cypress](https://www.cypress.io/), [puppeteer](https://github.com/GoogleChrome/puppeteer) and [webdriver](https://www.seleniumhq.org/projects/webdriver/) are useful for running [end-to-end tests](#end-to-end-tests-aka-e2e-tests).
+Frameworks like [Cypress](https://www.cypress.io/), [Playwright](https://playwright.dev), [Puppeteer](https://pptr.dev/), and [webdriver](https://www.selenium.dev/projects/) are useful for running [end-to-end tests](#end-to-end-tests-aka-e2e-tests).
 
 ### Mocking functions {/*mocking-functions*/}
 

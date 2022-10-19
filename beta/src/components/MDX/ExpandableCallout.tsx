@@ -56,8 +56,6 @@ function ExpandableCallout({children, type}: ExpandableCalloutProps) {
   const contentRef = useRef<HTMLDivElement>(null);
   const variant = variantMap[type];
 
-  console.log('v,', variant);
-
   return (
     <div
       className={cn(

@@ -688,7 +688,7 @@ export default function StoryTray({ stories }) {
           {story.label}
         </li>
       ))}
-      <li>Create Story</li>
+      <li key={'create'}>Create Story</li>
     </ul>
   );
 }

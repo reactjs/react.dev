@@ -6,7 +6,7 @@ Common testing patterns for React components.
 
 > Note:
 >
-> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/docs/testing-environments.html) page.
+> This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/learn/testing-environments.html) page.
 
 On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
@@ -155,7 +155,7 @@ it("renders with or without a name", () => {
 
 ### Data Fetching {/*data-fetching*/}
 
-Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
+Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/learn/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
 
 ```jsx
 // user.js

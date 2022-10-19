@@ -365,6 +365,18 @@ As mentioned earlier, there is no way to get the rendered output of an inner com
 
 ## Alternatives {/*alternatives*/}
 
+<Note>
+
+This section describes alternatives to the `Children` API (with capital `C`) that's imported like this:
+
+```js
+import { Children } from 'react';
+```
+
+Don't confuse it with [using the `children` prop](/learn/passing-props-to-a-component#passing-jsx-as-children) (lowercase `c`), which is good and encouraged.
+
+</Note>
+
 ### Exposing multiple components {/*exposing-multiple-components*/}
 
 Manipulating children with the `Children` methods often leads to fragile code. When you pass children to a component in JSX, you don't usually expect the component to manipulate or transform the individual children.

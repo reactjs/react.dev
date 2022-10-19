@@ -53,7 +53,116 @@ This is especially useful for data fetching. It is usually preferable to use "fa
 
 Some components have dependencies for modules that may not work well in test environments, or aren't essential to our tests. It can be useful to selectively mock these modules out with suitable replacements [<small>(example)</small>](/learn/testing-recipes.html#mocking-modules).
 
-On Node.js, runners like Jest [support mocking modules](https://jestjs.io/docs/en/manual-mocks). You could also use libraries like [`mock-require`](https://www.npmjs.com/package/mock-require).
+On Node.js, runners like Jest [support mocking modules](https://jestjs.io/docs/en/manual-mocks). 
+
+
+Consider a `Contact` component that embeds a third-party `GoogleMap` component:
+
+```jsx
+// map.js
+import { LoadScript, GoogleMap } from "react-google-maps";
+
+export default function Map(props) {
+  return (
+    <LoadScript id="script-loader" googleMapsApiKey="YOUR_API_KEY">
+      <GoogleMap id="example-map" center={props.center} />
+    </LoadScript>
+  );
+}
+
+// contact.js
+
+import Map from "./map";
+
+export default function Contact(props) {
+  return (
+    <div>
+      <address>
+        Contact {props.name} via{" "}
+        <a data-testid="email" href={"mailto:" + props.email}>
+          email
+        </a>
+        or on their <a data-testid="site" href={props.site}>
+          website
+        </a>.
+      </address>
+      <Map center={props.center} />
+    </div>
+  );
+}
+```
+
+If we don't want to load this component in our tests, we can mock out the dependency itself to a dummy component, and run our tests:
+
+```jsx{10-18}
+// contact.test.js
+
+import { createRoot } from "react-dom/client";
+import { act } from "react-dom/test-utils";
+
+import Contact from "./contact";
+import MockedMap from "./map";
+
+jest.mock("./map", () => {
+  return function DummyMap(props) {
+    return (
+      <div data-testid="map">
+        {props.center.lat}:{props.center.long}
+      </div>
+    );
+  };
+});
+
+let container = null;
+let root = null;
+beforeEach(() => {
+  // setup a React root as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
+  container.remove();
+  container = null;
+});
+
+it("should render contact information", () => {
+  const center = { lat: 0, long: 0 };
+  act(() => {
+    root.render(
+      <Contact
+        name="Joni Baez"
+        email="test@example.com"
+        site="http://test.com"
+        center={center}
+      />
+    );
+  });
+
+  expect(
+    container.querySelector("[data-testid='email']").getAttribute("href")
+  ).toEqual("mailto:test@example.com");
+
+  expect(
+    container.querySelector('[data-testid="site"]').getAttribute("href")
+  ).toEqual("http://test.com");
+
+  expect(container.querySelector('[data-testid="map"]').textContent).toEqual(
+    "0:0"
+  );
+});
+```
+
+
+You could also use libraries like [`mock-require`](https://www.npmjs.com/package/mock-require).
 
 ### Mocking timers {/*mocking-timers*/}
 

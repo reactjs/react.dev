@@ -17,8 +17,7 @@
             },
             {
               "title": "cloneElement",
-              "path": "/apis/react/cloneElement",
-              "wip": true
+              "path": "/apis/react/cloneElement"
             },
             {
               "title": "Component",

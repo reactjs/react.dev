@@ -3,7 +3,21 @@ title: Testing Environments
 ---
 
 
-This document goes through the factors that can affect your environment and recommendations for some scenarios.
+<Intro>
+This page goes through the factors that can affect your environment and recommendations for some scenarios.
+</Intro>
+
+<YouWillLearn>
+
+- [About different test runners](#test-runners)
+- [Mocking a rendering surface](#mocking-a-rendering-surface)
+- [Mocking functions](#mocking-functions)
+- [Mocking modules](#mocking-modules)
+- [Mocking timers](#mocking-timers)
+- [What are end-to-end test](#end-to-end-tests)
+
+
+</YouWillLearn>
 
 ### Test runners {/*test-runners*/}
 

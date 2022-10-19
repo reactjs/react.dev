@@ -1,27 +1,29 @@
 ---
-title: Testing Recipes
+title: Testing Components
 ---
 
-Common testing patterns for React components.
+<Intro>
+On this page, we'll show common testing patterns for React components. We will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
+</Intro>
 
 > Note:
 >
 > This page assumes you're using [Jest](https://jestjs.io/) as a test runner. If you use a different test runner, you may need to adjust the API, but the overall shape of the solution will likely be the same. Read more details on setting up a testing environment on the [Testing Environments](/learn/testing-environments.html) page.
 
-On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
-- [Setup/Teardown](#setupteardown)
-- [`act()`](#act)
-- [Rendering](#rendering)
-- [Data Fetching](#data-fetching)
+<YouWillLearn>
+
+- [Setup/Teardown of component tests](#setupteardown)
+- [What is `act()`?](#act)
+- [Rendering components in a test](#rendering)
+- [Testing Data Fetching](#data-fetching)
 - [Mocking Modules](#mocking-modules)
-- [Events](#events)
-- [Timers](#timers)
+- [Firing events](#events)
+- [Testing timer based events](#timers)
 - [Snapshot Testing](#snapshot-testing)
 - [Multiple Renderers](#multiple-renderers)
-- [Something Missing?](#something-missing)
 
----
+</YouWillLearn>
 
 ## Setup/Teardown {/*setupteardown*/}
 

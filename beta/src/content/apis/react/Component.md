@@ -148,11 +148,41 @@ For example, this `ChatRoom` component keeps a chat connection synchronized with
 
 <Sandpack>
 
-```js
-import { Component, useState } from 'react';
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+
+export default function App() {
+  const [roomId, setRoomId] = useState('general');
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Close chat' : 'Open chat'}
+      </button>
+      {show && <hr />}
+      {show && <ChatRoom roomId={roomId} />}
+    </>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { Component } from 'react';
 import { createConnection } from './chat.js';
 
-class ChatRoom extends Component {
+export default class ChatRoom extends Component {
   state = {
     serverUrl: 'https://localhost:1234'
   };
@@ -206,31 +236,6 @@ class ChatRoom extends Component {
       </>
     );
   }
-}
-
-export default function App() {
-  const [roomId, setRoomId] = useState('general');
-  const [show, setShow] = useState(false);
-  return (
-    <>
-      <label>
-        Choose the chat room:{' '}
-        <select
-          value={roomId}
-          onChange={e => setRoomId(e.target.value)}
-        >
-          <option value="general">general</option>
-          <option value="travel">travel</option>
-          <option value="music">music</option>
-        </select>
-      </label>
-      <button onClick={() => setShow(!show)}>
-        {show ? 'Close chat' : 'Open chat'}
-      </button>
-      {show && <hr />}
-      {show && <ChatRoom roomId={roomId} />}
-    </>
-  );
 }
 ```
 
@@ -549,42 +554,13 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-<Note>
-
-If your component does not synchronize with any external systems, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
-
-</Note>
+This [`useEffect`](/api/useEffect) call is equivalent to the logic in the lifecycle methods above. If your lifecycle methods do multiple unrelated things, [split them into multiple independent Effects.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things) Here is a complete example you can play with:
 
 <Sandpack>
 
-```js
-import { useState, useEffect } from 'react';
-import { createConnection } from './chat.js';
-
-function ChatRoom({ roomId }) {
-  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
-
-  useEffect(() => {
-    const connection = createConnection(serverUrl, roomId);
-    connection.connect();
-    return () => {
-      connection.disconnect();
-    };
-  }, [roomId, serverUrl]);
-
-  return (
-    <>
-      <label>
-        Server URL:{' '}
-        <input
-          value={serverUrl}
-          onChange={e => setServerUrl(e.target.value)}
-        />
-      </label>
-      <h1>Welcome to the {roomId} room!</h1>
-    </>
-  );
-}
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
 
 export default function App() {
   const [roomId, setRoomId] = useState('general');
@@ -612,6 +588,36 @@ export default function App() {
 }
 ```
 
+```js ChatRoom.js active
+import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom({ roomId }) {
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    connection.connect();
+    return () => {
+      connection.disconnect();
+    };
+  }, [roomId, serverUrl]);
+
+  return (
+    <>
+      <label>
+        Server URL:{' '}
+        <input
+          value={serverUrl}
+          onChange={e => setServerUrl(e.target.value)}
+        />
+      </label>
+      <h1>Welcome to the {roomId} room!</h1>
+    </>
+  );
+}
+```
+
 ```js chat.js
 export function createConnection(serverUrl, roomId) {
   // A real implementation would actually connect to the server
@@ -633,7 +639,11 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-If your lifecycle methods do multiple unrelated things, [split them into multiple independent Effects.](/learn/removing-effect-dependencies#is-your-effect-doing-several-unrelated-things)
+<Note>
+
+If your component does not synchronize with any external systems, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
+
+</Note>
 
 ---
 
@@ -663,11 +673,11 @@ Only the `render` method is required, other methods are optional.
 
 [See more examples above.](#usage)
 
-<Pitfall>
+<Note>
 
-**We strongly recommend against creating your own base component classes.** For example, instead of defining a `DangerButton` class that extends a `Button`, make your `DangerButton` return `<Button color="red" />`. The main way you'll reuse UI logic is by [composing components and passing props.](/learn/passing-props-to-a-component)
+**When you define class components, don't extend your own base component classes.** For example, instead of defining a `DangerButton` class that extends a `Button`, make your `DangerButton` return `<Button color="red" />`. In React, UI logic is reused by [composing components and passing props.](/learn/passing-props-to-a-component)
 
-</Pitfall>
+</Note>
 
 TODO
 

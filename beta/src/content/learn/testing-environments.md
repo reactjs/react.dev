@@ -166,7 +166,128 @@ You could also use libraries like [`mock-require`](https://www.npmjs.com/package
 
 ### Mocking timers {/*mocking-timers*/}
 
-Components might be using time-based functions like `setTimeout`, `setInterval`, or `Date.now`. In testing environments, it can be helpful to mock these functions out with replacements that let you manually "advance" time. This is great for making sure your tests run fast! Tests that are dependent on timers would still resolve in order, but quicker [<small>(example)</small>](/learn/testing-recipes.html#timers). Most frameworks, including [Jest](https://jestjs.io/docs/en/timer-mocks) and [sinon](https://sinonjs.org/releases/latest/fake-timers), let you mock timers in your tests.
+Components might be using time-based functions like `setTimeout`, `setInterval`, or `Date.now`. In testing environments, it can be helpful to mock these functions out with replacements that let you manually "advance" time. This is great for making sure your tests run fast! Tests that are dependent on timers would still resolve in order, but quicker. Most frameworks, including [Jest](https://jestjs.io/docs/en/timer-mocks) and [sinon](https://sinonjs.org/releases/latest/fake-timers), let you mock timers in your tests.
+
+
+Your code might use timer-based functions like `setTimeout` to schedule more work in the future. In this example, a multiple choice panel waits for a selection and advances, timing out if a selection isn't made in 5 seconds:
+
+```jsx
+// card.js
+
+import {useEffect} from 'react';
+
+export default function Card(props) {
+  useEffect(() => {
+    const timeoutID = setTimeout(() => {
+      props.onSelect(null);
+    }, 5000);
+    return () => {
+      clearTimeout(timeoutID);
+    };
+  }, [props.onSelect]);
+
+  return [1, 2, 3, 4].map((choice) => (
+    <button
+      key={choice}
+      data-testid={choice}
+      onClick={() => props.onSelect(choice)}>
+      {choice}
+    </button>
+  ));
+}
+```
+
+We can write tests for this component by leveraging [Jest's timer mocks](https://jestjs.io/docs/en/timer-mocks), and testing the different states it can be in.
+
+```jsx{7,31,37,49,59}
+// card.test.js
+
+import { createRoot } from "react-dom/client";
+import { act } from "react-dom/test-utils";
+
+import Card from "./card";
+
+let container = null;
+let root = null;
+beforeEach(() => {
+  // setup a React root as a render target
+  container = document.createElement("div");
+  document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
+
+  jest.useFakeTimers();
+});
+
+afterEach(() => {
+  // cleanup on exiting
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
+  container.remove();
+  container = null;
+
+  jest.useRealTimers();
+});
+
+it("should select null after timing out", () => {
+  const onSelect = jest.fn();
+  act(() => {
+    root.render(<Card onSelect={onSelect} />);
+  });
+
+  // move ahead in time by 100ms
+  act(() => {
+    jest.advanceTimersByTime(100);
+  });
+  expect(onSelect).not.toHaveBeenCalled();
+
+  // and then move ahead by 5 seconds
+  act(() => {
+    jest.advanceTimersByTime(5000);
+  });
+  expect(onSelect).toHaveBeenCalledWith(null);
+});
+
+it("should cleanup on being removed", () => {
+  const onSelect = jest.fn();
+  act(() => {
+    root.render(<Card onSelect={onSelect} />);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(100);
+  });
+  expect(onSelect).not.toHaveBeenCalled();
+
+  // unmount the app
+  act(() => {
+    root.render(null);
+  });
+
+  act(() => {
+    jest.advanceTimersByTime(5000);
+  });
+  expect(onSelect).not.toHaveBeenCalled();
+});
+
+it("should accept selections", () => {
+  const onSelect = jest.fn();
+  act(() => {
+    root.render(<Card onSelect={onSelect} />, container);
+  });
+
+  act(() => {
+    container
+      .querySelector("[data-testid='2']")
+      .dispatchEvent(new MouseEvent("click", { bubbles: true }));
+  });
+
+  expect(onSelect).toHaveBeenCalledWith(2);
+});
+```
 
 Sometimes, you may not want to mock timers. For example, maybe you're testing an animation, or interacting with an endpoint that's sensitive to timing (like an API rate limiter). Libraries with timer mocks let you enable and disable them on a per test/suite basis, so you can explicitly choose how these tests would run.
 

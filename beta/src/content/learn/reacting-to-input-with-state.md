@@ -311,15 +311,15 @@ Pages like this are often called "living styleguides" or "storybooks".
 
 ### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
 
-<IllustrationBlock title="Types of inputs">
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
-</IllustrationBlock>
-
 You can trigger state updates in response to two kinds of inputs:
 
 * **Human inputs,** like clicking a button, typing in a field, navigating a link.
 * **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
+
+<IllustrationBlock>
+  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
+  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+</IllustrationBlock>
 
 In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
 

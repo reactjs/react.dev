@@ -39,7 +39,7 @@ module.exports = ({icon = svgIcon, className = `anchor`} = {}) => {
               id
           );
         }
-        id = id.slice(2, id.length - 2);
+        id = id.slice(2, id.length - 2).trim();
         if (id !== toSlug(id)) {
           throw Error(
             'Expected header ID to be a valid slug. You specified: {/*' +

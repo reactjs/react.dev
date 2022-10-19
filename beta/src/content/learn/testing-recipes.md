@@ -10,7 +10,7 @@ Common testing patterns for React components.
 
 On this page, we will primarily use function components. However, these testing strategies don't depend on implementation details, and work just as well for class components too.
 
-- [Setup/Teardown](#setup--teardown)
+- [Setup/Teardown](#setupteardown)
 - [`act()`](#act)
 - [Rendering](#rendering)
 - [Data Fetching](#data-fetching)
@@ -30,18 +30,27 @@ For each test, we usually want to render our React tree to a DOM element that's 
 A common way to do it is to use a pair of `beforeEach` and `afterEach` blocks so that they'll always run and isolate the effects of a test to itself:
 
 ```jsx
-import { unmountComponentAtNode } from "react-dom";
+import {createRoot} from 'react-dom/client';
+import {act} from 'react-dom/test-utils';
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
-  container = document.createElement("div");
+  // setup a React root as a render target
+  container = document.createElement('div');
   document.body.appendChild(container);
+  root = createRoot(container);
+  global.IS_REACT_ACT_ENVIRONMENT = true;
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  // We'll explain `act` and `IS_REACT_ACT_ENVIRONMENT` later
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
 });
@@ -64,6 +73,9 @@ act(() => {
 
 This helps make your tests run closer to what real users would experience when using your application. The rest of these examples use `act()` to make these guarantees.
 
+Note that you the global `IS_REACT_ACT_ENVIRONMENT` has to be set e.g. by doing `global.IS_REACT_ACT_ENVIRONMENT = false`.
+If you're not setting `IS_REACT_ACT_ENVIRONMENT` we assume your test is more of an end-to-end test and that you're waiting for React updates by other means (e.g. periodically checking if an update was applied to the screen).
+
 You might find using `act()` directly a bit too verbose. To avoid some of the boilerplate, you could use a library like [React Testing Library](https://testing-library.com/react), whose helpers are wrapped with `act()`.
 
 > Note:
@@ -79,7 +91,7 @@ Commonly, you might want to test whether a component renders correctly for given
 ```jsx
 // hello.js
 
-import React from "react";
+import React from 'react';
 
 export default function Hello(props) {
   if (props.name) {
@@ -95,39 +107,45 @@ We can write a test for this component:
 ```jsx{24-27}
 // hello.test.js
 
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Hello from "./hello";
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // setup a React root as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
 });
 
 it("renders with or without a name", () => {
   act(() => {
-    render(<Hello />, container);
+    root.render(<Hello />);
   });
   expect(container.textContent).toBe("Hey, stranger");
 
   act(() => {
-    render(<Hello name="Jenny" />, container);
+    root.render(<Hello name="Jenny" />);
   });
   expect(container.textContent).toBe("Hello, Jenny!");
 
   act(() => {
-    render(<Hello name="Margaret" />, container);
+    root.render(<Hello name="Margaret" />);
   });
   expect(container.textContent).toBe("Hello, Margaret!");
 });
@@ -142,13 +160,13 @@ Instead of calling real APIs in all your tests, you can mock requests with dummy
 ```jsx
 // user.js
 
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect} from 'react';
 
 export default function User(props) {
   const [user, setUser] = useState(null);
 
   async function fetchUserData(id) {
-    const response = await fetch("/" + id);
+    const response = await fetch('/' + id);
     setUser(await response.json());
   }
 
@@ -157,7 +175,7 @@ export default function User(props) {
   }, [props.id]);
 
   if (!user) {
-    return "loading...";
+    return 'loading...';
   }
 
   return (
@@ -176,23 +194,34 @@ We can write tests for it:
 ```jsx{23-33,44-45}
 // user.test.js
 
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import User from "./user";
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // setup a React root as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
+
+
+  // remove the mock to ensure tests are completely isolated.
+  // It is better to do this here than at the end of a test in case the test fails earlier and doesn't reach its end.
+  jest.restoreAllMocks()
 });
 
 it("renders user data", async () => {
@@ -216,9 +245,6 @@ it("renders user data", async () => {
   expect(container.querySelector("summary").textContent).toBe(fakeUser.name);
   expect(container.querySelector("strong").textContent).toBe(fakeUser.age);
   expect(container.textContent).toContain(fakeUser.address);
-
-  // remove the mock to ensure tests are completely isolated
-  global.fetch.mockRestore();
 });
 ```
 
@@ -232,10 +258,8 @@ Consider a `Contact` component that embeds a third-party `GoogleMap` component:
 
 ```jsx
 // map.js
-
-import React from "react";
-
 import { LoadScript, GoogleMap } from "react-google-maps";
+
 export default function Map(props) {
   return (
     <LoadScript id="script-loader" googleMapsApiKey="YOUR_API_KEY">
@@ -246,7 +270,6 @@ export default function Map(props) {
 
 // contact.js
 
-import React from "react";
 import Map from "./map";
 
 export default function Contact(props) {
@@ -272,8 +295,7 @@ If we don't want to load this component in our tests, we can mock out the depend
 ```jsx{10-18}
 // contact.test.js
 
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Contact from "./contact";
@@ -290,15 +312,22 @@ jest.mock("./map", () => {
 });
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // setup a React root as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
 });
@@ -306,14 +335,13 @@ afterEach(() => {
 it("should render contact information", () => {
   const center = { lat: 0, long: 0 };
   act(() => {
-    render(
+    root.render(
       <Contact
         name="Joni Baez"
         email="test@example.com"
         site="http://test.com"
         center={center}
-      />,
-      container
+      />
     );
   });
 
@@ -340,19 +368,18 @@ We recommend dispatching real DOM events on DOM elements, and then asserting on 
 ```jsx
 // toggle.js
 
-import React, { useState } from "react";
+import {useState} from 'react';
 
 export default function Toggle(props) {
   const [state, setState] = useState(false);
   return (
     <button
       onClick={() => {
-        setState(previousState => !previousState);
+        setState((previousState) => !previousState);
         props.onChange(!state);
       }}
-      data-testid="toggle"
-    >
-      {state === true ? "Turn off" : "Turn on"}
+      data-testid="toggle">
+      {state === true ? 'Turn off' : 'Turn on'}
     </button>
   );
 }
@@ -363,22 +390,28 @@ We could write tests for it:
 ```jsx{13-14,35,43}
 // toggle.test.js
 
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Toggle from "./toggle";
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // setup a React root as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
 });
@@ -386,7 +419,7 @@ afterEach(() => {
 it("changes value when clicked", () => {
   const onChange = jest.fn();
   act(() => {
-    render(<Toggle onChange={onChange} />, container);
+    root.render(<Toggle onChange={onChange} />, container);
   });
 
   // get a hold of the button element, and trigger some clicks on it
@@ -426,7 +459,7 @@ Your code might use timer-based functions like `setTimeout` to schedule more wor
 ```jsx
 // card.js
 
-import React, { useEffect } from "react";
+import {useEffect} from 'react';
 
 export default function Card(props) {
   useEffect(() => {
@@ -438,12 +471,11 @@ export default function Card(props) {
     };
   }, [props.onSelect]);
 
-  return [1, 2, 3, 4].map(choice => (
+  return [1, 2, 3, 4].map((choice) => (
     <button
       key={choice}
       data-testid={choice}
-      onClick={() => props.onSelect(choice)}
-    >
+      onClick={() => props.onSelect(choice)}>
       {choice}
     </button>
   ));
@@ -455,32 +487,40 @@ We can write tests for this component by leveraging [Jest's timer mocks](https:/
 ```jsx{7,31,37,49,59}
 // card.test.js
 
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 
 import Card from "./card";
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // setup a React root as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
+
   jest.useFakeTimers();
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
+
   jest.useRealTimers();
 });
 
 it("should select null after timing out", () => {
   const onSelect = jest.fn();
   act(() => {
-    render(<Card onSelect={onSelect} />, container);
+    root.render(<Card onSelect={onSelect} />);
   });
 
   // move ahead in time by 100ms
@@ -499,7 +539,7 @@ it("should select null after timing out", () => {
 it("should cleanup on being removed", () => {
   const onSelect = jest.fn();
   act(() => {
-    render(<Card onSelect={onSelect} />, container);
+    root.render(<Card onSelect={onSelect} />);
   });
 
   act(() => {
@@ -509,7 +549,7 @@ it("should cleanup on being removed", () => {
 
   // unmount the app
   act(() => {
-    render(null, container);
+    root.render(null);
   });
 
   act(() => {
@@ -521,7 +561,7 @@ it("should cleanup on being removed", () => {
 it("should accept selections", () => {
   const onSelect = jest.fn();
   act(() => {
-    render(<Card onSelect={onSelect} />, container);
+    root.render(<Card onSelect={onSelect} />, container);
   });
 
   act(() => {
@@ -547,30 +587,36 @@ In this example, we render a component and format the rendered HTML with the [`p
 ```jsx{29-31}
 // hello.test.js, again
 
-import React from "react";
-import { render, unmountComponentAtNode } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { act } from "react-dom/test-utils";
 import pretty from "pretty";
 
 import Hello from "./hello";
 
 let container = null;
+let root = null;
 beforeEach(() => {
-  // setup a DOM element as a render target
+  // setup a React root as a render target
   container = document.createElement("div");
   document.body.appendChild(container);
+  root = createRoot(container)
+  global.IS_REACT_ACT_ENVIRONMENT = true;
 });
 
 afterEach(() => {
   // cleanup on exiting
-  unmountComponentAtNode(container);
+  act(() => {
+    root.unmount();
+  });
+  global.IS_REACT_ACT_ENVIRONMENT = false;
+  root = null;
   container.remove();
   container = null;
 });
 
 it("should render a greeting", () => {
   act(() => {
-    render(<Hello />, container);
+    root.render(<Hello />);
   });
 
   expect(
@@ -578,7 +624,7 @@ it("should render a greeting", () => {
   ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
 
   act(() => {
-    render(<Hello name="Jenny" />, container);
+    root.render(<Hello name="Jenny" />);
   });
 
   expect(
@@ -586,7 +632,7 @@ it("should render a greeting", () => {
   ).toMatchInlineSnapshot(); /* ... gets filled automatically by jest ... */
 
   act(() => {
-    render(<Hello name="Margaret" />, container);
+    root.render(<Hello name="Margaret" />);
   });
 
   expect(
@@ -604,8 +650,8 @@ It's typically better to make more specific assertions than to use snapshots. Th
 In rare cases, you may be running a test on a component that uses multiple renderers. For example, you may be running snapshot tests on a component with `react-test-renderer`, that internally uses `render` from `react-dom` inside a child component to render some content. In this scenario, you can wrap updates with `act()`s corresponding to their renderers.
 
 ```jsx
-import { act as domAct } from "react-dom/test-utils";
-import { act as testAct, create } from "react-test-renderer";
+import {act as domAct} from 'react-dom/test-utils';
+import {act as testAct, create} from 'react-test-renderer';
 // ...
 let root;
 domAct(() => {

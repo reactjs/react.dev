@@ -51,7 +51,7 @@ This is especially useful for data fetching. It is usually preferable to use "fa
 
 ### Mocking modules {/*mocking-modules*/}
 
-Some components have dependencies for modules that may not work well in test environments, or aren't essential to our tests. It can be useful to selectively mock these modules out with suitable replacements [<small>(example)</small>](/learn/testing-recipes.html#mocking-modules).
+Some components have dependencies for modules that may not work well in test environments, or aren't essential to our tests. It can be useful to selectively mock these modules out with suitable replacements.
 
 On Node.js, runners like Jest [support mocking modules](https://jestjs.io/docs/en/manual-mocks). 
 

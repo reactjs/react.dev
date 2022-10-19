@@ -11,7 +11,7 @@ This chapter will focus on how to setup and write tests for React components.
 
 <YouWillLearn isChapter={true}>
 
-* [Common patterns when writing tests for React components](/learn/testing-recipes)
+* [Common patterns when writing tests for React components](/learn/testing-components)
 * [What to consider when setting up a testing environment for React components.](/learn/testing-environments)
 
 </YouWillLearn>
@@ -22,9 +22,9 @@ There are a few ways to test React components. Broadly, they divide into two cat
 - **Rendering component trees** in a simplified test environment and asserting on their output.
 - **Running a complete app** in a realistic browser environment (also known as “end-to-end” tests).
 
-<LearnMore path="/learn/testing-recipes">
+<LearnMore path="/learn/testing-components">
 
-This documentation section focuses on testing strategies for the first case. Read **[Testing Components](/learn/testing-recipes)** to learn how to test components.
+This documentation section focuses on testing strategies for the first case. Read **[Testing Components](/learn/testing-components)** to learn how to test components.
 
 </LearnMore>
 

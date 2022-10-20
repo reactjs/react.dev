@@ -579,7 +579,7 @@ Next, verify that your `componentDidUpdate` method handles changes to any props 
 In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/apis/react/useEffect#connecting-to-an-external-system)
 
 ```js {6-12}
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 function ChatRoom({ roomId }) {
   const [serverUrl, setServerUrl] = useState('https://localhost:1234');

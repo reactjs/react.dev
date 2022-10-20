@@ -72,7 +72,7 @@ A class component's `render` method is similar to a regular [function component.
 
 <Pitfall>
 
-We don't recommend to define newly written components as classes. [See the alternatives.](#alternatives)
+We don't recommend to define newly written components as classes. [See the alternatives.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -130,7 +130,7 @@ button { display: block; margin-top: 10px; }
 
 <Pitfall>
 
-We don't recommend to define newly written components as classes. [See the alternatives.](#alternatives)
+We don't recommend to define newly written components as classes. [See the alternatives.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -264,7 +264,7 @@ Note that in development when [Strict Mode](/apis/react/StrictMode) is on, React
 
 <Pitfall>
 
-We don't recommend to define newly written components as classes. [See the alternatives.](#alternatives)
+We don't recommend to define newly written components as classes. [See the alternatives.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -278,15 +278,19 @@ Typically, you will [define components as functions](/learn/your-first-component
 
 For example, suppose you're converting this class to a function:
 
+<Sandpack>
+
 ```js
 import { Component } from 'react';
 
-class Greeting extends Component {
+export default class Greeting extends Component {
   render() {
     return <h1>Hello, {this.props.name}!</h1>;
   }
 }
 ```
+
+</Sandpack>
 
 Define a function called `Greeting`. This is where you will move the body of your `render` function.
 
@@ -332,7 +336,11 @@ export default function App() {
 
 Suppose you're converting this class to a function:
 
+<Sandpack>
+
 ```js
+import { Component } from 'react';
+
 export default class Counter extends Component {
   state = {
     name: 'Taylor',
@@ -368,6 +376,12 @@ export default class Counter extends Component {
 }
 ```
 
+```css
+button { display: block; margin-top: 10px; }
+```
+
+</Sandpack>
+
 Start by declaring a function with the necessary [state variables:](/apis/react/useState#adding-state-to-a-component)
 
 ```js {4-5}
@@ -396,37 +410,9 @@ function Counter() {
   // ...
 ```
 
-Finally, convert the returned JSX to reference the variables you've defined instead of `this`:
+Finally, replace all references starting with `this` with the variables and functions you defined in your component. For example, replace `this.state.age` with `age`, and replace `this.handleNameChange` with `handleNameChange`.
 
-```js {16-17,19,22}
-function Counter() {
-  const [name, setName] = useState('Taylor');
-  const [age, setAge] = useState(42);
-
-  function handleNameChange(e) {
-    setName(e.target.value);
-  }
-
-  function handleAgeChange() {
-    setAge(age + 1);
-  }
-
-  return (
-    <>
-      <input
-        value={name}
-        onChange={handleNameChange}
-      />
-      <button onClick={handleAgeChange}>
-        Increment age
-      </button>
-      <p>Hello, {name}. You are {age}.</p>
-    </>
-  )
-}
-```
-
-Here is a complete version.
+Here is a fully converted component:
 
 <Sandpack>
 
@@ -472,8 +458,43 @@ button { display: block; margin-top: 10px; }
 
 Suppose you're converting this component with lifecycle methods to a function:
 
-```js
-class ChatRoom extends Component {
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import ChatRoom from './ChatRoom.js';
+
+export default function App() {
+  const [roomId, setRoomId] = useState('general');
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <label>
+        Choose the chat room:{' '}
+        <select
+          value={roomId}
+          onChange={e => setRoomId(e.target.value)}
+        >
+          <option value="general">general</option>
+          <option value="travel">travel</option>
+          <option value="music">music</option>
+        </select>
+      </label>
+      <button onClick={() => setShow(!show)}>
+        {show ? 'Close chat' : 'Open chat'}
+      </button>
+      {show && <hr />}
+      {show && <ChatRoom roomId={roomId} />}
+    </>
+  );
+}
+```
+
+```js ChatRoom.js active
+import { Component } from 'react';
+import { createConnection } from './chat.js';
+
+export default class ChatRoom extends Component {
   state = {
     serverUrl: 'https://localhost:1234'
   };
@@ -529,6 +550,27 @@ class ChatRoom extends Component {
   }
 }
 ```
+
+```js chat.js
+export function createConnection(serverUrl, roomId) {
+  // A real implementation would actually connect to the server
+  return {
+    connect() {
+      console.log('✅ Connecting to "' + roomId + '" room at ' + serverUrl + '...');
+    },
+    disconnect() {
+      console.log('❌ Disconnected from "' + roomId + '" room at ' + serverUrl);
+    }
+  };
+}
+```
+
+```css
+input { display: block; margin-bottom: 20px; }
+button { margin-left: 10px; }
+```
+
+</Sandpack>
 
 First, verify that your `componentWillUnmount` does the opposite of `componentDidMount`. In the above example, that's true: it disconnects the connection that `componentDidMount` sets up. If such logic is missing, add it first.
 

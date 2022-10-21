@@ -95,6 +95,8 @@ export function Preview({
   errorScreenRegisteredRef.current = true;
   loadingScreenRegisteredRef.current = true;
 
+  const sandpackIdle = sandpack.status === 'idle';
+
   useEffect(function createBundler() {
     const iframeElement = iframeRef.current!;
     registerBundler(iframeElement, clientId);
@@ -112,6 +114,10 @@ export function Preview({
         if (message.type === 'resize') {
           setComputedAutoHeight(message.height);
         } else if (message.type === 'start') {
+          if (message.firstLoad) {
+            setBundlerIsReady(false);
+          }
+
           /**
            * The spinner component transition might be longer than
            * the bundler loading, so we only show the spinner if
@@ -119,9 +125,7 @@ export function Preview({
            */
           timeout = setTimeout(() => {
             setShowLoading(true);
-          }, 1000);
-
-          setBundlerIsReady(false);
+          }, 500);
         } else if (message.type === 'done') {
           setBundlerIsReady(true);
           setShowLoading(false);
@@ -136,7 +140,7 @@ export function Preview({
         unsubscribe();
       };
     },
-    [status === 'idle']
+    [sandpackIdle]
   );
 
   // WARNING:
@@ -154,7 +158,7 @@ export function Preview({
   // - It should work on mobile.
   // The best way to test it is to actually go through some challenges.
 
-  const hideContent = !iframeComputedHeight || !bundlerIsReady || error;
+  const hideContent = error || !iframeComputedHeight || !bundlerIsReady;
 
   const iframeWrapperPosition = (): CSSProperties => {
     if (hideContent) {
@@ -203,9 +207,10 @@ export function Preview({
         {error && (
           <div
             className={cn(
+              'z-50',
               // This isn't absolutely positioned so that
               // the errors can also expand the parent height.
-              isExpanded ? 'sticky top-8' : null
+              isExpanded ? 'sticky top-8 ' : null
             )}>
             <ErrorMessage error={error} />
           </div>

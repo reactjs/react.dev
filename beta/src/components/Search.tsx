@@ -28,10 +28,12 @@ function Hit({hit, children}: any) {
   );
 }
 
-function Kbd(props: {children?: React.ReactNode}) {
+function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
+  const width = props.wide ? 'w-12' : 'w-6';
+
   return (
     <kbd
-      className="h-6 w-6 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded"
+      className={`${width} h-6 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded`}
       {...props}
     />
   );
@@ -101,6 +103,9 @@ export function Search({
   },
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
+  const [macintosh, setMacintosh] = useState(true);
+
+  useEffect(() => setMacintosh(window.navigator.platform.includes('Mac')), []);
 
   const importDocSearchModalIfNeeded = useCallback(
     function importDocSearchModalIfNeeded() {
@@ -160,7 +165,7 @@ export function Search({
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
         Search
         <span className="ml-auto hidden sm:flex item-center">
-          <Kbd>⌘</Kbd>
+          <Kbd wide={!macintosh}>{macintosh ? '⌘' : 'Ctrl'}</Kbd>
           <Kbd>K</Kbd>
         </span>
       </button>

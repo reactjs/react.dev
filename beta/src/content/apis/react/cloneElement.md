@@ -29,7 +29,7 @@ const clonedElement = cloneElement(element, props, ...children)
 To override the props of some <CodeStep step={1}>React element</CodeStep>, pass it to `cloneElement` with the <CodeStep step={2}>props you want to override</CodeStep>:
 
 ```js [[1, 5, "<Row title=\\"Cabbage\\" />"], [2, 6, "{ isHighlighted: true }"], [3, 4, "clonedElement"]]
-import { clonedElement } from 'react';
+import { cloneElement } from 'react';
 
 // ...
 const clonedElement = cloneElement(
@@ -650,7 +650,7 @@ This approach is particularly useful if you want to reuse this logic between dif
 Call `cloneElement` to create a React element based on the `element`, but with different `props` and `children`:
 
 ```js
-import { clonedElement } from 'react';
+import { cloneElement } from 'react';
 
 // ...
 const clonedElement = cloneElement(

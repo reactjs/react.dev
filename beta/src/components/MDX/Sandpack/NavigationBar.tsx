@@ -22,7 +22,6 @@ import {DownloadButton} from './DownloadButton';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
 
-// TODO: Replace with real useEvent.
 export function useEvent(fn: any): any {
   const ref = useRef(null);
   useInsertionEffect(() => {
@@ -94,9 +93,20 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   }, [isMultiFile]);
 
   const handleReset = () => {
-    if (confirm('Reset all your edits too?')) {
+    /**
+     * resetAllFiles must come first, otherwise
+     * the previous content will appears for a second
+     * when the iframe loads.
+     *
+     * Plus, it should only prompts if there's any file changes
+     */
+    if (
+      sandpack.editorState === 'dirty' &&
+      confirm('Reset all your edits too?')
+    ) {
       sandpack.resetAllFiles();
     }
+
     refresh();
   };
 

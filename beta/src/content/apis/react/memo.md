@@ -331,7 +331,7 @@ Avoid doing deep equality checks inside `arePropsEqual` unless you are 100% sure
 
 ### `memo(Component, arePropsEqual?)` {/*memo*/}
 
-Call `memo` outside of any components to define a memoized version of a component. This memoized component will usually not be re-rendered when its component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
+Call `memo` outside of any components to define a memoized version of a component. This memoized component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
 
 ```js
 import { memo } from 'react';

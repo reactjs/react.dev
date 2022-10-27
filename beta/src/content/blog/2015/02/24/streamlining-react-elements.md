@@ -194,7 +194,7 @@ Since these objects can have any keys with almost any value, we can’t differen
 
 To differentiate ReactElements from one of these objects, we have to tag them with `_isReactElement`. This is another issue preventing us from inlining ReactElements as simple object literals.
 
-### Solution: Just use an Array and key={…} {/*solution-just-use-an-array-and-key*/}
+### Solution: Just use an Array and `key={...}` {/*solution-just-use-an-array-and-key*/}
 
 Most of the time you can just use an array with keyed ReactElements.
 

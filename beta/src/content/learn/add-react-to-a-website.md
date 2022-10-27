@@ -55,11 +55,11 @@ HTML sivusi pitäisi loppua seuraavasti:
 </body>
 ```
 
-<Gotcha>
+<Pitfall>
 
 Tuotantoon siirtyessä, korvaa "development.js" sanalla "production.min.js"! Kehitysversio Reactista tarjoaa hyödyllisempiä virheviestejä, mutta hidastaa sivuasi *paljon*.
 
-</Gotcha>
+</Pitfall>
 
 ### 3. Vaihe: Luo React komponentti {/*step-3-create-a-react-component*/}
 
@@ -119,7 +119,7 @@ Mikäli samaa komponenttia täytyy renderöidä monissa eri paikoissa, voit aset
 
 Pienentämätön JavaScript voi merkittävästi hidastaa verkkosivun latausaikoja käyttäjillesi. Ennen verkkosivun siirtämistä tuotantoon, on hyvä idea pienentää eli minifioida script -tiedostot.
 
-- **Jos sinulla ei ole minifiointi-vaihetta** koodeillesi, [täältä löydät yhden tavan asentaa sen](https://gist.github.com/gaearon/42a2ffa41b8319948f9be4076286e1f3).
+- **Jos sinulla ei ole minifiointi-vaihetta** koodeillesi, [täältä löydät yhden tavan asentaa sen](https://gist.github.com/gaearon/ee0201910608f15df3f8cd66aa83f98e).
 - **Jos jo minifioit** sovelluksesi koodit, sivusi on tuotantovalmis mikäli varmistat, että tuotantoon siirrettävä HTML koodi lataa versiot Reactista, jotka loppuvat `production.min.js` päätteellä, kuten:
 
 ```html
@@ -180,11 +180,11 @@ return (
 
 Merkintäkoodin ja JS-koodin sekoittaminen saattaa aluksi tuntua oudolta, mutta tulet tykkäämään siitä! Lue johdanto sivulta [Merkintäkoodin kirjoittaminen JSX:llä](/learn/writing-markup-with-jsx). Tässä on [esimerkki HTML tiedostosta, jossa on JSX:ää](https://raw.githubusercontent.com/reactjs/reactjs.org/main/static/html/single-file-example.html), jonka voit ladata ja testailla.
 
-<Gotcha>
+<Pitfall>
 
 Babel -kääntä on hyvä oppimiseen ja yksinkertaisten demojen luontiin. Kuitenkin, **se tekee sivustasi hitaan ja ei ole sopiva tuotantoon. Kun olet valmis siirtymään eteenpäin, poista Babel `<script>` tagi ja `type="text/babel"` attribuutti, jonka tässä vaiheessa lisäsit. Sen sijaan seuraavassa vaiheessa tulet asentamaan JSX esikääntäjän muuntamaan kaikki `<script>` tagisi automaattisesti JSX:stä JS:ksi. 
 
-</Gotcha>
+</Pitfall>
 
 Tämä lähestymistapa on hyvä oppimiseen ja yksinkertaisiin demoihin. Kuitenkin, se tekee sivustasi hintaan ja **ei ole sopiva tuotantoon**. Kun olet valmis siirtymään eteenpäin, poista tämä uusi `<script>` tagi ja `type="text/babel"` attribuutti, jonka lisäsit. Sen sijaan seuraavassa vaiheessa tulet asentamaan JSX esikääntäjän muuntamaan kaikki `<script>` tagisi automaattisesti. 
 
@@ -206,16 +206,16 @@ Onnittelut! Lisäsit juuri **tuotantovalmiin JSX ympäristön** projektiisi.
 Voit esikääntää JSX koodin siten, että joka kerta kun tallennat tiedoston, jossa on JSX -koodia, muunnin suoritetaan uudelleen, kääntäen JSX tiedoston pelkäksi JavaScript tiedostoksi, jota selain ymmärtää. Tässä on miten se asennetaan:
 
 1. Luo kansio nimeltään **`src`**.
-2. Terminaalissa, suorita komento: `npx babel --watch src --out-dir . --presets react-app/prod ` (Älä odota sen valmistumista! Tämä komento aloittaa automaattisen tarkkailijan seuraamaan muutoksia JSX koodissa `src` hakemistossa.)
-3. Siirrä JSX koodiksi muunnettu **`like-button.js`** ([sen pitäisi näyttää tältä!](https://gist.githubusercontent.com/gaearon/1884acf8834f1ef9a574a953f77ed4d8/raw/dfc664bbd25992c5278c3bf3d8504424c1104ecf/like-button.js)) uuteen **`src`** hakemistoon
+2. Terminaalissa, suorita komento: `npx babel --watch src --out-dir . --presets react-app/prod ` (Älä odota komennon valmistumista! Tämä aloittaa automaattisen tarkkailijan seuraamaan muutoksia JSX koodissa `src` hakemistossa.)
+3. Siirrä JSX koodiksi muunnettu **`like-button.js`** ([sen pitäisi näyttää tältä!](https://gist.githubusercontent.com/gaearon/be5ae0fbf563d6c5fe5c1563907b13d2/raw/4c0d0b8c7f4fcb341720424c28c72059f8174c62/like-button.js)) uuteen **`src`** hakemistoon
 
 Tarkkailija luo uuden esikäännetyn **`like-button.js`** tiedoston, joka sisältää selaimelle sopivaa JavaScript koodia.
 
-<Gotcha>
+<Pitfall>
 
 Jos törmäät virheeseen "You have mistakenly installed the `babel` package", saatoit vahingossa unohtaa [aikaisemman vaiheen](#add-jsx-to-a-project). Tee se samassa hakemistossa ja yritä uudelleen.
 
-</Gotcha>
+</Pitfall>
 
 Työkalua, jota juuri käytit on Babel ja voit lukea lisää siitä [sen dokumentaatiosta](https://babeljs.io/docs/en/babel-cli/). JSX:n lisäksi, sen avulla voi käyttää uusinta JavaScript syntaksi-ominaisuuksia murehtimatta vanhojen selaimien rikkoutumisesta.
 

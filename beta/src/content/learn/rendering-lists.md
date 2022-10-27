@@ -242,7 +242,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Sandpack>
 
-<Gotcha>
+<Pitfall>
 
 Nuolifunktiot implisiittisesti palauttavat lausekkeen heti `=>` jälkeen, joten et tarvitse `return` lausetta:
 
@@ -262,7 +262,7 @@ const listItems = chemists.map(person => { // Aaltosulje
 
 Nuolifunktiot, jotka sisältävät `=> {` sanotaan omaavan ["block body":n.](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions#function_body) Niissä voit kirjoittaa enemmän kuin yhden rivin koodia, mutta sinun *täytyy* kirjoittaa `return` lauseke. Jos unohdat sen, mitään ei palaudu!
 
-</Gotcha>
+</Pitfall>
 
 ## Listojen pitäminen järjestyksessä käyttämällä `key`:ta {/*keeping-list-items-in-order-with-key*/}
 
@@ -376,7 +376,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 Mitä teet kun yhden kohteen täytyy renderlidä useampi DOM-kohde?
 
-Lyhyt `<> </>` fragment-syntaksi ei anna sinun välittää avainta, joten joudut joko sisällyttämään ne `<div>`:n sisälle, tai voit käyttää hieman pitempää ja eksplisiittisempää `<Fragment>` syntaksia:
+Lyhyt [`<>...</>` Fragment](/apis/react/Fragment)-syntaksi ei anna sinun välittää avainta, joten joudut joko sisällyttämään ne `<div>`:n sisälle, tai voit käyttää hieman pitempää ja [eksplisiittisempää `<Fragment>` syntaksia:](/apis/react/Fragment#rendering-a-list-of-fragments)
 
 ```js
 import { Fragment } from 'react';
@@ -413,7 +413,7 @@ Kuvittele, että tiedostoilla työpöydälläsi ei olisi nimiä. Sen sijaan viit
 
 Tiedostonimet kansioissa ja JSX avaimet taulukossa palvelevat samantapaiseen tarkoitukseen. Sen avulla voidaan yksilöidä kohteet sen sisaruksista. Hyvin valittu avain tarjoaa enemmän tietoa kuin pelkän sijainnin taulukossa. Vaikka _sijainti_ muuttuisi uudelleenjärjestyksen seurauksena, `key`:n avulla React tunnistaa kohteet sen elinkaaren aikana.
 
-<Gotcha>
+<Pitfall>
 
 Saatat tuntea houkutusta käyttää kohteen indeksiä taulukossa sen avaimena. Itse asiassa, sitä React käyttää kun et määrittele `key`:ta ollenkaan. Kohteiden järjestys muuttuu ajan kuluessa, jos kohteita lisätään, poistetaan tai jos taulukko järjestetään uudelleen. Indeksi avaimena johtaa usein hienovaraisiin ja sekaviin bugeihin.
 
@@ -421,7 +421,7 @@ Vastaavasti, älä luo avaimia lennosta. esim `key={Math.random()}`. Tämän seu
 
 Huomaa, että komponenttisi eivät vastaanota `key`:ta proppina. React käyttää sitä vinkkinä vain itselleen. Jos komponenttisi tarvitsee ID:n, täytyy se välittää erillisenä proppina: `<Profile key={id} userId={id} />`.
 
-</Gotcha>
+</Pitfall>
 
 <Recap>
 
@@ -1206,7 +1206,7 @@ hr {
 
 Alkuperäisen rivin indeksin käyttäminen `key`.na ei enää toimi sillä erottimet ja kappaleet ovat nyt samassa taulukossa. Kuitenkin, voit antaa niille erillisen avaimen käyttämällä jälkiliitettä, esim. `key={i + '-text'}`.
 
-Vaihtoehtoisesti voit renderöidä kokoelman fragmenteja, jotka sisältävät `<hr />` ja `<p>...</p>` tagit. Kuitenkin `<> </>` lyhytsyntaksi ei tue avainten välittämistä, joten joutuisit kirjoittamaan `<Fragment>`:n eksplisiittisesti:
+Vaihtoehtoisesti voit renderöidä kokoelman fragmenteja, jotka sisältävät `<hr />` ja `<p>...</p>` tagit. Kuitenkin `<>...</>` lyhytsyntaksi ei tue avainten välittämistä, joten joutuisit kirjoittamaan `<Fragment>`:n eksplisiittisesti:
 
 <Sandpack>
 

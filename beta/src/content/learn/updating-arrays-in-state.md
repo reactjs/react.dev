@@ -24,16 +24,16 @@ Instead, every time you want to update an array, you'll want to pass a *new* arr
 
 Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
 
-|         | avoid (mutates the array) | prefer (returns a new array) |
-|---------|----------------|-------------------|
-| adding    | `push`, `unshift` | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array))|
-| removing | `pop`, `shift`, `splice` | `filter`, `slice` ([example](#removing-from-an-array))
-|replacing| `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))          |
-|sorting| `reverse`, `sort` | copy the array first ([example](#making-other-changes-to-an-array)) |
+|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
+| --------- | ----------------------------------- | ------------------------------------------------------------------- |
+| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
+| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
+| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
+| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
 
 Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
 
-<Gotcha>
+<Pitfall>
 
 Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/slice) and [`splice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice) are named similarly but are very different:
 
@@ -42,7 +42,7 @@ Unfortunately, [`slice`](https://developer.mozilla.org/en-US/docs/Web/JavaScript
 
 In React, you will be using `slice` (no `p`!) a lot more often because you don't want to mutate objects or arrays in state. [Updating Objects](/learn/updating-objects-in-state) explains what mutation is and why it's not recommended for state.
 
-</Gotcha>
+</Pitfall>
 
 ### Adding to an array {/*adding-to-an-array*/}
 
@@ -89,7 +89,7 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](TODO:/learn/a-javascript-refresher#array-spread) syntax:
+Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
 
 ```js
 setArtists( // Replace the state
@@ -214,7 +214,7 @@ Here, `artists.filter(a => a.id !== artist.id)` means "create an array that cons
 
 If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 100 pixels. It does this by producing a new array of data using `map()`:
+In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
 
 <Sandpack>
 
@@ -459,8 +459,6 @@ Although `nextList` and `list` are two different arrays, **`nextList[0]` and `li
 ## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
 
 Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
-
-<!-- TODOODLE -->
 
 **When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
 

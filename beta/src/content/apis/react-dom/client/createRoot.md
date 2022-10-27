@@ -96,11 +96,11 @@ This can feel very slow! To solve this, you can generate the initial HTML from y
 
 </Note>
 
-<Gotcha>
+<Pitfall>
 
 **Apps using server rendering or static generation must call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) instead of `createRoot`.** React will then *hydrate* (reuse) the DOM nodes from your HTML instead of destroying and re-creating them.
 
-</Gotcha>
+</Pitfall>
 
 ---
 
@@ -284,16 +284,16 @@ React will display `<App />` in the `root`, and take over managing the DOM insid
 
 [See examples above.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-render-parameters*/}
 
 * `reactNode`: A *React node* that you want to display. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/apis/react/createElement), a string, a number, `null`, or `undefined`.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-render-returns*/}
 
 `root.render` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-render-caveats*/}
 
 * The first time you call `root.render`, React will clear all the existing HTML content inside the React root before rendering the React component into it.
 
@@ -318,16 +318,16 @@ This is mostly useful if your React root's DOM node (or any of its ancestors) ma
 Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree. 
 
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-unmount-parameters*/}
 
 `root.unmount` does not accept any parameters.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-unmount-returns*/}
 
 `root.unmount` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-unmount-caveats*/}
 
 * Calling `root.unmount` will unmount all the components in the tree and "detach" React from the root DOM node.
 
@@ -347,9 +347,11 @@ import App from './App.js';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
-````
+```
 
 Until you do that, nothing is displayed.
+
+---
 
 ### I'm getting an error: "Target container is not a DOM element" {/*im-getting-an-error-target-container-is-not-a-dom-element*/}
 
@@ -362,7 +364,7 @@ const domNode = document.getElementById('root');
 console.log(domNode); // ???
 const root = createRoot(domNode);
 root.render(<App />);
-````
+```
 
 For example, if `domNode` is `null`, it means that [`getElementById`](https://developer.mozilla.org/en-US/docs/Web/API/Document/getElementById) returned `null`. This will happen if there is no node in the document with the given ID at the time of your call. There may be a few reasons for it:
 
@@ -372,6 +374,8 @@ For example, if `domNode` is `null`, it means that [`getElementById`](https://de
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
 
 Another common way to get this error is to write `createRoot(<App />)` instead of `createRoot(domNode)`.
+
+---
 
 ### I'm getting an error: "Functions are not valid as a React child." {/*im-getting-an-error-functions-are-not-valid-as-a-react-child*/}
 
@@ -398,6 +402,8 @@ root.render(createApp());
 ```
 
 If you can't get it working, check out [Adding React to a Website](/learn/add-react-to-a-website) for a working example.
+
+---
 
 ### My server-rendered HTML gets re-created from scratch {/*my-server-rendered-html-gets-re-created-from-scratch*/}
 

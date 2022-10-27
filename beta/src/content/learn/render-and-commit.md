@@ -155,7 +155,7 @@ img {
 - **Ensimmäisen renderöinnin aikana** React [luo DOM nodet](https://developer.mozilla.org/docs/Web/API/Document/createElement) `<section>`, `<h1>`, ja kolmelle `<img>` tagille.
 - **Uudelleenrenderöinnin aikana,** React laskee mitkä niiden propertyistä, jos mitkään, ovat muuttuneet sitten aiemman renderöinnin. Se ei tee näillä tiedoilla mitään ennen seuraavaa commit-vaihetta.
 
-<Gotcha>
+<Pitfall>
 
 Renderöinnin on oltava aina [puhdas laskelma](/learn/keeping-components-pure):
 
@@ -164,7 +164,7 @@ Renderöinnin on oltava aina [puhdas laskelma](/learn/keeping-components-pure):
 
 Muutoin saatat kohdata hämmentäviä bugeja ja arvaamatonta käyttäytymistä kun koodipohjasi monimutkaisuuden kasvaessa. Kehittäessä "Strict Modessa," React kutsuu jokaisen komponentin funktiota kahdesti, joka nostaa pintaan epäpuhtaiden funktioiden virheitä.
 
-</Gotcha>
+</Pitfall>
 
 <DeepDive title="Tehokkuuden optimointi">
 

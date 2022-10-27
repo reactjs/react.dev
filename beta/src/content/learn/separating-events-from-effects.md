@@ -262,7 +262,7 @@ Play with this example and see if you can spot the problem with this user experi
 
 <Sandpack>
 
-```json package.json
+```json package.json hidden
 {
   "dependencies": {
     "react": "latest",
@@ -326,7 +326,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -400,11 +400,11 @@ You need a way to separate this non-reactive logic from the reactive Effect arou
 
 ### Declaring an Event function {/*declaring-an-event-function*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 Use a special Hook called [`useEvent`](/apis/react/useEvent) to extract this non-reactive logic out of your Effect:
 
@@ -448,8 +448,8 @@ Verify that the new behavior works as you would expect:
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -464,7 +464,7 @@ Verify that the new behavior works as you would expect:
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -482,7 +482,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -514,7 +514,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -568,25 +568,6 @@ export function showNotification(message, theme) {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 label { display: block; margin-top: 10px; }
 ```
@@ -597,11 +578,11 @@ You can think of Event functions as being very similar to event handlers. The ma
 
 ### Reading latest props and state with Event functions {/*reading-latest-props-and-state-with-event-functions*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 Event functions let you fix many patterns where you might be tempted to suppress the dependency linter.
 
@@ -774,7 +755,7 @@ export default function App() {
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -809,7 +790,7 @@ The problem with the this code is in suppressing the dependency linter. If you r
 
 The author of the original code has "lied" to React by saying that the Effect does not depend (`[]`) on any reactive values. This is why React did not re-synchronize the Effect after `canMove` has changed (and `handleMove` with it). Because React did not re-synchronize the Effect, the `handleMove` attached as a listener is the `handleMove` function created during the initial render. During the initial render, `canMove` was `true`, which is why `handleMove` from the initial render will forever see that value.
 
-**If you never suppress the linter, you will never see problems with stale values.** 
+**If you never suppress the linter, you will never see problems with stale values.**
 
 With `useEvent`, there is no need to "lie" to the linter, and the code works as you would expect:
 
@@ -817,7 +798,7 @@ With `useEvent`, there is no need to "lie" to the linter, and the code works as 
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 export default function App() {
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -832,14 +813,14 @@ export default function App() {
   useEffect(() => {
     window.addEventListener('pointermove', onMove);
     return () => window.removeEventListener('pointermove', onMove);
-  }, [onMove]); // TODO: Linter will allow [] in the future
+  }, []);
 
   return (
     <>
       <label>
         <input type="checkbox"
           checked={canMove}
-          onChange={e => setCanMove(e.target.checked)} 
+          onChange={e => setCanMove(e.target.checked)}
         />
         The dot is allowed to move
       </label>
@@ -861,25 +842,6 @@ export default function App() {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 body {
   height: 200px;
@@ -896,11 +858,11 @@ Read [Removing Effect Dependencies](/learn/removing-effect-dependencies) for oth
 
 ### Limitations of Event functions {/*limitations-of-event-functions*/}
 
-<Gotcha>
+<Wip>
 
 This section describes an **experimental API that has not yet been added to React,** so you can't use it yet.
 
-</Gotcha>
+</Wip>
 
 At the moment, Event functions are very limited in how you can use them:
 
@@ -1094,7 +1056,7 @@ Now, when `increment` changes, React will re-synchronize your Effect, which will
 
 #### Fix a freezing counter {/*fix-a-freezing-counter*/}
 
-This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases by ten (rather than by one) after every next second.
+This `Timer` component keeps a `count` state variable which increases every second. The value by which it's increasing is stored in the `increment` state variable, which you can control it with the plus and minus buttons. For example, try pressing the plus button nine times, and notice that the `count` now increases each second by ten rather than by one.
 
 There is a small issue with this user interface. You might notice that if you keep pressing the plus or minus buttons faster than once per second, the timer itself seems to pause. It only resumes after a second passes since the last time you've pressed either button. Find why this is happening, and fix the issue so that the timer ticks on *every* second without interruptions.
 
@@ -1106,9 +1068,25 @@ It seems like the Effect which sets up the timer "reacts" to the `increment` val
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1145,25 +1123,6 @@ export default function Timer() {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 button { margin: 10px; }
 ```
@@ -1178,9 +1137,25 @@ To solve the issue, extract an `onTick` Event function from the Effect:
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1197,7 +1172,7 @@ export default function Timer() {
     return () => {
       clearInterval(id);
     };
-  }, [onTick]); // TODO: Linter will allow [] in the future
+  }, []);
 
   return (
     <>
@@ -1222,25 +1197,6 @@ export default function Timer() {
 ```
 
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 button { margin: 10px; }
 ```
@@ -1263,9 +1219,25 @@ Code inside Event functions is not reactive. Are there cases in which you would 
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1322,25 +1294,6 @@ export default function Timer() {
 ```
 
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 button { margin: 10px; }
 ```
@@ -1353,9 +1306,25 @@ The problem with the above example is that it extracted an Event function called
 
 <Sandpack>
 
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental",
+    "react-scripts": "latest"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 
 export default function Timer() {
   const [count, setCount] = useState(0);
@@ -1373,7 +1342,7 @@ export default function Timer() {
     return () => {
       clearInterval(id);
     }
-  }, [delay, onTick]); // TODO: Linter will allow [delay] in the future
+  }, [delay]);
 
   return (
     <>
@@ -1407,25 +1376,6 @@ export default function Timer() {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 button { margin: 10px; }
 ```
@@ -1455,8 +1405,8 @@ Your Effect knows which room it connected to. Is there any information that you 
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1471,7 +1421,7 @@ Your Effect knows which room it connected to. Is there any information that you 
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -1491,7 +1441,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -1523,7 +1473,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -1574,25 +1524,6 @@ export function showNotification(message, theme) {
       color: theme === 'dark' ? 'white' : 'black',
     },
   }).showToast();
-}
-```
-
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
 }
 ```
 
@@ -1615,8 +1546,8 @@ To fix the issue, instead of reading the *latest* `roomId` inside the Event func
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1631,7 +1562,7 @@ To fix the issue, instead of reading the *latest* `roomId` inside the Event func
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -1651,7 +1582,7 @@ function ChatRoom({ roomId, theme }) {
     });
     connection.connect();
     return () => connection.disconnect();
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -1683,7 +1614,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -1737,25 +1668,6 @@ export function showNotification(message, theme) {
 }
 ```
 
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
-}
-```
-
 ```css
 label { display: block; margin-top: 10px; }
 ```
@@ -1771,8 +1683,8 @@ To solve the additional challenge, save the notification timeout ID and clear it
 ```json package.json hidden
 {
   "dependencies": {
-    "react": "latest",
-    "react-dom": "latest",
+    "react": "experimental",
+    "react-dom": "experimental",
     "react-scripts": "latest",
     "toastify-js": "1.12.0"
   },
@@ -1787,7 +1699,7 @@ To solve the additional challenge, save the notification timeout ID and clear it
 
 ```js
 import { useState, useEffect } from 'react';
-import { useEvent } from './useEvent.js';
+import { experimental_useEvent as useEvent } from 'react';
 import { createConnection, sendMessage } from './chat.js';
 import { showNotification } from './notifications.js';
 
@@ -1813,7 +1725,7 @@ function ChatRoom({ roomId, theme }) {
         clearTimeout(notificationTimeoutId);
       }
     };
-  }, [roomId, onConnected]); // TODO: Linter will allow [roomId] in the future
+  }, [roomId]);
 
   return <h1>Welcome to the {roomId} room!</h1>
 }
@@ -1845,7 +1757,7 @@ export default function App() {
       <hr />
       <ChatRoom
         roomId={roomId}
-        theme={isDark ? 'dark' : 'light'} 
+        theme={isDark ? 'dark' : 'light'}
       />
     </>
   );
@@ -1896,25 +1808,6 @@ export function showNotification(message, theme) {
       color: theme === 'dark' ? 'white' : 'black',
     },
   }).showToast();
-}
-```
-
-```js useEvent.js
-import { useRef, useInsertionEffect, useCallback } from 'react';
-
-// The useEvent API has not yet been added to React,
-// so this is a temporary shim to make this sandbox work.
-// You're not expected to write code like this yourself.
-
-export function useEvent(fn) {
-  const ref = useRef(null);
-  useInsertionEffect(() => {
-    ref.current = fn;
-  }, [fn]);
-  return useCallback((...args) => {
-    const f = ref.current;
-    return f(...args);
-  }, []);
 }
 ```
 

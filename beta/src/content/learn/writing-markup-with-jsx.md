@@ -169,11 +169,11 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[React fragment](/apis/react/Fragment)*. React fragments let you group things without leaving any trace in the browser HTML tree.
+This empty tag is called a *[Fragment.](/apis/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
 
 <DeepDive title="Why do multiple JSX tags need to be wrapped?">
 
-JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a fragment.
+JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
 
 </DeepDive>
 
@@ -214,11 +214,11 @@ This is why, in React, many HTML and SVG attributes are written in camelCase. Fo
 
 You can [find all these attributes in the React DOM Elements.](TODO) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
 
-<Gotcha>
+<Pitfall>
 
 For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) and [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) attributes are written as in HTML with dashes.
 
-</Gotcha>
+</Pitfall>
 
 ### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
 

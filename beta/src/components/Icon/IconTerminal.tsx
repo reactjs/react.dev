@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconTerminal = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconTerminal = memo<JSX.IntrinsicElements['svg']>(
   function IconTerminal({className}) {
     return (
       <svg
@@ -22,5 +22,3 @@ export const IconTerminal = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconTerminal.displayName = 'IconTerminal';

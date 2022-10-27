@@ -51,8 +51,6 @@ const Heading = forwardRefWithAs<HeadingProps, 'div'>(function Heading(
   );
 });
 
-Heading.displayName = 'Heading';
-
 export const H1 = ({className, ...props}: HeadingProps) => (
   <Heading
     as="h1"

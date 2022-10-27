@@ -517,7 +517,7 @@ export default function App() {
         {show ? 'Close chat' : 'Open chat'}
       </button>
       {show && <hr />}
-      {show && <ChatRoom roomId={roomId} />}
+      {show && <ChatRoom />}
     </>
   );
 }
@@ -736,7 +736,7 @@ function ChatRoom() {
 
 * **Avoid relying on objects and functions as dependencies.** If you create objects and functions during rendering and then read them from an Effect, they will be different on every render. This will cause your Effect to re-synchronize every time. [Read more about removing unnecessary dependencies from your Effects.](/learn/removing-effect-dependencies)
 
-<Gotcha>
+<Pitfall>
 
 The linter is your friend, but its powers are limited. The linter only knows when the dependencies are *wrong*. It doesn't know *the best* way to solve each case. If the linter suggests a dependency, but adding it causes a loop, it doesn't mean the linter should be ignored. It means you need to change the code inside (or outside) the Effect so that that value isn't reactive and doesn't *need* to be a dependency.
 
@@ -752,7 +752,7 @@ useEffect(() => {
 
 On the [next](/learn/separating-events-from-effects) [pages](/learn/removing-effect-dependencies), you'll learn how to fix this code without breaking the rules. It's always worth fixing!
 
-</Gotcha>
+</Pitfall>
 
 <Recap>
 
@@ -1113,7 +1113,7 @@ In both of these cases, `canMove` is a reactive variable that you read inside th
 
 #### Investigate a stale value bug {/*investigate-a-stale-value-bug*/}
 
-In this example, the pink dot should move when the checkbox if on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
+In this example, the pink dot should move when the checkbox is on, and should stop moving when the checkbox is off. The logic for this has already been implemented: the `handleMove` event handler checks the `canMove` state variable.
 
 However, for some reason, the `canMove` state variable inside `handleMove` appears to be "stale": it's always `true`, even after you tick off the checkbox. How is this possible? Find the mistake in the code and fix it.
 
@@ -1613,7 +1613,7 @@ In this version, the `App` component passes a boolean prop instead of a function
 
 #### Populate a chain of select boxes {/*populate-a-chain-of-select-boxes*/}
 
-In this example, there are two select boxes. One select box lets the user picks a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
+In this example, there are two select boxes. One select box lets the user pick a planet. Another select box lets the user pick a place *on that planet.* The second box doesn't work yet. Your task is to make it show the places on the chosen planet.
 
 Look at how the first select box works. It populates the `planetList` state with the result from the `"/planets"` API call. The currently selected planet's ID is kept in the `planetId` state variable. You need to find where to add some additional code so that the `placeList` state variable is populated with the result of the `"/planets/" + planetId + "/places"` API call.
 
@@ -1661,7 +1661,7 @@ export default function Page() {
         }}>
           {planetList.map(planet =>
             <option key={planet.id} value={planet.id}>{planet.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <label>
@@ -1671,7 +1671,7 @@ export default function Page() {
         }}>
           {placeList.map(place =>
             <option key={place.id} value={place.id}>{place.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <hr />
@@ -1829,7 +1829,7 @@ export default function Page() {
         }}>
           {planetList.map(planet =>
             <option key={planet.id} value={planet.id}>{planet.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <label>
@@ -1839,7 +1839,7 @@ export default function Page() {
         }}>
           {placeList.map(place =>
             <option key={place.id} value={place.id}>{place.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <hr />
@@ -1965,7 +1965,7 @@ export default function Page() {
         }}>
           {planetList?.map(planet =>
             <option key={planet.id} value={planet.id}>{planet.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <label>
@@ -1975,7 +1975,7 @@ export default function Page() {
         }}>
           {placeList?.map(place =>
             <option key={place.id} value={place.id}>{place.name}</option>
-          )}}
+          )}
         </select>
       </label>
       <hr />

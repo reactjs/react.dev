@@ -79,7 +79,7 @@ function Counter() {
 
 You shouldn't need to call `hydrateRoot` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/apis/react/useState)
 
-<Gotcha>
+<Pitfall>
 
 The React tree you pass to `hydrateRoot` needs to produce **the same output** as it did on the server.
 
@@ -94,7 +94,7 @@ The most common causes leading to hydration errors include:
 
 React can recover from some hydration errors, but **you must fix them like other bugs.** In the best case, they'll lead to a slower app; in the worst case, event handlers would get attached to the wrong elements.
 
-</Gotcha>
+</Pitfall>
 
 ### Updating a hydrated root component {/*updating-a-hydrated-root-component*/}
 
@@ -196,16 +196,16 @@ React will update `<App />` in the hydrated `root`.
 
 [See examples above.](#usage)
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-render-parameters*/}
 
 * `reactNode`: A "React node" that you want to update. This will usually be a piece of JSX like `<App />`, but you can also pass a React element constructed with [`createElement()`](/apis/react/createElement), a string, a number, `null`, or `undefined`.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-render-returns*/}
 
 `root.render` returns `undefined`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-render-caveats*/}
 
 * If you call `root.render` before the root has finished hydrating, React will clear the existing server-rendered HTML content and switch the entire root to client rendering.
 
@@ -226,16 +226,16 @@ This is mostly useful if your React root's DOM node (or any of its ancestors) ma
 Calling `root.unmount` will unmount all the components in the root and "detach" React from the root DOM node, including removing any event handlers or state in the tree. 
 
 
-#### Parameters {/*parameters*/}
+#### Parameters {/*root-unmount-parameters*/}
 
 `root.unmount` does not accept any parameters.
 
 
-#### Returns {/*returns*/}
+#### Returns {/*root-unmount-returns*/}
 
 `render` returns `null`.
 
-#### Caveats {/*caveats*/}
+#### Caveats {/*root-unmount-caveats*/}
 
 * Calling `root.unmount` will unmount all the components in the tree and "detach" React from the root DOM node.
 

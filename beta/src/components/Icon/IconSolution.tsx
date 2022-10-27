@@ -2,10 +2,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 import cn from 'classnames';
 
-export const IconSolution = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconSolution = memo<JSX.IntrinsicElements['svg']>(
   function IconSolution({className}) {
     return (
       <svg
@@ -22,5 +22,3 @@ export const IconSolution = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconSolution.displayName = 'IconSolution';

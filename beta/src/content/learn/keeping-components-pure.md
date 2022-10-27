@@ -43,7 +43,7 @@ function double(number) {
 }
 ```
 
-Yllä olevassa esimerkissä `double()` on **puhdas funktio.** Jos välität sille `3`, se palauttaa `6`. Aina.
+Yllä olevassa esimerkissä, `double()` on **puhdas funktio.** Jos välität sille `3`, se palauttaa `6`. Aina.
 
 React on suunniteltu tämän konseptin ympärille. **React olettaa, että jokainen komponentti jonka kirjoitat on puhdas funktio.** Tämä tarkoittaa, että kirjoittamasi React komponenttien täytyy palauttaa aina sama JSX:n kun annetaan samat lähtötiedot:
 
@@ -81,7 +81,7 @@ Kun välität `drinkers={4}`, se palauttaa JSX:n sisältäen `4 cups of milk`. A
 
 Juuri kuten matemaattinen kaava.
 
-Voit ajatella komponenttisi reseptinä: jos seuraat sitä, etkä esittele uusia ainesosia kesken ruoanlaiton aikana, saat saman aterian joka kerta. Tuo "ateria" on JSX jonka komponentti tarjoaa Reactille [renderöitäväksi](render-and-commit).
+Voit ajatella komponenttisi reseptinä: jos seuraat sitä, etkä esittele uusia ainesosia kesken ruoanlaiton aikana, saat saman aterian joka kerta. Tuo "ateria" on JSX jonka komponentti tarjoaa Reactille [renderöitäväksi.](/learn/render-and-commit)
 
 <Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="Tee resepti x määrälle henkilöitä: ota x kuppia vettä, lisää 2x lusikallista mausteita, ja x lusikallista teetä!" />
 
@@ -202,7 +202,7 @@ Kun mahdollista, kokeile muotoilla logiikkasi vain renderöinnillä. Yllätyt mi
 Puhtaiden funktioiden kirjoittaminen vaatii tottumusta ja itsekuria. Mutta se avaa mahtavia mahdollisuuksia:
 
 * Komponenttisi voidaan suorittaa eri ympäristössä—esimerkiksi palvelinpuolella. Sillä ne palauttaa saman tuloksen samoista lähtötiedoista, yksi komponentti voi palvella monta käyttäjäpyyntöä.
-* Voit parantaa tehokkuutta [ohittamalla renderöinnin](TODO:/learn/skipping-unchanged-trees) komponenteille, joiden lähtötiedot eivät ole muuttuneet. Tämä on turvallista koska puhtaat funktiot palauttavat aina saman lopputuloksen, joten ne on turvallista tallentaa.
+* Voit parantaa tehokkuutta [ohittamalla renderöinnin](/apis/react/memo) komponenteille, joiden lähtötiedot eivät ole muuttuneet. Tämä on turvallista koska puhtaat funktiot palauttavat aina saman lopputuloksen, joten ne on turvallista tallentaa.
 * Jos jokin data muuttuu kesken renderöinnin syvällä komponenttipuussa, React voi aloittaa renderöinnin uudelleen hukkaamatta aikaa keskeneräiseen renderöintiin. Puhtaus tekee keskeyttämisestä turvallista.
 
 Jokainen uusi Reactin ominaisuus joita rakennamme hyödyntää puhtautta. Tiedonhausta animaatioihin ja tehokkuuteen, komponenttien pitäminen puhtaina avaa tehokkaan React paradigman.
@@ -215,7 +215,7 @@ Jokainen uusi Reactin ominaisuus joita rakennamme hyödyntää puhtautta. Tiedon
   * **Pitää huoli sen omista asioistaan.** It should not change any objects or variables that existed before rendering.
   * **Samat sisääntulot, sama ulostulo.** Annettaen sama syöte, komponentin tulisi aina palauttaa sama JSX. 
 * Renderöinti voi tapahtua koska vain, joten komponenttien ei tulisi riippua toistensa renderöintijärjestyksestä.
-* Sinun ei pitäisi muuttaa lähtötietoja, joita komponenttisi käyttää renderöintiin. Tämä sisältää propsit, tilan sekä kontekstin. Ruudun päivittämiseksi ["aseta" tila](reacting-to-input-with-state) olemassaolevien olioiden muuttamisen sijaan.
+* Sinun ei pitäisi muuttaa lähtötietoja, joita komponenttisi käyttää renderöintiin. Tämä sisältää propsit, tilan sekä kontekstin. Ruudun päivittämiseksi ["aseta" tila](/learn/state-a-components-memory) olemassaolevien olioiden muuttamisen sijaan.
 * Pyri ilmaisemaan komponenttisi logiikka JSX:ssä jota palautat. Kun täytyy "muuttaa asioita", useimiten teet sen tapahtumakäsittelijässä. Viimeisenä keinona voit käyttää `useEffect`:ia.
 * Puhtaiden funktioiden kirjoittaminen vaatii hieman harjoittelua, mutta se avaa Reactin paradigman voiman.
 

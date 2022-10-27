@@ -8,13 +8,13 @@ Today we're sharing another patch release in the v0.13 branch. There are only a 
 The release is now available for download:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.13.3.js>  
-  Minified build for production: <https://fb.me/react-0.13.3.min.js>
+  Dev build with warnings: https://fb.me/react-0.13.3.js  
+  Minified build for production: https://fb.me/react-0.13.3.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.13.3.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.13.3.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.13.3.js  
+  Minified build for production: https://fb.me/react-with-addons-0.13.3.min.js
 - **In-Browser JSX transformer**  
-  <https://fb.me/JSXTransformer-0.13.3.js>
+  https://fb.me/JSXTransformer-0.13.3.js
 
 We've also published version `0.13.3` of the `react` and `react-tools` packages on npm and the `react` package on bower.
 

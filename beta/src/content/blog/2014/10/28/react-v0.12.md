@@ -10,13 +10,13 @@ We have talked a lot about some of the bigger changes in this release. [We intro
 The release is available for download:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.12.0.js>  
-  Minified build for production: <https://fb.me/react-0.12.0.min.js>
+  Dev build with warnings: https://fb.me/react-0.12.0.js  
+  Minified build for production: https://fb.me/react-0.12.0.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.12.0.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.12.0.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.12.0.js  
+  Minified build for production: https://fb.me/react-with-addons-0.12.0.min.js
 - **In-Browser JSX transformer**  
-  <https://fb.me/JSXTransformer-0.12.0.js>
+  https://fb.me/JSXTransformer-0.12.0.js
 
 We've also published version `0.12.0` of the `react` and `react-tools` packages on npm and the `react` package on bower.
 
@@ -37,7 +37,7 @@ The old methods will still work but will warn upon first use. They will be remov
 - DOM components don't make use of `React.DOM`, instead we pass the tag name directly. `<div/>` becomes `React.createElement('div')`
 - We introduced spread attributes as a quick way to transfer props.
 
-## DevTools Improvements, No More `__internals` {#devtools-improvements-no-more-\_\_internals} {/*devtools-improvements-no-more-__internals-devtools-improvements-no-more-__internals*/}
+## DevTools Improvements, No More `__internals` {/*devtools-improvements-no-more-__internals*/}
 
 For months we've gotten complaints about the React DevTools message. It shouldn't have logged the up-sell message when you were already using the DevTools. Unfortunately this was because the way we implemented these tools resulted in the DevTools knowing about React, but not the reverse. We finally gave this some attention and enabled React to know if the DevTools are installed. We released an update to the devtools several weeks ago making this possible. Extensions in Chrome should auto-update so you probably already have the update installed!
 

@@ -8,13 +8,13 @@ Hot on the heels of the [release candidate earlier this week](/blog/2014/03/19/r
 The release is available for download from the CDN:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.10.0.js>  
-  Minified build for production: <https://fb.me/react-0.10.0.min.js>
+  Dev build with warnings: https://fb.me/react-0.10.0.js  
+  Minified build for production: https://fb.me/react-0.10.0.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.10.0.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.10.0.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.10.0.js  
+  Minified build for production: https://fb.me/react-with-addons-0.10.0.min.js
 - **In-Browser JSX transformer**  
-  <https://fb.me/JSXTransformer-0.10.0.js>
+  https://fb.me/JSXTransformer-0.10.0.js
 
 We've also published version `0.10.0` of the `react` and `react-tools` packages on npm and the `react` package on bower.
 

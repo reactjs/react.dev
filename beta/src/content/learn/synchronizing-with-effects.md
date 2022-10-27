@@ -209,7 +209,7 @@ In this example, the "external system" you synchronized to React state was the b
 
 Note that controlling a video player is much more complex in practice. Calling `play()` may fail, the user might play or pause using the built-in browser controls, and so on. This example is very simplified and incomplete.
 
-<Gotcha>
+<Pitfall>
 
 By default, Effects run after *every* render. This is why code like this will **produce an infinite loop:**
 
@@ -224,7 +224,7 @@ Effects run as a *result* of rendering. Setting state *triggers* rendering. Sett
 
 Effects should usually synchronize your components with an *external* system. If there's no external system and you only want to adjust some state based on other state, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 
-</Gotcha>
+</Pitfall>
 
 ### Step 2: Specify the Effect dependencies {/*step-2-specify-the-effect-dependencies*/}
 
@@ -401,7 +401,7 @@ The dependency array can contain multiple dependencies. React will only skip re-
 
 **Notice that you can't "choose" your dependencies.** You will get a lint error if the dependencies you specified don't match what React expects based on the code inside your Effect. This helps catch many bugs in your code. If your Effect uses some value but you *don't* want to re-run the Effect when it changes, you'll need to [*edit the Effect code itself* to not "need" that dependency.](/learn/lifecycle-of-reactive-effects#what-to-do-when-you-dont-want-to-re-synchronize)
 
-<Gotcha>
+<Pitfall>
 
 The behaviors *without* the dependency array and with an *empty* `[]` dependency array are very different:
 
@@ -421,7 +421,7 @@ useEffect(() => {
 
 We'll take a close look at what "mount" means in the next step.
 
-</Gotcha>
+</Pitfall>
 
 <DeepDive title="Why was the ref omitted from the dependency array?">
 
@@ -488,7 +488,7 @@ Let's try running this code:
 <Sandpack>
 
 ```js
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { createConnection } from './chat.js';
 
 export default function ChatRoom() {
@@ -590,7 +590,7 @@ Now you get three console logs in development:
 
 React intentionally remounts your components in development to help you find bugs like in the last example. **The right question isn't "how to run an Effect once", but "how to fix my Effect so that it works after remounting".**
 
-Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the Effect running once (as in production) and an _effect → cleanup → effect_ sequence (as you'd see in development).
+Usually, the answer is to implement the cleanup function.  The cleanup function should stop or undo whatever the Effect was doing. The rule of thumb is that the user shouldn't be able to distinguish between the Effect running once (as in production) and a _setup → cleanup → setup_ sequence (as you'd see in development).
 
 Most of the Effects you'll write will fit into one of the common patterns below.
 
@@ -700,7 +700,7 @@ Writing `fetch` calls inside Effects is a [popular way to fetch data](https://ww
 This list of downsides is not specific to React. It applies to fetching data on mount with any library. Like with routing, data fetching is not trivial to do well, so we recommend the following approaches:
 
 - **If you use a [framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework), use its built-in data fetching mechanism.** Modern React frameworks have integrated data fetching mechanisms that are efficient and don't suffer from the above pitfalls.
-- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://react-query.tanstack.com/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/dev/getting-started/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
+- **Otherwise, consider using or building a client-side cache.** Popular open source solutions include [React Query](https://react-query.tanstack.com/), [useSWR](https://swr.vercel.app/), and [React Router 6.4+.](https://beta.reactrouter.com/en/main/start/overview) You can build your own solution too, in which case you would use Effects under the hood but also add logic for deduplicating requests, caching responses, and avoiding network waterfalls (by preloading data or hoisting data requirements to routes).
 
 You can continue fetching data directly in Effects if neither of these approaches suit you.
 

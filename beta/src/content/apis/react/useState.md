@@ -31,7 +31,7 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](TODO:/learn/a-javascript-refresher#array-destructuring)
+  The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
 
 `useState` returns an array with exactly two items:
 
@@ -48,7 +48,7 @@ function handleClick() {
 
 React will store the next state, render your component again with the new values, and update the UI.
 
-<Gotcha>
+<Pitfall>
 
 Calling the `set` function [**does not** change the current state in the already executing code](#ive-updated-the-state-but-logging-gives-me-the-old-value):
 
@@ -61,7 +61,7 @@ function handleClick() {
 
 It only affects what `useState` will return starting from the *next* render.
 
-</Gotcha>
+</Pitfall>
 
 <Recipes titleText="Basic useState examples" titleId="examples-basic">
 
@@ -1083,7 +1083,7 @@ function MyComponent() {
   // ...
 ```
 
-The convention is to name state variables like `[something, setSomething]` using [array destructuring.](TODO:/learn/a-javascript-refresher#array-destructuring)
+The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
 
 [See more examples above.](#examples-basic)
 

@@ -2,10 +2,10 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 import cn from 'classnames';
 
-export const IconChevron = React.memo<
+export const IconChevron = memo<
   JSX.IntrinsicElements['svg'] & {
     displayDirection: 'up' | 'down' | 'left' | 'right';
   }
@@ -38,5 +38,3 @@ export const IconChevron = React.memo<
     </svg>
   );
 });
-
-IconChevron.displayName = 'IconChevron';

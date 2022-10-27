@@ -177,7 +177,7 @@ Instead, you can tell React that each user's profile is conceptually a _differen
 export default function ProfilePage({ userId }) {
   return (
     <Profile
-      userId={userId} 
+      userId={userId}
       key={userId}
     />
   );
@@ -284,7 +284,7 @@ function ProductPage({ product, addToCart }) {
   // ✅ Good: Event-specific logic is called from event handlers
   function buyProduct() {
     addToCart(product);
-    showNotification(`Added ${product.name} to the shopping cart!`);    
+    showNotification(`Added ${product.name} to the shopping cart!`);
   }
 
   function handleBuyClick() {
@@ -448,7 +448,7 @@ This is a lot more efficient. Also, if you implement a way to view game history,
 
 Remember that inside event handlers, [state behaves like a snapshot.](/learn/state-as-a-snapshot) For example, even after you call `setRound(round + 1)`, the `round` variable will reflect the value at the time the user clicked the button. If you need to use the next value for calculations, define it manually like `const nextRound = round + 1`.
 
-In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of each next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects fetching data is appropriate because you are synchronizing with network.
+In some cases, you *can't* calculate the next state directly in the event handler. For example, imagine a form with multiple dropdowns where the options of the next dropdown depend on the selected value of the previous dropdown. Then, a chain of Effects fetching data is appropriate because you are synchronizing with network.
 
 ### Initializing the application {/*initializing-the-application*/}
 
@@ -719,7 +719,7 @@ However, the code above has a bug. Imagine you type `"hello"` fast. Then the `qu
 ```js {5,7,9,11-13}
 function SearchResults({ query }) {
   const [results, setResults] = useState([]);
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
   useEffect(() => {
     let ignore = false;
     fetchResults(query, page).then(json => {
@@ -747,7 +747,7 @@ If you don't use a framework (and don't want to build your own) but would like t
 
 ```js {4}
 function SearchResults({ query }) {
-  const [page, setPage] = useState(1); 
+  const [page, setPage] = useState(1);
   const params = new URLSearchParams({ query, page });
   const results = useData(`/api/search?${params}`);
 
@@ -1262,7 +1262,7 @@ This approach satisfies the requirements too. When you type into the input, only
 
 #### Reset state without Effects {/*reset-state-without-effects*/}
 
-This `EditContact` component receives a contact object with shaped like `{ id, name, email }` as the `savedContact` prop. Try editing the name and email input fields. When you press Save, the contact's button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
+This `EditContact` component receives a contact object shaped like `{ id, name, email }` as the `savedContact` prop. Try editing the name and email input fields. When you press Save, the contact's button above the form updates to the edited name. When you press Reset, any pending changes in the form are discarded. Play around with this UI to get a feel for it.
 
 When you select a contact with the buttons at the top, the form resets to reflect that contact's details. This is done with an Effect inside `EditContact.js`. Remove this Effect. Find another way to reset the form when `savedContact.id` changes.
 
@@ -1518,7 +1518,7 @@ export default function EditContact(props) {
   return (
     <EditForm
       {...props}
-      key={props.savedContact.id} 
+      key={props.savedContact.id}
     />
   );
 }
@@ -1594,7 +1594,7 @@ button {
 
 This `Form` component lets you send a message to a friend. When you submit the form, the `showForm` state variable is set to `false`. This triggers an Effect calling `sendMessage(message)`, which sends the message (you can see it in the console). After the message is sent, you see a "Thank you" dialog with an "Open chat" button that lets you get back to the form.
 
-Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` state variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent twice. Something in this logic is wrong!
+Your app's users are sending way too many messages. To make chatting a little bit more difficult, you've decided to show the "Thank you" dialog *first* rather than the form. Change the `showForm` state variable to initialize to `false` instead of `true`. As soon as you make that change, the console will show that an empty message was sent. Something in this logic is wrong!
 
 What's the root cause of this problem? And how can you fix it?
 
@@ -1726,4 +1726,3 @@ Notice how in this version, only _submitting the form_ (which is an event) cause
 </Solution>
 
 </Challenges>
-

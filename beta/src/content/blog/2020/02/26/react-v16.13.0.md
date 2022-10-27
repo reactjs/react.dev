@@ -186,12 +186,12 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 
 ## Changelog {/*changelog*/}
 
-### React {/*react*/}
+### React {/*changelog-react*/}
 
 - Warn when a string ref is used in a manner that's not amenable to a future codemod ([@lunaruan](https://github.com/lunaruan) in [#17864](https://github.com/facebook/react/pull/17864))
 - Deprecate `React.createFactory()` ([@trueadm](https://github.com/trueadm) in [#17878](https://github.com/facebook/react/pull/17878))
 
-### React DOM {/*react-dom*/}
+### React DOM {/*changelog-react-dom*/}
 
 - Warn when changes in `style` may cause an unexpected collision ([@sophiebits](https://github.com/sophiebits) in [#14181](https://github.com/facebook/react/pull/14181), [#18002](https://github.com/facebook/react/pull/18002))
 - Warn when a function component is updated during another component's render phase ([@acdlite](<(https://github.com/acdlite)>) in [#17099](https://github.com/facebook/react/pull/17099))
@@ -202,7 +202,7 @@ Refer to the documentation for [detailed installation instructions](/docs/instal
 - Don't call `toString()` of `dangerouslySetInnerHTML` ([@sebmarkbage](https://github.com/sebmarkbage) in [#17773](https://github.com/facebook/react/pull/17773))
 - Show component stacks in more warnings ([@gaearon](https://github.com/gaearon) in [#17922](https://github.com/facebook/react/pull/17922), [#17586](https://github.com/facebook/react/pull/17586))
 
-### Concurrent Mode (Experimental) {/*concurrent-mode-experimental*/}
+### Concurrent Mode (Experimental) {/*changelog-concurrent-mode-experimental*/}
 
 - Warn for problematic usages of `ReactDOM.createRoot()` ([@trueadm](https://github.com/trueadm) in [#17937](https://github.com/facebook/react/pull/17937))
 - Remove `ReactDOM.createRoot()` callback params and added warnings on usage ([@bvaughn](https://github.com/bvaughn) in [#17916](https://github.com/facebook/react/pull/17916))

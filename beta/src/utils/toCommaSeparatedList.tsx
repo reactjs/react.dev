@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import * as React from 'react';
 
 const addString = (list: React.ReactNode[], string: string) =>
   list.push(<span key={`${list.length}-${string}`}>{string}</span>);

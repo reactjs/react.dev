@@ -2,8 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
-
 export function ExternalLink({
   href,
   target,
@@ -16,5 +14,3 @@ export function ExternalLink({
     </a>
   );
 }
-
-ExternalLink.displayName = 'ExternalLink';

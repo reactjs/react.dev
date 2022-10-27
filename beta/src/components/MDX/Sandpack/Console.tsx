@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 import cn from 'classnames';
-import * as React from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
@@ -87,12 +87,12 @@ type ConsoleData = Array<{
 
 const MAX_MESSAGE_COUNT = 100;
 
-export const SandpackConsole = () => {
+export const SandpackConsole = ({visible}: {visible: boolean}) => {
   const {listen} = useSandpack();
-  const [logs, setLogs] = React.useState<ConsoleData>([]);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [logs, setLogs] = useState<ConsoleData>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     let isActive = true;
     const unsubscribe = listen((message) => {
       if (!isActive) {
@@ -107,12 +107,24 @@ export const SandpackConsole = () => {
       }
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
-          const newLogs = message.log.map((consoleData) => {
-            return {
-              ...consoleData,
-              data: formatStr(...consoleData.data),
-            };
-          });
+          const newLogs = message.log
+            .filter((consoleData) => {
+              if (
+                typeof consoleData.data[0] === 'string' &&
+                consoleData.data[0].indexOf('The above error occurred') !== -1
+              ) {
+                // Don't show React error addendum because
+                // we have a custom error overlay.
+                return false;
+              }
+              return true;
+            })
+            .map((consoleData) => {
+              return {
+                ...consoleData,
+                data: formatStr(...consoleData.data),
+              };
+            });
           let messages = [...prev, ...newLogs];
           while (messages.length > MAX_MESSAGE_COUNT) {
             messages.shift();
@@ -128,15 +140,15 @@ export const SandpackConsole = () => {
     };
   }, [listen]);
 
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (wrapperRef.current) {
       wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
     }
   }, [logs]);
 
-  if (logs.length === 0) {
+  if (!visible || logs.length === 0) {
     return null;
   }
 
@@ -169,14 +181,14 @@ export const SandpackConsole = () => {
         </button>
       </div>
       {isExpanded && (
-        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
+        <div className="w-full h-full border-t bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
           <div className="max-h-40 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
                 <div
                   key={id}
                   className={cn(
-                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
+                    'first:border-none border-t dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
                     `console-${getType(method)}`,
                     getColor(method)
                   )}>

@@ -52,7 +52,7 @@ Lisätietoja löydät [lukemalla virallista opasta.](https://create-react-app.de
 
 > Create React App ei hoida taustajärjestelmän logiikkaa taikka tietokantoja. Voit käyttää sitä minkä taustajärjestelmän kanssa haluat. Kun rakennat projektia, saat kansion täynnä staattisia HTML, CSS ja JS tiedostoja. Koska Create React App ei hyödynnä palvelinta, se ei parasta suorituskykyä. Jos etsit nopeampia latausaikoja ja sisäänrakennettuja ominaisuuksia kuten reitittämistä ja palvelinpuolen logiikkaa, suosittelemme ohjelmistokehystä sen sijaan.
 
-### Suositut vaihtoehdot {/*popular-alternatives*/}
+### Suositut vaihtoehdot {/*toolkit-popular-alternatives*/}
 
 * [Vite](https://vitejs.dev/guide/)
 * [Parcel](https://parceljs.org/getting-started/webapp/)
@@ -63,7 +63,7 @@ Jos aiot **aloittaa tuotantovalmiin projektin,** [Next.js](https://nextjs.org/) 
 
 [Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) -tutoriaali on hyvä esittely rakentamiseen Reactilla ja Next.js:llä.
 
-### Suositut vaihtoehdot {/*popular-alternatives*/}
+### Suositut vaihtoehdot {/*framework-popular-alternatives*/}
 
 * [Gatsby](https://www.gatsbyjs.org/)
 * [Remix](https://remix.run/)

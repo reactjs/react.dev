@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {Children, useRef, useEffect, useState} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {H2} from 'components/MDX/Heading';
@@ -36,7 +37,7 @@ const parseChallengeContents = (
 
   let challenge: Partial<ChallengeContents> = {};
   let content: React.ReactElement[] = [];
-  React.Children.forEach(children, (child) => {
+  Children.forEach(children, (child) => {
     const {props, type} = child;
     switch ((type as any).mdxName) {
       case 'Solution': {
@@ -74,12 +75,12 @@ export function Challenges({
 }: ChallengesProps) {
   const challenges = parseChallengeContents(children);
   const totalChallenges = challenges.length;
-  const scrollAnchorRef = React.useRef<HTMLDivElement>(null);
-  const queuedScrollRef = React.useRef<boolean>(false);
-  const [activeIndex, setActiveIndex] = React.useState(0);
+  const scrollAnchorRef = useRef<HTMLDivElement>(null);
+  const queuedScrollRef = useRef<boolean>(false);
+  const [activeIndex, setActiveIndex] = useState(0);
   const currentChallenge = challenges[activeIndex];
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (queuedScrollRef.current === true) {
       queuedScrollRef.current = false;
       scrollAnchorRef.current!.scrollIntoView({

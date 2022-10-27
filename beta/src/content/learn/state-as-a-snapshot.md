@@ -83,7 +83,7 @@ Kun React renderöi komponentin uudelleen:
 2. Funktiosi palauttaa uuden JSX tilannekuvan.
 3. React sitten päivittää ruudun vastaamaan tilannekuvaa, jonka palautit.
 
-<IllustrationBlock title="Re-rendering" sequential>
+<IllustrationBlock sequential>
     <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
     <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
     <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />

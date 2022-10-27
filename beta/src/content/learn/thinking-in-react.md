@@ -211,11 +211,11 @@ td {
 
 Komponenttien rakentamisen jälkeen sinulta löytyy kirjasto uudelleenkäytettäviä komponentteja, jotka renderöivät tietomallisi. Sillä tämä on staattinn sovellus, komponentit ainoastaan palauttavat JSX:ää. Komponentit ylhäällä hierarkiassa (`FilterableProductTable`) saavat tietomallisi proppeina. Tätä kutsutaan _yksisuuntaiseksi tiedonkuluksi_ sillä tieto kulkee alas vain yläkomponenteista komponentteihin alhaalla puussa.
 
-<Gotcha>
+<Pitfall>
 
 Tässä kohtaa sinun ei pitäisi käyttää mitään tila-arvoja. Se tulee seuraavassa vaiheessa!
 
-</Gotcha>
+</Pitfall>
 
 ## 3. Vaihe: Etsi minimaalinen, mutta täysinäinen mallinnus UI:n tilasta {/*step-3-find-the-minimal-but-complete-representation-of-ui-state*/}
 

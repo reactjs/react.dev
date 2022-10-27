@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconInstagram = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconInstagram = memo<JSX.IntrinsicElements['svg']>(
   function IconInstagram(props) {
     return (
       <svg

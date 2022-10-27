@@ -2,18 +2,17 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {Children, useState} from 'react';
 import * as React from 'react';
 import {SandpackProvider} from '@codesandbox/sandpack-react';
 import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
-import type {SandpackSetup} from '@codesandbox/sandpack-react';
 
 type SandpackProps = {
   children: React.ReactNode;
   autorun?: boolean;
-  setup?: SandpackSetup;
   showDevTools?: boolean;
 };
 
@@ -68,9 +67,9 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, setup, autorun = true, showDevTools = false} = props;
-  const [devToolsLoaded, setDevToolsLoaded] = React.useState(false);
-  const codeSnippets = React.Children.toArray(children) as React.ReactElement[];
+  let {children, autorun = true, showDevTools = false} = props;
+  const [devToolsLoaded, setDevToolsLoaded] = useState(false);
+  const codeSnippets = Children.toArray(children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
   files['/styles.css'] = {
@@ -79,11 +78,10 @@ function SandpackRoot(props: SandpackProps) {
   };
 
   return (
-    <div className="sandpack sandpack--playground sandbox my-8">
+    <div className="sandpack sandpack--playground my-8">
       <SandpackProvider
         template="react"
         files={files}
-        customSetup={setup}
         theme={CustomTheme}
         options={{
           autorun,
@@ -102,7 +100,5 @@ function SandpackRoot(props: SandpackProps) {
     </div>
   );
 }
-
-SandpackRoot.displayName = 'Sandpack';
 
 export default SandpackRoot;

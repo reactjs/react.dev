@@ -144,7 +144,7 @@ The action type names are local to your component. [Each action describes a sing
 
 Read [extracting state logic into a reducer](/learn/extracting-state-logic-into-a-reducer) to learn more.
 
-<Gotcha>
+<Pitfall>
 
 State is read-only. Don't modify any objects or arrays in state:
 
@@ -174,7 +174,7 @@ function reducer(state, action) {
 
 Read [updating objects in state](/learn/updating-objects-in-state) and [updating arrays in state](/learn/updating-arrays-in-state) to learn more.
 
-</Gotcha>
+</Pitfall>
 
 <Recipes titleText="Basic useReducer examples" titleId="examples-basic">
 
@@ -904,7 +904,7 @@ function MyComponent() {
 
 ---
 
-### `dispatch` functions {/*dispatch*/}
+### `dispatch` function {/*dispatch*/}
 
 The `dispatch` function returned by `useReducer` lets you update the state to a different value and trigger a re-render. You need to pass the action as the only argument to the `dispatch` function:
 
@@ -1081,7 +1081,7 @@ If you can't find the cause of this error, click on the arrow next to the error 
 
 ### My reducer or initializer function runs twice {/*my-reducer-or-initializer-function-runs-twice*/}
 
-In [Strict Mode](/apis/react/strictmode), React will call your reducer and initializer functions twice. This shouldn't break your code.
+In [Strict Mode](/apis/react/StrictMode), React will call your reducer and initializer functions twice. This shouldn't break your code.
 
 This **development-only** behavior helps you [keep components pure.](/learn/keeping-components-pure) React uses the result of one of the calls, and ignores the result of the other call. As long as your component, initializer, and reducer functions are pure, this shouldn't affect your logic. However, if they are accidentally impure, this helps you notice the mistakes and fix it.
 

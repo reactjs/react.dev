@@ -87,12 +87,12 @@ Tai tiiviimmin nuolifunktioilla:
 
 Kaikki nämä tyylit vastaavat toisiaan. Samalla rivillä olevat tapahtumakäsittelijät ovat käteviä lyhyihin funktioihin.
 
-<Gotcha>
+<Pitfall>
 
 Tapahtumakäsittelijöihin annetut funktiot täytyy välitää, niitä ei pidä kutsua. Esimerkiksi:
 
-| funktion välittäminen (oikein)           | funktion kutsuminen (väärin) |
-|----------------------------------------|--------------------------------|
+| funktion välittäminen (oikein)   | funktion kutsuminen (väärin)       |
+|----------------------------------|------------------------------------|
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
 Ero on hienovarainen. Ensimmäisessä esimerkissä `handleClick` funktio välitetään `onClick` tapahtumakäsittelijäksi. Tämä kertoo Reactille, että sen täytyy muistaa se ja kutsua sitä vain kun käyttäjä klikkaa painiketta.
@@ -101,8 +101,8 @@ Toisessa esimerkissä `handleClick()` lopussa oleva `()` kutsuu funktiota *heti*
 
 Kun kirjoitat koodia samalle riville, sama sudenkuoppa esiintyy uudelleen eri tavalla:
 
-| funktion välittäminen (oikein)           | funktion kutsuminen (väärin) |
-|----------------------------------------|--------------------------------|
+| funktion välittäminen (oikein)          | funktion kutsuminen (väärin)      |
+|-----------------------------------------|-----------------------------------|
 | `<button onClick={() => alert('...')}>` | `<button onClick={alert('...')}>` |
 
 
@@ -126,9 +126,9 @@ Molemmissa tilanteissa välität funktion:
 * `<button onClick={handleClick}>` välittää `handleClick` funktion.
 * `<button onClick={() => alert('...')}>` välittää `() => alert('...')` funktion.
 
-> Tutustu [JavaScript Refresheriin](TODO:/learn/a-javascript-refresher#arrow-functions) saadaksesi lisätietoa nuolifunktioista.
+> [Lue lisää nuolifunktioista.](https://javascript.info/arrow-functions-basics)
 
-</Gotcha>
+</Pitfall>
 
 ### Propsien lukeminen tapahtumakäsittelijöissä {/*reading-props-in-event-handlers*/}
 
@@ -317,10 +317,6 @@ Huomaa, miten `App` komponentin ei tarvitse tietää *mitä* `Toolbar` tekee sen
 
 ## Tapahtuman leviäminen {/*event-propagation*/}
 
-<!--
-// TODO illo
--->
-
 Komponenttisi tapahtumankäsittelijät nappaavat tapahtumia myös alakomponenteista. Tätä usein kutsutaan "kuplimiseksi" tai "propagoinniksi": se alkaa sieltä missä tapahtuma esiintyi ja nousee puussa ylemmäs. 
 
 Tämä `<div>` sisältää kaksi painiketta. Sekä `<div>` tagi *että* painikkeet omaavat ikioman `onClick` käsittelijän. Mitä arvelet mitä tapahtumakäsittelijää kutsutaan, kun painiketta klikataan?
@@ -356,11 +352,11 @@ button { margin: 5px; }
 
 Jos klikkaat jompaa kumpaa painiketta, sen `onClick` suoritetaan ensin, jonka jälkeen `<div>` tagin `onClick`. Joten kaksi viestiä tulee näkyviin. Jos klikkaat työkalupalkkia vain `<div>`:n `onClick` suoritetaan.
 
-<Gotcha>
+<Pitfall>
 
 Kaikki tapahtumat propagoituvat Reactissa paitsi `onScroll`, joka toimii vain siinä JSX tagissa johon sen liität.
 
-</Gotcha>
+</Pitfall>
 
 ### Propagoinnin pysäyttäminen {/*stopping-propagation*/}
 
@@ -421,11 +417,8 @@ Kun klikkaat painiketta:
 
 <DeepDive title="Nappaa tapahtumavaiheet">
 
-<!--
-// TODO Illo
--->
-
 Harvinaisissa tapauksissa saatat haluta napata kaikki lapsielementtien tapahtumat, *vaikka ne olisivat estäneet propagoinnin*. Esimerkiksi, ehkäpä haluat kerätä analytiikkatietoja jokaisesta klikkauksesta, riippumatta propagointilogiikasta. Voit tehdä tämän lisäämällä `Capture` tapahtumanimen perään:
+
 ```js
 <div onClickCapture={() => { /* suoritetaan ensin */ }}>
   <button onClick={e => e.stopPropagation()} />

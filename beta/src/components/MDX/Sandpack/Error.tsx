@@ -2,8 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
-
 interface ErrorType {
   title?: string;
   message: string;

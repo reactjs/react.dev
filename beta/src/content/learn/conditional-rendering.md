@@ -258,7 +258,7 @@ Tämä tyyli toimii hyvin yksinkertaisiin ehtolauseisiin, mutta käytä sitä ma
 
 ### Looginen AND operaattori (`&&`) {/*logical-and-operator-*/}
 
-Toinen yleinen lyhytoperaatio, johon törmään on [JavaScriptin looginen AND (`&&`) operaattori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.). React komponenttien sisällä tulee usein tilainteita, joissa haluat renderöidä jotain JSX:ää kun ehto on tosi, **tai jättää renderöimättä muutoin.** Käyttämällä `&&` operaattoria voit ehdollisesti renderöidä valintamerkin vain jos `isPacked` on `true`:
+Toinen yleinen lyhytoperaatio, johon törmäät on [JavaScriptin looginen AND (`&&`) operaattori](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND#:~:text=The%20logical%20AND%20(%20%26%26%20)%20operator,it%20returns%20a%20Boolean%20value.). React komponenttien sisällä tulee usein tilainteita, joissa haluat renderöidä jotain JSX:ää kun ehto on tosi, **tai jättää renderöimättä muutoin.** Käyttämällä `&&` operaattoria voit ehdollisesti renderöidä valintamerkin vain jos `isPacked` on `true`:
 
 ```js
 return (
@@ -311,7 +311,7 @@ export default function PackingList() {
 [JavaScriptin && lauseke](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND) palauttaa oikean puolimmaisen arvon (tässä tapauksessa valintamerkin) jos vasen puoli (ehtomme) on `true`. Mutta jos ehto on `false`, koko lausekkeesta tulee `false`. React käsittää `false`:n kuin "aukon" JSX puussa, juuri kuten `null` tai `undefined`, eikä se renderöi mitään sen kohdalle.
 
 
-<Gotcha>
+<Pitfall>
 
 **Älä aseta numeroita `&&` lausekkeen vasemmalle puolelle.**
 
@@ -321,7 +321,7 @@ Yleinen väärinkäsitys on kirjoittaa koodia kuten `messageCount && <p>New mess
 
 Tämän korjataksesi, tee vasemmasta puolesta totuusarvo: `messageCount > 0 && <p>New messages</p>`.
 
-</Gotcha>
+</Pitfall>
 
 ### JSX:n määrittäminen muuttujaan ehdollisesti {/*conditionally-assigning-jsx-to-a-variable*/}
 

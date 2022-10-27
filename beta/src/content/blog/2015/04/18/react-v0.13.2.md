@@ -8,13 +8,13 @@ Yesterday the [React Native team shipped v0.4](/blog/2015/04/17/react-native-v0.
 The release is now available for download:
 
 - **React**  
-  Dev build with warnings: <https://fb.me/react-0.13.2.js>  
-  Minified build for production: <https://fb.me/react-0.13.2.min.js>
+  Dev build with warnings: https://fb.me/react-0.13.2.js  
+  Minified build for production: https://fb.me/react-0.13.2.min.js
 - **React with Add-Ons**  
-  Dev build with warnings: <https://fb.me/react-with-addons-0.13.2.js>  
-  Minified build for production: <https://fb.me/react-with-addons-0.13.2.min.js>
+  Dev build with warnings: https://fb.me/react-with-addons-0.13.2.js  
+  Minified build for production: https://fb.me/react-with-addons-0.13.2.min.js
 - **In-Browser JSX transformer**  
-  <https://fb.me/JSXTransformer-0.13.2.js>
+  https://fb.me/JSXTransformer-0.13.2.js
 
 We've also published version `0.13.2` of the `react` and `react-tools` packages on npm and the `react` package on bower.
 

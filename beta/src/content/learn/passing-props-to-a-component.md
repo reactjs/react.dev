@@ -177,7 +177,7 @@ function Avatar(props) {
 ```
 Useimmiten ei tarvitse kirjoittaa koko `props` oliota itsessään, vaan voit destrukturoida sen yksittäisiksi propseiksi.
 
-<Gotcha>
+<Pitfall>
 
 **Älä unohda `{` ja `}` aaltosulkeita** `(` ja `)` sulkeiden sisällä kun määrität propseja:
 
@@ -197,7 +197,7 @@ function Avatar(props) {
 }
 ```
 
-</Gotcha>
+</Pitfall>
 
 ## Oletusarvon määrittäminen propsille {/*specifying-a-default-value-for-a-prop*/}
 
@@ -344,7 +344,7 @@ export function getImageUrl(person, size = 's') {
 
 Kokeile korvata `<Card>` komponentista `<Avatar>` jollain tekstillä nähdäksesi miten `Card` komponentti voi kääriä mitä vain sisältöä. Sen ei tarvitse "tietää" mitä renderöidään sen sisällä. Näet tätä tapaa käytettävän monissa paikoissa.
 
-Voit ajatella komponenttia, jolla on `children` proppi kuin sillä olisi "aukko" joka voidaan "täyttää" sen pääkomponentista mielivaltaisella JSX:llä. Voit käyttää `children` proppia visuaalisiin wrappereihin: paneeleihin, ruudukkoihin, jne. Voit tutkia tästä lisää sivulta [Extracting Layout Components](TODO:/learn/extracting-layout-components).
+Voit ajatella komponenttia, jolla on `children` proppi kuin sillä olisi "aukko" joka voidaan "täyttää" sen pääkomponentista mielivaltaisella JSX:llä. Voit käyttää `children` proppia visuaalisiin wrappereihin: paneeleihin, ruudukkoihin, jne.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 

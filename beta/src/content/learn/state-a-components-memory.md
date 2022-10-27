@@ -188,7 +188,7 @@ const [index, setIndex] = useState(0);
 
 `index` on tilamuuttuja ja `setIndex` on tilan asettajafunktio.
 
-> Aaltosulkeilla `[` ja `]` oleva syntaksi on nimeltään [array destructuring](TODO:/learn/a-javascript-refresher#array-destructuring) ja sen avulla voit lukea arvoja listasta. `useState` palauttaa aina listan, jossa on kaksi kohdetta.
+> Aaltosulkeilla `[` ja `]` oleva syntaksi on nimeltään [array destructuring](https://javascript.info/destructuring-assignment) ja sen avulla voit lukea arvoja listasta. `useState` palauttaa aina listan, jossa on kaksi kohdetta.
 
 Tässä miten ne toimii yhdessä `handleClick()` funktiossa:
 
@@ -339,11 +339,11 @@ Reactissa `useState`, kuten muutkin funktiot jotka alkavat sanalla "`use`", ovat
 
 Tila on vain yksi näistä toiminnoista, mutta tulet tapaamaan toiset hookit myöhemmin.
 
-<Gotcha>
+<Pitfall>
 
 **Hookit, eli `use`-sanalla alkavat funktiot, ovat kutsuttavissa ainoastaan komponenttisi ylätasossa tai [omista hookeistasi.](/learn/reusing-logic-with-custom-hooks)** Et voi kutsua hookkeja ehtojen, silmukoiden tai muiden sisennettyjen funktioiden sisällä. Hookit ovat funktioita, mutta on hyödyllistä ajatella niitä kuin ehdottomina määräyksinä komponenttisi tarpeista. Sinä käytät ("use") Reactin ominaisuuksia komponentin yläosassa samalla tavalla kuin "importtaat" moduuleja tiedoston yläosassa.
 
-</Gotcha>
+</Pitfall>
 
 ### `useState`:n anatomia {/*anatomy-of-usestate*/}
 

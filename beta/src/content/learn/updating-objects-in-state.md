@@ -288,7 +288,7 @@ setPerson({
 });
 ```
 
-Voit käyttää `...` [object spread](TODO:/learn/a-javascript-refresher#object-spread) syntaksia, jotta sinun ei tarvitse kopioida jokaista propertyä erikseen.
+Voit käyttää `...` [object spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_object_literals) syntaksia, jotta sinun ei tarvitse kopioida jokaista propertyä erikseen.
 
 ```js
 setPerson({
@@ -773,7 +773,7 @@ Huomaa, kuinka paljon tiiviimpiä tapahtumankäsittelijöistä on tullut. Voit k
 Tähän on useita syitä:
 
 - **Debuggaus:** Jos käytät `console.log` kutsua etkä muuta tilaa, viimeisimmät tilamuutokset eivät häiritse aiempia lokejasi. Näin näet selvästi, miten tila on muuttunut renderöintien välillä.
-- **Optimointi:** Reactin yleiset [optimointistrategiat](TODO:/learn/skipping-unchanged-trees) tukeutuvat työn ohittamiseen jos aiemmat propsit tai tila pysyy samana. Jos et koskaan mutatoi tilaa, on nopeaa tarkistaa oliko mitään muutoksia. Jos `prevObj === obj`, voit olla varma siitä, että mikään ei voinut muokata sitä.
+- **Optimointi:** Reactin yleiset [optimointistrategiat](/apis/react/memo) tukeutuvat työn ohittamiseen jos aiemmat propsit tai tila pysyy samana. Jos et koskaan mutatoi tilaa, on nopeaa tarkistaa oliko mitään muutoksia. Jos `prevObj === obj`, voit olla varma siitä, että mikään ei voinut muokata sitä.
 - **Uudet ominaisuudet:** Reactin uudet ominaisuudet, joita olemme rakantamssa tukeutuvat siihen, että tilaa [käsitellään kuin snapshottia.](/learn/state-as-a-snapshot) Jos mutatoit tilan aiempia versioita, se saattaa estää uusien ominaisuuksien käyttöä.
 - **Muutokset vaatimuksiin:** Jotkin sovellustoiminnot, kuten Kumoa/Tee uudelleen, muutoshistorian näyttäminen tai antaa käyttäjän palauttaa lomakkeen aiemmat arvot, ovat helpompi toteuttaa kun mitään ei mutatoida. Tämä johtuu siitä, että pidät kopiot aiemmista tiloista muistissa ja käytät niitä uudelleen kun se on asianmukaista. Jos aloitat mutatoivalla tavalla, tämänkaltaiset ominaisuudet voi olla hankala lisätä jälkeenpäin.
 - **Yksinkertaisempi toteutus:** Koska React ei turvaudu mutaatioon, sen ei tarvitse tehdä mitään erityistä objekteillesi. Sen ei tarvitse kaapata niiden ominaisuuksia tai kietoa niitä Proxyihin tai tehdä muuta työtä alustuksen yhteydessä. Tämän vuoksi Reactin avulla voit laittaa minkä tahansa objektin tilaan - oli se kuinka suuri tahansa - ilman ylimääräisiä suorituskykyyn tai oikeellisuuteen liittyviä sudenkuoppia.

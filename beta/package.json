@@ -22,7 +22,7 @@
     "check-all": "npm-run-all prettier lint:fix tsc"
   },
   "dependencies": {
-    "@codesandbox/sandpack-react": "1.7.2",
+    "@codesandbox/sandpack-react": "1.14.1",
     "@docsearch/css": "3.0.0-alpha.41",
     "@docsearch/react": "3.0.0-alpha.41",
     "@headlessui/react": "^1.7.0",
@@ -32,18 +32,20 @@
     "debounce": "^1.2.1",
     "ga-lite": "^2.1.4",
     "github-slugger": "^1.3.0",
-    "next": "12.1.7-canary.11",
+    "next": "12.3.2-canary.7",
     "next-remote-watch": "^1.0.0",
     "parse-numeric-range": "^1.2.0",
-    "react": "0.0.0-experimental-82c64e1a4-20220520",
+    "react": "0.0.0-experimental-cb5084d1c-20220924",
     "react-collapsed": "npm:@gaearon/react-collapsed@3.1.0-forked.1",
-    "react-dom": "0.0.0-experimental-82c64e1a4-20220520"
+    "react-dom": "0.0.0-experimental-cb5084d1c-20220924",
+    "remark-frontmatter": "^4.0.1",
+    "remark-gfm": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
     "@babel/plugin-transform-modules-commonjs": "^7.18.6",
     "@babel/preset-react": "^7.18.6",
-    "@mdx-js/mdx": "^1.6.22",
+    "@mdx-js/mdx": "^2.1.3",
     "@types/body-scroll-lock": "^2.6.1",
     "@types/classnames": "^2.2.10",
     "@types/debounce": "^1.2.1",
@@ -65,7 +67,7 @@
     "eslint-plugin-import": "2.x",
     "eslint-plugin-jsx-a11y": "6.x",
     "eslint-plugin-react": "7.x",
-    "eslint-plugin-react-hooks": "2.x",
+    "eslint-plugin-react-hooks": "experimental",
     "fs-extra": "^9.0.1",
     "globby": "^11.0.1",
     "gray-matter": "^4.0.2",

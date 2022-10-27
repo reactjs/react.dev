@@ -346,7 +346,7 @@ Lue **[Tila tilannekuvana](/learn/state-as-a-snapshot)** oppiaksesi miksi tila v
 
 </LearnMore>
 
-## Tilapäivityksen lisääminen jonoon {/*queueing-a-series-of-state-changes*/}
+## Tilapäivityksen lisääminen jonoon {/*queueing-a-series-of-state-updates*/}
 
 Tämä komponentti on buginen: kun klikataan "+3" se nostaa pisteytystä vain kerran.
 
@@ -442,9 +442,9 @@ button {
 
 </Sandpack>
 
-<LearnMore path="/learn/queueing-a-series-of-state-changes">
+<LearnMore path="/learn/queueing-a-series-of-state-updates">
 
-Lue **[Tilapäivityksen lisääminen jonoon](/learn/queueing-a-series-of-state-changes)** oppiaksesi miten lisätään useita tilapäivityksiä jonoon ennen seuraavaa renderöintiä.
+Lue **[Tilapäivityksen lisääminen jonoon](/learn/queueing-a-series-of-state-updates)** oppiaksesi miten lisätään useita tilapäivityksiä jonoon ennen seuraavaa renderöintiä.
 
 </LearnMore>
 

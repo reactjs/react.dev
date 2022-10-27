@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useSyncExternalStore} from 'react';
 import {useSandpack} from '@codesandbox/sandpack-react';
 import {IconDownload} from '../../Icon/IconDownload';
 export interface DownloadButtonProps {}
@@ -26,11 +26,7 @@ function useSupportsImportMap() {
     return false;
   }
 
-  return React.useSyncExternalStore(
-    subscribe,
-    getCurrentValue,
-    getServerSnapshot
-  );
+  return useSyncExternalStore(subscribe, getCurrentValue, getServerSnapshot);
 }
 
 const SUPPORTED_FILES = ['/App.js', '/styles.css'];

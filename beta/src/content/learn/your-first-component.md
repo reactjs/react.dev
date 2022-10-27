@@ -86,11 +86,11 @@ Ja tässä miten rakennat komponentin:
 
 Käyttämällä `function Profile() { }` määrität JavaScript funktion nimeltään `Profile`..
 
-<Gotcha>
+<Pitfall>
 
 React komponentit ovat tavallisia JavaScript funktioita, mutta **niiden nimien on alettava isolla alkukirjaimella** tai ne eivät toimi!
 
-</Gotcha>
+</Pitfall>
 
 ### 3. Vaihe: Lisää merkintäkoodia {/*step-3-add-markup*/}
 
@@ -112,11 +112,11 @@ return (
 );
 ```
 
-<Gotcha>
+<Pitfall>
 
 Ilman sulkuja, kaikki koodi `return` avainsanan jälkeen [jätetään huomiotta](https://stackoverflow.com/questions/2846283/what-are-the-rules-for-javascripts-automatic-semicolon-insertion-asi)!
 
-</Gotcha>
+</Pitfall>
 
 ## Komponentin käyttäminen {/*using-a-component*/}
 
@@ -175,6 +175,37 @@ Ja `Profile` sisältää vielä enemmän HTML koodia: `<img />`. Lopuksi selain 
 Komponentit ovat tavallisia JavaScript funktioita, joten voit pitää useita komponentteja samassa tiedostossa. Tämä on hyödyllistä kun komponentit ovat suhteellisen pieniä tai liitttyvät tiiviisti toisiinsa. Jos tämä tiedosto kasvaa suureksi, voit aina siirtää `Profile` komponentin eri tiedostoon. Tulet oppimaan miten tämän voi tehdä [sivulla importeista.](/learn/importing-and-exporting-components).
 
 Sillä `Profile` komponentit renderöidään `Gallery` komponentin sisällä-jopa useita kertoa!-voimme sanoa, että `Gallery` on kuin **pääkomponentti,** joka renderöi jokaisen `Profile`:n "lapsena". Tämä on osa Reactin taikaa: voit määritellä komponentin kerran ja käyttää sitä niin monessa paikassa ja niin monta kertaa kuin haluat.
+
+<Pitfall>
+
+Komponentit voivat renderöidä toisia komponenttejna, mutta **et voi määritellä niitä sisäkkäin:**
+
+```js {2-5}
+export default function Galleria() {
+  // 🔴 Älä määrittele komponenttia toisen komponentin sisällä!
+  function Profiili() {
+    // ...
+  }
+  // ...
+}
+```
+
+Yllä oleva esimerkki on [todella hidas ja aiheuttaa bugeja.](/learn/preserving-and-resetting-state#different-components-at-the-same-position-reset-state) Sen sijaan, määrittele kaikki komponentit ylätasolla:
+
+```js {5-8}
+export default function Galleria() {
+  // ...
+}
+
+// ✅ Declare components at the top level
+function Profiili() {
+  // ...
+}
+```
+
+When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+
+</Pitfall>
 
 <DeepDive title="Komponentteja loppuun asti">
 

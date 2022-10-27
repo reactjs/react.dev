@@ -115,8 +115,8 @@ export default function TodoList() {
 
 Voit käyttää aaltosulkeita JSX:n sisällä kahdella tavalla:
 
-1. **Tekstinä** suoraan JSX tagin sisällä: `<h1>{name}'s To Do List</h1>` toimii, mutta `<{tag}>Gregorio Y. Zara's To Do List</{tag}>`  ei toimi.
-2. **Attribuutteina** immediately following the `=` sign: `src={avatar}` will read the `avatar` variable, but `src="{avatar}"` will pass the string `{avatar}`.
+1. **Tekstinä** suoraan JSX tagin sisällä: `<h1>{name}'s To Do List</h1>` toimii, mutta `<{tag}>Gregorio Y. Zara's To Do List</{tag}>` ei toimi.
+2. **Attribuutteina** heti `=` merkin jälkeen: `src={avatar}` lukee `avatar` muuttujan, mutta `src="{avatar}"` välittää merkkijonon `{avatar}`.
 
 ## Kaksoisaaltosulkeiden käyttö: CSS ja muut oliot JSX:ssä {/*using-double-curlies-css-and-other-objects-in-jsx*/}
 
@@ -163,11 +163,11 @@ Erotat kunnolla JavaScript olion aaltosulkeiden sisällä kun kirjoitat sen seur
 
 Seuraavalla kertaa kun näet `{{` ja `}}` JSX:ssä, tiedät että se tarkoittaa vain oliota JSX:ssä aaltosulkeiden sisällä!
 
-<Gotcha>
+<Pitfall>
 
 Rivinsisäinen `style` ominaisuudet kirjoitetaan camelCase muodossa. Esimerkiksi HTML `<ul style="background-color: black">` kirjoitettaisiin seuraavasti `<ul style={{ backgroundColor: 'black' }}>` komponentissasi.
 
-</Gotcha>
+</Pitfall>
 
 ## Lisää hauskuutta JavaScript olioilla ja aaltosulkeilla {/*more-fun-with-javascript-objects-and-curly-braces*/}
 

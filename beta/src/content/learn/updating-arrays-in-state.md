@@ -1,37 +1,37 @@
 ---
-title: Updating Arrays in State
+title: Taulukkojen päivittäminen tilassa
 ---
 
 <Intro>
 
-Arrays are mutable in JavaScript, but you should treat them as immutable when you store them in state. Just like with objects, when you want to update an array stored in state, you need to create a new one (or make a copy of an existing one), and then set state to use the new array.
+Taulukot ovat mutatoitavissa, mutta niitä tulisi käsitellä kuin ne olisivat ei-mutatoitavissa kun tallennat niitä tilaan. Kuten olioiden kanssa, päivitä tilaan tallennettu taulukko luomalla uusi (tai tekemällä kopio vanhasta) ja sitten aseta tila käyttämään uutta taulukkoa.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to add, remove, or change items in an array in React state
-- How to update an object inside of an array
-- How to make array copying less repetitive with Immer
+- Miten lisätä, poistaa, tai muuttaa taulukon kohteita Reactin tilassa
+- Miten päivittää taulukon sisällä olevaa oliota
+- Miten teet taulukoiden kopioimisesta vähemmän toistuvaa Immerillä
 
 </YouWillLearn>
 
-## Updating arrays without mutation {/*updating-arrays-without-mutation*/}
+## Taulukkojen päivittäminen ilman mutaatiota {/*updating-arrays-without-mutation*/}
 
-In JavaScript, arrays are just another kind of object. [Like with objects](/learn/updating-objects-in-state), **you should treat arrays in React state as read-only.** This means that you shouldn't reassign items inside an array like `arr[0] = 'bird'`, and you also shouldn't use methods that mutate the array, such as `push()` and `pop()`.
+JavaScriptissa taulukot ovat kuin toisenlainen olio. [Kuten olioiden kanssa](/learn/updating-objects-in-state), **sinun tulisi käsitellä Reactin tilan taulukkoja vain-luku muodossa.** Tämä tarkoittaa, että sinun ei pitäisi uudelleen määritellä taulukon kohteita `arr[0] = 'bird'` tavalla eikä kannattaisi käyttää mutatoivia tapoja muokata taulukkoa, kuten `push()` ja `pop()`.
 
-Instead, every time you want to update an array, you'll want to pass a *new* array to your state setting function. To do that, you can create a new array from the original array in your state by calling its non-mutating methods like `filter()` and `map()`. Then you can set your state to the resulting new array.
+Sen sijaan, joka kerta kun haluat päivittää taulukkoa, haluat välittää *uuden* taulukon tilan asettajafunktiolle. Voit tehdä tämän luomalla uuden taulukon alkuperäisestä taulukosta kutsumalla sen ei-mutatoivia metodeja kuten `filter()` ja `map()`. Sitten voit asettaa uuden taulukon tilaksi.
 
-Here is a reference table of common array operations. When dealing with arrays inside React state, you will need to avoid the methods in the left column, and instead prefer the methods in the right column:
+Tässä on viitetaulukko yleisistä taulukon toiminnoista. Kun käsittelet taulukoita Reactin tilassa, sinun pitäisi välttää metodeja taulukon vasemmalla sarakkeella, ja sen sijaan suosia metodeja taulukon oikealla sarakkeella:
 
-|           | avoid (mutates the array)           | prefer (returns a new array)                                        |
-| --------- | ----------------------------------- | ------------------------------------------------------------------- |
-| adding    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntax ([example](#adding-to-an-array)) |
-| removing  | `pop`, `shift`, `splice`            | `filter`, `slice` ([example](#removing-from-an-array))              |
-| replacing | `splice`, `arr[i] = ...` assignment | `map` ([example](#replacing-items-in-an-array))                     |
-| sorting   | `reverse`, `sort`                   | copy the array first ([example](#making-other-changes-to-an-array)) |
+|               | vältä (mutatoi taulukkoa)           | suosi (palauttaa uuden taulukon)                                        |
+| ------------- | ----------------------------------- | ----------------------------------------------------------------------- |
+| lisääminen    | `push`, `unshift`                   | `concat`, `[...arr]` spread syntaksi ([esimerkki](#adding-to-an-array)) |
+| poistaminen   | `pop`, `shift`, `splice`            | `filter`, `slice` ([esimerkki](#removing-from-an-array))                |
+| korvaaminen   | `splice`, `arr[i] = ...` määrittely | `map` ([esimerkki](#replacing-items-in-an-array))                       |
+| järestäminen  | `reverse`, `sort`                   | kopioi taulukko ensin ([esimerkki](#making-other-changes-to-an-array))  |
 
-Alternatively, you can [use Immer](#write-concise-update-logic-with-immer) which lets you use methods from both columns.
+Vaihtoehtoisesti, voit [käyttää Immeriä](#write-concise-update-logic-with-immer), jonka avulla voit käyttää metodeja molemmista sarakkeista.
 
 <Pitfall>
 
@@ -44,9 +44,9 @@ In React, you will be using `slice` (no `p`!) a lot more often because you don't
 
 </Pitfall>
 
-### Adding to an array {/*adding-to-an-array*/}
+### Taulukkoon lisääminen {/*adding-to-an-array*/}
 
-`push()` will mutate an array, which you don't want:
+`push()` funktio tekee mutaation, jota et halua:
 
 <Sandpack>
 
@@ -89,18 +89,18 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-Instead, create a *new* array which contains the existing items *and* a new item at the end. There are multiple ways to do this, but the easiest one is to use the `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntax:
+Sen sijaan luo *uusi* taulukko, joka sisältää aiemman taulukonkohteet *ja* uuden kohteen taulukon lopussa. Tämän toteuttamiseen on useita tapoja, mutta helpoin on käyttää `...` [array spread](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax#spread_in_array_literals) syntaksia:
 
 ```js
-setArtists( // Replace the state
-  [ // with a new array
-    ...artists, // that contains all the old items
-    { id: nextId++, name: name } // and one new item at the end
+setArtists( // Korvaa tila
+  [ // uudella taulukolla
+    ...artists, // joka sisältää vanhat kohteet
+    { id: nextId++, name: name } // ja yhden uuden lopussa
   ]
 );
 ```
 
-Now it works correctly:
+Nyt se toimii oikein:
 
 <Sandpack>
 
@@ -143,20 +143,20 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-The array spread syntax also lets you prepend an item by placing it *before* the original `...artists`:
+Taulukon spread syntaksilla voit myös lisätä kohteen taulukon alkuun, sijoittamalla sen *ennen* alkuperäistä `...artists` taulukkoa:
 
 ```js
 setArtists([
   { id: nextId++, name: name },
-  ...artists // Put old items at the end
+  ...artists // Aseta vanhat kohteet loppuun
 ]);
 ```
 
-In this way, spread can do the job of both `push()` by adding to the end of an array and `unshift()` by adding to the beginning of an array. Try it in the sandbox above!
+Näin spread syntaksi hoitaa sekä `push()` funktion että `unshift()` funktion työt. Kokeile yllä olevassa hiekkalaatikossa!
 
-### Removing from an array {/*removing-from-an-array*/}
+### Taulukosta poistaminen {/*removing-from-an-array*/}
 
-The easiest way to remove an item from an array is to *filter it out*. In other words, you will produce a new array that will not contain that item. To do this, use the `filter` method, for example:
+Helpoin tapa poistaa kohde taulukosta on *suodattamalla se pois*. Toisin sanoen, luot uuden taulukon, joka ei sisällä poistettavaa kohdetta. Voit tehdä tämän käyttämällä `filter`metodia, esimerkiksi:
 
 <Sandpack>
 
@@ -200,7 +200,7 @@ export default function List() {
 
 </Sandpack>
 
-Click the "Delete" button a few times, and look at its click handler.
+Klikkaa "Delete" painiketta muutaman kerran ja tarkastele sen klikkauskäsittelijää.
 
 ```js
 setArtists(
@@ -208,13 +208,13 @@ setArtists(
 );
 ```
 
-Here, `artists.filter(a => a.id !== artist.id)` means "create an array that consists of those `artists` whose IDs are different from `artist.id`". In other words, each artist's "Delete" button will filter _that_ artist out of the array, and then request a re-render with the resulting array. Note that `filter` does not modify the original array.
+Tässä `artists.filter(a => a.id !== artist.id)` tarkoittaa "luo uusi taulukko, joka koostuu `artists` kohteista, joiden ID:t ovat eri kuin `artist.id`". Toisin sanoen, jokaisen artistin "Delete" painike suodattaa _juuri sen_ artistin pois taulukosta, ja sitten pyytävät uudelleen renderöintiä lopullisella taulukolla. Huomaa, että `filter` ei muokkaa olemassa olevaa taulukkoa.
 
-### Transforming an array {/*transforming-an-array*/}
+### Taulukon muuntaminen {/*transforming-an-array*/}
 
-If you want to change some or all items of the array, you can use `map()` to create a **new** array. The function you will pass to `map` can decide what to do with each item, based on its data or its index (or both).
+Jos haluat muuntaa joitakin tai kaikkia taulukon kohteita, voit käyttää `map()` metodia luodaksesi **uuden** taulukon. Funktion, jonka välität `map` metodille voi määritellä mitä teet kullekin kohteelle sen datan tai indeksin (tai molempien) pohjalta.
 
-In this example, an array holds coordinates of two circles and a square. When you press the button, it moves only the circles down by 50 pixels. It does this by producing a new array of data using `map()`:
+Tässä esimerkissä taulukko sisältää koordinaatit kahdelle ympyrälle ja yhdelle neliölle. Kun painat painiketta, se siirtää vain ympyröitä 50 pikseliä alaspäin. Se tekee tämän luomalla uuden taulukon käyttäen `map()` funktiota:
 
 <Sandpack>
 
@@ -280,11 +280,12 @@ body { height: 300px; }
 
 </Sandpack>
 
-### Replacing items in an array {/*replacing-items-in-an-array*/}
+### Taulukon kohteiden korvaaminen {/*replacing-items-in-an-array*/}
 
-It is particularly common to want to replace one or more items in an array. Assignments like `arr[0] = 'bird'` are mutating the original array, so instead you'll want to use `map` for this as well.
+On yleistä, että haluat korvata yhden tai useamman kohteen taulukossa. 
+It is particularly common to want to replace one or more items in an array. Määritykset kuten `arr[0] = 'bird'` mutatoivat alkuperäistä taulukkoa, joten sen sijaan voit käyttää `map` metodia myös tähän.
 
-To replace an item, create a new array with `map`. Inside your `map` call, you will receive the item index as the second argument. Use it to decide whether to return the original item (the first argument) or something else:
+Korvataksesi kohteen, luo uusi taulukko `map`:lla. `map` kutsun sisälle vastaanotat kohteen indeksin toisena argumenttina. Käytä sitä päättämään, palautetaanko alkuperäinen kohde (ensimmäinen argumentti) vai jotain muuta:
 
 <Sandpack>
 
@@ -334,11 +335,11 @@ button { margin: 5px; }
 
 </Sandpack>
 
-### Inserting into an array {/*inserting-into-an-array*/}
+### Tiettyyn kohtaan lisääminen {/*inserting-into-an-array*/}
 
-Sometimes, you may want to insert an item at a particular position that's neither at the beginning nor at the end. To do this, you can use the `...` array spread syntax together with the `slice()` method. The `slice()` method lets you cut a "slice" of the array. To insert an item, you will create an array that spreads the slice _before_ the insertion point, then the new item, and then the rest of the original array.
+Joskus saatat haluta sijoittaa kohteen tiettyyn kohtaan, joka ei kuitenkaan ole taulukon alussa tai lopussa. Voit tehdä tämän käyttämällä `...` syntaksia yhdessä `slice()` metodin kanssa. `slice()` metodi antaa sinun leikata "palan" taulukosta. Sijoittaaksesi kohteen, luot uuden taulukon joka levittää "palan" _ennen_ sijoituskohtaa, sitten uuden kohteen, ja lopuksi loput alkuperäisestä taulukosta.
 
-In this example, the Insert button always inserts at the index `1`:
+Tässä esimerkissä, "Insert" painike sijoittaa aina indeksiin `1`:
 
 <Sandpack>
 
@@ -398,13 +399,13 @@ button { margin-left: 5px; }
 
 </Sandpack>
 
-### Making other changes to an array {/*making-other-changes-to-an-array*/}
+### Muiden muutosten tekeminen taulukkoihin {/*making-other-changes-to-an-array*/}
 
-There are some things you can't do with the spread syntax and non-mutating methods like `map()` and `filter()` alone. For example, you may want to reverse or sort an array. The JavaScript `reverse()` and `sort()` methods are mutating the original array, so you can't use them directly.
+On joitakin asioita, joita et voi tehdä pelkällä spread syntaksilla ja ei-mutatoivilla metodeilla kuten `map()`:lla ta` `filter()`:lla. Esimerkiksi, saatat haluta kääntää taulukon järjestyksen tai suodattaa taulukkoa. JavaScriptin `reverse()`- ja `sort()`-metodit muuttavat alkuperäistä taulukkoa, joten niitä ei voi käyttää suoraan.
 
-**However, you can copy the array first, and then make changes to it.**
+**Kuitenkin, voit kopioida taulukon ensiksi ja sitten tehdä muutoksia siihen.**
 
-For example:
+Esimerkiksi:
 
 <Sandpack>
 
@@ -444,25 +445,24 @@ export default function List() {
 
 </Sandpack>
 
-Here, you use the `[...list]` spread syntax to create a copy of the original array first. Now that you have a copy, you can use mutating methods like `nextList.reverse()` or `nextList.sort()`, or even assign individual items with `nextList[0] = "something"`.
+Tässä käytät `[...list]` spread syntaksia luodaksesi kopion alkuperäisestä taulukosta ensiksi. Nyt kun kopio on luotu, voit käyttää mutatoivia metodeja kuten `nextList.reverse()` tai `nextList.sort()`, tai jopa määrittää yksittäisiä kohteita `nextList[0] = "something"` määrittelyllä.
 
-However, **even if you copy an array, you can't mutate existing items _inside_ of it directly.** This is because copying is shallow--the new array will contain the same items as the original one. So if you modify an object inside the copied array, you are mutating the existing state. For example, code like this is a problem.
+Kuitenkin, **vaikka kopioisit taulukon, et voi mutatoida _sen sisällä_ olevia kohteita suoraan.** Tämä siksi koska kopiointi on pinnallista--uusi taulukko sisältää samat kohteet kuin alkuperäinen. Joten jos muokkaat kopioidun taulukon sisällä olevia olioita, mutatoit olemassa olevaa tilaa. Esimerkiksi, alla oleva koodi on ongelmallista.
 
 ```js
 const nextList = [...list];
-nextList[0].seen = true; // Problem: mutates list[0]
+nextList[0].seen = true; // Ongelma: mutatoi list[0] kohdetta
 setList(nextList);
 ```
+Vaikka `nextList` ja `list` ovat kaksi eri taulukkoa, **`nextList[0]` ja `list[0]` osoittavat samaan olioon.** Joten muuttamalla `nextlist[0].seen` kohdetta muutat myös `list[0].seen` kohdetta. Tämä on tilanmuutos, jota tulisi välttää! Voit ratkaista ongelman samalla tavalla kuin [sisäkkäisten olioiden päivittäminen](/learn/updating-objects-in-state#updating-a-nested-object)--eli kopioimalla yksittäiset kohteet, joita haluat muuttaa mutatoinnin sijaan. Näin se onnistuu.
 
-Although `nextList` and `list` are two different arrays, **`nextList[0]` and `list[0]` point to the same object.** So by changing `nextList[0].seen`, you are also changing `list[0].seen`. This is a state mutation, which you should avoid! You can solve this issue in a similar way to [updating nested JavaScript objects](/learn/updating-objects-in-state#updating-a-nested-object)--by copying individual items you want to change instead of mutating them. Here's how.
+## Olioiden päivittäminen taulukon sisällä {/*updating-objects-inside-arrays*/}
 
-## Updating objects inside arrays {/*updating-objects-inside-arrays*/}
+Oliot eivät _oikeasti_ sijaitse taulukkojen "sisällä". Ne saattavat näyttäytyä olevan "sisällä" koodissa, mutta jokainen olio taulukossa on erillinen arvo johon taulukko "osoittaa". Tämän takia täytyy olla tarkkana kun muutat sisäkkäisiä kenttiä kuten `list[0]`. Toisen henkilön taideteoslista saattaa osoittaa samaan kohteeseen taulukossa!
 
-Objects are not _really_ located "inside" arrays. They might appear to be "inside" in code, but each object in an array is a separate value, to which the array "points". This is why you need to be careful when changing nested fields like `list[0]`. Another person's artwork list may point to the same element of the array!
+**Päivittäessä sisäkkäistä tilaa, sinun täytyy luoda kopioita siihen pisteeseen saakka mitä haluat päivittää, ja aina ylätasoon asti.** Katsotaan miten tämä toimii.
 
-**When updating nested state, you need to create copies from the point where you want to update, and all the way up to the top level.** Let's see how this works.
-
-In this example, two separate artwork lists have the same initial state. They are supposed to be isolated, but because of a mutation, their state is accidentally shared, and checking a box in one list affects the other list:
+Tässä esimerkissä, kahdella erillisellä taideteoslistalla on sama aloitustila. Niiden on tarkoitus olla eristettyinä, mutta mutaation seurauksena niiden tila on vahingossa jaettu. Valintaruudun valitseminen yhdessä listassa vaikuttaa toiseen listaan:
 
 <Sandpack>
 
@@ -542,32 +542,33 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-The problem is in code like this:
+Ongelma on seuraavassa koodissa:
 
 ```js
 const myNextList = [...myList];
 const artwork = myNextList.find(a => a.id === artworkId);
-artwork.seen = nextSeen; // Problem: mutates an existing item
+artwork.seen = nextSeen; // Ongelma: mutatoi olemassa olevaa kohdetta
 setMyList(myNextList);
 ```
 
-Although the `myNextList` array itself is new, the *items themselves* are the same as in the original `myList` array. So changing `artwork.seen` changes the *original* artwork item. That artwork item is also in `yourArtworks`, which causes the bug. Bugs like this can be difficult to think about, but thankfully they disappear if you avoid mutating state.
+Vaikka `myNextList` taulukko on uusi, *kohteet* ovat samat kuin alkuperäisessä `myList` taulukossa. Joten `artwork.seen`:n muuttaminen muuttaa *alkuperäistä* taideteoskohdetta. Tuo taideteos on myös `yourArtworks` taulukossa, joka aiheuttaa bugin. Tällaisia bugeja voi olla vaikea ajatella, mutta onneksi ne katoavat jos vältät tilan mutatointia.
 
-**You can use `map` to substitute an old item with its updated version without mutation.**
+**Voit käyttää `map` metodia korvataksesi vanhan kohteen sen päivitetyllä versiolla ilman mutatointia.**
 
 ```js
 setMyList(myList.map(artwork => {
   if (artwork.id === artworkId) {
-    // Create a *new* object with changes
+    // Luo *uusi* olio muutoksilla
     return { ...artwork, seen: nextSeen };
   } else {
-    // No changes
+    // Ei muutosta
     return artwork;
   }
 });
 ```
 
-Here, `...` is the object spread syntax used to [create a copy of an object.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+Tässä, `...` on olion levityssyntaksi, jota käytetään [uuden kopion luomiseksi.](/learn/updating-objects-in-state#copying-objects-with-the-spread-syntax)
+
 
 With this approach, none of the existing state items are being mutated, and the bug is fixed:
 
@@ -655,16 +656,16 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-In general, **you should only mutate objects that you have just created.** If you were inserting a *new* artwork, you could mutate it, but if you're dealing with something that's already in state, you need to make a copy.
+Yleisesti ottaen, **sinun tulisi mutatoida oliota joita olet juuri luonut.** Jos olet sijoittamassa *uutta* taideteosta, voisit mutatoida taulukkoa, mutta jos käsittelet jotain, joka on jo tilassa, sinun täytyy tehdä kopio.
 
-### Write concise update logic with Immer {/*write-concise-update-logic-with-immer*/}
+### Kirjoita tiivis päivityslogiikka Immerillä {/*write-concise-update-logic-with-immer*/}
 
-Updating nested arrays without mutation can get a little bit repetitive. [Just as with objects](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
+Sisennettyjen taulukoiden päivittäminen ilman mutaatiota saattaa koitua toistuvaksi. [Juuri kuten olioiden kanssa](/learn/updating-objects-in-state#write-concise-update-logic-with-immer):
 
-- Generally, you shouldn't need to update state more than a couple of levels deep. If your state objects are very deep, you might want to [restructure them differently](/learn/choosing-the-state-structure#avoid-deeply-nested-state) so that they are flat.
-- If you don't want to change your state structure, you might prefer to use [Immer](https://github.com/immerjs/use-immer), which lets you write using the convenient but mutating syntax and takes care of producing the copies for you.
+- Yleisesti ottaen sinun ei tulisi päivittää tilaa kahta tasoa syvemmältä. Jos tilaoliosi ovat todella syviä, saatat haluta [järjestää ne eri tavalla](/learn/choosing-the-state-structure#avoid-deeply-nested-state), jotta ne olisivat tasaisia.
+- Jos et haluat muuttaa tilasi rakennetta, saatat pitää [Immer](https://github.com/immerjs/use-immer):stä, jonka avulla voit kirjoittaa kätevällä mutta mutatoivalla syntaksilla, hoitaen kopiot puolestasi.
 
-Here is the Art Bucket List example rewritten with Immer:
+Tässä on Art Bucket List esimerkki uudelleenkirjoitettuna Immerillä:
 
 <Sandpack>
 
@@ -765,7 +766,7 @@ function ItemList({ artworks, onToggle }) {
 
 </Sandpack>
 
-Note how with Immer, **mutation like `artwork.seen = nextSeen` is now okay:**
+Huomaa miten Immerillä **mutatointi kuten `artwork.seen = nextSeen` on nyt sallittua:**
 
 ```js
 updateMyTodos(draft => {
@@ -774,17 +775,17 @@ updateMyTodos(draft => {
 });
 ```
 
-This is because you're not mutating the _original_ state, but you're mutating a special `draft` object provided by Immer. Similarly, you can apply mutating methods like `push()` and `pop()` to the content of the `draft`.
+Tämä siksi koska et mutatoi _alkuperäistä_ tilaa, vaan mutatoit erityistä `draft` oliota, jonka Immer tarjoaa. Vastaavasti, voit käyttää mutatoivia metodeja kuten `push()` ja `pop()` `draft` olion sisällöille.
 
-Behind the scenes, Immer always constructs the next state from scratch according to the changes that you've done to the `draft`. This keeps your event handlers very concise without ever mutating state.
+Konepellin alla Immer luo aina uuden tilan alusta pohjautuen muutoksiin, joita teit `draft` oliolle. Tämä pitää tapahtumakäsittelijäsi todella tiiviinä mutatoimatta tilaa.
 
 <Recap>
 
-- You can put arrays into state, but you can't change them.
-- Instead of mutating an array, create a *new* version of it, and update the state to it.
-- You can use the `[...arr, newItem]` array spread syntax to create arrays with new items.
-- You can use `filter()` and `map()` to create new arrays with filtered or transformed items.
-- You can use Immer to keep your code concise.
+- Voit laittaa taulukkoja tilaan, mutta et voi muuttaa niitä.
+- Mutatoinnin sijaan luot *uuden* version siitä ja päivität tilan vastaamaan sitä.
+- Voit käyttää `[...arr, newItem]` array levityssyntaksia luodaksesi taulukon uusilla kohteilla.
+- Voit käyttää `filter()` ja `map()` metodeja luodaksesi uuden taulukon suodatetuilla tai muunneltuilla kohteilla.
+- Voit käyttää Immeriä pitääksesi koodin tiivinä.
 
 </Recap>
 
@@ -792,9 +793,9 @@ Behind the scenes, Immer always constructs the next state from scratch according
 
 <Challenges>
 
-#### Update an item in the shopping cart {/*update-an-item-in-the-shopping-cart*/}
+#### Päivitä kohdetta ostoskorissa {/*update-an-item-in-the-shopping-cart*/}
 
-Fill in the `handleIncreaseClick` logic so that pressing "+" increases the corresponding number:
+Täytä `handleIncreaseClick`:n logiikka, jotta "+":n painaminen kasvattaa vastaavaa numeroa:
 
 <Sandpack>
 
@@ -852,7 +853,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can use the `map` function to create a new array, and then use the `...` object spread syntax to create a copy of the changed object for the new array:
+Voit käyttää `map` funktiota luodaksesi uuden taulukon, ja sitten käyttää `...` olion levityssyntaksia luodaksesi kopion muutetusta oliosta uuteen taulukkoon:
 
 <Sandpack>
 
@@ -919,9 +920,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Remove an item from the shopping cart {/*remove-an-item-from-the-shopping-cart*/}
+#### Poista kohde ostoskorista {/*remove-an-item-from-the-shopping-cart*/}
 
-This shopping cart has a working "+" button, but the "–" button doesn't do anything. You need to add an event handler to it so that pressing it decreases the `count` of the corresponding product. If you press "–" when the count is 1, the product should automatically get removed from the cart. Make sure it never shows 0.
+Ostoskorissa on toimiva "+" painike, mutta "-" painike ei tee mitään. Sinun täytyy lisätä tapahtumakäsittelijä siihen, jotta painaminen vähentää `count` lukua kyseisestä tuotteesta. Jos painat "-" kun luku on 1, tuote tulisi automaattisesti poistua ostoskorista. Varmista, että se ei koskaan näytä lukua 0.
 
 <Sandpack>
 
@@ -991,7 +992,7 @@ button { margin: 5px; }
 
 <Solution>
 
-You can first use `map` to produce a new array, and then `filter` to remove products with a `count` set to `0`:
+Voit ensiksi käyttää `map` metodia tuottaaksesi uuden taulukon ja sitten `filter` poistaaksesi tuotteet, joilla `count` on asetettu arvoksi `0`:
 
 <Sandpack>
 
@@ -1080,9 +1081,9 @@ button { margin: 5px; }
 
 </Solution>
 
-#### Fix the mutations using non-mutative methods {/*fix-the-mutations-using-non-mutative-methods*/}
+#### Korjaa mutaatiot käyttämällä ei-mutatoivia tapoja {/*fix-the-mutations-using-non-mutative-methods*/}
 
-In this example, all of the event handlers in `App.js` use mutation. As a result, editing and deleting todos doesn't work. Rewrite `handleAddTodo`, `handleChangeTodo`, and `handleDeleteTodo` to use the non-mutative methods:
+Tässä esimerkissä, kaikki tapahtumakäsittelijät `App.js` tiedostossa käyttävät mutaatiota. Lopputuloksena on, että tehtävien muokkaaminen ja poistaminen ei toimi. Uudelleenkirjoita `handleAddTodo`, `handleChangeTodo` ja `handleDeleteTodo` käyttämään ei-mutatoivia metodeja:
 
 <Sandpack>
 
@@ -1245,7 +1246,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-In `handleAddTodo`, you can use the array spread syntax. In `handleChangeTodo`, you can create a new array with `map`. In `handleDeleteTodo`, you can create a new array with `filter`. Now the list works correctly:
+`handleAddTodo` funktiossa voit käyttää taulukon levityssyntaksia. `handleChangeTodo` funktiossa voit luoda uuden taulukon käyttämällä `map` metodia. `handleDeleteTodo` funktiossa voi luoda uuden taulukon käyttämällä `filter` metodia. Nyt listan pitäisi toimia oikein:
 
 <Sandpack>
 
@@ -1413,9 +1414,9 @@ ul, li { margin: 0; padding: 0; }
 </Solution>
 
 
-#### Fix the mutations using Immer {/*fix-the-mutations-using-immer*/}
+#### Korjaa mutaatiot Immerillä {/*fix-the-mutations-using-immer*/}
 
-This is the same example as in the previous challenge. This time, fix the mutations by using Immer. For your convenience, `useImmer` is already imported, so you need to change the `todos` state variable to use it.
+Tämä on sama esimerkki kuin aiempi haaste. Tällä kertaa korjaa mutaatiot käyttämällä Immeriä. Avuksesi `useImmer` on jo tuotu, joten sinun täytyy muuttaa `todos` tilamuuttuja käyttämään sitä.
 
 <Sandpack>
 
@@ -1597,7 +1598,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-With Immer, you can write code in the mutative fashion, as long as you're only mutating parts of the `draft` that Immer gives you. Here, all mutations are performed on the `draft` so the code works:
+Immerillä voit luoda koodia mutatoivalla tavalla, kunhan mutatoit Immerin antama `draft` olion osia. Tässä kaikki mutaatiot on tehty `draft`:lle, joten koodi toimii:
 
 <Sandpack>
 
@@ -1783,9 +1784,9 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-You can also mix and match the mutative and non-mutative approaches with Immer.
+Voit myös yhdistellä mutatoivaa ja ei-mutatoivaa tapaa Immerillä.
 
-For example, in this version `handleAddTodo` is implemented by mutating the Immer `draft`, while `handleChangeTodo` and `handleDeleteTodo` use the non-mutative `map` and `filter` methods:
+Esimerkiksi, tämä versio `handleAddTodo` funktiosta on toteutettu mutatoimalla Immerin `draft` oliota, kun taas `handleChangeTodo` ja `handleDeleteTodo` funktiot käyttävät ei-mutatoivia `map` ja `filter` metodeja:
 
 <Sandpack>
 
@@ -1968,7 +1969,7 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-With Immer, you can pick the style that feels the most natural for each separate case.
+Immerillä voit käyttää tyyliä, joka tuntuu luonnollisimmalta kuhunkin tapaukseen.
 
 </Solution>
 

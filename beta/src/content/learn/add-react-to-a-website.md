@@ -131,7 +131,7 @@ Unminified JavaScript can significantly slow down page load times for your users
 
 ## Try React with JSX {/*try-react-with-jsx*/}
 
-The examples above rely on features that are natively supported by browsers. This is why **`like-button.js`** uses a JavaScript function call to tell React what to display:
+The examples above rely on features that are natively supported by browsers. This is why **`like-button.js`** can directly call the `React.createElement` function to tell React what to display:
 
 ```js
 return React.createElement('button', {onClick: () => setLiked(true)}, 'Like');

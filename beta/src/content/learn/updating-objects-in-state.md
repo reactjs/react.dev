@@ -17,7 +17,7 @@ Tila voi pitää sisällään minkä tahansa JavaScript arvon, mukaan lukien oli
 
 </YouWillLearn>
 
-## Mikä on mutaatio? {/* whats-a-mutation */}
+## Mikä on mutaatio? {/*whats-a-mutation*/}
 
 Tilaan voit tallentaa minkä tahansa JavaScript arvon.
 
@@ -47,7 +47,7 @@ position.x = 5;
 
 Vaikka Reactin tilassa olevat oliot ovat teknisesti muuttuvia, käsittele niitä kuitenkin **ikään kuin** ne olisivat muuttumattomia, kuten numeroita, totuusarvoja, ja merkkijonoja. Sen sijaan, että aina mutatoisit niitä, sinun tulisi aina korvata ne.
 
-## Käsittele tilaa vain luku -muodossa {/* treat-state-as-read-only */}
+## Käsittele tilaa vain luku -muodossa {/*treat-state-as-read-only*/}
 
 Toisin sanoen, sinun tilisi **käsitellä kaikkia JavaScript-olioita, jotka laitat tilaan vain luku -muodossa.**
 
@@ -208,7 +208,7 @@ Mutatointi on ongelma vain kun muutat _olemassa olevaa_ oliota, joka on jo tilas
 
 </DeepDive>
 
-## Olioiden kopioiminen spread -syntaksilla {/* copying-objects-with-the-spread-syntax */}
+## Olioiden kopioiminen spread -syntaksilla {/*copying-objects-with-the-spread-syntax*/}
 
 Aikaisemmassa esimerkissä `position` olio luodaan aina uusiksi nykyisen kursorin sijainnin pohjalta. Kuitenkin usein saatat haluta sisällyttää _olemassa olevaa_ dataa osana uutta oliota, jota olet luomassa. Esimerkiksi saatat haluta päivittää _vain yhtä_ kenttää lomakkeessa, mutta säilyttää edelliset arvot kaikille muille kentille.
 
@@ -439,7 +439,7 @@ Tässä `e.target.name` viittaa `name` propertyyn, joka on annettu `<input>` DOM
 
 </DeepDive>
 
-## Sisäkkäisten olioiden päivittäminen {/* updating-a-nested-object */}
+## Sisäkkäisten olioiden päivittäminen {/*updating-a-nested-object*/}
 
 Tarkastellaan seuraavanlaista sisäkkäistä objektirakennetta:
 
@@ -636,7 +636,7 @@ Jos muuttaisit `obj3.artwork.city`, se vaikuttaisi molempiin `obj2.artwork.city`
 
 </DeepDive>
 
-### Kirjoita tiivis päivityslogiikka Immerillä {/* write-concise-update-logic-with-immer */}
+### Kirjoita tiivis päivityslogiikka Immerillä {/*write-concise-update-logic-with-immer*/}
 
 Jos tilasi on syvästi sisäkkäistä, saatat haluat harkita [sen tasoittamista.](/learn/choosing-the-state-structure#avoid-deeply-nested-state) Mutta, jos et halua muuttaa tilasi rakennetta, voit käyttää mielummin oikotietä sisäkkäiseen spreadiin. [Immer](https://github.com/immerjs/use-immer) on suosittu krijasto, jonka avulla voit kirjoittaa kätevää, mutatoivaa syntaksia ja se huolehtii kopioiden tuottamisesta puolestasi. Immerin avulla kirjoittamasi koodi näyttää siltä, että "rikot sääntöjä" ja muunnat oliota:
 
@@ -796,7 +796,7 @@ In practice, you can often "get away" with mutating state in React, but we stron
 
 <Challenges>
 
-#### Fix incorrect state updates {/* fix-incorrect-state-updates */}
+#### Fix incorrect state updates {/*fix-incorrect-state-updates*/}
 
 This form has a few bugs. Click the button that increases the score a few times. Notice that it does not increase. Then edit the first name, and notice that the score has suddenly "caught up" with your changes. Finally, edit the last name, and notice that the score has disappeared completely.
 
@@ -937,7 +937,7 @@ Ongelma `handleLastNameChange` funktiossa oli se, että se ei kopioinut olemassa
 
 </Solution>
 
-#### Etsi ja korjaa mutaatio {/* find-and-fix-the-mutation */}
+#### Etsi ja korjaa mutaatio {/*find-and-fix-the-mutation*/}
 
 Staattisella taustalla on raahattava laatikko. Voit muuttaa laatikon väriä valintalistalla.
 
@@ -1228,7 +1228,7 @@ select {
 
 </Solution>
 
-#### Päivitä objekti Immerin avulla {/* update-an-object-with-immer */}
+#### Päivitä objekti Immerin avulla {/*update-an-object-with-immer*/}
 
 Tämä on sama virheellinen esimerkki kuin edellisessä haasteessa. Tällä kertaa korjaa mutaatio Immerin avulla. Yksinkertaisuuden vuoksi `useImmer` on jo tuotu, joten sinun täytyy muuttaa `shape`-tilamuuttujaa käyttämään sitä.
 

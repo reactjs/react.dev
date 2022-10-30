@@ -23,7 +23,7 @@ Tämä beta-verkkosivu sisältää nykyisen luonnoksen uudesta dokumentaatiosta.
 
 _Huomaa, että luvut tarkoittavat dokumentaation englanninkielistä versiota. Dokumentaation suomennos edistyy asteittain._
 
-Voit seurata edistystämme GitHubissa.
+Voit seurata edistystä GitHubissa.
  - [reactjs/reactjs.org](https://github.com/reactjs/reactjs.org/issues/3308)
  - [mirorauhala/fi.reactjs.org](https://github.com/mirorauhala/fi.reactjs.org/issues/1)
 

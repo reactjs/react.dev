@@ -1,37 +1,37 @@
 ---
-title: Reacting to Input with State
+title: Reagointi syötteen tilaan
 ---
 
 <Intro>
 
-React uses a declarative way to manipulate the UI. Instead of manipulating individual pieces of the UI directly, you describe the different states that your component can be in, and switch between them in response to the user input. This is similar to how designers think about the UI.
+React käyttää deklaratiivista tapaa käsitellä käyttöliittymää. Sen sijaan, että manipuloit suoraan käyttöliittymän yksittäisiä osia, määrittelet eri tilat, joissa komponenttisi voi olla, ja vaihdat niiden välillä käyttäjän syötteen perusteella. Tämä muistuttaa sitä, miten suunnittelijat ajattelevat käyttöliittymästä.
 
 </Intro>
 
 <YouWillLearn>
 
-* How declarative UI programming differs from imperative UI programming
-* How to enumerate the different visual states your component can be in
-* How to trigger the changes between the different visual states from code
+* Miten deklaratiiviinen käyttöliittymäohjelmointi eroaa imperatiivisesta käyttöliittymäohjelmoinnista
+* Kuinka luetella eri visuaaliset tilat, joissa komponenttisi voi olla?
+* Miten käynnistää muutokset eri visuaalisten tilojen välillä koodista käsin?
 
 </YouWillLearn>
 
-## How declarative UI compares to imperative {/*how-declarative-ui-compares-to-imperative*/}
+## Miten deklaratiivinen käyttöliittymä vertautuu imperatiiviseen {/*how-declarative-ui-compares-to-imperative*/}
 
-When you design UI interactions, you probably think about how the UI *changes* in response to user actions. Consider a form that lets the user submit an answer:
+Kun suunnittelet käyttöliittymän vuorovaikutusta, luultavasti mietit, miten käyttöliittymä *muuttuu* käyttäjän toimien seurauksena. Ajattele lomaketta, jonka avulla käyttäjä voi lähettää vastauksen:
 
-* When you type something into a form, the "Submit" button **becomes enabled.**
-* When you press "Submit", both form and the button **become disabled,** and a spinner **appears.**
-* If the network request succeeds, the form **gets hidden,** and the "Thank you" message **appears.**
-* If the network request fails, an error message **appears,** and the form **becomes enabled** again.
+* Kun kirjoitat jotain lomakkeeseen, "Lähetä" painike **tulee käyttöön.**
+* Kun painat "Lähetä", sekä lomake että painike **poistuu käytöstä,** ja latausikoni **tulee näkyviin.**
+* Jos verkkopyyntö onnistuu, lomake **piiloutuu,** ja "Kiitos" viesti **tulee näkyviin.**
+* Jos verkkopyyntö epäonnistuu, virheviesti **tulee näkyviin,** ja lomake **tulee käyttöön** uudelleen.
 
-In **imperative programming,** the above corresponds directly to how you implement interaction. You have to write the exact instructions to manipulate the UI depending on what just happened. Here's another way to think about this: imagine riding next to someone in a car and telling them turn by turn where to go.
+**Imperatiivisessa ohjelmoinnissa,** edellä mainittu viittaa suoraan siihen miten vuorovaikutus toteutetaan. Sinun täytyy kirjoittaa tarkat ohjeet käyttöliittymän manipulointiin sen perusteella mitä juuri tapahtui. Toinen tapa ajatella tätä on: Kuvittele, että olet autossa jonkun vieressä ja kerrot hänelle mihin käännytään joka käännökseltä.
 
-<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="In a car driven by an anxious-looking person representing JavaScript, a passenger orders the driver to execute a sequence of complicated turn by turn navigations." />
+<Illustration src="/images/docs/illustrations/i_imperative-ui-programming.png"  alt="Autossa, jota ohjaa ahdistuneen näköinen henkilö, joka edustaa JavaScriptiä, matkustaja käskee kuljettajaa suorittamaan mutkikkaan navigointisarjan." />
 
-They don't know where you want to go, they just follow your commands. (And if you get the directions wrong, you end up in the wrong place!) It's called *imperative* because you have to "command" each element, from the spinner to the button, telling the computer *how* to update the UI.
+Hän ei tiedä mihin haluat mennä, noudattavat vain käskyjäsi. (Ja jos annat vääriä ohjeita, päädyt väärään paikkaan!) Tätä kutsutaan *imperatiiviseksi*, koska jokaista elementtiä täytyy "käskeä", latausikonista painikkeeseen, kertoen tietokoneelle *miten* päivittää käyttöliittymää.
 
-In this example of imperative UI programming, the form is built *without* React. It uses the built-in browser [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):
+Tässä imperatiivisen käyttöliittymäohjelmoinnin esimerkissä lomake on rakennettu *ilman* Reactia. Se käyttää selaimen sisäänrakennettua [DOM](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model):a.
 
 <Sandpack>
 
@@ -81,7 +81,7 @@ function disable(el) {
 }
 
 function submitForm(answer) {
-  // Pretend it's hitting the network.
+  // Oletetaan, että se yhdistäisi verkkoon.
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (answer.toLowerCase() == 'istanbul') {
@@ -131,37 +131,37 @@ body { font-family: sans-serif; margin: 20px; padding: 0; }
 
 </Sandpack>
 
-Manipulating the UI imperatively works well enough for isolated examples, but it gets exponentially more difficult to manage in more complex systems. Imagine updating a page full of different forms like this one. Adding a new UI element or a new interaction would require carefully checking all existing code to make sure you haven't introduced a bug (for example, forgetting to show or hide something).
+Käyttöliittymän manipulointi imperatiivisesti toimii hyvin eristetyissä esimerkeissä, mutta siitä tulee eksponentiaalisesti hankalempaa hallita monimutkaisissa järjestelmissä. Kuvittele, että päivität sivua täynnä erilaisia lomakkeita kuten tämä. Uuden käyttöliittymäelementin tai vuorovaikutuksen lisääminen vaatisi huolellista koodin tarkistusta, ettet ole luonut bugia (esimerkiksi, unohtanut näyttää tai piilottaa jotain).
 
-React was built to solve this problem.
+React on rakennettu ratkaisemaan tämä ongelma.
 
-In React, you don't directly manipulate the UI--meaning you don't enable, disable, show, or hide components directly. Instead, you **declare what you want to show,** and React figures out how to update the UI. Think of getting into a taxi and telling the driver where you want to go instead of telling them exactly where to turn. It's the driver's job to get you there, and they might even know some shortcuts you haven't considered!
+Reactissa et suoraan manipuloi käyttöliittymää--tarkoittaen, että et ota käyttöön, poista käytöstä, näytä/piilota komponentteja suoraan. Sen sijaan **määrittelet mitä haluat näyttää,** ja React päättelee miten käyttöliittymä päivitetään. Kuvittele olevasi taksissa ja kerrot kuskille mihin haluat mennä sen sijaan, että kertoisit mihin kääntyä. On kuskin tehtävä viedä sinut sinne ja hän saattaa jopa tietää joitain oikoteita, joita et ole saattanut ottaa huomioon!
 
-<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="In a car driven by React, a passenger asks to be taken to a specific place on the map. React figures out how to do that." />
+<Illustration src="/images/docs/illustrations/i_declarative-ui-programming.png" alt="Reactin ohjaamassa autossa matkustaja pyytää päästä tiettyyn paikkaan kartalla. React selvittää, miten se tehdään." />
 
-## Thinking about UI declaratively {/*thinking-about-ui-declaratively*/}
+## Käyttöliittymän ajatteleminen deklaratiivisesti {/*thinking-about-ui-declaratively*/}
 
-You've seen how to implement a form imperatively above. To better understand how to think in React, you'll walk through reimplementing this UI in React below:
+Nyt olet nähnyt ylhäällä miten lomake toteutetaan imperatiivisesti. Jotta ymmärtäisit paremmin, miten Reactissa ajatellaan, käydään alla läpi tämän käyttöliittymän uudelleen toteuttaminen Reactissa:
 
-1. **Identify** your component's different visual states
-2. **Determine** what triggers those state changes
-3. **Represent** the state in memory using `useState`
-4. **Remove** any non-essential state variables
-5. **Connect** the event handlers to set the state
+1. **Tunnista** komponenttisi eri visuaaliset tilat
+2. **Määritä** mikä käynnistää nämä tilamuutokset
+3. **Edusta** tila muistissa käyttäen `useState` hookkia
+4. **Poista** kaikki epäolennaiset tilamuuttujat
+5. **Yhdistä** tapahtumakäsittelijät tilan asettamiseksi
 
-### Step 1: Identify your component's different visual states {/*step-1-identify-your-components-different-visual-states*/}
+### 1. Vaihe: Tunnista komponenttisi eri visuaaliset tilat {/*step-1-identify-your-components-different-visual-states*/}
 
-In computer science, you may hear about a ["state machine"](https://en.wikipedia.org/wiki/Finite-state_machine) being in one of several “states”. If you work with a designer, you may have seen mockups for different "visual states". React stands at the intersection of design and computer science, so both of these ideas are sources of inspiration.
+Tietojenkäsittelytieteessä olet saattanut kuulla ["tilakoneesta"](https://en.wikipedia.org/wiki/Finite-state_machine), joka voi olla yhdessä useista "tiloista". Jos työskentelet suunnittelijan kanssa, olet saattanut nähdä mallinnuksia erilaisista "visuaalisista tiloista". React on suunnittelun ja tietotekniikan risteyskohta, joten molemmat ideat ovat inspiraation lähteitä.
 
-First, you need to visualize all the different "states" of the UI the user might see:
+Ensiksi, täytyy visualisoida kaikki käyttöliittymän eri "tilat", joita käyttäjä saattaa nähdä:
 
-* **Empty**: Form has a disabled "Submit" button.
-* **Typing**: Form has an enabled "Submit" button.
-* **Submitting**: Form is completely disabled. Spinner is shown.
-* **Success**: "Thank you" message is shown instead of a form.
-* **Error**: Same as Typing state, but with an extra error message.
+* **Tyhjä**: Lomakkeen "Lähetä" painike on poissa käytöstä.
+* **Kirjoittaa**: Lomakkeen "Lähetä" painike on käytössä.
+* **Lähettää**: Lomake on kokonaan poissa käytöstä. Latausikoni näkyy.
+* **Onnistui**: "Kiitos" viesti näkyy lomakkeen sijaan.
+* **Virhe**: Sama kuin Kirjoittaa -tila, mutta lisävirheviestillä.
 
-Just like a designer, you'll want to "mock up" or create "mocks" for the different states before you add logic. For example, here is a mock for just the visual part of the form. This mock is controlled by a prop called `status` with a default value of `'empty'`:
+Juuri kuten suunnittelija haluat "mallintaa" tai luoda "malleja" eri tiloihin ennen kuin lisäät logiikkaa. Esimerkiksi, tässä on malli vain lomakkeen visuaaliselle osalle. Tämä malli ohjataan `status` propsin kautta, jonka oletusarvona on `'empty'`:
 
 <Sandpack>
 
@@ -192,7 +192,7 @@ export default function Form({
 
 </Sandpack>
 
-You could call that prop anything you like, the naming is not important. Try editing `status = 'empty'` to `status = 'success'` to see the success message appear. Mocking lets you quickly iterate on the UI before you wire up any logic. Here is a more fleshed out prototype of the same component, still "controlled" by the `status` prop:
+Voisit nimetä propsin miten haluat, nimi ei nyt ole niin tärkeää. Kokeile muokata propsi `status = 'empty'` arvoon `status = 'success'` nähdäksesi onnistumisviestin. Mallintamisen avulla voit nopeasti iteroida käyttöliittymää ennen kuin lisäät logiikkaa. Tässä on täyteläisempi prototyyppi samasta komponentista, joka silti ohjataan `status` propsilla:
 
 <Sandpack>
 
@@ -238,9 +238,9 @@ export default function Form({
 
 </Sandpack>
 
-<DeepDive title="Displaying many visual states at once">
+<DeepDive title="Monien visuaalisten tilojen näyttäminen kerralla">
 
-If a component has a lot of visual states, it can be convenient to show them all on one page:
+Jos komponentilla on monia visuaalisia tiloja, voi olla kätevää näyttää ne kaikki samalla sivulla:
 
 <Sandpack>
 
@@ -305,57 +305,58 @@ body { margin: 0; }
 
 </Sandpack>
 
-Pages like this are often called "living styleguides" or "storybooks".
+Tämänkaltaisia sivuja usein kutsutaan "eläviksi tyyliohjeiksi" tai "storybookeiksi".
 
 </DeepDive>
 
-### Step 2: Determine what triggers those state changes {/*step-2-determine-what-triggers-those-state-changes*/}
+### 2. Vaihe: Määritä, mikä laukaisee nämä tilamuutokset {/*step-2-determine-what-triggers-those-state-changes*/}
 
-You can trigger state updates in response to two kinds of inputs:
+Voit käynnistää tilamuutoksen vastauksena kahdenlaiseen syötteeseen:
 
-* **Human inputs,** like clicking a button, typing in a field, navigating a link.
-* **Computer inputs,** like a network response arriving, a timeout completing, an image loading.
+* **Ihmisen syötteeseen,** kuten painikeen klikkaaminen, tekstin kirjoittaminen, linkkiin navigoiminen.
+* **Tietokoneen syötteeseen,** kuten verkkopyynnön vastauksen saapuminen, aikakatkaisun päättyminen, kuvan lataaminen.
 
 <IllustrationBlock>
-  <Illustration caption="Human inputs" alt="A finger." src="/images/docs/illustrations/i_inputs1.png" />
-  <Illustration caption="Computer inputs" alt="Ones and zeroes." src="/images/docs/illustrations/i_inputs2.png" />
+  <Illustration caption="Ihmisen syötteet" alt="Sormi." src="/images/docs/illustrations/i_inputs1.png" />
+  <Illustration caption="Tietokoneen syötteet" alt="Ykkösiä ja nollia." src="/images/docs/illustrations/i_inputs2.png" />
 </IllustrationBlock>
 
-In both cases, **you must set [state variables](/learn/state-a-components-memory#anatomy-of-usestate) to update the UI.** For the form you're developing, you will need to change state in response to a few different inputs:
+Molemmissa tapauksissa, **saatat asettaa [tilamuuttujia](/learn/state-a-components-memory#anatomy-of-usestate) käyttöliittymän päivittämiseksi.** Kehittämässäsi lomakkeessa sinun on vaihdettava tilaa muutaman eri syötteen perusteella:
 
-* **Changing the text input** (human) should switch it from the *Empty* state to the *Typing* state or back, depending on whether the text box is empty or not.
-* **Clicking the Submit button** (human) should switch it to the *Submitting* state.
-* **Successful network response** (computer) should switch it to the *Success* state.
-* **Failed network response** (computer) should switch it to the *Error* state with the matching error message.
+* **Tekstinsyötön muuttaminen** (ihminen) tulisi muuttaa *Tyhjä* tila *Kirjoitetaan* -tilaan tai päin vastoin, riippuen siitä onko syöttökenttä tyhjä vai ei.
+* **Lähetä -painikkeen klikkaaminen** (ihminen) tulisi muuttaa tila *Lähetetään* arvoon.
+* **Onnistunut verkkovastaus** (tietokone) tulisi muuttaa tila *Onnistunut* arvoon.
+* **Epäonnistunut verkkovastaus** (tietokone) tulisi muuttaa tila *Virhe* arvoon itse virheviestin kanssa.
 
-> Notice that human inputs often require [event handlers](/learn/responding-to-events)!
+> Huomaa, että ihmisen syötteet usein vaativat [tapahtumakäsittelijöitä](/learn/responding-to-events)!
 
-To help visualize this flow, try drawing each state on paper as a labeled circle, and each change between two states as an arrow. You can sketch out many flows this way and sort out bugs long before implementation.
+Ymmärtääksesi tämän prosessin paremmin voit kokeilla piirtää paperille jokaisen tilan ympyräksi ja jokaisen tilamuutoksen nuolina. Voit hahmotella monia prosesseja tällä tavoin ja selvittää virheet kauan ennen toteutusta.
 
 <DiagramGroup>
 
-<Diagram name="responding_to_input_flow" height={350} width={688} alt="Flow chart moving left to right with 5 nodes. The first node labeled 'empty' has one edge labeled 'start typing' connected to a node labeled 'typing'. That node has one edge labeled 'press submit' connected to a node labeled 'submitting', which has two edges. The left edge is labeled 'network error' connecting to a node labeled 'error'. The right edge is labeled 'network success' connecting to a node labeled 'success'.">
+<Diagram name="responding_to_input_flow" height={350} width={688} alt="Virtauskaavio vasemmalta oikealle, jossa on 5 ympyrää. Ensimmäisessä ympyrässä, jossa on merkintä 'empty', on yksi nuoli, jossa on merkintä 'start typping' ja joka on yhteydessä ympyrään, jossa on merkintä 'typping'. Kyseisessä ympyrässä on yksi nuoli, jossa on merkintä 'press submit', joka on yhteydessä ympyrään, jossa on merkintä 'submitting', jossa on kaksi nuolta. Vasemmanpuoleinen nuoli on merkitty 'network error', joka liittyy ympyrään 'error'. Oikea nuoli on merkitty merkinnällä 'network success' ja se on yhteydessä ympyrään, jonka nimi on 'success'.">
 
-Form states
+Lomakkeen tilat
 
 </Diagram>
 
 </DiagramGroup>
 
-### Step 3: Represent the state in memory with `useState` {/*step-3-represent-the-state-in-memory-with-usestate*/}
+### 3. Vaihe: Esitä tila muistissa käyttämällä `useState`:a {/*step-3-represent-the-state-in-memory-with-usestate*/}
 
-Next you'll need to represent the visual states of your component in memory with [`useState`.](/apis/react/useState) Simplicity is key: each piece of state is a "moving piece", and **you want as few "moving pieces" as possible.** More complexity leads to more bugs!
+Seuraavaksi sinun täytyy esitellä komponenttisi visuaaliset tilat muistissa [`useState`.](/apis/react/useState) hookilla. Yksinkertaisuus on avainasemassa: jokainen osa tilaa on "liikkuva osa", ja **haluat niin vähän "liikkuvia osia" kuin mahdollista.** Suurempi monimutkaisuus johtaa useampiin virheisiin!
 
-Start with the state that *absolutely must* be there. For example, you'll need to store the `answer` for the input, and the `error` (if it exists) to store the last error:
+Aloita tilalla, jonka on *ehdottomasti oltava* siellä. Sinun on esimerkiksi tallennettava `answer` syötettä varten ja `error` (jos se on olemassa) viimeisimmän virheen tallentamiseksi:
 
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
 ```
 
-Then, you'll need a state variable representing which one of the visual states described earlier you want to display. There's usually more than a single way to represent that in memory, so you'll need to experiment with it.
+Sitten tarvitset tilamuuttujan, joka kuvaa, minkä aiemmin kuvatuista visuaalisista tiloista haluat näyttää. Muistissa on yleensä useampi kuin yksi tapa esittää tämä, joten sinun täytyy kokeilla sitä.
 
-If you struggle to think of the best way immediately, start by adding enough state that you're *definitely* sure that all the possible visual states are covered:
+Jos sinun on vaikea keksiä heti parasta tapaa, aloita lisäämällä niin paljon tiloja, että olet *varma* siitä, että kaikki mahdolliset visuaaliset tilat on katettu:
+
 
 ```js
 const [isEmpty, setIsEmpty] = useState(true);
@@ -364,38 +365,36 @@ const [isSubmitting, setIsSubmitting] = useState(false);
 const [isSuccess, setIsSuccess] = useState(false);
 const [isError, setIsError] = useState(false);
 ```
+Ensimmäinen ideasi ei todennäköisesti ole paras mahdollinen, mutta se ei haittaa - tilan muokkaaminen on osa prosessia!
 
-Your first idea likely won't be the best, but that's ok--refactoring state is a part of the process!
+### 4. Vaihe: Poista kaikki epäolennaiset tilamuuttujat {/*step-4-remove-any-non-essential-state-variables*/}
 
-### Step 4: Remove any non-essential state variables {/*step-4-remove-any-non-essential-state-variables*/}
+Haluat välttää toistoa tilasisällössä, jotta seuraat vain olennaisia asioita. Jos käytät hieman aikaa tilarakenteesi uudistamiseen, komponenttisi ovat helpommin ymmärrettävissä, toistoa vähennetään ja tahattomia merkityksiä vältetään. Tavoitteenasi on **estää tapaukset, joissa muistissa oleva tila ei edusta mitään pätevää käyttöliittymää, jonka haluaisit käyttäjän näkevän.** (Et esimerkiksi koskaan halua näyttää virheilmoitusta ja poistaa syötettä käytöstä samaan aikaan, tai käyttäjä ei pysty korjaamaan virhettä!).
 
-You want to avoid duplication in the state content so you're only tracking what is essential. Spending a little time on refactoring your state structure will make your components easier to understand, reduce duplication, and avoid unintended meanings. Your goal is to **prevent the cases where the state in memory doesn't represent any valid UI that you'd want a user to see.** (For example, you never want to show an error message and disable the input at the same time, or the user won't be able to correct the error!)
+Tässä on joitakin kysymyksiä, joita voit kysyä tilamuuttujiltasi:
 
-Here are some questions you can ask about your state variables:
+* **Aiheuttaako tämä tila paradoksin?** Esimerkiksi, `isTyping` ja `isSubmitting` eivät voi molemmat olla arvoltaan `true`. Paradoksi tarkoittaa yleensä sitä, että tilaa ei ole tarpeeksi rajattu. Kahden totuusarvon yhdistelmiä voi olla neljä, mutta vain kolme vastaa kelvollisia tiloja. Jos haluat poistaa "mahdottoman" tilan, voit yhdistää nämä arvot "tilaksi", jonka on oltava yksi kolmesta arvosta: `'typing'`, `'submitting'`, tai `'success'`.
+* **Ovatko samat tiedot jo saatavilla toisessa tilamuuttujassa?** Toinen paradoksi: `isEmpty` ja `isTyping` eivät voi olla arvoltaan `true` samaan aikaan. Tekemällä niistä erilliset tilamuuttujat, vaarana on, että ne menevät sekaisin ja aiheuttavat virheitä. Onneksi voit poistaa `isEmpty` ja sen sijaan tarkistaa `answer.length === 0`.
+* **Voiko saman tiedon saada toisen tilamuuttujan käänteisluvusta?** `isError`:ia ei tarvita, sillä voit sen sijaan tarkistaa `error !== null`.
 
-* **Does this state cause a paradox?** For example, `isTyping` and `isSubmitting` can't both be `true`. A paradox usually means that the state is not constrained enough. There are four possible combinations of two booleans, but only three correspond to valid states. To remove the "impossible" state, you can combine these into a `status` that must be one of three values: `'typing'`, `'submitting'`, or `'success'`.
-* **Is the same information available in another state variable already?** Another paradox: `isEmpty` and `isTyping` can't be `true` at the same time. By making them separate state variables, you risk them going out of sync and causing bugs. Fortunately, you can remove `isEmpty` and instead check `answer.length === 0`.
-* **Can you get the same information from the inverse of another state variable?** `isError` is not needed because you can check `error !== null` instead.
-
-After this clean-up, you're left with 3 (down from 7!) *essential* state variables:
+Tämän siivouksen jälkeen jäljelle jää 3 (7:stä!) *välttämätöntä* tilamuuttujaa:
 
 ```js
 const [answer, setAnswer] = useState('');
 const [error, setError] = useState(null);
-const [status, setStatus] = useState('typing'); // 'typing', 'submitting', or 'success'
+const [status, setStatus] = useState('typing'); // 'typing', 'submitting', tai 'success'
 ```
-
-You know they are essential, because you can't remove any of them without breaking the functionality.
+Tiedät, että ne ovat välttämättömiä, kun et voi poistaa yhtään niistä rikkomatta toiminnallisuutta.
 
 <DeepDive title="Eliminating “impossible” states with a reducer">
 
-These three variables are a good enough representation of this form's state. However, there are still some intermediate states that don't fully make sense. For example, a non-null `error` doesn't make sense when `status` is `'success'`. To model the state more precisely, you can [extract it into a reducer.](/learn/extracting-state-logic-into-a-reducer) Reducers let you unify multiple state variables into a single object and consolidate all the related logic!
+Nämä kolme muuttujaa ovat tarpeeksi kuvaamaan tämän lomakkeen tilaa. Kuitenkin, on jotain välitiloja, jotka eivät ole järkeviä. Esimerkiksi, ei-null `error` ei ole järkevä kun `status` on `success`. Tilan tarkemmaksi mallintamiseksi, voit käyttää [reduceria.](/learn/extracting-state-logic-into-a-reducer) Reducerien avulla voit yhdistää useita tilamuuttujia yhdeksi olioksi ja tiivistää liittyvät logiikat yhteen!
 
 </DeepDive>
 
-### Step 5: Connect the event handlers to set state {/*step-5-connect-the-event-handlers-to-set-state*/}
+### 5. Vaihe: Yhdistä tapahtumakäsittelijät tilan asettamiseen {/*step-5-connect-the-event-handlers-to-set-state*/}
 
-Lastly, create event handlers to set the state variables. Below is the final form, with all event handlers wired up:
+Lopuksi, luo tapahtumakäsittelijät, jotka asettavat tilamuuttujat. Alla on lopullinen lomake, jossa kaikki tapahtumakäsittelijät on kytketty:
 
 <Sandpack>
 
@@ -477,17 +476,17 @@ function submitForm(answer) {
 
 </Sandpack>
 
-Although this code is longer than the original imperative example, it is much less fragile. Expressing all interactions as state changes lets you later introduce new visual states without breaking existing ones. It also lets you change what should be displayed in each state without changing the logic of the interaction itself.
+Vaikka tämä koodi ei ole enää alkuperäinen imperatiivinen esimerkki, se on kestävempi. Kaikkien vuorovaikutuksien ilmaiseminen tilamuutoksina antaa sinun ottaa käyttöön uusia visuaalisia tiloja rikkomatta olemassa olevia tiloja. Se myös antaa sinun muuttaa mitä tulisi näyttää eri tiloissa muuttamatta toimintalogiikkaa itsessään.
 
 <Recap>
 
-* Declarative programming means describing the UI for each visual state rather than micromanaging the UI (imperative).
-* When developing a component:
-  1. Identify all its visual states.
-  2. Determine the human and computer triggers for state changes.
-  3. Model the state with `useState`.
-  4. Remove non-essential state to avoid bugs and paradoxes.
-  5. Connect the event handlers to set state.
+* Deklaratiivinen ohjelmointi tarkoittaa käyttöliittymän kuvaamista jokaiselle visuaaliselle tilalle toisin kuin käyttöliittymän mikromanagerointi (imperatiivinen).
+* Komponenttia kehitettäessä:
+  1. Tunnista kaikki sen visuaaliset tilat.
+  2. Määritä ihmisen ja tietokoneen aiheuttamat tilamuutokset.
+  3. Mallinna tila `useState`:lla.
+  4. Poista epäolennainen tila välttääksesi bugeja ja paradokseja.
+  5. Yhdistä tapahtumakäsittelijät tilan asettamiseen.
 
 </Recap>
 
@@ -495,11 +494,11 @@ Although this code is longer than the original imperative example, it is much le
 
 <Challenges>
 
-#### Add and remove a CSS class {/*add-and-remove-a-css-class*/}
+#### Lisää ja poista CSS luokka {/*add-and-remove-a-css-class*/}
 
-Make it so that clicking on the picture *removes* the `background--active` CSS class from the outer `<div>`, but *adds* the `picture--active` class to the `<img>`. Clicking the background again should restore the original CSS classes.
+Toteuta tämä siten, että kuvan klikkaaminen *poistaa* `background--active` CSS luokan sitä ympäröivästä `<div>`, mutta *lisää* `picture--active` luokan `<img>` elementtiin. Taustan klikkaaminen uudestaan palauttaa alkuperäiset luokat. 
 
-Visually, you should expect that clicking on the picture removes the purple background and highlights the picture border. Clicking outside the picture highlights the background, but removes the picture border highlight.
+Visuaalisesti tulisi odottaa, että klikkaaminen poistaa violetin taustan ja korostaa kuvan reunoja. Kuvan ulkopuolelta klikkaaminen korostaa kuvan taustaa, mutta poistaa kuvan reunojen korostuksen.
 
 <Sandpack>
 
@@ -548,14 +547,14 @@ body { margin: 0; padding: 0; height: 250px; }
 
 <Solution>
 
-This component has two visual states: when the image is active, and when the image is inactive:
+Tällä komponentilla on kaksi visuaalista tilaa: kun kuva on aktiivinen ja kun kuva on inaktiivinen:
 
-* When the image is active, the CSS classes are `background` and `picture picture--active`.
-* When the image is inactive, the CSS classes are `background background--active` and `picture`.
+* Kun kuva on aktiivinen, CSS luokat ovat `background` ja `picture picture--active`.
+* Kun kuva on inaktiivinen, CSS luokat ovat `background background--active` ja `picture`.
 
-A single boolean state variable is enough to remember whether the image is active. The original task was to remove or add CSS classes. However, in React you need to *describe* what you want to see rather than *manipulate* the UI elements. So you need to calculate both CSS classes based on the current state. You also need to [stop the propagation](/learn/responding-to-events#stopping-propagation) so that clicking the image doesn't register as a click on the background.
+Yksi totuusarvo-tilamuuttuja on tarpeeksi muistamaan onko kuva aktiivinen. Alkuperäinen tehtävä oli poistaa tai lisätä CSS luokkia. Kuitenkin Reactissa sinun täytyy *kuvailla' mitä haluat nähdä käyttöliittymäelementtien *manipuloinnin* sijaan. Joten sinun tulee laskea molemmat CSS luokat nykyisen tilan pohjalta. Sinun täytyy myös [estää propagointi](/learn/responding-to-events#stopping-propagation), jotta kuvan klikkaaminen ei rekisteröidy taustakuvan klikkauksena.
 
-Verify that this version works by clicking the image and then outside of it:
+Tarkista, että tämä versio toimii klikkaamalla kuvaa ja sen ulkopuolelta:
 
 <Sandpack>
 
@@ -622,7 +621,7 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Alternatively, you could return two separate chunks of JSX:
+Vaihtoehtoisesti, voisit palauttaa kaksi erillistä JSX lohkoa:
 
 <Sandpack>
 
@@ -689,13 +688,13 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Keep in mind that if two different JSX chunks describe the same tree, their nesting (first `<div>` → first `<img>`) has to line up. Otherwise, toggling `isActive` would recreate the whole tree below and [reset its state.](/learn/preserving-and-resetting-state) This is why, if a similar JSX tree gets returned in both cases, it is better to write them as a single piece of JSX.
+Muista, että jos kaksi eri JSX lohkoa kuvaa samaa puuta, niiden sisennysten (ensimmäinen `<div>` → ensimmäinen `<img>`) tulisi vastata toisiaan. Muutoin, `isActive`:n vaihtaminen loisi koko puun uudelleen ja [palauttaisi sen tilan.](/learn/preserving-and-resetting-state) Jos samanlaiset JSX puut palautetaan molemmissa tiloissa, on parempi kirjoittaa ne samassa palasessa JSX:ää.
 
 </Solution>
 
-#### Profile editor {/*profile-editor*/}
+#### Profiilieditori {/*profile-editor*/}
 
-Here is a small form implemented with plain JavaScript and DOM. Play with it to understand its behavior:
+Tässä on pieni lomake toteutettuna perinteiselllä JavaScriptilla ja DOM:lla. Leiki tämän kanssa ymmärtääksesi sen toimintaa:
 
 <Sandpack>
 
@@ -792,11 +791,11 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-This form switches between two modes: in the editing mode, you see the inputs, and in the viewing mode, you only see the result. The button label changes between "Edit" and "Save" depending on the mode you're in. When you change the inputs, the welcome message at the bottom updates in real time.
+Tämä lomake vaihtaa kahden tilan välillä: muokkaustilassa näet kentät ja katselutilassa näet vain lopputuloksen. Painikkeen teksti vaihtuu "Edit ja "Save" välillä riippuen missä tilassa olet. Kun muutat kenttiä, tervetuloa -viesti pohjalla päivittyy reaaliajassa.
 
-Your task is to reimplement it in React in the sandbox below. For your convenience, the markup was already converted to JSX, but you'll need to make it show and hide the inputs like the original does.
+Tehtäväsi on toteuttaa tämä lomake Reactilla. Avuksesi merkintäkoodi on jo muutettu JSX:ksi, mutta sinun tulee toteuttaa kenttien näyttäminen ja piilottaminen juuri kuten alkuperäinen.
 
-Make sure that it updates the text at the bottom, too!
+Varmista, että se päivittää tekstin lopussa myös!
 
 <Sandpack>
 
@@ -831,9 +830,9 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-You will need two state variables to hold the input values: `firstName` and `lastName`. You're also going to need an `isEditing` state variable that holds whether to display the inputs or not. You should _not_ need a `fullName` variable because the full name can always be calculated from the `firstName` and the `lastName`.
+Tarvitset kaksi eri tilamuuttujaa pitämään kenttien arvoja: `firstName` ja `lastName`. Tarvitset myös `isEditing` tilamuuttujan joka pitää yllä näytetäänkö kenttiä vai ei. _Et_ tarvitse `fullName` muuttujaa, koska koko nimi voidaan laskea `firstName` ja `lastName` muuttujien avulla.
 
-Finally, you should use [conditional rendering](/learn/conditional-rendering) to show or hide the inputs depending on `isEditing`.
+Lopuksi, sinun tulisi käyttää [ehdollista renderöintiä](/learn/conditional-rendering) näyttääksesi tai piilottaaksesi syötekentät riippuen `isEditing` muuttujan tilasta.
 
 <Sandpack>
 
@@ -891,13 +890,13 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Compare this solution to the original imperative code. How are they different?
+Vertaa tätä ratkaisua alkuperäiseen imperatiiviseen koodiin. Miten ne poikkeavat?
 
 </Solution>
 
-#### Refactor the imperative solution without React {/*refactor-the-imperative-solution-without-react*/}
+#### Kehitä imperatiivinen ratkaisu ilman Reactia {/*refactor-the-imperative-solution-without-react*/}
 
-Here is the original sandbox from the previous challenge, written imperatively without React:
+Tässä on alkuperäinen hiekkalaatikko aikaisemmasta haasteesta, imperatiivisesti kirjoitettuna ilman Reactia:
 
 <Sandpack>
 
@@ -994,9 +993,9 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-Imagine React didn't exist. Can you refactor this code in a way that makes the logic less fragile and more similar to the React version? What would it look like if the state was explicit, like in React?
+Kuvitte, että Reactia ei olisi olemassa. Voisitko kirjottaa tämän koodin tavalla, joka tekee logiikasta vankempaa ja lähemmäs Reactin tapaa? Miltä se näyttäisi, jos tila olisi eksplisiittistä kuten Reactissa?
 
-If you're struggling to think where to start, the stub below already has most of the structure in place. If you start here, fill in the missing logic in the `updateDOM` function. (Refer to the original code where needed.)
+Jos et tiedä mistä aloittaisit, alla on suurin osa rakenteesta valmiina. Jos aloitat tästä, täytä puuttuva logiikka `updateDOM` fuktiosta. (Viittaa alkuperäiseen koodiin tarvittaessa.)
 
 <Sandpack>
 
@@ -1103,7 +1102,7 @@ label { display: block; margin-bottom: 20px; }
 
 <Solution>
 
-The missing logic included toggling the display of inputs and content, and updating the labels:
+Puuttuva logiikka sisältää kenttien ja sisällön piilottamisen ja näyttämisen, lisäksi painikkeen tekstin päivittämisen:
 
 <Sandpack>
 
@@ -1220,7 +1219,7 @@ label { display: block; margin-bottom: 20px; }
 
 </Sandpack>
 
-The `updateDOM` function you wrote shows what React does under the hood when you set the state. (However, React also avoids touching the DOM for properties that have not changed since the last time they were set.)
+`updateDOM` funktio, jonka kirjoitit näyttää mitä React tekee pellin alla kun asetat tilan. (Kuitenkin, React myös välttää koskemasta DOM:iin, kohteissa jotka eivät ole muuttuneet viimeisestä renderöinnistä.)
 
 </Solution>
 

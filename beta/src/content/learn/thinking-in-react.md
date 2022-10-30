@@ -247,7 +247,7 @@ Käydään ne vielä läpi yksitellen:
 
 Tämä tarkoittaa, että vain hakulause ja valintaruudun arvo ovat tiloja. Hienosti tehty!
 
-<DeepDive title="Props vs State">
+<DeepDive title="Propsit vs Tila">
 
 On kaksi "mallia" tietoa Reactissa: propsit ja tila. Nämä kaksi poikkeavat toisistaan:
 

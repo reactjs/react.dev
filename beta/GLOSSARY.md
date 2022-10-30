@@ -3,8 +3,8 @@
 ## React specific
 
 - **React hook**: React hookki, koukku
-- **props**: propsit, proppi, propit
-- **prop drilling**: proppien poraus
+- **props**: propsit
+- **prop drilling**: propsien poraus
 - **reducer**: reducer
 - **dispatch**: dispatch, lähettää
 - **pure component**: puhdas komponentti

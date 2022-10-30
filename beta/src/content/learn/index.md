@@ -23,7 +23,7 @@ Tervetuloa Reactin dokumentaatioon. Tällä sivulla esitellään 80% Reactin kon
 
 React sovellukset koostuvat *komponenteista*. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin vaikka painonappi tai suuri kuin koko sivu.
 
-React komponentit ovat JavaScript funktioita jotka palauttavat merkintäkoodin:
+React komponentit ovat JavaScript funktioita, jotka palauttavat merkintäkoodin:
 
 ```js
 function Painonappi() {
@@ -119,7 +119,7 @@ React ei määrää miten lisäät CSS tiedostot. Yksinkertaisimmillaan lisäät
 
 ## Tiedon näyttäminen {/*displaying-data*/}
 
-JSX mahdollistaa merkintäkoodin käytön JavaScriptissa. Aaltosulkeilla antaa sinun "peruuttaa takaisin" JavaScriptiin, jotta voit upottaa jonkun muuttujan koodistasi ja näytää sen käyttäjälle. Esimerkiksi, tämä tulostaa `kayttaja.nimi`:
+JSX mahdollistaa merkintäkoodin käytön JavaScriptissa. Aaltosulkeilla voit "peruuttaa takaisin" JavaScriptiin, jotta voit upottaa jonkun muuttujan koodistasi ja näytää sen käyttäjälle. Esimerkiksi, tämä tulostaa `kayttaja.nimi`:
 
 ```js {3}
 return <h1>{kayttaja.nimi}</h1>;
@@ -227,7 +227,7 @@ const listaKohteet = tuotteet.map((tuote) => (
 return <ul>{listaKohteet}</ul>;
 ```
 
-Huomaa miten `<li>` elementillä on `key` attribuutti. Jokaiselle listan kohteelle tulisi antaa merkkijono tai numero, joka yksilöllisesti erottaa kohteen sen sisaruksista. Useimiten, avain tulisi suoraan tietolähteestä, kuten tietokannan ID kentästä. React hyödyntää avaimiasi ymmärtääkseen mitä tapahtui jos myöhemmin lisäät, poistat tai uudelleenjärjestät kohteita.
+Huomaa miten `<li>` elementillä on `key` attribuutti. Jokaiselle listan kohteelle tulisi antaa merkkijono tai numero, joka yksilöllisesti erottaa kohteen sen sisaruksista. Useimmiten, avain tulisi suoraan tietolähteestä, kuten tietokannan ID kentästä. React hyödyntää avaimiasi ymmärtääkseen mitä tapahtui jos myöhemmin lisäät, poistat tai uudelleenjärjestät kohteita.
 
 <Sandpack>
 
@@ -257,7 +257,7 @@ export default function Ostoslista() {
 
 ## Vastaaminen tapahtumiin {/*responding-to-events*/}
 
-Voit vastata tapahtumiin määrittelemällä *tapahtumakäsittelijän* komponettiesi sisällä:
+Voit vastata tapahtumiin määrittelemällä *tapahtumakäsittelijän* komponenttiesi sisällä:
 
 ```js {2-4,7}
 function Painonappi() {
@@ -269,7 +269,7 @@ function Painonappi() {
 }
 ```
 
-Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _antaa se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.
+Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _völittää se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.
 
 ## Ruudun päivittäminen {/*updating-the-screen*/}
 
@@ -279,6 +279,7 @@ Ensiksi, importtaa [`useState`](/apis/react/useState) Reactista:
 
 ```js {1,4}
 import {useState} from 'react';
+```
 
 Nyt voit määritellä tilamuuttujan komponentin sisällä:
 
@@ -303,7 +304,7 @@ function Painonappi() {
 }
 ```
 
-React kutsuu komponenttifunktiota uudelleen. Silloin `count` on `1`. Sitten se tulee olemaan `2`. Ja niin edellleen.
+React kutsuu komponenttifunktiota uudelleen. Silloin `count` on `1`. Sitten se tulee olemaan `2`. Ja niin edelleen.
 
 Jos renderöit saman komponentin useasti, kullakin komponentilla on oma tilansa. Kokeile napsauttaa painikkeita erikseen:
 
@@ -346,7 +347,7 @@ Huomaa miten kukin painike "muistaa" sen oman `count` tilan eikä se vaikuta mui
 
 ## Hookkien käyttäminen {/*using-hooks*/}
 
-Funktiot, jotka alkavat sanalla `use` ovat *hookkeja*. `useState` on Reactin sisäänrakennettu hookki. Löydät lisää sisäänrakennettuja hookkeja [React API referenssistä](/apis/react). VOit myös kirjoittaa omia Hookkeja olemassaolevia yhdistelemällä.
+Funktiot, jotka alkavat sanalla `use` ovat *hookkeja*. `useState` on Reactin sisäänrakennettu hookki. Löydät lisää sisäänrakennettuja hookkeja [React API referenssistä](/apis/react). Voit myös kirjoittaa omia Hookkeja olemassaolevia yhdistelemällä.
 
 Hookit ovat rajoittavampia kuin normaalit funktiot. Voit kutsua hookkeja _ainoastaan_ komponentin päätasolta (tai muista hookeista). Jos haluat käyttää `useState` hookkia ehdollisesti tai loopissa, luo uusi komponentti ja sijoita se sinne.
 
@@ -438,17 +439,21 @@ export default function MyApp() {
 }
 ```
 
-Tietoa, jota annat alaspäin näin kutsutaan _propeiksi_ (engl. props). Nyt `MyApp` komponentti sisältää `count` tilan, `handleClick` tapahtumakäsittelijän, sekä _antaa molemmat näistä proppeina_ kullekin painikkeelle.
+Tietoa, jota annat alaspäin näin kutsutaan _propseiksi_ (engl. props). Nyt `MyApp` komponentti sisältää `count` tilan, `handleClick` tapahtumakäsittelijän, sekä _antaa molemmat näistä propseina_ kullekin painikkeelle.
 
-Lopuksi, mutta `MyButton` _lukemaan_ propit, jotka annoit sille sen pääkomponentista:
+Lopuksi, mutta `MyButton` _lukemaan_ propsit, jotka annoit sille sen pääkomponentista:
 
 ```js {1,3}
 function MyButton({count, onClick}) {
-  return <button onClick={onClick}>Napsautit {count} kertaa</button>;
+  return (
+    <button onClick={onClick}>
+      Napsautit {count} kertaa
+    </button>
+  );
 }
 ```
 
-Kun klikkaat painiketta, `onClick` tapahtumakäsittelijää kutsutaan. Jokaisen painikkeen `onClick` proppi on asetettu `handleClick` funktioon `MyApp` komponentissa, joten koodi sen sisällä suoritetaan. Se koodi kutsuu `setCount(count + 1)`, nostaen `count` tilamuuttujaa. Uusi `count` tila annetaan proppina kullekin painikkeelle jolloin ne kaikki näyttävät samaa uutta arvoa.
+Kun klikkaat painiketta, `onClick` tapahtumakäsittelijää kutsutaan. Jokaisen painikkeen `onClick` propsi on asetettu `handleClick` funktioon `MyApp` komponentissa, joten koodi sen sisällä suoritetaan. Se koodi kutsuu `setCount(count + 1)`, nostaen `count` tilamuuttujaa. Uusi `count` tila annetaan propsina kullekin painikkeelle jolloin ne kaikki näyttävät samaa uutta arvoa.
 
 Tätä kutsutaan "tilan nostamiseksi ylös". Siirtämällä tilaa ylös jaamme sitä komponenttien välillä.
 
@@ -489,6 +494,6 @@ button {
 
 ## Seuraavat vaiheet {/*next-steps*/}
 
-Tähän mennessä osaat miten kirjoitetaan perusteet React koodista!
+Nyt tiedät perusteet siitä miten kirjoitetaan React koodia!
 
-Siirry seuraavaksi [Ajattelua Reactissa](/learn/thinking-in-react) nähdäksesi, miltä käyttöliittymän rakentaminen Reactilla tuntuu käytännössä.
+Siirry seuraavaksi [Ajattelua Reactissa](/learn/thinking-in-react) sivulle nähdäksesi, miltä käyttöliittymän rakentaminen Reactilla tuntuu käytännössä.

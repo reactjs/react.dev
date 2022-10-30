@@ -266,7 +266,7 @@ Joskus haluat upottaa omia komponentteja samalla tavalla:
 </Card>
 ```
 
-Kun upotat sisältöä JSX tagiin, pääkomponentti vastaanottaa sisällön proppina nimeltään `children`. Esimerkiksi `Card` komponentti vastaanottaa `children` propin, joka sisältää `<Avatar />` komponentin ja renderöi sen diviin käärittynä:
+Kun upotat sisältöä JSX tagiin, pääkomponentti vastaanottaa sisällön propsina nimeltään `children`. Esimerkiksi `Card` komponentti vastaanottaa `children` propin, joka sisältää `<Avatar />` komponentin ja renderöi sen diviin käärittynä:
 
 <Sandpack>
 
@@ -344,7 +344,7 @@ export function getImageUrl(person, size = 's') {
 
 Kokeile korvata `<Card>` komponentista `<Avatar>` jollain tekstillä nähdäksesi miten `Card` komponentti voi kääriä mitä vain sisältöä. Sen ei tarvitse "tietää" mitä renderöidään sen sisällä. Näet tätä tapaa käytettävän monissa paikoissa.
 
-Voit ajatella komponenttia, jolla on `children` proppi kuin sillä olisi "aukko" joka voidaan "täyttää" sen pääkomponentista mielivaltaisella JSX:llä. Voit käyttää `children` proppia visuaalisiin wrappereihin: paneeleihin, ruudukkoihin, jne.
+Voit ajatella komponenttia, jolla on `children` propsi kuin sillä olisi "aukko" joka voidaan "täyttää" sen pääkomponentista mielivaltaisella JSX:llä. Voit käyttää `children` propsia visuaalisiin wrappereihin: paneeleihin, ruudukkoihin, jne.
 
 <Illustration src="/images/docs/illustrations/i_children-prop.png" alt='A puzzle-like Card tile with a slot for "children" pieces like text and Avatar' />
 
@@ -415,7 +415,7 @@ Propsit ovat kuitenkin muuttumattomia (engl. [immutable](https://en.wikipedia.or
 * Lukeaksesi propseja, käytä `function Avatar({ person, size })` destrukturointi -syntaksia.
 * Voit määritellä oletusarvon kuten `size = 100`, jota käytetään puuttuvissa sekä `undefined` propseissa.
 * Voit välittää kaikki propsit käyttämällä `<Avatar {...props} />` JSX spread syntaksia, mutta älä käytä sitä liikaa!
-* Sisäkkäinen JSX koodi kuten `<Card><Avatar /></Card>` ilmenee `Card` komponentin `children` proppina.
+* Sisäkkäinen JSX koodi kuten `<Card><Avatar /></Card>` ilmenee `Card` komponentin `children` propsina.
 * Propsit ovat vain-luku snapshotteja ajasta: joka renderillä se vastaanottaa uuden version propseista.
 * Et voi muuttaa propseja. Kun tarvitset interaktiivisuutta, käytä tilaa.
 

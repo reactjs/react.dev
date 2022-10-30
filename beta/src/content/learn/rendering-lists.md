@@ -419,7 +419,7 @@ Saatat tuntea houkutusta käyttää kohteen indeksiä taulukossa sen avaimena. I
 
 Vastaavasti, älä luo avaimia lennosta. esim `key={Math.random()}`. Tämän seurauksena avaimet eivät koskaan vastaa toisiaan renderöintien välillä johtaen jokaisen komponentin ja DOM-kohteen uudelleenluontiin joka kerta. Tämä ei ole ainoastaan hidasta, mutta se myös unohtaa käyttäjän syötteen listan kohteissa. Käytä sen sijaan vakaita ID:ta datan pohjalta.
 
-Huomaa, että komponenttisi eivät vastaanota `key`:ta proppina. React käyttää sitä vinkkinä vain itselleen. Jos komponenttisi tarvitsee ID:n, täytyy se välittää erillisenä proppina: `<Profile key={id} userId={id} />`.
+Huomaa, että komponenttisi eivät vastaanota `key`:ta propsina. React käyttää sitä vinkkinä vain itselleen. Jos komponenttisi tarvitsee ID:n, täytyy se välittää erillisenä propsina: `<Profile key={id} userId={id} />`.
 
 </Pitfall>
 

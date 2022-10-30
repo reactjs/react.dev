@@ -52,7 +52,7 @@ export default function PackingList() {
 
 </Sandpack>
 
-Huomaa, että joillain `Item` komponenteilla on niiden `isPacked` proppi asetettu arvoon `true` eikä `false`. Haluat kuitenkin lisätä valintamerkin (✔) pakattuihin itemeihin jos `isPacked={true}`.
+Huomaa, että joillain `Item` komponenteilla on niiden `isPacked` propsi asetettu arvoon `true` eikä `false`. Haluat kuitenkin lisätä valintamerkin (✔) pakattuihin itemeihin jos `isPacked={true}`.
 
 Voit kirjoittaa tämän [`if`/`else` lauseena](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/if...else) seuraavasti:
 
@@ -630,7 +630,7 @@ Tässä ratkaisussa kahta erillistä ehtolausetta käytetään asettamaan välil
 
 ### Refaktoroi sarja `? :` käyttämään `if`-lausetta ja muuttujia {/*refactor-a-series-of---to-if-and-variables*/}
 
-Tämä `Drink` komponentti käyttää sarjan `= :` ehtolauseita näyttääkseen erilaista tietoa riippuen onko `name` proppi `"tea"` tai `"coffee"`. Ongelmana on, että tiedot jokaisesta juomasta on hajautettuna usesiin ehtoihin. Refaktoroi koodi käyttämään yhtä `if` lausetta kolmen `? :`-ehdon sijaan.
+Tämä `Drink` komponentti käyttää sarjan `= :` ehtolauseita näyttääkseen erilaista tietoa riippuen onko `name` propsi `"tea"` tai `"coffee"`. Ongelmana on, että tiedot jokaisesta juomasta on hajautettuna usesiin ehtoihin. Refaktoroi koodi käyttämään yhtä `if` lausetta kolmen `? :`-ehdon sijaan.
 
 <Sandpack>
 

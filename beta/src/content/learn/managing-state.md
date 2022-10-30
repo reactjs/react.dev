@@ -15,7 +15,7 @@ Sovelluksesi kasvaessa, kannattaa olla tietoinen miten tilasi on järjestetty se
 - [Miten "tila nostetaan ylös" jotta se voidaan jakaa komponenttien välillä](/learn/sharing-state-between-components)
 - [Miten hallita, säilyykö tila vai nollataanko se](/learn/preserving-and-resetting-state)
 - [Miten siirretään monimutkainen tilalogiikka funktioon](/learn/extracting-state-logic-into-a-reducer)
-- [Miten annetaan tietoa ilman "proppien porausta"](/learn/passing-data-deeply-with-context)
+- [Miten annetaan tietoa ilman "propsien porausta"](/learn/passing-data-deeply-with-context)
 - [Miten skaalata tilaa sovelluksen kasvaessa](/learn/scaling-up-with-reducer-and-context)
 
 </YouWillLearn>
@@ -378,7 +378,7 @@ textarea {
 
 </Sandpack>
 
-Reactilla voit ylikirjoittaa oletustoiminnon, ja _pakottaa_ komponentin tyhjäämään sen tila antamalla sille eri `key` proppi, kuten `<Chat key={email} />`. Tämä kertoo Reactille, että mikäli vastaanottaja on eri, pitäisi `Chat` komponentin olla _eri_ komponentti, joka täytyy luoda uudelleen alusta alkaen uusilla tiedoilla (kuten käyttöliittymän syöttökentät). Nyt vastaanottajien vaihtaminen nollaa syöttökentän--vaikka renderöit saman komponentin.
+Reactilla voit ylikirjoittaa oletustoiminnon, ja _pakottaa_ komponentin tyhjäämään sen tila antamalla sille eri `key` propsi, kuten `<Chat key={email} />`. Tämä kertoo Reactille, että mikäli vastaanottaja on eri, pitäisi `Chat` komponentin olla _eri_ komponentti, joka täytyy luoda uudelleen alusta alkaen uusilla tiedoilla (kuten käyttöliittymän syöttökentät). Nyt vastaanottajien vaihtaminen nollaa syöttökentän--vaikka renderöit saman komponentin.
 
 <Sandpack>
 
@@ -672,7 +672,7 @@ Lue **[Tilalogiikan siirtäminen reduceriin](/learn/extracting-state-logic-into-
 
 ## Tiedon välittäminen syvälle kontekstilla {/*passing-data-deeply-with-context*/}
 
-Usein täytyy antaa tietoa pääkomponentista lapsikomponettiin proppien avulla. Mutta proppien välittämisestä saattaa tulla epämukavaa jos proppeja täytyy antaa useiden komponenttien läpi, tai jos moni komponentti tarvitsee samaa tietoa. Kontekstin avulla pääkomponenti voi asettaa tietyn tiedon saataville kaikkiin komponentteihin pääkomponentin sisällä-riippumatta siitä miten syvällä se on-ilman, että sitä annetaan proppien kautta.
+Usein täytyy antaa tietoa pääkomponentista lapsikomponettiin propsien avulla. Mutta propsien välittämisestä saattaa tulla epämukavaa jos proppeja täytyy antaa useiden komponenttien läpi, tai jos moni komponentti tarvitsee samaa tietoa. Kontekstin avulla pääkomponenti voi asettaa tietyn tiedon saataville kaikkiin komponentteihin pääkomponentin sisällä-riippumatta siitä miten syvällä se on-ilman, että sitä annetaan propsien kautta.
 
 Tässä `Heading` komponentti päättelee sen otsikointitason "kysymällä" sen lähimmältä `Section` komponentilta sen tason. Jokainen `Section` seuraa sen omaa tasoa kysymällä sitä `Section` pääkomponentilta ja lisäämällä siihen yhden. Jokainen `Section` tarjoaa tiedon saataville kaikille sen alakomponenteille ilman, että proppeja täytyy antaa--se tekee sen käyttämällä kontekstia.
 
@@ -768,7 +768,7 @@ export const LevelContext = createContext(0);
 
 <LearnMore path="/learn/passing-data-deeply-with-context">
 
-Lue **[Tiedon välittäminen syvälle kontekstilla](/learn/passing-data-deeply-with-context)** oppiaksesi miten käytetään kontekstia proppien välittämisen sijaan.
+Lue **[Tiedon välittäminen syvälle kontekstilla](/learn/passing-data-deeply-with-context)** oppiaksesi miten käytetään kontekstia propsien välittämisen sijaan.
 
 </LearnMore>
 

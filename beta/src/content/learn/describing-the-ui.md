@@ -351,7 +351,7 @@ Lue **[Ehdollinen renderöinti](/learn/conditional-rendering)** oppiaksesi eri t
 
 Usein haluat näyttää useita samoja komponentteja listasta dataa. Voit käyttää JavaScriptin `filter()` ja `map()` funktioita Reactissa listan suodattamiseksi ja muuttamiseksi uuteen listaan komponenteista.
 
-Jokaiselle listan kohteelle täytyy määrittää `key` proppi. Yleensä voit käyttää tietokannan ID kenttää `key` propin arvona. Näin React muistaa listan jokaisen kohteen järjestyksen mikäli lista muuttuu.
+Jokaiselle listan kohteelle täytyy määrittää `key` propsi. Yleensä voit käyttää tietokannan ID kenttää `key` propin arvona. Näin React muistaa listan jokaisen kohteen järjestyksen mikäli lista muuttuu.
 
 <Sandpack>
 

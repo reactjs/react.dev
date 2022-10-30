@@ -438,7 +438,7 @@ Tapahtumien nappaaminen on kätevää koodille kuten reitittimille taikka analyt
 
 ### Käsittelijöiden välittäminen vaihtoehtona propagoinnille {/*passing-handlers-as-alternative-to-propagation*/}
 
-Huomaa kuinka tämä klikkauskäsittelijä suorittaa yhden rivin koodia _ja sitten_ kutsuu välitettyä `onClick` proppia:
+Huomaa kuinka tämä klikkauskäsittelijä suorittaa yhden rivin koodia _ja sitten_ kutsuu välitettyä `onClick` propsia:
 
 ```js {4,5}
 function Button({ onClick, children }) {

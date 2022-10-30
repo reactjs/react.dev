@@ -119,7 +119,7 @@ Tämä komponentti lukee ja kirjoittaa `guest` muuttujaan, joka on määritelty 
 
 Palataan kaavaamme <Math><MathI>y</MathI> = 2<MathI>x</MathI></Math>, nyt jos <Math><MathI>x</MathI> = 2</Math>, emme voi luottaa, että <Math><MathI>y</MathI> = 4</Math>. Testimme epäonnistuisi, käyttäjämme olisivat hämillään, lentokoneita tippuisi taivaalta—näet miten tämä voisi johtaa sekaviin bugeihin!
 
-Voit korjata tämän komponentin [välittämällä `guest` muuttujan proppina](/learn/passing-props-to-a-component):
+Voit korjata tämän komponentin [välittämällä `guest` muuttujan propsina](/learn/passing-props-to-a-component):
 
 <Sandpack>
 
@@ -216,7 +216,7 @@ Jokainen uusi Reactin ominaisuus joita rakennamme hyödyntää puhtautta. Tiedon
   * **Samat sisääntulot, sama ulostulo.** Annettaen sama syöte, komponentin tulisi aina palauttaa sama JSX. 
 * Renderöinti voi tapahtua koska vain, joten komponenttien ei tulisi riippua toistensa renderöintijärjestyksestä.
 * Sinun ei pitäisi muuttaa lähtötietoja, joita komponenttisi käyttää renderöintiin. Tämä sisältää propsit, tilan sekä kontekstin. Ruudun päivittämiseksi ["aseta" tila](/learn/state-a-components-memory) olemassaolevien olioiden muuttamisen sijaan.
-* Pyri ilmaisemaan komponenttisi logiikka JSX:ssä jota palautat. Kun täytyy "muuttaa asioita", useimiten teet sen tapahtumakäsittelijässä. Viimeisenä keinona voit käyttää `useEffect`:ia.
+* Pyri ilmaisemaan komponenttisi logiikka JSX:ssä jota palautat. Kun täytyy "muuttaa asioita", useimmiten teet sen tapahtumakäsittelijässä. Viimeisenä keinona voit käyttää `useEffect`:ia.
 * Puhtaiden funktioiden kirjoittaminen vaatii hieman harjoittelua, mutta se avaa Reactin paradigman voiman.
 
 </Recap>

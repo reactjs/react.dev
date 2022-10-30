@@ -1,6 +1,6 @@
 ---
 id: home
-title: React Docs Beta
+title: React Dokumentaatio Beta
 permalink: index.html
 ---
 

@@ -213,7 +213,7 @@ export default function Nav() {
           <NextLink href="/">
             <a className="inline-flex text-l font-normal items-center text-primary dark:text-primary-dark py-1 mr-0 sm:mr-3 whitespace-nowrap">
               <Logo className="text-sm mr-2 w-8 h-8 text-link dark:text-link-dark" />
-              React Docs
+              React Dokumentaatio
             </a>
           </NextLink>
           <div className="lg:w-full leading-loose hidden sm:flex flex-initial items-center h-auto pr-5 lg:pr-5 pt-0.5">

@@ -6,27 +6,31 @@ permalink: index.html
 
 <HomepageHero />
 
-## What is this site? {/*what-is-this-site*/}
+## Mikä tämä sivu on? {/*what-is-this-site*/}
 
-We are rewriting the React documentation with a few differences:
+Kirjoitamme React-dokumentaation uudelleen muutamalla erolla:
 
-- All explanations are **written using Hooks** rather than classes.
-- We've added **interactive examples** and visual diagrams.
-- Guides include **challenges (with solutions!)** to check your understanding.
+- Kaikki selitykset on **kirjoitettu käyttäen hookkeja** eikä luokkia.
+- Lisäsimme **interaktiivisia esimerkkejä** sekä visuaalisia kaavioita.
+- Oppaat sisältävät **haasteita (ratkaisuilla!)** ymmärryksesi tarkistamiseksi.
 
-This beta website contains the current draft of the new docs.
+Tämä beta-verkkosivu sisältää nykyisen luonnoksen uudesta dokumentaatiosta.
 
-## How much content is ready? {/*how-much-content-is-ready*/}
+## Miten paljon sisällöstä on valmiina? {/*how-much-content-is-ready*/}
 
-* [Learn React](/learn): ~95% finished.
-* [API Reference](/apis): ~70% finished.
+* [Opi React](/learn): ~95% valmis.
+* [API-ohje](/apis): ~70% valmis.
 
-You can track our progress [on GitHub.](https://github.com/reactjs/reactjs.org/issues/3308)
+_Huomaa, että luvut tarkoittavat dokumentaation englanninkielistä versiota. Dokumentaation suomennos edistyy asteittain._
 
-## How can I provide feedback? {/*how-can-i-provide-feedback*/}
+Voit seurata edistystämme GitHubissa.
+ - [reactjs/reactjs.org](https://github.com/reactjs/reactjs.org/issues/3308)
+ - [mirorauhala/fi.reactjs.org](https://github.com/mirorauhala/fi.reactjs.org/issues/1)
 
-Please use [this GitHub issue](https://github.com/reactjs/reactjs.org/issues/3308) or [this anonymous form](https://www.surveymonkey.co.uk/r/PYRPF3X) for high-level feedback. If you spot something that doesn't make sense, please tell us! Additionally, each page has thumbs up/down buttons in the corner.
+## Miten voin antaa palautetta? {/*how-can-i-provide-feedback*/}
 
-## Will this site replace the main site? {/*will-this-site-replace-the-main-site*/}
+Käytä [tätä GitHub issueta](https://github.com/reactjs/reactjs.org/issues/3308) tai [tätä anonyymiä lomaketta](https://www.surveymonkey.co.uk/r/PYRPF3X) kaikkeen korkeatasoiseen palautteeseen. Jos huomaat, että jossain ei ole järkeä, kerro siitä meille! Lisäksi jokaisen sivun kulmassa on ylös/alas -peukkupainikkeet.
 
-We aim to switch this site to be the main one once we reach content parity with the [existing React documentation.](https://reactjs.org/) The old React website will be archived at a subdomain so you'll still be able to access it. Old content links will redirect to the archived subdomain, which will have a notice about outdated content.
+## Tuleeko tämä sivu korvaamaan pääsivun? {/*will-this-site-replace-the-main-site*/}
+
+Tarkoituksemme on vaihtaa tämä sivusto pääsivustoksi, kun saavutamme sisällöllisen tasavertaisuuden [olemassa olevan React-dokumentaation kanssa.](https://reactjs.org/) Vanha React-sivusto arkistoidaan aliverkkotunnukseen, jotta voit jatkossakin käyttää sitä. Vanhan sisällön linkit ohjataan arkistoidulle aliverkkotunnukselle, joihin tulee ilmoitus vanhentuneesta sisällöstä.

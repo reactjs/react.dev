@@ -21,18 +21,18 @@ function HomepageHero() {
       </div>
       <section className="my-8 sm:my-10 grid grid-cols-1 lg:grid-cols-2 gap-x-8 gap-y-4">
         <div className="flex flex-col justify-center">
-          <YouWillLearnCard title="Learn React" path="/learn">
+          <YouWillLearnCard title="Opi React" path="/learn">
             <p>
-              Learn how to think in React with step-by-step explanations and
-              interactive examples.
+              Opi ajattelemaan Reactissa vaiheittaisten ohjeiden ja
+              interaktiivisten esimerkkien avulla.
             </p>
           </YouWillLearnCard>
         </div>
         <div className="flex flex-col justify-center">
-          <YouWillLearnCard title="API Reference" path="/apis/react">
+          <YouWillLearnCard title="API-ohje" path="/apis/react">
             <p>
-              Look up the API of React Hooks, and see their shape with
-              color-coded signatures.
+              Tutustu React hookkien rajapintoihin ja katso niiden muodot
+              värikoodatuilla ohjeilla.
             </p>
           </YouWillLearnCard>
         </div>

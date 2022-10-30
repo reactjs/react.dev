@@ -43,14 +43,14 @@ Kuvittele, että komponenttisi ovat kokkeja keittiössä kasaamassa maukkaita ru
   />
 </IllustrationBlock>
 
-## 1. Vaihe: Triggeröi renderöinti {/* step-1-trigger-a-render */}
+## 1. Vaihe: Triggeröi renderöinti {/*step-1-trigger-a-render*/}
 
 On kaksi syytä miksi komponentti renderöidään:
 
 1. Se on komponentin **ensimmäinen renderöinti.**
 2. Komponentin (tai yhden sen vanhemman) **tila on päivittynyt.**
 
-### Ensimmäinen renderöinti {/* initial-render */}
+### Ensimmäinen renderöinti {/*initial-render*/}
 
 Kun sovelluksesi käynnistyy, sinun täytyy triggeröidä ensimmäinen renderöinti. Ohjelmistokehykset ja hiekkalaatikot usein piilottavat tämän koodin, mutta se tehdään kutsumalla [`createRoot`](https://beta.reactjs.org/apis/react-dom/client/createRoot) funktiota kohde DOM elementillä ja sitten kutsumalla sen `render` metodia komponenttisi kanssa:
 
@@ -79,7 +79,7 @@ export default function Image() {
 
 Kokeile kommentoida `root.render()` kutsu ja näet komponentin katoavan!
 
-### Uudelleenrenderöityy tilan päivittyessä {/* re-renders-when-state-updates */}
+### Uudelleenrenderöityy tilan päivittyessä {/*re-renders-when-state-updates*/}
 
 Kun komponentti on renderöity aluksi, voit triggeröidä uusia renderöintejä päivittämällä sen tilaa [`set` funktiolla.](/apis/react/useState#setstate) Komponentin tilan päivittäminen automaattisesti lisää renderöinnin jonoon. (Voit kuvitella tätä ravintolan vieraana tilaamassa teetä, jälkiruokaa, ja kaikkea muuta alkuperäisen tilauksen jälkeen, janon tai nälän tilasta riippuen.)
 
@@ -101,7 +101,7 @@ Kun komponentti on renderöity aluksi, voit triggeröidä uusia renderöintejä 
   />
 </IllustrationBlock>
 
-## 2. Vaihe: React renderöi komponenttisi {/* step-2-react-renders-your-components */}
+## 2. Vaihe: React renderöi komponenttisi {/*step-2-react-renders-your-components*/}
 
 Sen jälkeen kun olet triggeröinyt renderin, React kutsuu komponenttejasi päätelläkseen mitä näyttää ruudulla. **"Renderöinti" on React kutsumassa komponenttejasi.**
 
@@ -172,7 +172,7 @@ Päivitetyn komponentin sisäkkäisten komponenttien renderöinti oletuksena ei 
 
 </DeepDive>
 
-## 3. Vaihe: React committaa muutokset DOM:iin {/* step-3-react-commits-changes-to-the-dom */}
+## 3. Vaihe: React committaa muutokset DOM:iin {/*step-3-react-commits-changes-to-the-dom*/}
 
 Komponenttisi renderöinnin (kutsumisen) jälkeen React muuttaa DOM:ia.
 
@@ -219,7 +219,7 @@ export default function App() {
 
 Tämä toimii koska viimeisen vaiheen aikana, React päivittää vain `<h1>` tagin sisällön `time`:n arvolla. Se näkee, että `<input>` JSX:ssä on samassa paikassa kuin viimeksi, joten React ei koske `<input>` kenttään tai sen `value`:n!
 
-## Epilogi: Selaimen maalaus {/* epilogue-browser-paint */}
+## Epilogi: Selaimen maalaus {/*epilogue-browser-paint*/}
 
 Kun renderöinti on valmis ja React on päivittänyt DOM:in, selain uudelleenmaalaa ruudun. Vaikka tämä prosessi tunnetaan "selaimen renderöintinä", viittaamme siihen "maalaamisena" sekaannuksien välttämiseksi tässä dokumentaatiossa.
 

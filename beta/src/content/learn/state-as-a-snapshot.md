@@ -6,20 +6,20 @@ title: Tila tilannekuvana
 
 Tilamuuttujat saattavat näyttää tavallisilta JavaScript muuttujilta, joita voit
 lukea ja joihin voit kirjoittaa. Tilamuuttujat käyttäytyvät enemmän kuin tilannekuvana. Tilannemuuttujan asettaminen ei muuta muuttujaa, joka sinulla jo
-on, vaan sen sijaan triggeröi uudelleenrenderöinnin.
+on, vaan sen sijaan käynnistää uudelleenrenderöinnin.
 
 </Intro>
 
 <YouWillLearn>
 
-* Miten tilamuuttujan asettaminen triggeröi uudelleenrenderöintejä
+* Miten tilamuuttujan asettaminen käynnistää uudelleenrenderöintejä
 * Milloin ja miten tila päivittyy
 * Miksi tila eo päivity heti kun asetat sen
 * Miten tapahtumakäsittelijät saavat "tilannekuvan" tilasta
 
 </YouWillLearn>
 
-## Tilan asettaminen triggeröi renderöintejä {/*setting-state-triggers-renders*/}
+## Tilan asettaminen käynnistää renderöintejä {/*setting-state-triggers-renders*/}
 
 Saatat ajatella käyttöliittymäsi muuttuvan suoraan vastauksena käyttäjän tapahtumiin kuten klikkaukseen. Reactissa se poikkeaa hieman tästä ajattelutavasta. Edellisellä sivulla näit, että [tilan asettaminen pyytää uudelleenrenderöintiä](/learn/render-and-commit#step-1-trigger-a-render) Reactilta. Tämä tarkoittaa, että jotta käyttöliittymä voi reagoida tapahtumaan, sinun tulee *päivittää tilaa*.
 
@@ -75,7 +75,7 @@ Otetaan tarkempi katse tilan ja renderöinnin suhteeseen.
 
 ["Renderöinti"](/learn/render-and-commit#step-2-react-renders-your-components) tarkoittaa, että React kutsuu komponenttiasi, joka on funktio. Funktion palauttama JSX on kuten käyttöliittymän tilannekuva ajasta. Sen propsit, tapahtumakäsittelijät sekä paikalliset muuttujat laskettiin **käyttämällä sen tilaa renderöintihetkellä.**
 
-Toisin kuin valokuva tai elokuvan kehys, UI "tilannekuva", jonka palautat on interaktiivinen. Se sisältää logiikkaa kuten tapahtumakäsittelijöitä, jotka määrittävät mitä tapahtuu vastauksena syötteeseen. React sitten päivittää ruudun vastaamaan tätä tilannekuvaa ja yhdistää tapahtumakäsittelijät. Lopputuloksena painikkeen painaminen triggeröi JSX koodisi tapahtumakäsittelijän.
+Toisin kuin valokuva tai elokuvan kehys, UI "tilannekuva", jonka palautat on interaktiivinen. Se sisältää logiikkaa kuten tapahtumakäsittelijöitä, jotka määrittävät mitä tapahtuu vastauksena syötteeseen. React sitten päivittää ruudun vastaamaan tätä tilannekuvaa ja yhdistää tapahtumakäsittelijät. Lopputuloksena painikkeen painaminen käynnistää JSX koodisi tapahtumakäsittelijän.
 
 Kun React renderöi komponentin uudelleen:
 

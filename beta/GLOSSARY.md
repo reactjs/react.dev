@@ -28,7 +28,7 @@
 - **minify**: minifioida, pienentää
 - **preprocessor**: esikääntäjä
 - **repository**: repository, repo
-- **trigger**: triggeröinti
+- **trigger**: käynnistää
 - **export**: exportata, viedä
 - **import**: importata, tuoda
 - **build tool**: käännöstyökalu

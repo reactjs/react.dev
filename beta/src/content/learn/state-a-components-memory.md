@@ -154,17 +154,17 @@ button {
 `handleClick()` tapahtumakäsittelijä päivittää paikallista `index` muuttujaa. Kaksi asiaa kuitenkin estävät muutoksen näkymisen:
 
 1. **Paikalliset muuttujat eivät pysy voimassa renderien välillä.** Kun React renderöi tämän komponentin toiseen kertaan, se luo sen alusta. Se ei ota huomioon paikallisten muuttujien muutoksia.
-2. **Muutokset paikallisiin muuttujiin eivät triggeröi uutta renderöintiä.** React ei huomaa, että sen täytyy renderöidä komponentti uudelleen uusien tietojen kanssa.
+2. **Muutokset paikallisiin muuttujiin eivät käynnistä uutta renderöintiä.** React ei huomaa, että sen täytyy renderöidä komponentti uudelleen uusien tietojen kanssa.
 
 Päivittääksesi komponentti uudella datalla, kaksi asiaa täytyy tapahtua:
 
 1. **Säilyttää** data renderien välillä.
-2. **Triggeröidä** React renderöimään komponenttin uudella datalla (uudelleenrenderöinti).
+2. **Käynnistää** React renderöimään komponenttin uudella datalla (uudelleenrenderöinti).
 
 [`useState`](/apis/react/useState) hookki tarjoaa molemmat näistä:
 
 1. **Tilamuuttujan** ylläpitämään data renderien välillä.
-2. **Tilan asettajafunktio** päivittämään muuttujaa ja triggeröimään komponentin uudelleenrenderöinti.
+2. **Tilan asettajafunktio** päivittämään muuttujaa ja käynnistämään komponentin uudelleenrenderöinti.
 
 ## Tilamuuttujan lisääminen {/*adding-a-state-variable*/}
 
@@ -362,7 +362,7 @@ Ainoa argumentti `useState`:lle on tilamuuttujan **aloitusarvo**. Tässä esimer
 Joka kerta kun komponenttisi renderöityy, `useState` palauttaa listan sisältäen kaksi kohdetta:
 
 1. **Tilamuuttujan** (`index`) missä on arvo, jonka tallensit.
-2. **Tilan asettajafunktion** (`setIndex`) joka voi piäivittää tilamuuttujaa ja triggeröidä komponentin uudelleenrenderöinnin.
+2. **Tilan asettajafunktion** (`setIndex`) joka voi piäivittää tilamuuttujaa ja käynnistää komponentin uudelleenrenderöinnin.
 
 Tässä miten se tapahtuu toiminnassa:
 
@@ -371,7 +371,7 @@ const [index, setIndex] = useState(0);
 ```
 
 1. **Your component renders the first time.** Koska välitit arvon `0`, `useState`-arvon `index` alkuarvoksi, se palauttaa arvon `[0, setIndex]`. React muistaa, että `0` on viimeisin tila-arvo.
-2. **Päivität tilan.** Kun käyttäjä klikkaa painiketta, se kutsuu `setIndex(index + 1)`. `index` on `0`, joten se on `setIndex(1)`. Tämä käskee Reactia muistamaan, että `index` on nyt `1` ja triggeröimään toisen renderöinnin.
+2. **Päivität tilan.** Kun käyttäjä klikkaa painiketta, se kutsuu `setIndex(index + 1)`. `index` on `0`, joten se on `setIndex(1)`. Tämä käskee Reactia muistamaan, että `index` on nyt `1` ja käynnistämään toisen renderöinnin.
 3. **Komponenttisi toinen renderöinti.** React näkee silti `useState(0)`, mutta koska React *muistaa*, että asetit `index`:n aroon `1`, se palauttaa `[1, setIndex]` kuitenkin.
 4. Ja niin edelleen!
 

@@ -254,13 +254,13 @@ Ennen kuin komponenttisi näytetään ruudlla, Reactin täytyy renderöidä ne. 
 
 Kuvittele, että komponettisi ovat kokkeja keittiössä, kasaten maukkaita aterioita ainesosista. Tässä skenaariossa React on tarjoilija joka laittaa ylös asiakkaiden tilaukset sekä vie tilaukset heille. Tässä käyttöliittymän pyyntö- ja vientiprosessissa on kolme vaihetta:
 
-1. **Triggeröidään** renderöinti (viedään ruokalijan tilaus keittiölle)
+1. **Käynnistetään** renderöinti (viedään ruokalijan tilaus keittiölle)
 2. **Renderöidään** komponentti (valmistellaan tilausta keittiössä)
 3. **Kommitoidaan** DOM:iin (asetetaan tilaus pöydälle)
 
 <IllustrationBlock sequential>
   <Illustration
-    caption="Triggeröinti"
+    caption="Käynnistys"
     alt="React toimii tarjoilijana ravintolassa, hakien tilauksia käyttäjiltä ja tarjoillen niitä Keittiö komponentille."
     src="/images/docs/illustrations/i_render-and-commit1.png"
   />
@@ -284,7 +284,7 @@ Lue **[Render and Commit](/learn/render-and-commit)** oppiaksesi käyttöliittym
 
 ## Tila tilannekuvana {/*state-as-a-snapshot*/}
 
-Toisin kuin tavalliset JavaScript muuttujat, Reactin tila käyttäytyy enemmän kuin tilannekuva. Tilan muuttaminen ei muuta tilamuuttujaa joka sinulla jo on, vaan sen sijaan triggeröi uudelleenrenderöinnin. Tämä saattaa olla yllättävää aluksi!
+Toisin kuin tavalliset JavaScript muuttujat, Reactin tila käyttäytyy enemmän kuin tilannekuva. Tilan muuttaminen ei muuta tilamuuttujaa joka sinulla jo on, vaan sen sijaan käynnistää uudelleenrenderöinnin. Tämä saattaa olla yllättävää aluksi!
 
 ```js
 console.log(count); // 0

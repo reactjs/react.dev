@@ -21,29 +21,29 @@ selittämään sen käyttäytymistä.
 
 Kuvittele, että komponenttisi ovat kokkeja keittiössä kasaamassa maukkaita ruokia raaka-aineista. Tässä skenaariossa React on tarjoilija, joka tuo ja vie asiakkaiden tilaukset. Tässä käyttöliittymän pyyntö- ja käyttöprosessissa on kolme vaihetta:
 
-1. **Triggeröidä** renderöinti (tuoda vierailijan tilaus keittiölle)
+1. **Käynnistää** renderöinti (tuoda vierailijan tilaus keittiölle)
 2. **Renderöidä** komponentti (tilauksen valmistelu keittiössä)
 3. **Kommitoida** DOM:iin (tilauksen asettaminen pöydälle)
 
 <IllustrationBlock sequential>
   <Illustration
-    caption="Trigger"
+    caption="Käynnistää"
     alt="React as a server in a restaurant, fetching orders from the users and delivering them to the Component Kitchen."
     src="/images/docs/illustrations/i_render-and-commit1.png"
   />
   <Illustration
-    caption="Render"
+    caption="Renderöitä"
     alt="The Card Chef gives React a fresh Card component."
     src="/images/docs/illustrations/i_render-and-commit2.png"
   />
   <Illustration
-    caption="Commit"
+    caption="Kommitoida"
     alt="React delivers the Card to the user at their table."
     src="/images/docs/illustrations/i_render-and-commit3.png"
   />
 </IllustrationBlock>
 
-## 1. Vaihe: Triggeröi renderöinti {/*step-1-trigger-a-render*/}
+## 1. Vaihe: Käynnistä renderöinti {/*step-1-trigger-a-render*/}
 
 On kaksi syytä miksi komponentti renderöidään:
 
@@ -52,7 +52,7 @@ On kaksi syytä miksi komponentti renderöidään:
 
 ### Ensimmäinen renderöinti {/*initial-render*/}
 
-Kun sovelluksesi käynnistyy, sinun täytyy triggeröidä ensimmäinen renderöinti. Ohjelmistokehykset ja hiekkalaatikot usein piilottavat tämän koodin, mutta se tehdään kutsumalla [`createRoot`](https://beta.reactjs.org/apis/react-dom/client/createRoot) funktiota kohde DOM elementillä ja sitten kutsumalla sen `render` metodia komponenttisi kanssa:
+Kun sovelluksesi käynnistyy, sinun täytyy käynnistää ensimmäinen renderöinti. Ohjelmistokehykset ja hiekkalaatikot usein piilottavat tämän koodin, mutta se tehdään kutsumalla [`createRoot`](https://beta.reactjs.org/apis/react-dom/client/createRoot) funktiota kohde DOM elementillä ja sitten kutsumalla sen `render` metodia komponenttisi kanssa:
 
 <Sandpack>
 
@@ -81,7 +81,7 @@ Kokeile kommentoida `root.render()` kutsu ja näet komponentin katoavan!
 
 ### Uudelleenrenderöityy tilan päivittyessä {/*re-renders-when-state-updates*/}
 
-Kun komponentti on renderöity aluksi, voit triggeröidä uusia renderöintejä päivittämällä sen tilaa [`set` funktiolla.](/apis/react/useState#setstate) Komponentin tilan päivittäminen automaattisesti lisää renderöinnin jonoon. (Voit kuvitella tätä ravintolan vieraana tilaamassa teetä, jälkiruokaa, ja kaikkea muuta alkuperäisen tilauksen jälkeen, janon tai nälän tilasta riippuen.)
+Kun komponentti on renderöity aluksi, voit käynnistää uusia renderöintejä päivittämällä sen tilaa [`set` funktiolla.](/apis/react/useState#setstate) Komponentin tilan päivittäminen automaattisesti lisää renderöinnin jonoon. (Voit kuvitella tätä ravintolan vieraana tilaamassa teetä, jälkiruokaa, ja kaikkea muuta alkuperäisen tilauksen jälkeen, janon tai nälän tilasta riippuen.)
 
 <IllustrationBlock sequential>
   <Illustration
@@ -103,10 +103,10 @@ Kun komponentti on renderöity aluksi, voit triggeröidä uusia renderöintejä 
 
 ## 2. Vaihe: React renderöi komponenttisi {/*step-2-react-renders-your-components*/}
 
-Sen jälkeen kun olet triggeröinyt renderin, React kutsuu komponenttejasi päätelläkseen mitä näyttää ruudulla. **"Renderöinti" on React kutsumassa komponenttejasi.**
+Sen jälkeen kun olet käynnistänyt renderin, React kutsuu komponenttejasi päätelläkseen mitä näyttää ruudulla. **"Renderöinti" on React kutsumassa komponenttejasi.**
 
 - **Ensimmäisen renderöinnin** yhteydessä React kutsuu juurikomponenttiasi.
-- **Seuraavissa renderöinneissä** React kutsuu komponenttia, jonka tila triggeröi renderöinnin.
+- **Seuraavissa renderöinneissä** React kutsuu komponenttia, jonka tila käynnistää renderöinnin.
 
 Tämä prosessi on rekursiivinen: jos päivitetty komponentti palauttaa jonkin toisen komponentin, React kutsuu _sen_ komponentin seuraavaksi, ja jos se komponentti myös palauttaa jotain, se renderöi _sen_ komponentin seuraavaksi, ja niin edelleen. Tämä prosessi jatkuu kunnes ei ole enempää sisennettyjä komponentteja ja React tietää tarkalleen mitä ruudulla tulisi näkyä.
 
@@ -231,9 +231,9 @@ Kun renderöinti on valmis ja React on päivittänyt DOM:in, selain uudelleenmaa
 <Recap>
 
 - Mikä tahansa ruudunpäivitys React sovelluksessa tapahtuu kolmessa vaiheessa:
-  1. Triggeröinti
+  1. Käynnistys
   2. Renderöinti
-  3. Commit
+  3. Kommitointi
 - Voit käyttää Strict Modea löytääksesi virheitä komponenteistasi
 - React ei koske DOM:iin jos renderöinnin tulos on sama kuin viimeksi
 

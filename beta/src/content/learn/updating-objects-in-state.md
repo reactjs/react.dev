@@ -25,7 +25,7 @@ Tilaan voit tallentaa minkä tahansa JavaScript arvon.
 const [x, setX] = useState(0);
 ```
 
-Tähän mennessä olet työskennellyt numeroiden, merkkijonojen sekä totuusarvojen kanssa. Tämän kaltaiset JavaScript arvot ovat "muuttumattomia", jotka ovat "vain-luku" tilassa. Voit triggeröidä uudelleen renderöinnin _korvataksesi_ arvon:
+Tähän mennessä olet työskennellyt numeroiden, merkkijonojen sekä totuusarvojen kanssa. Tämän kaltaiset JavaScript arvot ovat "muuttumattomia", jotka ovat "vain-luku" tilassa. Voit käynnistää uudelleen renderöinnin _korvataksesi_ arvon:
 
 ```js
 setX(5);
@@ -110,7 +110,7 @@ onPointerMove={e => {
 ```
 
 Tämä koodi muuttaa `position` muuttujan oliota [edellisestä renderöinnistä.](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) Mutta ilman tilanmääritysfunktiota React ei tiedä, että olio on muuttunut. React ei siis tee mitään vastauksena. Se on kuin yrittäisi muuttaa tilausta sen jälkeen, kun olet jo syönyt aterian. Vaikka tilan muuttaminen voi toimia joissakin tapauksissa, emme suosittele sitä. Tilan arvoa, johon sinulla on pääsy renderöinnissä, kannattaa käsitellä vain luku -arvona.
-Tosiasiassa [uudelleen renderöinnin triggeröiminen](/learn/state-as-a-snapshot#setting-state-triggers-renders) tässä tapauksessa **luo _uuden_ olion ja välittää sen tilan asetusfunktiolle:**
+Tosiasiassa [uudelleen renderöinnin käynnistäminen](/learn/state-as-a-snapshot#setting-state-triggers-renders) tässä tapauksessa **luo _uuden_ olion ja välittää sen tilan asetusfunktiolle:**
 
 ```js
 onPointerMove={e => {

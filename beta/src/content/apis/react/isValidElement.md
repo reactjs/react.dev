@@ -25,7 +25,7 @@ Call `isValidElement` to check if some value is a *React element.*
 React elements are:
 
 - Values produced by writing a [JSX tag](/learn/writing-markup-with-jsx)
-- Values produced by calling [`createElement`](/api/react/createElement)
+- Values produced by calling [`createElement`](/apis/react/createElement)
 
 For React elements, `isValidElement` returns `true`:
 
@@ -55,7 +55,7 @@ console.log(isValidElement([<div />, <div />])); // false
 console.log(isValidElement(MyComponent)); // false
 ```
 
-It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](/api/react/cloneElement) does) and you want to avoid an error when your argument is not a React element.
+It is very uncommon to need `isValidElement`. It's mostly useful if you're calling another API that *only* accepts elements (like [`cloneElement`](/apis/react/cloneElement) does) and you want to avoid an error when your argument is not a React element.
 
 Unless you have some very specific reason to add an `isValidElement` check, you probably don't need it.
 
@@ -123,4 +123,4 @@ console.log(isValidElement({ age: 42 })); // false
 
 #### Caveats {/*caveats*/}
 
-* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/api/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/apis/react-dom/createPortal) are also *not* considered to be React elements.
+* **Only [JSX tags](/learn/writing-markup-with-jsx) and objects returned by [`createElement`](/apis/react/createElement) are considered to be React elements.** For example, even though a number like `42` is a valid React *node* (and can be returned from a component), it is not a valid React element. Arrays and portals created with [`createPortal`](/apis/react-dom/createPortal) are also *not* considered to be React elements.

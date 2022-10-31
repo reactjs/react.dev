@@ -18,7 +18,7 @@ Komponenttiesi täytyy usein näyttää eri asioita eri tilanteissa. Reactissa v
 
 ## JSX:n palauttaminen ehdollisesti {/*conditionally-returning-jsx*/}
 
-Sanotaan, että sinulla on `PackagingList` komponentti renderöimässä useita `Item` komponentteja, jotka voidaan merkitä pakatuiksi tai ei:
+Sanotaan, että sinulla on `PackagingList` komponentti renderöimässä useita `Item` komponentteja, jotka voidaan merkitä pakatuiksi tai ei-pakatuiksi:
 
 <Sandpack>
 

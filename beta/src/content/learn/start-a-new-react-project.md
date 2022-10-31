@@ -50,7 +50,7 @@ npm start
 
 Lisätietoja löydät [lukemalla virallista opasta.](https://create-react-app.dev/docs/getting-started)
 
-> Create React App ei hoida taustajärjestelmän logiikkaa taikka tietokantoja. Voit käyttää sitä minkä taustajärjestelmän kanssa haluat. Kun rakennat projektia, saat kansion täynnä staattisia HTML, CSS ja JS tiedostoja. Koska Create React App ei hyödynnä palvelinta, se ei parasta suorituskykyä. Jos etsit nopeampia latausaikoja ja sisäänrakennettuja ominaisuuksia kuten reitittämistä ja palvelinpuolen logiikkaa, suosittelemme ohjelmistokehystä sen sijaan.
+> Create React App ei hoida taustajärjestelmän logiikkaa taikka tietokantoja. Voit käyttää sitä minkä taustajärjestelmän kanssa haluat. Kun rakennat projektia, saat kansion täynnä staattisia HTML, CSS ja JS tiedostoja. Sillä Create React App ei hyödynnä palvelinta, se ei tarjoa parasta suorituskykyä. Jos etsit nopeampia latausaikoja ja sisäänrakennettuja ominaisuuksia kuten reitittämistä ja palvelinpuolen logiikkaa, suosittelemme ohjelmistokehystä sen sijaan.
 
 ### Suositut vaihtoehdot {/*toolkit-popular-alternatives*/}
 

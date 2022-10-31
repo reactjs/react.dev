@@ -85,18 +85,18 @@ Kun komponentti on renderöity aluksi, voit käynnistää uusia renderöintejä 
 
 <IllustrationBlock sequential>
   <Illustration
-    caption="State update..."
-    alt="React as a server in a restaurant, serving a Card UI to the user, represented as a patron with a cursor for their head. They patron expresses they want a pink card, not a black one!"
+    caption="Tilapäivitys..."
+    alt="React toimii palvelimena ravintolassa, joka tarjoilee käyttäjälle kortin käyttöliittymän, jota edustaa asiakas, jonka pää on kursori. Asiakas ilmaisee haluavansa vaaleanpunaisen kortin, ei mustaa!"
     src="/images/docs/illustrations/i_rerender1.png"
   />
   <Illustration
-    caption="...triggers..."
-    alt="React returns to the Component Kitchen and tells the Card Chef they need a pink Card."
+    caption="...käynnistää..."
+    alt="React palaa komponenttikeittiöön ja kertoo korttikokille, että he tarvitsevat vaaleanpunaisen kortin."
     src="/images/docs/illustrations/i_rerender2.png"
   />
   <Illustration
-    caption="...render!"
-    alt="The Card Chef gives React the pink Card."
+    caption="...renderin!"
+    alt="Korttikokki antaa Reactille vaaleanpunaisen kortin."
     src="/images/docs/illustrations/i_rerender3.png"
   />
 </IllustrationBlock>
@@ -130,7 +130,7 @@ function Image() {
   return (
     <img
       src="https://i.imgur.com/ZF6s192.jpg"
-      alt="'Floralis Genérica' by Eduardo Catalano: a gigantic metallic flower sculpture with reflective petals"
+      alt="'Floralis Genérica' by Eduardo Catalano: jättimäinen metallinen kukkaveistos, jossa on heijastavat terälehdet."
     />
   );
 }

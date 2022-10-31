@@ -35,7 +35,7 @@ export default function App() {
 
 </Sandpack>
 
-Voit muokata sitä suoraan tai avata sen uudessa välilehdessä painamalla "Fork" painiketta oikeasta yläreunasta.
+Voit muokata sitä suoraan tai avata sen uudessa välilehdessä painamalla "Forkkaa" painiketta oikeasta yläreunasta.
 
 Useimmat sivut Reactin dokumentaatiossa sisältävät hiekkalaatikkoja kuten tämän. Reactin dokumentaation ulkopuolelta löytyy monia hiekkalaatikkoja, jotka tukevat Reactia: esimerkiksi [CodeSandbox](https://codesandbox.io/s/new), [Stackblitz](https://stackblitz.com/fork/react), tai [CodePen](https://codepen.io/pen?&editors=0010&layout=left&prefill_data_id=3f4569d1-1b11-4bce-bd46-89090eed5ddb).
 

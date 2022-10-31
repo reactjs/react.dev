@@ -865,7 +865,7 @@ input {
 
 <Solution>
 
-Here is a version with both bugs fixed:
+Tässä on versio, jossa molemmat virheet on korjattu:
 
 <Sandpack>
 

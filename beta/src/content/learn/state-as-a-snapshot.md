@@ -23,7 +23,7 @@ on, vaan sen sijaan käynnistää uudelleenrenderöinnin.
 
 Saatat ajatella käyttöliittymäsi muuttuvan suoraan vastauksena käyttäjän tapahtumiin kuten klikkaukseen. Reactissa se poikkeaa hieman tästä ajattelutavasta. Edellisellä sivulla näit, että [tilan asettaminen pyytää uudelleenrenderöintiä](/learn/render-and-commit#step-1-trigger-a-render) Reactilta. Tämä tarkoittaa, että jotta käyttöliittymä voi reagoida tapahtumaan, sinun tulee *päivittää tilaa*.
 
-Tässä esimerkissä kun painat "send":ä, `setIsSent(true)` käskee Reactia renderöimään käyttöliittymä uudelleen:
+Tässä esimerkissä kun painat "Send" -painiketta, `setIsSent(true)` käskee Reactia renderöimään käyttöliittymä uudelleen:
 
 <Sandpack>
 
@@ -84,17 +84,17 @@ Kun React renderöi komponentin uudelleen:
 3. React sitten päivittää ruudun vastaamaan tilannekuvaa, jonka palautit.
 
 <IllustrationBlock sequential>
-    <Illustration caption="React executing the function" src="/images/docs/illustrations/i_render1.png" />
-    <Illustration caption="Calculating the snapshot" src="/images/docs/illustrations/i_render2.png" />
-    <Illustration caption="Updating the DOM tree" src="/images/docs/illustrations/i_render3.png" />
+    <Illustration caption="React suorittamassa funktiota" src="/images/docs/illustrations/i_render1.png" />
+    <Illustration caption="Tilannekuvan laskeminen" src="/images/docs/illustrations/i_render2.png" />
+    <Illustration caption="DOM puun päivitys" src="/images/docs/illustrations/i_render3.png" />
 </IllustrationBlock>
 
 Komponentin muistina, tila ei ole kuten tavalliset muuttujat, jotka katoavat kun komponenttisi palautuu. Itse asiassa tila "asuu" itse Reactissa--kuten hyllyllä--komponenttisi ulkopuolella. Kun React kutsuu komponenttiasi, se antaa tilannekuvan tilasta tälle kyseiselle renderöinnille. Komponenttisi palauttaa tilannekuvan käyttöliittymästä uudella joukolla propseja ja tapahtumankäsittelijöitä JSX:ssä, jotka kaikki on laskettu **käyttämällä kyseisen renderöinnin tila-arvoja!**
 
 <IllustrationBlock sequential>
-  <Illustration caption="You tell React to update the state" src="/images/docs/illustrations/i_state-snapshot1.png" />
-  <Illustration caption="React updates the state value" src="/images/docs/illustrations/i_state-snapshot2.png" />
-  <Illustration caption="React passes a snapshot of the state value into the component" src="/images/docs/illustrations/i_state-snapshot3.png" />
+  <Illustration caption="Käsket Reactin päivittämään tilaa" src="/images/docs/illustrations/i_state-snapshot1.png" />
+  <Illustration caption="React päivittää tilan arvon" src="/images/docs/illustrations/i_state-snapshot2.png" />
+  <Illustration caption="React välittää tilannekuvan tilan arvosta komponentille" src="/images/docs/illustrations/i_state-snapshot3.png" />
 </IllustrationBlock>
 
 Tässä pieni kokeilu, joka näyttää miten tämä toimii. Tässä esimerkissä saatat olettaa, että "+3" painikkeen painaminen kasvattaa numera kolme kertaa, koska se kutsuu `setNumber(number + 1)` kolmesti.

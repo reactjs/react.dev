@@ -21,7 +21,7 @@ Tervetuloa Reactin dokumentaatioon. Tällä sivulla esitellään 80% Reactin kon
 
 ## Komponenttien luominen ja sijoittaminen {/*components*/}
 
-React sovellukset koostuvat *komponenteista*. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin vaikka painonappi tai suuri kuin koko sivu.
+React sovellukset koostuvat *komponenteista*. Komponentti on pala käyttöliittymää (UI, user interface), jolla on sen oma logiikka ja ulkomuoto. Komponentti voi olla pieni kuin painonappi tai suuri kuin koko sivu.
 
 React komponentit ovat JavaScript funktioita, jotka palauttavat merkintäkoodin:
 
@@ -87,9 +87,7 @@ function TietoaSivu() {
     <>
       <h1>Tietoa</h1>
       <p>
-        Heippa.
-        <br />
-        Mitä kuuluu?
+        Heippa.<br />Mitä kuuluu?
       </p>
     </>
   );
@@ -265,11 +263,15 @@ function Painonappi() {
     alert('Napsautit minua!');
   }
 
-  return <button onClick={kunKlikataan}>Napsauta minua</button>;
+  return (
+    <button onClick={kunKlikataan}>
+      Napsauta minua
+    </button>
+  );
 }
 ```
 
-Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _völittää se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.
+Huomaa miten `onClick={kunKlikataan}` ei sisällä sulkeita lopussa! Älä kutsu tapahtumakäsittelijää: sinun täytyy ainoastaan _välittää se_. React kutsuu tapahtumakäsittelijääsi kun käyttäjä napsauttaa painiketta.
 
 ## Ruudun päivittäminen {/*updating-the-screen*/}
 

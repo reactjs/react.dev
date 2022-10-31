@@ -104,7 +104,7 @@ This lets you keep all of your code unchanged except the imports.
 
 ### Replacing `createFactory` with `createElement` {/*replacing-createfactory-with-createelement*/}
 
-If you have a few `createFactory` calls that you don't mind porting manually, and you don't want to use JSX, you can replace every call a factory function with a [`createElement`](/api/react/createElement) call. For example, you can replace this code:
+If you have a few `createFactory` calls that you don't mind porting manually, and you don't want to use JSX, you can replace every call a factory function with a [`createElement`](/apis/react/createElement) call. For example, you can replace this code:
 
 ```js {1,3,6}
 import { createFactory } from 'react';

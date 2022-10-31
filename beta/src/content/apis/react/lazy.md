@@ -173,7 +173,7 @@ const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 
 #### Returns {/*load-returns*/}
 
-You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to a valid React component type, such as a function, [`memo`](/api/react/memo), or a [`forwardRef`](/api/react/forwardRef) component.
+You need to return a [Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) or some other *thenable* (a Promise-like object with a `then` method). It needs to eventually resolve to a valid React component type, such as a function, [`memo`](/apis/react/memo), or a [`forwardRef`](/apis/react/forwardRef) component.
 
 ---
 

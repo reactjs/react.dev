@@ -9,6 +9,7 @@ import ButtonLink from 'components/ButtonLink';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
 import {IconTwitter} from 'components/Icon/IconTwitter';
+import {IconGitHub} from 'components/Icon/IconGitHub';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 
 export function Footer() {
@@ -159,6 +160,12 @@ export function Footer() {
                   href="https://twitter.com/reactjs"
                   className={socialLinkClasses}>
                   <IconTwitter />
+                </ExternalLink>
+                <ExternalLink
+                  aria-label="React on Github"
+                  href="https://github.com/reactjs/reactjs.org"
+                  className={socialLinkClasses}>
+                  <IconGitHub />
                 </ExternalLink>
               </div>
             </div>

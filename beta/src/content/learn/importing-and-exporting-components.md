@@ -52,11 +52,11 @@ img { margin: 0 10px 10px 0; height: 90px; }
 
 </Sandpack>
 
-Tässä esimerkissä nämä löytyvät **juurikomponenttitiedostosta** nimeltään `App.js`. [Create React App](https://create-react-app.dev/):ssa sovelluksesi elää `src/App.js` tiedostossa. Riippuen asennuksestasi, juurikomponenttisi saattaa olla toisessa tiedostossa. Jos käytät ohkelmistokehystä, jossa on tiedosto-pohjainen reititys, kuten Next.js, juurikomponenttisi on eri jokaiselle sivulle.
+Tässä esimerkissä nämä löytyvät **juurikomponenttitiedostosta** nimeltään `App.js`. [Create React App](https://create-react-app.dev/):ssa sovelluksesi elää `src/App.js` tiedostossa. Riippuen asennuksestasi, juurikomponenttisi saattaa olla toisessa tiedostossa. Jos käytät ohkelmistokehystä, jossa on tiedostopohjainen reititys, kuten Next.js, juurikomponenttisi on eri jokaiselle sivulle.
 
 ## Komponentin exporttaus ja importtaus {/*exporting-and-importing-a-component*/}
 
-Mitä jos haluat muuttaa laskeutumissivua tulevaisuudessa ja asettaa listan tiedekirjoista siihen? Tai siirtää kaikki profiilut jonnekin muualle? On järkevää siirtää `Gallery` ja `Profile` pois juurikomponentin tiedostosta. Tämä tekee niistä modulaarisempia ja uudelleenkäytettäviä muissa tiedostoissa. Voit siirtää komponentin kolmessa vaiheessa:
+Mitä jos haluat muuttaa laskeutumissivua tulevaisuudessa ja asettaa listan tiedekirjoista siihen? Tai siirtää kaikki profiilit jonnekin muualle? On järkevää siirtää `Gallery` ja `Profile` pois juurikomponentin tiedostosta. Tämä tekee niistä modulaarisempia ja uudelleenkäytettäviä muissa tiedostoissa. Voit siirtää komponentin kolmessa vaiheessa:
 
 
 1. **Luo** uusi JS tiedosto johon komponentin voi laittaa.

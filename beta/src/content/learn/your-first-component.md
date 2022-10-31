@@ -197,13 +197,13 @@ export default function Galleria() {
   // ...
 }
 
-// ✅ Declare components at the top level
+// ✅ Määrittele komponenttisi ylätasolla
 function Profiili() {
   // ...
 }
 ```
 
-When a child component needs some data from a parent, [pass it by props](/learn/passing-props-to-a-component) instead of nesting definitions.
+Kun alakomponentti tarvitsee jotain dataa, [välitä se propsien kautta](/learn/passing-props-to-a-component) määrittelyjen sisentämisen sijaan
 
 </Pitfall>
 

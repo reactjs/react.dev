@@ -236,7 +236,7 @@ Olet nyt saanut ensimakua Reactista! Kerrataanpa muutamia keskeisiä kohtia.
 
 <Challenges>
 
-### Exporttaa komponentti {/*export-the-component*/}
+#### Exporttaa komponentti {/*export-the-component*/}
 
 Tämä hiekkalaatikko ei toimi, koska juurikomponenttia ei ole exportattu:
 
@@ -288,7 +288,7 @@ Saatat miettiä miksi pelkän `export` sanan kirjoittaminen yksinään ei riitä
 
 </Solution>
 
-### Korjaa palautuslause {/*fix-the-return-statement*/}
+#### Korjaa palautuslause {/*fix-the-return-statement*/}
 
 Jokin ei nyt ole oiken tässä `return` lauseessa. Voitko korjata sen?
 
@@ -355,7 +355,7 @@ img { height: 180px; }
 
 </Solution>
 
-### Löydä virhe {/*spot-the-mistake*/}
+#### Löydä virhe {/*spot-the-mistake*/}
 
 Jokin on pielessä miten `Profile` komponetti on määritelty ja käytetty. Tunnistatko virheen? (Yritä muistaa miten React erottelee komponentit tavallisista HTML tageista!)
 
@@ -427,7 +427,7 @@ img { margin: 0 10px 10px 0; }
 
 </Solution>
 
-### Oma komponenttisi {/*your-own-component*/}
+#### Oma komponenttisi {/*your-own-component*/}
 
 Kirjoita komponentti alusta alkaen. Voit antaa sille minkä tahansa laillisen nimen ja palauttaa mitä merkintäkoodia haluat. Jos ideat loppuvat, voit kirjoittaa `OnneksiOlkoon` komponentin, joka näyttää `<h1>Hyvää työtä!</h1>`. Älä unohda exportata sitä!
 

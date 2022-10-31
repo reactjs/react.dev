@@ -533,7 +533,7 @@ Toisin kuin renderöintifunktiot, tapahtumakäsittelijöiden ei tarvitse olla [p
 
 <Challenges>
 
-### Korjaa tapahtumakäsittelijä {/*fix-an-event-handler*/}
+#### Korjaa tapahtumakäsittelijä {/*fix-an-event-handler*/}
 
 Painikkeen painamisen on tarkoitus vaihtaa sivun taustaväriä valkoisen ja musta välillä. Klikattaessa mitään ei kuitenkaan tapahdu. Korjaa ongelma. (Älä huoli `handleClick`:n sisällä olevasta logiikasta, se on hyvä sellaisenaan.)
 
@@ -614,7 +614,7 @@ export default function LightSwitch() {
 
 </Solution>
 
-### Yhdistä tapahtumat {/*wire-up-the-events*/}
+#### Yhdistä tapahtumat {/*wire-up-the-events*/}
 
 Tää `ColorSwitch` komponentti renderöi painikkeen. Sen on tarkoitus muuttaa sivun väriä. Yhdistä se `onChangeColor` tapahtumakäsittelijään, jonka se saa propsina sen yläkomponentilta, jotta painikkeen klikkaaminen vaihtaa väriä.
 

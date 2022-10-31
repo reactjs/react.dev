@@ -225,7 +225,7 @@ Jokainen uusi Reactin ominaisuus joita rakennamme hyödyntää puhtautta. Tiedon
   
 <Challenges>
 
-### Korjaa rikkinäinen kello {/*fix-a-broken-clock*/}
+#### Korjaa rikkinäinen kello {/*fix-a-broken-clock*/}
 
 Tämä komponentti yrittää asettaa `<h1>`:n CSS luokan arvoksi `"night"` keskiyöstä aamu kuuteen ja arvoksi `"day"` muina aikoina. Se ei kuitenkaan toimi. Voitko korjata tämän komponentin?
 
@@ -362,7 +362,7 @@ Tässä esimerkissä sivuvaikutus (DOM:n muuttaminen) ei ole tarpeellista ollenk
 
 </Solution>
 
-### Korjaa rikkinäinen profiili {/*fix-a-broken-profile*/}
+#### Korjaa rikkinäinen profiili {/*fix-a-broken-profile*/}
 
 Kaksi `Profile` komponenttia on renderöity vierekkäin eri tiedoilla. Paina "Collapse" ensimmäisessä profiilissa ja sitten "Expand":ia. Huomaat, että molemmat profiilit näyttävät saman henkilön. Tämä on bugi.
 

@@ -425,7 +425,7 @@ Propsit ovat kuitenkin muuttumattomia (engl. [immutable](https://en.wikipedia.or
 
 <Challenges>
 
-### Erota komponentti {/*extract-a-component*/}
+#### Erota komponentti {/*extract-a-component*/}
 
 Tämä `Gallery` komponentti sisältää samanlaista merkintäkoodia kahdelle profiilille. Luo `Profile` komponentti vähentääksesi koodin toistoa. Sinun täytyy päättää mitä propseja välität sille.
 
@@ -727,7 +727,7 @@ Vaikka syntaksi näyttää hivenen erilaiselta koska kuvailet JavaScript olion o
 
 </Solution>
 
-### Säädä kuvan kokoa propsin avulla {/*adjust-the-image-size-based-on-a-prop*/}
+#### Säädä kuvan kokoa propsin avulla {/*adjust-the-image-size-based-on-a-prop*/}
 
 Tässä esimerkissä `Avatar` vastaanottaa numeerisen `size` propsin, joka määrittää `<img>`:n leveyden ja korkeuden. `size` propsi on asetettu arvoon `40` tässä esimerkissä, Kuitenkin jos avaat kuva uudessa välilehdessä, huomaat, että kuva itsessään on suurempi (`160` pikseliä). Oikea kuvan koko määritellään minkä pikkukuvan kokoa pyydät.
 
@@ -919,7 +919,7 @@ Propseilla voit koteloida tämänkaltaisen logiikan `Avatar` komponentin sisää
 
 </Solution>
 
-### JSX:n välittäminen `children` propsissa {/*passing-jsx-in-a-children-prop*/}
+#### JSX:n välittäminen `children` propsissa {/*passing-jsx-in-a-children-prop*/}
 
 Luo `Card` komponentti alla olevasta merkintäkoodista ja käytä `children` propsia välittääksesi eri JSX:ää sille:
 

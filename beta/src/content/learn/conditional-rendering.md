@@ -452,7 +452,7 @@ Mikäli JavaScript ei ole tuttua, nämä tyylit voivat tuntua ylivoimaisilta alu
 
 <Challenges>
 
-### Näytä kuvake keskeneräisille kohteille hyödyntämällä `? :` {/*show-an-icon-for-incomplete-items-with--*/}
+#### Näytä kuvake keskeneräisille kohteille hyödyntämällä `? :` {/*show-an-icon-for-incomplete-items-with--*/}
 
 Käytä ehdollista operaattoria (`cond ? a : b`) renderöidäksesi ❌ jos `isPacked` ei ole `true`.
 
@@ -532,7 +532,7 @@ export default function PackingList() {
 
 </Solution>
 
-### Näytä kohteen tärkeys hyödyntämällä `&&` {/*show-the-item-importance-with-*/}
+#### Näytä kohteen tärkeys hyödyntämällä `&&` {/*show-the-item-importance-with-*/}
 
 Tässä esimerkissä jokainen `Item` vastaanottaa numeerisen `importance` propin. Käytä `&&` lyhytoperaatiota renderöidäksesi "_(Importance: X)_" kursivoituna, mutta vain kohteille joiden tärkeys on suurempi kuin nolla. Listauksen pitäisi päätyä näyttämään seuraavanlaiselta:
 
@@ -580,7 +580,7 @@ export default function PackingList() {
 
 <Solution>
 
-This should do the trick:
+Tämän ratkaisun pitäisi toimia:
 
 <Sandpack>
 
@@ -628,7 +628,7 @@ Tässä ratkaisussa kahta erillistä ehtolausetta käytetään asettamaan välil
 
 </Solution>
 
-### Refaktoroi sarja `? :` käyttämään `if`-lausetta ja muuttujia {/*refactor-a-series-of---to-if-and-variables*/}
+#### Refaktoroi sarja `? :` käyttämään `if`-lausetta ja muuttujia {/*refactor-a-series-of---to-if-and-variables*/}
 
 Tämä `Drink` komponentti käyttää sarjan `= :` ehtolauseita näyttääkseen erilaista tietoa riippuen onko `name` propsi `"tea"` tai `"coffee"`. Ongelmana on, että tiedot jokaisesta juomasta on hajautettuna usesiin ehtoihin. Refaktoroi koodi käyttämään yhtä `if` lausetta kolmen `? :`-ehdon sijaan.
 
@@ -643,7 +643,7 @@ function Drink({ name }) {
         <dt>Part of plant</dt>
         <dd>{name === 'tea' ? 'leaf' : 'bean'}</dd>
         <dt>Caffeine content</dt>
-        <dd>{name === 'tea' ? '15–70 mg/cup' : '80–185 mg/cup'}</dd>
+        <dd>{name === 'tea' ? '15-70 mg/cup' : '80-185 mg/cup'}</dd>
         <dt>Age</dt>
         <dd>{name === 'tea' ? '4,000+ years' : '1,000+ years'}</dd>
       </dl>

@@ -438,7 +438,7 @@ Tällä sivulla olet oppinut:
 
 <Challenges>
 
-### Listan jakaminen kahteen {/*splitting-a-list-in-two*/}
+#### Listan jakaminen kahteen {/*splitting-a-list-in-two*/}
 
 Tämä esimerkki näyttää listan kaikista henkilöistä.
 
@@ -880,7 +880,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 </Solution>
 
-### Sisäkkäiset listat yhdessä komponenetissa {/*nested-lists-in-one-component*/}
+#### Sisäkkäiset listat yhdessä komponenetissa {/*nested-lists-in-one-component*/}
 
 Tee lista resepteista tästä taulukosta! Näytä jokaiselle reseptille taulukossa sen otsikko `<h2>` elementtinä ja listaa sen ainesosat `<ul>` elementissä.
 
@@ -974,7 +974,7 @@ Jokainen `recipes` valmiiksi sisältää `id` kentän, joten ulompi silmukka kä
 
 </Solution>
 
-### Irrota lista-elementti omaan komponenttiin {/*extracting-a-list-item-component*/}
+#### Irrota lista-elementti omaan komponenttiin {/*extracting-a-list-item-component*/}
 
 Tämä `RecipeList` komponentti sisältää kaksi `map` kutsua. Yksinkertaistaaksesi sen, luo `Recipe` komponentti siitä joka vastaanottaa `id`, `name` ja `ingredients` propsit. Mihin sijoittaisit ulomman `key`:n ja miksi?
 
@@ -1082,7 +1082,7 @@ Tässä `<Recipe {...recipe} key={recipe.id} />` on lyhytsyntaksi joka "välitt�
 
 </Solution>
 
-### Listat erottimella {/*list-with-a-separator*/}
+#### Listat erottimella {/*list-with-a-separator*/}
 
 Tämä esimerkki renderöi kuuluisan Katsushika Hokusain haikun, jokaisen rivin ollessa kääritty `<p>` tagin sisään. Tehtäväsi on sijoittaa `<hr />` erotin jokaisen kappaleen jälkeen. Lopputuloksen rakennelman pitäisi näyttää tältä:
 

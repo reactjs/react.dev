@@ -907,7 +907,7 @@ Entä jos haluaisit molempien gallerioiden pitäbän niiden tilan synkronisoitun
 
 <Challenges>
 
-### Viimeistele galleria {/*complete-the-gallery*/}
+#### Viimeistele galleria {/*complete-the-gallery*/}
 
 Kun painat "Next" painiketta viimesellä veistoksella, koodi kaatuu. Korjaa logiikka joka estää kaatumista. Voit tehdä tämän lisäämällä logiikkaa tapahtumakäsittelijään tai poistamalla painikkeen käytöstä kun toimintoa ei ole mahdollista tehdä.
 
@@ -1217,7 +1217,7 @@ Huomaa miten `hasPrev` ja `hasNext` ovat käytössä *sekä* palautetussa JSX ko
 
 </Solution>
 
-### Korjaa lomakkeen tukkiutuneet syöttökentät {/*fix-stuck-form-inputs*/}
+#### Korjaa lomakkeen tukkiutuneet syöttökentät {/*fix-stuck-form-inputs*/}
 
 Kun kirjoitat syöttökenttiin, mitään ei tapahdu. Aivan kuin kenttien arvot ovat "jumissa" tyhjillä merkkijonoilla. Ensimmäisen `<input>` elementin `value` on asetettu aina vastaamaan `firstName` muuttujaa ja toisen `<input>` elementin `value` vastaamaan `lastName` muuttujaa. Tämä on tarkoituksenmukaista. Molemmilla kentillä on `onChange` tapahtumakäsittelijä, joka pyrkii päivittämään muuttujia käyttäjän syötteen (`e.target.value`) perusteella. Kuitenkaan, muuttujat eivät näytä "muistavan" niiden arvoja renderöintien välillä. Korjaa tämä käyttämällä tilamuuttujia tavallisten muuttujien sijaan.
 
@@ -1319,7 +1319,7 @@ h1 { margin-top: 10px; }
 
 </Solution>
 
-### Korjaa kaatuminen {/*fix-a-crash*/}
+#### Korjaa kaatuminen {/*fix-a-crash*/}
 
 Tässä on pieni lomake, jonka olisi tarkoitus antaa käyttäjän jättää palautetta. Kun palaute lähetetään, sen olisi tarkoitus näyttää kiitosviesti. Kuitenkin, se kaatuu virheellä "Rendered fewer hooks than expected". Huomaatko virheen ja pystytkö korjaamaan sen?
 

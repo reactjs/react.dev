@@ -245,7 +245,7 @@ Nyt tiedät melkein kaiken JSX:stä:
 
 <Challenges>
 
-### Korjaa ongelma {/*fix-the-mistake*/}
+#### Korjaa ongelma {/*fix-the-mistake*/}
 
 Tämä koodi kaatuu virheellä `Objects are not valid as a React child`:
 
@@ -289,7 +289,7 @@ body > div > div { padding: 20px; }
 
 Löydätkö ongelman?
 
-<Hint>Katso mitä aaltosulkeiden sisällä on. Onko se oikein?</Hint>
+<Hint>Katso mitä aaltosulkeiden sisällä on. Onko sinne annettu oikea asia?</Hint>
 
 <Solution>
 

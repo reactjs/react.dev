@@ -170,7 +170,7 @@ export default function Profiili() {
 
 </Sandpack>
 
-Ylläolevasta esimerkissä `style={{}}` ei ole erityistä syntaksia, vaan normaali `{}` olio JSX aaltosulkeiden `style={ }` sisällä. Voit käyttää `style` attribuuttia kun tyylisi riippuu JavaScript muuttujista.
+Ylläolevassa esimerkissä käytetty `style={{}}` ei ole erityistä syntaksia, vaan normaali `{}` olio JSX aaltosulkeiden `style={ }` sisällä. Voit käyttää `style` attribuuttia kun tyylisi riippuu JavaScript muuttujista.
 
 ## Ehdollinen renderöinti {/*conditional-rendering*/}
 

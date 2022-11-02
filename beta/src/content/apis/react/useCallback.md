@@ -116,7 +116,7 @@ function ProductPage({ productId, referrer, theme }) {
 }
 ```
 
-**By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders** (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/api/react/memo) and this lets it skip re-rendering. There are a few other reasons you might need `useCallback` which are described further on this page.
+**By wrapping `handleSubmit` in `useCallback`, you ensure that it's the *same* function between the re-renders** (until dependencies change). You don't *have to* wrap a function in `useCallback` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/apis/react/memo) and this lets it skip re-rendering. There are a few other reasons you might need `useCallback` which are described further on this page.
 
 <Note>
 
@@ -856,7 +856,7 @@ When you find which dependency is breaking memoization, either find a way to rem
 
 ### I need to call `useCallback` for each list item in a loop, but it's not allowed {/*i-need-to-call-usememo-for-each-list-item-in-a-loop-but-its-not-allowed*/}
 
-Suppose the `Chart` component is wrapped in [`memo`](/api/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useCallback` in a loop:
+Suppose the `Chart` component is wrapped in [`memo`](/apis/react/memo). You want to skip re-rendering every `Chart` in the list when the `ReportList` component re-renders. However, you can't call `useCallback` in a loop:
 
 ```js {5-14}
 function ReportList({ items }) {
@@ -906,7 +906,7 @@ function Report({ item }) {
 }
 ```
 
-Alternatively, you could remove `useCallback` in the last snippet and instead wrap `Report` itself in [`memo`.](/api/react/memo) If the `item` prop does not change, `Report` will skip re-rendering, so `Chart` will skip re-rendering too:
+Alternatively, you could remove `useCallback` in the last snippet and instead wrap `Report` itself in [`memo`.](/apis/react/memo) If the `item` prop does not change, `Report` will skip re-rendering, so `Chart` will skip re-rendering too:
 
 ```js {5,6-8,15}
 function ReportList({ items }) {

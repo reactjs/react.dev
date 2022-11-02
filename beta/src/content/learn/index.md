@@ -96,7 +96,7 @@ If you have a lot of HTML to port to JSX, you can use an [online converter.](htt
 
 ## Adding styles {/*adding-styles*/}
 
-In React, you specify a CSS class with `className`. It works the same way as HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
+In React, you specify a CSS class with `className`. It works the same way as the HTML [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribute:
 
 ```js
 <img className="avatar" />

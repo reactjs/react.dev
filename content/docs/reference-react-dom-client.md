@@ -11,11 +11,18 @@ The `react-dom/client` package provides client-specific methods used for initial
 ```js
 import * as ReactDOM from 'react-dom/client';
 ```
-
+Or
+```js
+import {createRoot}  from 'react-dom/client';
+```
 If you use ES5 with npm, you can write:
 
 ```js
 var ReactDOM = require('react-dom/client');
+```
+Or
+```js
+var {createRoot} = require('react-dom/client');
 ```
 
 ## Overview {#overview}
@@ -44,7 +51,7 @@ createRoot(container[, options]);
 Create a React root for the supplied `container` and return the root. The root can be used to render a React element into the DOM with `render`:
 
 ```javascript
-const root = createRoot(container);
+const root = createRoot(container); // Or ReactDOM.createRoot(container) depending on import
 root.render(element);
 ```
 

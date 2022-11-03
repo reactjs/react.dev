@@ -177,7 +177,7 @@ If your app is like this site, and most interactions are coarse (like replacing 
 
 Caching a function with `useCallback`  is only valuable in a few cases:
 
-- You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies are the same.
+- You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies aren't the same.
 - The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/apis/react/useEffect)
 
 There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.

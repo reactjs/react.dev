@@ -97,7 +97,7 @@ Optimizing with `useMemo`  is only valuable in a few cases:
 
 - The calculation you're putting in `useMemo` is noticeably slow, and its dependencies rarely change.
 
-- You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies are different.
+- You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies aren't the same.
 
 - The value you're passing is later used as a dependency of some Hook. For example, maybe another `useMemo` calculation value depends on it. Or maybe you are depending on this value from [`useEffect.`](/apis/react/useEffect)
 

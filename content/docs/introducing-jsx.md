@@ -62,7 +62,7 @@ const element = (
 
 We split JSX over multiple lines for readability. While it isn't required, when doing this, we also recommend wrapping it in parentheses to avoid the pitfalls of [automatic semicolon insertion](https://stackoverflow.com/q/2846283).
 
-### JSX is an Expression Too {#jsx-is-an-expression-too}
+### JSX is an Expression Tool {#jsx-is-an-expression-too}
 
 After compilation, JSX expressions become regular JavaScript function calls and evaluate to JavaScript objects.
 

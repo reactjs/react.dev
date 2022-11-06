@@ -80,7 +80,7 @@ function MyComponent() {
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="createContext" path="/apis/react/useContext">
+<YouWillLearnCard title="createContext" path="/apis/react/createContext">
 
 Creates a context that components can provide or read.
 

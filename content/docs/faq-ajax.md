@@ -14,7 +14,7 @@ You can use any AJAX library you like with React. Some popular ones are [Axios](
 
 You should populate data with AJAX calls in the [`componentDidMount`](/docs/react-component.html#mounting) lifecycle method. This is so you can use `setState` to update your component when the data is retrieved.
 
-### Example: Using AJAX results to set local state {#example-using-ajax-results-to-set-local-state}
+### Example: Using AJAX results to set local state using browser built-in `window.fetch` {#example-using-ajax-results-to-set-local-state-using-browser-built-in}
 
 The component below demonstrates how to make an AJAX call in `componentDidMount` to populate local component state. 
 

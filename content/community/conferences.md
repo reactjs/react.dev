@@ -57,6 +57,11 @@ May, 2023. Salt Lake City, UT
 
 [Website](https://remix.run/conf/2023) - [Twitter](https://twitter.com/remix_run)
 
+### App.js Conf 2023 {#appjs-conf-2023}
+May 10 - 12, 2023. In-person in Kraków, Poland + remote
+
+[Website](https://appjs.co) - [Twitter](https://twitter.com/appjsconf)
+
 ### Render(ATL) 2023 🍑 {#render-atlanta-2023} 
 May 31 - June 2, 2023. Atlanta, GA, USA
 

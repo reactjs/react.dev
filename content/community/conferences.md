@@ -12,31 +12,6 @@ Do you know of a local React.js conference? Add it here! (Please keep the list c
 
 ## Upcoming Conferences {#upcoming-conferences}
 
-### React India 2022 {#react-india-2022}
-September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
-
-[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
-
-### React Alicante 2022 {#react-alicante-2022}
-September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
-
-[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
-
-### React Brussels 2022 {#react-brussels-2022} 
-October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
-
-[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
-
-### ReactJS Day 2022 {#reactjs-day-2022}
-October 21, 2022 in Verona, Italy
-
-[Website](https://2022.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [Facebook](https://www.facebook.com/reactjsday/) - [Videos](https://www.youtube.com/c/grusp)
-
-### React Advanced 2022 {#react-advanced-2022}
-October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
-
-[Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://www.youtube.com/c/ReactConferences)
-
 ### React Global Online Summit 22.2 by Geekle {#react-global-v2-2022}
 November 8 - 9, 2022 - Online Summit
 
@@ -73,6 +48,30 @@ June 2 & 6, 2023. In-person in Amsterdam, Netherlands + remote first interactivi
 [Website](https://reactsummit.com) - [Twitter](https://twitter.com/reactsummit) - [Facebook](https://www.facebook.com/reactamsterdam) - [Videos](https://youtube.com/c/ReactConferences)
 
 ## Past Conferences {#past-conferences}
+
+### React Advanced 2022 {#react-advanced-2022}
+October 21 & 25, 2022. In-person in London, UK + remote (hybrid event)
+
+[Website](https://www.reactadvanced.com/) - [Twitter](https://twitter.com/ReactAdvanced) - [Facebook](https://www.facebook.com/ReactAdvanced) - [Videos](https://www.youtube.com/c/ReactConferences)
+
+### ReactJS Day 2022 {#reactjs-day-2022}
+October 21, 2022 in Verona, Italy
+
+[Website](https://2022.reactjsday.it/) - [Twitter](https://twitter.com/reactjsday) - [LinkedIn](https://www.linkedin.com/company/grusp/) - [Facebook](https://www.facebook.com/reactjsday/) - [Videos](https://www.youtube.com/c/grusp)
+
+### React Brussels 2022 {#react-brussels-2022} 
+October 14, 2022. In-person in Brussels, Belgium + remote (hybrid event)
+
+[Website](https://www.react.brussels/) - [Twitter](https://twitter.com/BrusselsReact) - [LinkedIn](https://www.linkedin.com/events/6938421827153088512/) - [Facebook](https://www.facebook.com/events/1289080838167252/) - [Videos](https://www.youtube.com/channel/UCvES7lMpnx-t934qGxD4w4g)
+
+### React Alicante 2022 {#react-alicante-2022}
+September 29 - October 1, 2022. In-person in Alicante, Spain + remote (hybrid event)
+
+[Website](https://reactalicante.es/) - [Twitter](https://twitter.com/reactalicante) - [Facebook](https://www.facebook.com/ReactAlicante) - [Videos](https://www.youtube.com/channel/UCaSdUaITU1Cz6PvC97A7e0w)
+### React India 2022 {#react-india-2022}
+September 22 - 24, 2022. In-person in Goa, India + remote (hybrid event)
+
+[Website](https://www.reactindia.io) - [Twitter](https://twitter.com/react_india) - [Facebook](https://www.facebook.com/ReactJSIndia) - [Videos](https://www.youtube.com/channel/UCaFbHCBkPvVv1bWs_jwYt3w)
 
 ### React Finland 2022 {#react-finland-2022}
 September 12 - 16, 2022. In-person in Helsinki, Finland

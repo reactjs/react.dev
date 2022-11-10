@@ -16,11 +16,20 @@ To install the latest version of React:
 ```bash
 npm install react react-dom
 ```
+if this does not work for you, you can try:
+
+```bash
+npm install react@latest react-dom@latest
+```
 
 Or if you’re using yarn:
 
 ```bash
 yarn add react react-dom
+```
+or
+```bash
+yarn add react@latest react-dom@latest
 ```
 
 ## Updates to Client Rendering APIs {#updates-to-client-rendering-apis}

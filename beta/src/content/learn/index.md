@@ -98,7 +98,7 @@ Mikäli sinulla on paljon HTML merkintäkoodia muutettavana JSX koodiksi, voit k
 
 ## Tyylien lisääminen {/*adding-styles*/}
 
-Reactissa voit määritellä CSS luokat käyttämällä `className` attribuuttia. Se toimii samoin kuin HTML kielen [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribuutti:
+Reactissa määrittelet CSS luokat käyttämällä `className` attribuuttia. Se toimii samoin kuin HTML kielen [`class`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/class) attribuutti:
 
 ```js
 <img className="avatar" />

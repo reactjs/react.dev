@@ -1,34 +1,34 @@
 ---
-title: Writing Markup with JSX
+title: Merkintäkoodin kirjoittaminen JSX:llä
 ---
 
 <Intro>
 
-*JSX* is a syntax extension for JavaScript that lets you write HTML-like markup inside a JavaScript file. Although there are other ways to write components, most React developers prefer the conciseness of JSX, and most codebases use it.
+*JSX* on lisäsyntaksi JavaScriptille, jonka avulla voit kirjoittaa HTML:n tyylistä merkintäkoodia JavaScript tiedoston sisällä. Vaikka on muita tapoja kirjoittaa komponentteja, useimmat React kehittäjät pitävät JSX:n tiiviydestä ja iso osa koodipohjista käyttää sitä.
 
 </Intro>
 
 <YouWillLearn>
 
-* Why React mixes markup with rendering logic
-* How JSX is different from HTML
-* How to display information with JSX
+* Miksi React sekoittaa merkintäkoodia ja renderöintilogiikkaa
+* Miten JSX poikeeaan HTML:stä
+* Miten dataa voidaan näyttää JSX:llä
 
 </YouWillLearn>
 
-## JSX: Putting markup into JavaScript {/*jsx-putting-markup-into-javascript*/}
+## JSX: Laitetaan merkintäkoodi JavaScriptiin {/*jsx-putting-markup-into-javascript*/}
 
-The Web has been built on HTML, CSS, and JavaScript. For many years, web developers kept content in HTML, design in CSS, and logic in JavaScript—often in separate files! Content was marked up inside HTML while the page's logic lived separately in JavaScript:
+Verkkosivut on rakennettu HTML:n, CSS:n ja JavaScriptin varaan. Monien vuosien ajan web-kehittäjät pitivät sisällön HTML:ssä, suunnittelun CSS:ssä ja logiikan JavaScriptissä - usein erillisissä tiedostoissa! Sisältö merkittiin HTML:ään, kun taas sivun logiikka oli erikseen JavaScriptissä:
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML markup with purple background and a div with two child tags: p and form. ">
+<Diagram name="writing_jsx_html" height={237} width={325} alt="HTML-merkki, jossa on violetti tausta ja div, jossa on kaksi alatunnistetta: p ja form.">
 
 HTML
 
 </Diagram>
 
-<Diagram name="writing_jsx_js" height={237} width={325} alt="Three JavaScript handlers with yellow background: onSubmit, onLogin, and onClick.">
+<Diagram name="writing_jsx_js" height={237} width={325} alt="Kolme JavaScript-käsittelijää keltaisella taustalla: isLoggedIn, onClick ja onSubmit.">
 
 JavaScript
 
@@ -36,53 +36,53 @@ JavaScript
 
 </DiagramGroup>
 
-But as the Web became more interactive, logic increasingly determined content. JavaScript was in charge of the HTML! This is why **in React, rendering logic and markup live together in the same place—components.**
+Mutta kun verkkosivuista tuli interaktiivisempia, logiikka enimmäkseen määräsi sisällön.  JavaScript vastasi HTML:stä! Tästä syystä **Reactissa renderointilogiikka ja merkintä asuvat yhdessä samassa paikassa - komponenteissa**.
 
 <DiagramGroup>
 
-<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Sidebar which calls the function isLoggedIn, highlighted in yellow. Nested inside the function highlighted in purple is the p tag from before, and a Form tag referencing the component shown in the next diagram.">
+<Diagram name="writing_jsx_sidebar" height={330} width={325} alt="React komponentti, jossa on HTML- ja JavaScript koodia aiemmasta esimerkistä sekoitettuna. Funktion nimi on Sidebar, joka kutsuu isLoggedIn funktiota, korostettuna keltaisella. Sisennettynä ja violetilla korostettuna funktiossa on p tagi edellisestä esimerkistä ja Form tagi, joka viittaa komponenttiin seuraavassa kaaviossa.">
 
-`Sidebar.js` React component
+`Sidebar.js` React komponentti
 
 </Diagram>
 
-<Diagram name="writing_jsx_form" height={330} width={325} alt="React component with HTML and JavaScript from previous examples mixed. Function name is Form containing two handlers onClick and onSubmit highlighted in yellow. Following the handlers is HTML highlighted in purple. The HTML contains a form element with a nested input element, each with an onClick prop.">
+<Diagram name="writing_jsx_form" height={330} width={325} alt="React komponentti, jossa on HTML- ja JavaScript koodia edellisistä esimerkeistä sekoitettuna. Funktion nimi on Form, joka sisältää kaksi tapahtumakäsittelijää, onClick ja onSubmit korostettuna keltaisella. Tapahtumakäsittelijöiden jälkeen on HTML korostettuna violetilla. HTML sisältää lomakkeen ja syöttöelementin sisennettynä, kullakin elementillä onClick propsi.">
 
-`Form.js` React component
+`Form.js` React komponentti
 
 </Diagram>
 
 </DiagramGroup>
 
-Keeping a button's rendering logic and markup together ensures that they stay in sync with each other on every edit. Conversely, details that are unrelated, such as the button's markup and a sidebar's markup, are isolated from each other, making it safer to change either of them on their own.
+Pitämällä painikkeen renderointilogiikka ja merkintäkoodi yhdessä voidaan varmistua siitä, että ne pysyvät synkronoituina keskenään jokaisen muokkauksen yhteydessä. Toisiinsa liittymättömät yksityiskohdat, kuten painikkeen ja sivupalkin merkintäkoodi on erillään toisistaan, tehden molempien muuttamisesta yksinään turvallisempaa.
 
-Each React component is a JavaScript function that may contain some markup that React renders into the browser. React components use a syntax extension called JSX to represent that markup. JSX looks a lot like HTML, but it is a bit stricter and can display dynamic information. The best way to understand this is to convert some HTML markup to JSX markup.
+Jokainen React komponentti on JavaScript funktio, joka saattaa sisältää merkintäkoodia, jonka React renderöi selaimeen. React komponentit käyttävät syntaksilisäosaa nimeltään JSX edustamaan merkintäkieltä. JSX näyttää lähes samalta kuin HTML, mutta se on hieman tiukempaa ja voi näyttää dynaamista sisältöä. Parhain tapa ymmärtää tämä on kääntää vähän HTML koodia JSX:ksi.
 
 <Note>
 
-JSX and React are two separate things. They're often used together, but you *can* [use them independently](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) of each other. JSX is a syntax extension, while React is a JavaScript library.
+JSX ja React ovat kaksi eri asiaa. Niitä usein käytetään yhdessä, mutta *voit* [käyttää niitä itsenäisesti](https://reactjs.org/blog/2020/09/22/introducing-the-new-jsx-transform.html#whats-a-jsx-transform) toisistaan. JSX on syntaksilisä, kun taas React on JavaScript kirjasto.
 
 </Note>
 
-## Converting HTML to JSX {/*converting-html-to-jsx*/}
+## Muunnetaan HTML koodi JSX koodiksi {/*converting-html-to-jsx*/}
 
-Suppose that you have some (perfectly valid) HTML:
+Oletataan, että sinulla on vähän (täysin validia) HTML:ää.
 
 ```html
-<h1>Hedy Lamarr's Todos</h1>
+<h1>Hedy Lamarrin tehtävälista</h1>
 <img 
   src="https://i.imgur.com/yXOvdOSs.jpg" 
   alt="Hedy Lamarr" 
   class="photo"
 >
 <ul>
-    <li>Invent new traffic lights
-    <li>Rehearse a movie scene
-    <li>Improve the spectrum technology
+    <li>Keksi uusi liikennevalo
+    <li>Harjoittele elokuvakohtausta
+    <li>Paranna spektritekniikkaa
 </ul>
 ```
 
-And you want to put it into your component:
+Ja haluat laittaa sen komponenttiisi:
 
 ```js
 export default function TodoList() {
@@ -92,7 +92,7 @@ export default function TodoList() {
 }
 ```
 
-If you copy and paste it as is, it will not work:
+Jos kopioit ja liität sen sellaisenaan, se ei toimi:
 
 
 <Sandpack>
@@ -100,17 +100,17 @@ If you copy and paste it as is, it will not work:
 ```js
 export default function TodoList() {
   return (
-    // This doesn't quite work!
-    <h1>Hedy Lamarr's Todos</h1>
+    // Tämä ei ihan toimi
+    <h1>Hedy Lamarrin tehtävälista</h1>
     <img 
       src="https://i.imgur.com/yXOvdOSs.jpg" 
       alt="Hedy Lamarr" 
       class="photo"
     >
     <ul>
-      <li>Invent new traffic lights
-      <li>Rehearse a movie scene
-      <li>Improve the spectrum technology
+        <li>Keksi uusi liikennevalo
+        <li>Harjoittele elokuvakohtausta
+        <li>Paranna spektritekniikkaa
     </ul>
   );
 }
@@ -122,25 +122,25 @@ img { height: 90px }
 
 </Sandpack>
 
-This is because JSX is stricter and has a few more rules than HTML! If you read the error messages above, they'll guide you to fix the markup, or you can follow the guide below.
+Tämä tapahtuu siksi, koska JSX on tiukempaa ja siinä on muutama sääntö enemmän kuin HTML:ssä. Jos luet virheviestin yllä, se ohjeistaa korjaamaan merkintäkoodin tai voit seurata ohjetta alla.
 
 <Note>
 
-Most of the times, React's on-screen error messages will help you find where the problem is. Give them a read if you get stuck!
+Usein Reactin virheviestit auttavat sinua löytämään missä ongelma on. Kannattaa lukea niitä, jos jäät jumiin!
 
 </Note>
 
-## The Rules of JSX {/*the-rules-of-jsx*/}
+## JSX koodin säännöt {/*the-rules-of-jsx*/}
 
-### 1. Return a single root element {/*1-return-a-single-root-element*/}
+### 1. Palauta yksi juurielementti {/*1-return-a-single-root-element*/}
 
-To return multiple elements from a component, **wrap them with a single parent tag.**
+Palauttaaksesi useita elementtejä komponentista, **kääri ne yhden tagin sisään.**
 
-For example, you can use a `<div>`:
+Esimerkiksi, voit käyttää `<div>`:
 
 ```js {1,11}
 <div>
-  <h1>Hedy Lamarr's Todos</h1>
+  <h1>Hedy Lamarrin tehtävälista</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
@@ -152,12 +152,11 @@ For example, you can use a `<div>`:
 </div>
 ```
 
-
-If you don't want to add an extra `<div>` to your markup, you can write `<>` and `</>` instead:
+Jos et halua lisätä ylimääräistä `<div>` tagia merkintäkoodiisi, voit kirjotitaa `<>` ja `</>` sen sijaan:
 
 ```js {1,11}
 <>
-  <h1>Hedy Lamarr's Todos</h1>
+  <h1>Hedy Lamarrin tehtävälista</h1>
   <img 
     src="https://i.imgur.com/yXOvdOSs.jpg" 
     alt="Hedy Lamarr" 
@@ -169,19 +168,19 @@ If you don't want to add an extra `<div>` to your markup, you can write `<>` and
 </>
 ```
 
-This empty tag is called a *[Fragment.](/apis/react/Fragment)* Fragments let you group things without leaving any trace in the browser HTML tree.
+Tätä tyhjää tagia kutsutaan *[Fragmentiksi.](/apis/react/Fragment)* Fragmenttien avulla voit ryhmittää asioita jättämättä jälkiä selaimen HTML puuhun.
 
-<DeepDive title="Why do multiple JSX tags need to be wrapped?">
+<DeepDive title="Miksi useat JSX tagit täytyy kääriä?">
 
-JSX looks like HTML, but under the hood it is transformed into plain JavaScript objects. You can't return two objects from a function without wrapping them into an array. This explains why you also can't return two JSX tags without wrapping them into another tag or a Fragment.
+JSX näyttää samalta kuin HTML, mutta pellin alla se muunnetaan tavallisiksi JavaScript-olioiksi. Et voi palauttaa kahta oliota funktiosta käärimättä niitä taulukkoon. Tämä selittää miksi et voi palauttaa kahta JSX tagia käärimättä niitä yhteen tagiin tai Fragmenttiin.
 
 </DeepDive>
 
-### 2. Close all the tags {/*2-close-all-the-tags*/}
+### 2. Sulje kaikki tagit {/*2-close-all-the-tags*/}
 
-JSX requires tags to be explicitly closed: self-closing tags like `<img>` must become `<img />`, and wrapping tags like `<li>oranges` must be written as `<li>oranges</li>`.
+JSX edellyttää tagien eksplisiittistä sulkemista: itsestään sulkeutuvat tagit, kuten `<img>` täytyy muuttua `<img />` muotoon, ja tagit kuten `<li>oranges` täytyy kirjoittaa `<li>oranges</li>` muodossa.
 
-This is how Hedy Lamarr's image and list items look closed:
+Tältä näyttää Hedy Lamarrin kuva ja listan kohteet suljettuina:
 
 ```js {2-6,8-10}
 <>
@@ -191,18 +190,18 @@ This is how Hedy Lamarr's image and list items look closed:
     class="photo"
    />
   <ul>
-    <li>Invent new traffic lights</li>
-    <li>Rehearse a movie scene</li>
-    <li>Improve the spectrum technology</li>
+    <li>Keksi uusi liikennevalo</li>
+    <li>Harjoittele elokuvakohtausta</li>
+    <li>Paranna spektritekniikkaa</li>
   </ul>
 </>
 ```
 
-### 3. camelCase <s>all</s> most of the things! {/*3-camelcase-salls-most-of-the-things*/}
+### 3. camelCase:a <s>kaikki</s> useimmat asiat! {/*3-camelcase-salls-most-of-the-things*/}
 
-JSX turns into JavaScript and attributes written in JSX become keys of JavaScript objects. In your own components, you will often want to read those attributes into variables. But JavaScript has limitations on variable names. For example, their names can't contain dashes or be reserved words like `class`.
+JSX muuttuu JavaScriptiksi ja attribuutit kirjoitettuna JSX:ssä muuttuvat JavaScript olioiden avaimiksi. Komponenteissasi saatat useasti haluta lukea nuo attribuutit muuttujiin. Mutta JavaScriptissa on omia rajoitteitaan muuttujien nimeämisessä. Esimerkiksi, nimet eivät voi sisältää viivoja tai varattuja sanoja kuten `class`.
 
-This is why, in React, many HTML and SVG attributes are written in camelCase. For example, instead of `stroke-width` you use `strokeWidth`. Since `class` is a reserved word, in React you write `className` instead, named after the [corresponding DOM property](https://developer.mozilla.org/en-US/docs/Web/API/Element/className):
+Tämän takia Reactissa monet HTML ja SVG attribuutit kirjoitetaan camelCase muodossa. Esimerkiksi, sen sijaan, että kirjoittaisit `stroke-width` käytät `strokeWidth`. Kerta `class` on varattu sana, Reactissa kirjoitat `className`, joka on nimetty [vastaavan DOM ominaisuuden](https://developer.mozilla.org/en-US/docs/Web/API/Element/className) mukaan:
 
 ```js {4}
 <img 
@@ -212,19 +211,19 @@ This is why, in React, many HTML and SVG attributes are written in camelCase. Fo
 />
 ```
 
-You can [find all these attributes in the React DOM Elements.](TODO) If you get one wrong, don't worry—React will print a message with a possible correction to the [browser console.](https://developer.mozilla.org/docs/Tools/Browser_Console)
+Voit [löytää kaikki nämä attribuutit Reactin DOM Elementseistä.](TODO) Jos muistat jonkun väärin, älä huoli. React viestii mahdollisia korjauksia [selaimen konsoliin.](https://developer.mozilla.org/docs/Tools/Browser_Console)
 
 <Pitfall>
 
-For historical reasons, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) and [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) attributes are written as in HTML with dashes.
+Historiallisista syistä, [`aria-*`](https://developer.mozilla.org/docs/Web/Accessibility/ARIA) sekä [`data-*`](https://developer.mozilla.org/docs/Learn/HTML/Howto/Use_data_attributes) attribuutit kirjoitetaan kuten HTML:ssä, viivoilla.
 
 </Pitfall>
 
-### Pro-tip: Use a JSX Converter {/*pro-tip-use-a-jsx-converter*/}
+### Pro-tip: Käytä JSX muunninta {/*pro-tip-use-a-jsx-converter*/}
 
-Converting all these attributes in existing markup can be tedious! We recommend using a [converter](https://transform.tools/html-to-jsx) to translate your existing HTML and SVG to JSX. Converters are very useful in practice, but it's still worth understanding what is going on so that you can comfortably write JSX on your own.
+Kaikkien näiden attribuuttien muuttaminen olemassa olevassa merkintäkoodissa on työlästä! Suosittelemme käyttämään [muunninta](https://transform.tools/html-to-jsx) kääntääksesi olemassa olevan HTML:n ja SVG:n JSX:ksi. Muuntimet ovat käteviä käytännössä, mutta on silti kannattavaa ymmärtää mitä tapahtuu, jotta voit viihtyisästi kirjoittaa itse JSX:ää.
 
-Here is your final result:
+Tässä lopullinen tulos:
 
 <Sandpack>
 
@@ -232,16 +231,16 @@ Here is your final result:
 export default function TodoList() {
   return (
     <>
-      <h1>Hedy Lamarr's Todos</h1>
+      <h1>Hedy Lamarrin tehtävälistä</h1>
       <img 
         src="https://i.imgur.com/yXOvdOSs.jpg" 
         alt="Hedy Lamarr" 
         className="photo" 
       />
       <ul>
-        <li>Invent new traffic lights</li>
-        <li>Rehearse a movie scene</li>
-        <li>Improve the spectrum technology</li>
+        <li>Keksi uusi liikennevalo</li>
+        <li>Harjoittele elokuvakohtausta</li>
+        <li>Paranna spektritekniikkaa</li>
       </ul>
     </>
   );
@@ -256,11 +255,11 @@ img { height: 90px }
 
 <Recap>
 
-Now you know why JSX exists and how to use it in components:
+Nyt tiedät miksi JSX on olemssa ja miten sitä käytetään komponenteissa:
 
-* React components group rendering logic together with markup because they are related.
-* JSX is similar to HTML, with a few differences. You can use a [converter](https://transform.tools/html-to-jsx) if you need to.
-* Error messages will often point you in the right direction to fixing your markup.
+* React komponentit ryhmittää renderöintilogiikan merkintäkoodin kanssa, sillä ne liittyvät toisiinsa.
+* JSX on samanlaista kuin HTML, muutamin poikkeuksin. Voit käyttää [muunninsta](https://transform.tools/html-to-jsx) jos tarvitset.
+* Virheviestit usein ohjeistavat oikeaan suuntaan merkintäkoodin korjaamiseksi.
 
 </Recap>
 
@@ -268,9 +267,9 @@ Now you know why JSX exists and how to use it in components:
 
 <Challenges>
 
-#### Convert some HTML to JSX {/*convert-some-html-to-jsx*/}
+#### Muunna vähän HTML koodia JSX koodiksi {/*convert-some-html-to-jsx*/}
 
-This HTML was pasted into a component, but it's not valid JSX. Fix it:
+Tämä HTML liitettiin komponenttiin, mutta se ei ole validia JSX:ää. Korjaa se:
 
 <Sandpack>
 
@@ -278,12 +277,12 @@ This HTML was pasted into a component, but it's not valid JSX. Fix it:
 export default function Bio() {
   return (
     <div class="intro">
-      <h1>Welcome to my website!</h1>
+      <h1>Tervetuloa verkkosivuilleni!</h1>
     </div>
     <p class="summary">
-      You can find my thoughts here.
+      Löydät ajatukseni täältä.
       <br><br>
-      <b>And <i>pictures</b></i> of scientists!
+      <b>Ja <i>kuvia</b></i> tutkijoista!
     </p>
   );
 }
@@ -306,7 +305,7 @@ export default function Bio() {
 
 </Sandpack>
 
-Whether to do it by hand or using the converter is up to you!
+On oma päätöksesi käytätkö muunninta tai teetkö muunnoksen käsin!
 
 <Solution>
 
@@ -317,12 +316,12 @@ export default function Bio() {
   return (
     <div>
       <div className="intro">
-        <h1>Welcome to my website!</h1>
+        <h1>Tervetuloa verkkosivuilleni!</h1>
       </div>
       <p className="summary">
-        You can find my thoughts here.
+        Löydät ajatukseni täältä.
         <br /><br />
-        <b>And <i>pictures</i></b> of scientists!
+        <b>Ja <i>kuvia</i></b> tutkijoista!
       </p>
     </div>
   );

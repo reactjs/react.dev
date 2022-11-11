@@ -165,7 +165,7 @@ class SignUpDialog extends React.Component {
 
 ## So What About Inheritance? {#so-what-about-inheritance}
 
-At Facebook, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.
+At Meta, we use React in thousands of components, and we haven't found any use cases where we would recommend creating component inheritance hierarchies.
 
 Props and composition give you all the flexibility you need to customize a component's look and behavior in an explicit and safe way. Remember that components may accept arbitrary props, including primitive values, React elements, or functions.
 

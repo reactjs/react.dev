@@ -49,7 +49,7 @@ function RowList({ children }) {
 }
 ```
 
-In the example above, the `RowList` wraps every child it receives into a `<div className="Row>` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
+In the example above, the `RowList` wraps every child it receives into a `<div className="Row">` container. For example, let's say the parent component passes three `<p>` tags as the `children` prop to `RowList`:
 
 ```js
 <RowList>

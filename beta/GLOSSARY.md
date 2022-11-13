@@ -15,6 +15,8 @@
 
 - **branching logic**: haaralogiikka
 - **control flow**: ohjausvirta
+- **destructuring**: (taulukon / olion) levityssyntaksi
+- **spread**: (taulukon / olion) levityssyntaksi
 - **shortcut**: lyhytoperaatio
 - **expression**: lause
 - **linting**: lintteri

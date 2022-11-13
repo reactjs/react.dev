@@ -39,6 +39,7 @@ html.dark {
   @apply bg-gray-10;
   @apply outline-none;
   @apply h-auto;
+  @apply focus-within:ring;
 }
 html.dark .DocSearch-Form {
   @apply bg-gray-80;
@@ -87,6 +88,7 @@ html.dark .DocSearch-Footer {
   @apply leading-tight;
   @apply text-primary;
   @apply appearance-none !important;
+  @apply focus:outline-none;
 }
 html.dark .DocSearch-Input {
   @apply text-primary-dark;

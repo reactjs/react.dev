@@ -1180,6 +1180,7 @@ class ChatRoom extends Component {
 - When [Strict Mode](/apis/react/StrictMode) is on, in development React will call `componentDidMount`, then immediately call [`componentWillUnmount`,](#componentwillunmount) and then call `componentDidMount` again. This helps you notice if you forgot to implement `componentWillUnmount` or if its logic doesn't fully "mirror" what `componentDidMount` does.
 
 - Although you may call [`setState`](#setstate) immediately in `componentDidMount`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the [`constructor`](#constructor) instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+
 <Note>
 
 For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/apis/react/useEffect) in function components.
@@ -1192,8 +1193,66 @@ For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `com
 
 ### `componentDidUpdate(prevProps, prevState, snapshot?)` {/*componentdidupdate*/}
 
-TODO
+If you define the `componentDidUpdate` method, React will call it immediately after your component has been re-rendered with updated props or state.  This method is not called for the initial render.
 
+You can use it to manipulate the DOM after an update. This is also a common place to do network requests as long as you compare the current props to previous props (e.g. a network request may not be necessary if the props have not changed). Typically, you'd use it together with [`componentDidMount`](#componentdidmount) and [`componentWillUnmount`:](#componentwillunmount)
+
+```js {10-18}
+class ChatRoom extends Component {
+  state = {
+    serverUrl: 'https://localhost:1234'
+  };
+
+  componentDidMount() {
+    this.setupConnection();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.props.roomId !== prevProps.roomId ||
+      this.state.serverUrl !== prevState.serverUrl
+    ) {
+      this.destroyConnection();
+      this.setupConnection();
+    }
+  }
+
+  componentWillUnmount() {
+    this.destroyConnection();
+  }
+
+  // ...
+}
+```
+
+[See more examples.](#adding-lifecycle-methods-to-a-class-component)
+
+
+#### Parameters {/*componentdidupdate-parameters*/}
+
+* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+
+* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+
+* `snapshot`: If you implemented [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate), `snapshot` will contain the value you returned from that method. Otherwise, it will be `undefined`.
+
+#### Returns {/*componentdidupdate-returns*/}
+
+`componentDidUpdate` should not return anything.
+
+#### Caveats {/*componentdidupdate-caveats*/}
+
+- The logic inside `componentDidUpdate` should usually be wrapped in conditions comparing `this.props` with `prevProps`, and `this.state` with `prevState`. Otherwise, there's a risk of creating infinite loops.
+
+- Although you may call [`setState`](#setstate) immediately in `componentDidUpdate`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. Use this pattern with caution because it often causes performance issues. In most cases, you should be able to assign the initial state in the [`constructor`](#constructor) instead. It can, however, be necessary for cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
+
+<Note>
+
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/apis/react/useEffect) in function components.
+
+[See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+
+</Note>
 ---
 
 ### `componentWillMount()` {/*componentwillmount*/}

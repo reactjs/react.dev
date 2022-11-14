@@ -4,7 +4,7 @@ title: Component
 
 <Pitfall>
 
-We don't recommend to use class components in newly written code. [See common alternatives.](#alternatives)
+We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
 
 </Pitfall>
 
@@ -42,7 +42,9 @@ class Greeting extends Component {
 }
 ```
 
-Your component's props will be available as [`this.props`.](#props)
+React will call your [`render`](#render) method whenever it needs to figure out what to display on the screen. Usually, you will return some [JSX](/learn/writing-markup-with-jsx) from it. Your `render` method should be a [pure function:](https://en.wikipedia.org/wiki/Pure_function) it should only calculate the JSX.
+
+Similarly to [function components,](/learn/your-first-component#defining-a-component) a class component can [receive information by props](/learn/your-first-component#defining-a-component) from its parent component. However, the syntax for reading props is different. For example, if the parent component renders `<Greeting name="Taylor" />`, then you can read the `name` prop from [`this.props`](#props), like `this.props.name`:
 
 <Sandpack>
 
@@ -68,11 +70,11 @@ export default function App() {
 
 </Sandpack>
 
-A class component's `render` method is similar to a regular [function component.](/learn/your-first-component#defining-a-component) It also needs to return JSX and should be [written as a pure function.](/learn/keeping-components-pure) However, you can't call any Hooks (such as [`useState`](/apis/react/useState)) inside a class.
+Note that Hooks (functions starting with `use`, like [`useState`](/apis/react/useState)) are not supported inside class components.
 
 <Pitfall>
 
-We don't recommend to define newly written components as classes. [See the alternatives.](#migrating-a-simple-component-from-a-class-to-a-function)
+We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -130,7 +132,7 @@ button { display: block; margin-top: 10px; }
 
 <Pitfall>
 
-We don't recommend to define newly written components as classes. [See the alternatives.](#migrating-a-component-with-state-from-a-class-to-a-function)
+We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -264,7 +266,7 @@ Note that in development when [Strict Mode](/apis/react/StrictMode) is on, React
 
 <Pitfall>
 
-We don't recommend to define newly written components as classes. [See the alternatives.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
+We recommend to define components as functions instead of classes. [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
 </Pitfall>
 
@@ -572,9 +574,9 @@ button { margin-left: 10px; }
 
 </Sandpack>
 
-First, verify that your `componentWillUnmount` does the opposite of `componentDidMount`. In the above example, that's true: it disconnects the connection that `componentDidMount` sets up. If such logic is missing, add it first.
+First, verify that your [`componentWillUnmount`](#componentwillunmount) does the opposite of [`componentDidMount`.](#componentdidmount) In the above example, that's true: it disconnects the connection that `componentDidMount` sets up. If such logic is missing, add it first.
 
-Next, verify that your `componentDidUpdate` method handles changes to any props and state you're using in `componentDidMount`. In the above example, `componentDidMount` calls `setupConnection` which reads `this.state.serverUrl` and `this.props.roomId`. This is why `componentDidUpdate` checks whether `this.state.serverUrl` and `this.props.roomId` have changed, and resets the connection if they did. If your `componentDidUpdate` logic is missing or doesn't handle changes to all relevant props and state, fix that first.
+Next, verify that your [`componentDidUpdate`](#componentdidupdate) method handles changes to any props and state you're using in `componentDidMount`. In the above example, `componentDidMount` calls `setupConnection` which reads `this.state.serverUrl` and `this.props.roomId`. This is why `componentDidUpdate` checks whether `this.state.serverUrl` and `this.props.roomId` have changed, and resets the connection if they did. If your `componentDidUpdate` logic is missing or doesn't handle changes to all relevant props and state, fix that first.
 
 In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/apis/react/useEffect#connecting-to-an-external-system)
 
@@ -689,11 +691,195 @@ If your component does not synchronize with any external systems, [you might not
 
 ---
 
+### Migrating a component with context from a class to a function {/*migrating-a-component-with-context-from-a-class-to-a-function*/}
+
+In this example, the `Panel` and `Button` class components read [context](/learn/passing-data-deeply-with-context) from [`this.context`:](#context)
+
+<Sandpack>
+
+```js
+import { createContext, Component } from 'react';
+
+const ThemeContext = createContext(null);
+
+class Panel extends Component {
+  static contextType = ThemeContext;
+
+  render() {
+    const theme = this.context;
+    const className = 'panel-' + theme;
+    return (
+      <section className={className}>
+        <h1>{this.props.title}</h1>
+        {this.props.children}
+      </section>
+    );    
+  }
+}
+
+class Button extends Component {
+  static contextType = ThemeContext;
+
+  render() {
+    const theme = this.context;
+    const className = 'button-' + theme;
+    return (
+      <button className={className}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
+function Form() {
+  return (
+    <Panel title="Welcome">
+      <Button>Sign up</Button>
+      <Button>Log in</Button>
+    </Panel>
+  );
+}
+
+export default function MyApp() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Form />
+    </ThemeContext.Provider>
+  )
+}
+```
+
+```css
+.panel-light,
+.panel-dark {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 20px;
+}
+.panel-light {
+  color: #222;
+  background: #fff;
+}
+
+.panel-dark {
+  color: #fff;
+  background: rgb(23, 32, 42);
+}
+
+.button-light,
+.button-dark {
+  border: 1px solid #777;
+  padding: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.button-dark {
+  background: #222;
+  color: #fff;
+}
+
+.button-light {
+  background: #fff;
+  color: #222;
+}
+```
+
+</Sandpack>
+
+When you convert them to function components, replace `this.context` with [`useContext`](/apis/react/useContext) calls:
+
+<Sandpack>
+
+```js
+import { createContext, useContext } from 'react';
+
+const ThemeContext = createContext(null);
+
+function Panel({ title, children }) {
+  const theme = useContext(ThemeContext);
+  const className = 'panel-' + theme;
+  return (
+    <section className={className}>
+      <h1>{title}</h1>
+      {children}
+    </section>
+  )
+}
+
+function Button({ children }) {
+  const theme = useContext(ThemeContext);
+  const className = 'button-' + theme;
+  return (
+    <button className={className}>
+      {children}
+    </button>
+  );
+}
+
+function Form() {
+  return (
+    <Panel title="Welcome">
+      <Button>Sign up</Button>
+      <Button>Log in</Button>
+    </Panel>
+  );
+}
+
+export default function MyApp() {
+  return (
+    <ThemeContext.Provider value="dark">
+      <Form />
+    </ThemeContext.Provider>
+  )
+}
+```
+
+```css
+.panel-light,
+.panel-dark {
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 20px;
+}
+.panel-light {
+  color: #222;
+  background: #fff;
+}
+
+.panel-dark {
+  color: #fff;
+  background: rgb(23, 32, 42);
+}
+
+.button-light,
+.button-dark {
+  border: 1px solid #777;
+  padding: 5px;
+  margin-right: 10px;
+  margin-top: 10px;
+}
+
+.button-dark {
+  background: #222;
+  color: #fff;
+}
+
+.button-light {
+  background: #fff;
+  color: #222;
+}
+```
+
+</Sandpack>
+
+---
+
 ## Reference {/*reference*/}
 
 <Pitfall>
 
-We don't recommend to use class components in newly written code. [See common alternatives.](#alternatives)
+We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
 
 </Pitfall>
 
@@ -715,11 +901,437 @@ Only the `render` method is required, other methods are optional.
 
 [See more examples above.](#usage)
 
+---
+
+### `context` {/*context*/}
+
+The [context](/learn/passing-data-deeply-with-context) of a class component is available as `this.context`. It is only available if you specify *which* context you want to receive using [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (deprecated).
+
+A class component can only read one context at a time.
+
+```js {2,5}
+class Button extends Component {
+  static contextType = ThemeContext;
+
+  render() {
+    const theme = this.context;
+    const className = 'button-' + theme;
+    return (
+      <button className={className}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+
+```
+
 <Note>
 
-**When you define class components, don't extend your own base component classes.** For example, instead of defining a `DangerButton` class that extends a `Button`, make your `DangerButton` return `<Button color="red" />`. In React, UI logic is reused by [composing components and passing props.](/learn/passing-props-to-a-component)
+Reading `this.context` in class components is equivalent to [`useContext`](/apis/react/useContext) in function components.
+
+[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
 </Note>
 
+---
+
+### `props` {/*props*/}
+
+The props passed to a class component are available as `this.props`.
+
+```js {3}
+class Greeting extends Component {
+  render() {
+    return <h1>Hello, {this.props.name}!</h1>;
+  }
+}
+
+<Greeting name="Taylor" />
+```
+
+<Note>
+
+Reading `this.props` in class components is equivalent to [declaring props](/learn/passing-props-to-a-component#step-2-read-props-inside-the-child-component) in function components.
+
+[See how to migrate.](#migrating-a-simple-component-from-a-class-to-a-function)
+
+</Note>
+
+---
+
+### `state` {/*state*/}
+
+The state of a class component is available as `this.state`. The `state` field must be an object. Do not mutate the state directly. If you wish to change the state, call `setState` with the new state.
+
+```js {2-4,7-9,18}
+class Counter extends Component {
+  state = {
+    age: 42,
+  };
+
+  handleAgeChange = () => {
+    this.setState({
+      age: this.state.age + 1 
+    })
+  };
+
+  render() {
+    return (
+      <>
+        <button onClick={this.handleAgeChange}>
+        Increment age
+        </button>
+        <p>You are {this.state.age}.</p>
+      </>
+    );
+  }
+}
+```
+
+[See more examples.](#defining-a-class-component)
+
+<Note>
+
+Defining `state` in class components is equivalent to calling [`useState`](/apis/react/useState) in function components.
+
+[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+
+</Note>
+
+---
+
+### `constructor(props)` {/*constructor*/}
+
+The [constructor](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/constructor) runs before your class component *mounts* (gets added to the screen). Typically, a constructor is only used for two purposes in React. It lets you declare state and [bind](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_objects/Function/bind) your class methods to the class instance:
+
+```js {2-6}
+class Counter extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { counter: 0 };
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    // ...
+  }
+```
+
+If you use modern JavaScript syntax, constructors are rarely needed. Instead, you can rewrite this code above using the [public class field syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes/Public_class_fields) which is supported both by modern browsers and tools like [Babel:](https://babeljs.io/)
+
+```js {2,4}
+class Counter extends Component {
+  state = { counter: 0 };
+
+  handleClick = () => {
+    // ...
+  }
+```
+
+A constructor should not contain any side effects or subscriptions.
+
+#### Parameters {/*constructor-parameters*/}
+
+* `props`: The component's initial props.
+
+#### Returns {/*constructor-returns*/}
+
+`constructor` should not return anything.
+
+#### Caveats {/*constructor-caveats*/}
+
+* Do not run any side effects or subscriptions in the constructor. Instead, use [`componentDidMount`](#componentdidmount) for that.
+
+* Inside a constructor, you need to call `super(props)` before any other statement. If you don't do that, `this.props` will be `undefined` while the constructor runs, which can be confusing and cause bugs.
+
+* Constructor is the only place where you can assign [`this.state`](#state) directly. In all other methods, you need to use [`this.setState()`](#setstate) instead. Do not call `setState` in the constructor.
+
+* When you use [server rendering,](/apis/react-dom/server) the constructor will run on the server too, followed by the [`render`](#render) method. However, lifecycle methods like `componentDidMount` or `componentWillUnmount` will not run on the server.
+
+* When [Strict Mode](/apis/react/StrictMode) is on, React will call `constructor` twice in development and then throw away one of the instances. This helps you notice the accidental side effects that need to be moved out of the `constructor`.
+
+<Note>
+
+There is no exact equivalent for `constructor` in function components. To declare state in a function component, call [`useState`.](/apis/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/apis/react/useState#avoiding-recreating-the-initial-state)
+
+</Note>
+
+---
+
+### `componentDidCatch(error, info)` {/*componentdidcatch*/}
+
+If you define `componentDidCatch`, React will call it when some child component (including distant children) throws an error during rendering. This lets you log that error to an error reporting service in production.
+
+Typically, it is used together with [`static getDerivedStateFromError`](#static-getderivedstatefromerror) which lets you update state in response to an error and display an error message to the user. A component with these methods is called an *error boundary.*
+
+```js {12-19}
+class ErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError(error) {
+    // Update state so the next render will show the fallback UI.
+    return { hasError: true };
+  }
+
+  componentDidCatch(error, info) {
+    // Example "componentStack":
+    //   in ComponentThatThrows (created by App)
+    //   in ErrorBoundary (created by App)
+    //   in div (created by App)
+    //   in App
+    logErrorToMyService(error, info.componentStack);
+  }
+
+  render() {
+    if (this.state.hasError) {
+      // You can render any custom fallback UI
+      return this.props.fallback;
+    }
+
+    return this.props.children;
+  }
+}
+```
+
+Then you can wrap a part of your component tree with it:
+
+```js {1,3}
+<ErrorBoundary fallback={<p>Something went wrong</p>}>
+  <Profile />
+</ErrorBoundary>
+```
+
+If `Profile` or its child component throws an error, `ErrorBoundary` will "catch" that error, display a fallback UI with the error message you've provided, and send a production error report to your error reporting service.
+
+You don't need to wrap every component into a separate error boundary. When you think about the [granularity of error boundaries,](https://aweary.dev/fault-tolerance-react/) consider where it makes sense to display an error message. For example, in a messaging app, it makes sense to place an error boundary around the list of conversations. It also makes sense to place one around every individual message. However, it wouldn't make sense to place an error boundary around a person's avatar.
+
+#### Parameters {/*componentdidcatch-parameters*/}
+
+* `error`: The error that was thrown. In practice, it will usually be an instance of [`Error`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error) but this is not guaranteed because JavaScript allows to [`throw`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/throw) any value, including strings or even `null`.
+
+* `info`: An object containing additional information about the error. Its `componentStack` field contains a stack trace with the component that threw, as well as the names and source locations of all its parent components. In production, the component names will be minified. If you set up production error reporting, you can decode the component stack using sourcemaps the same way as you would do for regular JavaScript error stacks.
+
+#### Returns {/*componentdidcatch-returns*/}
+
+`componentDidCatch` should not return anything.
+
+#### Caveats {/*componentdidcatch-caveats*/}
+
+* In the past, it was common to call `setState` inside `componentDidCatch` in order to update the UI and display the fallback error message. This is deprecated in favor of defining [`static getDerivedStateFromError`.](#static-getderivedstatefromerror)
+
+* Production and development builds of React slightly differ in the way `componentDidCatch` handles errors. In development, the errors will bubble up to `window`, which means that any `window.onerror` or `window.addEventListener('error', callback)` will intercept the errors that have been caught by `componentDidCatch`. In production, instead, the errors will not bubble up, which means any ancestor error handler will only receive errors not explicitly caught by `componentDidCatch`.
+
+<Note>
+
+There is no direct equivalent for `componentDidCatch` in function components yet. If you'd like to avoid creating class components, write a single `ErrorBoundary` component like above and use it throughout your app. Alternatively, you can use the [`react-error-boundary`](https://github.com/bvaughn/react-error-boundary) package which does that for you.
+
+</Note>
+
+---
+
+### `componentDidMount()` {/*componentdidmount*/}
+
 TODO
 
+---
+
+### `componentDidUpdate(prevProps, prevState, snapshot?)` {/*componentdidupdate*/}
+
+TODO
+
+---
+
+### `componentWillMount()` {/*componentwillmount*/}
+
+<Deprecated>
+
+This API has been renamed from `componentWillMount` to [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) The old name has been deprecated. In a future major version of React, only the new name will work.
+
+</Deprecated>
+
+---
+
+### `componentWillReceiveProps(nextProps)` {/*componentwillreceiveprops*/}
+
+<Deprecated>
+
+This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveProps) The old name has been deprecated. In a future major version of React, only the new name will work.
+
+</Deprecated>
+
+---
+
+### `componentWillUpdate(nextProps, nextState)` {/*componentwillupdate*/}
+
+<Deprecated>
+
+This API has been renamed from `componentWillUpdate` to [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) The old name has been deprecated. In a future major version of React, only the new name will work.
+
+</Deprecated>
+---
+
+### `componentWillUnmount()` {/*componentwillunmount*/}
+
+TODO
+
+---
+
+### `forceUpdate(callback?)` {/*forceupdate*/}
+
+TODO
+
+---
+
+### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
+
+TODO
+
+---
+
+### `render()` {/*render*/}
+
+TODO
+
+---
+
+### `setState(nextState, callback?)` {/*setstate*/}
+
+TODO
+
+---
+
+### `shouldComponentUpdate(prevProps, prevState)` {/*shouldcomponentupdate*/}
+
+TODO
+
+---
+
+### `UNSAFE_componentWillMount()` {/*unsafe_componentwillmount*/}
+
+TODO
+
+---
+
+### `UNSAFE_componentWillReceiveProps(nextProps)` {/*unsafe_componentwillreceiveprops*/}
+
+TODO
+
+---
+
+### `UNSAFE_componentWillUpdate(nextProps, nextState)` {/*unsafe_componentwillupdate*/}
+
+TODO
+
+---
+
+### `static childContextTypes` {/*static-childcontexttypes*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
+
+</Deprecated>
+
+Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
+
+---
+
+### `static contextTypes` {/*static-contexttypes*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. [Use `static contextType` instead.](#static-contexttype)
+
+</Deprecated>
+
+Lets you specify which [legacy context](https://reactjs.org/docs/legacy-context.html) is consumed by this component.
+
+---
+
+### `static contextType` {/*static-contexttype*/}
+
+If you want to read [`this.context`](#context-instance-field) from your class component, you must specify which context it needs to read. The context you specify as the `static contextType` must be a value previously created by [`createContext`.](/apis/react/createContext)
+
+```js {2}
+class Button extends Component {
+  static contextType = ThemeContext;
+
+  render() {
+    const theme = this.context;
+    const className = 'button-' + theme;
+    return (
+      <button className={className}>
+        {this.props.children}
+      </button>
+    );
+  }
+}
+```
+
+<Note>
+
+Reading `this.context` in class components is equivalent to [`useContext`](/apis/react/useContext) in function components.
+
+[See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
+
+</Note>
+
+---
+
+### `static defaultProps` {/*static-defaultprops*/}
+
+You can define `static defaultProps` to set the default props for the class. They will be used for `undefined` and missing props, but not for `null` props.
+
+For example, here is how you define that the `color` prop should default to `'blue'`:
+
+```js {2-4}
+class Button extends Component {
+  static defaultProps = {
+    color: 'blue'
+  };
+
+  render() {
+    return <button className={this.props.color}>click me</button>;
+  }
+}
+```
+
+If the `color` prop is not provided or is `undefined`, it will be set by default to `'blue'`:
+
+```js
+<>
+  {/* this.props.color is "blue" */}
+  <Button />
+
+  {/* this.props.color is "blue" */}
+  <Button color={undefined} />
+
+  {/* this.props.color is null */}
+  <Button color={null} />
+
+  {/* this.props.color is "red" */}
+  <Button color="red" />
+</>
+```
+
+<Note>
+
+Defining `defaultProps` in class components is similar to using [default values](/learn/passing-props-to-a-component#specifying-a-default-value-for-a-prop) in function components.
+
+</Note>
+
+---
+
+### `static getDerivedStateFromError(error)` {/*static-getderivedstatefromerror*/}
+
+TODO
+
+---
+
+### `static getDerivedStateFromProps(props, state)` {/*static-getderivedstatefromprops*/}
+
+TODO

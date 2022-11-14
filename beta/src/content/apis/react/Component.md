@@ -104,7 +104,7 @@ export default class Counter extends Component {
   handleAgeChange = () => {
     this.setState({
       age: this.state.age + 1 
-    })
+    });
   };
 
   render() {
@@ -230,7 +230,7 @@ export default class ChatRoom extends Component {
             onChange={e => {
               this.setState({
                 serverUrl: e.target.value
-              })
+              });
             }}
           />
         </label>
@@ -358,7 +358,7 @@ export default class Counter extends Component {
   handleAgeChange = (e) => {
     this.setState({
       age: this.state.age + 1 
-    })
+    });
   };
 
   render() {
@@ -542,7 +542,7 @@ export default class ChatRoom extends Component {
             onChange={e => {
               this.setState({
                 serverUrl: e.target.value
-              })
+              });
             }}
           />
         </label>
@@ -973,7 +973,7 @@ class Counter extends Component {
   handleAgeChange = () => {
     this.setState({
       age: this.state.age + 1 
-    })
+    });
   };
 
   render() {
@@ -988,8 +988,6 @@ class Counter extends Component {
   }
 }
 ```
-
-[See more examples.](#defining-a-class-component)
 
 <Note>
 
@@ -1151,6 +1149,8 @@ TODO
 
 This API has been renamed from `componentWillMount` to [`UNSAFE_componentWillMount`.](#unsafe_componentwillmount) The old name has been deprecated. In a future major version of React, only the new name will work.
 
+Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+
 </Deprecated>
 
 ---
@@ -1161,6 +1161,8 @@ This API has been renamed from `componentWillMount` to [`UNSAFE_componentWillMou
 
 This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveProps) The old name has been deprecated. In a future major version of React, only the new name will work.
 
+Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
+
 </Deprecated>
 
 ---
@@ -1170,6 +1172,8 @@ This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_component
 <Deprecated>
 
 This API has been renamed from `componentWillUpdate` to [`UNSAFE_componentWillUpdate`.](#unsafe_componentwillupdate) The old name has been deprecated. In a future major version of React, only the new name will work.
+
+Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
 
 </Deprecated>
 ---

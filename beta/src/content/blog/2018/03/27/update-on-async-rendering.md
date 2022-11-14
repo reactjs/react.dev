@@ -47,7 +47,13 @@ Before we begin, here's a quick overview of the lifecycle changes planned for ve
 
 ### New lifecycle: `getDerivedStateFromProps` {/*new-lifecycle-getderivedstatefromprops*/}
 
-`embed:update-on-async-rendering/definition-getderivedstatefromprops.js`
+```js
+class Example extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    // ...
+  }
+}
+```
 
 The new static `getDerivedStateFromProps` lifecycle is invoked after a component is instantiated as well as before it is re-rendered. It can return an object to update `state`, or `null` to indicate that the new `props` do not require any `state` updates.
 
@@ -59,7 +65,13 @@ Together with `componentDidUpdate`, this new lifecycle should cover all use case
 
 ### New lifecycle: `getSnapshotBeforeUpdate` {/*new-lifecycle-getsnapshotbeforeupdate*/}
 
-`embed:update-on-async-rendering/definition-getsnapshotbeforeupdate.js`
+```js
+class Example extends React.Component {
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // ...
+  }
+}
+```
 
 The new `getSnapshotBeforeUpdate` lifecycle is called right before mutations are made (e.g. before the DOM is updated). The return value for this lifecycle will be passed as the third parameter to `componentDidUpdate`. (This lifecycle isn't often needed, but can be useful in cases like manually preserving scroll position during rerenders.)
 
@@ -87,20 +99,104 @@ We'll look at examples of how both of these lifecycles can be used below.
 ### Initializing state {/*initializing-state*/}
 
 This example shows a component with `setState` calls inside of `componentWillMount`:
-`embed:update-on-async-rendering/initializing-state-before.js`
+
+```js {5-10}
+// Before
+class ExampleComponent extends React.Component {
+  state = {};
+
+  componentWillMount() {
+    this.setState({
+      currentColor: this.props.defaultColor,
+      palette: 'rgb',
+    });
+  }
+}
+```
 
 The simplest refactor for this type of component is to move state initialization to the constructor or to a property initializer, like so:
-`embed:update-on-async-rendering/initializing-state-after.js`
+
+```js {3-6}
+// After
+class ExampleComponent extends React.Component {
+  state = {
+    currentColor: this.props.defaultColor,
+    palette: 'rgb',
+  };
+}
+```
 
 ### Fetching external data {/*fetching-external-data*/}
 
 Here is an example of a component that uses `componentWillMount` to fetch external data:
-`embed:update-on-async-rendering/fetching-external-data-before.js`
+
+```js {7-14}
+// Before
+class ExampleComponent extends React.Component {
+  state = {
+    externalData: null,
+  };
+
+  componentWillMount() {
+    this._asyncRequest = loadMyAsyncData().then(
+      externalData => {
+        this._asyncRequest = null;
+        this.setState({externalData});
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    if (this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+  }
+
+  render() {
+    if (this.state.externalData === null) {
+      // Render loading state ...
+    } else {
+      // Render real UI ...
+    }
+  }
+}
+```
 
 The above code is problematic for both server rendering (where the external data won't be used) and the upcoming async rendering mode (where the request might be initiated multiple times).
 
 The recommended upgrade path for most use cases is to move data-fetching into `componentDidMount`:
-`embed:update-on-async-rendering/fetching-external-data-after.js`
+
+```js {7-14}
+// After
+class ExampleComponent extends React.Component {
+  state = {
+    externalData: null,
+  };
+
+  componentDidMount() {
+    this._asyncRequest = loadMyAsyncData().then(
+      externalData => {
+        this._asyncRequest = null;
+        this.setState({externalData});
+      }
+    );
+  }
+
+  componentWillUnmount() {
+    if (this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+  }
+
+  render() {
+    if (this.state.externalData === null) {
+      // Render loading state ...
+    } else {
+      // Render real UI ...
+    }
+  }
+}
+```
 
 There is a common misconception that fetching in `componentWillMount` lets you avoid the first empty rendering state. In practice this was never true because React has always executed `render` immediately after `componentWillMount`. If the data is not available by the time `componentWillMount` fires, the first `render` will still show a loading state regardless of where you initiate the fetch. This is why moving the fetch to `componentDidMount` has no perceptible effect in the vast majority of cases.
 
@@ -115,20 +211,116 @@ There is a common misconception that fetching in `componentWillMount` lets you a
 ### Adding event listeners (or subscriptions) {/*adding-event-listeners-or-subscriptions*/}
 
 Here is an example of a component that subscribes to an external event dispatcher when mounting:
-`embed:update-on-async-rendering/adding-event-listeners-before.js`
+
+```js {3-12}
+// Before
+class ExampleComponent extends React.Component {
+  componentWillMount() {
+    this.setState({
+      subscribedValue: this.props.dataSource.value,
+    });
+
+    // This is not safe; it can leak!
+    this.props.dataSource.subscribe(
+      this.handleSubscriptionChange
+    );
+  }
+
+  componentWillUnmount() {
+    this.props.dataSource.unsubscribe(
+      this.handleSubscriptionChange
+    );
+  }
+
+  handleSubscriptionChange = dataSource => {
+    this.setState({
+      subscribedValue: dataSource.value,
+    });
+  };
+}
+```
 
 Unfortunately, this can cause memory leaks for server rendering (where `componentWillUnmount` will never be called) and async rendering (where rendering might be interrupted before it completes, causing `componentWillUnmount` not to be called).
 
 People often assume that `componentWillMount` and `componentWillUnmount` are always paired, but that is not guaranteed. Only once `componentDidMount` has been called does React guarantee that `componentWillUnmount` will later be called for clean up.
 
 For this reason, the recommended way to add listeners/subscriptions is to use the `componentDidMount` lifecycle:
-`embed:update-on-async-rendering/adding-event-listeners-after.js`
+
+```js {3-5,7-24}
+// After
+class ExampleComponent extends React.Component {
+  state = {
+    subscribedValue: this.props.dataSource.value,
+  };
+
+  componentDidMount() {
+    // Event listeners are only safe to add after mount,
+    // So they won't leak if mount is interrupted or errors.
+    this.props.dataSource.subscribe(
+      this.handleSubscriptionChange
+    );
+
+    // External values could change between render and mount,
+    // In some cases it may be important to handle this case.
+    if (
+      this.state.subscribedValue !==
+      this.props.dataSource.value
+    ) {
+      this.setState({
+        subscribedValue: this.props.dataSource.value,
+      });
+    }
+  }
+
+  componentWillUnmount() {
+    this.props.dataSource.unsubscribe(
+      this.handleSubscriptionChange
+    );
+  }
+
+  handleSubscriptionChange = dataSource => {
+    this.setState({
+      subscribedValue: dataSource.value,
+    });
+  };
+}
+```
 
 Sometimes it is important to update subscriptions in response to property changes. If you're using a library like Redux or MobX, the library's container component should handle this for you. For application authors, we've created a small library, [`create-subscription`](https://github.com/facebook/react/tree/master/packages/create-subscription), to help with this. We'll publish it along with React 16.3.
 
 Rather than passing a subscribable `dataSource` prop as we did in the example above, we could use `create-subscription` to pass in the subscribed value:
 
-`embed:update-on-async-rendering/adding-event-listeners-create-subscription.js`
+```js
+import {createSubscription} from 'create-subscription';
+
+const Subscription = createSubscription({
+  getCurrentValue(sourceProp) {
+    // Return the current value of the subscription (sourceProp).
+    return sourceProp.value;
+  },
+
+  subscribe(sourceProp, callback) {
+    function handleSubscriptionChange() {
+      callback(sourceProp.value);
+    }
+
+    // Subscribe (e.g. add an event listener) to the subscription (sourceProp).
+    // Call callback(newValue) whenever a subscription changes.
+    sourceProp.subscribe(handleSubscriptionChange);
+
+    // Return an unsubscribe method.
+    return function unsubscribe() {
+      sourceProp.unsubscribe(handleSubscriptionChange);
+    };
+  },
+});
+
+// Rather than passing the subscribable source to our ExampleComponent,
+// We could just pass the subscribed value directly:
+<Subscription source={dataSource}>
+  {value => <ExampleComponent subscribedValue={value} />}
+</Subscription>;
+```
 
 > Note
 >
@@ -141,12 +333,52 @@ Rather than passing a subscribable `dataSource` prop as we did in the example ab
 > Both the older `componentWillReceiveProps` and the new `getDerivedStateFromProps` methods add significant complexity to components. This often leads to [bugs](/blog/2018/06/07/you-probably-dont-need-derived-state#common-bugs-when-using-derived-state). Consider **[simpler alternatives to derived state](/blog/2018/06/07/you-probably-dont-need-derived-state)** to make components predictable and maintainable.
 
 Here is an example of a component that uses the legacy `componentWillReceiveProps` lifecycle to update `state` based on new `props` values:
-`embed:update-on-async-rendering/updating-state-from-props-before.js`
+
+```js {7-14}
+// Before
+class ExampleComponent extends React.Component {
+  state = {
+    isScrollingDown: false,
+  };
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.currentRow !== nextProps.currentRow) {
+      this.setState({
+        isScrollingDown:
+          nextProps.currentRow > this.props.currentRow,
+      });
+    }
+  }
+}
+```
 
 Although the above code is not problematic in itself, the `componentWillReceiveProps` lifecycle is often mis-used in ways that _do_ present problems. Because of this, the method will be deprecated.
 
 As of version 16.3, the recommended way to update `state` in response to `props` changes is with the new `static getDerivedStateFromProps` lifecycle. It is called when a component is created and each time it re-renders due to changes to props or state:
-`embed:update-on-async-rendering/updating-state-from-props-after.js`
+
+```js {5-8,10-20}
+// After
+class ExampleComponent extends React.Component {
+  // Initialize state in constructor,
+  // Or with a property initializer.
+  state = {
+    isScrollingDown: false,
+    lastRow: null,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.currentRow !== state.lastRow) {
+      return {
+        isScrollingDown: props.currentRow > state.lastRow,
+        lastRow: props.currentRow,
+      };
+    }
+
+    // Return null to indicate no change to state.
+    return null;
+  }
+}
+```
 
 You may notice in the example above that `props.currentRow` is mirrored in state (as `state.lastRow`). This enables `getDerivedStateFromProps` to access the previous props value in the same way as is done in `componentWillReceiveProps`.
 
@@ -162,30 +394,172 @@ You may wonder why we don't just pass previous props as a parameter to `getDeriv
 ### Invoking external callbacks {/*invoking-external-callbacks*/}
 
 Here is an example of a component that calls an external function when its internal state changes:
-`embed:update-on-async-rendering/invoking-external-callbacks-before.js`
+
+```js {3-10}
+// Before
+class ExampleComponent extends React.Component {
+  componentWillUpdate(nextProps, nextState) {
+    if (
+      this.state.someStatefulValue !==
+      nextState.someStatefulValue
+    ) {
+      nextProps.onChange(nextState.someStatefulValue);
+    }
+  }
+}
+```
 
 Sometimes people use `componentWillUpdate` out of a misplaced fear that by the time `componentDidUpdate` fires, it is "too late" to update the state of other components. This is not the case. React ensures that any `setState` calls that happen during `componentDidMount` and `componentDidUpdate` are flushed before the user sees the updated UI. In general, it is better to avoid cascading updates like this, but in some cases they are necessary (for example, if you need to position a tooltip after measuring the rendered DOM element).
 
 Either way, it is unsafe to use `componentWillUpdate` for this purpose in async mode, because the external callback might get called multiple times for a single update. Instead, the `componentDidUpdate` lifecycle should be used since it is guaranteed to be invoked only once per update:
-`embed:update-on-async-rendering/invoking-external-callbacks-after.js`
+
+```js {3-10}
+// After
+class ExampleComponent extends React.Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (
+      this.state.someStatefulValue !==
+      prevState.someStatefulValue
+    ) {
+      this.props.onChange(this.state.someStatefulValue);
+    }
+  }
+}
+```
 
 ### Side effects on props change {/*side-effects-on-props-change*/}
 
 Similar to the [example above](#invoking-external-callbacks), sometimes components have side effects when `props` change.
 
-`embed:update-on-async-rendering/side-effects-when-props-change-before.js`
+```js {3-7}
+// Before
+class ExampleComponent extends React.Component {
+  componentWillReceiveProps(nextProps) {
+    if (this.props.isVisible !== nextProps.isVisible) {
+      logVisibleChange(nextProps.isVisible);
+    }
+  }
+}
+```
 
 Like `componentWillUpdate`, `componentWillReceiveProps` might get called multiple times for a single update. For this reason it is important to avoid putting side effects in this method. Instead, `componentDidUpdate` should be used since it is guaranteed to be invoked only once per update:
 
-`embed:update-on-async-rendering/side-effects-when-props-change-after.js`
+```js {3-7}
+// After
+class ExampleComponent extends React.Component {
+  componentDidUpdate(prevProps, prevState) {
+    if (this.props.isVisible !== prevProps.isVisible) {
+      logVisibleChange(this.props.isVisible);
+    }
+  }
+}
+```
 
 ### Fetching external data when `props` change {/*fetching-external-data-when-props-change*/}
 
 Here is an example of a component that fetches external data based on `props` values:
-`embed:update-on-async-rendering/updating-external-data-when-props-change-before.js`
+
+```js {11-16}
+// Before
+class ExampleComponent extends React.Component {
+  state = {
+    externalData: null,
+  };
+
+  componentDidMount() {
+    this._loadAsyncData(this.props.id);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.id !== this.props.id) {
+      this.setState({externalData: null});
+      this._loadAsyncData(nextProps.id);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+  }
+
+  render() {
+    if (this.state.externalData === null) {
+      // Render loading state ...
+    } else {
+      // Render real UI ...
+    }
+  }
+
+  _loadAsyncData(id) {
+    this._asyncRequest = loadMyAsyncData(id).then(
+      externalData => {
+        this._asyncRequest = null;
+        this.setState({externalData});
+      }
+    );
+  }
+}
+```
 
 The recommended upgrade path for this component is to move data updates into `componentDidUpdate`. You can also use the new `getDerivedStateFromProps` lifecycle to clear stale data before rendering the new props:
-`embed:update-on-async-rendering/updating-external-data-when-props-change-after.js`
+
+```js {7-19}
+// After
+class ExampleComponent extends React.Component {
+  state = {
+    externalData: null,
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    // Store prevId in state so we can compare when props change.
+    // Clear out previously-loaded data (so we don't render stale stuff).
+    if (props.id !== state.prevId) {
+      return {
+        externalData: null,
+        prevId: props.id,
+      };
+    }
+
+    // No state update necessary
+    return null;
+  }
+
+  componentDidMount() {
+    this._loadAsyncData(this.props.id);
+  }
+
+  // highlight-range{1-5}
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.externalData === null) {
+      this._loadAsyncData(this.props.id);
+    }
+  }
+
+  componentWillUnmount() {
+    if (this._asyncRequest) {
+      this._asyncRequest.cancel();
+    }
+  }
+
+  render() {
+    if (this.state.externalData === null) {
+      // Render loading state ...
+    } else {
+      // Render real UI ...
+    }
+  }
+
+  _loadAsyncData(id) {
+    this._asyncRequest = loadMyAsyncData(id).then(
+      externalData => {
+        this._asyncRequest = null;
+        this.setState({externalData});
+      }
+    );
+  }
+}
+```
 
 > Note
 >
@@ -194,7 +568,45 @@ The recommended upgrade path for this component is to move data updates into `co
 ### Reading DOM properties before an update {/*reading-dom-properties-before-an-update*/}
 
 Here is an example of a component that reads a property from the DOM before an update in order to maintain scroll position within a list:
-`embed:update-on-async-rendering/react-dom-properties-before-update-before.js`
+
+```js {5-12,14-23}
+class ScrollingList extends React.Component {
+  listRef = null;
+  previousScrollOffset = null;
+
+  componentWillUpdate(nextProps, nextState) {
+    // Are we adding new items to the list?
+    // Capture the scroll position so we can adjust scroll later.
+    if (this.props.list.length < nextProps.list.length) {
+      this.previousScrollOffset =
+        this.listRef.scrollHeight - this.listRef.scrollTop;
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    // If previousScrollOffset is set, we've just added new items.
+    // Adjust scroll so these new items don't push the old ones out of view.
+    if (this.previousScrollOffset !== null) {
+      this.listRef.scrollTop =
+        this.listRef.scrollHeight -
+        this.previousScrollOffset;
+      this.previousScrollOffset = null;
+    }
+  }
+
+  render() {
+    return (
+      <div ref={this.setListRef}>
+        {/* ...contents... */}
+      </div>
+    );
+  }
+
+  setListRef = ref => {
+    this.listRef = ref;
+  };
+}
+```
 
 In the above example, `componentWillUpdate` is used to read the DOM property. However with async rendering, there may be delays between "render" phase lifecycles (like `componentWillUpdate` and `render`) and "commit" phase lifecycles (like `componentDidUpdate`). If the user does something like resize the window during this time, the `scrollHeight` value read from `componentWillUpdate` will be stale.
 
@@ -202,7 +614,44 @@ The solution to this problem is to use the new "commit" phase lifecycle, `getSna
 
 The two lifecycles can be used together like this:
 
-`embed:update-on-async-rendering/react-dom-properties-before-update-after.js`
+```js {4-13,15-23}
+class ScrollingList extends React.Component {
+  listRef = null;
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // Are we adding new items to the list?
+    // Capture the scroll position so we can adjust scroll later.
+    if (prevProps.list.length < this.props.list.length) {
+      return (
+        this.listRef.scrollHeight - this.listRef.scrollTop
+      );
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // If we have a snapshot value, we've just added new items.
+    // Adjust scroll so these new items don't push the old ones out of view.
+    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    if (snapshot !== null) {
+      this.listRef.scrollTop =
+        this.listRef.scrollHeight - snapshot;
+    }
+  }
+
+  render() {
+    return (
+      <div ref={this.setListRef}>
+        {/* ...contents... */}
+      </div>
+    );
+  }
+
+  setListRef = ref => {
+    this.listRef = ref;
+  };
+}
+```
 
 > Note
 >
@@ -233,4 +682,19 @@ npm install react-lifecycles-compat --save
 Next, update your components to use the new lifecycles (as described above).
 
 Lastly, use the polyfill to make your component backwards compatible with older versions of React:
-`embed:update-on-async-rendering/using-react-lifecycles-compat.js`
+
+```js {2,5,11}
+import React from 'react';
+import {polyfill} from 'react-lifecycles-compat';
+
+class ExampleComponent extends React.Component {
+  static getDerivedStateFromProps(props, state) {
+    // Your state update logic here ...
+  }
+}
+
+// Polyfill your component to work with older versions of React:
+polyfill(ExampleComponent);
+
+export default ExampleComponent;
+```

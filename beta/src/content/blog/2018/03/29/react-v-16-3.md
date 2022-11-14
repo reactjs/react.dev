@@ -18,7 +18,32 @@ Version 16.3 introduces a new context API that is more efficient and supports bo
 > The old context API will keep working for all React 16.x releases, so you will have time to migrate.
 
 Here is an example illustrating how you might inject a "theme" using the new context API:
-`embed:16-3-release-blog-post/context-example.js`
+
+```js {1,8-10,18-20}
+const ThemeContext = React.createContext('light');
+
+class ThemeProvider extends React.Component {
+  state = {theme: 'light'};
+
+  render() {
+    return (
+      <ThemeContext.Provider value={this.state.theme}>
+        {this.props.children}
+      </ThemeContext.Provider>
+    );
+  }
+}
+
+class ThemedButton extends React.Component {
+  render() {
+    return (
+      <ThemeContext.Consumer>
+        {theme => <Button theme={theme} />}
+      </ThemeContext.Consumer>
+    );
+  }
+}
+```
 
 [Learn more about the new context API here.](/docs/context)
 
@@ -27,7 +52,23 @@ Here is an example illustrating how you might inject a "theme" using the new con
 Previously, React provided two ways of managing refs: the legacy string ref API and the callback API. Although the string ref API was the more convenient of the two, it had [several downsides](https://github.com/facebook/react/issues/1373) and so our official recommendation was to use the callback form instead.
 
 Version 16.3 adds a new option for managing refs that offers the convenience of a string ref without any of the downsides:
-`embed:16-3-release-blog-post/create-ref-example.js`
+
+```js {4,8,12}
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.inputRef = React.createRef();
+  }
+
+  render() {
+    return <input type="text" ref={this.inputRef} />;
+  }
+
+  componentDidMount() {
+    this.inputRef.current.focus();
+  }
+}
+```
 
 > **Note:**
 >
@@ -45,7 +86,17 @@ For example, if you replace a `<button>` with a custom `<FancyButton>` component
 
 Ref forwarding is a new opt-in feature that lets some components take a `ref` they receive, and pass it further down (in other words, "forward" it) to a child. In the example below, `FancyButton` forwards its ref to a DOM `button` that it renders:
 
-`embed:16-3-release-blog-post/fancy-button-example.js`
+```js {1,2}
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
 
 This way, components using `FancyButton` can get a ref to the underlying `button` DOM node and access it if necessary—just like if they used a DOM `button` directly.
 

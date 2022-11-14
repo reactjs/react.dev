@@ -1288,6 +1288,7 @@ This API has been renamed from `componentWillUpdate` to [`UNSAFE_componentWillUp
 Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
 
 </Deprecated>
+
 ---
 
 ### `componentWillUnmount()` {/*componentwillunmount*/}
@@ -1380,7 +1381,12 @@ TODO
 
 ### `UNSAFE_componentWillMount()` {/*unsafe_componentwillmount*/}
 
-TODO
+If you define `UNSAFE_componentWillMount`, React will call it immediately after the [`constructor`.](#constructor) It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+
+- To initialize state, declare [`state`](#state) as a class field or set `this.state` inside the [`constructor`.](#constructor)
+- If you need to run a side effect or set up a subscription, move that logic to [`componentDidMount`](#componentdidmount) instead.
+
+[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering.html#examples)
 
 ---
 

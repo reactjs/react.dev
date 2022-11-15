@@ -1271,7 +1271,7 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 <Deprecated>
 
-This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveProps) The old name has been deprecated. In a future major version of React, only the new name will work.
+This API has been renamed from `componentWillReceiveProps` to [`UNSAFE_componentWillReceiveProps`.](#unsafe_componentwillreceiveprops) The old name has been deprecated. In a future major version of React, only the new name will work.
 
 Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-codemod#rename-unsafe-lifecycles) to automatically update your components.
 
@@ -1295,7 +1295,7 @@ Run the [`rename-unsafe-lifecycles` codemod](https://github.com/reactjs/react-co
 
 If you define the `componentWillUnmount` method, React will call it when your component is removed *(unmounted)* from the screen. This is a common place to cancel data fetching or remove subscriptions.
 
-The logic inside `componentWillUnmount` should "mirror" the logic inside [`componentDidMount`.](#componentDidMount) For example, if `componentDidMount` sets up a subscription, `componentWillUnmount` should clean up that subscription. If the cleanup logic your `componentWillUnmount` reads some props or state, you will usually also need to implement [`componentDidUpdate`](#componentdidupdate) to clean up resources (such as subscriptions) corresponding to the old props and state.
+The logic inside `componentWillUnmount` should "mirror" the logic inside [`componentDidMount`.](#componentdidmount) For example, if `componentDidMount` sets up a subscription, `componentWillUnmount` should clean up that subscription. If the cleanup logic your `componentWillUnmount` reads some props or state, you will usually also need to implement [`componentDidUpdate`](#componentdidupdate) to clean up resources (such as subscriptions) corresponding to the old props and state.
 
 ```js {20-22}
 class ChatRoom extends Component {
@@ -1386,7 +1386,7 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 - To initialize state, declare [`state`](#state) as a class field or set `this.state` inside the [`constructor`.](#constructor)
 - If you need to run a side effect or set up a subscription, move that logic to [`componentDidMount`](#componentdidmount) instead.
 
-[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering.html#examples)
+[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#examples)
 
 #### Parameters {/*unsafe_componentwillmount-parameters*/}
 
@@ -1412,7 +1412,37 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class co
 
 ### `UNSAFE_componentWillReceiveProps(nextProps)` {/*unsafe_componentwillreceiveprops*/}
 
-TODO
+If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+
+- If you need to run a side effect (for example, fetch data or run an animation) or reinitialize a subscription in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
+- If you need to avoid re-computing some data only when a prop changes, use a [memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state#what-about-memoization) instead.
+- If you need to "reset" some state when a prop changes, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-uncontrolled-component-with-a-key) instead.
+- If you need to "adjust" some state when a prop changes, check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/apis/react/Component#static-getderivedstatefromprops) instead.
+
+[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#updating-state-based-on-props)
+
+#### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
+
+- `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+
+#### Returns {/*unsafe_componentwillreceiveprops-returns*/}
+
+`UNSAFE_componentWillReceiveProps` should not return anything.
+
+#### Caveats {/*unsafe_componentwillreceiveprops-caveats*/}
+
+- Despite its naming, `UNSAFE_componentWillReceiveProps` does not guarantee that the component *will* receive those props if your app uses modern React features like [`Suspense`.](/apis/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+
+- `UNSAFE_componentWillReceiveProps` does not mean that the component has received *different* props than the last time. You need to compare `nextProps` and `this.props` yourself to check if something changed.
+
+- React doesn't call `UNSAFE_componentWillReceiveProps` with initial props during mounting. It only calls this method if some of component's props are going to be updated. For example, calling [`setState`](#setstate) doesn't generally trigger `UNSAFE_componentWillReceiveProps` inside the same component.
+
+<Note>
+
+Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/apis/react/useState#storing-information-from-previous-renders) in a function component.
+
+</Note>
+
 
 ---
 

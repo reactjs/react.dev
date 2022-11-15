@@ -1672,10 +1672,10 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class co
 
 If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
 
-- If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
-- If you need to avoid re-computing some data only when a prop changes, use a [memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state#what-about-memoization) instead.
-- If you need to "reset" some state when a prop changes, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-uncontrolled-component-with-a-key) instead.
-- If you need to "adjust" some state when a prop changes, check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/apis/react/Component#static-getderivedstatefromprops) instead.
+- If you need to **run a side effect** (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
+- If you need to **avoid re-computing some data only when a prop changes,** use a [memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state#what-about-memoization) instead.
+- If you need to **"reset" some state when a prop changes,** consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-uncontrolled-component-with-a-key) instead.
+- If you need to **"adjust" some state when a prop changes,** check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/apis/react/Component#static-getderivedstatefromprops) instead.
 
 [See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#updating-state-based-on-props)
 
@@ -1853,4 +1853,63 @@ TODO
 
 ### `static getDerivedStateFromProps(props, state)` {/*static-getderivedstatefromprops*/}
 
-TODO
+If you define `static getDerivedStateFromProps`, React will call it right before calling [`render`,](#render) both on the initial mount and on subsequent updates. It should return an object to update the state, or `null` to update nothing.
+
+This method exists for [rare use cases](/blog/2018/06/07/you-probably-dont-need-derived-state#when-to-use-derived-state) where the state depends on changes in props over time. For example, this `Form` component resets the `email` state when the `userID` prop changes:
+
+```js {7-18}
+class Form extends Component {
+  state = {
+    email: this.props.defaultEmail,
+    prevUserID: this.props.userID
+  };
+
+  static getDerivedStateFromProps(props, state) {
+    // Any time the current user changes,
+    // Reset any parts of state that are tied to that user.
+    // In this simple example, that's just the email.
+    if (props.userID !== state.prevUserID) {
+      return {
+        prevUserID: props.userID,
+        email: props.defaultEmail
+      };
+    }
+    return null;
+  }
+
+  // ...
+}
+```
+
+Note that this pattern requires you to keep a previous value of the prop (like `userID`) in state (like `prevUserID`).
+
+<Pitfall>
+
+Deriving state leads to verbose code and makes your components difficult to think about. [Make sure you're familiar with simpler alternatives:](/blog/2018/06/07/you-probably-dont-need-derived-state.html)
+
+- If you need to **perform a side effect** (for example, data fetching or an animation) in response to a change in props, use [`componentDidUpdate`](#componentdidupdate) method instead.
+- If you want to **re-compute some data only when a prop changes,** [use a memoization helper instead.](/blog/2018/06/07/you-probably-dont-need-derived-state#what-about-memoization)
+- If you want to **"reset" some state when a prop changes,** consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/blog/2018/06/07/you-probably-dont-need-derived-state.html#recommendation-fully-uncontrolled-component-with-a-key) instead.
+
+</Pitfall>
+
+#### Parameters {/*static-getderivedstatefromprops-parameters*/}
+
+- `props`: The next props that the component is about to render with.
+- `state`: The next state that the component is about to render with.
+
+#### Returns {/*static-getderivedstatefromprops-returns*/}
+
+`static getDerivedStateFromProps` return an object to update the state, or `null` to update nothing.
+
+#### Caveats {/*static-getderivedstatefromprops-caveats*/}
+
+- This method is fired on *every* render, regardless of the cause. This is different from [`UNSAFE_componentWillReceiveProps`](#unsafe_cmoponentwillreceiveprops), which only fires when the parent causes a re-render and not as a result of a local `setState`.
+
+- This method doesn't have access to the component instance. If you'd like, you can reuse some code between `static getDerivedStateFromProps` and the other class methods by extracting pure functions of the component props and state outside the class definition.
+
+<Note>
+
+Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/apis/react/useState#storing-information-from-previous-renders) in a function component.
+
+</Note>

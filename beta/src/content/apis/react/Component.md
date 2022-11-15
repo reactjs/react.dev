@@ -1414,7 +1414,7 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class co
 
 If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
 
-- If you need to run a side effect (for example, fetch data or run an animation) or reinitialize a subscription in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
+- If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
 - If you need to avoid re-computing some data only when a prop changes, use a [memoization helper](/blog/2018/06/07/you-probably-dont-need-derived-state#what-about-memoization) instead.
 - If you need to "reset" some state when a prop changes, consider either making a component [fully controlled](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-controlled-component) or [fully uncontrolled with a key](/blog/2018/06/07/you-probably-dont-need-derived-state#recommendation-fully-uncontrolled-component-with-a-key) instead.
 - If you need to "adjust" some state when a prop changes, check whether you can compute all the necessary information from props alone during rendering. If you can't, use [`static getDerivedStateFromProps`](/apis/react/Component#static-getderivedstatefromprops) instead.
@@ -1443,12 +1443,40 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a c
 
 </Note>
 
-
 ---
 
 ### `UNSAFE_componentWillUpdate(nextProps, nextState)` {/*unsafe_componentwillupdate*/}
 
-TODO
+
+If you define `UNSAFE_componentWillUpdate`, React will call it before rendering with the new props or state. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
+
+- If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop or state changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
+- If you need to read some information from the DOM (for example, to save the current scroll position) so that you can use it in [`componentDidUpdate`](#componentdidupdate) later, read it inside [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate) instead.
+
+#### Parameters {/*unsafe_componentwillupdate-parameters*/}
+
+- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextState`: The next state that the component is about to render with. Compare `nextState` to [`this.state`](#state) to determine what changed.
+
+#### Returns {/*unsafe_componentwillupdate-returns*/}
+
+`UNSAFE_componentWillUpdate` should not return anything.
+
+#### Caveats {/*unsafe_componentwillupdate-caveats*/}
+
+- It's not supported to call [`setState`](#setstate) (or any method that leads to `setState` being called, like dispatching a Redux action) during `componentWillUpdate`.
+
+- Despite its naming, `UNSAFE_componentWillUpdate` does not guarantee that the component *will* update if your app uses modern React features like [`Suspense`.](/apis/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props and state might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
+
+- `UNSAFE_componentWillUpdate` does not mean that the component has received *different* props or state than the last time. You need to compare `nextProps` with `this.props` and `nextState` with `this.state` yourself to check if something changed.
+
+- React doesn't call `UNSAFE_componentWillUpdate` with initial props and state during mounting.
+
+<Note>
+
+There is no direct equivalent to `UNSAFE_componentWillUpdate` in function components.
+
+</Note>
 
 ---
 

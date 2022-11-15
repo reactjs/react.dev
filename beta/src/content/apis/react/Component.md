@@ -1242,6 +1242,8 @@ class ChatRoom extends Component {
 
 #### Caveats {/*componentdidupdate-caveats*/}
 
+- `componentDidUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+
 - The logic inside `componentDidUpdate` should usually be wrapped in conditions comparing `this.props` with `prevProps`, and `this.state` with `prevState`. Otherwise, there's a risk of creating infinite loops.
 
 - Although you may call [`setState`](#setstate) immediately in `componentDidUpdate`, it's best to avoid that when you can. It will trigger an extra rendering, but it will happen before the browser updates the screen. This guarantees that even though the [`render`](#render) will be called twice in this case, the user won't see the intermediate state. This pattern often causes performance issues, but it may be necessary for rare cases like modals and tooltips when you need to measure a DOM node before rendering something that depends on its size or position.
@@ -1353,17 +1355,21 @@ For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `com
 
 Forces a component to re-render.
 
-Usually, this is not necessary. If your component's [`render`](#render) method only reads from [`this.props`](#props), [`this.state`](#state), or [`this.context`,](#context) it will re-render automatically when you change them by calling [`setState`](#setstate) in this or a parent component. However, if your component's `render` method reads directly from an external data source, you have to tell React to update the user interface when that data source changes. That's what `forceUpdate` lets you do.
+Usually, this is not necessary. If your component's [`render`](#render) method only reads from [`this.props`](#props), [`this.state`](#state), or [`this.context`,](#context) it will re-render automatically when you call [`setState`](#setstate) inside your component or one of its parents. However, if your component's `render` method reads directly from an external data source, you have to tell React to update the user interface when that data source changes. That's what `forceUpdate` lets you do.
 
 Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this.state` in `render`.
 
 #### Parameters {/*forceupdate-parameters*/}
 
-* `callback` **(optional)** If specified, React will call the `callback` you've provided after the update is committed.
+* **optional** `callback` If specified, React will call the `callback` you've provided after the update is committed.
 
 #### Returns {/*forceupdate-returns*/}
 
 `forceUpdate` does not return anything.
+
+#### Caveats {/*forceupdate-caveats*/}
+
+- If you call `forceUpdate`, React will re-render without calling [`shouldComponentUpdate`.](#shouldcomponentupdate)
 
 <Note>
 
@@ -1375,7 +1381,60 @@ Reading an external data source and forcing class components to re-render in res
 
 ### `getSnapshotBeforeUpdate(prevProps, prevState)` {/*getsnapshotbeforeupdate*/}
 
-TODO
+If you implement `getSnapshotBeforeUpdate`, React will call it immediately before React updates the DOM. It enables your component to capture some information from the DOM (e.g. scroll position) before it is potentially changed. Any value returned by this lifecycle method will be passed as a parameter to [`componentDidUpdate`.](#componentdidupdate)
+
+For example, you can use it in a UI like a chat thread that needs to preserve its scroll position during updates:
+
+```js {7-15,17}
+class ScrollingList extends React.Component {
+  constructor(props) {
+    super(props);
+    this.listRef = React.createRef();
+  }
+
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+    // Are we adding new items to the list?
+    // Capture the scroll position so we can adjust scroll later.
+    if (prevProps.list.length < this.props.list.length) {
+      const list = this.listRef.current;
+      return list.scrollHeight - list.scrollTop;
+    }
+    return null;
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    // If we have a snapshot value, we've just added new items.
+    // Adjust scroll so these new items don't push the old ones out of view.
+    // (snapshot here is the value returned from getSnapshotBeforeUpdate)
+    if (snapshot !== null) {
+      const list = this.listRef.current;
+      list.scrollTop = list.scrollHeight - snapshot;
+    }
+  }
+
+  render() {
+    return (
+      <div ref={this.listRef}>{/* ...contents... */}</div>
+    );
+  }
+}
+```
+
+In the above example, it is important to read the `scrollHeight` property directly in `getSnapshotBeforeUpdate`. It is not safe to read it in [`render`](#render), [`UNSAFE_componentWillReceiveProps`](#unsafe_componentwillreceiveprops), or [`UNSAFE_componentWillUpdate`](#unsafe_componentwillupdate) because there is a potential time gap between these methods getting called and React updating the DOM.
+
+#### Parameters {/*getsnapshotbeforeupdate-parameters*/}
+
+* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+
+* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+
+#### Returns {/*getsnapshotbeforeupdate-returns*/}
+
+You should return a snapshot value of any type that you'd like, or `null`. The value you returned will be passed as the third argument to [`componentDidUpdate`.](#componentdidupdate)
+
+#### Caveats {/*getsnapshotbeforeupdate-caveats*/}
+
+- `getSnapshotBeforeUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
 ---
 
@@ -1486,6 +1545,8 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 `UNSAFE_componentWillUpdate` should not return anything.
 
 #### Caveats {/*unsafe_componentwillupdate-caveats*/}
+
+- `UNSAFE_componentWillUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
 - `UNSAFE_componentWillUpdate` will not get called if the component implements [`static getDerivedStateFromProps`](getDerivedStateFromProps) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 

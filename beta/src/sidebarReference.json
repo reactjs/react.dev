@@ -21,8 +21,7 @@
             },
             {
               "title": "Component",
-              "path": "/apis/react/Component",
-              "wip": true
+              "path": "/apis/react/Component"
             },
             {
               "title": "createContext",

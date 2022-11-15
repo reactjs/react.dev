@@ -1572,7 +1572,66 @@ Calling `setState` in class components is similar to calling a [`set` function](
 
 ### `shouldComponentUpdate(nextProps, nextState, nextContext)` {/*shouldcomponentupdate*/}
 
-TODO
+If you define `shouldComponentUpdate`, React will call it to determine whether a re-render can be skipped.
+
+If you are confident you want to write it by hand, you may compare `this.props` with `nextProps` and `this.state` with `nextState` and return `false` to tell React the update can be skipped.
+
+```js {6-18}
+class Rectangle extends Component {
+  state = {
+    isHovered: false
+  };
+
+  shouldComponentUpdate(nextProps, nextState) {
+    if (
+      nextProps.position.x === this.props.position.x &&
+      nextProps.position.y === this.props.position.y &&
+      nextProps.size.width === this.props.size.width &&
+      nextProps.size.height === this.props.size.height &&
+      nextState.isHovered === this.state.isHovered
+    ) {
+      // Nothing has changed, so a re-render is unnecessary
+      return false;
+    }
+    return true;
+  }
+
+  // ...
+}
+
+```
+
+React calls `shouldComponentUpdate` before rendering when new props or state are being received. Defaults to `true`. This method is not called for the initial render or when [`forceUpdate`](#forceupdate) is used.
+
+#### Parameters {/*shouldcomponentupdate-parameters*/}
+
+- `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextState`: The next props that the component is about to render with. Compare `nextState` to [`this.state`](#props) to determine what changed.
+- `nextContext`: The next props that the component is about to render with. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
+
+#### Returns {/*shouldcomponentupdate-returns*/}
+
+Return `true` if you want the component to re-render. That's the default behavior.
+
+Return `false` to tell React that re-rendering can be skipped.
+
+#### Caveats {/*shouldcomponentupdate-caveats*/}
+
+- This method *only* exists as a performance optimization. If your component breaks without it, fix that first. 
+
+- Consider using [`PureComponent`](/apis/react/PureComponent) instead of writing `shouldComponentUpdate` by hand. `PureComponent` shallowly compares props and state, and reduces the chance that you'll skip a necessary update.
+
+- We do not recommend doing deep equality checks or using `JSON.stringify` in `shouldComponentUpdate`. It makes performance unpredictable and dependent on the data structure of every prop and state. In the best case, you risk introducing multi-second stalls to your application, and in the worst case you risk crashing it.
+
+- Returning `false` does not prevent child components from re-rendering when *their* state changes.
+
+- Returning `false` does not *guarantee* that the component will not re-render. React will use the return value as a hint but it may still choose to re-render your component if it makes sense to do for other reasons.
+
+<Note>
+
+Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/apis/react/memo) Function components also offer more granular optimization with [`useMemo`.](/apis/react/useMemo)
+
+</Note>
 
 ---
 

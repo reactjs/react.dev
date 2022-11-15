@@ -1571,6 +1571,8 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 - If you need to run a side effect (for example, fetch data, run an animation, or reinitialize a subscription) in response to prop or state changes, move that logic to [`componentDidUpdate`](#componentdidupdate) instead.
 - If you need to read some information from the DOM (for example, to save the current scroll position) so that you can use it in [`componentDidUpdate`](#componentdidupdate) later, read it inside [`getSnapshotBeforeUpdate`](#getsnapshotbeforeupdate) instead.
 
+[See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering#examples)
+
 #### Parameters {/*unsafe_componentwillupdate-parameters*/}
 
 - `nextProps`: The next props that the component is about to render with. Compare `nextProps` to [`this.props`](#props) to determine what changed.

@@ -1388,6 +1388,26 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 
 [See examples of migrating away from unsafe lifecycles.](/blog/2018/03/27/update-on-async-rendering.html#examples)
 
+#### Parameters {/*unsafe_componentwillmount-parameters*/}
+
+`UNSAFE_componentWillMount` does not take any parameters.
+
+#### Returns {/*unsafe_componentwillmount-returns*/}
+
+`UNSAFE_componentWillMount` should not return anything.
+
+#### Caveats {/*unsafe_componentwillmount-caveats*/}
+
+- Despite its naming, `UNSAFE_componentWillMount` does not guarantee that the component *will* get mounted if your app uses modern React features like [`Suspense`.](/apis/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. This is why this method is "unsafe". Code that relies on mounting (like adding a subscription) should go into [`componentDidMount`.](#componentdidmount)
+
+- `UNSAFE_componentWillMount` is the only lifecycle method that runs during [server rendering.](/apis/react-dom/server) For all practical purposes, it is identical to [`constructor`,](#constructor) so you should use the `constructor` for this type of logic instead.
+
+<Note>
+
+Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/apis/react/useState) in a function component.
+
+</Note>
+
 ---
 
 ### `UNSAFE_componentWillReceiveProps(nextProps)` {/*unsafe_componentwillreceiveprops*/}

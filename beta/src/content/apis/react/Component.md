@@ -1398,6 +1398,8 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 
 #### Caveats {/*unsafe_componentwillmount-caveats*/}
 
+- `UNSAFE_componentWillMount` will not get called if the component implements [`static getDerivedStateFromProps`](getDerivedStateFromProps) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
+
 - Despite its naming, `UNSAFE_componentWillMount` does not guarantee that the component *will* get mounted if your app uses modern React features like [`Suspense`.](/apis/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. This is why this method is "unsafe". Code that relies on mounting (like adding a subscription) should go into [`componentDidMount`.](#componentdidmount)
 
 - `UNSAFE_componentWillMount` is the only lifecycle method that runs during [server rendering.](/apis/react-dom/server) For all practical purposes, it is identical to [`constructor`,](#constructor) so you should use the `constructor` for this type of logic instead.
@@ -1410,7 +1412,7 @@ Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class co
 
 ---
 
-### `UNSAFE_componentWillReceiveProps(nextProps)` {/*unsafe_componentwillreceiveprops*/}
+### `UNSAFE_componentWillReceiveProps(nextProps, nextContext)` {/*unsafe_componentwillreceiveprops*/}
 
 If you define `UNSAFE_componentWillReceiveProps`, React will call it when the component receives new props. It only exists for historical reasons and should not be used in any new code. Instead, use one of the alternatives:
 
@@ -1424,12 +1426,15 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 #### Parameters {/*unsafe_componentwillreceiveprops-parameters*/}
 
 - `nextProps`: The next props that the component is about to receive from its parent component. Compare `nextProps` to [`this.props`](#props) to determine what changed.
+- `nextContext`: The next props that the component is about to receive from the closest provider. Compare `nextContext` to [`this.context`](#context) to determine what changed. Only available if you specify [`static contextType`](#static-contexttype) (modern) or [`static contextTypes`](#static-contexttypes) (legacy).
 
 #### Returns {/*unsafe_componentwillreceiveprops-returns*/}
 
 `UNSAFE_componentWillReceiveProps` should not return anything.
 
 #### Caveats {/*unsafe_componentwillreceiveprops-caveats*/}
+
+- `UNSAFE_componentWillReceiveProps` will not get called if the component implements [`static getDerivedStateFromProps`](getDerivedStateFromProps) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
 - Despite its naming, `UNSAFE_componentWillReceiveProps` does not guarantee that the component *will* receive those props if your app uses modern React features like [`Suspense`.](/apis/react/Suspense) If a render attempt is suspended (for example, because the code for some child component has not loaded yet), React will throw the in-progress tree away and attempt to construct the component from scratch during the next attempt. By the time of the next render attempt, the props might be different. This is why this method is "unsafe". Code that should run only for committed updates (like resetting a subscription) should go into [`componentDidUpdate`.](#componentdidupdate)
 
@@ -1463,6 +1468,8 @@ If you define `UNSAFE_componentWillUpdate`, React will call it before rendering 
 `UNSAFE_componentWillUpdate` should not return anything.
 
 #### Caveats {/*unsafe_componentwillupdate-caveats*/}
+
+- `UNSAFE_componentWillUpdate` will not get called if the component implements [`static getDerivedStateFromProps`](getDerivedStateFromProps) or [`getSnapshotBeforeUpdate`.](#getsnapshotbeforeupdate)
 
 - It's not supported to call [`setState`](#setstate) (or any method that leads to `setState` being called, like dispatching a Redux action) during `componentWillUpdate`.
 

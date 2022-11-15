@@ -1482,7 +1482,91 @@ You should write the `render` method as a pure function, meaning that it should 
 
 ### `setState(nextState, callback?)` {/*setstate*/}
 
-TODO
+Call `setState` to update the state of your React component.
+
+```js {8-10}
+class Form extends Component {
+  state = {
+    name: 'Taylor',
+  };
+
+  handleNameChange = (e) => {
+    const newName = e.target.value;
+    this.setState({
+      name: newName
+    });
+  }
+
+  render() {
+    return (
+      <>
+        <input value={this.state.name} onChange={this.handleNameChange} />
+        <p>Hello, {this.state.name}.
+      </>
+    );
+  }
+}
+```
+
+`setState` enqueues changes to the component state. It tells React that this component and its children need to re-render with the new state. This is the main way you'll update the user interface in response to interactions.
+
+<Pitfall>
+
+Calling `setState` **does not** change the current state in the already executing code:
+
+```js {6}
+function handleClick() {
+  console.log(this.state.name); // "Taylor"
+  this.setState({
+    name: 'Robin'
+  });
+  console.log(this.state.name); // Still "Taylor"!
+}
+```
+
+It only affects what `this.state` will return starting from the *next* render.
+
+</Pitfall>
+
+You can also pass a function to `setState`. It lets you update state based on the previous state:
+
+```js {2-6}
+  handleIncreaseAge = () => {
+    this.setState(prevState => {
+      return {
+        age: prevState.age + 1
+      };
+    });
+  }
+```
+
+You don't have to do this, but it's handy if you want to update state multiple times during the same event.
+
+#### Parameters {/*setstate-parameters*/}
+
+* `nextState`: Either an object or a function.
+  * If you pass an object as `nextState`, it will be shallowly merged into `this.state`.
+  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state and props as arguments, and should return the object to be shallowly merged into `this.state`. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state.
+
+* **optional** `callback`: If specified, React will call the `callback` you've provided after the update is committed.
+
+#### Returns {/*setstate-returns*/}
+
+`setState` does not return anything.
+
+#### Caveats {/*setstate-caveats*/}
+
+- Think of `setState` as a *request* rather than an immediate command to update the component. When multiple components update their state in response to an event, React will batch their updates and re-render them together in a single pass at the end of the event. In the rare case that you need to force a particular state update to be applied synchronously, you may wrap it in [`flushSync`,](/apis/react-dom/flushSync) but this may hurt performance.
+
+- `setState` does not update `this.state` immediately. This makes reading `this.state` right after calling `setState` a potential pitfall. Instead, use [`componentDidUpdate`](#componentdidupdate) or the setState `callback` argument, either of which are guaranteed to fire after the update has been applied. If you need to set the state based on the previous state, you can pass a function to `nextState` as described above.
+
+<Note>
+
+Calling `setState` in class components is similar to calling a [`set` function](/apis/react/useState#setstate) in function components.
+
+[See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
+
+</Note>
 
 ---
 

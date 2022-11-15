@@ -1440,7 +1440,43 @@ You should return a snapshot value of any type that you'd like, or `null`. The v
 
 ### `render()` {/*render*/}
 
-TODO
+The `render` method is the only required method in a class component.
+
+The `render` method should specify what you want to appear on the screen, for example:
+
+```js {4-6}
+import { Component } from 'react';
+
+class Greeting extends Component {
+  render() {
+    return <h1>Hello, {this.props.name}!</h1>;
+  }
+}
+```
+
+React may call `render` at any moment, so you shouldn't assume that it runs at a particular time. Usually, the `render` method should return a piece of [JSX](/learn/writing-markup-with-jsx), but a few [other return types](#render-returns) (like strings) are supported. To calculate the returned JSX, the `render` method can read [`this.props`](#props), [`this.state`](#state), and [`this.context`](#context).
+
+You should write the `render` method as a pure function, meaning that it should return the same result if props, state, and context are the same. It also shouldn't contain side effects (like setting up subscriptions) or interact with the browser APIs. Side effects should happen either in event handlers or methods like [`componentDidMount`.](#componentdidmount)
+
+#### Parameters {/*render-parameters*/}
+
+* `prevProps`: Props before the update. Compare `prevProps` to [`this.props`](#props) to determine what changed.
+
+* `prevState`: State before the update. Compare `prevState` to [`this.state`](#state) to determine what changed.
+
+#### Returns {/*render-returns*/}
+
+`render` can return any valid React node. This includes React elements such as `<div />`, strings, numbers, [portals](/apis/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes.
+
+#### Caveats {/*render-caveats*/}
+
+- `render` should be written as a pure function of props, state, and context. It should not have side effects.
+
+- `render` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
+
+- When [Strict Mode](/apis/react/StrictMode) is on, React will call `render` twice in development and then throw away one of the results. This helps you notice the accidental side effects that need to be moved out of the `render` method.
+
+- There is no one-to-one correspondence between the `render` call and the subsequent `componentDidMount` or `componentDidUpdate` call. Some of the `render` call results may be discarded by React when it's beneficial.
 
 ---
 

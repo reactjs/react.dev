@@ -1351,7 +1351,25 @@ For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `com
 
 ### `forceUpdate(callback?)` {/*forceupdate*/}
 
-TODO
+Forces a component to re-render.
+
+Usually, this is not necessary. If your component's [`render`](#render) method only reads from [`this.props`](#props), [`this.state`](#state), or [`this.context`,](#context) it will re-render automatically when you change them by calling [`setState`](#setstate) in this or a parent component. However, if your component's `render` method reads directly from an external data source, you have to tell React to update the user interface when that data source changes. That's what `forceUpdate` lets you do.
+
+Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this.state` in `render`.
+
+#### Parameters {/*forceupdate-parameters*/}
+
+* `callback` **(optional)** If specified, React will call the `callback` you've provided after the update is committed.
+
+#### Returns {/*forceupdate-returns*/}
+
+`forceUpdate` does not return anything.
+
+<Note>
+
+Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/apis/react/useSyncExternalStore) in function components.
+
+</Note>
 
 ---
 
@@ -1373,7 +1391,7 @@ TODO
 
 ---
 
-### `shouldComponentUpdate(prevProps, prevState)` {/*shouldcomponentupdate*/}
+### `shouldComponentUpdate(nextProps, nextState, nextContext)` {/*shouldcomponentupdate*/}
 
 TODO
 

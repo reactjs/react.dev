@@ -1190,6 +1190,51 @@ If we click on any step in the game's history, the tic-tac-toe board should imme
 
 **[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)**
 
+We are a bit away from the perfection- if we click on any previous move though the board is updated right after the click, the move list is not because, when we click on any move, `jumpTo()` is called and hence `moveNumber` and `xIsNext` is changed and `Game` is re-rendered but, as `history` is yet to be updated and `moves` remains same untill another `handleClick()` call is taking place by a click on a sqaure (see, `history` is updating `handleClick()`). To complete this, we can update `history` in `jumpTo()` instead of doing in `handleClick()` like this:
+ 
+ ```javascript{3}
+  jumpTo(move) {
+      const history = this.state.history.slice(0, move + 1);
+      const current = history[ history.length - 1 ]; 
+      this.setState(
+        {
+          history: history,
+          moveNumber: move,
+          xIsNext: (move % 2) === 0,
+        }
+      );
+  }
+```
+As we have already updated `history` we need not depend on the `moveNumber` in `handleClick(i)` to access the exact history. 
+So, `handleClick()` looks like that now:
+ ```javascript{3}
+  handleClick(i) {
+    const history = this.state.history.slice();
+    const current = history[ history.length - 1 ]; 
+    const squares = current.squares.slice();
+    if(calculateWinner(squares) || squares[i]){
+      return;
+    }
+    squares[i] = this.state.xIsNext? 'X' : 'O';
+    this.setState(
+      {
+        history: history.concat( 
+          [
+            {
+              squares: squares
+            }
+          ]
+        ),
+        xIsNext: !this.state.xIsNext,
+        moveNumber: history.length,
+      }
+    );
+  }
+```
+Now, move list is updating right after you clicked on the move list.
+
+**[View the full code at this point](https://codepen.io/shiponcs/pen/zYGJKWM?editors=0010)**
+
 ### Wrapping Up {#wrapping-up}
 
 Congratulations! You've created a tic-tac-toe game that:

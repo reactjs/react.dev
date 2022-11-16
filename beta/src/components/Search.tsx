@@ -29,12 +29,13 @@ function Hit({hit, children}: any) {
 }
 
 function Kbd(props: {children?: React.ReactNode; wide?: boolean}) {
-  const width = props.wide ? 'w-12' : 'w-6';
+  const {wide, ...rest} = props;
+  const width = wide ? 'w-12' : 'w-6';
 
   return (
     <kbd
-      className={`${width} h-6 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center  text-xs text-center rounded`}
-      {...props}
+      className={`${width} h-6 border border-transparent mr-1 bg-wash dark:bg-wash-dark text-gray-30 align-middle p-0 inline-flex justify-center items-center text-xs text-center rounded`}
+      {...rest}
     />
   );
 }
@@ -96,16 +97,20 @@ const options = {
   apiKey: siteConfig.algolia.apiKey,
   indexName: siteConfig.algolia.indexName,
 };
+
 let DocSearchModal: any = null;
+
 export function Search({
   searchParameters = {
     hitsPerPage: 5,
   },
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
-  const [macintosh, setMacintosh] = useState(true);
+  const [ctrlKey, setCtrlKey] = useState(false);
 
-  useEffect(() => setMacintosh(window.navigator.platform.includes('Mac')), []);
+  useEffect(() => {
+    setCtrlKey(document.documentElement.classList.contains('platform-win'));
+  }, []);
 
   const importDocSearchModalIfNeeded = useCallback(
     function importDocSearchModalIfNeeded() {
@@ -165,7 +170,7 @@ export function Search({
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
         Search
         <span className="ml-auto hidden sm:flex item-center">
-          <Kbd wide={!macintosh}>{macintosh ? '⌘' : 'Ctrl'}</Kbd>
+          <Kbd wide={ctrlKey}>{ctrlKey ? 'Ctrl' : '⌘'}</Kbd>
           <Kbd>K</Kbd>
         </span>
       </button>

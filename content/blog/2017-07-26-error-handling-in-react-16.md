@@ -107,6 +107,11 @@ However, React components are declarative and specify *what* should be rendered:
 
 Error boundaries preserve the declarative nature of React, and behave as you would expect. For example, even if an error occurs in a `componentDidUpdate` method caused by a `setState` somewhere deep in the tree, it will still correctly propagate to the closest error boundary.
 
+## Does Error Boundaries Propogate Up to window.onerror? {#does-error-boundaries-propogate-up-to-window.onerror}
+
+In development environment, React uses a trick: caught exceptions are thrown inside a fake DOM event which makes them reported by window.onerror, but then React actually catches them so that they don't propagate up (in case there is an error boundary — otherwise they are rethrown).
+In production errors caught by error boundaries stay caught.
+
 ## Naming Changes from React 15 {#naming-changes-from-react-15}
 
 React 15 included a very limited support for error boundaries under a different method name: `unstable_handleError`. This method no longer works, and you will need to change it to `componentDidCatch` in your code starting from the first 16 beta release.

@@ -1446,6 +1446,12 @@ You should return a snapshot value of any type that you'd like, or `null`. The v
 
 - `getSnapshotBeforeUpdate` will not get called if [`shouldComponentUpdate`](#shouldcomponentupdate) is defined and returns `false`.
 
+<Note>
+
+At the moment, there is no equivalent to `getSnapshotBeforeUpdate` for function components. This use case is very uncommon, but if you have the need for it, for now you'll have to write a class component.
+
+</Note>
+
 ---
 
 ### `render()` {/*render*/}

@@ -175,9 +175,9 @@ function Comment(props) {
   return (
     <div className="Comment">
       <div className="UserInfo">
-        <Avatar user={props.author} />
+        <Avatar user={props.user} />
         <div className="UserInfo-name">
-          {props.author.name}
+          {props.user.name}
         </div>
       </div>
       <div className="Comment-text">
@@ -212,7 +212,7 @@ This lets us simplify `Comment` even further:
 function Comment(props) {
   return (
     <div className="Comment">
-      <UserInfo user={props.author} />
+      <UserInfo user={props.user} />
       <div className="Comment-text">
         {props.text}
       </div>

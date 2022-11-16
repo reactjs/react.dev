@@ -79,6 +79,8 @@ The following toolchains offer more flexibility and choice. We recommend them to
 
 - **[Razzle](https://github.com/jaredpalmer/razzle)** is a server-rendering framework that doesn't require any configuration, but offers more flexibility than Next.js.
 
+- **[Zero](https://zeroserver.io/)** is a fast web server that handles **server-rendering, bundling, routing** for you. It also allows you to mix other frameworks like Vue, Svelte, Python, Node.js API into a single project with absolutely no configuration.
+
 ## Creating a Toolchain from Scratch {#creating-a-toolchain-from-scratch}
 
 A JavaScript build toolchain typically consists of:

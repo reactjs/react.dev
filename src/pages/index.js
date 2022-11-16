@@ -177,12 +177,7 @@ class Home extends Component {
                     [media.lessThan('medium')]: {
                       marginTop: 0,
                       marginBottom: 0,
-                      overflowX: 'auto',
                       paddingTop: 30,
-                      WebkitOverflowScrolling: 'touch',
-                      position: 'relative',
-                      maskImage:
-                        'linear-gradient(to right, transparent, white 10px, white 90%, transparent)',
                     },
                   },
                 ]}>
@@ -209,18 +204,14 @@ class Home extends Component {
                           marginLeft: 0,
 
                           [media.lessThan('medium')]: {
-                            marginLeft: 10,
+                            marginLeft: 0,
                           },
                         },
 
                         [media.lessThan('medium')]: {
-                          display: 'inline-block',
-                          verticalAlign: 'top',
                           marginLeft: 0,
                           whiteSpace: 'normal',
-                          width: '75%',
-                          marginRight: 20,
-                          paddingBottom: 40,
+                          flexWrap: 'wrap',
 
                           '&:first-of-type': {
                             marginTop: 0,

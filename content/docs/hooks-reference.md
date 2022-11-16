@@ -461,7 +461,7 @@ useImperativeHandle(ref, createHandle, [deps])
 `useImperativeHandle` customizes the instance value that is exposed to parent components when using `ref`. As always, imperative code using refs should be avoided in most cases. `useImperativeHandle` should be used with [`forwardRef`](/docs/react-api.html#reactforwardref):
 
 ```js
-function FancyInput(props, ref) {
+const FancyInput = React.forwardRef((props, ref) => {
   const inputRef = useRef();
   useImperativeHandle(ref, () => ({
     focus: () => {
@@ -469,8 +469,7 @@ function FancyInput(props, ref) {
     }
   }));
   return <input ref={inputRef} ... />;
-}
-FancyInput = forwardRef(FancyInput);
+})
 ```
 
 In this example, a parent component that renders `<FancyInput ref={inputRef} />` would be able to call `inputRef.current.focus()`.

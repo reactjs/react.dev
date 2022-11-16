@@ -62,6 +62,28 @@ Next, add three `<script>` tags to the HTML page right before the closing `</bod
 
 </body>
 ```
+Or use the attribute `defer` to mantain all `<script>` tags together on the `<head>` tag, just to be executed when entire HTML page was loaded:
+```html{5,6,9}
+<html>
+  <head>
+    <!-- ... some head tags ... -->
+    
+    <!-- Load React. -->
+    <!-- Note the *defer* attribute on both script tags -->
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin defer></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin defer></script>
+
+    <!-- Load our React component. -->
+    <script src="like_button.js" defer></script>
+    <!-- Or load our React component by inline mode -->
+    <script defer>
+      <!-- React component code -->
+    </script>
+    
+    <!-- ... some other head stuffs ... -->
+  </head>
+```
+
 
 The first two tags load React. The third one will load your component code.
 

@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "babel-eslint": "^8.0.1",
+    "core-js": "^3.7.0",
     "eslint": "^4.8.0",
     "eslint-config-fbjs": "^2.0.0",
     "eslint-config-react": "^1.1.7",

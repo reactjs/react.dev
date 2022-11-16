@@ -106,11 +106,6 @@ export function Search({
   },
 }: SearchProps) {
   const [isShowing, setIsShowing] = useState(false);
-  const [ctrlKey, setCtrlKey] = useState(false);
-
-  useEffect(() => {
-    setCtrlKey(document.documentElement.classList.contains('platform-win'));
-  }, []);
 
   const importDocSearchModalIfNeeded = useCallback(
     function importDocSearchModalIfNeeded() {
@@ -170,7 +165,10 @@ export function Search({
         <IconSearch className="mr-3 align-middle text-gray-30 shrink-0 group-betterhover:hover:text-gray-70" />
         Search
         <span className="ml-auto hidden sm:flex item-center">
-          <Kbd wide={ctrlKey}>{ctrlKey ? 'Ctrl' : '⌘'}</Kbd>
+          <Kbd data-platform="mac">⌘</Kbd>
+          <Kbd data-platform="win" wide>
+            Ctrl
+          </Kbd>
           <Kbd>K</Kbd>
         </span>
       </button>

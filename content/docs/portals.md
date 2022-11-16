@@ -110,8 +110,8 @@ class Parent extends React.Component {
   }
 
   handleClick() {
-    // This will fire when the button in Child is clicked,
-    // updating Parent's state, even though button
+    // This will fire when Child is clicked,
+    // updating Parent's state, even though Child
     // is not direct descendant in the DOM.
     this.setState(state => ({
       clicks: state.clicks + 1
@@ -137,8 +137,8 @@ class Parent extends React.Component {
 }
 
 function Child() {
-  // The click event on this button will bubble up to parent,
-  // because there is no 'onClick' attribute defined
+  // Any click event on this modal will bubble up to parent,
+  // because there is no 'onClick' attribute defined (e.g., on the button)
   return (
     <div className="modal">
       <button>Click</button>

@@ -309,6 +309,13 @@ function Counter() {
 >
 >React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
+
+> Warning
+>
+> When React is running in [`Strict Mode`](/docs/strict-mode.html), React will run all `useReducer` callbacks _at least twice_. 
+>
+> More information on why React does this is available [here](/docs/strict-mode.html#detecting-unexpected-side-effects)
+
 #### Specifying the initial state {#specifying-the-initial-state}
 
 There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:
@@ -408,6 +415,12 @@ Remember that the function passed to `useMemo` runs during rendering. Don't do a
 If no array is provided, a new value will be computed on every render.
 
 **You may rely on `useMemo` as a performance optimization, not as a semantic guarantee.** In the future, React may choose to "forget" some previously memoized values and recalculate them on next render, e.g. to free memory for offscreen components. Write your code so that it still works without `useMemo` — and then add it to optimize performance.
+
+> Warning
+>
+> When React is running in [`Strict Mode`](/docs/strict-mode.html), React will run all `useMemo` callbacks _at least twice_, irrespective of whether one of the dependencies has changed. This is in order to help surface any bugs that may occur should React "forget" your memoized value.
+>
+> More information on why React does this is available [here](/docs/strict-mode.html#detecting-unexpected-side-effects)
 
 > Note
 >
@@ -516,6 +529,13 @@ function useFriendStatus(friendID) {
 > Tip
 >
 > We don't recommend adding debug values to every custom Hook. It's most valuable for custom Hooks that are part of shared libraries.
+
+
+> Warning
+>
+> When React is running in [`Strict Mode`](/docs/strict-mode.html), React will run all `useState` callbacks _at least twice_. 
+>
+> More information on why React does this is available [here](/docs/strict-mode.html#detecting-unexpected-side-effects)
 
 #### Defer formatting debug values {#defer-formatting-debug-values}
 

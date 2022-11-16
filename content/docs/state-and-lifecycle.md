@@ -330,7 +330,7 @@ The only place where you can assign `this.state` is the constructor.
 
 React may batch multiple `setState()` calls into a single update for performance.
 
-Because `this.props` and `this.state` may be updated asynchronously, you should not rely on their values for calculating the next state.
+Because `this.props` and `this.state` may be updated asynchronously, i.e. eventually but not necessarily in the order you would expect, you should not rely on their values for calculating the next state.
 
 For example, this code may fail to update the counter:
 

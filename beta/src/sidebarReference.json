@@ -37,8 +37,7 @@
             },
             {
               "title": "createRef",
-              "path": "/apis/react/createRef",
-              "wip": true
+              "path": "/apis/react/createRef"
             },
             {
               "title": "forwardRef",

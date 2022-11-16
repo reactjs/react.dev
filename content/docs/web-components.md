@@ -61,3 +61,22 @@ customElements.define('x-search', XSearch);
 >
 >This code **will not** work if you transform classes with Babel. See [this issue](https://github.com/w3c/webcomponents/issues/587) for the discussion.
 >Include the [custom-elements-es5-adapter](https://github.com/webcomponents/polyfills/tree/master/packages/webcomponentsjs#custom-elements-es5-adapterjs) before you load your web components to fix this issue.
+
+## Additional toolchains and resources {#additional-toolchains-and-resources}
+
+Given some of the fundamental differences between React and Web Components, using them together usually doesn't come without some tweaking and tuning in order to align React's Virtual DOM and Web Component's Shadow DOM.  
+There exists various resources available to make this process a little easier.  
+
+### Direflow {#direflow}
+
+[Direflow](https://direflow.io/) is a new project that provides a toolchain for using React together with Web Components and attempts to solve all major issues with integrating the two technologies.  
+Direflow is based on [Create React App](https://create-react-app.dev/docs/getting-started/) and the setup will feel very familiar.
+  
+### ReactShadow {#reactshadow}
+
+[ReactShadow](https://github.com/Wildhoney/ReactShadow#readme) is a module that offers to utilize Shadow DOM in React with all the benefits of style encapsulation.  
+ReactShadow also handles a common problem with React and Web Components; event propagation through the Shadow DOM.  
+
+### react-shadow-dom-retarget-events {#react-shadow-dom-retarget-events}
+
+[react-shadow-dom-retarget-events](https://github.com/spring-media/react-shadow-dom-retarget-events#readme) is a module that specifically handles the issue with event propagation when events are triggered from within a Shadow DOM inside a React app.  

@@ -187,6 +187,13 @@ In a function, we already have `setCount` and `count` as variables so we don't n
   </button>
 ```
 
+You can pass value as an argument to `setCount` or `function` with return statement:
+
+```js{1}
+  setCount(1);
+  setCount(previousValue => previousValue + 2);
+```
+
 ## Recap {#recap}
 
 Let's now **recap what we learned line by line** and check our understanding.

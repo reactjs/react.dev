@@ -257,3 +257,11 @@ export { MyComponent as default } from "./ManyComponents.js";
 import React, { lazy } from 'react';
 const MyComponent = lazy(() => import("./MyComponent.js"));
 ```
+
+Instead of creating an additional file to export MyComponent as default in MyComponent.js, you can import ManyComponent.js and export MyComponent as default directly from MyApp.js
+
+```js
+// MyApp.js
+import React, { lazy } from 'react';
+const MyComponent = lazy(() => import('./ManyComponents.js').then(module => ({default: module.MyComponent})))
+```

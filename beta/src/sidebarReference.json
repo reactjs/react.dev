@@ -61,8 +61,7 @@
             },
             {
               "title": "PureComponent",
-              "path": "/apis/react/PureComponent",
-              "wip": true
+              "path": "/apis/react/PureComponent"
             },
             {
               "title": "startTransition",

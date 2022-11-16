@@ -58,3 +58,5 @@ permalink: community/courses.html
 - [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
 
 - [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+
+- [Design Principles in React](https://extension.harvard.edu/course-catalog/courses/design-principles-in-react/16734) - Learn React as well as some core design principles at Harvard.

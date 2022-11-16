@@ -160,6 +160,8 @@ render() {
 }
 ```
 
+See [here](/docs/jsx-in-depth.html#booleans-null-and-undefined-are-ignored) for more information.
+
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
 Another method for conditionally rendering elements inline is to use the JavaScript conditional operator [`condition ? true : false`](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Conditional_Operator).
@@ -197,7 +199,7 @@ Just like in JavaScript, it is up to you to choose an appropriate style based on
 
 ### Preventing Component from Rendering {#preventing-component-from-rendering}
 
-In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` instead of its render output.
+In rare cases you might want a component to hide itself even though it was rendered by another component. To do this return `null` (or [few other values](/docs/jsx-in-depth.html#booleans-null-and-undefined-are-ignored)) instead of its render output.
 
 In the example below, the `<WarningBanner />` is rendered depending on the value of the prop called `warn`. If the value of the prop is `false`, then the component does not render:
 

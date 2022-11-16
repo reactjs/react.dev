@@ -49,5 +49,5 @@ root.render(e('div', null, 'Hello World'));
 
 If you use this shorthand form for `React.createElement`, it can be almost as convenient to use React without JSX.
 
-Alternatively, you can refer to community projects such as [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) which offer a terser syntax.
+Alternatively, you can refer to community projects such as [`htm`](https://github.com/developit/htm) which makes use of [Tagged Templates](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals#Tagged_templates) to give JSX like experience without needing a compiler, or [`react-hyperscript`](https://github.com/mlmorg/react-hyperscript) and [`hyperscript-helpers`](https://github.com/ohanhi/hyperscript-helpers) that offer a terser syntax.
 

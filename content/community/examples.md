@@ -22,4 +22,6 @@ If you add a project, please commit to keeping it up to date with the latest ver
 
 ## Complete Apps {#complete-apps}
 
+
+* **[ReactConf.TV](https://github.com/revtel/reactconf.tv)** ReactConf.TV is a place where passionate React developers are able to search & watch organized and up-to-date react conference videos. [Check it out!](https://reactconf.tv/)
 * **[Builder Book](https://github.com/builderbook/builderbook)** Open-source web app to write and host documentation or sell books. Built with React, Material-UI, Next, Express, Mongoose, MongoDB

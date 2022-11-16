@@ -713,7 +713,13 @@ function calculateWinner(squares) {
       return squares[a];
     }
   }
-  return null;
+  for(let i = 0; i < squares.length; i++) {
+    if(squares[i]) {
+      continue;
+    }
+    return null;
+  }
+  return 'nobody';
 }
 ```
 

@@ -29,7 +29,7 @@ In HTML, form elements such as `<input>`, `<textarea>`, and `<select>` typically
 
 We can combine the two by making the React state be the "single source of truth". Then the React component that renders a form also controls what happens in that form on subsequent user input. An input form element whose value is controlled by React in this way is called a "controlled component".
 
-For example, if we want to make the previous example log the name when it is submitted, we can write the form as a controlled component:
+For example, if we want to make the previous example alert to the user the name when it is submitted, we can write the form as a controlled component:
 
 ```javascript{4,10-12,21,24}
 class NameForm extends React.Component {
@@ -46,7 +46,7 @@ class NameForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    alert(`A name was submitted: ${this.state.value}`);
     event.preventDefault();
   }
 

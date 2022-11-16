@@ -104,16 +104,16 @@ For the most efficient Rollup production build, install a few plugins:
 
 ```bash
 # If you use npm
-npm install --save-dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
+npm install --save-dev @rollup/plugin-commonjs @rollup/plugin-replace rollup-plugin-terser
 
 # If you use Yarn
-yarn add --dev rollup-plugin-commonjs rollup-plugin-replace rollup-plugin-terser
+yarn add --dev @rollup/plugin-commonjs @rollup/plugin-replace rollup-plugin-terser
 ```
 
 To create a production build, make sure that you add these plugins **(the order matters)**:
 
-* The [`replace`](https://github.com/rollup/rollup-plugin-replace) plugin ensures the right build environment is set.
-* The [`commonjs`](https://github.com/rollup/rollup-plugin-commonjs) plugin provides support for CommonJS in Rollup.
+* The [`replace`](https://github.com/rollup/plugins/blob/master/packages/replace) plugin ensures the right build environment is set.
+* The [`commonjs`](https://github.com/rollup/plugins/blob/master/packages/commonjs) plugin provides support for CommonJS in Rollup.
 * The [`terser`](https://github.com/TrySound/rollup-plugin-terser) plugin compresses and mangles the final bundle.
 
 ```js

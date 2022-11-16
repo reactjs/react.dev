@@ -53,6 +53,19 @@ const MyDocument = () => {
               `,
           }}
         />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+            (function () {
+              // Detect whether the browser is Mac to display either the ⌘ symbol or Ctrl in the search bar
+              document.documentElement.classList.add(
+                  window.navigator.platform.includes('Mac')
+                  ? "platform-mac" 
+                  : "platform-win"
+              );
+            })();
+          `,
+          }}></script>
         <Main />
         <NextScript />
       </body>

@@ -286,28 +286,16 @@ If you see no output, it means that it completed successfully.
 ### Type Definitions {#type-definitions}
 To be able to show errors and hints from other packages, the compiler relies on declaration files. A declaration file provides all the type information about a library. This enables us to use javascript libraries like those on npm in our project. 
 
-There are two main ways to get declarations for a library:
+React doesn't bundle its own declaration file. Instead we can get it from [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped), which is a huge repository of declarations crowd-sourced and managed by Microsoft and open source contributors. 
 
-__Bundled__ - The library bundles its own declaration file. This is great for us, since all we need to do is install the library, and we can use it right away. To check if a library has bundled types, look for an `index.d.ts` file in the project. Some libraries will have it specified in their `package.json` under the `typings` or `types` field.
-
-__[DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped)__ - DefinitelyTyped is a huge repository of declarations for libraries that don't bundle a declaration file. The declarations are crowd-sourced and managed by Microsoft and open source contributors. React for example doesn't bundle its own declaration file. Instead we can get it from DefinitelyTyped. To do so enter this command in your terminal.
+To use React with TypeScript, enter this command in your terminal:
 
 ```bash
 # yarn
-yarn add --dev @types/react
+yarn add --dev @types/react @types/react-dom
 
 # npm
-npm i --save-dev @types/react
-```
-
-__Local Declarations__
-Sometimes the package that you want to use doesn't bundle declarations nor is it available on DefinitelyTyped. In that case, we can have a local declaration file. To do this, create a `declarations.d.ts` file in the root of your source directory. A simple declaration could look like this:
-
-```typescript
-declare module 'querystring' {
-  export function stringify(val: object): string
-  export function parse(val: string): object
-}
+npm i --save-dev @types/react @types/react-dom
 ```
 
 You are now ready to code! We recommend to check out the following resources to learn more about TypeScript:

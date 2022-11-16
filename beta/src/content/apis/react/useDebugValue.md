@@ -100,7 +100,7 @@ This lets you avoid running potentially expensive formatting logic unless the co
 
 ### `useDebugValue(value, format?)` {/*usedebugvaluevalue-format*/}
 
-Call `useContext` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
 
 ```js
 import { useDebugValue } from 'react';

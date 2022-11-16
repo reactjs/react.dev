@@ -19,6 +19,7 @@ In a typical React application, data is passed top-down (parent to child) via pr
 - [Examples](#examples)
   - [Dynamic Context](#dynamic-context)
   - [Updating Context from a Nested Component](#updating-context-from-a-nested-component)
+  - [Usage with the useContext Hook](#usage-with-the-usecontext-hook)
   - [Consuming Multiple Contexts](#consuming-multiple-contexts)
 - [Caveats](#caveats)
 - [Legacy API](#legacy-api)
@@ -239,6 +240,10 @@ It is often necessary to update the context from a component that is nested some
 **app.js**
 `embed:context/updating-nested-context-app.js`
 
+### Usage with useContext
+
+https://reactjs.org/docs/hooks-reference.html#usecontext
+
 ### Consuming Multiple Contexts {#consuming-multiple-contexts}
 
 To keep context re-rendering fast, React needs to make each context consumer a separate node in the tree.
@@ -263,4 +268,3 @@ To get around this, lift the value into the parent's state:
 > Note
 >
 > React previously shipped with an experimental context API. The old API will be supported in all 16.x releases, but applications using it should migrate to the new version. The legacy API will be removed in a future major React version. Read the [legacy context docs here](/docs/legacy-context.html).
-

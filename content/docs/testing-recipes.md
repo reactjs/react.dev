@@ -23,6 +23,7 @@ On this page, we will primarily use function components. However, these testing 
 - [Timers](#timers)
 - [Snapshot Testing](#snapshot-testing)
 - [Multiple Renderers](#multiple-renderers)
+- [More Testing Examples](#more-testing-examples)
 - [Something Missing?](#something-missing)
 
 ---
@@ -619,6 +620,12 @@ domAct(() => {
 });
 expect(root).toMatchSnapshot();
 ```
+
+---
+
+### More Testing Examples {#more-testing-examples}
+
+You can find more runnable testing examples at [react-testing-examples.com](https://react-testing-examples.com/), featuring popular testing libraries like React Testing Library and Enzyme.
 
 ---
 

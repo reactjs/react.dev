@@ -58,3 +58,5 @@ permalink: community/courses.html
 - [Road to React](https://www.roadtoreact.com/) - Your journey to master React in JavaScript.
 
 - [Epic React](https://epicreact.dev/) - Confidently Ship Well-Architected Production Ready React Apps Like a Pro
+
+- [React Programming in 2021](https://www.webagesolutions.com/courses/react-training-react-javascript-programming-wa2583) - An introduction to the benefits of the React JavaScript framework.

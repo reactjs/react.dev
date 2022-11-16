@@ -176,13 +176,49 @@ class FlavorForm extends React.Component {
 
 Overall, this makes it so that `<input type="text">`, `<textarea>`, and `<select>` all work very similarly - they all accept a `value` attribute that you can use to implement a controlled component.
 
-> Note
->
-> You can pass an array into the `value` attribute, allowing you to select multiple options in a `select` tag:
->
->```js
-><select multiple={true} value={['B', 'C']}>
->```
+### The select multiple Tag
+Just like in HTML, select elements can become multi-select elements through the addition of the *multiple* attribute to the select tag. But handling of the value attribute in react is more complex due to having an array of values. 
+
+Here's our example select element with multi-select support:
+
+```js{4,11,24}
+class FlavorForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {value: ['coconut']};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({value: Array.from(event.target.options).filter(o => o.selected).map(o => o.value)});
+  }
+
+  handleSubmit(event) {
+    alert('Your favorite flavor is: ' + this.state.value);
+    event.preventDefault();
+  }
+
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Pick your favorite flavor:
+          <select multiple value={this.state.value} onChange={this.handleChange}>
+            <option value="grapefruit">Grapefruit</option>
+            <option value="lime">Lime</option>
+            <option value="coconut">Coconut</option>
+            <option value="mango">Mango</option>
+          </select>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
+    );
+  }
+}
+```
+
 
 ## The file input Tag {#the-file-input-tag}
 

@@ -87,8 +87,7 @@
             },
             {
               "title": "useDebugValue",
-              "path": "/apis/react/useDebugValue",
-              "wip": true
+              "path": "/apis/react/useDebugValue"
             },
             {
               "title": "useDeferredValue",

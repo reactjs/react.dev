@@ -14,7 +14,7 @@ function HomepageHero() {
           <h1 className="text-5xl mr-4 -mt-1 flex wrap font-bold leading-tight text-primary dark:text-primary-dark">
             React Docs
           </h1>
-          <div className="inline-flex self-center px-2 mt-1 bg-highlight dark:bg-highlight-dark w-auto rounded text-link dark:text-link-dark uppercase font-bold tracking-wide text-base whitespace-nowrap">
+          <div className="inline-flex self-center px-2 mt-1 bg-highlight dark:bg-highlight-dark w-auto rounded text-link-blue dark:text-link-blue-dark uppercase font-bold tracking-wide text-base whitespace-nowrap">
             Beta
           </div>
         </div>

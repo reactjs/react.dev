@@ -118,7 +118,7 @@ While declaring a variable and using an `if` statement is a fine way to conditio
 
 ### Inline If with Logical && Operator {#inline-if-with-logical--operator}
 
-You may [embed expressions in JSX](/docs/introducing-jsx.html#embedding-expressions-in-jsx) by wrapping them in curly braces. This includes the JavaScript logical `&&` operator. It can be handy for conditionally including an element:
+One method for conditionally rendering elements inline is using the JavaScript Logical AND operator [`condition && expression`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Logical_AND).
 
 ```js{6-10}
 function Mailbox(props) {
@@ -143,11 +143,15 @@ root.render(<Mailbox unreadMessages={messages} />);
 
 [**Try it on CodePen**](https://codepen.io/gaearon/pen/ozJddz?editors=0010)
 
-It works because in JavaScript, `true && expression` always evaluates to `expression`, and `false && expression` always evaluates to `false`.
+The `&&` operator returns the left operand if it is falsy, otherwise if the left operand is truthy it returns the right operand.
 
-Therefore, if the condition is `true`, the element right after `&&` will appear in the output. If it is `false`, React will ignore and skip it.
+React will render any value that is not `false`.
 
-Note that returning a falsy expression will still cause the element after `&&` to be skipped but will return the falsy expression. In the example below, `<div>0</div>` will be returned by the render method.
+In the above example, the condition is a boolean expression, so either `true` or `false`, which will therefore render as you expect.
+
+Note however that if the condition is a falsy value other than `false`, React will still render it, which might not be what you expect.
+
+In the example below, `0` is falsy, so `<div>0</div>` will be returned by the render method.
 
 ```javascript{2,5}
 render() {
@@ -159,6 +163,8 @@ render() {
   );
 }
 ```
+
+In these cases a boolean expression like `count !== undefined` is needed.
 
 ### Inline If-Else with Conditional Operator {#inline-if-else-with-conditional-operator}
 
@@ -194,6 +200,8 @@ render() {
 ```
 
 Just like in JavaScript, it is up to you to choose an appropriate style based on what you and your team consider more readable. Also remember that whenever conditions become too complex, it might be a good time to [extract a component](/docs/components-and-props.html#extracting-components).
+
+Note that for a condition that is falsy other than `false` the same caveats apply as mentioned in the previous section.
 
 ### Preventing Component from Rendering {#preventing-component-from-rendering}
 

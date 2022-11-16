@@ -51,14 +51,13 @@ In these cases we should rather use [React Fragments](/docs/fragments.html) to g
 For example,
 
 ```javascript{1,5,8}
-import React, { Fragment } from 'react';
 
 function ListItem({ item }) {
   return (
-    <Fragment>
+    <React.Fragment>
       <dt>{item.term}</dt>
       <dd>{item.description}</dd>
-    </Fragment>
+    </React.Fragment>
   );
 }
 
@@ -81,10 +80,10 @@ function Glossary(props) {
     <dl>
       {props.items.map(item => (
         // Fragments should also have a `key` prop when mapping collections
-        <Fragment key={item.id}>
+        <React.Fragment key={item.id}>
           <dt>{item.term}</dt>
           <dd>{item.description}</dd>
-        </Fragment>
+        </React.Fragment>
       ))}
     </dl>
   );

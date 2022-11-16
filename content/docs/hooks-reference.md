@@ -348,7 +348,7 @@ function reducer(state, action) {
   }
 }
 
-function Counter({initialCount}) {
+function Counter({initialCount = 0}) {
   const [state, dispatch] = useReducer(reducer, initialCount, init);
   return (
     <>

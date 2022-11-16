@@ -37,7 +37,7 @@ Your first inclination may be to use refs to "make things happen" in your app. I
 
 ### Creating Refs {#creating-refs}
 
-Refs are created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the component.
+In class components, refs are created using `React.createRef()` and attached to React elements via the `ref` attribute. Refs are commonly assigned to an instance property when a component is constructed so they can be referenced throughout the component.
 
 ```javascript{4,7}
 class MyComponent extends React.Component {
@@ -50,6 +50,16 @@ class MyComponent extends React.Component {
   }
 }
 ```
+
+In functional components, refs are created using `React.useRef(null)` and attached to the DOM the same way.
+
+```javascript
+const MyComponent = (props) => {
+  const ref = React.useRef(null);
+  return <div {...props} ref={ref} />;
+}
+```
+
 
 ### Accessing Refs {#accessing-refs}
 

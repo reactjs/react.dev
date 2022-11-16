@@ -27,14 +27,11 @@ function stripLinks(line) {
 }
 
 function addHeaderID(line, slugger) {
-  // check if we're a header at all
-  if (!line.startsWith('#')) {
+// check if we're a header at all || it already has an id
+if (!line.startsWith('#') || /\{#[^}]+\}/.test(line)) {
     return line;
-  }
-  // check if it already has an id
-  if (/\{#[^}]+\}/.test(line)) {
-    return line;
-  }
+}
+  
   const headingText = line.slice(line.indexOf(' ')).trim();
   const headingLevel = line.slice(0, line.indexOf(' '));
   return `${headingLevel} ${headingText} {#${slugger.slug(

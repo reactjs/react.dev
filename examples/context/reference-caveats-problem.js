@@ -1,10 +1,8 @@
-class App extends React.Component {
-  render() {
-    // highlight-range{2}
-    return (
-      <MyContext.Provider value={{something: 'something'}}>
-        <Toolbar />
-      </MyContext.Provider>
-    );
-  }
-}
+const App = () => {
+  // highlight-range{2}
+  return (
+    <MyContext.Provider value={{something: 'something'}}>
+      <Toolbar />
+    </MyContext.Provider>
+  );
+};

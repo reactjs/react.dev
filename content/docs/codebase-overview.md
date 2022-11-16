@@ -19,8 +19,8 @@ We don't necessarily recommend any of these conventions in React apps. Many of t
 
 After cloning the [React repository](https://github.com/facebook/react), you will see a few top-level folders in it:
 
-* [`packages`](https://github.com/facebook/react/tree/main/packages) contains metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
-* [`fixtures`](https://github.com/facebook/react/tree/main/fixtures) contains a few small React test applications for contributors.
+* [`packages`](https://github.com/facebook/react/tree/main/packages) contain metadata (such as `package.json`) and the source code (`src` subdirectory) for all packages in the React repository. **If your change is related to the code, the `src` subdirectory of each package is where you'll spend most of your time.**
+* [`fixtures`](https://github.com/facebook/react/tree/main/fixtures) contain a few small React test applications for contributors.
 * `build` is the build output of React. It is not in the repository but it will appear in your React clone after you [build it](/docs/how-to-contribute.html#development-workflow) for the first time.
 
 The documentation is hosted [in a separate repository from React](https://github.com/reactjs/reactjs.org).
@@ -43,7 +43,7 @@ if (__DEV__) {
 }
 ```
 
-Warnings are only enabled in development. In production, they are completely stripped out. If you need to forbid some code path from executing, use `invariant` module instead:
+Warnings are only enabled in development. In production, they are completely stripped out. If you need to forbid some code path from executing, use the `invariant` module instead:
 
 ```js
 var invariant = require('invariant');
@@ -64,9 +64,9 @@ It is important to keep development and production behavior similar, so `invaria
 
 You can use `__DEV__` pseudo-global variable in the codebase to guard development-only blocks of code.
 
-It is inlined during the compile step, and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
+It is inlined during the compile step and turns into `process.env.NODE_ENV !== 'production'` checks in the CommonJS builds.
 
-For standalone builds, it becomes `true` in the unminified build, and gets completely stripped out with the `if` blocks it guards in the minified build.
+For standalone builds, it becomes `true` in the unminified build and gets completely stripped out with the `if` blocks it guards in the minified build.
 
 ```js
 if (__DEV__) {
@@ -116,7 +116,7 @@ React was originally created for the DOM but it was later adapted to also suppor
 
 Renderers are also located in [`packages/`](https://github.com/facebook/react/tree/main/packages/):
 
-* [React DOM Renderer](https://github.com/facebook/react/tree/main/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
+* [React DOM Renderer](https://github.com/facebook/react/tree/main/packages/react-dom) renders React components to the DOM. It implements [top-level `ReactDOM` APIs](/docs/react-dom.html) and is available as [`react-dom`](https://www.npmjs.com/package/react-dom) npm package. It can also be used as a standalone browser bundle called `react-dom.js` that exports a `ReactDOM` global.
 * [React Native Renderer](https://github.com/facebook/react/tree/main/packages/react-native-renderer) renders React components to native views. It is used internally by React Native.
 * [React Test Renderer](https://github.com/facebook/react/tree/main/packages/react-test-renderer) renders React components to JSON trees. It is used by the [Snapshot Testing](https://facebook.github.io/jest/blog/2016/07/27/jest-14.html) feature of [Jest](https://facebook.github.io/jest) and is available as [react-test-renderer](https://www.npmjs.com/package/react-test-renderer) npm package.
 

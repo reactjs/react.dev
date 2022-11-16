@@ -58,6 +58,7 @@ class Sidebar extends Component {
             onLinkClick={closeParentMenu}
             onSectionTitleClick={() => this._toggleSection(section)}
             section={section}
+            sectionList={sectionList}
           />
         ))}
       </Flex>
@@ -65,7 +66,7 @@ class Sidebar extends Component {
   }
 
   _toggleSection(section) {
-    this.setState(state => ({
+    this.setState((state) => ({
       activeSection: state.activeSection === section ? null : section,
     }));
   }

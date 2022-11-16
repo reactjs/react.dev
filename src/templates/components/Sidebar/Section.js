@@ -22,6 +22,7 @@ class Section extends React.Component {
       onLinkClick,
       onSectionTitleClick,
       section,
+      sectionList,
     } = this.props;
     const uid = 'section_' + this.state.uid;
     return (
@@ -48,17 +49,19 @@ class Section extends React.Component {
               },
             }}>
             {section.title}
-            <ChevronSvg
-              cssProps={{
-                marginLeft: 7,
-                transform: isActive ? 'rotateX(180deg)' : 'rotateX(0deg)',
-                transition: 'transform 0.2s ease',
+            {sectionList.length > 1 && (
+              <ChevronSvg
+                cssProps={{
+                  marginLeft: 7,
+                  transform: isActive ? 'rotateX(180deg)' : 'rotateX(0deg)',
+                  transition: 'transform 0.2s ease',
 
-                [media.lessThan('small')]: {
-                  display: 'none',
-                },
-              }}
-            />
+                  [media.lessThan('small')]: {
+                    display: 'none',
+                  },
+                }}
+              />
+            )}
           </MetaTitle>
         </button>
         <ul
@@ -91,7 +94,7 @@ class Section extends React.Component {
 
               {item.subitems && (
                 <ul css={{marginLeft: 20}}>
-                  {item.subitems.map(subitem => (
+                  {item.subitems.map((subitem) => (
                     <li key={subitem.id}>
                       {createLink({
                         isActive: isScrollSync

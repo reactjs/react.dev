@@ -611,13 +611,13 @@ In rare cases, you may be running a test on a component that uses multiple rende
 import { act as domAct } from "react-dom/test-utils";
 import { act as testAct, create } from "react-test-renderer";
 // ...
-let root;
+let testRenderer;
 domAct(() => {
   testAct(() => {
-    root = create(<App />);
+    testRenderer = create(<App />);
   });
 });
-expect(root).toMatchSnapshot();
+expect(testRenderer).toMatchSnapshot();
 ```
 
 ---

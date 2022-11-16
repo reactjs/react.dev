@@ -309,6 +309,10 @@ function Counter() {
 >
 >React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
+>Note
+>
+>Unlike reducers in Redux or similar state managing solution, actions in `useReducer` are specific to a component. Hence, it is recommended that you **throw an error in the default switch case**. It can help you track bugs in early stages (for example, mistakes in action references).
+
 #### Specifying the initial state {#specifying-the-initial-state}
 
 There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:

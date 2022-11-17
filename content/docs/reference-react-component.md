@@ -126,6 +126,7 @@ When called, it should examine `this.props` and `this.state` and return one of t
 - **Portals**. Let you render children into a different DOM subtree. See the documentation on [portals](/docs/portals.html) for more details.
 - **String and numbers.** These are rendered as text nodes in the DOM.
 - **Booleans or `null`**. Render nothing. (Mostly exists to support `return test && <Child />` pattern, where `test` is boolean.)
+- **Undefined.** Returns undefined when the output is undefined.
 
 The `render()` function should be pure, meaning that it does not modify component state, it returns the same result each time it's invoked, and it does not directly interact with the browser.
 

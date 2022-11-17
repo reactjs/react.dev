@@ -23,7 +23,9 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
     if (!route || route?.heading) {
       return null;
     }
-
+    let isExternal = (url: string): string => {
+      return url.startsWith('https://') ? url : removeFromLast(url, '.');
+    };
     return (
       <>
         {prevRoute?.path || nextRoute?.path ? (
@@ -33,7 +35,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
                 <FooterLink
                   type="Previous"
                   title={prevRoute.title}
-                  href={removeFromLast(prevRoute.path, '.')}
+                  href={isExternal(prevRoute.path)}
                 />
               ) : (
                 <div />
@@ -43,7 +45,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
                 <FooterLink
                   type="Next"
                   title={nextRoute.title}
-                  href={removeFromLast(nextRoute.path, '.')}
+                  href={isExternal(nextRoute.path)}
                 />
               ) : (
                 <div />
@@ -66,6 +68,8 @@ function FooterLink({
   title: string;
   type: 'Previous' | 'Next';
 }) {
+  let target;
+  href.startsWith('https://') ? (target = '_blank') : '';
   return (
     <NextLink href={href}>
       <a
@@ -74,7 +78,8 @@ function FooterLink({
           {
             'flex-row-reverse justify-self-end text-right': type === 'Next',
           }
-        )}>
+        )}
+        target={target}>
         <IconNavArrow
           className="text-gray-30 dark:text-gray-50 inline group-focus:text-link dark:group-focus:text-link-dark"
           displayDirection={type === 'Previous' ? 'left' : 'right'}

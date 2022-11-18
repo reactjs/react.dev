@@ -1,0 +1,89 @@
+{
+  "title": "Hooks",
+  "heading": true,
+  "path": "/hooks",
+  "routes": [
+    {
+      "heading": true,
+      "path": "",
+      "routes": [
+        {
+          "title": "\"react\"",
+          "path": "/hooks/react",
+          "routes": [
+            {
+              "title": "useCallback",
+              "path": "/hooks/react/useCallback"
+            },
+            {
+              "title": "useContext",
+              "path": "/hooks/react/useContext"
+            },
+            {
+              "title": "useDebugValue",
+              "path": "/hooks/react/useDebugValue"
+            },
+            {
+              "title": "useDeferredValue",
+              "path": "/hooks/react/useDeferredValue",
+              "wip": true
+            },
+            {
+              "title": "useEffect",
+              "path": "/hooks/react/useEffect"
+            },
+            {
+              "title": "useEvent",
+              "path": "/hooks/react/useEvent",
+              "wip": true
+            },
+            {
+              "title": "useId",
+              "path": "/hooks/react/useId"
+            },
+            {
+              "title": "useImperativeHandle",
+              "path": "/hooks/react/useImperativeHandle"
+            },
+            {
+              "title": "useInsertionEffect",
+              "path": "/hooks/react/useInsertionEffect",
+              "wip": true
+            },
+            {
+              "title": "useLayoutEffect",
+              "path": "/hooks/react/useLayoutEffect",
+              "wip": true
+            },
+            {
+              "title": "useMemo",
+              "path": "/hooks/react/useMemo"
+            },
+            {
+              "title": "useReducer",
+              "path": "/hooks/react/useReducer"
+            },
+            {
+              "title": "useRef",
+              "path": "/hooks/react/useRef"
+            },
+            {
+              "title": "useState",
+              "path": "/hooks/react/useState"
+            },
+            {
+              "title": "useSyncExternalStore",
+              "path": "/hooks/react/useSyncExternalStore",
+              "wip": true
+            },
+            {
+              "title": "useTransition",
+              "path": "/hooks/react/useTransition",
+              "wip": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

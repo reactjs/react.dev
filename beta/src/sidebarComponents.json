@@ -1,0 +1,42 @@
+{
+  "title": "Components",
+  "heading": true,
+  "path": "/components",
+  "routes": [
+    {
+      "heading": true,
+      "path": "",
+      "routes": [
+        {
+          "title": "\"react\"",
+          "path": "/components/react",
+          "routes": [
+            {
+              "title": "Fragment",
+              "path": "/components/react/Fragment"
+            },
+            {
+              "title": "StrictMode",
+              "path": "/components/react/StrictMode"
+            },
+            {
+              "title": "Suspense",
+              "path": "/components/react/Suspense"
+            }
+          ]
+        },
+        {
+          "title": "\"react-dom\"",
+          "path": "/components/react-dom",
+          "routes": [
+            {
+              "title": "<input>",
+              "path": "/components/react-dom/input",
+              "wip": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

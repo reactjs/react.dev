@@ -34,7 +34,7 @@ module.exports = {
     },
     extend: {
       maxWidth: {
-        xs: '21rem',
+        xs: '22rem',
       },
       outline: {
         blue: ['1px auto ' + colors.link, '3px'],
@@ -70,8 +70,8 @@ module.exports = {
       colors,
       gridTemplateColumns: {
         'only-content': 'auto',
-        'sidebar-content': '20rem auto',
-        'sidebar-content-toc': '20rem auto 20rem',
+        'sidebar-content': '22rem auto',
+        'sidebar-content-toc': '22rem auto 22rem',
       },
     },
   },

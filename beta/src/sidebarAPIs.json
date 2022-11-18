@@ -12,6 +12,18 @@
           "path": "/apis/react",
           "routes": [
             {
+              "title": "<Fragment> (<>)",
+              "path": "/apis/react/Fragment"
+            },
+            {
+              "title": "<StrictMode>",
+              "path": "/apis/react/StrictMode"
+            },
+            {
+              "title": "<Suspense>",
+              "path": "/apis/react/Suspense"
+            },
+            {
               "title": "createContext",
               "path": "/apis/react/createContext"
             },
@@ -84,13 +96,7 @@
             {
               "title": "flushSync",
               "path": "/apis/react-dom/flushSync"
-            }
-          ]
-        },
-        {
-          "title": "\"react-dom\" (legacy)",
-          "path": "/apis/react-dom/legacy",
-          "routes": [
+            },
             {
               "title": "findDOMNode",
               "path": "/apis/react-dom/findDOMNode",
@@ -130,6 +136,11 @@
           "path": "/apis/react-dom/server",
           "routes": [
             {
+              "title": "renderToNodeStream",
+              "path": "/apis/react-dom/server/renderToNodeStream",
+              "wip": true
+            },
+            {
               "title": "renderToPipeableStream",
               "path": "/apis/react-dom/server/renderToPipeableStream",
               "wip": true
@@ -142,17 +153,6 @@
             {
               "title": "renderToStaticMarkup",
               "path": "/apis/react-dom/server/renderToStaticMarkup",
-              "wip": true
-            }
-          ]
-        },
-        {
-          "title": "\"react-dom\/server\" (legacy)",
-          "path": "/apis/react-dom/server/legacy",
-          "routes": [
-            {
-              "title": "renderToNodeStream",
-              "path": "/apis/react-dom/server/renderToNodeStream",
               "wip": true
             },
             {

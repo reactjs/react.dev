@@ -20,7 +20,6 @@ import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../useRouteMeta';
 import sidebarLearn from '../../../sidebarLearn.json';
-import sidebarComponents from '../../../sidebarComponents.json';
 import sidebarHooks from '../../../sidebarHooks.json';
 import sidebarAPIs from '../../../sidebarAPIs.json';
 
@@ -120,9 +119,6 @@ export default function Nav() {
         break;
       case 'hooks':
         routeTree = sidebarHooks as RouteItem;
-        break;
-      case 'components':
-        routeTree = sidebarComponents as RouteItem;
         break;
       case 'apis':
         routeTree = sidebarAPIs as RouteItem;
@@ -255,9 +251,6 @@ export default function Nav() {
           <NavLink href="/hooks/react" isActive={section === 'hooks'}>
             Hooks
           </NavLink>
-          <NavLink href="/components/react" isActive={section === 'components'}>
-            Components
-          </NavLink>
           <NavLink href="/apis/react" isActive={section === 'apis'}>
             APIs
           </NavLink>
@@ -329,11 +322,6 @@ export default function Nav() {
             Hooks
           </TabButton>
           <TabButton
-            isActive={tab === 'components'}
-            onClick={() => selectTab('components')}>
-            Components
-          </TabButton>
-          <TabButton
             isActive={tab === 'apis'}
             onClick={() => selectTab('apis')}>
             APIs
@@ -343,7 +331,7 @@ export default function Nav() {
 
       <div
         ref={scrollParentRef}
-        className="overflow-y-scroll no-bg-scrollbar lg:w-[368px] grow bg-wash dark:bg-wash-dark">
+        className="overflow-y-scroll no-bg-scrollbar lg:w-[336px] grow bg-wash dark:bg-wash-dark">
         <aside
           className={cn(
             `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,

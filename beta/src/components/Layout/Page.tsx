@@ -12,7 +12,6 @@ import {Footer} from './Footer';
 import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
 import sidebarLearn from '../../sidebarLearn.json';
-import sidebarComponents from '../../sidebarComponents.json';
 import sidebarHooks from '../../sidebarHooks.json';
 import sidebarAPIs from '../../sidebarAPIs.json';
 import type {TocItem} from 'components/MDX/TocContext';
@@ -29,9 +28,6 @@ export function Page({children, toc}: PageProps) {
   switch (section) {
     case 'hooks':
       routeTree = sidebarHooks as RouteItem;
-      break;
-    case 'components':
-      routeTree = sidebarComponents as RouteItem;
       break;
     case 'apis':
       routeTree = sidebarAPIs as RouteItem;

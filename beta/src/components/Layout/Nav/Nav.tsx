@@ -188,7 +188,7 @@ export default function Nav() {
       });
   }, [showFeedback]);
 
-  function selectTab(nextTab: 'learn' | 'apis' | 'home') {
+  function selectTab(nextTab: 'learn' | 'apis' | 'hooks') {
     setTab(nextTab);
     scrollParentRef.current!.scrollTop = 0;
   }

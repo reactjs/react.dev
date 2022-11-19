@@ -141,7 +141,7 @@ it("renders with or without a name", () => {
 
 ### Data Fetching {#data-fetching}
 
-Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with "fake" data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
+Instead of calling real APIs in all your tests, you can mock requests with dummy data. Mocking data fetching with fake data prevents flaky tests due to an unavailable backend, and makes them run faster. Note: you may still want to run a subset of tests using an ["end-to-end"](/docs/testing-environments.html#end-to-end-tests-aka-e2e-tests) framework that tells whether the whole app is working together.
 
 ```jsx
 // user.js
@@ -177,7 +177,7 @@ export default function User(props) {
 
 We can write tests for it:
 
-```jsx{23-33,44-45}
+```jsx{23-47,59-61}
 // user.test.js
 
 import React from "react";
@@ -199,30 +199,51 @@ afterEach(() => {
   container = null;
 });
 
-it("renders user data", async () => {
+describe("data fetching", () => {
   const fakeUser = {
     name: "Joni Baez",
     age: "32",
     address: "123, Charming Avenue"
   };
+  let resolveFetch;
 
-  jest.spyOn(global, "fetch").mockImplementation(() =>
-    Promise.resolve({
-      json: () => Promise.resolve(fakeUser)
-    })
-  );
-
-  // Use the asynchronous version of act to apply resolved promises
-  await act(async () => {
-    render(<User id="123" />, container);
+  beforeEach(() => {
+    // Setup a mocked version of fetch that can be manually resolved:
+    jest.spyOn(global, "fetch").mockImplementation(
+      () =>
+        new Promise(_resolve => {
+          resolveFetch = () => {
+            _resolve({
+              json: () => fakeUser
+            });
+          };
+        })
+    );
   });
 
-  expect(container.querySelector("summary").textContent).toBe(fakeUser.name);
-  expect(container.querySelector("strong").textContent).toBe(fakeUser.age);
-  expect(container.textContent).toContain(fakeUser.address);
+  afterEach(() => {
+    global.fetch.mockRestore();
+    resolveFetch = null;
+  });
 
-  // remove the mock to ensure tests are completely isolated
-  global.fetch.mockRestore();
+  it("renders user data", async () => {
+    // Render the component:
+    act(() => {
+      render(<User id="123" />, container);
+    });
+
+    // At this point, your application would have called fetch,
+    // and would be waiting on the promise to resolve. We resolve it with
+    // data, and wrap this asynchronous work with act to apply any
+    // resolved promises to the app.
+    await act(async () => {
+      resolveFetch();
+    });
+
+    expect(container.querySelector("summary").textContent).toBe(fakeUser.name);
+    expect(container.querySelector("strong").textContent).toBe(fakeUser.age);
+    expect(container.textContent).toContain(fakeUser.address);
+  });
 });
 ```
 

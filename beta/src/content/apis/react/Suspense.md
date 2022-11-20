@@ -59,7 +59,7 @@ To reveal nested content as it loads, you need to [add more Suspense boundaries.
 **Only Suspense-enabled data sources will activate a Suspense boundary.** These data sources are said to *suspend* when the data needed to render has not yet loaded. Currently, Suspense is only supported for:
 
 - [Lazy-loading components](#suspense-for-code-splitting)
-- Data fetching with opinionated frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/), [Next.js](https://nextjs.org/docs/advanced-features/react-18), [Hydrogen](https://hydrogen.shopify.dev/), and [Remix](https://remix.run/)
+- Data fetching with opinionated frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/), [Next.js](https://nextjs.org/docs/advanced-features/react-18), [Hydrogen](https://hydrogen.shopify.dev/), [Remix](https://remix.run/), and [swr](https://swr.vercel.app/docs/suspense)
 
 Suspense-enabled data fetching without the use of an opinionated framework is not yet supported. The requirements for implementing a Suspense-enabled data source are unstable and undocumented. An official API for integrating data sources with Suspense will be released in a future version of React.
 

@@ -156,7 +156,7 @@ With Strict Mode starting in React 18, whenever a component mounts in developmen
     * Effect effects are created.
 * React simulates effects being destroyed on a mounted component.
     * Layout effects are destroyed.
-    * Effects are destroyed.
+    * Effect effects are destroyed.
 * React simulates effects being re-created on a mounted component.
     * Layout effects are created
     * Effect setup code runs

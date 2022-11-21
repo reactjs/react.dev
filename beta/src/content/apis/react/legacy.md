@@ -1,5 +1,5 @@
 ---
-title: React APIs
+title: react: Legacy APIs
 ---
 
 <Wip>

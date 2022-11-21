@@ -8,8 +8,84 @@
       "path": "",
       "routes": [
         {
-          "title": "\"react\"",
+          "title": "react: Hooks",
           "path": "/apis/react",
+          "routes": [
+            {
+              "title": "useCallback",
+              "path": "/apis/react/useCallback"
+            },
+            {
+              "title": "useContext",
+              "path": "/apis/react/useContext"
+            },
+            {
+              "title": "useDebugValue",
+              "path": "/apis/react/useDebugValue"
+            },
+            {
+              "title": "useDeferredValue",
+              "path": "/apis/react/useDeferredValue",
+              "wip": true
+            },
+            {
+              "title": "useEffect",
+              "path": "/apis/react/useEffect"
+            },
+            {
+              "title": "useEvent",
+              "path": "/apis/react/useEvent",
+              "wip": true
+            },
+            {
+              "title": "useId",
+              "path": "/apis/react/useId"
+            },
+            {
+              "title": "useImperativeHandle",
+              "path": "/apis/react/useImperativeHandle"
+            },
+            {
+              "title": "useInsertionEffect",
+              "path": "/apis/react/useInsertionEffect",
+              "wip": true
+            },
+            {
+              "title": "useLayoutEffect",
+              "path": "/apis/react/useLayoutEffect",
+              "wip": true
+            },
+            {
+              "title": "useMemo",
+              "path": "/apis/react/useMemo"
+            },
+            {
+              "title": "useReducer",
+              "path": "/apis/react/useReducer"
+            },
+            {
+              "title": "useRef",
+              "path": "/apis/react/useRef"
+            },
+            {
+              "title": "useState",
+              "path": "/apis/react/useState"
+            },
+            {
+              "title": "useSyncExternalStore",
+              "path": "/apis/react/useSyncExternalStore",
+              "wip": true
+            },
+            {
+              "title": "useTransition",
+              "path": "/apis/react/useTransition",
+              "wip": true
+            }
+          ]
+        },
+        {
+          "title": "react: Other APIs",
+          "path": "/apis/react/other",
           "routes": [
             {
               "title": "<Fragment> (<>)",
@@ -47,45 +123,7 @@
           ]
         },
         {
-          "title": "\"react\" (legacy)",
-          "path": "/apis/react/legacy",
-          "routes": [
-            {
-              "title": "Children",
-              "path": "/apis/react/Children"
-            },
-            {
-              "title": "cloneElement",
-              "path": "/apis/react/cloneElement"
-            },
-            {
-              "title": "Component",
-              "path": "/apis/react/Component"
-            },
-            {
-              "title": "createElement",
-              "path": "/apis/react/createElement"
-            },
-            {
-              "title": "createFactory",
-              "path": "/apis/react/createFactory"
-            },
-            {
-              "title": "createRef",
-              "path": "/apis/react/createRef"
-            },
-            {
-              "title": "isValidElement",
-              "path": "/apis/react/isValidElement"
-            },
-            {
-              "title": "PureComponent",
-              "path": "/apis/react/PureComponent"
-            }
-          ]
-        },
-        {
-          "title": "\"react-dom\"",
+          "title": "react-dom",
           "path": "/apis/react-dom",
           "routes": [
             {
@@ -118,7 +156,7 @@
           ]
         },
         {
-          "title": "\"react-dom\/client\"",
+          "title": "react-dom\/client",
           "path": "/apis/react-dom/client",
           "routes": [
             {
@@ -132,7 +170,7 @@
           ]
         },
         {
-          "title": "\"react-dom\/server\"",
+          "title": "react-dom\/server",
           "path": "/apis/react-dom/server",
           "routes": [
             {
@@ -164,6 +202,45 @@
               "title": "renderToString",
               "path": "/apis/react-dom/server/renderToString",
               "wip": true
+            }
+          ]
+        },
+        {
+          "title": "react: Legacy APIs",
+          "path": "/apis/react/legacy",
+          "hasSeparator": true,
+          "routes": [
+            {
+              "title": "Children",
+              "path": "/apis/react/Children"
+            },
+            {
+              "title": "cloneElement",
+              "path": "/apis/react/cloneElement"
+            },
+            {
+              "title": "Component",
+              "path": "/apis/react/Component"
+            },
+            {
+              "title": "createElement",
+              "path": "/apis/react/createElement"
+            },
+            {
+              "title": "createFactory",
+              "path": "/apis/react/createFactory"
+            },
+            {
+              "title": "createRef",
+              "path": "/apis/react/createRef"
+            },
+            {
+              "title": "isValidElement",
+              "path": "/apis/react/isValidElement"
+            },
+            {
+              "title": "PureComponent",
+              "path": "/apis/react/PureComponent"
             }
           ]
         }

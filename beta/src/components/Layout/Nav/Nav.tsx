@@ -249,11 +249,8 @@ export default function Nav() {
           <NavLink href="/learn" isActive={section === 'learn'}>
             Learn
           </NavLink>
-          <NavLink href="/hooks/react" isActive={section === 'hooks'}>
-            Hooks
-          </NavLink>
           <NavLink href="/apis/react" isActive={section === 'apis'}>
-            APIs
+            API
           </NavLink>
         </div>
         <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end lg:max-w-sm">
@@ -318,14 +315,9 @@ export default function Nav() {
             Learn
           </TabButton>
           <TabButton
-            isActive={tab === 'hooks'}
-            onClick={() => selectTab('hooks')}>
-            Hooks
-          </TabButton>
-          <TabButton
             isActive={tab === 'apis'}
             onClick={() => selectTab('apis')}>
-            APIs
+            API
           </TabButton>
         </div>
       )}

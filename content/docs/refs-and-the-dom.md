@@ -63,7 +63,6 @@ The value of the ref differs depending on the type of the node:
 
 - When the `ref` attribute is used on an HTML element, the `ref` created in the constructor with `React.createRef()` receives the underlying DOM element as its `current` property.
 - When the `ref` attribute is used on a custom class component, the `ref` object receives the mounted instance of the component as its `current`.
-- **You may not use the `ref` attribute on function components** because they don't have instances.
 
 The examples below demonstrate the differences.
 
@@ -135,29 +134,6 @@ Note that this only works if `CustomTextInput` is declared as a class:
 ```js{1}
 class CustomTextInput extends React.Component {
   // ...
-}
-```
-
-#### Refs and Function Components {#refs-and-function-components}
-
-By default, **you may not use the `ref` attribute on function components** because they don't have instances:
-
-```javascript{1,8,13}
-function MyFunctionComponent() {
-  return <input />;
-}
-
-class Parent extends React.Component {
-  constructor(props) {
-    super(props);
-    this.textInput = React.createRef();
-  }
-  render() {
-    // This will *not* work!
-    return (
-      <MyFunctionComponent ref={this.textInput} />
-    );
-  }
 }
 ```
 
@@ -276,6 +252,10 @@ class Parent extends React.Component {
 ```
 
 In the example above, `Parent` passes its ref callback as an `inputRef` prop to the `CustomTextInput`, and the `CustomTextInput` passes the same function as a special `ref` attribute to the `<input>`. As a result, `this.inputElement` in `Parent` will be set to the DOM node corresponding to the `<input>` element in the `CustomTextInput`.
+
+### Functional components
+
+To use a `ref` attribute in a functional component use the [`useRef` hook](https://reactjs.org/docs/hooks-reference.html#useref).
 
 ### Legacy API: String Refs {#legacy-api-string-refs}
 

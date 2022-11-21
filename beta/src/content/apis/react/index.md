@@ -42,7 +42,7 @@ If you use React on the web, you'll also need the same version of [ReactDOM.](/a
 
 ### State {/*state*/}
 
-<YouWillLearnCard title="useState" path="/apis/react/useState">
+<YouWillLearnCard title="useState" path="/hooks/react/useState">
 
 Declares a state variable.
 
@@ -54,7 +54,7 @@ function MyComponent() {
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useReducer" path="/apis/react/useReducer">
+<YouWillLearnCard title="useReducer" path="/hooks/react/useReducer">
 
 Declares a state variable managed with a reducer.
 
@@ -68,7 +68,7 @@ function MyComponent() {
 
 ### Context {/*context*/}
 
-<YouWillLearnCard title="useContext" path="/apis/react/useContext">
+<YouWillLearnCard title="useContext" path="/hooks/react/useContext">
 
 Reads and subscribes to a context.
 
@@ -93,7 +93,7 @@ const ThemeContext = createContext('light');
 ### Refs {/*refs*/}
 
 
-<YouWillLearnCard title="useRef" path="/apis/react/useRef">
+<YouWillLearnCard title="useRef" path="/hooks/react/useRef">
 
 Declares a ref.
 
@@ -117,7 +117,7 @@ const Component = forwardRef((props, ref) => {
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useImperativeHandle" path="/apis/react/useImperativeHandle">
+<YouWillLearnCard title="useImperativeHandle" path="/hooks/react/useImperativeHandle">
 
 Customize instance value exposed to parent refs:
 
@@ -290,7 +290,7 @@ const [isPending, startTransition] = useTransition();
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useDeferredValue" path="/apis/react/useDeferredValue">
+<YouWillLearnCard title="useDeferredValue" path="/hooks/react/useDeferredValue">
 
 Defer to more urgent updates:
 
@@ -302,7 +302,7 @@ const deferredValue = useDeferredValue(value);
 
 ### Effects {/*effects*/}
 
-<YouWillLearnCard title="useEffect" path="/apis/react/useEffect">
+<YouWillLearnCard title="useEffect" path="/hooks/react/useEffect">
 
 Synchronize external state:
 
@@ -318,7 +318,7 @@ useEffect(() => {
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useLayoutEffect" path="/apis/react/useLayoutEffect">
+<YouWillLearnCard title="useLayoutEffect" path="/hooks/react/useLayoutEffect">
 
 Read layout DOM state:
 
@@ -330,7 +330,7 @@ useLayoutEffect(() => {
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useInsertionEffect" path="/apis/react/useInsertionEffect">
+<YouWillLearnCard title="useInsertionEffect" path="/hooks/react/useInsertionEffect">
 
 Insert styles into the DOM.
 
@@ -344,7 +344,7 @@ useInsertionEffect(() => {
 
 ### Memoization {/*memoization*/}
 
-<YouWillLearnCard title="useCallback" path="/apis/react/useCallback">
+<YouWillLearnCard title="useCallback" path="/hooks/react/useCallback">
 
 Return a memoized callback.
 
@@ -356,7 +356,7 @@ const handleClick = useCallback(() => {
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useMemo" path="/apis/react/useMemo">
+<YouWillLearnCard title="useMemo" path="/hooks/react/useMemo">
 
 Return a memoized value.
 
@@ -382,7 +382,7 @@ const MyComponent = React.memo(function MyComponent(props) {
 
 ### Subscribing {/*subscribing*/}
 
-<YouWillLearnCard title="useSyncExternalStore" path="/apis/react/useSyncExternalStore">
+<YouWillLearnCard title="useSyncExternalStore" path="/hooks/react/useSyncExternalStore">
 
 Subscribe to external state.
 
@@ -394,7 +394,7 @@ const state = useSyncExternalStore(subscribe, getSnapshot);
 
 ### Accessibility {/*accessibility*/}
 
-<YouWillLearnCard title="useId" path="/apis/react/useId">
+<YouWillLearnCard title="useId" path="/hooks/react/useId">
 
 Generate unique IDs across the server and client:
 
@@ -416,7 +416,7 @@ Eagerly highlight potential problems.
 
 </YouWillLearnCard>
 
-<YouWillLearnCard title="useDebugValue" path="/apis/react/useDebugValue">
+<YouWillLearnCard title="useDebugValue" path="/hooks/react/useDebugValue">
 
 Display a label for custom hooks.
 

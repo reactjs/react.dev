@@ -230,8 +230,8 @@ This demo loads with an artificial delay. The next time you untick and tick the 
 ### Caveats {/*caveats*/}
 
 - React does not preserve any state for renders that got suspended before they were able to mount for the first time. When the component has loaded, React will retry rendering the suspended tree from scratch.
-- If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/apis/react/startTransition) or [`useDeferredValue`](/apis/react/useDeferredValue).
-- If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/apis/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This lets you make sure that Effects measuring the DOM layout don't try to do this while the content is hidden.
+- If Suspense was displaying content for the tree, but then it suspended again, the `fallback` will be shown again unless the update causing it was caused by [`startTransition`](/apis/react/startTransition) or [`useDeferredValue`](/hooks/react/useDeferredValue).
+- If React needs to hide the already visible content because it suspended again, it will clean up [layout Effects](/hooks/react/useLayoutEffect) in the content tree. When the content is ready to be shown again, React will fire the layout Effects again. This lets you make sure that Effects measuring the DOM layout don't try to do this while the content is hidden.
 - React includes under-the-hood optimizations like *Streaming Server Rendering* and *Selective Hydration* that are integrated with Suspense. Read [an architectural overview](https://github.com/reactwg/react-18/discussions/37) and watch [a technical talk](https://www.youtube.com/watch?v=pj5N-Khihgc) to learn more.
 
 ---
@@ -255,6 +255,6 @@ function handleNextPageClick() {
 
 This will avoid hiding existing content. However, any newly rendered `Suspense` boundaries will still immediately display fallbacks to avoid blocking the UI and let the user see the content as it becomes available.
 
-**React will only prevent unwanted fallbacks during non-urgent updates**. It will not delay a render if it's the result of an urgent update. You must opt in with an API like [`startTransition`](/apis/react/startTransition) or [`useDeferredValue`](/apis/react/useDeferredValue).
+**React will only prevent unwanted fallbacks during non-urgent updates**. It will not delay a render if it's the result of an urgent update. You must opt in with an API like [`startTransition`](/apis/react/startTransition) or [`useDeferredValue`](/hooks/react/useDeferredValue).
 
 If your router is integrated with Suspense, it should wrap its updates into [`startTransition`](/apis/react/startTransition) automatically.

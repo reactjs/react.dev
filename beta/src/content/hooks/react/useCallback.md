@@ -126,7 +126,7 @@ function ProductPage({ productId, referrer, theme }) {
 
 <DeepDive title="How is useCallback related to useMemo?">
 
-You will often see [`useMemo`](/apis/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
+You will often see [`useMemo`](/hooks/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
 
 ```js {6-8,10-15,19}
 import { useMemo, useCallback } from 'react';
@@ -155,10 +155,10 @@ function ProductPage({ productId, referrer }) {
 
 The difference is in *what* they're letting you cache:
 
-* **[`useMemo`](/apis/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `product` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
+* **[`useMemo`](/hooks/react/useMemo) caches the *result* of calling your function.** In this example, it caches the result of calling `computeRequirements(product)` so that it doesn't change unless `product` has changed. This lets you pass the `requirements` object down without unnecessarily re-rendering `ShippingForm`. When necessary, React will call the function you've passed during rendering to calculate the result.
 * **`useCallback` caches *the function itself.*** Unlike `useMemo`, it does not call the function you provide. Instead, it caches the function you provided so that `handleSubmit` *itself* doesn't change unless `productId` or `referrer` has changed. This lets you pass the `handleSubmit` function down without unnecessarily re-rendering `ShippingForm`. Your code won't be called until the user submits the form.
 
-If you're already familiar with [`useMemo`,](/apis/react/useMemo) you might find it helpful to think of `useCallback` as this:
+If you're already familiar with [`useMemo`,](/hooks/react/useMemo) you might find it helpful to think of `useCallback` as this:
 
 ```js
 // Simplified implementation (inside React)
@@ -167,7 +167,7 @@ function useCallback(fn, dependencies) {
 }
 ```
 
-[Read more about the difference between `useMemo` and `useCallback`.](/apis/react/useMemo#memoizing-a-function)
+[Read more about the difference between `useMemo` and `useCallback`.](/hooks/react/useMemo#memoizing-a-function)
 
 </DeepDive>
 
@@ -178,7 +178,7 @@ If your app is like this site, and most interactions are coarse (like replacing 
 Caching a function with `useCallback`  is only valuable in a few cases:
 
 - You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies aren't the same.
-- The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/apis/react/useEffect)
+- The function you're passing is later used as a dependency of some Hook. For example, another function wrapped in `useCallback` depends on it, or you depend on this function from [`useEffect.`](/hooks/react/useEffect)
 
 There is no benefit to wrapping a function in `useCallback` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
 
@@ -634,7 +634,7 @@ function TodoList() {
   // ...
 ```
 
-You'll usually want your memoized functions to have as few dependencies as possible. When you read some state only to calculate the next state, you can remove that dependency by passing an [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) instead:
+You'll usually want your memoized functions to have as few dependencies as possible. When you read some state only to calculate the next state, you can remove that dependency by passing an [updater function](/hooks/react/useState#updating-state-based-on-the-previous-state) instead:
 
 ```js {6,7}
 function TodoList() {
@@ -647,7 +647,7 @@ function TodoList() {
   // ...
 ```
 
-Here, instead of making `todos` a dependency of your function and reading it there, you pass an instruction about *how* to update the state (`todos => [...todos, newTodo]`) to React. [Read more about updater functions.](/apis/react/useState#updating-state-based-on-the-previous-state)
+Here, instead of making `todos` a dependency of your function and reading it there, you pass an instruction about *how* to update the state (`todos => [...todos, newTodo]`) to React. [Read more about updater functions.](/hooks/react/useState#updating-state-based-on-the-previous-state)
 
 ---
 
@@ -796,7 +796,7 @@ During subsequent renders, it will either return an already stored `fn`  functio
 #### Caveats {/*caveats*/}
 
 * `useCallback` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-* React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/apis/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/apis/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
+* React **will not throw away the cached function unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useCallback` as a performance optimization. Otherwise, a [state variable](/hooks/react/useState#im-trying-to-set-state-to-a-function-but-it-gets-called-instead) or a [ref](/hooks/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 
 ---
 
@@ -850,7 +850,7 @@ Object.is(temp1[1], temp2[1]); // Is the second dependency the same between the 
 Object.is(temp1[2], temp2[2]); // ... and so on for every dependency ...
 ```
 
-When you find which dependency is breaking memoization, either find a way to remove it, or [memoize it as well.](/apis/react/useMemo#memoizing-a-dependency-of-another-hook)
+When you find which dependency is breaking memoization, either find a way to remove it, or [memoize it as well.](/hooks/react/useMemo#memoizing-a-dependency-of-another-hook)
 
 ---
 

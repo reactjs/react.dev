@@ -256,27 +256,27 @@
     },
     {
       "source": "/apis/createcontext",
-      "destination": "/apis/react/createContext",
+      "destination": "/hooks/react/createContext",
       "permanent": true
     },
     {
       "source": "/apis/usecontext",
-      "destination": "/apis/react/useContext",
+      "destination": "/hooks/react/useContext",
       "permanent": true
     },
     {
       "source": "/apis/usereducer",
-      "destination": "/apis/react/useReducer",
+      "destination": "/hooks/react/useReducer",
       "permanent": true
     },
     {
       "source": "/apis/useref",
-      "destination": "/apis/react/useRef",
+      "destination": "/hooks/react/useRef",
       "permanent": true
     },
     {
       "source": "/apis/usestate",
-      "destination": "/apis/react/useState",
+      "destination": "/hooks/react/useState",
       "permanent": true
     },
     {
@@ -297,6 +297,61 @@
     {
       "source": "/apis/createportal",
       "destination": "/apis/react-dom/createPortal",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useState",
+      "destination": "/hooks/react/useState",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useCallback",
+      "destination": "/hooks/react/useCallback",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useContext",
+      "destination": "/hooks/react/useContext",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useDebugValue",
+      "destination": "/hooks/react/useDebugValue",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useEffect",
+      "destination": "/hooks/react/useEffect",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useId",
+      "destination": "/hooks/react/useId",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useImperativeHandle",
+      "destination": "/hooks/react/useImperativeHandle",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useMemo",
+      "destination": "/hooks/react/useMemo",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useReducer",
+      "destination": "/hooks/react/useReducer",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useRef",
+      "destination": "/hooks/react/useRef",
+      "permanent": true
+    },
+    {
+      "source": "/apis/react/useState",
+      "destination": "/hooks/react/useState",
       "permanent": true
     }
   ],

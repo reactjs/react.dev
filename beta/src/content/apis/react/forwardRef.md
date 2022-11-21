@@ -323,7 +323,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 });
 ```
 
-Then pass the `ref` you received to [`useImperativeHandle`](/apis/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
+Then pass the `ref` you received to [`useImperativeHandle`](/hooks/react/useImperativeHandle) and specify the value you want to expose to the `ref`:
 
 ```js {6-15}
 import { forwardRef, useRef, useImperativeHandle } from 'react';
@@ -405,7 +405,7 @@ input {
 
 </Sandpack>
 
-[Read more about using imperative handles.](/apis/react/useImperativeHandle)
+[Read more about using imperative handles.](/hooks/react/useImperativeHandle)
 
 <Pitfall>
 
@@ -466,7 +466,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
 
 * `props`: The props passed by the parent component.
 
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/apis/react/useImperativeHandle)
+* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/hooks/react/useImperativeHandle)
 
 #### Returns {/*render-returns*/}
 

@@ -1379,7 +1379,7 @@ function Counter() {
 
 Since `count` is a reactive value, it must be specified in the list of dependencies. However, that causes the Effect to cleanup and setup again every time the `count` changes. This is not ideal. 
 
-To fix this, [pass the `c => c + 1` state updater](/apis/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
+To fix this, [pass the `c => c + 1` state updater](/hooks/react/useState#updating-state-based-on-the-previous-state) to `setCount`:
 
 <Sandpack>
 
@@ -1651,7 +1651,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. To do this, [declare an *Event function*](/learn/separating-events-from-effects#declaring-an-event-function) with the [`useEvent`](/apis/react/useEvent) Hook, and move the code that reads `shoppingCart` inside of it:
+**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. To do this, [declare an *Event function*](/learn/separating-events-from-effects#declaring-an-event-function) with the [`useEvent`](/hooks/react/useEvent) Hook, and move the code that reads `shoppingCart` inside of it:
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
@@ -1747,7 +1747,7 @@ function ChatRoom({ roomId }) {
 
 * If some of your dependencies are objects or functions defined inside the component, there is a risk that they will **cause the Effect to re-run more often than needed.** To fix this, remove unnecessary [object](#removing-unnecessary-object-dependencies) and [function](#removing-unnecessary-function-dependencies) dependencies. You can also [extract state updates](#updating-state-based-on-previous-state-from-an-effect) and [non-reactive logic](#reading-the-latest-props-and-state-from-an-effect) outside of your Effect.
 
-* If your Effect wasn't caused by an interaction (like a click), React will let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), you need to replace `useEffect` with [`useLayoutEffect`.](/apis/react/useLayoutEffect)
+* If your Effect wasn't caused by an interaction (like a click), React will let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), you need to replace `useEffect` with [`useLayoutEffect`.](/hooks/react/useLayoutEffect)
 
 * Effects **only run on the client.** They don't run during server rendering.
 
@@ -1802,7 +1802,7 @@ When you find the dependency that is different on every re-render, you can usual
 - [Removing unnecessary function dependencies](#removing-unnecessary-function-dependencies)
 - [Reading the latest props and state from an Effect](#reading-the-latest-props-and-state-from-an-effect)
 
-As a last resort (if these methods didn't help), wrap its creation with [`useMemo`](/apis/react/useMemo#memoizing-a-dependency-of-another-hook) or [`useCallback`](/apis/react/useCallback#preventing-an-effect-from-firing-too-often) (for functions).
+As a last resort (if these methods didn't help), wrap its creation with [`useMemo`](/hooks/react/useMemo#memoizing-a-dependency-of-another-hook) or [`useCallback`](/hooks/react/useCallback#preventing-an-effect-from-firing-too-often) (for functions).
 
 ---
 
@@ -1817,9 +1817,9 @@ Before you start fixing the problem, ask yourself whether your Effect is connect
 
 If there is no external system, consider whether [removing the Effect altogether](/learn/you-might-not-need-an-effect) would simplify your logic.
 
-If you're genuinely synchronizing with some external system, think about why and under what conditions your Effect should update the state. Has something changed that affects your component's visual output? If you need to keep track of some data that isn't used by rendering, a [ref](/apis/react/useRef#referencing-a-value-with-a-ref) (which doesn't trigger re-renders) might be more appropriate. Verify your Effect doesn't update the state (and trigger re-renders) more than needed.
+If you're genuinely synchronizing with some external system, think about why and under what conditions your Effect should update the state. Has something changed that affects your component's visual output? If you need to keep track of some data that isn't used by rendering, a [ref](/hooks/react/useRef#referencing-a-value-with-a-ref) (which doesn't trigger re-renders) might be more appropriate. Verify your Effect doesn't update the state (and trigger re-renders) more than needed.
 
-Finally, if your Effect is updating the state at the right time, but there is still a loop, it's because that state update leads to one of your Effect's dependencies changing. [Read how to debug and resolve dependency changes.](/apis/react/useEffect#my-effect-runs-after-every-re-render)
+Finally, if your Effect is updating the state at the right time, but there is still a loop, it's because that state update leads to one of your Effect's dependencies changing. [Read how to debug and resolve dependency changes.](/hooks/react/useEffect#my-effect-runs-after-every-re-render)
 
 ---
 
@@ -1856,4 +1856,4 @@ Your cleanup logic should be "symmetrical" to the setup logic, and should stop o
 
 ### My Effect does something visual, and I see a flicker before it runs {/*my-effect-does-something-visual-and-i-see-a-flicker-before-it-runs*/}
 
-If your Effect must block the browser from [painting the screen,](/learn/render-and-commit#epilogue-browser-paint) replace `useEffect` with [`useLayoutEffect`](/apis/react/useLayoutEffect). Note that **this shouldn't be needed for the vast majority of Effects.** You'll only need this if it's crucial to run your Effect before the browser paint: for example, to measure and position a tooltip before the user sees it for the first time.
+If your Effect must block the browser from [painting the screen,](/learn/render-and-commit#epilogue-browser-paint) replace `useEffect` with [`useLayoutEffect`](/hooks/react/useLayoutEffect). Note that **this shouldn't be needed for the vast majority of Effects.** You'll only need this if it's crucial to run your Effect before the browser paint: for example, to measure and position a tooltip before the user sees it for the first time.

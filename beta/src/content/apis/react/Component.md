@@ -70,7 +70,7 @@ export default function App() {
 
 </Sandpack>
 
-Note that Hooks (functions starting with `use`, like [`useState`](/apis/react/useState)) are not supported inside class components.
+Note that Hooks (functions starting with `use`, like [`useState`](/hooks/react/useState)) are not supported inside class components.
 
 <Pitfall>
 
@@ -394,7 +394,7 @@ button { display: block; margin-top: 10px; }
 
 </Sandpack>
 
-Start by declaring a function with the necessary [state variables:](/apis/react/useState#adding-state-to-a-component)
+Start by declaring a function with the necessary [state variables:](/hooks/react/useState#adding-state-to-a-component)
 
 ```js {4-5}
 import { useState } from 'react';
@@ -588,7 +588,7 @@ First, verify that your [`componentWillUnmount`](#componentwillunmount) does the
 
 Next, verify that your [`componentDidUpdate`](#componentdidupdate) method handles changes to any props and state you're using in `componentDidMount`. In the above example, `componentDidMount` calls `setupConnection` which reads `this.state.serverUrl` and `this.props.roomId`. This is why `componentDidUpdate` checks whether `this.state.serverUrl` and `this.props.roomId` have changed, and resets the connection if they did. If your `componentDidUpdate` logic is missing or doesn't handle changes to all relevant props and state, fix that first.
 
-In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/apis/react/useEffect#connecting-to-an-external-system)
+In the above example, the logic inside the lifecycle methods connects the component to a system outside of React (a chat server). To connect a component to an external system, [describe this logic as a single Effect:](/hooks/react/useEffect#connecting-to-an-external-system)
 
 ```js {6-12}
 import { useState, useEffect } from 'react';
@@ -797,7 +797,7 @@ export default function MyApp() {
 
 </Sandpack>
 
-When you convert them to function components, replace `this.context` with [`useContext`](/apis/react/useContext) calls:
+When you convert them to function components, replace `this.context` with [`useContext`](/hooks/react/useContext) calls:
 
 <Sandpack>
 
@@ -938,7 +938,7 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/apis/react/useContext) in function components.
+Reading `this.context` in class components is equivalent to [`useContext`](/hooks/react/useContext) in function components.
 
 [See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
@@ -1001,7 +1001,7 @@ class Counter extends Component {
 
 <Note>
 
-Defining `state` in class components is equivalent to calling [`useState`](/apis/react/useState) in function components.
+Defining `state` in class components is equivalent to calling [`useState`](/hooks/react/useState) in function components.
 
 [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
@@ -1061,7 +1061,7 @@ A constructor should not contain any side effects or subscriptions.
 
 <Note>
 
-There is no exact equivalent for `constructor` in function components. To declare state in a function component, call [`useState`.](/apis/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/apis/react/useState#avoiding-recreating-the-initial-state)
+There is no exact equivalent for `constructor` in function components. To declare state in a function component, call [`useState`.](/hooks/react/useState) To avoid recalculating the initial state, [pass a function to `useState`.](/hooks/react/useState#avoiding-recreating-the-initial-state)
 
 </Note>
 
@@ -1193,7 +1193,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/apis/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/apis/react/useLayoutEffect) is a closer match.
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/hooks/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/hooks/react/useLayoutEffect) is a closer match.
 
 [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -1260,7 +1260,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/apis/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/apis/react/useLayoutEffect) is a closer match.
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/hooks/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/hooks/react/useLayoutEffect) is a closer match.
 
 [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -1353,7 +1353,7 @@ class ChatRoom extends Component {
 
 <Note>
 
-For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/apis/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/apis/react/useLayoutEffect) is a closer match.
+For many use cases, defining `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` together in class components is equivalent to calling [`useEffect`](/hooks/react/useEffect) in function components. In the rare cases where it's important for the code to run before browser paint, [`useLayoutEffect`](/hooks/react/useLayoutEffect) is a closer match.
 
 [See how to migrate.](#migrating-a-component-with-lifecycle-methods-from-a-class-to-a-function)
 
@@ -1383,7 +1383,7 @@ Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this
 
 <Note>
 
-Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/apis/react/useSyncExternalStore) in function components.
+Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/hooks/react/useSyncExternalStore) in function components.
 
 </Note>
 
@@ -1578,7 +1578,7 @@ You don't have to do this, but it's handy if you want to update state multiple t
 
 <Note>
 
-Calling `setState` in class components is similar to calling a [`set` function](/apis/react/useState#setstate) in function components.
+Calling `setState` in class components is similar to calling a [`set` function](/hooks/react/useState#setstate) in function components.
 
 [See how to migrate.](#migrating-a-component-with-state-from-a-class-to-a-function)
 
@@ -1645,7 +1645,7 @@ Return `false` to tell React that re-rendering can be skipped.
 
 <Note>
 
-Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/apis/react/memo) Function components also offer more granular optimization with [`useMemo`.](/apis/react/useMemo)
+Optimizing class components with `shouldComponentUpdate` is similar to optimizing function components with [`memo`.](/apis/react/memo) Function components also offer more granular optimization with [`useMemo`.](/hooks/react/useMemo)
 
 </Note>
 
@@ -1678,7 +1678,7 @@ If you define `UNSAFE_componentWillMount`, React will call it immediately after 
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/apis/react/useState) in a function component.
+Calling [`setState`](#setstate) inside `UNSAFE_componentWillMount` in a class component to initialize state is equivalent to passing that state as the initial state to [`useState`](/hooks/react/useState) in a function component.
 
 </Note>
 
@@ -1716,7 +1716,7 @@ If you define `UNSAFE_componentWillReceiveProps`, React will call it when the co
 
 <Note>
 
-Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/apis/react/useState#storing-information-from-previous-renders) in a function component.
+Calling [`setState`](#setstate) inside `UNSAFE_componentWillReceiveProps` in a class component to "adjust" state is equivalent to [calling the `set` function from `useState` during rendering](/hooks/react/useState#storing-information-from-previous-renders) in a function component.
 
 </Note>
 
@@ -1809,7 +1809,7 @@ class Button extends Component {
 
 <Note>
 
-Reading `this.context` in class components is equivalent to [`useContext`](/apis/react/useContext) in function components.
+Reading `this.context` in class components is equivalent to [`useContext`](/hooks/react/useContext) in function components.
 
 [See how to migrate.](#migrating-a-component-with-context-from-a-class-to-a-function)
 
@@ -1984,6 +1984,6 @@ Deriving state leads to verbose code and makes your components difficult to thin
 
 <Note>
 
-Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/apis/react/useState#storing-information-from-previous-renders) in a function component.
+Implementing `static getDerivedStateFromProps` in a class component is equivalent to [calling the `set` function from `useState` during rendering](/hooks/react/useState#storing-information-from-previous-renders) in a function component.
 
 </Note>

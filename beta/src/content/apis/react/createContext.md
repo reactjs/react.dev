@@ -31,7 +31,7 @@ const ThemeContext = createContext('light');
 const AuthContext = createContext(null);
 ```
 
-`createContext` returns a <CodeStep step={1}>context object</CodeStep>. Components can read context by passing it to [`useContext()`](/apis/react/useContext):
+`createContext` returns a <CodeStep step={1}>context object</CodeStep>. Components can read context by passing it to [`useContext()`](/hooks/react/useContext):
 
 ```js [[1, 2, "ThemeContext"], [1, 7, "AuthContext"]]
 function Button() {
@@ -68,7 +68,7 @@ function App() {
 
 Now the `Page` component and any components inside it, no matter how deep, will "see" the passed context values. If the passed context values change, React will re-render the components reading the context as well.
 
-[Read more about reading and providing context and see examples.](/apis/react/useContext)
+[Read more about reading and providing context and see examples.](/hooks/react/useContext)
 
 ---
 
@@ -136,7 +136,7 @@ const ThemeContext = createContext('light');
 
 `createContext` returns a context object.
 
-**The context object itself does not hold any information.** It represents _which_ context other components can read or provide. Typically, you will use [`SomeContext.Provider`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/apis/react/useContext) in components below to read it. The context object has a few properties:
+**The context object itself does not hold any information.** It represents _which_ context other components can read or provide. Typically, you will use [`SomeContext.Provider`](#provider) in components above to specify the context value, and call [`useContext(SomeContext)`](/hooks/react/useContext) in components below to read it. The context object has a few properties:
 
 * `SomeContext.Provider` lets you provide the context value to components.
 * `SomeContext.Consumer` is an alternative and rarely used way to read the context value.
@@ -161,7 +161,7 @@ function App() {
 
 #### Props {/*provider-props*/}
 
-* `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](/apis/react/useContext) inside of the provider receives the `value` of the innermost corresponding context provider above it.
+* `value`: The value that you want to pass to all the components reading this context inside this provider, no matter how deep. The context value can be of any type. A component calling [`useContext(SomeContext)`](/hooks/react/useContext) inside of the provider receives the `value` of the innermost corresponding context provider above it.
 
 ---
 
@@ -182,7 +182,7 @@ function Button() {
 }
 ```
 
-Although this older way still works, but **newly written code should read context with [`useContext()`](/apis/react/useContext) instead:**
+Although this older way still works, but **newly written code should read context with [`useContext()`](/hooks/react/useContext) instead:**
 
 ```js
 function Button() {
@@ -194,7 +194,7 @@ function Button() {
 
 #### Props {/*consumer-props*/}
 
-* `children`: A function. React will call the function you pass with the current context value determined by the same algorithm as [`useContext()`](/apis/react/useContext) does, and render the result you return from this function. React will also re-run this function and update the UI whenever the context passed from the parent components have changed.
+* `children`: A function. React will call the function you pass with the current context value determined by the same algorithm as [`useContext()`](/hooks/react/useContext) does, and render the result you return from this function. React will also re-run this function and update the UI whenever the context passed from the parent components have changed.
 
 ---
 
@@ -211,5 +211,5 @@ const ThemeContext = createContext('light');
 
 This value never changes. React only uses this value as a fallback if it can't find a matching provider above.
 
-To make context change over time, [add state and wrap components in a context provider.](/apis/react/useContext#updating-data-passed-via-context)
+To make context change over time, [add state and wrap components in a context provider.](/hooks/react/useContext#updating-data-passed-via-context)
 

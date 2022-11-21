@@ -498,7 +498,7 @@ button {
 
 </Sandpack>
 
-[Learn more about passing data through context.](/apis/react/useContext#passing-data-deeply-into-the-tree)
+[Learn more about passing data through context.](/hooks/react/useContext#passing-data-deeply-into-the-tree)
 
 ---
 

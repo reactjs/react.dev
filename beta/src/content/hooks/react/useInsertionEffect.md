@@ -23,6 +23,6 @@ useInsertionEffect(didUpdate);
 
 <Pitfall>
 
-`useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](/apis/react/useEffect) or [`useLayoutEffect`](/apis/react/useLayoutEffect) instead.
+`useInsertionEffect` should be limited to css-in-js library authors. Prefer [`useEffect`](/hooks/react/useEffect) or [`useLayoutEffect`](/hooks/react/useLayoutEffect) instead.
 
 </Pitfall>

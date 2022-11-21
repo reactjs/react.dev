@@ -302,7 +302,7 @@ Notice how `onClick={handleClick}` has no parentheses at the end! Do not _call_ 
 
 Often, you'll want your component to "remember" some information and display it. For example, maybe you want to count the number of times a button is clicked. To do this, add *state* to your component.
 
-First, import [`useState`](/apis/react/useState) from React:
+First, import [`useState`](/hooks/react/useState) from React:
 
 ```js
 import { useState } from 'react';

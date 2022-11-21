@@ -180,7 +180,7 @@ label {
 
 <Note>
 
-Unlike `PureComponent`, [`memo`](/apis/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/apis/react/useState#setstate) with the same state [already prevents re-renders by default,](/apis/react/memo#updating-a-memoized-component-using-state) even without `memo`.
+Unlike `PureComponent`, [`memo`](/apis/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/hooks/react/useState#setstate) with the same state [already prevents re-renders by default,](/apis/react/memo#updating-a-memoized-component-using-state) even without `memo`.
 
 </Note>
 

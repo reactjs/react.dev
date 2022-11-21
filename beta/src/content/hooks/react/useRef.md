@@ -32,7 +32,7 @@ function Stopwatch() {
 
 `useRef` returns a <CodeStep step={1}>ref object</CodeStep> with a single <CodeStep step={2}>`current` property</CodeStep> initially set to the <CodeStep step={3}>initial value</CodeStep> you provided.
 
-On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/apis/react/useState), but there is an important difference.
+On the next renders, `useRef` will return the same object. You can change its `current` property to store information and read it later. This might remind you of [state](/hooks/react/useState), but there is an important difference.
 
 **Changing a ref does not trigger a re-render.** This means refs are perfect for storing information that doesn't affect the visual output of your component. For example, if you need to store an [interval ID](https://developer.mozilla.org/en-US/docs/Web/API/setInterval) and retrieve it later, you can put it in a ref. To update the value inside the ref, you need to manually change its <CodeStep step={2}>`current` property</CodeStep>:
 
@@ -188,7 +188,7 @@ function MyComponent() {
 }
 ```
 
-If you *have to* read [or write](/apis/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/apis/react/useState) instead.
+If you *have to* read [or write](/hooks/react/useState#storing-information-from-previous-renders) something during rendering, [use state](/hooks/react/useState) instead.
 
 When you break these rules, your component might still work, but most of the newer features we're adding to React will rely on these expectations. Read more about [keeping your components pure.](/learn/keeping-components-pure#where-you-can-cause-side-effects)
 

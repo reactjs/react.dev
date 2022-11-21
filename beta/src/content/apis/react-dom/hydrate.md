@@ -65,7 +65,7 @@ export default function App() {
 
 </Sandpack>
 
-Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/apis/react/useState)
+Usually you shouldn't need to call `hydrate` again or to call it in more places. From this point on, React will be managing the DOM of your application. If you want to update the UI, your components can do this by [using state.](/hooks/react/useState)
 
 For more information on hydration, see the docs for [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot)
 
@@ -113,7 +113,7 @@ This only works one level deep, and is intended to be an escape hatch. Don’t o
 
 ### Handling different client and server content {/*handling-different-client-and-server-content*/}
 
-If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/apis/react/useState) like `isClient`, which you can set to `true` in an [effect](/apis/react/useEffect):
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/hooks/react/useState) like `isClient`, which you can set to `true` in an [effect](/hooks/react/useEffect):
 
 <Sandpack>
 

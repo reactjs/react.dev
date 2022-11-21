@@ -4,7 +4,7 @@ title: createRef
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/apis/react/useRef) instead.
+`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/hooks/react/useRef) instead.
 
 </Pitfall>
 
@@ -72,7 +72,7 @@ export default class Form extends Component {
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/apis/react/useRef) instead.
+`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/hooks/react/useRef) instead.
 
 </Pitfall>
 
@@ -111,7 +111,7 @@ export default class Form extends Component {
 
 </Sandpack>
 
-When you [convert this component from a class to a function,](/apis/react/Component#alternatives) replace calls to `createRef` with calls to [`useRef`:](/apis/react/useRef)
+When you [convert this component from a class to a function,](/apis/react/Component#alternatives) replace calls to `createRef` with calls to [`useRef`:](/hooks/react/useRef)
 
 <Sandpack>
 
@@ -157,7 +157,7 @@ class MyComponent extends Component {
 
 <Pitfall>
 
-`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/apis/react/useRef) instead.
+`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/hooks/react/useRef) instead.
 
 </Pitfall>
 
@@ -174,7 +174,7 @@ class MyComponent extends Component {
 #### Caveats {/*caveats*/}
 
 * `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
-* In a function component, you probably want [`useRef`](/apis/react/useRef) instead which always returns the same object.
+* In a function component, you probably want [`useRef`](/hooks/react/useRef) instead which always returns the same object.
 * `const ref = useRef()` is equivalent to `const [ref, _] = useState(() => createRef(null))`.
 
 

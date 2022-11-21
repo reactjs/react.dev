@@ -145,7 +145,7 @@ function Button({ children }) {
 
 ### Updating data passed via context {/*updating-data-passed-via-context*/}
 
-Often, you'll want the context to change over time. To update context, you need to combine it with [state.](/apis/react/useState) Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
+Often, you'll want the context to change over time. To update context, you need to combine it with [state.](/hooks/react/useState) Declare a state variable in the parent component, and pass the current state down as the <CodeStep step={2}>context value</CodeStep> to the provider.
 
 ```js {2} [[1, 4, "ThemeContext"], [2, 4, "theme"], [1, 11, "ThemeContext"]]
 function MyPage() {
@@ -707,7 +707,7 @@ label {
 
 #### Scaling up with context and a reducer {/*scaling-up-with-context-and-a-reducer*/}
 
-In larger apps, it is common to combine context with a [reducer](/apis/react/useReducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
+In larger apps, it is common to combine context with a [reducer](/hooks/react/useReducer) to extract the logic related to some state out of components. In this example, all the "wiring" is hidden in the `TasksContext.js`, which contains a reducer and two separate contexts.
 
 Read a [full walkthrough](/learn/scaling-up-with-reducer-and-context) of this example.
 
@@ -1279,7 +1279,7 @@ function MyApp() {
 
 Here, the <CodeStep step={2}>context value</CodeStep> is a JavaScript object with two properties, one of which is a function. Whenever `MyApp` re-renders (for example, on a route update), this will be a *different* object pointing at a *different* function, so React will also have to re-render all components deep in the tree that call `useContext(AuthContext)`.
 
-In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/apis/react/useCallback) and wrap the object creation into [`useMemo`](/apis/react/useMemo). This is a performance optimization:
+In smaller apps, this is not a problem. However, there is no need to re-render them if the underlying data, like `currentUser`, has not changed. To help React take advantage of that fact, you may wrap the `login` function with [`useCallback`](/hooks/react/useCallback) and wrap the object creation into [`useMemo`](/hooks/react/useMemo). This is a performance optimization:
 
 ```js {6,9,11,14,17}
 import { useCallback, useMemo } from 'react';
@@ -1305,7 +1305,7 @@ function MyApp() {
 }
 ```
 
-As a result of this change, even if `MyApp` needs to re-render, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` has changed. Read more about [`useMemo`](/apis/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`.](/apis/react/useCallback#skipping-re-rendering-of-components)
+As a result of this change, even if `MyApp` needs to re-render, the components calling `useContext(AuthProvider)` won't need to re-render unless `currentUser` has changed. Read more about [`useMemo`](/hooks/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`.](/hooks/react/useCallback#skipping-re-rendering-of-components)
 
 ---
 

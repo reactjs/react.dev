@@ -97,7 +97,7 @@ Optimizing with `useMemo`  is only valuable in a few cases:
 
 - The calculation you're putting in `useMemo` is noticeably slow, and its dependencies rarely change.
 - You pass it as a prop to a component wrapped in [`memo`.](/apis/react/memo) You want to skip re-rendering if the value hasn't changed. Memoization lets your component re-render only when dependencies aren't the same.
-- The value you're passing is later used as a dependency of some Hook. For example, maybe another `useMemo` calculation value depends on it. Or maybe you are depending on this value from [`useEffect.`](/apis/react/useEffect)
+- The value you're passing is later used as a dependency of some Hook. For example, maybe another `useMemo` calculation value depends on it. Or maybe you are depending on this value from [`useEffect.`](/hooks/react/useEffect)
 
 There is no benefit to wrapping a calculation in `useMemo` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
 
@@ -1044,7 +1044,7 @@ function Dropdown({ allItems, text }) {
 ```
 
 **Now your calculation depends on `text` directly (which is a string and can't "accidentally" be new like an object).**
- You can use a similar approach to prevent [`useEffect`](/apis/react/useEffect) from firing again unnecessarily. Before you try to optimize dependencies with `useMemo`, see if you can make them unnecessary. [Read about removing Effect dependencies.](/learn/removing-effect-dependencies)
+ You can use a similar approach to prevent [`useEffect`](/hooks/react/useEffect) from firing again unnecessarily. Before you try to optimize dependencies with `useMemo`, see if you can make them unnecessary. [Read about removing Effect dependencies.](/learn/removing-effect-dependencies)
 
 ---
 
@@ -1084,7 +1084,7 @@ export default function Page({ productId, referrer }) {
 }
 ```
 
-This looks clunky! **Memoizing functions is common enough that React has a built-in Hook specifically for that. Wrap your functions into [`useCallback`](/apis/react/useCallback) instead of `useMemo`** to avoid having to write an extra nested function:
+This looks clunky! **Memoizing functions is common enough that React has a built-in Hook specifically for that. Wrap your functions into [`useCallback`](/hooks/react/useCallback) instead of `useMemo`** to avoid having to write an extra nested function:
 
 ```js {2,7}
 export default function Page({ productId, referrer }) {
@@ -1099,7 +1099,7 @@ export default function Page({ productId, referrer }) {
 }
 ```
 
-The two examples above are completely equivalent. The only benefit to `useCallback` is that it lets you avoid writing an extra nested function inside. It doesn't do anything else. [Read more about `useCallback`.](/apis/react/useCallback)
+The two examples above are completely equivalent. The only benefit to `useCallback` is that it lets you avoid writing an extra nested function inside. It doesn't do anything else. [Read more about `useCallback`.](/hooks/react/useCallback)
 
 ---
 
@@ -1139,7 +1139,7 @@ During subsequent renders, it will either return an already stored value from th
 
 * `useMemo` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
 * In Strict Mode, React will **call your calculation function twice** in order to [help you find accidental impurities.](#my-calculation-runs-twice-on-every-re-render) This is development-only behavior and does not affect production. If your calculation function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
-* React **will not throw away the cached value unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useMemo` solely as a performance optimization. Otherwise, a [state variable](/apis/react/useState#avoiding-recreating-the-initial-state) or a [ref](/apis/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
+* React **will not throw away the cached value unless there is a specific reason to do that.** For example, in development, React throws away the cache when you edit the file of your component. Both in development and in production, React will throw away the cache if your component suspends during the initial mount. In the future, React may add more features that take advantage of throwing away the cache--for example, if React adds built-in support for virtualized lists in the future, it would make sense to throw away the cache for items that scroll out of the virtualized table viewport. This should match your expectations if you rely on `useMemo` solely as a performance optimization. Otherwise, a [state variable](/hooks/react/useState#avoiding-recreating-the-initial-state) or a [ref](/hooks/react/useRef#avoiding-recreating-the-ref-contents) may be more appropriate.
 
 ---
 

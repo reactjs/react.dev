@@ -84,7 +84,7 @@ label {
 
 If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
 
-Optimizing with `memo`  is only valuable when your component re-renders often with the same exact props, and its re-rendering logic is expensive. If there is no perceptible lag when your component re-renders, `memo` is unnecessary. Keep in mind that `memo` is completely useless if the props passed to your component are *always different,* such as if you pass an object or a plain function defined during rendering. This is why you will often need [`useMemo`](/apis/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`](/apis/react/useCallback#skipping-re-rendering-of-components) together with `memo`.
+Optimizing with `memo`  is only valuable when your component re-renders often with the same exact props, and its re-rendering logic is expensive. If there is no perceptible lag when your component re-renders, `memo` is unnecessary. Keep in mind that `memo` is completely useless if the props passed to your component are *always different,* such as if you pass an object or a plain function defined during rendering. This is why you will often need [`useMemo`](/hooks/react/useMemo#skipping-re-rendering-of-components) and [`useCallback`](/hooks/react/useCallback#skipping-re-rendering-of-components) together with `memo`.
 
 There is no benefit to wrapping a component in `memo` in other cases. There is no significant harm to doing that either, so some teams choose to not think about individual cases, and memoize as much as possible. The downside of this approach is that code becomes less readable. Also, not all memoization is effective: a single value that's "always new" is enough to break memoization for an entire component.
 
@@ -242,7 +242,7 @@ To make your component re-render only when a _part_ of some context changes, spl
 When you use `memo`, your component re-renders whenever any prop is not *shallowly equal* to what it was previously. This means that React compares every prop in your component with the previous value of that prop using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Note that `Object.is(3, 3)` is `true`, but `Object.is({}, {})` is `false`.
 
 
-To get the most out of `memo`, minimize the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using [`useMemo`:](/apis/react/useMemo)
+To get the most out of `memo`, minimize the times that the props change. For example, if the prop is an object, prevent the parent component from re-creating that object every time by using [`useMemo`:](/hooks/react/useMemo)
 
 ```js {5-8}
 function Page() {
@@ -289,7 +289,7 @@ const CallToAction = memo(function CallToAction({ hasGroups }) {
 });
 ```
 
-When you need to pass a function to memoized component, either declare it outside your component so that it never changes, or [`useCallback`](/apis/react/useCallback#skipping-re-rendering-of-components) to cache its definition between re-renders.
+When you need to pass a function to memoized component, either declare it outside your component so that it never changes, or [`useCallback`](/hooks/react/useCallback#skipping-re-rendering-of-components) to cache its definition between re-renders.
 
 ---
 

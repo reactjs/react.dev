@@ -8,28 +8,6 @@
       "path": "",
       "routes": [
         {
-          "title": "Installation",
-          "path": "/learn/installation",
-          "routes": [
-            {
-              "title": "Start a New React Project",
-              "path": "/learn/start-a-new-react-project"
-            },
-            {
-              "title": "Add React to a Website",
-              "path": "/learn/add-react-to-a-website"
-            },
-            {
-              "title": "Editor Setup",
-              "path": "/learn/editor-setup"
-            },
-            {
-              "title": "React Developer Tools",
-              "path": "/learn/react-developer-tools"
-            }
-          ]
-        },
-        {
           "title": "Quick Start",
           "path": "/learn",
           "routes": [{
@@ -188,6 +166,44 @@
               "path": "/learn/reusing-logic-with-custom-hooks"
             }
           ]
+        },
+        {
+          "title": "Installation",
+          "path": "/learn/installation",
+          "hasSeparator": true,
+          "routes": [
+            {
+              "title": "Start a New React Project",
+              "path": "/learn/start-a-new-react-project"
+            },
+            {
+              "title": "Add React to a Website",
+              "path": "/learn/add-react-to-a-website"
+            },
+            {
+              "title": "Editor Setup",
+              "path": "/learn/editor-setup"
+            },
+            {
+              "title": "React Developer Tools",
+              "path": "/learn/react-developer-tools"
+            }
+          ]
+        },
+        {
+          "title": "Community",
+          "path": "/learn/community",
+          "routes": [{
+            "title": "Acknowledgements",
+            "path": "/learn/acknowledgements"
+          }, {
+            "title": "Meet the Team",
+            "path": "/learn/meet-the-team"
+          }]
+        },
+        {
+          "title": "Blog",
+          "path": "https://reactjs.org/blog"
         }
       ]
     }

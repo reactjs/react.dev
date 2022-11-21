@@ -16,13 +16,6 @@ We are rewriting the React documentation with a few differences:
 
 This beta website contains the current draft of the new docs.
 
-## How much content is ready? {/*how-much-content-is-ready*/}
-
-* [Learn React](/learn): ~95% finished.
-* [API Reference](/apis): ~70% finished.
-
-You can track our progress [on GitHub.](https://github.com/reactjs/reactjs.org/issues/3308)
-
 ## How can I provide feedback? {/*how-can-i-provide-feedback*/}
 
 Please use [this GitHub issue](https://github.com/reactjs/reactjs.org/issues/3308) or [this anonymous form](https://www.surveymonkey.co.uk/r/PYRPF3X) for high-level feedback. If you spot something that doesn't make sense, please tell us! Additionally, each page has thumbs up/down buttons in the corner.

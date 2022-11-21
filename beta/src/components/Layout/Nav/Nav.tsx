@@ -114,6 +114,7 @@ export default function Nav() {
   }
   if (isOpen) {
     switch (tab) {
+      case 'home':
       case 'learn':
         routeTree = sidebarLearn as RouteItem;
         break;
@@ -312,7 +313,7 @@ export default function Nav() {
       {isOpen && (
         <div className="bg-wash dark:bg-wash-dark px-5 flex justify-end border-b border-border dark:border-border-dark items-center self-center w-full z-10">
           <TabButton
-            isActive={tab === 'learn'}
+            isActive={tab === 'learn' || tab === 'home'}
             onClick={() => selectTab('learn')}>
             Learn
           </TabButton>

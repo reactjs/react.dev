@@ -34,6 +34,8 @@ export interface RouteItem {
   wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
+  /** Adds a separator above the route item */
+  hasSeparator?: boolean;
 }
 
 export interface Routes {

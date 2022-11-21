@@ -472,6 +472,8 @@ function Video() {
 
 Normally, writing or reading `ref.current` during render is not allowed. However, it's fine in this case because the result is always the same, and the condition only executes during initialization so it's fully predictable.
 
+Note that in this example `new VideoPlayer()` is not allowed to create side-effects. It's just a pattern allowing us to conditionally skip the call to it on all subsequent renders but it's not a guarantee that this will only be called once.
+
 <DeepDive title="How to avoid null checks when initializing useRef later">
 
 If you use a type checker and don't want to always check for `null`, you can try a pattern like this instead:

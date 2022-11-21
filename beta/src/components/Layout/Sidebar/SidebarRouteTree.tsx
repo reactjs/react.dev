@@ -64,7 +64,6 @@ function CollapseWrapper({
       className={cn(isExpanded ? 'opacity-100' : 'opacity-50')}
       style={{
         transition: `opacity ${duration}ms ease-in-out`,
-        animation: `nav-fadein ${duration}ms ease-in-out`,
       }}>
       <div {...getCollapseProps()}>{children}</div>
     </div>

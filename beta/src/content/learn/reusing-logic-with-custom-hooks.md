@@ -1664,6 +1664,7 @@ function useAnimationLoop(isRunning, drawFrame) {
     }
 
     const startTime = performance.now();
+    let frameId = null;
 
     function tick(now) {
       const timePassed = now - startTime;

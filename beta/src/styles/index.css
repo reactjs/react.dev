@@ -153,15 +153,6 @@
     display: none;
   }
 
-  @keyframes nav-fadein {
-    from {
-      opacity: 0.5;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-
   /*
    * Hopefully when scrollbar-color lands everywhere,
    * (and not just in FF), we'll be able to keep just this.

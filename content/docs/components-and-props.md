@@ -46,6 +46,15 @@ The above two components are equivalent from React's point of view.
 
 Function and Class components both have some additional features that we will discuss in the [next sections](/docs/state-and-lifecycle.html).
 
+>**Note:** Of course, you can use arrow functions too.
+
+```js
+ const Welcome = (props) => {
+    return <h1>Hello, {props.name}</h1>;
+}
+```
+
+
 ## Rendering a Component {#rendering-a-component}
 
 Previously, we only encountered React elements that represent DOM tags:

@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useContext, useMemo} from 'react';
+import {Children, cloneElement, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 
@@ -354,15 +354,16 @@ function LinkWithTodo({href, children, ...props}: JSX.IntrinsicElements['a']) {
 
 function APICard({
   title,
+  description,
   path,
   children,
 }: {
   title: string;
   path: string;
-  children: React.ReactNode;
+  children: string;
 }) {
   return (
-    <div className="shrink flex flex-col h-full bg-card dark:bg-card-dark shadow-inner justify-between rounded-lg pb-8 p-6 xl:p-8 mt-3">
+    <div className="flex flex-col h-full bg-card dark:bg-card-dark shadow-inner justify-between rounded-lg pb-8 p-6 xl:p-8 mt-3">
       <div>
         <h4 className="text-primary dark:text-primary-dark font-bold text-2xl leading-tight">
           {title}
@@ -376,7 +377,7 @@ function APICard({
           type="primary"
           size="md"
           label={title}>
-          {title}
+          Read More
           <IconNavArrow displayDirection="right" className="inline ml-1" />
         </ButtonLink>
       </div>
@@ -385,7 +386,7 @@ function APICard({
 }
 
 function APIGrid({children}) {
-  return <div className="grid grid-cols-3 gap-4">{children}</div>;
+  return <div className="lg:grid grid-cols-2 gap-4">{children}</div>;
 }
 
 export const MDXComponents = {

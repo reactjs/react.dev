@@ -20,17 +20,17 @@ function MyComponent() {
 
 <APIGrid>
 
-<APICard title="useState" path="/apis/react/useState">
+<YouWillLearnCard title="useState" path="/apis/react/useState">
 
 Declares a state variable.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useReducer" path="/apis/react/useReducer">
+<YouWillLearnCard title="useReducer" path="/apis/react/useReducer">
 
 Declares a state variable with a reducer.
 
-</APICard>
+</YouWillLearnCard>
 
 </APIGrid>
 
@@ -46,11 +46,11 @@ function MyComponent() {
   // ...
 ```
 
-<APICard title="useContext" path="/apis/react/useContext">
+<YouWillLearnCard title="useContext" path="/apis/react/useContext">
 
 Reads and subscribes to a context.
 
-</APICard>
+</YouWillLearnCard>
 
 ---
 
@@ -64,11 +64,11 @@ function MyComponent() {
   // ...
 ```
 
-<APICard title="useRef" path="/apis/react/useRef">
+<YouWillLearnCard title="useRef" path="/apis/react/useRef">
 
 Declares a ref.
 
-</APICard>
+</YouWillLearnCard>
 
 ---
 
@@ -86,25 +86,25 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-<APICard title="useEffect" path="/apis/react/useEffect">
+<YouWillLearnCard title="useEffect" path="/apis/react/useEffect">
 
 Lets a component connect to and synchronize with an external system.
 
-</APICard>
+</YouWillLearnCard>
 
 <APIGrid>
 
-<APICard title="useLayoutEffect" path="/apis/react/useLayoutEffect">
+<YouWillLearnCard title="useLayoutEffect" path="/apis/react/useLayoutEffect">
 
 Like `useEffect`, but fires early enough to read layout information. Rarely used.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useInsertionEffect" path="/apis/react/useInsertionEffect">
+<YouWillLearnCard title="useInsertionEffect" path="/apis/react/useInsertionEffect">
 
 Like `useEffect`, but fires early to insert CSS styles into the document. Rarely used.
 
-</APICard>
+</YouWillLearnCard>
 
 </APIGrid>
 
@@ -123,29 +123,29 @@ function TodoList({ todos, tab, theme }) {
 
 <APIGrid>
 
-<APICard title="useMemo" path="/apis/react/useMemo">
+<YouWillLearnCard title="useMemo" path="/apis/react/useMemo">
 
 Lets you cache a calculation.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useCallback" path="/apis/react/useCallback">
+<YouWillLearnCard title="useCallback" path="/apis/react/useCallback">
 
 Lets you cache a function definition.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useTransition" path="/apis/react/useTransition">
+<YouWillLearnCard title="useTransition" path="/apis/react/useTransition">
 
 Lets you mark a state update as interruptible.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useDeferredValue" path="/apis/react/useDeferredValue">
+<YouWillLearnCard title="useDeferredValue" path="/apis/react/useDeferredValue">
 
 Lets you defer updating a part of your tree.
 
-</APICard>
+</YouWillLearnCard>
 
 </APIGrid>
 
@@ -157,28 +157,28 @@ These Hooks serve different purposes and aren't commonly used in the application
 
 <APIGrid>
 
-<APICard title="useDebugValue" path="/apis/react/useDebugValue">
+<YouWillLearnCard title="useDebugValue" path="/apis/react/useDebugValue">
 
 Lets you customize the label React DevTools displays for your custom Hook.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useId" path="/apis/react/useId">
+<YouWillLearnCard title="useId" path="/apis/react/useId">
 
 Lets a component associate a unique ID with it. Typically used with accessibility APIs.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useImperativeHandle" path="/apis/react/useImperativeHandle">
+<YouWillLearnCard title="useImperativeHandle" path="/apis/react/useImperativeHandle">
 
 Customizes the value the parent receives when it gets a ref to your component. Rarely used.
 
-</APICard>
+</YouWillLearnCard>
 
-<APICard title="useSyncExternalStore" path="/apis/react/useSyncExternalStore">
+<YouWillLearnCard title="useSyncExternalStore" path="/apis/react/useSyncExternalStore">
 
 Lets a component subscribe to a store.
 
-</APICard>
+</YouWillLearnCard>
 
 </APIGrid>

@@ -352,40 +352,7 @@ function LinkWithTodo({href, children, ...props}: JSX.IntrinsicElements['a']) {
   );
 }
 
-function APICard({
-  title,
-  description,
-  path,
-  children,
-}: {
-  title: string;
-  path: string;
-  children: string;
-}) {
-  return (
-    <div className="flex flex-col h-full bg-card dark:bg-card-dark shadow-inner justify-between rounded-lg pb-8 p-6 xl:p-8 mt-3">
-      <div>
-        <h4 className="text-primary dark:text-primary-dark font-bold text-2xl leading-tight">
-          {title}
-        </h4>
-        <div className="my-4">{children}</div>
-      </div>
-      <div>
-        <ButtonLink
-          href={path}
-          className="mt-1"
-          type="primary"
-          size="md"
-          label={title}>
-          Read More
-          <IconNavArrow displayDirection="right" className="inline ml-1" />
-        </ButtonLink>
-      </div>
-    </div>
-  );
-}
-
-function APIGrid({children}) {
+function APIGrid({children}: {children: React.ReactNode}) {
   return <div className="lg:grid grid-cols-2 gap-4">{children}</div>;
 }
 
@@ -442,7 +409,6 @@ export const MDXComponents = {
   Hint,
   Solution,
   CodeStep,
-  APICard,
   APIGrid,
 };
 

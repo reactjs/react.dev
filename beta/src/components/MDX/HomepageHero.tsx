@@ -29,7 +29,7 @@ function HomepageHero() {
           </YouWillLearnCard>
         </div>
         <div className="flex flex-col justify-center">
-          <YouWillLearnCard title="React Hooks" path="/hooks/react">
+          <YouWillLearnCard title="API Reference" path="/hooks/react">
             <p>
               Look up the API of React Hooks, and see their shape with
               color-coded signatures.

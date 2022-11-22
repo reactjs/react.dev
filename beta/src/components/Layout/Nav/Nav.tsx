@@ -246,7 +246,9 @@ export default function Nav() {
           </div>
         </div>
         <div className="px-0 pt-2 w-full 2xl:max-w-xs hidden lg:flex items-center self-center border-b-0 lg:border-b border-border dark:border-border-dark">
-          <NavLink href="/learn" isActive={section === 'learn'}>
+          <NavLink
+            href="/learn"
+            isActive={section === 'learn' || section === 'home'}>
             Learn
           </NavLink>
           <NavLink href="/apis/react" isActive={section === 'apis'}>

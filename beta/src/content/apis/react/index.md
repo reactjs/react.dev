@@ -2,183 +2,83 @@
 title: "react: Hooks"
 ---
 
-React provides several built-in *Hooks* for features you can use from your components.
+<Intro>
+
+*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all the built-in Hooks in React.
+
+</Intro>
 
 <InlineToc />
 
 ---
 
-### State {/*state*/}
+## State {/*state*/}
 
-State lets a component "remember" information like user input.
+[State](/learn/state-a-components-memory) lets a component "remember" information like user input. For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
 
-```js
-function MyComponent() {
-  const [age, setAge] = useState(42);
-  // ...
-```
+To add state to a component, use one of these Hooks:
 
-<APIGrid>
-
-<YouWillLearnCard title="useState" path="/apis/react/useState">
-
-Declares a state variable.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useReducer" path="/apis/react/useReducer">
-
-Declares a state variable with a reducer.
-
-</YouWillLearnCard>
-
-</APIGrid>
+* [`useState`](/apis/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/apis/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
 
 ---
 
-### Context {/*context*/}
+## Context {/*context*/}
 
-Context lets a component receive information from distant parents without passing it through every level.
+[Context](/learn/passing-data-deeply-with-context) lets a component receive information from distant parents without [passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
 
-```js
-function MyComponent() {
-  const theme = useContext(ThemeContext);
-  // ...
-```
-
-<YouWillLearnCard title="useContext" path="/apis/react/useContext">
-
-Reads and subscribes to a context.
-
-</YouWillLearnCard>
+* [`useContext`](/apis/react/useContext) reads and subscribes to a context.
 
 ---
 
-### Refs {/*refs*/}
+## Refs {/*refs*/}
 
-Refs let a component hold information that isn't used for rendering, like a DOM node or a timeout ID.
+[Refs](/learn/referencing-values-with-refs) let a component hold some information that isn't used for rendering, like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
 
-```js
-function MyComponent() {
-  const inputRef = useRef(null);
-  // ...
-```
-
-<YouWillLearnCard title="useRef" path="/apis/react/useRef">
-
-Declares a ref.
-
-</YouWillLearnCard>
+* [`useRef`](/apis/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
+* [`useImperativeHandle`](/apis/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
 
 ---
 
-### Effects {/*effects*/}
+## Effects {/*effects*/}
 
-Effects let a component connect to and synchronize with external systems like browser APIs.
+[Effects](/learn/synchronizing-with-effects) let a component connect to and synchronize with external systems. This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and in general any non-React code.
 
-```js
-function ChatRoom({ roomId }) {
-  useEffect(() => {
-  	const connection = createConnection(roomId);
-    connection.connect();
-  	return () => connection.disconnect();
-  }, [roomId]);
-  // ...
-```
+* [`useEffect`](/apis/react/useEffect) connects a component to an external system.
 
-<YouWillLearnCard title="useEffect" path="/apis/react/useEffect">
+Effects are an "escape hatch" from the React paradigm. Don't use Effects to orchestrate the data flow of your application. If you're not interacting with an external system, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 
-Lets a component connect to and synchronize with an external system.
+There are two variations of `useEffect` with the same API:
 
-</YouWillLearnCard>
+* [`useLayoutEffect`](/apis/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
+* [`useInsertionEffect`](/apis/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
 
-<APIGrid>
-
-<YouWillLearnCard title="useLayoutEffect" path="/apis/react/useLayoutEffect">
-
-Like `useEffect`, but fires early enough to read layout information. Rarely used.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useInsertionEffect" path="/apis/react/useInsertionEffect">
-
-Like `useEffect`, but fires early to insert CSS styles into the document. Rarely used.
-
-</YouWillLearnCard>
-
-</APIGrid>
+They are rarely used.
 
 ---
 
 ## Performance {/*performance*/}
 
-You can optimize rendering performance by skipping re-renders or marking them as interruptible transitions.
+A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
 
-```js
-function TodoList({ todos, tab, theme }) {
-  const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
-  // ...
-}
-```
+To skip calculations and unnecessary re-rendering, use one of these Hooks:
 
-<APIGrid>
+- [`useMemo`](/apis/react/useMemo) lets you cache the result of an expensive calculation.
+- [`useCallback`](/apis/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
 
-<YouWillLearnCard title="useMemo" path="/apis/react/useMemo">
+Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating urgent updates that must be synchronous (like typing into an input) from non-urgent updates which don't need to block the user interface (like updating a chart).
 
-Lets you cache a calculation.
+To prioritize rendering, use one of these Hooks:
 
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useCallback" path="/apis/react/useCallback">
-
-Lets you cache a function definition.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useTransition" path="/apis/react/useTransition">
-
-Lets you mark a state update as interruptible.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useDeferredValue" path="/apis/react/useDeferredValue">
-
-Lets you defer updating a part of your tree.
-
-</YouWillLearnCard>
-
-</APIGrid>
+- [`useTransition`](/apis/react/useTransition) lets you mark a state transition as non-urgent and allow other updates to interrupt it.
+- [`useDeferredValue`](/apis/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
 
 ---
 
 ## Other Hooks {/*other-hooks*/}
 
-These Hooks serve different purposes and aren't commonly used in the application code.
+These Hooks are mostly useful to library authors and aren't commonly used in the application code.
 
-<APIGrid>
-
-<YouWillLearnCard title="useDebugValue" path="/apis/react/useDebugValue">
-
-Lets you customize the label React DevTools displays for your custom Hook.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useId" path="/apis/react/useId">
-
-Lets a component associate a unique ID with it. Typically used with accessibility APIs.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useImperativeHandle" path="/apis/react/useImperativeHandle">
-
-Customizes the value the parent receives when it gets a ref to your component. Rarely used.
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useSyncExternalStore" path="/apis/react/useSyncExternalStore">
-
-Lets a component subscribe to a store.
-
-</YouWillLearnCard>
-
-</APIGrid>
+- [`useDebugValue`](/apis/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
+- [`useId`](/apis/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
+- [`useSyncExternalStore`](/apis/react/useSyncExternalStore) lets a component subscribe to an external store.

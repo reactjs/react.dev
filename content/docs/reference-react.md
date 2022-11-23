@@ -375,8 +375,7 @@ During server side rendering Suspense Boundaries allow you to flush your applica
 When a component suspends we schedule a low priority task to render the closest Suspense boundary's fallback. If the component unsuspends before we flush the fallback then we send down the actual content and throw away the fallback.
 
 #### `React.Suspense` during hydration {#reactsuspense-during-hydration}
-Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before its hydrated will cause the boundary to hydrate at
-a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
+Suspense boundaries depend on their parent boundaries being hydrated before they can hydrate, but they can hydrate independently from sibling boundaries. Events on a boundary before it is hydrated will cause the boundary to hydrate at a higher priority than neighboring boundaries. [Read more](https://github.com/reactwg/react-18/discussions/130)
 
 ### `React.startTransition` {#starttransition}
 

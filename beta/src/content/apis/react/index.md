@@ -18,8 +18,8 @@ title: "react: Hooks"
 
 To add state to a component, use one of these Hooks:
 
-* **[`useState`](/apis/react/useState)** declares a state variable that you can update directly.
-* **[`useReducer`](/apis/react/useReducer)** declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
+* [`useState`](/apis/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/apis/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
 function ImageGallery() {
@@ -35,7 +35,7 @@ function ImageGallery() {
 
 [Context](/learn/passing-data-deeply-with-context) lets a component receive information from distant parents without [passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
 
-* **[`useContext`](/apis/react/useContext)** reads and subscribes to a context.
+* [`useContext`](/apis/react/useContext) reads and subscribes to a context.
 
 ```js
 function Button() {
@@ -51,8 +51,8 @@ function Button() {
 
 [Refs](/learn/referencing-values-with-refs) let a component hold some information that isn't used for rendering, like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
 
-* **[`useRef`](/apis/react/useRef)** declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
-* **[`useImperativeHandle`](/apis/react/useImperativeHandle)** lets you customize the ref exposed by your component. This is rarely used.
+* [`useRef`](/apis/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
+* [`useImperativeHandle`](/apis/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
 
 ```js
 function Form() {
@@ -68,7 +68,7 @@ function Form() {
 
 [Effects](/learn/synchronizing-with-effects) let a component connect to and synchronize with external systems. This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and in general any non-React code.
 
-* **[`useEffect`](/apis/react/useEffect)** connects a component to an external system.
+* [`useEffect`](/apis/react/useEffect) connects a component to an external system.
 
 ```js
 function ChatRoom({ roomId }) {
@@ -86,8 +86,8 @@ Effects are an "escape hatch" from the React paradigm. Don't use Effects to orch
 
 There are two variations of `useEffect` with differences in timing:
 
-* **[`useLayoutEffect`](/apis/react/useLayoutEffect)** fires before the browser repaints the screen. You can measure layout here.
-* **[`useInsertionEffect`](/apis/react/useInsertionEffect)** fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
+* [`useLayoutEffect`](/apis/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
+* [`useInsertionEffect`](/apis/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
 
 They are rarely used.
 

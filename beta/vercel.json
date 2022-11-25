@@ -256,102 +256,27 @@
     },
     {
       "source": "/apis/createcontext",
-      "destination": "/hooks/react/createContext",
+      "destination": "/apis/react/createContext",
       "permanent": true
     },
     {
       "source": "/apis/usecontext",
-      "destination": "/hooks/react/useContext",
+      "destination": "/apis/react/useContext",
       "permanent": true
     },
     {
       "source": "/apis/usereducer",
-      "destination": "/hooks/react/useReducer",
+      "destination": "/apis/react/useReducer",
       "permanent": true
     },
     {
       "source": "/apis/useref",
-      "destination": "/hooks/react/useRef",
+      "destination": "/apis/react/useRef",
       "permanent": true
     },
     {
       "source": "/apis/usestate",
-      "destination": "/hooks/react/useState",
-      "permanent": true
-    },
-    {
-      "source": "/apis",
-      "destination": "/apis/react",
-      "permanent": true
-    },
-    {
-      "source": "/apis/reactdom",
-      "destination": "/apis/react-dom",
-      "permanent": true
-    },
-    {
-      "source": "/apis/render",
-      "destination": "/apis/react-dom/render",
-      "permanent": true
-    },
-    {
-      "source": "/apis/createportal",
-      "destination": "/apis/react-dom/createPortal",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useState",
-      "destination": "/hooks/react/useState",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useCallback",
-      "destination": "/hooks/react/useCallback",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useContext",
-      "destination": "/hooks/react/useContext",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useDebugValue",
-      "destination": "/hooks/react/useDebugValue",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useEffect",
-      "destination": "/hooks/react/useEffect",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useId",
-      "destination": "/hooks/react/useId",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useImperativeHandle",
-      "destination": "/hooks/react/useImperativeHandle",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useMemo",
-      "destination": "/hooks/react/useMemo",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useReducer",
-      "destination": "/hooks/react/useReducer",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useRef",
-      "destination": "/hooks/react/useRef",
-      "permanent": true
-    },
-    {
-      "source": "/apis/react/useState",
-      "destination": "/hooks/react/useState",
+      "destination": "/apis/react/useState",
       "permanent": true
     }
   ],

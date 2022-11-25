@@ -1,102 +1,49 @@
 ---
-title: ReactDOMServer APIs
+title: react-dom/server
 ---
-
-<Wip>
-
-This section is incomplete, please see the old docs for [ReactDOM.](https://reactjs.org/docs/react-dom.html)
-
-</Wip>
-
 
 <Intro>
 
-The ReactDOMServer APIs let you render React components to HTML.
+The `react-dom/server` APIs let you render React components to HTML on the server. These APIs are only used on the server at the top level of your app to generate the initial HTML. A [framework](/learn/start-a-new-react-project#building-with-a-full-featured-framework) may call them for you. Most of your components don't need to import or use them.
 
 </Intro>
 
-Typically, you will run ReactDOMServer on the server to generate your app's initial HTML. You will either use it directly or a [framework](/learn/start-a-new-react-project#building-with-react-and-a-framework) may do it for you. Most of your components should *not* need to import this module.
+---
 
-## Installation {/*installation*/}
+### Node.js Streaming APIs {/*nodejs-streaming-apis*/}
 
-<PackageImport>
+These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
 
-<TerminalBlock>
+* [`renderToPipeableStream`](/apis/react-dom/server/renderToPipeableStream) renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
+* [`renderToStaticNodeStream`](/apis/react-dom/server/renderToStaticNodeStream) renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
-npm install react-dom
+---
 
-</TerminalBlock>
+### Web Streaming APIs {/*web-streaming-apis*/}
 
-```js
-// Importing a specific API:
-import { renderToPipeableStream } from 'react-dom/server';
+These methods are only available in the environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), which includes browsers, Deno, and some modern edge runtimes:
 
-// Importing all APIs together:
-import * as ReactDOMServer from 'react-dom/server';
-```
+* [`renderToReadableStream`](/apis/react-dom/server/renderToReadableStream) renders a React tree to a [Readable](https://developer.mozilla.org/en-US/docs/Web/API/ReadableStream) Web Stream.
 
-</PackageImport>
+---
 
-You'll also need to install the same version of [React.](/apis/react)
+### Non-streaming APIs {/*non-streaming-apis*/}
 
-## Exports {/*exports*/}
+These methods can be used in the environments that don't support streams:
 
-<YouWillLearnCard title="renderToPipeableStream" path="/apis/react-dom/server/renderToPipeableStream">
+* [`renderToString`](/apis/react-dom/server/renderToString) renders a React tree to a string.
+* [`renderToStaticMarkup`](/apis/react-dom/server/renderToStaticMarkup) renders a non-interactive React tree to a string.
 
-Render a React element to a pipeable stream.
+They have limited functionality compared to the streaming APIs.
 
-```js
-renderToPipeableStream(element, options)
-```
+---
 
-</YouWillLearnCard>
+## Deprecated APIs {/*deprecated-apis*/}
 
-<YouWillLearnCard title="renderToReadableStream" path="/apis/react-dom/server/renderToReadableStream">
+<Deprecated>
 
-Render a React element to a Readable stream.
+This API will be removed in a future major version of React.
 
-```js
-renderToReadableStream(element, options)
-```
+</Deprecated>
 
-</YouWillLearnCard>
-
-<YouWillLearnCard title="renderToNodeStream" path="/apis/react-dom/server/renderToNodeStream">
-
-Render a React element to a Node stream.
-
-```js
-renderToNodeStream(element)
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="renderToStaticNodeStream" path="/apis/react-dom/server/renderToStaticNodeStream">
-
-Render a React element to a static Node stream.
-
-```js
-renderToStaticNodeStream(element)
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="renderToString" path="/apis/react-dom/server/renderToString">
-
-Render a React element to a string.
-
-```js
-renderToString(element)
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="renderToStaticMarkup" path="/apis/react-dom/server/renderToStaticMarkup">
-
-Render a React element to static markup.
-
-```js
-renderToStaticMarkup(element)
-```
-
-</YouWillLearnCard>
+* [`renderToNodeStream`](/apis/react-dom/server/renderToNodeStream) renders a React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams) (Deprecated.)

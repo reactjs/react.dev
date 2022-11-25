@@ -8,9 +8,11 @@ These APIs are exported from the `react` package, but they are not recommended f
 
 </Intro>
 
+<InlineToc />
+
 ---
 
-## Legacy APIs {/*legacy-apis*/}
+## Legacy React APIs {/*legacy-react-apis*/}
 
 * [`Children`](/apis/react/Children) lets you manipulate and transform the JSX received as the `children` prop. [See alternatives.](/apis/react/Children#alternatives)
 * [`cloneElement`](/apis/react/cloneElement) lets you create a React element using another element as a starting point. [See alternatives.](/apis/react/cloneElement#alternatives)
@@ -23,7 +25,7 @@ These APIs are exported from the `react` package, but they are not recommended f
 
 ---
 
-## Deprecated APIs {/*deprecated-apis*/}
+## Deprecated React APIs {/*deprecated-react-apis*/}
 
 <Deprecated>
 

@@ -12,7 +12,7 @@ In addition to [Hooks,](/apis/react) the `react` package exports a few component
 
 ---
 
-## Built-in components {/*built-in-components*/}
+## Built-in React components {/*built-in-react-components*/}
 
 React exposes a few built-in components that you can use in your JSX.
 
@@ -22,7 +22,7 @@ React exposes a few built-in components that you can use in your JSX.
 
 ---
 
-## Other APIs {/*other-apis*/}
+## Other React APIs {/*other-react-apis*/}
 
 * [`createContext`](/apis/react/createContext) lets you define and provide context to the child components. Used with [`useContext`.](/apis/react/useContext)
 * [`forwardRef`](/apis/react/forwardRef) lets your component expose a DOM node as a ref to the parent. Used with [`useRef`.](/apis/react/useRef)

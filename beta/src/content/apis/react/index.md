@@ -1,428 +1,129 @@
 ---
-title: React APIs
+title: "react: Hooks"
 ---
-
-<Wip>
-
-This section is incomplete, please see the old docs for [React.](https://reactjs.org/docs/react-api.html)
-
-</Wip>
 
 <Intro>
 
-The React package contains all the APIs necessary to define and use [components.](/learn/your-first-component)
+*Hooks* let you use different React features from your components. You can either use the built-in Hooks or combine them to build your own. This page lists all the built-in Hooks in React.
 
 </Intro>
 
-## Installation {/*installation*/}
+<InlineToc />
 
-It is available as [`react`](https://www.npmjs.com/package/react) on npm. You can also [add React to the page as a `<script>` tag.](/learn/add-react-to-a-website)
+---
 
-<PackageImport>
+## State Hooks {/*state-hooks*/}
 
-<TerminalBlock>
+[State](/learn/state-a-components-memory) lets a component "remember" information like user input. For example, a form component can use state to store the input value, while an image gallery component can use state to store the selected image index.
 
-npm install react
+To add state to a component, use one of these Hooks:
 
-</TerminalBlock>
-
-```js
-// Importing a specific API:
-import { useState } from 'react';
-
-// Importing all APIs together:
-import * as React from 'react';
-```
-
-</PackageImport>
-
-If you use React on the web, you'll also need the same version of [ReactDOM.](/apis/react-dom)
-
-## Exports {/*exports*/}
-
-### State {/*state*/}
-
-<YouWillLearnCard title="useState" path="/apis/react/useState">
-
-Declares a state variable.
+* [`useState`](/apis/react/useState) declares a state variable that you can update directly.
+* [`useReducer`](/apis/react/useReducer) declares a state variable with the update logic inside a [reducer function.](/learn/extracting-state-logic-into-a-reducer)
 
 ```js
-function MyComponent() {
-  const [age, setAge] = useState(42);
+function ImageGallery() {
+  const [index, setIndex] = useState(0);
   // ...
 ```
 
-</YouWillLearnCard>
+[See the `useState` page for more examples.](/apis/react/useState)
 
-<YouWillLearnCard title="useReducer" path="/apis/react/useReducer">
+---
 
-Declares a state variable managed with a reducer.
+## Context Hooks {/*context-hooks*/}
 
-```js
-function MyComponent() {
-  const [state, dispatch] = useReducer(reducer, { age: 42 });
-  // ...
-```
+[Context](/learn/passing-data-deeply-with-context) lets a component receive information from distant parents without [passing it as props.](/learn/passing-props-to-a-component) For example, your app's top-level component can pass the current UI theme to all components below, no matter how deep.
 
-</YouWillLearnCard>
-
-### Context {/*context*/}
-
-<YouWillLearnCard title="useContext" path="/apis/react/useContext">
-
-Reads and subscribes to a context.
+* [`useContext`](/apis/react/useContext) reads and subscribes to a context.
 
 ```js
-function MyComponent() {
+function Button() {
   const theme = useContext(ThemeContext);
   // ...
 ```
 
-</YouWillLearnCard>
+[See the `useContext` page for more examples.](/apis/react/useContext)
 
-<YouWillLearnCard title="createContext" path="/apis/react/createContext">
+---
 
-Creates a context that components can provide or read.
+## Ref Hooks {/*ref-hooks*/}
 
-```js
-const ThemeContext = createContext('light');
-```
+[Refs](/learn/referencing-values-with-refs) let a component hold some information that isn't used for rendering, like a DOM node or a timeout ID. Unlike with state, updating a ref does not re-render your component. Refs are an "escape hatch" from the React paradigm. They are useful when you need to work with non-React systems, such as the built-in browser APIs.
 
-</YouWillLearnCard>
-
-### Refs {/*refs*/}
-
-
-<YouWillLearnCard title="useRef" path="/apis/react/useRef">
-
-Declares a ref.
+* [`useRef`](/apis/react/useRef) declares a ref. You can hold any value in it, but most often it's used to hold a DOM node.
+* [`useImperativeHandle`](/apis/react/useImperativeHandle) lets you customize the ref exposed by your component. This is rarely used.
 
 ```js
-function MyComponent() {
+function Form() {
   const inputRef = useRef(null);
   // ...
 ```
 
-</YouWillLearnCard>
+[See the `useRef` page for more examples.](/apis/react/useRef)
 
-<YouWillLearnCard title="forwardRef" path="/apis/react/forwardRef">
+---
 
-Create a component that forwards the ref attribute:
+## Effect Hooks {/*effect-hooks*/}
+
+[Effects](/learn/synchronizing-with-effects) let a component connect to and synchronize with external systems. This includes dealing with network, browser DOM, animations, widgets written using a different UI library, and in general any non-React code.
+
+* [`useEffect`](/apis/react/useEffect) connects a component to an external system.
 
 ```js
-const Component = forwardRef((props, ref) => {
+function ChatRoom({ roomId }) {
+  useEffect(() => {
+    const connection = createConnection(roomId);
+    connection.connect();
+    return () => connection.disconnect();
+  }, [roomId]);
   // ...
-});
 ```
 
-</YouWillLearnCard>
+[See the `useEffect` page for more examples.](/apis/react/useEffect)
 
-<YouWillLearnCard title="useImperativeHandle" path="/apis/react/useImperativeHandle">
+Effects are an "escape hatch" from the React paradigm. Don't use Effects to orchestrate the data flow of your application. If you're not interacting with an external system, [you might not need an Effect.](/learn/you-might-not-need-an-effect)
 
-Customize instance value exposed to parent refs:
+There are two variations of `useEffect` with differences in timing:
 
-```js
-useImperativeHandle(ref, () => {
-  // ...        
-});
-```
+* [`useLayoutEffect`](/apis/react/useLayoutEffect) fires before the browser repaints the screen. You can measure layout here.
+* [`useInsertionEffect`](/apis/react/useInsertionEffect) fires before React makes changes to the DOM. Libraries can insert dynamic CSS here.
 
-</YouWillLearnCard>
+They are rarely used.
 
-<YouWillLearnCard title="createRef" path="/apis/react/createRef">
+---
 
-Create a ref (typically for class components):
+## Performance Hooks {/*performance-hooks*/}
 
-```js
-this.ref = createRef();
-```
+A common way to optimize re-rendering performance is to skip unnecessary work. For example, you can tell React to reuse a cached calculation or to skip a re-render if the data has not changed since the previous render.
 
-</YouWillLearnCard>
+To skip calculations and unnecessary re-rendering, use one of these Hooks:
 
-### Components {/*components*/}
-
-<YouWillLearnCard title="React.Component" path="/apis/react/Component">
-
-Define a components as a class:
+- [`useMemo`](/apis/react/useMemo) lets you cache the result of an expensive calculation.
+- [`useCallback`](/apis/react/useCallback) lets you cache a function definition before passing it down to an optimized component.
 
 ```js
-class MyComponent extends React.Component {
-  // ...
-}
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="React.PureComponent" path="/apis/react/PureComponent">
-
-Define a pure component as a class:
-
-```js
-class MyComponent extends React.PureComponent {
+function TodoList({ todos, tab, theme }) {
+  const visibleTodos = useMemo(() => filterTodos(todos, tab), [todos, tab]);
   // ...
 }
 ```
 
-</YouWillLearnCard>
+[See the `useMemo` page for more examples.](/apis/react/useMemo)
 
-### Elements {/*elements*/}
+Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating urgent updates that must be synchronous (like typing into an input) from non-urgent updates which don't need to block the user interface (like updating a chart).
 
-<YouWillLearnCard title="Fragment" path="/apis/react/Fragment">
+To prioritize rendering, use one of these Hooks:
 
-Return multiple elements:
+- [`useTransition`](/apis/react/useTransition) lets you mark a state transition as non-urgent and allow other updates to interrupt it.
+- [`useDeferredValue`](/apis/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
 
-```js
-function MyComponent() {
-  return (
-    <>
-      <h1>Title</h1>
-      <h2>Subtitle</h2>
-    </>
-  );
-}
-```
+---
 
-</YouWillLearnCard>
+## Other Hooks {/*other-hooks*/}
 
-<YouWillLearnCard title="Children" path="/apis/react/Children">
+These Hooks are mostly useful to library authors and aren't commonly used in the application code.
 
-Utilities for dealing with `props.children`:
-
-```js
-React.Children.map(children, () => ([]));
-
-React.Children.forEach(children, () => {});
-
-React.Children.count(children);
-
-React.Children.only(children);
-
-React.Children.toArray(children);
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="createElement" path="/apis/react/createElement">
-
-Create a React element:
-
-```js
-React.createElement('div', { title: 'Element'});
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="createFactory" path="/apis/react/createFactory">
-
-Create a factory for React elements of a given type:
-
-```js
-React.createFactory('div');
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="cloneElement" path="/apis/react/cloneElement">
-
-Clone a React element:
-
-```js
-React.cloneElement(element, props);
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="isValidElement" path="/apis/react/isValidElement">
-
-Verifies the object is a React element:
-
-```js
-React.isValidElement(object);
-```
-
-</YouWillLearnCard>
-
-### Suspense {/*suspense*/}
-
-<YouWillLearnCard title="React.lazy" path="/apis/react/lazy">
-
-Define a component that is loaded dynamically:
-
-```js
-const SomeComponent = React.lazy(() => import('./SomeComponent'));
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="Suspense" path="/apis/react/Suspense">
-
-Define Suspense boundaries:
-
-```js
-<React.Suspense fallback={<Spinner />}>
-  //...
-</React.Suspense>
-```
-
-</YouWillLearnCard>
-
-### Transitions {/*transitions*/}
-
-<YouWillLearnCard title="startTransition" path="/apis/react/startTransition">
-
-Mark updates as transitions:
-
-```js
-startTransition(() => {
-  setState(c => c + 1);
-});
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useTransition" path="/apis/react/startTransition">
-
-Mark updates as transitions with pending flags:
-
-```js
-const [isPending, startTransition] = useTransition();
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useDeferredValue" path="/apis/react/useDeferredValue">
-
-Defer to more urgent updates:
-
-```js
-const deferredValue = useDeferredValue(value);
-```
-
-</YouWillLearnCard>
-
-### Effects {/*effects*/}
-
-<YouWillLearnCard title="useEffect" path="/apis/react/useEffect">
-
-Synchronize external state:
-
-```js
-useEffect(() => {
-  const unsubscribe = socket.connect(props.userId);
-    
-  return () => {
-    unsubscribe();
-  }
-}, [props.userId]);
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useLayoutEffect" path="/apis/react/useLayoutEffect">
-
-Read layout DOM state:
-
-```js
-useLayoutEffect(() => {
-  // Read DOM layout
-});
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useInsertionEffect" path="/apis/react/useInsertionEffect">
-
-Insert styles into the DOM.
-
-```js
-useInsertionEffect(() => {
-  // Insert styles
-});
-```
-
-</YouWillLearnCard>
-
-### Memoization {/*memoization*/}
-
-<YouWillLearnCard title="useCallback" path="/apis/react/useCallback">
-
-Return a memoized callback.
-
-```js
-const handleClick = useCallback(() => {
-  doSomething(a, b);
-}, [a, b]);
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useMemo" path="/apis/react/useMemo">
-
-Return a memoized value.
-
-```js
-const value = useMemo(() => {
-  return calculateValue(a, b);
-}, [a, b]);
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="memo" path="/apis/react/memo">
-
-Return a memoized component.
-
-```js
-const MyComponent = React.memo(function MyComponent(props) {
-  // ...
-});
-```
-
-</YouWillLearnCard>
-
-### Subscribing {/*subscribing*/}
-
-<YouWillLearnCard title="useSyncExternalStore" path="/apis/react/useSyncExternalStore">
-
-Subscribe to external state.
-
-```js
-const state = useSyncExternalStore(subscribe, getSnapshot);
-```
-
-</YouWillLearnCard>
-
-### Accessibility {/*accessibility*/}
-
-<YouWillLearnCard title="useId" path="/apis/react/useId">
-
-Generate unique IDs across the server and client:
-
-```js
-const id = useId();
-```
-
-</YouWillLearnCard>
-
-### Debugging {/*devtools*/}
-
-<YouWillLearnCard title="StrictMode" path="/apis/react/StrictMode">
-
-Eagerly highlight potential problems.
-
-```js
-<StrictMode>{...}</StrictMode>
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="useDebugValue" path="/apis/react/useDebugValue">
-
-Display a label for custom hooks.
-
-```js
-useDebugValue('Custom Label');
-```
-
-</YouWillLearnCard>
-
+- [`useDebugValue`](/apis/react/useDebugValue) lets you customize the label React DevTools displays for your custom Hook.
+- [`useId`](/apis/react/useId) lets a component associate a unique ID with itself. Typically used with accessibility APIs.
+- [`useSyncExternalStore`](/apis/react/useSyncExternalStore) lets a component subscribe to an external store.

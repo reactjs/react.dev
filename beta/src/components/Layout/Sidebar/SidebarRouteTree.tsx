@@ -99,63 +99,78 @@ export function SidebarRouteTree({
   const expanded = expandedPath;
   return (
     <ul>
-      {currentRoutes.map(({path, title, routes, wip, heading}) => {
-        const pagePath = path && removeFromLast(path, '.');
-        const selected = slug === pagePath;
+      {currentRoutes.map(
+        ({path, title, routes, wip, heading, hasSeparator}) => {
+          const pagePath = path && removeFromLast(path, '.');
+          const selected = slug === pagePath;
 
-        // if current route item has no path and children treat it as an API sidebar heading
-        if (!path || !pagePath || heading) {
-          return (
-            <SidebarRouteTree
-              level={level + 1}
-              isForceExpanded={isForceExpanded}
-              routeTree={{title, routes}}
-            />
-          );
-        }
-
-        // if route has a path and child routes, treat it as an expandable sidebar item
-        if (routes) {
-          const isExpanded = isForceExpanded || expanded === path;
-          return (
-            <li key={`${title}-${path}-${level}-heading`}>
-              <SidebarLink
-                key={`${title}-${path}-${level}-link`}
-                href={pagePath}
-                isPending={pendingRoute === pagePath}
-                selected={selected}
-                level={level}
-                title={title}
-                wip={wip}
-                isExpanded={isExpanded}
-                isBreadcrumb={expandedPath === path}
-                hideArrow={isForceExpanded}
+          let listItem = null;
+          if (!path || !pagePath || heading) {
+            // if current route item has no path and children treat it as an API sidebar heading
+            listItem = (
+              <SidebarRouteTree
+                level={level + 1}
+                isForceExpanded={isForceExpanded}
+                routeTree={{title, routes}}
               />
-              <CollapseWrapper duration={250} isExpanded={isExpanded}>
-                <SidebarRouteTree
-                  isForceExpanded={isForceExpanded}
-                  routeTree={{title, routes}}
-                  level={level + 1}
+            );
+          } else if (routes) {
+            // if route has a path and child routes, treat it as an expandable sidebar item
+            const isExpanded = isForceExpanded || expanded === path;
+            listItem = (
+              <li key={`${title}-${path}-${level}-heading`}>
+                <SidebarLink
+                  key={`${title}-${path}-${level}-link`}
+                  href={pagePath}
+                  isPending={pendingRoute === pagePath}
+                  selected={selected}
+                  level={level}
+                  title={title}
+                  wip={wip}
+                  isExpanded={isExpanded}
+                  isBreadcrumb={expandedPath === path}
+                  hideArrow={isForceExpanded}
                 />
-              </CollapseWrapper>
-            </li>
-          );
-        }
+                <CollapseWrapper duration={250} isExpanded={isExpanded}>
+                  <SidebarRouteTree
+                    isForceExpanded={isForceExpanded}
+                    routeTree={{title, routes}}
+                    level={level + 1}
+                  />
+                </CollapseWrapper>
+              </li>
+            );
+          } else {
+            // if route has a path and no child routes, treat it as a sidebar link
+            listItem = (
+              <li key={`${title}-${path}-${level}-link`}>
+                <SidebarLink
+                  isPending={pendingRoute === pagePath}
+                  href={path.startsWith('https://') ? path : pagePath}
+                  selected={selected}
+                  level={level}
+                  title={title}
+                  wip={wip}
+                />
+              </li>
+            );
+          }
 
-        // if route has a path and no child routes, treat it as a sidebar link
-        return (
-          <li key={`${title}-${path}-${level}-link`}>
-            <SidebarLink
-              isPending={pendingRoute === pagePath}
-              href={path.startsWith('https://') ? path : pagePath}
-              selected={selected}
-              level={level}
-              title={title}
-              wip={wip}
-            />
-          </li>
-        );
-      })}
+          if (hasSeparator) {
+            return (
+              <>
+                <li
+                  role="separator"
+                  className="my-2 ml-5 border-b border-border dark:border-border-dark"
+                />
+                {listItem}
+              </>
+            );
+          } else {
+            return listItem;
+          }
+        }
+      )}
     </ul>
   );
 }

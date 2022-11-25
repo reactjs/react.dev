@@ -188,6 +188,22 @@
               "path": "/learn/reusing-logic-with-custom-hooks"
             }
           ]
+        },
+        {
+          "title": "Community",
+          "hasSeparator": true,
+          "path": "/learn/community",
+          "routes": [{
+            "title": "Acknowledgements",
+            "path": "/learn/acknowledgements"
+          }, {
+            "title": "Meet the Team",
+            "path": "/learn/meet-the-team"
+          }]
+        },
+        {
+          "title": "Blog",
+          "path": "https://reactjs.org/blog"
         }
       ]
     }

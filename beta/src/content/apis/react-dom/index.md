@@ -1,112 +1,45 @@
 ---
-title: ReactDOM APIs
+title: react-dom
 ---
-
-<Wip>
-
-This section is incomplete, please see the old docs for [ReactDOM.](https://reactjs.org/docs/react-dom.html)
-
-</Wip>
-
 
 <Intro>
 
-The ReactDOM package provides DOM-specific methods that your components can import.
+The `react-dom` package contains methods that are only supported for the web applications (which run in the browser DOM environment). They are not supported for React Native.
 
 </Intro>
 
-Most of your components should *not* need to import this module.
+<InlineToc />
 
-## Installation {/*installation*/}
+---
 
-<PackageImport>
+## React DOM APIs {/*react-dom-apis*/}
 
-<TerminalBlock>
+These APIs can be imported from your components. They are rarely used:
 
-npm install react-dom
+* [`createPortal`](/apis/react-dom/createPortal) lets you render child components in a different part of the DOM tree.
+* [`flushSync`](/apis/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously.
 
-</TerminalBlock>
+---
 
-```js
-// Importing a specific API:
-import { createPortal } from 'react-dom';
+## React DOM entry points {/*react-dom-entry-points*/}
 
-// Importing all APIs together:
-import * as ReactDOM from 'react-dom';
-```
+The `react-dom` package provides two additional entry points:
 
-</PackageImport>
+* [`react-dom/client`](/apis/react-dom/client) contains APIs to render React components on the client (in the browser).
+* [`react-dom/server`](/apis/react-dom/server) contains APIs to render React components on the server.
 
-You'll also need to install the same version of [React.](/apis/react)
+---
 
-## Exports {/*exports*/}
+## Deprecated React DOM APIs {/*deprecated-react-dom-apis*/}
 
-### Portals {/*portals*/}
+<Deprecated>
 
-<YouWillLearnCard title="createPortal" path="/apis/react-dom/createPortal">
+This API will be removed in a future major version of React.
 
-Create a portal.
+</Deprecated>
 
-```js
-createPortal(child, container);
-```
+* [`findDOMNode`](/apis/react-dom/findDOMNode) finds the closest DOM node corresponding to a class component instance.
+* [`hydrate`](/apis/react-dom/hydrate) mounts a tree into the DOM created from server HTML. Deprecated in favor of [`hydrateRoot`](/apis/react-dom/client/hydrateRoot).
+* [`render`](/apis/react-dom/render) mounts a tree into the DOM. Deprecated in favor of [`createRoot`](/apis/react-dom/client/createRoot).
+* [`unmountComponentAtNode`](/apis/react-dom/unmountComponentAtNode) unmounts a tree from the DOM. Deprecated in favor of [`root.unmount()`.](/apis/react-dom/client/createRoot#root-unmount)
 
-</YouWillLearnCard>
-
-### Flushing {/*flushing*/}
-
-<YouWillLearnCard title="flushSync" path="/apis/react-dom/flushSync">
-
-Flush in progress updates.
-
-```js
-flushSync(() => {
-  // ...
-});
-```
-
-</YouWillLearnCard>
-
-### Deprecated {/*deprecated*/}
-
-<YouWillLearnCard title="render" path="/apis/react-dom/render">
-
-Displays a React component inside a browser DOM node (deprecated).
-
-```js
-render(<App />, document.getElementById('root'));
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="hydrate" path="/apis/react-dom/hydrate">
-
-Hydrate server-rendered HTMl (deprecated).
-
-```js
-hydrate(<App />, document.getElementById('root'));
-```
-
-</YouWillLearnCard>
-
-## Entry points {/*entry-points*/}
-
-<YouWillLearnCard title="ReactDOMClient APIs" path="/apis/react-dom/client">
-
-The ReactDOMClient APIs let you render React components in the browser.
-
-```js
-import * as ReactDOMClient from 'react-dom/client';
-```
-
-</YouWillLearnCard>
-
-<YouWillLearnCard title="ReactDOMServer APIs" path="/apis/react-dom/server">
-
-The ReactDOMServer APIs let you render React components to HTML.
-
-```js
-import * as ReactDOMServer from 'react-dom/server';
-```
-
-</YouWillLearnCard>

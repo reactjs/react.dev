@@ -19,7 +19,7 @@ This beta website contains the current draft of the new docs.
 ## How much content is ready? {/*how-much-content-is-ready*/}
 
 * [Learn React](/learn): ~95% finished.
-* [API Reference](/apis): ~70% finished.
+* [API Reference](/apis): ~85% finished.
 
 You can track our progress [on GitHub.](https://github.com/reactjs/reactjs.org/issues/3308)
 

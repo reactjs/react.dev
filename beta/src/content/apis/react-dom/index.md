@@ -12,14 +12,14 @@ The `react-dom` package contains methods that are only supported for the web app
 
 ---
 
-### React DOM APIs {/*react-dom-apis*/}
+## React DOM APIs {/*react-dom-apis*/}
 
 * [`createPortal`](/apis/react-dom/createPortal) lets you render child components in a different part of the DOM tree.
 * [`flushSync`](/apis/react-dom/flushSync) lets you force React to flush a state update and update the DOM synchronously. Rarely used.
 
 ---
 
-### Entry points {/*entry-points*/}
+## Entry points {/*entry-points*/}
 
 The `react-dom` package provides two additional entry points:
 
@@ -28,7 +28,7 @@ The `react-dom` package provides two additional entry points:
 
 ---
 
-### Deprecated APIs {/*deprecated-apis*/}
+## Deprecated APIs {/*deprecated-apis*/}
 
 <Deprecated>
 

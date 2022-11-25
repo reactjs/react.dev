@@ -10,7 +10,7 @@ The `react-dom/server` APIs let you render React components to HTML on the serve
 
 ---
 
-### Node.js Streaming APIs {/*nodejs-streaming-apis*/}
+## Server APIs for Node.js streams {/*server-apis-for-nodejs-streams*/}
 
 These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
 
@@ -19,7 +19,7 @@ These methods are only available in the environments with [Node.js Streams:](htt
 
 ---
 
-### Web Streaming APIs {/*web-streaming-apis*/}
+## Server APIs for Web Streams {/*server-apis-for-web-streams*/}
 
 These methods are only available in the environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), which includes browsers, Deno, and some modern edge runtimes:
 
@@ -27,7 +27,7 @@ These methods are only available in the environments with [Web Streams](https://
 
 ---
 
-### Non-streaming APIs {/*non-streaming-apis*/}
+## Server APIs without streaming {/*server-apis-without-streaming*/}
 
 These methods can be used in the environments that don't support streams:
 

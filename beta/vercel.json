@@ -278,6 +278,26 @@
       "source": "/apis/usestate",
       "destination": "/apis/react/useState",
       "permanent": true
+    },
+    {
+      "source": "/apis",
+      "destination": "/apis/react",
+      "permanent": true
+    },
+    {
+      "source": "/apis/reactdom",
+      "destination": "/apis/react-dom",
+      "permanent": true
+    },
+    {
+      "source": "/apis/render",
+      "destination": "/apis/react-dom/render",
+      "permanent": true
+    },
+    {
+      "source": "/apis/createportal",
+      "destination": "/apis/react-dom/createPortal",
+      "permanent": true
     }
   ],
   "headers": [

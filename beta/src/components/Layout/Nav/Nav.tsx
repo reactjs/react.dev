@@ -20,7 +20,6 @@ import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../useRouteMeta';
 import sidebarLearn from '../../../sidebarLearn.json';
-import sidebarHooks from '../../../sidebarHooks.json';
 import sidebarAPIs from '../../../sidebarAPIs.json';
 
 declare global {
@@ -118,9 +117,6 @@ export default function Nav() {
       case 'learn':
         routeTree = sidebarLearn as RouteItem;
         break;
-      case 'hooks':
-        routeTree = sidebarHooks as RouteItem;
-        break;
       case 'apis':
         routeTree = sidebarAPIs as RouteItem;
         break;
@@ -189,7 +185,7 @@ export default function Nav() {
       });
   }, [showFeedback]);
 
-  function selectTab(nextTab: 'learn' | 'apis' | 'hooks') {
+  function selectTab(nextTab: 'learn' | 'apis') {
     setTab(nextTab);
     scrollParentRef.current!.scrollTop = 0;
   }

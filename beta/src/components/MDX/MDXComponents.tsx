@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, cloneElement, useContext, useMemo} from 'react';
+import {Children, useContext, useMemo} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 
@@ -352,10 +352,6 @@ function LinkWithTodo({href, children, ...props}: JSX.IntrinsicElements['a']) {
   );
 }
 
-function APIGrid({children}: {children: React.ReactNode}) {
-  return <div className="lg:grid grid-cols-2 gap-4">{children}</div>;
-}
-
 export const MDXComponents = {
   p: P,
   strong: Strong,
@@ -409,7 +405,6 @@ export const MDXComponents = {
   Hint,
   Solution,
   CodeStep,
-  APIGrid,
 };
 
 for (let key in MDXComponents) {

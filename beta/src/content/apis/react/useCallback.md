@@ -783,7 +783,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 #### Parameters {/*parameters*/}
 
-* `fn`: The function value that you want to memoize. It can take any arguments and return any values. React will return (not call!) your function back to you during the initial render. On subsequent renders, React will return the same function again if the `dependencies` have not changed since the last render. Otherwise, it will give you the function that you have passed during the current render, and store it in case it can be reused later. React will not call the function. The function is returned to you so you can decide when and whether to call it.
+* `fn`: The function value that you want to memoize. It can take any arguments and return any values. React will return (not call!) your function back to you during the initial render. On subsequent renders, React will return the same function again if **none** of the `dependencies` have changed since the last render. However, if at least one of the dependencies have changed it will give you the function that you have passed during the current render, and store it in case it can be reused later. React will not call the function. The function is returned to you so you can decide when and whether to call it.
 
 * `dependencies`: The list of all reactive values referenced inside of the `fn` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm.
 
@@ -791,7 +791,7 @@ export default function ProductPage({ productId, referrer, theme }) {
 
 On the initial render, `useCallback` returns the `fn` function you have passed.
 
-During subsequent renders, it will either return an already stored `fn`  function from the last render (if the dependencies haven't changed), or return the `fn` function you have passed during this render.
+During subsequent renders, if **none** of the dependencies have changed it will return the already stored `fn` function from the last render, however if at least one dependency has changed, it will return a new `fn` function with different values inside because some or all of the values in the dependency array have changed during this render.
 
 #### Caveats {/*caveats*/}
 

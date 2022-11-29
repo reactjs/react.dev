@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRef, useLayoutEffect} from 'react';
+import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
 import {RouteItem} from 'components/Layout/useRouteMeta';
@@ -158,13 +158,13 @@ export function SidebarRouteTree({
 
           if (hasSeparator) {
             return (
-              <>
+              <Fragment key={`${title}-${path}-${level}-separator`}>
                 <li
                   role="separator"
                   className="my-2 ml-5 border-b border-border dark:border-border-dark"
                 />
                 {listItem}
-              </>
+              </Fragment>
             );
           } else {
             return listItem;

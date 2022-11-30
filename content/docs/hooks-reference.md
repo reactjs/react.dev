@@ -573,7 +573,7 @@ Memoizing the children tells React that it only needs to re-render them when `de
 const [isPending, startTransition] = useTransition();
 ```
 
-Returns a stateful value for the pending state of the transition, and a function to start it.
+Returns a stateful value for the pending state of tuseSyncExternalStorehe transition, and a function to start it.
 
 `startTransition` lets you mark updates in the provided callback as transitions:
 
@@ -670,7 +670,7 @@ The following Hooks are provided for library authors to integrate libraries deep
 ### `useSyncExternalStore` {#usesyncexternalstore}
 
 ```js
-const state = useSyncExternalStore(subscribe, getSnapshot[, getServerSnapshot]);
+const state = useSyncExternalStore(subscribe, getSnapshot, [getServerSnapshot]);
 ```
 
 `useSyncExternalStore` is a hook recommended for reading and subscribing from external data sources in a way that's compatible with concurrent rendering features like selective hydration and time slicing.

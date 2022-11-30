@@ -1,5 +1,5 @@
 ---
-title: Choosing the State Structure
+title: Tilarakenteen päättäminen
 ---
 
 <Intro>
@@ -10,44 +10,44 @@ Structuring state well can make a difference between a component that is pleasan
 
 <YouWillLearn>
 
-* When to use a single vs multiple state variables
-* What to avoid when organizing state
-* How to fix common issues with the state structure
+* Milloin käyttää yhtä vs useita tilamuuttujia
+* Mitä välttää kun tilaa järjestetään
+* Miten korjata yleisiä ongelmia tilarakenteessa
 
 </YouWillLearn>
 
-## Principles for structuring state {/*principles-for-structuring-state*/}
+## Tilarakenteen periaatteet {/*principles-for-structuring-state*/}
 
-When you write a component that holds some state, you'll have to make choices about how many state variables to use and what the shape of their data should be. While it's possible to write correct programs even with a suboptimal state structure, there are a few principles that can guide you to make better choices:
+Kun kirjoitat komponenttia, joka ylläpitää jotain tilaa, sinun täytyy tehdä valintoja siitä miten monta tilamuuttujaa käytät ja missä muodossa niiden tietojen tulisi olla. Vaikka on mahdollista kirjoittaa oikeita ohjelmia epäoptimaalisella tilarakenteella, on muutamia periaatteita, jotka ohjaavat tekemään parempia valintoja:
 
-1. **Group related state.** If you always update two or more state variables at the same time, consider merging them into a single state variable.
-2. **Avoid contradictions in state.** When the state is structured in a way that several pieces of state may contradict and "disagree" with each other, you leave room for mistakes. Try to avoid this.
-3. **Avoid redundant state.** If you can calculate some information from the component's props or its existing state variables during rendering, you should not put that information into that component's state.
-4. **Avoid duplication in state.** When the same data is duplicated between multiple state variables, or within nested objects, it is difficult to keep them in sync. Reduce duplication when you can.
-5. **Avoid deeply nested state.** Deeply hierarchical state is not very convenient to update. When possible, prefer to structure state in a flat way.
+1. **Ryhmitä toisiin liittyvä tila.** Jos aina päivität kahta tai useampaa tilamuuttujaa yhdessä samanaikaisesti, harkitse näiden yhdistämistä yhteen tilamuuttujaan.
+2. **Vältä tilan ristiriitoja.** Kun tila on rakennettu tavalla, jossa useat tilan palaset saattavat olla ristiriidassa ja "olla eri mieltä" toistensa kanssa, jätät tilaa virheille. Koita välttää tätä.
+3. **Vältä tarpeetonta tilaa.** Jos voit laskea jotain tietoa komponentin propseista tai sen olemassa olevista tilamuuttujista renderöinnin aikana, sinun ei tulisi asettaa tätä tietoa komponentin tilaan.
+4. **Vältä tilan toistoa.** Kun jokin data on toistettuna useiden tilamuuttujien kesken, tai syvällä olioiden sisässä, on hankalaa pitää ne synkronoituna. Vähennä toistoa kun pystyt.
+5. **Vältä syvään sisennettyä tilaa.** Syvästi hierarkista tilaa ei ole kovin kätevä päivittää. Kun mahdollista, rakenna tila tasaisella tavalla.
 
-The goal behind these principles is to *make state easy to update without introducing mistakes*. Removing redundant and duplicate data from state helps ensure that all its pieces stay in sync. This is similar to how a database engineer might want to ["normalize" the database structure](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) to reduce the chance of bugs. To paraphrase Albert Einstein, **"Make your state as simple as it can be--but no simpler."**
+Näiden periaatteiden taustalla oleva tavoite on *tehdä tilasta helppoa päivittää tuottamatta virheitä*. Tarpeettoman ja toistuvan datan poistaminen tilasta auttaa varmistamaan, että kaikki sen palaset pysyvät synkronoituna. Tämä on samankaltaista kuin se, miten tietokantasuunnittelija saattaa haluta ["normalisoida" tietokannan rakenteen](https://docs.microsoft.com/en-us/office/troubleshoot/access/database-normalization-description) vähentääkseen bugien mahdollisuuksia. Albert Einsteinia lainatakseen, **"Tee tilastasi niin yksinkertaista kuin mahdollista--mutta ei yksinkertaisempaa."**
 
-Now let's see how these principles apply in action.
+Katsotaan nyt miten nämä periaatteet toimivat käytännössä.
 
-## Group related state {/*group-related-state*/}
+## Ryhmitä toisiin liittyvä tila {/*group-related-state*/}
 
-You might sometimes be unsure between using a single or multiple state variables.
+Saatat joskus olla epävarma yhden vai useamman tilamuuttujan käytöstä.
 
-Should you do this?
+Pitäisikö tehdä näin?
 
 ```js
 const [x, setX] = useState(0);
 const [y, setY] = useState(0);
 ```
 
-Or this?
+Vai näin?
 
 ```js
 const [position, setPosition] = useState({ x: 0, y: 0 });
 ```
 
-Technically, you can use either of these approaches. But **if some two state variables always change together, it might be a good idea to unify them into a single state variable.** Then you won't forget to always keep them in sync, like in this example where moving the cursor updates both coordinates of the red dot:
+Teknisesti ottaen, voit käyttää kumpaa tahansa tapaa. Mutta **jos aina päivität kaksi tai useampaa tilamuuttujaa samanaikaisesti, kannattaa yhdistää ne yhteen tilamuuttujaan**. Siten et unohda pitää niitä synkronoituna, kuten tässä esimerkissä, jossa kursorin liikuttaminen päivittää molempia punaisen pisteen koordinaatteja:
 
 <Sandpack>
 
@@ -93,17 +93,17 @@ body { margin: 0; padding: 0; height: 250px; }
 
 </Sandpack>
 
-Another case where you'll group data into an object or an array is when you don't know how many different pieces of state you'll need. For example, it's helpful when you have a form where the user can add custom fields.
+Toinen tilanne, jossa ryhmität tietoa olioon tai taulukkoon tapahtuu kun et tiedä miten monta eri tilan palasta tarvitset. Esimerkiksi, se käy hyödylliseksi kun tarvitset lomakkeen missä käyttäjä voi lisätä omia kenttiä.
 
 <Pitfall>
 
-If your state variable is an object, remember that [you can't update only one field in it](/learn/updating-objects-in-state) without explicitly copying the other fields. For example, you can't do `setPosition({ x: 100 })` in the above example because it would not have the `y` property at all! Instead, if you wanted to set `x` alone, you would either do `setPosition({ ...position, x: 100 })`, or split them into two state variables and do `setX(100)`.
+Jos tilamuuttujasi on olio, muista, että [et voi päivittää vain yhtä kenttää sen sisällä](/learn/updating-objects-in-state) kopioimatta nimenomaisesti muita kenttiä. Esimerkiksi, et voi kutsua `setPosition({ x: 100 })` yllä olevassa esimerkissä, koska siinä ei ole `y` kenttää ollenkaan! Sen sijaan, jos haluaisit päivittää vain `x` muuttujaa yksin, kutsuisit `setPosition({ ...position, x: 100 })`, tai jakaisit ne kahteen eri tilamuuttujaan ja kutsuisit `setX(100)`.
 
 </Pitfall>
 
-## Avoid contradictions in state {/*avoid-contradictions-in-state*/}
+## Vältä tilan ristiriitoja {/*avoid-contradictions-in-state*/}
 
-Here is a hotel feedback form with `isSending` and `isSent` state variables:
+Tässä on hotellin palautelomake, jossa on `isSending` ja `isSent` tilamuuttujat:
 
 <Sandpack>
 
@@ -157,9 +157,9 @@ function sendMessage(text) {
 
 </Sandpack>
 
-While this code works, it leaves the door open for "impossible" states. For example, if you forget to call `setIsSent` and `setIsSending` together, you may end up in a situation where both `isSending` and `isSent` are `true` at the same time. The more complex your component is, the harder it will be to understand what happened.
+Vaikka tämä koodi toimii, se jättää oven auki "mahdottomille" tiloille. Esimerkiksi, jos unohdat kutsua `setIsSent` ja `setIsSending` yhdessä, saatat joutua tilanteeseen, jossa `isSending` ja `isSent` ovat `true` samanaikaisesti. Mitä monimutkaisempi komponenttisi on, sitä hankalampi on ymmärtää mitä tapahtui.
 
-**Since `isSending` and `isSent` should never be `true` at the same time, it is better to replace them with one `status` state variable that may take one of *three* valid states:** `'typing'` (initial), `'sending'`, and `'sent'`:
+**Kerta `isSending` ja `isSent` eivät voi olla `true` samanaikaisesti, on parempi korvata ne yhdellä `status` tilamuuttujalla, joka hoitaan yhden *kolmesta* kelvollisesta tilast:** `'typing'` (oletus), `'sending'`, ja `'sent'`:
 
 <Sandpack>
 
@@ -214,20 +214,20 @@ function sendMessage(text) {
 
 </Sandpack>
 
-You can still declare some constants for readability:
+Voit silti määritellä vakoita luettavuutta varten:
 
 ```js
 const isSending = status === 'sending';
 const isSent = status === 'sent';
 ```
 
-But they're not state variables, so you don't need to worry about them getting out of sync with each other.
+Mutta ne eivät ole tilamuuttujia, joten sinun ei tarvitse huolehtia niiden joutumista ristiriitaan.
 
-## Avoid redundant state {/*avoid-redundant-state*/}
+## Vältä tarpeetonta tilaa {/*avoid-redundant-state*/}
 
-If you can calculate some information from the component's props or its existing state variables during rendering, you **should not** put that information into that component's state.
+Jos voit laskea jotain tilaa kompoenntin propseista tai sen olemassa olevista tilamuuttujista renderöinnin aikana, sinun **ei tulisi** laittaa tätä tietoa komponentin tilaan. 
 
-For example, take this form. It works, but can you find any redundant state in it?
+Esimerkiksi, katso tätä lomaketta. Se toimii, mutta pystytkö löytämään tarpeetonta tilaa siitä?
 
 <Sandpack>
 
@@ -280,9 +280,9 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-This form has three state variables: `firstName`, `lastName`, and `fullName`. However, `fullName` is redundant. **You can always calculate `fullName` from `firstName` and `lastName` during render, so remove it from state.**
+Lomakkeessa on kolme tilamuuttujaa: `firstName`, `lastName`, ja `fullName`. Kuitenkin, `fullName` on tarpeeton. **Voit aina laskea `fullName`:n `firstName` ja `lastName` muuttujista renderöinnin aikana, joten poista se tilasta.**
 
-This is how you can do it:
+Tässä miten voit tehdä sen:
 
 <Sandpack>
 
@@ -334,35 +334,35 @@ label { display: block; margin-bottom: 5px; }
 
 </Sandpack>
 
-Here, `fullName` is *not* a state variable. Instead, it's calculated during render:
+Tässä, `fullName` *ei* ole tilamuuttuja. Sen sijaan se lasketaan renderöinnin aikana:
 
 ```js
 const fullName = firstName + ' ' + lastName;
 ```
 
-As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
+Näin ollen tapahtumakäsittelijöiden ei tarvitse tehdä mitään erityistä sen päivittämiseksi. Kun kutsut `setFirstnName` tai `setLastName` funktioita, kutsut uudelleenrenderöinnin, ja seuraavan kerran `fullName` tullaan laskemaan uusiksi uuden datan pohjalta.
 
-<DeepDive title="Don't mirror props in state">
+<DeepDive title="Älä peilaa propseja tilaan">
 
-A common example of redundant state is code like this:
+Yleinen esimerkki tarpeettomasta tilasta on seuraavanlainen koodi:
 
 ```js
 function Message({ messageColor }) {
   const [color, setColor] = useState(messageColor);
 ```
 
-Here, a `color` state variable is initialized to the `messageColor` prop. The problem is that **if the parent component passes a different value of `messageColor` later (for example, `'red'` instead of `'blue'`), the `color` *state variable* would not be updated!** The state is only initialized during the first render.
+Tässä `color` tilamuuttuja on alustettu `messageColor` propin perusteella. Ongelma on, **jos pääkomponentti palauttaa uuden arvon `messageColor` propsille myöhemmin (esimerkiksi, `'red'`:n sijaan arvon `'blue'`), `color` *tilamuuttujaa* ei tulla päivittämään!** Tila alustetaan vain ensimmäisen renderöinnin aikana.
 
-This is why "mirroring" some prop in a state variable can lead to confusion. Instead, use the `messageColor` prop directly in your code. If you want to give it a shorter name, use a constant:
+Tämän takia propsien "peilaaminen" tilamuuttujaan voi aiheuttaa hämmennystä. Sen sijaan käytä `messageColor` propsia suoraan koodissasi. Jos haluat antaa sille lyhyemmän nimen, käytä vakiota:
 
 ```js
 function Message({ messageColor }) {
   const color = messageColor;
 ```
 
-This way it won't get out of sync with the prop passed from the parent component.
+Näin se ei pääse epäsynkronoitumaan yläkomponentilta välitetyn propsin kanssa.
 
-"Mirroring" props into state only makes sense when you *want* to ignore all updates for a specific prop. By convention, start the prop name with `initial` or `default` to clarify that its new values are ignored:
+Propsien "peilaaminen" tilaan on järkevää vain kun *haluat* välttää tietyn propsin kaikki tilamuutokset. Aloita propsin nimi periaatteen mukaan sanoilla `initial` tai `default` selventääksesi, että sen uuden arvot jätetään huomioimatta:
 
 ```js
 function Message({ initialColor }) {
@@ -373,9 +373,9 @@ function Message({ initialColor }) {
 
 </DeepDive>
 
-## Avoid duplication in state {/*avoid-duplication-in-state*/}
+## Vältä tilan toistoa {/*avoid-duplication-in-state*/}
 
-This menu list component lets you choose a single travel snack out of several:
+Tämä menu listakomponentti antaa sinun valita yhden matkaherkun useista vaihtoehdoista:
 
 <Sandpack>
 
@@ -420,9 +420,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Currently, it stores the selected item as an object in the `selectedItem` state variable. However, this is not great: **the contents of the `selectedItem` is the same object as one of the items inside the `items` list.** This means that the information about the item itself is duplicated in two places.
+Tällä hetkellä, se tallentaa valitun kohteen oliona `selectedItem` tilamuuttujaan: Kuitenkaan tämä ei ole hyvä: **`selectedItem` muuttujan sisältö on sama olio kuin yksi `items` muuttujan sisällä.** Tämä tarkoittaa, että tieto kohteesta itsestään on toistettuna kahteeen eri paikkaan.
 
-Why is this a problem? Let's make each item editable:
+Miksi tämä on ongelmallista? Tehdään kohteesta muokattava:
 
 <Sandpack>
 
@@ -485,9 +485,9 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-Notice how if you first click "Choose" on an item and *then* edit it, **the input updates but the label at the bottom does not reflect the edits.** This is because you have duplicated state, and you forgot to update `selectedItem`.
+Huomaa miten jos ensiksi klikkaat "Choose" kohteesta ja *sitten* muokkaat sitä, **syöttökenttä päivittyy, mutta alhaalla oleva teksti ei vastaa muutoksia.** Tämä tapahtuu, koska sinulla on toistettua tilaa, ja unohdit päivittää `selectedItem` tilamuuttujaa.
 
-Although you could update `selectedItem` too, an easier fix is to remove duplication. In this example, instead of a `selectedItem` object (which creates a duplication with objects inside `items`), you hold the `selectedId` in state, and *then* get the `selectedItem` by searching the `items` array for an item with that ID:
+Vaikka voisit päivittää `selectedItem` muuttujaa myöskin, helpompi tapa korjata tämä on poistamalla toisto. Tässä esimerkissä, `selectedItem` olion sijaan (joka luo toistoa `items` muuttujan sisällä olevista kohteista) pidät `selectedId`:n tilassa, ja *sitten* haet `selectedItem`:n hakemalla `items` taulusta kohteen, jolla on sama ID:
 
 <Sandpack>
 
@@ -552,25 +552,25 @@ button { margin-top: 10px; }
 
 </Sandpack>
 
-(Alternatively, you may hold the selected index in state.)
+(Vaihtoehtoisesti, voisit pitää valitun indeksin tilasa.)
 
-The state used to be duplicated like this:
+Tila oli aiemmin monistettu näin:
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedItem = {id: 0, title: 'pretzels'}`
 
-But after the change it's like this:
+Mutta muutosten jälkeen se on näin:
 
 * `items = [{ id: 0, title: 'pretzels'}, ...]`
 * `selectedId = 0`
 
-The duplication is gone, and you only keep the essential state!
+Toisto on nyt poistettu ja pidät vain tarpeelliset asiat tilassa!
 
-Now if you edit the *selected* item, the message below will update immediately. This is because `setItems` triggers a re-render, and `items.find(...)` would find the item with the updated title. You didn't need to hold *the selected item* in state, because only the *selected ID* is essential. The rest could be calculated during render.
+Nyt jos haluat muokata *valittua* kohdetta, viesti alhaalla päivittyy välittömästi. Tämä tapahtuu koska `setItems` kutsuu uudelleenrenderöinnin ja `items.find(...)` hakee kohteen päivitetyllä otsikolla. Sinun ei täytynyt pitää *valittua kohdetta* tilassa, koska vain *valitun kohteen ID* on tarpeellinen. Loput voidaan laskea renderöinnin aikana.
 
-## Avoid deeply nested state {/*avoid-deeply-nested-state*/}
+## Vältä syvään sisennettyä tilaa {/*avoid-deeply-nested-state*/}
 
-Imagine a travel plan consisting of planets, continents, and countries. You might be tempted to structure its state using nested objects and arrays, like in this example:
+Kuvittele matkasuunnitelma, joka koostuu planeetoista, maanosista ja maista. Saatat haluta jäsentää tilan käyttämällä sisäkkäisiä objekteja ja taulukkoja, kuten tässä esimerkissä:
 
 <Sandpack>
 
@@ -816,9 +816,9 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-Now let's say you want to add a button to delete a place you've already visited. How would you go about it? [Updating nested state](/learn/updating-objects-in-state#updating-a-nested-object) involves making copies of objects all the way up from the part that changed. Deleting a deeply nested place would involve copying its entire parent place chain. Such code can be very verbose.
+Oletetaan, että haluat lisätä painikkeen, jolla voit poistaa paikan, jossa olet jo käynyt. Miten se onnistuisi? [Sisäkkäisen olion päivittäminen](/learn/updating-objects-in-state#updating-a-nested-object) kopioi objektit aina muuttuneesta osasta ylöspäin. Syvällä olevan kohteen poistaminen edellyttäisi sen koko vanhemmuusketjun kopioimista. Tällainen koodi voi olla hyvin laajamittaista.
 
-**If the state is too nested to update easily, consider making it "flat".** Here is one way you can restructure this data. Instead of a tree-like structure where each `place` has an array of *its child places*, you can have each place hold an array of *its child place IDs*. Then you can store a mapping from each place ID to the corresponding place.
+**Jos tila on liian sisäkkäistä helposti päivitettäväksi, harkitse sen muuttamista "tasaiseksi".** Tässä on yksi tapa, jolla voit järjestää tämän datan. Puumaisen rakenteen sijaan, jossa kullakin `place`:lla on taulukko sen *alapaikoista*, voit sen sijaan pitää hallussaan joukon *alapaikkojen ID:itä*. Tämän jälkeen voit tallentaa kunkin paikan ID:n vastaamaan tiettyä paikkaa
 
 This data restructuring might remind you of seeing a database table:
 
@@ -1127,14 +1127,14 @@ export const initialTravelPlan = {
 
 </Sandpack>
 
-**Now that the state is "flat" (also known as "normalized"), updating nested items becomes easier.**
+**Nyt kun tila on "tasainen" (tunnetaan myös nimellä "normalisoitu"), sisennettyjen kohteiden päivittäminen on helpompaa.**
 
-In order to remove a place now, you only need to update two levels of state:
+Kun haluat poistaa paikan, sinun tarvitsee vain päivittää kaksi tasoa tilasta:
 
-- The updated version of its *parent* place should exclude the removed ID from its `childIds` array.
-- The updated version of the root "table" object should include the updated version of the parent place.
+- Päivitetyn version *pää*kohteesta tulisi poistaa poistettu ID sen `childIds` taulukosta.
+- Päivitetyn version juuri "taulukko" olio tulisi päivittää sisällyttämään päivitetty versio sen pääkohteesta.
 
-Here is an example of how you could go about it:
+Tässä on esimerkki siitä, miten voisit toimia:
 
 <Sandpack>
 
@@ -1472,11 +1472,11 @@ button { margin: 10px; }
 
 </Sandpack>
 
-You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
+Voit sisentää tilaa niin paljon kuin haluat, mutta sen muuttaminen "tasaiseksi" voi ratkaista useita ongelmia. Se tekee tilan päivittämisestä helpompaa ja auttaa varmistamaan, että tilassa ei ole toistoa eri tasojen välillä.
 
-<DeepDive title="Improving memory usage">
+<DeepDive title="Muistinkäytön parantaminen">
 
-Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
+Ihannetapauksessa poistaisit myös poistetut kohteet (ja niiden lapset!) "taulukko" oliosta muistin parantamiseksi. Tämä versio tekee myös tämän. Se myös [käyttää Immeriä](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) tehdäkseen tilan päivityslogiikan tiiviimmäksi.
 
 <Sandpack>
 
@@ -1834,25 +1834,25 @@ button { margin: 10px; }
 
 </DeepDive>
 
-Sometimes, you can also reduce state nesting by moving some of the nested state into the child components. This works well for ephemeral UI state that doesn't need to be stored, like whether an item is hovered.
+Joskus voit myös vähentää tilan sisennystä siirtämällä tilan osia sen alakomponentteihin. Tämä toimii hyvin lyhytaikaiseen käyttöliittymätilaan, jota ei tarvitse tallentaa, kuten jos kursori on kohteen päällä.
 
 <Recap>
 
-* If two state variables always update together, consider merging them into one. 
-* Choose your state variables carefully to avoid creating "impossible" states.
-* Structure your state in a way that reduces the chances that you'll make a mistake updating it.
-* Avoid redundant and duplicate state so that you don't need to keep it in sync.
-* Don't put props *into* state unless you specifically want to prevent updates.
-* For UI patterns like selection, keep ID or index in state instead of the object itself.
-* If updating deeply nested state is complicated, try flattening it.
+* Jos kaksi tilamuuttujaa päivittyvät yhdessä, harkitse niiden yhdistämistä yhdeksi. 
+* Valitse tilamuuttujasi huolellisesti välttääksesi "mahdottomia" tiloja.
+* Järjestä tilasi tavalla, joka vähentää mahdollisuuksiasi tehdä ongelmia sitä päivittäessä.
+* Vältä toistuvaa ja turhaa tilaa, jotta sitä ei tarvitse pitää synkronoituna.
+* Älä välitä propseja *suoraan* tilaan, ellet nimenomaan halua välttää päivityksiä.
+* Käyttöliittymämalleihin kuten valintoihin, pidä ID tai indeksi tilassa koko kohteen olion sijaan.
+* Jos syvään sisäkkäisen olion päivittäminen on sekavaa, kokeile sen tasaamista.
 
 </Recap>
 
 <Challenges>
 
-#### Fix a component that's not updating {/*fix-a-component-thats-not-updating*/}
+#### Korjaa komponentti, joka ei päivity {/*fix-a-component-thats-not-updating*/}
 
-This `Clock` component receives two props: `color` and `time`. When you select a different color in the select box, the `Clock` component receives a different `color` prop from its parent component. However, for some reason, the displayed color doesn't update. Why? Fix the problem.
+Tämä `Clock` komponentti vastaanottaa kaksi propsia: `color` ja `time`. Kun valitset eri värin valintaruudusta, `Clock` komponentti vastaanottaa eri `color` propsin sen pääkomponentilta. Kuitenkin jostain syystä näytetty väri ei päivity. Miksi? Korjaa ongelma.
 
 <Sandpack>
 
@@ -1907,7 +1907,7 @@ export default function App() {
 
 <Solution>
 
-The issue is that this component has `color` state initialized with the initial value of the `color` prop. But when the `color` prop changes, this does not affect the state variable! So they get out of sync. To fix this issue, remove the state variable altogether, and use the `color` prop directly.
+Ongelma on, että tällä komponentilla on `color` tilamuuttuja alustettuna `color` propsin antamalla oletusarvolla. Kun `color` propsi muuttuu, se ei vaikuta tilamuuttujaan! Joten ne eivät ole synkronoituneet. Voit korjata tämän poistamalla tilamuuttujan kokonaan ja käyttämällä `color` propsia suoraan.
 
 <Sandpack>
 
@@ -1959,7 +1959,7 @@ export default function App() {
 
 </Sandpack>
 
-Or, using the destructuring syntax:
+Tai käyttämällä olion levityssyntaksia:
 
 <Sandpack>
 
@@ -2013,13 +2013,13 @@ export default function App() {
 
 </Solution>
 
-#### Fix a broken packing list {/*fix-a-broken-packing-list*/}
+#### Korjaa rikkinäinen pakkauslista {/*fix-a-broken-packing-list*/}
 
-This packing list has a footer that shows how many items are packed, and how many items there are overall. It seems to work at first, but it is buggy. For example, if you mark an item as packed and then delete it, the counter will not be updated correctly. Fix the counter so that it's always correct.
+Tämä pakkauslista sisältää alatunnisteen, joka näyttää kuinka monta kohdetta on pakattuna ja miten monta kohdetta on ylipäätään. Se vaikuttaa toimivan aluksi, mutta on buginen. Esimerkiksi, jos merkitset kohteen pakatuksi ja sitten poistat sen, laskuri ei päivity oikein. Korjaa laskuri, jotta se on aina oikein.
 
 <Hint>
 
-Is any state in this example redundant?
+Onko yhtään tilaa, joka olisi tarpeetonta?
 
 </Hint>
 
@@ -2160,7 +2160,7 @@ ul, li { margin: 0; padding: 0; }
 
 <Solution>
 
-Although you could carefully change each event handler to update the `total` and `packed` counters correctly, the root problem is that these state variables exist at all. They are redundant because you can always calculate the number of items (packed or total) from the `items` array itself. Remove the redundant state to fix the bug:
+Vaikka voisit huolellisesti muuttaa jokaista tapahtumakäsittelijää päivittämään `update` ja `packed` laskurit oikein, juuriongelma on, että nämä tilamuuttujat ovat olemassa ylipäätään. Ne ovat tarpeettomia, koska voit aina laskea kohteiden määrät (pakatun tai ylipäätään) suoraan `items`-tilamuuttujasta. Poista tarpeeton tila korjataksesi bugi:
 
 <Sandpack>
 
@@ -2293,15 +2293,15 @@ ul, li { margin: 0; padding: 0; }
 
 </Sandpack>
 
-Notice how the event handlers are only concerned with calling `setItems` after this change. The item counts are now calculated during the next render from `items`, so they are always up-to-date.
+Huomaa miten tapahtumakäsittelijät kutsuvat vain `setItems` funktiota tämän muutoksen jälkeen. Kohteiden laskut lasketaan renderöinnin aikana `items` taulukosta, joten ne ovat aina ajan tasalla.
 
 </Solution>
 
-#### Fix the disappearing selection {/*fix-the-disappearing-selection*/}
+#### Korjaa piiloutuva valinta {/*fix-the-disappearing-selection*/}
 
-There is a list of `letters` in state. When you hover or focus a particular letter, it gets highlighted. The currently highlighted letter is stored in the `highlightedLetter` state variable. You can "star" and "unstar" individual letters, which updates the `letters` array in state.
+Tilassa on `letters` lista. Kun siirrät kursorin tietyn viestin päälle, se korostetaan. Tällä hetkellä korostettu viesti on tallennettu `highlightedLetter` tilamuuttujaan. Voit lisätä ja poistaa tähden yksittäisiltä viesteiltä, joka päivittää `letters` taulua tilassa.
 
-This code works, but there is a minor UI glitch. When you press "Star" or "Unstar", the highlighting disappears for a moment. However, it reappears as soon as you move your pointer or switch to another letter with keyboard. Why is this happening? Fix it so that the highlighting doesn't disappear after the button click.
+Koodi toimii, mutta siinä on lievä käyttöliittymäbugi. Kun painat "Star" tai "Unstar", viestin korostus katoaa hetkellisesti. Kuitenkin, se tulee takaisin heti kun siirrät osoitinta tai valitset toisen viestin näppäimistöllä. Miksi tämä tapahtuu? Korjaa se, jotta viestin korostus ei poistu kun painiketta klikataan.
 
 <Sandpack>
 
@@ -2408,9 +2408,9 @@ li { border-radius: 5px; }
 
 <Solution>
 
-The problem is that you're holding the letter object in `highlightedLetter`. But you're also holding the same information in the `letters` array. So your state has duplication! When you update the `letters` array after the button click, you create a new letter object which is different from `highlightedLetter`. This is why `highlightedLetter === letter` check becomes `false`, and the highlight disappears. It reappears the next time you call `setHighlightedLetter` when the pointer moves.
+Ongelma on, että pidät viestioliota `highlightedLetter` muuttujassa. Mutta päivität myös samaa tietoa `letters` taulukkoon. Joten tilasi toistuu! Kun päivität `letters` taulukkoa ensimmäisen painikkeen klikkauksen jälkeen, luot uuden olion joka on eri `highlightedLetters` oliosta. Tämän seurauksena `highlightedLetter === letter` tarkustuksen arvoksi tulee `false`, ja korostus katoaa. Se tulee takaisin seuraavan kerran kun kutsut `setHighlightedLetter` kun kursori liikkuu.
 
-To fix the issue, remove the duplication from state. Instead of storing *the letter itself* in two places, store the `highlightedId` instead. Then you can check `isHighlighted` for each letter with `letter.id === highlightedId`, which will work even if the `letter` object has changed since the last render.
+Korjataksesi ongelman, poista tilan toisto. Sen sijaan että tallentaisit *viestin itsessään* kahdessa eri paikassa, tallenna `highlightedId` sen sijaan. Sitten voit tarkistaa `isHighlighted` jokaiselle viestille käyttämällä `letter.id === highlightedId`, joka toimii vaikka `letter` oliot olisivat muuttuneet viimeisestä renderöinnistä.
 
 <Sandpack>
 
@@ -2517,15 +2517,15 @@ li { border-radius: 5px; }
 
 </Solution>
 
-#### Implement multiple selection {/*implement-multiple-selection*/}
+#### Toteuta monivalinta {/*implement-multiple-selection*/}
 
-In this example, each `Letter` has an `isSelected` prop and an `onToggle` handler that marks it as selected. This works, but the state is stored as a `selectedId` (either `null` or an ID), so only one letter can get selected at any given time.
+Tässä esimerkissä, jokainen `Letter` omaa `isSelected` propsin ja `onToggle` käsittelijän, joka merkitseen sen valituksi. Tämä toimii, mutta tila on tallennettu `selectedId` muodossa (joko `null` tai ID), joten vain yksi viesti voi olla valittuna kerrallaan.
 
-Change the state structure to support multiple selection. (How would you structure it? Think about this before writing the code.) Each checkbox should become independent from the others. Clicking a selected letter should uncheck it. Finally, the footer should show the correct number of the selected items.
+Muuta tilarakenne tukemaan useiden kohteiden valitaa. (Miten järjestäisit sen? AJattele tätä ennen kuin kirjoitat koodia.) Jokainen valintaruutu tulisi olla itsenäinen toisistaan. Valitun viestin klikkaamisen tulisi poistaa valinta. Lopuksi, alaviitteessä tulisi näkyä oikea luku valittuja viestejä.
 
 <Hint>
 
-Instead of a single selected ID, you might want to hold an array or a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) of selected IDs in state.
+Yksittäisen valitun ID:n sijasta saatat haluat pitää hallussasi taulukkoa tai [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set):iä valituista ID:istä tilassa.
 
 </Hint>
 
@@ -2626,7 +2626,7 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 <Solution>
 
-Instead of a single `selectedId`, keep a `selectedIds` *array* in state. For example, if you select the first and the last letter, it would contain `[0, 2]`. When nothing is selected, it would be an empty `[]` array:
+Yksittäisen `selectedId`:n sijaan, pidä `selectedIds` *taulukko* tilassa. Esimerkiksi, jos valitset ensimmäisen ja viimeisen viestin, sen tulisi sisältää `[0, 2]`. Kun mitään ei ole valittuna, sen tulisi olla tyhjä taulukko:
 
 <Sandpack>
 
@@ -2732,9 +2732,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-One minor downside of using an array is that for each item, you're calling `selectedIds.includes(letter.id)` to check whether it's selected. If the array is very large, this can become a performance problem because array search with [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) takes linear time, and you're doing this search for each individual item.
+Yksi lievä haittapuoli taulikon käyttämisestä on, että joka kerta kutsut `selectedIds.includes(letter.id)` tarkistaaksesi onko se valittuna. Jos taulukko on erittäin suuri, tästä voi koitua suorituskykyongelma, koska taulukon haku [`includes()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/includes) metodilla käyttää lineaarista aikaa, ja teet haun jokaiselle yksittäiselle kohteelle.
 
-To fix this, you can hold a [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set) in state instead, which provides a fast [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operation:
+Tämän korjataksesi, voit sen sijaan pitää [Set](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set):iä tilassa, joka tarjoaa nopean [`has()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set/has) operaation:
 
 <Sandpack>
 
@@ -2837,9 +2837,9 @@ label { width: 100%; padding: 5px; display: inline-block; }
 
 </Sandpack>
 
-Now each item does a `selectedIds.has(letter.id)` check, which is very fast.
+Nyt jokainen kohde tekee `selectedIds.has(letter.id)` tarkistuksen, joka on todella nopea.
 
-Keep in mind that you [should not mutate objects in state](/learn/updating-objects-in-state), and that includes Sets, too. This is why the `handleToggle` function creates a *copy* of the Set first, and then updates that copy.
+Pidä mielessä, että sinun [ei tulisi mutatoida olioita tilassa](/learn/updating-objects-in-state), ja tämä pätee myös Seteille. Tämän takia `handleToggle` funktio luo *kopion* Setistä ensiksi, ja sitten päivittää sitä kopiota.
 
 </Solution>
 

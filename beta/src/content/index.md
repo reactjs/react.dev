@@ -19,7 +19,7 @@ Tämä beta-verkkosivu sisältää nykyisen luonnoksen uudesta dokumentaatiosta.
 ## Miten paljon sisällöstä on valmiina? {/*how-much-content-is-ready*/}
 
 * [Opi React](/learn): ~95% valmis.
-* [API-ohje](/apis): ~70% valmis.
+* [API-ohje](/apis): ~85% valmis.
 
 _Huomaa, että luvut tarkoittavat dokumentaation englanninkielistä versiota. Dokumentaation suomennos edistyy asteittain._
 

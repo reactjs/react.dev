@@ -3,10 +3,12 @@
  */
 
 import * as React from 'react';
+import {useRouter} from 'next/router';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
+import {useActiveSection} from '../../hooks/useActiveSection';
 import {TocContext} from '../MDX/TocContext';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
@@ -25,13 +27,10 @@ export function MarkdownPage<
   T extends {title: string; status?: string} = {title: string; status?: string}
 >({children, meta, toc}: MarkdownProps<T>) {
   const {route, nextRoute, prevRoute} = useRouteMeta();
+  const section = useActiveSection();
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
-
-  if (!route) {
-    console.error('This page was not added to one of the sidebar JSON files.');
-  }
-  const isHomePage = route?.path === '/';
+  const isHomePage = section === 'home';
   return (
     <>
       <div className="pl-0">

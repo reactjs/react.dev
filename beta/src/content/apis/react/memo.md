@@ -39,7 +39,7 @@ In this example, notice that the `Greeting` component re-renders whenever `name`
 <Sandpack>
 
 ```js
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 
 export default function MyApp() {
   const [name, setName] = useState('');
@@ -109,7 +109,7 @@ Even when a component is memoized, it will still re-render when its own state ch
 <Sandpack>
 
 ```js
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 
 export default function MyApp() {
   const [name, setName] = useState('');
@@ -184,7 +184,7 @@ Even when a component is memoized, it will still re-render when a context that i
 <Sandpack>
 
 ```js
-import { createContext, memo, useContext, useEffect, useState } from 'react';
+import { createContext, memo, useContext, useState } from 'react';
 
 const ThemeContext = createContext(null);
 
@@ -237,7 +237,7 @@ To make your component re-render only when a _part_ of some context changes, spl
 
 ---
 
-### Minimizing props changes {/*minimizng-props-changes*/}
+### Minimizing props changes {/*minimizing-props-changes*/}
 
 When you use `memo`, your component re-renders whenever any prop is not *shallowly equal* to what it was previously. This means that React compares every prop in your component with the previous value of that prop using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison. Note that `Object.is(3, 3)` is `true`, but `Object.is({}, {})` is `false`.
 
@@ -358,4 +358,4 @@ const MemoizedComponent = memo(SomeComponent);
 ## Troubleshooting {/*troubleshooting*/}
 ### My component re-renders when a prop is an object, array, or function {/*my-component-rerenders-when-a-prop-is-an-object-or-array*/}
 
-React compares old and new props by shallow equality: that is, it considers whether each new prop is reference-equal to the old prop. If you create a new object or array each time the parent is re-rendered, even if the individual elements are each the same, React will still consider it to be changed. Similarly, if you create a new function when rendering the parent component, React will consider it to have changed even if the function has the same definition.  Avoid this by [simplifying props or memoizing props in the parent component](#minimizng-props-changes).
+React compares old and new props by shallow equality: that is, it considers whether each new prop is reference-equal to the old prop. If you create a new object or array each time the parent is re-rendered, even if the individual elements are each the same, React will still consider it to be changed. Similarly, if you create a new function when rendering the parent component, React will consider it to have changed even if the function has the same definition.  Avoid this by [simplifying props or memoizing props in the parent component](#minimizing-props-changes).

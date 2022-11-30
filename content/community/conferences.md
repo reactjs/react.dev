@@ -27,6 +27,11 @@ December 2, 2022. In-person in Berlin, Germany + remote (hybrid event)
 
 [Website](https://reactday.berlin) - [Twitter](https://twitter.com/reactdayberlin) - [Facebook](https://www.facebook.com/reactdayberlin/) - [Videos](https://www.youtube.com/c/ReactConferences)
 
+### ReactNext 2023 {#reactnext}
+June 27th, 2023. Tel Aviv, Israel
+
+[Website](https://www.react-next.com/) - [Facebook](https://www.facebook.com/ReactNextConf) - [Youtube](https://www.youtube.com/@ReactNext)
+
 ### RemixConf 2023 {#remixconf-2023}
 May, 2023. Salt Lake City, UT
 

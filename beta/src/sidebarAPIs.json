@@ -8,78 +8,9 @@
       "path": "",
       "routes": [
         {
-          "title": "React APIs",
+          "title": "react: Hooks",
           "path": "/apis/react",
           "routes": [
-            {
-              "title": "Children",
-              "path": "/apis/react/Children"
-            },
-            {
-              "title": "cloneElement",
-              "path": "/apis/react/cloneElement"
-            },
-            {
-              "title": "Component",
-              "path": "/apis/react/Component",
-              "wip": true
-            },
-            {
-              "title": "createContext",
-              "path": "/apis/react/createContext"
-            },
-            {
-              "title": "createElement",
-              "path": "/apis/react/createElement"
-            },
-            {
-              "title": "createFactory",
-              "path": "/apis/react/createFactory"
-            },
-            {
-              "title": "createRef",
-              "path": "/apis/react/createRef",
-              "wip": true
-            },
-            {
-              "title": "forwardRef",
-              "path": "/apis/react/forwardRef"
-            },
-            {
-              "title": "Fragment (<>...</>)",
-              "path": "/apis/react/Fragment"
-            },
-            {
-              "title": "isValidElement",
-              "path": "/apis/react/isValidElement"
-            },
-            {
-              "title": "lazy",
-              "path": "/apis/react/lazy"
-            },
-            {
-              "title": "memo",
-              "path": "/apis/react/memo"
-            },
-            {
-              "title": "PureComponent",
-              "path": "/apis/react/PureComponent",
-              "wip": true
-            },
-            {
-              "title": "startTransition",
-              "path": "/apis/react/startTransition",
-              "wip": true
-            },
-            {
-              "title": "StrictMode",
-              "path": "/apis/react/StrictMode",
-              "wip": true
-            },
-            {
-              "title": "Suspense",
-              "path": "/apis/react/Suspense"
-            },
             {
               "title": "useCallback",
               "path": "/apis/react/useCallback"
@@ -90,8 +21,7 @@
             },
             {
               "title": "useDebugValue",
-              "path": "/apis/react/useDebugValue",
-              "wip": true
+              "path": "/apis/react/useDebugValue"
             },
             {
               "title": "useDeferredValue",
@@ -154,7 +84,46 @@
           ]
         },
         {
-          "title": "ReactDOM APIs",
+          "title": "react: Other APIs",
+          "path": "/apis/react/other",
+          "routes": [
+            {
+              "title": "<Fragment> (<>)",
+              "path": "/apis/react/Fragment"
+            },
+            {
+              "title": "<StrictMode>",
+              "path": "/apis/react/StrictMode"
+            },
+            {
+              "title": "<Suspense>",
+              "path": "/apis/react/Suspense"
+            },
+            {
+              "title": "createContext",
+              "path": "/apis/react/createContext"
+            },
+            {
+              "title": "forwardRef",
+              "path": "/apis/react/forwardRef"
+            },
+            {
+              "title": "lazy",
+              "path": "/apis/react/lazy"
+            },
+            {
+              "title": "memo",
+              "path": "/apis/react/memo"
+            },
+            {
+              "title": "startTransition",
+              "path": "/apis/react/startTransition",
+              "wip": true
+            }
+          ]
+        },
+        {
+          "title": "react-dom",
           "path": "/apis/react-dom",
           "routes": [
             {
@@ -163,13 +132,13 @@
               "wip": true
             },
             {
+              "title": "flushSync",
+              "path": "/apis/react-dom/flushSync"
+            },
+            {
               "title": "findDOMNode",
               "path": "/apis/react-dom/findDOMNode",
               "wip": true
-            },
-            {
-              "title": "flushSync",
-              "path": "/apis/react-dom/flushSync"
             },
             {
               "title": "hydrate",
@@ -187,7 +156,7 @@
           ]
         },
         {
-          "title": "ReactDOMClient APIs",
+          "title": "react-dom\/client",
           "path": "/apis/react-dom/client",
           "routes": [
             {
@@ -201,7 +170,7 @@
           ]
         },
         {
-          "title": "ReactDOMServer APIs",
+          "title": "react-dom\/server",
           "path": "/apis/react-dom/server",
           "routes": [
             {
@@ -233,6 +202,45 @@
               "title": "renderToString",
               "path": "/apis/react-dom/server/renderToString",
               "wip": true
+            }
+          ]
+        },
+        {
+          "title": "react: Legacy APIs",
+          "path": "/apis/react/legacy",
+          "hasSeparator": true,
+          "routes": [
+            {
+              "title": "Children",
+              "path": "/apis/react/Children"
+            },
+            {
+              "title": "cloneElement",
+              "path": "/apis/react/cloneElement"
+            },
+            {
+              "title": "Component",
+              "path": "/apis/react/Component"
+            },
+            {
+              "title": "createElement",
+              "path": "/apis/react/createElement"
+            },
+            {
+              "title": "createFactory",
+              "path": "/apis/react/createFactory"
+            },
+            {
+              "title": "createRef",
+              "path": "/apis/react/createRef"
+            },
+            {
+              "title": "isValidElement",
+              "path": "/apis/react/isValidElement"
+            },
+            {
+              "title": "PureComponent",
+              "path": "/apis/react/PureComponent"
             }
           ]
         }

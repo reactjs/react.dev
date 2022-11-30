@@ -15,7 +15,7 @@ function Link({
   ...props
 }: JSX.IntrinsicElements['a']) {
   const classes =
-    'inline text-link dark:text-link-dark break-normal border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
+    'inline text-link dark:text-link-dark border-b border-link border-opacity-0 hover:border-opacity-100 duration-100 ease-in transition leading-normal';
   const modifiedChildren = Children.toArray(children).map((child: any) => {
     if (child.type?.mdxName && child.type?.mdxName === 'inlineCode') {
       return cloneElement(child, {

@@ -1,31 +1,31 @@
 ---
-title: Sharing State Between Components
+title: Tilan jakaminen komponenttien välillä
 ---
 
 <Intro>
 
-Sometimes, you want the state of two components to always change together. To do it, remove state from both of them, move it to their closest common parent, and then pass it down to them via props. This is known as *lifting state up,* and it's one of the most common things you will do writing React code.
+Joskus haluat kahden komponentin tilan muuttuvan yhdessä. Tehdäksesi tämän. poista tila molemmista komponenteista ja siirrä se niiden lähimpään pääkomponenttiin ja välitä se komponenteille propsien kautta. Tätä kutsutaan *tilan nostamiseksi ylös*, ja se on yksi yleinen tapa jota tulet tekemään Reactia kirjoittaessasi.
 
 </Intro>
 
 <YouWillLearn>
 
-- How to share state between components by lifting it up
-- What are controlled and uncontrolled components
+- Miten jakaa tilaa komponenttien välillä "nostamalla ne ylös"
+- Mitä ovat ohjatut ja ohjaamattomat komponentit
 
 </YouWillLearn>
 
-## Lifting state up by example {/*lifting-state-up-by-example*/}
+## Esimerkkinä tilan nostaminen {/*lifting-state-up-by-example*/}
 
-In this example, a parent `Accordion` component renders two separate `Panel`s:
+Tässä esimerkissä, `Accordion` pääkomponentti renderöi kaksi erillistä `Panel` -komponenttia:
 
 * `Accordion`
   - `Panel`
   - `Panel`
 
-Each `Panel` component has a boolean `isActive` state that determines whether its content is visible.
+Kullakin `Panel` komponentilla on totuusarvo `isActive` tila, joka päättää onko sen sisältö näkyvissä.
 
-Press the Show button for both panels:
+Paina Näytä -painiketta molemmista paneeleista:
 
 <Sandpack>
 
@@ -41,7 +41,7 @@ function Panel({ title, children }) {
         <p>{children}</p>
       ) : (
         <button onClick={() => setIsActive(true)}>
-          Show
+          Näytä
         </button>
       )}
     </section>
@@ -73,7 +73,7 @@ h3, p { margin: 5px 0px; }
 
 </Sandpack>
 
-Notice how pressing one panel's button does not affect the other panel--they are independent.
+Huomaa miten yhden paneelin painikkeen painaminen ei vaikuta toiseen paneeliin--ne ovat toisistaan riippumattomia.
 
 <DiagramGroup>
 
@@ -95,13 +95,13 @@ Clicking either `Panel`'s button will only update that `Panel`'s `isActive` stat
 
 To coordinate these two panels, you need to "lift their state up" to a parent component in three steps:
 
-1. **Remove** state from the child components.
-2. **Pass** hardcoded data from the common parent.
-3. **Add** state to the common parent and pass it down together with the event handlers.
+1. **Poista** tila lapsikomponentista.
+2. **Välitä** kovakoodattu data yhteisestä pääkomponentista.
+3. **Lisää** tila yhteiseen pääkomponenttiin ja välitä se alas tapahtumakäsittelijöiden kanssa.
 
 This will allow the `Accordion` component to coordinate both `Panel`s and only expand one at a time.
 
-### Step 1: Remove state from the child components {/*step-1-remove-state-from-the-child-components*/}
+### 1. Vaihe: Poista tila lapsikomponenteista {/*step-1-remove-state-from-the-child-components*/}
 
 You will give control of the `Panel`'s `isActive` to its parent component. This means that the parent component will pass `isActive` to `Panel` as a prop instead. Start by **removing this line** from the `Panel` component:
 
@@ -117,11 +117,11 @@ function Panel({ title, children, isActive }) {
 
 Now the `Panel`'s parent component can *control* `isActive` by [passing it down as a prop.](/learn/passing-props-to-a-component) Conversely, the `Panel` component now has *no control* over the value of `isActive`--it's now up to the parent component!
 
-### Step 2: Pass hardcoded data from the common parent {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
+### 2. Vaihe: Välitä kovakoodattu data yhteisestä pääkomponentista {/*step-2-pass-hardcoded-data-from-the-common-parent*/}
 
 To lift state up, you must locate the closest common parent component of *both* of the child components that you want to coordinate:
 
-* `Accordion` *(closest common parent)*
+* `Accordion` *(lähin yhteinen komponentti)*
   - `Panel`
   - `Panel`
 
@@ -174,7 +174,7 @@ h3, p { margin: 5px 0px; }
 
 Try editing the hardcoded `isActive` values in the `Accordion` component and see the result on the screen.
 
-### Step 3: Add state to the common parent {/*step-3-add-state-to-the-common-parent*/}
+### 3. Vaihe: Lisää tila yhteiseen pääkomponenttiin {/*step-3-add-state-to-the-common-parent*/}
 
 Lifting state up often changes the nature of what you're storing as state.
 
@@ -284,7 +284,7 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 </DiagramGroup>
 
-<DeepDive title="Controlled and uncontrolled components">
+<DeepDive title="Ohjatut ja ohjaamattomat komponentit">
 
 It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
 
@@ -298,7 +298,7 @@ When writing a component, consider which information in it should be controlled 
 
 </DeepDive>
 
-## A single source of truth for each state {/*a-single-source-of-truth-for-each-state*/}
+## Yksi totuuden lähde jokaiselle tilalle {/*a-single-source-of-truth-for-each-state*/}
 
 In a React application, many components will have their own state. Some state may "live" close to the leaf components (components at the bottom of the tree) like inputs. Other state may "live" closer to the top of the app. For example, even client-side routing libraries are usually implemented by storing the current route in the React state, and passing it down by props!
 
@@ -319,7 +319,7 @@ To see what this feels like in practice with a few more components, read [Thinki
 
 <Challenges>
 
-#### Synced inputs {/*synced-inputs*/}
+#### Synkronoidut tulot {/*synced-inputs*/}
 
 These two inputs are independent. Make them stay in sync: editing one input should update the other input with the same text, and vice versa. 
 
@@ -425,7 +425,7 @@ label { display: block; }
 
 </Solution>
 
-#### Filtering a list {/*filtering-a-list*/}
+#### Listan suodattaminen {/*filtering-a-list*/}
 
 In this example, the `SearchBar` has its own `query` state that controls the text input. Its parent `FilterableList` component displays a `List` of items, but it doesn't take the search query into account.
 

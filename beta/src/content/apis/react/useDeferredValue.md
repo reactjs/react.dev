@@ -240,17 +240,7 @@ export default function App() {
 
 The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
 
-To make it more obvious to the user, you can add a visual indication when the stale result list is displayed:
-
-```js {2}
-<div style={{
-  opacity: query !== deferredQuery ? 0.5 : 1 
-}}>
-  <SearchResults query={deferredQuery} />
-</div>
-```
-
-Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the slightly dimmed stale result list until the new results have loaded:
+Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the stale result list until the new results have loaded:
 
 <Sandpack>
 
@@ -283,9 +273,7 @@ export default function App() {
         <input value={query} onChange={e => setQuery(e.target.value)} />
       </label>
       <Suspense fallback={<h2>Loading...</h2>}>
-        <div style={{ opacity: query !== deferredQuery ? 0.5 : 1 }}>
-          <SearchResults query={deferredQuery} />
-        </div>
+        <SearchResults query={deferredQuery} />
       </Suspense>
     </>
   );
@@ -434,6 +422,195 @@ The deferred "background" rendering is interruptible. For example, if you type i
 Note that there is still a network request per each keystroke. What's being deferred here is displaying results (until they're ready), not the network requests themselves. Even if the user continues typing, responses for each keystroke get cached, so pressing Backspace is instant and doesn't fetch again.
 
 </DeepDive>
+
+---
+
+### Indicating that the content is stale {/*indicating-that-the-content-is-stale*/}
+
+In the example above, there is no indication that the result list for the latest query is still loading. This can be confusing to the user if the new results take a while to load. To make it more obvious to the user that the result list does not match the latest query, you can add a visual indication when the stale result list is displayed:
+
+```js {2}
+<div style={{
+  opacity: query !== deferredQuery ? 0.5 : 1,
+}}>
+  <SearchResults query={deferredQuery} />
+</div>
+```
+
+With this change, as soon as you start typing, the stale result list gets slightly dimmed until the new result list loads. You can also add a CSS transition to delay dimming so that it feels gradual, like in the example below:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "experimental",
+    "react-dom": "experimental"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js App.js
+import { Suspense, useState, useDeferredValue } from 'react';
+import SearchResults from './SearchResults.js';
+
+export default function App() {
+  const [query, setQuery] = useState('');
+  const deferredQuery = useDeferredValue(query);
+  const isStale = query !== deferredQuery;
+  return (
+    <>
+      <label>
+        Search albums:
+        <input value={query} onChange={e => setQuery(e.target.value)} />
+      </label>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <div style={{
+          opacity: isStale ? 0.5 : 1,
+          transition: isStale ? 'opacity 0.2s 0.2s linear' : 'opacity 0s 0s linear'
+        }}>
+          <SearchResults query={deferredQuery} />
+        </div>
+      </Suspense>
+    </>
+  );
+}
+```
+
+```js SearchResults.js hidden
+import { use } from 'react'; // Experimental
+import { fetchData } from './data.js';
+
+// Note: this component is written using an experimental API
+// that's not yet available in stable versions of React.
+
+// For a realistic example you can follow today, try a framework
+// that's integrated with Suspense, like Relay or Next.js.
+
+export default function SearchResults({ query }) {
+  if (query === '') {
+    return null;
+  }
+  const albums = use(fetchData(`/search?q=${query}`));
+  if (albums.length === 0) {
+    return <p>No matches for <i>"{query}"</i></p>;
+  }
+  return (
+    <ul>
+      {albums.map(album => (
+        <li key={album.id}>
+          {album.title} ({album.year})
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js data.js hidden
+// Note: the way you would do data fething depends on
+// the framework that you use together with Suspense.
+// Normally, the caching logic would be inside a framework.
+
+let cache = new Map();
+
+export function fetchData(url) {
+  if (!cache.has(url)) {
+    cache.set(url, getData(url));
+  }
+  return cache.get(url);
+}
+
+async function getData(url) {
+  if (url.startsWith('/search?q=')) {
+    return await getSearchResults(url.slice('/search?q='.length));
+  } else {
+    throw Error('Not implemented');
+  }
+}
+
+async function getSearchResults(query) {
+  // Add a fake delay to make waiting noticeable.
+  await new Promise(resolve => {
+    setTimeout(resolve, 500);
+  });
+
+  const allAlbums = [{
+    id: 13,
+    title: 'Let It Be',
+    year: 1970
+  }, {
+    id: 12,
+    title: 'Abbey Road',
+    year: 1969
+  }, {
+    id: 11,
+    title: 'Yellow Submarine',
+    year: 1969
+  }, {
+    id: 10,
+    title: 'The Beatles',
+    year: 1968
+  }, {
+    id: 9,
+    title: 'Magical Mystery Tour',
+    year: 1967
+  }, {
+    id: 8,
+    title: 'Sgt. Pepper\'s Lonely Hearts Club Band',
+    year: 1967
+  }, {
+    id: 7,
+    title: 'Revolver',
+    year: 1966
+  }, {
+    id: 6,
+    title: 'Rubber Soul',
+    year: 1965
+  }, {
+    id: 5,
+    title: 'Help!',
+    year: 1965
+  }, {
+    id: 4,
+    title: 'Beatles For Sale',
+    year: 1964
+  }, {
+    id: 3,
+    title: 'A Hard Day\'s Night',
+    year: 1964
+  }, {
+    id: 2,
+    title: 'With The Beatles',
+    year: 1963
+  }, {
+    id: 1,
+    title: 'Please Please Me',
+    year: 1963
+  }];
+
+  const lowerQuery = query.trim().toLowerCase();
+  return allAlbums.filter(album => {
+    const lowerTitle = album.title.toLowerCase();
+    return (
+      lowerTitle.startsWith(lowerQuery) ||
+      lowerTitle.indexOf(' ' + lowerQuery) !== -1
+    )
+  });
+}
+```
+
+```css
+input { margin: 10px; }
+```
+
+</Sandpack>
 
 ---
 

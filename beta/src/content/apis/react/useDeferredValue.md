@@ -45,7 +45,7 @@ This example assumes you use one of Suspense-enabled data sources:
 - Data fetching with Suspense-enabled frameworks like [Relay](https://relay.dev/docs/guided-tour/rendering/loading-states/) and [Next.js](https://nextjs.org/docs/advanced-features/react-18)
 - Lazy-loading component code with [`lazy`](/apis/react/lazy)
 
-Read more about the current Suspense limitations on the [`<Suspense>`](/apis/react/Suspense) page.
+[Learn more about Suspense and its limitations.](/apis/react/Suspense)
 
 </Note>
 
@@ -431,6 +431,8 @@ You can think of it as happening in two steps:
 
 The deferred "background" rendering is interruptible. For example, if you type into the input again, React will abandon it and restart with the new value. React will always use the latest provided value.
 
+Note that there is still a network request per each keystroke. What's being deferred here is displaying results (until they're ready), not the network requests themselves. Even if the user continues typing, responses for each keystroke get cached, so pressing Backspace is instant and doesn't fetch again.
+
 </DeepDive>
 
 ---
@@ -650,13 +652,13 @@ There are two common optimization techniques you might have used before in this 
 - *Debouncing* means you'd wait for the user to stop typing (e.g. for a second) before updating the list.
 - *Throttling* means you'd update the list every once in a while (e.g. at most once a second).
 
-While these techniques can still be helpful in some cases, `useDeferredValue` is more powerful because it is deeply integrated with React itself and adapts to the user's device.
+While these techniques are helpful in some cases, `useDeferredValue` is better suited to optimizing rendering because it is deeply integrated with React itself and adapts to the user's device.
 
 Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
 
 Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
 
-This applies to the cases where most of the work is done during rendering. That is what `useDeferredValue` is for. In other cases, debouncing and throttling are still great solutions.
+If the work you're optimizing doesn't happen during rendering, debouncing and throttling are still useful. For example, they can let you fire fewer network requests. You can also use these techniques together.
 
 </DeepDive>
 

@@ -98,7 +98,6 @@ function Loading() {
 ```
 
 ```js Albums.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -118,6 +117,31 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -319,7 +343,6 @@ export default function Panel({ children }) {
 ```
 
 ```js Biography.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -336,10 +359,34 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
+}
 ```
 
 ```js Albums.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -359,6 +406,31 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -608,7 +680,6 @@ export default function Panel({ children }) {
 ```
 
 ```js Biography.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -625,10 +696,34 @@ export default function Biography({ artistId }) {
     </section>
   );
 }
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
+}
 ```
 
 ```js Albums.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -648,6 +743,31 @@ export default function Albums({ artistId }) {
       ))}
     </ul>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -827,7 +947,6 @@ export default function App() {
 ```
 
 ```js SearchResults.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -853,6 +972,31 @@ export default function SearchResults({ query }) {
       ))}
     </ul>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -1032,7 +1176,6 @@ export default function App() {
 ```
 
 ```js SearchResults.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1058,6 +1201,31 @@ export default function SearchResults({ query }) {
       ))}
     </ul>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -1294,7 +1462,6 @@ function AlbumsGlimmer() {
 ```
 
 ```js Albums.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1315,10 +1482,34 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
+}
 ```
 
 ```js Biography.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1334,6 +1525,31 @@ export default function Biography({ artistId }) {
       <p className="bio">{bio}</p>
     </section>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -1633,7 +1849,6 @@ function AlbumsGlimmer() {
 ```
 
 ```js Albums.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1654,10 +1869,34 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
+}
 ```
 
 ```js Biography.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1673,6 +1912,31 @@ export default function Biography({ artistId }) {
       <p className="bio">{bio}</p>
     </section>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 
@@ -1971,7 +2235,6 @@ function AlbumsGlimmer() {
 ```
 
 ```js Albums.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -1992,10 +2255,34 @@ export default function Albums({ artistId }) {
     </ul>
   );
 }
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
+}
 ```
 
 ```js Biography.js hidden
-import { use } from 'react'; // Experimental
 import { fetchData } from './data.js';
 
 // Note: this component is written using an experimental API
@@ -2011,6 +2298,31 @@ export default function Biography({ artistId }) {
       <p className="bio">{bio}</p>
     </section>
   );
+}
+
+// This is a workaround for a bug to get the demo running.
+// TODO: replace with real implementation when the bug is fixed.
+function use(promise) {
+  if (promise.status === 'fulfilled') {
+    return promise.value;
+  } else if (promise.status === 'rejected') {
+    throw promise.reason;
+  } else if (promise.status === 'pending') {
+    throw promise;
+  } else {
+    promise.status = 'pending';
+    promise.then(
+      result => {
+        promise.status = 'fulfilled';
+        promise.value = result;
+      },
+      reason => {
+        promise.status = 'rejected';
+        promise.reason = reason;
+      },      
+    );
+    throw promise;
+  }
 }
 ```
 

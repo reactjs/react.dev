@@ -72,8 +72,7 @@
             },
             {
               "title": "useTransition",
-              "path": "/apis/react/useTransition",
-              "wip": true
+              "path": "/apis/react/useTransition"
             }
           ]
         },

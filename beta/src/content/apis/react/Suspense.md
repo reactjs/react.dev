@@ -787,7 +787,7 @@ Don't put a Suspense boundary around every component. Suspense boundaries should
 
 ### Showing stale content while fresh content is loading {/*showing-stale-content-while-fresh-content-is-loading*/}
 
-In this example, the `SearchResults` component suspends while fetching the search results. If you type "a", wait for the results, and then type "b", it will replace the displayed results with a fallback until the new results load.
+In this example, the `SearchResults` component suspends while fetching the search results. Try typing `"a"`, waiting for the results, and then editing it to `"ab"`. The results for `"a"` will get replaced by the loading fallback.
 
 <Sandpack>
 
@@ -975,9 +975,20 @@ export default function App() {
 }
 ```
 
-When you type into the input and change the `query`, React will attempt to render the `SearchResults` component with the new query value. However, if `SearchResults` suspends waiting for the API call, React will continue rendering the old value until the search results are available and the component is ready to re-render.
+The `query` will update immediately, so the input will display the new value. However, the `deferredQuery` will keep its previous value until the data has loaded, so `SearchResults` will show the stale results for a bit.
 
-Since you'll be showing stale results for a little bit, you might want to communicate that to the user. You can use a comparison like `query !== deferredQuery` and dim the opacity when the results are stale. Try typing "a", then wait for results, and then type "b". Instead of a Suspense fallback, you will now see slightly dimmed stale results:
+To make it more obvious to the user, you can add a visual indication when the stale result list is displayed:
+
+```js {2}
+<div style={{
+  opacity: query !== deferredQuery ? 0.5 : 1 
+}}>
+  <SearchResults query={deferredQuery} />
+</div>
+```
+
+Enter `"a"` in the example below, wait for the results to load, and then edit the input to `"ab"`. Notice how instead of the Suspense fallback, you now see the slightly dimmed stale result list until the new results have loaded:
+
 
 <Sandpack>
 

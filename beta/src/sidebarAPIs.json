@@ -25,17 +25,11 @@
             },
             {
               "title": "useDeferredValue",
-              "path": "/apis/react/useDeferredValue",
-              "wip": true
+              "path": "/apis/react/useDeferredValue"
             },
             {
               "title": "useEffect",
               "path": "/apis/react/useEffect"
-            },
-            {
-              "title": "useEvent",
-              "path": "/apis/react/useEvent",
-              "wip": true
             },
             {
               "title": "useId",

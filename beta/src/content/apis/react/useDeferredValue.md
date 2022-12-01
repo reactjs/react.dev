@@ -435,12 +435,233 @@ The deferred "background" rendering is interruptible. For example, if you type i
 
 ---
 
-### Showing stale content while fresh content is rendering {/*showing-stale-content-while-fresh-content-is-rendering*/}
+### Deferring re-rendering for a part of the UI {/*deferring-re-rendering-for-a-part-of-the-ui*/}
 
 You can also apply `useDeferredValue` as a performance optimization. It is useful when a part of your UI is slow to re-render, there's no easy way to optimize it, and you want to prevent it from blocking the rest of the UI.
 
+Imagine you have a text field and a component (like a chart or a long list) that re-renders on every keystroke:
 
+```js
+function App() {
+  const [text, setText] = useState('');
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <SlowList text={text} />
+    </>
+  );
+}
+```
+
+First, optimize `SlowList` to skip re-rendering when its props are the same. To do this, [wrap it in `memo`:](/apis/react/memo#skipping-re-rendering-when-props-are-unchanged)
+
+```js {1,3}
+const SlowList = memo(function SlowList({ text }) {
+  // ...
+});
+```
+
+However, this only helps if the `SlowList` props are *the same* as during the previous render. The problem you're facing now is that it's slow when they're *different,* and when you actually need to show different visual output.
+
+Concretely, the main performance problem is that whenever you type into the input, the `SlowList` receives new props, and re-rendering its entire tree makes the typing feel janky. In this case, `useDeferredValue` lets you prioritize updating the input (which must be fast) over updating the result list (which is allowed to be slower):
+
+```js {3,7}
+function App() {
+  const [text, setText] = useState('');
+  const deferredText = useDeferredValue(text);
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <SlowList text={deferredText} />
+    </>
+  );
+}
+```
+
+This does not make re-rendering of the `SlowList` faster. However, it tells React that re-rendering the list can be deprioritized so that it doesn't block the keystrokes. The list will "lag behind" the input and then "catch up".
+
+<Recipes titleText="The difference between useDeferredValue and unoptimized re-rendering" titleId="examples">
+
+#### Deferred re-rendering of the list {/*deferred-re-rendering-of-the-list*/}
+
+In this example, each item in the `SlowList` component is **artificially slowed down** so that you can see how `useDeferredValue` lets you keep the input responsive. Type into the input and notice that typing feels snappy while the list "lags behind" it.
+
+<Sandpack>
+
+```js
+import { useState, useDeferredValue } from 'react';
+import SlowList from './SlowList.js';
+
+export default function App() {
+  const [text, setText] = useState('');
+  const deferredText = useDeferredValue(text);
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <SlowList text={deferredText} />
+    </>
+  );
+}
+```
+
+```js SlowList.js
+import { memo } from 'react';
+
+const SlowList = memo(function SlowList({ text }) {
+  // Log once. The actual slowdown is inside SlowItem.
+  console.log('[ARTIFICIALLY SLOW] Rendering 250 <SlowItem />');
+
+  let items = [];
+  for (let i = 0; i < 250; i++) {
+    items.push(<SlowItem key={i} text={text} />);
+  }
+  return (
+    <ul className="items">
+      {items}
+    </ul>
+  );
+});
+
+function SlowItem({ text }) {
+  let startTime = performance.now();
+  while (performance.now() - startTime < 1) {
+    // Do nothing for 1 ms per item to emulate extremely slow code
+  }
+
+  return (
+    <li className="item">
+      Text: {text}
+    </li>
+  )
+}
+
+export default SlowList;
+```
+
+```css
+.items {
+  padding: 0;
+}
+
+.item {
+  list-style: none;
+  display: block;
+  height: 40px;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+#### Unoptimized re-rendering of the list {/*unoptimized-re-rendering-of-the-list*/}
+
+In this example, each item in the `SlowList` component is **artificially slowed down**, but there is no `useDeferredValue`.
+
+Notice how typing into the input feels very janky. This is because without `useDeferredValue`, each keystroke forces the entire list to re-render immediately in a non-interruptible way.
+
+<Sandpack>
+
+```js
+import { useState } from 'react';
+import SlowList from './SlowList.js';
+
+export default function App() {
+  const [text, setText] = useState('');
+  return (
+    <>
+      <input value={text} onChange={e => setText(e.target.value)} />
+      <SlowList text={text} />
+    </>
+  );
+}
+```
+
+```js SlowList.js
+import { memo } from 'react';
+
+const SlowList = memo(function SlowList({ text }) {
+  // Log once. The actual slowdown is inside SlowItem.
+  console.log('[ARTIFICIALLY SLOW] Rendering 250 <SlowItem />');
+
+  let items = [];
+  for (let i = 0; i < 250; i++) {
+    items.push(<SlowItem key={i} text={text} />);
+  }
+  return (
+    <ul className="items">
+      {items}
+    </ul>
+  );
+});
+
+function SlowItem({ text }) {
+  let startTime = performance.now();
+  while (performance.now() - startTime < 1) {
+    // Do nothing for 1 ms per item to emulate extremely slow code
+  }
+
+  return (
+    <li className="item">
+      Text: {text}
+    </li>
+  )
+}
+
+export default SlowList;
+```
+
+```css
+.items {
+  padding: 0;
+}
+
+.item {
+  list-style: none;
+  display: block;
+  height: 40px;
+  padding: 5px;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid #aaa;
+}
+```
+
+</Sandpack>
+
+<Solution />
+
+</Recipes>
+
+<Pitfall>
+
+This optimization requires `SlowList` to be wrapped in [`memo`.](/apis/react/memo) This is because whenever the `text` changes, React needs to be able to re-render the parent component quickly. During that re-render, `deferredText` still has its previous value, so `SlowList` is able to skip re-rendering (its props have not changed). Without [`memo`,](/apis/react/memo) it would have to re-render anyway, defeating the point of the optimization.
+
+</Pitfall>
+
+<DeepDive title="How is deferring a value different from debouncing and throttling?">
+
+There are two common optimization techniques you might have used before in this scenario:
+
+- *Debouncing* means you'd wait for the user to stop typing (e.g. for a second) before updating the list.
+- *Throttling* means you'd update the list every once in a while (e.g. at most once a second).
+
+While these techniques can still be helpful in some cases, `useDeferredValue` is more powerful because it is deeply integrated with React itself and adapts to the user's device.
+
+Unlike debouncing or throttling, it doesn't require choosing any fixed delay. If the user's device is fast (e.g. powerful laptop), the deferred re-render would happen almost immediately and wouldn't be noticeable. If the user's device is slow, the list would "lag behind" the input proportionally to how slow the device is.
+
+Also, unlike with debouncing or throttling, deferred re-renders done by `useDeferredValue` are interruptible by default. This means that if React is in the middle of re-rendering a large list, but the user makes another keystroke, React will abandon that re-render, handle the keystroke, and then start rendering in background again. By contrast, debouncing and throttling still produce a janky experience because they're *blocking:* they merely postpone the moment when rendering blocks the keystroke.
+
+This applies to the cases where most of the work is done during rendering. That is what `useDeferredValue` is for. In other cases, debouncing and throttling are still great solutions.
+
+</DeepDive>
 
 ---
 
 ## Reference {/*reference*/}
+
+TODO

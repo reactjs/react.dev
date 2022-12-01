@@ -25,9 +25,11 @@ function ExpandableExample({
   const [isExpanded, setIsExpanded] = React.useState(false);
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
+  const id = title.split(' ').join('');
 
   return (
     <details
+      id={id}
       open={isExpanded}
       onToggle={(e: any) => {
         setIsExpanded(e.currentTarget!.open);
@@ -40,6 +42,7 @@ function ExpandableExample({
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}
         onClick={(e) => {
+          if (e.target instanceof HTMLAnchorElement) return;
           // We toggle using a button instead of this whole area.
           e.preventDefault();
         }}>
@@ -63,7 +66,7 @@ function ExpandableExample({
         </h5>
         <div className="mb-4">
           <h3 className="text-xl font-bold text-primary dark:text-primary-dark">
-            {title}
+            <a href={`#${id}`}>{title}</a>
           </h3>
           {excerpt && <div>{excerpt}</div>}
         </div>

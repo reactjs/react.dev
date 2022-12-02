@@ -8,28 +8,24 @@ import {IconChevron} from '../Icon/IconChevron';
 import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
+import {H4} from './Heading';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
-  title: string;
   excerpt?: string;
   type: 'DeepDive' | 'Example';
 }
 
-function ExpandableExample({
-  children,
-  title,
-  excerpt,
-  type,
-}: ExpandableExampleProps) {
+function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
-  const id = title.split(' ').join('');
+  const hasTitle =
+    Array.isArray(children) &&
+    ['h2', 'h3', 'h4'].includes(children[0].type.mdxName);
 
   return (
     <details
-      id={id}
       open={isExpanded}
       onToggle={(e: any) => {
         setIsExpanded(e.currentTarget!.open);
@@ -42,7 +38,8 @@ function ExpandableExample({
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}
         onClick={(e) => {
-          if (e.target instanceof HTMLAnchorElement) return;
+          // Escape case for the header anchor link
+          if (e.target instanceof SVGElement) return;
           // We toggle using a button instead of this whole area.
           e.preventDefault();
         }}>
@@ -65,9 +62,13 @@ function ExpandableExample({
           )}
         </h5>
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-primary dark:text-primary-dark">
-            <a href={`#${id}`}>{title}</a>
-          </h3>
+          {hasTitle && (
+            <H4
+              id={children[0].props.id}
+              className="text-xl font-bold text-primary dark:text-primary-dark">
+              {children[0].props.children}
+            </H4>
+          )}
           {excerpt && <div>{excerpt}</div>}
         </div>
         <Button
@@ -90,7 +91,7 @@ function ExpandableExample({
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
           'dark:border-yellow-60 border-yellow-50': isExample,
         })}>
-        {children}
+        {hasTitle ? children.slice(1) : children}
       </div>
     </details>
   );

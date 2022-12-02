@@ -124,7 +124,9 @@ function ProductPage({ productId, referrer, theme }) {
 
 </Note>
 
-<DeepDive title="How is useCallback related to useMemo?">
+<DeepDive>
+
+#### How is useCallback related to useMemo? {/*how-is-usecallback-related-to-usememo*/}
 
 You will often see [`useMemo`](/apis/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
 
@@ -171,7 +173,9 @@ function useCallback(fn, dependencies) {
 
 </DeepDive>
 
-<DeepDive title="Should you add useCallback everywhere?">
+<DeepDive>
+
+#### Should you add useCallback everywhere? {/*should-you-add-usecallback-everywhere*/}
 
 If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
 

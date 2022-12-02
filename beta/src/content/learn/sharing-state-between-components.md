@@ -284,7 +284,9 @@ When `Accordion`'s `activeIndex` state changes to `1`, the second `Panel` receiv
 
 </DiagramGroup>
 
-<DeepDive title="Controlled and uncontrolled components">
+<DeepDive>
+
+#### Controlled and uncontrolled components {/*controlled-and-uncontrolled-components*/}
 
 It is common to call a component with some local state "uncontrolled". For example, the original `Panel` component with an `isActive` state variable is uncontrolled because its parent cannot influence whether the panel is active or not.
 

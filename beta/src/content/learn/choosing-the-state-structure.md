@@ -342,7 +342,9 @@ const fullName = firstName + ' ' + lastName;
 
 As a result, the change handlers don't need to do anything special to update it. When you call `setFirstName` or `setLastName`, you trigger a re-render, and then the next `fullName` will be calculated from the fresh data.
 
-<DeepDive title="Don't mirror props in state">
+<DeepDive>
+
+#### Don't mirror props in state {/*don-t-mirror-props-in-state*/}
 
 A common example of redundant state is code like this:
 
@@ -1474,7 +1476,9 @@ button { margin: 10px; }
 
 You can nest state as much as you like, but making it "flat" can solve numerous problems. It makes state easier to update, and it helps ensure you don't have duplication in different parts of a nested object.
 
-<DeepDive title="Improving memory usage">
+<DeepDive>
+
+#### Improving memory usage {/*improving-memory-usage*/}
 
 Ideally, you would also remove the deleted items (and their children!) from the "table" object to improve memory usage. This version does that. It also [uses Immer](/learn/updating-objects-in-state#write-concise-update-logic-with-immer) to make the update logic more concise.
 

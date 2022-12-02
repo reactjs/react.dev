@@ -117,7 +117,7 @@ function VideoPlayer({ src, isPlaying }) {
     } else {
       ref.current.pause();
     }
-  });
+  }, [isPlaying]);
 
   return <video ref={ref} src={src} loop playsInline />;
 }

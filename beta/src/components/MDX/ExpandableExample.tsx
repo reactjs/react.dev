@@ -22,7 +22,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const isExample = type === 'Example';
 
   if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
-    throw new Error(
+    throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }

@@ -139,7 +139,9 @@ input { margin: 5px; }
 
 </Pitfall>
 
-<DeepDive title="Why is useId better than an incrementing counter?">
+<DeepDive>
+
+#### Why is useId better than an incrementing counter? {/*why-is-useid-better-than-an-incrementing-counter*/}
 
 You might be wondering why `useId` is better than incrementing a global variable like `nextId++`.
 

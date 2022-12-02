@@ -191,7 +191,9 @@ li {
 
 </Sandpack>
 
-<DeepDive title="How to manage a list of refs using a ref callback">
+<DeepDive>
+
+#### How to manage a list of refs using a ref callback {/*how-to-manage-a-list-of-refs-using-a-ref-callback*/}
 
 In the above examples, there is a predefined number of refs. However, sometimes you might need a ref to each item in the list, and you don't know how many you will have. Something like this **wouldn't work**:
 
@@ -430,7 +432,9 @@ export default function Form() {
 
 In design systems, it is a common pattern for low-level components like buttons, inputs, and so on, to forward their refs to their DOM nodes. On the other hand, high-level components like forms, lists, or page sections usually won't expose their DOM nodes to avoid accidental dependencies on the DOM structure.
 
-<DeepDive title="Exposing a subset of the API with an imperative handle">
+<DeepDive>
+
+#### Exposing a subset of the API with an imperative handle {/*exposing-a-subset-of-the-api-with-an-imperative-handle*/}
 
 In the above example, `MyInput` exposes the original DOM input element. This lets the parent component call `focus()` on it. However, this also lets the parent component do something else--for example, change its CSS styles. In uncommon cases, you may want to restrict the exposed functionality. You can do that with `useImperativeHandle`:
 
@@ -491,7 +495,9 @@ React sets `ref.current` during the commit. Before updating the DOM, React sets 
 
 **Usually, you will access refs from event handlers.** If you want to do something with a ref, but there is no particular event to do it in, you might need an Effect. We will discuss effects on the next pages.
 
-<DeepDive title="Flushing state updates synchronously with flushSync">
+<DeepDive>
+
+#### Flushing state updates synchronously with flushSync {/*flushing-state-updates-synchronously-with-flush-sync*/}
 
 Consider code like this, which adds a new todo and scrolls the screen down to the last child of the list. Notice how, for some reason, it always scrolls to the todo that was *just before* the last added one:
 

@@ -204,7 +204,9 @@ return (
 
 You can read it as *"if `isPacked` is true, then (`?`) render `name + ' ✔'`, otherwise (`:`) render `name`"*.
 
-<DeepDive title="Are these two examples fully equivalent?">
+<DeepDive>
+
+#### Are these two examples fully equivalent? {/*are-these-two-examples-fully-equivalent*/}
 
 If you're coming from an object-oriented programming background, you might assume that the two examples above are subtly different because one of them may create two different "instances" of `<li>`. But JSX elements aren't "instances" because they don't hold any internal state and aren't real DOM nodes. They're lightweight descriptions, like blueprints. So these two examples, in fact, *are* completely equivalent. [Preserving and Resetting State](/learn/preserving-and-resetting-state) goes into detail about how this works.
 

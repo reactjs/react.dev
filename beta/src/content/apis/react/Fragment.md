@@ -74,7 +74,9 @@ function PostBody({ body }) {
 
 </Sandpack>
 
-<DeepDive title="How to write a Fragment without the special syntax?">
+<DeepDive>
+
+#### How to write a Fragment without the special syntax? {/*how-to-write-a-fragment-without-the-special-syntax*/}
 
 The example above is equivalent to importing `Fragment` from React:
 

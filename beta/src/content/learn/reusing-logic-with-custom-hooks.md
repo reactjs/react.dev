@@ -234,7 +234,9 @@ If your linter is [configured for React,](/learn/editor-setup#linting) it will e
 
 </Note>
 
-<DeepDive title="Should all functions called during rendering start with the use prefix?">
+<DeepDive>
+
+#### Should all functions called during rendering start with the use prefix? {/*should-all-functions-called-during-rendering-start-with-the-use-prefix*/}
 
 No. Functions that don't *call* Hooks don't need to *be* Hooks.
 
@@ -1177,7 +1179,9 @@ function ShippingForm({ country }) {
 
 Extracting a custom Hook makes the data flow explicit. You feed the `url` in and you get the `data` out. By "hiding" your Effect inside `useData`, you also prevent someone working on the `ShippingForm` component from adding [unnecessary dependencies](/learn/removing-effect-dependencies) to it. Ideally, with time, most of your app's Effects will be in custom Hooks.
 
-<DeepDive title="Keep your custom Hooks focused on concrete high-level use cases">
+<DeepDive>
+
+#### Keep your custom Hooks focused on concrete high-level use cases {/*keep-your-custom-hooks-focused-on-concrete-high-level-use-cases*/}
 
 Start by choosing your custom Hook's name. If you struggle to pick a clear name, it might mean that your Effect is too coupled to the rest of your component's logic, and is not yet ready to be extracted.
 
@@ -1411,7 +1415,9 @@ This is another reason for why wrapping Effects in custom Hooks is often benefic
 
 Similar to a [design system,](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969) you might find it helpful to start extracting common idioms from your app's components into custom Hooks. This will keep your components' code focused on the intent, and let you avoid writing raw Effects very often. There are also many excellent custom Hooks maintained by the React community.
 
-<DeepDive title="Will React provide any built-in solution for data fetching?">
+<DeepDive>
+
+#### Will React provide any built-in solution for data fetching? {/*will-react-provide-any-built-in-solution-for-data-fetching*/}
 
 We're still working out the details, but we expect that in the future, you'll write data fetching like this:
 

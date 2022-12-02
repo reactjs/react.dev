@@ -22,7 +22,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const isExample = type === 'Example';
   const hasTitle =
     Array.isArray(children) &&
-    ['h2', 'h3', 'h4'].includes(children[0].type.mdxName);
+    ['h2', 'h3', 'h4'].includes(children[0]?.type?.mdxName);
 
   return (
     <details

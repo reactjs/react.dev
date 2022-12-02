@@ -1,6 +1,7 @@
 ---
 id: context
 title: Context
+descriprion:Sending props between components
 permalink: docs/context.html
 ---
 

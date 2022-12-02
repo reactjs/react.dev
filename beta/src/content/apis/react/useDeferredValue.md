@@ -457,7 +457,9 @@ input { margin: 10px; }
 
 </Sandpack>
 
-<DeepDive title="How does deferring a value work under the hood?">
+<DeepDive>
+
+#### How does deferring a value work under the hood? {/*how-does-deferring-a-value-work-under-the-hood*/}
 
 You can think of it as happening in two steps:
 
@@ -894,7 +896,9 @@ This optimization requires `SlowList` to be wrapped in [`memo`.](/apis/react/mem
 
 </Pitfall>
 
-<DeepDive title="How is deferring a value different from debouncing and throttling?">
+<DeepDive>
+
+#### How is deferring a value different from debouncing and throttling? {/*how-is-deferring-a-value-different-from-debouncing-and-throttling*/}
 
 There are two common optimization techniques you might have used before in this scenario:
 

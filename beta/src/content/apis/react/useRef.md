@@ -472,7 +472,9 @@ function Video() {
 
 Normally, writing or reading `ref.current` during render is not allowed. However, it's fine in this case because the result is always the same, and the condition only executes during initialization so it's fully predictable.
 
-<DeepDive title="How to avoid null checks when initializing useRef later">
+<DeepDive>
+
+#### How to avoid null checks when initializing useRef later {/*how-to-avoid-null-checks-when-initializing-use-ref-later*/}
 
 If you use a type checker and don't want to always check for `null`, you can try a pattern like this instead:
 

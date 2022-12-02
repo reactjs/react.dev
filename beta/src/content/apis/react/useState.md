@@ -239,7 +239,9 @@ By convention, it's common to name the pending state argument for the first lett
 
 React may [call your updaters twice](#my-initializer-or-updater-function-runs-twice) in development to verify that they are [pure.](/learn/keeping-components-pure)
 
-<DeepDive title="Is using an updater always preferred?">
+<DeepDive>
+
+#### Is using an updater always preferred? {/*is-using-an-updater-always-preferred*/}
 
 You might hear a recommendation to always write code like `setAge(a => a + 1)` if the state you're setting is calculated from the previous state. There is no harm in it, but it is also not always necessary.
 

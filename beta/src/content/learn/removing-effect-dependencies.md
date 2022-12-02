@@ -293,7 +293,9 @@ useEffect(() => {
 
 </Pitfall>
 
-<DeepDive title="Why is suppressing the dependency linter so dangerous?">
+<DeepDive>
+
+#### Why is suppressing the dependency linter so dangerous? {/*why-is-suppressing-the-dependency-linter-so-dangerous*/}
 
 Suppressing the linter leads to very unintuitive bugs that are hard to find and fix. Here's one example:
 

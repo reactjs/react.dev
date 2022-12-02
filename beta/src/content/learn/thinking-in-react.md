@@ -235,7 +235,9 @@ Let's go through them one by one again:
 
 This means only the search text and the value of the checkbox are state! Nicely done!
 
-<DeepDive title="Props vs State">
+<DeepDive>
+
+#### Props vs State {/*props-vs-state*/}
 
 There are two types of "model" data in React: props and state. The two are very different:
 

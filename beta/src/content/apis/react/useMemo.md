@@ -61,7 +61,9 @@ Usually, this isn't a problem because most calculations are very fast. However, 
 
 </Note>
 
-<DeepDive title="How to tell if a calculation is expensive?">
+<DeepDive>
+
+#### How to tell if a calculation is expensive? {/*how-to-tell-if-a-calculation-is-expensive*/}
 
 In general, unless you're creating or looping over thousands of objects, it's probably not expensive. If you want to get more confidence, you can add a console log to measure the time spent in a piece of code:
 
@@ -89,7 +91,9 @@ Also note that measuring performance in development will not give you the most a
 
 </DeepDive>
 
-<DeepDive title="Should you add useMemo everywhere?">
+<DeepDive>
+
+#### Should you add useMemo everywhere? {/*should-you-add-usememo-everywhere*/}
 
 If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
 
@@ -559,7 +563,9 @@ export default function TodoList({ todos, tab, theme }) {
 
 **By wrapping the `visibleTodos` calculation in `useMemo`, you ensure that it has the *same* value between the re-renders** (until dependencies change). You don't *have to* wrap a calculation in `useMemo` unless you do it for some specific reason. In this example, the reason is that you pass it to a component wrapped in [`memo`,](/apis/react/memo) and this lets it skip re-rendering. There are a few other reasons to add `useMemo` which are described further on this page.
 
-<DeepDive title="Memoizing individual JSX nodes">
+<DeepDive>
+
+#### Memoizing individual JSX nodes {/*memoizing-individual-jsx-nodes*/}
 
 Instead of wrapping `List` in [`memo`](/apis/react/memo), you could wrap the `<List />` JSX node itself in `useMemo`:
 

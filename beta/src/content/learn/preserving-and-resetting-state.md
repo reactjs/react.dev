@@ -1233,7 +1233,9 @@ textarea {
 
 </Sandpack>
 
-<DeepDive title="Preserving state for removed components">
+<DeepDive>
+
+#### Preserving state for removed components {/*preserving-state-for-removed-components*/}
 
 In a real chat app, you'd probably want to recover the input state when the user selects the previous recipient again. There are a few ways to keep the state "alive" for a component that's no longer visible:
 

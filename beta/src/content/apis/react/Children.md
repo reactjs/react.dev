@@ -126,7 +126,9 @@ export default function RowList({ children }) {
 
 </Sandpack>
 
-<DeepDive title="Why is the children prop not always an array?">
+<DeepDive>
+
+#### Why is the children prop not always an array? {/*why-is-the-children-prop-not-always-an-array*/}
 
 In React, the `children` prop is considered an *opaque* data structure. This means that you shouldn't rely on how it is structured. To transform, filter, or count children, you should use the `Children` methods.
 

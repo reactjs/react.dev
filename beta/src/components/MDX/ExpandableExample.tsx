@@ -20,9 +20,12 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const [isExpanded, setIsExpanded] = React.useState(false);
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
-  const hasTitle =
-    Array.isArray(children) &&
-    ['h2', 'h3', 'h4'].includes(children[0]?.type?.mdxName);
+
+  if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
+    throw new Error(
+      `Expandable content ${type} is missing a corresponding title at the beginning`
+    );
+  }
 
   return (
     <details
@@ -38,10 +41,11 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}
         onClick={(e) => {
-          // Escape case for the header anchor link
-          if (e.target instanceof SVGElement) return;
-          // We toggle using a button instead of this whole area.
-          e.preventDefault();
+          // We toggle using a button instead of this whole area,
+          // with an escape case for the header anchor link
+          if (!(e.target instanceof SVGElement)) {
+            e.preventDefault();
+          }
         }}>
         <h5
           className={cn('mb-4 uppercase font-bold flex items-center text-sm', {
@@ -62,13 +66,11 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           )}
         </h5>
         <div className="mb-4">
-          {hasTitle && (
-            <H4
-              id={children[0].props.id}
-              className="text-xl font-bold text-primary dark:text-primary-dark">
-              {children[0].props.children}
-            </H4>
-          )}
+          <H4
+            id={children[0].props.id}
+            className="text-xl font-bold text-primary dark:text-primary-dark">
+            {children[0].props.children}
+          </H4>
           {excerpt && <div>{excerpt}</div>}
         </div>
         <Button
@@ -91,7 +93,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
           'dark:border-yellow-60 border-yellow-50': isExample,
         })}>
-        {hasTitle ? children.slice(1) : children}
+        {children.slice(1)}
       </div>
     </details>
   );

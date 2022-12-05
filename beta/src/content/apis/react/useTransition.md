@@ -1432,7 +1432,7 @@ Call `useTransition` at the top level of your component to mark some state updat
 ```js
 import { useTransition } from 'react';
 
-function Router() {
+function TabContainer() {
   const [isPending, startTransition] = useTransition();
   // ...
 }
@@ -1458,13 +1458,13 @@ function Router() {
 The `startTransition` function returned by `useTransition` lets you mark a state update as a transition.
 
 ```js {6,8}
-function Router() {
+function TabContainer() {
   const [isPending, startTransition] = useTransition();
-  const [page, setPage] = useState('/');
+  const [tab, setTab] = useState('about');
 
-  function navigate(url) {
+  function selectTab(nextTab) {
     startTransition(() => {
-      setPage(url);
+      setTab(nextTab);
     });
   }
   // ...

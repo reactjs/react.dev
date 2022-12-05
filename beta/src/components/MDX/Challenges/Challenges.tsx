@@ -2,13 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useRef, useEffect, useState} from 'react';
+import {Children, useRef, useEffect, useState, useCallback} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
+import {useRouter} from 'next/router';
 
 interface ChallengesProps {
   children: React.ReactElement[];
@@ -79,14 +80,36 @@ export function Challenges({
   const queuedScrollRef = useRef<boolean>(false);
   const [activeIndex, setActiveIndex] = useState(0);
   const currentChallenge = challenges[activeIndex];
+  const {asPath} = useRouter();
+  const [isMounted, setMounted] = useState(false);
+
+  const scrollIntoView = useCallback(() => {
+    scrollAnchorRef.current!.scrollIntoView({
+      block: 'start',
+      behavior: 'smooth',
+    });
+  }, []);
+
+  useEffect(() => {
+    const challengeIndex = challenges.findIndex(
+      (challenge) => challenge.id === asPath.split('#')[1]
+    );
+    if (challengeIndex !== -1) {
+      if (isMounted) {
+        scrollIntoView();
+      } else {
+        setActiveIndex(challengeIndex);
+      }
+    }
+    if (!isMounted) {
+      setMounted(true);
+    }
+  }, [asPath, challenges, isMounted, scrollIntoView]);
 
   useEffect(() => {
     if (queuedScrollRef.current === true) {
       queuedScrollRef.current = false;
-      scrollAnchorRef.current!.scrollIntoView({
-        block: 'start',
-        behavior: 'smooth',
-      });
+      scrollIntoView();
     }
   });
 

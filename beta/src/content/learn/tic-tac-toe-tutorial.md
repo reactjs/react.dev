@@ -361,12 +361,9 @@ function Board() {
 
 When we fill the board in later, the `squares` array will look something like this:
 
-<!-- prettier-ignore-start -->
-<!-- because we don't want a semicolon here -->
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
-<!-- prettier-ignore-end -->
 
 The Board's inner `renderSquare` function currently looks like this:
 
@@ -718,12 +715,9 @@ We learned earlier that React elements are first-class JavaScript objects; we ca
 
 You may be used to the [`map()` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) that is commonly used for transforming an array of data:
 
-<!-- prettier-ignore-start -->
-<!-- because we don't want a semicolon here -->
 ```jsx
 [1, 2, 3].map(x => x * 2) // [2, 4, 6]
 ```
-<!-- prettier-ignore-end -->
 
 Here, we'll use the `map` method to transform our history of moves into React elements representing buttons on the screen, and we'll display a list of buttons to "jump" to past moves.
 

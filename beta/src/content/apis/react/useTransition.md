@@ -1039,7 +1039,7 @@ function Router() {
 This is recommended for two reasons:
 
 - [Transitions are interruptible,](#marking-a-state-update-as-a-non-blocking-transition) which lets the user click away without waiting for the re-render to complete.
-- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which is important to avoid jarring jumps on navigation.
+- [Transitions prevent unwanted loading indicators,](#preventing-unwanted-loading-indicators) which lets the user avoid jarring jumps on navigation.
 
 Here is a tiny simplified router example using transitions for navigations.
 
@@ -1473,7 +1473,7 @@ function TabContainer() {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `fn`: A function that updates some state by calling one or more [`set` functions.](/apis/react/useState#setstate) React will immediately call `fn` with no parameters and keep track of which state updates have been scheduled. It will treat all of the updates scheduled by `fn` as transitions. [Learn more about how transitions are different from regular state updates.](#marking-route-navigations-as-transitions)
+* `fn`: A function that updates some state by calling one or more [`set` functions.](/apis/react/useState#setstate) React will immediately call `fn` with no parameters and keep track of which state updates have been scheduled. It will treat all of the updates scheduled by `fn` as transitions: they will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
 
 #### Returns {/*starttransition-returns*/}
 

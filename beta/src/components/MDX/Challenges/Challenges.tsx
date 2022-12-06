@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {Children, useRef, useEffect, useState, useCallback} from 'react';
+import {Children, useRef, useEffect, useState} from 'react';
 import * as React from 'react';
 import cn from 'classnames';
 import {H2} from 'components/MDX/Heading';
@@ -83,20 +83,15 @@ export function Challenges({
   const {asPath} = useRouter();
   const [isMounted, setMounted] = useState(false);
 
-  const scrollIntoView = useCallback(() => {
-    scrollAnchorRef.current!.scrollIntoView({
-      block: 'start',
-      behavior: 'smooth',
-    });
-  }, []);
-
   useEffect(() => {
     const challengeIndex = challenges.findIndex(
       (challenge) => challenge.id === asPath.split('#')[1]
     );
     if (challengeIndex !== -1) {
       if (isMounted) {
-        scrollIntoView();
+        scrollAnchorRef.current!.scrollIntoView({
+          block: 'start',
+        });
       } else {
         setActiveIndex(challengeIndex);
       }
@@ -104,12 +99,15 @@ export function Challenges({
     if (!isMounted) {
       setMounted(true);
     }
-  }, [asPath, challenges, isMounted, scrollIntoView]);
+  }, [asPath, challenges, isMounted]);
 
   useEffect(() => {
     if (queuedScrollRef.current === true) {
       queuedScrollRef.current = false;
-      scrollIntoView();
+      scrollAnchorRef.current!.scrollIntoView({
+        block: 'start',
+        behavior: 'smooth',
+      });
     }
   });
 

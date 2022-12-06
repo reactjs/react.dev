@@ -10,7 +10,7 @@ import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
 import {useRouter} from 'next/router';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
@@ -28,19 +28,20 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const isExample = type === 'Example';
   const id = children[0].props.id;
 
+  const queuedExpandRef = useRef<boolean>(true);
   const {asPath} = useRouter();
-  // use mounted state here incase of browser goBack
-  const [isMounted, setMounted] = useState(false);
   // init as expanded to prevent flash
   const [isExpanded, setIsExpanded] = useState(true);
 
   // asPath would mismatch between server and client, reset here instead of put it into init state
   useEffect(() => {
-    if (!isMounted) {
-      setMounted(true);
-      setIsExpanded(id === asPath.split('#')[1]);
+    if (queuedExpandRef.current) {
+      queuedExpandRef.current = false;
+      if (id !== asPath.split('#')[1]) {
+        setIsExpanded(false);
+      }
     }
-  }, [asPath, id, isMounted]);
+  }, [asPath, id]);
 
   return (
     <details

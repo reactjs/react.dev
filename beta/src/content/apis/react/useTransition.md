@@ -1017,6 +1017,12 @@ b { display: inline-block; margin-right: 10px; }
 
 [Read more about using transitions with Suspense.](/apis/react/Suspense#preventing-already-revealed-content-from-hiding)
 
+<Note>
+
+Transitions will only "wait" long enough to avoid hiding *already revealed* content (like the tab container). For example, if the Posts tab had a [nested `<Suspense>` boundary,](/apis/react/Suspense#revealing-nested-content-as-it-loads) the transition would not "wait" for it.
+
+</Note>
+
 ---
 
 ### Building a Suspense-enabled router {/*building-a-suspense-enabled-router*/}

@@ -2496,6 +2496,31 @@ However, now imagine you're navigating between two different user profiles. In t
 
 ---
 
+### Providing a fallback for server errors and server-only content {/*providing-a-fallback-for-server-errors-and-server-only-content*/}
+
+If you use one of the [streaming server rendering APIs](/apis/react-dom/server) (or a framework that relies on them), React will also use your `<Suspense>` boundaries to handle errors on the server. If a component throws an error on the server, React will not abort the server render. Instead, it will find the closest `<Suspense>` component above it and include its fallback (such as a spinner) into the generated server HTML. The user will see a spinner instead of an error.
+
+On the client, React will attempt to render the same component again. If it errors on the client too, React will throw the error and display the closest [error boundary.](/apis/react/Component#static-getderivedstatefromerror) However, if it does not error on the client, React will not display the error to the user since the content was eventually displayed successfully.
+
+You can use this to opt out some components from rendering on the server. To do this, throw an error from them in the server environment and then wrap them in a `<Suspense>` boundary to replace their HTML with fallbacks:
+
+```js
+<Suspense fallback={<Loading />}>
+  <Chat />
+</Suspense>
+
+function Chat() {
+  if (typeof window === 'undefined') {
+    throw Error('Chat should only render on the client.');
+  }
+  // ...
+}
+```
+
+The server HTML will include the loading indicator. It will be replaced by the `Chat` component on the client.
+
+---
+
 ## Reference {/*reference*/}
 
 ### `Suspense` {/*suspense*/}

@@ -7,6 +7,7 @@ import Image from 'next/image';
 import {IconTwitter} from '../Icon/IconTwitter';
 import {IconGitHub} from '../Icon/IconGitHub';
 import {ExternalLink} from '../ExternalLink';
+import {IconNewPage} from 'components/Icon/IconNewPage';
 
 interface TeamMemberProps {
   name: string;
@@ -39,27 +40,31 @@ export function TeamMember({
       </div>
       <div className="pl-0 sm:pl-6 basis-3/5 items-start">
         {children}
-        <div className="flex flex-row">
-          <div className="mr-4">
-            <ExternalLink
-              aria-label="React on Twitter"
-              href={`https://twitter.com/${twitter}`}
-              className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-              <IconTwitter />
-              {twitter}
-            </ExternalLink>
-          </div>
-          <div className="mr-4">
-            <ExternalLink
-              aria-label="React on Twitter"
-              href={`https://twitter.com/${github}`}
-              className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-              <IconGitHub /> {github}
-            </ExternalLink>
-          </div>
+        <div className="sm:flex sm:flex-row">
+          {twitter && (
+            <div className="mr-4">
+              <ExternalLink
+                aria-label="React on Twitter"
+                href={`https://twitter.com/${twitter}`}
+                className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                <IconTwitter />
+                {twitter}
+              </ExternalLink>
+            </div>
+          )}
+          {github && (
+            <div className="mr-4">
+              <ExternalLink
+                aria-label="GitHub Profile"
+                href={`https://twitter.com/${github}`}
+                className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
+                <IconGitHub /> {github}
+              </ExternalLink>
+            </div>
+          )}
           {personal && (
             <ExternalLink
-              aria-label="React on Twitter"
+              aria-label="Personal Site"
               href={`https://${personal}`}
               className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
               {personal}

@@ -11,7 +11,7 @@ In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/apis/r
 
 <Intro>
 
-Remove a mounted React component from the DOM and clean up its event handlers and state. If no component was mounted in the container, calling this function does nothing. Returns `true` if a component was unmounted and `false` if there was no component to unmount.
+`unmountComponentAtNode` removes a mounted React component from the DOM.
 
 ```js
 unmountComponentAtNode(container)
@@ -21,10 +21,11 @@ unmountComponentAtNode(container)
 
 <InlineToc />
 
+---
 
 ## Usage {/*usage*/}
 
-Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep>.
+Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
 
 ```js [[1, 5, "<App />"], [2, 8, "element"]]
 import {render} from 'react-dom';
@@ -78,6 +79,8 @@ export default function App() {
 ```
 
 </Sandpack>
+
+---
 
 ## Reference {/*reference*/}
 

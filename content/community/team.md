@@ -185,13 +185,10 @@ React was originally created by [Jordan Walke](https://github.com/jordwalke). To
 * [Robert Zhang](https://github.com/robertzhidealx)
 * [Sander Spies](https://github.com/sanderspies)
 * [Sasha Aickin](https://github.com/aickin)
-* [Seth Webster](https://github.com/sethwebster)
 * [Sophia Shoemaker](https://github.com/mrscobbler)
-* [Sophie Alpert](https://github.com/sophiebits)
 * [Sunil Pai](https://github.com/threepointone)
 * [Tim Yung](https://github.com/yungsters)
 * [Xuan Huang](https://github.com/huxpro)
-* [Yuzhi Zheng](https://github.com/yuzhi)
 
 This list is not exhaustive.
 

@@ -27,7 +27,7 @@ You don't have to complete all of the sections at once to get the value out of t
 
 In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
 
-You can see what we'll be building here: FIXME. If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
+You can see what we'll be building [here](#wrapping-up). If the code doesn't make sense to you, or if you are unfamiliar with the code's syntax, don't worry! The goal of this tutorial is to help you understand React and its syntax.
 
 We recommend that you check out the tic-tac-toe game before continuing with the tutorial. One of the features that you'll notice is that there is a numbered list to the right of the game's board. This list gives you a history of all of the moves that have occurred in the game, and it is updated as the game progresses.
 
@@ -193,10 +193,8 @@ Here are the steps to follow:
 
 1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
 2. In the CodeSandbox tab you opened by clicking Fork, press the menu button in the top left corner of the page, then choose **File > Export to ZIP**.
-3. Unzip the archive, then open a terminal and `cd` to the directory you downloaded (called `sandpack-project` FIXME).
+3. Unzip the archive, then open a terminal and `cd` to the directory unzipped.
 4. The files you downloaded use a tool called [Create React App](https://create-react-app.dev/). To install the dependencies needed to run it, run `npm install`.
-
-FIXME default browsers in package.json
 
 Now if you run `npm start` in that folder, it should run a local server, open `http://localhost:3000/` in the browser, and show you the empty tic-tac-toe board.
 
@@ -228,7 +226,7 @@ To get our feet wet, let's try passing some data from our Board component to our
 
 We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
 
-In Board, change the code for the `renderSquare` function to pass a prop called `value` to the Square:
+In `Board`, change the code for the `renderSquare` function to pass a prop called `value` to the Square:
 
 ```jsx {3}
 function Board() {
@@ -250,13 +248,13 @@ Parameters passed to a component are called **props**; when React calls your com
 
 Before:
 
-![React Devtools](../images/tutorial/tictac-empty.png)
+![Empty Tic-Tac-Toe board](../images/tutorial/tictac-empty.png)
 
 After: You should see a number in each square in the rendered output.
 
-![React Devtools](../images/tutorial/tictac-numbers.png)
+![Tic-Tac-Toe board with sequentially numbered squares](../images/tutorial/tictac-numbers.png)
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/aWWQOG?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-passing-data-through-props-189030?file=/App.js)**
 
 Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
 
@@ -278,7 +276,7 @@ function Square({value}) {
 }
 ```
 
-React will call this function when the HTML element is clicked. If you click on a Square now, you should see `click` in your browser's devtools console.
+React will call this function when the HTML element is clicked. If you click on a Square now, you should see `click` in your browser's devtools console. To see the console when developing in your browser, find "Console" tab below the "Browser" section. Clicking a square more than once will increment a counter next to the text `click`, indicating how many times you've clicked a square.
 
 As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
 
@@ -316,7 +314,7 @@ If you click on any Square, an "X" should show up. Note that each Square has its
 
 When you call a `set` function in a component, React automatically updates the child components inside of it too.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/VbbVLg?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-making-an-interactive-component-e2g3v5?file=/App.js)**
 
 ### Developer Tools {/*developer-tools*/}
 
@@ -327,13 +325,10 @@ The React Devtools extension for [Chrome](https://chrome.google.com/webstore/det
   alt="React Devtools"
   style={{maxWidth: '100%'}}
 />
-FIXME new screenshot (and explain how to show host components?)
 
 The React DevTools let you check the props and the state of your React components.
 
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree.
-
-**However, note there is one extra step to get it working with CodeSandbox:** Just above the rendered components, click the **Open In New Window** button in the top right corner. In the new tab that opens, the devtools should now have the React tabs.
+After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree. If developing in a web browser you can find the React DevTools tab under the browser section.
 
 ## Completing the Game {/*completing-the-game*/}
 
@@ -383,7 +378,7 @@ function renderSquare(i) {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWQPY?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-lifting-state-up-78f0r5?file=/App.js)**
 
 Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
 
@@ -397,41 +392,39 @@ function renderSquare(i) {
 }
 ```
 
-Now we're passing down two props from Board to Square: `value` and `onClick`. The `onClick` prop is a function that Square can call when clicked. Now make the following changes to Square:
+Now we're passing down two props from Board to Square: `value` and `handleClick`. The `handleClick` prop is a function that Square can call when clicked. Now make the following changes to Square:
 
-- Add back the first argument to Square so it can receive the props from Board as `{value, onClick}`, this time including our second prop
+- Add back the first argument to Square so it can receive the props from Board as `{value, handleSquareClick}`, this time including our second prop
 - Remove the `useState` declaration from Square because we no longer want Square to keep track of its own state
-- Replace `setValue('X')` with `onClick()` in Square
+- Replace `setValue('X')` with `handleSquareClick()` in Square
 
 After these changes, the Square component looks like this:
 
 ```jsx {1,3}
-function Square({value, onClick}) {
+function Square({value, handleSquareClick}) {
   return (
-    <button className="square" onClick={() => onClick()}>
+    <button className="square" onClick={() => handleSquareClick()}>
       {value}
     </button>
   );
 }
 ```
 
-FIXME give onClick a different name for clarity?
-
-When a Square is clicked, the `onClick` function provided by the Board is called. Here's a review of how this is achieved:
+When a Square is clicked, the `handleSquareClick` function provided by the Board is called. Here's a review of how this is achieved:
 
 1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
 2. When the button is clicked, React will call the `onClick` event handler that is defined in the Square function.
-3. This event handler calls `onClick()`, which refers to the Square's `onClick` prop that was specified by the Board.
+3. This event handler calls `handleSquareClick()`, which refers to the Square's `handleSquareClick` prop that was specified by the Board.
 4. Since the Board passed `onClick={() => handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
 5. We have not defined the `handleClick()` function yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "handleClick is not defined".
 
 <Note>
 
-The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `onClick` prop or Board's `handleClick` function, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
+The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `handleSquareClick` prop or Board's `handleClick` function, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
 
 </Note>
 
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet. We'll now add `handleClick` to the Board class:
+When we try to click a Square, we should get an error because we haven't defined `handleClick` yet (when developing in the browser the rendered page won't even be displayed). We'll now add `handleClick` to the Board class:
 
 ```jsx {4-8}
 function Board() {
@@ -447,7 +440,9 @@ function Board() {
     // ...
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/ybbQJX?editors=0010)** FIXME
+JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means a inner function (e.g. `handleClick`) has access to varibles and functions defined in a outer function (e.g. `Board`). This means that the `handleClick` function can call the `setSquares` method because they are both defined insite of the `Board` function.
+
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-lifting-state-up-part-2-063xpm?file=/App.js)**
 
 After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
 
@@ -472,7 +467,7 @@ player.score = 2;
 ```jsx
 const player = {score: 1, name: 'Jeff'};
 
-const newPlayer = {...player, score: 2);
+const newPlayer = {score: 2, name: player.name};
 // Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
 ```
 
@@ -492,7 +487,7 @@ Detecting changes in immutable objects is significantly easier. If the immutable
 
 The main benefit of immutability is that it helps you build _pure components_ in React. Immutable data can let you easily determine if changes have been made, which helps to determine when a component requires re-rendering.
 
-You can learn more about `shouldComponentUpdate()` and how you can build _pure components_ by reading [Optimizing Performance](/docs/optimizing-performance.html#examples). FIXME
+You can learn more about `shouldComponentUpdate()` and how you can build _pure components_ by reading [Optimizing Performance](https://reactjs.org/docs/optimizing-performance.html#examples).
 
 ### Taking Turns {/*taking-turns*/}
 
@@ -523,11 +518,13 @@ With this change, "X"s and "O"s can take turns. Try it!
 
 Let's also change the "status" text in Board so that it displays which player has the next turn:
 
-```jsx {1}
-const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-
-return (
+```jsx {3}
+function Board() {
   // ...
+  const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+
+  return (
+    // ...
 ```
 
 After applying these changes, you should have this Board component:
@@ -556,7 +553,7 @@ function Board() {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/KmmrBy?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-taking-turns-sfmx5m?file=/App.js)**
 
 ### Declaring a Winner {/*declaring-a-winner*/}
 
@@ -592,7 +589,7 @@ function handleClick(i) {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/LyyXgK?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-declaring-a-winner-om8d1x?file=/App.js)**
 
 Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you're_ probably the real winner here.
 
@@ -644,7 +641,7 @@ function Board({xIsNext, squares, onPlay}) {
     // ...
 ```
 
-Now, we'll set up the state variables for the Game component – note the square brackets around `Array(9).fill(null)` to make the nested array:
+Now, we'll move the state variables from the Board component to the Game component – make sure to remove the lines that call `useState` from the Board component and note the square brackets around `Array(9).fill(null)` to make the nested array:
 
 ```jsx {2-3}
 export default function Game() {
@@ -705,7 +702,7 @@ Instead of the array `push()` method you might be more familiar with, we prefer 
 
 At this point, we've moved the state to live in the Game component, but the UI should be fully working, just as it was before the refactor.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmOqJ?editors=0010)**
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-adding-time-travel-v19223?file=/App.js)**
 
 ### Showing the Past Moves {/*showing-the-past-moves*/}
 
@@ -756,7 +753,7 @@ export default function Game() {
 }
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/EmmGEa?editors=0010)**
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-showing-the-past-moves-rpstlr?file=/App.js)**
 
 As we iterate through `history` array, the `step` variable goes through each element of `history`, and `index` goes through each array index: 0, 1, 2, …. (In most cases, you'd need the actual array elements, but in this case we don't use `step`.)
 
@@ -822,13 +819,13 @@ const moves = history.map((step, move) => {
 });
 ```
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/PmmXRE?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-implementing-time-travel-kddrmu?file=/App.js)**
 
 Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
 
 First, define it as a new state variable, defaulting to `0`:
 
-```jsx {3}
+```jsx {1,2,3}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -876,7 +873,7 @@ export default function Game() {
 
 If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
 
-**[View the full code at this point](https://codepen.io/gaearon/pen/gWWZgR?editors=0010)** FIXME
+**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-implementing-time-travel-part-2-zx6nw1?file=/App.js)**
 
 ### Final Cleanup {/*final-cleanup*/}
 

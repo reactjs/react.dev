@@ -57,7 +57,7 @@ Current members of the React team are listed in alphabetical order below.
 
 ### Samuel Susla {/*samuel-susla*/}
 
-<TeamMember photo="/images/team/sam.jpeg" github="sammy-SC" twitter="SamuelSusla">
+<TeamMember photo="/images/team/sam.jpg" github="sammy-SC" twitter="SamuelSusla">
     Samuel’s interest in programming started with the movie Matrix. He still has Matrix screen saver. Before working on React, he was focused on writing iOS apps. Outside of work, Samuel enjoys playing beach volleyball, squash, badminton and spending time with his family.
 </TeamMember>
 

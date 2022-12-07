@@ -84,6 +84,11 @@
               "path": "/apis/react/Fragment"
             },
             {
+              "title": "<Profiler>",
+              "path": "/apis/react/Profiler",
+              "wip": true
+            },
+            {
               "title": "<StrictMode>",
               "path": "/apis/react/StrictMode",
               "wip": true

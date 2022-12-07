@@ -479,10 +479,10 @@ The information you pass down like this is called _props_. Now the `MyApp` compo
 Finally, change `MyButton` to *read* the props you have passed from its parent component:
 
 ```js {1,3}
-function MyButton({ count, onClick }) {
+function MyButton(props) {
   return (
-    <button onClick={onClick}>
-      Clicked {count} times
+    <button onClick={props.onClick}>
+      Clicked {props.count} times
     </button>
   );
 }
@@ -497,10 +497,10 @@ This is called "lifting state up". By moving state up, we've shared it between c
 ```js
 import { useState } from 'react';
 
-function MyButton({ count, onClick }) {
+function MyButton(props) {
   return (
-    <button onClick={onClick}>
-      Clicked {count} times
+    <button onClick={props.onClick}>
+      Clicked {props.count} times
     </button>
   );
 }

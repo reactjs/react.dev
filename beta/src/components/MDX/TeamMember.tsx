@@ -40,7 +40,7 @@ export function TeamMember({
       </div>
       <div className="pl-0 sm:pl-6 basis-3/5 items-start">
         {children}
-        <div className="flex flex-row">
+        <div className="sm:flex sm:flex-row">
           {twitter && (
             <div className="mr-4">
               <ExternalLink

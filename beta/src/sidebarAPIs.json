@@ -67,13 +67,11 @@
             },
             {
               "title": "useSyncExternalStore",
-              "path": "/apis/react/useSyncExternalStore",
-              "wip": true
+              "path": "/apis/react/useSyncExternalStore"
             },
             {
               "title": "useTransition",
-              "path": "/apis/react/useTransition",
-              "wip": true
+              "path": "/apis/react/useTransition"
             }
           ]
         },

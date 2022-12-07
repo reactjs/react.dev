@@ -96,6 +96,41 @@ React can recover from some hydration errors, but **you must fix them like other
 
 </Pitfall>
 
+---
+
+### Hydrating an entire document {/*hydrating-an-entire-document*/}
+
+Apps fully built with React can render the entire document from the root component, including the [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) tag:
+
+```js {3,10}
+function App() {
+  return (
+    <html>
+      <head>
+        <title>My app</title>
+      </head>
+      <body>
+        <Page />
+      </body>
+    </html>
+  );
+}
+```
+
+To hydrate the entire document, pass the [`document`](https://developer.mozilla.org/en-US/docs/Web/API/Window/document) global as the first argument to `hydrateRoot`:
+
+```js {5}
+import {hydrateRoot} from 'react-dom/client';
+import App from './App.js';
+
+hydrateRoot(
+  document,
+  <App />
+);
+```
+
+---
+
 ### Updating a hydrated root component {/*updating-a-hydrated-root-component*/}
 
 After the root has finished hydrating, you can call [`root.render`](#root-render) to update the root React component. **Unlike with [`createRoot`](/apis/react-dom/client/createRoot), you don't usually need to do this because the initial content was already rendered as HTML.**
@@ -177,6 +212,7 @@ React will attach to the HTML that exists inside the `domNode`, and take over ma
 `hydrateRoot` returns an object with two methods: [`render`](#root-render) and [`unmount`.](#root-unmount)
 
 #### Caveats {/*caveats*/}
+
 * `hydrateRoot()` expects the rendered content to be identical with the server-rendered content. You should treat mismatches as bugs and fix them.
 * In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
 * You'll likely have only one `hydrateRoot` call in your app. If you use a framework, it might do this call for you.

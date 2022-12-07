@@ -168,8 +168,7 @@
           "routes": [
             {
               "title": "renderToNodeStream",
-              "path": "/apis/react-dom/server/renderToNodeStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToNodeStream"
             },
             {
               "title": "renderToPipeableStream",
@@ -183,18 +182,15 @@
             },
             {
               "title": "renderToStaticMarkup",
-              "path": "/apis/react-dom/server/renderToStaticMarkup",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToStaticMarkup"
             },
             {
               "title": "renderToStaticNodeStream",
-              "path": "/apis/react-dom/server/renderToStaticNodeStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToStaticNodeStream"
             },
             {
               "title": "renderToString",
-              "path": "/apis/react-dom/server/renderToString",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToString"
             }
           ]
         },

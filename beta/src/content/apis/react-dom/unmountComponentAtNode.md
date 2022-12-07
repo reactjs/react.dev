@@ -2,11 +2,11 @@
 title: unmountComponentAtNode
 ---
 
-<Wip>
+<Pitfall>
 
-This section is incomplete, please see the old docs for [unmountComponentAtNode.](https://reactjs.org/docs/react-dom.html#unmountcomponentatnode)
+In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/apis/react-dom/client/createRoot#root-unmount).
 
-</Wip>
+</Pitfall>
 
 
 <Intro>
@@ -20,3 +20,84 @@ unmountComponentAtNode(container)
 </Intro>
 
 <InlineToc />
+
+
+## Usage {/*usage*/}
+
+Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep>.
+
+```js [[1, 5, "<App />"], [2, 8, "element"]]
+import {render} from 'react-dom';
+import App from './App.js';
+
+const element = document.getElementById('root');
+render(<App />, element);
+
+// ...
+unmountComponentAtNode(element);
+````
+
+
+### Removing a React app from a DOM element {/*removing-a-react-app-from-a-dom-element*/}
+
+Occasionally, you may want to "sprinkle" React on an existing page, or a page that is not fully written in React. In those cases, you may need to "stop" the React app, by removing all of the UI, state, and listeners from the DOM node it was rendered to.
+
+In this example, clicking "Toggle React App" will render a React app. Clicking it again will destroy it:
+
+<Sandpack>
+
+```html index.html
+<!DOCTYPE html>
+<html>
+  <head><title>My app</title></head>
+  <body>
+    <!-- This is the React App node -->
+    <button id='button'>Toggle React App</button>
+    <div id='root'></div>
+  </body>
+</html>
+```
+
+```js index.js active
+import './styles.css';
+import {render, unmountComponentAtNode} from 'react-dom';
+import App from './App.js';
+
+document.getElementById('button').addEventListener('click', () => {
+  const rootElm = document.getElementById('root');
+  if(!unmountComponentAtNode(rootElm)) {
+    render(<App />, rootElm);    
+  }
+});
+```
+
+```js App.js
+export default function App() {
+  return <h1>Hello, world!</h1>;``
+}
+```
+
+</Sandpack>
+
+## Reference {/*reference*/}
+
+### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
+
+Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
+
+```js
+const domNode = document.getElementById('root');
+render(<App />, domNode);
+
+unmountComponentAtNode(domNode);
+```
+
+[See examples above.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React component from this element.
+
+#### Returns {/*returns*/}
+
+`unmountComponentAtNode` returns `true` if a component was unmounted and `false` otherwise.

@@ -20,6 +20,7 @@ interface TeamMemberProps {
 
 // TODO: good alt text for images/links
 export function TeamMember({
+  name,
   children,
   photo,
   github,
@@ -31,12 +32,12 @@ export function TeamMember({
       <div
         className="hidden sm:block basis-2/5 rounded overflow-hidden relative"
         style={{width: 300, height: 250}}>
-        <Image src={photo} layout="fill" objectFit="cover" alt="TODO" />
+        <Image src={photo} layout="fill" objectFit="cover" alt={name} />
       </div>
       <div
         style={{minHeight: 300}}
         className="block w-full sm:hidden flex-grow basis-2/5 rounded overflow-hidden relative">
-        <Image src={photo} layout="fill" objectFit="cover" alt="TODO" />
+        <Image src={photo} layout="fill" objectFit="cover" alt={name} />
       </div>
       <div className="pl-0 sm:pl-6 basis-3/5 items-start">
         {children}

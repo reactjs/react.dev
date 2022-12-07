@@ -9,6 +9,8 @@ import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
 import {H4} from './Heading';
+import {useRouter} from 'next/router';
+import {useEffect, useRef, useState} from 'react';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
@@ -17,15 +19,29 @@ interface ExpandableExampleProps {
 }
 
 function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
-  const [isExpanded, setIsExpanded] = React.useState(false);
-  const isDeepDive = type === 'DeepDive';
-  const isExample = type === 'Example';
-
   if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
     throw Error(
       `Expandable content ${type} is missing a corresponding title at the beginning`
     );
   }
+  const isDeepDive = type === 'DeepDive';
+  const isExample = type === 'Example';
+  const id = children[0].props.id;
+
+  const queuedExpandRef = useRef<boolean>(true);
+  const {asPath} = useRouter();
+  // init as expanded to prevent flash
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  // asPath would mismatch between server and client, reset here instead of put it into init state
+  useEffect(() => {
+    if (queuedExpandRef.current) {
+      queuedExpandRef.current = false;
+      if (id !== asPath.split('#')[1]) {
+        setIsExpanded(false);
+      }
+    }
+  }, [asPath, id]);
 
   return (
     <details
@@ -67,7 +83,7 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
         </h5>
         <div className="mb-4">
           <H4
-            id={children[0].props.id}
+            id={id}
             className="text-xl font-bold text-primary dark:text-primary-dark">
             {children[0].props.children}
           </H4>

@@ -30,6 +30,22 @@ Andrew got started with web development by making sites with WordPress, and even
 
 Dan got into programming after he accidentally discovered Visual Basic inside Microsoft PowerPoint. He has found his true calling in turning [Sebastian](#sebastian-markbage)'s tweets into long-form blog posts. Dan occasionally wins at Fortnite by hiding in a bush until the game ends.
 
+### Joe Savona {#joe-savona}
+
+![Joe Savona](../images/team/joe.jpg)
+
+[@josephsavona on GitHub](https://github.com/josephsavona) &middot; [@en_JS on Twitter](https://twitter.com/en_JS)
+
+Joe was planning to major in math and philosophy but got into computer science after writing physics simulations in Matlab. Prior to React, he worked on Relay, RSocket.js, and the Skip programming language. While he’s not building some sort of reactive system he enjoys running, studying Japanese, and spending time with his family.
+
+### Josh Story {#josh-story*}
+
+![Josh Story](../images/team/josh.jpg)
+
+[@gnoff on GitHub](https://github.com/gnoff) &middot; [@joshcstory on Twitter](https://twitter.com/joshcstory)
+
+Josh majored in Mathematics and discovered programming while in college. His first professional developer job was to program insurance rate calculations in Microsoft Excel, the paragon of Reactive Programming which must be why he now works on React. In between that time Josh has been an IC, Manager, and Executive at a few startups. outside of work he likes to push his limits with cooking.
+
 ### Lauren Tan {#lauren-tan}
 
 ![Lauren](../images/team/lauren.jpg)
@@ -54,6 +70,22 @@ Luna learned programming because she thought it meant creating video games. Inst
 
 Ricky majored in theoretical math and somehow found himself on the React Native team for a couple years before joining the React team. When he's not programming you can find him snowboarding, biking, climbing, golfing, or closing GitHub issues that do not match the issue template.
 
+### Samuel Susla {#samuel-susla}
+
+![Samuel Susla](../images/team/sam.jpg)
+
+[@sammy-SC on GitHub](https://github.com/sammy-SC) &middot; [@SamuelSusla on Twitter](https://twitter.com/SamuelSusla)
+
+Samuel’s interest in programming started with the movie Matrix. He still has Matrix screen saver. Before working on React, he was focused on writing iOS apps. Outside of work, Samuel enjoys playing beach volleyball, squash, badminton and spending time with his family.
+
+### Sathya Gunasekaran {#sathya-gunasekaran}
+
+![Sathya Gunasekaran](../images/team/sathya.jpg)
+
+[@gsathya on GitHub](https://github.com/gsathya) &middot; [@gsathya on Twitter](https://twitter.com/gsathya)
+
+Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
+
 ### Sebastian Markbåge {#sebastian-markbage}
 
 ![Sebastian](../images/team/sebmarkbage.jpg)
@@ -61,6 +93,22 @@ Ricky majored in theoretical math and somehow found himself on the React Native 
 [@sebmarkbage on GitHub](https://github.com/sebmarkbage) &middot; [@sebmarkbage on Twitter](https://twitter.com/sebmarkbage)
 
 Sebastian majored in psychology. He's usually quiet. Even when he says something, it often doesn't make sense to the rest of us until a few months later. The correct way to pronounce his surname is "mark-boa-geh" but he settled for "mark-beige" out of pragmatism -- and that's how he approaches React.
+
+### Sebastian Silbermann {#sebastian-silbermann}
+
+![Sebastian Silbermann](../images/team/sebsilbermann.jpg)
+
+[@eps1lon on GitHub](https://github.com/eps1lon) &middot; [@sebsilbermann on Twitter](https://twitter.com/sebsilbermann)
+
+Sebastian learned programming to make the browser games he played during class more enjoyable. Eventually this lead to contributing to as much open source code as possible. Outside of coding he's busy making sure people don't confuse him with the other Sebastians and Zilberman of the React community.
+
+### Tianyu Yao {#tianyu-yao}
+
+![Tianyu Yao](../images/team/tianyu.jpg)
+
+[@tyao1 on GitHub](https://github.com/tyao1) &middot; [@tianyu0 on Twitter](https://twitter.com/tianyu0)
+
+Tianyu’s interest in computers started as a kid because he loves video games. So he majored in computer science and still plays childish games like League of Legends. When he is not in front of a computer, he enjoys playing with his two kittens, hiking and kayaking.
 
 ## Acknowledgements {#acknowledgements}
 

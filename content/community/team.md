@@ -34,7 +34,7 @@ Dan got into programming after he accidentally discovered Visual Basic inside Mi
 
 ![Jason Bonta](../images/team/jasonbonta.jpg)
 
-Jason likes having large volumes of Amazon packages delivered to the office so that he can build forts. Despite literally walling himself off from his team at times and not understanding how for-of loops work, he is our manager, and we appreciate him for the unique qualities he brings to his work. 
+Jason likes having large volumes of Amazon packages delivered to the office so that he can build forts. Despite literally walling himself off from his team at times and not understanding how for-of loops work, we appreciate him for the unique qualities he brings to his work. 
 
 ### Joe Savona {#joe-savona}
 

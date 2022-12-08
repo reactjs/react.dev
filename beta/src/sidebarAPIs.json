@@ -148,8 +148,7 @@
             },
             {
               "title": "unmountComponentAtNode",
-              "path": "/apis/react-dom/unmountComponentAtNode",
-              "wip": true
+              "path": "/apis/react-dom/unmountComponentAtNode"
             }
           ]
         },

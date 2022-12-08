@@ -12,7 +12,7 @@ export const PREPARE_MDX_CACHE_BREAKER = 2;
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 export function prepareMDX(rawChildren) {
-  const toc = getTableOfContents(rawChildren);
+  const toc = getTableOfContents(rawChildren, /* depth */ 10);
   const children = wrapChildrenInMaxWidthContainers(rawChildren);
   return {toc, children};
 }
@@ -59,35 +59,9 @@ function wrapChildrenInMaxWidthContainers(children) {
   return finalChildren;
 }
 
-function getTableOfContents(children) {
-  const anchors = Children.toArray(children)
-    .filter((child) => {
-      if (child.type) {
-        return ['h1', 'h2', 'h3', 'Challenges', 'Recap'].includes(child.type);
-      }
-      return false;
-    })
-    .map((child) => {
-      if (child.type === 'Challenges') {
-        return {
-          url: '#challenges',
-          depth: 2,
-          text: 'Challenges',
-        };
-      }
-      if (child.type === 'Recap') {
-        return {
-          url: '#recap',
-          depth: 2,
-          text: 'Recap',
-        };
-      }
-      return {
-        url: '#' + child.props.id,
-        depth: (child.type && parseInt(child.type.replace('h', ''), 0)) ?? 0,
-        text: child.props.children,
-      };
-    });
+function getTableOfContents(children, depth) {
+  const anchors = [];
+  extractHeaders(children, depth, anchors);
   if (anchors.length > 0) {
     anchors.unshift({
       url: '#',
@@ -96,4 +70,48 @@ function getTableOfContents(children) {
     });
   }
   return anchors;
+}
+
+const headerTypes = new Set([
+  'h1',
+  'h2',
+  'h3',
+  'Challenges',
+  'Recap',
+  'TeamMember',
+]);
+function extractHeaders(children, depth, out) {
+  for (const child of Children.toArray(children)) {
+    if (child.type && headerTypes.has(child.type)) {
+      let header;
+      if (child.type === 'Challenges') {
+        header = {
+          url: '#challenges',
+          depth: 2,
+          text: 'Challenges',
+        };
+      } else if (child.type === 'Recap') {
+        header = {
+          url: '#recap',
+          depth: 2,
+          text: 'Recap',
+        };
+      } else if (child.type === 'TeamMember') {
+        header = {
+          url: '#' + child.props.permalink,
+          depth: 3,
+          text: child.props.name,
+        };
+      } else {
+        header = {
+          url: '#' + child.props.id,
+          depth: (child.type && parseInt(child.type.replace('h', ''), 0)) ?? 0,
+          text: child.props.children,
+        };
+      }
+      out.push(header);
+    } else if (child.children && depth > 0) {
+      extractHeaders(child.children, depth - 1, out);
+    }
+  }
 }

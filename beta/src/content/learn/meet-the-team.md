@@ -3,7 +3,7 @@
 
 <Intro>
 
-React development is led by a small dedicated team working full time at Meta. It also receives contributions from people all over the world.
+React development is led by a dedicated team working full time at Meta. It also receives contributions from people all over the world.
 
 </Intro>
 

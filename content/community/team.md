@@ -96,7 +96,7 @@ Samuel’s interest in programming started with the movie Matrix. He still has M
 
 ![Sathya Gunasekaran](../images/team/sathya.jpg)
 
-[@gsathya on GitHub](https://github.com/gsathya) &middot; [@gsathya on Twitter](https://twitter.com/gsathya)
+[@gsathya on GitHub](https://github.com/gsathya) &middot; [@_gsathya on Twitter](https://twitter.com/_gsathya)
 
 Sathya hated the Dragon Book in school but somehow ended up working on compilers all his career. When he's not compiling React components, he's either drinking coffee or eating yet another Dosa.
 

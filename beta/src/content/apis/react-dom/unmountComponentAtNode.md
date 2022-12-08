@@ -2,19 +2,20 @@
 title: unmountComponentAtNode
 ---
 
-<Pitfall>
+<Deprecated>
 
 In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/apis/react-dom/client/createRoot#root-unmount).
 
-</Pitfall>
+This API will be removed in a future major version of React.
 
+</Deprecated>
 
 <Intro>
 
 `unmountComponentAtNode` removes a mounted React component from the DOM.
 
 ```js
-unmountComponentAtNode(container)
+unmountComponentAtNode(domNode)
 ```
 
 </Intro>
@@ -27,15 +28,15 @@ unmountComponentAtNode(container)
 
 Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
 
-```js [[1, 5, "<App />"], [2, 8, "element"]]
-import {render} from 'react-dom';
+```js [[1, 5, "<App />"], [2, 5, "rootNode"], [2, 8, "rootNode"]]
+import {render, unmountComponentAtNode} from 'react-dom';
 import App from './App.js';
 
-const element = document.getElementById('root');
-render(<App />, element);
+const rootNode = document.getElementById('root');
+render(<App />, rootNode);
 
 // ...
-unmountComponentAtNode(element);
+unmountComponentAtNode(rootNode);
 ````
 
 
@@ -43,7 +44,7 @@ unmountComponentAtNode(element);
 
 Occasionally, you may want to "sprinkle" React on an existing page, or a page that is not fully written in React. In those cases, you may need to "stop" the React app, by removing all of the UI, state, and listeners from the DOM node it was rendered to.
 
-In this example, clicking "Toggle React App" will render a React app. Clicking it again will destroy it:
+In this example, clicking "Render React App" will render a React app. Click "Unmount React App" to destroy it:
 
 <Sandpack>
 
@@ -52,8 +53,9 @@ In this example, clicking "Toggle React App" will render a React app. Clicking i
 <html>
   <head><title>My app</title></head>
   <body>
+    <button id='render'>Render React App</button>
+    <button id='unmount'>Unmount React App</button>
     <!-- This is the React App node -->
-    <button id='button'>Toggle React App</button>
     <div id='root'></div>
   </body>
 </html>
@@ -64,17 +66,20 @@ import './styles.css';
 import {render, unmountComponentAtNode} from 'react-dom';
 import App from './App.js';
 
-document.getElementById('button').addEventListener('click', () => {
-  const rootElm = document.getElementById('root');
-  if(!unmountComponentAtNode(rootElm)) {
-    render(<App />, rootElm);    
-  }
+const domNode = document.getElementById('root');
+
+document.getElementById('render').addEventListener('click', () => {
+  render(<App />, domNode);
+});
+
+document.getElementById('unmount').addEventListener('click', () => {
+  unmountComponentAtNode(domNode);
 });
 ```
 
 ```js App.js
 export default function App() {
-  return <h1>Hello, world!</h1>;``
+  return <h1>Hello, world!</h1>;
 }
 ```
 
@@ -85,6 +90,14 @@ export default function App() {
 ## Reference {/*reference*/}
 
 ### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
+
+<Deprecated>
+
+In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/apis/react-dom/client/createRoot#root-unmount).
+
+This API will be removed in a future major version of React.
+
+</Deprecated>
 
 Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
 

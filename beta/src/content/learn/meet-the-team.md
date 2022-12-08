@@ -95,4 +95,4 @@ Xuan met with programming in childhood to make games in Flash. He did digital me
 
 ## Past contributors {/*past-contributors*/}
 
-You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/community/acknowledgements) page.
+You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/learn/acknowledgements) page.

@@ -76,7 +76,7 @@ export function TeamMember({
               <div className="mr-4">
                 <ExternalLink
                   aria-label="GitHub Profile"
-                  href={`https://twitter.com/${github}`}
+                  href={`https://github.com/${github}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
                   <IconGitHub className="pr-2" /> {github}
                 </ExternalLink>

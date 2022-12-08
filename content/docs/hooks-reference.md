@@ -57,7 +57,7 @@ During subsequent re-renders, the first value returned by `useState` will always
 
 #### Functional updates {#functional-updates}
 
-If the new state is computed using the previous state, you can pass a function to `setState`. The function will receive the previous value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
+If the new state is computed using the current state, you can pass a function to `setState`. The function will receive the current value, and return an updated value. Here's an example of a counter component that uses both forms of `setState`:
 
 ```js
 function Counter({initialCount}) {
@@ -66,16 +66,16 @@ function Counter({initialCount}) {
     <>
       Count: {count}
       <button onClick={() => setCount(initialCount)}>Reset</button>
-      <button onClick={() => setCount(prevCount => prevCount - 1)}>-</button>
-      <button onClick={() => setCount(prevCount => prevCount + 1)}>+</button>
+      <button onClick={() => setCount(currentCount => currentCount - 1)}>-</button>
+      <button onClick={() => setCount(currentCount => currentCount + 1)}>+</button>
     </>
   );
 }
 ```
 
-The "+" and "-" buttons use the functional form, because the updated value is based on the previous value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
+The "+" and "-" buttons use the functional form, because the updated value is based on the current value. But the "Reset" button uses the normal form, because it always sets the count back to the initial value.
 
-If your update function returns the exact same value as the current state, the subsequent rerender will be skipped completely.
+If your update function returns the exact same value as the currently rendered state, the subsequent rerender will be skipped completely.
 
 > Note
 >

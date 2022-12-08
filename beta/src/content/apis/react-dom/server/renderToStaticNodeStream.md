@@ -7,7 +7,7 @@ title: renderToStaticNodeStream
 `renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToStaticNodeStream(<Page />)
+const stream = renderToStaticNodeStream(reactNode)
 ```
 
 </Intro>
@@ -44,7 +44,7 @@ Interactive apps should use [`renderToPipeableStream`](/apis/react-dom/server/re
 
 ## Reference {/*reference*/}
 
-### `renderToStaticNodeStream(element)` {/*rendertostaticnodestream*/}
+### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
 
 On the server, call `renderToStaticNodeStream` to get a [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams).
 
@@ -57,7 +57,7 @@ The stream will produce non-interactive HTML output of your React components.
 
 #### Parameters {/*parameters*/}
 
-* `element`: A React element you want to render to HTML. For example, a JSX element like `<Page />`.
+* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<Page />`.
 
 #### Returns {/*returns*/}
 

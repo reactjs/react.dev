@@ -7,7 +7,7 @@ title: renderToStaticMarkup
 `renderToStaticMarkup` renders a non-interactive React tree to an HTML string.
 
 ```js
-const html = renderToStaticMarkup(<Page />)
+const html = renderToStaticMarkup(reactNode)
 ```
 
 </Intro>
@@ -44,7 +44,7 @@ Interactive apps should use [`renderToString`](/apis/react-dom/server/renderToSt
 
 ## Reference {/*reference*/}
 
-### `renderToStaticMarkup(node)` {/*rendertostaticmarkup*/}
+### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
 
 On the server, call `renderToStaticMarkup` to render your app to HTML.
 
@@ -56,7 +56,7 @@ It will produce non-interactive HTML output of your React components.
 
 #### Parameters {/*parameters*/}
 
-* `node`: A React node you want to render to HTML. For example, a JSX node like `<Page />`.
+* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<Page />`.
 
 #### Returns {/*returns*/}
 

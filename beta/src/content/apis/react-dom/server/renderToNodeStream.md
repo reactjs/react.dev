@@ -13,7 +13,7 @@ This API will be removed in a future major version of React. Use [`renderToPipea
 `renderToNodeStream` renders a React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
-const stream = renderToNodeStream(<App />)
+const stream = renderToNodeStream(reactNode)
 ```
 
 </Intro>
@@ -48,7 +48,7 @@ The stream will produce the initial non-interactive HTML output of your React co
 
 ## Reference {/*reference*/}
 
-### `renderToNodeStream(element)` {/*rendertonodestream*/}
+### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
 
 <Deprecated>
 
@@ -67,7 +67,7 @@ On the client, call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to make 
 
 #### Parameters {/*parameters*/}
 
-* `element`: A React element you want to render to HTML. For example, a JSX element like `<App />`.
+* `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<App />`.
 
 #### Returns {/*returns*/}
 

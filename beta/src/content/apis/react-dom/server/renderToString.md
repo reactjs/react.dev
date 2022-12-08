@@ -13,7 +13,7 @@ title: renderToString
 `renderToString` renders a React tree to an HTML string.
 
 ```js
-const html = renderToString(<App />)
+const html = renderToString(reactNode)
 ```
 
 </Intro>
@@ -95,7 +95,7 @@ The [`flushSync`](/apis/react-dom/flushSync) call is necessary so that the DOM i
 
 ## Reference {/*reference*/}
 
-### `renderToString(node)` {/*rendertostring*/}
+### `renderToString(reactNode)` {/*rendertostring*/}
 
 On the server, call `renderToString` to render your app to HTML.
 
@@ -107,7 +107,7 @@ On the client, call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to make 
 
 #### Parameters {/*parameters*/}
 
-* `node`: A React node you want to render to HTML. For example, a JSX node like `<App />`.
+* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<App />`.
 
 #### Returns {/*returns*/}
 

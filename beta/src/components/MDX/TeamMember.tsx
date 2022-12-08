@@ -9,6 +9,7 @@ import {IconGitHub} from '../Icon/IconGitHub';
 import {ExternalLink} from '../ExternalLink';
 import {IconNewPage} from 'components/Icon/IconNewPage';
 import {H3} from './Heading';
+import {IconLink} from 'components/Icon/IconLink';
 
 interface TeamMemberProps {
   name: string;
@@ -66,7 +67,7 @@ export function TeamMember({
                   aria-label="React on Twitter"
                   href={`https://twitter.com/${twitter}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                  <IconTwitter />
+                  <IconTwitter className="pr-2" />
                   {twitter}
                 </ExternalLink>
               </div>
@@ -77,7 +78,7 @@ export function TeamMember({
                   aria-label="GitHub Profile"
                   href={`https://twitter.com/${github}`}
                   className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                  <IconGitHub /> {github}
+                  <IconGitHub className="pr-2" /> {github}
                 </ExternalLink>
               </div>
             )}
@@ -86,7 +87,7 @@ export function TeamMember({
                 aria-label="Personal Site"
                 href={`https://${personal}`}
                 className="hover:text-primary dark:text-primary-dark flex flex-row items-center">
-                {personal}
+                <IconLink className="pr-2" /> {personal}
               </ExternalLink>
             )}
           </div>

@@ -10,7 +10,7 @@ This API will be removed in a future major version of React. Use [`renderToPipea
 
 <Intro>
 
-`renderToNodeStream` renders a React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToNodeStream` renders a React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToNodeStream(reactNode)
@@ -24,7 +24,7 @@ const stream = renderToNodeStream(reactNode)
 
 ## Usage {/*usage*/}
 
-### Rendering a React tree as HTML to a Node.js Readable stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
+### Rendering a React tree as HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
 
 <Deprecated>
 
@@ -32,9 +32,11 @@ This API will be removed in a future major version of React. Use [`renderToPipea
 
 </Deprecated>
 
-Call `renderToNodeStream` to get a [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+Call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
 
-```js {3-4}
+```js {5-6}
+import { renderToNodeStream } from 'react-dom/server';
+
 // The route handler syntax depends on your backend framework
 app.use('/', (request, response) => {
   const stream = renderToNodeStream(<App />);
@@ -56,7 +58,7 @@ This API will be removed in a future major version of React. Use [`renderToPipea
 
 </Deprecated>
 
-On the server, call `renderToNodeStream` to get a [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
+On the server, call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
 
 ```js
 const stream = renderToNodeStream(<App />);
@@ -71,7 +73,7 @@ On the client, call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to make 
 
 #### Returns {/*returns*/}
 
-A [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string.
+A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string.
 
 #### Caveats {/*caveats*/}
 

@@ -176,8 +176,7 @@
             },
             {
               "title": "renderToPipeableStream",
-              "path": "/apis/react-dom/server/renderToPipeableStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToPipeableStream"
             },
             {
               "title": "renderToReadableStream",

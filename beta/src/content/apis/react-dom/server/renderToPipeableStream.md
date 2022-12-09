@@ -379,7 +379,7 @@ If retrying rendering `Posts` on the client succeeds, the loading fallback from 
 
 Streaming introduces a tradeoff. You want to start streaming the page as early as possible so that the user can see the content sooner. However, once you start streaming, you can no longer set the response status code.
 
-By [diving your app](#specifying-what-goes-into-the-shell) into the shell (above all `<Suspense>` boundaries) and the rest of the content, you've already solved a part of this problem. If the shell errors, you'll get the `onShellError` callback which lets you set the error status code. Otherwise, you know that the app may recover on the client, so the "OK" status code is reasonable.
+By [dividing your app](#specifying-what-goes-into-the-shell) into the shell (above all `<Suspense>` boundaries) and the rest of the content, you've already solved a part of this problem. If the shell errors, you'll get the `onShellError` callback which lets you set the error status code. Otherwise, you know that the app may recover on the client, so the "OK" status code is reasonable.
 
 ```js {4}
 const { pipe } = renderToPipeableStream(<App />, {

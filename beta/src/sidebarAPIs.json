@@ -123,8 +123,7 @@
           "routes": [
             {
               "title": "createPortal",
-              "path": "/apis/react-dom/createPortal",
-              "wip": true
+              "path": "/apis/react-dom/createPortal"
             },
             {
               "title": "flushSync",

@@ -21,30 +21,30 @@ return createPortal(children, container)
 
 ### Rendering to a different part of the DOM {/*rendering-to-a-different-part-of-the-dom*/}
 
-Portals let you render part of your React tree into a different place in the DOM from where the rest of the tree is located. This lets a component escape from whatever containers it may be in — for example, a component can display a modal dialog that appears above and outside of the rest of the page.
+Portals let you render part of your React tree into a different place in the DOM from where the rest of the tree is located. This lets a component escape from whatever containers it may be in — for example, a component can display a modal dialog or tooltip that appears above and outside of the rest of the page.
 
-To create a portal, you return the result of `createPortal` from your component when it renders. You pass in the elements you want to render as children as well as a DOM node where you want them to go.
+To create a portal, you return the result of `createPortal` from your component when it renders. You pass in the <CodeStep step={1}>elements you want to render as children</CodeStep> as well as a <CodeStep step={2}>DOM node where you want them to go</CodeStep>.
 
-```js
+```js [[1, 5, "<>Some child elements</>"], [2, 6, "someExistingDOMNode"]]
 import { createPortal } from 'react-dom';
 
 function MyComponent({}) {
   return createPortal(
-    <>
-      Some children elements
-    </>,
+    <>Some child elements</>,
     someExistingDOMNode,
   );
 }
 ```
 
-React will now put the rendered DOM nodes corresponding to the component's children into the DOM node that you specified instead of the part of the DOM where the component's parents are rendered. The DOM node can be anywhere in the DOM, including outside of where the React root is rendered.
+React will put the rendered DOM nodes corresponding to the component's children into the DOM node that you specified instead of the part of the DOM where the component's parents are rendered. The DOM node can be anywhere in the DOM, including outside of where the React root is rendered.
 
-All of the components' behavior is the same as if there were no portal: for example, context providers from the parent are still available in the child, and events still bubble up from children to the parent.
+All of the components' behavior is the same as if there were no portal: for example, context providers from the parent are still available in the child, and events still bubble up from children to parents.
 
 <Pitfall>
 It's important to make sure that your app is accessible when using portals. For instance, you may need to manage keyboard focus so that the user can move the focus in and out of the portal in a natural way. Follow the [WAI-ARIA Modal Authoring Practices](https://www.w3.org/WAI/ARIA/apg/#dialog_modal) when creating modals.
 </Pitfall>
+
+---
 
 ### Creating a modal {/*creating-a-modal*/}
 
@@ -55,69 +55,69 @@ In this example, the two containers have styles that disrupt the modal dialog, b
 <Sandpack>
 
 ```js App.js active
-import { DialogDemoWithoutPortals } from './DialogDemoWithoutPortals';
-import { DialogDemoWithPortals } from './DialogDemoWithPortals';
+import { ModalDemoWithoutPortals } from './ModalDemoWithoutPortals';
+import { ModalDemoWithPortals } from './ModalDemoWithPortals';
 
 export default function App() {
   return (
     <>
       <div className="clipping-container">
-        <DialogDemoWithoutPortals  />
+        <ModalDemoWithoutPortals  />
       </div>
       <div className="clipping-container">
-        <DialogDemoWithPortals />
+        <ModalDemoWithPortals />
       </div>
     </>
   );
 }
 
-function DialogToggle({children}) {
+function ModalToggle({children}) {
 
 }
 
 ```
 
-```js DialogDemoWithoutPortals.js
+```js ModalDemoWithoutPortals.js
 import { useState } from 'react';
-import { Dialog } from './Dialog';
+import { Modal } from './Modal';
 
-export function DialogDemoWithoutPortals() {
-  const [dialogIsVisible, setDialogIsVisible] = useState(false);
+export function ModalDemoWithoutPortals() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   return (
     <>
-      <button onClick={() => setDialogIsVisible(true)}>
-        Show Dialog Without Portal
+      <button onClick={() => setModalIsVisible(true)}>
+        Show Modal Without Portal
       </button>
-      {dialogIsVisible && (
-        <Dialog onClose={() => setDialogIsVisible(false)} />
+      {modalIsVisible && (
+        <Modal onClose={() => setModalIsVisible(false)} />
       )}
     </>
   );
 }
 ```
 
-```js DialogDemoWithPortals.js
+```js ModalDemoWithPortals.js
 import { useState, useLayoutEffect, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
-import { Dialog } from './Dialog';
+import { Modal } from './Modal';
 
-export function DialogDemoWithPortals() {
-  const [dialogIsVisible, setDialogIsVisible] = useState(false);
+export function ModalDemoWithPortals() {
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   return (
     <>
-      <button onClick={() => setDialogIsVisible(true)}>
-        Show Dialog With Portal
+      <button onClick={() => setModalIsVisible(true)}>
+        Show Modal With Portal
       </button>
-      {dialogIsVisible && (
-        <DialogWithPortal onClose={() => setDialogIsVisible(false)} />
+      {modalIsVisible && (
+        <ModalWithPortal onClose={() => setModalIsVisible(false)} />
       )}
     </>
   );
 }
 
-function DialogWithPortal({onClose}) {
+function ModalWithPortal({onClose}) {
   const [destination, setDestination] = useState(null);
 
   useLayoutEffect(() => {
@@ -136,31 +136,25 @@ function DialogWithPortal({onClose}) {
   }, [destination])
 
   if (destination) {
-    return createPortal(<Dialog onClose={onClose} />, destination);
+    return createPortal(<Modal onClose={onClose} />, destination);
   } else {
     return null;
   }
 }
 ```
 
-```js Dialog.js
-export  function Dialog({onClose}) {
+```js Modal.js
+export  function Modal({onClose}) {
   return (
     <div className="modal">
       <div>I'm a modal dialog</div>
-      <button onClick={onClose} className="close">Close</button>
+      <button onClick={onClose}>Close</button>
     </div>
   );
 }
 ```
 
 ```css styles.css
-.parent {
-  /* position: relative; */
-  /* width: 300px; */
-  /* height: 300px; */
-}
-
 .clipping-container {
   position: relative;
   border: 1px solid #aaa;
@@ -185,101 +179,123 @@ export  function Dialog({onClose}) {
   left: calc(50% - 125px);
   bottom: 70px;
 }
-
-.close {
-  /* margin: 12px; */
-}
 ```
 
 </Sandpack>
 
-### Creating a tooltip {/*creating-a-tooltip*/}
+In this example, the dialog contents are rendered into a DOM element that is appended to the document body whenever the modal appears and removed when the modal is dismissed.
 
-You can use a portal to create a tooltip that hovers above the rest of the page, even if the anchor for the tooltip is inside a container with `overflow: hidden` or the like.
+---
+
+### Rendering into server-rendered areas {/*rendering-into-server-rendered-areas*/}
+
+Portals can be useful if your React root is only part of a static or server-rendered page. You can create areas of interactivity within static areas such as sidebars. Compared with having multiple separate React roots, this maintains one-way data flow and allows React to synchronize, batch, and prioritize updates across the whole page.
 
 <Sandpack>
 
-```js App.js active
-import { useState, useEffect } from 'react';
-import {createPortal} from 'react-dom';
-
-export default function TooltipApp() {
-  return (
-    <div className="parent">
-      <div className="clipping-container">
-        <TooltipWithoutPortal>
-          Hover for tooltip (without portal)
-        </TooltipWithoutPortal>
+```html index.html
+<!DOCTYPE html>
+<html>
+  <head><title>My app</title></head>
+  <body>
+    <h1>Welcome to my server-rendered app</h1>
+    <div class="parent">
+      <div class="sidebar">
+        This part is static
+        <div id="sidebar-portal"></div>
       </div>
-
-{/*      <div className="clipping-container">
-        <TooltipWithPortal>
-          Hover for tooltip (without portal)
-        </TooltipWithPortal>
-      </div>*/}
+      <div id="root"></div>
     </div>
-  );
-}
+  </body>
+</html>
+```
 
-function TooltipWithoutPortal({children}) {
-  const [tooltipIsVisible, setTooltipIsVisible] = useState(false);
+```js
+import { useRef } from 'react';
+import { createPortal } from 'react-dom';
 
-  function showTooltip() {
-    setTooltipIsVisible(true);
-  }
-
+export default function App() {
   return (
     <>
-      <div onClick={showTooltip}>
-        {children}
-      </div>
-      {tooltipIsVisible && (
-        <div>
-          Tooltip contents
-        </div>
-      )}
+      This part is the React root
+      <SidebarPortal>
+        This part is also rendered by React
+      </SidebarPortal>
     </>
   );
 }
 
-function TooltipWithPortal({children}) {
+function SidebarPortal({children}) {
+  const destinationElement = useRef(null);
+  function getDestinationElement() {
+    if (destinationElement.current !== null) {
+      return destinationElement.current;
+    }
+    const element = document.getElementById('sidebar-portal');
+    destinationElement.current = element;
+    return element;
+  }
+  return createPortal(children, getDestinationElement());
+}
+```
 
+```js index.js active
+import { createRoot } from 'react-dom/client';
+import App from './App.js';
+import './styles.css';
+
+const root1 = createRoot(document.getElementById('root'));
+root1.render(<App />);
+```
+
+```css
+.parent {
+  display: flex;
+  flex-direction: row;
+}
+
+#root {
+  margin-top: 12px;
+}
+
+.sidebar {
+  padding:  12px;
+  background-color: #eee;
+  width: 200px;
+  height: 500px;
+  margin-right: 12px;
+}
+
+#sidebar-portal {
+  margin-top: 18px;
+  display: block;
+  background-color: white;
 }
 ```
 
 </Sandpack>
-
 
 ---
 
 ## Reference {/*reference*/}
 
-### `flushSync(callback)` {/*create-root*/}
+### `createPortal(children, domNode)` {/*create-portal*/}
 
-Call `flushSync` to force React to flush any pending work and update the DOM synchronously.
+Return `createPortal` from a React component to cause its contents to be rendered into another part of the DOM. The shape of the React tree is unaffected: events will still bubble from the children to their parents, context providers are still passed from parents to children, and so on.
 
 ```js
-flushSync(() => {
-  setState(true);
-});
+return createPortal(
+  <SomeElement />,
+  someExistingDOMNode,
+);
 ```
-
-Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
-
-[See examples above.](#usage)
 
 #### Parameters {/*parameters*/}
 
+* `children`: Anything that can be rendered with React, such as a component element (e.g. `<SomeComponent/>`), host element (e.g. `<div/>`), fragment (`<></>`), string, or array of these.
 
-* `callback`: A function. React will immediately call this callback and flush any updates it contains synchronously. It may also flush any pending updates, or Effects, or updates inside of Effects. If an update suspends as a result of this `flushSync` call, the fallbacks may be re-shown.
+* `domNode`: Some DOM node, such as those returned by `document.getElementById()`. The node must already exist.
 
 #### Returns {/*returns*/}
 
-`flushSync` returns `undefined`.
-
-#### Caveats {/*caveats*/}
-
-* `flushSync` can significantly hurt performance. Use sparingly.
-* `flushSync` may force pending Suspense boundaries to show their `fallback` state.
-* `flushSync` may run pending effects and synchronously apply any updates they contain before returning.
-* `flushSync` may flush updates outside the callback when necessary to flush the updates inside the callback. For example, if there are pending updates from a click, React may flush those before flushing the updates inside the callback.
+`createPortal` returns a special element that can be returned from a React component. That component's children will be the children passed to `createPortal`, and they will be placed within the `domNode` passed to `createPortal` instead of inside the parent component.

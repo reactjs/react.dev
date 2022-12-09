@@ -510,6 +510,8 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
+A regular visitor will get a stream of progressively loaded content. A crawler will receive the final HTML output after all the data loads. However, this also means that the crawler will have to wait for *all* data, some of which might be slow to load or error. Depending on your app, you could choose to send the shell to the crawlers too.
+
 ---
 
 ### Aborting server rendering {/*aborting-server-rendering*/}

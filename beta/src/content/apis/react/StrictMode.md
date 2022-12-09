@@ -5,7 +5,7 @@ title: <StrictMode>
 
 <Intro>
 
-`StrictMode` is a component used to eagerly identify production issues in development.
+`StrictMode` is a component used to eagerly identify production bugs in development.
 
 
 ```js
@@ -73,12 +73,176 @@ In this example, Strict Mode checks will not be run against the `Header` and `Fo
 
 ### Fixing bugs discovered by double rendering {/*fixing-bugs-discovered-by-double-rendering*/}
 
-TODO
+React is designed around the concept of [keeping components pure](/learn/keeping-components-pure). React assumes that every component you write is a pure function. This means that React components you write must always return the same JSX given the same inputs.
 
+Making sure every component is pure can be difficult. Strict Mode can help find these bugs in development by automatically double invoking these functions:
+
+- Function component bodies
+- State updater functions (the first argument to setState)
+- Functions passed to useState, useMemo, or useReducer 
+- Class component `constructor`, `render`, and `shouldComponentUpdate` methods
+- Class component `static getDerivedStateFromProps` method
+
+For example, the component below contains a bug which causes the component to render too many "Create Story" cards. This also causes a console error that two children have the same key "create":
+
+<Sandpack>
+
+```js StoryTray.js active
+export default function StoryTray({ stories }) {
+  stories.push({
+    id: 'create',
+    label: 'Create Story'
+  });
+
+  return (
+    <ul>
+      {stories.map(story => (
+        <li key={story.id}>
+          {story.label}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+```js App.js hidden
+import { useState, useEffect } from 'react';
+import StoryTray from './StoryTray.js';
+
+let initialStories = [
+  {id: 0, label: "Ankit's Story" },
+  {id: 1, label: "Taylor's Story" },
+];
+
+export default function App() {
+  let [stories, setStories] = useState([...initialStories])
+  let time = '1'
+
+  // HACK: Prevent the memory from growing forever while you read docs.
+  // We're breaking our own rules here.
+  if (stories.length > 100) {
+    stories.length = 100;
+  }
+
+  return (
+    <div
+      style={{
+        width: '100%',
+        height: '100%',
+        textAlign: 'center',
+      }}
+    >
+      <h2>It is {time} now.</h2>
+      <StoryTray stories={stories} />
+    </div>
+  );
+}
+
+function useTime() {
+  const [time, setTime] = useState(() => new Date());
+  useEffect(() => {
+    const id = setInterval(() => {
+      setTime(new Date());
+    }, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return time;
+}
+```
+
+```css
+ul {
+  margin: 0;
+  list-style-type: none;
+}
+
+li {
+  border: 1px solid #aaa;
+  border-radius: 6px;
+  float: left;
+  margin: 5px;
+  margin-bottom: 20px;
+  padding: 5px;
+  width: 70px;
+  height: 100px;
+}
+```
+
+```js sandbox.config.json hidden
+{
+  "hardReloadOnChange": true
+}
+```
+
+</Sandpack>
+
+<Note>
+
+In React 17, React automatically modifies the console methods like `console.log()` to silence the logs in the second call to lifecycle functions. However, it may cause undesired behavior in certain cases where [a workaround can be used](https://github.com/facebook/react/issues/20090#issuecomment-715927125).
+
+Starting from React 18, React does not suppress any logs. However, if you have React DevTools installed, the logs from the second call will appear slightly dimmed. React DevTools also offers a setting (off by default) to suppress them completely.
+
+</Note>
+
+This bug happens because the `StoryTray` function is not pure. By calling `push` on the received stories array (a prop!), it is mutating an object that was created before `StoryTray` started rendering.
+
+If we shipped this bug to production, every update in the app would cause more "Create Story" cards to be created and users would report the bug. Strict Mode helps us find this bug in development by automatically re-rendering the component so we can see that multiple "Create Story" cards are created before we ship the change.
+
+The simplest fix is to not touch the array at all, and render “Create Story” separately.
+
+See the challenges section of [Keeping Components Pure](/learn/keeping-components-pure) for a full solution.
 
 ### Fixing bugs discovered by re-running effects {/*fixing-bugs-discovered-by-re-running-effects*/}
 
-TODO
+Strict Mode can also help find bugs in effects.
+
+For example, the component below contains a bug that connects to a chat room multiple times without disconnecting. This Effect only runs on mount, so you might expect "✅ Connecting..." to be printed once in the console. However, if you check the console, "✅ Connecting..." gets printed twice.
+
+<Sandpack>
+
+```js
+import { useEffect } from 'react';
+import { createConnection } from './chat.js';
+
+export default function ChatRoom() {
+  useEffect(() => {
+    const connection = createConnection();
+    connection.connect();
+  }, []);
+  return <h1>Welcome to the chat!</h1>;
+}
+```
+
+```js chat.js
+export function createConnection() {
+  // A real implementation would actually connect to the server
+  return {
+    connect() {
+      console.log('✅ Connecting...');
+    },
+    disconnect() {
+      console.log('❌ Disconnected.');
+    }
+  };
+}
+```
+
+```css
+input { display: block; margin-bottom: 20px; }
+```
+
+</Sandpack>
+
+It's printed twice because Strict Mode automatically unmounts and remounts components in development, but this simulation is exposing a real bug that users will hit in production.
+
+To understand the production bug, imagine the `ChatRoom` component is a part of a larger app with many different screens. The user starts their journey on the `ChatRoom` page. The component mounts and calls `connection.connect()`. Then imagine the user navigates to another screen—for example, to the Settings page. The `ChatRoom` component unmounts. Finally, the user clicks Back and `ChatRoom` mounts again. This would set up a second connection—but the first connection was never destroyed!
+
+If we shipped this bug to production, then as the user navigates across the app, the connections would keep piling up and we would get reports for real production bugs. Strict Mode helps us find is bug early, before users see them, by automatically simulating the production user behavior of navigating away from a component and back.
+
+To fix the issue, return a cleanup function from your Effect.
+
+See the [Adding Cleanup](learn/synchronizing-with-effects#step-3-add-cleanup-if-needed) section of Synchronizing with Effects for a full solution.
 
 ### Fixing bugs with the legacy string ref API {/*fixing-bugs-with-the-legacy-string-ref-api*/}
 

@@ -28,7 +28,9 @@ const html = renderToString(reactNode)
 
 Call `renderToString` to render your app to an HTML string which you can send with your server response:
 
-```js {3-4}
+```js {5-6}
+import { renderToString } from 'react-dom/server';
+
 // The route handler syntax depends on your backend framework
 app.use('/', (request, response) => {
   const html = renderToString(<App />);

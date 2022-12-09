@@ -4,7 +4,7 @@ title: renderToStaticNodeStream
 
 <Intro>
 
-`renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable stream.](https://nodejs.org/api/stream.html#readable-streams)
+`renderToStaticNodeStream` renders a non-interactive React tree to a [Node.js Readable Stream.](https://nodejs.org/api/stream.html#readable-streams)
 
 ```js
 const stream = renderToStaticNodeStream(reactNode)
@@ -18,11 +18,13 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ## Usage {/*usage*/}
 
-### Rendering a React tree as static HTML to a Node.js Readable stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
+### Rendering a React tree as static HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
 
-Call `renderToStaticNodeStream` to get a [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+Call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
 
-```js {3-4}
+```js {5-6}
+import { renderToStaticNodeStream } from 'react-dom/server';
+
 // The route handler syntax depends on your backend framework
 app.use('/', (request, response) => {
   const stream = renderToStaticNodeStream(<Page />);
@@ -46,7 +48,7 @@ Interactive apps should use [`renderToPipeableStream`](/apis/react-dom/server/re
 
 ### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
 
-On the server, call `renderToStaticNodeStream` to get a [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams).
+On the server, call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams).
 
 ```js
 const stream = renderToStaticNodeStream(<Page />);
@@ -61,7 +63,7 @@ The stream will produce non-interactive HTML output of your React components.
 
 #### Returns {/*returns*/}
 
-A [Node.js Readable stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string. The resulting HTML can't be hydrated on the client.
+A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) that outputs an HTML string. The resulting HTML can't be hydrated on the client.
 
 #### Caveats {/*caveats*/}
 

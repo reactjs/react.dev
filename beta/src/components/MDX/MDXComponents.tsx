@@ -29,6 +29,7 @@ import {IconNavArrow} from '../Icon/IconNavArrow';
 import ButtonLink from 'components/ButtonLink';
 import {TocContext} from './TocContext';
 import type {Toc, TocItem} from './TocContext';
+import {TeamMember} from './TeamMember';
 
 function CodeStep({children, step}: {children: any; step: number}) {
   return (
@@ -398,6 +399,7 @@ export const MDXComponents = {
   Recap,
   Recipes,
   Sandpack,
+  TeamMember,
   TerminalBlock,
   YouWillLearn,
   YouWillLearnCard,

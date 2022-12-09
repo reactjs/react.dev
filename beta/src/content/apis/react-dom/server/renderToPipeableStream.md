@@ -467,6 +467,8 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
+Keep in mind that once you emit the shell and start streaming, you can't change the status code.
+
 ---
 
 ### Waiting for all content to load for crawlers and static generation {/*waiting-for-all-content-to-load-for-crawlers-and-static-generation*/}

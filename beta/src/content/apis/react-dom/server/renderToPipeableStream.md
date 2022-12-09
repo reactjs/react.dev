@@ -30,7 +30,7 @@ app.use('/', (request, response) => {
   const { pipe } = renderToPipeableStream(<App />, {
     bootstrapScripts: ['/main.js'],
     onShellReady() {
-      pipe(res);
+      pipe(response);
     }
   });
 });
@@ -110,7 +110,7 @@ app.use('/', (request, response) => {
   const { pipe } = renderToPipeableStream(<App assetMap={assetMap} />, {
     bootstrapScripts: [assetMap['main.js']],
     onShellReady() {
-      pipe(res);
+      pipe(response);
     }
   });
 });
@@ -131,7 +131,7 @@ app.use('/', (request, response) => {
     bootstrapScriptContents: `window.assetMap = ${JSON.stringify(assetMap)};`,
     bootstrapScripts: [assetMap['main.js']],
     onShellReady() {
-      pipe(res);
+      pipe(response);
     }
   });
 });
@@ -276,7 +276,7 @@ The `onShellReady` callback fires when the entire shell has been rendered. Usual
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    pipe(res);
+    pipe(response);
   }
 });
 ```
@@ -293,7 +293,7 @@ By default, all errors on the server are logged to console. You can override thi
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    pipe(res);
+    pipe(response);
   },
   onError(error) {
     console.error(error);
@@ -329,11 +329,11 @@ If a rendering error occurs while rendering those components, React won't have a
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    pipe(res);
+    pipe(response);
   },
   onShellError(error) {
-   res.statusCode = 500;
-   res.send('<h1>Something went wrong</h1>'); 
+    response.statusCode = 500;
+    response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
     console.error(error);
@@ -385,12 +385,12 @@ By [diving your app](#specifying-what-goes-into-the-shell) into the shell (above
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    res.statusCode = 200;
-    pipe(res);
+    response.statusCode = 200;
+    pipe(response);
   },
   onShellError(error) {
-   res.statusCode = 500;
-   res.send('<h1>Something went wrong</h1>'); 
+    response.statusCode = 500;
+    response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
     console.error(error);
@@ -409,12 +409,12 @@ let didError = false;
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    res.statusCode = didError ? 500 : 200;
-    pipe(res);
+    response.statusCode = didError ? 500 : 200;
+    pipe(response);
   },
   onShellError(error) {
-   res.statusCode = 500;
-   res.send('<h1>Something went wrong</h1>'); 
+    response.statusCode = 500;
+    response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
     didError = true;
@@ -451,12 +451,12 @@ function getStatusCode() {
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    res.statusCode = getStatusCode();
-    pipe(res);
+    response.statusCode = getStatusCode();
+    pipe(response);
   },
   onShellError(error) {
-   res.statusCode = getStatusCode();
-   res.send('<h1>Something went wrong</h1>'); 
+   response.statusCode = getStatusCode();
+   response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
     didError = true;
@@ -486,18 +486,18 @@ const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
     if (!isCrawler) {
-      res.statusCode = didError ? 500 : 200;
-      pipe(res);
+      response.statusCode = didError ? 500 : 200;
+      pipe(response);
     }
   },
   onShellError(error) {
-   res.statusCode = 500;
-   res.send('<h1>Something went wrong</h1>'); 
+    response.statusCode = 500;
+    response.send('<h1>Something went wrong</h1>'); 
   },
   onAllReady() {
     if (isCrawler) {
-      res.statusCode = didError ? 500 : 200;
-      pipe(res);      
+      response.statusCode = didError ? 500 : 200;
+      pipe(response);      
     }
   },
   onError(error) {
@@ -540,7 +540,7 @@ import { renderToPipeableStream } from 'react-dom/server';
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
-    pipe(res);
+    pipe(response);
   }
 });
 ```

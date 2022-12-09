@@ -323,7 +323,7 @@ function ProfilePage() {
 }
 ```
 
-If a rendering error occurs while rendering those components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send alternative HTML content rendered without React as the last resort:
+If an error occurs while rendering those components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send a fallback HTML that doesn't rely on server rendering as the last resort:
 
 ```js {6-9}
 const { pipe } = renderToPipeableStream(<App />, {
@@ -342,7 +342,7 @@ const { pipe } = renderToPipeableStream(<App />, {
 });
 ```
 
-If there is an error while generating the shell, both `onError` and `onShellError` will fire. Use `onError` for error reporting and use `onShellError` to send the fallback HTML document.
+If there is an error while generating the shell, both `onError` and `onShellError` will fire. Use `onError` for error reporting and use `onShellError` to send the fallback HTML document. Your fallback HTML does not have to be an error page. For example, you can include an alternative shell that tries to render your app on the client only.
 
 ---
 

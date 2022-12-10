@@ -54,11 +54,8 @@ function Recipe({ drinkers }) {
   return (
     <ol>    
       <li>Boil {drinkers} cups of water.</li>
-      <li>Add {drinkers} spoons of tea and boil till color darkens.
-      </li>
-      <li>Add {0.5 * drinkers} spoons of masala spices.</li>
-      <li>Add {0.5 * drinkers} cups of milk and bring to boil again.</li>
-      <li>Remove from heat and add sugar to taste.</li>
+      <li>Add {drinkers} spoons of tea and {0.5 * drinkers} spoons of spice.</li>
+      <li>Add {0.5 * drinkers} cups of milk to boil and sugar to taste.</li>
     </ol>
   );
 }

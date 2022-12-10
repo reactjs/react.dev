@@ -78,7 +78,7 @@ For more information on hydration, see the docs for [`hydrateRoot`.](/apis/react
 
 If a single element’s attribute or text content is unavoidably different between the server and the client (for example, a timestamp), you may silence the hydration mismatch warning.
 
-To silence hydration warnings on an element, add `suppresshydrationWarning={true}`:
+To silence hydration warnings on an element, add `suppressHydrationWarning={true}`:
 
 <Sandpack>
 

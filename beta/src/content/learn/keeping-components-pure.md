@@ -53,9 +53,12 @@ React is designed around this concept. **React assumes that every component you 
 function Recipe({ drinkers }) {
   return (
     <ol>    
-      <li>Boil {drinkers} cups of milk.</li>
-      <li>Add {2 * drinkers} spoons of masala spices.</li>
-      <li>Remove from heat, and add {drinkers} spoons of tea.</li>
+      <li>Boil {drinkers} cups of water.</li>
+      <li>Add {drinkers} spoons of tea and boil till color darkens.
+      </li>
+      <li>Add {0.5 * drinkers} spoons of masala spices.</li>
+      <li>Add {0.5 * drinkers} cups of milk and bring to boil again.</li>
+      <li>Remove from heat and add sugar to taste.</li>
     </ol>
   );
 }
@@ -75,15 +78,15 @@ export default function App() {
 
 </Sandpack>
 
-When you pass `drinkers={1}` to `Recipe`, it will return JSX containing `1 cups of milk`. Always. 
+When you pass `drinkers={1}` to `Recipe`, it will return JSX containing `1 cups of water`. Always. 
 
-If you pass `drinkers={4}`, it will return JSX containing `4 cups of milk`. Always. 
+If you pass `drinkers={4}`, it will return JSX containing `4 cups of water`. Always. 
 
 Just like a math formula. 
 
 You could think of your components as recipes: if you follow them and don't introduce new ingredients during the cooking process, you will get the same dish every time. That "dish" is the JSX that the component serves to React to [render.](/learn/render-and-commit)
 
-<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add 2x spoons of spices, and x spoons of tea!" />
+<Illustration src="/images/docs/illustrations/i_puritea-recipe.png" alt="A tea recipe for x people: take x cups of water, add 0.5x spoons of spices, and x spoons of tea!" />
 
 ## Side Effects: (un)intended consequences {/*side-effects-unintended-consequences*/}
 

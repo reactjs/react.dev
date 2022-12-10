@@ -207,7 +207,9 @@ When a child component needs some data from a parent, [pass it by props](/learn/
 
 </Pitfall>
 
-<DeepDive title="Components all the way down">
+<DeepDive>
+
+#### Components all the way down {/*components-all-the-way-down*/}
 
 Your React application begins at a "root" component. Usually, it is created automatically when you start a new project. For example, if you use [CodeSandbox](https://codesandbox.io/) or [Create React App](https://create-react-app.dev/), the root component is defined in `src/App.js`. If you use the framework [Next.js](https://nextjs.org/), the root component is defined in `pages/index.js`. In these examples, you've been exporting root components.
 

@@ -222,7 +222,9 @@ The tool you just used is called Babel, and you can learn more about it from [it
 
 If you're getting comfortable with build tools and want them to do more for you, [we cover some of the most popular and approachable toolchains here.](/learn/start-a-new-react-project)
 
-<DeepDive title="React without JSX">
+<DeepDive>
+
+#### React without JSX {/*react-without-jsx*/}
 
 Originally JSX was introduced to make writing components with React feel as familiar as writing HTML. Since then, the syntax has become widespread. However, there may be instances where you do not want to use or cannot use JSX. You have two options:
 

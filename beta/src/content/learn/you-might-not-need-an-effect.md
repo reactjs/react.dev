@@ -125,7 +125,9 @@ function TodoList({ todos, filter }) {
 
 The function you wrap in [`useMemo`](/apis/react/useMemo) runs during rendering, so this only works for [pure calculations.](/learn/keeping-components-pure)
 
-<DeepDive title="How to tell if a calculation is expensive?">
+<DeepDive>
+
+#### How to tell if a calculation is expensive? {/*how-to-tell-if-a-calculation-is-expensive*/}
 
 In general, unless you're creating or looping over thousands of objects, it's probably not expensive. If you want to get more confidence, you can add a console log to measure the time spent in a piece of code:
 

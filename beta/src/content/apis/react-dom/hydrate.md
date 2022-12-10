@@ -1,11 +1,14 @@
 ---
 title: hydrate
 ---
-<Pitfall>
+
+<Deprecated>
 
 In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
 
-</Pitfall>
+This API will be removed in a future major version of React.
+
+</Deprecated>
 
 <Intro>
 
@@ -163,11 +166,17 @@ Remember to be mindful of user experience on slow connections. The JavaScript co
 
 </Pitfall>
 
-
-
 ## Reference {/*reference*/}
 
 ### `hydrate(reactNode, domNode, callback?)` {/*hydrate-root*/}
+
+<Deprecated>
+
+In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
+
+This API will be removed in a future major version of React.
+
+</Deprecated>
 
 Call `hydrate` in React 17 and below to “attach” React to existing HTML that was already rendered by React in a server environment.
 

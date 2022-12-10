@@ -705,7 +705,9 @@ In this example, `url` inside `onVisit` corresponds to the *latest* `url` (which
 
 </Note>
 
-<DeepDive title="Is it okay to suppress the dependency linter instead?">
+<DeepDive>
+
+#### Is it okay to suppress the dependency linter instead? {/*is-it-okay-to-suppress-the-dependency-linter-instead*/}
 
 In the existing codebases, you may sometimes see the lint rule suppressed like this:
 

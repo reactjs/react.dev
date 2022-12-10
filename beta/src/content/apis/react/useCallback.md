@@ -124,7 +124,9 @@ function ProductPage({ productId, referrer, theme }) {
 
 </Note>
 
-<DeepDive title="How is useCallback related to useMemo?">
+<DeepDive>
+
+#### How is useCallback related to useMemo? {/*how-is-usecallback-related-to-usememo*/}
 
 You will often see [`useMemo`](/apis/react/useMemo) alongside `useCallback`. They are both useful when you're trying to optimize a child component. They let you [memoize](https://en.wikipedia.org/wiki/Memoization) (or, in other words, cache) something you're passing down:
 
@@ -171,7 +173,9 @@ function useCallback(fn, dependencies) {
 
 </DeepDive>
 
-<DeepDive title="Should you add useCallback everywhere?">
+<DeepDive>
+
+#### Should you add useCallback everywhere? {/*should-you-add-usecallback-everywhere*/}
 
 If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
 
@@ -344,7 +348,7 @@ button[type="button"] {
 
 In this example, the `ShoppingForm` implementation is also **artificially slowed down** so that you can see what happens when some React component you're rendering is genuinely slow. Try incrementing the counter and toggling the theme.
 
-Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useMemo` call in this version,** so `handleSubmit` is always a new function, and the slowed down `ShoppingForm` component can't skip re-rendering.
+Unlike in the previous example, toggling the theme is also slow now! This is because **there is no `useCallback` call in this version,** so `handleSubmit` is always a new function, and the slowed down `ShoppingForm` component can't skip re-rendering.
 
 <Sandpack>
 

@@ -80,7 +80,9 @@ label {
 
 </Note>
 
-<DeepDive title="Should you add memo everywhere?">
+<DeepDive>
+
+#### Should you add memo everywhere? {/*should-you-add-memo-everywhere*/}
 
 If your app is like this site, and most interactions are coarse (like replacing a page or an entire section), memoization is usually unnecessary. On the other hand, if your app is more like a drawing editor, and most interactions are granular (like moving shapes), then you might find memoization very helpful. 
 

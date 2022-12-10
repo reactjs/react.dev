@@ -8,23 +8,40 @@ import {IconChevron} from '../Icon/IconChevron';
 import {IconDeepDive} from '../Icon/IconDeepDive';
 import {IconCodeBlock} from '../Icon/IconCodeBlock';
 import {Button} from '../Button';
+import {H4} from './Heading';
+import {useRouter} from 'next/router';
+import {useEffect, useRef, useState} from 'react';
 
 interface ExpandableExampleProps {
   children: React.ReactNode;
-  title: string;
   excerpt?: string;
   type: 'DeepDive' | 'Example';
 }
 
-function ExpandableExample({
-  children,
-  title,
-  excerpt,
-  type,
-}: ExpandableExampleProps) {
-  const [isExpanded, setIsExpanded] = React.useState(false);
+function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
+  if (!Array.isArray(children) || children[0].type.mdxName !== 'h4') {
+    throw Error(
+      `Expandable content ${type} is missing a corresponding title at the beginning`
+    );
+  }
   const isDeepDive = type === 'DeepDive';
   const isExample = type === 'Example';
+  const id = children[0].props.id;
+
+  const queuedExpandRef = useRef<boolean>(true);
+  const {asPath} = useRouter();
+  // init as expanded to prevent flash
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  // asPath would mismatch between server and client, reset here instead of put it into init state
+  useEffect(() => {
+    if (queuedExpandRef.current) {
+      queuedExpandRef.current = false;
+      if (id !== asPath.split('#')[1]) {
+        setIsExpanded(false);
+      }
+    }
+  }, [asPath, id]);
 
   return (
     <details
@@ -40,8 +57,11 @@ function ExpandableExample({
         className="list-none p-8"
         tabIndex={-1 /* there's a button instead */}
         onClick={(e) => {
-          // We toggle using a button instead of this whole area.
-          e.preventDefault();
+          // We toggle using a button instead of this whole area,
+          // with an escape case for the header anchor link
+          if (!(e.target instanceof SVGElement)) {
+            e.preventDefault();
+          }
         }}>
         <h5
           className={cn('mb-4 uppercase font-bold flex items-center text-sm', {
@@ -62,9 +82,11 @@ function ExpandableExample({
           )}
         </h5>
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-primary dark:text-primary-dark">
-            {title}
-          </h3>
+          <H4
+            id={id}
+            className="text-xl font-bold text-primary dark:text-primary-dark">
+            {children[0].props.children}
+          </H4>
           {excerpt && <div>{excerpt}</div>}
         </div>
         <Button
@@ -87,7 +109,7 @@ function ExpandableExample({
           'dark:border-purple-60 border-purple-10 ': isDeepDive,
           'dark:border-yellow-60 border-yellow-50': isExample,
         })}>
-        {children}
+        {children.slice(1)}
       </div>
     </details>
   );

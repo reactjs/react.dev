@@ -573,7 +573,9 @@ In this example, `serverUrl` is not a prop or a state variable. It's a regular v
 
 In other words, Effects "react" to all values from the component body.
 
-<DeepDive title="Can global or mutable values be dependencies?">
+<DeepDive>
+
+#### Can global or mutable values be dependencies? {/*can-global-or-mutable-values-be-dependencies*/}
 
 Mutable values (including global variables) aren't reactive.
 

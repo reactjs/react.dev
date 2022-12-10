@@ -234,7 +234,9 @@ export default function Counter() {
 
 This is why reading `ref.current` during render leads to unreliable code. If you need that, use state instead.
 
-<DeepDive title="How does useRef work inside?">
+<DeepDive>
+
+#### How does useRef work inside? {/*how-does-use-ref-work-inside*/}
 
 Although both `useState` and `useRef` are provided by React, in principle `useRef` could be implemented _on top of_ `useState`. You can imagine that inside of React, `useRef` is implemented like this:
 

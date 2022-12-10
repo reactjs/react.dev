@@ -423,7 +423,9 @@ We'll take a close look at what "mount" means in the next step.
 
 </Pitfall>
 
-<DeepDive title="Why was the ref omitted from the dependency array?">
+<DeepDive>
+
+#### Why was the ref omitted from the dependency array? {/*why-was-the-ref-omitted-from-the-dependency-array*/}
 
 This Effect uses _both_ `ref` and `isPlaying`, but only `isPlaying` is declared as a dependency:
 
@@ -688,7 +690,9 @@ function TodoList() {
 
 This will not only improve the development experience, but also make your application feel faster. For example, the user pressing the Back button won't have to wait for some data to load again because it will be cached. You can either build such a cache yourself or use one of the many existing alternatives to manual fetching in Effects.
 
-<DeepDive title="What are good alternatives to data fetching in Effects?">
+<DeepDive>
+
+#### What are good alternatives to data fetching in Effects? {/*what-are-good-alternatives-to-data-fetching-in-effects*/}
 
 Writing `fetch` calls inside Effects is a [popular way to fetch data](https://www.robinwieruch.de/react-hooks-fetch-data/), especially in fully client-side apps. This is, however, a very manual approach and it has significant downsides:
 
@@ -831,7 +835,9 @@ Finally, edit the component above and **comment out the cleanup function** so th
 
 Three seconds later, you should see a sequence of logs (`a`, `ab`, `abc`, `abcd`, and `abcde`) rather than five `abcde` logs. **Each Effect "captures" the `text` value from its corresponding render.**  It doesn't matter that the `text` state changed: an Effect from the render with `text = 'ab'` will always see `'ab'`. In other words, Effects from each render are isolated from each other. If you're curious how this works, you can read about [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures).
 
-<DeepDive title="Each render has its own Effects">
+<DeepDive>
+
+#### Each render has its own Effects {/*each-render-has-its-own-effects*/}
 
 You can think of `useEffect` as "attaching" a piece of behavior to the render output. Consider this Effect:
 

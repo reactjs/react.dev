@@ -9,6 +9,7 @@ import {H2} from 'components/MDX/Heading';
 import {H4} from 'components/MDX/Heading';
 import {Challenge} from './Challenge';
 import {Navigation} from './Navigation';
+import {useRouter} from 'next/router';
 
 interface ChallengesProps {
   children: React.ReactElement[];
@@ -67,6 +68,11 @@ const parseChallengeContents = (
   return contents;
 };
 
+enum QueuedScroll {
+  INIT = 'init',
+  NEXT = 'next',
+}
+
 export function Challenges({
   children,
   isRecipes,
@@ -76,19 +82,32 @@ export function Challenges({
   const challenges = parseChallengeContents(children);
   const totalChallenges = challenges.length;
   const scrollAnchorRef = useRef<HTMLDivElement>(null);
-  const queuedScrollRef = useRef<boolean>(false);
+  const queuedScrollRef = useRef<undefined | QueuedScroll>(QueuedScroll.INIT);
   const [activeIndex, setActiveIndex] = useState(0);
   const currentChallenge = challenges[activeIndex];
+  const {asPath} = useRouter();
 
   useEffect(() => {
-    if (queuedScrollRef.current === true) {
-      queuedScrollRef.current = false;
+    if (queuedScrollRef.current === QueuedScroll.INIT) {
+      const initIndex = challenges.findIndex(
+        (challenge) => challenge.id === asPath.split('#')[1]
+      );
+      if (initIndex === -1) {
+        queuedScrollRef.current = undefined;
+      } else if (initIndex !== activeIndex) {
+        setActiveIndex(initIndex);
+      }
+    }
+    if (queuedScrollRef.current) {
       scrollAnchorRef.current!.scrollIntoView({
         block: 'start',
-        behavior: 'smooth',
+        ...(queuedScrollRef.current === QueuedScroll.NEXT && {
+          behavior: 'smooth',
+        }),
       });
+      queuedScrollRef.current = undefined;
     }
-  });
+  }, [activeIndex, asPath, challenges]);
 
   const handleChallengeChange = (index: number) => {
     setActiveIndex(index);
@@ -129,7 +148,7 @@ export function Challenges({
           hasNextChallenge={activeIndex < totalChallenges - 1}
           handleClickNextChallenge={() => {
             setActiveIndex((i) => i + 1);
-            queuedScrollRef.current = true;
+            queuedScrollRef.current = QueuedScroll.NEXT;
           }}
         />
       </div>

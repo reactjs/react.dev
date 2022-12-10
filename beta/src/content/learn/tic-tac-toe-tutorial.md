@@ -2,11 +2,9 @@
 title: 'Tutorial: Tic-Tac-Toe'
 ---
 
-We'll explain things as we go, but we suggest you first read through the [Quick Start](/learn) page to get an overview of the main concepts in React.
-
 ## Before We Start the Tutorial {/*before-we-start-the-tutorial*/}
 
-We will build a small game during this tutorial. **You might be tempted to skip it because you're not building games -- but give it a chance.** The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
+We will build a small game during this tutorial. The techniques you'll learn in the tutorial are fundamental to building any React app, and fully understanding it will give you a deep understanding of React.
 
 <Note>
 
@@ -21,8 +19,6 @@ The tutorial is divided into several sections:
 - [Completing the Game](#completing-the-game) will teach you **the most common techniques** in React development.
 - [Adding Time Travel](#adding-time-travel) will give you **a deeper insight** into the unique strengths of React.
 
-You don't have to complete all of the sections at once to get the value out of this tutorial. Try to get as far as you can -- even if it's one or two sections.
-
 ### What Are We Building? {/*what-are-we-building*/}
 
 In this tutorial, we'll show how to build an interactive tic-tac-toe game with React.
@@ -33,111 +29,39 @@ We recommend that you check out the tic-tac-toe game before continuing with the 
 
 Once you've played around with the finished tic-tac-toe game, keep scrolling. We'll be starting from a simpler template in this tutorial. Our next step is to set you up so that you can start building the game.
 
-### Prerequisites {/*prerequisites*/}
-
-We'll assume that you have some familiarity with HTML and JavaScript, but you should be able to follow along even if you're coming from a different programming language. We'll also assume that you're familiar with programming concepts like functions, objects, arrays, and to a lesser extent, classes.
-
-If you need to review JavaScript, we recommend reading [this guide](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript). Note that we're also using some features from ES6 -- a recent version of JavaScript. In this tutorial, we're using [arrow functions](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions), [classes](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Classes), [`let`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let), and [`const`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const) statements. You can use the [Babel REPL](babel://es5-syntax-example) to check what ES6 code compiles to.
-
-We'll also assume that you've at least skimmed through the [Quick Start](/learn) to get a feel for the main concepts in React.
-
 ## Setup for the Tutorial {/*setup-for-the-tutorial*/}
 
-In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. The new tab should display an empty tic-tac-toe game board and starter code for this tutorial.
+In the live code editor below, click **Fork** in the top-right corner to open the editor in a new tab using the website CodeSandbox. CodeSandbox allows you to write code in your browser and immediately view how your users will see the website you've created. The new tab should display an empty square and the starter code for this tutorial.
 
 <Sandpack>
 
-```jsx App.js
-function Square() {
-  return <button className="square">{/* TODO */}</button>;
-}
-
-function Board() {
-  function renderSquare(i) {
-    return <Square />;
-  }
-
-  const status = 'Next player: X';
-
-  return (
-    <div>
-      <div className="status">{status}</div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
-    </div>
-  );
-}
-
-export default function Game() {
-  return (
-    <div className="game">
-      <div className="game-board">
-        <Board />
-      </div>
-      <div className="game-info">
-        <ol>{/* TODO */}</ol>
-      </div>
-    </div>
-  );
+```jsx App.tsx
+export default function Square() {
+  return <button className="square">X</button>;
 }
 ```
 
-```jsx utils.js
-// Don't worry too much about this code; it's not specific to React
+```jsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
 
-export function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
 ```
 
-```css
+```css styles.css
 body {
   font: 14px 'Century Gothic', Futura, sans-serif;
   margin: 20px;
-}
-
-ol,
-ul {
-  padding-left: 30px;
-}
-
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
 }
 
 .square {
@@ -158,45 +82,20 @@ ul {
 .square:focus {
   outline: none;
 }
-
-.kbd-navigation .square:focus {
-  background: #ddd;
-}
-
-.game {
-  display: flex;
-  flex-direction: row;
-}
-
-.game-info {
-  margin-left: 20px;
-}
 ```
 
 </Sandpack>
 
-There are two ways to complete this tutorial: you can either write the code in your browser, or you can set up a local development environment on your computer.
+<Note>
 
-### Setup Option 1: Write Code in the Browser {/*setup-option-1-write-code-in-the-browser*/}
+You can also follow this tutorial using your local development enviornment. All you need to do is:
+1. Install [Node.js](https://nodejs.org/en/)
+1. Click **File > Export to ZIP** in the CodeSandbox tab you opened earlier
+1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
+1. Install the dependencies with `npm install`
+1. Run `npm start` and open `http://localhost:3000/` in the your browser
 
-This is the quickest way to get started!
-
-You can use the new browser tab you opened and edit the code there, without installing anything. (You could also edit the code inline on this page, but it'll be easier to have it open in a separate tab so you can switch back and forth easily.)
-
-To continue with this approach, skip the second setup option, and go to the [Overview](#overview) section to get an overview of React.
-
-### Setup Option 2: Local Development Environment {/*setup-option-2-local-development-environment*/}
-
-If you'd prefer to use your own code editor (eg: [Visual Studio Code](https://code.visualstudio.com/)), you can download the files for this tutorial to your computer.
-
-Here are the steps to follow:
-
-1. Make sure you have a recent version of [Node.js](https://nodejs.org/en/) installed.
-2. In the CodeSandbox tab you opened by clicking Fork, press the menu button in the top left corner of the page, then choose **File > Export to ZIP**.
-3. Unzip the archive, then open a terminal and `cd` to the directory unzipped.
-4. The files you downloaded use a tool called [Create React App](https://create-react-app.dev/). To install the dependencies needed to run it, run `npm install`.
-
-Now if you run `npm start` in that folder, it should run a local server, open `http://localhost:3000/` in the browser, and show you the empty tic-tac-toe board.
+</Note>
 
 ### Help, I'm Stuck! {/*help-im-stuck*/}
 
@@ -208,84 +107,454 @@ Now that you're set up, let's get an overview of React!
 
 ### Inspecting the Starter Code {/*inspecting-the-starter-code*/}
 
-Open the `App.js` file to see the starter code. (If you downloaded the files, you'll find it in the `src` directory.)
+In CodeSandbox you'll see three main sections:
 
-This starter code is the base of what we're building. We've provided the CSS styling so that you only need to focus on learning React and programming the tic-tac-toe game.
+![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
 
-By inspecting the code, you'll notice that we have three React components:
+1. The *Files* section with a list of files like `App.tsx`, `index.tsx`, `styles.css` and a few folders like `src`
+1. The *code editor* where you'll see the source code of your selected file
+1. The *browser* section where you'll see how the code you've written will be displayed
 
-- Square
-- Board
-- Game
+The file `App.tsx` should be selected in the *files* section and you the contents file in the *code editor* should look like this:
 
-The Square component renders a single `<button>` and the Board renders 9 squares. The Game component renders a board with placeholder values which we'll modify later. There are currently no interactive components.
-
-### Passing Data Through Props {/*passing-data-through-props*/}
-
-To get our feet wet, let's try passing some data from our Board component to our Square component.
-
-We strongly recommend typing code by hand as you're working through the tutorial and not using copy/paste. This will help you develop muscle memory and a stronger understanding.
-
-In `Board`, change the code for the `renderSquare` function to pass a prop called `value` to the Square:
-
-```jsx {3}
-function Board() {
-  function renderSquare(i) {
-    return <Square value={i} />;
-  }
-  // ...
-```
-
-Change Square to show that value by updating it to take `{value}` as an argument and replacing `{/* TODO */}` with `{value}`:
-
-```jsx {1,2}
-function Square({value}) {
-  return <button className="square">{value}</button>;
+```jsx
+export default function Square() {
+  return <button className="square"></button>;
 }
 ```
 
-Parameters passed to a component are called **props**; when React calls your component, it passes the props as a single object.
+The *browser* section should be displaying a square with a X in it like this:
 
-Before:
+![x-filled square](../images/tutorial/x-filled-square.png)
 
-![Empty Tic-Tac-Toe board](../images/tutorial/tictac-empty.png)
+#### React Components
 
-After: You should see a number in each square in the rendered output.
+The code in `App.tsx` create a *component*. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Lets take the component line by line to see what's going on:
 
-![Tic-Tac-Toe board with sequentially numbered squares](../images/tutorial/tictac-numbers.png)
+```jsx {1}
+export default function Square() {
+  return <button className="square">X</button>;
+}
+```
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-passing-data-through-props-189030?file=/App.js)**
+The first line defines a function called `Square`. `export` means that this function is acessible outside of this file. `default` tells other files using our code to start with this function.
 
-Congratulations! You've just "passed a prop" from a parent Board component to a child Square component. Passing props is how information flows in React apps, from parents to children.
+```jsx {2}
+export default function Square() {
+  return <button className="square">X</button>;
+}
+```
+
+The second line returns a button. The `return` keywords means whatever comes after is returned as a value to whomemver is calling the function. `<button>` is a **JSX element**. A JSX element is a cobination of TypeScript/JavaScript code and HTML tags describes what we'd like to display. `className="square"` is a button property or **prop** that tells CSS how the look of the button should be styled. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be place inside the button.
+
+#### styles.css
+
+Click on the file labeled `index.tsx` in the *Files* section of CodeSandbox. This file defines the styles for our React app. The first two *CSS selectors* (`*` and `body`) define the style of large parts of our app while the `.square` selector defines the style of any componenet where the `className` property is set to `square` as we did in the our `Square` component.
+
+#### index.tsx
+
+Click on the file labeled `index.tsx` in the *Files* section of CodeSandbox. We won't be editing this file during the tutorial but it is the bridge between the component we created in the `App.tsx` file and the web browser. 
+
+```tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+```
+
+Lines 1-5 brings all the necessary peices together: React, React's library to talk to web browsers (React DOM), the styles for our components, and finally the componenet we created in `App.tsx`.
+
+The remainder of the file brings all the peices together and injects the final product into `index.html` in the `public` folder.
+
+### Building the board {/*building-the-board*/}
+
+Currently our board is only a single square, but we need nine! If we just try and copy paste our square to make more squares like this:
+
+```tsx
+export default function Square() {
+  return <button className="square">X</button><button className="square">X</button>;
+}
+
+```
+
+we'll get this error:
+
+```
+/src/App.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?
+```
+
+React component need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this we can use `div`s (`<div>` and `<div/>`) to wrap multiple adjacent JSX elements like this:
+
+```tsx
+export default function Square() {
+  return (
+    <div>
+      <button className="square">X</button>
+      <button className="square">X</button>
+    <div/>
+  );
+}
+```
+
+Now you should see:
+
+![two x-filled squares](../images/tutorial/two-x-filled-squares.png)
+
+Great! Now we just need to copy-paste a few times to add nine squares and...
+
+![nine x-filled squares in a line](../images/tutorial/nine-x-filled-squares.pn)
+
+Oh, they are all in a line, not in a grid like we need for our board. To fix this well need to group our squares into rows with `div`s and add some CSS. While we're at it, we'll give each square a number to make sure its in the right place:
+
+```tsx App.tsx
+export default function Square() {
+  return (
+    <div>
+      <div className="board-row">
+        <button className="square">1</button>
+        <button className="square">2</button>
+        <button className="square">3</button>
+      </div>
+      <div className="board-row">
+        <button className="square">4</button>
+        <button className="square">5</button>
+        <button className="square">6</button>
+      </div>
+      <div className="board-row">
+        <button className="square">7</button>
+        <button className="square">8</button>
+        <button className="square">9</button>
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+// ...
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+```
+
+Now that we've grouped our componenets into rows with `div`s with the class name `board-row` and added some CSS to style the rows into a grid we have our tic-tac-toe board:
+
+![tic-tac-toe board filled with x's](../images/tutorial/x-filled-board.png)
+
+but we now have a problem. Our componenet named `Square`, really isn't a square anymore. Let's fix that by changing the name to `Board`.
+
+At this point your code should look something like this:
+
+<Sandpack>
+
+```tsx App.tsx
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <button className="square">1</button>
+        <button className="square">2</button>
+        <button className="square">3</button>
+      </div>
+      <div className="board-row">
+        <button className="square">4</button>
+        <button className="square">5</button>
+        <button className="square">6</button>
+      </div>
+      <div className="board-row">
+        <button className="square">7</button>
+        <button className="square">8</button>
+        <button className="square">9</button>
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
+### Passing Data Through Props {/*passing-data-through-props*/}
+
+Next, we want to change the value of a square from empty to "X" when the user clicks on the square. With how we've built the board so far we would need to copy-paste the code that updates the square nine times (once for each square we have)! Instead of copy-pasting, React's component architecture allows us to create a reusable component to avoid messy, duplicated code.
+
+First, we are going to copy the line defining our first square (`<button className="square">1</button>`) from our `Board` component in a new `Square` component:
+
+```jsx
+function Square() {
+  return <button className="square">1</button>;
+}
+
+export default function Board() {
+// ...
+```
+
+then we'll update the `Board` component to use the `Square` component using JSX syntax:
+
+```tsx
+//...
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+    </div>
+  );
+}
+```
+
+let's take a look:
+
+![one-filled board](../images/tutorial/board-filled-with-ones.png)
+
+Oh no! We lost the numbered squares we had before. Now each square says "1". To fix this, we will use **props** to pass the value each square should have from the parent component (`Board`) to the child componenet (`Square`).
+
+First, we'll create a TypeScript type to define what kinds of props the `Square` component can recive:
+
+```tsx
+type SquareProps = {
+  value: string;
+};
+
+function Square() {
+// ...
+```
+
+Next we'll update the `Square` component to take the `value` prop from the `SquareProps` type as a argument and use the value to display the corrent number:
+
+```tsx
+// ...
+
+function Square({ value }: SquareProps) {
+  return <button className="square">{value}</button>;
+}
+
+// ...
+```
+
+`function Square({ value }: SquareProps)` indicates the `Square` component can be passed a prop called `value` from the type `SquareProps`. the `{value}` in `<button className="square">{value}</button>` is a special syntax that tells React to place the value of the `value` varibles in this location of the JSX element.
+
+For now, you should see a empty board:
+
+![empty board](../images/tutorial/empty-board.png)
+
+this is because the `Board` component hasn't passed the `value` prop to each `Square` component it creates yet. To fix it well add the `value` prop to each `Square` component created by the `Board` component:
+
+```tsx
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square value="1" />
+        <Square value="2" />
+        <Square value="3" />
+      </div>
+      <div className="board-row">
+        <Square value="4" />
+        <Square value="5" />
+        <Square value="6" />
+      </div>
+      <div className="board-row">
+        <Square value="7" />
+        <Square value="8" />
+        <Square value="9" />
+      </div>
+    </div>
+  );
+}
+```
+
+Now we should see our grid of numbers again:
+
+![three by three grid of sequential numbers](../images/tutorial/tictac-numbers.png)
+
+
+Your updated code should look like this:
+
+<Sandpack>
+
+```tsx App.tsx
+type SquareProps = {
+  value: string;
+};
+
+function Square({ value }: SquareProps) {
+  return <button className="square">{value}</button>;
+}
+
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square value="1" />
+        <Square value="2" />
+        <Square value="3" />
+      </div>
+      <div className="board-row">
+        <Square value="4" />
+        <Square value="5" />
+        <Square value="6" />
+      </div>
+      <div className="board-row">
+        <Square value="7" />
+        <Square value="8" />
+        <Square value="9" />
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
 
 ### Making an Interactive Component {/*making-an-interactive-component*/}
 
-Let's fill the Square component with an "X" when we click it. First, change the button tag that is returned from the Square component to add `onClick` to its props:
+Let's fill the `Square` component with an `X` when we click it. First, change the button JSX element that is returned from the `Square` component to add `onClick` to its props:
 
-```jsx {3}
-function Square({value}) {
+```jsx {5,6,7}
+function Square({ value }: SquareProps) {
   return (
     <button
       className="square"
       onClick={() => {
-        console.log('click');
-      }}>
+        console.log("click");
+      }}
+    >
       {value}
     </button>
   );
 }
 ```
 
-React will call this function when the HTML element is clicked. If you click on a Square now, you should see `click` in your browser's devtools console. To see the console when developing in your browser, find "Console" tab below the "Browser" section. Clicking a square more than once will increment a counter next to the text `click`, indicating how many times you've clicked a square.
+the `() =>` syntax is called an **arrow function** which allows us to use function without defining it before hand. React will call this function when the JSX element is clicked. If you click on a square now, you should see `click` in the *Console* tab at the bottom of the *Browser* section in CodeSandbox. Clicking the board more than once will increment a counter next to the text `click`, indicating how many times you've clicked a square.
+
+<Note>
+If you are following tutorial using your local development enviornment. You can view the *Console* in Chrome with the keyboard shortcut **Option + ⌘ + J** (on macOS), or **Shift + CTRL + J** (on Windows/Linux).
+</Note>
 
 As a next step, we want the Square component to "remember" that it got clicked, and fill it with an "X" mark. To "remember" things, components use **state**.
 
 React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the Square in state, and change it when the Square is clicked.
 
-Import `useState` at the top of the file, then remove the `{value}` props and replace it with a call to `useState` that defines a state variable called `value`:
+Import `useState` at the top of the file and remove the `SquareProps` type. Replace the `value` prop from the `Square` component with a call to `useState` that defines a state variable called `value`:
 
 ```jsx {1,3,4}
-import {useState} from 'react';
+import { useState } from "react";
 
 function Square() {
   const [value, setValue] = useState(null);
@@ -293,15 +562,47 @@ function Square() {
     // ...
 ```
 
-The variables `value` and `setValue` can be named anything you want, but it's conventional to use [array destructuring](/learn/a-javascript-refresher#array-destructuring) to name them like `[something, setSomething]`. The `null` value we pass to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
+`value` stores the value and `setValue` is a function that can be used to change the value. The `null` passed to `useState` is used as the initial value for this state variable, so `value` here starts off equal to `null`.
 
-Now we'll change Square to display an "X" when clicked. Replace the `onClick={...}` event handler with `onClick={() => setValue('X')}`. Now our Square component looks like this:
+Since the `Square` component no longer accepts props anymore, we'll remove the `value` prop from all nine of the `Square` components created by the `Board` componenet:
 
-```jsx {4}
+```tsx {5,6,7,10,11,12,15,16,17}
+// ...
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+    </div>
+  );
+}
+```
+
+Now we'll change Square to display an "X" when clicked. Replace the `console.log("click");` event handler with `setValue('X');`. Now our Square component looks like this:
+
+```jsx {7}
 function Square() {
   const [value, setValue] = useState(null);
   return (
-    <button className="square" onClick={() => setValue('X')}>
+    <button
+      className="square"
+      onClick={() => {
+        setValue("X");
+      }}
+    >
       {value}
     </button>
   );
@@ -310,25 +611,117 @@ function Square() {
 
 By calling this `set` function from an `onClick` handler, we tell React to re-render that Square whenever its `<button>` is clicked. After the update, the Square's `value` will be `'X'`, so we'll see the "X" on the game board.
 
-If you click on any Square, an "X" should show up. Note that each Square has its own state: the `value` stored in each Square is completely independent of the others.
+If you click on any Square, an "X" should show up:
 
-When you call a `set` function in a component, React automatically updates the child components inside of it too.
+![adding xes to board](..images/tutorial/tictac-adding-x-s.gif)
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-making-an-interactive-component-e2g3v5?file=/App.js)**
+Note that each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside of it too.
+
+After your made the above changes, your code will look like this:
+
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+function Square() {
+  const [value, setValue] = useState(null);
+  return (
+    <button
+      className="square"
+      onClick={() => {
+        setValue("X");
+      }}
+    >
+      {value}
+    </button>
+  );
+}
+
+export default function Board() {
+  return (
+    <div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+      <div className="board-row">
+        <Square />
+        <Square />
+        <Square />
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
 
 ### Developer Tools {/*developer-tools*/}
+The React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the *browser* section in CodeSandbox:
 
-The React Devtools extension for [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) lets you inspect a React component tree with your browser's developer tools.
+![codesandbox devtools](..images/tutorial/codesandbox-devtools.png)
 
-<img
-  src="../images/tutorial/devtools.png"
-  alt="React Devtools"
-  style={{maxWidth: '100%'}}
-/>
 
-The React DevTools let you check the props and the state of your React components.
-
-After installing React DevTools, you can right-click on any element on the page, click "Inspect" to open the developer tools, and the React tabs ("⚛️ Components" and "⚛️ Profiler") will appear as the last tabs to the right. Use "⚛️ Components" to inspect the component tree. If developing in a web browser you can find the React DevTools tab under the browser section.
+<Note>
+If you are developing in your local development enviornment, React Devtools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en) and [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/) browser extension. The browser extension includes additional functionality like the ability to right-click on any element on the page, click "Inspect" to open the developer tools and a profiler tab.
+</Note>
 
 ## Completing the Game {/*completing-the-game*/}
 
@@ -347,44 +740,355 @@ Lifting state into a parent component is common when React components are refact
 Edit the Board component so that it declares a state variable named `squares` that defaults to an array of 9 nulls corresponding to the 9 squares:
 
 ```jsx {2}
-function Board() {
+// ...
+export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
-  function renderSquare(i) {
+  return (
     // ...
 ```
 
-When we fill the board in later, the `squares` array will look something like this:
+`useState(Array(9).fill(null))` creates an arry with nine elements and sets each of those elements to `null`. Each entry in the array corrsponds to the value of a square. When we fill the board in later, the `squares` array will look something like this:
 
 ```jsx
 ['O', null, 'X', 'X', 'X', 'O', 'O', null, null]
 ```
 
-The Board's inner `renderSquare` function currently looks like this:
+Now we need to add the `value` prop to the `Square` components we create in the `Board` component:
 
-```jsx
-function renderSquare(i) {
-  return <Square value={i} />;
+```tsx
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  return (
+    <div>
+      <div className="board-row">
+        <Square values={squares[0]} />
+        <Square values={squares[1]} />
+        <Square values={squares[2]} />
+      </div>
+      <div className="board-row">
+        <Square values={squares[3]} />
+        <Square values={squares[4]} />
+        <Square values={squares[5]} />
+      </div>
+      <div className="board-row">
+        <Square values={squares[6]} />
+        <Square values={squares[7]} />
+        <Square values={squares[8]} />
+      </div>
+    </div>
+  );
 }
 ```
 
-Earlier, we [passed the `value` prop down](#passing-data-through-props) from the Board to show numbers from 0 to 8 in every Square. In a different previous step, we replaced the numbers with an "X" mark [determined by Square's own state](#making-an-interactive-component) and removed the `value` argument. This is why Square currently ignores the `value` prop passed to it by the Board. (If we were using TypeScript, we would have received a type error for the extraneous `value={i}` in props and would have needed to remove it.)
+Next, we'll wire the `Square` component to recive the `value` prop from the `Board` componenet. This will require removing the `Square` component's own stateful tracking of `value` and the button's `onClick` prop:
 
-We will now use the prop passing mechanism again. We will modify the Board to instruct each individual Square about its current value (`'X'`, `'O'`, or `null`). We have already defined the `squares` array in the Board's constructor; now, modify the Board's `renderSquare` function to read from it:
+```tsx
+type SquareProps = {
+  value: string;
+};
 
-```jsx {2}
-function renderSquare(i) {
-  return <Square value={squares[i]} />;
+function Square({ value }: SquareProps) {
+  return <button className="square">{value}</button>;
 }
 ```
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-lifting-state-up-78f0r5?file=/App.js)**
+at this point you should see a empty tic-tac-toe board:
+
+![empty board](..images/tutorial/tictac-empty.png)
+
+and you code should look like this:
+
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+};
+
+function Square({ value }: SquareProps) {
+  return <button className="square">{value}</button>;
+}
+
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+  return (
+    <div>
+      <div className="board-row">
+        <Square value={squares[0]} />
+        <Square value={squares[1]} />
+        <Square value={squares[2]} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} />
+        <Square value={squares[4]} />
+        <Square value={squares[5]} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} />
+        <Square value={squares[7]} />
+        <Square value={squares[8]} />
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+<Sandpack>
+
+
 
 Each Square will now receive a `value` prop that will either be `'X'`, `'O'`, or `null` for empty squares.
 
 Next, we need to change what happens when a Square is clicked. The Board component now maintains which squares are filled. We need to create a way for the Square to update the Board's state. Since state is private to a component that defines it, we cannot update the Board's state directly from Square.
 
-Instead, we'll pass down a function from the Board to the Square, and we'll have Square call that function when a square is clicked. We'll change the `renderSquare` method in Board to:
+Instead, we'll pass down a function from the `Board` component to the `Square` component, and we'll have Square call that function when a square is clicked. We'll start with the function that the `Square` component will call when it is clicked. We'll call that function `handleSquareClick`:
+
+```tsx App.tsx {3}
+function Square({ value }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+```
+
+Next, we'll add the `handleSquareClick` function to the `Square` componenet's props:
+
+```tsx App.tsx
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+```
+
+the `handleSquareClick: () => void;` syntax is a way of telling TypeScript we expect the `handleSquareClick` function to take no arguments and return no values.
+
+Now we need to wire up the `handleSquareClick` method in the `Square` component to a new function in the `Board` component that will update the `squares` array for us. For each `Square` component that the `Board` component creates we will add a `handleSquareClick` prop. This `handleSquareClick` prop will be a function that will call a `handleClick` function. The `handleClick` function will takes an argument that corrsponds to the index of the `sqaures` array that contains the square's value:
+
+```tsx App.tsx
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  return (
+    <div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+```
+
+Lastly we will define the `handleClick` function inside the `Board` component to update the `sqaures` array holding our board's state:
+
+```tsx App.tsx
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i: number) {
+    let newSquares = squares.slice();
+    newSquares[i] = "X";
+    setSquares(newSquares);
+  }
+
+  return (
+    // ...
+
+```
+
+the `handleClick` function creates a copy of the `squares` array (`newSquares`) with `squares.slice()`. Then `handleClick` updates the `newSquares` array to add a `X` on the square that was click indicated by the the index of the square's value (`i`). Then `handleClick` updates the `squares` array to be the `newSquares` array with the `setSquares` function.
+
+<Note>
+JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means a inner function (e.g. `handleClick`) has access to varibles and functions defined in a outer function (e.g. `Board`). This means that the `handleClick` function can call the `setSquares` method because they are both defined insite of the `Board` function.
+</Note>
+
+Now you can add X's to the board by clicking on them again:
+
+![adding xes to board](..images/tutorial/tictac-adding-x-s.gif)
+
+But this time all the state managment is being handled by the `Board` component! This is what your code should look like:
+
+<Sandpack>
+
+```jsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i: number) {
+    let newSquares = squares.slice();
+    newSquares[i] = "X";
+    setSquares(newSquares);
+  }
+
+  return (
+    <div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
+
+propflow diagram
+
+----
+
+
 
 ```jsx {5}
 function renderSquare(i) {
@@ -440,7 +1144,7 @@ function Board() {
     // ...
 ```
 
-JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Closures) which means a inner function (e.g. `handleClick`) has access to varibles and functions defined in a outer function (e.g. `Board`). This means that the `handleClick` function can call the `setSquares` method because they are both defined insite of the `Board` function.
+
 
 **[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-lifting-state-up-part-2-063xpm?file=/App.js)**
 

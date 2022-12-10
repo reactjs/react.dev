@@ -246,7 +246,72 @@ See the [Adding Cleanup](learn/synchronizing-with-effects#step-3-add-cleanup-if-
 
 ### Fixing bugs with the legacy string ref API {/*fixing-bugs-with-the-legacy-string-ref-api*/}
 
-TODO
+If you worked with React before, you might be familiar with an older API in class components that allows ref attributes to be a string, like `"textInput"`, and the DOM node is accessed as `this.refs.textInput`. We advise against using String refs because they can cause subtle bugs, and will be removed in one of the future releases.
+
+Strict Mode helps you fix bugs with legacy string refs by warning when they are used.
+
+For example, the following component has a bug that throws an error when clicking "Focus the input":
+
+<Sandpack>
+
+```js
+import { useRef, Component } from 'react';
+
+
+class Form extends Component {
+  handleClick = () => {
+    console.log('hit', this.refs.textInput);
+    // Warning: This is a bug in string refs!
+    // This will not focus the input because the
+    // "input" ref is attached to InputWithButton.
+    this.refs.textInput.focus();
+  }
+  
+  renderInput = () => {
+    return (
+      <input ref="textInput" />
+    )
+  }
+  
+  render() {
+    return (
+      <InputWithButton renderInput={this.renderInput} onClick={this.handleClick}/>
+    );
+  }
+}
+
+class InputWithButton extends Component {
+  render() {
+    return (
+      <>
+        {this.props.renderInput()}
+        <button onClick={this.props.onClick}>
+          Focus the input
+        </button>
+      </>
+    )
+  }
+}
+export default Form;
+```
+
+</Sandpack>
+
+This bug happens because string refs do not work the way most people expect with the "render callback" pattern. When we pass `renderInput` to `InputWithButton`, you might expect that `this.refs.textInput` refers to the input with `ref="textInput"`, but that is not the case. Instead, the ref is attached inside the `InputWithButton` component, and can only be accessed with `this.refs.textInput` inside `InputWithButton`.
+
+In React terms, we say that the string ref feature is not ["Composable"](/docs/design-principles.html#composition) because moving around components that use string refs can break components in unexpected ways. In this example, you expect the `inputText` ref defined inside the `Form` component to be accessible inside of that component, but it's not. That means components using string refs do not work well together, and are not "composable".
+
+The original design for string refs was flawed for this reason [and others](https://github.com/facebook/react/pull/8333#issuecomment-271648615), so it's deprecated and React will remove it in a future version. Strict Mode helps us catch this bug in development, before users see it in production, by warning when string refs are used:
+
+<ConsoleBlock level="error">
+
+Warning: A string ref, "textInput", has been found within a strict mode tree. String refs are a source of potential bugs and should be avoided. We recommend using useRef() or createRef() instead. Learn more about using refs safely here: https://reactjs.org/link/strict-mode-string-ref
+
+</ConsoleBlock>
+
+To fix this error, either switch the class component to use [`createRef`](/apis/react/createRef), or convert the class component to a function component and use [`useRef`](/apis/react/useRef).
+
+See [Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs#example-focusing-a-text-input) for a full solution.
 
 ### Fixing bugs with the legacy context API {/*fixing-bugs-with-the-legacy-context-api*/}
 

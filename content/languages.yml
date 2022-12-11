@@ -120,7 +120,7 @@
   code: ne
   status: 0
 - name: Dutch
-  translated_name: Nederlands
+  translated_name: Netherlands
   code: nl
   status: 0
 - name: Polish

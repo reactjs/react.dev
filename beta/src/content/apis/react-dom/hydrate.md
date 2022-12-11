@@ -74,7 +74,7 @@ For more information on hydration, see the docs for [`hydrateRoot`.](/apis/react
 
 ---
 
-### Unavoidable hydration mismatches {/*avoiding-unavoidable-hydration-mismatches*/}
+### Suppressing unavoidable hydration mismatch errors {/*suppressing-unavoidable-hydration-mismatch-errors*/}
 
 If a single element’s attribute or text content is unavoidably different between the server and the client (for example, a timestamp), you may silence the hydration mismatch warning.
 
@@ -101,11 +101,9 @@ hydrate(<App />, document.getElementById('root'));
 ```js App.js active
 export default function App() {
   return (
-    <>
-      <h1 suppressHydrationWarning={true}>
-        Current Date: {new Date().toLocaleDateString()}
-      </h1>
-    </>
+    <h1 suppressHydrationWarning={true}>
+      Current Date: {new Date().toLocaleDateString()}
+    </h1>
   );
 }
 ```
@@ -113,6 +111,8 @@ export default function App() {
 </Sandpack>
 
 This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates.
+
+---
 
 ### Handling different client and server content {/*handling-different-client-and-server-content*/}
 
@@ -160,15 +160,15 @@ This way the initial render pass will render the same content as the server, avo
 
 <Pitfall>
 
-This approach will make your components slower because they have to render twice, so use it with caution.
-
-Remember to be mindful of user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so if you render something different in the client-only pass, the transition can be jarring. However, if executed well, it may be beneficial to render a “shell” of the application on the server, and only show some of the extra widgets on the client. To learn how to do this without getting the markup mismatch issues, refer to the explanation in the previous paragraph.
+This approach makes hydration slower because your components have to render twice. Be mindful of the user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so rendering a different UI immediately after hydration may also feel jarring to the user.
 
 </Pitfall>
 
+---
+
 ## Reference {/*reference*/}
 
-### `hydrate(reactNode, domNode, callback?)` {/*hydrate-root*/}
+### `hydrate(reactNode, domNode, callback?)` {/*hydrate*/}
 
 <Deprecated>
 

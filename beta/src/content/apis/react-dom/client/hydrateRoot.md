@@ -102,15 +102,18 @@ React can recover from some hydration errors, but **you must fix them like other
 
 Apps fully built with React can render the entire document from the root component, including the [`<html>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/html) tag:
 
-```js {3,10}
+```js {3,13}
 function App() {
   return (
     <html>
       <head>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="/styles.css"></link>
         <title>My app</title>
       </head>
       <body>
-        <Page />
+        <Router />
       </body>
     </html>
   );
@@ -119,15 +122,104 @@ function App() {
 
 To hydrate the entire document, pass the [`document`](https://developer.mozilla.org/en-US/docs/Web/API/Window/document) global as the first argument to `hydrateRoot`:
 
-```js {5}
+```js {4}
 import { hydrateRoot } from 'react-dom/client';
 import App from './App.js';
 
-hydrateRoot(
-  document,
-  <App />
-);
+hydrateRoot(document, <App />);
 ```
+
+---
+
+### Suppressing unavoidable hydration mismatch errors {/*suppressing-unavoidable-hydration-mismatch-errors*/}
+
+If a single element’s attribute or text content is unavoidably different between the server and the client (for example, a timestamp), you may silence the hydration mismatch warning.
+
+To silence hydration warnings on an element, add `suppressHydrationWarning={true}`:
+
+<Sandpack>
+
+```html public/index.html
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><h1>Current Date: <!-- -->01/01/2020</h1></div>
+```
+
+```js index.js
+import './styles.css';
+import { hydrateRoot } from 'react-dom/client';
+import App from './App.js';
+
+hydrateRoot(document.getElementById('root'), <App />);
+```
+
+```js App.js active
+export default function App() {
+  return (
+    <h1 suppressHydrationWarning={true}>
+      Current Date: {new Date().toLocaleDateString()}
+    </h1>
+  );
+}
+```
+
+</Sandpack>
+
+This only works one level deep, and is intended to be an escape hatch. Don’t overuse it. Unless it’s text content, React still won’t attempt to patch it up, so it may remain inconsistent until future updates.
+
+---
+
+### Handling different client and server content {/*handling-different-client-and-server-content*/}
+
+If you intentionally need to render something different on the server and the client, you can do a two-pass rendering. Components that render something different on the client can read a [state variable](/apis/react/useState) like `isClient`, which you can set to `true` in an [Effect](/apis/react/useEffect):
+
+<Sandpack>
+
+```html public/index.html
+<!--
+  HTML content inside <div id="root">...</div>
+  was generated from App by react-dom/server.
+-->
+<div id="root"><h1>Is Server</h1></div>
+```
+
+```js index.js
+import './styles.css';
+import { hydrateRoot } from 'react-dom/client';
+import App from './App.js';
+
+hydrateRoot(document.getElementById('root'), <App />);
+```
+
+```js App.js active
+import { useState, useEffect } from "react";
+
+export default function App() {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  return (
+    <h1>
+      {isClient ? 'Is Client' : 'Is Server'}
+    </h1>
+  );
+}
+```
+
+</Sandpack>
+
+This way the initial render pass will render the same content as the server, avoiding mismatches, but an additional pass will happen synchronously right after hydration.
+
+<Pitfall>
+
+This approach makes hydration slower because your components have to render twice. Be mindful of the user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so rendering a different UI immediately after hydration may also feel jarring to the user.
+
+</Pitfall>
 
 ---
 
@@ -179,8 +271,8 @@ export default function App({counter}) {
 
 It is uncommon to call [`root.render`](#root-render) on a hydrated root. Usually, you'll [update state](/apis/react/useState) inside one of the components instead.
 
-
 ---
+
 ## Reference {/*reference*/}
 
 ### `hydrateRoot(domNode, options?)` {/*hydrateroot*/}

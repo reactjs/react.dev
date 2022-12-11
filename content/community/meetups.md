@@ -133,6 +133,7 @@ Do you have a local React.js meetup? Add it here! (Please keep the list alphabet
 * [Oslo](https://www.meetup.com/ReactJS-Oslo-Meetup/)
 
 ## Pakistan {#pakistan}
+* [Pakistan](https://www.facebook.com/reactcommunitypk/)
 * [Karachi](https://www.facebook.com/groups/902678696597634/)
 * [Lahore](https://www.facebook.com/groups/ReactjsLahore/)
 

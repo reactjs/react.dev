@@ -180,8 +180,7 @@
             },
             {
               "title": "renderToReadableStream",
-              "path": "/apis/react-dom/server/renderToReadableStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToReadableStream"
             },
             {
               "title": "renderToStaticMarkup",

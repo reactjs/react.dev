@@ -14,6 +14,12 @@ const { pipe, abort } = renderToPipeableStream(reactNode, options?)
 
 <InlineToc />
 
+<Note>
+
+This API is specific to Node.js. Environments with [Web Streams,](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API) like Deno and modern edge runtimes, should use [`renderToReadableStream`](/apis/react-dom/server/renderToReadableStream) instead.
+
+</Note>
+
 ---
 
 ## Usage {/*usage*/}
@@ -30,6 +36,7 @@ app.use('/', (request, response) => {
   const { pipe } = renderToPipeableStream(<App />, {
     bootstrapScripts: ['/main.js'],
     onShellReady() {
+      response.setHeader('content-type', 'text/html');
       pipe(response);
     }
   });
@@ -43,8 +50,10 @@ export default function App() {
   return (
     <html>
       <head>
-        <title>My app</title>
+        <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="stylesheet" href="/styles.css"></link>
+        <title>My app</title>
       </head>
       <body>
         <Router />
@@ -88,8 +97,9 @@ export default function App({ assetMap }) {
   return (
     <html>
       <head>
-        <title>My app</title>
+        ...
         <link rel="stylesheet" href={assetMap['styles.css']}></link>
+        ...
       </head>
       ...
     </html>
@@ -99,7 +109,7 @@ export default function App({ assetMap }) {
 
 On the server, render `<App assetMap={assetMap} />` and pass your `assetMap` with the asset URLs:
 
-```js {1-5,8}
+```js {1-5,8,9}
 // You'd need to get this JSON from your build tooling, e.g. read it from the build output.
 const assetMap = {
   'styles.css': '/styles.123456.css',
@@ -110,6 +120,7 @@ app.use('/', (request, response) => {
   const { pipe } = renderToPipeableStream(<App assetMap={assetMap} />, {
     bootstrapScripts: [assetMap['main.js']],
     onShellReady() {
+      response.setHeader('content-type', 'text/html');
       pipe(response);
     }
   });
@@ -131,6 +142,7 @@ app.use('/', (request, response) => {
     bootstrapScriptContents: `window.assetMap = ${JSON.stringify(assetMap)};`,
     bootstrapScripts: [assetMap['main.js']],
     onShellReady() {
+      response.setHeader('content-type', 'text/html');
       pipe(response);
     }
   });
@@ -272,10 +284,11 @@ If you wrap the whole app into a `<Suspense>` boundary at the root, the shell wi
 
 The `onShellReady` callback fires when the entire shell has been rendered. Usually, you'll start streaming then:
 
-```js {3-5}
+```js {3-6}
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   }
 });
@@ -289,10 +302,11 @@ By the time `onShellReady` fires, components in nested `<Suspense>` boundaries m
 
 By default, all errors on the server are logged to console. You can override this behavior to log crash reports:
 
-```js {6-9}
+```js {7-10}
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   },
   onError(error) {
@@ -325,14 +339,16 @@ function ProfilePage() {
 
 If an error occurs while rendering those components, React won't have any meaningful HTML to send to the client. Override `onShellError` to send a fallback HTML that doesn't rely on server rendering as the last resort:
 
-```js {6-9}
+```js {7-11}
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   },
   onShellError(error) {
     response.statusCode = 500;
+    response.setHeader('content-type', 'text/html');
     response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
@@ -386,10 +402,12 @@ const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
     response.statusCode = 200;
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   },
   onShellError(error) {
     response.statusCode = 500;
+    response.setHeader('content-type', 'text/html');
     response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
@@ -403,17 +421,19 @@ If a component *outside* the shell (i.e. inside a `<Suspense>` boundary) throws 
 
 However, if you'd like, you can use the fact that something has errored to set the status code:
 
-```js {1,6,14}
+```js {1,6,16}
 let didError = false;
 
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
     response.statusCode = didError ? 500 : 200;
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   },
   onShellError(error) {
     response.statusCode = 500;
+    response.setHeader('content-type', 'text/html');
     response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
@@ -432,7 +452,7 @@ This will only catch errors outside the shell that happened while generating the
 
 You can [create your own `Error` subclasses](https://javascript.info/custom-errors) and use the [`instanceof`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof) operator to check which error is thrown. For example, you can define a custom `NotFoundError` and throw it from your component. Then your `onError`, `onShellReady`, and `onShellError` callbacks can do something different depending on the error type:
 
-```js {2,4-14,19,23,28}
+```js {2,4-14,19,24,30}
 let didError = false;
 let caughtError = null;
 
@@ -452,10 +472,12 @@ const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
     response.statusCode = getStatusCode();
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   },
   onShellError(error) {
    response.statusCode = getStatusCode();
+   response.setHeader('content-type', 'text/html');
    response.send('<h1>Something went wrong</h1>'); 
   },
   onError(error) {
@@ -480,7 +502,7 @@ However, when a crawler visits your page, or if you're generating the pages at t
 You can wait for all the content to load using the `onAllReady` callback:
 
 
-```js {2,7,10,16-21}
+```js {2,7,11,18-24}
 let didError = false;
 let isCrawler = // ... depends on your bot detection strategy ...
 
@@ -489,16 +511,19 @@ const { pipe } = renderToPipeableStream(<App />, {
   onShellReady() {
     if (!isCrawler) {
       response.statusCode = didError ? 500 : 200;
+      response.setHeader('content-type', 'text/html');
       pipe(response);
     }
   },
   onShellError(error) {
     response.statusCode = 500;
+    response.setHeader('content-type', 'text/html');
     response.send('<h1>Something went wrong</h1>'); 
   },
   onAllReady() {
     if (isCrawler) {
       response.statusCode = didError ? 500 : 200;
+      response.setHeader('content-type', 'text/html');
       pipe(response);      
     }
   },
@@ -544,6 +569,7 @@ import { renderToPipeableStream } from 'react-dom/server';
 const { pipe } = renderToPipeableStream(<App />, {
   bootstrapScripts: ['/main.js'],
   onShellReady() {
+    response.setHeader('content-type', 'text/html');
     pipe(response);
   }
 });

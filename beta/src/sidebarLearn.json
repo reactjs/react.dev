@@ -202,6 +202,9 @@
           }, {
             "title": "Meet the Team",
             "path": "/learn/meet-the-team"
+          }, {
+            "title": "External Resources",
+            "path": "https://reactjs.org/community/external-resources.html"
           }]
         },
         {

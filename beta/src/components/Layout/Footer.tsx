@@ -132,6 +132,9 @@ export function Footer() {
                 Docs Contributors
               </FooterLink>
               <FooterLink href="/learn/meet-the-team">Meet the Team</FooterLink>
+              <FooterLink href="https://reactjs.org/community/external-resources.html">
+                External Resources
+              </FooterLink>
               <FooterLink href="https://reactjs.org/blog">Blog</FooterLink>
               {/* <FooterLink href="/">Community Resources</FooterLink> */}
             </div>

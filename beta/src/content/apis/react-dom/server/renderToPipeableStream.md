@@ -7,7 +7,7 @@ title: renderToPipeableStream
 `renderToPipeableStream` renders a React tree to a pipeable [Node.js Stream.](https://nodejs.org/api/stream.html)
 
 ```js
-const stream = renderToPipeableStream(reactNode, options)
+const { pipe, abort } = renderToPipeableStream(reactNode, options?)
 ```
 
 </Intro>
@@ -534,7 +534,7 @@ React will flush the remaining loading fallbacks as HTML, and will attempt to re
 
 ## Reference {/*reference*/}
 
-### `renderToPipeableStream` {/*rendertopipeablestream*/}
+### `renderToPipeableStream(reactNode, options)` {/*rendertopipeablestream*/}
 
 Call `renderToPipeableStream` to render your React tree as HTML into a [Node.js Stream.](https://nodejs.org/api/stream.html#writable-streams)
 

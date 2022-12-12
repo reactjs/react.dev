@@ -315,7 +315,161 @@ See [Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs#examp
 
 ### Fixing bugs with the legacy context API {/*fixing-bugs-with-the-legacy-context-api*/}
 
-TODO
+If you worked with React before, you might be familiar with an older API in class components for creating context called the Legacy Context API. This API allowed for creating context on class components using a method called `getChildContext`, prop-types, and `this.context`.
+
+Using Legacy Context can lead to bugs. For example, in the following example, switching the theme is broken: 
+
+<Sandpack>
+
+```js Header.js active
+import { Component } from "react";
+import PropTypes from "prop-types";
+
+class SubHeader extends Component {
+  render() {
+    return (
+      <p className={this.context.theme}>
+        The current theme is: {this.context.theme}
+      </p>
+    );
+  }
+}
+
+SubHeader.contextTypes = {
+  theme: PropTypes.string
+};
+
+class Header extends Component {
+  shouldComponentUpdate() {
+    // Error: This is a bug with legacy context!
+    // This component will never get context updates.
+    return false;
+  }
+  render() {
+    return (
+      <>
+        <h1 className={this.context.theme}>
+          Welcome!
+        </h1>
+        <SubHeader />
+      </>
+    );
+  }
+}
+
+Header.contextTypes = {
+  theme: PropTypes.string
+};
+
+export default Header;
+```
+```js App.js
+import { Component } from "react";
+import PropTypes from "prop-types";
+import Header from './Header.js';
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { theme: "light" };
+  }
+
+  getChildContext() {
+    return { theme: this.state.theme };
+  }
+
+  handleToggleTheme = () => {
+    this.setState((state) => ({
+      theme: state.theme === "light" ? "dark" : "light"
+    }));
+
+    document.getElementsByTagName('html')[0].className =
+      this.state.theme === "light" ? "dark" : "light";
+  };
+
+  render() {
+    return (
+      <div
+        className={`container ${this.state.theme}`}
+      >
+        <Header />
+        <button onClick={this.handleToggleTheme}>Toggle Theme</button>
+      </div>
+    );
+  }
+}
+
+App.childContextTypes = {
+  theme: PropTypes.string
+};
+
+export default App;
+```
+
+```json package.json hidden
+{
+  "dependencies": {
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "prop-types": "15.8.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```css
+container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10px;
+}
+
+.light {
+    color: #000;
+}
+
+html.light, div.light {
+    background-color: #FFF;
+}
+
+.dark {
+    color: #FFF;
+}
+
+html.dark, div.dark {
+    background-color: #000;
+}
+```
+
+</Sandpack>
+
+This bug happens because the Legacy Context API would not update children if `shouldCompoentUpdate` returned `false`. You might expect `this.context.theme` in the `SubHeader` component to always stay up to date with the current theme context. However, since the paren `Header` component returns `false` from `shouldComponentUpdate`, neither `Header` or any of it's descendents will receive context updates.
+
+Strict Mode helps us find this bug in development by showing an error in the console:
+
+<ConsoleBlock level="error">
+
+<>
+    <span>Warning: Legacy context API has been detected within a strict-mode tree.</span>
+    <p>The old API will be supported in all 16.x releases, but applications using it should migrate to the new version.</p>
+    <p>Please update the following components: App, Header, SubHeader</p>
+    <p>Learn more about this warning here: https://reactjs.org/link/legacy-context</p>
+</>
+
+</ConsoleBlock>
+
+To fix this error, switch to the [`createContext`](http://localhost:3000/apis/react/createContext) API or the [`useContext`](/apis/react/useContext) hook.
+
+For more information on using context, see [Passing Data Deeply with Context](http://localhost:3000/learn/passing-data-deeply-with-context).
 
 ### Fixing bugs with unsafe lifecycle methods {/*fixing-bugs-with-unsafe-lifecycle-methods*/}
 
@@ -440,12 +594,8 @@ Fortunately, we're able to catch this issue early using Strict Mode which warns 
 
 <>
     <span>Warning: Using UNSAFE_componentWillMount in strict mode is not recommended and may indicate bugs in your code. See https://reactjs.org/link/unsafe-component-lifecycles for details.</span>
-    <br />
-    <br />
-    <span>Move code with side effects to componentDidMount, and set initial state in the constructor.</span>
-    <br />
-    <br />
-    <span>Please update the following components: Preview</span>
+    <p>Move code with side effects to componentDidMount, and set initial state in the constructor.</p>
+    <p>Please update the following components: Preview</p>
 </>
 
 </ConsoleBlock>

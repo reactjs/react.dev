@@ -774,7 +774,7 @@ function ChatRoom({ roomId }) {
     const connection = createConnection(options);
     connection.connect();
     // ...
-  ```
+```
 
 This object is declared in the component body, so it's a [reactive value.](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) When you read a reactive value like this inside an Effect, you declare it as a dependency. This ensures your Effect "reacts" to its changes:
 
@@ -786,7 +786,7 @@ This object is declared in the component body, so it's a [reactive value.](/lear
     return () => connection.disconnect();
   }, [options]); // ✅ All dependencies declared
   // ...
-  ```
+```
 
 It is important to declare it as a dependency! This ensures, for example, that if the `roomId` changes, then your Effect will re-connect to the chat with the new `options`. However, there is also a problem with the code above. To see the problem, try typing into the input in the sandbox below, and watch what happens in the console:
 
@@ -903,7 +903,7 @@ function ChatRoom() {
     return () => connection.disconnect();
   }, []); // ✅ All dependencies declared
   // ...
-  ```
+```
 
 This way, you *prove* to the linter that it's not reactive. It can't change as a result of a re-render, so it doesn't need to be a dependency of your Effect. Now re-rendering `ChatRoom` won't cause your Effect to re-synchronize.
 
@@ -927,7 +927,7 @@ function ChatRoom() {
     return () => connection.disconnect();
   }, []); // ✅ All dependencies declared
   // ...
-  ```
+```
 
 Since `createOptions` is declared outside your component, it's not a reactive value. This is why it doesn't need to be specified in your Effect's dependencies, and why it won't ever cause your Effect to re-synchronize.
 
@@ -951,7 +951,7 @@ function ChatRoom({ roomId }) {
     return () => connection.disconnect();
   }, [roomId]); // ✅ All dependencies declared
   // ...
-  ```
+```
 
 Now that `options` is declared inside of your Effect, it is no longer a dependency of your Effect. Instead, the only reactive value used by your Effect is `roomId`. Since `roomId` is not an object or function, you can be sure that it won't be *unintentionally* different. In JavaScript, numbers and strings are compared by their content:
 
@@ -1064,7 +1064,7 @@ function ChatRoom({ roomId }) {
     return () => connection.disconnect();
   }, [roomId]); // ✅ All dependencies declared
   // ...
-  ```
+```
 
 You can write your own functions to group pieces of logic inside your Effect. As long as you also declare them *inside* your Effect, they're not reactive values, and so they don't need to be dependencies of your Effect.
 
@@ -1082,7 +1082,7 @@ function ChatRoom({ options }) {
     return () => connection.disconnect();
   }, [options]); // ✅ All dependencies declared
   // ...
-  ```
+```
 
 The risk here is that the parent component will create the object during rendering:
 
@@ -1116,7 +1116,7 @@ function ChatRoom({ options }) {
 
 The logic gets a little repetitive (you read some values from an object outside an Effect, and then create an object with the same values inside the Effect). But it makes it very explicit what information your Effect *actually* depends on. If an object is re-created unintentionally by the parent component, the chat would not re-connect. However, if `options.roomId` or `options.serverUrl` actually change, the chat would re-connect as you'd expect.
 
-#### Calculate primitive values from functions
+#### Calculate primitive values from functions {/*calculate-primitive-values-from-functions*/}
 
 The same approach can work for functions. For example, suppose the parent component passes a function:
 
@@ -1169,7 +1169,7 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 
 <Challenges>
 
-#### Fix a resetting interval
+#### Fix a resetting interval {/*fix-a-resetting-interval*/}
 
 This Effect sets up an interval that ticks every second. You've noticed something strange happening: it seems like the interval gets destroyed and re-created every time it ticks. Fix the code so that the interval doesn't get constantly re-created.
 
@@ -1241,7 +1241,7 @@ Instead of reading `count` inside the Effect, you pass a `c => c + 1` instructio
 
 </Solution>
 
-#### Fix a retriggering animation
+#### Fix a retriggering animation {/*fix-a-retriggering-animation*/}
 
 In this example, when you press "Show", a welcome message fades in. The animation takes a second. When you press "Remove", the welcome message immediately disappears. The logic for the fade-in animation is implemented in the `animation.js` file as plain JavaScript [animation loop.](https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame) You don't need to change that logic. You can treat it as a third-party library. Your Effect creates an instance of `FadeInAnimation` for the DOM node, and then calls `start(duration)` or `stop()` to control the animation. The `duration` is controlled by a slider. Adjust the slider and see how the animation changes.
 
@@ -1505,7 +1505,7 @@ Event functions like `onAppear` are not reactive, so you can read `duration` ins
 
 </Solution>
 
-#### Fix a reconnecting chat
+#### Fix a reconnecting chat {/*fix-a-reconnecting-chat*/}
 
 In this example, every time you press "Toggle theme", the chat re-connects. Why does this happen? Fix the mistake so that the chat re-connects only when you edit Server URL or choose a different the chat room.
 
@@ -1798,7 +1798,7 @@ Sticking to primitive props where possible makes it easier to optimize your comp
 
 </Solution>
 
-#### Fix a reconnecting chat, again
+#### Fix a reconnecting chat, again {/*fix-a-reconnecting-chat-again*/}
 
 This example connects to the chat either with or without encryption. Toggle the checkbox and notice the different messages in the console when the encryption is on and off. Try changing the room. Then, try toggling the theme. When you're connected to a chat room, you will receive new messages every few seconds. Verify that their color matches the theme you've picked.
 

@@ -115,8 +115,7 @@
             },
             {
               "title": "startTransition",
-              "path": "/apis/react/startTransition",
-              "wip": true
+              "path": "/apis/react/startTransition"
             }
           ]
         },

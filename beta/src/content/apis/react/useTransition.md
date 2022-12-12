@@ -1479,7 +1479,7 @@ function TabContainer() {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `fn`: A function that updates some state by calling one or more [`set` functions.](/apis/react/useState#setstate) React will immediately call `fn` with no parameters and keep track of which state updates have been scheduled. It will treat all of the updates scheduled by `fn` as transitions: they will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
+* `scope`: A function that updates some state by calling one or more [`set` functions.](/apis/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
 
 #### Returns {/*starttransition-returns*/}
 
@@ -1610,9 +1610,9 @@ console.log(3);
 
 let isInsideTransition = false;
 
-function startTransition(fn) {
+function startTransition(scope) {
   isInsideTransition = true;
-  fn();
+  scope();
   isInsideTransition = false;
 }
 

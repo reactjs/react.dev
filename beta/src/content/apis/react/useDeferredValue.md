@@ -953,7 +953,7 @@ During the initial render, the returned deferred value will be the same as the v
 
 - `useDeferredValue` does not by itself prevent extra network requests.
 
-- There is no fixed delay caused by `useDeferredValue` itself. As soon as there are no urgent updates to handle, React will immediately start working on the background re-render with the new deferred value. However, any updates caused by events (like typing) will interrupt the background re-render and get prioritized over it.
+- There is no fixed delay caused by `useDeferredValue` itself. As soon as React finishes the original re-render, React will immediately start working on the background re-render with the new deferred value. However, any updates caused by events (like typing) will interrupt the background re-render and get prioritized over it.
 
 - The background re-render caused by `useDeferredValue` does not fire Effects until it's committed to the screen. If the background re-render suspends, its Effects will run after the data loads and the UI updates.
 

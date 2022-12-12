@@ -9,6 +9,7 @@ import {ChallengeContents} from './Challenges';
 import {IconHint} from '../../Icon/IconHint';
 import {IconSolution} from '../../Icon/IconSolution';
 import {IconArrowSmall} from '../../Icon/IconArrowSmall';
+import {H4} from '../Heading';
 
 interface ChallengeProps {
   isRecipes?: boolean;
@@ -45,14 +46,16 @@ export function Challenge({
   return (
     <div className="p-5 sm:py-8 sm:px-8">
       <div>
-        <h3 className="text-xl text-primary dark:text-primary-dark mb-2">
+        <H4
+          className="text-xl text-primary dark:text-primary-dark mb-2 mt-0 font-medium"
+          id={currentChallenge.id}>
           <div className="font-bold block md:inline">
             {isRecipes ? 'Example' : 'Challenge'} {currentChallenge.order} of{' '}
             {totalChallenges}
             <span className="text-primary dark:text-primary-dark">: </span>
           </div>
           {currentChallenge.name}
-        </h3>
+        </H4>
         {currentChallenge.content}
       </div>
       <div className="flex justify-between items-center mt-4">

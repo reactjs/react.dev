@@ -1,10 +1,10 @@
 ---
-title: Fragment (<>...</>)
+title: <Fragment> (<>...</>)
 ---
 
 <Intro>
 
-The `Fragment` component, which is often used via the `<>...</>` syntax, lets you render multiple elements in place of one, without wrapping them in any other container element.
+`<Fragment>`, often used via `<>...</>` syntax, lets you group elements without a wrapper node.
 
 ```js
 <>
@@ -195,11 +195,11 @@ function PostBody({ body }) {
 
 ## Reference {/*reference*/}
 
-### `Fragment` {/*fragment*/}
+### `<Fragment>` {/*fragment*/}
 
 Wrap elements in `<Fragment>` to group them together in situations where you need a single element. Grouping elements in `Fragment` has no effect on the resulting DOM; it is the same as if the elements were not grouped. The empty JSX tag `<></>` is shorthand for `<Fragment></Fragment>` in most cases.
 
-#### Props {/*fragment-props*/}
+#### Props {/*props*/}
 
 - **optional** `key`: Fragments declared with the explicit `<Fragment>` syntax may have [keys.](https://beta.reactjs.org/learn/rendering-lists#keeping-list-items-in-order-with-key)
 

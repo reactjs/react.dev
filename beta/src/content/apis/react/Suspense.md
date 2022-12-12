@@ -1,10 +1,10 @@
 ---
-title: Suspense
+title: <Suspense>
 ---
 
 <Intro>
 
-`Suspense` is a React component that displays a fallback until its children have finished loading.
+`<Suspense>` lets you displays a fallback until its children have finished loading.
 
 
 ```js
@@ -2523,9 +2523,9 @@ The server HTML will include the loading indicator. It will be replaced by the `
 
 ## Reference {/*reference*/}
 
-### `Suspense` {/*suspense*/}
+### `<Suspense>` {/*suspense*/}
 
-#### Props {/*suspense-props*/}
+#### Props {/*props*/}
 * `children`: The actual UI you intend to render. If `children` suspends while rendering, the Suspense boundary will switch to rendering `fallback`.
 * `fallback`: An alternate UI to render in place of the actual UI if it has not finished loading. Any valid React node is accepted, though in practice, a fallback is a lightweight placeholder view, such as a loading spinner or skeleton. Suspense will automatically switch to `fallback` when `children` suspends, and back to `children` when the data is ready. If `fallback` suspends while rendering, it will activate the closest parent Suspense boundary.
 

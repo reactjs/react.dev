@@ -85,8 +85,7 @@
             },
             {
               "title": "<Profiler>",
-              "path": "/apis/react/Profiler",
-              "wip": true
+              "path": "/apis/react/Profiler"
             },
             {
               "title": "<StrictMode>",

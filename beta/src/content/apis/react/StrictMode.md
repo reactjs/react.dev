@@ -1,5 +1,5 @@
 ---
-title: StrictMode
+title: <StrictMode>
 ---
 
 <Wip>

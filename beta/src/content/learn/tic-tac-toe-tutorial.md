@@ -886,7 +886,7 @@ root.render(
 );
 ```
 
-<Sandpack>
+</Sandpack>
 
 
 
@@ -978,7 +978,7 @@ JavaScript supports [closures](https://developer.mozilla.org/en-US/docs/Web/Java
 
 Now you can add X's to the board by clicking on them again:
 
-![adding xes to board](..images/tutorial/tictac-adding-x-s.gif)
+![filling the board with X](..images/tutorial/tictac-adding-x-s.gif)
 
 But this time all the state managment is being handled by the `Board` component! This is what your code should look like:
 
@@ -1083,74 +1083,27 @@ root.render(
 
 </Sandpack>
 
+Now that our state handling is in the board component, the board componenet passes props to the child square componenets so that they can be displayed correctly. When clicking on a square, the square component now has to communicate with the board component to update the status of the board. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
 
-propflow diagram
+![adding a X to the top left of the board](..images/tutorial/tictactoe-first-move.png)
 
-----
+Now let's take a look at what happens when a user clicks the top left square on our board to add an `X` to it:
 
+![tic-tac-toe component prop flow when clicking a square on the board](..images/tutorial/tictactoe-component-prop-flow.png)
 
-
-```jsx {5}
-function renderSquare(i) {
-  return <Square value={squares[i]} onClick={() => handleClick(i)} />;
-}
-```
-
-Now we're passing down two props from Board to Square: `value` and `handleClick`. The `handleClick` prop is a function that Square can call when clicked. Now make the following changes to Square:
-
-- Add back the first argument to Square so it can receive the props from Board as `{value, handleSquareClick}`, this time including our second prop
-- Remove the `useState` declaration from Square because we no longer want Square to keep track of its own state
-- Replace `setValue('X')` with `handleSquareClick()` in Square
-
-After these changes, the Square component looks like this:
-
-```jsx {1,3}
-function Square({value, handleSquareClick}) {
-  return (
-    <button className="square" onClick={() => handleSquareClick()}>
-      {value}
-    </button>
-  );
-}
-```
-
-When a Square is clicked, the `handleSquareClick` function provided by the Board is called. Here's a review of how this is achieved:
-
-1. The `onClick` prop on the built-in DOM `<button>` component tells React to set up a click event listener.
-2. When the button is clicked, React will call the `onClick` event handler that is defined in the Square function.
-3. This event handler calls `handleSquareClick()`, which refers to the Square's `handleSquareClick` prop that was specified by the Board.
-4. Since the Board passed `onClick={() => handleClick(i)}` to Square, the Square calls the Board's `handleClick(i)` when clicked.
-5. We have not defined the `handleClick()` function yet, so our code crashes. If you click a square now, you should see a red error screen saying something like "handleClick is not defined".
+0. The user clicks the top left square
+1. React calls the `onClick` prop method on the square component with index `0`
+2. The `onClick` prop method calls the `handleSquareClick` function referenced in the square component with index `1`
+3. The `handleSquareClick` method calls the `handleClick(0)` method in the `Board` component. The `handleClick` method is called with index of the clicked square component (`0`) as an argument
+4. The `handleClick` uses the argument (`0`) to update the first element of the `squares` array from `null` to `X`
+5. All the square components are re-rendered because the board component `squares` prop was updated. The `value` prop of the square component with index `0` changes from `null` to `X`
+6. The user sees that the upper left square has changed from empty to having a `X`.
 
 <Note>
 
 The DOM `<button>` element's `onClick` attribute has a special meaning to React because it is a built-in component. For custom components like Square, the naming is up to you. We could give any name to the Square's `handleSquareClick` prop or Board's `handleClick` function, and the code would work the same. In React, it's conventional to use `on[Event]` names for props which represent events and `handle[Event]` for the methods which handle the events.
 
 </Note>
-
-When we try to click a Square, we should get an error because we haven't defined `handleClick` yet (when developing in the browser the rendered page won't even be displayed). We'll now add `handleClick` to the Board class:
-
-```jsx {4-8}
-function Board() {
-  const [squares, setSquares] = useState(Array(9).fill(null));
-
-  function handleClick(i) {
-    const newSquares = squares.slice();
-    newSquares[i] = 'X';
-    setSquares(newSquares);
-  }
-
-  function renderSquare(i) {
-    // ...
-```
-
-
-
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-lifting-state-up-part-2-063xpm?file=/App.js)**
-
-After these changes, we're again able to click on the Squares to fill them, the same as we had before. However, now the state is stored in the Board component instead of the individual Square components. When the Board's state changes, the Square components re-render automatically. Keeping the state of all squares in the Board component will allow it to determine the winner in the future.
-
-Since the Square components no longer maintain state, the Square components receive values from the Board component and inform the Board component when they're clicked. In React terms, the Square components are now **controlled components**. The Board has full control over them.
 
 ### Why Immutability Is Important {/*why-immutability-is-important*/}
 
@@ -1160,19 +1113,19 @@ There are generally two approaches to changing data. The first approach is to _m
 
 #### Data Change with Mutation {/*data-change-with-mutation*/}
 
-```jsx
-const player = {score: 1, name: 'Jeff'};
-player.score = 2;
-// Now player is {score: 2, name: 'Jeff'}
+```tsx
+let squares = [null, null, null, null, null, null, null, null, null];
+squares[0] = "X"
+// Now `squares` is ["X", null, null, null, null, null, null, null, null];
 ```
 
 #### Data Change without Mutation {/*data-change-without-mutation*/}
 
-```jsx
-const player = {score: 1, name: 'Jeff'};
-
-const newPlayer = {score: 2, name: player.name};
-// Now player is unchanged, but newPlayer is {score: 2, name: 'Jeff'}
+```tsx
+let squares = [null, null, null, null, null, null, null, null, null];
+let newSquares = ['X', null, null, null, null, null, null, null, null];
+// Now `squares` is unchanged, but `newSquares` first element has been updated
+// from `null` to `X`
 ```
 
 The end result is the same but by not mutating (or changing the underlying data) directly, we gain several benefits described below.
@@ -1209,93 +1162,368 @@ function Board() {
 
 Each time a player moves, `xIsNext` (a boolean) will be flipped to determine which player goes next and the game's state will be saved. We'll update the Board's `handleClick` function to flip the value of `xIsNext`:
 
-```jsx {3,5}
-function handleClick(i) {
-  const newSquares = squares.slice();
-  newSquares[i] = xIsNext ? 'X' : 'O';
-  setSquares(newSquares);
-  setXIsNext(!xIsNext);
-}
-```
-
-With this change, "X"s and "O"s can take turns. Try it!
-
-Let's also change the "status" text in Board so that it displays which player has the next turn:
-
-```jsx {3}
-function Board() {
-  // ...
-  const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-
-  return (
-    // ...
-```
-
-After applying these changes, you should have this Board component:
-
-```jsx {2,7,9,16}
-function Board() {
+```tsx {7,8,9,10,11,13}
+export default function Board() {
   const [xIsNext, setXIsNext] = useState(true);
   const [squares, setSquares] = useState(Array(9).fill(null));
 
-  function handleClick(i) {
-    const newSquares = squares.slice();
-    newSquares[i] = xIsNext ? 'X' : 'O';
+  function handleClick(i: number) {
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
     setSquares(newSquares);
     setXIsNext(!xIsNext);
   }
 
-  function renderSquare(i) {
-    return <Square value={squares[i]} onClick={() => handleClick(i)} />;
+  return (...
+```
+
+Now when we click on a square it will alternatve between `X`'s and `O`'s. But we have a problem. Clicking on a square can have two outcomes: either marking the square with a `X` or a `O`). Now if we click a square already marked with an `X` when a `O` is going to be marked next:
+
+![O overwriting an X](../images/tutoral/o-replaces-x.gif)
+
+the `X` is overwritten by an `O`! While this would add a very interesting twist to the game, to play by the original rules we'll have to fix this.
+
+The problem is when we mark a square with a `X` or a `O` we aren't first checking to see if its already has a `X` or `O` value. We can fix this by **returning early**. We'll check to see if the square already has a `X` or and `O` and if it does we will return early in the `handleClick` function to make sure the board isn't updated and that the game doesn't progress:
+
+```tsx {2,3,4}
+function handleClick(i: number) {
+  if (squares[i]) {
+    return;
+  }
+  let newSquares = squares.slice();
+  ...
+```
+
+Now we can only add `X`'s or `O`'s to empty squares! Here is what your code should look like at this point:
+
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i: number) {
+    if (squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    setSquares(newSquares);
+    setXIsNext(!xIsNext);
   }
 
-  const status = 'Next player: ' + (xIsNext ? 'X' : 'O');
-
   return (
-    // ...
+    <div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
   );
 }
 ```
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-taking-turns-sfmx5m?file=/App.js)**
+```css styles.css
+* {
+  box-sizing: border-box;
+}
 
-### Declaring a Winner {/*declaring-a-winner*/}
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
 
-Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. In the starter code, we included a `utils.js` file containing a helper function `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Import it in `App.js`:
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
 
-```jsx
-import {calculateWinner} from './utils.js';
-```
-
-We will call `calculateWinner(squares)` in the Board component to check if a player has won. If a player has won, we can display text such as "Winner: X" or "Winner: O". We'll replace the `status` declaration in the Board function with this code:
-
-```jsx
-const winner = calculateWinner(squares);
-let status;
-if (winner) {
-  status = 'Winner: ' + winner;
-} else {
-  status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
 }
 ```
 
-We can now change the Board's `handleClick` function to return early by ignoring a click if someone has won the game or if a Square is already filled:
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
 
-```jsx {2-4}
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
+
+### Declaring a Winner {/*declaring-a-winner*/}
+
+Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. To do this we'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
+
+```tsx App.tsx
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+export default function Board() {
+  ...
+```
+
+We will call `calculateWinner(squares)` in the Board component's `handleClick` function to check if a player has won. We can perform this check at the same time we check if a user has clicked a square that already has a `X` or and `O`. We'd like to return early in both cases:
+
+```tsx {2}
 function handleClick(i) {
   if (calculateWinner(squares) || squares[i]) {
     return;
   }
   const newSquares = squares.slice();
-  newSquares[i] = xIsNext ? 'X' : 'O';
-  setSquares(newSquares);
-  setXIsNext(!xIsNext);
+  ...
+```
+
+To let the players know when the game is over, we can display text such as "Winner: X" or "Winner: O". To do that we'll add a `status` section to the Board component. The status will display the winner if the game is over and if the game is ongoing we'll display which player's turn is next:
+
+```jsx
+export default function Board() {
+  //...
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        ...
+```
+
+Lastly we'll add some CSS to add some spacing between the game status and the board:
+
+```css styles.css
+.status {
+  margin-bottom: 10px;
 }
 ```
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-declaring-a-winner-om8d1x?file=/App.js)**
+Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you're_ probably the real winner here. Here is what the code should look like:
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you're_ probably the real winner here.
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i: number) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    setSquares(newSquares);
+    setXIsNext(!xIsNext);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
 
 ## Adding Time Travel {/*adding-time-travel*/}
 
@@ -1323,61 +1551,22 @@ history = [
 
 ### Lifting State Up, Again {/*lifting-state-up-again*/}
 
-Let's make the top-level Game component to display a list of past moves. To make this possible, we'll place the `history` state in the top-level Game component.
+Let's make a new top-level component called `Game` to display a list of past moves. To make this possible, we'll place the `history` state in the top-level Game component.
 
 Placing the `history` state into the Game component lets us remove the `squares` state from its child Board component. Just like we ["lifted state up"](#lifting-state-up) from the Square component into the Board component, we are now lifting it up from the Board into the top-level Game component. This gives the Game component full control over the Board's data, and lets it instruct the Board to render previous turns from the `history`.
 
-First, let's make the Board component stateless, by making it fully controlled by the props it receives. Remove the two state variables from Board, and change it to instead take three props: `xIsNext`, `squares`, and a new `onPlay` function that Board can call with the updated squares array whenever a player makes a move:
+First, let's make the `Game` component, make it the `default export` for our module, and have it return the `Board` component:
 
-```jsx {1-2,9}
-function Board({xIsNext, squares, onPlay}) {
+```tsx {1}
+function Board() {
+  //...
+}
 
-  function handleClick(i) {
-    if (calculateWinner(squares) || squares[i]) {
-      return;
-    }
-    const newSquares = squares.slice();
-    newSquares[i] = xIsNext ? "X" : "O";
-    onPlay(newSquares);
-  }
-
-  function renderSquare(i) {
-    // ...
-```
-
-Now, we'll move the state variables from the Board component to the Game component – make sure to remove the lines that call `useState` from the Board component and note the square brackets around `Array(9).fill(null)` to make the nested array:
-
-```jsx {2-3}
 export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-
-  return (
-    // ...
-```
-
-To connect these components together, let's do three things:
-
-- Define a new variable `currentSquares` that always points to the last entry in `history`.
-- Add a new empty function `handlePlay`, which Board will call when the player does a move (we'll fill in its definition shortly).
-- Pass `xIsNext`, `currentSquares`, and `handlePlay` from Game to Board, using the prop names that Board is expecting.
-
-Now, Game's definition looks like this:
-
-```jsx {4,6-8,13}
-export default function Game() {
-  const [xIsNext, setXIsNext] = useState(true);
-  const [history, setHistory] = useState([Array(9).fill(null)]);
-  const currentSquares = history[history.length - 1];
-
-  function handlePlay(newSquares) {
-    // TODO
-  }
-
   return (
     <div className="game">
       <div className="game-board">
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board />
       </div>
       <div className="game-info">
         <ol>{/* TODO */}</ol>
@@ -1386,6 +1575,62 @@ export default function Game() {
   );
 }
 ```
+
+Note that we are removing the `default export` statement before the `function Board() {` and adding it before our `function Game() {` defition. This tells our `index.tsx` file to use the Game component as the top level component instead of our Board component. The additional `div`s returned by the Game component are making room for the game information we'll add next to the board later.
+
+Next, we'll add state varilbes to track which player is next, and the history of moves in the game. While we're at it we'll add a varible to cacluate the current squares based on the most recent entry in the `history` state varible. Next, we'll create a `handlePlay` function inside the Game component that will be called by the Board component to update the game. Lastly, we'll pass the `xIsNext`, `currentSquares` and `handlePlay` as props to the Board component:
+
+```tsx{2,3,4,6,7,8,12}
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay(newSquares) {
+    // TODO
+  }
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        //...
+```
+
+Let's make the Board component stateless, by making it fully controlled by the props it receives. Change the Board component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that Board can call with the updated squares array whenever a player makes a move. We'll also need a `BoardProps` type with the correct type annotations. Next, remove the first two lines of the Board function that call `useState`:
+
+```tsx
+type BoardProps = {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (squares: string[]) => void;
+};
+
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
+    //...
+}
+```
+
+Now we'll replace the `setSquares` and `setXIsNext` calls in `handleClick` in the Board component with a single call to our new `onPlay` function so the Game component can update the Board when a user clicks a square:
+
+```tsx
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    onPlay(newSquares);
+  }
+  //...
+```
+
+The Board component is fully controlled by the props passed to it by the Game component. We need to implement the `handlePlay` function in the Game component to get the game working again.
 
 What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
 
@@ -1404,9 +1649,178 @@ Instead of the array `push()` method you might be more familiar with, we prefer 
 
 </Note>
 
+
 At this point, we've moved the state to live in the Game component, but the UI should be fully working, just as it was before the refactor.
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-adding-time-travel-v19223?file=/App.js)**
+Here is what the code should look like at this point:
+
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+type BoardProps = {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (squares: string[]) => void;
+};
+
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    onPlay(newSquares);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay(newSquares: string[]) {
+    setHistory(history.concat([newSquares]));
+    setXIsNext(!xIsNext);
+  }
+
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{/* TODO */}</ol>
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
 
 ### Showing the Past Moves {/*showing-the-past-moves*/}
 
@@ -1424,7 +1838,8 @@ Here, we'll use the `map` method to transform our history of moves into React el
 
 Let's `map` over the `history` in the Game component:
 
-```jsx {11-18,26}
+
+```jsx {11-13, 15-27,36}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -1435,11 +1850,20 @@ export default function Game() {
     setXIsNext(!xIsNext);
   }
 
-  const moves = history.map((step, index) => {
-    const description = index > 0 ? `Go to move #${index}` : 'Go to game start';
+  function jumpTo(step: number) {
+    // TODO
+  }
+
+  const moves = history.map((step, move) => {
+    let description;
+    if (move > 0) {
+      description = `Go to move #${move}`;
+    } else {
+      description = "Go to game start";
+    }
     return (
       <li>
-        <button onClick={() => jumpTo(index)}>{description}</button>
+        <button onClick={() => jumpTo(move)}>{description}</button>
       </li>
     );
   });
@@ -1457,7 +1881,214 @@ export default function Game() {
 }
 ```
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-showing-the-past-moves-rpstlr?file=/App.js)**
+We'll also add some CSS to bring the move history next to the board:
+
+```css
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+```
+
+Here is what the code should look like:
+
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+type BoardProps = {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (squares: string[]) => void;
+};
+
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    onPlay(newSquares);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay(newSquares: string[]) {
+    setHistory(history.concat([newSquares]));
+    setXIsNext(!xIsNext);
+  }
+
+  function jumpTo(step: number) {
+    // TODO
+  }
+
+  const moves = history.map((step, move) => {
+    let description;
+    if (move > 0) {
+      description = `Go to move #${move}`;
+    } else {
+      description = "Go to game start";
+    }
+    return (
+      <li>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
 
 As we iterate through `history` array, the `step` variable goes through each element of `history`, and `index` goes through each array index: 0, 1, 2, …. (In most cases, you'd need the actual array elements, but in this case we don't use `step`.)
 
@@ -1512,9 +2143,9 @@ In the tic-tac-toe game's history, each past move has a unique ID associated wit
 
 In the Game function, we can add the key as `<li key={move}>`, and if you reload the rendered game, React's warning about keys should disappear:
 
-```jsx {4}
+```tsx {4}
 const moves = history.map((step, move) => {
-  const description = move > 0 ? `Go to move #${move}` : 'Go to game start';
+  //...
   return (
     <li key={move}>
       <button onClick={() => jumpTo(move)}>{description}</button>
@@ -1523,9 +2154,201 @@ const moves = history.map((step, move) => {
 });
 ```
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-implementing-time-travel-kddrmu?file=/App.js)**
+<Sandpack>
 
-Clicking any of the list item's buttons throws an error because the `jumpTo` method is undefined. Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+type BoardProps = {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (squares: string[]) => void;
+};
+
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    onPlay(newSquares);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+
+  function handlePlay(newSquares: string[]) {
+    setHistory(history.concat([newSquares]));
+    setXIsNext(!xIsNext);
+  }
+
+  function jumpTo(step: number) {
+    // TODO
+  }
+
+  const moves = history.map((step, move) => {
+    let description;
+    if (move > 0) {
+      description = `Go to move #${move}`;
+    } else {
+      description = "Go to game start";
+    }
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
+
+Before we implement `jumpTo`, we'll add `stepNumber` to the Game component's state to indicate which step we're currently viewing.
 
 First, define it as a new state variable, defaulting to `0`:
 
@@ -1537,13 +2360,13 @@ export default function Game() {
   const currentSquares = history[history.length - 1];
 ```
 
-Next, add a `jumpTo` function inside Game to update that `stepNumber`. We'll also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
+Next, update the `jumpTo` function inside Game to update that `stepNumber`. We'll also set `xIsNext` to true if the number that we're changing `stepNumber` to is even:
 
 ```jsx {5-10}
 export default function Game() {
   // ...
 
-  function jumpTo(step) {
+  function jumpTo(step: number) {
     setStepNumber(step);
     setXIsNext(step % 2 === 0);
   }
@@ -1555,7 +2378,7 @@ We will now make two changes to the Game's `handlePlay` method which fires when 
 - Each time a move is made, we need to update `stepNumber` to point to the latest history entry.
 
 ```jsx {2-4}
-function handlePlay(newSquares) {
+function handlePlay(newSquares: string[]) {
   let newHistory = history.slice(0, stepNumber + 1).concat([newSquares]);
   setHistory(newHistory);
   setStepNumber(newHistory.length - 1);
@@ -1577,7 +2400,202 @@ export default function Game() {
 
 If we click on any step in the game's history, the tic-tac-toe board should immediately update to show what the board looked like after that step occurred.
 
-**[View the full code at this point](https://codesandbox.io/s/react-tutorial-tic-tac-toe-implementing-time-travel-part-2-zx6nw1?file=/App.js)**
+<Sandpack>
+
+```tsx App.tsx
+import { useState } from "react";
+
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
+  return (
+    <button className="square" onClick={() => handleSquareClick()}>
+      {value}
+    </button>
+  );
+}
+
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+type BoardProps = {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (squares: string[]) => void;
+};
+
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
+    onPlay(newSquares);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = "Winner: " + winner;
+  } else {
+    status = "Next player: " + (xIsNext ? "X" : "O");
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
+      </div>
+    </div>
+  );
+}
+
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [stepNumber, setStepNumber] = useState(0);
+  const currentSquares = history[stepNumber];
+
+  function handlePlay(newSquares: string[]) {
+    let newHistory = history.slice(0, stepNumber + 1).concat([newSquares]);
+    setHistory(newHistory);
+    setStepNumber(newHistory.length - 1);
+    setXIsNext(!xIsNext);
+  }
+
+  function jumpTo(step: number) {
+    setStepNumber(step);
+    setXIsNext(step % 2 === 0);
+  }
+
+  const moves = history.map((step, move) => {
+    let description;
+    if (move > 0) {
+      description = `Go to move #${move}`;
+    } else {
+      description = "Go to game start";
+    }
+    return (
+      <li key={move}>
+        <button onClick={() => jumpTo(move)}>{description}</button>
+      </li>
+    );
+  });
+
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+      </div>
+      <div className="game-info">
+        <ol>{moves}</ol>
+      </div>
+    </div>
+  );
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+</Sandpack>
 
 ### Final Cleanup {/*final-cleanup*/}
 
@@ -1585,8 +2603,9 @@ If you're eagle-eyed, you may notice that `xIsNext === true` when `stepNumber` i
 
 There's no reason for us to store both of these in state. It's a best practice to avoid redundant pieces of state, because simplifying what you store in state helps reduce bugs and make your code easier to understand. Let's change Game so that it no longer stores `xIsNext` as a separate state variable and instead figures it out based on the current value of `stepNumber`:
 
-```jsx {4,10,14}
+```jsx {2,5, 13,17}
 export default function Game() {
+
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const [stepNumber, setStepNumber] = useState(0);
   const xIsNext = stepNumber % 2 === 0;
@@ -1596,10 +2615,12 @@ export default function Game() {
     let newHistory = history.slice(0, stepNumber + 1).concat([newSquares]);
     setHistory(newHistory);
     setStepNumber(newHistory.length - 1);
+
   }
 
   function jumpTo(step) {
     setStepNumber(step);
+
   }
 
   // ...
@@ -1622,57 +2643,87 @@ Check out the final result here:
 
 <Sandpack>
 
-```jsx App.js
-import {useState} from 'react';
-import {calculateWinner} from './utils.js';
+```tsx App.tsx
+import { useState } from "react";
 
-function Square({value, onClick}) {
+type SquareProps = {
+  value: string | null;
+  handleSquareClick: () => void;
+};
+
+function Square({ value, handleSquareClick }: SquareProps) {
   return (
-    <button className="square" onClick={() => onClick()}>
+    <button className="square" onClick={() => handleSquareClick()}>
       {value}
     </button>
   );
 }
 
-function Board({xIsNext, squares, onPlay}) {
-  function handleClick(i) {
+function calculateWinner(squares: string[]) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6]
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
+type BoardProps = {
+  xIsNext: boolean;
+  squares: string[];
+  onPlay: (squares: string[]) => void;
+};
+
+function Board({ xIsNext, squares, onPlay }: BoardProps) {
+  function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
-    newSquares[i] = xIsNext ? 'X' : 'O';
+    let newSquares = squares.slice();
+    if (xIsNext) {
+      newSquares[i] = "X";
+    } else {
+      newSquares[i] = "O";
+    }
     onPlay(newSquares);
-  }
-
-  function renderSquare(i) {
-    return <Square value={squares[i]} onClick={() => handleClick(i)} />;
   }
 
   const winner = calculateWinner(squares);
   let status;
   if (winner) {
-    status = 'Winner: ' + winner;
+    status = "Winner: " + winner;
   } else {
-    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+    status = "Next player: " + (xIsNext ? "X" : "O");
   }
 
   return (
     <div>
       <div className="status">{status}</div>
       <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
+        <Square value={squares[0]} handleSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} handleSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} handleSquareClick={() => handleClick(2)} />
       </div>
       <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
+        <Square value={squares[3]} handleSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} handleSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} handleSquareClick={() => handleClick(5)} />
       </div>
       <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
+        <Square value={squares[6]} handleSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} handleSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} handleSquareClick={() => handleClick(8)} />
       </div>
     </div>
   );
@@ -1684,18 +2735,23 @@ export default function Game() {
   const xIsNext = stepNumber % 2 === 0;
   const currentSquares = history[stepNumber];
 
-  function handlePlay(newSquares) {
+  function handlePlay(newSquares: string[]) {
     let newHistory = history.slice(0, stepNumber + 1).concat([newSquares]);
     setHistory(newHistory);
     setStepNumber(newHistory.length - 1);
   }
 
-  function jumpTo(step) {
+  function jumpTo(step: number) {
     setStepNumber(step);
   }
 
   const moves = history.map((step, move) => {
-    const description = move > 0 ? `Go to move #${move}` : 'Go to game start';
+    let description;
+    if (move > 0) {
+      description = `Go to move #${move}`;
+    } else {
+      description = "Go to game start";
+    }
     return (
       <li key={move}>
         <button onClick={() => jumpTo(move)}>{description}</button>
@@ -1716,49 +2772,15 @@ export default function Game() {
 }
 ```
 
-```jsx utils.js
-// Don't worry too much about this code; it's not specific to React
-
-export function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
+```css styles.css
+* {
+  box-sizing: border-box;
 }
-```
 
-```css
 body {
-  font: 14px 'Century Gothic', Futura, sans-serif;
+  font-family: sans-serif;
   margin: 20px;
-}
-
-ol,
-ul {
-  padding-left: 30px;
-}
-
-.board-row:after {
-  clear: both;
-  content: '';
-  display: table;
-}
-
-.status {
-  margin-bottom: 10px;
+  padding: 0;
 }
 
 .square {
@@ -1776,14 +2798,15 @@ ul {
   width: 34px;
 }
 
-.square:focus {
-  outline: none;
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
 }
 
-.kbd-navigation .square:focus {
-  background: #ddd;
+.status {
+  margin-bottom: 10px;
 }
-
 .game {
   display: flex;
   flex-direction: row;
@@ -1792,6 +2815,23 @@ ul {
 .game-info {
   margin-left: 20px;
 }
+```
+
+```tsx index.tsx
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./styles.css";
+
+import App from "./App";
+
+const rootElement = document.getElementById("root");
+const root = createRoot(rootElement!);
+
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
 ```
 
 </Sandpack>

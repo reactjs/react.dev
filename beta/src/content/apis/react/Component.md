@@ -970,6 +970,18 @@ Reading `this.props` in class components is equivalent to [declaring props](/lea
 
 ---
 
+### `refs` {/*refs*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. [Use `createRef` instead.](/apis/react/createRef)
+
+</Deprecated>
+
+Lets you access [legacy string refs](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) for this component.
+
+---
+
 ### `state` {/*state*/}
 
 The state of a class component is available as `this.state`. The `state` field must be an object. Do not mutate the state directly. If you wish to change the state, call `setState` with the new state.
@@ -1386,6 +1398,18 @@ Try to avoid all uses of `forceUpdate` and only read from `this.props` and `this
 Reading an external data source and forcing class components to re-render in response to its changes with `forceUpdate` has been superseded by [`useSyncExternalStore`](/apis/react/useSyncExternalStore) in function components.
 
 </Note>
+
+---
+
+### `getChildContext()` {/*getchildcontext*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. [Use `Context.Provider` instead.](/apis/react/createContext#provider)
+
+</Deprecated>
+
+Lets you specify the values for the [legacy context](https://reactjs.org/docs/legacy-context.html) is provided by this component.
 
 ---
 

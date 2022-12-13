@@ -35,13 +35,13 @@ In the live code editor below, click **Fork** in the top-right corner to open th
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 export default function Square() {
   return <button className="square">X</button>;
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -112,11 +112,11 @@ In CodeSandbox you'll see three main sections:
 
 ![CodeSandbox with starter code](../images/tutorial/react-starter-code-codesandbox.png)
 
-1. The _Files_ section with a list of files like `App.tsx`, `index.tsx`, `styles.css` and a few folders like `src`
+1. The _Files_ section with a list of files like `App.js`, `index.js`, `styles.css` and a few folders like `src`
 1. The _code editor_ where you'll see the source code of your selected file
 1. The _browser_ section where you'll see how the code you've written will be displayed
 
-The file `App.tsx` should be selected in the _files_ section and you the contents file in the _code editor_ should look like this:
+The file `App.js` should be selected in the _files_ section and you the contents file in the _code editor_ should look like this:
 
 ```jsx
 export default function Square() {
@@ -130,7 +130,7 @@ The _browser_ section should be displaying a square with a X in it like this:
 
 #### React Components {/*react-components*/}
 
-The code in `App.tsx` create a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Lets take the component line by line to see what's going on:
+The code in `App.js` create a _component_. In React, a component is a piece of reusable code that represents a part of a user interface. Components are used to render, manage, and update the UI elements in your application. Lets take the component line by line to see what's going on:
 
 ```jsx {1}
 export default function Square() {
@@ -146,15 +146,15 @@ export default function Square() {
 }
 ```
 
-The second line returns a button. The `return` keywords means whatever comes after is returned as a value to whomemver is calling the function. `<button>` is a **JSX element**. A JSX element is a cobination of TypeScript/JavaScript code and HTML tags describes what we'd like to display. `className="square"` is a button property or **prop** that tells CSS how the look of the button should be styled. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be place inside the button.
+The second line returns a button. The `return` keywords means whatever comes after is returned as a value to whomemver is calling the function. `<button>` is a **JSX element**. A JSX element is a cobination of JavaScript code and HTML tags describes what we'd like to display. `className="square"` is a button property or **prop** that tells CSS how the look of the button should be styled. `X` is the text displayed inside of the button and `</button>` closes the JSX element to indicate that any following content shouldn't be place inside the button.
 
 #### styles.css {/*stylescss*/}
 
-Click on the file labeled `index.tsx` in the _Files_ section of CodeSandbox. This file defines the styles for our React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of our app while the `.square` selector defines the style of any componenet where the `className` property is set to `square` as we did in the our `Square` component.
+Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. This file defines the styles for our React app. The first two _CSS selectors_ (`*` and `body`) define the style of large parts of our app while the `.square` selector defines the style of any componenet where the `className` property is set to `square` as we did in the our `Square` component.
 
-#### index.tsx {/*indextsx*/}
+#### index.js {/*indextsx*/}
 
-Click on the file labeled `index.tsx` in the _Files_ section of CodeSandbox. We won't be editing this file during the tutorial but it is the bridge between the component we created in the `App.tsx` file and the web browser.
+Click on the file labeled `index.js` in the _Files_ section of CodeSandbox. We won't be editing this file during the tutorial but it is the bridge between the component we created in the `App.js` file and the web browser.
 
 ```jsx
 import {StrictMode} from 'react';
@@ -164,7 +164,7 @@ import './styles.css';
 import App from './App';
 ```
 
-Lines 1-5 brings all the necessary peices together: React, React's library to talk to web browsers (React DOM), the styles for our components, and finally the componenet we created in `App.tsx`.
+Lines 1-5 brings all the necessary peices together: React, React's library to talk to web browsers (React DOM), the styles for our components, and finally the componenet we created in `App.js`.
 
 The remainder of the file brings all the peices together and injects the final product into `index.html` in the `public` folder.
 
@@ -181,7 +181,7 @@ export default function Square() {
 we'll get this error:
 
 ```
-/src/App.tsx: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?
+/src/App.js: Adjacent JSX elements must be wrapped in an enclosing tag. Did you want a JSX fragment <>...</>?
 ```
 
 React component need to return a single JSX element and not multiple adjacent JSX elements like two buttons. To fix this we can use `div`s (`<div>` and `<div/>`) to wrap multiple adjacent JSX elements like this:
@@ -207,7 +207,7 @@ Great! Now we just need to copy-paste a few times to add nine squares and...
 
 Oh, they are all in a line, not in a grid like we need for our board. To fix this well need to group our squares into rows with `div`s and add some CSS. While we're at it, we'll give each square a number to make sure its in the right place:
 
-```jsx App.tsx
+```jsx App.js
 export default function Square() {
   return (
     <div>
@@ -250,7 +250,7 @@ At this point your code should look something like this:
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 export default function Board() {
   return (
     <div>
@@ -307,7 +307,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -375,38 +375,25 @@ let's take a look:
 
 Oh no! We lost the numbered squares we had before. Now each square says "1". To fix this, we will use **props** to pass the value each square should have from the parent component (`Board`) to the child componenet (`Square`).
 
-First, we'll create a TypeScript type to define what kinds of props the `Square` component can recive:
-
-```jsx
-type SquareProps = {
-  value: string;
-};
-
-function Square() {
-  // ...
-}
-//...
-```
-
-Next we'll update the `Square` component to take the `value` prop from the `SquareProps` type as a argument and use the value to display the corrent number:
+Update the `Square` component to take the `value` prop as a argument and use the value to display the correct number:
 
 ```jsx
 // ...
 
-function Square({value}: SquareProps) {
+function Square({value}) {
   return <button className="square">{value}</button>;
 }
 
 // ...
 ```
 
-`function Square({ value }: SquareProps)` indicates the `Square` component can be passed a prop called `value` from the type `SquareProps`. the `{value}` in `<button className="square">{value}</button>` is a special syntax that tells React to place the value of the `value` varibles in this location of the JSX element.
+`function Square({ value })` indicates the `Square` component can be passed a prop called `value`. the `{value}` in `<button className="square">{value}</button>` is a special syntax that tells React where to place the value of the `value` varible in the JSX element.
 
 For now, you should see a empty board:
 
 ![empty board](../images/tutorial/empty-board.png)
 
-this is because the `Board` component hasn't passed the `value` prop to each `Square` component it creates yet. To fix it well add the `value` prop to each `Square` component created by the `Board` component:
+this is because the `Board` component hasn't passed the `value` prop to each `Square` component it creates yet. To fix it we'll add the `value` prop to each `Square` component created by the `Board` component:
 
 ```jsx
 export default function Board() {
@@ -440,12 +427,8 @@ Your updated code should look like this:
 
 <Sandpack>
 
-```jsx App.tsx
-type SquareProps = {
-  value: string,
-};
-
-function Square({value}: SquareProps) {
+```jsx App.js
+function Square({value}) {
   return <button className="square">{value}</button>;
 }
 
@@ -505,7 +488,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -529,7 +512,7 @@ root.render(
 Let's fill the `Square` component with an `X` when we click it. First, change the button JSX element that is returned from the `Square` component to add `onClick` to its props:
 
 ```jsx {5,6,7}
-function Square({value}: SquareProps) {
+function Square({value}) {
   return (
     <button
       className="square"
@@ -554,7 +537,7 @@ As a next step, we want the Square component to "remember" that it got clicked, 
 
 React provides a special function called `useState` that you can call from your component to let it "remember" things. Let's store the current value of the Square in state, and change it when the Square is clicked.
 
-Import `useState` at the top of the file and remove the `SquareProps` type. Replace the `value` prop from the `Square` component with a call to `useState` that defines a state variable called `value`:
+Import `useState` at the top of the file. Replace the `value` prop from the `Square` component with a call to `useState` that defines a state variable called `value`:
 
 ```jsx {1,3,4}
 import { useState } from "react";
@@ -626,7 +609,7 @@ After your made the above changes, your code will look like this:
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
 function Square() {
@@ -698,7 +681,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -796,11 +779,7 @@ export default function Board() {
 Next, we'll wire the `Square` component to recive the `value` prop from the `Board` componenet. This will require removing the `Square` component's own stateful tracking of `value` and the button's `onClick` prop:
 
 ```jsx
-type SquareProps = {
-  value: string,
-};
-
-function Square({value}: SquareProps) {
+function Square({value}) {
   return <button className="square">{value}</button>;
 }
 ```
@@ -813,14 +792,10 @@ and you code should look like this:
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-};
-
-function Square({value}: SquareProps) {
+function Square({value}) {
   return <button className="square">{value}</button>;
 }
 
@@ -881,7 +856,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -906,8 +881,8 @@ Next, we need to change what happens when a Square is clicked. The Board compone
 
 Instead, we'll pass down a function from the `Board` component to the `Square` component, and we'll have Square call that function when a square is clicked. We'll start with the function that the `Square` component will call when it is clicked. We'll call that function `handleSquareClick`:
 
-```jsx App.tsx {3}
-function Square({value}: SquareProps) {
+```jsx App.js {3}
+function Square({value}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -918,13 +893,8 @@ function Square({value}: SquareProps) {
 
 Next, we'll add the `handleSquareClick` function to the `Square` componenet's props:
 
-```jsx App.tsx
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+```jsx App.js
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -933,11 +903,9 @@ function Square({value, handleSquareClick}: SquareProps) {
 }
 ```
 
-the `handleSquareClick: () => void;` syntax is a way of telling TypeScript we expect the `handleSquareClick` function to take no arguments and return no values.
-
 Now we need to wire up the `handleSquareClick` method in the `Square` component to a new function in the `Board` component that will update the `squares` array for us. For each `Square` component that the `Board` component creates we will add a `handleSquareClick` prop. This `handleSquareClick` prop will be a function that will call a `handleClick` function. The `handleClick` function will takes an argument that corrsponds to the index of the `sqaures` array that contains the square's value:
 
-```jsx App.tsx
+```jsx App.js
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
@@ -965,7 +933,7 @@ export default function Board() {
 
 Lastly we will define the `handleClick` function inside the `Board` component to update the `sqaures` array holding our board's state:
 
-```jsx App.tsx
+```jsx App.js
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
@@ -1000,15 +968,10 @@ But this time all the state managment is being handled by the `Board` component!
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -1080,7 +1043,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -1223,15 +1186,10 @@ Now we can only add `X`'s or `O`'s to empty squares! Here is what your code shou
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -1312,7 +1270,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -1335,7 +1293,7 @@ root.render(
 
 Now that we show which player's turn is next, we should also show when the game is won and there are no more turns to make. To do this we'll add a helper function called `calculateWinner` that takes an array of 9 squares, checks for a winner and returns `'X'`, `'O'`, or `null` as appropriate. Don't worry too much about the `calculateWinner` function; it's not specific to React:
 
-```jsx App.tsx
+```jsx App.js
 function calculateWinner(squares: string[]) {
   const lines = [
     [0, 1, 2],
@@ -1407,15 +1365,10 @@ Congratulations! You now have a working tic-tac-toe game. And you've just learne
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -1529,7 +1482,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -1599,7 +1552,7 @@ export default function Game() {
 }
 ```
 
-Note that we are removing the `default export` statement before the `function Board() {` and adding it before our `function Game() {` defition. This tells our `index.tsx` file to use the Game component as the top level component instead of our Board component. The additional `div`s returned by the Game component are making room for the game information we'll add next to the board later.
+Note that we are removing the `default export` statement before the `function Board() {` and adding it before our `function Game() {` defition. This tells our `index.js` file to use the Game component as the top level component instead of our Board component. The additional `div`s returned by the Game component are making room for the game information we'll add next to the board later.
 
 Next, we'll add state varilbes to track which player is next, and the history of moves in the game. While we're at it we'll add a varible to cacluate the current squares based on the most recent entry in the `history` state varible. Next, we'll create a `handlePlay` function inside the Game component that will be called by the Board component to update the game. Lastly, we'll pass the `xIsNext`, `currentSquares` and `handlePlay` as props to the Board component:
 
@@ -1621,16 +1574,10 @@ export default function Game() {
 }
 ```
 
-Let's make the Board component stateless, by making it fully controlled by the props it receives. Change the Board component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that Board can call with the updated squares array whenever a player makes a move. We'll also need a `BoardProps` type with the correct type annotations. Next, remove the first two lines of the Board function that call `useState`:
+Let's make the Board component stateless, by making it fully controlled by the props it receives. Change the Board component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that Board can call with the updated squares array whenever a player makes a move. Next, remove the first two lines of the Board function that call `useState`:
 
 ```jsx
-type BoardProps = {
-  xIsNext: boolean;
-  squares: string[];
-  onPlay: (squares: string[]) => void;
-};
-
-function Board({ xIsNext, squares, onPlay }: BoardProps) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i: number) {
     //...
   }
@@ -1640,7 +1587,7 @@ function Board({ xIsNext, squares, onPlay }: BoardProps) {
 Now we'll replace the `setSquares` and `setXIsNext` calls in `handleClick` in the Board component with a single call to our new `onPlay` function so the Game component can update the Board when a user clicks a square:
 
 ```jsx
-function Board({ xIsNext, squares, onPlay }: BoardProps) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -1682,15 +1629,10 @@ Here is what the code should look like at this point:
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -1718,13 +1660,7 @@ function calculateWinner(squares: string[]) {
   return null;
 }
 
-type BoardProps = {
-  xIsNext: boolean,
-  squares: string[],
-  onPlay: (squares: string[]) => void,
-};
-
-function Board({xIsNext, squares, onPlay}: BoardProps) {
+function Board({xIsNext, squares, onPlay}) {
   function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -1828,7 +1764,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -1922,15 +1858,10 @@ Here is what the code should look like:
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -1958,13 +1889,7 @@ function calculateWinner(squares: string[]) {
   return null;
 }
 
-type BoardProps = {
-  xIsNext: boolean,
-  squares: string[],
-  onPlay: (squares: string[]) => void,
-};
-
-function Board({xIsNext, squares, onPlay}: BoardProps) {
+function Board({xIsNext, squares, onPlay}) {
   function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -2095,7 +2020,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -2180,15 +2105,10 @@ const moves = history.map((step, move) => {
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -2216,13 +2136,7 @@ function calculateWinner(squares: string[]) {
   return null;
 }
 
-type BoardProps = {
-  xIsNext: boolean,
-  squares: string[],
-  onPlay: (squares: string[]) => void,
-};
-
-function Board({xIsNext, squares, onPlay}: BoardProps) {
+function Board({xIsNext, squares, onPlay}) {
   function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -2353,7 +2267,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -2432,15 +2346,10 @@ If we click on any step in the game's history, the tic-tac-toe board should imme
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -2468,13 +2377,7 @@ function calculateWinner(squares: string[]) {
   return null;
 }
 
-type BoardProps = {
-  xIsNext: boolean,
-  squares: string[],
-  onPlay: (squares: string[]) => void,
-};
-
-function Board({xIsNext, squares, onPlay}: BoardProps) {
+function Board({xIsNext, squares, onPlay}) {
   function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -2608,7 +2511,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";
@@ -2674,15 +2577,10 @@ Check out the final result here:
 
 <Sandpack>
 
-```jsx App.tsx
+```jsx App.js
 import {useState} from 'react';
 
-type SquareProps = {
-  value: string | null,
-  handleSquareClick: () => void,
-};
-
-function Square({value, handleSquareClick}: SquareProps) {
+function Square({value, handleSquareClick}) {
   return (
     <button className="square" onClick={() => handleSquareClick()}>
       {value}
@@ -2710,13 +2608,7 @@ function calculateWinner(squares: string[]) {
   return null;
 }
 
-type BoardProps = {
-  xIsNext: boolean,
-  squares: string[],
-  onPlay: (squares: string[]) => void,
-};
-
-function Board({xIsNext, squares, onPlay}: BoardProps) {
+function Board({xIsNext, squares, onPlay}) {
   function handleClick(i: number) {
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -2848,7 +2740,7 @@ body {
 }
 ```
 
-```jsx index.tsx
+```jsx index.js
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./styles.css";

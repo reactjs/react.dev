@@ -226,11 +226,11 @@ function Comment(props) {
 
 **[Try it on CodePen](https://codepen.io/gaearon/pen/rrJNJY?editors=1010)**
 
-Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be extracted to a separate component.
+Extracting components might seem like grunt work at first, but having a palette of reusable components pays off in larger apps. A good rule of thumb is that if a part of your UI is used several times (`Button`, `Panel`, `Avatar`), or is complex enough on its own (`App`, `FeedStory`, `Comment`), it is a good candidate to be refactored into a separate component.
 
 ## Props are Read-Only {#props-are-read-only}
 
-Whether you declare a component [as a function or a class](#function-and-class-components), it must never modify its own props. Consider this `sum` function:
+Whether you declare a component [as a function or a class](#function-and-class-components), it must never modify its own `props`. Consider this `sum` function:
 
 ```js
 function sum(a, b) {
@@ -250,6 +250,6 @@ function withdraw(account, amount) {
 
 React is pretty flexible but it has a single strict rule:
 
-**All React components must act like pure functions with respect to their props.**
+**All React components must act like pure functions with respect to their `props`.**
 
 Of course, application UIs are dynamic and change over time. In the [next section](/docs/state-and-lifecycle.html), we will introduce a new concept of "state". State allows React components to change their output over time in response to user actions, network responses, and anything else, without violating this rule.

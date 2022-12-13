@@ -133,8 +133,7 @@
             },
             {
               "title": "findDOMNode",
-              "path": "/apis/react-dom/findDOMNode",
-              "wip": true
+              "path": "/apis/react-dom/findDOMNode"
             },
             {
               "title": "hydrate",

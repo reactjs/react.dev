@@ -67,13 +67,11 @@
             },
             {
               "title": "useSyncExternalStore",
-              "path": "/apis/react/useSyncExternalStore",
-              "wip": true
+              "path": "/apis/react/useSyncExternalStore"
             },
             {
               "title": "useTransition",
-              "path": "/apis/react/useTransition",
-              "wip": true
+              "path": "/apis/react/useTransition"
             }
           ]
         },
@@ -84,6 +82,11 @@
             {
               "title": "<Fragment> (<>)",
               "path": "/apis/react/Fragment"
+            },
+            {
+              "title": "<Profiler>",
+              "path": "/apis/react/Profiler",
+              "wip": true
             },
             {
               "title": "<StrictMode>",
@@ -145,8 +148,7 @@
             },
             {
               "title": "unmountComponentAtNode",
-              "path": "/apis/react-dom/unmountComponentAtNode",
-              "wip": true
+              "path": "/apis/react-dom/unmountComponentAtNode"
             }
           ]
         },
@@ -170,33 +172,27 @@
           "routes": [
             {
               "title": "renderToNodeStream",
-              "path": "/apis/react-dom/server/renderToNodeStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToNodeStream"
             },
             {
               "title": "renderToPipeableStream",
-              "path": "/apis/react-dom/server/renderToPipeableStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToPipeableStream"
             },
             {
               "title": "renderToReadableStream",
-              "path": "/apis/react-dom/server/renderToReadableStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToReadableStream"
             },
             {
               "title": "renderToStaticMarkup",
-              "path": "/apis/react-dom/server/renderToStaticMarkup",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToStaticMarkup"
             },
             {
               "title": "renderToStaticNodeStream",
-              "path": "/apis/react-dom/server/renderToStaticNodeStream",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToStaticNodeStream"
             },
             {
               "title": "renderToString",
-              "path": "/apis/react-dom/server/renderToString",
-              "wip": true
+              "path": "/apis/react-dom/server/renderToString"
             }
           ]
         },

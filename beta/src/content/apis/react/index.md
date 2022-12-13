@@ -111,11 +111,11 @@ function TodoList({ todos, tab, theme }) {
 
 [See the `useMemo` page for more examples.](/apis/react/useMemo)
 
-Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating urgent updates that must be synchronous (like typing into an input) from non-urgent updates which don't need to block the user interface (like updating a chart).
+Sometimes, you can't skip re-rendering because the screen actually needs to update. In that case, you can improve performance by separating blocking updates that must be synchronous (like typing into an input) from non-blocking updates which don't need to block the user interface (like updating a chart).
 
 To prioritize rendering, use one of these Hooks:
 
-- [`useTransition`](/apis/react/useTransition) lets you mark a state transition as non-urgent and allow other updates to interrupt it.
+- [`useTransition`](/apis/react/useTransition) lets you mark a state transition as non-blocking and allow other updates to interrupt it.
 - [`useDeferredValue`](/apis/react/useDeferredValue) lets you defer updating a non-critical part of the UI and let other parts update first.
 
 ---

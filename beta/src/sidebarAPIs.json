@@ -76,8 +76,8 @@
           ]
         },
         {
-          "title": "react: Other APIs",
-          "path": "/apis/react/other",
+          "title": "react: Components",
+          "path": "/apis/react/components",
           "routes": [
             {
               "title": "<Fragment> (<>)",
@@ -94,7 +94,13 @@
             {
               "title": "<Suspense>",
               "path": "/apis/react/Suspense"
-            },
+            }
+          ]
+        },
+        {
+          "title": "react: APIs",
+          "path": "/apis/react/apis",
+          "routes": [
             {
               "title": "createContext",
               "path": "/apis/react/createContext"

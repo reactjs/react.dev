@@ -401,7 +401,7 @@ For now, you should see a empty board:
 
 this is because the Board component hasn't passed the `value` prop to each Square component it creates yet. To fix it we'll add the `value` prop to each Square component created by the Board component:
 
-```jsx {5-7, 10-12, 15-17}
+```jsx {5-7,10-12,15-17}
 export default function Board() {
   return (
     <div>
@@ -751,7 +751,7 @@ export default function Board() {
 
 Now we need to add the `value` prop to the Square components we create in the Board component:
 
-```jsx
+```jsx {6-8,11-13,16-18}
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
   return (
@@ -778,7 +778,7 @@ export default function Board() {
 
 Next, we'll edit the Square component to receive the `value` prop from the Board component. This will require removing the Square component's own stateful tracking of `value` and the button's `onClick` prop:
 
-```jsx
+```jsx {1,2}
 function Square({value}) {
   return <button className="square">{value}</button>;
 }
@@ -786,7 +786,7 @@ function Square({value}) {
 
 at this point you should see a empty tic-tac-toe board:
 
-![empty board](../images/tutorial/tictac-empty.png)
+![empty board](../images/tutorial/empty-board.png)
 
 and you code should look like this:
 
@@ -933,7 +933,7 @@ export default function Board() {
 
 Lastly, we will define the `handleClick` function inside the Board component to update the `squares` array holding our board's state:
 
-```jsx App.js
+```jsx {4-8}
 export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
@@ -1065,7 +1065,11 @@ Now that our state handling is in the board component, the board component passe
 
 Now let's take a look at what happens when a user clicks the top left square on our board to add an `X` to it:
 
-![tic-tac-toe component prop flow when clicking a square on the board](../images/tutorial/tictactoe-component-prop-flow.png)
+<img
+  src="../images/tutorial/tictactoe-component-prop-flow.png"
+  alt="tic-tac-toe component prop flow when clicking a square on the board"
+  style={{maxWidth: '100%'}}
+/>
 
 0. The user clicks the top left square
 1. React calls the `onClick` prop method of the square component that has a index of `0`
@@ -1555,7 +1559,7 @@ Note that we are removing the `default export` statement before the `function Bo
 
 Now we'll add state variables to track which player is next, and the history of moves in the game. While we're at it we'll add a variable to calculate the current squares based on the most recent entry in the `history` state variable. Next, we'll create a `handlePlay` function inside the Game component that will be called by the Board component to update the game. Lastly, we'll pass the `xIsNext`, `currentSquares` and `handlePlay` as props to the Board component:
 
-```jsx {2,3,4,6,7,8,12}
+```jsx {2-8,12}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -1802,7 +1806,7 @@ Here, we'll use the `map` method to transform our history of moves into React el
 
 Let's `map` over the `history` in the Game component:
 
-```jsx {11-13, 15-27,36}
+```jsx {11-13,15-27,36}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);

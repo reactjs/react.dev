@@ -68,12 +68,14 @@ export default function MyComponent() {
 
 Notice how the second paragraph visually appears outside the parent `<div>` with the border. If you inspect the DOM structure with developer tools, you can confirm that the second `<p>` got placed direcly into the `<body>`:
 
-```html {3-5,7}
+```html {4-6,9}
 <body>
   <div id="root">
-    <div style="border: 2px solid black">
-      <p>This child is placed inside the parent div.</p>
-    </div>
+    ...
+      <div style="border: 2px solid black">
+        <p>This child is placed inside the parent div.</p>
+      </div>
+    ...
   </div>
   <p>This child is placed in the document body.</p>
 </body>
@@ -277,7 +279,7 @@ function SidebarContent() {
   padding:  12px;
   background-color: #eee;
   width: 200px;
-  height: 500px;
+  height: 200px;
   margin-right: 12px;
 }
 
@@ -290,6 +292,126 @@ function SidebarContent() {
 p {
   margin: 0;
 }
+```
+
+</Sandpack>
+
+---
+
+### Rendering React components into non-React DOM nodes {/*rendering-react-components-into-non-react-dom-nodes*/}
+
+You can also use a portal to manage the content of a DOM node that's managed outside of React. For example, suppose you're integrating with a non-React map widget and you want to render React content inside a popup.
+
+To do this, declare a `popupContainer` state variable to store the DOM node you're going to render into:
+
+```js
+const [popupContainer, setPopupContainer] = useState(null);
+```
+
+When you initialize the third-party widget, store the DOM node returned by the widget so you can render into it:
+
+```js {5-6}
+useEffect(() => {
+  if (mapRef.current === null) {
+    const map = createMapWidget(containerRef.current);
+    mapRef.current = map;
+    const popupDiv = addPopupToMapWidget(map);
+    setPopupContainer(popupDiv);
+  }
+}, []);
+```
+
+This lets you use `createPortal` to render React content into `popupContainer` once it becomes available:
+
+```js {3-6}
+return (
+  <div style={{ width: 250, height: 250 }} ref={containerRef}>
+    {popupContainer !== null && createPortal(
+      <p>Hello from React!</p>,
+      popupContainer
+    )}
+  </div>
+);
+```
+
+Here is a complete example you can play with:
+
+<Sandpack>
+
+```json package.json hidden
+{
+  "dependencies": {
+    "leaflet": "1.9.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-scripts": "latest",
+    "remarkable": "2.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}
+```
+
+```js App.js
+import { useRef, useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
+import { createMapWidget, addPopupToMapWidget } from './map-widget.js';
+
+export default function Map() {
+  const containerRef = useRef(null);
+  const mapRef = useRef(null);
+  const [popupContainer, setPopupContainer] = useState(null);
+
+  useEffect(() => {
+    if (mapRef.current === null) {
+      const map = createMapWidget(containerRef.current);
+      mapRef.current = map;
+      const popupDiv = addPopupToMapWidget(map);
+      setPopupContainer(popupDiv);
+    }
+  }, []);
+
+  return (
+    <div style={{ width: 250, height: 250 }} ref={containerRef}>
+      {popupContainer !== null && createPortal(
+        <p>Hello from React!</p>,
+        popupContainer
+      )}
+    </div>
+  );
+}
+```
+
+```js map-widget.js
+import 'leaflet/dist/leaflet.css';
+import * as L from 'leaflet';
+
+export function createMapWidget(containerDomNode) {
+  const map = L.map(containerDomNode);
+  map.setView([0, 0], 0);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+  return map;
+}
+
+export function addPopupToMapWidget(map) {
+  const popupDiv = document.createElement('div');
+  L.popup()
+    .setLatLng([0, 0])
+    .setContent(popupDiv)
+    .openOn(map);
+  return popupDiv;
+}
+```
+
+```css
+button { margin: 5px; }
 ```
 
 </Sandpack>

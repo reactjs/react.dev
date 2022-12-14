@@ -325,6 +325,9 @@ function calculateNestedToc(toc: Toc): NestedTocRoot {
 function InlineToc() {
   const toc = useContext(TocContext);
   const root = useMemo(() => calculateNestedToc(toc), [toc]);
+  if (root.children.length < 2) {
+    return null;
+  }
   return <InlineTocItem items={root.children} />;
 }
 

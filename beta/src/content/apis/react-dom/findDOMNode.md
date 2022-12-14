@@ -4,7 +4,7 @@ title: findDOMNode
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
 
 </Deprecated>
 
@@ -28,7 +28,7 @@ const domNode = findDOMNode(componentInstance)
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
 
 </Deprecated>
 
@@ -88,12 +88,6 @@ export default AutoselectingInput;
 ```
 
 </Sandpack>
-
-<Pitfall>
-
-Using `findDOMNode` leads to fragile code. [See the alternatives.](#alternatives) 
-
-</Pitfall>
 
 ---
 
@@ -419,7 +413,7 @@ This also applies to focusing and scrolling to arbitrary children.
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
 
 </Deprecated>
 

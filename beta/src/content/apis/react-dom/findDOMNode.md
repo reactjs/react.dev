@@ -397,7 +397,7 @@ export default MyInput;
 
 ---
 
-### Measuring position and size of the children {/*measuring-position-and-size-of-the-children*/}
+### Adding a wrapper `<div>` element {/*adding-a-wrapper-div-element*/}
 
 Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
 

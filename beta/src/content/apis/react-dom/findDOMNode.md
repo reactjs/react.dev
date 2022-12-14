@@ -4,111 +4,27 @@ title: findDOMNode
 
 <Deprecated>
 
-`findDOMNode` is an escape hatch used to access the underlying DOM node. In most cases, use of this escape hatch is discouraged because it pierces the component abstraction.
-
-This API has been deprecated in Strict Mode.
+This API will be removed in a future major version of React.
 
 </Deprecated>
 
 <Intro>
 
-`findDOMNode` finds the native browser DOM element for a React node.
+`findDOMNode` finds the browser DOM node for a React [class component](/apis/react/Component) instance.
 
 ```
-findDOMNode(component)
+const domNode = findDOMNode(componentInstance)
 ```
-
-This API has many flaws and should be avoided in new code. See [Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs) instead.
 
 </Intro>
 
 <InlineToc />
 
+---
+
 ## Usage {/*usage*/}
 
-### Manipulate browser DOM elements {/*some-usage*/}
-
-`findDOMNode` should be avoided in new code. In older versions of React, it was common to use `findDOMNode` to look up a native DOM element and do something with it. In this example, we use `findDOMNode` to look up the browser DOM input element and focus it:
-
-<Sandpack>
-
-```js
-import { useRef, Component } from 'react';
-import {findDOMNode} from 'react-dom';
-
-class Form extends Component {
-  handleClick = () => {
-    // Warning: This is a hidden bug!
-    // If this component is refactored,
-    // this might break!
-    findDOMNode(this).focus();
-  }
-  
-  render() {
-    return (
-      <>
-        <input />
-        <button onClick={this.handleClick}>
-          Focus the input
-        </button>
-      </>
-    );
-  }
-}
-
-export default Form;
-```
-
-</Sandpack>
-
-To understand why `findDOMNode` is deprecated, let's make a small change to this component.
-
-Inside of `render`, let move the `button` to be first, and the `input` second:
-
-<Sandpack>
-
-```js
-import { useRef, Component } from 'react';
-import {findDOMNode} from 'react-dom';
-
-class Form extends Component {
-  handleClick = () => {
-    // Warning: This is a hidden bug!
-    // If this component is refactored,
-    // this might break!
-    findDOMNode(this).focus();
-  }
-  
-  render() {
-    return (
-      <>
-        <button onClick={this.handleClick}>
-          Focus the input
-        </button>
-        <input />
-      </>
-    );
-  }
-}
-
-export default Form;
-```
-
-</Sandpack>
-
-This small change has broken our button and the `focus` doesn't work!
-
-This bug is because `findDOMNode` only returns the first child, but with the use of Fragments, our component renders multiple DOM nodes. When we switched the order, the `button` became the first element, and the element `findDOMNode` returned changed.
-
-`findDOMNode` creates a refactoring hazard where you can’t change the implementation details of a component because a parent might be reaching into its DOM node. `findDOMNode` is also only a one time read API. If a child component renders a different node, there is no way to handle this change. Therefore, `findDOMNode` only works if components always return a single DOM node that never changes.
-
-For these reasons, `findDOMNode` has been deprecated in Strict Mode and will be removed in a future version.
-
-For a better way to manipulate DOM elements, see [Manipulating the DOM with Refs](/learn/manipulating-the-dom-with-refs).
-
-## Reference {/*reference*/}
-
-### `findDOMNode(component)` {/*finddomnode*/}
+### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
 
 <Deprecated>
 
@@ -116,29 +32,420 @@ This API will be removed in a future major version of React.
 
 </Deprecated>
 
-Call `findDOMNode` to find the native browser DOM element for a given React node.
+Call `findDOMNode` with a [class component](/apis/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
+
+```js {3}
+class AutoselectingInput extends Component {
+  componentDidMount() {
+    const input = findDOMNode(this);
+    input.select()
+  }
+
+  render() {
+    return <input defaultValue="Hello" />
+  }
+}
+```
+
+Here, the `input` variable will be set to the `<input>` DOM element. This lets you do something with it. For example, when clicking "Show example" below mounts the input, [`input.select()`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select) selects all text in the input:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { Component } from 'react';
+import { findDOMNode } from 'react-dom';
+
+class AutoselectingInput extends Component {
+  componentDidMount() {
+    const input = findDOMNode(this);
+    input.select()
+  }
+
+  render() {
+    return <input defaultValue="Hello" />
+  }
+}
+
+export default AutoselectingInput;
+```
+
+</Sandpack>
+
+<Pitfall>
+
+Using `findDOMNode` leads to fragile code. [See the alternatives.](#alternatives) 
+
+</Pitfall>
+
+---
+
+## Alternatives {/*alternatives*/}
+
+### Reading component's own DOM node from a ref {/*reading-components-own-dom-node-from-a-ref*/}
+
+Code using `findDOMNode` is fragile because the connection between the JSX node and the code manipulating the corresponding DOM node is not explicit. For example, try wrapping `<input />` from this example into a `<div>`:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { Component } from 'react';
+import { findDOMNode } from 'react-dom';
+
+class AutoselectingInput extends Component {
+  componentDidMount() {
+    const input = findDOMNode(this);
+    input.select()
+  }
+  render() {
+    return <input defaultValue="Hello" />
+  }
+}
+
+export default AutoselectingInput;
+```
+
+</Sandpack>
+
+This will break the code because now, `findDOMNode(this)` finds the `<div>` DOM node, but the code expects an `<input>` DOM node. To avoid these kinds of problems, use [`createRef`](/apis/react/createRef) to manage a specific DOM node.
+
+In this example, `findDOMNode` is no longer used. Instead, `inputRef = createRef(null)` is defined as an instance field on the class. To read the DOM node from it, you can use `this.inputRef.current`. To attach it to the JSX, you render `<input ref={this.inputRef} />`. You have connected the code using the DOM node to its JSX:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { createRef, Component } from 'react';
+
+class AutoselectingInput extends Component {
+  inputRef = createRef(null);
+
+  componentDidMount() {
+    const input = this.inputRef.current;
+    input.select()
+  }
+
+  render() {
+    return (
+      <input ref={this.inputRef} defaultValue="Hello" />
+    );
+  }
+}
+
+export default AutoselectingInput;
+```
+
+</Sandpack>
+
+In modern React without class components, the equivalent code would call [`useRef`](/apis/react/useRef) instead:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { useRef, useEffect } from 'react';
+
+export default function AutoselectingInput() {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    input.select();
+  }, []);
+
+  return <input ref={inputRef} defaultValue="Hello" />
+}
+```
+
+</Sandpack>
+
+[Read more about manipulating the DOM with refs.](/learn/manipulating-the-dom-with-refs)
+
+---
+
+### Reading a child component's DOM node from a forwarded ref {/*reading-a-child-components-dom-node-from-a-forwarded-ref*/}
+
+In this example, `findDOMNode(this)` finds a DOM node that belongs to another component. The `AutoselectingInput` renders `MyInput`, which is your own component that renders a browser `<input>`.
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { Component } from 'react';
+import { findDOMNode } from 'react-dom';
+import MyInput from './MyInput.js';
+
+class AutoselectingInput extends Component {
+  componentDidMount() {
+    const input = findDOMNode(this);
+    input.select()
+  }
+  render() {
+    return <MyInput />;
+  }
+}
+
+export default AutoselectingInput;
+```
+
+```js MyInput.js
+export default function MyInput() {
+  return <input defaultValue="Hello" />;
+}
+```
+
+</Sandpack>
+
+Notice that calling `findDOMNode(this)` inside `AutoselectingInput` still gives you the DOM `<input>`--even though the JSX for this `<input>` is hidden inside the `MyInput` component. This seems convenient for the above example, but it leads to fragile code. Imagine that you wanted to edit `MyInput` later and add a wrapper `<div>` around it. This would break the code of `AutoselectingInput` (which expects to find an `<input>` DOM node).
+
+To replace `findDOMNode` in this example, the two components need to coordinate:
+
+1. `AutoSelectingInput` should declare a ref, like [in the earlier example](#reading-components-own-dom-node-from-a-ref), and pass it to `<MyInput>`.
+2. `MyInput` should be declared with [`forwardRef`](/apis/react/forwardRef) to read the passed ref, and pass it down to the `<input>` node.
+
+This version does that, so it no longer needs `findDOMNode`:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { createRef, Component } from 'react';
+import MyInput from './MyInput.js';
+
+class AutoselectingInput extends Component {
+  inputRef = createRef(null);
+
+  componentDidMount() {
+    const input = this.inputRef.current;
+    input.select()
+  }
+
+  render() {
+    return (
+      <MyInput ref={this.inputRef} />
+    );
+  }
+}
+
+export default AutoselectingInput;
+```
+
+```js MyInput.js
+import { forwardRef } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return <input ref={ref} defaultValue="Hello" />;
+});
+
+export default MyInput;
+```
+
+</Sandpack>
+
+Here is how this code would look like with function components instead of classes:
+
+<Sandpack>
+
+```js App.js
+import { useState } from 'react';
+import AutoselectingInput from './AutoselectingInput.js';
+
+export default function App() {
+  const [show, setShow] = useState(false);
+  return (
+    <>
+      <button onClick={() => setShow(true)}>
+        Show example
+      </button>
+      <hr />
+      {show && <AutoselectingInput />}
+    </>
+  );
+}
+```
+
+```js AutoselectingInput.js active
+import { useRef, useEffect } from 'react';
+import MyInput from './MyInput.js';
+
+export default function AutoselectingInput() {
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    const input = inputRef.current;
+    input.select();
+  }, []);
+
+  return <MyInput ref={inputRef} defaultValue="Hello" />
+}
+```
+
+```js MyInput.js
+import { forwardRef } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return <input ref={ref} defaultValue="Hello" />;
+});
+
+export default MyInput;
+```
+
+</Sandpack>
+
+---
+
+### Measuring position and size of the children {/*measuring-position-and-size-of-the-children*/}
+
+Sometimes a component needs to know the position and size of its children. This makes it tempting to find the children with `findDOMNode(this)`, and then use DOM methods like [`getBoundingClientRect`](https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect) for measurements.
+
+There is currently no direct equivalent for this use case, which is why `findDOMNode` is deprecated but is not yet removed completely from React. In the meantime, you can try rendering a wrapper `<div>` node around the content as a workaround, and getting a ref to that node. However, extra wrappers can sometimes break styling.
 
 ```js
-const node = findDOMNode(Component);
+<div ref={someRef}>
+  {children}
+</div>
+```
+
+This also applies to focusing and scrolling to arbitrary children.
+
+---
+
+## Reference {/*reference*/}
+
+### `findDOMNode(componentInstance)` {/*finddomnode*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React.
+
+</Deprecated>
+
+Call `findDOMNode` to find the browser DOM node for a given React [class component](/apis/react/Component) instance.
+
+```js
+const domNode = findDOMNode(componentInstance);
 ```
 
 [See examples above.](#usage)
 
 #### Parameters {/*parameters*/}
 
-* `component`: A *React node* that you want to find.
+* `componentInstance`: An instance of the [`Component`](/apis/react/Component) subclass. For example, `this` inside a class component.
 
 
 #### Returns {/*returns*/}
 
-`findDOMNode` returns the corresponding native browser DOM element. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
 
 #### Caveats {/*caveats*/}
 
-* As of React 16, a component may return a fragment with multiple children, in which case `findDOMNode` will return the DOM node corresponding to the first non-empty child.
+* A component may return an array or a [Fragment](/apis/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
 
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created) an exception will be thrown.
+* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
 
-* `findDOMNode` is a one time read API. If a child component renders a different node, there is no way to handle this change.
+* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
 
-* `findDOMNode` cannot be used on function components.
+* `findDOMNode` accepts a class component instance, so it can't be used with function components.

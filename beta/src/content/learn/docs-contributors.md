@@ -13,6 +13,8 @@ React documentation is written and maintained by the [React team](/learn/meet-th
 * [Rachel Nabors](https://twitter.com/RachelNabors): editing, writing, illustrating
 * [Dan Abramov](https://twitter.com/dan_abramov): writing, curriculum design
 * [Sylwia Vargas](https://twitter.com/SylwiaVargas): example code
+* [Rick Hanlon](https://twitter.com/rickhanlonii): writing
+* [David McCabe](https://twitter.com/mcc_abe): writing 
 
 ## Design {/*design*/}
 

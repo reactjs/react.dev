@@ -45,8 +45,7 @@
             },
             {
               "title": "useLayoutEffect",
-              "path": "/apis/react/useLayoutEffect",
-              "wip": true
+              "path": "/apis/react/useLayoutEffect"
             },
             {
               "title": "useMemo",

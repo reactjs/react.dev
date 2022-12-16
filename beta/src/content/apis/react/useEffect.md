@@ -1653,11 +1653,11 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. To do this, [declare an *Event function*](/learn/separating-events-from-effects#declaring-an-event-function) with the [`useEvent`](/apis/react/useEvent) Hook, and move the code that reads `shoppingCart` inside of it:
+**What if you want to log a new page visit after every `url` change, but *not* if only the `shoppingCart` changes?** You can't exclude `shoppingCart` from dependencies without breaking the [reactivity rules.](#specifying-reactive-dependencies) However, you can express that you *don't want* a piece of code to "react" to changes even though it is called from inside an Effect. [Declare an *Effect Event*](/learn/separating-events-from-effects#declaring-an-effect-event) with the [`useEffectEvent`](/apis/react/useEffectEvent) Hook, and move the code that reads `shoppingCart` inside of it:
 
 ```js {2-4,7,8}
 function Page({ url, shoppingCart }) {
-  const onVisit = useEvent(visitedUrl => {
+  const onVisit = useEffectEvent(visitedUrl => {
     logVisit(visitedUrl, shoppingCart.length)
   });
 
@@ -1668,9 +1668,9 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**Event functions are not reactive and don't need to be specified as dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. For example, by reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect.
+**Effect Events are not reactive and must always be omitted from dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. For example, by reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect. In the future, the linter will support `useEffectEvent` and check that you omit Effect Events from dependencies.
 
-[Read more about how Event functions let you separate reactive and non-reactive code.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-event-functions)
+[Read more about how Effect Events let you separate reactive and non-reactive code.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 
 ---

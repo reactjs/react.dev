@@ -350,7 +350,7 @@ Let's say that you wanted to run the Effect "only on mount". You've read that [e
 
 This counter was supposed to increment every second by the amount configurable with the two buttons. However, since you "lied" to React that this Effect doesn't depend on anything, React forever keeps using the `onTick` function from the initial render. [During that render,](/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time) `count` was `0` and `increment` was `1`. This is why `onTick` from that render always calls `setCount(0 + 1)` every second, and you always see `1`. Bugs like this are harder to fix when they're spread across multiple components.
 
-There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Event function.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-event-functions))
+There's always a better solution than ignoring the linter! To fix this code, you need to add `onTick` to the dependency list. (To ensure the interval is only setup once, [make `onTick` an Effect Event.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events))
 
 **We recommend to treat the dependency lint error as a compilation error. If you don't suppress it, you will never see bugs like this.** The rest of this page documents the alternatives for this and other cases.
 
@@ -655,16 +655,16 @@ function ChatRoom({ roomId }) {
 
 The problem is that every time `isMuted` changes (for example, when the user presses the "Muted" toggle), the Effect will re-synchronize, and reconnect to the chat server. This is not the desired user experience! (In this example, even disabling the linter would not work--if you do that, `isMuted` would get "stuck" with its old value.)
 
-To solve this problem, you need to extract the logic that shouldn't be reactive out of the Effect. You don't want this Effect to "react" to the changes in `isMuted`. [Move this non-reactive piece of logic into an Event function:](/learn/separating-events-from-effects#declaring-an-event-function)
+To solve this problem, you need to extract the logic that shouldn't be reactive out of the Effect. You don't want this Effect to "react" to the changes in `isMuted`. [Move this non-reactive piece of logic into an Effect Event:](/learn/separating-events-from-effects#declaring-an-effect-event)
 
 ```js {1,7-12,18,21}
-import { useState, useEffect, useEvent } from 'react';
+import { useState, useEffect, useEffectEvent } from 'react';
 
 function ChatRoom({ roomId }) {
   const [messages, setMessages] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
 
-  const onMessage = useEvent(receivedMessage => {
+  const onMessage = useEffectEvent(receivedMessage => {
     setMessages(msgs => [...msgs, receivedMessage]);
     if (!isMuted) {
       playSound();
@@ -682,7 +682,7 @@ function ChatRoom({ roomId }) {
   // ...
 ```
 
-Event functions let you split an Effect into reactive parts (which should "react" to reactive values like `roomId` and their changes) and non-reactive parts (which only read their latest values, like `onMessage` reads `isMuted`). **Now that you read `isMuted` inside an Event function, it doesn't need to be a dependency of your Effect.** As a result, the chat won't re-connect when you toggle the "Muted" setting on and off, solving the original issue!
+Effect Events let you split an Effect into reactive parts (which should "react" to reactive values like `roomId` and their changes) and non-reactive parts (which only read their latest values, like `onMessage` reads `isMuted`). **Now that you read `isMuted` inside an Effect Event, it doesn't need to be a dependency of your Effect.** As a result, the chat won't re-connect when you toggle the "Muted" setting on and off, solving the original issue!
 
 #### Wrapping an event handler from the props {/*wrapping-an-event-handler-from-the-props*/}
 
@@ -714,13 +714,13 @@ Suppose that the parent component passes a *different* `onReceiveMessage` functi
 />
 ```
 
-Since `onReceiveMessage` is a dependency of your Effect, it would cause the Effect to re-synchronize after every parent re-render. This would make it re-connect to the chat. To solve this, wrap the call in an Event function:
+Since `onReceiveMessage` is a dependency of your Effect, it would cause the Effect to re-synchronize after every parent re-render. This would make it re-connect to the chat. To solve this, wrap the call in an Effect Event:
 
 ```js {4-6,12,15}
 function ChatRoom({ roomId, onReceiveMessage }) {
   const [messages, setMessages] = useState([]);
 
-  const onMessage = useEvent(receivedMessage => {
+  const onMessage = useEffectEvent(receivedMessage => {
     onReceiveMessage(receivedMessage);
   });
 
@@ -735,17 +735,17 @@ function ChatRoom({ roomId, onReceiveMessage }) {
   // ...
 ```
 
-Event functions aren't reactive, so you don't need to specify them as dependencies. As a result, the chat will no longer re-connect even if the parent component passes a function that's different on every re-render.
+Effect Events aren't reactive, so you don't need to specify them as dependencies. As a result, the chat will no longer re-connect even if the parent component passes a function that's different on every re-render.
 
 #### Separating reactive and non-reactive code {/*separating-reactive-and-non-reactive-code*/}
 
 In this example, you want to log a visit every time `roomId` changes. You want to include the current `notificationCount` with every log, but you *don't* want a change to `notificationCount` to trigger a log event.
 
-The solution is again to split out the non-reactive code into an Event function:
+The solution is again to split out the non-reactive code into an Effect Event:
 
 ```js {2-4,7}
 function Chat({ roomId, notificationCount }) {
-  const onVisit = useEvent(visitedRoomId => {
+  const onVisit = useEffectEvent(visitedRoomId => {
     logVisit(visitedRoomId, notificationCount);
   });
 
@@ -756,7 +756,7 @@ function Chat({ roomId, notificationCount }) {
 }
 ```
 
-You want your logic to be reactive with regards to `roomId`, so you read `roomId` inside of your Effect. However, you don't want a change to `notificationCount` to log an extra visit, so you read `notificationCount` inside of the Event function. [Learn more about reading the latest props and state from Effects using Event functions.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-event-functions)
+You want your logic to be reactive with regards to `roomId`, so you read `roomId` inside of your Effect. However, you don't want a change to `notificationCount` to log an extra visit, so you read `notificationCount` inside of the Effect Event. [Learn more about reading the latest props and state from Effects using Effect Events.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 
 ### Does some reactive value change unintentionally? {/*does-some-reactive-value-change-unintentionally*/}
 
@@ -1150,7 +1150,7 @@ function ChatRoom({ getOptions }) {
   // ...
 ```
 
-This only works for [pure](/learn/keeping-components-pure) functions because they are safe to call during rendering. If your function is an event handler, but you don't want its changes to re-synchronize your Effect, [wrap it into an Event function instead.](#do-you-want-to-read-a-value-without-reacting-to-its-changes)
+This only works for [pure](/learn/keeping-components-pure) functions because they are safe to call during rendering. If your function is an event handler, but you don't want its changes to re-synchronize your Effect, [wrap it into an Effect Event instead.](#do-you-want-to-read-a-value-without-reacting-to-its-changes)
 
 <Recap>
 
@@ -1161,7 +1161,7 @@ This only works for [pure](/learn/keeping-components-pure) functions because the
 - If the code in your Effect should run in response to a specific interaction, move that code to an event handler.
 - If different parts of your Effect should re-run for different reasons, split it into several Effects.
 - If you want to update some state based on the previous state, pass an updater function.
-- If you want to read the latest value without "reacting" it, extract an Event function from your Effect.
+- If you want to read the latest value without "reacting" it, extract an Effect Event from your Effect.
 - In JavaScript, objects and functions are considered different if they were created at different times.
 - Try to avoid object and function dependencies. Move them outside the component or inside the Effect.
 
@@ -1273,7 +1273,7 @@ Is there a line of code inside the Effect that should not be reactive? How can y
 
 ```js
 import { useState, useEffect, useRef } from 'react';
-import { experimental_useEvent as useEvent } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 import { FadeInAnimation } from './animation.js';
 
 function Welcome({ duration }) {
@@ -1378,7 +1378,7 @@ html, body { min-height: 300px; }
 
 <Solution>
 
-Your Effect needs to read the latest value of `duration`, but you don't want it to "react" to changes in `duration`. You use `duration` to start the animation, but starting animation isn't reactive. Extract the non-reactive line of code into an Event function, and call that function from your Effect.
+Your Effect needs to read the latest value of `duration`, but you don't want it to "react" to changes in `duration`. You use `duration` to start the animation, but starting animation isn't reactive. Extract the non-reactive line of code into an Effect Event, and call that function from your Effect.
 
 <Sandpack>
 
@@ -1401,12 +1401,12 @@ Your Effect needs to read the latest value of `duration`, but you don't want it 
 ```js
 import { useState, useEffect, useRef } from 'react';
 import { FadeInAnimation } from './animation.js';
-import { experimental_useEvent as useEvent } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
 function Welcome({ duration }) {
   const ref = useRef(null);
 
-  const onAppear = useEvent(animation => {
+  const onAppear = useEffectEvent(animation => {
     animation.start(duration);
   });
 
@@ -1501,7 +1501,7 @@ html, body { min-height: 300px; }
 
 </Sandpack>
 
-Event functions like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
+Effect Events like `onAppear` are not reactive, so you can read `duration` inside without retriggering the animation.
 
 </Solution>
 
@@ -1903,7 +1903,7 @@ export default function App() {
 
 ```js ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEvent as useEvent } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
   useEffect(() => {
@@ -2031,11 +2031,11 @@ There's more than one correct way to solve this, but the here is one possible so
 
 In the original example, toggling the theme caused different `onMessage` and `createConnection` functions to be created and passed down. Since the Effect depended on these functions, the chat would re-connect every time you toggle the theme.
 
-To fix the problem with `onMessage`, you needed to wrap it into an Event function:
+To fix the problem with `onMessage`, you needed to wrap it into an Effect Event:
 
 ```js {1,2,6}
 export default function ChatRoom({ roomId, createConnection, onMessage }) {
-  const onReceiveMessage = useEvent(onMessage);
+  const onReceiveMessage = useEffectEvent(onMessage);
 
   useEffect(() => {
     const connection = createConnection();
@@ -2043,7 +2043,7 @@ export default function ChatRoom({ roomId, createConnection, onMessage }) {
     // ...
 ```
 
-Unlike the `onMessage` prop, the `onReceiveMessage` Event function is not reactive. This is why it doesn't need to be a dependency of your Effect. As a result, changes to `onMessage` won't cause the chat to re-connect.
+Unlike the `onMessage` prop, the `onReceiveMessage` Effect Event is not reactive. This is why it doesn't need to be a dependency of your Effect. As a result, changes to `onMessage` won't cause the chat to re-connect.
 
 You can't do the same with `createConnection` because it *should* be reactive. You *want* the Effect to re-trigger if the user switches between an encrypted and an unencryption connection, or if the user switches the current room. However, because `createConnection` is a function, you can't check whether the information it reads has *actually* changed or not. To solve this, instead of passing `createConnection` down from the `App` component, pass the raw `roomId` and `isEncrypted` values:
 
@@ -2066,7 +2066,7 @@ import {
 } from './chat.js';
 
 export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
-  const onReceiveMessage = useEvent(onMessage);
+  const onReceiveMessage = useEffectEvent(onMessage);
 
   useEffect(() => {
     function createConnection() {
@@ -2087,7 +2087,7 @@ After these two changes, your Effect no longer depends on any function values:
 
 ```js {1,8,10,21}
 export default function ChatRoom({ roomId, isEncrypted, onMessage }) { // Reactive values
-  const onReceiveMessage = useEvent(onMessage); // Not reactive
+  const onReceiveMessage = useEffectEvent(onMessage); // Not reactive
 
   useEffect(() => {
     function createConnection() {
@@ -2185,14 +2185,14 @@ export default function App() {
 
 ```js ChatRoom.js active
 import { useState, useEffect } from 'react';
-import { experimental_useEvent as useEvent } from 'react';
+import { experimental_useEffectEvent as useEffectEvent } from 'react';
 import {
   createEncryptedConnection,
   createUnencryptedConnection,
 } from './chat.js';
 
 export default function ChatRoom({ roomId, isEncrypted, onMessage }) {
-  const onReceiveMessage = useEvent(onMessage);
+  const onReceiveMessage = useEffectEvent(onMessage);
 
   useEffect(() => {
     function createConnection() {

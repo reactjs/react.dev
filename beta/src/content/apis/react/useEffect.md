@@ -1751,6 +1751,8 @@ function ChatRoom({ roomId }) {
 
 * If your Effect wasn't caused by an interaction (like a click), React will let the browser **paint the updated screen first before running your Effect.** If your Effect is doing something visual (for example, positioning a tooltip), and the delay is noticeable (for example, it flickers), you need to replace `useEffect` with [`useLayoutEffect`.](/apis/react/useLayoutEffect)
 
+* Even if your Effect was caused by an interaction (like a click), **the browser may repaint the screen before processing the state updates inside your Effect.** Usually, that's what you want. However, if you must block the browser from repainting the screen, you need to replace `useEffect` with [`useLayoutEffect`.](/apis/react/useLayoutEffect)
+
 * Effects **only run on the client.** They don't run during server rendering.
 
 ---

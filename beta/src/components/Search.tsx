@@ -131,7 +131,19 @@ export function Search({
     function onClose(event: any) {
       if (event.ctrlKey || event.metaKey) {
       } else {
-        setIsShowing(false);
+        const targetElement = event.target;
+        const clickedOnLink =
+          targetElement.classList.contains('DocSearch-Hit') ||
+          targetElement.classList.contains('DocSearch-Hit-Container') ||
+          targetElement.classList.contains('DocSearch-Hit-icon') ||
+          targetElement.classList.contains('DocSearch-Hit-content-wrapper') ||
+          targetElement.classList.contains('DocSearch-Hit-action') ||
+          targetElement.classList.contains('DocSearch-Hit-title') ||
+          targetElement.classList.contains('DocSearch-Hit-action-button');
+
+        if (clickedOnLink) {
+          setIsShowing(false);
+        }
       }
     },
     [setIsShowing]

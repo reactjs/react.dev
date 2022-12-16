@@ -57,7 +57,7 @@ function useDocSearchKeyboardEvents({
 }: {
   isOpen: boolean;
   onOpen: () => void;
-  onClose: () => void;
+  onClose: (event: any) => void;
 }) {
   useEffect(() => {
     function onKeyDown(event: any) {
@@ -75,7 +75,7 @@ function useDocSearchKeyboardEvents({
       ) {
         event.preventDefault();
         if (isOpen) {
-          onClose();
+          onClose(event);
         } else if (!document.body.classList.contains('DocSearch--active')) {
           open();
         }

@@ -10,7 +10,7 @@ title: useLayoutEffect
 
 <Intro>
 
-`useLayoutEffect` is a version of [`useEffect`](/apis/react/useEffect) that fires before any DOM mutations.
+`useLayoutEffect` is a version of [`useEffect`](/apis/react/useEffect) that fires before the browser repaints the screen.
 
 ```js
 useLayoutEffect(setup, dependencies?)

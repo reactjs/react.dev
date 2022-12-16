@@ -1,0 +1,15 @@
+diff --git a/node_modules/@codemirror/lang-javascript/dist/index.js b/node_modules/@codemirror/lang-javascript/dist/index.js
+index d089f6b..db09ea6 100644
+--- a/node_modules/@codemirror/lang-javascript/dist/index.js
++++ b/node_modules/@codemirror/lang-javascript/dist/index.js
+@@ -131,7 +131,9 @@ const javascriptLanguage = /*@__PURE__*/LRLanguage.define({
+                 JSXText: tags.content,
+                 "JSXStartTag JSXStartCloseTag JSXSelfCloseEndTag JSXEndTag": tags.angleBracket,
+                 "JSXIdentifier JSXNameSpacedName": tags.tagName,
+-                "JSXAttribute/JSXIdentifier JSXAttribute/JSXNameSpacedName": tags.attributeName
++                "JSXAttribute/JSXIdentifier JSXAttribute/JSXNameSpacedName": tags.attributeName,
++                "JSXAttribute/JSXLowerIdentifier JSXAttribute/JSXNameSpacedName": tags.attributeName,
++                "JSXBuiltin/JSXIdentifier": tags.standard(tags.tagName),
+             })
+         ]
+     }),

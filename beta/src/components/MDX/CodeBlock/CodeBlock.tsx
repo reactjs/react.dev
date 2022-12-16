@@ -3,11 +3,10 @@
  */
 
 import cn from 'classnames';
-import {highlightTree} from '@codemirror/highlight';
+import {highlightTree, HighlightStyle, tags} from '@codemirror/highlight';
 import {javascript} from '@codemirror/lang-javascript';
 import {html} from '@codemirror/lang-html';
 import {css} from '@codemirror/lang-css';
-import {HighlightStyle, tags} from '@codemirror/highlight';
 import rangeParser from 'parse-numeric-range';
 import {CustomTheme} from '../Sandpack/Themes';
 
@@ -233,7 +232,7 @@ function getSyntaxHighlight(theme: any): HighlightStyle {
       class: classNameToken('static'),
     },
     {
-      tag: tags.tagName,
+      tag: tags.standard(tags.tagName),
       class: classNameToken('tag'),
     },
     {tag: tags.variableName, class: classNameToken('plain')},
@@ -244,7 +243,7 @@ function getSyntaxHighlight(theme: any): HighlightStyle {
     },
     {
       // Highlight function definition differently (eg: functional component def in React)
-      tag: tags.definition(tags.function(tags.variableName)),
+      tag: [tags.definition(tags.function(tags.variableName)), tags.tagName],
       class: classNameToken('definition'),
     },
     {

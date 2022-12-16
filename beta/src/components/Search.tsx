@@ -128,8 +128,11 @@ export function Search({
   );
 
   const onClose = useCallback(
-    function onClose() {
-      setIsShowing(false);
+    function onClose(event: any) {
+      if (event.ctrlKey || event.metaKey) {
+      } else {
+        setIsShowing(false);
+      }
     },
     [setIsShowing]
   );
@@ -167,27 +170,30 @@ export function Search({
 
       {isShowing &&
         createPortal(
-          <DocSearchModal
-            {...options}
-            initialScrollY={window.scrollY}
-            searchParameters={searchParameters}
-            onClose={onClose}
-            navigator={{
-              navigate({itemUrl}: any) {
-                Router.push(itemUrl);
-              },
-            }}
-            transformItems={(items: any[]) => {
-              return items.map((item) => {
-                const url = new URL(item.url);
-                return {
-                  ...item,
-                  url: item.url.replace(url.origin, '').replace('#__next', ''),
-                };
-              });
-            }}
-            hitComponent={Hit}
-          />,
+          <div onClick={onClose}>
+            <DocSearchModal
+              {...options}
+              initialScrollY={window.scrollY}
+              searchParameters={searchParameters}
+              navigator={{
+                navigate({itemUrl}: any) {
+                  Router.push(itemUrl);
+                },
+              }}
+              transformItems={(items: any[]) => {
+                return items.map((item) => {
+                  const url = new URL(item.url);
+                  return {
+                    ...item,
+                    url: item.url
+                      .replace(url.origin, '')
+                      .replace('#__next', ''),
+                  };
+                });
+              }}
+              hitComponent={Hit}
+            />
+          </div>,
           document.body
         )}
     </>

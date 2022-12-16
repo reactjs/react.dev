@@ -1668,7 +1668,7 @@ function Page({ url, shoppingCart }) {
 }
 ```
 
-**Effect Events are not reactive and don't need to be specified as dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. For example, by reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect.
+**Effect Events are not reactive and must always be omitted from dependencies of your Effect.** This is what lets you put non-reactive code (where you can read the latest value of some props and state) inside of them. For example, by reading `shoppingCart` inside of `onVisit`, you ensure that `shoppingCart` won't re-run your Effect. In the future, the linter will support `useEffectEvent` and check that you omit Effect Events from dependencies.
 
 [Read more about how Effect Events let you separate reactive and non-reactive code.](/learn/separating-events-from-effects#reading-latest-props-and-state-with-effect-events)
 

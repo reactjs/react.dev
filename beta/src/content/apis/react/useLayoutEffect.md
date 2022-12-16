@@ -150,7 +150,7 @@ export default function Tooltip({ children, targetRect }) {
   useLayoutEffect(() => {
     const { height } = ref.current.getBoundingClientRect();
     setTooltipHeight(height);
-    console.log('Measured tooltip height: ' + height)
+    console.log('Measured tooltip height: ' + height);
   }, []);
 
   let tooltipX = 0;
@@ -300,7 +300,6 @@ export default function Tooltip({ children, targetRect }) {
   useLayoutEffect(() => {
     const { height } = ref.current.getBoundingClientRect();
     setTooltipHeight(height);
-    console.log('Measured tooltip height: ' + height)
   }, []);
 
   let tooltipX = 0;
@@ -448,7 +447,6 @@ export default function Tooltip({ children, targetRect }) {
   useEffect(() => {
     const { height } = ref.current.getBoundingClientRect();
     setTooltipHeight(height);
-    console.log('Measured tooltip height: ' + height)
   }, []);
 
   let tooltipX = 0;
@@ -598,7 +596,6 @@ export default function Tooltip({ children, targetRect }) {
   useEffect(() => {
     const { height } = ref.current.getBoundingClientRect();
     setTooltipHeight(height);
-    console.log('Measured tooltip height: ' + height)
   }, []);
 
   let tooltipX = 0;

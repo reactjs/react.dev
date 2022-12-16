@@ -129,19 +129,23 @@ export function Search({
 
   const onClose = useCallback(
     function onClose(event: any) {
-      if (event.ctrlKey || event.metaKey) {
-      } else {
-        const targetElement = event.target;
-        const clickedOnLink =
-          targetElement.classList.contains('DocSearch-Hit') ||
-          targetElement.classList.contains('DocSearch-Hit-Container') ||
-          targetElement.classList.contains('DocSearch-Hit-icon') ||
-          targetElement.classList.contains('DocSearch-Hit-content-wrapper') ||
-          targetElement.classList.contains('DocSearch-Hit-action') ||
-          targetElement.classList.contains('DocSearch-Hit-title') ||
-          targetElement.classList.contains('DocSearch-Hit-action-button');
+      const parent = document.querySelector('#docsearch-item-0');
+      const secondParent = document.querySelector('.DocSearch-Hit-Container');
 
-        if (clickedOnLink) {
+      if (
+        event.target === parent ||
+        event.target === secondParent ||
+        secondParent?.contains(event.target)
+      ) {
+        if (event.ctrlKey || event.metaKey) {
+        } else {
+          setIsShowing(false);
+        }
+      } else {
+        const outsideRegion = document.getElementsByClassName(
+          'DocSearch-Container'
+        );
+        if (event.target === outsideRegion[0]) {
           setIsShowing(false);
         }
       }

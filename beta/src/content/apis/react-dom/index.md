@@ -34,7 +34,7 @@ The `react-dom` package provides two additional entry points:
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+These APIs will be removed in a future major version of React.
 
 </Deprecated>
 

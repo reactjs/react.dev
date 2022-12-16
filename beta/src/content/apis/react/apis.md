@@ -1,10 +1,10 @@
 ---
-title: "react: Other APIs"
+title: "react: APIs"
 ---
 
 <Intro>
 
-In addition to [Hooks,](/apis/react) the `react` package exports a few components and other APIs that are useful for defining components. This page lists all the modern React APIs that are not Hooks.
+In addition to [Hooks](/apis/react) and [Components](/apis/react/components), the `react` package exports a few other APIs that are useful for defining components. This page lists all the remaining modern React APIs.
 
 </Intro>
 
@@ -12,17 +12,7 @@ In addition to [Hooks,](/apis/react) the `react` package exports a few component
 
 ---
 
-## Built-in React components {/*built-in-react-components*/}
-
-React exposes a few built-in components that you can use in your JSX.
-
-* [`<Fragment>`](/apis/react/Fragment), alternatively written as `<>...</>`, lets you group multiple JSX nodes together.
-* [`<Suspense>`](/apis/react/Suspense) lets you display a fallback while the child components are loading.
-* [`<StrictMode>`](/apis/react/StrictMode) enables extra development-only checks that help you find bugs early.
-
----
-
-## Other React APIs {/*other-react-apis*/}
+## React APIs {/*react-apis*/}
 
 * [`createContext`](/apis/react/createContext) lets you define and provide context to the child components. Used with [`useContext`.](/apis/react/useContext)
 * [`forwardRef`](/apis/react/forwardRef) lets your component expose a DOM node as a ref to the parent. Used with [`useRef`.](/apis/react/useRef)

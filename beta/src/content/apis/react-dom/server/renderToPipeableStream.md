@@ -139,7 +139,7 @@ const assetMap = {
 app.use('/', (request, response) => {
   const { pipe } = renderToPipeableStream(<App assetMap={assetMap} />, {
     // Careful: It's safe to stringify() this because this data isn't user-generated.
-    bootstrapScriptContents: `window.assetMap = ${JSON.stringify(assetMap)};`,
+    bootstrapScriptContent: `window.assetMap = ${JSON.stringify(assetMap)};`,
     bootstrapScripts: [assetMap['main.js']],
     onShellReady() {
       response.setHeader('content-type', 'text/html');
@@ -149,7 +149,7 @@ app.use('/', (request, response) => {
 });
 ```
 
-In the example above, the `bootstrapScriptContents` option adds an extra inline `<script>` tag that sets the global `window.assetMap` variable on the client. This lets the client code read the same `assetMap`:
+In the example above, the `bootstrapScriptContent` option adds an extra inline `<script>` tag that sets the global `window.assetMap` variable on the client. This lets the client code read the same `assetMap`:
 
 ```js {4}
 import {hydrateRoot} from 'react-dom/client';

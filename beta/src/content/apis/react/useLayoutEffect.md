@@ -670,6 +670,8 @@ Rendering in two passes and blocking the browser hurts performance. Try to avoid
 Call `useLayoutEffect` perform the layout measurements before the browser repaints the screen:
 
 ```js
+import { useState, useRef, useLayoutEffect } from 'react';
+
 function Tooltip() {
   const ref = useRef(null);
   const [tooltipHeight, setTooltipHeight] = useState(0);

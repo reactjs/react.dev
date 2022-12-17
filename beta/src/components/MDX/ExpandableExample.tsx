@@ -28,20 +28,17 @@ function ExpandableExample({children, excerpt, type}: ExpandableExampleProps) {
   const isExample = type === 'Example';
   const id = children[0].props.id;
 
-  const queuedExpandRef = useRef<boolean>(true);
   const {asPath} = useRouter();
-  // init as expanded to prevent flash
-  const [isExpanded, setIsExpanded] = useState(true);
+  const shouldAutoExpand = id === asPath.split('#')[1];
+  const queuedExpandRef = useRef<boolean>(shouldAutoExpand);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  // asPath would mismatch between server and client, reset here instead of put it into init state
   useEffect(() => {
     if (queuedExpandRef.current) {
       queuedExpandRef.current = false;
-      if (id !== asPath.split('#')[1]) {
-        setIsExpanded(false);
-      }
+      setIsExpanded(true);
     }
-  }, [asPath, id]);
+  }, []);
 
   return (
     <details

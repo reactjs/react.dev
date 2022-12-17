@@ -344,6 +344,16 @@ If you render the same component multiple times, each will get its own state. Tr
 ```js
 import { useState } from 'react';
 
+export default function MyApp() {
+  return (
+    <div>
+      <h1>Counters that update separately</h1>
+      <MyButton />
+      <MyButton />
+    </div>
+  );
+}
+
 function MyButton() {
   const [count, setCount] = useState(0);
 
@@ -355,16 +365,6 @@ function MyButton() {
     <button onClick={handleClick}>
       Clicked {count} times
     </button>
-  );
-}
-
-export default function MyApp() {
-  return (
-    <div>
-      <h1>Counters that update separately</h1>
-      <MyButton />
-      <MyButton />
-    </div>
   );
 }
 ```
@@ -432,11 +432,7 @@ Now when you click either button, the `count` in `MyApp` will change, which will
 
 First, *move the state up* from `MyButton` into `MyApp`:
 
-```js {2,6-10}
-function MyButton() {
-  // ... we're moving code from here ...
-}
-
+```js {2-6,18}
 export default function MyApp() {
   const [count, setCount] = useState(0);
 
@@ -452,6 +448,11 @@ export default function MyApp() {
     </div>
   );
 }
+
+function MyButton() {
+  // ... we're moving code from here ...
+}
+
 ```
 
 Then, *pass the state down* from `MyApp` to each `MyButton`, together with the shared click handler. You can pass information to `MyButton` using the JSX curly braces, just like you previously did with built-in tags like `<img>`:
@@ -497,14 +498,6 @@ This is called "lifting state up". By moving state up, we've shared it between c
 ```js
 import { useState } from 'react';
 
-function MyButton({ count, onClick }) {
-  return (
-    <button onClick={onClick}>
-      Clicked {count} times
-    </button>
-  );
-}
-
 export default function MyApp() {
   const [count, setCount] = useState(0);
 
@@ -518,6 +511,14 @@ export default function MyApp() {
       <MyButton count={count} onClick={handleClick} />
       <MyButton count={count} onClick={handleClick} />
     </div>
+  );
+}
+
+function MyButton({ count, onClick }) {
+  return (
+    <button onClick={onClick}>
+      Clicked {count} times
+    </button>
   );
 }
 ```

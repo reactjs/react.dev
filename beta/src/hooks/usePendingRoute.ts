@@ -3,13 +3,13 @@
  */
 
 import {useRouter} from 'next/router';
-import React from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 const usePendingRoute = () => {
   const {events} = useRouter();
-  const [pendingRoute, setPendingRoute] = React.useState<string | null>(null);
-  const currentRoute = React.useRef<string | null>(null);
-  React.useEffect(() => {
+  const [pendingRoute, setPendingRoute] = useState<string | null>(null);
+  const currentRoute = useRef<string | null>(null);
+  useEffect(() => {
     let routeTransitionTimer: any = null;
 
     const handleRouteChangeStart = (url: string) => {

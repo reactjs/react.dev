@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useContext, createContext} from 'react';
 import {useRouter} from 'next/router';
 
 /**
@@ -30,8 +30,12 @@ export interface RouteItem {
   path?: string;
   /** Whether the entry is a heading */
   heading?: boolean;
+  /** Whether the page is under construction */
+  wip?: boolean;
   /** List of sub-routes */
   routes?: RouteItem[];
+  /** Adds a separator above the route item */
+  hasSeparator?: boolean;
 }
 
 export interface Routes {
@@ -52,15 +56,15 @@ export interface RouteMeta {
 }
 
 export function useRouteMeta(rootRoute?: RouteItem) {
-  const sidebarContext = React.useContext(SidebarContext);
+  const sidebarContext = useContext(SidebarContext);
   const routeTree = rootRoute || sidebarContext;
   const router = useRouter();
-  const cleanedPath = router.pathname;
-  if (cleanedPath === '/404') {
+  if (router.pathname === '/404') {
     return {
       breadcrumbs: [],
     };
   }
+  const cleanedPath = router.asPath.split(/[\?\#]/)[0];
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
   return {
     ...getRouteMeta(cleanedPath, routeTree),
@@ -68,7 +72,7 @@ export function useRouteMeta(rootRoute?: RouteItem) {
   };
 }
 
-export const SidebarContext = React.createContext<RouteItem>({title: 'root'});
+export const SidebarContext = createContext<RouteItem>({title: 'root'});
 
 // Performs a depth-first search to find the current route and its previous/next route
 function getRouteMeta(

@@ -5,16 +5,39 @@
 import * as React from 'react';
 import NextLink from 'next/link';
 import cn from 'classnames';
+import ButtonLink from 'components/ButtonLink';
 import {ExternalLink} from 'components/ExternalLink';
 import {IconFacebookCircle} from 'components/Icon/IconFacebookCircle';
 import {IconTwitter} from 'components/Icon/IconTwitter';
+import {IconGitHub} from 'components/Icon/IconGitHub';
+import {IconNavArrow} from 'components/Icon/IconNavArrow';
 
 export function Footer() {
   const socialLinkClasses = 'hover:text-primary dark:text-primary-dark';
   return (
     <>
-      <div className="self-stretch w-full sm:pl-0 lg:pl-80 sm:pr-0 2xl:pr-80 pl-0 pr-0">
+      <div className="self-stretch w-full">
         <div className="mx-auto w-full px-5 sm:px-12 md:px-12 pt-10 md:pt-12 lg:pt-10">
+          <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
+          <div className="flex flex-col items-center m-4 p-4">
+            <p className="font-bold text-primary dark:text-primary-dark text-lg mb-4">
+              How do you like these docs?
+            </p>
+            <div>
+              <ButtonLink
+                href="https://www.surveymonkey.co.uk/r/PYRPF3X"
+                className="mt-1"
+                type="primary"
+                size="md"
+                target="_blank">
+                Take our survey!
+                <IconNavArrow
+                  displayDirection="right"
+                  className="inline ml-1"
+                />
+              </ButtonLink>
+            </div>
+          </div>
           <hr className="max-w-7xl mx-auto border-border dark:border-border-dark" />
         </div>
         <footer className="text-secondary dark:text-secondary-dark py-12 px-5 sm:px-12 md:px-12 sm:py-12 md:py-16 lg:py-14">
@@ -89,11 +112,11 @@ export function Footer() {
               </FooterLink>
             </div>
             <div className="flex flex-col">
-              <FooterLink href="/apis" isHeader={true}>
+              <FooterLink href="/apis/react" isHeader={true}>
                 API Reference
               </FooterLink>
-              <FooterLink href="/apis">React APIs</FooterLink>
-              <FooterLink href="/apis/reactdom">React DOM APIs</FooterLink>
+              <FooterLink href="/apis/react">React APIs</FooterLink>
+              <FooterLink href="/apis/react-dom">React DOM APIs</FooterLink>
             </div>
             <div className="flex flex-col sm:col-start-2 xl:col-start-4">
               <FooterLink href="/" isHeader={true}>
@@ -102,12 +125,14 @@ export function Footer() {
               <FooterLink href="https://github.com/facebook/react/blob/main/CODE_OF_CONDUCT.md">
                 Code of Conduct
               </FooterLink>
-              <FooterLink href="/community/acknowledgements">
+              <FooterLink href="/learn/acknowledgements">
                 Acknowledgements
               </FooterLink>
-              <FooterLink href="/community/meet-the-team">
-                Meet the Team
+              <FooterLink href="/learn/docs-contributors">
+                Docs Contributors
               </FooterLink>
+              <FooterLink href="/learn/meet-the-team">Meet the Team</FooterLink>
+              <FooterLink href="https://reactjs.org/blog">Blog</FooterLink>
               {/* <FooterLink href="/">Community Resources</FooterLink> */}
             </div>
             <div className="flex flex-col">
@@ -136,6 +161,12 @@ export function Footer() {
                   href="https://twitter.com/reactjs"
                   className={socialLinkClasses}>
                   <IconTwitter />
+                </ExternalLink>
+                <ExternalLink
+                  aria-label="React on Github"
+                  href="https://github.com/facebook/react"
+                  className={socialLinkClasses}>
+                  <IconGitHub />
                 </ExternalLink>
               </div>
             </div>

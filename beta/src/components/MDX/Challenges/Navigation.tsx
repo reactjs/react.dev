@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React, {createRef} from 'react';
+import {useRef, useCallback, useEffect, createRef} from 'react';
 import cn from 'classnames';
 import {IconChevron} from 'components/Icon/IconChevron';
 import {ChallengeContents} from './Challenges';
@@ -15,12 +15,12 @@ export function Navigation({
   isRecipes,
 }: {
   challenges: ChallengeContents[];
-  handleChange: (id: string) => void;
+  handleChange: (index: number) => void;
   currentChallenge: ChallengeContents;
   isRecipes?: boolean;
 }) {
-  const containerRef = React.useRef<HTMLDivElement>(null);
-  const challengesNavRef = React.useRef(
+  const containerRef = useRef<HTMLDivElement>(null);
+  const challengesNavRef = useRef(
     challenges.map(() => createRef<HTMLButtonElement>())
   );
   const scrollPos = currentChallenge.order - 1;
@@ -36,7 +36,7 @@ export function Navigation({
       if (containerRef.current) {
         containerRef.current.scrollLeft = currentNavRef.offsetLeft;
       }
-      handleChange(challenges[scrollPos + 1].id);
+      handleChange(scrollPos + 1);
     }
   };
 
@@ -49,22 +49,19 @@ export function Navigation({
       if (containerRef.current) {
         containerRef.current.scrollLeft = currentNavRef.offsetLeft;
       }
-      handleChange(challenges[scrollPos - 1].id);
+      handleChange(scrollPos - 1);
     }
   };
 
-  const handleSelectNav = (id: string) => {
-    const selectedChallenge = challenges.findIndex(
-      (challenge) => challenge.id === id
-    );
-    const currentNavRef = challengesNavRef.current[selectedChallenge].current;
+  const handleSelectNav = (index: number) => {
+    const currentNavRef = challengesNavRef.current[index].current;
     if (containerRef.current) {
       containerRef.current.scrollLeft = currentNavRef?.offsetLeft || 0;
     }
-    handleChange(id);
+    handleChange(index);
   };
 
-  const handleResize = React.useCallback(() => {
+  const handleResize = useCallback(() => {
     if (containerRef.current) {
       const el = containerRef.current;
       el.scrollLeft =
@@ -72,11 +69,12 @@ export function Navigation({
     }
   }, [containerRef, challengesNavRef, scrollPos]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     handleResize();
-    window.addEventListener('resize', debounce(handleResize, 200));
+    const debouncedHandleResize = debounce(handleResize, 200);
+    window.addEventListener('resize', debouncedHandleResize);
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', debouncedHandleResize);
     };
   }, [handleResize]);
 
@@ -97,7 +95,7 @@ export function Navigation({
                   currentChallenge.id === id &&
                   'text-link border-link hover:text-link dark:text-link-dark dark:border-link-dark dark:hover:text-link-dark'
               )}
-              onClick={() => handleSelectNav(id)}
+              onClick={() => handleSelectNav(index)}
               key={`button-${id}`}
               ref={challengesNavRef.current[index]}>
               {order}. {name}

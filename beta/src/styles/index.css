@@ -72,15 +72,14 @@
 
   html,
   body {
-    height: 100%;
     padding: 0;
     margin: 0;
   }
 
-  body,
-  html,
-  #__next {
-    height: 100%;
+  @media screen and (max-width: 1023px) {
+    body {
+      overflow-x: hidden;
+    }
   }
 
   /* Start purging... */
@@ -150,13 +149,8 @@
     max-width: calc(min(700px, 100%));
   }
 
-  @keyframes nav-fadein {
-    from {
-      opacity: 0.5;
-    }
-    to {
-      opacity: 1;
-    }
+  summary::-webkit-details-marker {
+    display: none;
   }
 
   /*
@@ -210,21 +204,29 @@
 }
 
 .code-step * {
-  color: black !important;
+  color: inherit !important;
 }
+
 .code-step code {
   background: none !important;
   padding: 2px !important;
 }
 html.dark .code-step * {
-  color: white !important;
+  color: inherit !important;
 }
 
 .mdx-heading {
-  scroll-margin-top: 2.5em;
+  scroll-margin-top: 3.5em;
   /* Space for the anchor */
   padding-right: 1em;
 }
+
+@media (min-width: 1024px) {
+  .mdx-heading {
+    scroll-margin-top: 1em;
+  }
+}
+
 .mdx-heading:before {
   height: 6rem;
   margin-top: -6rem;

@@ -2,8 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-const path = require('path');
-const {remarkPlugins} = require('./plugins/markdownToHtml');
 const redirects = require('./src/redirects.json');
 
 /**
@@ -11,11 +9,15 @@ const redirects = require('./src/redirects.json');
  **/
 const nextConfig = {
   pageExtensions: ['jsx', 'js', 'ts', 'tsx', 'mdx', 'md'],
+  reactStrictMode: true,
   experimental: {
     plugins: true,
     scrollRestoration: true,
     legacyBrowsers: false,
     browsersListForSwc: true,
+  },
+  env: {
+    SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
   },
   async redirects() {
     return redirects.redirects;
@@ -46,8 +48,20 @@ const nextConfig = {
     // Don't bundle the shim unnecessarily.
     config.resolve.alias['use-sync-external-store/shim'] = 'react';
 
-    const {IgnorePlugin} = require('webpack');
+    const {IgnorePlugin, NormalModuleReplacementPlugin} = require('webpack');
     config.plugins.push(
+      new NormalModuleReplacementPlugin(
+        /^@stitches\/core$/,
+        require.resolve('./src/utils/emptyShim.js')
+      ),
+      new NormalModuleReplacementPlugin(
+        /^raf$/,
+        require.resolve('./src/utils/rafShim.js')
+      ),
+      new NormalModuleReplacementPlugin(
+        /^process$/,
+        require.resolve('./src/utils/processShim.js')
+      ),
       new IgnorePlugin({
         checkResource(resource, context) {
           if (
@@ -63,22 +77,6 @@ const nextConfig = {
         },
       })
     );
-
-    // Add our custom markdown loader in order to support frontmatter
-    // and layout
-    config.module.rules.push({
-      test: /.mdx?$/, // load both .md and .mdx files
-      use: [
-        options.defaultLoaders.babel,
-        {
-          loader: '@mdx-js/loader',
-          options: {
-            remarkPlugins,
-          },
-        },
-        path.join(__dirname, './plugins/md-layout-loader'),
-      ],
-    });
 
     return config;
   },

@@ -4,18 +4,18 @@
 
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
+import {useRef, useEffect} from 'react';
 import * as React from 'react';
-import scrollIntoView from 'scroll-into-view-if-needed';
 import cn from 'classnames';
 import {IconNavArrow} from 'components/Icon/IconNavArrow';
 import Link from 'next/link';
-import {useIsMobile} from '../useMediaQuery';
 
 interface SidebarLinkProps {
   href: string;
   selected?: boolean;
   title: string;
   level: number;
+  wip: boolean | undefined;
   icon?: React.ReactNode;
   heading?: boolean;
   isExpanded?: boolean;
@@ -28,6 +28,7 @@ export function SidebarLink({
   href,
   selected = false,
   title,
+  wip,
   level,
   heading = false,
   isExpanded,
@@ -35,24 +36,28 @@ export function SidebarLink({
   hideArrow,
   isPending,
 }: SidebarLinkProps) {
-  const ref = React.useRef<HTMLAnchorElement>(null);
-  const isMobile = useIsMobile();
+  const ref = useRef<HTMLAnchorElement>(null);
 
-  React.useEffect(() => {
-    if (ref && ref.current && !!selected && !isMobile) {
-      scrollIntoView(ref.current, {
-        scrollMode: 'if-needed',
-        block: 'center',
-        inline: 'nearest',
-      });
+  useEffect(() => {
+    if (selected && ref && ref.current) {
+      // @ts-ignore
+      if (typeof ref.current.scrollIntoViewIfNeeded === 'function') {
+        // @ts-ignore
+        ref.current.scrollIntoViewIfNeeded();
+      }
     }
-  }, [ref, selected, isMobile]);
+  }, [ref, selected]);
 
+  let target = '';
+  if (href.startsWith('https://')) {
+    target = '_blank';
+  }
   return (
     <Link href={href}>
       <a
         ref={ref}
         title={title}
+        target={target}
         aria-current={selected ? 'page' : undefined}
         className={cn(
           'p-2 pr-2 w-full rounded-none lg:rounded-r-lg text-left hover:bg-gray-5 dark:hover:bg-gray-80 relative flex items-center justify-between',
@@ -69,12 +74,17 @@ export function SidebarLink({
               !selected && !heading,
             'text-base text-link dark:text-link-dark bg-highlight dark:bg-highlight-dark border-blue-40 hover:bg-highlight hover:text-link dark:hover:bg-highlight-dark dark:hover:text-link-dark':
               selected,
-            'dark:bg-gray-60 bg-gray-3 dark:hover:bg-gray-60 hover:bg-gray-3':
+            'dark:bg-gray-70 bg-gray-3 dark:hover:bg-gray-70 hover:bg-gray-3':
               isPending,
           }
         )}>
         {/* This here needs to be refactored ofc */}
-        {title}
+        <span
+          className={cn({
+            'text-gray-400 dark:text-gray-500': wip,
+          })}>
+          {title}
+        </span>
         {isExpanded != null && !heading && !hideArrow && (
           <span
             className={cn('pr-1', {

@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
 import {Html, Head, Main, NextScript} from 'next/document';
 
 const MyDocument = () => {

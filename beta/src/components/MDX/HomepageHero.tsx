@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
 import {Logo} from 'components/Logo';
 import YouWillLearnCard from 'components/MDX/YouWillLearnCard';
 
@@ -30,10 +29,10 @@ function HomepageHero() {
           </YouWillLearnCard>
         </div>
         <div className="flex flex-col justify-center">
-          <YouWillLearnCard title="API Reference" path="/apis">
+          <YouWillLearnCard title="API Reference" path="/apis/react">
             <p>
-              Look up the API signatures of React Hooks, and see their shape
-              using the visual code diagrams.
+              Look up the API of React Hooks, and see their shape with
+              color-coded signatures.
             </p>
           </YouWillLearnCard>
         </div>

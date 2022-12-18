@@ -1,0 +1,240 @@
+{
+  "title": "API Reference",
+  "heading": true,
+  "path": "/apis",
+  "routes": [
+    {
+      "heading": true,
+      "path": "",
+      "routes": [
+        {
+          "title": "react: Hooks",
+          "path": "/apis/react",
+          "routes": [
+            {
+              "title": "useCallback",
+              "path": "/apis/react/useCallback"
+            },
+            {
+              "title": "useContext",
+              "path": "/apis/react/useContext"
+            },
+            {
+              "title": "useDebugValue",
+              "path": "/apis/react/useDebugValue"
+            },
+            {
+              "title": "useDeferredValue",
+              "path": "/apis/react/useDeferredValue"
+            },
+            {
+              "title": "useEffect",
+              "path": "/apis/react/useEffect"
+            },
+            {
+              "title": "useId",
+              "path": "/apis/react/useId"
+            },
+            {
+              "title": "useImperativeHandle",
+              "path": "/apis/react/useImperativeHandle"
+            },
+            {
+              "title": "useInsertionEffect",
+              "path": "/apis/react/useInsertionEffect"
+            },
+            {
+              "title": "useLayoutEffect",
+              "path": "/apis/react/useLayoutEffect"
+            },
+            {
+              "title": "useMemo",
+              "path": "/apis/react/useMemo"
+            },
+            {
+              "title": "useReducer",
+              "path": "/apis/react/useReducer"
+            },
+            {
+              "title": "useRef",
+              "path": "/apis/react/useRef"
+            },
+            {
+              "title": "useState",
+              "path": "/apis/react/useState"
+            },
+            {
+              "title": "useSyncExternalStore",
+              "path": "/apis/react/useSyncExternalStore"
+            },
+            {
+              "title": "useTransition",
+              "path": "/apis/react/useTransition"
+            }
+          ]
+        },
+        {
+          "title": "react: Components",
+          "path": "/apis/react/components",
+          "routes": [
+            {
+              "title": "<Fragment> (<>)",
+              "path": "/apis/react/Fragment"
+            },
+            {
+              "title": "<Profiler>",
+              "path": "/apis/react/Profiler"
+            },
+            {
+              "title": "<StrictMode>",
+              "path": "/apis/react/StrictMode"
+            },
+            {
+              "title": "<Suspense>",
+              "path": "/apis/react/Suspense"
+            }
+          ]
+        },
+        {
+          "title": "react: APIs",
+          "path": "/apis/react/apis",
+          "routes": [
+            {
+              "title": "createContext",
+              "path": "/apis/react/createContext"
+            },
+            {
+              "title": "forwardRef",
+              "path": "/apis/react/forwardRef"
+            },
+            {
+              "title": "lazy",
+              "path": "/apis/react/lazy"
+            },
+            {
+              "title": "memo",
+              "path": "/apis/react/memo"
+            },
+            {
+              "title": "startTransition",
+              "path": "/apis/react/startTransition"
+            }
+          ]
+        },
+        {
+          "title": "react-dom",
+          "path": "/apis/react-dom",
+          "routes": [
+            {
+              "title": "createPortal",
+              "path": "/apis/react-dom/createPortal"
+            },
+            {
+              "title": "flushSync",
+              "path": "/apis/react-dom/flushSync"
+            },
+            {
+              "title": "findDOMNode",
+              "path": "/apis/react-dom/findDOMNode"
+            },
+            {
+              "title": "hydrate",
+              "path": "/apis/react-dom/hydrate"
+            },
+            {
+              "title": "render",
+              "path": "/apis/react-dom/render"
+            },
+            {
+              "title": "unmountComponentAtNode",
+              "path": "/apis/react-dom/unmountComponentAtNode"
+            }
+          ]
+        },
+        {
+          "title": "react-dom\/client",
+          "path": "/apis/react-dom/client",
+          "routes": [
+            {
+              "title": "createRoot",
+              "path": "/apis/react-dom/client/createRoot"
+            },
+            {
+              "title": "hydrateRoot",
+              "path": "/apis/react-dom/client/hydrateRoot"
+            }
+          ]
+        },
+        {
+          "title": "react-dom\/server",
+          "path": "/apis/react-dom/server",
+          "routes": [
+            {
+              "title": "renderToNodeStream",
+              "path": "/apis/react-dom/server/renderToNodeStream"
+            },
+            {
+              "title": "renderToPipeableStream",
+              "path": "/apis/react-dom/server/renderToPipeableStream"
+            },
+            {
+              "title": "renderToReadableStream",
+              "path": "/apis/react-dom/server/renderToReadableStream"
+            },
+            {
+              "title": "renderToStaticMarkup",
+              "path": "/apis/react-dom/server/renderToStaticMarkup"
+            },
+            {
+              "title": "renderToStaticNodeStream",
+              "path": "/apis/react-dom/server/renderToStaticNodeStream"
+            },
+            {
+              "title": "renderToString",
+              "path": "/apis/react-dom/server/renderToString"
+            }
+          ]
+        },
+        {
+          "title": "react: Legacy APIs",
+          "path": "/apis/react/legacy",
+          "hasSeparator": true,
+          "routes": [
+            {
+              "title": "Children",
+              "path": "/apis/react/Children"
+            },
+            {
+              "title": "cloneElement",
+              "path": "/apis/react/cloneElement"
+            },
+            {
+              "title": "Component",
+              "path": "/apis/react/Component"
+            },
+            {
+              "title": "createElement",
+              "path": "/apis/react/createElement"
+            },
+            {
+              "title": "createFactory",
+              "path": "/apis/react/createFactory"
+            },
+            {
+              "title": "createRef",
+              "path": "/apis/react/createRef"
+            },
+            {
+              "title": "isValidElement",
+              "path": "/apis/react/isValidElement"
+            },
+            {
+              "title": "PureComponent",
+              "path": "/apis/react/PureComponent"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

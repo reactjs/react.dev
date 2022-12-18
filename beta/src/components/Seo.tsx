@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import * as React from 'react';
 import Head from 'next/head';
 import {withRouter, Router} from 'next/router';
 
@@ -39,7 +39,7 @@ export const Seo = withRouter(
       <meta
         property="og:url"
         key="og:url"
-        content={`https://beta.reactjs.org${router.pathname}`}
+        content={`https://beta.reactjs.org${router.asPath.split(/[\?\#]/)[0]}`}
       />
       {title != null && (
         <meta property="og:title" content={title} key="og:title" />
@@ -81,6 +81,10 @@ export const Seo = withRouter(
         name="twitter:image"
         key="twitter:image"
         content={`https://beta.reactjs.org${image}`}
+      />
+      <meta
+        name="google-site-verification"
+        content="j1duf8XRaKuZyGvhPd8GkYXHG7LI4GYbIvAXBsqTC9U"
       />
       <link
         rel="preload"

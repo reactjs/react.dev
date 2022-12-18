@@ -1,0 +1,30 @@
+diff --git a/node_modules/@codemirror/lang-javascript/dist/index.cjs b/node_modules/@codemirror/lang-javascript/dist/index.cjs
+index 4475e4f..e1255c9 100644
+--- a/node_modules/@codemirror/lang-javascript/dist/index.cjs
++++ b/node_modules/@codemirror/lang-javascript/dist/index.cjs
+@@ -135,7 +135,9 @@ const javascriptLanguage = language.LRLanguage.define({
+                 JSXText: highlight.tags.content,
+                 "JSXStartTag JSXStartCloseTag JSXSelfCloseEndTag JSXEndTag": highlight.tags.angleBracket,
+                 "JSXIdentifier JSXNameSpacedName": highlight.tags.tagName,
+-                "JSXAttribute/JSXIdentifier JSXAttribute/JSXNameSpacedName": highlight.tags.attributeName
++                "JSXAttribute/JSXIdentifier JSXAttribute/JSXNameSpacedName": highlight.tags.attributeName,
++                "JSXAttribute/JSXLowerIdentifier JSXAttribute/JSXNameSpacedName": highlight.tags.attributeName,
++                "JSXBuiltin/JSXIdentifier": highlight.tags.standard(highlight.tags.tagName)
+             })
+         ]
+     }),
+diff --git a/node_modules/@codemirror/lang-javascript/dist/index.js b/node_modules/@codemirror/lang-javascript/dist/index.js
+index d089f6b..db09ea6 100644
+--- a/node_modules/@codemirror/lang-javascript/dist/index.js
++++ b/node_modules/@codemirror/lang-javascript/dist/index.js
+@@ -131,7 +131,9 @@ const javascriptLanguage = /*@__PURE__*/LRLanguage.define({
+                 JSXText: tags.content,
+                 "JSXStartTag JSXStartCloseTag JSXSelfCloseEndTag JSXEndTag": tags.angleBracket,
+                 "JSXIdentifier JSXNameSpacedName": tags.tagName,
+-                "JSXAttribute/JSXIdentifier JSXAttribute/JSXNameSpacedName": tags.attributeName
++                "JSXAttribute/JSXIdentifier JSXAttribute/JSXNameSpacedName": tags.attributeName,
++                "JSXAttribute/JSXLowerIdentifier JSXAttribute/JSXNameSpacedName": tags.attributeName,
++                "JSXBuiltin/JSXIdentifier": tags.standard(tags.tagName),
+             })
+         ]
+     }),

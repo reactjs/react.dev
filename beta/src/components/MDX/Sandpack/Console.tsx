@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 import cn from 'classnames';
-import * as React from 'react';
+import {useState, useRef, useEffect} from 'react';
 import {IconChevron} from 'components/Icon/IconChevron';
 
 import {SandpackCodeViewer, useSandpack} from '@codesandbox/sandpack-react';
@@ -22,6 +22,63 @@ const getType = (
   return 'error';
 };
 
+const getColor = (message: SandpackMessageConsoleMethods): string => {
+  if (message === 'warn') {
+    return 'text-yellow-50';
+  } else if (message === 'error') {
+    return 'text-red-40';
+  } else {
+    return 'text-secondary dark:text-secondary-dark';
+  }
+};
+
+// based on https://github.com/tmpfs/format-util/blob/0e62d430efb0a1c51448709abd3e2406c14d8401/format.js#L1
+// based on https://developer.mozilla.org/en-US/docs/Web/API/console#Using_string_substitutions
+// Implements s, d, i and f placeholders
+function formatStr(...inputArgs: any[]): any[] {
+  const maybeMessage = inputArgs[0];
+  if (typeof maybeMessage !== 'string') {
+    return inputArgs;
+  }
+  // If the first argument is a string, check for substitutions.
+  const args = inputArgs.slice(1);
+  let formatted: string = String(maybeMessage);
+  if (args.length) {
+    const REGEXP = /(%?)(%([jds]))/g;
+
+    formatted = formatted.replace(REGEXP, (match, escaped, ptn, flag) => {
+      let arg = args.shift();
+      switch (flag) {
+        case 's':
+          arg += '';
+          break;
+        case 'd':
+        case 'i':
+          arg = parseInt(arg, 10).toString();
+          break;
+        case 'f':
+          arg = parseFloat(arg).toString();
+          break;
+      }
+      if (!escaped) {
+        return arg;
+      }
+      args.unshift(arg);
+      return match;
+    });
+  }
+
+  // Arguments that remain after formatting.
+  if (args.length) {
+    for (let i = 0; i < args.length; i++) {
+      formatted += ' ' + String(args[i]);
+    }
+  }
+
+  // Update escaped %% values.
+  return [formatted.replace(/%{2,2}/g, '%')];
+}
+
 type ConsoleData = Array<{
   data: Array<string | Record<string, string>>;
   id: string;
@@ -30,13 +87,18 @@ type ConsoleData = Array<{
 
 const MAX_MESSAGE_COUNT = 100;
 
-export const SandpackConsole = () => {
+export const SandpackConsole = ({visible}: {visible: boolean}) => {
   const {listen} = useSandpack();
-  const [logs, setLogs] = React.useState<ConsoleData>([]);
-  const wrapperRef = React.useRef<HTMLDivElement>(null);
+  const [logs, setLogs] = useState<ConsoleData>([]);
+  const wrapperRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
+    let isActive = true;
     const unsubscribe = listen((message) => {
+      if (!isActive) {
+        console.warn('Received an unexpected log from Sandpack.');
+        return;
+      }
       if (
         (message.type === 'start' && message.firstLoad) ||
         message.type === 'refresh'
@@ -45,7 +107,24 @@ export const SandpackConsole = () => {
       }
       if (message.type === 'console' && message.codesandbox) {
         setLogs((prev) => {
-          const newLogs = message.log.filter(({method}) => method === 'log');
+          const newLogs = message.log
+            .filter((consoleData) => {
+              if (
+                typeof consoleData.data[0] === 'string' &&
+                consoleData.data[0].indexOf('The above error occurred') !== -1
+              ) {
+                // Don't show React error addendum because
+                // we have a custom error overlay.
+                return false;
+              }
+              return true;
+            })
+            .map((consoleData) => {
+              return {
+                ...consoleData,
+                data: formatStr(...consoleData.data),
+              };
+            });
           let messages = [...prev, ...newLogs];
           while (messages.length > MAX_MESSAGE_COUNT) {
             messages.shift();
@@ -55,18 +134,21 @@ export const SandpackConsole = () => {
       }
     });
 
-    return unsubscribe;
+    return () => {
+      unsubscribe();
+      isActive = false;
+    };
   }, [listen]);
 
-  const [isExpanded, setIsExpanded] = React.useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (wrapperRef.current) {
       wrapperRef.current.scrollTop = wrapperRef.current.scrollHeight;
     }
   }, [logs]);
 
-  if (logs.length === 0) {
+  if (!visible || logs.length === 0) {
     return null;
   }
 
@@ -99,15 +181,16 @@ export const SandpackConsole = () => {
         </button>
       </div>
       {isExpanded && (
-        <div className="w-full h-full border-y bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
+        <div className="w-full h-full border-t bg-white dark:border-gray-700 dark:bg-gray-95 min-h-[28px] console">
           <div className="max-h-40 h-auto overflow-auto" ref={wrapperRef}>
             {logs.map(({data, id, method}) => {
               return (
                 <div
                   key={id}
                   className={cn(
-                    'last:border-none border-b dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px]',
-                    `console-${getType(method)}`
+                    'first:border-none border-t dark:border-gray-700 text-md p-1 pl-2 leading-6 font-mono min-h-[32px] whitespace-pre-wrap',
+                    `console-${getType(method)}`,
+                    getColor(method)
                   )}>
                   <span className="console-message">
                     {data.map((msg, index) => {
@@ -137,6 +220,7 @@ export const SandpackConsole = () => {
                           key={`${msg}-${index}`}>
                           <SandpackCodeViewer
                             initMode="user-visible"
+                            showTabs={false}
                             // fileType="js"
                             code={children}
                           />

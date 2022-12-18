@@ -2,14 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {useState} from 'react';
 import {useRouter} from 'next/router';
 import {ga} from '../../utils/analytics';
 
 export function Feedback({onSubmit = () => {}}: {onSubmit?: () => void}) {
-  const {pathname} = useRouter();
+  const {asPath} = useRouter();
   // Reset on route changes.
-  return <SendFeedback key={pathname} onSubmit={onSubmit} />;
+  return <SendFeedback key={asPath} onSubmit={onSubmit} />;
 }
 
 const thumbsUpIcon = (
@@ -58,10 +58,10 @@ function sendGAEvent(isPositive: boolean) {
 }
 
 function SendFeedback({onSubmit}: {onSubmit: () => void}) {
-  const [isSubmitted, setIsSubmitted] = React.useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
   return (
     <div className="max-w-xs w-80 lg:w-auto py-3 shadow-lg rounded-lg m-4 bg-wash dark:bg-gray-95 px-4 flex">
-      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg">
+      <p className="w-full font-bold text-primary dark:text-primary-dark text-lg mr-4">
         {isSubmitted ? 'Thank you for your feedback!' : 'Is this page useful?'}
       </p>
       {!isSubmitted && (

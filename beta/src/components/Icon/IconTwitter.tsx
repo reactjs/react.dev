@@ -2,9 +2,9 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
+import {memo} from 'react';
 
-export const IconTwitter = React.memo<JSX.IntrinsicElements['svg']>(
+export const IconTwitter = memo<JSX.IntrinsicElements['svg']>(
   function IconTwitter(props) {
     return (
       <svg
@@ -20,5 +20,3 @@ export const IconTwitter = React.memo<JSX.IntrinsicElements['svg']>(
     );
   }
 );
-
-IconTwitter.displayName = 'IconTwitter';

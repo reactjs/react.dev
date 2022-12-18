@@ -2,6 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
+import {Children} from 'react';
 import * as React from 'react';
 import CodeBlock from './CodeBlock';
 
@@ -10,14 +11,14 @@ interface PackageImportProps {
 }
 
 export function PackageImport({children}: PackageImportProps) {
-  const terminal = React.Children.toArray(children).filter((child: any) => {
-    return child.props?.mdxType !== 'pre';
+  const terminal = Children.toArray(children).filter((child: any) => {
+    return child.type?.mdxName !== 'pre';
   });
-  const code = React.Children.toArray(children).map((child: any, i: number) => {
-    if (child.props?.mdxType === 'pre') {
+  const code = Children.toArray(children).map((child: any, i: number) => {
+    if (child.type?.mdxName === 'pre') {
       return (
         <CodeBlock
-          {...child.props.children.props}
+          {...child.props}
           isFromPackageImport
           key={i}
           noMargin={true}

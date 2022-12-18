@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import * as React from 'react';
 import cn from 'classnames';
 
 interface InlineCodeProps {
@@ -25,7 +24,5 @@ function InlineCode({
     />
   );
 }
-
-InlineCode.displayName = 'InlineCode';
 
 export default InlineCode;

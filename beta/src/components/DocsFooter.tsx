@@ -3,7 +3,7 @@
  */
 
 import NextLink from 'next/link';
-import * as React from 'react';
+import {memo} from 'react';
 import cn from 'classnames';
 import {removeFromLast} from 'utils/removeFromLast';
 import {IconNavArrow} from './Icon/IconNavArrow';
@@ -18,7 +18,7 @@ function areEqual(prevProps: DocsPageFooterProps, props: DocsPageFooterProps) {
   return prevProps.route?.path === props.route?.path;
 }
 
-export const DocsPageFooter = React.memo<DocsPageFooterProps>(
+export const DocsPageFooter = memo<DocsPageFooterProps>(
   function DocsPageFooter({nextRoute, prevRoute, route}) {
     if (!route || route?.heading) {
       return null;
@@ -89,5 +89,3 @@ function FooterLink({
     </NextLink>
   );
 }
-
-DocsPageFooter.displayName = 'DocsPageFooter';

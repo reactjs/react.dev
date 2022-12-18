@@ -2,196 +2,168 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-html .sp-wrapper {
+.sandpack {
   color-scheme: inherit;
+  -webkit-font-smoothing: antialiased;
 
-  /* palette */
-  --sp-colors-fg-active: #24292e !important;
-  --sp-colors-fg-default: #959da5 !important;
-  --sp-colors-fg-inactive: #e4e7eb !important;
-  --sp-colors-bg-active: #e4e7eb !important;
-  --sp-colors-bg-default: #ffffff !important;
-  --sp-colors-bg-default-overlay: #ffffff !important;
-  --sp-colors-bg-input: #ffffff !important;
-  --sp-colors-accent: #c8c8fa !important;
-  --sp-colors-bg-error: #ffcdca !important;
-  --sp-colors-fg-error: #811e18 !important;
-  /* syntax */
-  --theme-plain: #24292e;
-  --theme-comment: #6a737d;
-  --theme-keyword: #d73a49;
-  --theme-tag: #22863a;
-  --theme-punctuation: #24292e;
-  --theme-definition: #6f42c1;
-  --theme-property: #005cc5;
-  --theme-static: #032f62;
-  --theme-string: #032f62;
+  --sp-space-1: 4px;
+  --sp-space-2: 8px;
+  --sp-space-3: 12px;
+  --sp-space-4: 16px;
+  --sp-space-5: 20px;
+  --sp-space-6: 24px;
+  --sp-space-7: 28px;
+  --sp-space-8: 32px;
+  --sp-space-9: 36px;
+  --sp-space-10: 40px;
+  --sp-space-11: 44px;
+  --sp-border-radius: 4px;
+  --sp-layout-height: 300px;
+  --sp-layout-headerHeight: 40px;
+  --sp-transitions-default: 150ms ease;
+  --sp-zIndices-base: 1;
+  --sp-zIndices-overlay: 2;
+  --sp-zIndices-top: 3;
+
+  --sp-font-body: Optimistic Display, -apple-system, ui-sans-serif, system-ui,
+    -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial,
+    Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol,
+    Noto Color Emoji;
+  --sp-font-mono: Source Code Pro, ui-monospace, SFMono-Regular, Menlo, Monaco,
+    Consolas, Liberation Mono, Courier New, monospace;
+  --sp-font-size: calc(1em - 20%);
+  --sp-font-lineHeight: 24px;
 }
+
+/* Default theme */
+html .sandpack {
+  --sp-colors-accent: #087ea4;
+  --sp-colors-clickable: #959da5;
+  --sp-colors-disabled: #24292e;
+  --sp-colors-error: #811e18;
+  --sp-colors-error-surface: #ffcdca;
+  --sp-colors-surface1: #fff;
+  --sp-colors-surface2: #e4e7eb;
+
+  --sp-syntax-color-plain: #24292e;
+  --sp-syntax-color-comment: #6a737d;
+  --sp-syntax-color-keyword: #d73a49;
+  --sp-syntax-color-tag: #22863a;
+  --sp-syntax-color-punctuation: #24292e;
+  --sp-syntax-color-definition: #6f42c1;
+  --sp-syntax-color-property: #005cc5;
+  --sp-syntax-color-static: #032f62;
+  --sp-syntax-color-string: #032f62;
+}
+
+/* Dark theme */
 html.dark .sp-wrapper {
-  --sp-colors-fg-active: #ffffff !important;
-  --sp-colors-fg-default: #999999 !important;
-  --sp-colors-fg-inactive: #343434 !important;
-  --sp-colors-bg-active: #343434 !important;
-  --sp-colors-bg-default: #16181d !important;
-  --sp-colors-bg-default-overlay: #16181d !important;
-  --sp-colors-bg-input: #242424 !important;
-  --sp-colors-accent: #6caedd !important;
-  --sp-colors-bg-error: #ffcdca !important;
-  --sp-colors-fg-error: #811e18 !important;
-  /* syntax */
-  --theme-plain: #ffffff;
-  --theme-comment: #757575;
-  --theme-keyword: #77b7d7;
-  --theme-tag: #dfab5c;
-  --theme-punctuation: #ffffff;
-  --theme-definition: #86d9ca;
-  --theme-property: #77b7d7;
-  --theme-static: #c64640;
-  --theme-string: #977cdc;
+  --sp-colors-accent: #149eca;
+  --sp-colors-clickable: #999;
+  --sp-colors-disabled: #fff;
+  --sp-colors-error: #811e18;
+  --sp-colors-error-surface: #ffcdca;
+  --sp-colors-surface1: #16181d;
+  --sp-colors-surface2: #343a46;
+
+  --sp-syntax-color-plain: #ffffff;
+  --sp-syntax-color-comment: #757575;
+  --sp-syntax-color-keyword: #77b7d7;
+  --sp-syntax-color-tag: #dfab5c;
+  --sp-syntax-color-punctuation: #ffffff;
+  --sp-syntax-color-definition: #86d9ca;
+  --sp-syntax-color-property: #77b7d7;
+  --sp-syntax-color-static: #c64640;
+  --sp-syntax-color-string: #977cdc;
 }
 
-.sp-tabs,
-.sp-tab-button:hover {
-  background: none !important;
+/**
+ * Reset
+ */
+.sandpack .sp-wrapper {
+  width: 100%;
+
+  font-size: var(--sp-font-size);
+  font-family: var(--sp-font-body);
+  line-height: var(--sp-font-lineHeight);
+}
+
+/**
+ * Layout
+ */
+.sandpack .sp-layout {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  background-color: var(--sp-colors-surface2);
+
+  -webkit-mask-image: -webkit-radial-gradient(
+    var(--sp-colors-surface1),
+    var(--sp-colors-surface1)
+  ); /* safest way to make all corner rounded */
+
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: initial;
+
+  gap: 1px;
+}
+
+.sandpack .sp-stack {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+@media screen and (max-width: 768px) {
+  .sandpack .sp-layout > .sp-stack {
+    height: auto;
+    min-width: 100% !important;
+  }
+}
+
+.sandpack .sp-layout > .sp-stack {
+  flex: 1 1 0px;
+  height: var(--sp-layout-height);
+}
+
+/**
+ * Focus ring
+ */
+.sandpack--playground .sp-tab-button {
+  transition: none;
+}
+
+.sandpack--playground .sp-tab-button:focus {
+  outline: revert;
+}
+
+.sandpack--playground .sp-tab-button:focus-visible {
+  box-shadow: none;
+}
+
+.sandpack .sp-cm:focus-visible {
+  box-shadow: inset 0 0 0 4px rgba(20, 158, 202, 0.4);
+  outline: none;
+  height: 100%;
+}
+
+/**
+ * Navigation
+ */
+.sandpack .sp-tabs-scrollable-container {
+  overflow: auto;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  min-height: 40px;
+  margin-bottom: -1px;
 }
 
 .sp-tabs .sp-tab-button {
-  color: #087ea4;
-  padding: 0 4px;
+  padding: 0 6px;
   border-bottom: 2px solid transparent;
-}
-
-html.dark .sp-tabs .sp-tab-button {
-  color: #149eca;
-}
-
-.sp-tabs .sp-tab-button:hover {
-  color: #087ea4;
-}
-
-html.dark .sp-tabs .sp-tab-button:hover {
-  color: #149eca;
-}
-
-.sp-tabs .sp-tab-button[data-active='true'] {
-  color: #087ea4;
-  border-bottom: 2px solid #087ea4;
-}
-
-html.dark .sp-tabs .sp-tab-button[data-active='true'] {
-  color: #149eca;
-  border-bottom: 2px solid #149eca;
-}
-
-.sp-stack .sp-code-editor,
-.sp-tabs .sp-tabs-scrollable-container {
-  overflow: hidden;
-}
-
-.sp-code-editor .cm-errorLine {
-  background-color: rgba(255, 107, 99, 0.1);
-  position: relative;
-  padding-right: 2em !important;
-  display: inline-block;
-  min-width: 100%;
-}
-
-.sp-code-editor .cm-errorLine:after {
-  position: absolute;
-  right: 8px;
-  top: 0;
-  content: '\26A0';
-  font-size: 22px;
-  line-height: 20px;
-  color: #ff3d3d;
-}
-.sp-code-editor .cm-tooltip {
-  border: 0;
-  max-width: 200px;
-}
-html.dark .sp-code-editor .cm-diagnostic {
-  color: var(--sp-colors-bg-default);
-}
-.sp-code-editor .cm-diagnostic-error {
-  @apply border-red-40;
-}
-.sp-code-editor .cm-diagnostic-warning {
-  border-left: 5px solid orange;
-}
-
-/*
- * These are manually adjusted to match the final
- * rendered version without any layout shifts.
- * Note this affects both sandboxes and code blocks.
- *
- * There are probably more maintainable ways to do this.
- * However, as long as there are kind people paying close
- * attention to these subtler details, I shall sleep in peace.
- *
- * If you know a better way to keep them from diverging, send a PR.
- */
-.sp-cm {
-  -webkit-text-size-adjust: none !important;
-  padding: 0 !important;
-}
-.cm-wrap {
-  background: transparent !important;
-}
-.sp-pre-placeholder {
-  display: block !important;
-  margin-top: 0px !important;
-  margin-bottom: 0px !important;
-  padding: 18px var(--sp-space-3) !important;
-  @apply font-mono !important;
-  font-size: 13.6px !important;
-  line-height: 24px !important;
-  height: 100%;
-}
-.text-xl .sp-pre-placeholder {
-  font-size: 16px !important;
-  line-height: 24px !important;
-}
-.sp-cm .cm-scroller {
-  overflow: auto !important;
-  padding: 18px 0 !important;
-}
-
-.console .sp-cm,
-.console .sp-cm .cm-scroller,
-.console .sp-cm .cm-line {
-  padding: 0px !important;
-}
-
-.sp-cm .cm-gutters {
-  background-color: var(--sp-colors-bg-default);
-  z-index: 1;
-}
-.sp-wrapper {
-  width: 100% !important;
-}
-.sp-wrapper .sp-custom-layout {
-  overflow: initial;
-  border: 0px solid transparent;
-  border-top-left-radius: 0px;
-  border-top-right-radius: 0px;
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-}
-.sp-wrapper .sp-layout-devtools {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-html.dark .sp-layout > :not(:first-child) {
-  border-color: #343a46;
-}
-html.dark .sp-layout {
-  background-color: #343a46;
-}
-html .sp-loading {
-  background-color: transparent;
-}
-html.dark .sp-loading {
-  background-color: #23272f;
 }
 
 @media (min-width: 768px) {
@@ -200,92 +172,315 @@ html.dark .sp-loading {
   }
 }
 
-/* Devtools */
-.sp-devtools {
-  border-bottom-left-radius: 0.5rem;
-  border-bottom-right-radius: 0.5rem;
-  overflow: hidden;
-}
-.sp-devtools > div {
-  --color-background: var(--sp-colors-bg-default) !important;
-  --color-background-inactive: var(--sp-colors-fg-inactive) !important;
-  --color-background-selected: #087ea4 !important;
-  --color-background-hover: transparent !important;
-  --color-modal-background: #ffffffd2 !important;
-
-  --color-tab-selected-border: #087ea4 !important;
-
-  --color-component-name: var(--theme-definition) !important;
-  --color-attribute-name: var(--theme-property) !important;
-  --color-attribute-value: var(--theme-string) !important;
-  --color-attribute-editable-value: var(--theme-property) !important;
-  --color-attribute-name-not-editable: var(--sp-colors-fg-default) !important;
-  --color-button-background-focus: var(--sp-colors-fg-inactive) !important;
-
-  --color-button-active: #087ea4 !important;
-  --color-button-background: transparent !important;
-  --color-button: var(--sp-colors-fg-default) !important;
-  --color-button-hover: var(--sp-colors-fg-active) !important;
-
-  --color-border: var(--sp-colors-fg-inactive) !important;
-  --color-text: rgb(35, 39, 47) !important;
-}
-html.dark .sp-devtools > div {
-  --color-text: var(--sp-colors-fg-default) !important;
-  --color-modal-background: #16181de0 !important;
+.sp-tabs .sp-tab-button,
+.sp-tabs .sp-tab-button:hover:not(:disabled, [data-active='true']),
+.sp-tabs .sp-tab-button[data-active='true'] {
+  color: var(--sp-colors-accent);
 }
 
-.sp-devtools table td {
-  border: 1px solid var(--sp-colors-fg-inactive);
+.sp-tabs .sp-tab-button[data-active='true'] {
+  border-bottom: 2px solid var(--sp-colors-accent);
 }
 
-/* Make focus rings work */
-.sp-tab-button {
-  transition: none !important;
-}
-.sp-tab-button:focus {
-  outline: revert !important;
-}
-.sp-tab-button:focus-visible {
-  box-shadow: none !important;
-}
-.sp-cm:focus-visible {
-  box-shadow: inset 0 0 0 4px rgba(20, 158, 202, 0.4) !important;
-}
+/**
+ * Code block
+ */
 .cm-line {
-  padding: 0 var(--sp-space-3) !important;
-}
-.cm-lineNumbers {
-  padding-left: var(--sp-space-1) !important;
-  padding-right: var(--sp-space-1) !important;
+  padding-left: var(--sp-space-5);
 }
 
-/* For iOS: prevent browser zoom when clicking on sandbox. */
-@media screen and (max-width: 768px) {
-  @supports (-webkit-overflow-scrolling: touch) {
-    .cm-content {
-      font-size: initial;
-    }
-    .DocSearch-Input {
-      font-size: initial;
-    }
+/**
+ * Editor
+ */
+.sandpack .sp-code-editor {
+  flex: 1 1;
+  position: relative;
+  overflow: auto;
+  background: var(--sp-colors-surface1);
+}
+
+.sandpack .sp-code-editor .cm-editor,
+.sandpack .sp-code-editor .cm-editor .cm-gutters {
+  background-color: transparent;
+}
+
+.sandpack .sp-code-editor .cm-content,
+.sandpack .sp-code-editor .cm-gutters,
+.sandpack .sp-code-editor .cm-gutterElement {
+  padding: 0;
+  -webkit-font-smoothing: auto; /* Improve the legibility */
+}
+
+.sandpack .sp-code-editor .cm-content {
+  overflow-x: auto;
+  padding-bottom: 18px;
+}
+
+.sandpack--playground .sp-code-editor .cm-line {
+  padding: 0 var(--sp-space-3);
+  width: max-content;
+}
+
+.sandpack--playground .sp-code-editor .cm-lineNumbers {
+  padding-left: var(--sp-space-3);
+  padding-right: var(--sp-space-1);
+  font-size: 13.6px;
+}
+
+.sandpack--playground .sp-code-editor .cm-line.cm-errorLine {
+  @apply bg-red-400;
+  --tw-bg-opacity: 0.1; /* Background tweak: base color + opacity */
+  position: relative;
+  padding-right: 2em;
+  display: inline-block;
+  min-width: 100%;
+}
+
+.sp-code-editor .cm-errorLine:after {
+  @apply text-red-500;
+  position: absolute;
+  right: 8px;
+  top: 0;
+  content: '\26A0';
+  font-size: 22px;
+  line-height: 20px;
+}
+
+.sp-code-editor .cm-tooltip {
+  border: 0;
+  max-width: 200px;
+}
+
+.sp-code-editor .cm-diagnostic-error {
+  @apply border-red-40;
+}
+
+.sandpack .sp-cm {
+  margin: 0px;
+  outline: none;
+  height: 100%;
+}
+
+.sp-code-editor .sp-cm .cm-scroller {
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding-top: 18px;
+}
+
+/**
+ * Syntax highlight (code editor + code block)
+ */
+.sandpack .sp-syntax-string {
+  color: var(--sp-syntax-color-string);
+}
+
+.sandpack .sp-syntax-plain {
+  color: var(--sp-syntax-color-plain);
+}
+
+.sandpack .sp-syntax-comment {
+  color: var(--sp-syntax-color-comment);
+}
+
+.sandpack .sp-syntax-keyword {
+  color: var(--sp-syntax-color-keyword);
+}
+
+.sandpack .sp-syntax-definition {
+  color: var(--sp-syntax-color-definition);
+}
+
+.sandpack .sp-syntax-punctuation {
+  color: var(--sp-syntax-color-punctuation);
+}
+
+.sandpack .sp-syntax-property {
+  color: var(--sp-syntax-color-property);
+}
+
+.sandpack .sp-syntax-tag {
+  color: var(--sp-syntax-color-tag);
+}
+
+.sandpack .sp-syntax-static {
+  color: var(--sp-syntax-color-static);
+}
+
+/**
+ * Loading & error overlay component
+ */
+.sandpack .sp-cube-wrapper {
+  background-color: var(--sp-colors-surface1);
+  position: absolute;
+  right: var(--sp-space-2);
+  bottom: var(--sp-space-2);
+  z-index: var(--sp-zIndices-top);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--sp-border-radius);
+}
+
+.sandpack .sp-button {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 100%;
+  height: 100%;
+}
+
+.sandpack .sp-button svg {
+  min-width: var(--sp-space-5);
+  width: var(--sp-space-5);
+  height: var(--sp-space-5);
+  margin: auto;
+}
+
+.sandpack .sp-cube-wrapper .sp-cube {
+  display: flex;
+}
+
+.sandpack .sp-cube-wrapper .sp-button {
+  display: none;
+}
+
+.sandpack .sp-cube-wrapper:hover .sp-button {
+  display: block;
+}
+
+.sandpack .sp-cube-wrapper:hover .sp-cube {
+  display: none;
+}
+
+.sandpack .sp-cube {
+  transform: translate(-4px, 9px) scale(0.13, 0.13);
+}
+
+.sandpack .sp-cube * {
+  position: absolute;
+  width: 96px;
+  height: 96px;
+}
+
+@keyframes cubeRotate {
+  0% {
+    transform: rotateX(-25.5deg) rotateY(45deg);
+  }
+
+  100% {
+    transform: rotateX(-25.5deg) rotateY(405deg);
   }
 }
 
-.sp-cm {
-  padding-left: 8px !important;
+.sandpack .sp-sides {
+  animation: cubeRotate 1s linear infinite;
+  animation-fill-mode: forwards;
+  transform-style: preserve-3d;
+  transform: rotateX(-25.5deg) rotateY(45deg);
 }
-.sp-layout {
+
+.sandpack .sp-sides * {
+  border: 10px solid var(--sp-colors-clickable);
+  border-radius: 8px;
+  background: var(--sp-colors-surface1);
+}
+
+.sandpack .sp-sides .top {
+  transform: rotateX(90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .bottom {
+  transform: rotateX(-90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .front {
+  transform: rotateY(0deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .back {
+  transform: rotateY(-180deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .left {
+  transform: rotateY(-90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+.sandpack .sp-sides .right {
+  transform: rotateY(90deg) translateZ(44px);
+  transform-origin: 50% 50%;
+}
+
+.sandpack .sp-overlay {
+  @apply bg-card;
+  position: absolute;
+  inset: 0;
+  z-index: var(--sp-zIndices-top);
+}
+
+.sandpack .sp-error {
+  padding: var(--sp-space-4);
+  white-space: pre-wrap;
+  font-family: var(--sp-font-mono);
+  background-color: var(--sp-colors-error-surface);
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sandpack .sp-error-message {
+  animation: fadeIn 150ms ease;
+  color: var(--sp-colors-error);
+}
+
+html.dark .sandpack--playground .sp-overlay {
+  @apply bg-wash-dark;
+}
+
+/**
+ * Placeholder
+ */
+.sandpack .sp-code-editor .sp-pre-placeholder {
+  @apply font-mono;
+  font-size: 13.6px;
+  line-height: 24px;
+  padding: 18px 0;
+  -webkit-font-smoothing: auto;
+}
+
+.sandpack--playground .sp-code-editor .sp-pre-placeholder {
+  padding-left: 48px !important;
+  margin-left: 0px !important;
+}
+
+.text-xl .sp-pre-placeholder {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+/**
+ * Expand button
+ */
+.sandpack .sp-layout {
   min-height: 216px;
 }
-.sp-layout > .sp-stack:nth-child(1) {
+
+.sandpack .sp-layout > .sp-stack:nth-child(1) {
   /* Force vertical if there isn't enough space. */
   min-width: 431px;
   /* No min height on mobile because we know code in advance. */
   /* Max height is needed to avoid too long files. */
   max-height: 40vh;
 }
-.sp-layout > .sp-stack:nth-child(2) {
+
+.sandpack .sp-layout > .sp-stack:nth-child(2) {
   /* Force vertical if there isn't enough space. */
   min-width: 431px;
   /* Keep preview a fixed size on mobile to avoid jumps. */
@@ -293,39 +488,141 @@ html.dark .sp-devtools > div {
   min-height: 40vh;
   max-height: 40vh;
 }
-.sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+.sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
   /* Clicking "show more" lets mobile editor go full height. */
   max-height: unset;
   height: auto;
 }
-.sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+
+.sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
   /* Clicking "show more" lets mobile preview go full height. */
   max-height: unset;
   height: auto;
 }
+
 @media (min-width: 1280px) {
-  .sp-layout > .sp-stack:nth-child(1) {
+  .sandpack .sp-layout > .sp-stack:nth-child(1) {
     /* On desktop, clamp height by pixels instead. */
     height: auto;
     min-height: unset;
     max-height: 406px;
   }
-  .sp-layout > .sp-stack:nth-child(2) {
+  .sandpack .sp-layout > .sp-stack:nth-child(2) {
     /* On desktop, clamp height by pixels instead. */
     height: auto;
     min-height: unset;
     max-height: 406px;
   }
-  .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
+  .sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(1) {
     max-height: unset;
   }
-  .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
+  .sandpack .sp-layout.sp-layout-expanded > .sp-stack:nth-child(2) {
     max-height: unset;
   }
+}
+
+.sandpack .sp-layout .sandpack-expand {
+  border-left: none;
+  margin-left: 0;
 }
 
 .expandable-callout .sp-stack:nth-child(2) {
   min-width: 431px;
   min-height: 40vh;
   max-height: 40vh;
+}
+
+/**
+ * Integrations: console
+ */
+.sandpack .console .sp-cm,
+.sandpack .console .sp-cm .cm-scroller,
+.sandpack .console .sp-cm .cm-line {
+  padding: 0px !important;
+}
+
+/**
+ * Integrations: eslint
+ */
+.sandpack .sp-code-editor .cm-diagnostic {
+  @apply text-secondary;
+}
+
+/**
+ * Integrations: React devtools inline
+ */
+.sandpack .sp-devtools {
+  border-bottom-left-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.sandpack .sp-wrapper .sp-layout-devtools {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/**
+ * Overwrite inline sty
+ */
+.sandpack .sp-devtools > div {
+  --color-background: var(--sp-colors-surface1) !important;
+  --color-background-inactive: var(--sp-colors-surface2) !important;
+  --color-background-selected: var(--sp-colors-accent) !important;
+  --color-background-hover: transparent !important;
+  --color-modal-background: #ffffffd2 !important;
+
+  --color-tab-selected-border: #087ea4 !important;
+
+  --color-component-name: var(--sp-syntax-color-definition) !important;
+  --color-attribute-name: var(--sp-syntax-color-property) !important;
+  --color-attribute-value: var(--sp-syntax-color-string) !important;
+  --color-attribute-editable-value: var(--sp-syntax-color-property) !important;
+  --color-attribute-name-not-editable: var(--sp-colors-clickable) !important;
+  --color-button-background-focus: var(--sp-colors-surface2) !important;
+
+  --color-button-active: var(--sp-colors-accent) !important;
+  --color-button-background: transparent !important;
+  --color-button: var(--sp-colors-clickable) !important;
+  --color-button-hover: var(--sp-colors-disabled) !important;
+
+  --color-border: var(--sp-colors-surface2) !important;
+  --color-text: rgb(35, 39, 47) !important;
+}
+
+html.dark .sp-devtools > div {
+  --color-text: var(--sp-colors-clickable) !important;
+  --color-modal-background: #16181de0 !important;
+}
+
+.sandpack .sp-devtools table td {
+  border: 1px solid var(--sp-colors-surface2);
+}
+
+/**
+ * Hard fixes
+ */
+
+/**
+  * The text-size-adjust CSS property controls the text inflation
+  * algorithm used on some smartphones and tablets
+  */
+.sandpack .sp-cm {
+  -webkit-text-size-adjust: none;
+}
+
+/** 
+ * For iOS: prevent browser zoom when clicking on sandbox.
+ * Does NOT apply to code blocks.
+ */
+@media screen and (max-width: 768px) {
+  @supports (-webkit-overflow-scrolling: touch) {
+    .sandpack--playground .cm-content,
+    .sandpack--playground .sp-code-editor .sp-pre-placeholder {
+      font-size: initial;
+    }
+    .DocSearch-Input {
+      font-size: initial;
+    }
+  }
 }

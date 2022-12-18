@@ -2,7 +2,7 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import React from 'react';
+import * as React from 'react';
 
 export interface IntroProps {
   children?: React.ReactNode;
@@ -15,7 +15,5 @@ function Intro({children}: IntroProps) {
     </div>
   );
 }
-
-Intro.displayName = 'Intro';
 
 export default Intro;

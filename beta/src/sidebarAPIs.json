@@ -122,7 +122,48 @@
           ]
         },
         {
-          "title": "react-dom",
+          "title": "react-dom: Components",
+          "path": "/apis/react-dom/components",
+          "hasSeparator": true,
+          "routes": [
+            {
+              "title": "Generic (e.g. <div>)",
+              "path": "/apis/react-dom/components/generic",
+              "wip": true
+            },
+            {
+              "title": "<input>",
+              "path": "/apis/react-dom/components/input"
+            },
+            {
+              "title": "<option>",
+              "path": "/apis/react-dom/components/option",
+              "wip": true
+            },
+            {
+              "title": "<progress>",
+              "path": "/apis/react-dom/components/progress",
+              "wip": true
+            },
+            {
+              "title": "<select>",
+              "path": "/apis/react-dom/components/select",
+              "wip": true
+            },
+            {
+              "title": "<textarea>",
+              "path": "/apis/react-dom/components/textarea",
+              "wip": true
+            },
+            {
+              "title": "Other components",
+              "path": "/apis/react-dom/components/other",
+              "wip": true
+            }
+          ]
+        },
+        {
+          "title": "react-dom: APIs",
           "path": "/apis/react-dom",
           "routes": [
             {

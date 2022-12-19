@@ -442,14 +442,14 @@ As the error message suggests, if you only wanted to [specify the *initial* valu
 
 ```js
 // ✅ Good: uncontrolled checkbox with an initial value
-<input type="checkbox" defaultValue={something} />
+<input type="checkbox" defaultChecked={something} />
 ```
 
 If you want [to control this checkbox with a state variable,](#controlling-an-input-with-a-state-variable) specify an `onChange` handler:
 
 ```js
 // ✅ Good: controlled checkbox with onChange
-<input type="checkbox" value={something} onChange={e => setSomething(e.target.checked)} />
+<input type="checkbox" checked={something} onChange={e => setSomething(e.target.checked)} />
 ```
 
 <Pitfall>

@@ -4,7 +4,11 @@ title: "<input>"
 
 <Intro>
 
-The [`<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component lets you render different kinds of form inputs.
+The [built-in browser `<input>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) lets you render different kinds of form inputs.
+
+```js
+<input />
+```
 
 </Intro>
 

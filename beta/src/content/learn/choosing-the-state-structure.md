@@ -2754,15 +2754,13 @@ export default function MailClient() {
 
   const selectedCount = selectedIds.size;
 
-  function handleToggle(toggledId) {
-    // Create a copy (to avoid mutation).
-    const nextIds = new Set(selectedIds);
-    if (nextIds.has(toggledId)) {
-      nextIds.delete(toggledId);
+  function handleToggle(id) {
+    if (selectedIds.has(id)) {
+      selectedIds.delete(id);
     } else {
-      nextIds.add(toggledId);
+      selectedIds.add(id);
     }
-    setSelectedIds(nextIds);
+    setSelectedIds(new Set(selectedIds));// Create a copy (to avoid mutation).
   }
 
   return (

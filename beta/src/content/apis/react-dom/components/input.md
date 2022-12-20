@@ -342,6 +342,54 @@ p { font-weight: bold; }
 
 ---
 
+### Optimizing re-rendering on every keystroke {/*optimizing-re-rendering-on-every-keystroke*/}
+
+When you use a controlled input, you set the state on every keystroke. If the component containing your state re-renders a large tree, this can get slow. There's a few ways you can optimize re-rendering performance.
+
+For example, suppose you start with a form that re-renders all page content on every keystroke:
+
+```js {5-8}
+function App() {
+  const [firstName, setFirstName] = useState('');
+  return (
+    <>
+      <form>
+        <input value={firstName} onChange={e => setFirstName(e.target.value)} />
+      </form>
+      <PageContent />
+    </>
+  );
+}
+```
+
+Since `<PageContent />` doesn't rely on the input state, you can move the input state into its own component:
+
+```js {4,10-17}
+function App() {
+  return (
+    <>
+      <SignupForm />
+      <PageContent />
+    </>
+  );
+}
+
+function SignupForm() {
+  const [firstName, setFirstName] = useState('');
+  return (
+    <form>
+      <input value={firstName} onChange={e => setFirstName(e.target.value)} />
+    </form>
+  );
+}
+```
+
+This significantly improves performance because now only `SignupForm` re-renders on every keystroke.
+
+If there is no way to avoid re-rendering (for example, if `PageContent` depends on an input search value), [`useDeferredValue`](/apis/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
+
+---
+
 ## Reference {/*reference*/}
 
 ### `<input>` {/*input*/}

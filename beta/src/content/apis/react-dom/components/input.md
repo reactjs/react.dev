@@ -334,18 +334,25 @@ function MyForm() {
 
 #### Props {/*props*/}
 
-`<input>` supports all [generic element props.](/apis/react-dom/components/generic#props)
+`<input>` supports all [generic element props](/apis/react-dom/components/generic#props).
 
-Additionally, it also supports these optional props:
+These props only apply to [controlled inputs:](#controlling-an-input-with-a-state-variable)
+
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox (`type="checkbox"`), specifies whether it is currently checked. For a radio button (`type="radio"`), specifies whether it's the currently selected one in its group. If the `checked` value is not `undefined`, the input will become controlled and will need an `onChange` handler updating that value.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. Specifies the current value of the input. If the `value` is not `undefined`, the input will become controlled and will require an `onChange` handler updating that value.
+
+These props only apply to uncontrolled inputs:
+
+* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
+* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A boolean.  Specifies [the initial value](#providing-an-initial-value-for-an-input) for all the text inputs.
+
+These props apply both to uncontrolled and controlled inputs:
 
 * [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
 * [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.
 * [`capture`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#capture): A string. Specifies the media (microphone, video, or camera) captured by a `type="file"` input.
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies one of the possible [autocomplete behaviors.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/autocomplete#values)
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#autofocus): A boolean. If `true`, React will focus the element on mount.
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox (`type="checkbox"`), specifies whether it is currently checked. For a radio button (`type="radio"`), specifies whether it's the currently selected one in its group. **If you pass a value for `checked`, [the input will become *controlled*](#controlling-an-input-with-a-state-variable) and will need an `onChange` handler updating that value.**
-* [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A boolean.  Specifies [the initial value](#providing-an-initial-value-for-an-input) for all the text inputs.
 * [`dirname`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#dirname): A string. Specifies the form field name for the element's directionality.
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#disabled): A boolean. If `true`, the input will not be interactive and will appear dimmed.
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#form): A string. Specifies the `id` of the `<form>` this input belongs to. If omitted, it's the closest parent form.
@@ -362,7 +369,7 @@ Additionally, it also supports these optional props:
 * [`minLength`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#minlength): A number. Specifies the minimum length of text and other inputs.
 * [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#multiple): A boolean. Specifies whether multiple values are allowed for `<type="file"` and `type="email"`.
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#name): A string. Specifies the name for this input that's submitted with the form.
-* `onChange`: **Required for [controlled inputs.](#controlling-an-input-with-a-state-variable)** An event handler function. Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
+* `onChange`: Required for [controlled inputs.](#controlling-an-input-with-a-state-variable) An event handler function. Fires immediately when the input's value is changed by the user (for example, it fires on every keystroke). Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An event handler function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
 * `onSelect`: An event handler function. Fires after the selection inside the `<input>` changes. Similar to the non-standard browser [`selectionchange` event,](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/selectionchange_event) but works across different browsers.
 * [`pattern`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#pattern): A string. Specifies the pattern that the `value` must match.
@@ -373,7 +380,6 @@ Additionally, it also supports these optional props:
 * [`src`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#src): A string. Specifies the image source for a `type="image"` input.
 * [`step`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#step): A positive number or an `'any'` string. Specifies the distance between valid values.
 * [`type`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#type): A string. One of the [input types.](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#input_types)
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. Specifies the current value of the input. **If you pass something other than `undefined`, [the input will be *controlled*](#controlling-an-input-with-a-state-variable) and will require an `onChange` handler updating that value.**
 * [`width`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#width):  A string. Specifies the image width for a `type="image"` input.
 
 #### Caveats {/*caveats*/}

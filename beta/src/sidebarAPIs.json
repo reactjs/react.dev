@@ -142,8 +142,7 @@
             },
             {
               "title": "<progress>",
-              "path": "/apis/react-dom/components/progress",
-              "wip": true
+              "path": "/apis/react-dom/components/progress"
             },
             {
               "title": "<select>",

@@ -67,16 +67,7 @@ input { margin: 5px; }
 
 ### Providing a label for an input {/*providing-a-label-for-an-input*/}
 
-Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag:
-
-```js
-<label>
-  Your first name:
-  <input name="firstName" />
-</label>
-```
-
-This tells the browser that the "Your first name" label is associated with this input. When the user clicks the label, the browser will automatically focus the input. Labeling inputs is also important for accessibility. For example, someone using a screen reader will hear the label caption when they focus the associated input field.
+Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that input. When the user clicks the label, the browser will automatically focus the input. It's also important for accessibility: a screen reader will announce the label caption when the user focuses the associated input.
 
 If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/apis/react/useId)
 
@@ -404,7 +395,7 @@ To display an input, render the [built-in browser `<input>`](https://developer.m
 
 #### Props {/*props*/}
 
-`<input>` supports all [generic element props.](/apis/react-dom/components/generic#props)
+`<input>` supports all [common element props.](/apis/react-dom/components/common#props)
 
 You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
 

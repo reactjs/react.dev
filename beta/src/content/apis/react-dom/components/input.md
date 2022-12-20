@@ -65,6 +65,50 @@ input { margin: 5px; }
 
 ---
 
+### Providing a label for an input {/*providing-a-label-for-an-input*/}
+
+Typically, you will place every `<input>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag:
+
+```js
+<label>
+  Your first name:
+  <input name="firstName" />
+</label>
+```
+
+This tells the browser that the "Your first name" label is associated with this input. When the user clicks the label, the browser will automatically focus the input. Labeling inputs is also important for accessibility. For example, someone using a screen reader will hear the label caption when they focus the associated input field.
+
+If you can't nest `<input>` into a `<label>`, associate them by passing the same ID to `<input id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between multiple instances of one component, generate such an ID with [`useId`.](/apis/react/useId)
+
+<Sandpack>
+
+```js
+import { useId } from 'react';
+
+export default function Form() {
+  const ageInputId = useId();
+  return (
+    <>
+      <label>
+        Your first name:
+        <input name="firstName" />
+      </label>
+      <hr />
+      <label htmlFor={ageInputId}>Your age:</label>
+      <input id={ageInputId} name="age" type="number" />
+    </>
+  );
+}
+```
+
+```css
+input { margin: 5px; }
+```
+
+</Sandpack>
+
+---
+
 ### Providing an initial value for an input {/*providing-an-initial-value-for-an-input*/}
 
 You can optionally specify the initial value for any input. Pass it as the `defaultValue` string for text inputs. Checkboxes and radio buttons should specify the initial value with the `defaultChecked` boolean instead.

@@ -338,10 +338,10 @@ function MyForm() {
 
 These props are only relevant for [controlled inputs:](#controlling-an-input-with-a-state-variable)
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button is selected, specifies whether it is selected.
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, specifies whether it is selected.
 * [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, specifies its text value. (For radio buttons, specifies the form data value.)
 
-If you pass `checked` or `value`, and the value you're passing is not `undefined`, the input becomes controlled. Controlled inputs must also provide an `onChange` event handler that updates the value you're passing.
+If you pass non-undefined `value` to a text input (or `checked` to a checkbox or a radio button), they become controlled. For controlled inputs, you must also provide an `onChange` event handler updating the passed value.
 
 These props are only relevant for uncontrolled inputs:
 

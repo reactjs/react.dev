@@ -127,8 +127,8 @@
           "hasSeparator": true,
           "routes": [
             {
-              "title": "Generic (e.g. <div>)",
-              "path": "/apis/react-dom/components/generic",
+              "title": "Common (e.g. <div>)",
+              "path": "/apis/react-dom/components/common",
               "wip": true
             },
             {
@@ -152,13 +152,7 @@
             },
             {
               "title": "<textarea>",
-              "path": "/apis/react-dom/components/textarea",
-              "wip": true
-            },
-            {
-              "title": "Other components",
-              "path": "/apis/react-dom/components/other",
-              "wip": true
+              "path": "/apis/react-dom/components/textarea"
             }
           ]
         },

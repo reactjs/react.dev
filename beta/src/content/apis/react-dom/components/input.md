@@ -336,17 +336,19 @@ function MyForm() {
 
 `<input>` supports all [generic element props](/apis/react-dom/components/generic#props).
 
-These props only apply to [controlled inputs:](#controlling-an-input-with-a-state-variable)
+These props are only relevant for [controlled inputs:](#controlling-an-input-with-a-state-variable)
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox (`type="checkbox"`), specifies whether it is currently checked. For a radio button (`type="radio"`), specifies whether it's the currently selected one in its group. If the `checked` value is not `undefined`, the input will become controlled and will need an `onChange` handler updating that value.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. Specifies the current value of the input. If the `value` is not `undefined`, the input will become controlled and will require an `onChange` handler updating that value.
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button is selected, specifies whether it is selected.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, specifies its text value. (For radio buttons, specifies the form data value.)
 
-These props only apply to uncontrolled inputs:
+If you pass `checked` or `value`, and the value you're passing is not `undefined`, the input becomes controlled. Controlled inputs must also provide an `onChange` event handler that updates the value you're passing.
+
+These props are only relevant for uncontrolled inputs:
 
 * [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
 * [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A boolean.  Specifies [the initial value](#providing-an-initial-value-for-an-input) for all the text inputs.
 
-These props apply both to uncontrolled and controlled inputs:
+These props are relevant both for uncontrolled and controlled inputs:
 
 * [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
 * [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.

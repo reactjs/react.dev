@@ -377,7 +377,7 @@ function SignupForm() {
 
 This significantly improves performance because now only `SignupForm` re-renders on every keystroke.
 
-If there is no way to avoid re-rendering (for example, if `PageContent` depends on an input search value), [`useDeferredValue`](/apis/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
+If there is no way to avoid re-rendering (for example, if `PageContent` depends on the search input's value), [`useDeferredValue`](/apis/react/useDeferredValue#deferring-re-rendering-for-a-part-of-the-ui) lets you keep the controlled input responsive even in the middle of a large re-render.
 
 ---
 

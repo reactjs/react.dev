@@ -407,7 +407,7 @@ When you pass either of them, you must also pass an `onChange` handler that upda
 These `<input>` props are only relevant for uncontrolled inputs:
 
 * [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
+* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A string. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
 
 These `<input>` props are relevant both for uncontrolled and controlled inputs:
 

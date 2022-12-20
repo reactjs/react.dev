@@ -302,53 +302,31 @@ p { font-weight: bold; }
 
 ### `<input>` {/*input*/}
 
-To display an input, render an `<input>` component. [You can group inputs into a `<form>`.](#reading-the-input-values-when-submitting-a-form)
+To display an input, render the [built-in browser `<input>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input) component.
 
 ```js
-<form method="post" onSubmit={handleSubmit}>
-  <label>
-    Text input: <input name="myInput" />
-  </label>
-  <label>
-    Checkbox: <input type="checkbox" name="myCheckbox" />
-  </label>
-  <button type="submit">Submit</button>
-</form>
-```
-
-If you need to re-render a part of the UI in response to every edit, you can [make your input *controlled* by passing a `value` to it.](#controlling-an-input-with-a-state-variable) If you pass a `value`, you must also provide an `onChange` that synchronously updates that value:
-
-```js
-function MyForm() {
-  const [firstName, setFirstName] = useState('');
-  return (
-    <>
-      <input value={firstName} onChange={e => setFirstName(e.target.value)} />
-      <p>Your name is {firstName}.</p>
-    />
-  );
-}
+<input name="myInput" />
 ```
 
 [See more examples above.](#usage)
 
 #### Props {/*props*/}
 
-`<input>` supports all [generic element props](/apis/react-dom/components/generic#props).
+`<input>` supports all [generic element props.](/apis/react-dom/components/generic#props)
 
-These props are only relevant for [controlled inputs:](#controlling-an-input-with-a-state-variable)
+You can [make an input controlled](#controlling-an-input-with-a-state-variable) by passing one of these props:
 
-* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, specifies whether it is selected.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, specifies its text value. (For radio buttons, specifies the form data value.)
+* [`checked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#checked): A boolean. For a checkbox input or a radio button, controls whether it is selected.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#value): A string. For a text input, controls its text. (For a radio button, specifies its form data.)
 
-If you pass non-undefined `value` to a text input (or `checked` to a checkbox or a radio button), they become controlled. For controlled inputs, you must also provide an `onChange` event handler updating the passed value.
+When you pass either of them, you must also pass an `onChange` handler that updates the passed value.
 
-These props are only relevant for uncontrolled inputs:
+These `<input>` props are only relevant for uncontrolled inputs:
 
 * [`defaultChecked`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultChecked): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for `type="checkbox"` and `type="radio"` inputs.
-* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A boolean.  Specifies [the initial value](#providing-an-initial-value-for-an-input) for all the text inputs.
+* [`defaultValue`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement#defaultValue): A boolean. Specifies [the initial value](#providing-an-initial-value-for-an-input) for a text input.
 
-These props are relevant both for uncontrolled and controlled inputs:
+These `<input>` props are relevant both for uncontrolled and controlled inputs:
 
 * [`accept`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#accept): A string. Specifies which filetypes are accepted by a `type="file"` input.
 * [`alt`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input#alt): A string. Specifies the alternative image text for a `type="image"` input.

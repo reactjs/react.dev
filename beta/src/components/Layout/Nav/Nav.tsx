@@ -241,6 +241,11 @@ export default function Nav() {
             </button>
           </div>
         </div>
+        {!isOpen && (
+          <div className="hidden lg:block sm:pt-10 lg:pt-4">
+            <Search />
+          </div>
+        )}
         <div className="px-0 pt-2 w-full 2xl:max-w-xs hidden lg:flex items-center self-center border-b-0 lg:border-b border-border dark:border-border-dark">
           <NavLink
             href="/learn"
@@ -328,11 +333,6 @@ export default function Nav() {
             `lg:grow lg:flex flex-col w-full pb-8 lg:pb-0 lg:max-w-xs z-10`,
             isOpen ? 'block z-40' : 'hidden lg:block'
           )}>
-          {!isOpen && (
-            <div className="px-5 sm:pt-10 lg:pt-4">
-              <Search />
-            </div>
-          )}
           <nav
             role="navigation"
             style={{'--bg-opacity': '.2'} as React.CSSProperties} // Need to cast here because CSS vars aren't considered valid in TS types (cuz they could be anything)

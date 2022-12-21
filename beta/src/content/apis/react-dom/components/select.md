@@ -335,7 +335,10 @@ Unlike in HTML, passing a `selected` attribute to an individual `<option>` is no
 To display a select box, render the [built-in browser `<select>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) component.
 
 ```js
-<select name="selectedFruit" />
+<select>
+  <option value="someOption">Some option</option>
+  <option value="otherOption">Other option</option>
+</select>
 ```
 
 [See more examples above.](#usage)

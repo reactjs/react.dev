@@ -46,6 +46,43 @@ label, textarea { display: block; }
 
 ---
 
+### Providing a label for a text area {/*providing-a-label-for-a-text-area*/}
+
+Typically, you will place every `<textarea>` inside a [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) tag. This tells the browser that this label is associated with that text area. When the user clicks the label, the browser will focus the text area. It's also essential for accessibility: a screen reader will announce the label caption when the user focuses the text area.
+
+If you can't nest `<textarea>` into a `<label>`, associate them by passing the same ID to `<textarea id>` and [`<label htmlFor>`.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor) To avoid conflicts between instances of one component, generate such an ID with [`useId`.](/apis/react/useId)
+
+<Sandpack>
+
+```js
+import { useId } from 'react';
+
+export default function Form() {
+  const postTextAreaId = useId();
+  return (
+    <>
+      <label htmlFor={postTextAreaId}>
+        Write your post:
+      </label>
+      <textarea
+        id={postTextAreaId}
+        name="postContent"
+        rows={4}
+        cols={40}
+      />
+    </>
+  );
+}
+```
+
+```css
+input { margin: 5px; }
+```
+
+</Sandpack>
+
+---
+
 ### Providing an initial value for a text area {/*providing-an-initial-value-for-a-text-area*/}
 
 You can optionally specify the initial value for the text area. Pass it as the `defaultValue` string.
@@ -153,7 +190,7 @@ By default, *any* `<button>` inside a `<form>` will submit it. This can be surpr
 
 ### Controlling a text area with a state variable {/*controlling-a-text-area-with-a-state-variable*/}
 
-A text area like `<textarea />` is *uncontrolled.* Even if you [pass an initial value](##providing-an-initial-value-for-a-text-area) like `<textarea defaultValue="Initial text" />`, your JSX only specifies the initial value, not the value right now.
+A text area like `<textarea />` is *uncontrolled.* Even if you [pass an initial value](#providing-an-initial-value-for-a-text-area) like `<textarea defaultValue="Initial text" />`, your JSX only specifies the initial value, not the value right now.
 
 **To render a _controlled_ text area, pass the `value` prop to it.** React will force the text area to always have the `value` you passed. Typically, you will control a text area by declaring a [state variable:](/apis/react/useState)
 
@@ -268,6 +305,7 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 
 * [`autoComplete`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autocomplete): Either `'on'` or `'off'`. Specifies the autocomplete behavior.
 * [`autoFocus`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-autofocus): A boolean. If `true`, React will focus the element on mount.
+* `children`: `<textarea>` does not accept children. To set the initial value, use `defaultValue`.
 * [`cols`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-cols): A number. Specifies the default width in average character widths. Defaults to `20`.
 * [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-disabled): A boolean. If `true`, the input will not be interactive and will appear dimmed.
 * [`form`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-form): A string. Specifies the `id` of the `<form>` this input belongs to. If omitted, it's the closest parent form.

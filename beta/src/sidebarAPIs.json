@@ -146,8 +146,7 @@
             },
             {
               "title": "<select>",
-              "path": "/apis/react-dom/components/select",
-              "wip": true
+              "path": "/apis/react-dom/components/select"
             },
             {
               "title": "<textarea>",

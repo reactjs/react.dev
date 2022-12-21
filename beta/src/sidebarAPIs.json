@@ -137,8 +137,7 @@
             },
             {
               "title": "<option>",
-              "path": "/apis/react-dom/components/option",
-              "wip": true
+              "path": "/apis/react-dom/components/option"
             },
             {
               "title": "<progress>",

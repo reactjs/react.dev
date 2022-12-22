@@ -1526,7 +1526,7 @@ With this fix, typing into the input doesn't reconnect the chat. Unlike an objec
 
 ### Removing unnecessary function dependencies {/*removing-unnecessary-function-dependencies*/}
 
-If your Effect depends on an object or a function created during rendering, it might run more often than needed. For example, this Effect re-connects after every render because the `options` object is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
+If your Effect depends on an object or a function created during rendering, it might run more often than needed. For example, this Effect re-connects after every render because the `createOptions` function is [different for every render:](/learn/removing-effect-dependencies#does-some-reactive-value-change-unintentionally)
 
 ```js {4-9,12,16}
 function ChatRoom({ roomId }) {

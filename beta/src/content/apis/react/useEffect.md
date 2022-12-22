@@ -1023,9 +1023,9 @@ If either `serverUrl` or `roomId` change, your Effect will reconnect to the chat
 **[Reactive values](/learn/lifecycle-of-reactive-effects#effects-react-to-reactive-values) include props and all variables and functions declared directly inside of your component.** Since `roomId` and `serverUrl` are reactive values, you can't remove them from the dependency list. If you try to omit them and [your linter is correctly configured for React,](/learn/editor-setup#linting) the linter will flag this as a mistake that you need to fix:
 
 ```js {8}
-const serverUrl = 'https://localhost:1234';
-
 function ChatRoom({ roomId }) {
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
+  
   useEffect(() => {
     const connection = createConnection(serverUrl, roomId);
     connection.connect();

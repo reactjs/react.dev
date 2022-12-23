@@ -280,6 +280,186 @@ The code embedded in the HTML will run. A hacker could use this security hole to
 
 ---
 
+### Handling mouse events {/*handling-mouse-events*/}
+
+This example shows some common [mouse events](#mouseevent-handler) and when they fire.
+
+<Sandpack>
+
+```js
+export default function MouseExample() {
+  return (
+    <div
+      onMouseEnter={e => console.log('onMouseEnter (parent)')}
+      onMouseLeave={e => console.log('onMouseLeave (parent)')}
+    >
+      <button
+        onClick={e => console.log('onClick (first button)')}
+        onMouseDown={e => console.log('onMouseDown (first button)')}
+        onMouseEnter={e => console.log('onMouseEnter (first button)')}
+        onMouseLeave={e => console.log('onMouseLeave (first button)')}
+        onMouseOver={e => console.log('onMouseOver (first button)')}
+        onMouseUp={e => console.log('onMouseUp (first button)')}
+      >
+        First button
+      </button>
+      <button
+        onClick={e => console.log('onClick (second button)')}
+        onMouseDown={e => console.log('onMouseDown (second button)')}
+        onMouseEnter={e => console.log('onMouseEnter (second button)')}
+        onMouseLeave={e => console.log('onMouseLeave (second button)')}
+        onMouseOver={e => console.log('onMouseOver (second button)')}
+        onMouseUp={e => console.log('onMouseUp (second button)')}
+      >
+        Second button
+      </button>
+    </div>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 10px; }
+```
+
+</Sandpack>
+
+---
+
+### Handling pointer events {/*handling-pointer-events*/}
+
+This example shows some common [pointer events](#pointerevent-handler) and when they fire.
+
+<Sandpack>
+
+```js
+export default function PointerExample() {
+  return (
+    <div
+      onPointerEnter={e => console.log('onPointerEnter (parent)')}
+      onPointerLeave={e => console.log('onPointerLeave (parent)')}
+      style={{ padding: 20, backgroundColor: '#ddd' }}
+    >
+      <div
+        onPointerDown={e => console.log('onPointerDown (first child)')}
+        onPointerEnter={e => console.log('onPointerEnter (first child)')}
+        onPointerLeave={e => console.log('onPointerLeave (first child)')}
+        onPointerMove={e => console.log('onPointerMove (first child)')}
+        onPointerUp={e => console.log('onPointerUp (first child)')}
+        style={{ padding: 20, backgroundColor: 'lightyellow' }}
+      >
+        First child
+      </div>
+      <div
+        onPointerDown={e => console.log('onPointerDown (second child)')}
+        onPointerEnter={e => console.log('onPointerEnter (second child)')}
+        onPointerLeave={e => console.log('onPointerLeave (second child)')}
+        onPointerMove={e => console.log('onPointerMove (second child)')}
+        onPointerUp={e => console.log('onPointerUp (second child)')}
+        style={{ padding: 20, backgroundColor: 'lightblue' }}
+      >
+        Second child
+      </div>
+    </div>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 10px; }
+```
+
+</Sandpack>
+
+---
+
+### Handling focus events {/*handling-focus-events*/}
+
+In React, [focus events](#focusevent-handler) bubble. You can use the `currentTarget` and `relatedTarget` to differentiate if the focusing or blurring events originated from outside of the parent element. The example shows how to detect focusing a child, focusing the parent element, and how to detect focus entering or leaving the whole subtree.
+
+<Sandpack>
+
+```js
+export default function FocusExample() {
+  return (
+    <div
+      tabIndex={1}
+      onFocus={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('focused parent');
+        } else {
+          console.log('focused child', e.target.name);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus entered parent');
+        }
+      }}
+      onBlur={(e) => {
+        if (e.currentTarget === e.target) {
+          console.log('unfocused parent');
+        } else {
+          console.log('unfocused child', e.target.name);
+        }
+        if (!e.currentTarget.contains(e.relatedTarget)) {
+          // Not triggered when swapping focus between children
+          console.log('focus left parent');
+        }
+      }}
+    >
+      <label>
+        First name:
+        <input name="firstName" />
+      </label>
+      <label>
+        Last name:
+        <input name="lastName" />
+      </label>
+    </div>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 10px; }
+```
+
+</Sandpack>
+
+---
+
+### Handling keyboard events {/*handling-keyboard-events*/}
+
+This example shows some common [keyboard events](#keyboardevent-handler) and when they fire.
+
+<Sandpack>
+
+```js
+export default function KeyboardExample() {
+  return (
+    <label
+      onKeyDown={e => console.log('onKeyDown:', e.key, e.code)}
+      onKeyUp={e => console.log('onKeyUp:', e.key, e.code)}
+    >
+      First name:
+      <input name="firstName" />
+    </label>
+  );
+}
+```
+
+```css
+label { display: block; }
+input { margin-left: 10px; }
+```
+
+</Sandpack>
+
+---
+
 ## Reference {/*reference*/}
 
 ### Common components (e.g. `<div>`) {/*common*/}
@@ -318,8 +498,98 @@ These standard DOM props are also supported for all built-in components:
 * [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
 * [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
 * [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
+* [`onAnimationEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationend_event): An [`AnimationEvent` handler](/apis/react-dom/components/common#animationevent-handler) function. Fires when a CSS animation completes.
+* `onAnimationEndCapture`: A version of `onAnimationEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onAnimationIteration`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationiteration_event): An [`AnimationEvent` handler](/apis/react-dom/components/common#animationevent-handler) function. Fires when an iteration of a CSS animation ends, and another one begins.
+* `onAnimationIterationCapture`: A version of `onAnimationIteration` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onAnimationStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/animationstart_event): An [`AnimationEvent` handler](/apis/react-dom/components/common#animationevent-handler) function. Fires when a CSS animation starts.
+* `onAnimationStartCapture`: `onAnimationStart`, but fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onAuxClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/auxclick_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when a non-primary pointer button was clicked.
+* `onAuxClickCapture`: A version of `onAuxClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onBeforeInput`: An [`InputEvent` handler](/apis/react-dom/components/common#inputevent-handler) function. Fires before the value of an editable element is modified. React does *not* yet use the native [`beforeinput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/beforeinput_event) event, and instead attempts to polyfill it using other events.
+* `onBeforeInputCapture`: A version of `onBeforeInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onBlur`: A [`FocusEvent` handler](/apis/react-dom/components/common#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`blur`](https://developer.mozilla.org/en-US/docs/Web/API/Element/blur_event) event, in React the `onBlur` event bubbles.
+* `onBlurCapture`: A version of `onBlur` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onClick`](https://developer.mozilla.org/en-US/docs/Web/API/Element/click_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the primary button was clicked on the pointing device.
+* `onClickCapture`: A version of `onClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionstart_event): An [`InputEvent` handler](/apis/react-dom/components/common#inputevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) starts a new composition session.
+* `onCompositionStartCapture`: A version of `onCompositionStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionend_event): An [`InputEvent` handler](/apis/react-dom/components/common#inputevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) completes or cancels a composition session.
+* `onCompositionEndCapture`: A version of `onCompositionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCompositionUpdate`](https://developer.mozilla.org/en-US/docs/Web/API/Element/compositionupdate_event): An [`InputEvent` handler](/apis/react-dom/components/common#inputevent-handler) function. Fires when an [input method editor](https://developer.mozilla.org/en-US/docs/Glossary/Input_method_editor) receives a new character.
+* `onCompositionUpdateCapture`: A version of `onCompositionUpdate` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onContextMenu`](https://developer.mozilla.org/en-US/docs/Web/API/Element/contextmenu_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the user tries to open a context menu.
+* `onContextMenuCapture`: A version of `onContextMenu` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCopy`](https://developer.mozilla.org/en-US/docs/Web/API/Element/copy_event): A [`ClipboardEvent` handler](/apis/react-dom/components/common#clipboardevent-handler) function. Fires when the user tries to copy something into the clipboard.
+* `onCopyCapture`: A version of `onCopy` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onCut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/cut_event): A [`ClipboardEvent` handler](/apis/react-dom/components/common#clipboardevent-handler) function. Fires when the user tries to cut something into the clipboard.
+* `onCutCapture`: A version of `onCut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onDoubleClick`: A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the user clicks twice. Corresponds to the browser [`dblclick` event.](https://developer.mozilla.org/en-US/docs/Web/API/Element/dblclick_event)
+* `onDoubleClickCapture`: A version of `onDoubleClick` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDrag`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drag_event): A [`DragEvent` handler](/apis/react-dom/components/common#dragevent-handler) function. Fires while the user is dragging something. 
+* `onDragCapture`: A version of `onDrag` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDragEnd`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragend_event): A [`DragEvent` handler](/apis/react-dom/components/common#dragevent-handler) function. Fires when the user stops dragging something. 
+* `onDragEndCapture`: A version of `onDragEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDragEnter`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragenter_event): A [`DragEvent` handler](/apis/react-dom/components/common#dragevent-handler) function. Fires when the dragged content enters a valid drop target. 
+* `onDragEnterCapture`: A version of `onDragEnter` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDragOver`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragover_event): A [`DragEvent` handler](/apis/react-dom/components/common#dragevent-handler) function. Fires on a valid drop target while the dragged content is dragged over it. You must call `e.preventDefault()` here to allow dropping.
+* `onDragOverCapture`: A version of `onDragOver` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDragStart`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/dragstart_event): A [`DragEvent` handler](/apis/react-dom/components/common#dragevent-handler) function. Fires when the user starts dragging an element.
+* `onDragStartCapture`: A version of `onDragStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onDrop`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/drop_event): A [`DragEvent` handler](/apis/react-dom/components/common#dragevent-handler) function. Fires when something is dropped on a valid drop target.
+* `onDropCapture`: A version of `onDrop` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onFocus`: A [`FocusEvent` handler](/apis/react-dom/components/common#focusevent-handler) function. Fires when an element lost focus. Unlike the built-in browser [`focus`](https://developer.mozilla.org/en-US/docs/Web/API/Element/focus_event) event, in React the `onFocus` event bubbles.
+* `onFocusCapture`: A version of `onFocus` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onGotPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/gotpointercapture_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when an element programmatically captures a pointer.
+* `onGotPointerCaptureCapture`: A version of `onGotPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onKeyDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event): A [`KeyboardEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a key is pressed.
+* `onKeyDownCapture`: A version of `onKeyDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onKeyPress`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keypress_event): A [`KeyboardEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Deprecated. Use `onKeyDown` or `onBeforeInput` instead.
+* `onKeyPressCapture`: A version of `onKeyPress` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onKeyUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/keyup_event): A [`KeyboardEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a key is released.
+* `onKeyUpCapture`: A version of `onKeyUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onLostPointerCapture`](https://developer.mozilla.org/en-US/docs/Web/API/Element/lostpointercapture_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when an element stops capturing a pointer.
+* `onLostPointerCaptureCapture`: A version of `onLostPointerCapture` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the pointer is pressed down.
+* `onMouseDownCapture`: A version of `onMouseDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseenter_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the pointer moves inside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
+* [`onMouseLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseleave_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the pointer moves outside an element. Does not have a capture phase. Instead, `onMouseLeave` and `onMouseEnter` propagate from the element being left to the one being entered.
+* [`onMouseMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the pointer changes coordinates.
+* `onMouseMoveCapture`: A version of `onMouseMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseout_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the pointer moves outside an element, or if it moves into a child element.
+* `onMouseOutCapture`: A version of `onMouseOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onMouseUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event): A [`MouseEvent` handler](/apis/react-dom/components/common#mouseevent-handler) function. Fires when the pointer is released.
+* `onMouseUpCapture`: A version of `onMouseUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointercancel_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when the browser cancels a pointer interaction.
+* `onPointerCancelCapture`: A version of `onPointerCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerDown`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerdown_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a pointer becomes active.
+* `onPointerDownCapture`: A version of `onPointerDown` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerEnter`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerenter_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a pointer moves inside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
+* [`onPointerLeave`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerleave_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a pointer moves outside an element. Does not have a capture phase. Instead, `onPointerLeave` and `onPointerEnter` propagate from the element being left to the one being entered.
+* [`onPointerMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointermove_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a pointer changes coordinates.
+* `onPointerMoveCapture`: A version of `onPointerMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerOut`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a pointer moves outside an element, if the pointer interaction is cancelled, and [a few other reasons.](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerout_event)
+* `onPointerOutCapture`: A version of `onPointerOut` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPointerUp`](https://developer.mozilla.org/en-US/docs/Web/API/Element/pointerup_event): A [`PointerEvent` handler](/apis/react-dom/components/common#pointerevent-handler) function. Fires when a pointer is no longer active.
+* `onPointerUpCapture`: A version of `onPointerUp` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onPaste`](https://developer.mozilla.org/en-US/docs/Web/API/Element/paste_event): A [`ClipboardEvent` handler](/apis/react-dom/components/common#clipboardevent-handler) function. Fires when the user tries to paste something from the clipboard.
+* `onPasteCapture`: A version of `onPaste` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onScroll`](https://developer.mozilla.org/en-US/docs/Web/API/Element/scroll_event): An [`Event` handler](/apis/react-dom/components/common#wheelevent-handler) function. Fires when an element has been scrolled. This event does not bubble.
+* `onScrollCapture`: A version of `onScroll` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
-* `onSelectCapture`: An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Like `onSelect`, but fires during the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onSelectCapture`: A version of `onSelect` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchCancel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchcancel_event): A [`TouchEvent` handler](/apis/react-dom/components/common#touchevent-handler) function. Fires when the browser cancels a touch interaction.
+* `onTouchCancelCapture`: A version of `onTouchCancel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchend_event): A [`TouchEvent` handler](/apis/react-dom/components/common#touchevent-handler) function. Fires when one or more touch points are removed.
+* `onTouchEndCapture`: A version of `onTouchEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchMove`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchmove_event): A [`TouchEvent` handler](/apis/react-dom/components/common#touchevent-handler) function. Fires one or more touch points are moved.
+* `onTouchMoveCapture`: A version of `onTouchMove` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onTouchStart`](https://developer.mozilla.org/en-US/docs/Web/API/Element/touchstart_event): A [`TouchEvent` handler](/apis/react-dom/components/common#touchevent-handler) function. Fires when one or more touch points are placed.
+* `onTouchStartCapture`: A version of `onTouchStart` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onTransitionEnd`](https://developer.mozilla.org/en-US/docs/Web/API/Element/transitionend_event): A [`TransitionEvent` handler](/apis/react-dom/components/common#transitionevent-handler) function. Fires when a CSS transition completes.
+* `onTransitionEndCapture`: A version of `onTransitionEnd` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* [`onWheel`](https://developer.mozilla.org/en-US/docs/Web/API/Element/wheel_event): A [`WheelEvent` handler](/apis/react-dom/components/common#wheelevent-handler) function. Fires when the user rotates a wheel button.
+* `onWheelCapture`: A version of `onWheel` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the element role explicitly for assistive technologies.
 nt.
 * [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the slot name when using shadow DOM. In React, an equivalent pattern is typically achieved by passing JSX as props, for example `<Layout left={<Sidebar />} right={<Content />} />`.
@@ -378,6 +648,8 @@ Do not return anything from the `ref` callback.
 
 ### `FocusEvent` handler function {/*focusevent-handler*/}
 
+[See an example.](#handling-focus-events)
+
 ---
 
 ### `Event` handler function {/*event-handler*/}
@@ -389,6 +661,14 @@ Do not return anything from the `ref` callback.
 ---
 
 ### `KeyboardEvent` handler function {/*keyboardevent-handler*/}
+
+[See an example.](#handling-keyboard-events)
+
+---
+
+### `MouseEvent` handler function {/*mouseevent-handler*/}
+
+[See an example.](#handling-mouse-events)
 
 ---
 

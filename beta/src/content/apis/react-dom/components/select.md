@@ -367,9 +367,9 @@ These `<select>` props are relevant both for uncontrolled and controlled select 
 * [`multiple`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-multiple): A boolean. If `true`, the browser allows [multiple selection.](#enabling-multiple-selection)
 * [`name`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-name): A string. Specifies the name for this select box that's [submitted with the form.](#reading-the-select-box-value-when-submitting-a-form)
 * `onChange`: An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Required for [controlled select boxes.](#controlling-a-select-box-with-a-state-variable) Fires immediately when the user picks a different option. Behaves like the browser [`input` event.](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event)
-* `onChangeCapture`: An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Like `onChange`, but fires during the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onChangeCapture`: A version of `onChange` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`onInput`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event): An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Fires immediately when the value is changed by the user. For historical reasons, in React it is idiomatic to use `onChange` instead which works similarly.
-* `onInputCapture`: An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Like `onInput`, but fires during the [capture phase.](/learn/responding-to-events#capture-phase-events)
+* `onInputCapture`: A version of `onInput` that fires in the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-required): A boolean. If `true`, the value must be provided for the form to submit.
 * [`size`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select#attr-size): A number. For `multiple={true}` selects, specifies the preferred number of initially visible items.
 

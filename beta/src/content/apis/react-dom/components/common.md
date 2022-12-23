@@ -178,7 +178,7 @@ export default function Form() {
 
 Read more about [manipulating DOM with refs](/learn/manipulating-the-dom-with-refs) and [check out more examples.](/apis/react/useRef#examples-dom)
 
-For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback-function)
+For more advanced use cases, the `ref` attribute also accepts a [callback function.](#ref-callback)
 
 ---
 
@@ -291,7 +291,7 @@ These special React props are supported for all built-in components:
 
 * `dangerouslySetInnerHTML`: An object of the form `{ __html: '<p>some html</p>' }` with a raw HTML string inside. Overrides the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property of the DOM node and displays the passed HTML inside. This should be used with extreme caution! If the HTML inside isn't trusted (for example, if it's based on user data), you risk introducing an [XSS](https://en.wikipedia.org/wiki/Cross-site_scripting) vulnerability. [Read more about using `dangerouslySetInnerHTML`.](#dangerously-setting-the-inner-html)
 
-* `ref`: A ref object from [`useRef`](/apis/react/useRef) or [`createRef`](/apis/react/createRef), or a [`ref` callback function,](#ref-callback-function) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with refs.](#manipulating-a-dom-node-with-a-ref)
+* `ref`: A ref object from [`useRef`](/apis/react/useRef) or [`createRef`](/apis/react/createRef), or a [`ref` callback function,](#ref-callback) or a string for [legacy refs.](https://reactjs.org/docs/refs-and-the-dom.html#legacy-api-string-refs) Your ref will be filled with the DOM element for this node. [Read more about manipulating the DOM with refs.](#manipulating-a-dom-node-with-a-ref)
 
 * `suppressContentEditableWarning`: A boolean. If `true`, suppresses the warning that React shows for elements that both have `children` and `contentEditable={true}` (which normally do not work together). Use this if you're building a text input library that manages the `contentEditable` content manually.
 
@@ -332,9 +332,24 @@ You can also pass custom attributes as props, for example `mycustomprop="someVal
 
 ---
 
-### `ref` callback function {/*ref-callback-function*/}
+### `ref` callback function {/*ref-callback*/}
 
-You can pass a function to the `ref` attribute.
+Instead of a ref object (like the one returned by [`useRef`](/apis/react/useRef#manipulating-the-dom-with-a-ref)), you may pass a function to the `ref` attribute.
 
----
+```js
+<div ref={(node) => console.log(node)} />
+```
 
+[See an example of using the `ref` callback.](/learn/manipulating-the-dom-with-refs#how-to-manage-a-list-of-refs-using-a-ref-callback)
+
+When the `<div>` DOM node is added to the screen, React will call your `ref` callback with the DOM `node` as the argument. When that `<div>` DOM node is removed, React will call your `ref` callback with `null`.
+
+**React will also call your `ref` callback whenever you pass a *different* `ref` callback.** In the above example, `(node) => { ... }` is a different function on every render. This is why, when your component re-renders, the *previous* function will be called with `null` as the argument, and the *next* function will be called with the DOM node.
+
+#### Parameters {/*ref-callback-parameters*/}
+
+* `node`: A DOM node or `null`. React will pass you the DOM node when the ref gets attached, and `null` when the ref gets detached. Unless you pass the same function reference for the `ref` callback on every render, the callback will get temporarily detached and re-attached during ever re-render of the component.
+
+#### Returns {/*returns*/}
+
+Do not return anything from the `ref` callback.

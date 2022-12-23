@@ -319,7 +319,6 @@ These `<textarea>` props are relevant both for uncontrolled and controlled text 
 * [`readOnly`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-readonly): A boolean. If `true`, the text area is not editable by the user.
 * [`required`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-required): A boolean. If `true`, the value must be provided for the form to submit.
 * [`rows`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-rows): A number. Specifies the default height in average character heights. Defaults to `2`.
-* [`spellCheck`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-spellcheck): A boolean or null. If explicitly set to `true` or `false`, enables or disables spellchecking.
 * [`wrap`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/textarea#attr-wrap): Either `'hard'`, `'soft'`, or `'off'`. Specifies how the text should be wrapped when submitting a form.
 
 #### Caveats {/*caveats*/}

@@ -128,8 +128,7 @@
           "routes": [
             {
               "title": "Common (e.g. <div>)",
-              "path": "/apis/react-dom/components/common",
-              "wip": true
+              "path": "/apis/react-dom/components/common"
             },
             {
               "title": "<input>",

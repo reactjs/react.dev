@@ -157,6 +157,18 @@ If you render a tag with a dash, like `<my-element>`, React will assume you want
 
 If you render a built-in browser HTML element with an [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is) attribute, it will also be treated as a custom element.
 
+<Note>
+
+[A future version of React will include more comprehensive support for custom elements.](https://github.com/facebook/react/issues/11347#issuecomment-1122275286)
+
+You can try it by upgrading React packages to the most recent experimental version:
+
+- `react@experimental`
+- `react-dom@experimental`
+
+Experimental versions of React may contain bugs. Don't use them in production.
+
+</Note>
 ---
 
 ## All SVG components {/*all-svg-components*/}

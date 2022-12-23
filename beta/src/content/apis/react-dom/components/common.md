@@ -318,7 +318,8 @@ These standard DOM props are also supported for all built-in components:
 * [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
 * [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
 * [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.
-* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An event handler function. Fires after the selection inside an editable element like an input changes. React extends the browser `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
+* [`onSelect`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/select_event): An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Fires after the selection inside an editable element like an input changes. React extends the `onSelect` event to work for `contentEditable={true}` elements as well. In addition, React extends it to fire for empty selection and on edits (which may affect the selection).
+* `onSelectCapture`: An [`Event` handler](/apis/react-dom/components/common#event-handler) function. Like `onSelect`, but fires during the [capture phase.](/learn/responding-to-events#capture-phase-events)
 * [`role`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the element role explicitly for assistive technologies.
 nt.
 * [`slot`](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles): A string. Specifies the slot name when using shadow DOM. In React, an equivalent pattern is typically achieved by passing JSX as props, for example `<Layout left={<Sidebar />} right={<Content />} />`.
@@ -356,3 +357,56 @@ When the `<div>` DOM node is added to the screen, React will call your `ref` cal
 #### Returns {/*returns*/}
 
 Do not return anything from the `ref` callback.
+
+---
+
+### `AnimationEvent` handler function {/*animationevent-handler*/}
+
+---
+
+### `ClipboardEvent` handler function {/*clipboadevent-handler*/}
+
+---
+
+### `CompositionEvent` handler function {/*compositionevent-handler*/}
+
+---
+
+### `DragEvent` handler function {/*dragevent-handler*/}
+
+---
+
+### `FocusEvent` handler function {/*focusevent-handler*/}
+
+---
+
+### `Event` handler function {/*event-handler*/}
+
+---
+
+### `InputEvent` handler function {/*inputevent-handler*/}
+
+---
+
+### `KeyboardEvent` handler function {/*keyboardevent-handler*/}
+
+---
+
+### `PointerEvent` handler function {/*pointerevent-handler*/}
+
+---
+
+### `TouchEvent` handler function {/*touchevent-handler*/}
+
+---
+
+### `TransitionEvent` handler function {/*transitionevent-handler*/}
+
+---
+
+### `UIEvent` handler function {/*uievent-handler*/}
+
+---
+
+### `WheelEvent` handler function {/*wheel-handler*/}
+

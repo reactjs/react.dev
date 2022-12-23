@@ -263,13 +263,14 @@ textarea { display: block; margin-top: 5px; margin-bottom: 10px; }
 
 To see why rendering arbitrary HTML is dangerous, replace the code above with this:
 
-```js {1-4,7}
+```js {1-4,7,8}
 const post = {
   // Imagine this content is stored in the database.
   content: `<img src="" onerror='alert("you were hacked")'>`
 };
 
 export default function MarkdownPreview() {
+  // 🔴 SECURITY HOLE: passing untrusted input to dangerouslySetInnerHTML
   const markup = { __html: post.content };
   return <div dangerouslySetInnerHTML={markup} />;
 }
@@ -313,6 +314,7 @@ These standard DOM props are also supported for all built-in components:
 * [`htmlFor`](https://developer.mozilla.org/en-US/docs/Web/API/HTMLLabelElement/htmlFor): A string. For [`<label>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/label) and [`<output>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/output), lets you [associate the label with some control.](/apis/react-dom/components/input#providing-a-label-for-an-input) Same as [`for` HTML attribute.](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes/for) React uses the standard DOM property names (`htmlFor`) instead of HTML attribute names.
 * [`hidden`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden): A boolean or a string. Specifies whether the element should be hidden.
 * [`id`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/id): A string. Specifies a unique identifier for this element, which can be used to find it later or connect it with other elements. Generate it with [`useId`](/apis/react/useId) to avoid clashes between multiple instances of the same component.
+* [`is`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/is): A string. If specified, the component will behave like a [custom element.](/apis/react-dom/components#custom-html-elements)
 * [`inputMode`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/inputmode): A string. Specifies what kind of keyboard to display (for example, text, number or telephone).
 * [`itemProp`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/itemprop): A string. Specifies which property the element represents for structured data crawlers.
 * [`lang`](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang): A string. Specifies the language of the element.

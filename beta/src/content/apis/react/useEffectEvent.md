@@ -6,7 +6,13 @@ title: useEffectEvent
 
 **This API is experimental and is not available in a stable version of React yet.**
 
-See [`useEffectEvent` RFC](https://github.com/reactjs/rfcs/blob/useevent/text/0000-useevent.md) for details.
+You can try it by upgrading React packages to the most recent experimental version:
+
+- `react@experimental`
+- `react-dom@experimental`
+- `eslint-plugin-react-hooks@experimental`
+
+Experimental versions of React may contain bugs. Don't use them in production.
 
 </Wip>
 

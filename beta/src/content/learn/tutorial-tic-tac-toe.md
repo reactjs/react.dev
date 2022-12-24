@@ -1772,9 +1772,30 @@ export default function Game() {
 
 Note that you are removing the `export default` keywords before the `function Board() {` declaration and adding them before the `function Game() {` declaration. This tells your `index.js` file to use the `Game` component as the top-level component instead of your `Board` component. The additional `div`s returned by the `Game` component are making room for the game information you'll add to the board later.
 
-Now you'll add state variables to track which player is next, and the history of moves in the game. While you're at it, you'll add a variable to calculate the current squares based on the most recent entry in the `history` state variable. Next, you'll create a `handlePlay` function inside the Game component that will be called by the Board component to update the game. Lastly, you'll pass the `xIsNext`, `currentSquares` and `handlePlay` as props to the Board component:
+Add some state to the `Game` component to track which player is next and the history of moves:
 
-```js {2-8,12}
+```js {2-3}
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  // ...
+```
+
+Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s. As the game progresses, the `history` array will contain an additional array of squares per every move.
+
+To render the squares for the current move, you'll want to read the last squares array from the `history`. You might be tempted to declare another state variable with `useState`, but that's unnecessary and would lead to mistakes. You don't need to *store* more information--calculate it from the information you already stored:
+
+```js {4}
+export default function Game() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [history, setHistory] = useState([Array(9).fill(null)]);
+  const currentSquares = history[history.length - 1];
+  // ...
+```
+
+Next, create a `handlePlay` function inside the `Game` component that will be called by the `Board` component to update the game. Pass `xIsNext`, `currentSquares` and `handlePlay` as props to the `Board` component:
+
+```js {6-8,13}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
@@ -1783,6 +1804,7 @@ export default function Game() {
   function handlePlay(newSquares) {
     // TODO
   }
+
   return (
     <div className="game">
       <div className="game-board">

@@ -536,4 +536,4 @@ button {
 
 By now, you know the basics of how to write React code!
 
-Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to build a tiny game with React and see how these concepts apply in practice.
+Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to put them into practice and build your first mini-app with React.

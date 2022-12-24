@@ -10,7 +10,7 @@ You will build a small tic-tac-toe game during this tutorial. This tutorial does
 
 <Note>
 
-This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something real. If you prefer learning concepts step by step, start with [Describing the UI](/learn/describing-the-ui).
+This tutorial is designed for people who prefer to **learn by doing** and want to quickly try making something tangible. If you prefer learning each concept step by step, start with [Describing the UI.](/learn/describing-the-ui)
 
 </Note>
 
@@ -45,13 +45,13 @@ function Board({ xIsNext, squares, onPlay }) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -86,24 +86,24 @@ function Board({ xIsNext, squares, onPlay }) {
 
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [move, setMove] = useState(0);
-  const xIsNext = move % 2 === 0;
-  const currentSquares = history[move];
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
-  function handlePlay(newSquares) {
-    const newHistory = history.slice(0, move + 1).concat([newSquares]);
-    setHistory(newHistory);
-    setMove(newHistory.length - 1);
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(move) {
-    setMove(move);
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = `Go to move #${move}`;
+      description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
@@ -122,7 +122,7 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -899,19 +899,19 @@ body {
 
 </Sandpack>
 
-### Developer tools {/*developer-tools*/}
+### React Developer Tools {/*react-developer-tools*/}
 
-The React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
+React DevTools let you check the props and the state of your React components. You can find the React DevTools tab at the bottom of the _browser_ section in CodeSandbox:
 
 ![React DevTools in CodeSandbox](../images/tutorial/codesandbox-devtools.png)
 
-You can use the button in the top left corner of React DevTools to inspect components by selecting them:
+To inspect a particular component on the screen, use the button in the top left corner of React DevTools:
 
 ![Selecting components on the page with React DevTools](../images/tutorial/devtools-select.gif)
 
 <Note>
 
-For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. 
+For local development, React DevTools is available as a [Chrome](https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en), [Firefox](https://addons.mozilla.org/en-US/firefox/addon/react-devtools/), and [Edge](https://microsoftedge.microsoft.com/addons/detail/react-developer-tools/gpphkfbcpidddadnkolkpfckpihlkkil) browser extension. After installing it, the *Components* tab will appear in your browser Developer Tools for sites using React.
 
 </Note>
 
@@ -1118,9 +1118,9 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick() {
-    const newSquares = squares.slice();
-    newSquares[0] = "X";
-    setSquares(newSquares);
+    const nextSquares = squares.slice();
+    nextSquares[0] = "X";
+    setSquares(nextSquares);
   }
 
   return (
@@ -1129,7 +1129,7 @@ export default function Board() {
 }
 ```
 
-The `handleClick` function creates a copy of the `squares` array (`newSquares`) with the JavaScript `slice()` Array method. Then, `handleClick` updates the `newSquares` array to add `X` to the first (`[0]` index) square.
+The `handleClick` function creates a copy of the `squares` array (`nextSquares`) with the JavaScript `slice()` Array method. Then, `handleClick` updates the `nextSquares` array to add `X` to the first (`[0]` index) square.
 
 Calling the `setSquares` function lets React know the state of the component has changed. This will trigger a re-render of the components that use the `squares` state (`Board`) as well as its child components (the `Square` components that make up the board).
 
@@ -1146,9 +1146,9 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    const newSquares = squares.slice();
-    newSquares[i] = "X";
-    setSquares(newSquares);
+    const nextSquares = squares.slice();
+    nextSquares[i] = "X";
+    setSquares(nextSquares);
   }
 
   return (
@@ -1247,9 +1247,9 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    const newSquares = squares.slice();
-    newSquares[i] = 'X';
-    setSquares(newSquares);
+    const nextSquares = squares.slice();
+    nextSquares[i] = 'X';
+    setSquares(nextSquares);
   }
 
   return (
@@ -1344,7 +1344,7 @@ Note how in `handleClick`, you call `.slice()` to create a copy of the `squares`
 There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what is would look like if you mutated the `squares` array:
 
 ```jsx
-let squares = [null, null, null, null, null, null, null, null, null];
+const squares = [null, null, null, null, null, null, null, null, null];
 squares[0] = 'X';
 // Now `squares` is ["X", null, null, null, null, null, null, null, null];
 ```
@@ -1352,9 +1352,9 @@ squares[0] = 'X';
 And here is what it would look like if you changed data without mutating the `squares` array:
 
 ```jsx
-let squares = [null, null, null, null, null, null, null, null, null];
-let newSquares = ['X', null, null, null, null, null, null, null, null];
-// Now `squares` is unchanged, but `newSquares` first element is 'X' rather than `null`
+const squares = [null, null, null, null, null, null, null, null, null];
+const nextSquares = ['X', null, null, null, null, null, null, null, null];
+// Now `squares` is unchanged, but `nextSquares` first element is 'X' rather than `null`
 ```
 
 The end result is the same but by not mutating (changing the underlying data) directly, you gain several benefits.
@@ -1386,13 +1386,13 @@ export default function Board() {
   const [squares, setSquares] = useState(Array(9).fill(null));
 
   function handleClick(i) {
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = "X";
+      nextSquares[i] = "X";
     } else {
-      newSquares[i] = "O";
+      nextSquares[i] = "O";
     }
-    setSquares(newSquares);
+    setSquares(nextSquares);
     setXIsNext(!xIsNext);
   }
 
@@ -1417,7 +1417,7 @@ function handleClick(i) {
   if (squares[i]) {
     return;
   }
-  let newSquares = squares.slice();
+  let nextSquares = squares.slice();
   //...
 }
 ```
@@ -1445,13 +1445,13 @@ export default function Board() {
     if (squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    setSquares(newSquares);
+    setSquares(nextSquares);
     setXIsNext(!xIsNext);
   }
 
@@ -1554,6 +1554,12 @@ function calculateWinner(squares) {
 }
 ```
 
+<Note>
+
+It does not matter whether you define `calculateWinner` before or after the `Board`. Let's put it at the end so that you don't have to scroll past it every time you edit your components.
+
+</Note>
+
 You will call `calculateWinner(squares)` in the `Board` component's `handleClick` function to check if a player has won. You can perform this check at the same time you check if a user has clicked a square that already has a `X` or and `O`. We'd like to return early in both cases:
 
 ```js {2}
@@ -1561,7 +1567,7 @@ function handleClick(i) {
   if (squares[i] || calculateWinner(squares)) {
     return;
   }
-  const newSquares = squares.slice();
+  const nextSquares = squares.slice();
   //...
 }
 ```
@@ -1611,13 +1617,13 @@ export default function Board() {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    setSquares(newSquares);
+    setSquares(nextSquares);
     setXIsNext(!xIsNext);
   }
 
@@ -1765,7 +1771,7 @@ export default function Game() {
       <div className="game-info">
         <ol>{/*TODO*/}</ol>
       </div>
-    </>
+    </div>
   );
 }
 ```
@@ -1781,9 +1787,9 @@ export default function Game() {
   // ...
 ```
 
-Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s. As the game progresses, the `history` array will contain an additional array of squares per every move.
+Notice how `[Array(9).fill(null)]` is an array with a single item, which itself is an array of 9 `null`s.
 
-To render the squares for the current move, you'll want to read the last squares array from the `history`. You might be tempted to declare another state variable with `useState`, but that's unnecessary and would lead to mistakes. You don't need to *store* more information--calculate it from the information you already stored:
+To render the squares for the current move, you'll want to read the last squares array from the `history`. You don't need `useState` for this--you already have enough information to calculate it during rendering:
 
 ```js {4}
 export default function Game() {
@@ -1801,7 +1807,7 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length - 1];
 
-  function handlePlay(newSquares) {
+  function handlePlay(nextSquares) {
     // TODO
   }
 
@@ -1814,17 +1820,18 @@ export default function Game() {
 }
 ```
 
-Let's make the Board component stateless, by making it fully controlled by the props it receives. Change the Board component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that Board can call with the updated squares array whenever a player makes a move. Next, remove the first two lines of the Board function that call `useState`:
+Let's make the `Board` component fully controlled by the props it receives. Change the `Board` component to take three props: `xIsNext`, `squares`, and a new `onPlay` function that `Board` can call with the updated squares array whenever a player makes a move. Next, remove the first two lines of the `Board` function that call `useState`:
 
 ```js {1}
 function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     //...
   }
+  // ...
 }
 ```
 
-Now you'll replace the `setSquares` and `setXIsNext` calls in `handleClick` in the Board component with a single call to our new `onPlay` function so the Game component can update the Board when a user clicks a square:
+Now you'll replace the `setSquares` and `setXIsNext` calls in `handleClick` in the `Board` component with a single call to your new `onPlay` function so the `Game` component can update the `Board` when the user clicks a square:
 
 ```js {12}
 function Board({ xIsNext, squares, onPlay }) {
@@ -1832,53 +1839,47 @@ function Board({ xIsNext, squares, onPlay }) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = "X";
+      nextSquares[i] = "X";
     } else {
-      newSquares[i] = "O";
+      nextSquares[i] = "O";
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
   //...
 }
 ```
 
-The Board component is fully controlled by the props passed to it by the Game component. You need to implement the `handlePlay` function in the Game component to get the game working again.
+The `Board` component is fully controlled by the props passed to it by the `Game` component. You need to implement the `handlePlay` function in the `Game` component to get the game working again.
 
 What should `handlePlay` do when called? Remember that Board used to call `setSquares` with an updated array; now it passes the updated `squares` array to `onPlay`.
 
-The `handlePlay` function needs to update Game's state to trigger a re-render, but you don't have a `setSquares` function that you can call any more – you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
+The `handlePlay` function needs to update `Game`'s state to trigger a re-render, but you don't have a `setSquares` function that you can call any more--you're now using the `history` state variable to store this information. You'll want to update `history` by appending the updated `squares` array as a new history entry. You also want to toggle `xIsNext`, just as Board used to do:
 
 ```js {4-5}
 export default function Game() {
   //...
-  function handlePlay(newSquares) {
-    setHistory([...history, [...newSquares]]);
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]);
     setXIsNext(!xIsNext);
   }
   //...
 }
 ```
 
-`[...history, [...newSquares]]` creates a new array. The first values of this new array are the same as all of the values in `history`. The final value in the first new array is an a second new array that contains the values of `newSquare`. For example, if `history` is `[["X",null,"O"]]` and `newSquare` is `["X","X","O"]` the new array will be `[["X",null,"O"],["X","X","O"]]`.
+Here, `[...history, nextSquares]` creates a new array that contains all the items in `history`, followed by `nextSquares`. (You can read the `...history` [*spread syntax*](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) as "enumerate all the items in `history`".)
 
-<Note>
+For example, if `history` is `[[null,null,null], ["X",null,null]]` and `nextSquares` is `["X",null,"O"]`, then the new `[...history, nextSquares]` array will be `[[null,null,null], ["X",null,null], ["X",null,"O"]]`.
 
-`...` is called the [**spread syntax**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) which, when preceding an array, expands the values of that array to be filled as elements.
-
-</Note>
-
-At this point, you've moved the state to live in the Game component, and the UI should be fully working, just as it was before the refactor.
-
-Here is what the code should look like at this point:
+At this point, you've moved the state to live in the `Game` component, and the UI should be fully working, just as it was before the refactor. Here is what the code should look like at this point:
 
 <Sandpack>
 
 ```js App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
@@ -1886,38 +1887,18 @@ function Square({value, onSquareClick}) {
   );
 }
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-function Board({xIsNext, squares, onPlay}) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -1929,7 +1910,7 @@ function Board({xIsNext, squares, onPlay}) {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -1955,8 +1936,8 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length - 1];
 
-  function handlePlay(newSquares) {
-    setHistory([...history, [...newSquares]]);
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]);
     setXIsNext(!xIsNext);
   }
 
@@ -1968,8 +1949,28 @@ export default function Game() {
       <div className="game-info">
         <ol>{/*TODO*/}</ol>
       </div>
-    </>
+    </div>
   );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
 ```
 
@@ -2024,15 +2025,15 @@ body {
 
 Since you are recording the tic-tac-toe game's history, you can now display it to the player as a list of past moves.
 
-You learned earlier that React elements are first class JavaScript objects; you can pass them around in our applications. To render multiple items in React, you can use an array of React elements.
+React elements like `<button>` are regular JavaScript objects; you can pass them around in your application. To render multiple items in React, you can use an array of React elements.
+
+You already have an array of `history` moves in state, so now you need to transform it to an array of React elements. In JavaScript, to transform one array into another, you can use the [array `map` method:](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map)
 
 ```jsx
-[1, 2, 3].map((x) => x * 2); // [2, 4, 6]
+[1, 2, 3].map((x) => x * 2) // [2, 4, 6]
 ```
 
-Here, you'll use the [`map` method](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) to transform our history of moves into React elements representing buttons on the screen, and you'll display a list of buttons to "jump" to past moves.
-
-Let's `map` over the `history` in the Game component:
+You'll use `map` to transform your `history` of moves into React elements representing buttons on the screen, and you'll display a list of buttons to "jump" to past moves. Let's `map` over the `history` in the Game component:
 
 ```js {11-13,15-27,35}
 export default function Game() {
@@ -2040,19 +2041,19 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length - 1];
 
-  function handlePlay(newSquares) {
-    setHistory([...history, [...newSquares]]);
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]);
     setXIsNext(!xIsNext);
   }
 
-  function jumpTo(move) {
+  function jumpTo(nextMove) {
     // TODO
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = `Go to move #${move}`;
+      description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
@@ -2071,19 +2072,19 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
-    </>
+    </div>
   );
 }
 ```
 
-You can see what you code should look like below. Note that you should see a warning in the developer tools console that says: `Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of "Game".` You'll fix this warning in the next section.
+You can see what your code should look like below. Note that you should see an error in the developer tools console that says: ``Warning: Each child in an array or iterator should have a unique "key" prop. Check the render method of `Game`.`` You'll fix this error in the next section.
 
 <Sandpack>
 
 ```js App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
@@ -2091,38 +2092,18 @@ function Square({value, onSquareClick}) {
   );
 }
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-function Board({xIsNext, squares, onPlay}) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -2134,7 +2115,7 @@ function Board({xIsNext, squares, onPlay}) {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -2160,19 +2141,19 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length - 1];
 
-  function handlePlay(newSquares) {
-    setHistory([...history, [...newSquares]]);
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]);
     setXIsNext(!xIsNext);
   }
 
-  function jumpTo(move) {
+  function jumpTo(nextMove) {
     // TODO
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = `Go to move #${move}`;
+      description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
@@ -2191,8 +2172,28 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
-    </>
+    </div>
   );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
 ```
 
@@ -2244,13 +2245,13 @@ body {
 
 </Sandpack>
 
-As you iterate through `history` array, the `squares` variable goes through each element of `history`, and `index` goes through each array index: 0, 1, 2, …. (In most cases, you'd need the actual array elements, but in this case you don't use `squares`.)
+As you iterate through `history` array inside the function you passed to `map`, the `squares` argument goes through each element of `history`, and the `move` argument goes through each array index: `0`, `1`, `2`, …. (In most cases, you'd need the actual array elements, but in this case you don't use `squares` to render a list of moves.)
 
-For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a function called `this.jumpTo()` (that you haven't defined yet).
+For each move in the tic-tac-toe game's history, you create a list item `<li>` which contains a button `<button>`. The button has a `onClick` handler which calls a function called `jumpTo` (that you haven't implemented yet).
 
-For now, you should see a list of the moves that have occurred in the game and a warning in the developer tools console.
+For now, you should see a list of the moves that occurred in the game and an error in the developer tools console.
 
-Let's discuss what the "key" warning means.
+Let's discuss what the "key" error means.
 
 ### Picking a key {/*picking-a-key*/}
 
@@ -2287,7 +2288,7 @@ Keys tell React about the identity of each component, which allows React to main
 
 **It's strongly recommended that you assign proper keys whenever you build dynamic lists.** If you don't have an appropriate key, you may want to consider restructuring your data so that you do.
 
-If no key is specified, React will present a warning and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the warning but has the same problems as array indices and is not recommended in most cases.
+If no key is specified, React will report an error and use the array index as a key by default. Using the array index as a key is problematic when trying to re-order a list's items or inserting/removing list items. Explicitly passing `key={i}` silences the error but has the same problems as array indices and is not recommended in most cases.
 
 Keys do not need to be globally unique; they only need to be unique between components and their siblings.
 
@@ -2295,7 +2296,7 @@ Keys do not need to be globally unique; they only need to be unique between comp
 
 In the tic-tac-toe game's history, each past move has a unique ID associated with it: it's the sequential number of the move. Moves will never be re-ordered, deleted, or inserted in the middle, so it's safe to use the move index as a key.
 
-In the Game function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" warning should disappear:
+In the `Game` function, you can add the key as `<li key={move}>`, and if you reload the rendered game, React's "key" error should disappear:
 
 ```js {4}
 const moves = history.map((squares, move) => {
@@ -2313,7 +2314,7 @@ const moves = history.map((squares, move) => {
 ```js App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
@@ -2321,38 +2322,18 @@ function Square({value, onSquareClick}) {
   );
 }
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-function Board({xIsNext, squares, onPlay}) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -2364,7 +2345,7 @@ function Board({xIsNext, squares, onPlay}) {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -2390,19 +2371,19 @@ export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
   const currentSquares = history[history.length - 1];
 
-  function handlePlay(newSquares) {
-    setHistory([...history, [...newSquares]]);
+  function handlePlay(nextSquares) {
+    setHistory([...history, nextSquares]);
     setXIsNext(!xIsNext);
   }
 
-  function jumpTo(move) {
+  function jumpTo(nextMove) {
     // TODO
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = `Go to move #${move}`;
+      description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
@@ -2421,9 +2402,30 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
-    </>
+    </div>
   );
 }
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+
 ```
 
 ```css styles.css
@@ -2474,57 +2476,53 @@ body {
 
 </Sandpack>
 
-Before you implement `jumpTo`, you'll add `move` to the Game component's state to indicate which step we're currently viewing.
-
-First, define it as a new state variable, defaulting to `0`:
+Before you can implement `jumpTo`, you need the `Game` component to keep track of which step the user is currently viewing. To do this, define a new state variable called `currentMove`, defaulting to `0`:
 
 ```js {4}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [move, setMove] = useState(0);
+  const [currentMove, setCurrentMove] = useState(0);
   const currentSquares = history[history.length - 1];
   //...
 }
 ```
 
-Next, update the `jumpTo` function inside Game to update that `move`. You'll also set `xIsNext` to true if the number that we're changing `move` to is even:
+Next, update the `jumpTo` function inside `Game` to update that `currentMove`. You'll also set `xIsNext` to `true` if the number that you're changing `currentMove` to is even.
 
-```js {5-6}
+```js {4-5}
 export default function Game() {
   // ...
-
-  function jumpTo(move) {
-    setMove(move);
-    setXIsNext(move % 2 === 0);
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+    setXIsNext(nextMove % 2 === 0);
   }
-
   //...
 }
 ```
 
-You will now make two changes to the Game's `handlePlay` method which is called when you click on a square.
+You will now make two changes to the `Game`'s `handlePlay` function which is called when you click on a square.
 
-- If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point, so you'll call `history.slice(0, move + 1)` before `.concat()` to make sure we're only keeping that portion of the old history.
-- Each time a move is made, you need to update `move` to point to the latest history entry.
+- If you "go back in time" and then make a new move from that point, you only want to keep the history up to that point. Instead of adding `nextSquares` after all items (`...` spread syntax) in `history`, you'll add it after all items in `history.slice(0, currentMove + 1)` so that you're only keeping that portion of the old history.
+- Each time a move is made, you need to update `currentMove` to point to the latest history entry.
 
 ```js {2-4}
-function handlePlay(newSquares) {
-  const newHistory = history.slice(0, move + 1).concat([newSquares]);
-  setHistory(newHistory);
-  setMove(newHistory.length - 1);
+function handlePlay(nextSquares) {
+  const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+  setHistory(nextHistory);
+  setCurrentMove(nextHistory.length - 1);
   setXIsNext(!xIsNext);
 }
 ```
 
-Finally, you will modify the Game component to render the currently selected move, instead of always rendering the final move:
+Finally, you will modify the `Game` component to render the currently selected move, instead of always rendering the final move:
 
 ```js {5}
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [move, setMove] = useState(0);
-  const currentSquares = history[move];
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove];
 
   // ...
 }
@@ -2545,38 +2543,18 @@ function Square({value, onSquareClick}) {
   );
 }
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-function Board({xIsNext, squares, onPlay}) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -2588,7 +2566,7 @@ function Board({xIsNext, squares, onPlay}) {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -2612,25 +2590,25 @@ function Board({xIsNext, squares, onPlay}) {
 export default function Game() {
   const [xIsNext, setXIsNext] = useState(true);
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [move, setMove] = useState(0);
-  const currentSquares = history[move];
+  const [currentMove, setCurrentMove] = useState(0);
+  const currentSquares = history[currentMove];
 
-  function handlePlay(newSquares) {
-    const newHistory = history.slice(0, move + 1).concat([newSquares]);
-    setHistory(newHistory);
-    setMove(newHistory.length - 1);
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
     setXIsNext(!xIsNext);
   }
 
-  function jumpTo(move) {
-    setMove(move);
-    setXIsNext(move % 2 === 0);
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
+    setXIsNext(nextMove % 2 === 0);
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = `Go to move #${move}`;
+      description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
@@ -2649,8 +2627,28 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
-    </>
+    </div>
   );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
 ```
 
@@ -2703,31 +2701,31 @@ body {
 
 ### Final cleanup {/*final-cleanup*/}
 
-If you're eagle-eyed, you may notice that `xIsNext === true` when `move` is even and `xIsNext === false` when `move` is odd. In other words, if you know the value of `move`, then you can always figure out what `xIsNext` should be.
+If you look at the code very closely, you may notice that `xIsNext === true` when `currentMove` is even and `xIsNext === false` when `currentMove` is odd. In other words, if you know the value of `currentMove`, then you can always figure out what `xIsNext` should be.
 
-There's no reason for us to store both of these in state. It's a best practice to avoid redundant pieces of state, because simplifying what you store in state helps reduce bugs and make your code easier to understand. Let's change Game so that it no longer stores `xIsNext` as a separate state variable and instead figures it out based on the current value of `move`:
+There's no reason for you to store both of these in state. In fact, always try to avoid redundant state. Simplifying what you store in state helps reduce bugs and make your code easier to understand. Change `Game` so that it no longer stores `xIsNext` as a separate state variable and instead figures it out based on the `currentMove`:
 
-```js {4,15}
+```js {4,11,15}
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [move, setMove] = useState(0);
-  const xIsNext = move % 2 === 0;
-  const currentSquares = history[move];
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
-  function handlePlay(newSquares) {
-    const newHistory = history.slice(0, move + 1).concat([newSquares]);
-    setHistory(newHistory);
-    setMove(newHistory.length - 1);
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(move) {
-    setMove(move);
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
   }
   // ...
 }
 ```
 
-You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `move`, even if you make an error while coding the components.
+You no longer need the `xIsNext` state declaration or the calls to `setXIsNext`. Now, there's no chance for `xIsNext` to get out of sync with `currentMove`, even if you make a mistake while coding the components.
 
 ### Wrapping up {/*wrapping-up*/}
 
@@ -2747,7 +2745,7 @@ Check out the final result here:
 ```js App.js
 import { useState } from 'react';
 
-function Square({value, onSquareClick}) {
+function Square({ value, onSquareClick }) {
   return (
     <button className="square" onClick={onSquareClick}>
       {value}
@@ -2755,38 +2753,18 @@ function Square({value, onSquareClick}) {
   );
 }
 
-function calculateWinner(squares) {
-  const lines = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
-  ];
-  for (let i = 0; i < lines.length; i++) {
-    const [a, b, c] = lines[i];
-    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
-    }
-  }
-  return null;
-}
-
-function Board({xIsNext, squares, onPlay}) {
+function Board({ xIsNext, squares, onPlay }) {
   function handleClick(i) {
     if (calculateWinner(squares) || squares[i]) {
       return;
     }
-    const newSquares = squares.slice();
+    const nextSquares = squares.slice();
     if (xIsNext) {
-      newSquares[i] = 'X';
+      nextSquares[i] = 'X';
     } else {
-      newSquares[i] = 'O';
+      nextSquares[i] = 'O';
     }
-    onPlay(newSquares);
+    onPlay(nextSquares);
   }
 
   const winner = calculateWinner(squares);
@@ -2798,7 +2776,7 @@ function Board({xIsNext, squares, onPlay}) {
   }
 
   return (
-    <div>
+    <>
       <div className="status">{status}</div>
       <div className="board-row">
         <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
@@ -2821,24 +2799,24 @@ function Board({xIsNext, squares, onPlay}) {
 
 export default function Game() {
   const [history, setHistory] = useState([Array(9).fill(null)]);
-  const [move, setMove] = useState(0);
-  const xIsNext = move % 2 === 0;
-  const currentSquares = history[move];
+  const [currentMove, setCurrentMove] = useState(0);
+  const xIsNext = currentMove % 2 === 0;
+  const currentSquares = history[currentMove];
 
-  function handlePlay(newSquares) {
-    const newHistory = history.slice(0, move + 1).concat([newSquares]);
-    setHistory(newHistory);
-    setMove(newHistory.length - 1);
+  function handlePlay(nextSquares) {
+    const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    setHistory(nextHistory);
+    setCurrentMove(nextHistory.length - 1);
   }
 
-  function jumpTo(move) {
-    setMove(move);
+  function jumpTo(nextMove) {
+    setCurrentMove(nextMove);
   }
 
   const moves = history.map((squares, move) => {
     let description;
     if (move > 0) {
-      description = `Go to move #${move}`;
+      description = 'Go to move #' + move;
     } else {
       description = 'Go to game start';
     }
@@ -2857,8 +2835,28 @@ export default function Game() {
       <div className="game-info">
         <ol>{moves}</ol>
       </div>
-    </>
+    </div>
   );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
 }
 ```
 
@@ -2911,9 +2909,9 @@ body {
 
 If you have extra time or want to practice your new React skills, here are some ideas for improvements that you could make to the tic-tac-toe game, listed in order of increasing difficulty:
 
-1. Rewrite Board to use two loops to make the squares instead of hardcoding them.
+1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
 1. Add a toggle button that lets you sort the moves in either ascending or descending order.
 1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
 1. Display the location for each move in the format (col, row) in the move history list.
 
-Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how React concepts work when build an app's UI.
+Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.

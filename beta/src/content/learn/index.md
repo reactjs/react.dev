@@ -536,4 +536,4 @@ button {
 
 By now, you know the basics of how to write React code!
 
-Head to [Thinking in React](/learn/thinking-in-react) to see how it feels to build a UI with React in practice.
+Check out the [Tutorial](/learn/tutorial-tic-tac-toe) to build a tiny game with React and see how these concepts apply in practice.

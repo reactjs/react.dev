@@ -35,7 +35,7 @@
           "routes": [
             {
               "title": "Tutorial: Tic-Tac-Toe",
-              "path": "/learn/tic-tac-toe-tutorial"
+              "path": "/learn/tutorial-tic-tac-toe"
             },
             {
               "title": "Thinking in React",

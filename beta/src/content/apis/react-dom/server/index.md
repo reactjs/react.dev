@@ -8,8 +8,6 @@ The `react-dom/server` APIs let you render React components to HTML on the serve
 
 </Intro>
 
-<InlineToc />
-
 ---
 
 ## React DOM Server APIs for Node.js Streams {/*react-dom-server-apis-for-nodejs-streams*/}

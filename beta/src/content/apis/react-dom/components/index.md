@@ -8,8 +8,6 @@ React supports all of the browser built-in [HTML](https://developer.mozilla.org/
 
 </Intro>
 
-<InlineToc />
-
 ---
 
 ## Common components {/*common-components*/}

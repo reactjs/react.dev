@@ -8,8 +8,6 @@ The `react-dom` package contains methods that are only supported for the web app
 
 </Intro>
 
-<InlineToc />
-
 ---
 
 ## React DOM APIs {/*react-dom-apis*/}

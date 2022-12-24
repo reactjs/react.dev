@@ -8,8 +8,6 @@ These APIs are exported from the `react` package, but they are not recommended f
 
 </Intro>
 
-<InlineToc />
-
 ---
 
 ## Legacy React APIs {/*legacy-react-apis*/}

@@ -1341,7 +1341,7 @@ The DOM `<button>` element's `onClick` attribute has a special meaning to React 
 
 Note how in `handleClick`, you call `.slice()` to create a copy of the `squares` array instead of modifying the existing array. To explain why, we need to discuss immutability and why immutability is important to learn.
 
-There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what is would look like if you mutated the `squares` array:
+There are generally two approaches to changing data. The first approach is to _mutate_ the data by directly changing the data's values. The second approach is to replace the data with a new copy which has the desired changes. Here is what it would look like if you mutated the `squares` array:
 
 ```jsx
 const squares = [null, null, null, null, null, null, null, null, null];

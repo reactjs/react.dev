@@ -8,8 +8,6 @@ The `react-dom` package contains methods that are only supported for the web app
 
 </Intro>
 
-<InlineToc />
-
 ---
 
 ## React DOM APIs {/*react-dom-apis*/}
@@ -34,7 +32,7 @@ The `react-dom` package provides two additional entry points:
 
 <Deprecated>
 
-This API will be removed in a future major version of React.
+These APIs will be removed in a future major version of React.
 
 </Deprecated>
 

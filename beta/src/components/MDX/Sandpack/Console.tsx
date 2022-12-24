@@ -109,6 +109,9 @@ export const SandpackConsole = ({visible}: {visible: boolean}) => {
         setLogs((prev) => {
           const newLogs = message.log
             .filter((consoleData) => {
+              if (!consoleData.method) {
+                return false;
+              }
               if (
                 typeof consoleData.data[0] === 'string' &&
                 consoleData.data[0].indexOf('The above error occurred') !== -1

@@ -8,8 +8,6 @@ The `react-dom/client` APIs let you render React components on the client (in th
 
 </Intro>
 
-<InlineToc />
-
 ---
 
 ## React DOM Client APIs {/*react-dom-client-apis*/}

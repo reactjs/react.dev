@@ -41,13 +41,11 @@
             },
             {
               "title": "useInsertionEffect",
-              "path": "/apis/react/useInsertionEffect",
-              "wip": true
+              "path": "/apis/react/useInsertionEffect"
             },
             {
               "title": "useLayoutEffect",
-              "path": "/apis/react/useLayoutEffect",
-              "wip": true
+              "path": "/apis/react/useLayoutEffect"
             },
             {
               "title": "useMemo",
@@ -76,8 +74,8 @@
           ]
         },
         {
-          "title": "react: Other APIs",
-          "path": "/apis/react/other",
+          "title": "react: Components",
+          "path": "/apis/react/components",
           "routes": [
             {
               "title": "<Fragment> (<>)",
@@ -85,18 +83,22 @@
             },
             {
               "title": "<Profiler>",
-              "path": "/apis/react/Profiler",
-              "wip": true
+              "path": "/apis/react/Profiler"
             },
             {
               "title": "<StrictMode>",
-              "path": "/apis/react/StrictMode",
-              "wip": true
+              "path": "/apis/react/StrictMode"
             },
             {
               "title": "<Suspense>",
               "path": "/apis/react/Suspense"
-            },
+            }
+          ]
+        },
+        {
+          "title": "react: APIs",
+          "path": "/apis/react/apis",
+          "routes": [
             {
               "title": "createContext",
               "path": "/apis/react/createContext"
@@ -115,19 +117,48 @@
             },
             {
               "title": "startTransition",
-              "path": "/apis/react/startTransition",
-              "wip": true
+              "path": "/apis/react/startTransition"
             }
           ]
         },
         {
-          "title": "react-dom",
+          "title": "react-dom: Components",
+          "path": "/apis/react-dom/components",
+          "hasSeparator": true,
+          "routes": [
+            {
+              "title": "Common (e.g. <div>)",
+              "path": "/apis/react-dom/components/common"
+            },
+            {
+              "title": "<input>",
+              "path": "/apis/react-dom/components/input"
+            },
+            {
+              "title": "<option>",
+              "path": "/apis/react-dom/components/option"
+            },
+            {
+              "title": "<progress>",
+              "path": "/apis/react-dom/components/progress"
+            },
+            {
+              "title": "<select>",
+              "path": "/apis/react-dom/components/select"
+            },
+            {
+              "title": "<textarea>",
+              "path": "/apis/react-dom/components/textarea"
+            }
+          ]
+        },
+        {
+          "title": "react-dom: APIs",
           "path": "/apis/react-dom",
           "routes": [
             {
               "title": "createPortal",
-              "path": "/apis/react-dom/createPortal",
-              "wip": true
+              "path": "/apis/react-dom/createPortal"
             },
             {
               "title": "flushSync",
@@ -135,8 +166,7 @@
             },
             {
               "title": "findDOMNode",
-              "path": "/apis/react-dom/findDOMNode",
-              "wip": true
+              "path": "/apis/react-dom/findDOMNode"
             },
             {
               "title": "hydrate",

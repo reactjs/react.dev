@@ -1479,7 +1479,7 @@ function TabContainer() {
 
 #### Parameters {/*starttransition-parameters*/}
 
-* `fn`: A function that updates some state by calling one or more [`set` functions.](/apis/react/useState#setstate) React will immediately call `fn` with no parameters and keep track of which state updates have been scheduled. It will treat all of the updates scheduled by `fn` as transitions: they will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
+* `scope`: A function that updates some state by calling one or more [`set` functions.](/apis/react/useState#setstate) React immediately calls `scope` with no parameters and marks all state updates scheduled synchronously during the `scope` function call as transitions. They will be [non-blocking](#marking-a-state-update-as-a-non-blocking-transition) and [will not display unwanted loading indicators.](#preventing-unwanted-loading-indicators)
 
 #### Returns {/*starttransition-returns*/}
 
@@ -1489,7 +1489,7 @@ function TabContainer() {
 
 * `useTransition` is a Hook, so it can only be called inside components or custom Hooks. If you need to start a transition somewhere else (for example, from a data library), call the standalone [`startTransition`](/apis/react/startTransition) instead.
 
-* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/apis/react/usedeferredvalue) instead.
+* You can wrap an update into a transition only if you have access to the `set` function of that state. If you want to start a transition in response to some prop or a custom Hook return value, try [`useDeferredValue`](/apis/react/useDeferredValue) instead.
 
 * The function you pass to `startTransition` must be synchronous. React immediately executes this function, marking all state updates that happen while it executes as transitions. If you try to perform more state updates later (for example, in a timeout), they won't be marked as transitions.
 
@@ -1610,9 +1610,9 @@ console.log(3);
 
 let isInsideTransition = false;
 
-function startTransition(fn) {
+function startTransition(scope) {
   isInsideTransition = true;
-  fn();
+  scope();
   isInsideTransition = false;
 }
 

@@ -10,7 +10,7 @@ function Breadcrumbs() {
   const {breadcrumbs} = useRouteMeta();
   if (!breadcrumbs) return null;
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {breadcrumbs.map(
         (crumb, i) =>
           crumb.path && (

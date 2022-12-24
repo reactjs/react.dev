@@ -74,7 +74,7 @@ function SandpackRoot(props: SandpackProps) {
 
   files['/styles.css'] = {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: true,
+    hidden: !files['/styles.css']?.visible,
   };
 
   return (

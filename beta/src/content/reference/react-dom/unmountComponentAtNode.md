@@ -4,9 +4,9 @@ title: unmountComponentAtNode
 
 <Deprecated>
 
-In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
-
 This API will be removed in a future major version of React.
+
+In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
 
 </Deprecated>
 
@@ -27,14 +27,6 @@ unmountComponentAtNode(domNode)
 ## Reference {/*reference*/}
 
 ### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
-
-<Deprecated>
-
-In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/reference/react-dom/client/createRoot#root-unmount).
-
-This API will be removed in a future major version of React.
-
-</Deprecated>
 
 Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
 

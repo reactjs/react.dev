@@ -47,6 +47,8 @@ A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams)
 
 * The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
 
+---
+
 ## Usage {/*usage*/}
 
 ### Rendering a React tree as static HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
@@ -72,6 +74,3 @@ This method renders **non-interactive HTML that cannot be hydrated.** This is us
 Interactive apps should use [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) on the server and [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) on the client.
 
 </Pitfall>
-
----
-

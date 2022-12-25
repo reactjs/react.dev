@@ -26,12 +26,6 @@ useInsertionEffect(setup, dependencies?)
 
 ### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
 
-<Pitfall>
-
-`useInsertionEffect` is aimed at CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/reference/react/useEffect) or [`useLayoutEffect`](/reference/react/useLayoutEffect) instead.
-
-</Pitfall>
-
 Call `useInsertionEffect` to insert the styles before any DOM mutations:
 
 ```js

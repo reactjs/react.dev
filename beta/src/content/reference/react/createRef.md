@@ -40,12 +40,6 @@ class MyComponent extends Component {
   // ...
 ```
 
-<Pitfall>
-
-`createRef` is mostly used for [class components.](/reference/react/Component) Function components typically rely on [`useRef`](/reference/react/useRef) instead.
-
-</Pitfall>
-
 #### Parameters {/*parameters*/}
 
 `createRef` takes no parameters.

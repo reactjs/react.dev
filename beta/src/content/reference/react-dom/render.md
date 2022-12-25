@@ -4,9 +4,9 @@ title: render
 
 <Deprecated>
 
-In React 18, `render` was replaced by [`createRoot`.](/reference/react-dom/client/createRoot) Using `render` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
-
 This API will be removed in a future major version of React.
+
+In React 18, `render` was replaced by [`createRoot`.](/reference/react-dom/client/createRoot) Using `render` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
 
 </Deprecated>
 
@@ -27,14 +27,6 @@ render(reactNode, domNode, callback?)
 ## Reference {/*reference*/}
 
 ### `render(reactNode, domNode, callback?)` {/*render*/}
-
-<Deprecated>
-
-In React 18, `render` was replaced by [`createRoot`.](/reference/react-dom/client/createRoot) Using `render` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
-
-This API will be removed in a future major version of React.
-
-</Deprecated>
 
 Call `render` to display a React component inside a browser DOM element.
 

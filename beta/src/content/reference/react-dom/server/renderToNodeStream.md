@@ -26,12 +26,6 @@ const stream = renderToNodeStream(reactNode)
 
 ### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
 
-<Deprecated>
-
-This API will be removed in a future major version of React. Use [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) instead.
-
-</Deprecated>
-
 On the server, call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
 
 ```js
@@ -62,12 +56,6 @@ A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams)
 ## Usage {/*usage*/}
 
 ### Rendering a React tree as HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. Use [`renderToPipeableStream`](/reference/react-dom/server/renderToPipeableStream) instead.
-
-</Deprecated>
 
 Call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
 

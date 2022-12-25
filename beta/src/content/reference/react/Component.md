@@ -28,12 +28,6 @@ class Greeting extends Component {
 
 ## Reference {/*reference*/}
 
-<Pitfall>
-
-We recommend to define components as functions instead of classes. [See how to migrate.](#alternatives)
-
-</Pitfall>
-
 ### `Component` {/*component*/}
 
 To define a React component as a class, extend the built-in `Component` class and define a [`render` method:](#render)

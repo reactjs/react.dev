@@ -26,12 +26,6 @@ const domNode = findDOMNode(componentInstance)
 
 ### `findDOMNode(componentInstance)` {/*finddomnode*/}
 
-<Deprecated>
-
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
-
-</Deprecated>
-
 Call `findDOMNode` to find the browser DOM node for a given React [class component](/reference/react/Component) instance.
 
 ```js
@@ -64,12 +58,6 @@ const domNode = findDOMNode(componentInstance);
 ## Usage {/*usage*/}
 
 ### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
-
-</Deprecated>
 
 Call `findDOMNode` with a [class component](/reference/react/Component) instance (usually, `this`) to find the DOM node it has rendered.
 

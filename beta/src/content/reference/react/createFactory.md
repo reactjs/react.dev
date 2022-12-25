@@ -26,12 +26,6 @@ const factory = createFactory(type)
 
 ### `createFactory(type)` {/*createfactory*/}
 
-<Deprecated>
-
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
-
-</Deprecated>
-
 Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
 
 ```js
@@ -65,12 +59,6 @@ Returns a factory function. That factory function receives a `props` object as t
 ## Usage {/*usage*/}
 
 ### Creating React elements with a factory {/*creating-react-elements-with-a-factory*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
-
-</Deprecated>
 
 Although most React projects use [JSX](/learn/writing-markup-with-jsx) to describe the user interface, JSX is not required. In the past, `createFactory` used to be one of the ways you could describe the user interface without JSX.
 

@@ -22,6 +22,46 @@ const factory = createFactory(type)
 
 ---
 
+## Reference {/*reference*/}
+
+### `createFactory(type)` {/*createfactory*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+
+</Deprecated>
+
+Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
+
+```js
+import { createFactory } from 'react';
+
+const button = createFactory('button');
+```
+
+Then you can use it to create React elements without JSX:
+
+```js
+export default function App() {
+  return button({
+    onClick: () => {
+      alert('Clicked!')
+    }
+  }, 'Click me');
+}
+```
+
+#### Parameters {/*parameters*/}
+
+* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/apis/react/Fragment)).
+
+#### Returns {/*returns*/}
+
+Returns a factory function. That factory function receives a `props` object as the first argument, followed by a list of `...children` arguments, and returns a React element with the given `type`, `props` and `children`.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Creating React elements with a factory {/*creating-react-elements-with-a-factory*/}
@@ -199,43 +239,3 @@ function Heading({ isSubheading, ...props }) {
 Otherwise React will interpret `<type>` as a built-in HTML tag because it is lowercase.
 
 </Pitfall>
-
----
-
-## Reference {/*reference*/}
-
-### `createFactory(type)` {/*createfactory*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
-
-</Deprecated>
-
-Call `createFactory(type)` to create a factory function which produces React elements of a given `type`.
-
-```js
-import { createFactory } from 'react';
-
-const button = createFactory('button');
-```
-
-Then you can use it to create React elements without JSX:
-
-```js
-export default function App() {
-  return button({
-    onClick: () => {
-      alert('Clicked!')
-    }
-  }, 'Click me');
-}
-```
-
-#### Parameters {/*parameters*/}
-
-* `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/apis/react/Fragment)).
-
-#### Returns {/*returns*/}
-
-Returns a factory function. That factory function receives a `props` object as the first argument, followed by a list of `...children` arguments, and returns a React element with the given `type`, `props` and `children`.

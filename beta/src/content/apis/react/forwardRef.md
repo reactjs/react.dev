@@ -16,6 +16,63 @@ const SomeComponent = forwardRef(render)
 
 ---
 
+## Reference {/*reference*/}
+
+### `forwardRef(render)` {/*forwardref*/}
+
+Call `forwardRef()` to let your component receive a ref and forward it to a child component:
+
+```js
+import { forwardRef } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  // ...
+});
+
+```
+
+#### Parameters {/*parameters*/}
+
+* `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
+
+#### Returns {/*returns*/}
+
+`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
+
+#### Caveats {/*caveats*/}
+
+* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
+
+
+---
+
+### `render` function {/*render-function*/}
+
+`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
+
+```js
+const MyInput = forwardRef(function MyInput(props, ref) {
+  return (
+    <label>
+      {props.label}
+      <input ref={ref} />
+    </label>
+  );
+});
+```
+
+#### Parameters {/*render-parameters*/}
+
+* `props`: The props passed by the parent component.
+
+* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/apis/react/useImperativeHandle)
+
+#### Returns {/*render-returns*/}
+
+`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Exposing a DOM node to the parent component {/*exposing-a-dom-node-to-the-parent-component*/}
@@ -414,63 +471,6 @@ input {
 **If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
 
 </Pitfall>
-
----
-
-## Reference {/*reference*/}
-
-### `forwardRef(render)` {/*forwardref*/}
-
-Call `forwardRef()` to let your component receive a ref and forward it to a child component:
-
-```js
-import { forwardRef } from 'react';
-
-const MyInput = forwardRef(function MyInput(props, ref) {
-  // ...
-});
-
-```
-
-#### Parameters {/*parameters*/}
-
-* `render`: The render function for your component. React calls this function with the props and `ref` that your component received from its parent. The JSX you return will be the output of your component.
-
-#### Returns {/*returns*/}
-
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, a component returned by `forwardRef` is also able to receive a `ref` prop.
-
-#### Caveats {/*caveats*/}
-
-* In Strict Mode, React will **call your render function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. If your render function is pure (as it should be), this should not affect the logic of your component. The result from one of the calls will be ignored.
-
-
----
-
-### `render` function {/*render-function*/}
-
-`forwardRef` accepts a render function as an argument. React calls this function with `props` and `ref`:
-
-```js
-const MyInput = forwardRef(function MyInput(props, ref) {
-  return (
-    <label>
-      {props.label}
-      <input ref={ref} />
-    </label>
-  );
-});
-```
-
-#### Parameters {/*render-parameters*/}
-
-* `props`: The props passed by the parent component.
-
-* `ref`:  The `ref` attribute passed by the parent component. The `ref` can be an object or a function. If the parent component has not passed a ref, it will be `null`. You should either pass the `ref` you receive to another component, or pass it to [`useImperativeHandle`.](/apis/react/useImperativeHandle)
-
-#### Returns {/*render-returns*/}
-
-`forwardRef` returns a React component that you can render in JSX. Unlike React components defined as plain functions, the component returned by `forwardRef` is able to take a `ref` prop.
 
 ---
 

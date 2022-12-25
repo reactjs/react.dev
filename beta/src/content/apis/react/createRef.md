@@ -25,6 +25,45 @@ class MyInput extends Component {
 
 ---
 
+## Reference {/*reference*/}
+
+### `createRef()` {/*createref*/}
+
+Call `createRef` to declare a [ref](/learn/referencing-values-with-refs) inside a [class component.](/apis/react/Component)
+
+```js
+import { createRef, Component } from 'react';
+
+class MyComponent extends Component {
+  intervalRef = createRef();
+  inputRef = createRef();
+  // ...
+```
+
+<Pitfall>
+
+`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/apis/react/useRef) instead.
+
+</Pitfall>
+
+#### Parameters {/*parameters*/}
+
+`createRef` takes no parameters.
+
+#### Returns {/*returns*/}
+
+`createRef` returns an object with a single property:
+
+* `current`: Initially, it's set to the `null`. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
+
+#### Caveats {/*caveats*/}
+
+* `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
+* In a function component, you probably want [`useRef`](/apis/react/useRef) instead which always returns the same object.
+* `const ref = useRef()` is equivalent to `const [ref, _] = useState(() => createRef(null))`.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Declaring a ref in a class component {/*declaring-a-ref-in-a-class-component*/}
@@ -137,44 +176,3 @@ export default function Form() {
 ```
 
 </Sandpack>
-
----
-
-## Reference {/*reference*/}
-
-### `createRef()` {/*createref*/}
-
-Call `createRef` to declare a [ref](/learn/referencing-values-with-refs) inside a [class component.](/apis/react/Component)
-
-```js
-import { createRef, Component } from 'react';
-
-class MyComponent extends Component {
-  intervalRef = createRef();
-  inputRef = createRef();
-  // ...
-```
-
-<Pitfall>
-
-`createRef` is mostly used for [class components.](/apis/react/Component) Function components typically rely on [`useRef`](/apis/react/useRef) instead.
-
-</Pitfall>
-
-#### Parameters {/*parameters*/}
-
-`createRef` takes no parameters.
-
-#### Returns {/*returns*/}
-
-`createRef` returns an object with a single property:
-
-* `current`: Initially, it's set to the `null`. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
-
-#### Caveats {/*caveats*/}
-
-* `createRef` always returns a *different* object. It's equivalent to writing `{ current: null }` yourself.
-* In a function component, you probably want [`useRef`](/apis/react/useRef) instead which always returns the same object.
-* `const ref = useRef()` is equivalent to `const [ref, _] = useState(() => createRef(null))`.
-
-

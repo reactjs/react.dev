@@ -16,6 +16,27 @@ The [built-in browser `<progress>` component](https://developer.mozilla.org/en-U
 
 ---
 
+## Reference {/*reference*/}
+
+### `<progress>` {/*progress*/}
+
+To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
+
+```js
+<progress value={0.5} />
+```
+
+#### Props {/*props*/}
+
+`<progress>` supports all [common element props.](/apis/react-dom/components/common#props)
+
+Additionally, `<progress>` supports these props:
+
+* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): A number. Specifies the maximum `value`. Defaults to `1`.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): A number between `0` and `max`, or `null` for intermedinate progress. Specifies how much was done.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Controlling a progress indicator {/*controlling-a-progress-indicator*/}
@@ -46,25 +67,3 @@ progress { display: block; }
 ```
 
 </Sandpack>
-
----
-
-## Reference {/*reference*/}
-
-### `<progress>` {/*progress*/}
-
-To display a progress indicator, render the [built-in browser `<progress>`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress) component.
-
-```js
-<progress value={0.5} />
-```
-
-#### Props {/*props*/}
-
-`<progress>` supports all [common element props.](/apis/react-dom/components/common#props)
-
-Additionally, `<progress>` supports these props:
-
-* [`max`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-max): A number. Specifies the maximum `value`. Defaults to `1`.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/progress#attr-value): A number between `0` and `max`, or `null` for intermedinate progress. Specifies how much was done.
-

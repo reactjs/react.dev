@@ -16,6 +16,44 @@ const ref = useRef(initialValue)
 
 ---
 
+## Reference {/*reference*/}
+
+### `useRef(initialValue)` {/*useref*/}
+
+Call `useRef` at the top level of your component to declare a [ref.](/learn/referencing-values-with-refs)
+
+```js
+import { useRef } from 'react';
+
+function MyComponent() {
+  const intervalRef = useRef(0);
+  const inputRef = useRef(null);
+  // ...
+```
+
+See examples of [referencing values](#examples-value) and [DOM manipulation.](#examples-dom)
+
+#### Parameters {/*parameters*/}
+
+* `initialValue`: The value you want the ref object's `current` property to be initially. It can be a value of any type. This argument is ignored after the initial render.
+
+#### Returns {/*returns*/}
+
+`useRef` returns an object with a single property:
+
+* `current`: Initially, it's set to the `initialValue` you have passed. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
+
+On the next renders, `useRef` will return the same object.
+
+#### Caveats {/*caveats*/}
+
+* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
+* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
+* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
+* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. This means that each ref object will be created twice, and one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the logic of your component.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Referencing a value with a ref {/*referencing-a-value-with-a-ref*/}
@@ -497,44 +535,6 @@ function Video() {
 Here, the `playerRef` itself is nullable. However, you should be able to convince your type checker that there is no case in which `getPlayer()` returns `null`. Then use `getPlayer()` in your event handlers.
 
 </DeepDive>
-
----
-
-## Reference {/*reference*/}
-
-### `useRef(initialValue)` {/*useref*/}
-
-Call `useRef` at the top level of your component to declare a [ref.](/learn/referencing-values-with-refs)
-
-```js
-import { useRef } from 'react';
-
-function MyComponent() {
-  const intervalRef = useRef(0);
-  const inputRef = useRef(null);
-  // ...
-```
-
-See examples of [referencing values](#examples-value) and [DOM manipulation.](#examples-dom)
-
-#### Parameters {/*parameters*/}
-
-* `initialValue`: The value you want the ref object's `current` property to be initially. It can be a value of any type. This argument is ignored after the initial render.
-
-#### Returns {/*returns*/}
-
-`useRef` returns an object with a single property:
-
-* `current`: Initially, it's set to the `initialValue` you have passed. You can later set it to something else. If you pass the ref object to React as a `ref` attribute to a JSX node, React will set its `current` property.
-
-On the next renders, `useRef` will return the same object.
-
-#### Caveats {/*caveats*/}
-
-* You can mutate the `ref.current` property. Unlike state, it is mutable. However, if it holds an object that is used for rendering (for example, a piece of your state), then you shouldn't mutate that object.
-* When you change the `ref.current` property, React does not re-render your component. React is not aware of when you change it because a ref is a plain JavaScript object.
-* Do not write _or read_ `ref.current` during rendering, except for [initialization.](#avoiding-recreating-the-ref-contents) This makes your component's behavior unpredictable.
-* In Strict Mode, React will **call your component function twice** in order to [help you find accidental impurities.](#my-initializer-or-updater-function-runs-twice) This is development-only behavior and does not affect production. This means that each ref object will be created twice, and one of the versions will be discarded. If your component function is pure (as it should be), this should not affect the logic of your component.
 
 ---
 

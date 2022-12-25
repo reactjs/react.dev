@@ -16,34 +16,6 @@ const stream = renderToStaticNodeStream(reactNode)
 
 ---
 
-## Usage {/*usage*/}
-
-### Rendering a React tree as static HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
-
-Call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
-
-```js {5-6}
-import { renderToStaticNodeStream } from 'react-dom/server';
-
-// The route handler syntax depends on your backend framework
-app.use('/', (request, response) => {
-  const stream = renderToStaticNodeStream(<Page />);
-  stream.pipe(response);
-});
-```
-
-The stream will produce the initial non-interactive HTML output of your React components.
-
-<Pitfall>
-
-This method renders **non-interactive HTML that cannot be hydrated.** This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
-
-Interactive apps should use [`renderToPipeableStream`](/apis/react-dom/server/renderToPipeableStream) on the server and [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) on the client.
-
-</Pitfall>
-
----
-
 ## Reference {/*reference*/}
 
 ### `renderToStaticNodeStream(reactNode)` {/*rendertostaticnodestream*/}
@@ -74,4 +46,32 @@ A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams)
 * As of React 18, this method buffers all of its output, so it doesn't actually provide any streaming benefits.
 
 * The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
+
+## Usage {/*usage*/}
+
+### Rendering a React tree as static HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-static-html-to-a-nodejs-readable-stream*/}
+
+Call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+
+```js {5-6}
+import { renderToStaticNodeStream } from 'react-dom/server';
+
+// The route handler syntax depends on your backend framework
+app.use('/', (request, response) => {
+  const stream = renderToStaticNodeStream(<Page />);
+  stream.pipe(response);
+});
+```
+
+The stream will produce the initial non-interactive HTML output of your React components.
+
+<Pitfall>
+
+This method renders **non-interactive HTML that cannot be hydrated.** This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+
+Interactive apps should use [`renderToPipeableStream`](/apis/react-dom/server/renderToPipeableStream) on the server and [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) on the client.
+
+</Pitfall>
+
+---
 

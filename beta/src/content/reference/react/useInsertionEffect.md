@@ -46,7 +46,7 @@ function useCSS(rule) {
 ```
 
 
-[See more examples below.](#examples-connecting)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

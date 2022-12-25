@@ -30,7 +30,7 @@ function MyComponent() {
   // ...
 ```
 
-[See more examples below.](#examples-basic)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

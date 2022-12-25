@@ -34,7 +34,7 @@ function MyComponent() {
 
 The convention is to name state variables like `[something, setSomething]` using [array destructuring.](https://javascript.info/destructuring-assignment)
 
-[See more examples below.](#examples-basic)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

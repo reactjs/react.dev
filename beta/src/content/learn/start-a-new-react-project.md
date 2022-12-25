@@ -66,6 +66,7 @@ The [Next.js Foundations](https://nextjs.org/learn/foundations/about-nextjs) tut
 * [Gatsby](https://www.gatsbyjs.org/)
 * [Remix](https://remix.run/)
 * [Razzle](https://razzlejs.org/)
+* [Meteor.js](https://meteor.com/)
 
 ## Custom toolchains {/*custom-toolchains*/}
 

@@ -22,6 +22,34 @@ const html = renderToString(reactNode)
 
 ---
 
+## Reference {/*reference*/}
+
+### `renderToString(reactNode)` {/*rendertostring*/}
+
+On the server, call `renderToString` to render your app to HTML.
+
+```js {3-4}
+const html = renderToString(<App />);
+```
+
+On the client, call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
+
+#### Parameters {/*parameters*/}
+
+* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<App />`.
+
+#### Returns {/*returns*/}
+
+An HTML string.
+
+#### Caveats {/*caveats*/}
+
+* `renderToString` has limited Suspense support. If a component suspends, `renderToString` immediately sends its fallback as HTML.
+
+* `renderToString` works in the browser, but using it in the client code is [not recommended.](#removing-rendertostring-from-the-client-code)
+
+---
+
 ## Usage {/*usage*/}
 
 ### Rendering a React tree as HTML to a string {/*rendering-a-react-tree-as-html-to-a-string*/}
@@ -91,35 +119,6 @@ console.log(div.innerHTML); // For example, "<svg>...</svg>"
 ```
 
 The [`flushSync`](/apis/react-dom/flushSync) call is necessary so that the DOM is updated before reading its [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML) property.
-
-
----
-
-## Reference {/*reference*/}
-
-### `renderToString(reactNode)` {/*rendertostring*/}
-
-On the server, call `renderToString` to render your app to HTML.
-
-```js {3-4}
-const html = renderToString(<App />);
-```
-
-On the client, call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
-
-#### Parameters {/*parameters*/}
-
-* `reactNode`: A React node you want to render to HTML. For example, a JSX node like `<App />`.
-
-#### Returns {/*returns*/}
-
-An HTML string.
-
-#### Caveats {/*caveats*/}
-
-* `renderToString` has limited Suspense support. If a component suspends, `renderToString` immediately sends its fallback as HTML.
-
-* `renderToString` works in the browser, but using it in the client code is [not recommended.](#removing-rendertostring-from-the-client-code)
 
 ---
 

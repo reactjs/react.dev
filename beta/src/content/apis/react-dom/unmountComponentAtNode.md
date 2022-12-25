@@ -24,6 +24,39 @@ unmountComponentAtNode(domNode)
 
 ---
 
+## Reference {/*reference*/}
+
+### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
+
+<Deprecated>
+
+In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/apis/react-dom/client/createRoot#root-unmount).
+
+This API will be removed in a future major version of React.
+
+</Deprecated>
+
+Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
+
+```js
+const domNode = document.getElementById('root');
+render(<App />, domNode);
+
+unmountComponentAtNode(domNode);
+```
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React component from this element.
+
+#### Returns {/*returns*/}
+
+`unmountComponentAtNode` returns `true` if a component was unmounted and `false` otherwise.
+
+---
+
 ## Usage {/*usage*/}
 
 Call `unmountComponentAtNode` to remove a <CodeStep step={1}>mounted React component</CodeStep> from a <CodeStep step={2}>browser DOM node</CodeStep> and clean up its event handlers and state.
@@ -84,36 +117,3 @@ export default function App() {
 ```
 
 </Sandpack>
-
----
-
-## Reference {/*reference*/}
-
-### `unmountComponentAtNode(domNode)` {/*unmountcomponentatnode*/}
-
-<Deprecated>
-
-In React 18, `unmountComponentAtNode` was replaced by [`root.unmount()`](/apis/react-dom/client/createRoot#root-unmount).
-
-This API will be removed in a future major version of React.
-
-</Deprecated>
-
-Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
-
-```js
-const domNode = document.getElementById('root');
-render(<App />, domNode);
-
-unmountComponentAtNode(domNode);
-```
-
-[See examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `domNode`: A [DOM element.](https://developer.mozilla.org/en-US/docs/Web/API/Element) React will remove a mounted React component from this element.
-
-#### Returns {/*returns*/}
-
-`unmountComponentAtNode` returns `true` if a component was unmounted and `false` otherwise.

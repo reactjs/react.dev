@@ -16,6 +16,49 @@ const snapshot = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?
 
 ---
 
+## Reference {/*reference*/}
+
+### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
+
+Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
+
+```js
+import { useSyncExternalStore } from 'react';
+import { todosStore } from './todoStore.js';
+
+function TodosApp() {
+  const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
+  // ...
+}
+```
+
+It returns the snapshot of the data in the store. You need to pass two functions as arguments:
+
+1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
+2. The `getSnapshot` function should read a snapshot of the data from the store.
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
+
+* `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React will re-render the component.
+
+* **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If this function is not provided, rendering the component on the server will throw an error.
+
+#### Returns {/*returns*/}
+
+The current snapshot of the store which you can use in your rendering logic.
+
+#### Caveats {/*caveats*/}
+
+* The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
+
+* If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Subscribing to an external store {/*subscribing-to-an-external-store*/}
@@ -303,49 +346,6 @@ This lets you provide the initial snapshot value which will be used before the a
 Make sure that `getServerSnapshot` returns the same exact data on the initial client render as it returned on the server. For example, if `getServerSnapshot` returned some prepopulated store content on the server, you need to transfer this content to the client. One common way to do this is to emit a `<script>` tag that sets a global like `window.MY_STORE_DATA` during server rendering, and then read from that global on the client in `getServerSnapshot`. Your external store should provide instructions on how to do that.
 
 </Note>
-
----
-
-## Reference {/*reference*/}
-
-### `useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot?)` {/*usesyncexternalstore*/}
-
-Call `useSyncExternalStore` at the top level of your component to read a value from an external data store.
-
-```js
-import { useSyncExternalStore } from 'react';
-import { todosStore } from './todoStore.js';
-
-function TodosApp() {
-  const todos = useSyncExternalStore(todosStore.subscribe, todosStore.getSnapshot);
-  // ...
-}
-```
-
-It returns the snapshot of the data in the store. You need to pass two functions as arguments:
-
-1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
-2. The `getSnapshot` function should read a snapshot of the data from the store.
-
-[See more examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `subscribe`: A function that takes a single `callback` argument and subscribes it to the store. When the store changes, it should invoke the provided `callback`. This will cause the component to re-render. The `subscribe` function should return a function that cleans up the subscription.
-
-* `getSnapshot`: A function that returns a snapshot of the data in the store that's needed by the component. While the store has not changed, repeated calls to `getSnapshot` must return the same value. If the store changes and the returned value is different (as compared by [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is)), React will re-render the component.
-
-* **optional** `getServerSnapshot`: A function that returns the initial snapshot of the data in the store. It will be used only during server rendering and during hydration of server-rendered content on the client. The server snapshot must be the same between the client and the server, and is usually serialized and passed from the server to the client. If this function is not provided, rendering the component on the server will throw an error.
-
-#### Returns {/*returns*/}
-
-The current snapshot of the store which you can use in your rendering logic.
-
-#### Caveats {/*caveats*/}
-
-* The store snapshot returned by `getSnapshot` must be immutable. If the underlying store has mutable data, return a new immutable snapshot if the data has changed. Otherwise, return a cached last snapshot.
-
-* If a different `subscribe` function is passed during a re-render, React will re-subscribe to the store using the newly passed `subscribe` function. You can prevent this by declaring `subscribe` outside the component.
 
 ---
 

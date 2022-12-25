@@ -19,6 +19,35 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 
 ---
 
+## Reference {/*reference*/}
+
+### `<option>` {/*option*/}
+
+The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) lets you render an option inside a [`<select>`](/apis/react-dom/components/select) box.
+
+```js
+<select>
+  <option value="someOption">Some option</option>
+  <option value="otherOption">Other option</option>
+</select>
+```
+
+#### Props {/*props*/}
+
+`<option>` supports all [common element props.](/apis/react-dom/components/common#props)
+
+Additionally, `<option>` supports these props:
+
+* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
+* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
+* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/apis/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
+
+#### Caveats {/*caveats*/}
+
+* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/apis/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/apis/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select box.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Displaying a select box with options {/*displaying-a-select-box-with-options*/}
@@ -50,31 +79,3 @@ select { margin: 5px; }
 
 </Sandpack>  
 
----
-
-## Reference {/*reference*/}
-
-### `<option>` {/*option*/}
-
-The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/select) lets you render an option inside a [`<select>`](/apis/react-dom/components/select) box.
-
-```js
-<select>
-  <option value="someOption">Some option</option>
-  <option value="otherOption">Other option</option>
-</select>
-```
-
-#### Props {/*props*/}
-
-`<option>` supports all [common element props.](/apis/react-dom/components/common#props)
-
-Additionally, `<option>` supports these props:
-
-* [`disabled`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#disabled): A boolean. If `true`, the option will not be selectable and will appear dimmed.
-* [`label`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#label): A string. Specifies the meaning of the option. If not specified, the text inside the option is used.
-* [`value`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/option#value): The value to be used [when submitting the parent `<select>` in a form](/apis/react-dom/components/select#reading-the-select-box-value-when-submitting-a-form) if this option is selected.
-
-#### Caveats {/*caveats*/}
-
-* React does not support the `selected` attribute on `<option>`. Instead, pass this option's `value` to the parent [`<select defaultValue>`](/apis/react-dom/components/select#providing-an-initially-selected-option) for an uncontrolled select box, or [`<select value>`](/apis/react-dom/components/select#controlling-a-select-box-with-a-state-variable) for a controlled select box.

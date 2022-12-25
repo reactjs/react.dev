@@ -16,6 +16,38 @@ const id = useId()
 
 ---
 
+## Reference {/*reference*/}
+
+### `useId()` {/*useid*/}
+
+Call `useId` at the top level of your component to generate a unique ID:
+
+```js
+import { useId } from 'react';
+
+function PasswordField() {
+  const passwordHintId = useId();
+  // ...
+```
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+`useId` does not take any parameters.
+
+#### Returns {/*returns*/}
+
+`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
+
+#### Caveats {/*caveats*/}
+
+* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
+
+* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)
+
+---
+
 ## Usage {/*usage*/}
 
 <Pitfall>
@@ -271,34 +303,3 @@ input { margin: 5px; }
 
 </Sandpack>
 
----
-
-## Reference {/*reference*/}
-
-### `useId()` {/*useid*/}
-
-Call `useId` at the top level of your component to generate a unique ID:
-
-```js
-import { useId } from 'react';
-
-function PasswordField() {
-  const passwordHintId = useId();
-  // ...
-```
-
-[See more examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-`useId` does not take any parameters.
-
-#### Returns {/*returns*/}
-
-`useId` returns a unique ID string associated with this particular `useId` call in this particular component.
-
-#### Caveats {/*caveats*/}
-
-* `useId` is a Hook, so you can only call it **at the top level of your component** or your own Hooks. You can't call it inside loops or conditions. If you need that, extract a new component and move the state into it.
-
-* `useId` **should not be used to generate keys** in a list. [Keys should be generated from your data.](/learn/rendering-lists#where-to-get-your-key)

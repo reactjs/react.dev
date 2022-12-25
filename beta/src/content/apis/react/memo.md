@@ -16,6 +16,34 @@ const MemoizedComponent = memo(SomeComponent, arePropsEqual?)
 
 ---
 
+## Reference {/*reference*/}
+
+### `memo(Component, arePropsEqual?)` {/*memo*/}
+
+Call `memo` outside of any components to define a memoized version of a component. This memoized component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
+
+```js
+import { memo } from 'react';
+
+function SomeComponent(props) {
+  // ...
+}
+
+const MemoizedComponent = memo(SomeComponent);
+```
+
+#### Parameters {/*parameters*/}
+
+* `Component`: The component that you want to memoize. The `memo` does not modify this component, but returns a new, memoized component instead. Any valid React component, including functions and [`forwardRef`](/apis/react/forwardRef) components, is accepted.
+
+* **optional** `arePropsEqual`: A function that accepts two arguments: the component's previous props, and its new props. It should return `true` if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return `false`.
+
+#### Returns {/*returns*/}
+
+`memo` returns a new React component. It behaves the same as the component provided to `memo` except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Skipping re-rendering when props are unchanged {/*skipping-re-rendering-when-props-are-unchanged*/}
@@ -326,34 +354,6 @@ If you provide a custom `arePropsEqual` implementation, **you must compare every
 Avoid doing deep equality checks inside `arePropsEqual` unless you are 100% sure that the data structure you're working with has a known limited depth. **Deep equality checks can become incredibly slow** and can freeze your app for many seconds if someone changes the data structure later.
 
 </Pitfall>
-
----
-
-## Reference {/*reference*/}
-
-### `memo(Component, arePropsEqual?)` {/*memo*/}
-
-Call `memo` outside of any components to define a memoized version of a component. This memoized component will usually not be re-rendered when its parent component is re-rendered as long as its props have not changed. But React may still re-render it: memoization is only a performance optimization, not a guarantee.
-
-```js
-import { memo } from 'react';
-
-function SomeComponent(props) {
-  // ...
-}
-
-const MemoizedComponent = memo(SomeComponent);
-```
-
-#### Parameters {/*parameters*/}
-
-* `Component`: The component that you want to memoize. The `memo` does not modify this component, but returns a new, memoized component instead. Any valid React component, including functions and [`forwardRef`](/apis/react/forwardRef) components, is accepted.
-
-* **optional** `arePropsEqual`: A function that accepts two arguments: the component's previous props, and its new props. It should return `true` if the old and new props are equal: that is, if the component will render the same output and behave in the same way with the new props as with the old. Otherwise it should return `false`.
-
-#### Returns {/*returns*/}
-
-`memo` returns a new React component. It behaves the same as the component provided to `memo` except that React will not always re-render it when its parent is being re-rendered unless its props have changed.
 
 ---
 

@@ -16,34 +16,6 @@ const html = renderToStaticMarkup(reactNode)
 
 ---
 
-## Usage {/*usage*/}
-
-### Rendering a non-interactive React tree as HTML to a string {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
-
-Call `renderToStaticMarkup` to render your app to an HTML string which you can send with your server response:
-
-```js {5-6}
-import { renderToStaticMarkup } from 'react-dom/server';
-
-// The route handler syntax depends on your backend framework
-app.use('/', (request, response) => {
-  const html = renderToStaticMarkup(<Page />);
-  response.send(html);
-});
-```
-
-This will produce the initial non-interactive HTML output of your React components.
-
-<Pitfall>
-
-This method renders **non-interactive HTML that cannot be hydrated.**  This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
-
-Interactive apps should use [`renderToString`](/apis/react-dom/server/renderToString) on the server and [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) on the client.
-
-</Pitfall>
-
----
-
 ## Reference {/*reference*/}
 
 ### `renderToStaticMarkup(reactNode)` {/*rendertostaticmarkup*/}
@@ -72,3 +44,30 @@ An HTML string.
 
 * `renderToStaticMarkup` works in the browser, but using it in the client code is not recommended. If you need to render a component to HTML in the browser, [get the HTML by rendering it into a DOM node.](/apis/react-dom/server/renderToString#removing-rendertostring-from-the-client-code)
 
+---
+
+## Usage {/*usage*/}
+
+### Rendering a non-interactive React tree as HTML to a string {/*rendering-a-non-interactive-react-tree-as-html-to-a-string*/}
+
+Call `renderToStaticMarkup` to render your app to an HTML string which you can send with your server response:
+
+```js {5-6}
+import { renderToStaticMarkup } from 'react-dom/server';
+
+// The route handler syntax depends on your backend framework
+app.use('/', (request, response) => {
+  const html = renderToStaticMarkup(<Page />);
+  response.send(html);
+});
+```
+
+This will produce the initial non-interactive HTML output of your React components.
+
+<Pitfall>
+
+This method renders **non-interactive HTML that cannot be hydrated.**  This is useful if you want to use React as a simple static page generator, or if you're rendering completely static content like emails.
+
+Interactive apps should use [`renderToString`](/apis/react-dom/server/renderToString) on the server and [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) on the client.
+
+</Pitfall>

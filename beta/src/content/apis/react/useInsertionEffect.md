@@ -22,6 +22,50 @@ useInsertionEffect(setup, dependencies?)
 
 ---
 
+## Reference {/*reference*/}
+
+### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
+
+<Pitfall>
+
+`useInsertionEffect` is aimed at CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/apis/react/useEffect) or [`useLayoutEffect`](/apis/react/useLayoutEffect) instead.
+
+</Pitfall>
+
+Call `useInsertionEffect` to insert the styles before any DOM mutations:
+
+```js
+function useCSS(rule) {
+  useInsertionEffect(() => {
+  	// As explained earlier, we don't recommend runtime injection of <style> tags.
+  	// But if you have to do it, then it's important to do in useInsertionEffect.
+  	// ... inject <style> tags here ...
+  });
+  return rule;
+}
+```
+
+
+[See more examples below.](#examples-connecting)
+
+#### Parameters {/*parameters*/}
+
+* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is first added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function one last time.
+ 
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
+
+#### Returns {/*returns*/}
+
+`useInsertionEffect` returns `undefined`.
+
+#### Caveats {/*caveats*/}
+
+* Effects only run on the client. They don't run during server rendering.
+* You can't update state from inside `useInsertionEffect`.
+* By the time `useInsertionEffect` runs, refs are not attached yet, and DOM is not yet updated.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Injecting dynamic styles from CSS-in-JS libraries {/*injecting-dynamic-styles-from-css-in-js-libraries*/}
@@ -99,47 +143,3 @@ If you insert styles during rendering and React is processing a [non-blocking up
 `useInsertionEffect` is better than inserting styles during [`useLayoutEffect`](/apis/react/useLayoutEffect) or [`useEffect`](/apis/react/useEffect) because it ensures that by the time other Effects run in your components, the `<style>` tags have already been inserted. Otherwise, layout calculations in regular Effects would be wrong due to outdated styles.
 
 </DeepDive>
-
----
-
-## Reference {/*reference*/}
-
-### `useInsertionEffect(setup, dependencies?)` {/*useinsertioneffect*/}
-
-<Pitfall>
-
-`useInsertionEffect` is aimed at CSS-in-JS library authors. Unless you are working on a CSS-in-JS library and need a place to inject the styles, you probably want [`useEffect`](/apis/react/useEffect) or [`useLayoutEffect`](/apis/react/useLayoutEffect) instead.
-
-</Pitfall>
-
-Call `useInsertionEffect` to insert the styles before any DOM mutations:
-
-```js
-function useCSS(rule) {
-  useInsertionEffect(() => {
-  	// As explained earlier, we don't recommend runtime injection of <style> tags.
-  	// But if you have to do it, then it's important to do in useInsertionEffect.
-  	// ... inject <style> tags here ...
-  });
-  return rule;
-}
-```
-
-
-[See more examples above.](#examples-connecting)
-
-#### Parameters {/*parameters*/}
-
-* `setup`: The function with your Effect's logic. Your setup function may also optionally return a *cleanup* function. Before your component is first added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. Before your component is removed from the DOM, React will run your cleanup function one last time.
- 
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `setup` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If you don't specify the dependencies at all, your Effect will re-run after every re-render of the component.
-
-#### Returns {/*returns*/}
-
-`useInsertionEffect` returns `undefined`.
-
-#### Caveats {/*caveats*/}
-
-* Effects only run on the client. They don't run during server rendering.
-* You can't update state from inside `useInsertionEffect`.
-* By the time `useInsertionEffect` runs, refs are not attached yet, and DOM is not yet updated.

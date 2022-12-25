@@ -22,6 +22,58 @@ const clonedElement = cloneElement(element, props, ...children)
 
 ---
 
+## Reference {/*reference*/}
+
+### `cloneElement(element, props, ...children)` {/*cloneelement*/}
+
+Call `cloneElement` to create a React element based on the `element`, but with different `props` and `children`:
+
+```js
+import { cloneElement } from 'react';
+
+// ...
+const clonedElement = cloneElement(
+  <Row title="Cabbage">
+    Hello
+  </Row>,
+  { isHighlighted: true },
+  'Goodbye'
+);
+
+console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
+```
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](/apis/react/createElement), or the result of another `cloneElement` call.
+
+* `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will "prefer" the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. If you pass `props.key` or `props.ref`, they will replace the original ones.
+
+* **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/apis/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don't pass any `...children` arguments, the original `element.props.children` will be preserved.
+
+#### Returns {/*returns*/}
+
+`cloneElement` returns a React element object with a few properties:
+
+* `type`: Same as `element.type`.
+* `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed.
+* `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
+* `key`: The original `element.key`, unless it was overridden by `props.key`.
+
+Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
+
+#### Caveats {/*caveats*/}
+
+* Cloning an element **does not modify the original element.**
+
+* You should only **pass children as multiple arguments to `cloneElement` if they are all statically known,** like `cloneElement(element, null, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `cloneElement(element, null, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
+
+* `cloneElement` makes it harder to trace the data flow, so **try the [alternatives](/#alternatives) instead.**
+
+---
+
 ## Usage {/*usage*/}
 
 ### Overriding props of an element {/*overriding-props-of-an-element*/}
@@ -640,55 +692,3 @@ button {
 </Sandpack>
 
 This approach is particularly useful if you want to reuse this logic between different components.
-
----
-
-## Reference {/*reference*/}
-
-### `cloneElement(element, props, ...children)` {/*cloneelement*/}
-
-Call `cloneElement` to create a React element based on the `element`, but with different `props` and `children`:
-
-```js
-import { cloneElement } from 'react';
-
-// ...
-const clonedElement = cloneElement(
-  <Row title="Cabbage">
-    Hello
-  </Row>,
-  { isHighlighted: true },
-  'Goodbye'
-);
-
-console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
-```
-
-[See more examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `element`: The `element` argument must be a valid React element. For example, it could be a JSX node like `<Something />`, the result of calling [`createElement`](/apis/react/createElement), or the result of another `cloneElement` call.
-
-* `props`: The `props` argument must either be an object or `null`. If you pass `null`, the cloned element will retain all of the original `element.props`. Otherwise, for every prop in the `props` object, the returned element will "prefer" the value from `props` over the value from `element.props`. The rest of the props will be filled from the original `element.props`. If you pass `props.key` or `props.ref`, they will replace the original ones.
-
-* **optional** `...children`: Zero or more child nodes. They can be any React nodes, including React elements, strings, numbers, [portals](/apis/react-dom/createPortal), empty nodes (`null`, `undefined`, `true`, and `false`), and arrays of React nodes. If you don't pass any `...children` arguments, the original `element.props.children` will be preserved.
-
-#### Returns {/*returns*/}
-
-`cloneElement` returns a React element object with a few properties:
-
-* `type`: Same as `element.type`.
-* `props`: The result of shallowly merging `element.props` with the overriding `props` you have passed.
-* `ref`: The original `element.ref`, unless it was overridden by `props.ref`.
-* `key`: The original `element.key`, unless it was overridden by `props.key`.
-
-Usually, you'll return the element from your component or make it a child of another element. Although you may read the element's properties, it's best to treat every element as opaque after it's created, and only render it.
-
-#### Caveats {/*caveats*/}
-
-* Cloning an element **does not modify the original element.**
-
-* You should only **pass children as multiple arguments to `cloneElement` if they are all statically known,** like `cloneElement(element, null, child1, child2, child3)`. If your children are dynamic, pass the entire array as the third argument: `cloneElement(element, null, listItems)`. This ensures that React will [warn you about missing `key`s](/learn/rendering-lists#keeping-list-items-in-order-with-key) for any dynamic lists. For static lists this is not necessary because they never reorder.
-
-* `cloneElement` makes it harder to trace the data flow, so **try the [alternatives](/#alternatives) instead.**

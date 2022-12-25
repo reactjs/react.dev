@@ -26,6 +26,29 @@ class Greeting extends PureComponent {
 
 ---
 
+## Reference {/*reference*/}
+
+### `PureComponent` {/*purecomponent*/}
+
+To skip re-rendering a class component for same props and state, extend `PureComponent` instead of [`Component`:](/apis/react/Component)
+
+```js
+import { PureComponent } from 'react';
+
+class Greeting extends PureComponent {
+  render() {
+    return <h1>Hello, {this.props.name}!</h1>;
+  }
+}
+```
+
+`PureComponent` is a subclass of `Component` and supports [all the `Component` APIs.](/apis/react/Component#reference) Extending `PureComponent` is equivalent to defining a custom [`shouldComponentUpdate`](/apis/react/Component#shouldcomponentupdate) method that shallowly compares props and state.
+
+
+[See more examples below.](#usage)
+
+---
+
 ## Usage {/*usage*/}
 
 ### Skipping unnecessary re-renders for class components {/*skipping-unnecessary-re-renders-for-class-components*/}
@@ -183,28 +206,3 @@ label {
 Unlike `PureComponent`, [`memo`](/apis/react/memo) does not compare the new and the old state. In function components, calling the [`set` function](/apis/react/useState#setstate) with the same state [already prevents re-renders by default,](/apis/react/memo#updating-a-memoized-component-using-state) even without `memo`.
 
 </Note>
-
----
-
-## Reference {/*reference*/}
-
-### `PureComponent` {/*purecomponent*/}
-
-To skip re-rendering a class component for same props and state, extend `PureComponent` instead of [`Component`:](/apis/react/Component)
-
-```js
-import { PureComponent } from 'react';
-
-class Greeting extends PureComponent {
-  render() {
-    return <h1>Hello, {this.props.name}!</h1>;
-  }
-}
-```
-
-`PureComponent` is a subclass of `Component` and supports [all the `Component` APIs.](/apis/react/Component#reference) Extending `PureComponent` is equivalent to defining a custom [`shouldComponentUpdate`](/apis/react/Component#shouldcomponentupdate) method that shallowly compares props and state.
-
-
-[See more examples.](#usage)
-
-

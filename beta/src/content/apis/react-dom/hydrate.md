@@ -24,6 +24,48 @@ hydrate(reactNode, domNode, callback?)
 
 ---
 
+## Reference {/*reference*/}
+
+### `hydrate(reactNode, domNode, callback?)` {/*hydrate*/}
+
+<Deprecated>
+
+In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
+
+This API will be removed in a future major version of React.
+
+</Deprecated>
+
+Call `hydrate` in React 17 and below to “attach” React to existing HTML that was already rendered by React in a server environment.
+
+```js
+hydrate(reactNode, domNode);
+```
+
+React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrate` call with its root component.
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `reactNode`: The "React node" used to render the existing HTML. This will usually be a piece of JSX like `<App />` which was rendered with a `ReactDOM Server` method such as `renderToString(<App />)` in React 17.
+
+* `domNode`: A [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element) that was rendered as the root element on the server.
+
+* **optional**: `callback`: A function. If passed, React will call it after your component is hydrated.
+
+#### Returns {/*returns*/}
+
+`hydrate` returns null.
+
+#### Caveats {/*caveats*/}
+* `hydrate` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
+* In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
+* You'll likely have only one `hydrate` call in your app. If you use a framework, it might do this call for you.
+* If your app is client-rendered with no HTML rendered already, using `hydrate()` is not supported. Use [render()](/apis/react-dom/render) (for React 17 and below) or [createRoot()](/apis/react-dom/client/createRoot) (for React 18+) instead.
+
+---
+
 ## Usage {/*usage*/}
 
 Call `hydrate` to attach a <CodeStep step={1}>React component</CodeStep> into a server-rendered <CodeStep step={2}>browser DOM node</CodeStep>.
@@ -163,47 +205,3 @@ This way the initial render pass will render the same content as the server, avo
 This approach makes hydration slower because your components have to render twice. Be mindful of the user experience on slow connections. The JavaScript code may load significantly later than the initial HTML render, so rendering a different UI immediately after hydration may also feel jarring to the user.
 
 </Pitfall>
-
----
-
-## Reference {/*reference*/}
-
-### `hydrate(reactNode, domNode, callback?)` {/*hydrate*/}
-
-<Deprecated>
-
-In React 18, `hydrate` was replaced by [`hydrateRoot`.](/apis/react-dom/client/hydrateRoot) Using `hydrate` in React 18 will warn that your app will behave as if it’s running React 17. Learn more [here.](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html#updates-to-client-rendering-apis)
-
-This API will be removed in a future major version of React.
-
-</Deprecated>
-
-Call `hydrate` in React 17 and below to “attach” React to existing HTML that was already rendered by React in a server environment.
-
-```js
-hydrate(reactNode, domNode);
-```
-
-React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrate` call with its root component.
-
-[See examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `reactNode`: The "React node" used to render the existing HTML. This will usually be a piece of JSX like `<App />` which was rendered with a `ReactDOM Server` method such as `renderToString(<App />)` in React 17.
-
-* `domNode`: A [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/Element) that was rendered as the root element on the server.
-
-* **optional**: `callback`: A function. If passed, React will call it after your component is hydrated.
-
-#### Returns {/*returns*/}
-
-`hydrate` returns null.
-
-#### Caveats {/*caveats*/}
-* `hydrate` expects the rendered content to be identical with the server-rendered content. React can patch up differences in text content, but you should treat mismatches as bugs and fix them.
-* In development mode, React warns about mismatches during hydration. There are no guarantees that attribute differences will be patched up in case of mismatches. This is important for performance reasons because in most apps, mismatches are rare, and so validating all markup would be prohibitively expensive.
-* You'll likely have only one `hydrate` call in your app. If you use a framework, it might do this call for you.
-* If your app is client-rendered with no HTML rendered already, using `hydrate()` is not supported. Use [render()](/apis/react-dom/render) (for React 17 and below) or [createRoot()](/apis/react-dom/client/createRoot) (for React 18+) instead.
-
----

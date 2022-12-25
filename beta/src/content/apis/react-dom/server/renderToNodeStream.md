@@ -22,32 +22,6 @@ const stream = renderToNodeStream(reactNode)
 
 ---
 
-## Usage {/*usage*/}
-
-### Rendering a React tree as HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. Use [`renderToPipeableStream`](/apis/react-dom/server/renderToPipeableStream) instead.
-
-</Deprecated>
-
-Call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
-
-```js {5-6}
-import { renderToNodeStream } from 'react-dom/server';
-
-// The route handler syntax depends on your backend framework
-app.use('/', (request, response) => {
-  const stream = renderToNodeStream(<App />);
-  stream.pipe(response);
-});
-```
-
-The stream will produce the initial non-interactive HTML output of your React components. On the client, you will need to call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.
-
----
-
 ## Reference {/*reference*/}
 
 ### `renderToNodeStream(reactNode)` {/*rendertonodestream*/}
@@ -83,3 +57,28 @@ A [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams)
 
 * The returned stream is a byte stream encoded in utf-8. If you need a stream in another encoding, take a look at a project like [iconv-lite](https://www.npmjs.com/package/iconv-lite), which provides transform streams for transcoding text.
 
+---
+
+## Usage {/*usage*/}
+
+### Rendering a React tree as HTML to a Node.js Readable Stream {/*rendering-a-react-tree-as-html-to-a-nodejs-readable-stream*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. Use [`renderToPipeableStream`](/apis/react-dom/server/renderToPipeableStream) instead.
+
+</Deprecated>
+
+Call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe to your server response:
+
+```js {5-6}
+import { renderToNodeStream } from 'react-dom/server';
+
+// The route handler syntax depends on your backend framework
+app.use('/', (request, response) => {
+  const stream = renderToNodeStream(<App />);
+  stream.pipe(response);
+});
+```
+
+The stream will produce the initial non-interactive HTML output of your React components. On the client, you will need to call [`hydrateRoot`](/apis/react-dom/client/hydrateRoot) to *hydrate* that server-generated HTML and make it interactive.

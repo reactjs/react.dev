@@ -16,6 +16,33 @@ useDebugValue(value, format?)
 
 ---
 
+## Reference {/*reference*/}
+
+### `useDebugValue(value, format?)` {/*usedebugvalue*/}
+
+Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
+
+```js
+import { useDebugValue } from 'react';
+
+function useOnlineStatus() {
+  // ...
+  useDebugValue(isOnline ? 'Online' : 'Offline');
+  // ...
+}
+```
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `value`: The value you want to display in React DevTools. It can have any type.
+* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
+
+#### Returns {/*returns*/}
+
+`useDebugValue` does not return anything.
+
 ## Usage {/*usage*/}
 
 ### Adding a label to a custom Hook {/*adding-a-label-to-a-custom-hook*/}
@@ -93,33 +120,3 @@ useDebugValue(date, date => date.toDateString());
 Your formatting function will receive the <CodeStep step={1}>debug value</CodeStep> as a parameter and should return a <CodeStep step={2}>formatted display value</CodeStep>. When your component is inspected, React DevTools will call the formatting function and display its result.
 
 This lets you avoid running potentially expensive formatting logic unless the component is actually inspected. For example, if `date` is a Date value, this avoids calling `toDateString()` on it for every render of your component.
-
----
-
-## Reference {/*reference*/}
-
-### `useDebugValue(value, format?)` {/*usedebugvalue*/}
-
-Call `useDebugValue` at the top level of your [custom Hook](/learn/reusing-logic-with-custom-hooks) to display a readable debug value:
-
-```js
-import { useDebugValue } from 'react';
-
-function useOnlineStatus() {
-  // ...
-  useDebugValue(isOnline ? 'Online' : 'Offline');
-  // ...
-}
-```
-
-[See more examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `value`: The value you want to display in React DevTools. It can have any type.
-* **optional** `format`: A formatting function. When the component is inspected, React DevTools will call the formatting function with the `value` as the argument, and then display the returned formatted value (which may have any type). If you don't specify the formatting function, the original `value` itself will be displayed.
-
-#### Returns {/*returns*/}
-
-`useDebugValue` does not return anything.
-

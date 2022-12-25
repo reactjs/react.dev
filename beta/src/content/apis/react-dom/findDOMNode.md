@@ -22,6 +22,45 @@ const domNode = findDOMNode(componentInstance)
 
 ---
 
+## Reference {/*reference*/}
+
+### `findDOMNode(componentInstance)` {/*finddomnode*/}
+
+<Deprecated>
+
+This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
+
+</Deprecated>
+
+Call `findDOMNode` to find the browser DOM node for a given React [class component](/apis/react/Component) instance.
+
+```js
+const domNode = findDOMNode(componentInstance);
+```
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `componentInstance`: An instance of the [`Component`](/apis/react/Component) subclass. For example, `this` inside a class component.
+
+
+#### Returns {/*returns*/}
+
+`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
+
+#### Caveats {/*caveats*/}
+
+* A component may return an array or a [Fragment](/apis/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
+
+* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
+
+* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
+
+* `findDOMNode` accepts a class component instance, so it can't be used with function components.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Finding the root DOM node of a class component {/*finding-the-root-dom-node-of-a-class-component*/}
@@ -404,42 +443,3 @@ There is currently no direct equivalent for this use case, which is why `findDOM
 ```
 
 This also applies to focusing and scrolling to arbitrary children.
-
----
-
-## Reference {/*reference*/}
-
-### `findDOMNode(componentInstance)` {/*finddomnode*/}
-
-<Deprecated>
-
-This API will be removed in a future major version of React. [See the alternatives.](#alternatives)
-
-</Deprecated>
-
-Call `findDOMNode` to find the browser DOM node for a given React [class component](/apis/react/Component) instance.
-
-```js
-const domNode = findDOMNode(componentInstance);
-```
-
-[See examples above.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `componentInstance`: An instance of the [`Component`](/apis/react/Component) subclass. For example, `this` inside a class component.
-
-
-#### Returns {/*returns*/}
-
-`findDOMNode` returns the first closest browser DOM node within the given `componentInstance`. When a component renders to `null`, or renders `false`, `findDOMNode` returns `null`. When a component renders to a string, `findDOMNode` returns a text DOM node containing that value.
-
-#### Caveats {/*caveats*/}
-
-* A component may return an array or a [Fragment](/apis/react/Fragment) with multiple children. In that case `findDOMNode`, will return the DOM node corresponding to the first non-empty child.
-
-* `findDOMNode` only works on mounted components (that is, components that have been placed in the DOM). If you try to call this on a component that has not been mounted yet (like calling `findDOMNode()` in `render()` on a component that has yet to be created), an exception will be thrown.
-
-* `findDOMNode` only returns the result at the time of your call. If a child component renders a different node later, there is no way for you to be notified of this change.
-
-* `findDOMNode` accepts a class component instance, so it can't be used with function components.

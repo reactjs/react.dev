@@ -20,6 +20,42 @@ title: <StrictMode>
 
 ---
 
+## Reference {/*reference*/}
+
+### `<StrictMode>` {/*strictmode*/}
+
+Use `StrictMode` to enable additional development behaviors and warnings for the entire component tree inside:
+
+```js
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+[See more examples below.](#usage)
+
+Strict Mode enables the following development-only behaviors:
+
+- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
+- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
+- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
+
+#### Props {/*props*/}
+
+`StrictMode` accepts no props.
+
+#### Caveats {/*caveats*/}
+
+* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Enabling Strict Mode for entire app {/*enabling-strict-mode-for-entire-app*/}
@@ -792,39 +828,3 @@ React warns if some component anywhere inside a `<StrictMode>` tree uses one of 
 * Legacy string refs ([`this.refs`](/apis/react/Component#refs)). [See alternatives.](https://reactjs.org/docs/strict-mode.html#warning-about-legacy-string-ref-api-usage)
 
 These APIs are primarily used in older [class components](/apis/react/Component) so they rarely appear in modern apps.
-
----
-
-## Reference {/*reference*/}
-
-### `<StrictMode>` {/*strictmode*/}
-
-Use `StrictMode` to enable additional development behaviors and warnings for the entire component tree inside:
-
-```js
-import { StrictMode } from 'react';
-import { createRoot } from 'react-dom/client';
-
-const root = createRoot(document.getElementById('root'));
-root.render(
-  <StrictMode>
-    <App />
-  </StrictMode>
-);
-```
-
-[See examples above.](#usage)
-
-Strict Mode enables the following development-only behaviors:
-
-- Your components will [re-render an extra time](#fixing-bugs-found-by-double-rendering-in-development) to find bugs caused by impure rendering.
-- Your components will [re-run Effects an extra time](#fixing-bugs-found-by-re-running-effects-in-development) to find bugs caused by missing Effect cleanup.
-- Your components will [be checked for usage of deprecated APIs.](#fixing-deprecation-warnings-enabled-by-strict-mode)
-
-#### Props {/*props*/}
-
-`StrictMode` accepts no props.
-
-#### Caveats {/*caveats*/}
-
-* There is no way to opt out of Strict Mode inside a tree wrapped in `<StrictMode>`. This gives you confidence that all components inside `<StrictMode>` are checked. If two teams working on a product disagree whether they find the checks valuable, they need to either reach consensus or move `<StrictMode>` down in the tree.

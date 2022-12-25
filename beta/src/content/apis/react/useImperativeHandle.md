@@ -16,6 +16,40 @@ useImperativeHandle(ref, createHandle, dependencies?)
 
 ---
 
+## Reference {/*reference*/}
+
+### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
+
+Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
+
+```js
+import { forwardRef, useImperativeHandle } from 'react';
+
+const MyInput = forwardRef(function MyInput(props, ref) {
+  useImperativeHandle(ref, () => {
+    return {
+      // ... your methods ...
+    };
+  }, []);
+  // ...
+```
+
+[See more examples below.](#usage)
+
+#### Parameters {/*parameters*/}
+
+* `ref`: The `ref` you received as the second argument from the [`forwardRef` render function.](/apis/react/forwardRef#render-function)
+
+* `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. The ref handle you return have any type. Usually, you will return an object with the methods you want to expose.
+
+* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If a re-render resulted in a change to some dependency, or if you did not specify the dependencies at all, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
+
+#### Returns {/*returns*/}
+
+`useImperativeHandle` returns `undefined`.
+
+---
+
 ## Usage {/*usage*/}
 
 ### Exposing a custom ref handle to the parent component {/*exposing-a-custom-ref-handle-to-the-parent-component*/}
@@ -252,37 +286,3 @@ export default AddComment;
 **If you can express something as a prop, you should not use a ref.** For example, instead of exposing an imperative handle like `{ open, close }` from a `Modal` component, it is better to take `isOpen` as a prop like `<Modal isOpen={isOpen} />`. [Effects](/learn/synchronizing-with-effects) can help you expose imperative behaviors via props.
 
 </Pitfall>
-
----
-
-## Reference {/*reference*/}
-
-### `useImperativeHandle(ref, createHandle, dependencies?)` {/*useimperativehandle*/}
-
-Call `useImperativeHandle` at the top level of your component to customize the ref handle it exposes:
-
-```js
-import { forwardRef, useImperativeHandle } from 'react';
-
-const MyInput = forwardRef(function MyInput(props, ref) {
-  useImperativeHandle(ref, () => {
-    return {
-      // ... your methods ...
-    };
-  }, []);
-  // ...
-```
-
-[See more examples.](#usage)
-
-#### Parameters {/*parameters*/}
-
-* `ref`: The `ref` you received as the second argument from the [`forwardRef` render function.](/apis/react/forwardRef#render-function)
-
-* `createHandle`: A function that takes no arguments and returns the ref handle you want to expose. The ref handle you return have any type. Usually, you will return an object with the methods you want to expose.
-
-* **optional** `dependencies`: The list of all reactive values referenced inside of the `createHandle` code. Reactive values include props, state, and all the variables and functions declared directly inside your component body. If your linter is [configured for React](/learn/editor-setup#linting), it will verify that every reactive value is correctly specified as a dependency. The list of dependencies must have a constant number of items and be written inline like `[dep1, dep2, dep3]`. React will compare each dependency with its previous value using the [`Object.is`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/is) comparison algorithm. If a re-render resulted in a change to some dependency, or if you did not specify the dependencies at all, your `createHandle` function will re-execute, and the newly created handle will be assigned to the ref.
-
-#### Returns {/*returns*/}
-
-`useImperativeHandle` returns `undefined`.

@@ -38,7 +38,7 @@ root.render(
 );
 ```
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 Strict Mode enables the following development-only behaviors:
 

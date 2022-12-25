@@ -26,7 +26,7 @@ To display a text area, render the [built-in browser `<textarea>`](https://devel
 <textarea name="postContent" />
 ```
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Props {/*props*/}
 

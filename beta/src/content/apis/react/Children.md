@@ -46,7 +46,7 @@ function RowList({ children }) {
 }
 ```
 
-[See more examples above.](#counting-children)
+[See more examples below.](#counting-children)
 
 #### Parameters {/*children-count-parameters*/}
 
@@ -78,7 +78,7 @@ function SeparatorList({ children }) {
   // ...
 ```
 
-[See more examples above.](#running-some-code-for-each-child)
+[See more examples below.](#running-some-code-for-each-child)
 
 #### Parameters {/*children-foreach-parameters*/}
 
@@ -116,7 +116,7 @@ function RowList({ children }) {
 }
 ```
 
-[See more examples above.](#transforming-children)
+[See more examples below.](#transforming-children)
 
 #### Parameters {/*children-map-parameters*/}
 

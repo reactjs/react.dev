@@ -37,7 +37,7 @@ It returns the snapshot of the data in the store. You need to pass two functions
 1. The `subscribe` function should subscribe to the store and return a function that unsubscribes.
 2. The `getSnapshot` function should read a snapshot of the data from the store.
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

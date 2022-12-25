@@ -34,7 +34,7 @@ const MyInput = forwardRef(function MyInput(props, ref) {
   // ...
 ```
 
-[See more examples.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

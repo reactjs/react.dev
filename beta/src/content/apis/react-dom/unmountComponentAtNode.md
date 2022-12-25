@@ -45,7 +45,7 @@ render(<App />, domNode);
 unmountComponentAtNode(domNode);
 ```
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

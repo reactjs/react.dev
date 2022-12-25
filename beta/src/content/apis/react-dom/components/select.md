@@ -32,7 +32,7 @@ To display a select box, render the [built-in browser `<select>`](https://develo
 </select>
 ```
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Props {/*props*/}
 

@@ -32,7 +32,7 @@ function SearchPage() {
 }
 ```
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

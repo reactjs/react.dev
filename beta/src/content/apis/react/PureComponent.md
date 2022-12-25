@@ -45,7 +45,7 @@ class Greeting extends PureComponent {
 `PureComponent` is a subclass of `Component` and supports [all the `Component` APIs.](/apis/react/Component#reference) Extending `PureComponent` is equivalent to defining a custom [`shouldComponentUpdate`](/apis/react/Component#shouldcomponentupdate) method that shallowly compares props and state.
 
 
-[See more examples.](#usage)
+[See more examples below.](#usage)
 
 ---
 

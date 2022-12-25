@@ -26,7 +26,7 @@ To display an input, render the [built-in browser `<input>`](https://developer.m
 <input name="myInput" />
 ```
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Props {/*props*/}
 

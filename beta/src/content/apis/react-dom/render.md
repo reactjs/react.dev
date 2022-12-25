@@ -47,7 +47,7 @@ React will display `<App />` in the `domNode`, and take over managing the DOM in
 
 An app fully built with React will usually only have one `render` call with its root component.  A page that uses "sprinkles" of React for parts of the page may have as many `render` calls as needed.
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

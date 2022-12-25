@@ -50,7 +50,7 @@ class Greeting extends Component {
 
 Only the `render` method is required, other methods are optional.
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 ---
 

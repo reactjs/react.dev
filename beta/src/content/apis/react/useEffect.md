@@ -40,7 +40,7 @@ function ChatRoom({ roomId }) {
 }
 ```
 
-[See more examples above.](#examples-connecting)
+[See more examples below.](#examples-connecting)
 
 #### Parameters {/*parameters*/}
 

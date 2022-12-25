@@ -35,7 +35,7 @@ root.render(<App />);
 
 An app fully built with React will usually only have one `createRoot` call for its root component. A page that uses "sprinkles" of React for parts of the page may have as many separate roots as needed.
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 
@@ -67,7 +67,7 @@ root.render(<App />);
 
 React will display `<App />` in the `root`, and take over managing the DOM inside it.
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*root-render-parameters*/}
 

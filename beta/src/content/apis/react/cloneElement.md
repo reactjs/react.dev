@@ -43,7 +43,7 @@ const clonedElement = cloneElement(
 console.log(clonedElement); // <Row title="Cabbage">Goodbye</Row>
 ```
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

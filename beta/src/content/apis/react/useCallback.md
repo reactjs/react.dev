@@ -34,7 +34,7 @@ export default function ProductPage({ productId, referrer, theme }) {
   }, [productId, referrer]);
 ```
 
-[See more examples above.](#examples-rerendering)
+[See more examples below.](#examples-rerendering)
 
 #### Parameters {/*parameters*/}
 

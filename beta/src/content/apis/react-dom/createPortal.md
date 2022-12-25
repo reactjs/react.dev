@@ -40,7 +40,7 @@ import { createPortal } from 'react-dom';
 </div>
 ```
 
-[See more examples.](#usage)
+[See more examples below.](#usage)
 
 A portal only changes the physical placement of the DOM node. In every other way, the JSX you render into a portal acts as a child node of the React component that renders it. For example, the child can access the context provided by the parent tree, and events still bubble up from children to parents according to the React tree.
 

@@ -38,7 +38,7 @@ Call `findDOMNode` to find the browser DOM node for a given React [class compone
 const domNode = findDOMNode(componentInstance);
 ```
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

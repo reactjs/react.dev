@@ -43,7 +43,7 @@ function Tooltip() {
 ```
 
 
-[See more examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

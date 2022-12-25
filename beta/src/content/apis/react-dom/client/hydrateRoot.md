@@ -29,7 +29,7 @@ const root = hydrateRoot(domNode, reactNode);
 
 React will attach to the HTML that exists inside the `domNode`, and take over managing the DOM inside it. An app fully built with React will usually only have one `hydrateRoot` call with its root component.
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 
@@ -66,7 +66,7 @@ root.render(<App />);
 
 React will update `<App />` in the hydrated `root`.
 
-[See examples above.](#usage)
+[See more examples below.](#usage)
 
 #### Parameters {/*root-render-parameters*/}
 

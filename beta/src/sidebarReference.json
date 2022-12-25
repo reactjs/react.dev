@@ -97,7 +97,7 @@
         },
         {
           "title": "react: APIs",
-          "path": "/reference/react/reference",
+          "path": "/reference/react/apis",
           "routes": [
             {
               "title": "createContext",

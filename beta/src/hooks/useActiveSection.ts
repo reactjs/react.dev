@@ -4,10 +4,10 @@
 
 import {useRouter} from 'next/router';
 
-export function useActiveSection(): 'learn' | 'apis' | 'home' {
+export function useActiveSection(): 'learn' | 'reference' | 'home' {
   const {asPath} = useRouter();
-  if (asPath.startsWith('/apis')) {
-    return 'apis';
+  if (asPath.startsWith('/reference')) {
+    return 'reference';
   } else if (asPath.startsWith('/learn')) {
     return 'learn';
   } else {

@@ -5,11 +5,6 @@
   "trailingSlash": false,
   "redirects": [
     {
-      "source": "/reference/:path*",
-      "destination": "/apis/:path*",
-      "permanent": false
-    },
-    {
       "source": "/tips/controlled-input-null-value.html",
       "destination": "/docs/forms.html#controlled-input-null-value",
       "permanent": false
@@ -255,48 +250,13 @@
       "permanent": false
     },
     {
-      "source": "/apis/createcontext",
-      "destination": "/apis/react/createContext",
+      "source": "/apis/:path*",
+      "destination": "/reference/:path*",
       "permanent": true
     },
     {
-      "source": "/apis/usecontext",
-      "destination": "/apis/react/useContext",
-      "permanent": true
-    },
-    {
-      "source": "/apis/usereducer",
-      "destination": "/apis/react/useReducer",
-      "permanent": true
-    },
-    {
-      "source": "/apis/useref",
-      "destination": "/apis/react/useRef",
-      "permanent": true
-    },
-    {
-      "source": "/apis/usestate",
-      "destination": "/apis/react/useState",
-      "permanent": true
-    },
-    {
-      "source": "/apis",
-      "destination": "/apis/react",
-      "permanent": true
-    },
-    {
-      "source": "/apis/reactdom",
-      "destination": "/apis/react-dom",
-      "permanent": true
-    },
-    {
-      "source": "/apis/render",
-      "destination": "/apis/react-dom/render",
-      "permanent": true
-    },
-    {
-      "source": "/apis/createportal",
-      "destination": "/apis/react-dom/createPortal",
+      "source": "/reference",
+      "destination": "/reference/react",
       "permanent": true
     }
   ],

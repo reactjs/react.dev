@@ -20,7 +20,7 @@ import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../useRouteMeta';
 import sidebarLearn from '../../../sidebarLearn.json';
-import sidebarAPIs from '../../../sidebarAPIs.json';
+import sidebarReference from '../../../sidebarReference.json';
 
 declare global {
   interface Window {
@@ -117,8 +117,8 @@ export default function Nav() {
       case 'learn':
         routeTree = sidebarLearn as RouteItem;
         break;
-      case 'apis':
-        routeTree = sidebarAPIs as RouteItem;
+      case 'reference':
+        routeTree = sidebarReference as RouteItem;
         break;
     }
   }
@@ -185,7 +185,7 @@ export default function Nav() {
       });
   }, [showFeedback]);
 
-  function selectTab(nextTab: 'learn' | 'apis') {
+  function selectTab(nextTab: 'learn' | 'reference') {
     setTab(nextTab);
     scrollParentRef.current!.scrollTop = 0;
   }
@@ -252,8 +252,8 @@ export default function Nav() {
             isActive={section === 'learn' || section === 'home'}>
             Learn
           </NavLink>
-          <NavLink href="/apis/react" isActive={section === 'apis'}>
-            API
+          <NavLink href="/reference/react" isActive={section === 'reference'}>
+            Reference
           </NavLink>
         </div>
         <div className="flex my-4 h-10 mx-0 w-full lg:hidden justify-end lg:max-w-sm">
@@ -318,9 +318,9 @@ export default function Nav() {
             Learn
           </TabButton>
           <TabButton
-            isActive={tab === 'apis'}
-            onClick={() => selectTab('apis')}>
-            API
+            isActive={tab === 'reference'}
+            onClick={() => selectTab('reference')}>
+            Reference
           </TabButton>
         </div>
       )}

@@ -1594,7 +1594,7 @@ export default function Board() {
 }
 ```
 
-Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what the code should look like:
+Here is what your code should look like at this point:
 
 <Sandpack>
 
@@ -1631,6 +1631,167 @@ export default function Board() {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  }
+
+  return (
+    <>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        <Square value={squares[0]} onSquareClick={() => handleClick(0)} />
+        <Square value={squares[1]} onSquareClick={() => handleClick(1)} />
+        <Square value={squares[2]} onSquareClick={() => handleClick(2)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[3]} onSquareClick={() => handleClick(3)} />
+        <Square value={squares[4]} onSquareClick={() => handleClick(4)} />
+        <Square value={squares[5]} onSquareClick={() => handleClick(5)} />
+      </div>
+      <div className="board-row">
+        <Square value={squares[6]} onSquareClick={() => handleClick(6)} />
+        <Square value={squares[7]} onSquareClick={() => handleClick(7)} />
+        <Square value={squares[8]} onSquareClick={() => handleClick(8)} />
+      </div>
+    </>
+  );
+}
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
+```
+
+```css styles.css
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  padding: 0;
+}
+
+.square {
+  background: #fff;
+  border: 1px solid #999;
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.board-row:after {
+  clear: both;
+  content: '';
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
+```
+
+</Sandpack>
+
+The only issue with our game is that it doesn't show the game ended in a draw or not. Let's add this feature before we move on.
+
+### Showing if the game is drawn {/*showing-if-the-game-is-drawn*/}
+
+If there's **no winner** and **all the squares** are marked as `X` or `O`, then the game is a draw. We can easily implement this, by looping through the squares and checking each value is [truthy](https://developer.mozilla.org/en-US/docs/Glossary/Truthy) or not. In JavaScript, the [`every()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/every) method tests whether all elements in the array pass the test implemented by the provided function.
+
+```js {7-8}
+export default function Board() {
+  // ...
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
+  } else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O');
+  }
+
+  return (
+    <div>
+      <div className="status">{status}</div>
+      <div className="board-row">
+        // ...
+  )
+}
+```
+
+Congratulations! You now have a working tic-tac-toe game. And you've just learned the basics of React too. So _you_ are the real winner here. Here is what your code should look like at this point:
+
+<Sandpack>
+
+```js App.js
+import {useState} from 'react';
+
+function Square({value, onSquareClick}) {
+  return (
+    <button className="square" onClick={onSquareClick}>
+      {value}
+    </button>
+  );
+}
+
+export default function Board() {
+  const [xIsNext, setXIsNext] = useState(true);
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i) {
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    const nextSquares = squares.slice();
+    if (xIsNext) {
+      nextSquares[i] = 'X';
+    } else {
+      nextSquares[i] = 'O';
+    }
+    setSquares(nextSquares);
+    setXIsNext(!xIsNext);
+  }
+
+  const winner = calculateWinner(squares);
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -1905,6 +2066,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2110,6 +2273,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2340,6 +2505,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2561,6 +2728,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2771,6 +2940,8 @@ function Board({ xIsNext, squares, onPlay }) {
   let status;
   if (winner) {
     status = 'Winner: ' + winner;
+  } else if (squares.every(square => square)) {
+    status = 'The game is drawn';
   } else {
     status = 'Next player: ' + (xIsNext ? 'X' : 'O');
   }
@@ -2912,7 +3083,7 @@ If you have extra time or want to practice your new React skills, here are some 
 1. For the current move only, show "You are at move #..." instead of a button
 1. Rewrite `Board` to use two loops to make the squares instead of hardcoding them.
 1. Add a toggle button that lets you sort the moves in either ascending or descending order.
-1. When someone wins, highlight the three squares that caused the win (and when no one wins, display a message about the result being a draw).
+1. When someone wins, highlight the three squares that caused the win.
 1. Display the location for each move in the format (col, row) in the move history list.
 
 Throughout this tutorial, you've touched on React concepts including elements, components, props, and state. Now that you've seen how these concepts work when building a game, check out [Thinking in React](/learn/thinking-in-react) to see how the same React concepts work when build an app's UI.

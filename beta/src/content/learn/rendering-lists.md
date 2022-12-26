@@ -764,7 +764,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 A very attentive reader might notice that with two `filter` calls, we check each person's profession twice. Checking a property is very fast, so in this example it's fine. If your logic was more expensive than that, you could replace the `filter` calls with a loop that manually constructs the arrays and checks each person once.
 
-In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters if that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
+In fact, if `people` never change, you could move this code out of your component. From React's perspective, all that matters is that you give it an array of JSX nodes in the end. It doesn't care how you produce that array:
 
 <Sandpack>
 
@@ -884,7 +884,7 @@ img { width: 100px; height: 100px; border-radius: 50%; }
 
 #### Nested lists in one component {/*nested-lists-in-one-component*/}
 
-Make a list of recipes from this array! For each recipe in the array, display its title as an `<h2>` and list its ingredients in a `<ul>`.
+Make a list of recipes from this array! For each recipe in the array, display its name as an `<h2>` and list its ingredients in a `<ul>`.
 
 <Hint>
 

@@ -1,5 +1,5 @@
 ---
-title: "react-dom: Components"
+title: "React DOM Components"
 ---
 
 <Intro>

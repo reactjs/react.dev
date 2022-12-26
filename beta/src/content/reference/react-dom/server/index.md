@@ -1,5 +1,5 @@
 ---
-title: react-dom/server
+title: Server React DOM APIs
 ---
 
 <Intro>
@@ -10,7 +10,7 @@ The `react-dom/server` APIs let you render React components to HTML on the serve
 
 ---
 
-## React DOM Server APIs for Node.js Streams {/*react-dom-server-apis-for-nodejs-streams*/}
+## Server APIs for Node.js Streams {/*server-apis-for-nodejs-streams*/}
 
 These methods are only available in the environments with [Node.js Streams:](https://nodejs.org/api/stream.html)
 
@@ -19,7 +19,7 @@ These methods are only available in the environments with [Node.js Streams:](htt
 
 ---
 
-## React DOM Server APIs for Web Streams {/*react-dom-server-apis-for-web-streams*/}
+## Server APIs for Web Streams {/*server-apis-for-web-streams*/}
 
 These methods are only available in the environments with [Web Streams](https://developer.mozilla.org/en-US/docs/Web/API/Streams_API), which includes browsers, Deno, and some modern edge runtimes:
 
@@ -27,7 +27,7 @@ These methods are only available in the environments with [Web Streams](https://
 
 ---
 
-## React DOM Server APIs for non-streaming environments {/*react-dom-server-apis-for-non-streaming-environments*/}
+## Server APIs for non-streaming environments {/*server-apis-for-non-streaming-environments*/}
 
 These methods can be used in the environments that don't support streams:
 
@@ -38,7 +38,7 @@ They have limited functionality compared to the streaming APIs.
 
 ---
 
-## Deprecated React DOM Server APIs {/*deprecated-react-dom-server-apis*/}
+## Deprecated server APIs {/*deprecated-server-apis*/}
 
 <Deprecated>
 

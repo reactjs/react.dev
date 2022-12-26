@@ -8,6 +8,10 @@
       "path": "",
       "routes": [
         {
+          "hasSectionHeader": true,
+          "sectionHeader": "Get Started"
+        },
+        {
           "title": "Installation",
           "path": "/learn/installation",
           "routes": [
@@ -42,6 +46,10 @@
               "path": "/learn/thinking-in-react"
             }
           ]
+        },
+        {
+          "hasSectionHeader": true,
+          "sectionHeader": "Learn React"
         },
         {
           "title": "Describing the UI",
@@ -192,19 +200,26 @@
           ]
         },
         {
+          "hasSectionHeader": true,
+          "sectionHeader": "About React"
+        },
+        {
           "title": "Community",
-          "hasSeparator": true,
           "path": "/learn/community",
-          "routes": [{
-            "title": "Acknowledgements",
-            "path": "/learn/acknowledgements"
-          }, {
-            "title": "Docs Contributors",
-            "path": "/learn/docs-contributors"
-          }, {
-            "title": "Meet the Team",
-            "path": "/learn/meet-the-team"
-          }]
+          "routes": [
+            {
+              "title": "Acknowledgements",
+              "path": "/learn/acknowledgements"
+            },
+            {
+              "title": "Docs Contributors",
+              "path": "/learn/docs-contributors"
+            },
+            {
+              "title": "Meet the Team",
+              "path": "/learn/meet-the-team"
+            }
+          ]
         },
         {
           "title": "Blog",

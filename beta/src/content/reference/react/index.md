@@ -1,5 +1,5 @@
 ---
-title: "react: Hooks"
+title: "Built-in React Hooks"
 ---
 
 <Intro>

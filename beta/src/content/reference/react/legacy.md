@@ -1,5 +1,5 @@
 ---
-title: "react: Legacy APIs"
+title: "Legacy React APIs"
 ---
 
 <Intro>
@@ -10,7 +10,7 @@ These APIs are exported from the `react` package, but they are not recommended f
 
 ---
 
-## Legacy React APIs {/*legacy-react-apis*/}
+## Legacy APIs {/*legacy-apis*/}
 
 * [`Children`](/reference/react/Children) lets you manipulate and transform the JSX received as the `children` prop. [See alternatives.](/reference/react/Children#alternatives)
 * [`cloneElement`](/reference/react/cloneElement) lets you create a React element using another element as a starting point. [See alternatives.](/reference/react/cloneElement#alternatives)
@@ -23,7 +23,7 @@ These APIs are exported from the `react` package, but they are not recommended f
 
 ---
 
-## Deprecated React APIs {/*deprecated-react-apis*/}
+## Deprecated APIs {/*deprecated-apis*/}
 
 <Deprecated>
 

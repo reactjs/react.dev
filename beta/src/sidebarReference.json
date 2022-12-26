@@ -8,7 +8,33 @@
       "path": "",
       "routes": [
         {
-          "title": "react: Hooks",
+          "hasSectionHeader": true,
+          "sectionHeader": "'react' package"
+        },
+        {
+          "title": "Components",
+          "path": "/reference/react/components",
+          "routes": [
+            {
+              "title": "<Fragment> (<>)",
+              "path": "/reference/react/Fragment"
+            },
+            {
+              "title": "<Profiler>",
+              "path": "/reference/react/Profiler"
+            },
+            {
+              "title": "<StrictMode>",
+              "path": "/reference/react/StrictMode"
+            },
+            {
+              "title": "<Suspense>",
+              "path": "/reference/react/Suspense"
+            }
+          ]
+        },
+        {
+          "title": "Hooks",
           "path": "/reference/react",
           "routes": [
             {
@@ -74,29 +100,7 @@
           ]
         },
         {
-          "title": "react: Components",
-          "path": "/reference/react/components",
-          "routes": [
-            {
-              "title": "<Fragment> (<>)",
-              "path": "/reference/react/Fragment"
-            },
-            {
-              "title": "<Profiler>",
-              "path": "/reference/react/Profiler"
-            },
-            {
-              "title": "<StrictMode>",
-              "path": "/reference/react/StrictMode"
-            },
-            {
-              "title": "<Suspense>",
-              "path": "/reference/react/Suspense"
-            }
-          ]
-        },
-        {
-          "title": "react: APIs",
+          "title": "APIs",
           "path": "/reference/react/apis",
           "routes": [
             {
@@ -122,9 +126,12 @@
           ]
         },
         {
-          "title": "react-dom: Components",
+          "hasSectionHeader": true,
+          "sectionHeader": "'react-dom' package"
+        },
+        {
+          "title": "Components",
           "path": "/reference/react-dom/components",
-          "hasSeparator": true,
           "routes": [
             {
               "title": "Common (e.g. <div>)",
@@ -153,7 +160,7 @@
           ]
         },
         {
-          "title": "react-dom: APIs",
+          "title": "APIs",
           "path": "/reference/react-dom",
           "routes": [
             {
@@ -183,7 +190,7 @@
           ]
         },
         {
-          "title": "react-dom\/client",
+          "title": "Client APIs",
           "path": "/reference/react-dom/client",
           "routes": [
             {
@@ -197,7 +204,7 @@
           ]
         },
         {
-          "title": "react-dom\/server",
+          "title": "Server APIs",
           "path": "/reference/react-dom/server",
           "routes": [
             {
@@ -227,9 +234,12 @@
           ]
         },
         {
-          "title": "react: Legacy APIs",
+          "hasSectionHeader": true,
+          "sectionHeader": "Legacy APIs"
+        },
+        {
+          "title": "Legacy React APIs",
           "path": "/reference/react/legacy",
-          "hasSeparator": true,
           "routes": [
             {
               "title": "Children",

@@ -1,5 +1,5 @@
 ---
-title: "react: Components"
+title: "Built-in React Components"
 ---
 
 <Intro>
@@ -12,7 +12,7 @@ React exposes a few built-in components that you can use in your JSX.
 
 ---
 
-## Built-in React components {/*built-in-react-components*/}
+## Built-in components {/*built-in-components*/}
 
 * [`<Fragment>`](/reference/react/Fragment), alternatively written as `<>...</>`, lets you group multiple JSX nodes together.
 * [`<Profiler>`](/reference/react/Profiler) lets you measure rendering performance of a React tree programmatically.

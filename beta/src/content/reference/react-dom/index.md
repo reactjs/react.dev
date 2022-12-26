@@ -1,5 +1,5 @@
 ---
-title: react-dom
+title: React DOM APIs
 ---
 
 <Intro>
@@ -10,7 +10,7 @@ The `react-dom` package contains methods that are only supported for the web app
 
 ---
 
-## React DOM APIs {/*react-dom-apis*/}
+## APIs {/*apis*/}
 
 These APIs can be imported from your components. They are rarely used:
 
@@ -19,7 +19,7 @@ These APIs can be imported from your components. They are rarely used:
 
 ---
 
-## React DOM entry points {/*react-dom-entry-points*/}
+## Entry points {/*entry-points*/}
 
 The `react-dom` package provides two additional entry points:
 
@@ -28,7 +28,7 @@ The `react-dom` package provides two additional entry points:
 
 ---
 
-## Deprecated React DOM APIs {/*deprecated-react-dom-apis*/}
+## Deprecated APIs {/*deprecated-apis*/}
 
 <Deprecated>
 

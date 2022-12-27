@@ -1122,6 +1122,7 @@ export default function CountLabel({ count }) {
   if (prevCount !== count) {
     setPrevCount(count);
     setTrend(count > prevCount ? 'increasing' : 'decreasing');
+    return;
   }
   return (
     <>

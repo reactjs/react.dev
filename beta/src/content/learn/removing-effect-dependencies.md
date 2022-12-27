@@ -587,7 +587,7 @@ And making `messages` a dependency introduces a problem.
 
 Every time you receive a message, `setMessages()` causes the component to re-render with a new `messages` array that includes the received message. However, since this Effect now depends on `messages`, this will *also* re-synchronize the Effect. So every new message will make the chat re-connect. The user would not like that!
 
-To fix the issue, don't read `messages` inside the Effect. Instead, pass an [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) to `setMessages`:
+To fix the issue, don't read `messages` inside the Effect. Instead, pass an [updater function](/reference/react/useState#updating-state-based-on-the-previous-state) to `setMessages`:
 
 ```js {7,10}
 function ChatRoom({ roomId }) {
@@ -1209,7 +1209,7 @@ export default function Timer() {
 
 You want to update the `count` state to be `count + 1` from inside the Effect. However, this makes your Effect depend on `count`, which changes with every tick, and that's why your interval gets re-created on every tick.
 
-To solve this, use the [updater function](/apis/react/useState#updating-state-based-on-the-previous-state) and write `setCount(c => c + 1)` instead of `setCount(count + 1)`:
+To solve this, use the [updater function](/reference/react/useState#updating-state-based-on-the-previous-state) and write `setCount(c => c + 1)` instead of `setCount(count + 1)`:
 
 <Sandpack>
 

@@ -1,4 +1,5 @@
 ---
+title: "Meet the Team"
 ---
 
 <Intro>

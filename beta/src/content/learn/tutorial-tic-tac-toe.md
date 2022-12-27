@@ -955,19 +955,19 @@ export default function Board() {
   return (
     <>
       <div className="board-row">
-        <Square values={squares[0]} />
-        <Square values={squares[1]} />
-        <Square values={squares[2]} />
+        <Square value={squares[0]} />
+        <Square value={squares[1]} />
+        <Square value={squares[2]} />
       </div>
       <div className="board-row">
-        <Square values={squares[3]} />
-        <Square values={squares[4]} />
-        <Square values={squares[5]} />
+        <Square value={squares[3]} />
+        <Square value={squares[4]} />
+        <Square value={squares[5]} />
       </div>
       <div className="board-row">
-        <Square values={squares[6]} />
-        <Square values={squares[7]} />
-        <Square values={squares[8]} />
+        <Square value={squares[6]} />
+        <Square value={squares[7]} />
+        <Square value={squares[8]} />
       </div>
     </>
   );

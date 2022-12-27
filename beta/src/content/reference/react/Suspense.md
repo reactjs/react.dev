@@ -4,7 +4,7 @@ title: <Suspense>
 
 <Intro>
 
-`<Suspense>` lets you displays a fallback until its children have finished loading.
+`<Suspense>` lets you display a fallback until its children have finished loading.
 
 
 ```js

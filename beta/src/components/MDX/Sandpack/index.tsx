@@ -2,8 +2,13 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {lazy, memo, Children, Suspense} from 'react';
+import {lazy, memo, Children, Suspense, useState, useMemo} from 'react';
 import {createFileMap} from './createFileMap';
+import {
+  SnippetTargetLanguage,
+  SnippetTargetLanguageContext,
+  SnippetTargetLanguageContextValue,
+} from './SnippetLanguage';
 
 const SandpackRoot = lazy(() => import('./SandpackRoot'));
 
@@ -46,6 +51,16 @@ const SandpackGlimmer = ({code}: {code: string}) => (
 );
 
 export default memo(function SandpackWrapper(props: any): any {
+  const defaultSnippetTargetLanguage = 'ts';
+  const [snippetTargetLanguage, setSnippetTargetLanguage] =
+    useState<SnippetTargetLanguage>(defaultSnippetTargetLanguage);
+  const contextValue = useMemo((): SnippetTargetLanguageContextValue => {
+    return {
+      snippetTargetLanguage,
+      setSnippetTargetLanguage,
+    };
+  }, [snippetTargetLanguage]);
+
   const codeSnippets = Children.toArray(props.children) as React.ReactElement[];
   const files = createFileMap(codeSnippets);
 
@@ -55,16 +70,23 @@ export default memo(function SandpackWrapper(props: any): any {
     (fileName) =>
       files[fileName]?.active === true && files[fileName]?.hidden === false
   );
-  let activeCode;
+  let defaultActiveCodeSnippet;
   if (!activeCodeSnippet.length) {
-    activeCode = files['/App.js'].code;
+    if (snippetTargetLanguage === 'ts' && '/App.tsx' in files) {
+      defaultActiveCodeSnippet = files['/App.tsx'];
+    } else {
+      defaultActiveCodeSnippet = files['/App.js'];
+    }
   } else {
-    activeCode = files[activeCodeSnippet[0]].code;
+    defaultActiveCodeSnippet = files[activeCodeSnippet[0]];
   }
 
   return (
-    <Suspense fallback={<SandpackGlimmer code={activeCode} />}>
-      <SandpackRoot {...props} />
+    <Suspense
+      fallback={<SandpackGlimmer code={defaultActiveCodeSnippet.code} />}>
+      <SnippetTargetLanguageContext.Provider value={contextValue}>
+        <SandpackRoot {...props} />
+      </SnippetTargetLanguageContext.Provider>
     </Suspense>
   );
 });

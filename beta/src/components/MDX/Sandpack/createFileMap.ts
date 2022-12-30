@@ -27,6 +27,8 @@ export const createFileMap = (codeSnippets: React.ReactElement[]) => {
       } else {
         if (props.className === 'language-js') {
           filePath = '/App.js';
+        } else if (props.className === 'language-tsx') {
+          filePath = '/App.tsx';
         } else if (props.className === 'language-css') {
           filePath = '/styles.css';
         } else {
@@ -40,6 +42,16 @@ export const createFileMap = (codeSnippets: React.ReactElement[]) => {
           `File ${filePath} was defined multiple times. Each file snippet should have a unique path name`
         );
       }
+
+      if (snippetTargetLanguage === 'js' && /\.(mts|ts|tsx)$/.test(filePath)) {
+        fileHidden = true;
+      } else if (
+        snippetTargetLanguage === 'ts' &&
+        /\.(mjs|js|jsx)$/.test(filePath)
+      ) {
+        fileHidden = true;
+      }
+
       result[filePath] = {
         code: (props.children || '') as string,
         hidden: fileHidden,

@@ -9,6 +9,7 @@ import {
   useState,
   useEffect,
   Fragment,
+  useContext,
 } from 'react';
 import cn from 'classnames';
 import {
@@ -19,8 +20,10 @@ import {
 import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
+import {SnippetTargetLanguageContext} from './SnippetLanguage';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
+import classNames from 'classnames';
 
 export function useEvent(fn: any): any {
   const ref = useRef(null);
@@ -38,6 +41,43 @@ const getFileName = (filePath: string): string => {
   const lastIndexOfSlash = filePath.lastIndexOf('/');
   return filePath.slice(lastIndexOfSlash + 1);
 };
+
+function SnippetTargetLanguageButton(props: any) {
+  const {children, snippetTargetLanguage} = props;
+  const {
+    setSnippetTargetLanguage,
+    snippetTargetLanguage: currentSnippetTargetLanguage,
+  } = useContext(SnippetTargetLanguageContext);
+
+  const isCurrent = currentSnippetTargetLanguage === snippetTargetLanguage;
+
+  return (
+    <button
+      aria-pressed={isCurrent ? true : undefined}
+      className={classNames(
+        'text-sm text-primary dark:text-primary-dark inline-flex mx-1 border-black',
+        isCurrent && 'border-b-4'
+      )}
+      onClick={() => setSnippetTargetLanguage(snippetTargetLanguage)}
+      type="button">
+      {children}
+    </button>
+  );
+}
+
+function SnippetTargetLanguageToggle() {
+  return (
+    <div role="group" aria-label="Snippet target language">
+      <SnippetTargetLanguageButton key="js" snippetTargetLanguage="js">
+        JS
+      </SnippetTargetLanguageButton>
+
+      <SnippetTargetLanguageButton key="ts" snippetTargetLanguage="ts">
+        TS
+      </SnippetTargetLanguageButton>
+    </div>
+  );
+}
 
 export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
   const {sandpack} = useSandpack();
@@ -179,6 +219,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
       <div
         className="px-3 flex items-center justify-end text-right"
         translate="yes">
+        <SnippetTargetLanguageToggle />
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />

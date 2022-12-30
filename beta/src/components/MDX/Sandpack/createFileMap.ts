@@ -67,19 +67,15 @@ export const createFileMap = (
   );
 
   for (const filePath in fileMap) {
-    let fileHidden = fileMap[filePath].hidden;
-
-    // Only hide JS files if we have a TS version available.
+    // Only remove JS files if we have a TS version available.
     // If no TS version is available we continue to display JS files.
     // Assuming that if one file is available as TS, every file is.
     // Assuming a JS version is available all the time.
     if (snippetTargetLanguage === 'ts' && isJSFile(filePath) && hasTSVersion) {
-      fileHidden = true;
+      delete fileMap[filePath];
     } else if (snippetTargetLanguage === 'js' && isTSFile(filePath)) {
-      fileHidden = true;
+      delete fileMap[filePath];
     }
-
-    fileMap[filePath].hidden = fileHidden;
   }
 
   return fileMap;

@@ -3,8 +3,12 @@
  */
 
 import type {SandpackFile} from '@codesandbox/sandpack-react';
+import {SnippetTargetLanguage} from './SnippetLanguage';
 
-export const createFileMap = (codeSnippets: React.ReactElement[]) => {
+export const createFileMap = (
+  codeSnippets: React.ReactElement[],
+  snippetTargetLanguage: SnippetTargetLanguage
+) => {
   return codeSnippets.reduce<Record<string, SandpackFile>>(
     (result, codeSnippet) => {
       if ((codeSnippet.type as any).mdxName !== 'pre') {

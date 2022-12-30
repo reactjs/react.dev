@@ -2,7 +2,15 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {lazy, memo, Children, Suspense, useState, useMemo} from 'react';
+import {
+  lazy,
+  memo,
+  Children,
+  Suspense,
+  useState,
+  useMemo,
+  useContext,
+} from 'react';
 import {createFileMap} from './createFileMap';
 import {
   SnippetTargetLanguage,
@@ -51,18 +59,10 @@ const SandpackGlimmer = ({code}: {code: string}) => (
 );
 
 export default memo(function SandpackWrapper(props: any): any {
-  const defaultSnippetTargetLanguage = 'ts';
-  const [snippetTargetLanguage, setSnippetTargetLanguage] =
-    useState<SnippetTargetLanguage>(defaultSnippetTargetLanguage);
-  const contextValue = useMemo((): SnippetTargetLanguageContextValue => {
-    return {
-      snippetTargetLanguage,
-      setSnippetTargetLanguage,
-    };
-  }, [snippetTargetLanguage]);
+  const {snippetTargetLanguage} = useContext(SnippetTargetLanguageContext);
 
   const codeSnippets = Children.toArray(props.children) as React.ReactElement[];
-  const files = createFileMap(codeSnippets);
+  const files = createFileMap(codeSnippets, snippetTargetLanguage);
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
@@ -84,9 +84,7 @@ export default memo(function SandpackWrapper(props: any): any {
   return (
     <Suspense
       fallback={<SandpackGlimmer code={defaultActiveCodeSnippet.code} />}>
-      <SnippetTargetLanguageContext.Provider value={contextValue}>
-        <SandpackRoot {...props} />
-      </SnippetTargetLanguageContext.Provider>
+      <SandpackRoot {...props} />
     </Suspense>
   );
 });

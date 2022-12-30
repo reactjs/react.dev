@@ -93,7 +93,33 @@ export default function Gallery() {
 }
 ```
 
+```tsx Gallery.tsx active
+import Profile from './Profile';
+
+export default function Gallery() {
+  return (
+    <section>
+      <h1>Amazing scientists</h1>
+      <Profile />
+      <Profile />
+      <Profile />
+    </section>
+  );
+}
+```
+
 ```js Profile.js
+export default function Profile() {
+  return (
+    <img
+      src="https://i.imgur.com/QIrZWGIs.jpg"
+      alt="Alan L. Hart"
+    />
+  );
+}
+```
+
+```tsx Profile.tsx
 export default function Profile() {
   return (
     <img

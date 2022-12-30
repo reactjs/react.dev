@@ -9,7 +9,11 @@ export const createFileMap = (
   codeSnippets: React.ReactElement[],
   snippetTargetLanguage: SnippetTargetLanguage
 ) => {
-  return codeSnippets.reduce<Record<string, SandpackFile>>(
+  let hasTSVersion = false;
+  const isTSFile = (filePath: string) => /\.(mts|ts|tsx)$/.test(filePath);
+  const isJSFile = (filePath: string) => /\.(mjs|js|jsx)$/.test(filePath);
+
+  const fileMap = codeSnippets.reduce<Record<string, SandpackFile>>(
     (result, codeSnippet) => {
       if ((codeSnippet.type as any).mdxName !== 'pre') {
         return result;
@@ -47,23 +51,36 @@ export const createFileMap = (
         );
       }
 
-      if (snippetTargetLanguage === 'js' && /\.(mts|ts|tsx)$/.test(filePath)) {
-        fileHidden = true;
-      } else if (
-        snippetTargetLanguage === 'ts' &&
-        /\.(mjs|js|jsx)$/.test(filePath)
-      ) {
-        fileHidden = true;
-      }
-
       result[filePath] = {
         code: (props.children || '') as string,
         hidden: fileHidden,
         active: fileActive,
       };
 
+      if (isTSFile(filePath)) {
+        hasTSVersion = true;
+      }
+
       return result;
     },
     {}
   );
+
+  for (const filePath in fileMap) {
+    let fileHidden = fileMap[filePath].hidden;
+
+    // Only hide JS files if we have a TS version available.
+    // If no TS version is available we continue to display JS files.
+    // Assuming that if one file is available as TS, every file is.
+    // Assuming a JS version is available all the time.
+    if (snippetTargetLanguage === 'ts' && isJSFile(filePath) && hasTSVersion) {
+      fileHidden = true;
+    } else if (snippetTargetLanguage === 'js' && isTSFile(filePath)) {
+      fileHidden = true;
+    }
+
+    fileMap[filePath].hidden = fileHidden;
+  }
+
+  return fileMap;
 };

@@ -70,21 +70,26 @@ export default memo(function SandpackWrapper(props: any): any {
     (fileName) =>
       files[fileName]?.active === true && files[fileName]?.hidden === false
   );
-  let defaultActiveCodeSnippet;
+  let defaultActiveCodeSnippetName;
   if (!activeCodeSnippet.length) {
     if (snippetTargetLanguage === 'ts' && '/App.tsx' in files) {
-      defaultActiveCodeSnippet = files['/App.tsx'];
+      defaultActiveCodeSnippetName = '/App.tsx';
     } else {
-      defaultActiveCodeSnippet = files['/App.js'];
+      defaultActiveCodeSnippetName = '/App.js';
     }
   } else {
-    defaultActiveCodeSnippet = files[activeCodeSnippet[0]];
+    defaultActiveCodeSnippetName = activeCodeSnippet[0];
   }
 
   return (
     <Suspense
-      fallback={<SandpackGlimmer code={defaultActiveCodeSnippet.code} />}>
-      <SandpackRoot {...props} />
+      fallback={
+        <SandpackGlimmer code={files[defaultActiveCodeSnippetName].code} />
+      }>
+      <SandpackRoot
+        {...props}
+        defaultActiveFile={defaultActiveCodeSnippetName}
+      />
     </Suspense>
   );
 });

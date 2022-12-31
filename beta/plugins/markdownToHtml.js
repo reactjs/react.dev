@@ -5,6 +5,7 @@ const images = require('remark-images'); // Improved image syntax
 const unrwapImages = require('remark-unwrap-images'); // Removes <p> wrapper around images
 const smartyPants = require('./remark-smartypants'); // Cleans up typography
 const html = require('remark-html');
+const sandpackTargetLanguages = require('./remark-sandpack-target-languages');
 
 module.exports = {
   remarkPlugins: [
@@ -13,6 +14,7 @@ module.exports = {
     images,
     unrwapImages,
     smartyPants,
+    sandpackTargetLanguages,
   ],
   markdownToHtml,
 };
@@ -24,6 +26,7 @@ async function markdownToHtml(markdown) {
     .use(images)
     .use(unrwapImages)
     .use(smartyPants)
+    .use(sandpackTargetLanguages)
     .use(html)
     .process(markdown);
   return result.toString();

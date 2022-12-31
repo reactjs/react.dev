@@ -46,20 +46,20 @@ const SandpackGlimmer = ({code}: {code: string}) => (
 );
 
 export default memo(function SandpackWrapper(props: any): any {
-  const codeSnippet = createFileMap(Children.toArray(props.children));
+  const codeSnippets = Children.toArray(props.children) as React.ReactElement[];
+  const files = createFileMap(codeSnippets);
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
-  let activeCodeSnippet = Object.keys(codeSnippet).filter(
+  let activeCodeSnippet = Object.keys(files).filter(
     (fileName) =>
-      codeSnippet[fileName]?.active === true &&
-      codeSnippet[fileName]?.hidden === false
+      files[fileName]?.active === true && files[fileName]?.hidden === false
   );
   let activeCode;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet['/App.js'].code;
+    activeCode = files['/App.js'].code;
   } else {
-    activeCode = codeSnippet[activeCodeSnippet[0]].code;
+    activeCode = files[activeCodeSnippet[0]].code;
   }
 
   return (

@@ -4,9 +4,9 @@
 
 import type {SandpackFile} from '@codesandbox/sandpack-react';
 
-export const createFileMap = (codeSnippets: any) => {
-  return codeSnippets.reduce(
-    (result: Record<string, SandpackFile>, codeSnippet: React.ReactElement) => {
+export const createFileMap = (codeSnippets: React.ReactElement[]) => {
+  return codeSnippets.reduce<Record<string, SandpackFile>>(
+    (result, codeSnippet) => {
       if ((codeSnippet.type as any).mdxName !== 'pre') {
         return result;
       }

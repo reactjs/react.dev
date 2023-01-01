@@ -94,7 +94,7 @@ export default function Gallery() {
 ```
 
 ```tsx Profile.tsx
-export default function Profile() {
+export dfault function Profile() {
   return (
     <img
       src="https://i.imgur.com/QIrZWGIs.jpg"

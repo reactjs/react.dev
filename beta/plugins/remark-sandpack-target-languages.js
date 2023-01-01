@@ -52,7 +52,9 @@ module.exports = () => {
             } catch (error) {
               // TODO: Test behavior when we just let it throw here.
               // We're mostly handling malformed snippet code here.
-              console.warn(`Failed to compile ${meta}:\n${codeTS}\n${error}`);
+              throw new Error(
+                `Failed to compile ${meta}:\n${codeTS}\n${error}`
+              );
             }
             const codeJSNode = {
               type: 'code',

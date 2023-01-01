@@ -10,8 +10,8 @@ export const createFileMap = (
   snippetTargetLanguage: SnippetTargetLanguage
 ) => {
   let hasTSVersion = false;
-  const isTSFile = (filePath: string) => /\.(mts|ts|tsx)$/.test(filePath);
-  const isJSFile = (filePath: string) => /\.(mjs|js|jsx)$/.test(filePath);
+  const isTSFile = (filePath: string) => /\.(ts|tsx)$/.test(filePath);
+  const isJSFile = (filePath: string) => /\.(js|jsx)$/.test(filePath);
 
   const fileMap = codeSnippets.reduce<Record<string, SandpackFile>>(
     (result, codeSnippet) => {

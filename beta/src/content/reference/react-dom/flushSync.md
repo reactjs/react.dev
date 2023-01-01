@@ -24,7 +24,7 @@ flushSync(callback)
 
 ## Reference {/*reference*/}
 
-### `flushSync(callback)` {/*create-root*/}
+### `flushSync(callback)` {/*flushsync*/}
 
 Call `flushSync` to force React to flush any pending work and update the DOM synchronously.
 

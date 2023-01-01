@@ -50,10 +50,8 @@ module.exports = () => {
                 filepath: jsFileName,
               });
             } catch (error) {
-              // TODO: Test behavior when we just let it throw here.
-              // We're mostly handling malformed snippet code here.
               throw new Error(
-                `Failed to compile ${meta}:\n${codeTS}\n${error}`
+                `Failed to compile ${tsFileName}:\n${codeTS}\n${error}`
               );
             }
             const codeJSNode = {

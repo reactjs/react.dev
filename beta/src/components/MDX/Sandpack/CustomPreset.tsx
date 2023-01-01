@@ -22,11 +22,13 @@ export const CustomPreset = memo(function CustomPreset({
   showDevTools,
   onDevToolsLoad,
   devToolsLoaded,
+  hasTSVersion,
   providedFiles,
 }: {
   showDevTools: boolean;
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
+  hasTSVersion: boolean;
   providedFiles: Array<string>;
 }) {
   const {lintErrors, lintExtensions} = useSandpackLint();
@@ -44,6 +46,7 @@ export const CustomPreset = memo(function CustomPreset({
       showDevTools={showDevTools}
       onDevToolsLoad={onDevToolsLoad}
       devToolsLoaded={devToolsLoaded}
+      hasTSVersion={hasTSVersion}
       providedFiles={providedFiles}
       lintErrors={lintErrors}
       lintExtensions={lintExtensions}
@@ -56,6 +59,7 @@ const SandboxShell = memo(function SandboxShell({
   showDevTools,
   onDevToolsLoad,
   devToolsLoaded,
+  hasTSVersion,
   providedFiles,
   lintErrors,
   lintExtensions,
@@ -64,6 +68,7 @@ const SandboxShell = memo(function SandboxShell({
   showDevTools: boolean;
   devToolsLoaded: boolean;
   onDevToolsLoad: () => void;
+  hasTSVersion: boolean;
   providedFiles: Array<string>;
   lintErrors: Array<any>;
   lintExtensions: Array<any>;
@@ -76,7 +81,10 @@ const SandboxShell = memo(function SandboxShell({
       <div
         className="shadow-lg dark:shadow-lg-dark rounded-lg"
         ref={containerRef}>
-        <NavigationBar providedFiles={providedFiles} />
+        <NavigationBar
+          hasTSVersion={hasTSVersion}
+          providedFiles={providedFiles}
+        />
         <SandpackLayout
           className={cn(
             showDevTools && devToolsLoaded && 'sp-layout-devtools',

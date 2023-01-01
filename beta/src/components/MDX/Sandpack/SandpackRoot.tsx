@@ -80,7 +80,10 @@ function SandpackRoot(props: SandpackProps) {
   const {snippetTargetLanguage} = React.useContext(
     SnippetTargetLanguageContext
   );
-  const files = createFileMap(codeSnippets, snippetTargetLanguage);
+  const {files, hasTSVersion} = createFileMap(
+    codeSnippets,
+    snippetTargetLanguage
+  );
 
   files['/styles.css'] = {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
@@ -105,6 +108,7 @@ function SandpackRoot(props: SandpackProps) {
           showDevTools={showDevTools}
           onDevToolsLoad={() => setDevToolsLoaded(true)}
           devToolsLoaded={devToolsLoaded}
+          hasTSVersion={hasTSVersion}
           providedFiles={Object.keys(files)}
         />
       </SandpackProvider>

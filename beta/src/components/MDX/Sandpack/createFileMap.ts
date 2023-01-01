@@ -13,7 +13,7 @@ export const createFileMap = (
   const isTSFile = (filePath: string) => /\.(ts|tsx)$/.test(filePath);
   const isJSFile = (filePath: string) => /\.(js|jsx)$/.test(filePath);
 
-  const fileMap = codeSnippets.reduce<Record<string, SandpackFile>>(
+  const files = codeSnippets.reduce<Record<string, SandpackFile>>(
     (result, codeSnippet) => {
       if ((codeSnippet.type as any).mdxName !== 'pre') {
         return result;
@@ -66,17 +66,17 @@ export const createFileMap = (
     {}
   );
 
-  for (const filePath in fileMap) {
+  for (const filePath in files) {
     // Only remove JS files if we have a TS version available.
     // If no TS version is available we continue to display JS files.
     // Assuming that if one file is available as TS, every file is.
     // Assuming a JS version is available all the time.
     if (snippetTargetLanguage === 'ts' && isJSFile(filePath) && hasTSVersion) {
-      delete fileMap[filePath];
+      delete files[filePath];
     } else if (snippetTargetLanguage === 'js' && isTSFile(filePath)) {
-      delete fileMap[filePath];
+      delete files[filePath];
     }
   }
 
-  return fileMap;
+  return {files, hasTSVersion};
 };

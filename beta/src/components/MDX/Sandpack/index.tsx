@@ -62,7 +62,7 @@ export default memo(function SandpackWrapper(props: any): any {
   const {snippetTargetLanguage} = useContext(SnippetTargetLanguageContext);
 
   const codeSnippets = Children.toArray(props.children) as React.ReactElement[];
-  const files = createFileMap(codeSnippets, snippetTargetLanguage);
+  const {files} = createFileMap(codeSnippets, snippetTargetLanguage);
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.

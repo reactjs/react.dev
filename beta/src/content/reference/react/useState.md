@@ -71,7 +71,7 @@ function handleClick() {
 #### Parameters {/*setstate-parameters*/}
 
 * `nextState`: The value that you want the state to be. It can be a value of any type, but there is a special behavior for functions.
-  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the pending state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
+  * If you pass a function as `nextState`, it will be treated as an _updater function_. It must be pure, should take the previous state as its only argument, and should return the next state. React will put your updater function in a queue and re-render your component. During the next render, React will calculate the next state by applying all of the queued updaters to the previous state. [See an example below.](#updating-state-based-on-the-previous-state)
 
 #### Returns {/*setstate-returns*/}
 

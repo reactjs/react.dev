@@ -179,6 +179,14 @@ export function Search({
             {...options}
             initialScrollY={window.scrollY}
             searchParameters={searchParameters}
+            onClose={() => {
+              const outside = document.getElementsByClassName(
+                'DocSearch-Container'
+              );
+              if (event?.target === outside[0]) {
+                onClose();
+              }
+            }}
             navigator={{
               navigate({itemUrl}: any) {
                 Router.push(itemUrl);

@@ -805,7 +805,7 @@ If you click on any Square, an "X" should show up:
 
 Note that each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside of it too.
 
-After your made the above changes, your code will look like this:
+After you've made the above changes, your code will look like this:
 
 <Sandpack>
 

@@ -99,7 +99,7 @@ This will automatically load the bundle containing the `OtherComponent` when thi
 
 `React.lazy` takes a function that must call a dynamic `import()`. This must return a `Promise` which resolves to a module with a `default` export containing a React component.
 
-The lazy component should then be rendered inside a `Suspense` component, which allows us to show some fallback content (such as a loading indicator) while we're waiting for the lazy component to load.
+The lazy component must then be rendered inside a `Suspense` component or an alternative, which allows us to show some fallback content (such as a loading indicator) while we're waiting for the lazy component to load.
 
 ```js
 import React, { Suspense } from 'react';

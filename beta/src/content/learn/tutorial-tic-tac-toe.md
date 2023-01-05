@@ -1417,7 +1417,7 @@ function handleClick(i) {
   if (squares[i]) {
     return;
   }
-  let nextSquares = squares.slice();
+  const nextSquares = squares.slice();
   //...
 }
 ```

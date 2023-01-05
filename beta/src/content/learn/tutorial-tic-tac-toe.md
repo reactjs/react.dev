@@ -267,7 +267,7 @@ You can also follow this tutorial using your local development environment. To d
 1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
 1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
 1. Install the dependencies with `npm install`
-1. Run `npm start` start a locally server and follow the prompts to view the code running in a browser
+1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
 
 If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
 

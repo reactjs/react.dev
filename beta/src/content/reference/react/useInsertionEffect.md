@@ -34,7 +34,7 @@ import { useInsertionEffect } from 'react';
 // Inside your CSS-in-JS library
 function useCSS(rule) {
   useInsertionEffect(() => {
-  	// ... inject <style> tags here ...
+    // ... inject <style> tags here ...
   });
   return rule;
 }
@@ -94,8 +94,8 @@ Call `useInsertionEffect` to insert the styles before any DOM mutations:
 let isInserted = new Set();
 function useCSS(rule) {
   useInsertionEffect(() => {
-  	// As explained earlier, we don't recommend runtime injection of <style> tags.
-  	// But if you have to do it, then it's important to do in useInsertionEffect.
+    // As explained earlier, we don't recommend runtime injection of <style> tags.
+    // But if you have to do it, then it's important to do in useInsertionEffect.
     if (!isInserted.has(rule)) {
       isInserted.add(rule);
       document.head.appendChild(getStyleForRule(rule));

@@ -29,11 +29,15 @@ const stream = renderToNodeStream(reactNode)
 On the server, call `renderToNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams) which you can pipe into the response.
 
 ```js
+import { renderToNodeStream } from 'react-dom/server';
+
 const stream = renderToNodeStream(<App />);
 stream.pipe(response);
 ```
 
 On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
+
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

@@ -23,8 +23,12 @@ const SomeComponent = lazy(load)
 Call `lazy` outside your components to declare a lazy-loaded React component:
 
 ```js
+import { lazy } from 'react';
+
 const MarkdownPreview = lazy(() => import('./MarkdownPreview.js'));
 ```
+
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

@@ -31,6 +31,8 @@ unmountComponentAtNode(domNode)
 Call `unmountComponentAtNode` to remove a mounted React component from the DOM and clean up its event handlers and state.
 
 ```js
+import { unmountComponentAtNode } from 'react-dom';
+
 const domNode = document.getElementById('root');
 render(<App />, domNode);
 

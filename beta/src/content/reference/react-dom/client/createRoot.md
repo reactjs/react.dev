@@ -23,8 +23,10 @@ const root = createRoot(domNode, options?)
 Call `createRoot` to create a React root for displaying content inside a browser DOM element.
 
 ```js
+import { createRoot } from 'react-dom/client';
+
 const domNode = document.getElementById('root');
-const root = ReactDOM.createRoot(domNode);
+const root = createRoot(domNode);
 ```
 
 React will create a root for the `domNode`, and take over managing the DOM inside it. After you've created a root, you need to call [`root.render`](#root-render) to display a React component inside of it:

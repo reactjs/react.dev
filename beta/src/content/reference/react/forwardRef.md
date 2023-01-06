@@ -28,8 +28,9 @@ import { forwardRef } from 'react';
 const MyInput = forwardRef(function MyInput(props, ref) {
   // ...
 });
-
 ```
+
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

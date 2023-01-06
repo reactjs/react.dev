@@ -46,6 +46,8 @@ export default function App() {
 }
 ```
 
+[See more examples below.](#usage)
+
 #### Parameters {/*parameters*/}
 
 * `type`: The `type` argument must be a valid React component type. For example, it could be a tag name string (such as `'div'` or `'span'`), or a React component (a function, a class, or a special component like [`Fragment`](/reference/react/Fragment)).

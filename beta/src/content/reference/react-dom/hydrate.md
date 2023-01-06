@@ -31,6 +31,8 @@ hydrate(reactNode, domNode, callback?)
 Call `hydrate` in React 17 and below to “attach” React to existing HTML that was already rendered by React in a server environment.
 
 ```js
+import { hydrate } from 'react-dom';
+
 hydrate(reactNode, domNode);
 ```
 

@@ -23,9 +23,13 @@ const stream = renderToStaticNodeStream(reactNode)
 On the server, call `renderToStaticNodeStream` to get a [Node.js Readable Stream](https://nodejs.org/api/stream.html#readable-streams).
 
 ```js
+import { renderToStaticNodeStream } from 'react-dom/server';
+
 const stream = renderToStaticNodeStream(<Page />);
 stream.pipe(response);
 ```
+
+[See more examples below.](#usage)
 
 The stream will produce non-interactive HTML output of your React components.
 

@@ -16,6 +16,12 @@ All built-in browser components, such as [`<div>`](https://developer.mozilla.org
 
 ### Common components (e.g. `<div>`) {/*common*/}
 
+```js
+<div className="wrapper">Some content</div>
+```
+
+[See more examples below.](#usage)
+
 #### Props {/*common-props*/}
 
 These special React props are supported for all built-in components:

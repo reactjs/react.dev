@@ -42,6 +42,8 @@ const { pipe } = renderToPipeableStream(<App />, {
 
 On the client, call [`hydrateRoot`](/reference/react-dom/client/hydrateRoot) to make the server-generated HTML interactive.
 
+[See more examples below.](#usage)
+
 #### Parameters {/*parameters*/}
 
 * `reactNode`: A React node you want to render to HTML. For example, a JSX element like `<App />`. It is expected to represent the entire document, so the `App` component should render the `<html>` tag.

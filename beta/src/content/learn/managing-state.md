@@ -889,10 +889,10 @@ const initialTasks = [
 ```
 
 ```js AddTask.js
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useTasksDispatch } from './TasksContext.js';
 
-export default function AddTask({ onAddTask }) {
+export default function AddTask() {
   const [text, setText] = useState('');
   const dispatch = useTasksDispatch();
   return (
@@ -918,7 +918,7 @@ let nextId = 3;
 ```
 
 ```js TaskList.js
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { useTasks, useTasksDispatch } from './TasksContext.js';
 
 export default function TaskList() {

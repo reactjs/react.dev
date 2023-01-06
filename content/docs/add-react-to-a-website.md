@@ -82,7 +82,7 @@ After **[the starter code](https://gist.github.com/gaearon/0b180827c190fe4fd98b4
 
 const domContainer = document.querySelector('#like_button_container');
 const root = ReactDOM.createRoot(domContainer);
-root.render(e(LikeButton));
+root.render(React.createElement(LikeButton));
 ```
 
 These three lines of code find the `<div>` we added to our HTML in the first step, create a React app with it, and then display our "Like" button React component inside of it.

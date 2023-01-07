@@ -291,7 +291,7 @@ The `App.js` file should be selected in the _Files_ section. The contents of tha
 
 ```jsx
 export default function Square() {
-  return <button className="square"></button>;
+  return <button className="square">X</button>;
 }
 ```
 

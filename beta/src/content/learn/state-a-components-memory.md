@@ -377,7 +377,7 @@ const [index, setIndex] = useState(0);
 
 ## Giving a component multiple state variables {/*giving-a-component-multiple-state-variables*/}
 
-You can have as many state variables of as many types as you like in one component. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
+You can have as many state variables as you like in one component, each of any type. This component has two state variables, a number `index` and a boolean `showMore` that's toggled when you click "Show details":
 
 <Sandpack>
 

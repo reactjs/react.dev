@@ -29,13 +29,13 @@ Nothing changes here.
 Using PropTypes in any other way than annotating React components with them is no longer supported:
 
 ```javascript
-var apiShape = PropTypes.shape({
+let apiShape = PropTypes.shape({
   body: PropTypes.object,
   statusCode: PropTypes.number.isRequired
 }).isRequired;
 
 // Not supported!
-var error = apiShape(json, 'response');
+let error = apiShape(json, 'response');
 ```
 
 If you depend on using PropTypes like this, we encourage you to use or create a fork of PropTypes (such as [these](https://github.com/aackerman/PropTypes) [two](https://github.com/developit/proptypes) packages).

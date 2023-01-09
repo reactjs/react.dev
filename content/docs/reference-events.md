@@ -406,6 +406,8 @@ Event names:
 onLoad onError
 ```
 
+Note: When using onError with the `<picture>` element, onError can be used on either `<picture>` or `<img>` (not `<source>`).
+
 * * *
 
 ### Animation Events {#animation-events}

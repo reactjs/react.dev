@@ -309,6 +309,28 @@ function Counter() {
 >
 >React guarantees that `dispatch` function identity is stable and won't change on re-renders. This is why it's safe to omit from the `useEffect` or `useCallback` dependency list.
 
+To avoid confusion of the Redux users, it worth noting that `useReducer` holds an isolated state just like `useState`, and is not connected to a single combined store. Using the `useReducer(todosReducer)` between different components will produce separated states, and the **`dispatch` function dispatches only to its own reducer**.
+
+```
+function MultiCounter() {
+  // Isolated states. Each `dispatch` notifies only its own `reducer`.
+  const [state1, dispatch1] = useReducer(countReducer, initialState1);
+  const [state2, dispatch2] = useReducer(countReducer, initialState2);
+  
+  return (
+    <>
+      Count 1: {state1.count}
+      <button onClick={() => dispatch1({type: 'increment'})}>+</button>
+      <button onClick={() => dispatch1({type: 'decrement'})}>-</button>
+      <hr />
+      Count 2: {state2.count}
+      <button onClick={() => dispatch2({type: 'increment'})}>+</button>
+      <button onClick={() => dispatch2({type: 'decrement'})}>-</button>
+    </>
+  );
+}
+```
+
 #### Specifying the initial state {#specifying-the-initial-state}
 
 There are two different ways to initialize `useReducer` state. You may choose either one depending on the use case. The simplest way is to pass the initial state as a second argument:

@@ -267,7 +267,7 @@ You can also follow this tutorial using your local development environment. To d
 1. In the CodeSandbox tab you opened earlier, press the top-left corner button to open the menu, and then choose **File > Export to ZIP** in that menu to download an archive of the files locally
 1. Unzip the archive, then open a terminal and `cd` to the directory you unzipped
 1. Install the dependencies with `npm install`
-1. Run `npm start` start a locally server and follow the prompts to view the code running in a browser
+1. Run `npm start` to start a local server and follow the prompts to view the code running in a browser
 
 If you get stuck, don't let this stop you! Follow along online instead and try a local setup again later.
 
@@ -291,7 +291,7 @@ The `App.js` file should be selected in the _Files_ section. The contents of tha
 
 ```jsx
 export default function Square() {
-  return <button className="square"></button>;
+  return <button className="square">X</button>;
 }
 ```
 
@@ -805,7 +805,7 @@ If you click on any Square, an "X" should show up:
 
 Note that each Square has its own state: the `value` stored in each Square is completely independent of the others. When you call a `set` function in a component, React automatically updates the child components inside of it too.
 
-After your made the above changes, your code will look like this:
+After you've made the above changes, your code will look like this:
 
 <Sandpack>
 
@@ -1417,7 +1417,7 @@ function handleClick(i) {
   if (squares[i]) {
     return;
   }
-  let nextSquares = squares.slice();
+  const nextSquares = squares.slice();
   //...
 }
 ```

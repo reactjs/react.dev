@@ -32,6 +32,8 @@ The [built-in browser `<option>` component](https://developer.mozilla.org/en-US/
 </select>
 ```
 
+[See more examples below.](#usage)
+
 #### Props {/*props*/}
 
 `<option>` supports all [common element props.](/reference/react-dom/components/common#props)

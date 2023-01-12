@@ -22,11 +22,15 @@ const html = renderToStaticMarkup(reactNode)
 
 On the server, call `renderToStaticMarkup` to render your app to HTML.
 
-```js {3-4}
+```js
+import { renderToStaticMarkup } from 'react-dom/server';
+
 const html = renderToStaticMarkup(<Page />);
 ```
 
 It will produce non-interactive HTML output of your React components.
+
+[See more examples below.](#usage)
 
 #### Parameters {/*parameters*/}
 

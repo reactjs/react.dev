@@ -29,8 +29,10 @@ flushSync(callback)
 Call `flushSync` to force React to flush any pending work and update the DOM synchronously.
 
 ```js
+import { flushSync } from 'react-dom';
+
 flushSync(() => {
-  setState(true);
+  setSomething(123);
 });
 ```
 
@@ -62,9 +64,9 @@ Most of the time, `flushSync` can be avoided. Use `flushSync` as last resort.
 
 When integrating with third-party code such as browser APIs or UI libraries, it may be necessary to force React to flush updates. Use `flushSync` to force React to flush any <CodeStep step={1}>state updates</CodeStep> inside the callback synchronously:
 
-```js [[1, 2, "setState(true)"]]
+```js [[1, 2, "setSomething(123)"]]
 flushSync(() => {
-  setState(true);
+  setSomething(123);
 });
 // By this line, the DOM is updated.
 ```
@@ -85,7 +87,7 @@ In the example below, you use `flushSync` inside of the `onbeforeprint` callback
 
 ```js App.js active
 import { useState, useEffect } from 'react';
-import {flushSync} from 'react-dom';
+import { flushSync } from 'react-dom';
 
 export default function PrintApp() {
   const [isPrinting, setIsPrinting] = useState(false);

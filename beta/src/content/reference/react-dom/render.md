@@ -31,6 +31,8 @@ render(reactNode, domNode, callback?)
 Call `render` to display a React component inside a browser DOM element.
 
 ```js
+import { render } from 'react-dom';
+
 const domNode = document.getElementById('root');
 render(<App />, domNode);
 ```

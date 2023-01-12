@@ -210,7 +210,11 @@ export default function Gallery() {
   const [index, setIndex] = useState(0);
 
   function handleClick() {
-    setIndex(index + 1);
+    let newIndex = index + 1;
+    // When Index flows out of bound resets to the start of the list.
+    if(newIndex == sculptureList.length)
+      newIndex = 0;
+    setIndex(newIndex);
   }
 
   let sculpture = sculptureList[index];

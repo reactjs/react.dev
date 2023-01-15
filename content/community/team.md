@@ -58,7 +58,7 @@ Josh majored in Mathematics and discovered programming while in college. His fir
 
 [@poteto on GitHub](https://github.com/poteto) &middot; [@potetotes on Twitter](https://twitter.com/potetotes)
 
-Lauren’s programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. When she’s not adding bugs into React, she enjoys dropping cheeky memes in chat, and playing all too many video games with her partner and dog Zelda.
+Lauren’s programming career peaked when she first discovered the `<marquee>` tag. She’s been chasing that high ever since. When she’s not adding bugs into React, she enjoys dropping cheeky memes in chat, and playing all too many video games with her partner, and her dog Zelda.
 
 ### Luna Ruan {#luna-ruan}
 

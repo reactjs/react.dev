@@ -33,7 +33,7 @@ Code that lands in `main` must be compatible with the latest stable release. It 
 
 ### Feature Flags {#feature-flags}
 
-To keep the `main` branch in a releasable state, breaking changes and experimental features must be gated behind a feature flag.
+To keep the `main` branch in a releaseable state, breaking changes and experimental features must be gated behind a feature flag.
 
 Feature flags are defined in [`packages/shared/ReactFeatureFlags.js`](https://github.com/facebook/react/blob/main/packages/shared/ReactFeatureFlags.js). Some builds of React may enable different sets of feature flags; for example, the React Native build may be configured differently than React DOM. These flags are found in [`packages/shared/forks`](https://github.com/facebook/react/tree/main/packages/shared/forks). Feature flags are statically typed by Flow, so you can run `yarn flow` to confirm that you've updated all the necessary files.
 

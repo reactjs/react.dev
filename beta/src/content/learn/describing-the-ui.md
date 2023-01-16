@@ -69,7 +69,7 @@ You can declare many components in one file, but large files can get difficult t
 <Sandpack>
 
 ```js App.js hidden
-import Gallery from './Gallery.js';
+import Gallery from './Gallery';
 
 export default function App() {
   return (
@@ -78,8 +78,8 @@ export default function App() {
 }
 ```
 
-```js Gallery.js active
-import Profile from './Profile.js';
+```tsx Gallery.tsx active
+import Profile from './Profile';
 
 export default function Gallery() {
   return (
@@ -93,7 +93,7 @@ export default function Gallery() {
 }
 ```
 
-```js Profile.js
+```tsx Profile.tsx
 export default function Profile() {
   return (
     <img

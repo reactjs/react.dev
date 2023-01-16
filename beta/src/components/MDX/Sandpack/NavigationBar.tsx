@@ -2,13 +2,14 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {
+import React, {
   useRef,
   useInsertionEffect,
   useCallback,
   useState,
   useEffect,
   Fragment,
+  useContext,
 } from 'react';
 import cn from 'classnames';
 import {
@@ -19,8 +20,13 @@ import {
 import {OpenInCodeSandboxButton} from './OpenInCodeSandboxButton';
 import {ResetButton} from './ResetButton';
 import {DownloadButton} from './DownloadButton';
+import {
+  SnippetTargetLanguage,
+  SnippetTargetLanguageContext,
+} from './SnippetLanguage';
 import {IconChevron} from '../../Icon/IconChevron';
 import {Listbox} from '@headlessui/react';
+import classNames from 'classnames';
 
 export function useEvent(fn: any): any {
   const ref = useRef(null);
@@ -39,7 +45,70 @@ const getFileName = (filePath: string): string => {
   return filePath.slice(lastIndexOfSlash + 1);
 };
 
-export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
+function SnippetTargetLanguageButton({
+  children,
+  active,
+  disabled,
+  snippetTargetLanguage,
+}: {
+  children: React.ReactNode;
+  active: boolean;
+  disabled?: boolean | undefined;
+  snippetTargetLanguage: SnippetTargetLanguage;
+}) {
+  const {setSnippetTargetLanguage} = useContext(SnippetTargetLanguageContext);
+
+  return (
+    <button
+      aria-pressed={active}
+      aria-disabled={disabled}
+      className={classNames(
+        'text-sm text-primary dark:text-primary-dark inline-flex mx-1 border-black',
+        active && 'border-b-4',
+        disabled && 'cursor-not-allowed'
+      )}
+      onClick={() => {
+        if (!disabled) {
+          setSnippetTargetLanguage(snippetTargetLanguage);
+        }
+      }}
+      title={disabled ? 'Language not available at the moment.' : undefined}
+      type="button">
+      {children}
+    </button>
+  );
+}
+
+function SnippetTargetLanguageToggle({hasTSVersion}: {hasTSVersion: boolean}) {
+  const {snippetTargetLanguage} = useContext(SnippetTargetLanguageContext);
+
+  return (
+    <div role="group" aria-label="Snippet target language">
+      <SnippetTargetLanguageButton
+        key="js"
+        active={!hasTSVersion || snippetTargetLanguage === 'js'}
+        snippetTargetLanguage="js">
+        JS
+      </SnippetTargetLanguageButton>
+
+      <SnippetTargetLanguageButton
+        key="ts"
+        active={hasTSVersion && snippetTargetLanguage === 'ts'}
+        disabled={!hasTSVersion}
+        snippetTargetLanguage="ts">
+        TS
+      </SnippetTargetLanguageButton>
+    </div>
+  );
+}
+
+export function NavigationBar({
+  hasTSVersion,
+  providedFiles,
+}: {
+  hasTSVersion: boolean;
+  providedFiles: Array<string>;
+}) {
   const {sandpack} = useSandpack();
   const containerRef = useRef<HTMLDivElement | null>(null);
   const tabsRef = useRef<HTMLDivElement | null>(null);
@@ -179,6 +248,7 @@ export function NavigationBar({providedFiles}: {providedFiles: Array<string>}) {
       <div
         className="px-3 flex items-center justify-end text-right"
         translate="yes">
+        <SnippetTargetLanguageToggle hasTSVersion={hasTSVersion} />
         <DownloadButton providedFiles={providedFiles} />
         <ResetButton onReset={handleReset} />
         <OpenInCodeSandboxButton />

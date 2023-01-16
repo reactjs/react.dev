@@ -2,8 +2,21 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {lazy, memo, Children, Suspense} from 'react';
+import {
+  lazy,
+  memo,
+  Children,
+  Suspense,
+  useState,
+  useMemo,
+  useContext,
+} from 'react';
 import {createFileMap} from './createFileMap';
+import {
+  SnippetTargetLanguage,
+  SnippetTargetLanguageContext,
+  SnippetTargetLanguageContextValue,
+} from './SnippetLanguage';
 
 const SandpackRoot = lazy(() => import('./SandpackRoot'));
 
@@ -46,25 +59,37 @@ const SandpackGlimmer = ({code}: {code: string}) => (
 );
 
 export default memo(function SandpackWrapper(props: any): any {
-  const codeSnippet = createFileMap(Children.toArray(props.children));
+  const {snippetTargetLanguage} = useContext(SnippetTargetLanguageContext);
+
+  const codeSnippets = Children.toArray(props.children) as React.ReactElement[];
+  const {files} = createFileMap(codeSnippets, snippetTargetLanguage);
 
   // To set the active file in the fallback we have to find the active file first.
   // If there are no active files we fallback to App.js as default.
-  let activeCodeSnippet = Object.keys(codeSnippet).filter(
+  let activeCodeSnippet = Object.keys(files).filter(
     (fileName) =>
-      codeSnippet[fileName]?.active === true &&
-      codeSnippet[fileName]?.hidden === false
+      files[fileName]?.active === true && files[fileName]?.hidden === false
   );
-  let activeCode;
+  let defaultActiveCodeSnippetName;
   if (!activeCodeSnippet.length) {
-    activeCode = codeSnippet['/App.js'].code;
+    if (snippetTargetLanguage === 'ts' && '/App.tsx' in files) {
+      defaultActiveCodeSnippetName = '/App.tsx';
+    } else {
+      defaultActiveCodeSnippetName = '/App.js';
+    }
   } else {
-    activeCode = codeSnippet[activeCodeSnippet[0]].code;
+    defaultActiveCodeSnippetName = activeCodeSnippet[0];
   }
 
   return (
-    <Suspense fallback={<SandpackGlimmer code={activeCode} />}>
-      <SandpackRoot {...props} />
+    <Suspense
+      fallback={
+        <SandpackGlimmer code={files[defaultActiveCodeSnippetName].code} />
+      }>
+      <SandpackRoot
+        {...props}
+        defaultActiveFile={defaultActiveCodeSnippetName}
+      />
     </Suspense>
   );
 });

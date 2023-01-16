@@ -49,8 +49,8 @@ React is designed around this concept. **React assumes that every component you 
 
 <Sandpack>
 
-```js App.js
-function Recipe({ drinkers }) {
+```tsx App.tsx
+function Recipe({ drinkers }: { drinkers: number }) {
   return (
     <ol>    
       <li>Boil {drinkers} cups of water.</li>

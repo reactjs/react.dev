@@ -9,6 +9,11 @@ import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
 import {useRouteMeta} from './useRouteMeta';
 import {useActiveSection} from '../../hooks/useActiveSection';
+import {
+  SnippetTargetLanguage,
+  SnippetTargetLanguageContext,
+  SnippetTargetLanguageContextValue,
+} from '../MDX/Sandpack/SnippetLanguage';
 import {TocContext} from '../MDX/TocContext';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
@@ -31,6 +36,18 @@ export function MarkdownPage<
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
   const isHomePage = section === 'home';
+
+  const defaultSnippetTargetLanguage = 'ts';
+  const [snippetTargetLanguage, setSnippetTargetLanguage] =
+    React.useState<SnippetTargetLanguage>(defaultSnippetTargetLanguage);
+  const snippetTargetLanguageContextValue =
+    React.useMemo((): SnippetTargetLanguageContextValue => {
+      return {
+        snippetTargetLanguage,
+        setSnippetTargetLanguage,
+      };
+    }, [snippetTargetLanguage]);
+
   return (
     <>
       <div className="pl-0">
@@ -44,7 +61,12 @@ export function MarkdownPage<
         )}
         <div className="px-5 sm:px-12">
           <div className="max-w-7xl mx-auto">
-            <TocContext.Provider value={toc}>{children}</TocContext.Provider>
+            <TocContext.Provider value={toc}>
+              <SnippetTargetLanguageContext.Provider
+                value={snippetTargetLanguageContextValue}>
+                {children}
+              </SnippetTargetLanguageContext.Provider>
+            </TocContext.Provider>
           </div>
           <DocsPageFooter
             route={route}

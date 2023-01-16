@@ -9,10 +9,12 @@ import {SandpackLogLevel} from '@codesandbox/sandpack-client';
 import {CustomPreset} from './CustomPreset';
 import {createFileMap} from './createFileMap';
 import {CustomTheme} from './Themes';
+import {SnippetTargetLanguageContext} from './SnippetLanguage';
 
 type SandpackProps = {
   children: React.ReactNode;
   autorun?: boolean;
+  defaultActiveFile: string;
   showDevTools?: boolean;
 };
 
@@ -67,23 +69,35 @@ ul {
 `.trim();
 
 function SandpackRoot(props: SandpackProps) {
-  let {children, autorun = true, showDevTools = false} = props;
+  let {
+    children,
+    autorun = true,
+    defaultActiveFile,
+    showDevTools = false,
+  } = props;
   const [devToolsLoaded, setDevToolsLoaded] = useState(false);
   const codeSnippets = Children.toArray(children) as React.ReactElement[];
-  const files = createFileMap(codeSnippets);
+  const {snippetTargetLanguage} = React.useContext(
+    SnippetTargetLanguageContext
+  );
+  const {files, hasTSVersion} = createFileMap(
+    codeSnippets,
+    snippetTargetLanguage
+  );
 
   files['/styles.css'] = {
     code: [sandboxStyle, files['/styles.css']?.code ?? ''].join('\n\n'),
-    hidden: !files['/styles.css']?.visible,
+    hidden: files['/styles.css']?.hidden,
   };
 
   return (
     <div className="sandpack sandpack--playground my-8">
       <SandpackProvider
-        template="react"
+        template={snippetTargetLanguage === 'ts' ? 'react-ts' : 'react'}
         files={files}
         theme={CustomTheme}
         options={{
+          activeFile: defaultActiveFile,
           autorun,
           initMode: 'user-visible',
           initModeObserverOptions: {rootMargin: '1400px 0px'},
@@ -94,6 +108,7 @@ function SandpackRoot(props: SandpackProps) {
           showDevTools={showDevTools}
           onDevToolsLoad={() => setDevToolsLoaded(true)}
           devToolsLoaded={devToolsLoaded}
+          hasTSVersion={hasTSVersion}
           providedFiles={Object.keys(files)}
         />
       </SandpackProvider>

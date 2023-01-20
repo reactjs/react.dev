@@ -74,6 +74,13 @@ Check out [this example of declaring and using an error boundary](https://codepe
 The granularity of error boundaries is up to you. You may wrap top-level route components to display a “Something went wrong” message to the user, just like how server-side frameworks often handle crashes. You may also wrap individual widgets in an error boundary to protect them from crashing the rest of the application.
 
 
+## Difference in Behavior Between Development and Production {#difference-in-behavior-between-development-and-production}
+
+In development environment exceptions are thrown inside a fake DOM event which makes them reported by `window.onerror`, but then React actually catches them so that they don't propagate up.
+
+In production environment errors caught by error boundaries stay caught.
+
+
 ## New Behavior for Uncaught Errors {#new-behavior-for-uncaught-errors}
 
 This change has an important implication. **As of React 16, errors that were not caught by any error boundary will result in unmounting of the whole React component tree.**

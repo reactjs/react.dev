@@ -48,12 +48,15 @@ npm start
 
 For more information, [check out the official Vite docs.](https://vitejs.dev/)
 
-> Vite's default templates don't handle backend logic or databases. You can use it with any backend. When you build a project, you'll get a folder with static HTML, CSS and JS. Because this template can't take advantage of the server, it doesn't provide the best performance. If you're looking for faster loading times and built-in features like routing and server-side logic, we recommend using a framework instead.
-
 ### Popular alternatives {/*toolkit-popular-alternatives*/}
+
+Vite is not the only option for bundling your React-based single page applications. Here are some other popular options:
 
 * [create-react-app](https://create-react-app.dev/)
 * [Parcel](https://parceljs.org/getting-started/webapp/)
+
+> Vite's default templates don't handle backend logic or databases. You can use it with any backend. When you build a project, you'll get a folder with static HTML, CSS and JS. Because this template can't take advantage of the server, it doesn't provide the best performance. If you're looking for faster loading times and built-in features like routing and server-side logic, we recommend using a framework instead.
+
 
 ## Building with a full-featured framework {/*building-with-a-full-featured-framework*/}
 

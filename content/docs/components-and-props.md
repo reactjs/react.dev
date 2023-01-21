@@ -154,11 +154,11 @@ This component can be tricky to change because of all the nesting, and it is als
 First, we will extract `Avatar`:
 
 ```js{3-6}
-function Avatar(props) {
+function Avatar({user}) {
   return (
     <img className="Avatar"
-      src={props.user.avatarUrl}
-      alt={props.user.name}
+      src={user.avatarUrl}
+      alt={user.name}
     />
   );
 }
@@ -194,12 +194,12 @@ function Comment(props) {
 Next, we will extract a `UserInfo` component that renders an `Avatar` next to the user's name:
 
 ```js{3-8}
-function UserInfo(props) {
+function UserInfo({user}) {
   return (
     <div className="UserInfo">
-      <Avatar user={props.user} />
+      <Avatar user={props.author} />
       <div className="UserInfo-name">
-        {props.user.name}
+        {user.name}
       </div>
     </div>
   );

@@ -623,28 +623,21 @@ State works [like a snapshot](/learn/state-as-a-snapshot), so you can't read the
 <Sandpack>
 
 ```js
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 
 export default function Chat() {
-  const [text, setText] = useState('');
-  const textRef = useRef(text);
-
-  function handleChange(e) {
-    setText(e.target.value);
-    textRef.current = e.target.value;
-  }
+  const textRef = useRef(null);
 
   function handleSend() {
     setTimeout(() => {
-      alert('Sending: ' + textRef.current);
+      alert('Sending: ' + textRef.current.value);
     }, 3000);
   }
 
   return (
     <>
       <input
-        value={text}
-        onChange={handleChange}
+        value={textRef}
       />
       <button
         onClick={handleSend}>

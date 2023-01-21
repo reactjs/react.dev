@@ -27,13 +27,13 @@ React is a library that lets you organize UI code by breaking it apart into piec
 
 ## Getting started with a minimal toolchain {/*getting-started-with-a-minimal-toolchain*/}
 
-If you're **learning React,** we recommend [Create React App.](https://create-react-app.dev/) It is the most popular way to try out React and build a new single-page, client-side application. It's made for React but isn't opinionated about routing or data fetching.
+If you're **learning React,** we recommend the [Vite React template.](https://vitejs.dev/guide/) It's the simplest way to try out React and build a new single-page, client-side application. Vite works with other frameworks and isn't opinionated about routing or data fetching.
 
 First, install [Node.js.](https://nodejs.org/en/) Then open your terminal and run this line to create a project:
 
 <TerminalBlock>
 
-npx create-react-app my-app
+npx create-vite my-app --template react
 
 </TerminalBlock>
 
@@ -46,13 +46,13 @@ npm start
 
 </TerminalBlock>
 
-For more information, [check out the official guide.](https://create-react-app.dev/docs/getting-started)
+For more information, [check out the official Vite docs.](https://vitejs.dev/)
 
-> Create React App doesn't handle backend logic or databases. You can use it with any backend. When you build a project, you'll get a folder with static HTML, CSS and JS. Because Create React App can't take advantage of the server, it doesn't provide the best performance. If you're looking for faster loading times and built-in features like routing and server-side logic, we recommend using a framework instead.
+> Vite's default templates don't handle backend logic or databases. You can use it with any backend. When you build a project, you'll get a folder with static HTML, CSS and JS. Because this template can't take advantage of the server, it doesn't provide the best performance. If you're looking for faster loading times and built-in features like routing and server-side logic, we recommend using a framework instead.
 
 ### Popular alternatives {/*toolkit-popular-alternatives*/}
 
-* [Vite](https://vitejs.dev/guide/)
+* [create-react-app](https://create-react-app.dev/)
 * [Parcel](https://parceljs.org/getting-started/webapp/)
 
 ## Building with a full-featured framework {/*building-with-a-full-featured-framework*/}

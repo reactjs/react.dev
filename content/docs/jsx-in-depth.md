@@ -54,24 +54,6 @@ The first part of a JSX tag determines the type of the React element.
 
 Capitalized types indicate that the JSX tag is referring to a React component. These tags get compiled into a direct reference to the named variable, so if you use the JSX `<Foo />` expression, `Foo` must be in scope.
 
-### React Must Be in Scope {#react-must-be-in-scope}
-
-Since JSX compiles into calls to `React.createElement`, the `React` library must also always be in scope from your JSX code.
-
-For example, both of the imports are necessary in this code, even though `React` and `CustomButton` are not directly referenced from JavaScript:
-
-```js{1,2,5}
-import React from 'react';
-import CustomButton from './CustomButton';
-
-function WarningButton() {
-  // return React.createElement(CustomButton, {color: 'red'}, null);
-  return <CustomButton color="red" />;
-}
-```
-
-If you don't use a JavaScript bundler and loaded React from a `<script>` tag, it is already in scope as the `React` global.
-
 ### Using Dot Notation for JSX Type {#using-dot-notation-for-jsx-type}
 
 You can also refer to a React component using dot-notation from within JSX. This is convenient if you have a single module that exports many React components. For example, if `MyComponents.DatePicker` is a component, you can use it directly from JSX with:

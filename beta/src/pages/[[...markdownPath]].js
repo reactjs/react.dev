@@ -3,9 +3,11 @@
  */
 
 import {Fragment, useMemo} from 'react';
+import {useRouter} from 'next/router';
 import {MDXComponents} from 'components/MDX/MDXComponents';
-import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
+import sidebarLearn from '../sidebarLearn.json';
+import sidebarReference from '../sidebarReference.json';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -13,13 +15,29 @@ export default function Layout({content, toc, meta}) {
     [content]
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
+  const section = useActiveSection();
+  let routeTree = sidebarLearn;
+  switch (section) {
+    case 'reference':
+      routeTree = sidebarReference;
+      break;
+  }
   return (
-    <Page toc={parsedToc}>
-      <MarkdownPage meta={meta} toc={parsedToc}>
-        {parsedContent}
-      </MarkdownPage>
+    <Page toc={parsedToc} routeTree={routeTree} meta={meta} section={section}>
+      {parsedContent}
     </Page>
   );
+}
+
+function useActiveSection() {
+  const {asPath} = useRouter();
+  if (asPath.startsWith('/reference')) {
+    return 'reference';
+  } else if (asPath.startsWith('/learn')) {
+    return 'learn';
+  } else {
+    return 'home';
+  }
 }
 
 // Deserialize a client React tree from JSON.

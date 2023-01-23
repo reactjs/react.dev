@@ -7,7 +7,7 @@ import {memo} from 'react';
 import cn from 'classnames';
 import {removeFromLast} from 'utils/removeFromLast';
 import {IconNavArrow} from './Icon/IconNavArrow';
-import {RouteMeta} from './Layout/useRouteMeta';
+import type {RouteMeta} from './Layout/getRouteMeta';
 
 export type DocsPageFooterProps = Pick<
   RouteMeta,

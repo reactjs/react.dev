@@ -5,16 +5,16 @@
 import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
-import {RouteItem} from 'components/Layout/useRouteMeta';
 import {useRouter} from 'next/router';
 import {removeFromLast} from 'utils/removeFromLast';
-import {useRouteMeta} from '../useRouteMeta';
 import {SidebarLink} from './SidebarLink';
 import useCollapse from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;
+  breadcrumbs: RouteItem[];
   routeTree: RouteItem;
   level?: number;
 }
@@ -72,31 +72,13 @@ function CollapseWrapper({
 
 export function SidebarRouteTree({
   isForceExpanded,
+  breadcrumbs,
   routeTree,
   level = 0,
 }: SidebarRouteTreeProps) {
-  const {breadcrumbs} = useRouteMeta(routeTree);
-  const cleanedPath = useRouter().asPath.split(/[\?\#]/)[0];
+  const slug = useRouter().asPath.split(/[\?\#]/)[0];
   const pendingRoute = usePendingRoute();
-
-  const slug = cleanedPath;
   const currentRoutes = routeTree.routes as RouteItem[];
-  const expandedPath = currentRoutes.reduce(
-    (acc: string | undefined, curr: RouteItem) => {
-      if (acc) return acc;
-      const breadcrumb = breadcrumbs.find((b) => b.path === curr.path);
-      if (breadcrumb) {
-        return curr.path;
-      }
-      if (curr.path === cleanedPath) {
-        return cleanedPath;
-      }
-      return undefined;
-    },
-    undefined
-  );
-
-  const expanded = expandedPath;
   return (
     <ul>
       {currentRoutes.map(
@@ -106,7 +88,6 @@ export function SidebarRouteTree({
         ) => {
           const pagePath = path && removeFromLast(path, '.');
           const selected = slug === pagePath;
-
           let listItem = null;
           if (!path || !pagePath || heading) {
             // if current route item has no path and children treat it as an API sidebar heading
@@ -115,11 +96,15 @@ export function SidebarRouteTree({
                 level={level + 1}
                 isForceExpanded={isForceExpanded}
                 routeTree={{title, routes}}
+                breadcrumbs={[]}
               />
             );
           } else if (routes) {
             // if route has a path and child routes, treat it as an expandable sidebar item
-            const isExpanded = isForceExpanded || expanded === path;
+            const isBreadcrumb =
+              breadcrumbs.length > 1 &&
+              breadcrumbs[breadcrumbs.length - 1].path === path;
+            const isExpanded = isForceExpanded || isBreadcrumb || selected;
             listItem = (
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
@@ -131,13 +116,14 @@ export function SidebarRouteTree({
                   title={title}
                   wip={wip}
                   isExpanded={isExpanded}
-                  isBreadcrumb={expandedPath === path}
+                  isBreadcrumb={isBreadcrumb}
                   hideArrow={isForceExpanded}
                 />
                 <CollapseWrapper duration={250} isExpanded={isExpanded}>
                   <SidebarRouteTree
                     isForceExpanded={isForceExpanded}
                     routeTree={{title, routes}}
+                    breadcrumbs={breadcrumbs}
                     level={level + 1}
                   />
                 </CollapseWrapper>

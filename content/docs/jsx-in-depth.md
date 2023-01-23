@@ -450,6 +450,14 @@ To fix this, make sure that the expression before `&&` is always boolean:
   }
 </div>
 ```
+You can also coerce the expression into a boolean:
+```js{2}
+<div>
+  {!!props.messages.length &&
+    <MessageList messages={props.messages} />
+  }
+</div>
+```
 
 Conversely, if you want a value like `false`, `true`, `null`, or `undefined` to appear in the output, you have to [convert it to a string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String#String_conversion) first:
 

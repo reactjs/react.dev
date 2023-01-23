@@ -12,7 +12,6 @@ import {disableBodyScroll, enableBodyScroll} from 'body-scroll-lock';
 import {IconClose} from 'components/Icon/IconClose';
 import {IconHamburger} from 'components/Icon/IconHamburger';
 import {Search} from 'components/Search';
-import {useActiveSection} from 'hooks/useActiveSection';
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import NavLink from './NavLink';
@@ -94,15 +93,16 @@ const lightIcon = (
 export default function Nav({
   routeTree,
   breadcrumbs,
+  section,
 }: {
   routeTree: RouteItem;
   breadcrumbs: RouteItem[];
+  section: 'learn' | 'reference' | 'home';
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
   const feedbackAutohideRef = useRef<any>(null);
-  const section = useActiveSection();
   const {asPath} = useRouter();
   const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
 

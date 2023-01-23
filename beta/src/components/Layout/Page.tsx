@@ -6,7 +6,6 @@ import {Suspense} from 'react';
 import * as React from 'react';
 import {useRouter} from 'next/router';
 import {Nav} from './Nav';
-import {useActiveSection} from 'hooks/useActiveSection';
 import {Footer} from './Footer';
 import {Toc} from './Toc';
 import SocialBanner from '../SocialBanner';
@@ -27,16 +26,16 @@ interface PageProps {
   toc: Array<TocItem>;
   routeTree: RouteItem;
   meta: {title?: string; description?: string};
+  section: 'learn' | 'reference' | 'home';
 }
 
-export function Page({children, toc, routeTree, meta}: PageProps) {
+export function Page({children, toc, routeTree, meta, section}: PageProps) {
   const {asPath} = useRouter();
   const cleanedPath = asPath.split(/[\?\#]/)[0];
   const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
     cleanedPath,
     routeTree
   );
-  const section = useActiveSection();
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
   const isHomePage = cleanedPath === '/';
@@ -45,7 +44,11 @@ export function Page({children, toc, routeTree, meta}: PageProps) {
       <SocialBanner />
       <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
         <div className="fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none z-50">
-          <Nav routeTree={routeTree} breadcrumbs={breadcrumbs} />
+          <Nav
+            routeTree={routeTree}
+            breadcrumbs={breadcrumbs}
+            section={section}
+          />
         </div>
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>

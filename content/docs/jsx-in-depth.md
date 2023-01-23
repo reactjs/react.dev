@@ -167,6 +167,17 @@ function Story(props) {
 }
 ```
 
+The same process applies if you want to use a general expression to indicate the type as a HTML element rather than a React component. To do so, assign the HTML element name as a string to a capitalized variable:
+
+```js{4-5}
+import React from 'react';
+
+function MyList(props) {
+  const ListType = props.ordered ? 'ol' : 'ul';
+  return <ListType>{props.children}</ListType>;
+}
+```
+
 ## Props in JSX {#props-in-jsx}
 
 There are several different ways to specify props in JSX.

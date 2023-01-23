@@ -91,7 +91,13 @@ const lightIcon = (
   </svg>
 );
 
-export default function Nav({routeTree}: {routeTree: RouteItem}) {
+export default function Nav({
+  routeTree,
+  breadcrumbs,
+}: {
+  routeTree: RouteItem;
+  breadcrumbs: RouteItem[];
+}) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
@@ -341,6 +347,7 @@ export default function Nav({routeTree}: {routeTree: RouteItem}) {
                 // This avoids unnecessary animations and visual flicker.
                 key={isOpen ? 'mobile-overlay' : 'desktop-or-hidden'}
                 routeTree={routeTree}
+                breadcrumbs={breadcrumbs}
                 isForceExpanded={isOpen}
               />
             </Suspense>

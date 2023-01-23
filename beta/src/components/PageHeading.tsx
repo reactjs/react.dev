@@ -4,15 +4,15 @@
 
 import Breadcrumbs from 'components/Breadcrumbs';
 import Tag from 'components/Tag';
-import {RouteTag, RouteItem} from './Layout/useRouteMeta';
 import {H1} from './MDX/Heading';
+import type {RouteTag, RouteItem} from './Layout/useRouteMeta';
 
 interface PageHeadingProps {
   title: string;
   status?: string;
   description?: string;
   tags?: RouteTag[];
-  routeTree: RouteItem;
+  breadcrumbs: RouteItem[];
 }
 
 function PageHeading({
@@ -20,12 +20,12 @@ function PageHeading({
   status,
   description,
   tags = [],
-  routeTree,
+  breadcrumbs,
 }: PageHeadingProps) {
   return (
     <div className="px-5 sm:px-12 pt-8 sm:pt-7 lg:pt-5">
       <div className="max-w-4xl ml-0 2xl:mx-auto">
-        {tags ? <Breadcrumbs routeTree={routeTree} /> : null}
+        {breadcrumbs ? <Breadcrumbs breadcrumbs={breadcrumbs} /> : null}
         <H1 className="mt-0 text-primary dark:text-primary-dark -mx-.5 break-words">
           {title}
           {status ? <em>—{status}</em> : ''}

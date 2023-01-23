@@ -31,7 +31,7 @@ interface PageProps {
 
 export function Page({children, toc, routeTree, meta}: PageProps) {
   const {asPath} = useRouter();
-  const {route, nextRoute, prevRoute} = useRouteMeta(routeTree);
+  const {route, nextRoute, prevRoute, breadcrumbs} = useRouteMeta(routeTree);
   const section = useActiveSection();
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
@@ -41,7 +41,7 @@ export function Page({children, toc, routeTree, meta}: PageProps) {
       <SocialBanner />
       <div className="grid grid-cols-only-content lg:grid-cols-sidebar-content 2xl:grid-cols-sidebar-content-toc">
         <div className="fixed lg:sticky top-0 left-0 right-0 py-0 shadow lg:shadow-none z-50">
-          <Nav routeTree={routeTree} />
+          <Nav routeTree={routeTree} breadcrumbs={breadcrumbs} />
         </div>
         {/* No fallback UI so need to be careful not to suspend directly inside. */}
         <Suspense fallback={null}>
@@ -55,7 +55,7 @@ export function Page({children, toc, routeTree, meta}: PageProps) {
                     title={title}
                     description={description}
                     tags={route?.tags}
-                    routeTree={routeTree}
+                    breadcrumbs={breadcrumbs}
                   />
                 )}
                 <div className="px-5 sm:px-12">

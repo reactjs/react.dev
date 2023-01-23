@@ -3,12 +3,10 @@
  */
 
 import {Fragment} from 'react';
-import {useRouteMeta, RouteItem} from 'components/Layout/useRouteMeta';
 import Link from 'next/link';
+import type {RouteItem} from 'components/Layout/useRouteMeta';
 
-function Breadcrumbs({routeTree}: {routeTree: RouteItem}) {
-  const {breadcrumbs} = useRouteMeta(routeTree);
-  if (!breadcrumbs) return null;
+function Breadcrumbs({breadcrumbs}: {breadcrumbs: RouteItem[]}) {
   return (
     <div className="flex flex-wrap">
       {breadcrumbs.map(

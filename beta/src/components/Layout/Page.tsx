@@ -13,12 +13,12 @@ import SocialBanner from '../SocialBanner';
 import {DocsPageFooter} from 'components/DocsFooter';
 import {Seo} from 'components/Seo';
 import PageHeading from 'components/PageHeading';
-import {useRouteMeta} from './useRouteMeta';
+import {getRouteMeta} from './getRouteMeta';
 import {TocContext} from '../MDX/TocContext';
 import sidebarLearn from '../../sidebarLearn.json';
 import sidebarReference from '../../sidebarReference.json';
 import type {TocItem} from 'components/MDX/TocContext';
-import type {RouteItem} from 'components/Layout/useRouteMeta';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
 
 import(/* webpackPrefetch: true */ '../MDX/CodeBlock/CodeBlock');
 
@@ -31,11 +31,15 @@ interface PageProps {
 
 export function Page({children, toc, routeTree, meta}: PageProps) {
   const {asPath} = useRouter();
-  const {route, nextRoute, prevRoute, breadcrumbs} = useRouteMeta(routeTree);
+  const cleanedPath = asPath.split(/[\?\#]/)[0];
+  const {route, nextRoute, prevRoute, breadcrumbs} = getRouteMeta(
+    cleanedPath,
+    routeTree
+  );
   const section = useActiveSection();
   const title = meta.title || route?.title || '';
   const description = meta.description || route?.description || '';
-  const isHomePage = section === 'home';
+  const isHomePage = cleanedPath === '/';
   return (
     <>
       <SocialBanner />

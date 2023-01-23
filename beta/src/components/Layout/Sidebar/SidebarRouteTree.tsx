@@ -10,7 +10,7 @@ import {removeFromLast} from 'utils/removeFromLast';
 import {SidebarLink} from './SidebarLink';
 import useCollapse from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
-import type {RouteItem} from 'components/Layout/useRouteMeta';
+import type {RouteItem} from 'components/Layout/getRouteMeta';
 
 interface SidebarRouteTreeProps {
   isForceExpanded: boolean;

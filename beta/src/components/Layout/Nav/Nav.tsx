@@ -17,7 +17,7 @@ import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import NavLink from './NavLink';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
-import type {RouteItem} from '../useRouteMeta';
+import type {RouteItem} from '../getRouteMeta';
 import sidebarLearn from '../../../sidebarLearn.json';
 import sidebarReference from '../../../sidebarReference.json';
 

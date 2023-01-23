@@ -2,8 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useRouter} from 'next/router';
-
 /**
  * While Next.js provides file-based routing, we still need to construct
  * a sidebar for navigation and provide each markdown page
@@ -56,26 +54,19 @@ export interface RouteMeta {
   breadcrumbs?: RouteItem[];
 }
 
-export function useRouteMeta(routeTree: RouteItem) {
-  const router = useRouter();
-  if (router.pathname === '/404') {
-    return {
-      breadcrumbs: [],
-    };
-  }
-  const cleanedPath = router.asPath.split(/[\?\#]/)[0];
+export function getRouteMeta(cleanedPath: string, routeTree: RouteItem) {
   const breadcrumbs = getBreadcrumbs(cleanedPath, routeTree);
   return {
-    ...getRouteMeta(cleanedPath, routeTree),
+    ...buildRouteMeta(cleanedPath, routeTree, {}),
     breadcrumbs: breadcrumbs.length > 0 ? breadcrumbs : [routeTree],
   };
 }
 
 // Performs a depth-first search to find the current route and its previous/next route
-function getRouteMeta(
+function buildRouteMeta(
   searchPath: string,
   currentRoute: RouteItem,
-  ctx: RouteMeta = {}
+  ctx: RouteMeta
 ): RouteMeta {
   const {routes} = currentRoute;
 
@@ -96,7 +87,7 @@ function getRouteMeta(
   }
 
   for (const route of routes) {
-    getRouteMeta(searchPath, route, ctx);
+    buildRouteMeta(searchPath, route, ctx);
   }
 
   return ctx;

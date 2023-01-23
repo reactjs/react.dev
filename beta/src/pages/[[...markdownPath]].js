@@ -4,7 +4,6 @@
 
 import {Fragment, useMemo} from 'react';
 import {MDXComponents} from 'components/MDX/MDXComponents';
-import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
 import sidebarLearn from '../sidebarLearn.json';
 import sidebarReference from '../sidebarReference.json';
@@ -24,10 +23,8 @@ export default function Layout({content, toc, meta}) {
       break;
   }
   return (
-    <Page toc={parsedToc} routeTree={routeTree}>
-      <MarkdownPage meta={meta} toc={parsedToc} routeTree={routeTree}>
-        {parsedContent}
-      </MarkdownPage>
+    <Page toc={parsedToc} routeTree={routeTree} meta={meta}>
+      {parsedContent}
     </Page>
   );
 }

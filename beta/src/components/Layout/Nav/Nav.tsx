@@ -16,7 +16,6 @@ import {useActiveSection} from 'hooks/useActiveSection';
 import {Logo} from '../../Logo';
 import {Feedback} from '../Feedback';
 import NavLink from './NavLink';
-import {SidebarContext} from 'components/Layout/useRouteMeta';
 import {SidebarRouteTree} from '../Sidebar/SidebarRouteTree';
 import type {RouteItem} from '../useRouteMeta';
 import sidebarLearn from '../../../sidebarLearn.json';
@@ -92,7 +91,7 @@ const lightIcon = (
   </svg>
 );
 
-export default function Nav() {
+export default function Nav({routeTree}: {routeTree: RouteItem}) {
   const [isOpen, setIsOpen] = useState(false);
   const [showFeedback, setShowFeedback] = useState(false);
   const scrollParentRef = useRef<HTMLDivElement>(null);
@@ -101,8 +100,6 @@ export default function Nav() {
   const {asPath} = useRouter();
   const feedbackPopupRef = useRef<null | HTMLDivElement>(null);
 
-  // In desktop mode, use the route tree for current route.
-  let routeTree: RouteItem = useContext(SidebarContext);
   // In mobile mode, let the user switch tabs there and back without navigating.
   // Seed the tab state from the router, but keep it independent.
   const [tab, setTab] = useState(section);

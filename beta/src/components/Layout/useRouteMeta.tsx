@@ -2,7 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-import {useContext, createContext} from 'react';
 import {useRouter} from 'next/router';
 
 /**
@@ -57,9 +56,7 @@ export interface RouteMeta {
   breadcrumbs?: RouteItem[];
 }
 
-export function useRouteMeta(rootRoute?: RouteItem) {
-  const sidebarContext = useContext(SidebarContext);
-  const routeTree = rootRoute || sidebarContext;
+export function useRouteMeta(routeTree: RouteItem) {
   const router = useRouter();
   if (router.pathname === '/404') {
     return {
@@ -73,8 +70,6 @@ export function useRouteMeta(rootRoute?: RouteItem) {
     breadcrumbs: breadcrumbs.length > 0 ? breadcrumbs : [routeTree],
   };
 }
-
-export const SidebarContext = createContext<RouteItem>({title: 'root'});
 
 // Performs a depth-first search to find the current route and its previous/next route
 function getRouteMeta(

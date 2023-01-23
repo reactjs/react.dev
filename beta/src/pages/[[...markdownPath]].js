@@ -6,6 +6,9 @@ import {Fragment, useMemo} from 'react';
 import {MDXComponents} from 'components/MDX/MDXComponents';
 import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {Page} from 'components/Layout/Page';
+import sidebarLearn from '../sidebarLearn.json';
+import sidebarReference from '../sidebarReference.json';
+import {useActiveSection} from '../hooks/useActiveSection';
 
 export default function Layout({content, toc, meta}) {
   const parsedContent = useMemo(
@@ -13,9 +16,16 @@ export default function Layout({content, toc, meta}) {
     [content]
   );
   const parsedToc = useMemo(() => JSON.parse(toc, reviveNodeOnClient), [toc]);
+  const section = useActiveSection();
+  let routeTree = sidebarLearn;
+  switch (section) {
+    case 'reference':
+      routeTree = sidebarReference;
+      break;
+  }
   return (
-    <Page toc={parsedToc}>
-      <MarkdownPage meta={meta} toc={parsedToc}>
+    <Page toc={parsedToc} routeTree={routeTree}>
+      <MarkdownPage meta={meta} toc={parsedToc} routeTree={routeTree}>
         {parsedContent}
       </MarkdownPage>
     </Page>

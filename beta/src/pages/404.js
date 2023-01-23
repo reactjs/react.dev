@@ -5,13 +5,14 @@
 import {Page} from 'components/Layout/Page';
 import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {MDXComponents} from 'components/MDX/MDXComponents';
+import sidebarLearn from '../sidebarLearn.json';
 
 const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
 export default function NotFound() {
   return (
-    <Page toc={[]}>
-      <MarkdownPage meta={{title: 'Not Found'}}>
+    <Page toc={[]} routeTree={sidebarLearn}>
+      <MarkdownPage meta={{title: 'Not Found'}} routeTree={sidebarLearn}>
         <MaxWidth>
           <Intro>
             <P>This page doesn’t exist.</P>

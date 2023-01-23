@@ -5,13 +5,16 @@
 import {Page} from 'components/Layout/Page';
 import {MarkdownPage} from 'components/Layout/MarkdownPage';
 import {MDXComponents} from 'components/MDX/MDXComponents';
+import sidebarLearn from '../sidebarLearn.json';
 
 const {Intro, MaxWidth, p: P, a: A} = MDXComponents;
 
 export default function NotFound() {
   return (
-    <Page toc={[]}>
-      <MarkdownPage meta={{title: 'Something Went Wrong'}}>
+    <Page toc={[]} routeTree={sidebarLearn}>
+      <MarkdownPage
+        meta={{title: 'Something Went Wrong'}}
+        routeTree={sidebarLearn}>
         <MaxWidth>
           <Intro>
             <P>Something went very wrong.</P>

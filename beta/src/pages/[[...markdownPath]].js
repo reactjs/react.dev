@@ -35,6 +35,8 @@ function useActiveSection() {
     return 'reference';
   } else if (asPath.startsWith('/learn')) {
     return 'learn';
+  } else if (asPath.startsWith('/blog')) {
+    return 'learn';
   } else {
     return 'home';
   }

@@ -133,6 +133,15 @@ function LearnMore({
   );
 }
 
+function ReadBlogPost({path}: {path: string}) {
+  return (
+    <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
+      Read Post
+      <IconNavArrow displayDirection="right" className="inline ml-1" />
+    </ButtonLink>
+  );
+}
+
 function Math({children}: {children: any}) {
   return (
     <span
@@ -399,6 +408,7 @@ export const MDXComponents = {
   MathI,
   Note,
   PackageImport,
+  ReadBlogPost,
   Recap,
   Recipes,
   Sandpack,

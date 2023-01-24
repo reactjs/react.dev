@@ -258,6 +258,11 @@
       "source": "/reference",
       "destination": "/reference/react",
       "permanent": true
+    },
+    {
+      "source": "/learn/meet-the-team",
+      "destination": "/community/team",
+      "permanent": true
     }
   ],
   "headers": [

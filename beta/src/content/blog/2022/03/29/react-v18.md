@@ -2,7 +2,7 @@
 title: "React v18.0"
 ---
 
-March 29, 2022 by [The React Team](/learn/meet-the-team)
+March 29, 2022 by [The React Team](/community/team)
 
 ---
 

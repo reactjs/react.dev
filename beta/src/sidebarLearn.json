@@ -205,19 +205,35 @@
         },
         {
           "title": "Community",
-          "path": "/learn/community",
+          "path": "/community",
           "routes": [
             {
-              "title": "Acknowledgements",
-              "path": "/learn/acknowledgements"
+              "title": "React Conferences",
+              "path": "/community/conferences"
             },
             {
-              "title": "Docs Contributors",
-              "path": "/learn/docs-contributors"
+              "title": "React Meetups",
+              "path": "/community/meetups"
+            },
+            {
+              "title": "React Videos",
+              "path": "/community/videos"
             },
             {
               "title": "Meet the Team",
-              "path": "/learn/meet-the-team"
+              "path": "/community/team"
+            },
+            {
+              "title": "Docs Contributors",
+              "path": "/community/docs-contributors"
+            },
+            {
+              "title": "Acknowledgements",
+              "path": "/community/acknowledgements"
+            },
+            {
+              "title": "Versioning Policy",
+              "path": "/community/versioning-policy"
             }
           ]
         },

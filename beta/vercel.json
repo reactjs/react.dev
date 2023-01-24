@@ -205,51 +205,6 @@
       "permanent": false
     },
     {
-      "source": "/version/16.8",
-      "destination": "https://5d4b5feba32acd0008d0df98--reactjs.netlify.com/",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.7",
-      "destination": "https://5c54aa429e16c80007af3cd2--reactjs.netlify.com/",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.6",
-      "destination": "https://5c11762d4be4d10008916ab1--reactjs.netlify.com/",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.5",
-      "destination": "https://5bcf5863c6aed64970d6de5b--reactjs.netlify.com/",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.4",
-      "destination": "https://5b90c17ac9659241e7f4c938--reactjs.netlify.com",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.3",
-      "destination": "https://5b05c94e0733d530fd1fafe0--reactjs.netlify.com",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.2",
-      "destination": "https://5abc31d8be40f1556f06c4be--reactjs.netlify.com",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.1",
-      "destination": "https://5a1dbcf14c4b93299e65b9a9--reactjs.netlify.com",
-      "permanent": false
-    },
-    {
-      "source": "/version/16.0",
-      "destination": "https://5a046bf5a6188f4b8fa4938a--reactjs.netlify.com",
-      "permanent": false
-    },
-    {
       "source": "/apis/:path*",
       "destination": "/reference/:path*",
       "permanent": true

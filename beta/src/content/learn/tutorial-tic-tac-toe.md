@@ -986,7 +986,7 @@ At this point you should see a empty tic-tac-toe board:
 
 ![empty board](../images/tutorial/empty-board.png)
 
-And you code should look like this:
+And your code should look like this:
 
 <Sandpack>
 

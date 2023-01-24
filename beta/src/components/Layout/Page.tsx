@@ -56,7 +56,7 @@ export function Page({children, toc, routeTree, meta, section}: PageProps) {
             <div className="lg:hidden h-16 mb-2" />
             <article className="break-words" key={asPath}>
               <div className="pl-0">
-                <Seo title={title} />
+                <Seo title={title} isHomePage={isHomePage} />
                 {!isHomePage && (
                   <PageHeading
                     title={title}

@@ -2,8 +2,6 @@
  * Copyright (c) Facebook, Inc. and its affiliates.
  */
 
-const redirects = require('./src/redirects.json');
-
 /**
  * @type {import('next').NextConfig}
  **/
@@ -20,18 +18,8 @@ const nextConfig = {
     SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
   },
   async redirects() {
-    return redirects.redirects;
+    return [];
   },
-  // TODO: this causes extra router.replace() on every page.
-  // Let's disable until we figure out what's going on.
-  // rewrites() {
-  //   return [
-  //     {
-  //       source: '/feed.xml',
-  //       destination: '/_next/static/feed.xml',
-  //     },
-  //   ];
-  // },
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

@@ -142,7 +142,7 @@ Otherwise, you can encounter confusing bugs and unpredictable behavior as your c
 
 #### Optimizing performance {/*optimizing-performance*/}
 
-The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html#gatsby-focus-wrapper) section. **Don't optimize prematurely!**
+The default behavior of rendering all components nested within the updated component is not optimal for performance if the updated component is very high in the tree. If you run into a performance issue, there are several opt-in ways to solve it described in the [Performance](https://reactjs.org/docs/optimizing-performance.html) section. **Don't optimize prematurely!**
 
 </DeepDive>
 

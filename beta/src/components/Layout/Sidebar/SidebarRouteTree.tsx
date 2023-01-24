@@ -6,7 +6,6 @@ import {useRef, useLayoutEffect, Fragment} from 'react';
 
 import cn from 'classnames';
 import {useRouter} from 'next/router';
-import {removeFromLast} from 'utils/removeFromLast';
 import {SidebarLink} from './SidebarLink';
 import useCollapse from 'react-collapsed';
 import usePendingRoute from 'hooks/usePendingRoute';
@@ -86,10 +85,9 @@ export function SidebarRouteTree({
           {path, title, routes, wip, heading, hasSectionHeader, sectionHeader},
           index
         ) => {
-          const pagePath = path && removeFromLast(path, '.');
-          const selected = slug === pagePath;
+          const selected = slug === path;
           let listItem = null;
-          if (!path || !pagePath || heading) {
+          if (!path || !path || heading) {
             // if current route item has no path and children treat it as an API sidebar heading
             listItem = (
               <SidebarRouteTree
@@ -109,8 +107,8 @@ export function SidebarRouteTree({
               <li key={`${title}-${path}-${level}-heading`}>
                 <SidebarLink
                   key={`${title}-${path}-${level}-link`}
-                  href={pagePath}
-                  isPending={pendingRoute === pagePath}
+                  href={path}
+                  isPending={pendingRoute === path}
                   selected={selected}
                   level={level}
                   title={title}
@@ -134,8 +132,8 @@ export function SidebarRouteTree({
             listItem = (
               <li key={`${title}-${path}-${level}-link`}>
                 <SidebarLink
-                  isPending={pendingRoute === pagePath}
-                  href={path.startsWith('https://') ? path : pagePath}
+                  isPending={pendingRoute === path}
+                  href={path}
                   selected={selected}
                   level={level}
                   title={title}

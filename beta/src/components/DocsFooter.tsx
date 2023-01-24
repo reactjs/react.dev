@@ -5,7 +5,6 @@
 import NextLink from 'next/link';
 import {memo} from 'react';
 import cn from 'classnames';
-import {removeFromLast} from 'utils/removeFromLast';
 import {IconNavArrow} from './Icon/IconNavArrow';
 import type {RouteMeta} from './Layout/getRouteMeta';
 
@@ -33,7 +32,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
                 <FooterLink
                   type="Previous"
                   title={prevRoute.title}
-                  href={removeFromLast(prevRoute.path, '.')}
+                  href={prevRoute.path}
                 />
               ) : (
                 <div />
@@ -43,7 +42,7 @@ export const DocsPageFooter = memo<DocsPageFooterProps>(
                 <FooterLink
                   type="Next"
                   title={nextRoute.title}
-                  href={removeFromLast(nextRoute.path, '.')}
+                  href={nextRoute.path}
                 />
               ) : (
                 <div />

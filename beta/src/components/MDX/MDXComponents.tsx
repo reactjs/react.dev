@@ -133,7 +133,7 @@ function LearnMore({
   );
 }
 
-function ReadBlogPost({path}) {
+function ReadBlogPost({path}: {path: string}) {
   return (
     <ButtonLink className="mt-1" label="Read Post" href={path} type="primary">
       Read Post

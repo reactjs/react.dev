@@ -1,11 +1,12 @@
 ---
 title: "The Plan for React 18"
-author: [acdlite, bvaughn, abernathyca, gaearon, rachelnabors, rickhanlonii, sebmarkbage, sethwebster]
 ---
 
-> Update Nov. 15th, 2021
->
-> React 18 is now in beta. More information about the status of the release is [available in the React 18 Working Group post](https://github.com/reactwg/react-18/discussions/112).
+June 8, 2021 by [Andrew Clark](https://twitter.com/acdlite), [Brian Vaughn](https://github.com/bvaughn), [Christine Abernathy](https://twitter.com/abernathyca), [Dan Abramov](https://twitter.com/dan_abramov), [Rachel Nabors](https://twitter.com/rachelnabors), [Rick Hanlon](https://twitter.com/rickhanlonii), [Sebastian Markbåge](https://twitter.com/sebmarkbage), and [Seth Webster](https://twitter.com/sethwebster)
+
+---
+
+<Intro>
 
 The React team is excited to share a few updates:
 
@@ -14,6 +15,10 @@ The React team is excited to share a few updates:
 3. We’ve published a React 18 Alpha so that library authors can try it and provide feedback.
 
 These updates are primarily aimed at maintainers of third-party libraries. If you’re learning, teaching, or using React to build user-facing applications, you can safely ignore this post. But you are welcome to follow the discussions in the React 18 Working Group if you're curious!
+
+---
+
+</Intro>
 
 ## What’s coming in React 18 {/*whats-coming-in-react-18*/}
 

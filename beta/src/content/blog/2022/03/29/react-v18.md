@@ -1,11 +1,18 @@
 ---
 title: "React v18.0"
-author: [reactteam]
 ---
 
-React 18 is now available on npm!
+March 29, 2022 by [The React Team](/learn/meet-the-team)
 
-In our last post, we shared step-by-step instructions for [upgrading your app to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html). In this post, we'll give an overview of what's new in React 18, and what it means for the future.
+---
+
+<Intro>
+
+React 18 is now available on npm! In our last post, we shared step-by-step instructions for [upgrading your app to React 18](https://reactjs.org/blog/2022/03/08/react-18-upgrade-guide.html). In this post, we'll give an overview of what's new in React 18, and what it means for the future.
+
+</Intro>
+
+---
 
 Our latest major version includes out-of-the-box improvements like automatic batching, new APIs like startTransition, and streaming server-side rendering with support for Suspense.
 

@@ -1,13 +1,26 @@
 ---
 title: "How to Upgrade to React 18"
-author: [rickhanlonii]
 ---
+
+March 08, 2022 by [Rick Hanlon](https://twitter.com/rickhanlonii)
+
+---
+
+<Intro>
 
 As we shared in the [release post](/blog/2022/03/29/react-v18.html), React 18 introduces features powered by our new concurrent renderer, with a gradual adoption strategy for existing applications. In this post, we will guide you through the steps for upgrading to React 18.
 
 Please [report any issues](https://github.com/facebook/react/issues/new/choose) you encounter while upgrading to React 18.
 
-*Note for React Native users: React 18 will ship in a future version of React Native. This is because React 18 relies on the New React Native Architecture to benefit from the new capabilities presented in this blogpost. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).*
+</Intro>
+
+<Note>
+
+For React Native users, React 18 will ship in a future version of React Native. This is because React 18 relies on the New React Native Architecture to benefit from the new capabilities presented in this blogpost. For more information, see the [React Conf keynote here](https://www.youtube.com/watch?v=FZ0cG47msEk&t=1530s).
+
+</Note>
+
+---
 
 ## Installing {/*installing*/}
 
@@ -27,7 +40,11 @@ yarn add react react-dom
 
 When you first install React 18, you will see a warning in the console:
 
-> ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+<ConsoleBlock level="error">
+
+ReactDOM.render is no longer supported in React 18. Use createRoot instead. Until you switch to the new API, your app will behave as if it's running React 17. Learn more: https://reactjs.org/link/switch-to-createroot
+
+</ConsoleBlock>
 
 React 18 introduces a new root API which provides better ergonomics for managing roots. The new root API also enables the new concurrent renderer, which allows you to opt-into concurrent features.
 
@@ -77,9 +94,11 @@ const root = createRoot(container);
 root.render(<AppWithCallbackAfterRender />);
 ```
 
-> Note:
-> 
-> There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+<Note>
+
+There is no one-to-one replacement for the old render callback API — it depends on your use case. See the working group post for [Replacing render with createRoot](https://github.com/reactwg/react-18/discussions/5) for more information.
+
+</Note>
 
 Finally, if your app uses server-side rendering with hydration, upgrade `hydrate` to `hydrateRoot`:
 
@@ -98,9 +117,11 @@ const root = hydrateRoot(container, <App tab="home" />);
 
 For more information, see the [working group discussion here](https://github.com/reactwg/react-18/discussions/5).
 
-> Note
-> 
-> **If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) after you fix the issues that it's pointing out.
+<Note>
+
+**If your app doesn't work after upgrading, check whether it's wrapped in `<StrictMode>`.** [Strict Mode has gotten stricter in React 18](#updates-to-strict-mode), and not all your components may be resilient to the new checks it adds in development mode. If removing Strict Mode fixes your app, you can remove it during the upgrade, and then add it back (either at the top or for a part of the tree) after you fix the issues that it's pointing out.
+
+</Note>
 
 ## Updates to Server Rendering APIs {/*updates-to-server-rendering-apis*/}
 
@@ -244,7 +265,11 @@ For more information, see the Working Group posts for [Adding Reusable State to 
 
 When you first update your tests to use `createRoot`, you may see this warning in your test console:
 
-> The current testing environment is not configured to support act(...)
+<ConsoleBlock level="error">
+
+The current testing environment is not configured to support act(...)
+
+</ConsoleBlock>
 
 To fix this, set `globalThis.IS_REACT_ACT_ENVIRONMENT` to `true` before running your test:
 

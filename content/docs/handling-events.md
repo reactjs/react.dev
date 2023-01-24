@@ -8,13 +8,13 @@ redirect_from:
   - "docs/events-ko-KR.html"
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
 > - [Responding to Events](https://beta.reactjs.org/learn/responding-to-events)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 Handling events with React elements is very similar to handling events on DOM elements. There are some syntax differences:

@@ -6,13 +6,13 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
 > - [Rendering Lists](https://beta.reactjs.org/learn/rendering-lists)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 First, let's review how you transform lists in JavaScript.

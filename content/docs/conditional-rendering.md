@@ -8,13 +8,13 @@ redirect_from:
   - "tips/false-in-jsx.html"
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
 > - [Conditional Rendering](https://beta.reactjs.org/learn/conditional-rendering)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 
 In React, you can create distinct components that encapsulate behavior you need. Then, you can render only some of them, depending on the state of your application.

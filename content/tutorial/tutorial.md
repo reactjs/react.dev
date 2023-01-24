@@ -12,13 +12,11 @@ redirect_from:
   - "docs/tutorial-zh-CN.html"
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
-> These new documentation pages teach modern React and include live examples:
+> The updated [Tutorial](https://beta.reactjs.org/learn/tutorial-tic-tac-toe) teaches modern React and includes live examples.
 >
-> - [Tutorial: Tic Tac Toe](https://beta.reactjs.org/learn/tutorial-tic-tac-toe)
->
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 This tutorial doesn't assume any existing React knowledge.
 

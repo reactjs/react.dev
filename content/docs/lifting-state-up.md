@@ -9,13 +9,13 @@ redirect_from:
   - "docs/flux-todo-list.html"
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
 > - [Sharing State Between Components](https://beta.reactjs.org/learn/sharing-state-between-components)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 Often, several components need to reflect the same changing data. We recommend lifting the shared state up to their closest common ancestor. Let's see how this works in action.
 

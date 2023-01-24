@@ -11,7 +11,7 @@ redirect_from:
   - "tips/children-undefined.html"
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
@@ -20,7 +20,7 @@ redirect_from:
 > - [`useRef`](https://beta.reactjs.org/reference/react/useRef)
 > - [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 Refs provide a way to access DOM nodes or React elements created in the render method.
 

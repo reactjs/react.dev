@@ -20,9 +20,9 @@ redirect_from:
 
 > Try the new React documentation.
 > 
-> The new [Quick Start](https://beta.reactjs.org/learn) teaches modern React and include live examples.
+> The new [Quick Start](https://beta.reactjs.org/learn) teaches modern React and includes live examples.
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 This page is an overview of the React documentation and related resources.
 

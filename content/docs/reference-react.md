@@ -103,7 +103,7 @@ Suspense lets components "wait" for something before rendering. Today, Suspense 
 
 > Try the new React documentation for [`Component`](https://beta.reactjs.org/reference/react/Component).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Component` is the base class for React components when they are defined using [ES6 classes](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Classes):
 
@@ -123,7 +123,7 @@ See the [React.Component API Reference](/docs/react-component.html) for a list o
 
 > Try the new React documentation for [`PureComponent`](https://beta.reactjs.org/reference/react/PureComponent).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.PureComponent` is similar to [`React.Component`](#reactcomponent). The difference between them is that [`React.Component`](#reactcomponent) doesn't implement [`shouldComponentUpdate()`](/docs/react-component.html#shouldcomponentupdate), but `React.PureComponent` implements it with a shallow prop and state comparison.
 
@@ -141,7 +141,7 @@ If your React component's `render()` function renders the same result given the 
 
 > Try the new React documentation for [`memo`](https://beta.reactjs.org/reference/react/memo).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 const MyComponent = React.memo(function MyComponent(props) {
@@ -183,7 +183,7 @@ This method only exists as a **[performance optimization](/docs/optimizing-perfo
 
 > Try the new React documentation for [`createElement`](https://beta.reactjs.org/reference/react/createElement).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 React.createElement(
@@ -203,7 +203,7 @@ Code written with [JSX](/docs/introducing-jsx.html) will be converted to use `Re
 
 > Try the new React documentation for [`cloneElement`](https://beta.reactjs.org/reference/react/cloneElement).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```
 React.cloneElement(
@@ -231,7 +231,7 @@ This API was introduced as a replacement of the deprecated `React.addons.cloneWi
 
 > Try the new React documentation for [`createFactory`](https://beta.reactjs.org/reference/react/createFactory).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 React.createFactory(type)
@@ -249,7 +249,7 @@ You will not typically invoke `React.createFactory()` directly if you are using 
 
 > Try the new React documentation for [`isValidElement`](https://beta.reactjs.org/reference/react/isValidElement).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```javascript
 React.isValidElement(object)
@@ -263,7 +263,7 @@ Verifies the object is a React element. Returns `true` or `false`.
 
 > Try the new React documentation for [`Children`](https://beta.reactjs.org/reference/react/Children).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Children` provides utilities for dealing with the `this.props.children` opaque data structure.
 
@@ -325,7 +325,7 @@ Returns the `children` opaque data structure as a flat array with keys assigned 
 
 > Try the new React documentation for [`Fragment`](https://beta.reactjs.org/reference/react/Fragment).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 The `React.Fragment` component lets you return multiple elements in a `render()` method without creating an additional DOM element:
 
@@ -347,7 +347,7 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 
 > Try the new React documentation for [`createRef`](https://beta.reactjs.org/reference/react/createRef).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.createRef` creates a [ref](/docs/refs-and-the-dom.html) that can be attached to React elements via the ref attribute.
 `embed:16-3-release-blog-post/create-ref-example.js`
@@ -356,7 +356,7 @@ You can also use it with the shorthand `<></>` syntax. For more information, see
 
 > Try the new React documentation for [`forwardRef`](https://beta.reactjs.org/reference/react/forwardRef).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.forwardRef` creates a React component that forwards the [ref](/docs/refs-and-the-dom.html) attribute it receives to another component below in the tree. This technique is not very common but is particularly useful in two scenarios:
 
@@ -377,7 +377,7 @@ For more information, see [forwarding refs](/docs/forwarding-refs.html).
 
 > Try the new React documentation for [`lazy`](https://beta.reactjs.org/reference/react/lazy).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.lazy()` lets you define a component that is loaded dynamically. This helps reduce the bundle size to delay loading components that aren't used during the initial render.
 
@@ -394,7 +394,7 @@ Note that rendering `lazy` components requires that there's a `<React.Suspense>`
 
 > Try the new React documentation for [`Suspense`](https://beta.reactjs.org/reference/react/Suspense).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 `React.Suspense` lets you specify the loading indicator in case some components in the tree below it are not yet ready to render. In the future we plan to let `Suspense` handle more scenarios such as data fetching. You can read about this in [our roadmap](/blog/2018/11/27/react-16-roadmap.html).
 
@@ -433,7 +433,7 @@ Suspense boundaries depend on their parent boundaries being hydrated before they
 
 > Try the new React documentation for [`startTransition`](https://beta.reactjs.org/reference/react/startTransition).
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 ```js
 React.startTransition(callback)

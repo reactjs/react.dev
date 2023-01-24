@@ -8,14 +8,14 @@ prev: components-and-props.html
 next: handling-events.html
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
 > - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
 > - [Synchronizing with Effects](https://beta.reactjs.org/learn/synchronizing-with-effects)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 This page introduces the concept of state and lifecycle in a React component. You can find a [detailed component API reference here](/docs/react-component.html).
 

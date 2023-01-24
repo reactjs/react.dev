@@ -6,14 +6,14 @@ next: hooks-effect.html
 prev: hooks-overview.html
 ---
 
-> Try the new React documentation for this topic.
+> Try the new React documentation.
 > 
 > These new documentation pages teach modern React and include live examples:
 >
 > - [State: A Component's Memory](https://beta.reactjs.org/learn/state-a-components-memory)
 > - [`useState`](https://beta.reactjs.org/reference/react/useState)
 >
-> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+> The new docs will soon replace this site, which will be archived. [Provide feedback.](https://github.com/reactjs/reactjs.org/issues/3308)
 
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 

@@ -37,6 +37,10 @@ React supports all modern browsers, although [some polyfills are required](/docs
 
 ### `createRoot()` {#createroot}
 
+> Try the new React documentation for [`createRoot`](https://beta.reactjs.org/reference/react-dom/client/createRoot).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 ```javascript
 createRoot(container[, options]);
 ```
@@ -69,6 +73,11 @@ root.unmount();
 * * *
 
 ### `hydrateRoot()` {#hydrateroot}
+
+> Try the new React documentation for [`hydrateRoot`](https://beta.reactjs.org/reference/react-dom/client/hydrateRoot).
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 
 ```javascript
 hydrateRoot(container, element[, options])

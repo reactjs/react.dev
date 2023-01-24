@@ -6,6 +6,15 @@ prev: conditional-rendering.html
 next: forms.html
 ---
 
+> Try the new React documentation for this topic.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Rendering Lists](https://beta.reactjs.org/learn/rendering-lists)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+
+
 First, let's review how you transform lists in JavaScript.
 
 Given the code below, we use the [`map()`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/map) function to take an array of `numbers` and double their values. We assign the new array returned by `map()` to the variable `doubled` and log it:

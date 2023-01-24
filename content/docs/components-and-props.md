@@ -16,6 +16,16 @@ prev: rendering-elements.html
 next: state-and-lifecycle.html
 ---
 
+> Try the new React documentation for this topic.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Quick Start](https://beta.reactjs.org/learn)
+> - [Your First Component](https://beta.reactjs.org/learn/your-first-component)
+> - [Passing Props to a Component](https://beta.reactjs.org/learn/passing-props-to-a-component)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 Components let you split the UI into independent, reusable pieces, and think about each piece in isolation. This page provides an introduction to the idea of components. You can find a [detailed component API reference here](/docs/react-component.html).
 
 Conceptually, components are like JavaScript functions. They accept arbitrary inputs (called "props") and return React elements describing what should appear on the screen.

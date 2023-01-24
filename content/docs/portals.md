@@ -4,6 +4,14 @@ title: Portals
 permalink: docs/portals.html
 ---
 
+> Try the new React documentation for this topic.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [`createPortal`](https://beta.reactjs.org/reference/react-dom/createPortal)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 Portals provide a first-class way to render children into a DOM node that exists outside the DOM hierarchy of the parent component.
 
 ```js

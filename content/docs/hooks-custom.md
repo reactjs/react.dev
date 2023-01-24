@@ -6,6 +6,14 @@ next: hooks-reference.html
 prev: hooks-rules.html
 ---
 
+> Try the new React documentation for this topic.
+> 
+> These new documentation pages teach modern React and include live examples:
+>
+> - [Reusing Logic with Custom Hooks](https://beta.reactjs.org/learn/reusing-logic-with-custom-hooks)
+>
+> The new docs will soon replace this site, which will be archived. [Provide feedback here.](https://github.com/reactjs/reactjs.org/issues/3308)
+
 *Hooks* are a new addition in React 16.8. They let you use state and other React features without writing a class.
 
 Building your own Hooks lets you extract component logic into reusable functions.

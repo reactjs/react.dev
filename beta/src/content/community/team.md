@@ -84,4 +84,4 @@ Current members of the React team are listed in alphabetical order below.
 
 ## Past contributors {/*past-contributors*/}
 
-You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/learn/acknowledgements) page.
+You can find the past team members and other people who significantly contributed to React over the years on the [acknowledgements](/community/acknowledgements) page.

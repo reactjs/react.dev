@@ -5,6 +5,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/:path*(\\.html)",
+      "destination": "https://legacy.reactjs.org/:path*.html",
+      "permanent": false
+    },
+    {
       "source": "/tips/controlled-input-null-value.html",
       "destination": "/docs/forms.html#controlled-input-null-value",
       "permanent": false

@@ -17,9 +17,6 @@ const nextConfig = {
   env: {
     SANDPACK_BARE_COMPONENTS: process.env.SANDPACK_BARE_COMPONENTS,
   },
-  async redirects() {
-    return [];
-  },
   webpack: (config, {dev, isServer, ...options}) => {
     if (process.env.ANALYZE) {
       const {BundleAnalyzerPlugin} = require('webpack-bundle-analyzer');

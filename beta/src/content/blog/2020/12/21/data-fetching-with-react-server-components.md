@@ -16,9 +16,7 @@ December 21, 2020 by [Dan Abramov](https://twitter.com/dan_abramov), [Lauren Tan
 
 To introduce React Server Components, we have prepared a talk and a demo. If you want, you can check them out during the holidays, or later when work picks back up in the new year.
 
-<br />
-
-<iframe width="560" height="315" src="https://www.youtube.com/embed/TQQPAU21ZUw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<YouTubeIframe src="https://www.youtube.com/embed/TQQPAU21ZUw" />
 
 **React Server Components are still in research and development.** We are sharing this work in the spirit of transparency and to get initial feedback from the React community. There will be plenty of time for that, so **don't feel like you have to catch up right now!**
 

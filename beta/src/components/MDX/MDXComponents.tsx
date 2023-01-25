@@ -353,15 +353,18 @@ function InlineTocItem({items}: {items: Array<NestedTocNode>}) {
   );
 }
 
-function LinkWithTodo({href, children, ...props}: JSX.IntrinsicElements['a']) {
-  if (href?.startsWith('TODO')) {
-    return children;
-  }
-
+function YouTubeIframe(props: any) {
   return (
-    <Link href={href} {...props}>
-      {children}
-    </Link>
+    <div className="relative h-0 overflow-hidden pt-[56.25%]">
+      <iframe
+        className="absolute inset-0 w-full h-full"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowFullScreen
+        title="YouTube video player"
+        {...props}
+      />
+    </div>
   );
 }
 
@@ -377,7 +380,7 @@ export const MDXComponents = {
   h3: H3,
   h4: H4,
   hr: Divider,
-  a: LinkWithTodo,
+  a: Link,
   code: InlineCode,
   pre: CodeBlock,
   CodeDiagram,
@@ -420,6 +423,7 @@ export const MDXComponents = {
   Hint,
   Solution,
   CodeStep,
+  YouTubeIframe,
 };
 
 for (let key in MDXComponents) {
